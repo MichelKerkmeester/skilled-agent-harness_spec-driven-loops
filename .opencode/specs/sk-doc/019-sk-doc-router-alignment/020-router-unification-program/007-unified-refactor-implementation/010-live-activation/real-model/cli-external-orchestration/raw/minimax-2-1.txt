@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"cli-external-orchestration","reason":"user requests Anthropic CLI review with extended thinking"}

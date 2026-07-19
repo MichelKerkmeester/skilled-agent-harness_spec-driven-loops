@@ -20,11 +20,11 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | P4a design-faithful activation complete for all 7 hubs; real-model verification (T9) and P4b cutover (T10-T11) deferred/gated |
+| **Status** | P4a complete for all 7 hubs (design-faithful activation + T9 real-model verification, 0 wrong-hub routes); only P4b cutover (T10-T11) gated/deferred |
 | **Date** | 2026-07-19 |
 | **Level** | 2 |
 | **Serving authority** | Legacy; compiled generation bound as `selectedPolicy`, shadow-only |
-| **Strict validation** | Run on this phase folder; TEMPLATE_HEADERS and ANCHORS_VALID pass (Errors: 0) |
+| **Strict validation** | `validate.sh --strict` reports Errors: 0 (3 advisory warnings) |
 
 <!-- /ANCHOR:metadata -->
 
@@ -72,7 +72,7 @@ The completed rollout children are treated strictly as read-only inputs: the dri
 | Re-hash the frozen scorer before every activation | A drifted scorer would invalidate the canary baseline; drift must abort before any manifest write. |
 | Prove rollback in a scope-validated temp dir | Demonstrates byte-exact reversibility per hub without disturbing the committed activated state. |
 | Confine all writes to `activation/` | Prevents any mutation of a proven child canary or a live routing file. |
-| Defer real-model verification (T9) and the P4b flip | The serving-authority flip is the only stage that changes runtime routing; it is gated, reversible, and one-hub-at-a-time, and real-model verification is bounded and honestly labeled rather than rushed. |
+| Bound real-model verification (T9) to a sample; defer the P4b flip | T9 ran 2 authentic playbook prompts per hub × 3 models × 2 runs — bounded but real (0 wrong-hub routes). The serving-authority flip is the only stage that changes runtime routing; it stays gated, reversible, and one-hub-at-a-time. |
 
 <!-- /ANCHOR:decisions -->
 
@@ -106,7 +106,7 @@ Frozen scorer digests (unchanged, pinned in the driver):
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Real-model routing verification (P4a T9) is pending.** Verification across LUNA (high/fast), SOL (medium/fast), and MiniMax M3 on each hub's playbook prompts is deferred; it will be recorded in `real-model/<hub>/verdict.json` with a bounded, honestly labeled breadth. It is not claimed complete.
+1. **Real-model routing verification (P4a T9) is a bounded sample, not exhaustive coverage.** It ran LUNA/SOL (fast) and MiniMax M3 on 2 authentic playbook prompts per hub × 2 runs — 40/42 pass, **0 wrong-hub routes**, recorded in `real-model/<hub>/verdict.json`. It is real evidence but samples 2 prompts per hub, not the full playbook corpus; the 2 non-passes were LUNA transport timeouts, not misroutes.
 2. **The P4b literal cutover (T10-T11) is gated and not executed.** Building a runtime resolver that consumes `selectedPolicy` and flipping `servingAuthority` `legacy → compiled` one hub at a time — the only stage that changes runtime routing — requires an explicit go, with post-flip re-verification, proven rollback, and legacy reachable until each hub is green.
 3. **The four non-hub single-skill routers are out of scope here.** They use a different archetype (`fenced-manifest.cjs`, no `acceptance.json`) and are not part of the seven-hub P4 activation order; they can be activated by that path under a separate follow-up.
 
@@ -116,9 +116,9 @@ Frozen scorer digests (unchanged, pinned in the driver):
 _memory:
   continuity:
     status: in-progress
-    current_focus: "P4a design-faithful activation complete (7/7 hubs bound, byte-exact rollback proven); real-model verification (T9) and P4b cutover (T10-T11) pending/gated"
+    current_focus: "P4a complete (7/7 hubs bound + byte-exact rollback + T9 real-model verification, 0 wrong-hub routes); only P4b cutover (T10-T11) gated on the operator's approach decision"
     next_steps:
-      - "Real-model routing verification per hub (LUNA/SOL/MiniMax) on playbook prompts"
+      - "P4b decision: build a runtime engine that consumes the compiled contract vs a lighter enforcement guard vs defer (T9 found today's prose routing already routes correctly with real models)"
       - "Gate P4b: runtime resolver + serving-authority flip (highest blast, one hub at a time)"
     blockers: []
 -->

@@ -1,0 +1,4 @@
+[0m
+> build · gpt-5.6-luna-fast
+[0m
+{"skill":"sk-code","reason":"TypeScript code change with console.error fallback"}

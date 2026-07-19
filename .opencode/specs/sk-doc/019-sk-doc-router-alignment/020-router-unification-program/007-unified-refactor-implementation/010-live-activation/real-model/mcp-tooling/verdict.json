@@ -1,0 +1,69 @@
+{
+  "hubId": "mcp-tooling",
+  "prompts": [
+    {
+      "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+      "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging."
+    },
+    {
+      "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/clickup-task-management.md",
+      "prompt": "Mark the ClickUp task done and add a note that it shipped."
+    }
+  ],
+  "results": [
+    {
+      "prompt_idx": 1,
+      "model": "luna",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "luna",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "sol",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "sol",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "minimax",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "minimax",
+      "run1_skill": "mcp-tooling",
+      "run2_skill": "mcp-tooling",
+      "expected": "mcp-tooling",
+      "pass": true
+    }
+  ],
+  "perModelPass": {
+    "luna": "2/2",
+    "sol": "2/2",
+    "minimax": "2/2"
+  },
+  "notes": ""
+}

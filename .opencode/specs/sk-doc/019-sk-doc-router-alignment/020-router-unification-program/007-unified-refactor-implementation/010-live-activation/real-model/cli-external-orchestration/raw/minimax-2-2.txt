@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"cli-external-orchestration","reason":"dispatching Anthropic CLI for refactor second opinion"}

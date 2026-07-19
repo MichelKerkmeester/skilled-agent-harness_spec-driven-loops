@@ -1,0 +1,4 @@
+[0m
+> build · gpt-5.6-luna-fast
+[0m
+{"skill":"system-deep-loop","reason":"Deep iterative review with convergence and P0/P1/P2 findings"}

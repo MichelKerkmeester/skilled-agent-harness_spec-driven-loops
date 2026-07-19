@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"system-deep-loop","reason":"user explicitly requested deep research"}

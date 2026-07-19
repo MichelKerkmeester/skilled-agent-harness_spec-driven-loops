@@ -112,8 +112,10 @@ contextType: "implementation"
   - **Evidence**: All docs report P4a design-faithful activation complete for 7 hubs, serving authority legacy, and T9/P4b deferred/gated.
 - [x] CHK-051 [P1] Deferred and gated work is labeled honestly, not as done.
   - **Evidence**: Real-model verification (T9) and the P4b cutover (T10-T11) are recorded as pending/gated across `tasks.md` and `implementation-summary.md`.
-- [ ] CHK-052 [P1] Real-model routing verification recorded per hub.
-- [ ] CHK-053 [P0] Strict Level-2 packet validation passes on this phase folder.
+- [x] CHK-052 [P1] Real-model routing verification recorded per hub.
+  - **Evidence**: 3 models (LUNA/SOL fast, MiniMax M3) × 7 hubs on authentic playbook prompts; 40/42 pass, **0 wrong-hub routes** (2 non-passes are LUNA transport timeouts, run2 correct). Verdicts in `real-model/<hub>/verdict.json`; each record's `realModelVerification` carries its per-model result.
+- [x] CHK-053 [P0] Strict Level-2 packet validation passes on this phase folder.
+  - **Evidence**: `validate.sh --strict` reports `Errors: 0` (3 advisory warnings: absent `_memory` continuity blocks + evidence-marker lint).
 
 <!-- /ANCHOR:docs -->
 
@@ -136,12 +138,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 12/13 |
-| P1 Items | 8 | 7/8 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 8 | 8/8 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-19
 **Verification Scope**: Phase-local fenced-CAS activation of all seven hubs — binding, fence advance, byte-exact rollback, frozen-scorer pin, canary green gate, child immutability, and audit records.
-**Deferred/Gated Boundary**: Real-model routing verification (T9) and the P4b runtime resolver + serving-authority flip (T10-T11) are scoped but not executed; CHK-052 and CHK-053 remain open pending that work and the strict validation run.
+**Deferred/Gated Boundary**: Real-model routing verification (T9) is complete (0 wrong-hub routes across 3 models). Only the P4b runtime resolver + serving-authority flip (T10-T11) remains scoped-but-not-executed and gated.
 
 <!-- /ANCHOR:summary -->

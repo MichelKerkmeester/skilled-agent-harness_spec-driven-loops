@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"sk-design","reason":"design audit covering WCAG, focus, responsive, slop"}

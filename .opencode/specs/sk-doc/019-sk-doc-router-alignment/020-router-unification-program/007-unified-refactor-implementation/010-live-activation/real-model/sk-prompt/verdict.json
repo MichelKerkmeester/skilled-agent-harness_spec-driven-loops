@@ -1,0 +1,71 @@
+{
+  "hubId": "sk-prompt",
+  "prompts": [
+    {
+      "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/generic-prompt-improve.md",
+      "prompt": "Help me write a better prompt for a customer support chatbot."
+    },
+    {
+      "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/named-model-prompt-models.md",
+      "prompt": "What framework and scaffold does DeepSeek-v4-pro want for a coding task?"
+    }
+  ],
+  "results": [
+    {
+      "prompt_idx": 1,
+      "model": "luna",
+      "run1_skill": "timeout",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": false,
+      "status": "error"
+    },
+    {
+      "prompt_idx": 2,
+      "model": "luna",
+      "run1_skill": "timeout",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": false,
+      "status": "error"
+    },
+    {
+      "prompt_idx": 1,
+      "model": "sol",
+      "run1_skill": "sk-prompt",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "sol",
+      "run1_skill": "sk-prompt",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "minimax",
+      "run1_skill": "sk-prompt",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "minimax",
+      "run1_skill": "sk-prompt",
+      "run2_skill": "sk-prompt",
+      "expected": "sk-prompt",
+      "pass": true
+    }
+  ],
+  "perModelPass": {
+    "luna": "0/2",
+    "sol": "2/2",
+    "minimax": "2/2"
+  },
+  "notes": ""
+}

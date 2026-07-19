@@ -67,9 +67,9 @@ contextType: "implementation"
 - [x] T012 Prove a byte-exact rollback per hub in a scope-validated temp dir (`restoredHash` = accepted `priorManifestHash`); confirm the committed activated state is undisturbed.
 - [x] T013 Emit `activation/<hub>/activation-record.json` per hub (eligibility, CAS transition, rollback proof, real-model slot).
 - [x] T014 Confirm the completed rollout children remain byte-unchanged and all activation state is confined to `activation/`.
-- [ ] T015 [B] P4a T9 — real-model routing verification per hub (LUNA high/fast, SOL medium/fast, MiniMax M3) on playbook prompts; record `real-model/<hub>/verdict.json`. Deferred/in-progress.
+- [x] T015 P4a T9 — real-model routing verification per hub (LUNA/SOL fast, MiniMax M3) on authentic playbook prompts; verdicts in `real-model/<hub>/verdict.json`. 40/42 pass across 3 models × 7 hubs, **0 wrong-hub routes**; the 2 non-passes are LUNA transport timeouts (run2 routed correctly).
 
-**Evidence**: Each record reports `rollback.byteExact=true`; the driver never writes under a child path. Real-model verification (T015) is honestly recorded as pending, not complete.
+**Evidence**: Each record reports `rollback.byteExact=true`; the driver never writes under a child path. Real-model verification (T015) is complete and each record's `realModelVerification` carries its per-model verdict.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -81,12 +81,12 @@ contextType: "implementation"
 - [x] All seven hubs print `ACTIVATION BOUND … serving=legacy shadowOnly=true fence=0->1 rollback.byteExact=true scorerFrozen=true canaryGreen=true`.
 - [x] Frozen scorer digests unchanged (driver re-hash matches the three pinned digests).
 - [x] Completed rollout children byte-unchanged; activation state confined to `activation/`.
-- [ ] P4a T9 real-model routing verification recorded per hub (gated/deferred).
+- [x] P4a T9 real-model routing verification recorded per hub (40/42 pass, 0 misroutes across 3 models).
 - [ ] T016 [B] P4b — build a runtime resolver that consumes `selectedPolicy` behind a flag (gated, deferred; legacy reachable).
 - [ ] T017 [B] P4b — flip `servingAuthority` `legacy → compiled` one hub at a time with post-flip re-verification and proven rollback (gated, deferred — only stage that changes runtime routing).
 - [ ] Strict Level-2 packet validation on this phase folder.
 
-**Evidence**: P4a design-faithful activation is complete for all 7 hubs; T9 real-model verification and P4b cutover (T016-T017) are gated/deferred and NOT claimed done.
+**Evidence**: P4a design-faithful activation and T9 real-model verification are complete for all 7 hubs; only the P4b cutover (T016-T017) remains gated/deferred and is NOT claimed done.
 
 <!-- /ANCHOR:completion -->
 

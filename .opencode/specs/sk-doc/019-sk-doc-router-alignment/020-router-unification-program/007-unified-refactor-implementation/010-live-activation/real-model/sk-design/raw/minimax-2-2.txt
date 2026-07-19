@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"sk-design","reason":"user requested a UI accessibility and design audit"}

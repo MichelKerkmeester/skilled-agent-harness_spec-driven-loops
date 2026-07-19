@@ -1,0 +1,69 @@
+{
+  "hubId": "system-deep-loop",
+  "prompts": [
+    {
+      "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/research-routing.md",
+      "prompt": "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary."
+    },
+    {
+      "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md",
+      "prompt": "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict."
+    }
+  ],
+  "results": [
+    {
+      "prompt_idx": 1,
+      "model": "luna",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "luna",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "sol",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "sol",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "minimax",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "minimax",
+      "run1_skill": "system-deep-loop",
+      "run2_skill": "system-deep-loop",
+      "expected": "system-deep-loop",
+      "pass": true
+    }
+  ],
+  "perModelPass": {
+    "luna": "2/2",
+    "sol": "2/2",
+    "minimax": "2/2"
+  },
+  "notes": ""
+}

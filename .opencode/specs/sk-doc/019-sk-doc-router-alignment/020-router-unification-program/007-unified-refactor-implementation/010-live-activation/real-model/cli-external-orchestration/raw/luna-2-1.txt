@@ -1,0 +1,4 @@
+[0m
+> build · gpt-5.6-luna-fast
+[0m
+{"skill":"cli-external-orchestration","reason":"Dispatch an Anthropic CLI second opinion for the refactor review."}

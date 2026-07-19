@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"cli-external-orchestration","reason":"delegate work to external OpenCode CLI executor"}

@@ -1,0 +1,4 @@
+[0m
+> build · MiniMax-M3
+[0m
+{"skill":"sk-code","reason":"user requested application code refactoring"}

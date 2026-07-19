@@ -39,7 +39,7 @@
       "driver"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "lib/activate-hub.cjs",
       "spec.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The compiled router contract is shadow-complete but never bound",
     "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-07-19T12:43:11.624Z",
+    "last_save_at": "2026-07-19T13:50:17.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5cf596b8553f27a4019090db85a53a27c5d80cca479496f8bcd161285fedf3e",
+    "source_fingerprint": "sha256:6256c5214a2124a2666be292a74128a308f386c9679c58028e5cb52cf93a43e0",
     "source_doc_hashes": {
       "spec.md": "1ed6b62571c438ba05dbdecc880cea13a153cd483aa4dce3977501b685e4f873",
       "plan.md": "223c8347995c17feecbaa244ee1f3216371c249be7b187a53a53da7ef8510a7b",
-      "tasks.md": "ced9b0e7f86a785080c21ebd3361dc87ff87462e09c701760fff7e957708653b",
-      "checklist.md": "c524f17077dd51aa0bd9961015c3464551d2a684b7d2d615578cb6b18a9edfec",
-      "implementation-summary.md": "20082bb549a69853776da511da0507d2de27434ccbef20ff6eb14cf4dcaef0fb"
+      "tasks.md": "e30627285de5464afef91c180de667a900c1b650bf94e850ebc6eda96ca8d290",
+      "checklist.md": "bf65e2e90b1e5cc67af44e15d6f71969e5233cc0bd772d45c77cedf66e2563bc",
+      "implementation-summary.md": "6743c469ab9049a25bace9546c6e60d561c3372ec9d69024be878ef0a14221fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

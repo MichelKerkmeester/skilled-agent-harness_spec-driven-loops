@@ -1,0 +1,69 @@
+{
+  "hubId": "cli-external-orchestration",
+  "prompts": [
+    {
+      "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
+      "prompt": "Delegate this to OpenCode and run the ablation suite with full plugin and Spec Kit Memory runtime."
+    },
+    {
+      "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/claude-code-second-opinion.md",
+      "prompt": "Get an Anthropic CLI second opinion on this refactor with extended thinking before I merge."
+    }
+  ],
+  "results": [
+    {
+      "prompt_idx": 1,
+      "model": "luna",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "luna",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "sol",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "sol",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    },
+    {
+      "prompt_idx": 1,
+      "model": "minimax",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    },
+    {
+      "prompt_idx": 2,
+      "model": "minimax",
+      "run1_skill": "cli-external-orchestration",
+      "run2_skill": "cli-external-orchestration",
+      "expected": "cli-external-orchestration",
+      "pass": true
+    }
+  ],
+  "perModelPass": {
+    "luna": "2/2",
+    "sol": "2/2",
+    "minimax": "2/2"
+  },
+  "notes": ""
+}
