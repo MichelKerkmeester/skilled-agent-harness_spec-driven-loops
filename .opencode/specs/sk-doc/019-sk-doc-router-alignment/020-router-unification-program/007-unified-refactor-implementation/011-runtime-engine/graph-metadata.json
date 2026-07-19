@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unified router runtime engine",
+      "compiled-route resolver serving flip",
+      "P4b literal cutover runtime",
+      "runtime engine plan",
+      "compiled-route resolver flip plan",
+      "P4b cutover plan",
+      "runtime engine tasks",
+      "P4b cutover task list",
+      "runtime engine checklist",
+      "P4b cutover QA gate",
+      "runtime engine implementation summary",
+      "compiled-route resolver flip built"
+    ],
+    "key_topics": [
+      "unified",
+      "router",
+      "runtime",
+      "engine",
+      "compiled-route",
+      "resolver",
+      "serving",
+      "flip",
+      "p4b",
+      "literal",
+      "cutover",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "lib/compiled-route.cjs",
+      "lib/resolve.cjs",
+      "lib/flip-serving.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": "lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": "lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "flip-serving.cjs",
+        "kind": "file",
+        "path": "lib/flip-serving.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Literal Cutover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Consume",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
+    "created_at": "2026-07-19T14:22:34.516Z",
+    "last_save_at": "2026-07-19T14:26:11.185Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:32fa6612e9070f00676f9e8b55a5cdd59d55e03fc105b52a1be9c4553275b84a",
+    "source_doc_hashes": {
+      "spec.md": "d8694d6146ee3fc0741b24b2384d50e011bcf54383564134fde7e61997e5e71c",
+      "plan.md": "6b3205b021d85c1500463e9d0bb9b2efae5edebc586924978dd54635655778e3",
+      "tasks.md": "79eb7e762058d37e0ad32c94e9bd879d3eee2641759609dc1ef64b2a1bf2be7f",
+      "checklist.md": "421a92144f7fb49b2a4cf10c945e7b8720e293eada744f50a6448fe909528af4",
+      "implementation-summary.md": "9c82030e9657999a17031c059e1e521c9e2565a985217f4c5132a513dde4ba7c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

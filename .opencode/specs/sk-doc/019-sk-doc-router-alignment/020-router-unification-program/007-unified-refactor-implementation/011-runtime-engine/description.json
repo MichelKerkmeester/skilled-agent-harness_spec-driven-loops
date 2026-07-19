@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine",
+  "description": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route",
+  "keywords": [
+    "p4a",
+    "hub",
+    "compiled",
+    "generation",
+    "bound",
+    "selectedpolicy",
+    "nothing",
+    "consumes",
+    "code",
+    "reads",
+    "manifest",
+    "route"
+  ],
+  "lastUpdated": "2026-07-19T14:25:59.352Z",
+  "specId": "011",
+  "folderSlug": "runtime-engine",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
