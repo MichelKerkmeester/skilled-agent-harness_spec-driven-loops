@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Unified Router Refactor — Live Activation"
-description: "Design-faithful fenced-CAS activation of all seven hubs: selectedPolicy bound to the compiled generation, serving authority legacy, byte-exact rollback proven, scorer frozen. P4b cutover gated."
+description: "Design-faithful fenced-CAS activation of all seven hubs: selectedPolicy bound to the compiled generation, byte-exact rollback proven, scorer frozen. P4b cutover complete in 011-runtime-engine (all 7 hubs flipped legacy->compiled, inert behind the default-off SPECKIT_COMPILED_ROUTING flag)."
 trigger_phrases:
   - "live activation implementation summary"
   - "seven hubs activated design-faithful"
@@ -20,10 +20,10 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | P4a complete for all 7 hubs (design-faithful activation + T9 real-model verification, 0 wrong-hub routes); only P4b cutover (T10-T11) gated/deferred |
+| **Status** | Complete — P4a design-faithful activation + T9 real-model verification (0 wrong-hub routes) complete for all 7 hubs, and the P4b cutover (`011-runtime-engine`) is complete: all 7 hubs flipped `legacy → compiled`, inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained. Advisor-hook machine-enforcement remains in progress |
 | **Date** | 2026-07-19 |
 | **Level** | 2 |
-| **Serving authority** | Legacy; compiled generation bound as `selectedPolicy`, shadow-only |
+| **Serving authority** | `compiled` (committed) — P4a bound the compiled generation as `selectedPolicy` with legacy serving; the sibling P4b flip (`011`) advanced all 7 manifests to `servingAuthority: compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag |
 | **Strict validation** | `validate.sh --strict` reports Errors: 0 (3 advisory warnings) |
 
 <!-- /ANCHOR:metadata -->
@@ -35,7 +35,7 @@ contextType: "implementation"
 
 A phase-local **activation layer** with one shared, zero-dependency driver, `lib/activate-hub.cjs`. The driver binds each hub's compiled policy generation as the `selectedPolicy` on a dedicated per-hub activation manifest via a fenced compare-and-swap, advancing a monotonic fence epoch, while `servingAuthority` stays `legacy`. It seeds its manifests byte-for-byte from each hub's shadow rollout child (so the completed canary children are never mutated), refuses to run unless the child's canary is green and the three frozen scorer files match their pinned digests, and proves a byte-exact rollback in a scope-validated temp dir on every run.
 
-This is the design-faithful reading of activation: the compiled contract becomes the *accepted, bound* generation; legacy keeps *serving* because no runtime consumer exists yet. The genuine runtime change — a resolver that reads `selectedPolicy` plus a `servingAuthority` flip — is scoped as P4b and gated.
+This is the design-faithful reading of activation: the compiled contract becomes the *accepted, bound* generation; at P4a bind time legacy kept *serving* because no runtime consumer existed yet. The genuine runtime change — a resolver that reads `selectedPolicy` plus a `servingAuthority` flip — is now complete in the sibling `011-runtime-engine`: all seven hubs are flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag (route-gold ROUTING byte-identical — only hashes changed), with a byte-identical legacy manifest retained per hub for a byte-exact rollback.
 
 ### Files Delivered
 
@@ -44,7 +44,7 @@ This is the design-faithful reading of activation: the compiled contract becomes
 | Driver | `lib/activate-hub.cjs` | The shared fenced-CAS activation driver (one path, run once per hub) |
 | Activation state | `activation/<hub>/{manifest.json, manifest.prior.json, manifest.candidate.json, fence-state.json}` | Per-hub serving manifest, seeded prior/candidate, and fence state |
 | Audit | `activation/<hub>/activation-record.json` | Per-hub audit trail (eligibility, CAS transition, rollback proof, real-model slot) |
-| Documentation | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Status, evidence, verification, and the deferred/gated boundary |
+| Documentation | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Status, evidence, verification, and the completion boundary |
 
 <!-- /ANCHOR:what-built -->
 
@@ -72,7 +72,7 @@ The completed rollout children are treated strictly as read-only inputs: the dri
 | Re-hash the frozen scorer before every activation | A drifted scorer would invalidate the canary baseline; drift must abort before any manifest write. |
 | Prove rollback in a scope-validated temp dir | Demonstrates byte-exact reversibility per hub without disturbing the committed activated state. |
 | Confine all writes to `activation/` | Prevents any mutation of a proven child canary or a live routing file. |
-| Bound real-model verification (T9) to a sample; defer the P4b flip | T9 ran 2 authentic playbook prompts per hub × 3 models × 2 runs — bounded but real (0 wrong-hub routes). The serving-authority flip is the only stage that changes runtime routing; it stays gated, reversible, and one-hub-at-a-time. |
+| Bound real-model verification (T9) to a sample; then execute the P4b flip behind a flag | T9 ran 2 authentic playbook prompts per hub × 3 models × 2 runs — bounded but real (0 wrong-hub routes). The serving-authority flip is the only stage that changes runtime routing; it was executed in `011` one-hub-at-a-time behind the default-off `SPECKIT_COMPILED_ROUTING` flag and stays reversible (per-hub serving-prior or fleet-wide flag off). |
 
 <!-- /ANCHOR:decisions -->
 
@@ -81,17 +81,17 @@ The completed rollout children are treated strictly as read-only inputs: the dri
 <!-- ANCHOR:verification -->
 ## Verification
 
-All seven hubs, in activation order, returned `ACTIVATION BOUND … serving=legacy shadowOnly=true fence=0->1 rollback.byteExact=true scorerFrozen=true canaryGreen=true`:
+All seven hubs, in activation order, returned `ACTIVATION BOUND … serving=legacy shadowOnly=true fence=0->1 rollback.byteExact=true scorerFrozen=true canaryGreen=true` at P4a bind time; the sibling P4b flip (`011`) then advanced all seven to `servingAuthority: compiled`, `shadowOnly: false` behind the default-off `SPECKIT_COMPILED_ROUTING` flag (each flip canary-green via the real scorer, route-gold ROUTING byte-identical, byte-exact rollback retained):
 
-| Hub | Compiled generation | Rollback byte-exact | Serving |
+| Hub | Compiled generation | Rollback byte-exact | Serving (post-P4b) |
 |-----|--------------------:|:-------------------:|---------|
-| sk-code | 2 | ✓ | legacy |
-| mcp-tooling | 4 | ✓ | legacy |
-| system-deep-loop | 3 | ✓ | legacy |
-| cli-external-orchestration | 5 | ✓ | legacy |
-| sk-prompt | 5 | ✓ | legacy |
-| sk-design | 6 | ✓ | legacy |
-| sk-doc | 5 | ✓ | legacy |
+| sk-code | 2 | ✓ | compiled |
+| mcp-tooling | 4 | ✓ | compiled |
+| system-deep-loop | 3 | ✓ | compiled |
+| cli-external-orchestration | 5 | ✓ | compiled |
+| sk-prompt | 5 | ✓ | compiled |
+| sk-design | 6 | ✓ | compiled |
+| sk-doc | 5 | ✓ | compiled |
 
 Frozen scorer digests (unchanged, pinned in the driver):
 
@@ -106,8 +106,8 @@ Frozen scorer digests (unchanged, pinned in the driver):
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Real-model routing verification (P4a T9) is a bounded sample, not exhaustive coverage.** It ran LUNA/SOL (fast) and MiniMax M3 on 2 authentic playbook prompts per hub × 2 runs — 40/42 pass, **0 wrong-hub routes**, recorded in `real-model/<hub>/verdict.json`. It is real evidence but samples 2 prompts per hub, not the full playbook corpus; the 2 non-passes were LUNA transport timeouts, not misroutes.
-2. **The P4b literal cutover (T10-T11) is gated and not executed.** Building a runtime resolver that consumes `selectedPolicy` and flipping `servingAuthority` `legacy → compiled` one hub at a time — the only stage that changes runtime routing — requires an explicit go, with post-flip re-verification, proven rollback, and legacy reachable until each hub is green.
+1. **Real-model routing verification (P4a T9) is a bounded sample, not exhaustive coverage.** It ran LUNA/SOL (fast) and MiniMax M3 on 2 authentic playbook prompts per hub × 2 runs — 40/42 pass, **0 wrong-hub routes**, recorded in `real-model/<hub>/verdict.json`. It is real evidence but samples 2 prompts per hub, not the full playbook corpus; the 2 non-passes were LUNA transport timeouts, not misroutes. A separate post-flip real-model sweep was not re-run; it is treated as satisfied by this T9 result plus the flag-off inertness — because compiled routing is route-gold byte-identical to legacy, enabling `SPECKIT_COMPILED_ROUTING` changes hashes only, not routing decisions, so live routing is unchanged until the flag is enabled.
+2. **The P4b literal cutover (T16-T17) is complete.** The runtime resolver that consumes `selectedPolicy` and the `servingAuthority` `legacy → compiled` flip — the only stage that changes runtime routing — were delivered in the sibling `011-runtime-engine` (commits engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa`, pushed on v4). All 7 hubs are flipped, each canary-green via the real scorer with a byte-exact rollback retained; the path is inert by default (`SPECKIT_COMPILED_ROUTING` off) and reversible per-hub or fleet-wide. The advisor-hook machine-enforcement layer that would machine-enforce the wired routing remains in progress.
 3. **The four non-hub single-skill routers are out of scope here.** They use a different archetype (`fenced-manifest.cjs`, no `acceptance.json`) and are not part of the seven-hub P4 activation order; they can be activated by that path under a separate follow-up.
 
 <!-- /ANCHOR:limitations -->
@@ -115,10 +115,10 @@ Frozen scorer digests (unchanged, pinned in the driver):
 <!--
 _memory:
   continuity:
-    status: in-progress
-    current_focus: "P4a complete (7/7 hubs bound + byte-exact rollback + T9 real-model verification, 0 wrong-hub routes); only P4b cutover (T10-T11) gated on the operator's approach decision"
+    status: complete
+    current_focus: "P4a complete (7/7 hubs bound + byte-exact rollback + T9 real-model verification, 0 wrong-hub routes); P4b cutover complete in 011-runtime-engine — all 7 hubs flipped legacy->compiled (servingAuthority: compiled), held inert behind the default-off SPECKIT_COMPILED_ROUTING flag (route-gold byte-identical), byte-exact rollback retained per hub"
     next_steps:
-      - "P4b decision: build a runtime engine that consumes the compiled contract vs a lighter enforcement guard vs defer (T9 found today's prose routing already routes correctly with real models)"
-      - "Gate P4b: runtime resolver + serving-authority flip (highest blast, one hub at a time)"
+      - "Advisor-hook machine-enforcement layer (program-level) remains in progress"
+      - "Enablement is operator-gated: set SPECKIT_COMPILED_ROUTING=1 to serve compiled (routing byte-identical); reversible per-hub (flip-serving --rollback) or fleet-wide (flag off)"
     blockers: []
 -->

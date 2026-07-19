@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Unified Router Refactor — Live Activation"
-description: "How the fenced-CAS activation driver binds each hub's compiled generation, proves byte-exact rollback, and gates the runtime cutover."
+description: "How the fenced-CAS activation driver binds each hub's compiled generation, proves byte-exact rollback, and stages the now-complete runtime cutover (P4b executed in 011-runtime-engine)."
 trigger_phrases:
   - "live activation plan"
   - "fenced-CAS driver plan"
@@ -36,7 +36,7 @@ FAILURE MODES:
 
 ### Overview
 
-A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful activation for every hub: it seeds a phase-local activation manifest byte-for-byte from the hub's shadow rollout child, then binds the hub's compiled generation as `selectedPolicy` via a fenced CAS that advances the fence epoch while `servingAuthority` stays `legacy`. Every activation is gated on a frozen-scorer pin and a green canary, and proves a byte-exact rollback. Stage P4b — the runtime resolver plus the `servingAuthority` flip — is scoped but gated and not executed here.
+A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful activation for every hub: it seeds a phase-local activation manifest byte-for-byte from the hub's shadow rollout child, then binds the hub's compiled generation as `selectedPolicy` via a fenced CAS that advances the fence epoch while `servingAuthority` stays `legacy`. Every activation is gated on a frozen-scorer pin and a green canary, and proves a byte-exact rollback. Stage P4b — the runtime resolver plus the `servingAuthority` flip — is complete, delivered in the sibling `011-runtime-engine`: all seven hubs were flipped `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag, with the byte-identical legacy manifest retained per hub.
 
 <!-- /ANCHOR:summary -->
 
@@ -55,8 +55,8 @@ A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful act
 - [x] Every hub proves a byte-exact rollback (`restoredHash` = accepted `priorManifestHash`).
 - [x] Frozen-scorer pin and canary green gate enforced as hard preconditions.
 - [x] Completed rollout children remain byte-unchanged; activation state confined to `activation/`.
-- [ ] P4a T9 real-model routing verification recorded per hub (deferred/in-progress).
-- [ ] P4b runtime resolver + serving-authority flip (gated, not executed here).
+- [x] P4a T9 real-model routing verification recorded per hub (complete; 40/42 pass, **0 wrong-hub routes** across 3 models × 7 hubs).
+- [x] P4b runtime resolver + serving-authority flip complete in `011-runtime-engine` (all 7 hubs flipped `legacy → compiled`, inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained).
 
 <!-- /ANCHOR:quality-gates -->
 
@@ -67,7 +67,7 @@ A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful act
 
 ### Pattern
 
-Bind-then-serve, split into two stages. Activation is a fenced compare-and-swap that moves `selectedPolicy` from the legacy generation to the compiled generation on a phase-local manifest; it never edits a serving policy. Serving authority stays legacy until a separate, gated P4b resolver is built.
+Bind-then-serve, split into two stages. Activation is a fenced compare-and-swap that moves `selectedPolicy` from the legacy generation to the compiled generation on a phase-local manifest; it never edits a serving policy. Serving authority stayed legacy through P4a; the separate P4b resolver (`011-runtime-engine`) has since been built and flipped all seven hubs to `compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
 
 ### Key Components
 - **`lib/activate-hub.cjs`**: the shared, zero-dependency fenced-CAS driver — one code path, run once per hub.
@@ -93,7 +93,7 @@ This phase introduces a new activation layer over shared, content-addressed poli
 | Shadow rollout child manifests (`manifest.prior/candidate.json`) | Proven compiled generation + retained prior | Read-only seed source | Seeded prior hash equals accepted `priorManifestHash`; child bytes unchanged |
 | `harness/validate-canary.cjs` (per child) | Canary green gate | Executed as an activation precondition | Non-zero exit aborts; records report `canaryGreen=true` |
 | Three shared scorer files | Frozen route-gold scorer | Re-hashed, never edited | Pinned digests unchanged; drift aborts before any write |
-| `activation/<hub>/manifest.json` | New per-hub serving manifest | Fenced CAS writes `selectedPolicy`, advances fence | `servingAuthority: legacy`, `shadowOnly: true`, fence epoch 1 |
+| `activation/<hub>/manifest.json` | New per-hub serving manifest | Fenced CAS writes `selectedPolicy`, advances fence; P4b (`011`) later flips serving authority | P4a: `servingAuthority: legacy`, `shadowOnly: true`, fence epoch 1 → post-P4b (current committed): `servingAuthority: compiled`, `shadowOnly: false` |
 | Live `SKILL.md` / `hub-router.json` / `mode-registry.json` | Authoritative serving routing | **Unchanged — not a consumer** | Activation confined to `010-live-activation/activation/` |
 
 Required inventories before activation:
@@ -122,7 +122,7 @@ Required inventories before activation:
 ### Phase 3: Verification
 - [x] Rollback proof: in a scope-validated temp dir, restore the prior manifest and assert the restored hash is byte-exact against `priorManifestHash`; the committed activated state is never disturbed.
 - [x] Emit `activation/<hub>/activation-record.json` for each hub.
-- [ ] Real-model routing verification per hub (deferred/in-progress; record `real-model/<hub>/verdict.json`).
+- [x] Real-model routing verification per hub (complete; 40/42 pass, **0 wrong-hub routes**; `real-model/<hub>/verdict.json`).
 
 <!-- /ANCHOR:phases -->
 
@@ -137,7 +137,7 @@ Required inventories before activation:
 | Reversibility | Byte-exact rollback per hub | Temp-dir rollback drill (`restoredHash` = `priorManifestHash`) |
 | Idempotency | Re-run of an already-bound hub | No-op ship that still proves rollback |
 | Boundary | Child immutability; write-path confinement | Confirm no write under a child path; activation state under `activation/` |
-| Manual (deferred) | Real-model routing per hub | LUNA / SOL / MiniMax on playbook prompts → `real-model/<hub>/verdict.json` |
+| Manual (complete) | Real-model routing per hub | LUNA / SOL / MiniMax on playbook prompts → `real-model/<hub>/verdict.json` (40/42 pass, 0 misroutes) |
 
 <!-- /ANCHOR:testing -->
 
@@ -151,7 +151,7 @@ Required inventories before activation:
 | Shadow rollout children (per hub) | Internal | Green | No seed source or canary gate without green children |
 | Frozen benchmark scorer (three pinned digests) | Internal | Green | Drift would invalidate the canary baseline; driver aborts |
 | Fenced-CAS manifest primitive | Internal | Green | No auditable, reversible binding without the fence + preimage check |
-| Real models (LUNA / SOL / MiniMax) | External | Deferred | T9 verification pending; does not block the P4a binding |
+| Real models (LUNA / SOL / MiniMax) | External | Complete | T9 verification done (0 wrong-hub routes); did not block the P4a binding |
 
 <!-- /ANCHOR:dependencies -->
 
@@ -192,7 +192,7 @@ Phase 1 (Setup / gate + seed) ──► Phase 2 (Core / fenced CAS ship) ──�
 | Setup (driver + gates + seed) | Med | Authored once; reused per hub |
 | Core (fenced CAS ship × 7) | Low | Deterministic per hub |
 | Verification (rollback proof + records) | Low | Automated per hub |
-| Real-model verification (T9) | High | Deferred; bounded breadth |
+| Real-model verification (T9) | High | Complete; bounded breadth (2 prompts/hub) |
 
 <!-- /ANCHOR:effort -->
 

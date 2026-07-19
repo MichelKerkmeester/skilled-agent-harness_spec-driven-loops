@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
     "created_at": "2026-07-19T14:22:34.516Z",
-    "last_save_at": "2026-07-19T14:26:11.185Z",
+    "last_save_at": "2026-07-19T15:59:28.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32fa6612e9070f00676f9e8b55a5cdd59d55e03fc105b52a1be9c4553275b84a",
+    "source_fingerprint": "sha256:b6752654be96259a533778a7b60f6a25b1d342f17e3f39af09677f3103c5f993",
     "source_doc_hashes": {
-      "spec.md": "d8694d6146ee3fc0741b24b2384d50e011bcf54383564134fde7e61997e5e71c",
-      "plan.md": "6b3205b021d85c1500463e9d0bb9b2efae5edebc586924978dd54635655778e3",
-      "tasks.md": "79eb7e762058d37e0ad32c94e9bd879d3eee2641759609dc1ef64b2a1bf2be7f",
-      "checklist.md": "421a92144f7fb49b2a4cf10c945e7b8720e293eada744f50a6448fe909528af4",
-      "implementation-summary.md": "9c82030e9657999a17031c059e1e521c9e2565a985217f4c5132a513dde4ba7c"
+      "spec.md": "cda1932f5f28ca0dca7937f1bad28549ce7804a16c1eb5a2cb444167be2e5b8c",
+      "plan.md": "c39319bdc29bce6b3a3d04f2d4346101e82f96316f0090eeff547df66e7a5907",
+      "tasks.md": "15323349525b99ff9018343e324d497e51c2011a37b5c7fbbc421b095751943f",
+      "checklist.md": "9bfa848f7a56ac2d575d93642c9f58ae2a5210e37bb7b83872692b41c7f897e1",
+      "implementation-summary.md": "d7d1a7b8124bcc97f81761667d05a4159050122a5d5631450c3b13131e475240"
     },
     "last_active_child_id": null,
     "last_active_at": null

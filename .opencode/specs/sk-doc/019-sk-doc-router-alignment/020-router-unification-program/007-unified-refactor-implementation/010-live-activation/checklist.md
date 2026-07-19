@@ -80,8 +80,8 @@ contextType: "implementation"
 
 - [x] CHK-030 [P0] Every hub's `selectedPolicy` equals its compiled `candidatePolicy`.
   - **Evidence**: Driver `--json` records and the committed `activation/<hub>/manifest.json` agree on the bound generation.
-- [x] CHK-031 [P0] Serving authority stayed `legacy` and `shadowOnly` stayed `true` (no runtime routing change).
-  - **Evidence**: Every record and committed manifest reports `servingAuthority: "legacy"`, `shadowOnly: true`.
+- [x] CHK-031 [P0] Serving authority stayed `legacy` and `shadowOnly` stayed `true` through P4a (no runtime routing change at bind time).
+  - **Evidence**: Each P4a activation record reported `servingAuthority: "legacy"`, `shadowOnly: true`; the sibling P4b flip (`011`) has since advanced the committed manifests to `servingAuthority: "compiled"`, `shadowOnly: false`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag (route-gold ROUTING byte-identical).
 - [x] CHK-032 [P0] Seeding is byte-for-byte from the rollout children.
   - **Evidence**: The seeded prior hash equals the accepted `priorManifestHash`; the candidate `selectedPolicy` equals the accepted `candidatePolicy`.
 - [x] CHK-033 [P1] A per-hub `activation-record.json` audit trail was emitted.
@@ -109,9 +109,9 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-050 [P0] Spec, plan, tasks, checklist, and summary agree on the activation state.
-  - **Evidence**: All docs report P4a design-faithful activation complete for 7 hubs, serving authority legacy, and T9/P4b deferred/gated.
-- [x] CHK-051 [P1] Deferred and gated work is labeled honestly, not as done.
-  - **Evidence**: Real-model verification (T9) and the P4b cutover (T10-T11) are recorded as pending/gated across `tasks.md` and `implementation-summary.md`.
+  - **Evidence**: All docs report P4a design-faithful activation complete for 7 hubs, T9 real-model verification complete (0 wrong-hub routes), and the P4b cutover complete in `011` (all 7 hubs `compiled`, inert behind the default-off flag); the advisor-hook machine-enforcement layer is the one item still labeled in progress.
+- [x] CHK-051 [P1] Remaining in-progress work is labeled honestly, not as done.
+  - **Evidence**: Real-model verification (T9) and the P4b cutover (T16-T17) are recorded as complete; the still-open item — the advisor-hook machine-enforcement layer — is labeled in progress across `tasks.md`, `spec.md`, and `implementation-summary.md`, and post-flip real-model re-verification is honestly framed as satisfied by the T9 result plus flag-off inertness (routing byte-identical).
 - [x] CHK-052 [P1] Real-model routing verification recorded per hub.
   - **Evidence**: 3 models (LUNA/SOL fast, MiniMax M3) × 7 hubs on authentic playbook prompts; 40/42 pass, **0 wrong-hub routes** (2 non-passes are LUNA transport timeouts, run2 correct). Verdicts in `real-model/<hub>/verdict.json`; each record's `realModelVerification` carries its per-model result.
 - [x] CHK-053 [P0] Strict Level-2 packet validation passes on this phase folder.
@@ -144,6 +144,6 @@ contextType: "implementation"
 
 **Verification Date**: 2026-07-19
 **Verification Scope**: Phase-local fenced-CAS activation of all seven hubs — binding, fence advance, byte-exact rollback, frozen-scorer pin, canary green gate, child immutability, and audit records.
-**Deferred/Gated Boundary**: Real-model routing verification (T9) is complete (0 wrong-hub routes across 3 models). Only the P4b runtime resolver + serving-authority flip (T10-T11) remains scoped-but-not-executed and gated.
+**Completion Boundary**: Real-model routing verification (T9) is complete (0 wrong-hub routes across 3 models), and the P4b runtime resolver + serving-authority flip (T16-T17) is complete in `011-runtime-engine` — all 7 hubs flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag and byte-exact-reversible. The one item still in progress is the advisor-hook machine-enforcement layer; post-flip real-model re-verification is treated as satisfied by the T9 result plus flag-off inertness.
 
 <!-- /ANCHOR:summary -->

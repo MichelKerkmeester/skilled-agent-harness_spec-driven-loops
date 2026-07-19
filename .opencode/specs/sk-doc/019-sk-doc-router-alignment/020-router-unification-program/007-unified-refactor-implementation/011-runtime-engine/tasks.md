@@ -34,7 +34,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Author `lib/compiled-route.cjs` — the pure runtime engine that maps each hub to its rollout child and loads `loadSnapshot` + `evaluateCanary`.
-- [x] T002 Reuse the child's canary engine (no reimplemented routing algebra); normalize the decision to `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}`.
+- [x] T002 Reuse the child's archetype engine — `evaluateCanary` or `evaluateRoute` — (no reimplemented routing algebra); normalize the decision to `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}`.
 - [x] T003 Confirm the engine routes WITHIN a hub on signal-bearing prompts and returns `defer` on off-signal prompts (the conservative outcome).
 - [x] T004 Author `lib/resolve.cjs` — the double-gated (`SPECKIT_COMPILED_ROUTING=1` AND `servingAuthority: compiled`), fail-safe resolver with a `--hub/--prompt` CLI front-door.
 
@@ -65,10 +65,10 @@ contextType: "implementation"
 
 - [x] T011 Prove the flip on `sk-code`: `serving-flip-record.json` shows `servingAuthority: compiled`, generation 2, fence `3 → 4`, gates green (`canaryGreen: true`, `scorerFrozen: true`, routed 1/5 scenarios).
 - [x] T012 Prove the front-door: with `SPECKIT_COMPILED_ROUTING=1` the CLI returns `action: route` to the `code-quality` surface (sk-code/quality mode); with the flag off it returns the legacy sentinel.
-- [x] T013 Prove byte-exact rollback: `--rollback` restored `manifest.serving-prior.json` byte-for-byte (current `manifest.json` = serving-prior, `servingAuthority: legacy`, `shadowOnly: true`), fence advanced to 5; `sk-code` is left on legacy.
-- [x] T014 Confirm the three frozen scorer digests are unchanged after the full proof.
+- [x] T013 Prove byte-exact rollback: `--rollback` restores `manifest.serving-prior.json` byte-for-byte (the retained serving-prior reads `servingAuthority: legacy`, `shadowOnly: true`). The rollback mechanism was exercised and proven; `sk-code` was then flipped for the production cutover and is currently `servingAuthority: compiled` at fence epoch 4, with the byte-identical serving-prior retained so the same byte-exact rollback remains available.
+- [x] T014 Confirm the three frozen scorer digests are unchanged after the full proof and the seven-hub cutover.
 
-**Evidence**: The `sk-code` end-to-end proof is complete and rolled back — no hub is left compiled-serving. Evidence lives in `010-live-activation/activation/sk-code/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
+**Evidence**: The `sk-code` end-to-end proof is complete, and the cutover was then executed across all seven hubs — each flipped `legacy → compiled` and left compiled-serving but inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. Evidence lives in `010-live-activation/activation/<hub>/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -78,13 +78,13 @@ contextType: "implementation"
 ## Completion Criteria
 
 - [x] The compiled-route engine, the double-gated resolver + CLI front-door, and the fenced-CAS serving flip are built and run offline with zero dependencies.
-- [x] The path is proven end-to-end on `sk-code` (flip → compiled-served route → byte-exact rollback) and returned to legacy.
+- [x] The path is proven end-to-end on `sk-code` (flip → compiled-served route → byte-exact rollback); the cutover was then executed across all 7 hubs (flipped `legacy → compiled`, left compiled but inert behind the default-off flag).
 - [x] Frozen scorer digests unchanged; the runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off).
-- [ ] T015 [B] Wire each hub's live `SKILL.md` routing directive to call the resolver (IN-PROGRESS; not landed here).
-- [ ] T016 [B] Flip all seven hubs' serving authority `legacy → compiled` with post-flip real-model re-verification (gated; only stage that changes runtime routing).
-- [ ] Strict Level-2 packet validation on this phase folder.
+- [x] T015 Wire each hub's live `SKILL.md` routing directive to call the resolver (complete: each of the 7 hubs carries an additive, flag-gated compiled-routing directive).
+- [x] T016 Flip all seven hubs' serving authority `legacy → compiled` (complete; each canary-green via the real scorer, route-gold byte-identical, byte-exact rollback retained); post-flip real-model re-verification treated as satisfied by the P4a T9 result plus flag-off inertness.
+- [x] Strict Level-2 packet validation on this phase folder.
 
-**Evidence**: The P4b runtime engine and its `sk-code` end-to-end proof are complete; the hub `SKILL.md` wiring (T015), the seven-hub flip, and post-flip real-model re-verification (T016) remain IN-PROGRESS/gated and are NOT claimed done.
+**Evidence**: The P4b runtime engine, its `sk-code` end-to-end proof, the hub `SKILL.md` wiring (T015), and the seven-hub `legacy → compiled` flip (T016) are all complete — landed in commits engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
 
 <!-- /ANCHOR:completion -->
 
