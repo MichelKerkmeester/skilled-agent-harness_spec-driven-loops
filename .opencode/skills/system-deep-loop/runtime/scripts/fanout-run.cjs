@@ -1451,7 +1451,10 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
       lineage.model || 'anthropic/claude-opus-4-8',
       '--format',
       'json',
-      '--pure',
+      // No --pure: a deep-loop lineage needs the full plugin/skill/MCP runtime to run
+      // the workflow AND write its state, and the spec-gate hook that honors
+      // MK_SPEC_GATE_ENFORCE lives in that runtime. --pure strips the tools and the hook,
+      // leaving the lineage stuck at an unanswerable Gate-3 prompt with nothing to research.
       '--dir',
       process.cwd(),
     ];
@@ -1463,7 +1466,7 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
     // must now opt into full bypass rather than getting it silently by default.
     const useDangerousBypass = resolvedSandbox === 'danger-full-access';
     if (useDangerousBypass) {
-      args.splice(args.indexOf('--pure'), 0, '--dangerously-skip-permissions');
+      args.push('--dangerously-skip-permissions');
       process.stderr.write(
         `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --dangerously-skip-permissions. `
           + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
@@ -1764,6 +1767,16 @@ async function main() {
       const stateEnvKey = SPECKIT_STATE_ENV_BY_KIND[lineage.kind];
       const extraEnv = {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
+        // A fan-out lineage is an orchestrated sub-session running an autonomous
+        // workflow: it has no user turn to answer Gate 3, so the spec-gate must be
+        // fully inert. ENFORCE=0 alone is NOT enough — that only stops the deny, while
+        // the classify step still injects the Gate-3 question, which a cli-opencode
+        // child then answers instead of doing its work. DISABLED makes both classify
+        // and enforce no-ops; AI_SESSION_CHILD lets the worktree wrapper exec in place.
+        // buildExecutorDispatchEnv filters these keys (outside the per-kind allowlist),
+        // so they are re-injected here to reach the child. Harmless for the codex path.
+        MK_SPEC_GATE_DISABLED: '1',
+        AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(lineage.kind === 'cli-claude-code' && lineage.configDir
           ? { CLAUDE_CONFIG_DIR: validateClaudeConfigDir(lineage.configDir) }
