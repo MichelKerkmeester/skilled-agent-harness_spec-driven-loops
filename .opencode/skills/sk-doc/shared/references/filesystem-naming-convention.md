@@ -13,11 +13,13 @@ version: 1.0.0.0
 
 # Filesystem Naming Convention - Kebab-Case Canon
 
+## 1. OVERVIEW
+
 Kebab-case (hyphens) is the sole canonical form for in-scope filesystem names across the repository. This document is the single source of truth for the rule, its exemptions, and the boundary between a filesystem name and a code identifier.
 
 ---
 
-## 1. THE RULE
+## 2. THE RULE
 
 **In-scope filesystem names use kebab-case.** This covers directory names, file names, and script filenames.
 
@@ -29,29 +31,29 @@ Kebab-case is chosen because it is the form already mandated by hard convention 
 
 ---
 
-## 2. EXEMPTIONS (never renamed)
+## 3. EXEMPTIONS (never renamed)
 
 Each class below keeps its existing name. A rename here would break an interpreter, a tool, or the historical record.
 
 | Class | Example | Why exempt |
 |-------|---------|------------|
 | Python source files | `validate_document.py` | Python style is snake_case; renaming churns imports for no gain |
-| Python import-package directories | `mcp-server/`, `behavior-benchmark/` | A `_`→`-` on a package dir breaks `import` and `from` statements (see §3) |
+| Python import-package directories | `my_package/` | A `_`→`-` on a package dir breaks `import` and `from` statements (see §4) |
 | Vendored / third-party trees | `node_modules/`, vendored SDK folders | Owned upstream, not by this repo |
 | Generated / lockfile output | `package-lock.json`, `dist/`, `*.tsbuildinfo` | Rewritten by tools; not authored names |
 | Tool-mandated filenames | `SKILL.md`, `README.md`, `.utcp_config.json`, `action.yml`, `conftest.py` | The name is a contract a tool matches on exactly |
 | Test-runner magic | `__snapshots__/`, `__mocks__/`, `test_*.py`, `*_test.py` | Discovery frameworks match these patterns literally |
-| Frozen surfaces | `z_archive/`, changelogs, completed spec-folder history | Append-only; they record prior names as history (see §4) |
+| Frozen surfaces | `z_archive/`, changelogs, completed spec-folder history | Append-only; they record prior names as history (see §5) |
 
 ---
 
-## 3. WHY PYTHON PACKAGE DIRECTORIES ARE EXEMPT
+## 4. WHY PYTHON PACKAGE DIRECTORIES ARE EXEMPT
 
-A Python import-package directory name is not a free-form filesystem label. It is an identifier that appears verbatim in `import` and `from ... import` statements and in `sys.path` resolution. Renaming `mcp-server/` to `mcp-server/` makes `import mcp_server` unresolvable, because `mcp-server` is not a legal Python identifier (a hyphen reads as subtraction). These directories therefore stay snake_case even though they are filesystem names.
+A Python import-package directory name is not a free-form filesystem label. It is an identifier that appears verbatim in `import` and `from ... import` statements and in `sys.path` resolution. Renaming `my_package/` to `my-package/` makes `import my_package` unresolvable, because `my-package` is not a legal Python identifier (a hyphen reads as subtraction). These directories therefore stay snake_case even though they are filesystem names.
 
 ---
 
-## 4. FROZEN-HISTORY EXCEPTION
+## 5. FROZEN-HISTORY EXCEPTION
 
 Frozen surfaces are append-only and record prior names as part of their history:
 
@@ -63,7 +65,7 @@ They are never rewritten to the new convention. Supersession is additive: a late
 
 ---
 
-## 5. OUT OF SCOPE: IDENTIFIERS AND KEYS KEEP IDIOMATIC CASE
+## 6. OUT OF SCOPE: IDENTIFIERS AND KEYS KEEP IDIOMATIC CASE
 
 The convention governs **filesystem names only**. It does not touch identifiers inside files. These keep their idiomatic case:
 
@@ -81,12 +83,12 @@ A filesystem rename must never alter a code identifier, a structured-data key, o
 
 ---
 
-## 6. RELATIONSHIP TO THE CLASSIFIER AND `core-standards.md`
+## 7. RELATIONSHIP TO THE CLASSIFIER AND `core-standards.md`
 
 `core-standards.md` §2 currently documents the legacy snake_case filename rule, which the `validate_document.py` classifier still applies. That rule and the classifier are reconciled to this kebab-case canon during the consumer-migration and generator phases of the naming program, under bounded dual-name tolerance so every intermediate state stays green. Until then, this document states the target; `core-standards.md` §2 carries a forward pointer here. This document is the single canonical source that later phases reference instead of restating ad-hoc rules.
 
 ---
 
-## 7. PROVENANCE
+## 8. PROVENANCE
 
 This canon reverses the catalog/playbook underscore restyle recorded in `sk-doc/014-sk-doc-parent/027-catalog-naming-convention` (child `003`) and is governed by the `sk-doc/020-hyphen-naming-convention` program. The program decisions (bounded dual-name tolerance, dependency-closure batching, fresh-install worktree, exemption boundary) are recorded in that program's decision record.

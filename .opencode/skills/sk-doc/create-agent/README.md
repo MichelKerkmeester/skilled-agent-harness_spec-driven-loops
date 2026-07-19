@@ -1,6 +1,6 @@
 # create-agent
 
-Scaffold or update one OpenCode agent markdown file with runtime-aware placement, unified `permission:` frontmatter, clear authority boundaries, and validation-first delivery.
+Scaffold or update one agent markdown file with runtime-aware placement, runtime-correct frontmatter (`permission:` for OpenCode, `tools:` for Claude Code), clear authority boundaries, and validation-first delivery.
 
 ## 1. OVERVIEW
 

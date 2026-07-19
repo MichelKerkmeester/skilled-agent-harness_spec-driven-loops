@@ -80,7 +80,7 @@ permission:
   task: deny
   list: allow
   patch: deny
-  external_directory: allow
+  external_directory: deny
 mcpServers:
   - mk-spec-memory
   - code_graph
@@ -522,7 +522,7 @@ permission:
   task: deny
   list: allow
   patch: deny
-  external_directory: allow
+  external_directory: deny
 mcpServers:
   - [server_name]
 ---
