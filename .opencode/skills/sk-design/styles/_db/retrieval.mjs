@@ -7,8 +7,7 @@ import { createHash } from 'node:crypto';
 import { assembleCandidateCards } from '../_engine/cards.mjs';
 import {
   STYLE_DB_SCHEMA_VERSION,
-  openStyleDatabase,
-  resolvePublishedDatabasePath,
+  openPublishedStyleDatabase,
 } from './schema.mjs';
 
 export const FUSION_PROFILE = Object.freeze({
@@ -19,6 +18,8 @@ export const FUSION_PROFILE = Object.freeze({
 
 const MAX_QUERY_LENGTH = 1_000;
 const MAX_QUERY_TERMS = 12;
+const MAX_QUERY_VECTOR_DIMENSIONS = 16_384;
+const MAX_QUERY_VECTOR_BYTES = 256 * 1_024;
 const MAX_CANDIDATE_K = 200;
 const DEFAULT_CANDIDATE_K = 50;
 const EXACT_REUSE_LICENSES = new Set(['allowed', 'licensed', 'public-domain']);
@@ -78,6 +79,26 @@ function retrievalError(code, message) {
   return error;
 }
 
+function validateQueryVector(queryVector) {
+  if (queryVector === undefined || queryVector === null) return null;
+  if (!Array.isArray(queryVector)
+    || queryVector.length === 0
+    || queryVector.length > MAX_QUERY_VECTOR_DIMENSIONS
+    || queryVector.some((value) => typeof value !== 'number' || !Number.isFinite(value))) {
+    throw retrievalError(
+      'invalid-query-vector',
+      `queryVector must contain 1-${MAX_QUERY_VECTOR_DIMENSIONS} finite numbers.`,
+    );
+  }
+  if (Buffer.byteLength(JSON.stringify(queryVector), 'utf8') > MAX_QUERY_VECTOR_BYTES) {
+    throw retrievalError(
+      'invalid-query-vector',
+      `queryVector must serialize to at most ${MAX_QUERY_VECTOR_BYTES} bytes.`,
+    );
+  }
+  return queryVector;
+}
+
 function requestFingerprint(request, candidateK, profile) {
   return digest(stableJson({
     text: request.text ?? '',
@@ -87,6 +108,7 @@ function requestFingerprint(request, candidateK, profile) {
     needs: (request.needs ?? []).map(normalizeFacet).sort(compareRawStrings),
     usage: request.usage ?? null,
     exactReuse: request.exactReuse === true,
+    generationHash: request.generationHash ?? null,
     queryVector: request.queryVector ?? null,
     vectorProfile: request.vectorProfile ?? null,
     disableFts: request.disableFts === true,
@@ -209,10 +231,7 @@ function cosine(left, right) {
 
 function vectorLane(database, eligible, request, candidateK) {
   if (!Array.isArray(request.queryVector) || !request.vectorProfile) return [];
-  const queryVector = request.queryVector.map(Number);
-  if (queryVector.length === 0 || queryVector.some((value) => !Number.isFinite(value))) {
-    throw retrievalError('invalid-query-vector', 'queryVector must contain finite numbers.');
-  }
+  const queryVector = request.queryVector;
   const ids = eligible.map((row) => row.style_rowid);
   if (ids.length === 0) return [];
   return database.prepare(`
@@ -336,15 +355,21 @@ function loadCardStyle(database, row) {
  * @returns {Object} Generation-stamped cards, cursor, and channel evidence.
  */
 export function queryPersistentStyles(request = {}, options = {}) {
-  const database = options.database ?? openStyleDatabase(
-    resolvePublishedDatabasePath(options.databasePath),
-  );
+  validateQueryVector(request.queryVector);
+  const database = options.database ?? openPublishedStyleDatabase(options.databasePath);
   const ownsDatabase = !options.database;
   const candidateK = Math.max(1, Math.min(MAX_CANDIDATE_K, request.candidateK ?? DEFAULT_CANDIDATE_K));
   const fingerprint = requestFingerprint(request, candidateK, FUSION_PROFILE);
   database.exec('BEGIN');
   try {
     const generation = validateGeneration(database);
+    if (request.generationHash !== undefined
+      && request.generationHash !== generation.generation_hash) {
+      throw retrievalError(
+        'generation-mismatch',
+        'Requested generation is not the published generation.',
+      );
+    }
     const vectorRevision = request.vectorProfile ? Number(database.prepare(`
       SELECT revision FROM vector_projection_revisions WHERE profile_id = ?
     `).get(request.vectorProfile)?.revision ?? 0) : 0;
@@ -463,5 +488,6 @@ export function queryPersistentStyles(request = {}, options = {}) {
 export const retrievalInternals = Object.freeze({
   decodeOpaque,
   requestFingerprint,
+  validateQueryVector,
   validateGeneration,
 });

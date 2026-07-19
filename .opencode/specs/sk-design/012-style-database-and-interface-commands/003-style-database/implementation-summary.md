@@ -1,13 +1,13 @@
 ---
 title: "Implementation Summary: sk-design style database"
-description: "Built and verified the SQLite+FTS5+vector style database per the 001 design; adapter defaults to legacy."
+description: "Built and fixture-verified the SQLite+FTS5+vector style database per the 001 design; adapter defaults to legacy pending the full-corpus activation gate."
 _memory:
   continuity:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/003-style-database"
-    last_updated_at: "2026-07-19T09:40:27Z"
-    last_updated_by: "db-build-orchestrator"
-    recent_action: "Built + independently verified the style database (24/24 db, 20/20 legacy)"
-    next_safe_action: "Proceed to phase 004 interface commands"
+    last_updated_at: "2026-07-19T14:00:14Z"
+    last_updated_by: "review-remediation"
+    recent_action: "Built + independently fixture-verified the style database; full-corpus SLO remains deferred"
+    next_safe_action: "Run the same-full-corpus persistent-enable go/no-go before changing the legacy default"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_db/"
@@ -33,7 +33,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Phase** | 3 of 4 (implementation) |
-| **Status** | Complete |
+| **Status** | Implementation complete; persistent activation pending full-corpus go/no-go |
 | **Executor** | GPT-5.6-SOL (high) via cli-opencode in isolated worktree `.worktrees/0078-sk-design-012-style-db-build` |
 | **Verification** | Independent: 24/24 db tests, 20/20 legacy (no regression), RRF rank-fusion confirmed |
 | **Completed** | 2026-07-19 |
@@ -83,10 +83,10 @@ Dispatched a GPT-5.6-SOL (high) implementer via `opencode run` in an isolated wo
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Independent re-run (orchestrator):** `node --test _db/__tests__/` → **24/24 pass**; legacy engine `node --test _engine/__tests__/` → **20/20 pass** (no regression).
+- **Independent implementation re-run (orchestrator):** `node --test _db/__tests__/` → **24/24 pass**; legacy engine `node --test _engine/__tests__/` → **20/20 pass** (no correctness regression at delivery time).
 - **RRF spot-check (finding = hypothesis):** `retrieval.mjs` fuses by `weight / (k + rank)` accumulated over channel ranks with per-channel attribution + deterministic tie-break — genuine weighted RRF over ranks, not raw score addition (REQ-003).
 - **Adapter default confirmed `legacy`;** modules are substantial (2,706 lines total), not stubs.
-- Tests bound to ≤20 styles; the full 1,290-style index and a configured embedding provider are production-scale checks, not run in tests.
+- Tests bind to at most 20 styles. The relative timing assertion is a bounded-sample guard only and does not establish performance against the measured 1,290-style legacy baseline. The full-corpus comparison and a configured embedding provider are persistent-enable checks, not test-suite claims.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +94,7 @@ Dispatched a GPT-5.6-SOL (high) implementer via `opencode run` in an isolated wo
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **SLO not yet measured at corpus scale** — tests prove correctness on a ≤20-style sample; the persistent-vs-6,246ms comparison on the full corpus is a production check (deferred, non-blocking; adapter stays `legacy` until then).
+- **SLO not yet measured at corpus scale** — tests prove correctness and relative timing only on a ≤20-style sample. The same-full-corpus persistent-vs-6,246.5 ms legacy comparison is deferred to the persistent-enable go/no-go and blocks changing the adapter default from `legacy`.
 - **Embedding provider not wired** — the vector lane uses deterministic cosine over profile-addressed arrays; a real embedder is a production-config step.
 - **Handoff to phase 004-interface-commands:** independent of this DB; proceeds with the operator-confirmed `/interface:*` names.
 <!-- /ANCHOR:limitations -->

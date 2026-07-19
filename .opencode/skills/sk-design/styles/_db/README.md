@@ -8,11 +8,13 @@ directory. The flat files remain authoritative. Normal persistent reads never wa
 `styles.style_id` is the stable UUID identity; `style_rowid` is an internal join key for FTS,
 vectors, and normalized children. A successful index run writes source rows, vector jobs, an
 immutable `corpus_generations` record, and the singleton `current_corpus_generation` pointer in
-one `BEGIN IMMEDIATE` transaction. Readers open one SQLite snapshot, validate that the pointer,
-schema version, active count, and aggregate hash agree, and fail closed if they do not.
+one `BEGIN IMMEDIATE` transaction. Readers realpath-check the selected file against the generation
+directory, bind the pointer's generation hash to the opened database, then validate that the schema
+version, active count, and aggregate hash agree. Any mismatch fails closed.
 
-Artifact freshness uses `style-all-artifacts-v1`: sorted relative paths and raw bytes are encoded
-as unsigned 64-bit length frames before SHA-256. Mtime, ctime, and size are retained as hints,
+Artifact freshness uses `style-all-artifacts-v2`: the stable style UUID, sorted artifact roles, and
+raw bytes are encoded as unsigned 64-bit length frames before SHA-256. The mutable slug locator is
+excluded. Mtime, ctime, and size are retained as hints,
 not correctness authorities. Normal incremental runs hash only metadata candidates; maintenance
 can set `verifyAll: true` to force canonical re-verification of every bundle. Crawl-record hashes
 independently invalidate provenance fallback data. The semantic retrieval hash is separate: it covers stable JSON for
@@ -39,7 +41,9 @@ the file and directory, then atomically replaces a synced `.current.json` pointe
 remain bound to the prior generation file; `rollbackStyleDatabase()` durably reverses the pointer.
 Vector jobs are keyed by style row, retrieval hash, and profile. `drainVectorQueue()`
 uses a content-addressed cache, checks current identity again before publication, and records
-bounded failures without blocking FTS or structured retrieval. `rebuildVectorProjection()`
+bounded failures without blocking FTS or structured retrieval. Each drain also reclaims at most
+its batch limit of stale `running` claims after a five-minute lease timeout. A reclaimed claim is
+returned to `pending` without consuming a retry. `rebuildVectorProjection()`
 invalidates one profile, advances its projection revision, and requeues every active style.
 
 The current schema version is 2. Opening a version-1 database transactionally adds the crawl-record
@@ -56,6 +60,29 @@ structured scores.
 The degradation ladder is channel-local: `hybrid`, `structured+fts`, `structured+vector`, then
 `structured-only`. Cursors bind the corpus generation, request fingerprint, fusion profile,
 candidate K, vector projection revision, and final `(fusedScore, id)` key.
+Caller-supplied `generationHash` pins are enforced against the opened generation rather than
+silently served from current. Query vectors must be arrays of 1-16,384 finite numbers and serialize
+to at most 256 KiB; validation occurs before request fingerprinting or database access.
+
+## Operator Commands
+
+`operator.mjs` is the supported persistent maintenance entry point. It emits JSON and exits nonzero
+on invalid input or a failed operation:
+
+```bash
+node .opencode/skills/sk-design/styles/_db/operator.mjs status --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/_db/operator.mjs build --corpus /path/styles --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/_db/operator.mjs cutover --database /path/style.sqlite --generation /path/retained.sqlite
+node .opencode/skills/sk-design/styles/_db/operator.mjs rollback --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/_db/operator.mjs repair --database /path/style.sqlite --profile style-default-v1
+```
+
+`status` reports the published generation, rollback candidate, retained files, and vector-job
+counts. `build` stages, validates, and publishes a complete generation. `cutover` points readers at
+an explicitly retained generation; `rollback` selects the newest retained non-current generation
+unless `--generation` is supplied. `repair` invalidates and requeues one vector profile. After each
+build, cutover, or rollback, pruning keeps the current generation and, when available, one rollback
+generation; older generation files and SQLite sidecars are removed.
 
 ## Adapter Modes
 

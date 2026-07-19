@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 1,290-style library (`.opencode/skills/sk-design/styles/`) is served by a file-walking retrieval engine (`styles/engine`) whose read path rebuilds a 5.89 MB denormalized manifest and a disposable in-memory FTS index on every query — a full-corpus query measured at 6,246.5 ms",
     "created_at": "2026-07-19T08:37:30.136Z",
-    "last_save_at": "2026-07-19T09:41:25.819Z",
+    "last_save_at": "2026-07-19T14:00:36.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:328568d5f4bce384812e7a0a858ca2e06dce142abfb32e126bfbf2f82a6e26d6",
+    "source_fingerprint": "sha256:b23cb05ef6b1d4776aa9131a639a68ab3e8ed90192b3feeb7a10317802fc3d42",
     "source_doc_hashes": {
-      "spec.md": "9cd79657907053454591b44584d72476937c14f986269ff66543c3184a98c58c",
+      "spec.md": "89f0c659eae8929ee268a8b75ad222a57e0b622c586cef1ebd7c07ec3522730e",
       "plan.md": "4603f0f1c5d7cc8873bc4611ba5922cf32b32c86ed400860c9b1a1cbd164dc6d",
       "tasks.md": "d86696fd68134a896a6a7433114761ea0d83793d1fb8427b24f0211cde7a4684",
-      "checklist.md": "1041402496e5d327b842623d41df09d0628d5c6ac47c43daad26f60e68fca7da",
-      "implementation-summary.md": "78a5d85e1ccac2701ed761aaf8a70db9035f8d65f6a935dd8e9942131aac7ff4"
+      "checklist.md": "df300b74a503fef4c873f708a9d1151ddd1a7367240c76b4f688a6dd6d293d2d",
+      "implementation-summary.md": "94b7cf5ce06b928b040d16b45a92b11ca4b541e0c69d0f2290ab9baf13fb2641"
     },
     "last_active_child_id": null,
     "last_active_at": null

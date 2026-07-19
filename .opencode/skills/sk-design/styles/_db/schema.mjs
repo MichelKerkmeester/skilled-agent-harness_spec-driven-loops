@@ -3,7 +3,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { DatabaseSync } from 'node:sqlite';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,15 +14,14 @@ export const DEFAULT_STYLE_DATABASE_PATH = path.join(
 );
 export const STYLE_DATABASE_POINTER_SUFFIX = '.current.json';
 
-/**
- * Resolve the immutable generation selected by an atomic pointer file.
- *
- * @param {string} [databasePath] - Logical database path.
- * @returns {string} Published generation path, or the direct path for legacy databases.
- */
-export function resolvePublishedDatabasePath(databasePath = DEFAULT_STYLE_DATABASE_PATH) {
+function isContained(rootPath, candidatePath) {
+  const relative = path.relative(rootPath, candidatePath);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function resolvePublishedDatabaseTarget(databasePath) {
   const pointerPath = `${databasePath}${STYLE_DATABASE_POINTER_SUFFIX}`;
-  if (!existsSync(pointerPath)) return databasePath;
+  if (!existsSync(pointerPath)) return { databasePath, generationHash: null };
   let pointer;
   try {
     pointer = JSON.parse(readFileSync(pointerPath, 'utf8'));
@@ -45,7 +44,24 @@ export function resolvePublishedDatabasePath(databasePath = DEFAULT_STYLE_DATABA
     error.code = 'generation-unavailable';
     throw error;
   }
-  return publishedPath;
+  const generationDirectory = realpathSync(path.dirname(databasePath));
+  const publishedRealPath = realpathSync(publishedPath);
+  if (!isContained(generationDirectory, publishedRealPath)) {
+    const error = new Error('Published style database generation escapes its directory.');
+    error.code = 'generation-pointer-escape';
+    throw error;
+  }
+  return { databasePath: publishedPath, generationHash: pointer.generationHash };
+}
+
+/**
+ * Resolve the immutable generation selected by an atomic pointer file.
+ *
+ * @param {string} [databasePath] - Logical database path.
+ * @returns {string} Published generation path, or the direct path for legacy databases.
+ */
+export function resolvePublishedDatabasePath(databasePath = DEFAULT_STYLE_DATABASE_PATH) {
+  return resolvePublishedDatabaseTarget(databasePath).databasePath;
 }
 
 const SCHEMA_SQL = `
@@ -351,4 +367,26 @@ export function openStyleDatabase(databasePath = ':memory:') {
   const database = new DatabaseSync(databasePath);
   if (databasePath !== ':memory:') database.exec('PRAGMA journal_mode = WAL;');
   return createSchema(database);
+}
+
+/**
+ * Open the published generation and bind its internal identity to the pointer.
+ *
+ * @param {string} [databasePath] - Logical database path.
+ * @returns {DatabaseSync} Generation-bound database connection.
+ */
+export function openPublishedStyleDatabase(databasePath = DEFAULT_STYLE_DATABASE_PATH) {
+  const target = resolvePublishedDatabaseTarget(databasePath);
+  const database = openStyleDatabase(target.databasePath);
+  if (target.generationHash === null) return database;
+  const openedGeneration = database.prepare(`
+    SELECT generation_hash FROM current_corpus_generation WHERE singleton = 1
+  `).get()?.generation_hash;
+  if (openedGeneration !== target.generationHash) {
+    database.close();
+    const error = new Error('Published database generation does not match its pointer.');
+    error.code = 'generation-pointer-mismatch';
+    throw error;
+  }
+  return database;
 }

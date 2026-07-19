@@ -60,7 +60,7 @@ _memory:
 
 - [x] CHK-020 [P0] node --test suite green (schema/indexer/retrieval/parity/degradation). [SOURCE: styles/_db/schema.mjs:1] [TESTED: 24/24 db, 20/20 legacy]
 - [x] CHK-021 [P0] Indexer crash-safety proven (simulated mid-commit → no partial generation). [SOURCE: styles/_db/schema.mjs:1] [TESTED: 24/24 db, 20/20 legacy]
-- [x] CHK-022 [P1] Persistent query beats the 6,246.5 ms file-walking baseline (measured). [SOURCE: styles/_db/schema.mjs:1] [TESTED: 24/24 db, 20/20 legacy]
+- [x] CHK-022 [P1] A 20-style bounded sample shows the persistent query faster than legacy on that fixture only; it does not prove the 1,290-style SLO. Same-full-corpus measurement is deferred to and required by the persistent-enable go/no-go. [SOURCE: styles/_db/__tests__/adapter.test.mjs:107] [TESTED: `node --test .opencode/skills/sk-design/styles/_db/__tests__/` — 31/31; bounded fixture only]
 
 <!-- /ANCHOR:testing -->
 
@@ -106,7 +106,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-- [x] CHK-070 [P0] P0 requirements met; tests + validate green; SLO + parity proven. [SOURCE: styles/_db/schema.mjs:1] [TESTED: 24/24 db, 20/20 legacy]
+- [x] CHK-070 [P0] P0 requirements met; correctness tests + shadow parity green; bounded-sample timing recorded without claiming full-corpus SLO proof. [SOURCE: styles/_db/__tests__/adapter.test.mjs:42-131] [TESTED: `node --test .opencode/skills/sk-design/styles/_db/__tests__/` — 31/31; full corpus deferred]
 - [x] CHK-071 [P1] Handoff state recorded in `implementation-summary.md`. [SOURCE: styles/_db/schema.mjs:1] [TESTED: 24/24 db, 20/20 legacy]
 
 <!-- /ANCHOR:summary -->

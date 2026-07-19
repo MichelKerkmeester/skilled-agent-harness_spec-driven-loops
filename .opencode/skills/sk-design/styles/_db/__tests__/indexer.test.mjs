@@ -54,6 +54,24 @@ test('current generation identity cannot collide with version one', () => {
   );
 });
 
+test('aggregate content identity is stable across locator-only slug renames', () => {
+  const styleId = '11111111-1111-4111-8111-111111111111';
+  const artifact = (slug, role, value) => ({
+    role,
+    relativePath: `${slug}/${role === 'canonical' ? `${slug}-canonical.json` : 'DESIGN.md'}`,
+    buffer: Buffer.from(value),
+  });
+  const before = indexerInternals.computeAggregateHash(styleId, [
+    artifact('old-slug', 'canonical', '{"uuid":"stable"}'),
+    artifact('old-slug', 'design', '# Stable'),
+  ]);
+  const after = indexerInternals.computeAggregateHash(styleId, [
+    artifact('new-slug', 'canonical', '{"uuid":"stable"}'),
+    artifact('new-slug', 'design', '# Stable'),
+  ]);
+  assert.equal(after, before);
+});
+
 test('full rebuild validates staging and preserves a rollback generation', async (context) => {
   const fixture = await createFixtureCorpus();
   context.after(fixture.cleanup);

@@ -33,7 +33,7 @@ export const INDEXER_LIFECYCLE = Object.freeze([
 export const DEFAULT_EMBEDDING_PROFILE = 'style-default-v1';
 
 const HASH_PREFIX = 'sha256:';
-const AGGREGATE_HASH_VERSION = 'style-all-artifacts-v1';
+const AGGREGATE_HASH_VERSION = 'style-all-artifacts-v2';
 const RETRIEVAL_HASH_VERSION = 'style-retrieval-document-v1';
 const GENERATION_HASH_VERSION = 'style-corpus-generation-v2';
 const LICENSE_ALLOWLIST = new Set(['allowed', 'licensed', 'public-domain']);
@@ -178,10 +178,14 @@ function excerpt(value, maxLength = 240) {
   return `${normalized.slice(0, maxLength - 1).trimEnd()}…`;
 }
 
-function computeAggregateHash(artifacts) {
-  const parts = [...lengthFrame(AGGREGATE_HASH_VERSION)];
-  for (const artifact of artifacts) {
-    parts.push(...lengthFrame(artifact.relativePath), ...lengthFrame(artifact.buffer));
+function computeAggregateHash(styleId, artifacts) {
+  const parts = [
+    ...lengthFrame(AGGREGATE_HASH_VERSION),
+    ...lengthFrame(styleId),
+  ];
+  for (const artifact of artifacts.slice()
+    .sort((left, right) => compareRawStrings(left.role, right.role))) {
+    parts.push(...lengthFrame(artifact.role), ...lengthFrame(artifact.buffer));
   }
   return digest(parts);
 }
@@ -363,7 +367,7 @@ function parseStyle(slug, crawlRecord, artifacts) {
     ...lengthFrame(RETRIEVAL_HASH_VERSION),
     ...lengthFrame(retrievalJson),
   ]);
-  const aggregateHash = computeAggregateHash(artifacts);
+  const aggregateHash = computeAggregateHash(id, artifacts);
   return {
     id,
     slug,
@@ -1145,6 +1149,11 @@ export async function rollbackStyleDatabase(options) {
   try {
     const retainedInfo = await stat(generationDatabasePath);
     if (!retainedInfo.isFile()) throw new Error('not a file');
+    const databaseDirectoryRealPath = await realpath(path.dirname(databasePath));
+    const retainedRealPath = await realpath(generationDatabasePath);
+    if (!isContained(databaseDirectoryRealPath, retainedRealPath)) {
+      throw new Error('generation escapes database directory');
+    }
   } catch (cause) {
     const error = new Error('Rollback generation is unavailable.', { cause });
     error.code = 'rollback-generation-invalid';

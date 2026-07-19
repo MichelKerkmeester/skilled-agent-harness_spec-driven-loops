@@ -45,7 +45,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio |
 | **Priority** | P1 |
-| **Status** | Complete — code (003/004) built + verified (tests pass); research (001/002) delivered its recommendations (001 ran 7 of 10; 002 GLM out of quota, SOL sole source). Deep review (955d58f898) found 9 P1 + 1 P2 (0 P0); phase 005 remediates the open persistent-path findings before the DB is enabled |
+| **Status** | Implementation delivered; persistent activation remains gated on a same-full-corpus SLO go/no-go. Code correctness and bounded-fixture behavior are verified; phase 005 closed the persistent-path review findings while preserving the `legacy` default |
 | **Created** | 2026-07-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -115,9 +115,9 @@ Stand up (1) a real indexed **style database** for the 1,291-style library, mirr
 |-------|--------|-------|----------------|--------|
 | 1 | `001-research-style-database/` | Deep research: mirror system-speckit sqlite+embeddings and deep-loop graph-DB patterns for the 1,291-style library (schema, indexing, retrieval, migration) | GPT-5.6-SOL, HIGH, fast — 10 iters (ran 7, converged) | **Complete** |
 | 2 | `002-research-design-commands/` | Deep research: why the current commands don't help create designs; how Claude design / Open Design / aura.build/skills template prompts work; the redesigned command set + prompt scaffolding | GPT-5.6-SOL, HIGH fast — 20 iters (SOL; GLM lineage failed) | **Complete** |
-| 3 | `003-style-database/` | Implement the style database + retrieval per phase 001 | GPT-5.6-SOL via cli-opencode | **Complete** (24/24 db, 20/20 legacy) |
+| 3 | `003-style-database/` | Implement the style database + retrieval per phase 001 | GPT-5.6-SOL via cli-opencode | **Implementation complete**; bounded-fixture verification green, full-corpus activation SLO deferred |
 | 4 | `004-interface-commands/` | Build the five /interface:* creation commands + shared contract + /design:* aliases per phase 002 | GPT-5.6-SOL via cli-opencode | **Complete** (16/16 tests, 4 checkers) |
-| 5 | `005-review-remediation/` | Fix all deep-review findings (P0=0, P1=9, P2=1): persistent-path code hardening + evidence reconciliation | GPT (planned) | Planned |
+| 5 | `005-review-remediation/` | Fix all deep-review findings (P0=0, P1=9, P2=1): persistent-path code hardening + evidence reconciliation | GPT-5.6-SOL | **Complete** (31/31 db, 20/20 legacy; default remains `legacy`) |
 
 ### Phase Transition Rules
 

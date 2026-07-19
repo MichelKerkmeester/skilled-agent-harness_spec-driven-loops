@@ -45,7 +45,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `012-style-database-and-interface-commands` |
 | **Predecessor** | `003-style-database` |
-| **Successor** | None |
+| **Successor** | `005-review-remediation` |
 | **Phase** | 4 of 4 |
 | **Implements** | `../002-research-design-commands/research/research.md` (authoritative design) |
 <!-- /ANCHOR:metadata -->

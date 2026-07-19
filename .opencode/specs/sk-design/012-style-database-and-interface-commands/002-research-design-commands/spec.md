@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `012-style-database-and-interface-commands` |
 | **Predecessor** | `001-research-style-database` |
-| **Successor** | `004-interface-commands` (implementation, gated on this research) |
+| **Successor** | `003-style-database` |
 | **Phase** | 2 of 4 |
 <!-- /ANCHOR:metadata -->
 

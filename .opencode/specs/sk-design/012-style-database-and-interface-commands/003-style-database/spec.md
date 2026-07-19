@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Implementation complete; persistent activation pending full-corpus go/no-go |
 | **Created** | 2026-07-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -118,7 +118,7 @@ Implement the phase-001 design: **one published SQLite generation** holding norm
 |----|-------------|---------------------|
 | REQ-005 | Vectors non-blocking + rebuildable | Pending/failed vectors never block lexical retrieval; the vector queue is keyed by identity+retrieval-hash+profile and supersedes stale jobs. |
 | REQ-006 | Relationship table | `designSystem.similar` targets are normalized (raw label, resolution state, confidence, nullable canonical target) — no traversal service. |
-| REQ-007 | Retrieval SLO | Persistent-path query is materially faster than the 6,246.5 ms file-walking baseline on the same corpus. |
+| REQ-007 | Retrieval SLO | A bounded 20-style comparison guards against obvious regression. A same-full-corpus persistent-vs-legacy measurement is required at the persistent-enable go/no-go; the bounded sample does not prove performance against the 1,290-style baseline. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -126,7 +126,7 @@ Implement the phase-001 design: **one published SQLite generation** holding norm
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- All P0 requirements met; the persistent path returns generation-consistent, eligibility-correct results faster than the file-walking baseline.
+- All P0 requirements met; the persistent path returns generation-consistent, eligibility-correct results and passes the bounded-sample timing guard. Full-corpus performance remains an activation gate.
 - Shadow mode parity holds against the legacy engine; flat files remain authoritative.
 - `node --test` suite green; `validate.sh` for this phase `--strict` = 0 errors.
 <!-- /ANCHOR:success-criteria -->
@@ -147,7 +147,7 @@ Implement the phase-001 design: **one published SQLite generation** holding norm
 
 ### Performance
 
-- Persistent query must beat the 6,246.5 ms baseline; incremental re-index touches only changed styles.
+- The bounded 20-style check must show no obvious persistent-path regression. Before activation, a same-full-corpus persistent-vs-legacy run must measure the 1,290-style result against the 6,246.5 ms legacy baseline; incremental re-index touches only changed styles.
 
 ### Security
 

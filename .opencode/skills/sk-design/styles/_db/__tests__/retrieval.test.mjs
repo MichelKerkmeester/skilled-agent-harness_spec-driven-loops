@@ -60,6 +60,27 @@ test('retrieval fails closed without a valid published generation', () => {
   }
 });
 
+test('a requested generation is enforced instead of silently serving current', async (context) => {
+  const { database, indexed } = await createIndexedFixture(context);
+  const pinned = queryPersistentStyles({ generationHash: indexed.generationHash }, { database });
+  assert.equal(pinned.generationHash, indexed.generationHash);
+  assert.throws(() => queryPersistentStyles({
+    generationHash: `sha256:${'0'.repeat(64)}`,
+  }, { database }), (error) => error.code === 'generation-mismatch');
+});
+
+test('query vectors are bounded before fingerprinting or database access', () => {
+  assert.throws(() => queryPersistentStyles({
+    queryVector: Array.from({ length: 16_385 }, () => 0),
+  }), (error) => error.code === 'invalid-query-vector');
+  assert.throws(() => queryPersistentStyles({
+    queryVector: Array.from({ length: 16_384 }, () => Number.MAX_VALUE),
+  }), (error) => error.code === 'invalid-query-vector');
+  assert.throws(() => queryPersistentStyles({
+    queryVector: ['1'],
+  }), (error) => error.code === 'invalid-query-vector');
+});
+
 test('degradation is channel-local and failed vectors do not block FTS', async (context) => {
   const { database } = await createIndexedFixture(context);
   const failed = await drainVectorQueue(database, {
@@ -105,6 +126,27 @@ test('one profile rejects mixed dimensions within the same drain', async (contex
   assert.deepEqual(database.prepare(`
     SELECT DISTINCT dimensions FROM style_vectors ORDER BY dimensions
   `).all().map((row) => Number(row.dimensions)), [2]);
+});
+
+test('a later drain recovers a stale running vector claim', async (context) => {
+  const { database } = await createIndexedFixture(context);
+  const claimed = database.prepare(`
+    SELECT job_id FROM style_vector_jobs ORDER BY job_id ASC LIMIT 1
+  `).get();
+  database.prepare(`
+    UPDATE style_vector_jobs
+    SET status = 'running', attempts = 1, updated_at = '2000-01-01T00:00:00.000Z'
+    WHERE job_id = ?
+  `).run(claimed.job_id);
+  const result = await drainVectorQueue(database, {
+    profileId: 'style-default-v1',
+    runningTimeoutMs: 0,
+    embedder: async (text) => text.includes('Alpha Editorial') ? [1, 0] : [0, 1],
+  });
+  assert.equal(result.recovered, 1);
+  assert.equal(database.prepare(`
+    SELECT status FROM style_vector_jobs WHERE job_id = ?
+  `).get(claimed.job_id).status, 'completed');
 });
 
 test('vector cache publishes current-profile vectors and supersedes stale jobs', async (context) => {

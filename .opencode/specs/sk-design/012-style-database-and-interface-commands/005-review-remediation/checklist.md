@@ -37,8 +37,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] All 10 findings (P0=0/P1=9/P2=1) documented + the 4 code findings verified against source before coding.
-- [ ] CHK-002 [P1] Isolated worktree off origin; `_db` code + tests present; adapter default confirmed `legacy`.
+- [x] CHK-001 [P0] All 10 findings (P0=0/P1=9/P2=1) documented + the 4 code findings verified against source before coding. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-002 [P1] Isolated worktree off origin; `_db` code + tests present; adapter default confirmed `legacy`. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:pre-impl -->
 
@@ -47,9 +47,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] #1 stale-running reconciliation returns orphaned jobs to selectable state without unbounded work.
-- [ ] CHK-011 [P0] #2 request generation is compared and honored-or-rejected (never silently current); #3 pointer realpath-contained + generation-bound.
-- [ ] CHK-012 [P0] #4 `queryVector` bounds enforced on every caller; #10 slug excluded from aggregate hash.
+- [x] CHK-010 [P0] #1 stale-running reconciliation returns orphaned jobs to selectable state without unbounded work. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-011 [P0] #2 request generation is compared and honored-or-rejected (never silently current); #3 pointer realpath-contained + generation-bound. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-012 [P0] #4 `queryVector` bounds enforced on every caller; #10 slug excluded from aggregate hash. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:code-quality -->
 
@@ -58,8 +58,8 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Regression tests added + green: process-interruption (#1), stale-generation (#2), containment+binding (#3), oversized input (#4), slug-rename stability (#10).
-- [ ] CHK-021 [P0] Full `_db` suite green (24 + new) and legacy `_engine` 20/20 — no regression.
+- [x] CHK-020 [P0] Regression tests added + green: process-interruption (#1), stale-generation (#2), containment+binding (#3), oversized input (#4), slug-rename stability (#10). [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-021 [P0] Full `_db` suite green (24 + new) and legacy `_engine` 20/20 — no regression. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:testing -->
 
@@ -68,8 +68,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-030 [P0] #9 operator surface (status/build/cutover/rollback/repair) + generation keep/prune invariant exist and are tested.
-- [ ] CHK-031 [P1] `validate.sh --strict` for this phase = 0 errors.
+- [x] CHK-030 [P0] #9 operator surface (status/build/cutover/rollback/repair) + generation keep/prune invariant exist and are tested. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-031 [P1] `validate.sh --strict` for this phase = 0 errors. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:fix-completeness -->
 
@@ -78,7 +78,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-040 [P0] Trust-boundary items (#3 containment, #4 input bounds) fail closed on violation.
+- [x] CHK-040 [P0] Trust-boundary items (#3 containment, #4 input bounds) fail closed on violation. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:security -->
 
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-050 [P1] #7 SLO evidence measured-or-amended; #8 parent status reconciled; `_db/README.md` documents the operator surface.
+- [x] CHK-050 [P1] #7 SLO evidence measured-or-amended; #8 parent status reconciled; `_db/README.md` documents the operator surface. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:docs -->
 
@@ -96,7 +96,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-060 [P1] Changes scoped to `styles/_db/`, `styles/_engine/`, and 003 docs; no unrelated files touched (scope-diff before staging).
+- [x] CHK-060 [P1] Changes scoped to `styles/_db/`, `styles/_engine/`, and 003 docs; no unrelated files touched (scope-diff before staging). [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:file-org -->
 
@@ -105,7 +105,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-- [ ] CHK-070 [P0] All P0-P2 findings closed or explicitly deferred with rationale; tests + validate green; legacy default preserved.
-- [ ] CHK-071 [P1] Persistent-enable go/no-go recorded as the explicit next gate (out of this phase's scope).
+- [x] CHK-070 [P0] All P0-P2 findings closed or explicitly deferred with rationale; tests + validate green; legacy default preserved. [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] CHK-071 [P1] Persistent-enable go/no-go recorded as the explicit next gate (out of this phase's scope). [SOURCE: styles/_db/schema.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:summary -->

@@ -37,8 +37,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 (#1 REQ-001) Add stale-running reconciliation to `vectors.mjs` drain: reset/reclaim `running` jobs orphaned by a process exit (startup sweep or lease timeout); add a process-interruption regression test.
-- [ ] T002 (#2 REQ-002) In `retrieval.mjs` `queryPersistentStyles`, compare a caller-supplied generation — honor by reopening it, or fail-closed reject — never silently serve current; add a stale-generation test.
+- [x] T001 (#1 REQ-001) Add stale-running reconciliation to `vectors.mjs` drain: reset/reclaim `running` jobs orphaned by a process exit (startup sweep or lease timeout); add a process-interruption regression test. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] T002 (#2 REQ-002) In `retrieval.mjs` `queryPersistentStyles`, compare a caller-supplied generation — honor by reopening it, or fail-closed reject — never silently serve current; add a stale-generation test. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -47,10 +47,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 (#3 REQ-003) In `schema.mjs` `resolvePublishedDatabasePath`, add read-side realpath containment (reject a pointer resolving outside the generation dir) and bind the opened DB's `generationHash` to the pointer; add containment + binding tests.
-- [ ] T004 (#4 REQ-004) Cap `queryVector` type/dimensions/serialized size in `retrieval.mjs` before fingerprinting on every caller path; reject oversized input; add a test.
-- [ ] T005 (#10 REQ-005) In `indexer.mjs` `readVerifiedArtifacts`/`computeAggregateHash`, exclude the mutable `slug` from the aggregate hash (use stable UUID/role identity); add a slug-rename hash-stability test.
-- [ ] T006 (#9 REQ-007) Add a documented, tested operator surface for persistent status/build/cutover/rollback/vector-repair + a keep-current+rollback generation prune invariant; update `_db/README.md`.
+- [x] T003 (#3 REQ-003) In `schema.mjs` `resolvePublishedDatabasePath`, add read-side realpath containment (reject a pointer resolving outside the generation dir) and bind the opened DB's `generationHash` to the pointer; add containment + binding tests. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] T004 (#4 REQ-004) Cap `queryVector` type/dimensions/serialized size in `retrieval.mjs` before fingerprinting on every caller path; reject oversized input; add a test. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] T005 (#10 REQ-005) In `indexer.mjs` `readVerifiedArtifacts`/`computeAggregateHash`, exclude the mutable `slug` from the aggregate hash (use stable UUID/role identity); add a slug-rename hash-stability test. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] T006 (#9 REQ-007) Add a documented, tested operator surface for persistent status/build/cutover/rollback/vector-repair + a keep-current+rollback generation prune invariant; update `_db/README.md`. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -59,8 +59,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 (#7 REQ-006, #8) Resolve the SLO evidence: measure same-full-corpus persistent-vs-legacy OR amend the 003 SLO/checklist/completion claim to not assert "proven"; then reconcile the parent `Complete/verified` language (closes #8 once #5/#6/#7 hold).
-- [ ] T008 Full `node --test` green (existing 24 + new regression tests) and legacy `_engine` 20/20 (no regression); `validate.sh --strict` = 0 errors.
+- [x] T007 (#7 REQ-006, #8) Resolve the SLO evidence: measure same-full-corpus persistent-vs-legacy OR amend the 003 SLO/checklist/completion claim to not assert "proven"; then reconcile the parent `Complete/verified` language (closes #8 once #5/#6/#7 hold). [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
+- [x] T008 Full `node --test` green (existing 24 + new regression tests) and legacy `_engine` 20/20 (no regression); `validate.sh --strict` = 0 errors. [SOURCE: styles/_db/vectors.mjs] [TESTED: 31/31 db, 20/20 legacy]
 
 <!-- /ANCHOR:phase-3 -->
 

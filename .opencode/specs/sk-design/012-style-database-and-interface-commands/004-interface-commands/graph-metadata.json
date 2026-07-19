@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The five `/design:` commands are thin routers with no creation scaffolding",
     "created_at": "2026-07-19T09:44:56.632Z",
-    "last_save_at": "2026-07-19T10:12:12.692Z",
+    "last_save_at": "2026-07-19T14:05:55.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9770158eb538fe8a2645011bf64dfd044b78656cd254235c497495e689148f9",
+    "source_fingerprint": "sha256:4f5836be16d4e3f162857abcebaace728c0326143bc5111433926d008d35e7a6",
     "source_doc_hashes": {
-      "spec.md": "116ddf4690f0d9263922d862b3f1cc9bd4c1eea93aadbca5ec428037cef1bda4",
+      "spec.md": "2da737ca931aa47f9fe98be6425be4155a7f614467f0c0a5c4eef64ecb1045dd",
       "plan.md": "ce736edc3f54a5a12e9b053511371556332caf890f23f70d5e885e5ae17897a8",
       "tasks.md": "cb727de0186b9f556ca04fec4e877749eeda5d6d454ec957605a138b4b234c84",
       "checklist.md": "f831eb66a93c8d4e56577ff31f21babd6393f145f43d86c925d3d20f9aa37268",

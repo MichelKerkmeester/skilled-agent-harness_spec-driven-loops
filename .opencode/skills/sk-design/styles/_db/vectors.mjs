@@ -4,6 +4,7 @@
 
 const DEFAULT_BATCH_LIMIT = 25;
 const DEFAULT_MAX_ATTEMPTS = 4;
+const DEFAULT_RUNNING_TIMEOUT_MS = 5 * 60 * 1_000;
 const MAX_VECTOR_DIMENSIONS = 16_384;
 
 function nowIso() {
@@ -134,6 +135,7 @@ export function enqueueVectorJob(database, job) {
  * @param {Function} options.embedder - Async callback accepting document text and profile.
  * @param {number} [options.limit=25] - Maximum jobs to attempt.
  * @param {number} [options.maxAttempts=4] - Bounded retry count.
+ * @param {number} [options.runningTimeoutMs=300000] - Age at which a claim is orphaned.
  * @returns {Promise<Object>} Completed, failed, cached, and superseded counts.
  */
 export async function drainVectorQueue(database, options) {
@@ -142,6 +144,9 @@ export async function drainVectorQueue(database, options) {
   }
   const limit = Math.max(1, Math.min(100, options.limit ?? DEFAULT_BATCH_LIMIT));
   const maxAttempts = Math.max(1, options.maxAttempts ?? DEFAULT_MAX_ATTEMPTS);
+  const runningTimeoutMs = Number.isFinite(options.runningTimeoutMs)
+    ? Math.max(0, options.runningTimeoutMs)
+    : DEFAULT_RUNNING_TIMEOUT_MS;
   const profile = database.prepare(`
     SELECT profile_id, provider, model, dimensions, config_hash
     FROM embedding_profiles WHERE profile_id = ?
@@ -151,6 +156,21 @@ export async function drainVectorQueue(database, options) {
     error.code = 'unknown-embedding-profile';
     throw error;
   }
+  const timestamp = nowIso();
+  const staleBefore = new Date(Date.now() - runningTimeoutMs).toISOString();
+  const recovered = database.prepare(`
+    UPDATE style_vector_jobs
+    SET status = 'pending',
+      attempts = CASE WHEN attempts > 0 THEN attempts - 1 ELSE 0 END,
+      next_attempt_at = NULL,
+      last_error = 'Recovered stale running claim.',
+      updated_at = ?
+    WHERE job_id IN (
+      SELECT job_id FROM style_vector_jobs
+      WHERE profile_id = ? AND status = 'running' AND updated_at <= ?
+      ORDER BY updated_at ASC, job_id ASC LIMIT ?
+    )
+  `).run(timestamp, options.profileId, staleBefore, limit);
   const jobs = database.prepare(`
     SELECT j.job_id, j.style_rowid, j.retrieval_hash, j.attempts,
       d.document_json, d.body
@@ -165,8 +185,15 @@ export async function drainVectorQueue(database, options) {
       AND j.attempts < ?
       AND (j.next_attempt_at IS NULL OR j.next_attempt_at <= ?)
     ORDER BY j.job_id ASC LIMIT ?
-  `).all(options.profileId, maxAttempts, nowIso(), limit);
-  const summary = { attempted: jobs.length, completed: 0, failed: 0, cached: 0, superseded: 0 };
+  `).all(options.profileId, maxAttempts, timestamp, limit);
+  const summary = {
+    attempted: jobs.length,
+    recovered: Number(recovered.changes),
+    completed: 0,
+    failed: 0,
+    cached: 0,
+    superseded: 0,
+  };
   for (const job of jobs) {
     const timestamp = nowIso();
     const claimed = database.prepare(`

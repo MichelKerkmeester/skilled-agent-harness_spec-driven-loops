@@ -9,8 +9,7 @@ import path from 'node:path';
 import { queryPersistentStyles, retrievalInternals } from '../_db/retrieval.mjs';
 import {
   DEFAULT_STYLE_DATABASE_PATH,
-  openStyleDatabase,
-  resolvePublishedDatabasePath,
+  openPublishedStyleDatabase,
 } from '../_db/schema.mjs';
 import { modeIncludes } from './hydrate.mjs';
 
@@ -181,8 +180,8 @@ export async function hydratePersistentStyle(request, options = {}) {
   request = requestSnapshot;
   const allowedIncludes = modeIncludes(request.mode);
   if (allowedIncludes.length === 0) return { ok: false, error: 'invalid-mode' };
-  const database = options.database ?? openStyleDatabase(
-    resolvePublishedDatabasePath(options.databasePath ?? DEFAULT_STYLE_DATABASE_PATH),
+  const database = options.database ?? openPublishedStyleDatabase(
+    options.databasePath ?? DEFAULT_STYLE_DATABASE_PATH,
   );
   const ownsDatabase = !options.database;
   database.exec('BEGIN');
@@ -335,8 +334,8 @@ export async function dispatchStyleHydrate(request, options, runLegacy) {
   if (mode === 'persistent') return hydratePersistentStyle(request, options);
   const legacy = await runLegacy(request, options);
   try {
-    const database = options.database ?? openStyleDatabase(
-      resolvePublishedDatabasePath(options.databasePath ?? DEFAULT_STYLE_DATABASE_PATH),
+    const database = options.database ?? openPublishedStyleDatabase(
+      options.databasePath ?? DEFAULT_STYLE_DATABASE_PATH,
     );
     const ownsDatabase = !options.database;
     const currentGeneration = database.prepare(`
