@@ -1,0 +1,84 @@
+{
+  "topic": "Review: .opencode/specs/sk-design/012-style-database-and-interface-commands",
+  "mode": "review",
+  "sessionId": "fanout-sol-1784457701676-6nfth8",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-design/012-style-database-and-interface-commands",
+  "createdAt": "2026-07-19T10:47:16.570Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "reviewTarget": ".opencode/specs/sk-design/012-style-database-and-interface-commands",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-design/012-style-database-and-interface-commands/spec.md",
+    ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/{spec.md,tasks.md,checklist.md,implementation-summary.md,research/research.md}",
+    ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/{spec.md,tasks.md,checklist.md,implementation-summary.md,research/research.md}",
+    ".opencode/specs/sk-design/012-style-database-and-interface-commands/003-style-database/{spec.md,tasks.md,checklist.md,implementation-summary.md}",
+    ".opencode/specs/sk-design/012-style-database-and-interface-commands/004-interface-commands/{spec.md,tasks.md,checklist.md,implementation-summary.md}",
+    ".opencode/skills/sk-design/styles/_db/**",
+    ".opencode/skills/sk-design/styles/_engine/**",
+    ".opencode/commands/interface/**",
+    ".opencode/commands/design/**",
+    ".opencode/skills/sk-design/shared/creation-contract.md",
+    ".opencode/skills/sk-design/shared/scripts/{design-command-surface-check.mjs,design-command-surface-check.test.mjs,interface-command-contract.test.mjs}",
+    ".opencode/skills/sk-design/{command-metadata.json,hub-router.json,mode-registry.json}"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

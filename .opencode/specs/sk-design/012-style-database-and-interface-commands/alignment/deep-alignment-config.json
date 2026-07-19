@@ -1,0 +1,70 @@
+{
+  "alignmentTarget": "sk-design style database and persistent interface adapter code",
+  "sessionId": "2026-07-19T11:57:36Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "2026-07-19T11:57:36Z",
+  "status": "initialized",
+  "maxIterations": 10,
+  "convergence": {
+    "coverageThreshold": 1,
+    "stabilityWindow": 2,
+    "combination": "AND"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "alignment",
+  "lanes": [
+    {
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/styles/_db/",
+          ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs"
+        ]
+      }
+    }
+  ],
+  "batchSize": 5,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs"
+}

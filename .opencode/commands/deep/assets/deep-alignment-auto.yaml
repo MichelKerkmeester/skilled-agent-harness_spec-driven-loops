@@ -416,7 +416,8 @@ workflow:
           wait_for_completion: true
         if_cli_codex:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            SPECKIT_TSX_LOADER="$(node -e "process.stdout.write(require.resolve('tsx',{paths:['.opencode/skills/system-deep-loop/runtime']}))")"
+            node --import "$SPECKIT_TSX_LOADER" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
 

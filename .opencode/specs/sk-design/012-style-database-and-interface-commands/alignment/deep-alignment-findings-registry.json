@@ -1,0 +1,46 @@
+{
+  "alignmentTarget": "sk-design style database and persistent interface adapter code",
+  "lanes": [
+    {
+      "laneId": "sk-code::code::.opencode/skills/sk-design/styles/_db/, .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/styles/_db/",
+          ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs"
+        ]
+      },
+      "iterationsRun": 0,
+      "artifactsChecked": 0,
+      "checkedArtifactIds": null,
+      "openFindings": [],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 0,
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "overall": {
+    "laneCount": 1,
+    "applicableLaneCount": 0,
+    "findingsBySeverity": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0
+    },
+    "compositeScore": 0,
+    "verdict": "FAIL",
+    "nothingToConverge": false,
+    "incompleteCoverage": true,
+    "integrityFault": false,
+    "invalidSeverityCount": 0
+  },
+  "corruptionWarnings": [],
+  "hasCorruption": false
+}

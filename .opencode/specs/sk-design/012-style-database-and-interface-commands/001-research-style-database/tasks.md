@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Run the `/deep:research` loop for 10 iterations with externalized state and delta tracking. [SOURCE: research/research.md:5] [VERIFIED: implementation-summary.md handoff]
+- [x] T002 Run the `/deep:research` loop (max 10 iters) — ran 7, a stall closed the loop; synthesis was already complete (see implementation-summary.md). [SOURCE: research/research.md:5] [VERIFIED: implementation-summary.md handoff]
 - [x] T003 Evaluate sqlite+embeddings vs graph DB vs hybrid against the style corpus and query needs. [SOURCE: research/research.md:5] [VERIFIED: implementation-summary.md handoff]
 
 <!-- /ANCHOR:phase-2 -->

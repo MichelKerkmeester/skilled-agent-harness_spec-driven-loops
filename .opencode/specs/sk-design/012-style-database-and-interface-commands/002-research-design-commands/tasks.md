@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Run the SOL lineage (20 iters) and GLM lineage (few iters) in parallel with externalized state. [SOURCE: research/research.md:12] [VERIFIED: implementation-summary.md]
+- [x] T002 Run the SOL lineage (20 iters) and GLM lineage in parallel — SOL completed 20; GLM produced 0 (out of quota), SOL is the sole source (see implementation-summary.md). [SOURCE: research/research.md:12] [VERIFIED: implementation-summary.md]
 - [x] T003 Gather how Claude design / Open Design / aura.build/skills structure design-creation prompts; map to the current commands' gaps. [SOURCE: research/research.md:12] [VERIFIED: implementation-summary.md]
 
 <!-- /ANCHOR:phase-2 -->

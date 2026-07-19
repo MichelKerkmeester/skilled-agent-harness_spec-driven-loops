@@ -1,0 +1,1895 @@
+{
+  "sessionId": "fanout-sol-1784457701676-6nfth8",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "SOL-I001-P1-001",
+      "severity": "P1",
+      "title": "A worker crash permanently strands a vector job in running",
+      "file": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      "line": 154,
+      "description": "A process exit after claim leaves the vector job permanently unselectable in normal operation.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Exact search across _db/_engine found the only running claim and no stale-running recovery; only explicit rebuildVectorProjection resets jobs.",
+      "affectedSurfaceHints": [
+        "vector worker restart",
+        "incremental indexer",
+        "vector degradation telemetry",
+        "projection rebuild"
+      ],
+      "contentHash": "1585c2deda3e18fac8ebc75e0e821e689fcea8597dc1ded809ff5e713b2811be",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I002-P1-001",
+      "severity": "P1",
+      "title": "The generation pointer accepts a symlinked database outside its publication directory",
+      "file": ".opencode/skills/sk-design/styles/_db/schema.mjs",
+      "line": 23,
+      "description": "A basename-only pointer can resolve through a symlink outside the generation directory and its declared generationHash is not bound to the opened database.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The single pointer resolver feeds persistent query and hydration; writer-side staging/rollback validation exists, but exact search and schema tests found no reader-side realpath containment, hash binding, or pointer-symlink test.",
+      "affectedSurfaceHints": [
+        "generation pointer reader",
+        "persistent query open",
+        "persistent hydration open",
+        "rollback publication",
+        "pointer boundary tests"
+      ],
+      "contentHash": "af0c4a82a51401aa283960ec6bf2d4e60f7947ec3efb0db3979dd6ebf39c1dce",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-001",
+      "severity": "P1",
+      "title": "Persistent queries ignore an explicitly requested generation",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The persistent query path silently substitutes the current generation for a caller-supplied generationHash.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Generation pin enforcement exists for cursors and hydration but not direct persistent queries.",
+      "affectedSurfaceHints": [
+        "persistent query API",
+        "migration adapter",
+        "query cursor",
+        "hydration generation guard"
+      ],
+      "contentHash": "c697ca69b589f812963631f007b7819378204681336b5ce03a5fd66079d1a0e8",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-002",
+      "severity": "P1",
+      "title": "Persistent retrieval accepts arbitrarily large query vectors",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The synchronous persistent query path accepts and duplicates an unbounded caller-controlled queryVector.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Query-vector validation checks finite/non-empty values only; the embedder-output cap does not protect query inputs.",
+      "affectedSurfaceHints": [
+        "persistent retrieval API",
+        "request fingerprinting",
+        "vector lane",
+        "hostile-input tests"
+      ],
+      "contentHash": "283cbb30d01b537d243e06d8635398aee2feb7eab5466dbe2d3117b036c0536d",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-001",
+      "severity": "P1",
+      "title": "Phase 001 marks a ten-iteration research task complete after only seven iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/tasks.md",
+      "line": null,
+      "description": "Phase 001 marks a ten-iteration research task complete even though the authoritative handoff records only seven iterations and current strict validation fails.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, synthesis, handoff, and parent map were reconciled; only checked completion evidence asserts ten executed iterations.",
+      "affectedSurfaceHints": [
+        "phase-001 tasks",
+        "phase-001 checklist",
+        "convergence evidence",
+        "parent phase map"
+      ],
+      "contentHash": "bb2936f6e0978dfeb075bf5bf18f23daf31d7cdf49ac2f82f12c83e319e7406e",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-002",
+      "severity": "P1",
+      "title": "Phase 002 checks both research lineages complete although GLM produced zero iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/tasks.md",
+      "line": null,
+      "description": "Phase 002 marks both SOL and GLM lineages complete and converged although GLM produced zero iterations and the synthesis is SOL-only.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, SOL synthesis, handoff, and parent map agree on SOL=20/GLM=0 except checked completion rows.",
+      "affectedSurfaceHints": [
+        "phase-002 tasks",
+        "phase-002 checklist",
+        "REQ-006",
+        "cross-lineage convergence"
+      ],
+      "contentHash": "1206f69ca2a7830591d9ccc9a59e794d37f850f28be0dc7a9c4bcac9ad03a3ad",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-003",
+      "severity": "P1",
+      "title": "Phase 003 claims a corpus-scale SLO was measured from a 20-style fixture",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/003-style-database/checklist.md",
+      "line": null,
+      "description": "Phase 003 marks the corpus-scale persistent-query SLO measured and proven although its test fixture contains only twenty styles and the handoff defers the full-corpus check.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "REQ-007, tasks, checklist, the sole timing test, and handoff limitations were traced; no 1,290-style persistent benchmark exists.",
+      "affectedSurfaceHints": [
+        "REQ-007",
+        "adapter timing test",
+        "CHK-022",
+        "cutover evidence"
+      ],
+      "contentHash": "6e0584b165a0de0954d554497c44e8243e7da313c6124d3f7044dbc1054dfb05",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-004",
+      "severity": "P1",
+      "title": "The parent declares the four-phase program complete and verified while required evidence is false",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/spec.md",
+      "line": null,
+      "description": "The parent declares all four phases complete and verified despite false checked research/SLO evidence, active required defects, and a failing current recursive strict validation.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Parent handoff criteria were reconciled against all four child matrices, current tests/checkers, strict validation, and the corrected active baseline.",
+      "affectedSurfaceHints": [
+        "parent status",
+        "phase documentation map",
+        "release readiness",
+        "recursive validation"
+      ],
+      "contentHash": "ff6cde1b86929a6a2179673ec0fc3f0cd449f5316cc580085aba0f31a6a5b775",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I004-P1-001",
+      "severity": "P1",
+      "title": "Persistent DB maintenance has no owned operator surface or bounded generation-retention path",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": null,
+      "description": "Full builds retain uniquely named immutable generations, while publication, rollback, vector repair, and queue drain are library-only with no production operator owner or prune policy.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact search found the maintenance exports consumed only internally or by tests; CLI has legacy build/query/hydrate only and generation deletion targets temporary/building paths.",
+      "affectedSurfaceHints": [
+        "persistent DB operator CLI",
+        "immutable generation retention",
+        "rollback selection",
+        "vector repair/drain",
+        "cutover runbook"
+      ],
+      "contentHash": "919cdcf5b4262e9bac1b023eedffa0a985e4387c85f64ab7d26431e5c96908f2",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I001-P2-001",
+      "severity": "P2",
+      "title": "The aggregate hash includes the mutable slug locator",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": 181,
+      "description": "Artifact relativePath includes slug and is hashed despite the research contract requiring style-relative paths, so locator-only renames rotate generation identity.",
+      "findingClass": "algorithmic",
+      "deltaStatus": null,
+      "scopeProof": "The single aggregate-hash producer and artifact path producer were traced; retrieval hash remains separate.",
+      "affectedSurfaceHints": [
+        "aggregate hash",
+        "slug rename",
+        "generation cursor",
+        "incremental publication"
+      ],
+      "contentHash": "ee8a5fc67bf5c1fa04b1d70a7da873be3ffbfe93cfe1e58dc940c9327419d8c1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "SOL-I001-P1-002",
+      "severity": "P1",
+      "title": "Persistent queries ignore an explicitly requested generation",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": 338,
+      "description": "The persistent query silently substitutes current generation for caller-supplied generationHash.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Exact search found requested-generation enforcement only in hydration and cursor handling; no query test supplies generationHash.",
+      "affectedSurfaceHints": [
+        "persistent query API",
+        "migration adapter",
+        "query cursor",
+        "hydration generation guard"
+      ],
+      "contentHash": "a3854f2b22ed33f48be3c0e3c95cb0eaddd14d38d4b958b82c7c2a252c219e5a",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        },
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "SOL-I002-P1-002"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security — SQLite/file trust boundaries, generation pointer validation, corpus and hydration containment, hostile query/vector inputs, exemplar trust, mutation boundaries, and alias recursion",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "security — SQLite/file trust boundaries, generation pointer validation, corpus and hydration containment, hostile query/vector inputs, exemplar trust, mutation boundaries, and alias recursion",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security — SQLite/file trust boundaries, generation pointer validation, corpus and hydration containment, hostile query/vector inputs, exemplar trust, mutation boundaries, and alias recursion",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "SOL-I001-P1-001",
+      "severity": "P1",
+      "title": "A worker crash permanently strands a vector job in running",
+      "file": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      "line": 154,
+      "description": "A process exit after claim leaves the vector job permanently unselectable in normal operation.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Exact search across _db/_engine found the only running claim and no stale-running recovery; only explicit rebuildVectorProjection resets jobs.",
+      "affectedSurfaceHints": [
+        "vector worker restart",
+        "incremental indexer",
+        "vector degradation telemetry",
+        "projection rebuild"
+      ],
+      "contentHash": "1585c2deda3e18fac8ebc75e0e821e689fcea8597dc1ded809ff5e713b2811be",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I002-P1-001",
+      "severity": "P1",
+      "title": "The generation pointer accepts a symlinked database outside its publication directory",
+      "file": ".opencode/skills/sk-design/styles/_db/schema.mjs",
+      "line": 23,
+      "description": "A basename-only pointer can resolve through a symlink outside the generation directory and its declared generationHash is not bound to the opened database.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The single pointer resolver feeds persistent query and hydration; writer-side staging/rollback validation exists, but exact search and schema tests found no reader-side realpath containment, hash binding, or pointer-symlink test.",
+      "affectedSurfaceHints": [
+        "generation pointer reader",
+        "persistent query open",
+        "persistent hydration open",
+        "rollback publication",
+        "pointer boundary tests"
+      ],
+      "contentHash": "af0c4a82a51401aa283960ec6bf2d4e60f7947ec3efb0db3979dd6ebf39c1dce",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-001",
+      "severity": "P1",
+      "title": "Persistent queries ignore an explicitly requested generation",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The persistent query path silently substitutes the current generation for a caller-supplied generationHash.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Generation pin enforcement exists for cursors and hydration but not direct persistent queries.",
+      "affectedSurfaceHints": [
+        "persistent query API",
+        "migration adapter",
+        "query cursor",
+        "hydration generation guard"
+      ],
+      "contentHash": "c697ca69b589f812963631f007b7819378204681336b5ce03a5fd66079d1a0e8",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-002",
+      "severity": "P1",
+      "title": "Persistent retrieval accepts arbitrarily large query vectors",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The synchronous persistent query path accepts and duplicates an unbounded caller-controlled queryVector.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Query-vector validation checks finite/non-empty values only; the embedder-output cap does not protect query inputs.",
+      "affectedSurfaceHints": [
+        "persistent retrieval API",
+        "request fingerprinting",
+        "vector lane",
+        "hostile-input tests"
+      ],
+      "contentHash": "283cbb30d01b537d243e06d8635398aee2feb7eab5466dbe2d3117b036c0536d",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-001",
+      "severity": "P1",
+      "title": "Phase 001 marks a ten-iteration research task complete after only seven iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/tasks.md",
+      "line": null,
+      "description": "Phase 001 marks a ten-iteration research task complete even though the authoritative handoff records only seven iterations and current strict validation fails.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, synthesis, handoff, and parent map were reconciled; only checked completion evidence asserts ten executed iterations.",
+      "affectedSurfaceHints": [
+        "phase-001 tasks",
+        "phase-001 checklist",
+        "convergence evidence",
+        "parent phase map"
+      ],
+      "contentHash": "bb2936f6e0978dfeb075bf5bf18f23daf31d7cdf49ac2f82f12c83e319e7406e",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-002",
+      "severity": "P1",
+      "title": "Phase 002 checks both research lineages complete although GLM produced zero iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/tasks.md",
+      "line": null,
+      "description": "Phase 002 marks both SOL and GLM lineages complete and converged although GLM produced zero iterations and the synthesis is SOL-only.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, SOL synthesis, handoff, and parent map agree on SOL=20/GLM=0 except checked completion rows.",
+      "affectedSurfaceHints": [
+        "phase-002 tasks",
+        "phase-002 checklist",
+        "REQ-006",
+        "cross-lineage convergence"
+      ],
+      "contentHash": "1206f69ca2a7830591d9ccc9a59e794d37f850f28be0dc7a9c4bcac9ad03a3ad",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-003",
+      "severity": "P1",
+      "title": "Phase 003 claims a corpus-scale SLO was measured from a 20-style fixture",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/003-style-database/checklist.md",
+      "line": null,
+      "description": "Phase 003 marks the corpus-scale persistent-query SLO measured and proven although its test fixture contains only twenty styles and the handoff defers the full-corpus check.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "REQ-007, tasks, checklist, the sole timing test, and handoff limitations were traced; no 1,290-style persistent benchmark exists.",
+      "affectedSurfaceHints": [
+        "REQ-007",
+        "adapter timing test",
+        "CHK-022",
+        "cutover evidence"
+      ],
+      "contentHash": "6e0584b165a0de0954d554497c44e8243e7da313c6124d3f7044dbc1054dfb05",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-004",
+      "severity": "P1",
+      "title": "The parent declares the four-phase program complete and verified while required evidence is false",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/spec.md",
+      "line": null,
+      "description": "The parent declares all four phases complete and verified despite false checked research/SLO evidence, active required defects, and a failing current recursive strict validation.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Parent handoff criteria were reconciled against all four child matrices, current tests/checkers, strict validation, and the corrected active baseline.",
+      "affectedSurfaceHints": [
+        "parent status",
+        "phase documentation map",
+        "release readiness",
+        "recursive validation"
+      ],
+      "contentHash": "ff6cde1b86929a6a2179673ec0fc3f0cd449f5316cc580085aba0f31a6a5b775",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I004-P1-001",
+      "severity": "P1",
+      "title": "Persistent DB maintenance has no owned operator surface or bounded generation-retention path",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": null,
+      "description": "Full builds retain uniquely named immutable generations, while publication, rollback, vector repair, and queue drain are library-only with no production operator owner or prune policy.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact search found the maintenance exports consumed only internally or by tests; CLI has legacy build/query/hydrate only and generation deletion targets temporary/building paths.",
+      "affectedSurfaceHints": [
+        "persistent DB operator CLI",
+        "immutable generation retention",
+        "rollback selection",
+        "vector repair/drain",
+        "cutover runbook"
+      ],
+      "contentHash": "919cdcf5b4262e9bac1b023eedffa0a985e4387c85f64ab7d26431e5c96908f2",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I001-P2-001",
+      "severity": "P2",
+      "title": "The aggregate hash includes the mutable slug locator",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": 181,
+      "description": "Artifact relativePath includes slug and is hashed despite the research contract requiring style-relative paths, so locator-only renames rotate generation identity.",
+      "findingClass": "algorithmic",
+      "deltaStatus": null,
+      "scopeProof": "The single aggregate-hash producer and artifact path producer were traced; retrieval hash remains separate.",
+      "affectedSurfaceHints": [
+        "aggregate hash",
+        "slug rename",
+        "generation cursor",
+        "incremental publication"
+      ],
+      "contentHash": "ee8a5fc67bf5c1fa04b1d70a7da873be3ffbfe93cfe1e58dc940c9327419d8c1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "SOL-I001-P1-001",
+      "severity": "P1",
+      "title": "A worker crash permanently strands a vector job in running",
+      "file": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      "line": 154,
+      "description": "A process exit after claim leaves the vector job permanently unselectable in normal operation.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Exact search across _db/_engine found the only running claim and no stale-running recovery; only explicit rebuildVectorProjection resets jobs.",
+      "affectedSurfaceHints": [
+        "vector worker restart",
+        "incremental indexer",
+        "vector degradation telemetry",
+        "projection rebuild"
+      ],
+      "contentHash": "1585c2deda3e18fac8ebc75e0e821e689fcea8597dc1ded809ff5e713b2811be",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I002-P1-001",
+      "severity": "P1",
+      "title": "The generation pointer accepts a symlinked database outside its publication directory",
+      "file": ".opencode/skills/sk-design/styles/_db/schema.mjs",
+      "line": 23,
+      "description": "A basename-only pointer can resolve through a symlink outside the generation directory and its declared generationHash is not bound to the opened database.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The single pointer resolver feeds persistent query and hydration; writer-side staging/rollback validation exists, but exact search and schema tests found no reader-side realpath containment, hash binding, or pointer-symlink test.",
+      "affectedSurfaceHints": [
+        "generation pointer reader",
+        "persistent query open",
+        "persistent hydration open",
+        "rollback publication",
+        "pointer boundary tests"
+      ],
+      "contentHash": "af0c4a82a51401aa283960ec6bf2d4e60f7947ec3efb0db3979dd6ebf39c1dce",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-001",
+      "severity": "P1",
+      "title": "Persistent queries ignore an explicitly requested generation",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The persistent query path silently substitutes the current generation for a caller-supplied generationHash.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Generation pin enforcement exists for cursors and hydration but not direct persistent queries.",
+      "affectedSurfaceHints": [
+        "persistent query API",
+        "migration adapter",
+        "query cursor",
+        "hydration generation guard"
+      ],
+      "contentHash": "c697ca69b589f812963631f007b7819378204681336b5ce03a5fd66079d1a0e8",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-CORR-P1-002",
+      "severity": "P1",
+      "title": "Persistent retrieval accepts arbitrarily large query vectors",
+      "file": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "line": null,
+      "description": "The synchronous persistent query path accepts and duplicates an unbounded caller-controlled queryVector.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Query-vector validation checks finite/non-empty values only; the embedder-output cap does not protect query inputs.",
+      "affectedSurfaceHints": [
+        "persistent retrieval API",
+        "request fingerprinting",
+        "vector lane",
+        "hostile-input tests"
+      ],
+      "contentHash": "283cbb30d01b537d243e06d8635398aee2feb7eab5466dbe2d3117b036c0536d",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-001",
+      "severity": "P1",
+      "title": "Phase 001 marks a ten-iteration research task complete after only seven iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/tasks.md",
+      "line": null,
+      "description": "Phase 001 marks a ten-iteration research task complete even though the authoritative handoff records only seven iterations and current strict validation fails.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, synthesis, handoff, and parent map were reconciled; only checked completion evidence asserts ten executed iterations.",
+      "affectedSurfaceHints": [
+        "phase-001 tasks",
+        "phase-001 checklist",
+        "convergence evidence",
+        "parent phase map"
+      ],
+      "contentHash": "bb2936f6e0978dfeb075bf5bf18f23daf31d7cdf49ac2f82f12c83e319e7406e",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-002",
+      "severity": "P1",
+      "title": "Phase 002 checks both research lineages complete although GLM produced zero iterations",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/tasks.md",
+      "line": null,
+      "description": "Phase 002 marks both SOL and GLM lineages complete and converged although GLM produced zero iterations and the synthesis is SOL-only.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Spec, tasks, checklist, SOL synthesis, handoff, and parent map agree on SOL=20/GLM=0 except checked completion rows.",
+      "affectedSurfaceHints": [
+        "phase-002 tasks",
+        "phase-002 checklist",
+        "REQ-006",
+        "cross-lineage convergence"
+      ],
+      "contentHash": "1206f69ca2a7830591d9ccc9a59e794d37f850f28be0dc7a9c4bcac9ad03a3ad",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-003",
+      "severity": "P1",
+      "title": "Phase 003 claims a corpus-scale SLO was measured from a 20-style fixture",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/003-style-database/checklist.md",
+      "line": null,
+      "description": "Phase 003 marks the corpus-scale persistent-query SLO measured and proven although its test fixture contains only twenty styles and the handoff defers the full-corpus check.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "REQ-007, tasks, checklist, the sole timing test, and handoff limitations were traced; no 1,290-style persistent benchmark exists.",
+      "affectedSurfaceHints": [
+        "REQ-007",
+        "adapter timing test",
+        "CHK-022",
+        "cutover evidence"
+      ],
+      "contentHash": "6e0584b165a0de0954d554497c44e8243e7da313c6124d3f7044dbc1054dfb05",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I003-P1-004",
+      "severity": "P1",
+      "title": "The parent declares the four-phase program complete and verified while required evidence is false",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/spec.md",
+      "line": null,
+      "description": "The parent declares all four phases complete and verified despite false checked research/SLO evidence, active required defects, and a failing current recursive strict validation.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Parent handoff criteria were reconciled against all four child matrices, current tests/checkers, strict validation, and the corrected active baseline.",
+      "affectedSurfaceHints": [
+        "parent status",
+        "phase documentation map",
+        "release readiness",
+        "recursive validation"
+      ],
+      "contentHash": "ff6cde1b86929a6a2179673ec0fc3f0cd449f5316cc580085aba0f31a6a5b775",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I004-P1-001",
+      "severity": "P1",
+      "title": "Persistent DB maintenance has no owned operator surface or bounded generation-retention path",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": null,
+      "description": "Full builds retain uniquely named immutable generations, while publication, rollback, vector repair, and queue drain are library-only with no production operator owner or prune policy.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact search found the maintenance exports consumed only internally or by tests; CLI has legacy build/query/hydrate only and generation deletion targets temporary/building paths.",
+      "affectedSurfaceHints": [
+        "persistent DB operator CLI",
+        "immutable generation retention",
+        "rollback selection",
+        "vector repair/drain",
+        "cutover runbook"
+      ],
+      "contentHash": "919cdcf5b4262e9bac1b023eedffa0a985e4387c85f64ab7d26431e5c96908f2",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SOL-I001-P2-001",
+      "severity": "P2",
+      "title": "The aggregate hash includes the mutable slug locator",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": 181,
+      "description": "Artifact relativePath includes slug and is hashed despite the research contract requiring style-relative paths, so locator-only renames rotate generation identity.",
+      "findingClass": "algorithmic",
+      "deltaStatus": null,
+      "scopeProof": "The single aggregate-hash producer and artifact path producer were traced; retrieval hash remains separate.",
+      "affectedSurfaceHints": [
+        "aggregate hash",
+        "slug rename",
+        "generation cursor",
+        "incremental publication"
+      ],
+      "contentHash": "ee8a5fc67bf5c1fa04b1d70a7da873be3ffbfe93cfe1e58dc940c9327419d8c1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 1
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 4,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "adapter_modes",
+      "aggregate_hash_locator_stability",
+      "alias_recursion",
+      "command_shared_contract_authority",
+      "corpus_symlink_containment",
+      "crash_recovery",
+      "current_supported_mode",
+      "eligibility_before_ranking",
+      "fail_closed",
+      "hash_freshness",
+      "hostile_query_bounds",
+      "hydration_rights_and_hashes",
+      "mutation_boundary",
+      "operator_lifecycle_and_generation_retention",
+      "parent_completion_status",
+      "phase001_iteration_evidence",
+      "phase002_lineage_convergence",
+      "phase003_corpus_slo",
+      "phase004_registration_parity",
+      "pointer_generation_binding",
+      "pointer_path_and_generation_binding",
+      "pointer_path_containment",
+      "prompt_injection_boundary",
+      "published_generation_consistency",
+      "requested_generation_query",
+      "rrf_cursor_determinism",
+      "test_fixture_realism",
+      "tombstone_quarantine",
+      "vector_degradation"
+    ],
+    "ruledOut": [
+      "command_shared_contract_authority",
+      "corpus_symlink_containment|hydration_rights_and_hashes",
+      "current_supported_mode",
+      "eligibility|rrf|cursor|degradation",
+      "phase004_registration_parity",
+      "test_fixture_realism",
+      "transaction_atomicity|partial_publication"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "published_generation_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "crash_recovery": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "hash_freshness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "tombstone_quarantine": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "eligibility_before_ranking": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "rrf_cursor_determinism": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "vector_degradation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "adapter_modes": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "fail_closed": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "transaction_atomicity|partial_publication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "eligibility|rrf|cursor|degradation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "pointer_path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "pointer_generation_binding": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "corpus_symlink_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hydration_rights_and_hashes": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hostile_query_bounds": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "prompt_injection_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "mutation_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "alias_recursion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "corpus_symlink_containment|hydration_rights_and_hashes": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "phase001_iteration_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "phase002_lineage_convergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "phase003_corpus_slo": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "phase004_registration_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "parent_completion_status": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "operator_lifecycle_and_generation_retention": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "command_shared_contract_authority": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "current_supported_mode": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_fixture_realism": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "requested_generation_query": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "pointer_path_and_generation_binding": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "aggregate_hash_locator_stability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "styles/_db/indexer.mjs:805-998",
+        "styles/_db/__tests__/indexer.test.mjs:193-226"
+      ],
+      "bugClass": "transaction_atomicity|partial_publication",
+      "disposition": "ruled_out",
+      "rationale": "The tested transaction boundary preserves prior generation and hashes.",
+      "evidenceRefs": [
+        "styles/_db/indexer.mjs:805-998",
+        "styles/_db/__tests__/indexer.test.mjs:193-226"
+      ],
+      "reason": "Direct code and failure-injection evidence agree."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "styles/_db/retrieval.mjs:99-265,364-435",
+        "styles/_db/__tests__/retrieval.test.mjs:18-75"
+      ],
+      "bugClass": "eligibility|rrf|cursor|degradation",
+      "disposition": "ruled_out",
+      "rationale": "Implementation and focused regression evidence agree.",
+      "evidenceRefs": [
+        "styles/_db/retrieval.mjs:99-265",
+        "styles/_db/retrieval.mjs:364-435",
+        "styles/_db/__tests__/retrieval.test.mjs:18-75"
+      ],
+      "reason": "No contradictory path was found within the declared retrieval surface."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "styles/_db/indexer.mjs:220-240,653-668",
+        "styles/_engine/manifest.mjs:520-678",
+        "styles/_engine/hydrate.mjs:66-370",
+        "styles/_engine/persistent-adapter.mjs:176-293"
+      ],
+      "bugClass": "corpus_symlink_containment|hydration_rights_and_hashes",
+      "disposition": "ruled_out",
+      "rationale": "Direct guards and adversarial tests agree.",
+      "evidenceRefs": [
+        "styles/_engine/hydrate.mjs:66-122,225-370",
+        "styles/_engine/persistent-adapter.mjs:197-293",
+        "styles/_engine/__tests__/hydrate-guard.test.mjs:20-163"
+      ],
+      "reason": "No contradictory static path was found in the declared corpus/hydration surfaces."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "hub-router.json:25-40",
+        "mode-registry.json:39-164",
+        "interface-command-contract.test.mjs:10-145",
+        "design-command-surface-check.mjs:180-229,1455-1504"
+      ],
+      "bugClass": "phase004_registration_parity",
+      "disposition": "ruled_out",
+      "rationale": "No phase-004 registration or alias drift was found.",
+      "evidenceRefs": [
+        "hub-router.json:25-40",
+        "interface-command-contract.test.mjs:10-145"
+      ],
+      "reason": "Direct registration evidence and current tests agree with no contradictory route."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "shared/creation-contract.md:14-206",
+        "commands/interface/design.md:9-86"
+      ],
+      "bugClass": "command_shared_contract_authority",
+      "disposition": "ruled_out",
+      "rationale": "No materially duplicated shared authority was found.",
+      "evidenceRefs": [
+        "shared/creation-contract.md:14-206",
+        "commands/interface/design.md:9-86"
+      ],
+      "reason": "Central authority and thin-router boundary are explicit."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "styles/_db/README.md:60-73",
+        "styles/_engine/persistent-adapter.mjs:98-111",
+        "003/implementation-summary.md:73-99"
+      ],
+      "bugClass": "current_supported_mode",
+      "disposition": "ruled_out",
+      "rationale": "No supported-mode ambiguity was found.",
+      "evidenceRefs": [
+        "styles/_db/README.md:60-73",
+        "styles/_engine/persistent-adapter.mjs:98-111",
+        "003/implementation-summary.md:73-99"
+      ],
+      "reason": "Current-state language is consistent."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "styles/_db/__tests__/fixtures.mjs:18-39",
+        "styles/_db/__tests__/indexer.test.mjs:57-121",
+        "003/implementation-summary.md:83-99"
+      ],
+      "bugClass": "test_fixture_realism",
+      "disposition": "ruled_out",
+      "rationale": "No distinct fixture-maintenance defect was established.",
+      "evidenceRefs": [
+        "styles/_db/__tests__/fixtures.mjs:18-39",
+        "003/implementation-summary.md:83-99"
+      ],
+      "reason": "A new finding would duplicate the active SLO evidence finding."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "styles/_db/indexer.mjs:805-998",
+        "styles/_db/__tests__/indexer.test.mjs:193-226"
+      ],
+      "bugClass": "transaction_atomicity|partial_publication",
+      "disposition": "ruled_out",
+      "rationale": "The tested transaction boundary preserves prior generation and hashes.",
+      "evidenceRefs": [
+        "styles/_db/indexer.mjs:805-998",
+        "styles/_db/__tests__/indexer.test.mjs:193-226"
+      ],
+      "proof": "Direct code and failure-injection evidence agree."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "styles/_db/retrieval.mjs:99-265,364-435",
+        "styles/_db/__tests__/retrieval.test.mjs:18-75"
+      ],
+      "bugClass": "eligibility|rrf|cursor|degradation",
+      "disposition": "ruled_out",
+      "rationale": "Implementation and focused regression evidence agree.",
+      "evidenceRefs": [
+        "styles/_db/retrieval.mjs:99-265",
+        "styles/_db/retrieval.mjs:364-435",
+        "styles/_db/__tests__/retrieval.test.mjs:18-75"
+      ],
+      "proof": "No contradictory path was found within the declared retrieval surface."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "styles/_db/indexer.mjs:220-240,653-668",
+        "styles/_engine/manifest.mjs:520-678",
+        "styles/_engine/hydrate.mjs:66-370",
+        "styles/_engine/persistent-adapter.mjs:176-293"
+      ],
+      "bugClass": "corpus_symlink_containment|hydration_rights_and_hashes",
+      "disposition": "ruled_out",
+      "rationale": "Direct guards and adversarial tests agree.",
+      "evidenceRefs": [
+        "styles/_engine/hydrate.mjs:66-122,225-370",
+        "styles/_engine/persistent-adapter.mjs:197-293",
+        "styles/_engine/__tests__/hydrate-guard.test.mjs:20-163"
+      ],
+      "proof": "No contradictory static path was found in the declared corpus/hydration surfaces."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "hub-router.json:25-40",
+        "mode-registry.json:39-164",
+        "interface-command-contract.test.mjs:10-145",
+        "design-command-surface-check.mjs:180-229,1455-1504"
+      ],
+      "bugClass": "phase004_registration_parity",
+      "disposition": "ruled_out",
+      "rationale": "No phase-004 registration or alias drift was found.",
+      "evidenceRefs": [
+        "hub-router.json:25-40",
+        "interface-command-contract.test.mjs:10-145"
+      ],
+      "proof": "Direct registration evidence and current tests agree with no contradictory route."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "shared/creation-contract.md:14-206",
+        "commands/interface/design.md:9-86"
+      ],
+      "bugClass": "command_shared_contract_authority",
+      "disposition": "ruled_out",
+      "rationale": "No materially duplicated shared authority was found.",
+      "evidenceRefs": [
+        "shared/creation-contract.md:14-206",
+        "commands/interface/design.md:9-86"
+      ],
+      "proof": "Central authority and thin-router boundary are explicit."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "styles/_db/README.md:60-73",
+        "styles/_engine/persistent-adapter.mjs:98-111",
+        "003/implementation-summary.md:73-99"
+      ],
+      "bugClass": "current_supported_mode",
+      "disposition": "ruled_out",
+      "rationale": "No supported-mode ambiguity was found.",
+      "evidenceRefs": [
+        "styles/_db/README.md:60-73",
+        "styles/_engine/persistent-adapter.mjs:98-111",
+        "003/implementation-summary.md:73-99"
+      ],
+      "proof": "Current-state language is consistent."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "styles/_db/__tests__/fixtures.mjs:18-39",
+        "styles/_db/__tests__/indexer.test.mjs:57-121",
+        "003/implementation-summary.md:83-99"
+      ],
+      "bugClass": "test_fixture_realism",
+      "disposition": "ruled_out",
+      "rationale": "No distinct fixture-maintenance defect was established.",
+      "evidenceRefs": [
+        "styles/_db/__tests__/fixtures.mjs:18-39",
+        "003/implementation-summary.md:83-99"
+      ],
+      "proof": "A new finding would duplicate the active SLO evidence finding."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "crash_recovery",
+      "requested_generation_query",
+      "pointer_path_and_generation_binding",
+      "hostile_query_bounds",
+      "aggregate_hash_locator_stability",
+      "phase001_iteration_evidence",
+      "phase002_lineage_convergence",
+      "phase003_corpus_slo",
+      "parent_completion_status",
+      "operator_lifecycle_and_generation_retention"
+    ],
+    "covered": [
+      "crash_recovery",
+      "requested_generation_query",
+      "pointer_path_and_generation_binding",
+      "hostile_query_bounds",
+      "aggregate_hash_locator_stability",
+      "phase001_iteration_evidence",
+      "phase002_lineage_convergence",
+      "phase003_corpus_slo",
+      "parent_completion_status",
+      "operator_lifecycle_and_generation_retention"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 1,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 5,
+          "partial": 0,
+          "fail": 2,
+          "skipped": 0
+        },
+        "evidence": [
+          "003 spec.md:64-154",
+          "003 checklist.md:79-84",
+          "styles/_db/schema.mjs:23-48",
+          "styles/_db/retrieval.mjs:81-96,210-230"
+        ],
+        "findingRefs": [
+          "SOL-I002-P1-001",
+          "SOL-I002-P1-002"
+        ],
+        "summary": "Two security trust/input boundaries fail closed-contract comparison."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 4,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 4
+        },
+        "evidence": [
+          "003 checklist.md:79-84",
+          "004 checklist.md:47-99",
+          "focused node tests: 26/26 pass",
+          "focused probes: pointer symlink and oversized vector accepted"
+        ],
+        "findingRefs": [
+          "SOL-I002-P1-001",
+          "SOL-I002-P1-002"
+        ],
+        "summary": "Hydration, rights, mutation, and alias claims checked; pointer/vector gaps remain and the full matrix is deferred to traceability."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

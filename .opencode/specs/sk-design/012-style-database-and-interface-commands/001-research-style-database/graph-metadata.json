@@ -161,12 +161,6 @@
         "source": "derived"
       },
       {
-        "name": "externalized",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -183,11 +177,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 1,291-style library in `.opencode/skills/sk-design/styles/` is ~13k flat files with only a file-walking retrieval engine (`styles/engine`, packet 011)",
     "created_at": "2026-07-19T06:17:50.113Z",
-    "last_save_at": "2026-07-19T08:04:54.223Z",
+    "last_save_at": "2026-07-19T12:10:28.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,11 +198,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:faae9d7b560643ad355039e546ecd578289e9840f7696b55e4f069d7570447a8",
+    "source_fingerprint": "sha256:c38af3d306c90918c845f5f048bb160be0352d556b0b161cd5c45e6cd73821be",
     "source_doc_hashes": {
       "spec.md": "a547167ba8e4181fb4fa0085ddf5ff8be4efe991a8c07a6daebc35b65cfb3d0c",
       "plan.md": "ba6a7194d7d83538046c59fc143ef60a9c8e0b27520daba1747e58e1f50cda23",
-      "tasks.md": "412acabf43dc801124a58d5c899eb10d75863eefdd2d93df23bdf7cae80b9ca4",
+      "tasks.md": "b938b911946884260612523c1bda317ed47991245b23c9f2aeca23cc884c0306",
       "checklist.md": "e00c735a11693832b029d4034ed87f6f4b21e92220f6a63efff47ecae83307a0",
       "implementation-summary.md": "c28d27280c5114153d60292615de8ea6ec9dd3dce06b850006bad8f868ed4206",
       "research/research.md": "fbc4197629b41c6e2ffc37a359a96c7300b610e65e39dd4415cbb4975e906b8b"

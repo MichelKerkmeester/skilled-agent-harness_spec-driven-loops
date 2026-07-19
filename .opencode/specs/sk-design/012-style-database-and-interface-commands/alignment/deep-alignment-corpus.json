@@ -1,0 +1,49 @@
+{
+  "lanes": [
+    {
+      "laneId": "sk-code::code::.opencode/skills/sk-design/styles/_db/, .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/styles/_db/",
+          ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/__tests__/fixtures.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/__tests__/retrieval.test.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/__tests__/schema.test.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/indexer.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/schema.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_db/vectors.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs"
+        }
+      ]
+    }
+  ]
+}
