@@ -119,12 +119,19 @@
         "certHash": "62a3c54b53c86a13eccfcbb638d76aeb44274c1ba4bfa796a8f16d3182f18995"
       }
     },
-    "uncertaintyBudget": {
-      "schemaVersion": "V1",
-      "budgetId": "budget:selective-controller-shadow-001",
-      "userTurns": 1,
-      "handoffHops": 1,
-      "visited": []
+    "budgetState": {
+      "requestId": "selective-controller-shadow-001",
+      "contract": {
+        "schemaVersion": "V1",
+        "budgetId": "budget:selective-controller-shadow-001",
+        "userTurns": 1,
+        "handoffHops": 1,
+        "visited": []
+      },
+      "userTurnsUsed": 0,
+      "handoffHopsUsed": 0,
+      "visited": [],
+      "clarification": null
     },
     "projection": {
       "hubId": "sk-code",

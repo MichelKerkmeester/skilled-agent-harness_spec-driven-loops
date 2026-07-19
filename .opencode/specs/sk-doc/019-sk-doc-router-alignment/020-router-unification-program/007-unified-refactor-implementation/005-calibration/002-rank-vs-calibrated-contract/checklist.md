@@ -10,7 +10,7 @@ contextType: "implementation"
 ## Protocol
 
 - [x] CHK-001 [P1] Ranking evidence remains authority-free and calibration remains evidence-only.
-  - **Evidence**: `validateRouteDecision()` requires `rankScore.nonAuthority=true`, `scoreMargin.nonAuthority=true`, and `authority: WithheldUntilVerify` on every enriched route.
+  - **Evidence**: `validateRouteDecision()` imports the frozen `parseRouteDecisionShape()` oracle; public evidence is the exact `rankScore`/`scoreMargin` array with `nonAuthority:true`, while calibration is a sibling envelope field.
 - [x] CHK-002 [P1] Calibration legality depends on distinct request, registry, and corpus authorities.
   - **Evidence**: `evaluateCalibratedRoute()` resolves the active external certificate, compares request-pinned policy generation/risk slice, and recomputes the held-out corpus hash before admitting calibrated evidence.
 <!-- /ANCHOR:protocol -->
@@ -30,7 +30,7 @@ contextType: "implementation"
 ## Code Quality
 
 - [x] CHK-006 [P1] Runtime dependencies are limited to Node built-ins, packet-local modules, and the two frozen local contract helpers.
-  - **Evidence**: `assertSourceDiscipline()` rejects external packages; `node --check` exits 0 for all four CommonJS files.
+  - **Evidence**: `assertSourceDiscipline()` rejects external packages; the calibration contract imports the real frozen decision validator plus canonical/corpus helpers, and `node --check` exits 0 for all four CommonJS files.
 - [x] CHK-007 [P1] Singleton behavior is data-driven rather than a skill-name branch.
   - **Evidence**: legality derives `noCalibrationSlice` from `candidateCount === 1`; the source-discipline grep rejects literal skill/hub equality branches.
 - [x] CHK-008 [P1] Code comments contain durable rationale only.
@@ -43,7 +43,7 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-010 [P1] An unvalidated branch carrying `estimatedError` is structurally rejected.
-  - **Evidence**: the planted fixture rejects with `CALIBRATION_UNVALIDATED_FIELDS`.
+  - **Evidence**: the planted out-of-band envelope rejects with `CALIBRATION_UNVALIDATED_FIELDS`; no public `RouteDecisionV1` field can represent the claim.
 - [x] CHK-011 [P1] Candidate, expired, and revoked certificates cannot be attached or self-project as routes.
   - **Evidence**: every `attachCalibration()` attempt rejects with `CERTIFICATE_STATUS_NOT_VALIDATED`; evaluator verdicts project `clarify`/`defer`, while a raw decision rejects with `PROJECTION_LEGALITY_RESULT_REQUIRED`.
 - [x] CHK-012 [P1] Policy, generation, and risk-slice mismatches fail against request-pinned identities.
@@ -53,7 +53,7 @@ contextType: "implementation"
 - [x] CHK-014 [P1] Negative decisions enforce exact branch fields and reject probability language in the input decision.
   - **Evidence**: `defer + estimatedError` and `clarify + confidence` reject with `PROBABILITY_LANGUAGE_FORBIDDEN`; a non-probability extra rejects with `NEGATIVE_DECISION_FIELDS_INVALID`.
 - [x] CHK-015 [P1] Projection invisibility is externally licensed, byte-for-byte, and hash-compared.
-  - **Evidence**: evaluator-produced rank-only and certified verdicts share compatibility SHA-256 `7161e29edba39bf8bdd223de9eeb37081442861c5a474308065662a38e28add5` and typed route-gold SHA-256 `da2a5f632439f780645eef45998404127a2987ae919829541fcda59df2d064c5`.
+  - **Evidence**: evaluator-produced envelopes with unvalidated versus validated sibling calibration share compatibility SHA-256 `7161e29edba39bf8bdd223de9eeb37081442861c5a474308065662a38e28add5` and typed route-gold SHA-256 `da2a5f632439f780645eef45998404127a2987ae919829541fcda59df2d064c5`.
 - [x] CHK-016 [P1] The real scorer evaluates distinct intent-derived gold and has a falsifier.
   - **Evidence**: a committed held-out corpus record supplies independently locked gold; exported `evaluateRouteGold` returns `pass:true`, while the corrupted observation returns `pass:false`.
 - [x] CHK-017 [P1] Certificate identities have fixed reproducibility vectors.
@@ -76,7 +76,9 @@ contextType: "implementation"
 - [x] CHK-023 [P1] Retained-prior restore does not re-run candidate promotion.
   - **Evidence**: restore returns the already validated certificate with the original `certificateId` and `certHash`, swaps only active/retained pointers under fenced CAS, and increments the fence.
 - [x] CHK-024 [P1] Revocation demonstrates rank-only fallback without serving-policy mutation.
-  - **Evidence**: the active certificate becomes `revoked`, evaluation returns `clarify` with `{status:"unvalidated"}`, and serving policy SHA-256 remains `a4940ea2c83b0b6a15c6cfef3cae2d72db147e9230725566057e5d197e9e479f`.
+  - **Evidence**: the active certificate becomes `revoked`, evaluation returns `clarify` with sibling calibration `{status:"unvalidated"}`, and serving policy SHA-256 remains `a4940ea2c83b0b6a15c6cfef3cae2d72db147e9230725566057e5d197e9e479f`.
+- [x] CHK-025 [P1] The calibration schema no longer forks the public V1 identity.
+  - **Evidence**: the repurposed schema is `CalibrationEvidenceEnvelopeV1`, references the frozen route schema for `decision`, and never defines object-shaped `route.evidence`.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -87,7 +89,7 @@ contextType: "implementation"
 - [x] CHK-031 [P1] Certificate promotion and retained-prior restore are fenced and preimage-checked.
   - **Evidence**: `CertificateRegistry.rotate()` and `restoreRetainedPrior()` both call the same CAS guard with the current fence token and active-certificate preimage before pointer mutation.
 - [x] CHK-032 [P1] Evidence cannot become destination commit authority.
-  - **Evidence**: route validation fixes `WithheldUntilVerify`; negative decisions fix `Withheld`; the registry exposes no commit operation.
+  - **Evidence**: the imported frozen oracle fixes route authority to `WithheldUntilVerify`; negative decisions fix `Withheld`; the registry exposes no commit operation.
 - [x] CHK-033 [P1] Resolver paths are trusted constants rather than caller-controlled paths.
   - **Evidence**: the harness derives fixed repository locations and passes only content identities through the legality interface.
 <!-- /ANCHOR:security -->
@@ -116,5 +118,5 @@ contextType: "implementation"
 - [x] CHK-060 [P1] Targeted executable verification reaches the intended shadow gate.
   - **Evidence**: `node harness/validate-calibration-contract.cjs` exits 0 and reports SC-001, SC-002, SC-004, and SC-005 as `PASS`, with SC-003 honestly `shadow-partial`.
 - [ ] CHK-061 [P1] Repository strict spec validation is green.
-  - The orchestrator owns this check by explicit instruction; it was not run here.
+  - **Evidence**: `validate.sh --strict` was run and exited 2; current-template anchor/header/frontmatter checks fail, while rule bridges cannot load `level-contract-resolver.js` and generated-metadata checks cannot find the repository-local `tsx` runtime. The gate remains unchecked.
 <!-- /ANCHOR:summary -->

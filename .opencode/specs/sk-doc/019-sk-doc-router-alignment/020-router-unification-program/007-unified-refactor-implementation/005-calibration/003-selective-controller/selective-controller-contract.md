@@ -14,8 +14,8 @@ resolveSelectiveController(
   RouteRequestV1,
   RankedCandidatesV1,
   CalibrationCertificateHandleV1,
-  UncertaintyBudgetV1
-) -> RouteDecisionV1
+  RecoveryBudgetStateV1
+) -> { decision: RouteDecisionV1, calibration, budgetState, trace }
 ```
 
 The reference implementation is deterministic, referentially transparent, and
@@ -29,12 +29,16 @@ VERIFY→COMMIT can grant effect authority (synthesis §2.3, §10).
 | `RouteRequestV1` | Immutable request adapter | Supplies `requestId`, hub, the externally pinned `{effectivePolicyHash,generation}`, risk slice, evidence, and compiled threshold posture. |
 | `RankedCandidatesV1` | Pure evaluator output | Supplies ordered legal-local candidates, non-authority rank evidence, clarification data, and replay interaction state. |
 | `CalibrationCertificateHandleV1` | Active external certificate registry | Resolves one immutable `CalibrationCertificateV1` and the active pointer identity; the controller does not fit or redefine calibration. |
-| `UncertaintyBudgetV1` | Shared recovery contract | Supplies the request-bound one-turn budget; the controller adds no parallel budget (synthesis §4 Seam B). |
+| `RecoveryBudgetStateV1` | Shared recovery continuation | Supplies phase 004's request-bound contract and consumed counters under `budgetState`; the controller adds no parallel budget (synthesis §4 Seam B). |
 
 The request identity is the comparison authority. Certificate legality is not
 inferred from a decision field. The controller recomputes certificate content
 and fence hashes, then compares the certificate's `policyHash`, `riskSlice`,
 and generation with the request's pinned values.
+
+The public `decision` is the frozen `RouteDecisionV1`. Its route evidence is
+the closed rank-evidence array, and calibration remains a sibling envelope
+field that is invisible to compatibility projection.
 
 ## 2. Terminal algebra and order
 
@@ -100,7 +104,7 @@ The limits are fixed controller constants. Callers cannot raise them.
 
 | Assertion | Deterministic offline check | Failure |
 |---|---|---|
-| One user turn | `interaction.userTurnsUsed <= 1`; every emitted clarify trace consumes exactly one. | `FRICTION_USER_TURNS_EXCEEDED` |
+| One user turn | `(budgetState.contract.userTurns - budgetState.userTurnsUsed) >= 1` before clarify; the returned continuation increments `userTurnsUsed` exactly once. | `UNCERTAINTY_BUDGET_INVALID` for malformed/overrun state; otherwise typed `defer` when exhausted. |
 | Three candidate options plus sentinel | Count typed candidate options before appending exactly one `none_of_these`. | `FRICTION_OPTIONS_EXCEEDED` |
 | Two attempts | `interaction.attempt <= 2`; attempt two is the sole accepted-answer rescore. | `FRICTION_ATTEMPTS_EXCEEDED` |
 | 256-token card | Count maximal non-empty Unicode-whitespace-delimited tokens from the actual decision-card string. | `FRICTION_CARD_TOKENS_EXCEEDED` |
@@ -112,9 +116,9 @@ it does not claim parity with a model-specific tokenizer.
 ## 6. Replay, projection, and migration
 
 Controller fixtures project through the committed calibration compatibility
-projector, which erases calibration-only evidence and maps negative decisions
+projector, which ignores the out-of-band calibration sibling and maps negative decisions
 to empty intent/resource observations. The harness byte-compares projection of
-the same route with validated versus unvalidated calibration evidence, invokes
+the same route envelope with validated versus unvalidated calibration evidence, invokes
 the real `evaluateRouteGold`, proves a corrupted observation fails, and pins
 all three protected scorer digests (synthesis §8.2).
 

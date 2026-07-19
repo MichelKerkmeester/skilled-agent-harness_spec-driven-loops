@@ -16,8 +16,8 @@ status: "shadow-partial"
 | Field | Value |
 |---|---|
 | Delivery status | Implemented reference artifact; shadow verification clean |
-| Controller | `SelectiveControllerV1` pure four-input resolver |
-| Runtime dependency boundary | Frozen `canonical.cjs` only |
+| Controller | `SelectiveControllerV1` pure four-input resolver returning an evidence/state envelope |
+| Runtime dependency boundary | Frozen canonical hash, decision oracle, and recovery-ladder contract |
 | Routing authority | Recommendation only; `WithheldUntilVerify` |
 | Migration stage | Stage 3 shadow evaluation |
 | Route-gold status | `shadow-partial`; real scorer over typed fixtures, no per-hub canary |
@@ -28,10 +28,16 @@ status: "shadow-partial"
 
 `lib/selective-controller.cjs` implements the terminal decision controller as a
 pure function over a request-pinned policy/risk identity, ordered candidates,
-an external certificate handle, and the shared uncertainty budget. Its closed
-result is `route | clarify | defer | reject`. Only route carries targets, and
+an external certificate handle, and phase 004's shared `budgetState`. Its public
+`decision` is the frozen `route | clarify | defer | reject` algebra. Only route carries targets, and
 every result withholds authority pending destination-local VERIFY→COMMIT
 (synthesis §2.3, §10).
+
+Positive routes now carry the canonical evidence array
+`[{kind:"rankScore",...},{kind:"scoreMargin",...}]`. The route keys are exactly
+`selectionKind,targets,basis,evidence,authority`. Calibration is absent from the
+decision and appears only as sibling evidence on the controller envelope,
+preserving the identical public shape required by synthesis §4 Seam C.
 
 Multi-candidate `signal` routing requires a live active selective-classification
 certificate. The controller recomputes both certificate hashes, validates the
@@ -46,7 +52,11 @@ fields abstain rather than escape the controller. All certificate negatives fall
 Clarification is one typed question with at most three candidate options plus
 `none_of_these`. A sentinel or otherwise non-discriminating answer defers as
 `no-match` before any route branch. Attempt two is the sole accepted-answer
-rescore, and a spent shared turn cannot emit another clarification. Four fixed
+rescore. Clarify authorization reads
+`budgetState.contract.userTurns - budgetState.userTurnsUsed`; a spent phase-004
+turn therefore cannot emit another clarification, regardless of the local
+interaction counter. The returned `budgetState` increments on clarify and is the
+single authoritative continuation. Four fixed
 hard limits cover one user turn, three options, two attempts, and 256 contract
 tokens. `promotion-metrics.v1.json` separately defines all seven promotion
 metrics over an externally bound held-out corpus slice; it selects no threshold
@@ -63,18 +73,20 @@ hard-blocks, without a skill-name branch (synthesis
 <!-- ANCHOR:how-delivered -->
 ## How Delivered
 
-The public `resolveSelectiveController()` returns only a frozen decision.
-`inspectSelectiveController()` exposes the same decision plus non-authoritative
-replay counters so the offline lane can assert rank, threshold, rescore, turn,
-and card-size behavior without adding fields to `RouteDecisionV1`.
+`resolveSelectiveController()` and `inspectSelectiveController()` return the
+same frozen envelope: public `decision`, sibling calibration evidence, returned
+`budgetState`, and non-authoritative replay counters. The controller imports
+the real frozen `parseRouteDecisionShape()` guard and asserts every terminal
+decision before returning it.
 
 The fixture set additionally falsifies five branch-order and edge failures:
 `none_of_these` under a valid high-rank certificate, zero signal under a valid
 bounded-default certificate, a threaded state whose single user turn is already
 spent, a one-candidate ordered bundle, and a self-consistently rehashed
 certificate with a malformed threshold. Separate mutation fixtures retain the
-second user turn, fourth option, third attempt, 257th token, and singular ranking
-call. Each terminal path asserts its specific branch or hard-failure reason.
+overrun shared ledger, fourth option, third attempt, 257th token, and singular
+ranking call. A source mutation removes only the shared-budget guard and proves
+the spent-budget case flips from `defer` to `clarify`.
 
 Compatibility uses the committed calibration projector. The harness projects
 the same route with and without certificate evidence and byte-compares the
@@ -88,7 +100,7 @@ shared scorer digests are checked before and after the lane (synthesis §8.2,
 ## Decisions
 
 - Certificate legality is anchored to the request-pinned policy identity and
-  risk slice. The output's calibration claim is serialization, never the
+  risk slice. The envelope's calibration claim is evidence, never the
   authority used to admit the branch (synthesis §8.1).
 - The controller consumes the upstream fitted threshold from a validated
   selective-classification certificate. It does not choose a numeric value or
@@ -99,7 +111,7 @@ shared scorer digests are checked before and after the lane (synthesis §8.2,
 - Advisor evidence is additive. Live identity-matched advisor evidence may
   rank; stale annotates only; absent contributes zero; compiled policy remains
   available (synthesis §8.1).
-- Route-gold remains a compatibility projection. Calibration evidence is
+- Route-gold remains a compatibility projection. Out-of-band calibration evidence is
   intentionally invisible, and changing a scorer to observe it would be a
   migration failure (synthesis §8.2, §10).
 - Stage 3 is the terminal claim here. Stage-4 threshold fitting, per-hub canary,
@@ -113,15 +125,19 @@ Fresh targeted verification produced:
 
 - syntax: both CommonJS files pass `node --check`;
 - data: both JSON files parse successfully;
-- purity: one allowed controller import; six forbidden-effect patterns absent;
+- purity: three frozen local imports; six forbidden-effect patterns absent;
+- external oracle: all 17 terminal decisions pass the real frozen
+  `parseRouteDecisionShape()` assertion;
 - replay: 17 typed rows × 25 repeated runs, one decision byte sequence per row;
 - certificate negatives: absent, stale, policy mismatch, and risk-slice mismatch
   each end in clarify with their exact reason;
-- friction negatives: second turn, fourth option, third attempt, and 257th token
-  each hard-fail with a distinct fixed reason;
+- friction negatives: an overrun shared ledger, fourth option, third attempt,
+  and 257th token each hard-fail with a distinct fixed reason;
 - falsifiers: `none_of_these` defers `no-match`; certified zero-signal defers
   `no-match`; spent-turn clarification defers `evidence-unavailable`; malformed
   threshold clarifies with `CERTIFICATE_THRESHOLD_INVALID`;
+- shared-budget teeth: phase-004 `userTurnsUsed=1` yields `defer`; removing only
+  the shared-budget guard makes the identical input yield `clarify`;
 - N=1: signal route with `rankCalls=0`, `thresholdCalls=0`, and
   `rescoreCalls=0`; planted ranking and ordered-bundle selection hard-fail;
 - held-out binding: external corpus and certificate validate at corpus hash
@@ -151,6 +167,9 @@ a per-hub canary.
   signatures are outside this controller.
 - The controller emits no proof, activation, registry mutation, or destination
   effect. Fenced CAS activation and post-COMMIT recovery stay downstream.
-- Repository strict spec validation was not run because the orchestrator owns
-  that check by explicit instruction.
+- Strict packet validation was run and failed outside the controller contract:
+  the packet predates current template/anchor requirements, and the repository
+  validator cannot load `level-contract-resolver.js` or its local `tsx` runtime.
+  Those dependencies and structural migrations are outside this phase's allowed
+  edit surface, so the strict gate remains open.
 <!-- /ANCHOR:limitations -->

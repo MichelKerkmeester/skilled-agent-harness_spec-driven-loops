@@ -20,6 +20,7 @@ const {
   attachCalibration,
   evaluateCalibratedRoute,
   sealCertificate,
+  validateCalibrationEnvelope,
   validateCertificate,
   validateRouteDecision,
 } = require('../lib/calibration-contract.cjs');
@@ -31,6 +32,9 @@ const {
 const {
   computeCorpusHash,
 } = require('../../001-holdout-corpus/lib/calibration-corpus.cjs');
+const {
+  parseRouteDecisionShape,
+} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TRUSTED PATHS AND DIGESTS
@@ -174,32 +178,28 @@ function validatedRegistryFromBody(body, attestationTemplate, fenceToken = 20) {
 }
 
 function routeClaiming(certificate, route, estimatedError = 0.12) {
-  const claimed = clone(route);
-  claimed.route.evidence.calibration = {
-    status: 'validated',
-    certificateId: certificate.certificateId,
-    corpusId: certificate.corpusId,
-    method: certificate.method,
-    policyHash: certificate.policyHash,
-    riskSlice: certificate.riskSlice,
-    evaluationWindow: clone(certificate.evaluationWindow),
-    estimatedError,
-  };
-  return validateRouteDecision(claimed);
+  return validateCalibrationEnvelope({
+    schemaVersion: 'CalibrationEvidenceEnvelopeV1',
+    decision: clone(route),
+    calibration: {
+      status: 'validated',
+      certificateId: certificate.certificateId,
+      corpusId: certificate.corpusId,
+      method: certificate.method,
+      policyHash: certificate.policyHash,
+      riskSlice: certificate.riskSlice,
+      evaluationWindow: clone(certificate.evaluationWindow),
+      estimatedError,
+    },
+  });
 }
 
 function assertRankOnlyFallback(result, expectedReason) {
   assert.strictEqual(result.legalityReason, expectedReason);
   assert.strictEqual(result.calibratedAutoRouteAvailable, false);
   assert.ok(['clarify', 'defer'].includes(result.decision.action));
-  assert.deepStrictEqual(result.evaluatedEvidence.calibration, { status: 'unvalidated' });
-  assert.strictEqual(
-    Object.prototype.hasOwnProperty.call(
-      result.evaluatedEvidence.calibration,
-      'estimatedError'
-    ),
-    false
-  );
+  assert.deepStrictEqual(result.calibration, { status: 'unvalidated' });
+  assert.ok(Array.isArray(result.evaluatedEvidence));
   const projections = projectAll(result, fixture.request);
   assert.strictEqual(projections.typedRouteGold.decisionAction, result.decision.action);
   assert.ok(['clarify', 'defer'].includes(projections.typedRouteGold.decisionAction));
@@ -306,6 +306,7 @@ const negativeReasons = {};
 
 assert.strictEqual(fixture.schemaVersion, 'CalibrationContractCasesV1');
 validateRouteDecision(fixture.rankOnlyRoute);
+assert.deepStrictEqual(parseRouteDecisionShape(fixture.rankOnlyRoute), fixture.rankOnlyRoute);
 assertSourceDiscipline();
 for (const relativePath of [
   'calibration-method-envelope.v1.json',
@@ -315,6 +316,19 @@ for (const relativePath of [
 ]) {
   JSON.parse(fs.readFileSync(path.join(PHASE_ROOT, relativePath), 'utf8'));
 }
+const calibrationEnvelopeSchema = JSON.parse(fs.readFileSync(
+  path.join(PHASE_ROOT, 'schemas/calibrated-route-decision.v1.schema.json'),
+  'utf8'
+));
+assert.strictEqual(calibrationEnvelopeSchema.title, 'CalibrationEvidenceEnvelopeV1');
+assert.strictEqual(
+  calibrationEnvelopeSchema.properties.schemaVersion.const,
+  'CalibrationEvidenceEnvelopeV1'
+);
+assert.strictEqual(
+  calibrationEnvelopeSchema.properties.decision.$ref,
+  '../../../000-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision'
+);
 const checklistContent = assertDocumentAnchors('checklist.md', [
   'protocol',
   'pre-impl',
@@ -373,7 +387,7 @@ negativeReasons.projectionLegalityRequired = expectCode(
 );
 const candidateResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: candidateRoute,
+  routeEnvelope: candidateRoute,
   registry: new CertificateRegistry({
     activeCertificateId: temperatureCandidate.certificateId,
     certificates: [temperatureCandidate],
@@ -431,12 +445,14 @@ const certifiedRoute = attachCalibration(
 );
 const licensed = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: certifiedRoute,
+  routeEnvelope: certifiedRoute,
   registry,
   corpusResolver: resolveCorpus,
 });
 assert.strictEqual(licensed.calibratedAutoRouteAvailable, true);
-assert.strictEqual(licensed.decision.route.evidence.calibration.estimatedError, 0.12);
+assert.strictEqual(licensed.calibration.estimatedError, 0.12);
+assert.deepStrictEqual(parseRouteDecisionShape(licensed.decision), licensed.decision);
+assert.ok(Array.isArray(licensed.decision.route.evidence));
 assert.strictEqual(licensed.decision.route.authority, 'WithheldUntilVerify');
 assert.strictEqual(
   licensed.decision.route.targets.length,
@@ -464,24 +480,27 @@ negativeReasons.tamperedCorpusAttachment = expectCode(
 );
 const tamperedCorpusResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: certifiedRoute,
+  routeEnvelope: certifiedRoute,
   registry,
   corpusResolver: tamperedCorpusResolver,
 });
 negativeReasons.corpusHashMismatch = tamperedCorpusResult.legalityReason;
 assertRankOnlyFallback(tamperedCorpusResult, reasons.corpusHashMismatch);
 
-const illegalUnvalidated = clone(fixture.rankOnlyRoute);
-illegalUnvalidated.route.evidence.calibration.estimatedError = 0.12;
+const illegalUnvalidated = {
+  schemaVersion: 'CalibrationEvidenceEnvelopeV1',
+  decision: clone(fixture.rankOnlyRoute),
+  calibration: { status: 'unvalidated', estimatedError: 0.12 },
+};
 negativeReasons.unvalidatedEstimatedError = expectCode(
-  () => validateRouteDecision(illegalUnvalidated),
+  () => validateCalibrationEnvelope(illegalUnvalidated),
   reasons.unvalidatedEstimatedError,
   'unvalidated estimatedError'
 );
 
 const missingCertificate = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: certifiedRoute,
+  routeEnvelope: certifiedRoute,
   registry: new CertificateRegistry(),
   corpusResolver: resolveCorpus,
 });
@@ -492,7 +511,11 @@ const deferRequest = clone(fixture.request);
 deferRequest.clarification.oneAnswerDiscriminatesToLegalLocalRoute = false;
 const typedDefer = evaluateCalibratedRoute({
   request: deferRequest,
-  routeDecision: fixture.rankOnlyRoute,
+  routeEnvelope: {
+    schemaVersion: 'CalibrationEvidenceEnvelopeV1',
+    decision: fixture.rankOnlyRoute,
+    calibration: { status: 'unvalidated' },
+  },
   registry: new CertificateRegistry(),
   corpusResolver: resolveCorpus,
 });
@@ -512,7 +535,7 @@ const policyCase = validatedRegistryFromBody(
 );
 const policyResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(policyCase.validated, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(policyCase.validated, fixture.rankOnlyRoute),
   registry: policyCase.registry,
   corpusResolver: resolveCorpus,
 });
@@ -528,7 +551,7 @@ const riskCase = validatedRegistryFromBody(
 );
 const riskResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(riskCase.validated, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(riskCase.validated, fixture.rankOnlyRoute),
   registry: riskCase.registry,
   corpusResolver: resolveCorpus,
 });
@@ -544,7 +567,7 @@ const generationCase = validatedRegistryFromBody(
 );
 const generationResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(generationCase.validated, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(generationCase.validated, fixture.rankOnlyRoute),
   registry: generationCase.registry,
   corpusResolver: resolveCorpus,
 });
@@ -560,7 +583,7 @@ const unresolvedCase = validatedRegistryFromBody(
 );
 const unresolvedResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(unresolvedCase.validated, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(unresolvedCase.validated, fixture.rankOnlyRoute),
   registry: unresolvedCase.registry,
   corpusResolver: resolveCorpus,
 });
@@ -588,7 +611,7 @@ negativeReasons.expiredAttachment = expectCode(
 );
 const expiredResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(expiredCertificate, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(expiredCertificate, fixture.rankOnlyRoute),
   registry: expiredRegistry,
   corpusResolver: resolveCorpus,
 });
@@ -596,8 +619,8 @@ negativeReasons.expired = expiredResult.legalityReason;
 assertRankOnlyFallback(expiredResult, reasons.expired);
 
 const widened = clone(certifiedRoute);
-widened.route.selectionKind = 'orderedBundle';
-widened.route.targets.push({
+widened.decision.route.selectionKind = 'orderedBundle';
+widened.decision.route.targets.push({
   destinationId: {
     skillId: 'another-skill',
     workflowMode: 'another-mode',
@@ -612,7 +635,7 @@ widened.route.targets.push({
 negativeReasons.widenedCandidates = expectCode(
   () => evaluateCalibratedRoute({
     request: fixture.request,
-    routeDecision: widened,
+    routeEnvelope: widened,
     registry,
     corpusResolver: resolveCorpus,
   }),
@@ -621,11 +644,11 @@ negativeReasons.widenedCandidates = expectCode(
 );
 
 const authorityFlip = clone(certifiedRoute);
-authorityFlip.route.authority = 'Commit';
+authorityFlip.decision.route.authority = 'Commit';
 negativeReasons.authorityFlip = expectCode(
   () => evaluateCalibratedRoute({
     request: fixture.request,
-    routeDecision: authorityFlip,
+    routeEnvelope: authorityFlip,
     registry,
     corpusResolver: resolveCorpus,
   }),
@@ -680,7 +703,7 @@ singletonRequest.calibrationProfile = clone(fixture.singletonProfile);
 delete singletonRequest.calibrationProfile.rankCallsExpected;
 const singletonResult = evaluateCalibratedRoute({
   request: singletonRequest,
-  routeDecision: certifiedRoute,
+  routeEnvelope: certifiedRoute,
   registry: new CertificateRegistry({
     activeCertificateId: validatedTemperature.certificateId,
     certificates: [validatedTemperature],
@@ -689,10 +712,7 @@ const singletonResult = evaluateCalibratedRoute({
 });
 assert.strictEqual(singletonResult.certificateNoOp, true);
 assert.strictEqual(singletonResult.decision.action, 'route');
-assert.deepStrictEqual(
-  singletonResult.decision.route.evidence.calibration,
-  { status: 'unvalidated' }
-);
+assert.deepStrictEqual(singletonResult.calibration, { status: 'unvalidated' });
 assert.strictEqual(singletonResult.rankCalls, fixture.singletonProfile.rankCallsExpected);
 
 const rankOnlyProjections = projectAll(singletonResult, singletonRequest);
@@ -818,7 +838,7 @@ negativeReasons.revokedAttachment = expectCode(
 );
 const revokedResult = evaluateCalibratedRoute({
   request: fixture.request,
-  routeDecision: routeClaiming(revokedCertificate, fixture.rankOnlyRoute),
+  routeEnvelope: routeClaiming(revokedCertificate, fixture.rankOnlyRoute),
   registry,
   corpusResolver: resolveCorpus,
 });
@@ -879,6 +899,12 @@ const report = {
     },
   },
   negativeReasons,
+  externalOracle: {
+    validator: '002-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
+    rankOnlyRoute: 'pass',
+    licensedDecision: 'pass',
+    evidenceKinds: licensed.decision.route.evidence.map((entry) => entry.kind),
+  },
   projection: {
     compatibilityHash: projectionHash,
     typedRouteGoldHash: routeGoldHash,
@@ -896,7 +922,7 @@ const report = {
   limitations: [
     'No live threshold fitting or operational certificate issuance was performed.',
     'The real scorer was exercised against intent-derived shadow gold, not an activated hub router.',
-    'Repository strict spec validation is orchestrator-owned and was not run.',
+    'Repository strict spec validation is outside this harness and is reported separately.',
   ],
 };
 

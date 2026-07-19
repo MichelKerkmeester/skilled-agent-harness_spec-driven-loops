@@ -27,7 +27,7 @@ This is a design/planning artifact. It authors the controller contract, the fric
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Shadow-partial implementation; 17-row targeted validator green, strict validation intentionally not run |
+| **Status** | Shadow-partial implementation; 17-row targeted validator green, strict validation run but blocked by packet-template drift and unavailable repository validator tooling |
 | **Created** | 2026-07-18 |
 | **Branch** | `005-calibration/003-selective-controller` |
 | **Phase** | 5 (calibration), child 003 of 3 |

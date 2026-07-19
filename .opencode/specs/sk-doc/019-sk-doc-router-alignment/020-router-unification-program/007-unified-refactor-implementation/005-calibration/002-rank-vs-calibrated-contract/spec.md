@@ -17,7 +17,8 @@ status: "shadow-partial"
 **Implementation status**: Executable packet-local schemas, lifecycle logic,
 typed fixtures, compatibility projection, and validation harness are delivered.
 Stage-3 shadow evidence is recorded in `implementation-summary.md`; live fitting,
-issuance, and activation remain downstream.
+issuance, and activation remain downstream. Strict packet validation was run and
+remains red on packet-template drift plus unavailable repository validator tooling.
 
 ## EXECUTIVE SUMMARY
 

@@ -20,6 +20,9 @@ const {
 const {
   computeCorpusHash,
 } = require('../../001-holdout-corpus/lib/calibration-corpus.cjs');
+const {
+  parseRouteDecisionShape,
+} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXED CONTRACT DATA
@@ -573,60 +576,39 @@ function assertBasis(basis) {
 }
 
 /**
- * Validate the enriched route-decision evidence shape.
+ * Validate a public route through the frozen decision oracle.
  *
- * @param {Object} decision - Enriched route decision.
+ * @param {Object} decision - Frozen public route decision.
  * @returns {Object} Frozen validated copy.
  */
 function validateRouteDecision(decision) {
-  assertPlainObject(decision, 'DECISION_INVALID', 'decision');
-  assertExactKeys(decision, ['schemaVersion', 'action', 'route'], 'DECISION_FIELDS_INVALID', 'decision');
-  assertRequiredKeys(
+  let parsed;
+  try {
+    parsed = parseRouteDecisionShape(decision);
+  } catch (error) {
+    fail(error.code || 'ROUTE_DECISION_INVALID', error.message);
+  }
+  if (parsed.action !== 'route') {
+    fail('DECISION_ACTION_INVALID', 'calibration evidence can accompany only a route');
+  }
+  return parsed;
+}
+
+function validateCalibrationEnvelope(envelope) {
+  assertPlainObject(envelope, 'CALIBRATION_ENVELOPE_INVALID', 'calibration envelope');
+  const fields = ['schemaVersion', 'decision', 'calibration'];
+  assertExactKeys(envelope, fields, 'CALIBRATION_ENVELOPE_FIELDS_INVALID', 'calibration envelope');
+  assertRequiredKeys(envelope, fields, 'CALIBRATION_ENVELOPE_FIELDS_INVALID', 'calibration envelope');
+  if (envelope.schemaVersion !== 'CalibrationEvidenceEnvelopeV1') {
+    fail('CALIBRATION_ENVELOPE_VERSION_INVALID', 'calibration envelope version is invalid');
+  }
+  const decision = validateRouteDecision(envelope.decision);
+  assertCalibration(envelope.calibration);
+  return deepFreeze({
+    schemaVersion: envelope.schemaVersion,
     decision,
-    ['schemaVersion', 'action', 'route'],
-    'DECISION_FIELDS_INVALID',
-    'decision'
-  );
-  if (decision.schemaVersion !== 'V1' || decision.action !== 'route') {
-    fail('DECISION_ACTION_INVALID', 'enriched evidence belongs to a V1 route decision');
-  }
-  assertPlainObject(decision.route, 'ROUTE_INVALID', 'route');
-  assertExactKeys(decision.route, ROUTE_FIELDS, 'ROUTE_FIELDS_INVALID', 'route');
-  assertRequiredKeys(decision.route, ROUTE_FIELDS, 'ROUTE_FIELDS_INVALID', 'route');
-  if (!['single', 'orderedBundle', 'surfaceBundle'].includes(decision.route.selectionKind)) {
-    fail('ROUTE_SELECTION_KIND_INVALID', 'selectionKind is outside the closed vocabulary');
-  }
-  if (!Array.isArray(decision.route.targets) || decision.route.targets.length === 0) {
-    fail('ROUTE_TARGETS_EMPTY', 'route requires at least one target');
-  }
-  if (decision.route.selectionKind === 'single' && decision.route.targets.length !== 1) {
-    fail('SINGLE_TARGET_COUNT_INVALID', 'single routes require one target');
-  }
-  if (decision.route.selectionKind !== 'single' && decision.route.targets.length < 2) {
-    fail('BUNDLE_TARGET_COUNT_INVALID', 'bundle routes require at least two targets');
-  }
-  if (decision.route.authority !== 'WithheldUntilVerify') {
-    fail('ROUTE_AUTHORITY_INVALID', 'route authority must remain WithheldUntilVerify');
-  }
-  decision.route.targets.forEach(assertTarget);
-  assertBasis(decision.route.basis);
-  assertPlainObject(decision.route.evidence, 'ROUTE_EVIDENCE_INVALID', 'route.evidence');
-  assertExactKeys(
-    decision.route.evidence,
-    ['rankScore', 'scoreMargin', 'calibration'],
-    'ROUTE_EVIDENCE_FIELDS_INVALID',
-    'route.evidence'
-  );
-  assertRequiredKeys(
-    decision.route.evidence,
-    ['rankScore', 'scoreMargin', 'calibration'],
-    'ROUTE_EVIDENCE_FIELDS_INVALID',
-    'route.evidence'
-  );
-  assertRankValue(decision.route.evidence.rankScore, 'rankScore');
-  assertRankValue(decision.route.evidence.scoreMargin, 'scoreMargin');
-  assertCalibration(decision.route.evidence.calibration);
-  return deepFreeze(cloneValue(decision));
+    calibration: cloneValue(envelope.calibration),
+  });
 }
 
 function validateRequest(request) {
@@ -712,11 +694,7 @@ function assertCandidateSet(request, decision) {
 }
 
 function rankOnlyEvidence(evidence) {
-  return {
-    rankScore: cloneValue(evidence.rankScore),
-    scoreMargin: cloneValue(evidence.scoreMargin),
-    calibration: { status: 'unvalidated' },
-  };
+  return cloneValue(evidence);
 }
 
 function makeFallbackDecision(request) {
@@ -802,6 +780,7 @@ function fallbackResult(request, route, reason) {
   const decision = makeFallbackDecision(request);
   const result = {
     decision,
+    calibration: { status: 'unvalidated' },
     evaluatedEvidence: rankOnlyEvidence(route.route.evidence),
     calibratedAutoRouteAvailable: false,
     certificateNoOp: false,
@@ -862,22 +841,23 @@ function certificateExternalLegalityReason(certificate, request, corpusResolver)
  *
  * @param {Object} args - Evaluation inputs.
  * @param {Object} args.request - Immutable request-pinned identities and ranked set.
- * @param {Object} args.routeDecision - Enriched route candidate.
+ * @param {Object} args.routeEnvelope - Route plus out-of-band calibration evidence.
  * @param {Object} args.registry - External certificate registry.
  * @param {Function} args.corpusResolver - Trusted corpus identity resolver.
  * @returns {Object} Licensed route or safe clarify/defer result.
  */
-function evaluateCalibratedRoute({ request, routeDecision, registry, corpusResolver }) {
+function evaluateCalibratedRoute({ request, routeEnvelope, registry, corpusResolver }) {
   validateRequest(request);
-  const route = validateRouteDecision(routeDecision);
+  const envelope = validateCalibrationEnvelope(routeEnvelope);
+  const route = envelope.decision;
   assertCandidateSet(request, route);
 
   if (request.calibrationProfile.noCalibrationSlice) {
     const decision = cloneValue(route);
-    decision.route.evidence = rankOnlyEvidence(route.route.evidence);
     assertProbabilityLegality([decision], false);
     return deepFreeze({
       decision,
+      calibration: { status: 'unvalidated' },
       evaluatedEvidence: decision.route.evidence,
       calibratedAutoRouteAvailable: false,
       certificateNoOp: true,
@@ -886,7 +866,7 @@ function evaluateCalibratedRoute({ request, routeDecision, registry, corpusResol
     });
   }
 
-  const claim = route.route.evidence.calibration;
+  const claim = envelope.calibration;
   if (claim.status !== 'validated') {
     return fallbackResult(request, route, 'CERTIFICATE_NOT_RESOLVED');
   }
@@ -942,6 +922,7 @@ function evaluateCalibratedRoute({ request, routeDecision, registry, corpusResol
   assertProbabilityLegality([decision], true);
   return deepFreeze({
     decision,
+    calibration: cloneValue(claim),
     evaluatedEvidence: decision.route.evidence,
     calibratedAutoRouteAvailable: true,
     certificateNoOp: false,
@@ -956,7 +937,7 @@ function evaluateCalibratedRoute({ request, routeDecision, registry, corpusResol
  * @param {Object} certificate - External validated certificate.
  * @param {number} estimatedError - Licensed estimate in [0,1].
  * @param {Object} context - Request-pinned identity and trusted corpus resolver.
- * @returns {Object} Enriched route decision.
+ * @returns {Object} Calibration evidence envelope with an unchanged public decision.
  */
 function attachCalibration(routeDecision, certificate, estimatedError, context) {
   assertPlainObject(context, 'CALIBRATION_CONTEXT_INVALID', 'calibration context');
@@ -972,8 +953,7 @@ function attachCalibration(routeDecision, certificate, estimatedError, context) 
   if (legalityReason) {
     fail(legalityReason, 'certificate cannot license calibrated route evidence');
   }
-  const enriched = cloneValue(route);
-  enriched.route.evidence.calibration = {
+  const calibration = {
     status: 'validated',
     certificateId: parsedCertificate.certificateId,
     corpusId: parsedCertificate.corpusId,
@@ -983,7 +963,11 @@ function attachCalibration(routeDecision, certificate, estimatedError, context) 
     evaluationWindow: cloneValue(parsedCertificate.evaluationWindow),
     estimatedError,
   };
-  return validateRouteDecision(enriched);
+  return validateCalibrationEnvelope({
+    schemaVersion: 'CalibrationEvidenceEnvelopeV1',
+    decision: route,
+    calibration,
+  });
 }
 
 module.exports = {
@@ -996,6 +980,7 @@ module.exports = {
   evaluateCalibratedRoute,
   sealCertificate,
   transitionCertificate,
+  validateCalibrationEnvelope,
   validateCertificate,
   validateRouteDecision,
 };

@@ -48,7 +48,8 @@ Specify `SelectiveControllerV1` as the terminal arbiter that consumes ranked can
 
 **Evidence:** `node harness/validate-selective-controller.cjs` exits 0 with 17
 route-gold rows, five new edge falsifiers, byte-invisible projection, and the
-three frozen scorer digests unchanged; strict packet validation was prohibited.
+three frozen scorer digests unchanged. Strict packet validation was run and
+exited 2 on current-template structural checks plus missing validator dependencies.
 
 ## 3. ARCHITECTURE
 
@@ -131,8 +132,9 @@ certificate abstention with branch-specific reasons.
 - [x] Confirm the Stage 4 certificate hand-off is specified for `006/*`.
 - [ ] Run `validate.sh --strict` after sibling metadata backfill.
 
-**Evidence:** Targeted Stage-3 validation is green; strict packet validation
-remains intentionally unchecked under the explicit no-`validate.sh` constraint.
+**Evidence:** Targeted Stage-3 validation is green; strict packet validation was
+run and exited 2 on current-template structural checks plus missing validator
+dependencies, so this checkbox remains open.
 
 ## 5. TESTING STRATEGY
 

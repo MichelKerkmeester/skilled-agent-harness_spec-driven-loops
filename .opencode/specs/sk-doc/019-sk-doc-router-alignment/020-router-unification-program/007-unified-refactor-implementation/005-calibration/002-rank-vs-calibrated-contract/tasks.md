@@ -71,7 +71,7 @@ status: "shadow-partial"
 - [x] T015 Write the MIGRATION GATE note naming Stage 3 (Shadow evaluate) as the gate this phase must satisfy before `005/003` activates, and note Stage 4 per-hub canary (owned by `006/*`) gates the actual calibrated auto-route flip (spec.md §7; master plan gate model).
 - [x] T016 Confirm the five non-negotiable constraints each have a holding mechanism named in spec.md §6.
 - [ ] T017 Run the parent packet through `validate.sh --strict`; confirm frontmatter, markers, and required sections parse for this child.
-  - Deferred to the orchestrator by explicit execution constraint; not run locally.
+  - **Evidence:** Run locally; exit 2 because current-template structural checks fail and repository validator dependencies (`level-contract-resolver.js`, local `tsx`) are unavailable. The task remains unchecked.
 
 ---
 

@@ -1,52 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://speckit.local/router/calibrated-route-decision.v1.schema.json",
-  "title": "CalibratedRouteDecisionV1",
-  "oneOf": [
-    { "$ref": "#/$defs/routeDecision" },
-    { "$ref": "#/$defs/clarifyDecision" },
-    { "$ref": "#/$defs/deferDecision" },
-    { "$ref": "#/$defs/rejectDecision" }
-  ],
+  "$id": "https://speckit.local/router/calibration-evidence-envelope.v1.schema.json",
+  "title": "CalibrationEvidenceEnvelopeV1",
+  "description": "Out-of-band calibration evidence accompanying an unchanged RouteDecisionV1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "decision", "calibration"],
+  "properties": {
+    "schemaVersion": { "const": "CalibrationEvidenceEnvelopeV1" },
+    "decision": {
+      "$ref": "../../../000-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision"
+    },
+    "calibration": { "$ref": "#/$defs/calibration" }
+  },
   "$defs": {
     "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
     "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "destinationId": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
-      "properties": {
-        "skillId": { "$ref": "#/$defs/nonEmpty" },
-        "workflowMode": { "$ref": "#/$defs/nonEmpty" },
-        "packetId": { "$ref": "#/$defs/nonEmpty" },
-        "packetKind": { "$ref": "#/$defs/nonEmpty" },
-        "backendKind": { "$ref": "#/$defs/nonEmpty" },
-        "runtimeDiscriminator": { "$ref": "#/$defs/nonEmpty" }
-      }
-    },
-    "target": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["destinationId", "role", "authorityRef", "mutatesWorkspace"],
-      "properties": {
-        "destinationId": { "$ref": "#/$defs/destinationId" },
-        "role": { "enum": ["actor", "evidence", "transport", "judgment"] },
-        "authorityRef": { "$ref": "#/$defs/nonEmpty" },
-        "mutatesWorkspace": { "type": "boolean" }
-      }
-    },
-    "rankValue": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["value", "nonAuthority"],
-      "properties": {
-        "value": {
-          "type": "string",
-          "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
-        },
-        "nonAuthority": { "const": true }
-      }
-    },
     "evaluationWindow": {
       "oneOf": [
         {
@@ -107,118 +76,6 @@
           }
         }
       ]
-    },
-    "routeEvidence": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["rankScore", "scoreMargin", "calibration"],
-      "properties": {
-        "rankScore": { "$ref": "#/$defs/rankValue" },
-        "scoreMargin": { "$ref": "#/$defs/rankValue" },
-        "calibration": { "$ref": "#/$defs/calibration" }
-      }
-    },
-    "routeDecision": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["schemaVersion", "action", "route"],
-      "properties": {
-        "schemaVersion": { "const": "V1" },
-        "action": { "const": "route" },
-        "route": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["selectionKind", "targets", "basis", "evidence", "authority"],
-          "properties": {
-            "selectionKind": { "enum": ["single", "orderedBundle", "surfaceBundle"] },
-            "targets": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/target" } },
-            "basis": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["kind"],
-              "properties": {
-                "kind": { "enum": ["signal", "bounded-default", "degraded-fallback"] }
-              }
-            },
-            "evidence": { "$ref": "#/$defs/routeEvidence" },
-            "authority": { "const": "WithheldUntilVerify" }
-          }
-        }
-      }
-    },
-    "clarifyDecision": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["schemaVersion", "action", "clarify"],
-      "properties": {
-        "schemaVersion": { "const": "V1" },
-        "action": { "const": "clarify" },
-        "clarify": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["question", "budgetRef", "alternatives", "authority"],
-          "properties": {
-            "question": { "$ref": "#/$defs/nonEmpty" },
-            "budgetRef": { "$ref": "#/$defs/nonEmpty" },
-            "alternatives": {
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 4,
-              "items": { "$ref": "#/$defs/nonEmpty" }
-            },
-            "authority": { "const": "Withheld" }
-          }
-        }
-      }
-    },
-    "deferDecision": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["schemaVersion", "action", "defer"],
-      "properties": {
-        "schemaVersion": { "const": "V1" },
-        "action": { "const": "defer" },
-        "defer": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["reason", "recovery", "authority"],
-          "properties": {
-            "reason": {
-              "enum": [
-                "idle",
-                "no-match",
-                "dependency-failure",
-                "handoff-required",
-                "stale-policy",
-                "evidence-unavailable"
-              ]
-            },
-            "recovery": {
-              "type": "array",
-              "items": { "enum": ["clarify", "handoff", "defer", "reject"] }
-            },
-            "authority": { "const": "Withheld" }
-          }
-        }
-      }
-    },
-    "rejectDecision": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["schemaVersion", "action", "reject"],
-      "properties": {
-        "schemaVersion": { "const": "V1" },
-        "action": { "const": "reject" },
-        "reject": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["reason", "authority"],
-          "properties": {
-            "reason": { "enum": ["invalid", "forbidden"] },
-            "authority": { "const": "Withheld" }
-          }
-        }
-      }
     }
   }
 }

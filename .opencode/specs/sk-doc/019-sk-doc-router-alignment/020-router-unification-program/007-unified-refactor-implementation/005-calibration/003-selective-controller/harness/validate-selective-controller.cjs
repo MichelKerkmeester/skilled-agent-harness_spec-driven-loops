@@ -11,11 +11,15 @@
 const assert = require('assert');
 const crypto = require('crypto');
 const fs = require('fs');
+const Module = require('module');
 const path = require('path');
 
 const {
   canonicalBytes,
 } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const {
+  parseRouteDecisionShape,
+} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
 const {
   computeCorpusHash,
   validateCorpus,
@@ -69,7 +73,7 @@ const PROTECTED_FILES = Object.freeze({
   }),
 });
 const HARD_FAILURE_REASONS = Object.freeze({
-  'second-user-turn': 'FRICTION_USER_TURNS_EXCEEDED',
+  'second-user-turn': 'UNCERTAINTY_BUDGET_INVALID',
   'fourth-candidate-option': 'FRICTION_OPTIONS_EXCEEDED',
   'third-attempt': 'FRICTION_ATTEMPTS_EXCEEDED',
   'card-257-tokens': 'FRICTION_CARD_TOKENS_EXCEEDED',
@@ -157,14 +161,17 @@ function materializeVariant(base, variant) {
   }
   if (variant === 'accepted-answer') {
     ranked.interaction = { attempt: 2, userTurnsUsed: 1, acceptedAnswer: 'quality' };
+    input.budgetState.userTurnsUsed = 1;
     return input;
   }
   if (variant === 'accepted-none-of-these') {
     ranked.interaction = { attempt: 2, userTurnsUsed: 1, acceptedAnswer: 'none_of_these' };
+    input.budgetState.userTurnsUsed = 1;
     return input;
   }
   if (variant === 'attempt-exhausted') {
     ranked.interaction = { attempt: 2, userTurnsUsed: 1 };
+    input.budgetState.userTurnsUsed = 1;
     input.certificateHandle = { state: 'absent' };
     return input;
   }
@@ -182,7 +189,8 @@ function materializeVariant(base, variant) {
     return input;
   }
   if (variant === 'spent-turn-clarification') {
-    ranked.interaction = { attempt: 1, userTurnsUsed: 1 };
+    ranked.interaction = { attempt: 1, userTurnsUsed: 0 };
+    input.budgetState.userTurnsUsed = 1;
     input.certificateHandle = { state: 'absent' };
     return input;
   }
@@ -225,7 +233,7 @@ function applyHardFailureMutation(base, mutation) {
   const input = materializeVariant(base, 'certificate-absent');
   const ranked = input.rankedCandidates;
   if (mutation === 'second-user-turn') {
-    ranked.interaction.userTurnsUsed = 2;
+    input.budgetState.userTurnsUsed = 2;
   } else if (mutation === 'fourth-candidate-option') {
     ranked.clarification.options.push({
       id: 'quality-copy',
@@ -292,11 +300,15 @@ function scorerScenario(caseFixture) {
 
 function runStaticGates() {
   const source = fs.readFileSync(CONTROLLER_FILE, 'utf8');
-  const requireCalls = [...source.matchAll(/require\((['"])([^'"]+)\1\)/gu)]
+  const requireCalls = [...source.matchAll(/require\(\s*(['"])([^'"]+)\1\s*\)/gu)]
     .map((match) => match[2]);
   assert.deepStrictEqual(
     requireCalls,
-    ['../../../000-contract-schemas/lib/canonical.cjs'],
+    [
+      '../../../000-contract-schemas/lib/canonical.cjs',
+      '../../../002-decision-evaluator/lib/decision-contract.cjs',
+      '../../../004-recovery-ladder/recovery-ladder.v1.json',
+    ],
     'controller dependency boundary widened'
   );
   const forbiddenEffects = [
@@ -404,7 +416,7 @@ function runHardFailureCases(fixtures) {
         input.request,
         input.rankedCandidates,
         input.certificateHandle,
-        input.uncertaintyBudget
+        input.budgetState
       ),
       (error) => error instanceof SelectiveControllerError
         && error.code === expectedReason,
@@ -421,11 +433,11 @@ function runProjectionInvisibility(base) {
     input.request,
     input.rankedCandidates,
     input.certificateHandle,
-    input.uncertaintyBudget
+    input.budgetState
   );
-  const withoutCertificate = clone(result.decision);
-  withoutCertificate.route.evidence.calibration = { status: 'unvalidated' };
-  const withProjection = projectCompatibility(result.decision, input.projection);
+  const withoutCertificate = clone(result);
+  withoutCertificate.calibration = { status: 'unvalidated' };
+  const withProjection = projectCompatibility(result, input.projection);
   const withoutProjection = projectCompatibility(withoutCertificate, input.projection);
   assert.ok(
     canonicalBytes(withProjection).equals(canonicalBytes(withoutProjection)),
@@ -435,6 +447,42 @@ function runProjectionInvisibility(base) {
     withCertificateBytes: canonicalBytes(withProjection).toString('utf8'),
     withoutCertificateBytes: canonicalBytes(withoutProjection).toString('utf8'),
     byteEqual: true,
+  };
+}
+
+function loadControllerWithoutSharedBudgetGuard() {
+  const source = fs.readFileSync(CONTROLLER_FILE, 'utf8');
+  const guard = ' && canSpendUserTurn(budgetState)';
+  assert.strictEqual(source.split(guard).length - 1, 2, 'shared-budget guard count changed');
+  const mutant = new Module(CONTROLLER_FILE, module);
+  mutant.filename = CONTROLLER_FILE;
+  mutant.paths = Module._nodeModulePaths(path.dirname(CONTROLLER_FILE));
+  mutant._compile(source.replaceAll(guard, ''), CONTROLLER_FILE);
+  return mutant.exports;
+}
+
+function runSharedBudgetTeeth(base) {
+  const input = materializeVariant(base, 'spent-turn-clarification');
+  const guarded = inspectSelectiveController(
+    input.request,
+    input.rankedCandidates,
+    input.certificateHandle,
+    input.budgetState
+  );
+  assert.strictEqual(guarded.decision.action, 'defer', 'spent shared budget clarified');
+  assert.strictEqual(guarded.budgetState.userTurnsUsed, 1, 'spent ledger changed');
+  const mutantController = loadControllerWithoutSharedBudgetGuard();
+  const mutant = mutantController.inspectSelectiveController(
+    input.request,
+    input.rankedCandidates,
+    input.certificateHandle,
+    input.budgetState
+  );
+  assert.strictEqual(mutant.decision.action, 'clarify', 'guard-removal mutant did not flip');
+  return {
+    guardedAction: guarded.decision.action,
+    guardRemovedAction: mutant.decision.action,
+    userTurnsUsed: guarded.budgetState.userTurnsUsed,
   };
 }
 
@@ -466,11 +514,25 @@ function runReplay() {
         input.request,
         input.rankedCandidates,
         input.certificateHandle,
-        input.uncertaintyBudget
+        input.budgetState
       );
       decisionBytes.push(JSON.stringify(result.decision));
     }
     assert.strictEqual(new Set(decisionBytes).size, 1, `${caseFixture.id} is nondeterministic`);
+    assert.deepStrictEqual(
+      parseRouteDecisionShape(result.decision),
+      result.decision,
+      `${caseFixture.id} failed the frozen decision oracle`
+    );
+    if (result.decision.action === 'route') {
+      assert.deepStrictEqual(
+        result.decision.route.evidence.map((entry) => entry.kind),
+        ['rankScore', 'scoreMargin'],
+        `${caseFixture.id} route evidence vocabulary drifted`
+      );
+      assert.ok(!Object.hasOwn(result.decision.route, 'calibration'));
+      assert.ok(!Object.hasOwn(result.decision.route.evidence, 'calibration'));
+    }
     const actualTyped = typedProjection(result.decision, input.projection);
     assert.deepStrictEqual(actualTyped, caseFixture.typedGold, `${caseFixture.id} typed gold mismatch`);
     for (const [field, expected] of Object.entries(caseFixture.expectedTrace)) {
@@ -531,6 +593,7 @@ function runReplay() {
   assert.strictEqual(corrupted.intentOk, false, 'corruption did not fail intent gold');
 
   const hardFailures = runHardFailureCases(fixtures);
+  const sharedBudgetTeeth = runSharedBudgetTeeth(fixtures.base);
   const projectionInvisibility = runProjectionInvisibility(fixtures.base);
   const protectedAfter = assertProtectedHashes();
   assert.deepStrictEqual(protectedAfter, protectedBefore, 'protected scorer bytes changed');
@@ -550,6 +613,11 @@ function runReplay() {
       intentOk: corrupted.intentOk,
     },
     hardFailures,
+    externalOracle: {
+      validator: '002-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
+      passingAssertions: rows.length,
+    },
+    sharedBudgetTeeth,
     projectionInvisibility,
     protectedHashes: protectedAfter,
     falsifiers,
@@ -588,6 +656,7 @@ function runValidation() {
         status: 'pass',
         fixedLimits: FRICTION_LIMITS,
         hardFailureReasons: frictionReasons,
+        sharedBudgetTeeth: replay.sharedBudgetTeeth,
       },
       'SC-004': {
         status: 'pass',
@@ -607,6 +676,7 @@ function runValidation() {
       },
     },
     n1Fold: replay.singular,
+    externalOracle: replay.externalOracle,
     falsifiers: replay.falsifiers,
     staticGates,
     replayRows: replay.rows,

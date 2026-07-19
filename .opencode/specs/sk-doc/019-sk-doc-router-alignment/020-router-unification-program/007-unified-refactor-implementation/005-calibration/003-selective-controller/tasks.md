@@ -87,7 +87,7 @@ status: "shadow-partial"
 - [x] T026 Cross-check no numeric threshold value was fixed anywhere in the three docs (only the gate a value must pass).
 - [ ] T027 Backfill sibling metadata (`description.json`, `graph-metadata.json`) via parent orchestration, then run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and record the result.
 
-**Evidence:** Targeted validation reports SC-001..SC-004 `pass` and SC-005 `shadow-partial`, with 17/17 real route-gold rows, five branch-specific edge falsifiers, projection invisibility, and unchanged protected digests. Stage 4 fitting/canary and strict packet validation remain explicitly outside this phase execution.
+**Evidence:** Targeted validation reports SC-001..SC-004 `pass` and SC-005 `shadow-partial`, with 17/17 real route-gold rows, five branch-specific edge falsifiers, projection invisibility, and unchanged protected digests. Strict validation was run and exited 2 on current-template structural checks plus missing repository validator dependencies; T027 remains unchecked. Stage 4 fitting/canary remains outside this phase execution.
 
 ---
 

@@ -97,11 +97,10 @@
         }
       ],
       "basis": { "kind": "signal" },
-      "evidence": {
-        "rankScore": { "value": "0.870000", "nonAuthority": true },
-        "scoreMargin": { "value": "0.190000", "nonAuthority": true },
-        "calibration": { "status": "unvalidated" }
-      },
+      "evidence": [
+        { "kind": "rankScore", "value": "0.870000", "nonAuthority": true },
+        { "kind": "scoreMargin", "value": "0.190000", "nonAuthority": true }
+      ],
       "authority": "WithheldUntilVerify"
     }
   },

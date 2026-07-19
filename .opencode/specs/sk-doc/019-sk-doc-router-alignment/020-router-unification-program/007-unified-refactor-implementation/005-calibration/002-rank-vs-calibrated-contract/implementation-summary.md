@@ -13,8 +13,8 @@ status: "shadow-partial"
 | Field | Value |
 |---|---|
 | Delivery status | Implemented; shadow contract checks pass, live activation deferred |
-| Primary artifacts | `CalibrationCertificateV1` and enriched route evidence union |
-| Runtime dependencies | Node built-ins, packet-local modules, frozen canonical and corpus hash helpers |
+| Primary artifacts | `CalibrationCertificateV1`, `CalibrationEvidenceEnvelopeV1`, and frozen `RouteDecisionV1` |
+| Runtime dependencies | Node built-ins, packet-local modules, frozen decision/canonical contracts, and corpus hash helper |
 | Routing authority | Evidence only; `WithheldUntilVerify` remains mandatory |
 | Migration gate | Stage 3 shadow evaluation; activated per-hub behavior remains downstream |
 | Route-gold status | `shadow-partial`; real scorer pass over distinct intent-derived gold, no activated hub router |
@@ -23,14 +23,14 @@ status: "shadow-partial"
 <!-- ANCHOR:what-built -->
 ## What Built
 
-The phase now contains machine-readable schemas for a separately hashed
-`CalibrationCertificateV1` and an enriched `RouteDecisionV1` evidence object.
-`rankScore` and `scoreMargin` are required decimal-string ordering measures with
-`nonAuthority:true`. `calibration` is a closed union: the unvalidated branch has
-only its discriminant, while the validated branch requires a certificate,
-corpus, method, policy, risk slice, evaluation window, and numeric
-`estimatedError` in `[0,1]`. That shape encodes the same dangerous-state
-elimination used by the closed decision algebra (synthesis §2.3).
+The phase now contains a separately hashed `CalibrationCertificateV1`, an
+out-of-band `CalibrationEvidenceEnvelopeV1`, and the unchanged frozen
+`RouteDecisionV1`. Public route evidence is the canonical array of exactly two
+rank-evidence kinds, `rankScore` and `scoreMargin`, each carrying a decimal
+string and `nonAuthority:true`. Calibration is never in the decision. Its
+sibling envelope union has an unvalidated discriminant-only branch and a
+validated branch requiring certificate, corpus, method, policy, risk slice,
+evaluation window, and `estimatedError` in `[0,1]` (synthesis §2.3, §4 Seam C).
 
 Certificate bodies bind one corpus generation, effective policy, risk slice,
 method, method parameters, evaluation window, and held-out metrics. Candidate,
@@ -44,9 +44,9 @@ enable, restore, or revoke calibration (synthesis §2.1, §10).
 
 Secondary export paths now share the external trust boundary. `attachCalibration()`
 requires validated certificate status plus exact request policy, generation,
-risk slice, candidate set, and canonical corpus resolution before it can write
-the validated discriminant. `projectAll()` accepts the evaluator's legality
-result rather than deriving permission from decision-owned calibration fields.
+risk slice, candidate set, and canonical corpus resolution before it can return
+the validated sibling envelope. `projectAll()` accepts the evaluator's legality
+result rather than deriving permission from public decision fields.
 Negative decisions are closed to their branch-specific fields and scanned for
 probability language before any projection is emitted (synthesis §2.3, §8.2).
 
@@ -66,16 +66,16 @@ pins the effective policy generation and risk slice; the external registry
 resolves the active immutable certificate; the held-out corpus resolver confirms
 the exact `corpusId`/`corpusHash`, policy generation, and slice still exist.
 Resolution recomputes `computeCorpusHash()` over canonical whole-object bytes,
-so retained declarations cannot bless altered records. A route's own validated
-discriminant cannot substitute for any external authority. If one check fails,
-the result strips calibrated evidence to
-`{status:"unvalidated"}` and uses one-turn `clarify` when the request says one
+so retained declarations cannot bless altered records. A sibling calibration
+claim cannot substitute for any external authority. If one check fails, the
+result carries sibling calibration `{status:"unvalidated"}` and uses one-turn
+`clarify` when the request says one
 answer discriminates to a legal local route, otherwise typed `defer`. This is
 the recovery ladder's certificate-gated rung falling through to clarification
 and defer (synthesis §2.3, §3 Idea 5).
 
-The compatibility projector never serializes calibration and consumes only an
-externally established evaluator verdict. An evaluator-produced rank-only route
+The compatibility projector unwraps only `decision`, never serializes sibling
+calibration, and consumes only an externally established evaluator verdict. An evaluator-produced rank-only route
 and a certified route produce identical `observedIntents`, `observedResources`,
 Advisor projection, typed route-gold projection, and policy card content. Raw
 decisions lacking that verdict reject instead of self-licensing. The harness
@@ -102,7 +102,7 @@ the N=1 degeneracy as data rather than a special implementation (synthesis
   `fenced-cas`). This keeps canonical serialization and hashing in the frozen
   authority while separating the two preimages (synthesis §2.1).
 - Certificate numeric parameters and metrics use canonical decimal strings.
-  `estimatedError` remains the route-level JSON number in `[0,1]`; this avoids
+  `estimatedError` remains an out-of-band envelope number in `[0,1]`; this avoids
   placing non-integer JavaScript numbers in the frozen canonical certificate
   serializer.
 - Candidate promotion never trusts caller thresholds. A registry-owned external
@@ -125,6 +125,10 @@ the N=1 degeneracy as data rather than a special implementation (synthesis
 - Retained-prior rollback is a pointer restoration, not a second promotion. The
   registry returns the original validated artifact and swaps active/retained ids
   under the same fence and preimage discipline used by rotation.
+- The phase imports `parseRouteDecisionShape()` from the frozen decision
+  evaluator rather than maintaining a local public-route validator. The
+  repurposed calibration schema references the frozen route schema and uses a
+  distinct envelope version, so it cannot masquerade as another V1 decision.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
@@ -134,6 +138,10 @@ All four CommonJS files pass `node --check`; all six JSON files parse; the
 source-discipline and comment-hygiene checks report zero violations. The
 packet harness exits 0 with
 these results:
+
+- external oracle: both rank-only and licensed decisions pass the real frozen
+  `parseRouteDecisionShape()` guard with evidence kinds
+  `rankScore,scoreMargin`;
 
 - SC-001: `PASS` — attachment and evaluation require validated external status,
   exact policy/generation/risk bindings, and recomputed canonical corpus identity.
@@ -183,6 +191,9 @@ Protected SHA-256 values remain:
 - The fixed method envelope names acceptance metrics but intentionally does not
   invent acceptance tolerances absent from the approved design. The downstream
   controller must fit and validate those values against operational policy.
-- Repository strict spec validation was not run by explicit instruction; the
-  orchestrator owns that check.
+- Strict packet validation was run and failed outside the executable contract:
+  the packet predates current template/anchor requirements, and the repository
+  validator cannot load `level-contract-resolver.js` or its local `tsx` runtime.
+  Those dependencies and structural migrations are outside this phase's allowed
+  edit surface, so the strict gate remains open.
 <!-- /ANCHOR:limitations -->

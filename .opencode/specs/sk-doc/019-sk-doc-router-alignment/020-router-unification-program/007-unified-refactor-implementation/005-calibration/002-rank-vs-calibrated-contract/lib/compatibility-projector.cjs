@@ -29,6 +29,14 @@ function fail(code, message) {
   throw new CalibrationContractError(code, message);
 }
 
+function unwrapDecision(value) {
+  if (value && typeof value === 'object' && !Array.isArray(value)
+    && Object.prototype.hasOwnProperty.call(value, 'decision')) {
+    return value.decision;
+  }
+  return value;
+}
+
 const NEGATIVE_BRANCH_FIELDS = Object.freeze({
   clarify: Object.freeze(['question', 'budgetRef', 'alternatives', 'authority']),
   defer: Object.freeze(['reason', 'recovery', 'authority']),
@@ -86,6 +94,12 @@ function validateLegalityResult(result) {
   }
   if (typeof result.calibratedAutoRouteAvailable !== 'boolean'
     || typeof result.certificateNoOp !== 'boolean') {
+    if (result.schemaVersion === 'CalibrationEvidenceEnvelopeV1') {
+      fail(
+        'PROJECTION_LEGALITY_RESULT_REQUIRED',
+        'calibration evidence must pass through the evaluator before projection'
+      );
+    }
     fail(
       'PROJECTION_LEGALITY_RESULT_INVALID',
       'legality result must declare calibrated availability and certificate no-op state'
@@ -108,13 +122,14 @@ function validateLegalityResult(result) {
 }
 
 /**
- * Project an enriched route without exposing calibration-only evidence.
+ * Project a public decision while ignoring out-of-band calibration evidence.
  *
- * @param {Object} decision - Enriched route decision.
+ * @param {Object} value - Public decision or controller/evaluator envelope.
  * @param {Object} request - Pinned manifest and leaf-pair inputs.
  * @returns {{observedIntents:string[],observedResources:string[]}} Scorer input.
  */
-function projectCompatibility(decision, request) {
+function projectCompatibility(value, request) {
+  const decision = unwrapDecision(value);
   if (decision.action !== 'route') {
     validateNegativeDecision(decision);
     return { observedIntents: [], observedResources: [] };

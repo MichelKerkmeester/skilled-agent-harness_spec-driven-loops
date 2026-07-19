@@ -12,13 +12,19 @@ const {
   hashArtifact,
   omitFields,
 } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const {
+  parseRouteDecisionShape,
+} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+const RECOVERY_LADDER_CONTRACT = require(
+  '../../../004-recovery-ladder/recovery-ladder.v1.json'
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXED CONTRACT DATA
 // ─────────────────────────────────────────────────────────────────────────────
 
 const FRICTION_LIMITS = Object.freeze({
-  userTurns: 1,
+  userTurns: RECOVERY_LADDER_CONTRACT.budget.userTurns,
   candidateOptions: 3,
   attempts: 2,
   decisionCardTokens: 256,
@@ -183,18 +189,41 @@ function validateRequest(request) {
   }
 }
 
-function validateBudget(budget, request) {
-  assertPlainObject(budget, 'UNCERTAINTY_BUDGET_INVALID', 'uncertaintyBudget');
-  if (budget.schemaVersion !== 'V1'
-    || budget.userTurns !== FRICTION_LIMITS.userTurns
-    || budget.handoffHops !== 1
-    || !Array.isArray(budget.visited)) {
-    fail('UNCERTAINTY_BUDGET_INVALID', 'budget does not match the shared contract');
+function validateBudgetState(budgetState, request) {
+  assertPlainObject(budgetState, 'UNCERTAINTY_BUDGET_INVALID', 'budgetState');
+  assertPlainObject(
+    budgetState.contract,
+    'UNCERTAINTY_BUDGET_INVALID',
+    'budgetState.contract'
+  );
+  const shared = RECOVERY_LADDER_CONTRACT.budget;
+  const contract = budgetState.contract;
+  if (shared.continuationField !== 'budgetState'
+    || contract.schemaVersion !== shared.schemaVersion
+    || contract.userTurns !== shared.userTurns
+    || contract.handoffHops !== shared.handoffHops
+    || !Array.isArray(contract.visited)
+    || !Array.isArray(budgetState.visited)) {
+    fail('UNCERTAINTY_BUDGET_INVALID', 'budgetState does not match the shared contract');
   }
-  assertNonEmptyString(budget.budgetId, 'UNCERTAINTY_BUDGET_INVALID', 'budgetId');
-  if (budget.budgetId !== `budget:${request.requestId}`) {
-    fail('UNCERTAINTY_BUDGET_REQUEST_MISMATCH', 'budgetId is not bound to requestId');
+  assertNonEmptyString(
+    contract.budgetId,
+    'UNCERTAINTY_BUDGET_INVALID',
+    'budgetState.contract.budgetId'
+  );
+  if (budgetState.requestId !== request.requestId
+    || contract.budgetId !== `budget:${request.requestId}`) {
+    fail('UNCERTAINTY_BUDGET_REQUEST_MISMATCH', 'budgetState is not bound to requestId');
   }
+  if (!Number.isInteger(budgetState.userTurnsUsed)
+    || budgetState.userTurnsUsed < 0
+    || budgetState.userTurnsUsed > contract.userTurns
+    || !Number.isInteger(budgetState.handoffHopsUsed)
+    || budgetState.handoffHopsUsed < 0
+    || budgetState.handoffHopsUsed > contract.handoffHops) {
+    fail('UNCERTAINTY_BUDGET_INVALID', 'budgetState counters exceed the shared contract');
+  }
+  return snapshot(budgetState);
 }
 
 function validateTarget(target, label) {
@@ -250,23 +279,23 @@ function validateRankedCandidates(ranked) {
     || ranked.interaction.attempt < 1) {
     fail('FRICTION_ATTEMPTS_INVALID', 'interaction.attempt must be a positive integer');
   }
-  if (!Number.isInteger(ranked.interaction.userTurnsUsed)
-    || ranked.interaction.userTurnsUsed < 0) {
-    fail('FRICTION_USER_TURNS_INVALID', 'userTurnsUsed must be non-negative');
-  }
 }
 
 function validateFrictionState(ranked) {
-  if (ranked.interaction.userTurnsUsed > FRICTION_LIMITS.userTurns) {
-    fail('FRICTION_USER_TURNS_EXCEEDED', 'a second user turn is forbidden');
-  }
   if (ranked.interaction.attempt > FRICTION_LIMITS.attempts) {
     fail('FRICTION_ATTEMPTS_EXCEEDED', 'a third controller attempt is forbidden');
   }
 }
 
-function canSpendUserTurn(ranked) {
-  return ranked.interaction.userTurnsUsed < FRICTION_LIMITS.userTurns;
+function canSpendUserTurn(budgetState) {
+  return budgetState.contract.userTurns - budgetState.userTurnsUsed >= 1;
+}
+
+function spendUserTurn(budgetState) {
+  if (!canSpendUserTurn(budgetState)) return budgetState;
+  const next = snapshot(budgetState);
+  next.userTurnsUsed += 1;
+  return next;
 }
 
 function assertSingularFold(ranked, certificateHandle) {
@@ -416,7 +445,7 @@ function makeCalibrationClaim(certificate) {
   };
 }
 
-function makeRoute(ranked, basisKind, certificate, selectedIndex = 0) {
+function makeRoute(ranked, basisKind, selectedIndex = 0) {
   const selected = ranked.selectionKind === 'single'
     ? [ranked.candidates[selectedIndex]]
     : ranked.candidates;
@@ -434,25 +463,30 @@ function makeRoute(ranked, basisKind, certificate, selectedIndex = 0) {
       selectionKind: ranked.selectionKind,
       targets: selected.map((candidate) => snapshot(candidate.target)),
       basis: { kind: basisKind },
-      evidence: {
-        rankScore: snapshot(rankEvidence.rankScore),
-        scoreMargin: snapshot(rankEvidence.scoreMargin),
-        calibration: certificate
-          ? makeCalibrationClaim(certificate)
-          : { status: 'unvalidated' },
-      },
+      evidence: [
+        {
+          kind: 'rankScore',
+          value: rankEvidence.rankScore.value,
+          nonAuthority: true,
+        },
+        {
+          kind: 'scoreMargin',
+          value: rankEvidence.scoreMargin.value,
+          nonAuthority: true,
+        },
+      ],
       authority: 'WithheldUntilVerify',
     },
   };
 }
 
-function makeClarify(clarification, budget) {
+function makeClarify(clarification, budgetState) {
   return {
     schemaVersion: 'V1',
     action: 'clarify',
     clarify: {
       question: clarification.question,
-      budgetRef: budget.budgetId,
+      budgetRef: budgetState.contract.budgetId,
       alternatives: [
         ...clarification.options.map((option) => option.label),
         NONE_OF_THESE,
@@ -518,47 +552,54 @@ function validateClarification(ranked) {
 // 7. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
-function resolveSingular(ranked, budget) {
+function resolveSingular(ranked, budgetState) {
   const candidate = ranked.candidates[0];
   if (candidate.localLegal === true && candidate.exactSignal === true) {
     return {
-      decision: makeRoute(ranked, 'signal', null),
+      decision: makeRoute(ranked, 'signal'),
+      calibration: { status: 'unvalidated' },
+      budgetState,
       trace: {
         branch: 'singular-exact-signal',
         rankCalls: 0,
         thresholdCalls: 0,
         rescoreCalls: 0,
-        userTurns: ranked.interaction.userTurnsUsed,
+        userTurns: budgetState.userTurnsUsed,
       },
     };
   }
   const clarification = validateClarification(ranked);
-  if (clarification && ranked.interaction.attempt === 1 && canSpendUserTurn(ranked)) {
+  if (clarification && ranked.interaction.attempt === 1 && canSpendUserTurn(budgetState)) {
+    const nextBudgetState = spendUserTurn(budgetState);
     return {
-      decision: makeClarify(clarification, budget),
+      decision: makeClarify(clarification, nextBudgetState),
+      calibration: { status: 'unvalidated' },
+      budgetState: nextBudgetState,
       trace: {
         branch: 'singular-leaf-clarify',
         rankCalls: 0,
         thresholdCalls: 0,
         rescoreCalls: 0,
-        userTurns: ranked.interaction.userTurnsUsed + 1,
+        userTurns: nextBudgetState.userTurnsUsed,
         cardTokens: clarification.cardTokens,
       },
     };
   }
   return {
     decision: makeDefer('no-match'),
+    calibration: { status: 'unvalidated' },
+    budgetState,
     trace: {
       branch: 'singular-no-match',
       rankCalls: 0,
       thresholdCalls: 0,
       rescoreCalls: 0,
-      userTurns: ranked.interaction.userTurnsUsed,
+      userTurns: budgetState.userTurnsUsed,
     },
   };
 }
 
-function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
+function resolveMultiCandidate(request, ranked, certificateHandle, budgetState) {
   const certificate = validateCertificateGate(request, certificateHandle);
   const rank = rankDisposition(request, ranked);
   const rankScore = rank.usable
@@ -578,6 +619,8 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
   if (isAcceptedRescore && acceptedCandidate?.localLegal !== true) {
     return {
       decision: makeDefer('no-match'),
+      calibration: { status: 'unvalidated' },
+      budgetState,
       trace: {
         branch: 'accepted-answer-no-match',
         certificateReason: certificate.reason,
@@ -585,7 +628,7 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
         rankCalls: rank.usable ? 1 : 0,
         thresholdCalls: 0,
         rescoreCalls: 1,
-        userTurns: ranked.interaction.userTurnsUsed,
+        userTurns: budgetState.userTurnsUsed,
       },
     };
   }
@@ -595,7 +638,9 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
       ? acceptedOption.candidateIndex
       : 0;
     return {
-      decision: makeRoute(ranked, 'signal', certificate.certificate, selectedIndex),
+      decision: makeRoute(ranked, 'signal', selectedIndex),
+      calibration: makeCalibrationClaim(certificate.certificate),
+      budgetState,
       trace: {
         branch: isAcceptedRescore ? 'accepted-answer-certified-route' : 'certified-signal-route',
         certificateReason: certificate.reason,
@@ -603,7 +648,7 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
         rankCalls: 1,
         thresholdCalls: 1,
         rescoreCalls: isAcceptedRescore ? 1 : 0,
-        userTurns: ranked.interaction.userTurnsUsed,
+        userTurns: budgetState.userTurnsUsed,
       },
     };
   }
@@ -619,9 +664,10 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
       decision: makeRoute(
         ranked,
         'bounded-default',
-        certificate.certificate,
         ranked.boundedDefaultCandidateIndex
       ),
+      calibration: makeCalibrationClaim(certificate.certificate),
+      budgetState,
       trace: {
         branch: 'certified-bounded-default',
         certificateReason: certificate.reason,
@@ -629,7 +675,7 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
         rankCalls: rank.usable ? 1 : 0,
         thresholdCalls: 1,
         rescoreCalls: isAcceptedRescore ? 1 : 0,
-        userTurns: ranked.interaction.userTurnsUsed,
+        userTurns: budgetState.userTurnsUsed,
       },
     };
   }
@@ -637,6 +683,8 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
   if (isAcceptedRescore) {
     return {
       decision: makeDefer(acceptedOption ? 'evidence-unavailable' : 'no-match'),
+      calibration: { status: 'unvalidated' },
+      budgetState,
       trace: {
         branch: acceptedOption ? 'accepted-answer-uncertified' : 'accepted-answer-no-match',
         certificateReason: certificate.reason,
@@ -644,14 +692,17 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
         rankCalls: rank.usable ? 1 : 0,
         thresholdCalls: certificate.available ? 1 : 0,
         rescoreCalls: 1,
-        userTurns: ranked.interaction.userTurnsUsed,
+        userTurns: budgetState.userTurnsUsed,
       },
     };
   }
 
-  if (clarification && ranked.interaction.attempt === 1 && canSpendUserTurn(ranked)) {
+  if (clarification && ranked.interaction.attempt === 1 && canSpendUserTurn(budgetState)) {
+    const nextBudgetState = spendUserTurn(budgetState);
     return {
-      decision: makeClarify(clarification, budget),
+      decision: makeClarify(clarification, nextBudgetState),
+      calibration: { status: 'unvalidated' },
+      budgetState: nextBudgetState,
       trace: {
         branch: 'certificate-gated-clarify',
         certificateReason: certificate.reason,
@@ -659,7 +710,7 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
         rankCalls: rank.usable ? 1 : 0,
         thresholdCalls: certificate.available ? 1 : 0,
         rescoreCalls: 0,
-        userTurns: ranked.interaction.userTurnsUsed + 1,
+        userTurns: nextBudgetState.userTurnsUsed,
         cardTokens: clarification.cardTokens,
       },
     };
@@ -667,6 +718,8 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
 
   return {
     decision: makeDefer(rank.usable ? 'evidence-unavailable' : 'no-match'),
+    calibration: { status: 'unvalidated' },
+    budgetState,
     trace: {
       branch: 'bounded-abstention',
       certificateReason: certificate.reason,
@@ -674,7 +727,7 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
       rankCalls: rank.usable ? 1 : 0,
       thresholdCalls: certificate.available && rank.usable ? 1 : 0,
       rescoreCalls: 0,
-      userTurns: ranked.interaction.userTurnsUsed,
+      userTurns: budgetState.userTurnsUsed,
     },
   };
 }
@@ -685,22 +738,22 @@ function resolveMultiCandidate(request, ranked, certificateHandle, budget) {
  * @param {Object} request - Request-pinned policy and risk identity.
  * @param {Object} rankedCandidates - Ordered local candidates and evidence.
  * @param {Object} certificateHandle - External certificate registry handle.
- * @param {Object} uncertaintyBudget - Shared one-turn recovery budget.
- * @returns {Object} Frozen RouteDecisionV1.
+ * @param {Object} budgetState - Shared recovery continuation from the recovery ladder.
+ * @returns {Object} Frozen controller envelope containing RouteDecisionV1 and shared state.
  * @throws {SelectiveControllerError} When a hard contract bound is exceeded.
  */
 function resolveSelectiveController(
   request,
   rankedCandidates,
   certificateHandle,
-  uncertaintyBudget
+  budgetState
 ) {
   return inspectSelectiveController(
     request,
     rankedCandidates,
     certificateHandle,
-    uncertaintyBudget
-  ).decision;
+    budgetState
+  );
 }
 
 /**
@@ -709,33 +762,39 @@ function resolveSelectiveController(
  * @param {Object} request - Request-pinned policy and risk identity.
  * @param {Object} rankedCandidates - Ordered local candidates and evidence.
  * @param {Object} certificateHandle - External certificate registry handle.
- * @param {Object} uncertaintyBudget - Shared one-turn recovery budget.
- * @returns {Object} Frozen decision and non-authoritative replay trace.
+ * @param {Object} budgetState - Shared recovery continuation from the recovery ladder.
+ * @returns {Object} Frozen decision, calibration evidence, shared state, and replay trace.
  * @throws {SelectiveControllerError} When a hard contract bound is exceeded.
  */
 function inspectSelectiveController(
   request,
   rankedCandidates,
   certificateHandle,
-  uncertaintyBudget
+  budgetState
 ) {
   validateRequest(request);
-  validateBudget(uncertaintyBudget, request);
+  const sharedBudgetState = validateBudgetState(budgetState, request);
   validateRankedCandidates(rankedCandidates);
   validateFrictionState(rankedCandidates);
 
   const result = rankedCandidates.candidateCount === 1
     ? (() => {
       assertSingularFold(rankedCandidates, certificateHandle);
-      return resolveSingular(rankedCandidates, uncertaintyBudget);
+      return resolveSingular(rankedCandidates, sharedBudgetState);
     })()
     : resolveMultiCandidate(
       request,
       rankedCandidates,
       certificateHandle,
-      uncertaintyBudget
+      sharedBudgetState
     );
-  return deepFreeze(snapshot(result));
+  const decision = parseRouteDecisionShape(result.decision);
+  return deepFreeze(snapshot({
+    decision,
+    calibration: result.calibration,
+    budgetState: result.budgetState,
+    trace: result.trace,
+  }));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
