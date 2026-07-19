@@ -40,7 +40,7 @@
           "order": 3,
           "skill": "design-interface",
           "resource": ".opencode/skills/sk-design/design-interface/procedures/",
-          "action": "choose at most one private procedure card (discovery_question_round.md for missing material brief facts, aesthetic_direction.md for greenfield direction without a stronger brand/system, wireframe_exploration.md for low-fidelity structure or storyboard, variation_set.md for multiple high-fidelity directions or alternatives, prototype_flow_spec.md for prototype/demo/stateful interaction briefs, deck_direction_spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
+          "action": "choose at most one private procedure card (discovery-question-round.md for missing material brief facts, aesthetic-direction.md for greenfield direction without a stronger brand/system, wireframe-exploration.md for low-fidelity structure or storyboard, variation-set.md for multiple high-fidelity directions or alternatives, prototype-flow-spec.md for prototype/demo/stateful interaction briefs, deck-direction-spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
         },
         {
           "order": 4,

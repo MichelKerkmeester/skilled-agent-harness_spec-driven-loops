@@ -11,9 +11,9 @@ const SKDESIGN = join(REPO_SKILLS, 'sk-design');
 const SKDESIGN_COMMAND_RECIPE_FIXTURE = join(
   SKILL_ROOT,
   'assets',
-  'skill_benchmark',
+  'skill-benchmark',
   'fixtures',
-  'sk_design',
+  'sk-design',
   'sk-design-command-recipe-valid.private.json',
 );
 
@@ -710,7 +710,7 @@ describe('Lane C — D5 gate exit code (run-skill-benchmark)', () => {
     const code = run({ skill: skillRoot, 'outputs-dir': out });
     expect(code).toBe(0);
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
-    // No manual_testing_playbook ships with the fixture, so the verdict lands on
+    // No manual-testing-playbook ships with the fixture, so the verdict lands on
     // NO-SCENARIOS — a documented expected-degraded result, not a D5 gate.
     expect(report.verdict).toBe('NO-SCENARIOS');
   });
@@ -819,11 +819,11 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
   it('scores at least one real scenario end-to-end (deep-improvement ships a fixture)', () => {
     // cli-opencode ships no fixtures (scenarioRows === 0), so the artifact test
     // above cannot prove the scenario pipeline runs. deep-improvement ships
-    // agent_improve_001, so this asserts the full lint -> route -> score path
+    // agent-improve-001, so this asserts the full lint -> route -> score path
     // actually produced a scored row.
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
     e2eDirs.push(out);
-    const fixturesDir = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures', 'deep_improvement');
+    const fixturesDir = join(SKILL_ROOT, 'assets', 'skill-benchmark', 'fixtures', 'deep-improvement');
     execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', SKILL_ROOT, '--fixtures-dir', fixturesDir, '--outputs-dir', out], { encoding: 'utf8' });
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     expect(Array.isArray(report.scenarioRows)).toBe(true);

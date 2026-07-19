@@ -6,7 +6,7 @@ const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const SKDESIGN = join(REPO_SKILLS, 'sk-design');
-const FIXTURES = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures');
+const FIXTURES = join(SKILL_ROOT, 'assets', 'skill-benchmark', 'fixtures');
 
 const { routeSkillResources } = require(join(SB, 'router-replay.cjs'));
 const { scoreScenario, aggregate } = require(join(SB, 'score-skill-benchmark.cjs'));
@@ -46,7 +46,7 @@ function expectDesignRoute(publicFixture: any, privateFixture: any): void {
 
 describe('design proof token lint — dispatch fixtures', () => {
   it('accepts the faithful token and routes the prompt to sk-design', () => {
-    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk_design_dispatch_faithful_001');
+    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-faithful-001');
     expectDesignRoute(publicFixture, privateFixture);
 
     const lint = lintDesignToken(publicFixture);
@@ -55,7 +55,7 @@ describe('design proof token lint — dispatch fixtures', () => {
   });
 
   it('rejects a weakened token even when the route is sk-design', () => {
-    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk_design_dispatch_stripped_001');
+    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-stripped-001');
     expectDesignRoute(publicFixture, privateFixture);
 
     const lint = lintDesignToken(publicFixture);
@@ -64,7 +64,7 @@ describe('design proof token lint — dispatch fixtures', () => {
   });
 
   it('fails closed when neither the route nor the token is present', () => {
-    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk_design_dispatch_neither_001');
+    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-neither-001');
     const route = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
     expect(route.parseable).toBe(true);
     expect(route.intents).toEqual([]);

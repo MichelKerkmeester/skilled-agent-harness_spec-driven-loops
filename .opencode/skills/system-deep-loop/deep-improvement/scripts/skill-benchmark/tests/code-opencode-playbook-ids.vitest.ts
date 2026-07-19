@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { resolve, join } from 'node:path';
 import { readFileSync, readdirSync } from 'node:fs';
 
-// Fail-closed integrity gate for the code-opencode manual_testing_playbook.
+// Fail-closed integrity gate for the code-opencode manual-testing-playbook.
 //
 // Each scenario's `id:` is the routing corpus's primary key. This playbook is
 // range indexed rather than row indexed, so the loader falls back to a directory
@@ -15,7 +15,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const OC_ROOT = join(REPO_SKILLS, 'sk-code', 'code-opencode');
-const PLAYBOOK = join(OC_ROOT, 'manual_testing_playbook');
+const PLAYBOOK = join(OC_ROOT, 'manual-testing-playbook');
 const HARNESS = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const { loadPlaybookScenarios } = require(join(HARNESS, 'load-playbook-scenarios.cjs'));
 

@@ -252,9 +252,9 @@ describe('gold parser adversarial cases', () => {
 
   it('loader surfaces gold parse failures as warnings + scenario flags (no silent skip)', () => {
     const dir = tempDir('rg-loud-');
-    const pb = join(dir, 'manual_testing_playbook', 'cases');
+    const pb = join(dir, 'manual-testing-playbook', 'cases');
     mkdirSync(pb, { recursive: true });
-    writeFileSync(join(pb, 'bad_intent.md'), '---\nid: BD-001\nexpected_intent: !!!\nexpected_resources:\n  - references/a.md\n---\nPrompt: do the thing\n');
+    writeFileSync(join(pb, 'bad-intent.md'), '---\nid: BD-001\nexpected_intent: !!!\nexpected_resources:\n  - references/a.md\n---\nPrompt: do the thing\n');
     writeFileSync(join(pb, 'malformed.md'), '---\nid: BD-002\nexpected_intent: MODE_A\nno closing fence');
     const { scenarios, warnings } = loadPlaybookScenarios({ skillRoot: dir });
     expect(scenarios).toHaveLength(1);
@@ -342,8 +342,8 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
   it('a previously-passing corpus with one injected violation flips to BLOCKED-BY-ROUTE-GOLD (exit 3); --route-gold off restores the old verdict', () => {
     const scratch = tempDir('rg-e2e-');
     const corpus = join(scratch, 'playbook');
-    cpSync(join(MCP_TOOLING, 'manual_testing_playbook'), corpus, { recursive: true });
-    const victim = join(corpus, 'hub_routing', 'chrome-devtools-browser-debug.md');
+    cpSync(join(MCP_TOOLING, 'manual-testing-playbook'), corpus, { recursive: true });
+    const victim = join(corpus, 'hub-routing', 'chrome-devtools-browser-debug.md');
     writeFileSync(victim, readFileSync(victim, 'utf8')
       .replace('expected_intent: mcp-chrome-devtools', 'expected_intent: mcp-figma'));
 
@@ -366,8 +366,8 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
   it('a gold parse failure in the corpus fails an enforced run loudly', () => {
     const scratch = tempDir('rg-parse-');
     const corpus = join(scratch, 'playbook');
-    cpSync(join(MCP_TOOLING, 'manual_testing_playbook'), corpus, { recursive: true });
-    const victim = join(corpus, 'hub_routing', 'clickup-task-management.md');
+    cpSync(join(MCP_TOOLING, 'manual-testing-playbook'), corpus, { recursive: true });
+    const victim = join(corpus, 'hub-routing', 'clickup-task-management.md');
     writeFileSync(victim, readFileSync(victim, 'utf8')
       .replace('expected_intent: mcp-click-up', 'expected_intent: !!!'));
 
