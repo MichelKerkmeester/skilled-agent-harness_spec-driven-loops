@@ -45,7 +45,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio |
 | **Priority** | P1 |
-| **Status** | Complete — code (003/004) built + verified (tests pass); research (001/002) delivered its recommendations (001 ran 7 of 10; 002 GLM out of quota, SOL sole source) |
+| **Status** | Complete — code (003/004) built + verified (tests pass); research (001/002) delivered its recommendations (001 ran 7 of 10; 002 GLM out of quota, SOL sole source). Deep review (955d58f898) found 9 P1 + 1 P2 (0 P0); phase 005 remediates the open persistent-path findings before the DB is enabled |
 | **Created** | 2026-07-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -117,6 +117,7 @@ Stand up (1) a real indexed **style database** for the 1,291-style library, mirr
 | 2 | `002-research-design-commands/` | Deep research: why the current commands don't help create designs; how Claude design / Open Design / aura.build/skills template prompts work; the redesigned command set + prompt scaffolding | GPT-5.6-SOL, HIGH fast — 20 iters (SOL; GLM lineage failed) | **Complete** |
 | 3 | `003-style-database/` | Implement the style database + retrieval per phase 001 | GPT-5.6-SOL via cli-opencode | **Complete** (24/24 db, 20/20 legacy) |
 | 4 | `004-interface-commands/` | Build the five /interface:* creation commands + shared contract + /design:* aliases per phase 002 | GPT-5.6-SOL via cli-opencode | **Complete** (16/16 tests, 4 checkers) |
+| 5 | `005-review-remediation/` | Fix all deep-review findings (P0=0, P1=9, P2=1): persistent-path code hardening + evidence reconciliation | GPT (planned) | Planned |
 
 ### Phase Transition Rules
 

@@ -8,7 +8,8 @@
     "sk-design/012-style-database-and-interface-commands/002-research-design-commands",
     "sk-design/012-style-database-and-interface-commands/002-research-design-design-commands",
     "sk-design/012-style-database-and-interface-commands/003-style-database",
-    "sk-design/012-style-database-and-interface-commands/004-interface-commands"
+    "sk-design/012-style-database-and-interface-commands/004-interface-commands",
+    "sk-design/012-style-database-and-interface-commands/005-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -95,15 +96,15 @@
     ],
     "causal_summary": "Two parts of `sk-design` are underpowered for their job — actually helping a person create good designs",
     "created_at": "2026-07-19T06:10:01.540Z",
-    "last_save_at": "2026-07-19T12:10:28.980Z",
+    "last_save_at": "2026-07-19T13:04:50.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:01013fb94a4488ec99f4ec6de209c2a9869da89af09085eba22b183c13ced82e",
+    "source_fingerprint": "sha256:740cf1b6e91eb22b8e7197875fbb0eedaab56a18cf87789bfdea64e3b879ce26",
     "source_doc_hashes": {
-      "spec.md": "3e77a1bffbd84157c3725e4b3c13dbd10490c1eb5ec87e7cabf8d78bf2054cea"
+      "spec.md": "c7e9ccde84b293d571db22955f9c71cd119dc5a44810b8e8ed7a118c7959b2ae"
     },
     "last_active_child_id": null,
     "last_active_at": null
