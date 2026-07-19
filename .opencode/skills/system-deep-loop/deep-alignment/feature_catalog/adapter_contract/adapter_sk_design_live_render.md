@@ -38,7 +38,7 @@ Its known-deviations file does not exist yet — no real live-render run has eve
 |---|---|---|
 | `scripts/adapters/sk-design-live-render.cjs` | Adapter | `discover`/`standardSource`/`check`, the target classifier, the four short-circuits, and the threshold checks over render evidence. |
 | `references/adapters/sk_design_live_render_adapter.md` | Reference | Full specification: the peer relationship (Section 1), the no-local-renderer rationale (Section 8), the evidence-label vocabulary (Section 7). |
-| `.opencode/skills/sk-design/design-audit/references/accessibility_performance.md` | Standard source | The concrete-thresholds table the `THRESHOLDS` constant cites verbatim. |
+| `.opencode/skills/sk-design/design-audit/references/accessibility-performance.md` | Standard source | The concrete-thresholds table the `THRESHOLDS` constant cites verbatim. |
 
 ### Validation And Tests
 

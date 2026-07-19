@@ -62,7 +62,7 @@ This repo wires Open Design through Code Mode (`.utcp_config.json`'s `open_desig
 ```bash
 node "$OD_BIN" mcp install opencode --print --json   # PREVIEW only, writes nothing
 # Read the command array and environment it would write, then apply:
-node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design) -- NOT this repo's integration point, see references/mcp_wiring.md Section 5b
+node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design) -- NOT this repo's integration point, see references/mcp-wiring.md Section 5b
 # For CLI and JSON-plan agents, use the target slug. `vibe`, `pi`, and `hermes` only print manual setup snippets.
 ```
 
@@ -93,11 +93,11 @@ Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELE
 
 ### The Wire Direction
 
-`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `opencode`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. **This repo does not use the opencode native-registration path** -- it wires Open Design through Code Mode instead (`.utcp_config.json`'s `open_design` manual, already configured; see `references/mcp_wiring.md` Section 5b). The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
+`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `opencode`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. **This repo does not use the opencode native-registration path** -- it wires Open Design through Code Mode instead (`.utcp_config.json`'s `open_design` manual, already configured; see `references/mcp-wiring.md` Section 5b). The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
 
 ### The Read Direction
 
-After wiring, read-only means the tool does not write; it does not automatically mean unguarded (see [`references/tool_surface.md`](./references/tool_surface.md) for the full two-axis rule). Pure transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call, since they return inventory only. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded: their output needs `sk-design`'s ground → token-system → critique before it shapes a design decision, except `get_file`/`search_files` with a non-design-use receipt. From the CLI, `od tools design-systems read` reads a registered design system's files. A design system is a `DESIGN.md`, a paste-ready `tokens.css`, and an optional `components.html`. Open Design content is read live and never copied into a repo, because reusing a system happens at build time in the target app rather than by vendoring its files, whose per-source licenses would attach.
+After wiring, read-only means the tool does not write; it does not automatically mean unguarded (see [`references/tool-surface.md`](./references/tool-surface.md) for the full two-axis rule). Pure transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call, since they return inventory only. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded: their output needs `sk-design`'s ground → token-system → critique before it shapes a design decision, except `get_file`/`search_files` with a non-design-use receipt. From the CLI, `od tools design-systems read` reads a registered design system's files. A design system is a `DESIGN.md`, a paste-ready `tokens.css`, and an optional `components.html`. Open Design content is read live and never copied into a repo, because reusing a system happens at build time in the target app rather than by vendoring its files, whose per-source licenses would attach.
 
 ### The Run Direction
 
@@ -111,7 +111,7 @@ The authority order is user brief and owned system, selected-mode judgment, targ
 
 ### Design Grounding And Reuse
 
-When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in the real-UI loop (`sk-design`'s `real_ui_loop.md`; this skill's Open Design transport for it is in `references/design_parity_transport.md`). Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
+When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in the real-UI loop (`sk-design`'s `real-ui-loop.md`; this skill's Open Design transport for it is in `references/design-parity-transport.md`). Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
 
 ---
 
@@ -125,7 +125,7 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop (`real_ui_loop.md`). |
+| `sk-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop (`real-ui-loop.md`). |
 | `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
 | `mcp-figma` | The sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon and gating shape. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
@@ -181,8 +181,8 @@ A: This skill is the transport that reads and writes Open Design content. `sk-de
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/README.md --type readme` reports zero issues |
 | SKILL.md frontmatter | `head -12 .opencode/skills/sk-design/design-mcp-open-design/SKILL.md` shows `name: design-mcp-open-design` and a `description` |
-| Feature catalog structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/feature_catalog/feature_catalog.md` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/manual_testing_playbook/manual_testing_playbook.md` reports zero issues |
+| Feature catalog structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/feature-catalog/feature-catalog.md` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/manual-testing-playbook/manual-testing-playbook.md` reports zero issues |
 | CLI reachability | `node "$OD_BIN" --help` returns usage text with the Open Design desktop app open (Node.js required) |
 
 ---
@@ -192,10 +192,10 @@ A: This skill is the transport that reads and writes Open Design content. `sk-de
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: wiring, reads, grounding, gated runs, and the daemon transport |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation matrix with the wire, read, gated-run, and failure-path scenarios |
-| [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into supported terminal agents, the written config shape, and the manual fallback |
-| [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
-| [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-design`) |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: wiring, reads, grounding, gated runs, and the daemon transport |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation matrix with the wire, read, gated-run, and failure-path scenarios |
+| [`references/od-cli-reference.md`](./references/od-cli-reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | Wiring the MCP server into supported terminal agents, the written config shape, and the manual fallback |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
+| [`references/design-parity-transport.md`](./references/design-parity-transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-design`) |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

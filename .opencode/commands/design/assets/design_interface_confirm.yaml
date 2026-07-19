@@ -57,7 +57,7 @@ workflow:
 
   step_3_set_register_and_dials:
     purpose: Set the Brand-vs-Product register and read the brief into the variance/motion/density dials, before any visual choice
-    action: "Read ../shared/register.md and references/design-process/brief_to_dials.md; state the result as a one-line Design Read"
+    action: "Read ../shared/register.md and references/design-process/brief-to-dials.md; state the result as a one-line Design Read"
     output: register_and_dials
 
   step_4_select_procedure_card:
@@ -65,19 +65,19 @@ workflow:
     action: "Match the resolved inputs and task lane against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
     trigger_table:
       - request_shape: "Missing material brief facts"
-        card: "procedures/discovery_question_round.md"
+        card: "procedures/discovery-question-round.md"
       - request_shape: "Greenfield direction without a stronger brand/system (--mode direction, --mode aesthetic)"
-        card: "procedures/aesthetic_direction.md"
+        card: "procedures/aesthetic-direction.md"
       - request_shape: "Low-fidelity structure or storyboard"
-        card: "procedures/wireframe_exploration.md"
+        card: "procedures/wireframe-exploration.md"
       - request_shape: "Multiple high-fidelity directions or alternatives (--mode directions)"
-        card: "procedures/variation_set.md"
+        card: "procedures/variation-set.md"
       - request_shape: "Prototype, demo, or stateful interaction brief (--mode build)"
-        card: "procedures/prototype_flow_spec.md"
+        card: "procedures/prototype-flow-spec.md"
       - request_shape: "Slide deck or presentation design"
-        card: "procedures/deck_direction_spec.md"
+        card: "procedures/deck-direction-spec.md"
       - request_shape: "Final polish across dimensions"
-        card: "../shared/procedures/polish_gate_orchestration.md"
+        card: "../shared/procedures/polish-gate-orchestration.md"
       - request_shape: "No trigger matches"
         card: "none - state 'Procedure applied: none - baseline interface workflow' and continue"
     output: selected_procedure_card
@@ -89,12 +89,12 @@ workflow:
 
   step_6_clear_mechanical_gates:
     purpose: "Clear the pre-ship mechanical gate before delivery (--mode preflight runs this as the primary lane)"
-    action: "Fill in assets/interface_preflight_card.md (layout gate + content gate); every box is binary, a single fail means the surface is not done"
+    action: "Fill in assets/interface-preflight-card.md (layout gate + content gate); every box is binary, a single fail means the surface is not done"
     output: preflight_result
 
   step_7_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
     condition: "Only when the user accepts the design output for build"
     output: handoff_manifest
 
@@ -113,4 +113,4 @@ pipeline:
   accepts_from: ["/design:audit", "/design:foundations", "/design:md-generator", "/design:motion"]
   hands_to_next: ["/design:foundations", "/design:motion", "/design:audit"]
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when accepted design output moves to implementation"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when accepted design output moves to implementation"

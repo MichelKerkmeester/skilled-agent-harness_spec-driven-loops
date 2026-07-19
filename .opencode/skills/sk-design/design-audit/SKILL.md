@@ -62,10 +62,10 @@ Route here when the request is evaluative: audit, review, critique, release read
 ```text
 DESIGN QA TASK
     |
-    +- Full audit / score / release readiness -> references/audit_contract.md
-    +- A11y or motion/load perf -> references/accessibility_performance.md
-    +- Critique / cognitive load / persona / polish -> references/critique_hardening.md
-    +- Edge cases / copy / pseudo-elements / production -> references/anti_patterns_production.md
+    +- Full audit / score / release readiness -> references/audit-contract.md
+    +- A11y or motion/load perf -> references/accessibility-performance.md
+    +- Critique / cognitive load / persona / polish -> references/critique-hardening.md
+    +- Edge cases / copy / pseudo-elements / production -> references/anti-patterns-production.md
 ```
 
 ### Phase Detection
@@ -82,37 +82,37 @@ DESIGN QA TASK
 
 ### Resource Domains
 
-- `references/audit_contract.md` defines the P0-P3 severity model, 5-dimension `/20` scoring contract, output format, and evidence rules.
-- `references/accessibility_performance.md` covers accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion performance, Core Web Vitals, and measurement.
-- `references/critique_hardening.md` covers critique workflow, cognitive load, Nielsen heuristics, personas, polish, edge cases, i18n, error states, and resilience.
-- `references/anti_patterns_production.md` covers slop detection, theming drift, token misuse, pseudo-elements, View Transitions, copy clarity, and production hardening.
-- `assets/ai_fingerprint_registry.json` mirrors the model-specific tell catalog as one machine-checkable row per tell.
-- `assets/ai_fingerprint_self_defect_card.md` carries one self-audit prompt per registry row.
+- `references/audit-contract.md` defines the P0-P3 severity model, 5-dimension `/20` scoring contract, output format, and evidence rules.
+- `references/accessibility-performance.md` covers accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion performance, Core Web Vitals, and measurement.
+- `references/critique-hardening.md` covers critique workflow, cognitive load, Nielsen heuristics, personas, polish, edge cases, i18n, error states, and resilience.
+- `references/anti-patterns-production.md` covers slop detection, theming drift, token misuse, pseudo-elements, View Transitions, copy clarity, and production hardening.
+- `assets/ai-fingerprint-registry.json` mirrors the model-specific tell catalog as one machine-checkable row per tell.
+- `assets/ai-fingerprint-self-defect-card.md` carries one self-audit prompt per registry row.
 - `../shared/scripts/ai-fingerprint-registry-check.mjs` validates catalog-to-registry parity and fixture-id shape before registry changes ship.
-- `references/corpus_map.md` maps the source corpus.
-- `../shared/sk_code_handoff.md` defines the accepted-finding backlog handoff to `sk-code`.
+- `references/corpus-map.md` maps the source corpus.
+- `../shared/sk-code-handoff.md` defines the accepted-finding backlog handoff to `sk-code`.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Any audit or critique | `references/corpus_map.md`, `references/audit_contract.md` |
+| ALWAYS | Any audit or critique | `references/corpus-map.md`, `references/audit-contract.md` |
 | ALWAYS | Set the audit-severity posture | `../shared/register.md` (the audit-severity dial weights findings by Brand-vs-Product posture) |
-| ALWAYS | Any audit or design-readiness task | `../shared/context_loading_contract.md` (register-first gate, context manifest, the four proof fields incl. audit evidence, and the hard gates that block release/accessibility claims) |
-| CONDITIONAL | Accessibility or performance concern | `references/accessibility_performance.md` |
-| CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique_hardening.md` |
-| CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti_patterns_production.md` |
-| CONDITIONAL | Detecting model-specific AI tells | `references/ai_fingerprint_tells.md`, `assets/ai_fingerprint_registry.json`, `assets/ai_fingerprint_self_defect_card.md` (OpenCode, Gemini, 2026-general fingerprints as checkable findings with structured rows and self-defect prompts) |
-| CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform_remediation.md` (register-gated transform verbs mapped to findings and owners) |
-| CONDITIONAL | Resolving the target and labeling evidence | `references/evidence_capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
-| CONDITIONAL | Carrying confirmed, inferred and not-assessed labels into findings and scores | `assets/audit_evidence_worksheet.md` (target, evidence inventory, dimension coverage, probes and finding handoff rows) |
-| CONDITIONAL | Calibrating the Anti-Patterns dimension | `assets/anti_patterns_score_rubric.md` (0 to 4 ladder for model tells and generic design risk) |
-| CONDITIONAL | Production-readiness and edge-case probes | `references/hardening_edge_cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
-| CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
+| ALWAYS | Any audit or design-readiness task | `../shared/context-loading-contract.md` (register-first gate, context manifest, the four proof fields incl. audit evidence, and the hard gates that block release/accessibility claims) |
+| CONDITIONAL | Accessibility or performance concern | `references/accessibility-performance.md` |
+| CONDITIONAL | Holistic critique, UX score, persona, polish, hardening | `references/critique-hardening.md` |
+| CONDITIONAL | Slop, theming, pseudo-elements, copy clarity, production details | `references/anti-patterns-production.md` |
+| CONDITIONAL | Detecting model-specific AI tells | `references/ai-fingerprint-tells.md`, `assets/ai-fingerprint-registry.json`, `assets/ai-fingerprint-self-defect-card.md` (OpenCode, Gemini, 2026-general fingerprints as checkable findings with structured rows and self-defect prompts) |
+| CONDITIONAL | Routing a bolder, quieter or simpler request | `references/transform-remediation.md` (register-gated transform verbs mapped to findings and owners) |
+| CONDITIONAL | Resolving the target and labeling evidence | `references/evidence-capture.md` (target resolution, browser and deterministic evidence, fallback labels) |
+| CONDITIONAL | Carrying confirmed, inferred and not-assessed labels into findings and scores | `assets/audit-evidence-worksheet.md` (target, evidence inventory, dimension coverage, probes and finding handoff rows) |
+| CONDITIONAL | Calibrating the Anti-Patterns dimension | `assets/anti-patterns-score-rubric.md` (0 to 4 ladder for model tells and generic design risk) |
+| CONDITIONAL | Production-readiness and edge-case probes | `references/hardening-edge-cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
+| CONDITIONAL | Producing the audit report | `assets/audit-report-template.md` (fill-in 5-dimension score plus P0-P3 findings) |
 | CONDITIONAL | Comparing against an intended or contextual corpus reference | `corpus/README.md` and `corpus/comparison-lane.mjs` (zero to two non-authoritative references, drift context and evidence labels) |
-| CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
-| CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
-| CONDITIONAL | Internal procedure support | `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
+| CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y-quick-fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
+| CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk-code-handoff.md` (backlog handoff card, routes only and applies nothing) |
+| CONDITIONAL | Internal procedure support | `procedures/accessibility-audit.md`, `procedures/ai-slop-check.md`, and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
 | ON_DEMAND | Code correctness beyond UI quality | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) |
 
 The private procedure-card selection table in Section 3 is part of this routing contract: after the public `audit` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
@@ -130,7 +130,7 @@ The router fills in this skill's a11y/perf/critique/harden `INTENT_SIGNALS`, `RE
 - Pattern 3: Extensible Routing Key - audit-mode intent labels route to keyed folders without static inventories.
 - Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests disambiguation and missing keyed families return a "no knowledge base" notice.
 
-The full implementation — the keyword-weighted `classify_intents()`, `INTENT_SIGNALS`/`RESOURCE_MAP`/`LOAD_LEVELS` tables, the routing-key-derived keyed-folder lookup, and the existence-guarded `_guard_in_skill()`/`load_if_available()` loader (which routes both `.md` references and the `.json` fingerprint registry) — lives in [`references/smart_router_pseudocode.md`](references/smart_router_pseudocode.md). Read it before implementing or modifying routing logic; this section is the contract, that file is the code.
+The full implementation — the keyword-weighted `classify_intents()`, `INTENT_SIGNALS`/`RESOURCE_MAP`/`LOAD_LEVELS` tables, the routing-key-derived keyed-folder lookup, and the existence-guarded `_guard_in_skill()`/`load_if_available()` loader (which routes both `.md` references and the `.json` fingerprint registry) — lives in [`references/smart-router-pseudocode.md`](references/smart-router-pseudocode.md). Read it before implementing or modifying routing logic; this section is the contract, that file is the code.
 
 ---
 
@@ -138,17 +138,17 @@ The full implementation — the keyword-weighted `classify_intents()`, `INTENT_S
 
 ### Audit Workflow
 
-1. Resolve the target and the register: source files, URL, screenshot, design plan or rendered UI evidence, then read `../shared/register.md` so the audit-severity dial weights findings by Brand-vs-Product posture. `references/evidence_capture.md` owns target resolution.
-   **Ready-claim gate:** before any ready, release, or accessibility claim, complete the five-dimension score with evidence labels (`confirmed`, `inferred`, `not-assessed`) per `references/audit_contract.md`; reuse `assets/audit_evidence_worksheet.md` to carry those labels into findings and scores.
+1. Resolve the target and the register: source files, URL, screenshot, design plan or rendered UI evidence, then read `../shared/register.md` so the audit-severity dial weights findings by Brand-vs-Product posture. `references/evidence-capture.md` owns target resolution.
+   **Ready-claim gate:** before any ready, release, or accessibility claim, complete the five-dimension score with evidence labels (`confirmed`, `inferred`, `not-assessed`) per `references/audit-contract.md`; reuse `assets/audit-evidence-worksheet.md` to carry those labels into findings and scores.
 2. State evidence available and evidence missing. A visual claim needs visual evidence or a clear caveat. A finding read from real evidence is confirmed, while a finding from a screenshot alone is inferred.
 3. Score the five audit dimensions 0-4 each:
    - Accessibility.
    - Performance.
    - Responsive Design.
    - Theming.
-   - Anti-Patterns. Detect model-specific tells with `references/ai_fingerprint_tells.md` and probe production readiness with `references/hardening_edge_cases.md`.
-4. Produce a findings-first report ordered by P0, P1, P2, P3. Use `assets/audit_report_template.md` for the fill-in skeleton.
-5. Map each finding to the owning sibling or implementation skill. Route a bolder, quieter, distill or redesign direction through `references/transform_remediation.md` first, because the correct direction depends on the register.
+   - Anti-Patterns. Detect model-specific tells with `references/ai-fingerprint-tells.md` and probe production readiness with `references/hardening-edge-cases.md`.
+4. Produce a findings-first report ordered by P0, P1, P2, P3. Use `assets/audit-report-template.md` for the fill-in skeleton.
+5. Map each finding to the owning sibling or implementation skill. Route a bolder, quieter, distill or redesign direction through `references/transform-remediation.md` first, because the correct direction depends on the register.
 6. End with recommended next actions; do not silently implement fixes during a review-only request.
 
 ### Procedure Card Selection
@@ -157,9 +157,9 @@ After the hub selects the public `audit` mode, choose at most one primary privat
 
 | Request shape | Procedure card | Proof to cite |
 | --- | --- | --- |
-| Accessibility, WCAG, inclusive design, contrast, keyboard, focus, form, or release-readiness review | `procedures/accessibility_audit.md` | Coverage of contrast/color, semantics, keyboard/focus, motion/forms/miscellaneous, evidence labels, and unresolved confirmation needs. |
-| AI-template risk, generic visual language, over-decoration, slop, or model-tell review | `procedures/ai_slop_check.md` | Detected pattern, evidence location or artifact, severity, owner, and concrete fix direction. |
-| Full pre-delivery polish spanning multiple design dimensions | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+| Accessibility, WCAG, inclusive design, contrast, keyboard, focus, form, or release-readiness review | `procedures/accessibility-audit.md` | Coverage of contrast/color, semantics, keyboard/focus, motion/forms/miscellaneous, evidence labels, and unresolved confirmation needs. |
+| AI-template risk, generic visual language, over-decoration, slop, or model-tell review | `procedures/ai-slop-check.md` | Detected pattern, evidence location or artifact, severity, owner, and concrete fix direction. |
+| Full pre-delivery polish spanning multiple design dimensions | `../shared/procedures/polish-gate-orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
 
 If no procedure card matches, state `Procedure applied: none - baseline audit workflow` and continue with the audit contract, five-dimension score, and findings-first report. Do not load every procedure card for a single request.
 
@@ -171,7 +171,7 @@ This mode must run directly with Read, Glob, and Grep only. If subagents are una
 
 ### Backlog Handoff To sk-code
 
-When accepted findings move to implementation, emit the shared handoff envelope from `../shared/sk_code_handoff.md` as a backlog card. Each finding includes id, severity, owner, target, evidence label, one-line fix shape and verification. An audit with zero accepted findings emits an empty valid backlog. The audit never applies fixes, edits files or grants write authority.
+When accepted findings move to implementation, emit the shared handoff envelope from `../shared/sk-code-handoff.md` as a backlog card. Each finding includes id, severity, owner, target, evidence label, one-line fix shape and verification. An audit with zero accepted findings emits an empty valid backlog. The audit never applies fixes, edits files or grants write authority.
 
 ### Non-Authoritative Corpus Comparison
 
@@ -249,36 +249,36 @@ Each dimension scores 0-4. Total `/20` rating:
 
 ### Core References
 
-- [`references/audit_contract.md`](references/audit_contract.md) - Severity, `/20` score, findings schema, and audit output contract.
-- [`references/accessibility_performance.md`](references/accessibility_performance.md) - Accessibility and performance checks.
-- [`references/critique_hardening.md`](references/critique_hardening.md) - Holistic critique, cognitive load, personas, polish, and hardening.
-- [`references/anti_patterns_production.md`](references/anti_patterns_production.md) - Anti-slop, theming, pseudo-elements, copy clarity, and production details.
-- [`references/ai_fingerprint_tells.md`](references/ai_fingerprint_tells.md) - Model-specific AI tells turned into checkable P0-P3 findings.
-- [`references/transform_remediation.md`](references/transform_remediation.md) - Register-gated directional verbs mapped to findings and owners.
-- [`references/evidence_capture.md`](references/evidence_capture.md) - Target resolution, browser and deterministic evidence, screenshot and overlay notes, fallback labels.
-- [`references/hardening_edge_cases.md`](references/hardening_edge_cases.md) - Production-readiness matrix of extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji.
-- [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
-- [`references/smart_router_pseudocode.md`](references/smart_router_pseudocode.md) - Implementation behind Section 2's smart router: intent classifier, resource map, and the `.md`/`.json` existence-guarded loader.
-- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Audit uses it for accepted-finding backlog handoff without applying fixes.
+- [`references/audit-contract.md`](references/audit-contract.md) - Severity, `/20` score, findings schema, and audit output contract.
+- [`references/accessibility-performance.md`](references/accessibility-performance.md) - Accessibility and performance checks.
+- [`references/critique-hardening.md`](references/critique-hardening.md) - Holistic critique, cognitive load, personas, polish, and hardening.
+- [`references/anti-patterns-production.md`](references/anti-patterns-production.md) - Anti-slop, theming, pseudo-elements, copy clarity, and production details.
+- [`references/ai-fingerprint-tells.md`](references/ai-fingerprint-tells.md) - Model-specific AI tells turned into checkable P0-P3 findings.
+- [`references/transform-remediation.md`](references/transform-remediation.md) - Register-gated directional verbs mapped to findings and owners.
+- [`references/evidence-capture.md`](references/evidence-capture.md) - Target resolution, browser and deterministic evidence, screenshot and overlay notes, fallback labels.
+- [`references/hardening-edge-cases.md`](references/hardening-edge-cases.md) - Production-readiness matrix of extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji.
+- [`references/corpus-map.md`](references/corpus-map.md) - Source traceability for the distilled corpus.
+- [`references/smart-router-pseudocode.md`](references/smart-router-pseudocode.md) - Implementation behind Section 2's smart router: intent classifier, resource map, and the `.md`/`.json` existence-guarded loader.
+- [`../shared/sk-code-handoff.md`](../shared/sk-code-handoff.md) - Shared sk-code handoff envelope. Audit uses it for accepted-finding backlog handoff without applying fixes.
 - [`corpus/README.md`](corpus/README.md) - Maintainer-only comparison-lane contract, drift/unavailable fixture atlas, non-authority guards and verification command.
-- [`procedures/accessibility_audit.md`](procedures/accessibility_audit.md) - Private support for accessibility-focused audit passes.
-- [`procedures/ai_slop_check.md`](procedures/ai_slop_check.md) - Private support for AI-template and generic-design risk review.
-- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when audit owns the review verdict.
+- [`procedures/accessibility-audit.md`](procedures/accessibility-audit.md) - Private support for accessibility-focused audit passes.
+- [`procedures/ai-slop-check.md`](procedures/ai-slop-check.md) - Private support for AI-template and generic-design risk review.
+- [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when audit owns the review verdict.
 
 ### Assets
 
-- [`assets/audit_report_template.md`](assets/audit_report_template.md) - Fill-in findings-first report with the five-dimension `/20` score, anti-pattern verdict, owner mapping, and evidence caveats.
-- [`assets/a11y_quick_fixes.md`](assets/a11y_quick_fixes.md) - Snippet-level accessibility fixes the report cites by reference; the audit names the fix, `sk-code` applies it.
-- [`assets/audit_evidence_worksheet.md`](assets/audit_evidence_worksheet.md) - Fill-in worksheet that carries confirmed, inferred and not-assessed labels into findings and scores.
-- [`assets/anti_patterns_score_rubric.md`](assets/anti_patterns_score_rubric.md) - Anti-Patterns 0 to 4 calibration ladder for full audits.
+- [`assets/audit-report-template.md`](assets/audit-report-template.md) - Fill-in findings-first report with the five-dimension `/20` score, anti-pattern verdict, owner mapping, and evidence caveats.
+- [`assets/a11y-quick-fixes.md`](assets/a11y-quick-fixes.md) - Snippet-level accessibility fixes the report cites by reference; the audit names the fix, `sk-code` applies it.
+- [`assets/audit-evidence-worksheet.md`](assets/audit-evidence-worksheet.md) - Fill-in worksheet that carries confirmed, inferred and not-assessed labels into findings and scores.
+- [`assets/anti-patterns-score-rubric.md`](assets/anti-patterns-score-rubric.md) - Anti-Patterns 0 to 4 calibration ladder for full audits.
 
 ### Parent Shared Base
 
 Use, do not duplicate, the parent references for shared vocabulary:
 - [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product register that sets the audit-severity dial; outside this mode's scope, so cited explicitly.
-- `../shared/anti_slop_principles.md`
-- `../shared/design_token_vocabulary.md`
-- `../shared/cognitive_laws.md`
+- `../shared/anti-slop-principles.md`
+- `../shared/design-token-vocabulary.md`
+- `../shared/cognitive-laws.md`
 
 ---
 
@@ -310,4 +310,4 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`.
+Manual validation scenarios live in `manual-testing-playbook/manual-testing-playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`.

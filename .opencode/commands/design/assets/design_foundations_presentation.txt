@@ -76,7 +76,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Static system decisions are ready to become a concrete interface direction or screen treatment | `/design:interface` | Turn tokens into an interface direction |
 | Tokens or layout decisions need temporal behavior, transitions, or state choreography | `/design:motion` | Specify temporal behavior |
 | The static system is ready for quality review, contrast evidence, or hardening | `/design:audit` | Validate quality before build |
-| Accepted tokens or static-system decisions move to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+| Accepted tokens or static-system decisions move to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Hand off to build |
 
 This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
 

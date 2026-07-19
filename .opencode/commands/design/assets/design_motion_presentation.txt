@@ -76,7 +76,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Motion choices change or depend on the overall interface direction | `/design:interface` | Align motion with direction |
 | Motion constraints affect static layout, token, or responsive decisions | `/design:foundations` | Reconcile with the static system |
 | The motion spec is ready for performance, accessibility, or quality review | `/design:audit` | Validate quality before build |
-| Accepted motion behavior moves to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+| Accepted motion behavior moves to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Hand off to build |
 
 This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
 

@@ -143,7 +143,7 @@ pdf-editor/
 - `references/procedures/digital_signature_verification.md` - private card
 - `references/procedures/batch_annotation_cleanup.md` - private card
 
-**Real-world precedent**: `sk-design` uses this exact pattern at hub scale — one parent hub with five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards, tracing back to `sk-design/shared/procedure_card_schema.md`.
+**Real-world precedent**: `sk-design` uses this exact pattern at hub scale — one parent hub with five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards, tracing back to `sk-design/shared/procedure-card-schema.md`.
 
 ---
 

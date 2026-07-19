@@ -42,7 +42,7 @@ Open Design is a desktop app for reading and generating design systems, projects
 - **The MCP server** is optional. Wiring it registers an `open-design` MCP entry in an agent's config so the agent can call Open Design tools directly. The same daemon backs both surfaces.
 - **The daemon** is hosted by the desktop app. Every tool call proxies to it, so the app must be open. It is discovered over a Unix socket, and its HTTP port is ephemeral and rotates on every restart, so nothing here hardcodes a port.
 
-Design judgment stays with `sk-design`: this skill owns the transport, that skill owns the taste. The real-UI loop lives in `sk-design` (`real_ui_loop.md`); this skill's Open Design transport mechanics for it are in `references/design_parity_transport.md`.
+Design judgment stays with `sk-design`: this skill owns the transport, that skill owns the taste. The real-UI loop lives in `sk-design` (`real-ui-loop.md`); this skill's Open Design transport mechanics for it are in `references/design-parity-transport.md`.
 
 ---
 
@@ -85,7 +85,7 @@ If the app is missing, install it from Open Design's official download, then rer
 
 ## 4. CONFIGURATION (OPTIONAL MCP WIRING)
 
-> **This repo already has Open Design wired.** The canonical entry lives in `.utcp_config.json`'s `open_design` Code Mode manual (live-verified), not in `~/.config/opencode/opencode.json`. The `mcp install <agent>` commands below register a *native* agent-config entry and only apply when using this skill in a repo/environment that does not route through Code Mode -- running them here creates a redundant, unwanted `mcp.open-design` entry in the user's global opencode config. See [`references/mcp_wiring.md`](references/mcp_wiring.md) Section 5b for this repo's actual wiring.
+> **This repo already has Open Design wired.** The canonical entry lives in `.utcp_config.json`'s `open_design` Code Mode manual (live-verified), not in `~/.config/opencode/opencode.json`. The `mcp install <agent>` commands below register a *native* agent-config entry and only apply when using this skill in a repo/environment that does not route through Code Mode -- running them here creates a redundant, unwanted `mcp.open-design` entry in the user's global opencode config. See [`references/mcp-wiring.md`](references/mcp-wiring.md) Section 5b for this repo's actual wiring.
 
 Wiring the MCP server is optional and gated. Always preview first.
 
@@ -101,7 +101,7 @@ node "$OD_BIN" mcp install opencode   # deep-merges ~/.config/opencode/opencode.
 node "$OD_BIN" mcp install claude     # runs: claude mcp add --scope user open-design ...
 ```
 
-The written entry is a local stdio server whose `command` is the "Open Design Helper" Electron binary running `daemon-cli.mjs mcp`, with `OD_DATA_DIR`, `OD_SIDECAR_IPC_PATH`, and `ELECTRON_RUN_AS_NODE=1` in its environment. The MCP server rediscovers the live daemon URL from the socket on each spawn, so the config stays valid across daemon restarts. The canonical source for the exact entry is `GET /api/mcp/install-info`. Manual config and the discovery detail live in [`references/mcp_wiring.md`](references/mcp_wiring.md).
+The written entry is a local stdio server whose `command` is the "Open Design Helper" Electron binary running `daemon-cli.mjs mcp`, with `OD_DATA_DIR`, `OD_SIDECAR_IPC_PATH`, and `ELECTRON_RUN_AS_NODE=1` in its environment. The MCP server rediscovers the live daemon URL from the socket on each spawn, so the config stays valid across daemon restarts. The canonical source for the exact entry is `GET /api/mcp/install-info`. Manual config and the discovery detail live in [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 Never pipe a remote `install.sh` to a shell. Use the local `node "$OD_BIN" mcp install` form.
 
@@ -146,13 +146,13 @@ Generation is **multi-turn, not one-shot**. A single `run start` (or the MCP `st
 - The HTTP port is ephemeral and rotates on every daemon restart. Never hardcode or probe a fixed port. Rediscover it from `GET /api/mcp/install-info` (`daemonUrl`) or the socket. The fixed `127.0.0.1:7456` is only the default of a standalone `od --no-open` daemon.
 - The desktop app must be open. If it is closed the socket is gone and calls fail. For a headless daemon, `od --no-open` binds `127.0.0.1:7456`.
 
-Full detail: [`references/od_cli_reference.md`](references/od_cli_reference.md).
+Full detail: [`references/od-cli-reference.md`](references/od-cli-reference.md).
 
 ---
 
 ## 8. SAFETY MODEL
 
-Commands are classified read-only, mutating, and destructive, and every mutating or destructive verb is gated behind explicit user confirmation, an explicit target project or name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts`, `media`, `automation`, `ui`, `memory`, and `plugin` write verbs. Read-only inspection (projects, files, design systems) surfaces freely. The full classification with rollbacks is in [`references/tool_surface.md`](references/tool_surface.md).
+Commands are classified read-only, mutating, and destructive, and every mutating or destructive verb is gated behind explicit user confirmation, an explicit target project or name, and a one-line rollback note. This covers `create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`, `delete_file`, `delete_project`, and the `od artifacts`, `media`, `automation`, `ui`, `memory`, and `plugin` write verbs. Read-only inspection (projects, files, design systems) surfaces freely. The full classification with rollbacks is in [`references/tool-surface.md`](references/tool-surface.md).
 
 ---
 
@@ -172,10 +172,10 @@ Commands are classified read-only, mutating, and destructive, and every mutating
 ## 10. RESOURCES
 
 - [SKILL.md](SKILL.md) - the runtime contract: directions, gating, multi-turn generation.
-- [references/od_cli_reference.md](references/od_cli_reference.md) - locating the CLI, the daemon/socket model, the full verb surface with read-only vs mutating classification.
-- [references/mcp_wiring.md](references/mcp_wiring.md) - wiring the MCP server into opencode and Claude Code, the written config shape, the manual fallback, daemon-URL discovery.
-- [references/tool_surface.md](references/tool_surface.md) - the read-only / mutating / destructive taxonomy.
-- [`references/design_parity_transport.md`](references/design_parity_transport.md) - the Open Design transport for the real-UI loop (the loop itself lives in `sk-design`).
+- [references/od-cli-reference.md](references/od-cli-reference.md) - locating the CLI, the daemon/socket model, the full verb surface with read-only vs mutating classification.
+- [references/mcp-wiring.md](references/mcp-wiring.md) - wiring the MCP server into opencode and Claude Code, the written config shape, the manual fallback, daemon-URL discovery.
+- [references/tool-surface.md](references/tool-surface.md) - the read-only / mutating / destructive taxonomy.
+- [`references/design-parity-transport.md`](references/design-parity-transport.md) - the Open Design transport for the real-UI loop (the loop itself lives in `sk-design`).
 
 Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../../mcp-tooling/mcp-figma/INSTALL-GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../../mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md) (a real-browser surface for last-mile preview).
 

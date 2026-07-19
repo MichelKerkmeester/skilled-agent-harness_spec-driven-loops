@@ -76,7 +76,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Measured CSS should be distilled into a static visual-system plan | `/design:foundations` | Turn measurement into a static system |
 | Measured evidence should inform a new or reshaped interface direction | `/design:interface` | Ground a direction in evidence |
 | The captured surface needs quality review or hardening based on measured evidence | `/design:audit` | Validate quality before build |
-| Extracted evidence informs implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+| Extracted evidence informs implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Hand off to build |
 
 This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
 

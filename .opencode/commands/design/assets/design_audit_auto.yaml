@@ -51,7 +51,7 @@ workflow:
 
   step_3_resolve_target_and_register:
     purpose: Resolve the target and set the register before scoring
-    action: "Read references/evidence_capture.md to resolve the target, then ../shared/register.md so the audit-severity dial weights findings by Brand-vs-Product posture"
+    action: "Read references/evidence-capture.md to resolve the target, then ../shared/register.md so the audit-severity dial weights findings by Brand-vs-Product posture"
     output: resolved_target_and_register
 
   step_4_select_procedure_card:
@@ -59,11 +59,11 @@ workflow:
     action: "Match $ARGUMENTS against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
     trigger_table:
       - request_shape: "Accessibility, WCAG, inclusive design, contrast, keyboard, focus, form, or release-readiness review"
-        card: "procedures/accessibility_audit.md"
+        card: "procedures/accessibility-audit.md"
       - request_shape: "AI-template risk, generic visual language, over-decoration, slop, or model-tell review"
-        card: "procedures/ai_slop_check.md"
+        card: "procedures/ai-slop-check.md"
       - request_shape: "Full pre-delivery polish spanning multiple design dimensions"
-        card: "../shared/procedures/polish_gate_orchestration.md"
+        card: "../shared/procedures/polish-gate-orchestration.md"
       - request_shape: "No trigger matches"
         card: "none - state 'Procedure applied: none - baseline audit workflow' and continue"
     output: selected_procedure_card
@@ -75,7 +75,7 @@ workflow:
 
   step_6_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
     condition: "Only when the user accepts the design output for build"
     output: handoff_manifest
 
@@ -94,4 +94,4 @@ pipeline:
   accepts_from: ["/design:foundations", "/design:interface", "/design:md-generator", "/design:motion"]
   hands_to_next: ["/design:foundations", "/design:interface", "/design:motion"]
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when accepted design findings move to implementation"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when accepted design findings move to implementation"

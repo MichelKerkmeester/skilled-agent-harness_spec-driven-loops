@@ -42,4 +42,4 @@ Read this as illustrative examples of realized looks to critique against, not a 
 | [Brutalist](brutalist.md) | Dense dashboards, technical portfolios, editorial systems | Rigid grid, mechanical typography, utilitarian color |
 | [Minimalist](minimalist.md) | Workspace apps, docs, refined SaaS, editorial pages | Warm monochrome, exact spacing, quiet structure |
 | [Soft](soft.md) | Premium SaaS, health, consumer, portfolio work | Haptic depth, oversized whitespace, cinematic motion |
-| [Apple Bento](apple_bento.md) | Stats, reports, launches, visual summaries | Zero-gap cards, restrained Apple palette, dense metrics |
+| [Apple Bento](apple-bento.md) | Stats, reports, launches, visual summaries | Zero-gap cards, restrained Apple palette, dense metrics |

@@ -37,7 +37,7 @@ A visual direction is not a system. Someone picks a brand teal and a heading fon
 
 ### What It Does
 
-The skill owns the static visual system for the `sk-design` family: color, type, layout, spacing, hierarchy, responsive adaptation, data visualization and token vocabulary. It reads the shared Brand-vs-Product register first, because that one call sets the color strategy and the density everything else inherits, then builds the system in layers and produces a compact handoff. It does not invent the overall direction, that is `interface`, and it does not animate, that is `motion`. The canonical entry point is `SKILL.md`, and the fill-in scaffold in `assets/token_starter.md` is the fastest way to a concrete system.
+The skill owns the static visual system for the `sk-design` family: color, type, layout, spacing, hierarchy, responsive adaptation, data visualization and token vocabulary. It reads the shared Brand-vs-Product register first, because that one call sets the color strategy and the density everything else inherits, then builds the system in layers and produces a compact handoff. It does not invent the overall direction, that is `interface`, and it does not animate, that is `motion`. The canonical entry point is `SKILL.md`, and the fill-in scaffold in `assets/token-starter.md` is the fastest way to a concrete system.
 
 ---
 
@@ -54,7 +54,7 @@ cat .opencode/skills/sk-design/design-foundations/SKILL.md
 Read `../shared/register.md`, decide Brand or Product, then open the scaffold and fill the OKLCH ramp, the type scale and the spacing scale:
 
 ```bash
-cat .opencode/skills/sk-design/design-foundations/assets/token_starter.md
+cat .opencode/skills/sk-design/design-foundations/assets/token-starter.md
 ```
 
 The register answers carry into the scaffold, so a restrained product UI and an expressive brand page never get the same defaults.
@@ -99,7 +99,7 @@ The authority order is user brief and owned system, selected-mode judgment, targ
 
 ### Private Procedure Cards
 
-The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local evidence gathering after the public `foundations` mode is chosen. The three cards are `component_system_inventory.md`, `hierarchy_rhythm_review.md` and `tweakable_design_controls.md`. They are not user-selectable routes.
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local evidence gathering after the public `foundations` mode is chosen. The three cards are `component-system-inventory.md`, `hierarchy-rhythm-review.md` and `tweakable-design-controls.md`. They are not user-selectable routes.
 
 ---
 
@@ -124,10 +124,10 @@ Reach for it whenever a task needs a static visual system or a fix to one: a col
 
 | What you see | Why | Fix |
 |---|---|---|
-| The palette drifts to a generic blue or gray | The register was skipped, so no posture set the color strategy | Read `../shared/register.md`, set Brand or Product, then pull the brand hue from evidence in `assets/token_starter.md` |
-| The mobile view feels wrong, not just small | The desktop design was scaled instead of rethought | Work the matrix in `references/layout/adaptation_matrix.md` across layout, interaction, content and navigation |
-| A chart looks rich but reads dishonestly | The bar axis is truncated or color carries a value a length already shows | Apply `references/data_viz.md`, start bar axes at zero and keep one variable per channel |
-| `sk-code` has to guess token roles or breakpoints | The handoff shipped values without roles or rules | Name semantic roles and breakpoint intent before values, per the handoff checklist in `token_starter.md` |
+| The palette drifts to a generic blue or gray | The register was skipped, so no posture set the color strategy | Read `../shared/register.md`, set Brand or Product, then pull the brand hue from evidence in `assets/token-starter.md` |
+| The mobile view feels wrong, not just small | The desktop design was scaled instead of rethought | Work the matrix in `references/layout/adaptation-matrix.md` across layout, interaction, content and navigation |
+| A chart looks rich but reads dishonestly | The bar axis is truncated or color carries a value a length already shows | Apply `references/data-viz.md`, start bar axes at zero and keep one variable per channel |
+| `sk-code` has to guess token roles or breakpoints | The handoff shipped values without roles or rules | Name semantic roles and breakpoint intent before values, per the handoff checklist in `token-starter.md` |
 
 ---
 
@@ -137,7 +137,7 @@ Reach for it whenever a task needs a static visual system or a fix to one: a col
 |---|---|
 | Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/ --check` reports the skill valid |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-foundations/README.md --type readme` reports zero issues |
-| Manual scenarios | Run `manual_testing_playbook/manual_testing_playbook.md`. Release is ready when every scenario PASSes or is SKIP for environment reasons only |
+| Manual scenarios | Run `manual-testing-playbook/manual-testing-playbook.md`. Release is ready when every scenario PASSes or is SKIP for environment reasons only |
 
 ---
 
@@ -146,13 +146,13 @@ Reach for it whenever a task needs a static visual system or a fix to one: a col
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES |
-| [`references/color/oklch_workflow.md`](./references/color/oklch_workflow.md) | OKLCH conversion, palette generation, contrast and gamut |
-| [`references/color/palette_theming.md`](./references/color/palette_theming.md) | Color dosage, semantic roles, tinted neutrals, surface scales and dark mode |
-| [`references/type/typography_system.md`](./references/type/typography_system.md) | Type roles, scale, pairing, measure and text rendering checks |
-| [`references/layout/layout_responsive.md`](./references/layout/layout_responsive.md) | Spacing, rhythm, hierarchy, grids and the responsive base |
-| [`references/layout/adaptation_matrix.md`](./references/layout/adaptation_matrix.md) | Device, input and context adaptation as rethinking per context, not pixel scaling |
-| [`references/data_viz.md`](./references/data_viz.md) | Chart-type selection, axis and encoding, color-for-data scales and data-table alignment |
-| [`assets/token_starter.md`](./assets/token_starter.md) | Fill-in scaffold for an OKLCH ramp, type scale and spacing scale, keyed to the register |
+| [`references/color/oklch-workflow.md`](./references/color/oklch-workflow.md) | OKLCH conversion, palette generation, contrast and gamut |
+| [`references/color/palette-theming.md`](./references/color/palette-theming.md) | Color dosage, semantic roles, tinted neutrals, surface scales and dark mode |
+| [`references/type/typography-system.md`](./references/type/typography-system.md) | Type roles, scale, pairing, measure and text rendering checks |
+| [`references/layout/layout-responsive.md`](./references/layout/layout-responsive.md) | Spacing, rhythm, hierarchy, grids and the responsive base |
+| [`references/layout/adaptation-matrix.md`](./references/layout/adaptation-matrix.md) | Device, input and context adaptation as rethinking per context, not pixel scaling |
+| [`references/data-viz.md`](./references/data-viz.md) | Chart-type selection, axis and encoding, color-for-data scales and data-table alignment |
+| [`assets/token-starter.md`](./assets/token-starter.md) | Fill-in scaffold for an OKLCH ramp, type scale and spacing scale, keyed to the register |
 | [`procedures/`](./procedures/) | Three maintainer-facing procedure cards for component-system inventory, hierarchy and rhythm review and tweakable design controls |
 | [`../shared/register.md`](../shared/register.md) | The shared Brand-vs-Product register, set first. It sets the color strategy and density this skill inherits |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

@@ -129,7 +129,7 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ## Design-Task Variant
 
-Use this variant when MiniMax-M3 is dispatched for UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. It keeps the tuned TIDD-EC + dense pre-plan scaffold above and adds the shared design-loading contract from [`../../../../sk-design/shared/context_loading_contract.md`](../../../../sk-design/shared/context_loading_contract.md).
+Use this variant when MiniMax-M3 is dispatched for UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. It keeps the tuned TIDD-EC + dense pre-plan scaffold above and adds the shared design-loading contract from [`../../../../sk-design/shared/context-loading-contract.md`](../../../../sk-design/shared/context-loading-contract.md).
 
 ```markdown
 ## Task
@@ -148,11 +148,11 @@ Load and apply the sk-design context bundle for <surface> before producing <reco
 
 ## Design Manifest
 - Files loaded:
-  - .opencode/skills/sk-design/shared/context_loading_contract.md
+  - .opencode/skills/sk-design/shared/context-loading-contract.md
   - .opencode/skills/sk-design/shared/register.md
   - <required mode SKILL.md files and axis references>
-  - .opencode/skills/sk-design/shared/assets/context_loaded_card.md
-  - .opencode/skills/sk-design/shared/assets/proof_of_application_card.md
+  - .opencode/skills/sk-design/shared/assets/context-loaded-card.md
+  - .opencode/skills/sk-design/shared/assets/proof-of-application-card.md
 - Register: Brand | Product
 - Dials:
   - VARIANCE: <0-5>

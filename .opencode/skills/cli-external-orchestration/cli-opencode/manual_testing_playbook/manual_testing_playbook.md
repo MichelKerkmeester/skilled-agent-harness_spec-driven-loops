@@ -666,7 +666,7 @@ Verify a MiniMax-M3 design/UI dispatch is not sent with thin generic context: th
 
 Prompt: `Use MiniMax-M3 to review a SaaS onboarding redesign direction. Dispatch it with the sk-design context manifest, register/dials, contrast-pair, pre-flight, and audit-evidence proof requirements.`
 
-Expected signals: Advisor or operator consults `sk-prompt/prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context_loading_contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
+Expected signals: Advisor or operator consults `sk-prompt/prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context-loading-contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
 
 Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo loaded context and proof-of-application sections, rather than a generic design-review prompt that omits the manifest.
 

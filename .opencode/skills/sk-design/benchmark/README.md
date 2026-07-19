@@ -31,7 +31,7 @@ The deep-improvement Lane C harness benchmarks `sk-design` against its own `manu
 | Scenario outcomes | 15/15 scored scenarios passed; 6 MR (mode-routing) scenarios are browser-class and route out to live mode |
 | D1 intra (router) | 100/100 |
 | D2 discovery | 100/100 |
-| D5 connectivity (hard gate) | 100/100 (an orphaned `references/design_proof_token.md` was wired into `routerPolicy.defaultResource` before freezing this baseline) |
+| D5 connectivity (hard gate) | 100/100 (an orphaned `shared/design-proof-token.md` was wired into `routerPolicy.defaultResource` before freezing this baseline) |
 
 ### Known measurement gaps in this baseline
 

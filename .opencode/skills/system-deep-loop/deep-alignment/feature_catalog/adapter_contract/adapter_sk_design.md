@@ -39,7 +39,7 @@ Several regexes carry documented calibration from the adapter's own dry-run agai
 | `scripts/adapters/sk-design.cjs` | Adapter | `discover`/`standardSource`/`check`, required-heading and banned-pattern checks, Quick-Start consistency, audit-rubric layer. |
 | `references/adapters/sk_design_adapter.md` | Reference | Full specification: required-heading scope (Section 3), the section-slicer and frequency-dump calibration (Section 4), the determinism/static-only boundary (Section 4.3). |
 | `references/adapters/sk_design_known_deviations.md` | Reference | The sk-design suppression list parsed by `loadKnownDeviations()`. |
-| `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md` | Standard source | The Style Reference schema and cardinal rules the structural layer checks against. |
+| `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md` | Standard source | The Style Reference schema and cardinal rules the structural layer checks against. |
 
 ### Validation And Tests
 

@@ -1,7 +1,7 @@
 // ============================================================================
 // Procedure Card Schema Check
 // ============================================================================
-// Automates the Required-Field Lint from shared/procedure_card_schema.md §4
+// Automates the Required-Field Lint from shared/procedure-card-schema.md §4
 // (rules 1-7 and 9). Rules 8 and 10 (no copied source prose; read-only modes
 // gain no write/execute authority) are semantic judgment calls this script
 // cannot reliably automate — they stay a manual review item, called out

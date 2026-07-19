@@ -39,7 +39,7 @@ The skill ships an embedded Playwright crawler that runs a three-phase pipeline.
 
 The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the value tables and the typography/component numbers come verbatim from the FACTS block, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
 
-The authoring boundary keeps that cardinal rule enforceable by inspection. A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent, inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on, while absent values are stamped or omitted rather than backfilled. [`references/authoring_boundary.md`](./references/authoring_boundary.md) draws this line in full, and [`assets/source_of_truth_router_card.md`](./assets/source_of_truth_router_card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability: authoring a design from a brief alone with no live site to measure is forward-authoring, and it stays OUT OF SCOPE for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here.
+The authoring boundary keeps that cardinal rule enforceable by inspection. A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent, inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on, while absent values are stamped or omitted rather than backfilled. [`references/authoring-boundary.md`](./references/authoring-boundary.md) draws this line in full, and [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability: authoring a design from a brief alone with no live site to measure is forward-authoring, and it stays OUT OF SCOPE for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here.
 
 ---
 
@@ -60,7 +60,7 @@ npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/extra
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design_md_format.md` and `references/writing_style_guide.md`. The value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you author the prose sections — including Tokens — Typography — taking every value from those pre-rendered sections or the FACTS block, never typing a number by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
+**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design-md-format.md` and `references/writing-style-guide.md`. The value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you author the prose sections — including Tokens — Typography — taking every value from those pre-rendered sections or the FACTS block, never typing a number by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
 
 **Step 4: Validate before claiming completion.** Run from the repo root with the full script path:
 
@@ -126,7 +126,7 @@ The classifier in `backend/scripts/cluster.ts` is deterministic. Boundary tokens
 
 ### Private Procedure Card
 
-The maintainer-facing card in [`procedures/design_system_extraction.md`](./procedures/design_system_extraction.md) supports extraction evidence after the public `md-generator` mode is chosen. It is not a user-selectable route.
+The maintainer-facing card in [`procedures/design-system-extraction.md`](./procedures/design-system-extraction.md) supports extraction evidence after the public `md-generator` mode is chosen. It is not a user-selectable route.
 
 ### Extract Flags
 
@@ -209,7 +209,7 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design_md_format.md`. `build-write-prompt.ts` pre-renders the value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts` and hands the agent a FACTS block of locked values (including the type scale). The agent writes the prose sections — including Tokens — Typography — but takes every number from a pre-rendered section or the FACTS block, so no value is ever hand-copied. The skill validates the result.
+A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design-md-format.md`. `build-write-prompt.ts` pre-renders the value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts` and hands the agent a FACTS block of locked values (including the type scale). The agent writes the prose sections — including Tokens — Typography — but takes every number from a pre-rendered section or the FACTS block, so no value is ever hand-copied. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 
@@ -238,9 +238,9 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`references/design_md_format.md`](./references/design_md_format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
-| [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
-| [`references/authoring_boundary.md`](./references/authoring_boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
-| [`assets/source_of_truth_router_card.md`](./assets/source_of_truth_router_card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
-| [`procedures/design_system_extraction.md`](./procedures/design_system_extraction.md) | Maintainer-facing procedure card for extraction evidence after `md-generator` is selected |
+| [`references/design-md-format.md`](./references/design-md-format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
+| [`references/writing-style-guide.md`](./references/writing-style-guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
+| [`references/authoring-boundary.md`](./references/authoring-boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
+| [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
+| [`procedures/design-system-extraction.md`](./procedures/design-system-extraction.md) | Maintainer-facing procedure card for extraction evidence after `md-generator` is selected |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

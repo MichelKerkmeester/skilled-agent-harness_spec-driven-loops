@@ -53,13 +53,13 @@ workflow:
     action: "Match the resolved inputs against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
     trigger_table:
       - request_shape: "User-adjustable options, controls, or tunable variants"
-        card: "procedures/tweakable_design_controls.md"
+        card: "procedures/tweakable-design-controls.md"
       - request_shape: "Component extraction, reusable parts, or system inventory"
-        card: "procedures/component_system_inventory.md"
+        card: "procedures/component-system-inventory.md"
       - request_shape: "Hierarchy, rhythm, spacing, density, or flat/chaotic visual order"
-        card: "procedures/hierarchy_rhythm_review.md"
+        card: "procedures/hierarchy-rhythm-review.md"
       - request_shape: "Final polish spanning accessibility, slop, rhythm, and states"
-        card: "../shared/procedures/polish_gate_orchestration.md"
+        card: "../shared/procedures/polish-gate-orchestration.md"
       - request_shape: "No trigger matches"
         card: "none - state 'Procedure applied: none - baseline foundations workflow' and continue"
     output: selected_procedure_card
@@ -71,7 +71,7 @@ workflow:
 
   step_6_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
     condition: "Only when the user accepts the design output for build"
     output: handoff_manifest
 
@@ -90,4 +90,4 @@ pipeline:
   accepts_from: ["/design:audit", "/design:interface", "/design:md-generator", "/design:motion"]
   hands_to_next: ["/design:interface", "/design:motion", "/design:audit"]
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when tokens or static-system decisions move to implementation"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when tokens or static-system decisions move to implementation"

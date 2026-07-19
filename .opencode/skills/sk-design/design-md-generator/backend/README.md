@@ -19,7 +19,7 @@ trigger_phrases:
 
 This backend is the extract, write and validate engine behind the `md-generator` skill. It drives a Playwright crawler that samples five viewports of a live URL, captures real measured CSS into `tokens.json`, pre-renders the deterministic value sections of a v3 Style Reference `DESIGN.md`, and checks the written document against its tokens for fidelity.
 
-The pipeline is driven by the parent skill in [`../SKILL.md`](../SKILL.md), not run on its own. The v3 Style Reference format it targets is specified in [`../references/design_md_format.md`](../references/design_md_format.md). Modules run directly through `ts-node`, so no build step is required for normal use.
+The pipeline is driven by the parent skill in [`../SKILL.md`](../SKILL.md), not run on its own. The v3 Style Reference format it targets is specified in [`../references/design-md-format.md`](../references/design-md-format.md). Modules run directly through `ts-node`, so no build step is required for normal use.
 
 ### Key Statistics
 
@@ -104,7 +104,7 @@ backend/
 | `scripts/formatters-v3.ts` | Deterministic v3 emitters for Colors, Spacing and Shapes, Surfaces and Quick Start. |
 | `scripts/validate.ts` | Phase 3 entry point. Checks hex accuracy, section completeness and Quick-Start fidelity. |
 | `scripts/report-gen.ts`, `scripts/preview-gen.ts`, `scripts/proof.ts` | Optional report-phase artifacts. |
-| `scripts/guided-run.ts` | Guided wrapper entry point. Runs preflight checks, then extract, write-prompt, and (once `--design-md` exists) validate/report; never authors `DESIGN.md` itself. See `../references/guided_run.md`. |
+| `scripts/guided-run.ts` | Guided wrapper entry point. Runs preflight checks, then extract, write-prompt, and (once `--design-md` exists) validate/report; never authors `DESIGN.md` itself. See `../references/guided-run.md`. |
 | `scripts/cluster.ts` | Deterministic L1 to L4 token stability classifier. |
 | `package.json` | Scripts, dependencies and the `design-system-extractor` bin. |
 | `dist/` | Built CLI output. Git-ignored, produced by `npm run build`. |
@@ -180,6 +180,6 @@ npm test            # vitest run
 | [`../SKILL.md`](../SKILL.md) | Parent skill that drives this backend and owns the pipeline contract. |
 | [`../README.md`](../README.md) | Skill-level overview and family boundary. |
 | [`../references/`](../references/) | v3 Style Reference format spec, writing style guide and operational guides. |
-| [`../references/design_md_format.md`](../references/design_md_format.md) | Authoritative v3 Style Reference section specification. |
+| [`../references/design-md-format.md`](../references/design-md-format.md) | Authoritative v3 Style Reference section specification. |
 | [`scripts/README.md`](scripts/README.md) | Code-folder guide to the pipeline modules in `scripts/`. |
 | [`tests/README.md`](tests/README.md) | Code-folder guide to the vitest unit suite in `tests/`. |

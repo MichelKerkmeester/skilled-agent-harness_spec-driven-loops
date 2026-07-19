@@ -23,9 +23,9 @@ const SLUG_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 
 const scriptUrl = new URL(import.meta.url);
 const skillRootUrl = new URL("../../", scriptUrl);
-const catalogUrl = new URL("design-audit/references/ai_fingerprint_tells.md", skillRootUrl);
-const registryUrl = new URL("design-audit/assets/ai_fingerprint_registry.json", skillRootUrl);
-const fixtureRootUrl = new URL("design-audit/assets/ai_fingerprint_fixtures/", skillRootUrl);
+const catalogUrl = new URL("design-audit/references/ai-fingerprint-tells.md", skillRootUrl);
+const registryUrl = new URL("design-audit/assets/ai-fingerprint-registry.json", skillRootUrl);
+const fixtureRootUrl = new URL("design-audit/assets/ai-fingerprint-fixtures/", skillRootUrl);
 
 const options = parseArgs(process.argv.slice(2));
 const jsonMode = options.json;

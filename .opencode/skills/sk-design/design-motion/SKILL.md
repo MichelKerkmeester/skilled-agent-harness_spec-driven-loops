@@ -59,10 +59,10 @@ Route here when the user asks for temporal behavior: whether something should an
 ```text
 MOTION TASK
     |
-    +- Purpose/timing/easing/choreography -> references/motion_strategy.md
-    +- Feedback/loading/gestures/delight -> references/micro_interactions.md
-    +- motion/react, AnimatePresence, exits, lists -> references/animate_presence_patterns.md
-    +- Reduced motion or jank/perf-sensitive choices -> references/performance_reduced_motion.md
+    +- Purpose/timing/easing/choreography -> references/motion-strategy.md
+    +- Feedback/loading/gestures/delight -> references/micro-interactions.md
+    +- motion/react, AnimatePresence, exits, lists -> references/animate-presence-patterns.md
+    +- Reduced motion or jank/perf-sensitive choices -> references/performance-reduced-motion.md
 ```
 
 ### Phase Detection
@@ -81,34 +81,34 @@ MOTION TASK
 
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_SIGNALS`.
 
-- `references/animation_decision_framework.md` covers the restraint gate that decides whether an interaction animates at all, the frequency tiers, the keyboard rule, and the coupling to the register motion-budget dial.
-- `references/motion_strategy.md` covers why motion exists, timing, easing, staging, animation principles, and materials.
-- `references/micro_interactions.md` covers interaction feedback, loading states, gesture patterns, delight, and morphing icons.
-- `references/animate_presence_patterns.md` covers `motion/react`, `AnimatePresence`, exit props, keys, modes, nested exits, and presence hooks.
-- `references/performance_reduced_motion.md` covers compositor safety, FLIP, scroll motion, expensive effects, off-screen pausing, and reduced-motion alternatives.
-- `references/advanced_craft.md` covers origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
-- `references/corpus_map.md` maps the source corpus.
-- `assets/motion_pattern_cards.md` provides fill-in cards for the common motion patterns (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop), each naming owner, purpose, states, and reduced-motion path.
-- `assets/animate_presence_checklist.md` provides a pass-or-fail checklist for shipping `AnimatePresence` exits.
-- `assets/motion_performance_failure_card.md` provides a build-side card of motion patterns that drop frames, each with its failure signature and the cheaper mechanism to replace it.
+- `references/animation-decision-framework.md` covers the restraint gate that decides whether an interaction animates at all, the frequency tiers, the keyboard rule, and the coupling to the register motion-budget dial.
+- `references/motion-strategy.md` covers why motion exists, timing, easing, staging, animation principles, and materials.
+- `references/micro-interactions.md` covers interaction feedback, loading states, gesture patterns, delight, and morphing icons.
+- `references/animate-presence-patterns.md` covers `motion/react`, `AnimatePresence`, exit props, keys, modes, nested exits, and presence hooks.
+- `references/performance-reduced-motion.md` covers compositor safety, FLIP, scroll motion, expensive effects, off-screen pausing, and reduced-motion alternatives.
+- `references/advanced-craft.md` covers origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
+- `references/corpus-map.md` maps the source corpus.
+- `assets/motion-pattern-cards.md` provides fill-in cards for the common motion patterns (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop), each naming owner, purpose, states, and reduced-motion path.
+- `assets/animate-presence-checklist.md` provides a pass-or-fail checklist for shipping `AnimatePresence` exits.
+- `assets/motion-performance-failure-card.md` provides a build-side card of motion patterns that drop frames, each with its failure signature and the cheaper mechanism to replace it.
 - `../shared/register.md` is the parent Brand-vs-Product register. This child reads its motion-budget dial. It sits outside the mode and is not auto-discovered, so it is pointed to explicitly.
-- `../shared/sk_code_handoff.md` defines the implementation mechanism and stack-boundary field for motion handoff.
+- `../shared/sk-code-handoff.md` defines the implementation mechanism and stack-boundary field for motion handoff.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | The first step of any motion task | `../shared/register.md` (read the motion-budget dial that sets the ceiling) and `references/animation_decision_framework.md` (the restraint gate that runs before timing and easing) |
-| ALWAYS | Any motion task | `references/corpus_map.md` plus the matching temporal-concern reference (`references/motion_strategy.md` for strategy/timing) |
-| CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro_interactions.md` |
-| CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate_presence_patterns.md` |
-| CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance_reduced_motion.md` |
-| CONDITIONAL | Advanced popover, tooltip, CSS entry, debugging, or shorthand-under-load craft | `references/advanced_craft.md` |
-| CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` and `../shared/sk_code_handoff.md` |
-| CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate_presence_checklist.md` |
-| CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
-| CONDITIONAL | Internal procedure support | `procedures/interaction_states_pass.md` and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
-| ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
+| ALWAYS | The first step of any motion task | `../shared/register.md` (read the motion-budget dial that sets the ceiling) and `references/animation-decision-framework.md` (the restraint gate that runs before timing and easing) |
+| ALWAYS | Any motion task | `references/corpus-map.md` plus the matching temporal-concern reference (`references/motion-strategy.md` for strategy/timing) |
+| CONDITIONAL | Micro-interactions, loading, gestures, delight, icons | `references/micro-interactions.md` |
+| CONDITIONAL | `motion/react`, Framer Motion, exits, lists, modal transitions | `references/animate-presence-patterns.md` |
+| CONDITIONAL | Reduced-motion, jank, scroll, blur/filter, performance constraints | `references/performance-reduced-motion.md` |
+| CONDITIONAL | Advanced popover, tooltip, CSS entry, debugging, or shorthand-under-load craft | `references/advanced-craft.md` |
+| CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion-pattern-cards.md` and `../shared/sk-code-handoff.md` |
+| CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate-presence-checklist.md` |
+| CONDITIONAL | A pre-handoff motion performance pass | `assets/motion-performance-failure-card.md` |
+| CONDITIONAL | Internal procedure support | `procedures/interaction-states-pass.md` and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
+| ON_DEMAND | Static token coordination | Parent `sk-design/shared/design-token-vocabulary.md` and `foundations` |
 
 The private procedure-card selection table in Section 3 is part of this routing contract: after the public `motion` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
@@ -121,7 +121,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md"]
+DEFAULT_RESOURCE = ["references/corpus-map.md", "../shared/register.md"]
 
 INTENT_SIGNALS = {
     "DECISION": {"weight": 4, "keywords": ["should this animate", "restraint", "restraint gate", "animate at all", "motion budget", "frequency", "keyboard rule", "trim", "over-animated", "decision framework", "animate everywhere", "animation everywhere", "command palette", "polished"]},
@@ -133,12 +133,12 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "DECISION": ["references/animation_decision_framework.md"],
-    "STRATEGY": ["references/motion_strategy.md", "references/corpus_map.md", "../shared/sk_code_handoff.md"],
-    "MICRO_INTERACTIONS": ["references/micro_interactions.md", "assets/motion_pattern_cards.md"],
-    "PRESENCE": ["references/animate_presence_patterns.md", "assets/animate_presence_checklist.md"],
-    "PERFORMANCE": ["references/performance_reduced_motion.md", "assets/motion_performance_failure_card.md"],
-    "ADVANCED_CRAFT": ["references/advanced_craft.md", "references/animation_decision_framework.md", "references/performance_reduced_motion.md"],
+    "DECISION": ["references/animation-decision-framework.md"],
+    "STRATEGY": ["references/motion-strategy.md", "references/corpus-map.md", "../shared/sk-code-handoff.md"],
+    "MICRO_INTERACTIONS": ["references/micro-interactions.md", "assets/motion-pattern-cards.md"],
+    "PRESENCE": ["references/animate-presence-patterns.md", "assets/animate-presence-checklist.md"],
+    "PERFORMANCE": ["references/performance-reduced-motion.md", "assets/motion-performance-failure-card.md"],
+    "ADVANCED_CRAFT": ["references/advanced-craft.md", "references/animation-decision-framework.md", "references/performance-reduced-motion.md"],
 }
 
 LOAD_LEVELS = {
@@ -261,7 +261,7 @@ def route_motion_resources(user_request, task=None):
 
 ### Motion Design Workflow
 
-1. Run the restraint gate first (`references/animation_decision_framework.md`): check frequency, the keyboard rule, a named purpose and the register motion-budget dial, stopping at the first no. A choice that fails ships as an instant state change, not a downgrade.
+1. Run the restraint gate first (`references/animation-decision-framework.md`): check frequency, the keyboard rule, a named purpose and the register motion-budget dial, stopping at the first no. A choice that fails ships as an instant state change, not a downgrade.
 2. Name the purpose: feedback, orientation, focus, continuity, perceived performance, or earned delight.
 3. Decide the motion budget: one hero moment, local feedback layer, state transitions, or no motion.
 4. Choose timing and easing:
@@ -271,7 +271,7 @@ def route_motion_resources(user_request, task=None):
    - `500-800ms` only for earned entrances or choreographed brand moments.
 5. Choose the material: transform/opacity first; bounded blur, filter, mask, clip-path, shadow, or color only when it creates a real effect and can be verified smooth.
 6. Define reduced-motion behavior that preserves state information without non-essential movement.
-7. Spec the pattern with the matching card in `assets/motion_pattern_cards.md`, run `assets/animate_presence_checklist.md` for any exit and clear `assets/motion_performance_failure_card.md` before handoff.
+7. Spec the pattern with the matching card in `assets/motion-pattern-cards.md`, run `assets/animate-presence-checklist.md` for any exit and clear `assets/motion-performance-failure-card.md` before handoff.
 8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks.
 
 ### Procedure Card Selection
@@ -280,8 +280,8 @@ After the hub selects the public `motion` mode, choose a private procedure card 
 
 | Request shape | Procedure card | Proof to cite |
 | --- | --- | --- |
-| Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback | `procedures/interaction_states_pass.md` | Interaction-state matrix, visible focus, feedback coverage, transition timing, and reduced-motion behavior. |
-| Final polish spanning accessibility, slop, rhythm, and interaction states | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+| Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback | `procedures/interaction-states-pass.md` | Interaction-state matrix, visible focus, feedback coverage, transition timing, and reduced-motion behavior. |
+| Final polish spanning accessibility, slop, rhythm, and interaction states | `../shared/procedures/polish-gate-orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
 
 If no procedure card matches, state `Procedure applied: none - baseline motion workflow` and continue with the restraint gate, temporal concern routing, and motion handoff. Do not load every procedure card for a single request.
 
@@ -293,7 +293,7 @@ This mode must run directly with Read, Glob, and Grep only. If subagents are una
 
 ### Motion sk-code Handoff Boundary
 
-Before `sk-code` implements motion, fill the shared envelope from `../shared/sk_code_handoff.md`. The motion-owned field is `IMPLEMENTATION MECHANISM / STACK BOUNDARY`: name CSS transitions, Web Animations, View Transitions, `motion/react`, GSAP or the existing project animation system. If no library applies, say `no animation library`. `sk-code` must not migrate or mix animation systems inside one interaction surface without approval.
+Before `sk-code` implements motion, fill the shared envelope from `../shared/sk-code-handoff.md`. The motion-owned field is `IMPLEMENTATION MECHANISM / STACK BOUNDARY`: name CSS transitions, Web Animations, View Transitions, `motion/react`, GSAP or the existing project animation system. If no library applies, say `no animation library`. `sk-code` must not migrate or mix animation systems inside one interaction surface without approval.
 
 ### Motion Judgment
 
@@ -339,31 +339,31 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 
 ### Core References
 
-- [`references/animation_decision_framework.md`](references/animation_decision_framework.md) - The restraint gate: frequency tiers, the keyboard rule, the purpose test, and register coupling. Run it before any timing or easing choice.
-- [`references/motion_strategy.md`](references/motion_strategy.md) - Purpose, timing, easing, staging, principles, and motion materials.
-- [`references/micro_interactions.md`](references/micro_interactions.md) - Feedback, loading, gestures, delight, sound boundaries, and morphing icons.
-- [`references/animate_presence_patterns.md`](references/animate_presence_patterns.md) - `motion/react` and `AnimatePresence` patterns.
-- [`references/performance_reduced_motion.md`](references/performance_reduced_motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
-- [`references/advanced_craft.md`](references/advanced_craft.md) - Compact advanced craft for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
-- [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
+- [`references/animation-decision-framework.md`](references/animation-decision-framework.md) - The restraint gate: frequency tiers, the keyboard rule, the purpose test, and register coupling. Run it before any timing or easing choice.
+- [`references/motion-strategy.md`](references/motion-strategy.md) - Purpose, timing, easing, staging, principles, and motion materials.
+- [`references/micro-interactions.md`](references/micro-interactions.md) - Feedback, loading, gestures, delight, sound boundaries, and morphing icons.
+- [`references/animate-presence-patterns.md`](references/animate-presence-patterns.md) - `motion/react` and `AnimatePresence` patterns.
+- [`references/performance-reduced-motion.md`](references/performance-reduced-motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
+- [`references/advanced-craft.md`](references/advanced-craft.md) - Compact advanced craft for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
+- [`references/corpus-map.md`](references/corpus-map.md) - Source traceability for the distilled corpus.
 
 ### Assets
 
 Fill-in cards. Copy, complete, and hand off:
-- [`assets/motion_pattern_cards.md`](assets/motion_pattern_cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
-- [`assets/animate_presence_checklist.md`](assets/animate_presence_checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
-- [`assets/motion_performance_failure_card.md`](assets/motion_performance_failure_card.md) - Build-side failure-mode card for motion that drops frames.
-- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Motion uses it for implementation mechanism and stack-boundary fields.
-- [`procedures/interaction_states_pass.md`](procedures/interaction_states_pass.md) - Private support for interaction-state matrices, feedback, transitions, and reduced-motion expectations.
-- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when motion owns interaction-state or transition fixes.
+- [`assets/motion-pattern-cards.md`](assets/motion-pattern-cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
+- [`assets/animate-presence-checklist.md`](assets/animate-presence-checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
+- [`assets/motion-performance-failure-card.md`](assets/motion-performance-failure-card.md) - Build-side failure-mode card for motion that drops frames.
+- [`../shared/sk-code-handoff.md`](../shared/sk-code-handoff.md) - Shared sk-code handoff envelope. Motion uses it for implementation mechanism and stack-boundary fields.
+- [`procedures/interaction-states-pass.md`](procedures/interaction-states-pass.md) - Private support for interaction-state matrices, feedback, transitions, and reduced-motion expectations.
+- [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when motion owns interaction-state or transition fixes.
 
 ### Parent Shared Base
 
 Use, do not duplicate, the parent references for shared vocabulary:
 - [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product operating register. Read the motion-budget dial first, because it sets the motion ceiling for the surface.
-- `../shared/anti_slop_principles.md`
-- `../shared/design_token_vocabulary.md`
-- `../shared/cognitive_laws.md`
+- `../shared/anti-slop-principles.md`
+- `../shared/design-token-vocabulary.md`
+- `../shared/cognitive-laws.md`
 
 ---
 
@@ -394,4 +394,4 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. The initial release notes are in `changelog/v1.0.0.0.md`.
+Manual validation scenarios live in `manual-testing-playbook/manual-testing-playbook.md`. The initial release notes are in `changelog/v1.0.0.0.md`.

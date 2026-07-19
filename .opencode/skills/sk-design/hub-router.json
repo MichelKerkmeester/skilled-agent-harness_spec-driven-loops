@@ -11,7 +11,7 @@
       "defer": "unclear or contradictory design intent asks for disambiguation"
     },
     "defaultResource": [
-      "shared/references/smart_routing.md",
+      "shared/references/smart-routing.md",
       "mode-registry.json"
     ],
     "bundleRules": [

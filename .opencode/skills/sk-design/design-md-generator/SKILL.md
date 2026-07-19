@@ -43,7 +43,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 **Skip this skill when:**
 - The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
-- The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring_boundary.md`.
+- The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring-boundary.md`.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
 - The target is an **Open Design project**. Use `design-mcp-open-design` (nested inside `sk-design`).
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
@@ -57,7 +57,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 Detect the **pipeline phase** first. The three phases are sequential and each has a distinct surface: EXTRACT hits the live URL, WRITE produces the markdown, VALIDATE checks fidelity. A fourth path — REPORT — renders visual artifacts from an existing pair.
 
-Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. **Route here too, even with no live URL present, whenever the request explicitly names the `DESIGN.md`/"style reference" artifact this mode owns** (e.g. "generate a DESIGN.md style reference for X from this brief") — resolving elsewhere on a brief-only technicality would skip this mode's own authoring-boundary refusal (`references/authoring_boundary.md`), the exact check that request needs. Only route brief-only requests to `foundations` when the ask is generic token-system authoring that never names `DESIGN.md`/style-reference/`tokens.json` as the target artifact (e.g. "design a color and type token system for X"). Do not route new visual direction from an extracted reference here; the extraction can ground `interface`, but this mode only captures and validates measured values.
+Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. **Route here too, even with no live URL present, whenever the request explicitly names the `DESIGN.md`/"style reference" artifact this mode owns** (e.g. "generate a DESIGN.md style reference for X from this brief") — resolving elsewhere on a brief-only technicality would skip this mode's own authoring-boundary refusal (`references/authoring-boundary.md`), the exact check that request needs. Only route brief-only requests to `foundations` when the ask is generic token-system authoring that never names `DESIGN.md`/style-reference/`tokens.json` as the target artifact (e.g. "design a color and type token system for X"). Do not route new visual direction from an extracted reference here; the extraction can ground `interface`, but this mode only captures and validates measured values.
 
 ```bash
 # Phase detection (pseudo)
@@ -89,37 +89,37 @@ TASK CONTEXT
 The router discovers knowledge from this skill's `references/` and `assets/` directories: ten reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the authoring boundary, the quality checklist, the operational extraction-workflow and troubleshooting guides, and the guided-run wrapper contract, plus three assets (the WRITE-phase prompt template, the cardinal-rules card, and the source-of-truth router card). The gold-standard pairs under `references/examples/` are reachable only under STUDY intent — study artifacts the writer reads to learn format conventions, never copied into an extraction.
 
 ```text
-references/design_md_format.md       # v3 Style Reference section specification (DEFAULT_RESOURCE)
-references/writing_style_guide.md    # voice, tone, section composition rules
-references/color_role_taxonomy.md    # color role naming + classification
-references/component_taxonomy.md     # component naming + hierarchy patterns
-references/anti_patterns.md          # common DESIGN.md mistakes to avoid
-references/authoring_boundary.md     # measured / brief-provided / inferred / absent line
-references/quality_checklist.md      # pre-validate self-check
-references/extraction_workflow.md    # three-phase workflow, invocations, handoff
+references/design-md-format.md       # v3 Style Reference section specification (DEFAULT_RESOURCE)
+references/writing-style-guide.md    # voice, tone, section composition rules
+references/color-role-taxonomy.md    # color role naming + classification
+references/component-taxonomy.md     # component naming + hierarchy patterns
+references/anti-patterns.md          # common DESIGN.md mistakes to avoid
+references/authoring-boundary.md     # measured / brief-provided / inferred / absent line
+references/quality-checklist.md      # pre-validate self-check
+references/extraction-workflow.md    # three-phase workflow, invocations, handoff
 references/troubleshooting.md        # failure modes and fixes
 references/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + writing-notes pairs (STUDY intent)
-references/examples/editorial_exemplar.md  # non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction
-references/guided_run.md          # wrapper contract for preflight, extract, write prompt, validate, report
-assets/design_md_prompt_template.md  # copy-paste WRITE-phase prompt
-assets/cardinal_rules_card.md        # one-page pre-write / pre-validate fidelity gate
-assets/source_of_truth_router_card.md  # fill-in provenance card
+references/examples/editorial-exemplar.md  # non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction
+references/guided-run.md          # wrapper contract for preflight, extract, write prompt, validate, report
+assets/design-md-prompt-template.md  # copy-paste WRITE-phase prompt
+assets/cardinal-rules-card.md        # one-page pre-write / pre-validate fidelity gate
+assets/source-of-truth-router-card.md  # fill-in provenance card
 ```
 
 ### Resource Loading Levels
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `references/design_md_format.md`, `references/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
-| CONDITIONAL | EXTRACT_WRITE intent                 | `references/color_role_taxonomy.md`, `references/component_taxonomy.md`, `references/anti_patterns.md` |
-| CONDITIONAL | Guided run or smoke extraction wrapper | `references/guided_run.md`, `references/extraction_workflow.md`, `references/troubleshooting.md` |
-| CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring_boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source_of_truth_router_card.md` (the fill-in provenance card) |
-| CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
+| ALWAYS      | Every invocation                     | `references/design-md-format.md`, `references/writing-style-guide.md`, `assets/cardinal-rules-card.md` (pre-write fabrication gate) |
+| CONDITIONAL | EXTRACT_WRITE intent                 | `references/color-role-taxonomy.md`, `references/component-taxonomy.md`, `references/anti-patterns.md` |
+| CONDITIONAL | Guided run or smoke extraction wrapper | `references/guided-run.md`, `references/extraction-workflow.md`, `references/troubleshooting.md` |
+| CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring-boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source-of-truth-router-card.md` (the fill-in provenance card) |
+| CONDITIONAL | VALIDATE / completion claim          | `references/quality-checklist.md`, `references/anti-patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
-| CONDITIONAL | Internal procedure support           | `procedures/design_system_extraction.md` when the request involves extraction, token capture, `DESIGN.md`, source design systems, screenshots, or measured brand references |
-| ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti_patterns.md`, `references/component_taxonomy.md` |
+| CONDITIONAL | Internal procedure support           | `procedures/design-system-extraction.md` when the request involves extraction, token capture, `DESIGN.md`, source design systems, screenshots, or measured brand references |
+| ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti-patterns.md`, `references/component-taxonomy.md` |
 
-The private procedure-card selection table in Section 3 is part of this routing contract: after the public `md-generator` mode is selected, choose `procedures/design_system_extraction.md` when its trigger matches and cite its relative path in the plan or proof line.
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `md-generator` mode is selected, choose `procedures/design-system-extraction.md` when its trigger matches and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 
@@ -130,7 +130,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/design_md_format.md"
+DEFAULT_RESOURCE = "references/design-md-format.md"
 
 INTENT_SIGNALS = {
     "EXTRACT_WRITE": {"weight": 4, "keywords": ["extract", "crawl", "url", "design.md", "generate",
@@ -147,22 +147,22 @@ INTENT_SIGNALS = {
 # always-loaded DEFAULT_RESOURCE); no orphans. The examples/ pairs are reachable
 # only under STUDY intent — they are study artifacts the writer reads, never copied.
 RESOURCE_MAP = {
-    "EXTRACT_WRITE": ["references/design_md_format.md", "references/writing_style_guide.md",
-                       "references/color_role_taxonomy.md", "references/component_taxonomy.md",
-                       "references/anti_patterns.md", "references/authoring_boundary.md",
-                       "references/extraction_workflow.md", "references/troubleshooting.md",
-                       "assets/design_md_prompt_template.md", "assets/cardinal_rules_card.md",
-                       "assets/source_of_truth_router_card.md"],
-    "VALIDATE":      ["references/quality_checklist.md", "references/anti_patterns.md",
-                       "references/design_md_format.md", "assets/cardinal_rules_card.md"],
-    "REPORT":        ["references/design_md_format.md"],
-    "RUN_WRAPPER":   ["references/extraction_workflow.md", "references/troubleshooting.md", "references/guided_run.md", "assets/cardinal_rules_card.md"],
-    "STUDY":         ["references/design_md_format.md", "references/writing_style_guide.md",
+    "EXTRACT_WRITE": ["references/design-md-format.md", "references/writing-style-guide.md",
+                       "references/color-role-taxonomy.md", "references/component-taxonomy.md",
+                       "references/anti-patterns.md", "references/authoring-boundary.md",
+                       "references/extraction-workflow.md", "references/troubleshooting.md",
+                       "assets/design-md-prompt-template.md", "assets/cardinal-rules-card.md",
+                       "assets/source-of-truth-router-card.md"],
+    "VALIDATE":      ["references/quality-checklist.md", "references/anti-patterns.md",
+                       "references/design-md-format.md", "assets/cardinal-rules-card.md"],
+    "REPORT":        ["references/design-md-format.md"],
+    "RUN_WRAPPER":   ["references/extraction-workflow.md", "references/troubleshooting.md", "references/guided-run.md", "assets/cardinal-rules-card.md"],
+    "STUDY":         ["references/design-md-format.md", "references/writing-style-guide.md",
                         "references/examples/stripe/DESIGN.md", "references/examples/stripe/writing-notes.md",
                         "references/examples/vercel/DESIGN.md", "references/examples/vercel/writing-notes.md",
                         "references/examples/linear/DESIGN.md", "references/examples/linear/writing-notes.md",
                         "references/examples/supabase/DESIGN.md", "references/examples/supabase/writing-notes.md",
-                        "references/examples/editorial_exemplar.md"],
+                        "references/examples/editorial-exemplar.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -235,7 +235,7 @@ Every extraction runs as a sequential pipeline. No phase can be skipped in a ful
 
 ### Procedure Card Selection
 
-After the hub selects the public `md-generator` mode, select the private `procedures/design_system_extraction.md` card when the request involves measured extraction, token capture, CSS capture, `DESIGN.md` generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface. Cite that card by relative path in the plan or proof line. The card supports this mode; it is not a public route.
+After the hub selects the public `md-generator` mode, select the private `procedures/design-system-extraction.md` card when the request involves measured extraction, token capture, CSS capture, `DESIGN.md` generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface. Cite that card by relative path in the plan or proof line. The card supports this mode; it is not a public route.
 
 If the card does not match, state `Procedure applied: none - baseline md-generator pipeline` and continue with phase detection (`EXTRACT_WRITE`, `VALIDATE`, `REPORT`, `STUDY`) plus the existing resource router.
 
@@ -254,11 +254,11 @@ If subagents are unavailable or disallowed, execute directly in the current sess
 **Process Flow:** `EXTRACT (Phase 1)` → `WRITE (Phase 2)` → `VALIDATE (Phase 3)` → `REPORT (Phase 4, optional)`
 
 - **EXTRACT** — Playwright crawls 5 viewports, collecting computed CSS (colors, typography, shadows, radii, spacing, CSS variables), measured image-edge outlines, nested/concentric radii, root font smoothing, and hit-target affordances when present, plus dark-mode/framework/icon/motion/a11y signals. Every token is tagged with a stability class (L1–L4, see below). Output: `tokens.json`.
-- **WRITE** — `build-write-prompt.ts` runs first: it pre-renders the value tables (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) plus a FACTS block deterministically from tokens via `formatters-v3.ts` (doc-as-view, no AI on the value tables). Paste those sections unchanged; write prose only (intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands) — voice per `references/writing_style_guide.md`. Elevation renders FLAT when there are 0 shadow tokens. Output: `DESIGN.md`.
+- **WRITE** — `build-write-prompt.ts` runs first: it pre-renders the value tables (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) plus a FACTS block deterministically from tokens via `formatters-v3.ts` (doc-as-view, no AI on the value tables). Paste those sections unchanged; write prose only (intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands) — voice per `references/writing-style-guide.md`. Elevation renders FLAT when there are 0 shadow tokens. Output: `DESIGN.md`.
 - **VALIDATE** — `validate.ts` checks hex accuracy, v3 section completeness, Quick-Start fidelity, and prose provenance (see "What `validate.ts` traces" below). Output: pass/fail with a dual score and per-finding messages.
 - **REPORT** (optional) — `report-gen.ts` and `preview-gen.ts` render visual artifacts (HTML report, preview) for human review.
 
-Full phase-by-phase actions and handoff: `references/extraction_workflow.md`.
+Full phase-by-phase actions and handoff: `references/extraction-workflow.md`.
 
 ### Cardinal Fidelity Rule
 
@@ -271,11 +271,11 @@ Full phase-by-phase actions and handoff: `references/extraction_workflow.md`.
 
 ### Authoring Boundary
 
-The cardinal rule stays enforceable by inspection because every value has a legible origin. A value is **measured** (read off the page and present in `tokens.json`), **brief-provided** (supplied by the user, not the page), **inferred** (a grounded characterization of a measured value) or **absent** (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent and never sit in a value table. Inferred claims carry `[INFERRED]` and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. This boundary adds no capability and relaxes the fidelity contract by not one digit. When a value's origin is unclear, or a request asks to author from a brief with no live site, load `references/authoring_boundary.md` for the full line and `assets/source_of_truth_router_card.md` to sort each value before writing. Authoring from a brief alone is forward-authoring and stays out of scope (Section 1, When NOT to Use).
+The cardinal rule stays enforceable by inspection because every value has a legible origin. A value is **measured** (read off the page and present in `tokens.json`), **brief-provided** (supplied by the user, not the page), **inferred** (a grounded characterization of a measured value) or **absent** (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent and never sit in a value table. Inferred claims carry `[INFERRED]` and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. This boundary adds no capability and relaxes the fidelity contract by not one digit. When a value's origin is unclear, or a request asks to author from a brief with no live site, load `references/authoring-boundary.md` for the full line and `assets/source-of-truth-router-card.md` to sort each value before writing. Authoring from a brief alone is forward-authoring and stays out of scope (Section 1, When NOT to Use).
 
 ### Invocation
 
-> **Working directory.** One-time setup runs from `backend/`. Every pipeline script runs from the **repo root** with the full script path — `extract.ts` refuses any `--output` that resolves inside the skill, so a relative `.opencode/specs/...` path only resolves correctly from there. Full phase-by-phase actions: `references/extraction_workflow.md`. Complete flag reference: `backend/README.md`.
+> **Working directory.** One-time setup runs from `backend/`. Every pipeline script runs from the **repo root** with the full script path — `extract.ts` refuses any `--output` that resolves inside the skill, so a relative `.opencode/specs/...` path only resolves correctly from there. Full phase-by-phase actions: `references/extraction-workflow.md`. Complete flag reference: `backend/README.md`.
 
 ```bash
 # One-time setup
@@ -295,7 +295,7 @@ Optional Phase 4 (from the repo root, tokens.json first): `proof.ts <url> <token
 
 ### Token Stability Classes (L1–L4)
 
-Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`content`) by the deterministic classifier in `backend/scripts/cluster.ts`. L1+L2 populate the main `DESIGN.md` sections, L3 gets a "Subject to change" annotation, L4 is excluded entirely. Boundary tokens take the higher (more restrictive) class. Full class table, the emitted `stability.layer` string mapping, and the coverage-election pre-gate: `references/extraction_workflow.md` (Section 3).
+Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`content`) by the deterministic classifier in `backend/scripts/cluster.ts`. L1+L2 populate the main `DESIGN.md` sections, L3 gets a "Subject to change" annotation, L4 is excluded entirely. Boundary tokens take the higher (more restrictive) class. Full class table, the emitted `stability.layer` string mapping, and the coverage-election pre-gate: `references/extraction-workflow.md` (Section 3).
 
 ---
 
@@ -303,7 +303,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ### ✅ ALWAYS
 
-1. **ALWAYS read `references/design_md_format.md` and `references/writing_style_guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
+1. **ALWAYS read `references/design-md-format.md` and `references/writing-style-guide.md` before writing DESIGN.md.** These define the v3 Style Reference section specification and the voice/tone rules. No DESIGN.md is conformant without them.
 2. **ALWAYS copy every numeric CSS value verbatim from `tokens.json`.** Hex colors, pixel sizes, font weights, box shadows, border radii, spacing values — every number must match `tokens.json` exactly. This is the cardinal fidelity rule.
 3. **ALWAYS use 6-digit lowercase hex** for every color in DESIGN.md (e.g., `#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 4. **ALWAYS apply stability gates:** L1 and L2 colours in the main token table; L3 colours in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens excluded entirely.
@@ -311,8 +311,8 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 6. **ALWAYS include a dark-mode section ONLY when `tokens.json` contains a detected dark-mode palette.** Never infer, derive, or fabricate a dark palette from the light tokens.
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
 8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
-9. **ALWAYS cite `procedures/design_system_extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
-10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring_boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision, or `foundations`). Cite both `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
+9. **ALWAYS cite `procedures/design-system-extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
+10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring-boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision, or `foundations`). Cite both `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
 
 ### ⛔ NEVER
 
@@ -321,7 +321,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `interface`, `sk-code`, and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
 4. **NEVER skip validation before claiming a DESIGN.md is complete.** An unvalidated DESIGN.md is a draft. Validation errors must be resolved before completion.
 5. **NEVER write DESIGN.md without reading `tokens.json` first.** The markdown exists only as a faithful rendering of the token data; writing without the source data guarantees hallucination.
-6. **NEVER produce any Tokens table (Colors, Typography, Spacing & Shapes, Border Radius, or any other) when the request is brief-only with no live URL to crawl** — not even with an Origin/brief-provided label or a disclaimer sentence attached. The correct response for that condition contains zero token tables: either a URL request or an explicit out-of-scope statement per ALWAYS rule #10. Outside that specific no-live-URL condition, a brief-provided value must never appear inside an actual Tokens table row, even when a separate Provenance/source-of-truth table also exists elsewhere in the response. A separate labeling table does not cure an unlabeled value sitting in the real Tokens table — brief-provided values stay in prose only, per `references/authoring_boundary.md`'s measured/brief-provided/inferred/absent line (Section 3, "Only measured values enter the token tables, and they enter unlabeled").
+6. **NEVER produce any Tokens table (Colors, Typography, Spacing & Shapes, Border Radius, or any other) when the request is brief-only with no live URL to crawl** — not even with an Origin/brief-provided label or a disclaimer sentence attached. The correct response for that condition contains zero token tables: either a URL request or an explicit out-of-scope statement per ALWAYS rule #10. Outside that specific no-live-URL condition, a brief-provided value must never appear inside an actual Tokens table row, even when a separate Provenance/source-of-truth table also exists elsewhere in the response. A separate labeling table does not cure an unlabeled value sitting in the real Tokens table — brief-provided values stay in prose only, per `references/authoring-boundary.md`'s measured/brief-provided/inferred/absent line (Section 3, "Only measured values enter the token tables, and they enter unlabeled").
 
 ### ⚠️ ESCALATE IF
 
@@ -337,13 +337,13 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ### Core References (Format & Style)
 
-- [design_md_format.md](references/design_md_format.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
-- [writing_style_guide.md](references/writing_style_guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
-- [color_role_taxonomy.md](references/color_role_taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
-- [component_taxonomy.md](references/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
-- [anti_patterns.md](references/anti_patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
-- [quality_checklist.md](references/quality_checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
-- [guided_run.md](references/guided_run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
+- [design-md-format.md](references/design-md-format.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
+- [writing-style-guide.md](references/writing-style-guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
+- [color-role-taxonomy.md](references/color-role-taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
+- [component-taxonomy.md](references/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
+- [anti-patterns.md](references/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
+- [quality-checklist.md](references/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
+- [guided-run.md](references/guided-run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
 
 ### Gold-Standard Examples
 
@@ -351,15 +351,15 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 - [references/examples/vercel/](references/examples/vercel/) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
 - [references/examples/linear/](references/examples/linear/) — DESIGN.md + tokens.json + writing-notes.md for Linear.
 - [references/examples/supabase/](references/examples/supabase/) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
-- [references/examples/editorial_exemplar.md](references/examples/editorial_exemplar.md) - Non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction shape. Illustrative only, never a preset.
+- [references/examples/editorial-exemplar.md](references/examples/editorial-exemplar.md) - Non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction shape. Illustrative only, never a preset.
 
 ### Skill-Owned References
 
-- [references/extraction_workflow.md](references/extraction_workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
+- [references/extraction-workflow.md](references/extraction-workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
-- [references/authoring_boundary.md](references/authoring_boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to a separate design-spec decision.
-- [references/guided_run.md](references/guided_run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
-- [procedures/design_system_extraction.md](procedures/design_system_extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
+- [references/authoring-boundary.md](references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to a separate design-spec decision.
+- [references/guided-run.md](references/guided-run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
+- [procedures/design-system-extraction.md](procedures/design-system-extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
 
 ### Shared
 
@@ -367,18 +367,18 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ### Assets
 
-- [assets/design_md_prompt_template.md](assets/design_md_prompt_template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the v3 Style Reference contract.
-- [assets/cardinal_rules_card.md](assets/cardinal_rules_card.md) — One-page fidelity checklist for a pre-validate self-check.
-- [assets/source_of_truth_router_card.md](assets/source_of_truth_router_card.md) — Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing, so no value is fabricated or backfilled.
+- [assets/design-md-prompt-template.md](assets/design-md-prompt-template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the v3 Style Reference contract.
+- [assets/cardinal-rules-card.md](assets/cardinal-rules-card.md) — One-page fidelity checklist for a pre-validate self-check.
+- [assets/source-of-truth-router-card.md](assets/source-of-truth-router-card.md) — Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing, so no value is fabricated or backfilled.
 
 ### Reference Loading Notes
 
-- `references/design_md_format.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
-- Load the taxonomy docs (`color_role_taxonomy.md`, `component_taxonomy.md`) and `anti_patterns.md` only when the intent is EXTRACT_WRITE.
-- Load `quality_checklist.md` before any validation or completion claim.
-- Load `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` when a value's origin is unclear (brief versus measured) or when a request asks to author from a brief with no live site. The boundary doc keeps the cardinal rule enforceable and routes forward-authoring out of scope.
+- `references/design-md-format.md` is the baseline (always loaded). Load `writing-style-guide.md` alongside it for any write-phase work.
+- Load the taxonomy docs (`color-role-taxonomy.md`, `component-taxonomy.md`) and `anti-patterns.md` only when the intent is EXTRACT_WRITE.
+- Load `quality-checklist.md` before any validation or completion claim.
+- Load `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` when a value's origin is unclear (brief versus measured) or when a request asks to author from a brief with no live site. The boundary doc keeps the cardinal rule enforceable and routes forward-authoring out of scope.
 - Load one example site at a time from `references/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
-- Load `references/guided_run.md` for wrapper, smoke lane, preflight, readiness, or guided run requests.
+- Load `references/guided-run.md` for wrapper, smoke lane, preflight, readiness, or guided run requests.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 
 ---
@@ -387,7 +387,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 **Extraction complete when:**
 - [x] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
-- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design_md_format.md`.
+- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design-md-format.md`.
 - [x] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
 - [x] All hex codes use 6-digit lowercase format.
 - [x] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
@@ -418,4 +418,4 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL-GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction_workflow.md`.
+Manual validation scenarios live in `manual-testing-playbook/manual-testing-playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL-GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction-workflow.md`.

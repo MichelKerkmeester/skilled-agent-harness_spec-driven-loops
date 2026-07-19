@@ -76,7 +76,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Direction needs a static token, type, spacing, or theming system | `/design:foundations` | Turn direction into a static visual system |
 | Direction needs purposeful animation, transitions, or micro-interactions | `/design:motion` | Specify temporal behavior |
 | Direction is ready for findings-first review and scoring | `/design:audit` | Validate quality before build |
-| Accepted direction moves to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+| Accepted direction moves to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Hand off to build |
 
 This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
 

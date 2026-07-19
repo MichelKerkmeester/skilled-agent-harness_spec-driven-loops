@@ -44,7 +44,7 @@
         {
           "order": 4,
           "skill": "sk-code",
-          "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+          "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
           "action": "prepare implementation handoff only when accepted design output moves to code"
         }
       ]

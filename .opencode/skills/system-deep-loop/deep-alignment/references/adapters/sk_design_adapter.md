@@ -25,7 +25,7 @@ ADR-003 (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architect
 
 ### Static-Only v1 Boundary: HARD SCOPE LIMIT (ADR-004, ADR-009)
 
-**Live-render and `chrome-devtools`-driven audits (accessibility, performance, responsive behavior against an actually-rendered surface) are explicitly OUT of this adapter's scope.** ADR-004 locks v1's sk-design adapter to "static DESIGN.md/token checks only," and ADR-009 (now LOCKED) splits the live-render dimension into its own peer phase, `010-adapter-sk-design-live-render`, which, per ADR-009's own Decision text, will route exclusively through the existing `design-mcp-open-design` dispatch boundary (`.opencode/skills/sk-design/shared/design_dispatch_boundary.md`, and `.opencode/skills/sk-design/SKILL.md:30`: "a read-only bridge, always paired with a design-judgment mode that owns the taste") rather than a parallel chrome-devtools path. This adapter never renders anything, never invokes `design-md-generator`'s Playwright extraction pipeline and never drives `chrome-devtools` (NFR-S01). It reads `DESIGN.md`/`tokens.json` files already present on disk in scope, nothing more.
+**Live-render and `chrome-devtools`-driven audits (accessibility, performance, responsive behavior against an actually-rendered surface) are explicitly OUT of this adapter's scope.** ADR-004 locks v1's sk-design adapter to "static DESIGN.md/token checks only," and ADR-009 (now LOCKED) splits the live-render dimension into its own peer phase, `010-adapter-sk-design-live-render`, which, per ADR-009's own Decision text, will route exclusively through the existing `design-mcp-open-design` dispatch boundary (`.opencode/skills/sk-design/shared/design-dispatch-boundary.md`, and `.opencode/skills/sk-design/SKILL.md:30`: "a read-only bridge, always paired with a design-judgment mode that owns the taste") rather than a parallel chrome-devtools path. This adapter never renders anything, never invokes `design-md-generator`'s Playwright extraction pipeline and never drives `chrome-devtools` (NFR-S01). It reads `DESIGN.md`/`tokens.json` files already present on disk in scope, nothing more.
 
 This has a concrete, checkable consequence for which `audit_contract.md` dimensions this adapter can honestly claim to cover. Of the Five-Dimension Score's five dimensions (`audit_contract.md` Section 3: Accessibility, Performance, Responsive Design, Theming, Anti-Patterns), only **Theming** and **Anti-Patterns** are staticaly assessable from a `DESIGN.md`'s own text. A spec document has no keyboard to navigate, no Core Web Vitals to measure, no breakpoint to resize. Accessibility, Performance and Responsive Design genuinely require a rendered surface, which is exactly what phase 010 exists to add. This adapter does not attempt to fake coverage of those three dimensions from static text. `standardSource()`'s `accessibilityPerformance` rule entry carries this limitation as an explicit `note` field (Section 4.4).
 
@@ -33,12 +33,12 @@ This has a concrete, checkable consequence for which `audit_contract.md` dimensi
 
 Five real, live sk-design reference sources, cited with exact paths so this specification stays checkable against the live files:
 
-1. `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md`: the authoritative Style Reference structural specification (13-section presence table, Cardinal rules, Quick-Start consistency rule). This adapter's structural-conformance sub-check (Section 4.1) is built directly against this document, section by section.
-2. `.opencode/skills/sk-design/shared/design_token_vocabulary.md`: shared color/typography/layout/elevation/motion/state token naming vocabulary.
-3. `.opencode/skills/sk-design/design-audit/references/audit_contract.md`: P0-P3 severity model and five-dimension score, cited by `spec.md` REQ-002 as the v1 static rule source (this is the exact path REQ-002 names. The two sibling references below were separately confirmed live-present and are cited as additional, real static rubric inputs, not a substitution for REQ-002's own citation).
-4. `.opencode/skills/sk-design/design-audit/references/accessibility_performance.md`: WCAG/contrast/touch-target/performance thresholds. Reasoning-agent-layer input only in v1 (Section 4.4).
-5. `.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md`: anti-slop, theming-drift, token-misuse and production-readiness signals. A mix of staticaly-checkable (Section 4.1's banned-pattern checks) and reasoning-agent-layer content.
-6. `.opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md`: model-specific AI-generated-design tell catalog. Reasoning-agent-layer input only in v1 (Section 4.4).
+1. `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md`: the authoritative Style Reference structural specification (13-section presence table, Cardinal rules, Quick-Start consistency rule). This adapter's structural-conformance sub-check (Section 4.1) is built directly against this document, section by section.
+2. `.opencode/skills/sk-design/shared/design-token-vocabulary.md`: shared color/typography/layout/elevation/motion/state token naming vocabulary.
+3. `.opencode/skills/sk-design/design-audit/references/audit-contract.md`: P0-P3 severity model and five-dimension score, cited by `spec.md` REQ-002 as the v1 static rule source (this is the exact path REQ-002 names. The two sibling references below were separately confirmed live-present and are cited as additional, real static rubric inputs, not a substitution for REQ-002's own citation).
+4. `.opencode/skills/sk-design/design-audit/references/accessibility-performance.md`: WCAG/contrast/touch-target/performance thresholds. Reasoning-agent-layer input only in v1 (Section 4.4).
+5. `.opencode/skills/sk-design/design-audit/references/anti-patterns-production.md`: anti-slop, theming-drift, token-misuse and production-readiness signals. A mix of staticaly-checkable (Section 4.1's banned-pattern checks) and reasoning-agent-layer content.
+6. `.opencode/skills/sk-design/design-audit/references/ai-fingerprint-tells.md`: model-specific AI-generated-design tell catalog. Reasoning-agent-layer input only in v1 (Section 4.4).
 
 Explicitly **not wrapped**: `design-md-generator`'s own Playwright extraction backend (`.opencode/skills/sk-design/design-md-generator/backend/`). This adapter never invokes it (NFR-S01).
 
@@ -54,9 +54,9 @@ Explicitly **not wrapped**: `design-md-generator`'s own Playwright extraction ba
   "determinism": "hybrid",
   "scopeBoundary": "static-only-v1",
   "rules": {
-    "structuralFormat": { "doc": "design_md_format.md", "path": "<repo>/.opencode/skills/sk-design/design-md-generator/references/design_md_format.md" },
-    "tokenVocabulary": { "doc": "design_token_vocabulary.md", "path": "<repo>/.opencode/skills/sk-design/shared/design_token_vocabulary.md" },
-    "auditContract": { "doc": "audit_contract.md", "path": "<repo>/.opencode/skills/sk-design/design-audit/references/audit_contract.md" },
+    "structuralFormat": { "doc": "design_md_format.md", "path": "<repo>/.opencode/skills/sk-design/design-md-generator/references/design-md-format.md" },
+    "tokenVocabulary": { "doc": "design_token_vocabulary.md", "path": "<repo>/.opencode/skills/sk-design/shared/design-token-vocabulary.md" },
+    "auditContract": { "doc": "audit_contract.md", "path": "<repo>/.opencode/skills/sk-design/design-audit/references/audit-contract.md" },
     "accessibilityPerformance": { "doc": "accessibility_performance.md", "path": "...", "note": "reasoning-agent-layer input only in v1 -- ..." },
     "antiPatternsProduction": { "doc": "anti_patterns_production.md", "path": "..." },
     "aiFingerprintTells": { "doc": "ai_fingerprint_tells.md", "path": "...", "note": "reasoning-agent-layer input only in v1 -- ..." }
@@ -178,8 +178,8 @@ See that file's own header comment for exact invocation examples.
 - [sk_design_known_deviations.md](./sk_design_known_deviations.md): the structured, evidence-cited suppression list.
 - [sk-design.cjs](../../scripts/adapters/sk-design.cjs): the executable reference implementation.
 - [sk_doc_adapter.md](./sk_doc_adapter.md): the phase-005 reference adapter this document's shape was copied from.
-- `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md`: the live Style Reference format specification this adapter's structural checker implements.
-- `.opencode/skills/sk-design/shared/design_token_vocabulary.md`, `.opencode/skills/sk-design/design-audit/references/{audit_contract,accessibility_performance,anti_patterns_production,ai_fingerprint_tells}.md`: the full static rule-source set `standardSource()` names.
-- `.opencode/skills/sk-design/shared/design_dispatch_boundary.md`, `.opencode/skills/sk-design/SKILL.md:30`: the dispatch boundary phase 010's live-render adapter must route through (this adapter itself never touches it).
+- `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md`: the live Style Reference format specification this adapter's structural checker implements.
+- `.opencode/skills/sk-design/shared/design-token-vocabulary.md`, `.opencode/skills/sk-design/design-audit/references/{audit-contract,accessibility-performance,anti-patterns-production,ai-fingerprint-tells}.md`: the full static rule-source set `standardSource()` names.
+- `.opencode/skills/sk-design/shared/design-dispatch-boundary.md`, `.opencode/skills/sk-design/SKILL.md:30`: the dispatch boundary phase 010's live-render adapter must route through (this adapter itself never touches it).
 - `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-003`, `adr-004`, `adr-005`, `adr-009`): the contract, static-v1 sequencing rationale, alignment invariants and live-render split this adapter satisfies.
 - [../discover_contract.md](../discover_contract.md), [../lane_config_schema.md](../lane_config_schema.md), [../scoping_protocol.md](../scoping_protocol.md): the real, live `discover(scope)->artifacts` contract this adapter's `discover()` conforms to.

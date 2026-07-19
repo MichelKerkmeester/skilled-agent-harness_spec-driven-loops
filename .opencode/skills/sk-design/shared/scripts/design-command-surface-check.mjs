@@ -104,7 +104,7 @@ const CONFIRM_PROMPT_STEP = "step_0_show_prompt";
 const REQUIRED_WORKFLOW_WITNESSES = ["load_hub", "load_mode", "prepare_handoff"];
 const CORE_WORKFLOW_STEP_PATTERN = /^run_[a-z0-9_]+$/;
 const HUB_SKILL_RESOURCE = ".opencode/skills/sk-design/SKILL.md";
-const HANDOFF_RESOURCE = ".opencode/skills/sk-design/shared/sk_code_handoff.md";
+const HANDOFF_RESOURCE = ".opencode/skills/sk-design/shared/sk-code-handoff.md";
 const MODE_SKILL_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/SKILL\.md$/;
 const MODE_PROCEDURES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/procedures\/$/;
 const MODE_REFERENCES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/references\/$/;
@@ -2593,7 +2593,7 @@ function hasHubLine(section) {
 function hasSkCodeHandoffLine(section) {
   return section
     .split(/\r?\n/)
-    .some((line) => line.includes("sk-code") && line.includes("sk_code_handoff.md"));
+    .some((line) => line.includes("sk-code") && line.includes("sk-code-handoff.md"));
 }
 
 function containsPhrase(value, phrase) {

@@ -39,7 +39,7 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 
 **Why it is not a violation**: `design_md_format.md` Section 5 explicitly instructs: "(omit the whole Shadows block when 0 shadow tokens)." A flat design system with no shadow tokens correctly has no `### Shadows` sub-heading at all.
 
-**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md:141-145`, the `### Shadows` table template immediately followed by "(omit the whole Shadows block when 0 shadow tokens)".
+**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md:141-145`, the `### Shadows` table template immediately followed by "(omit the whole Shadows block when 0 shadow tokens)".
 
 **Live-Reality Check (2026-07-11)**: `sk-design.cjs`'s `REQUIRED_HEADINGS` list requires only `## Tokens — Spacing & Shapes` (the top-level heading). `### Shadows` is not, and was never, a separately-checked required sub-heading. **This entry is dormant by construction**: the checker cannot flag a missing Shadows sub-block because it never looks for one.
 
@@ -51,7 +51,7 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 
 **Why it is not a violation**: `design_md_format.md` Section 14's own Tailwind v4 code comment states the block intentionally excludes two token categories the CSS Custom Properties block includes: "(no `--surface-*`, no `--page-max-width`)."
 
-**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md:268-276`, the `### Tailwind v4` fenced block's own `@theme { ... }` comment.
+**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md:268-276`, the `### Tailwind v4` fenced block's own `@theme { ... }` comment.
 
 **Live-Reality Check (2026-07-11)**: `sk-design.cjs`'s `checkQuickStartConsistency()` only cross-checks `--color-*` declarations against the `Tokens — Colors` table (an intentional v1 narrowing to the one reliably backtick-parseable dimension, see `sk_design_adapter.md` Section 4.1's own "Quick-Start Consistency Is Colors-Only in v1" note). It never inspects `--surface-*`/`--page-max-width` presence in either code block, so it structurally cannot flag the Tailwind block's narrower set as "missing" tokens. **This entry is dormant by construction.**
 
@@ -63,7 +63,7 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 
 **Why it is not a violation**: `design_md_format.md` Section 0's Cardinal rule 6 states: "A section with no backing data is omitted (when conditional) or stamped `_No <X> data was extracted._` — never filled with invention." A required section whose heading is present but whose body is this exact stamp phrasing (rather than populated content) is the *correct*, documented behavior for absent data, not incompleteness.
 
-**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md:43-45`, Cardinal rule 6, and Section 10 (Imagery)'s own worked instance: "If no meaningful imagery signal was extracted, say so plainly rather than inventing a visual language."
+**Evidence**: `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md:43-45`, Cardinal rule 6, and Section 10 (Imagery)'s own worked instance: "If no meaningful imagery signal was extracted, say so plainly rather than inventing a visual language."
 
 **Live-Reality Check (2026-07-11)**: `sk-design.cjs`'s required-heading check (`REQUIRED_HEADINGS`) tests only for the heading's *presence* (a regex match against the `##`-line itself). It never inspects a required section's body content for "real" versus "stamped" data, so a stamped-absence body can never trip a `missing-required-section` finding for a section whose heading exists. The one section this checker treats as conditional at the *heading* level (Imagery, `imagery-section-unclear`, P2) already has its own softer, explicit handling, see `sk_design_adapter.md` Section 3. **This entry is dormant by construction** for every other required heading.
 
@@ -124,5 +124,5 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 
 - [sk_design_adapter.md](./sk_design_adapter.md): the full `standardSource`/`discover`/`check` specification this list is loaded by.
 - [sk-design.cjs](../../scripts/adapters/sk-design.cjs): the reference wiring script. `loadKnownDeviations()` parses Section 6's fenced block. `REQUIRED_HEADINGS`/`checkQuickStartConsistency()` are the deterministic-layer functions whose deliberate scope keeps all three entries dormant.
-- `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md`: the live Style Reference format specification every entry here cites.
+- `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md`: the live Style Reference format specification every entry here cites.
 - `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-005`, `adr-009`): the alignment contract this list satisfies, and the static/live-render boundary this authority's v1 scope stays inside.

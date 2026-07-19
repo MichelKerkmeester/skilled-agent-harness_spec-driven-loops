@@ -77,7 +77,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Findings need static token, contrast, or system decisions before another pass | `/design:foundations` | Fix static-system findings |
 | Findings point to a changed interface direction rather than local fixes | `/design:interface` | Revisit direction |
 | Findings involve animation, timing, state feedback, or reduced-motion behavior | `/design:motion` | Fix motion findings |
-| Accepted design findings move to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+| Accepted design findings move to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Hand off to build |
 
 This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
 

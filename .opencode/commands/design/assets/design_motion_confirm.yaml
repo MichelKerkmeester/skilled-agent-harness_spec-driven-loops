@@ -51,9 +51,9 @@ workflow:
     action: "Match the resolved inputs against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
     trigger_table:
       - request_shape: "Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback"
-        card: "procedures/interaction_states_pass.md"
+        card: "procedures/interaction-states-pass.md"
       - request_shape: "Final polish spanning accessibility, slop, rhythm, and interaction states"
-        card: "../shared/procedures/polish_gate_orchestration.md"
+        card: "../shared/procedures/polish-gate-orchestration.md"
       - request_shape: "No trigger matches"
         card: "none - state 'Procedure applied: none - baseline motion workflow' and continue"
     output: selected_procedure_card
@@ -65,7 +65,7 @@ workflow:
 
   step_6_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
     condition: "Only when the user accepts the design output for build"
     output: handoff_manifest
 
@@ -84,4 +84,4 @@ pipeline:
   accepts_from: ["/design:audit", "/design:foundations", "/design:interface"]
   hands_to_next: ["/design:interface", "/design:foundations", "/design:audit"]
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when accepted motion behavior moves to implementation"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when accepted motion behavior moves to implementation"

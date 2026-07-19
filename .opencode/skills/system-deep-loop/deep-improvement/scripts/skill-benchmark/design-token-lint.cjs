@@ -51,9 +51,9 @@ const REQUIRED_DIGEST_FIELDS = [
 
 const REQUIRED_MANIFEST_PATHS = [
   '.opencode/skills/sk-design/SKILL.md',
-  '.opencode/skills/sk-design/shared/context_loading_contract.md',
+  '.opencode/skills/sk-design/shared/context-loading-contract.md',
   '.opencode/skills/sk-design/shared/register.md',
-  '.opencode/skills/sk-design/shared/assets/proof_of_application_card.md',
+  '.opencode/skills/sk-design/shared/assets/proof-of-application-card.md',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

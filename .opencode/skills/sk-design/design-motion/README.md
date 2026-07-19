@@ -37,7 +37,7 @@ This mode owns the temporal layer of the `sk-design` family. It puts a restraint
 
 ### What It Does
 
-The work starts at the restraint gate in `references/animation_decision_framework.md`, which decides whether an interaction earns motion using frequency, the keyboard rule, a named purpose and the register motion-budget dial. A choice that survives the gate gets choreographed: purpose, timing, easing, material and a reduced-motion equivalent. Three fill-in cards turn that into a build, and the result hands to `sk-code`. For the visual story a motion moment serves, start in `interface`. For findings-first scoring of a shipped build, use `audit`.
+The work starts at the restraint gate in `references/animation-decision-framework.md`, which decides whether an interaction earns motion using frequency, the keyboard rule, a named purpose and the register motion-budget dial. A choice that survives the gate gets choreographed: purpose, timing, easing, material and a reduced-motion equivalent. Three fill-in cards turn that into a build, and the result hands to `sk-code`. For the visual story a motion moment serves, start in `interface`. For findings-first scoring of a shipped build, use `audit`.
 
 ---
 
@@ -47,13 +47,13 @@ The flow runs gate first, choreography second, verification last. Skipping the g
 
 **Read the budget.** `../shared/register.md` sets whether the surface is Brand or Product. A Product surface gets state transitions and no page-load choreography. A Brand surface can afford one well-rehearsed moment. An unlabeled internal surface is treated as Product.
 
-**Run the restraint gate.** `references/animation_decision_framework.md` runs four checks in order and stops at the first no. Frequency: a 100-plus-times-a-day action is never animated. Input: a keyboard-driven action stays instant. Purpose: name one reason from feedback, orientation, focus, continuity, perceived performance or earned delight. Register: confirm the choice fits the budget dial.
+**Run the restraint gate.** `references/animation-decision-framework.md` runs four checks in order and stops at the first no. Frequency: a 100-plus-times-a-day action is never animated. Input: a keyboard-driven action stays instant. Purpose: name one reason from feedback, orientation, focus, continuity, perceived performance or earned delight. Register: confirm the choice fits the budget dial.
 
-**Choreograph what survives.** Pick timing and easing from `references/motion_strategy.md`, keep feedback under `300ms` and make exits faster than entrances. Define the reduced-motion equivalent that preserves the state change without the movement.
+**Choreograph what survives.** Pick timing and easing from `references/motion-strategy.md`, keep feedback under `300ms` and make exits faster than entrances. Define the reduced-motion equivalent that preserves the state change without the movement.
 
 **Spec it with a card, then verify.** Fill the matching card, run the presence checklist for any exit and clear the performance card before handoff.
 
-**Use the private procedure card when interaction states dominate.** The maintainer-facing card in [`procedures/interaction_states_pass.md`](./procedures/interaction_states_pass.md) supports state-by-state evidence gathering after the public `motion` mode is chosen. It is not a user-selectable route.
+**Use the private procedure card when interaction states dominate.** The maintainer-facing card in [`procedures/interaction-states-pass.md`](./procedures/interaction-states-pass.md) supports state-by-state evidence gathering after the public `motion` mode is chosen. It is not a user-selectable route.
 
 ### Styles-Library Utilization
 
@@ -67,9 +67,9 @@ The cards convert a motion decision into a build-ready spec and two pre-handoff 
 
 | Card | Use it to |
 |---|---|
-| [`assets/motion_pattern_cards.md`](./assets/motion_pattern_cards.md) | Fill one card per pattern, naming owner, single purpose, states and reduced-motion path |
-| [`assets/animate_presence_checklist.md`](./assets/animate_presence_checklist.md) | Pass-or-fail every `AnimatePresence` exit for wrappers, keys, mode and nested exits |
-| [`assets/motion_performance_failure_card.md`](./assets/motion_performance_failure_card.md) | Catch frame-dropping patterns before review, from layout thrash to unbounded blur |
+| [`assets/motion-pattern-cards.md`](./assets/motion-pattern-cards.md) | Fill one card per pattern, naming owner, single purpose, states and reduced-motion path |
+| [`assets/animate-presence-checklist.md`](./assets/animate-presence-checklist.md) | Pass-or-fail every `AnimatePresence` exit for wrappers, keys, mode and nested exits |
+| [`assets/motion-performance-failure-card.md`](./assets/motion-performance-failure-card.md) | Catch frame-dropping patterns before review, from layout thrash to unbounded blur |
 
 ---
 
@@ -97,7 +97,7 @@ The mode ships a manual testing playbook. Run it against the live skill and the 
 
 | Check | Result |
 |---|---|
-| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Ten scenarios across `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision` and `advanced-craft` categories |
+| [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) | Ten scenarios across `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision` and `advanced-craft` categories |
 | `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design` | Exit 0, the parent skill packages cleanly |
 
 ---
@@ -107,13 +107,13 @@ The mode ships a manual testing playbook. Run it against the live skill and the 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
-| [`references/animation_decision_framework.md`](./references/animation_decision_framework.md) | The restraint gate that decides whether an interaction animates at all |
-| [`references/motion_strategy.md`](./references/motion_strategy.md) | Purpose, timing, easing, staging and motion materials |
-| [`references/micro_interactions.md`](./references/micro_interactions.md) | Feedback, loading, gestures, delight and morphing icons |
-| [`references/animate_presence_patterns.md`](./references/animate_presence_patterns.md) | The reasoning and code behind `AnimatePresence` exits |
-| [`references/performance_reduced_motion.md`](./references/performance_reduced_motion.md) | Compositor safety, FLIP, scroll motion and reduced-motion alternatives |
-| [`assets/motion_pattern_cards.md`](./assets/motion_pattern_cards.md) | Fill-in spec cards for the common motion patterns |
-| [`assets/animate_presence_checklist.md`](./assets/animate_presence_checklist.md) | Pass-or-fail checklist for shipping an exit animation |
-| [`assets/motion_performance_failure_card.md`](./assets/motion_performance_failure_card.md) | Build-side card of frame-dropping patterns and their fixes |
-| [`procedures/interaction_states_pass.md`](./procedures/interaction_states_pass.md) | Maintainer-facing procedure card for interaction-state evidence after `motion` is selected |
+| [`references/animation-decision-framework.md`](./references/animation-decision-framework.md) | The restraint gate that decides whether an interaction animates at all |
+| [`references/motion-strategy.md`](./references/motion-strategy.md) | Purpose, timing, easing, staging and motion materials |
+| [`references/micro-interactions.md`](./references/micro-interactions.md) | Feedback, loading, gestures, delight and morphing icons |
+| [`references/animate-presence-patterns.md`](./references/animate-presence-patterns.md) | The reasoning and code behind `AnimatePresence` exits |
+| [`references/performance-reduced-motion.md`](./references/performance-reduced-motion.md) | Compositor safety, FLIP, scroll motion and reduced-motion alternatives |
+| [`assets/motion-pattern-cards.md`](./assets/motion-pattern-cards.md) | Fill-in spec cards for the common motion patterns |
+| [`assets/animate-presence-checklist.md`](./assets/animate-presence-checklist.md) | Pass-or-fail checklist for shipping an exit animation |
+| [`assets/motion-performance-failure-card.md`](./assets/motion-performance-failure-card.md) | Build-side card of frame-dropping patterns and their fixes |
+| [`procedures/interaction-states-pass.md`](./procedures/interaction-states-pass.md) | Maintainer-facing procedure card for interaction-state evidence after `motion` is selected |
 | [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the motion budget |

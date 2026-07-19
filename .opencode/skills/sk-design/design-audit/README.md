@@ -88,7 +88,7 @@ The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shar
 
 ### Private Procedure Cards
 
-The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local audit focus after the public `audit` mode is chosen. The two cards are `accessibility_audit.md` and `ai_slop_check.md`. They are not user-selectable routes.
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local audit focus after the public `audit` mode is chosen. The two cards are `accessibility-audit.md` and `ai-slop-check.md`. They are not user-selectable routes.
 
 ---
 
@@ -117,7 +117,7 @@ The mode ships a manual testing playbook. Each scenario runs a prompt against th
 
 | Check | Result |
 |---|---|
-| Manual playbook | Run the scenarios in [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md). Release is ready when all PASS or SKIP only for a missing target |
+| Manual playbook | Run the scenarios in [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md). Release is ready when all PASS or SKIP only for a missing target |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-audit/README.md --type readme` reports zero issues |
 
 ---
@@ -127,16 +127,16 @@ The mode ships a manual testing playbook. Each scenario runs a prompt against th
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
-| [`references/audit_contract.md`](./references/audit_contract.md) | Severity model, `/20` scoring contract and findings schema |
-| [`references/accessibility_performance.md`](./references/accessibility_performance.md) | Accessibility and performance checks with pass and fail numbers |
-| [`references/critique_hardening.md`](./references/critique_hardening.md) | Holistic critique, cognitive load, personas and polish |
-| [`references/anti_patterns_production.md`](./references/anti_patterns_production.md) | Anti-slop signals, theming drift, copy clarity and production details |
-| [`references/ai_fingerprint_tells.md`](./references/ai_fingerprint_tells.md) | Model-specific AI tells turned into checkable P0-P3 findings |
-| [`references/transform_remediation.md`](./references/transform_remediation.md) | Register-gated bolder, quieter and distill verbs mapped to findings and owners |
-| [`references/evidence_capture.md`](./references/evidence_capture.md) | Target resolution, the three evidence types and confirmed-or-inferred labeling |
-| [`references/hardening_edge_cases.md`](./references/hardening_edge_cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
-| [`assets/audit_report_template.md`](./assets/audit_report_template.md) | Fill-in findings-first report skeleton with the five-dimension score |
-| [`assets/a11y_quick_fixes.md`](./assets/a11y_quick_fixes.md) | Snippet-level accessibility fixes the report cites by reference |
+| [`references/audit-contract.md`](./references/audit-contract.md) | Severity model, `/20` scoring contract and findings schema |
+| [`references/accessibility-performance.md`](./references/accessibility-performance.md) | Accessibility and performance checks with pass and fail numbers |
+| [`references/critique-hardening.md`](./references/critique-hardening.md) | Holistic critique, cognitive load, personas and polish |
+| [`references/anti-patterns-production.md`](./references/anti-patterns-production.md) | Anti-slop signals, theming drift, copy clarity and production details |
+| [`references/ai-fingerprint-tells.md`](./references/ai-fingerprint-tells.md) | Model-specific AI tells turned into checkable P0-P3 findings |
+| [`references/transform-remediation.md`](./references/transform-remediation.md) | Register-gated bolder, quieter and distill verbs mapped to findings and owners |
+| [`references/evidence-capture.md`](./references/evidence-capture.md) | Target resolution, the three evidence types and confirmed-or-inferred labeling |
+| [`references/hardening-edge-cases.md`](./references/hardening-edge-cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
+| [`assets/audit-report-template.md`](./assets/audit-report-template.md) | Fill-in findings-first report skeleton with the five-dimension score |
+| [`assets/a11y-quick-fixes.md`](./assets/a11y-quick-fixes.md) | Snippet-level accessibility fixes the report cites by reference |
 | [`corpus/`](./corpus/README.md) | Maintainer-only non-authoritative comparison adapter and falsification fixtures |
 | [`procedures/`](./procedures/) | Two maintainer-facing procedure cards for accessibility audit focus and AI-slop checks |
 | [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the audit-severity dial |

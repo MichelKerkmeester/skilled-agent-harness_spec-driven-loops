@@ -1,0 +1,148 @@
+---
+title: Critique And Hardening
+description: Holistic critique, cognitive load, Nielsen heuristics, personas, polish, edge cases, i18n, errors, empty/loading states, and resilience checks.
+trigger_phrases:
+  - "design critique"
+  - "cognitive load"
+  - "Nielsen heuristics"
+  - "production hardening"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
+# Critique And Hardening
+
+Use this reference when the task is broader than a technical scan: does the interface make sense, feel intentional, survive real data, and help the right users succeed?
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Guides holistic design critique and hardening across AI slop, hierarchy, information architecture, emotional fit, states, copy, accessibility, edge cases, cognitive load, personas, polish, and resilience.
+
+### When to Use
+
+- Reviewing whether an interface makes sense, feels intentional, and helps the right users succeed.
+- Applying cognitive-load, Nielsen heuristic, persona, hardening, polish, and evidence-limit lenses.
+- Synthesizing rendered, deterministic, and judgment evidence into audit findings instead of concatenating notes.
+
+### Core Principle
+
+Synthesize the interface's real user experience; do not let detector output replace judgment about hierarchy, fit, and flow.
+
+---
+
+## 2. Critique Workflow
+
+1. Resolve the target to a concrete source path, URL, screenshot, or design plan.
+2. Review the design holistically before reading deterministic findings if both are available.
+3. Evaluate AI slop, hierarchy, information architecture, emotional fit, states, copy, accessibility, and edge cases.
+4. Synthesize; do not concatenate independent notes.
+
+## 3. Cognitive Load
+
+Check:
+- Single focus: one primary task visible.
+- Chunking: groups of four or fewer where possible.
+- Grouping: related items visually close or in a common region.
+- Visual hierarchy: primary, secondary, and supporting content are clear.
+- One decision at a time.
+- Minimal visible choices.
+- No memory bridge across screens.
+- Progressive disclosure where complexity is not immediately needed.
+
+Map failures to severity on a two-band scale: 2-3 failures = P2 (address soon); 4 or more failures = P1 (high cognitive load).
+
+## 4. Nielsen Heuristic Lens
+
+Walk the 10 heuristics as a checklist; for each clear violation, file a P0-P3 finding with evidence. Do not assign per-heuristic numeric scores.
+1. Visibility of system status.
+2. Match between system and real world.
+3. User control and freedom.
+4. Consistency and standards.
+5. Error prevention.
+6. Recognition rather than recall.
+7. Flexibility and efficiency.
+8. Aesthetic and minimalist design.
+9. Error recovery.
+10. Help and documentation.
+
+The Nielsen lens is a diagnostic to surface findings; it is NOT separately totaled. Each heuristic violation becomes a P0-P3 finding feeding the relevant /20 dimension (mostly Accessibility, Responsive, or Anti-Patterns). There is no /40 score in this skill.
+
+## 5. Persona Checks
+
+Select two or three relevant personas:
+- Power user: shortcuts, batch work, no forced hand-holding.
+- First-timer: clear first action, labels, help, no unexplained jargon.
+- Accessibility-dependent user: keyboard, screen reader, focus, contrast.
+- Stress tester: edge inputs, refresh, long data, errors.
+- Distracted mobile user: thumb reach, interruptions, slow connection, tap targets.
+
+Report red flags tied to actual elements, not generic persona descriptions.
+
+## 6. Hardening Checks
+
+Real interfaces need hostile data tests:
+- Very long/short text.
+- Empty states and no results.
+- 1000+ items and pagination or virtualization.
+- Emoji, accents, CJK, RTL.
+- German or Finnish text expansion.
+- Offline, timeout, 401/403/404/429/500.
+- Concurrent submissions and double-clicks.
+- Permission states and read-only mode.
+
+## 7. Polish Checks
+
+Polish starts with design-system discovery. For drift, name the root cause:
+- Missing token.
+- One-off implementation.
+- Conceptual misalignment.
+
+Then check spacing, optical alignment, typography, states, copy, icons, forms, edge cases, responsiveness, performance, and code cleanliness.
+
+### Visual-Critique Crosswalk
+
+Use these as scan probes feeding the existing audit dimensions and P0-P3 severity. They are lenses, not a second score.
+
+| Critique dimension | Scan probe | Feeds existing audit model |
+| --- | --- | --- |
+| Hierarchy | Can the primary action, primary content, and supporting content be named in five seconds from the rendered screen? | Anti-Patterns or Responsive Design; P1 when task direction is unclear, P2-P3 when the issue is localized. |
+| Brand consistency | Do supplied brand references and the screen disagree on palette, type, imagery, tone, or component language? | Theming or Anti-Patterns; requires supplied references. Without them, report only internal consistency. |
+| Composition | Does the layout use alignment, spacing, and grouping to make regions readable without accidental tangents or trapped whitespace? | Responsive Design or Anti-Patterns; usually P2-P3 unless the layout blocks use on a target viewport. |
+| Typography | Are scale, line length, weight, rhythm, and label hierarchy doing distinct jobs? | Accessibility for readability failures; Anti-Patterns for generic or muddy type systems. |
+| Color | Are contrast, semantic meaning, state color, and theme behavior coherent in the actual UI? | Accessibility or Theming; severity follows measured contrast, state ambiguity, and theme drift. |
+| Affordance | Can interactive elements be identified before hover, focus, or instruction text? | Accessibility or Anti-Patterns; P1 for core controls, P2-P3 for secondary ambiguity. |
+| Information density | Is the screen dense enough for the task without forcing scanning, memory, or avoidable scrolling? | Responsive Design or Anti-Patterns; severity follows task friction and viewport breakage. |
+
+### Polish As Trust
+
+Perceived quality is audit evidence when it is tied to observable consistency. Scan for repeated spacing drift, grid misalignment, mismatched radii, uneven icon sizing, and state surfaces that use a lower craft bar than the main flow.
+
+Hold error, empty, loading, disabled, permission, and success states to the same visual quality as the primary path. File weak fallback states as P2 when they create uncertainty or recovery friction, P3 when they are mainly craft debt.
+
+### Polish Readiness
+
+Carry polish readiness as a report row, not as loose narration:
+
+| Row | Verdict | Scan evidence | Judgment evidence |
+| --- | --- | --- | --- |
+| Polish readiness | `ready` / `blocked` / `not-assessed` | `scripts/polish_readiness_check.py --scan <surface> <filled-report.md>` -> marker count and locations | Rendered/state review notes from the section 6 polish checks, or the reason the review could not run |
+
+Use exactly these verdicts:
+- `ready`: the unfinished-marker scan ran clean and the section 6 rendered/state review was walked.
+- `blocked`: the scan found unfinished markers, or a named incomplete state remains.
+- `not-assessed`: the scan did not run or the surface was unavailable, so readiness is unknown.
+
+The unfinished-marker scan is deterministic: scan the resolved surface for `\b(TODO|FIXME|XXX|HACK|WIP)\b`. A `ready` verdict requires a clean scan; if any marker is present, the row is at most `blocked`. If no scan ran, the row is `not-assessed`, not `ready`.
+
+`scripts/polish_readiness_check.py` is external, not agent-invoked: `audit`'s toolSurface is Read/Glob/Grep only (no Write, no Bash) and the mode never saves the filled report as a file, so it cannot run the script itself. A human reviewer, CI job, or downstream skill with Bash access runs it against a saved report; cite that prior result as the scan evidence per `evidence-capture.md`'s "reuse a scan result instead of rerunning it." Absent a prior run, the row stays `not-assessed`.
+
+This is a necessary floor, not proof of polish. A clean marker scan plus `ready` only says the surface has no visible unfinished markers and the review was performed; hierarchy, perceived quality, design-system alignment, and state craft still need rendered evidence and human judgment under section 7.
+
+## 8. Evidence Limits
+
+A clean detector result is not proof of a strong design. Browser/rendered evidence and human judgment still matter for hierarchy, emotional fit, slop, and flow shape.

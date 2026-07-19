@@ -15,7 +15,7 @@ version: 1.5.0.0
 
 # Open Design (design-mcp-open-design)
 
-Drive the installed **Open Design** desktop app (nexu-io/open-design, "the official open-source, local-first Claude Design alternative") from the terminal, so a coding agent (opencode / Claude Code) can read your local design projects and design-systems, reuse them, answer the app's prompts, and commission generation runs **without typing into the in-app chat**. The interface is the `od` CLI plus a stdio MCP server that Open Design exposes; deep operational detail lives in [`references/od_cli_reference.md`](references/od_cli_reference.md).
+Drive the installed **Open Design** desktop app (nexu-io/open-design, "the official open-source, local-first Claude Design alternative") from the terminal, so a coding agent (opencode / Claude Code) can read your local design projects and design-systems, reuse them, answer the app's prompts, and commission generation runs **without typing into the in-app chat**. The interface is the `od` CLI plus a stdio MCP server that Open Design exposes; deep operational detail lives in [`references/od-cli-reference.md`](references/od-cli-reference.md).
 
 > ## ⛔ MANDATORY PAIRING — `sk-design`
 >
@@ -83,17 +83,17 @@ TASK CONTEXT
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/od_cli_reference.md` (locate the CLI, daemon model, verb surface) |
-| CONDITIONAL | WIRE intent | `references/mcp_wiring.md` (opencode + Claude Code config, manual fallback) |
-| CONDITIONAL | READ / RUN intent | `references/tool_surface.md` (the MCP tools, the surface/gate/omit policy) |
+| ALWAYS | Every invocation | `references/od-cli-reference.md` (locate the CLI, daemon model, verb surface) |
+| CONDITIONAL | WIRE intent | `references/mcp-wiring.md` (opencode + Claude Code config, manual fallback) |
+| CONDITIONAL | READ / RUN intent | `references/tool-surface.md` (the MCP tools, the surface/gate/omit policy) |
 | ⛔ MANDATORY (any design step) | ANY generation/RUN, or any READ feeding a design decision (grounding, reusing tokens/components) | `sk-design` — load it and run ground → token-system → critique BEFORE deciding. Hard precondition: a design step without it is blocked. |
-| ⛔ MANDATORY (any design step) | Reuse-before-generate / fidelity / handoff | `references/design_parity_transport.md` (Open Design transport for the real-UI loop), applied with `sk-design`'s judgment |
+| ⛔ MANDATORY (any design step) | Reuse-before-generate / fidelity / handoff | `references/design-parity-transport.md` (Open Design transport for the real-UI loop), applied with `sk-design`'s judgment |
 
 ### Smart Router Pseudocode
 
 > Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
 
-The full implementation — keyword-weighted `classify_intents()`, the `RESOURCE_MAP` per direction, the existence-guarded `discover_markdown_resources()`/`_guard_in_skill()` loader (falling back to the `UNKNOWN_FALLBACK_CHECKLIST` when intent is unclear), and the `design_gate()` hard-coupling check that blocks any RUN or design-feeding READ without a classified `openDesignPurpose` (`openDesignExemption` or `skDesignGate`) — lives in [`references/smart_router_pseudocode.md`](references/smart_router_pseudocode.md). Read it before implementing or modifying routing logic; this section is the contract, that file is the code.
+The full implementation — keyword-weighted `classify_intents()`, the `RESOURCE_MAP` per direction, the existence-guarded `discover_markdown_resources()`/`_guard_in_skill()` loader (falling back to the `UNKNOWN_FALLBACK_CHECKLIST` when intent is unclear), and the `design_gate()` hard-coupling check that blocks any RUN or design-feeding READ without a classified `openDesignPurpose` (`openDesignExemption` or `skDesignGate`) — lives in [`references/smart-router-pseudocode.md`](references/smart-router-pseudocode.md). Read it before implementing or modifying routing logic; this section is the contract, that file is the code.
 
 ---
 
@@ -104,10 +104,10 @@ The full implementation — keyword-weighted `classify_intents()`, the `RESOURCE
 ```bash
 APP="/Applications/Open Design.app"
 OD_BIN="$APP/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"   # this is `od`
-node "$OD_BIN" --help   # or the ELECTRON_RUN_AS_NODE=1 form (see references/od_cli_reference.md)
+node "$OD_BIN" --help   # or the ELECTRON_RUN_AS_NODE=1 form (see references/od-cli-reference.md)
 ```
 
-There is **no global `od` on PATH** (bare `od` is the unrelated `/usr/bin/od` octal-dump tool). Every tool call proxies to a **local daemon that the desktop app runs**, discovered over a Unix socket on an **ephemeral** loopback port, NOT a fixed `127.0.0.1:7456`. The daemon also exposes an HTTP API whose port rotates on every restart — rediscover it from `GET /api/mcp/install-info`, never hardcode it. Full socket, HTTP, and lifecycle detail: [`references/od_cli_reference.md`](references/od_cli_reference.md).
+There is **no global `od` on PATH** (bare `od` is the unrelated `/usr/bin/od` octal-dump tool). Every tool call proxies to a **local daemon that the desktop app runs**, discovered over a Unix socket on an **ephemeral** loopback port, NOT a fixed `127.0.0.1:7456`. The daemon also exposes an HTTP API whose port rotates on every restart — rediscover it from `GET /api/mcp/install-info`, never hardcode it. Full socket, HTTP, and lifecycle detail: [`references/od-cli-reference.md`](references/od-cli-reference.md).
 
 ### Wire Direction (od mcp install)
 
@@ -116,7 +116,7 @@ node "$OD_BIN" mcp install opencode --print --json    # PREVIEW only, writes not
 node "$OD_BIN" mcp install claude --print --json       # PREVIEW only
 ```
 
-`--print --json` writes nothing and prints the exact `command`/`env` the install would write, sourced from `GET /api/mcp/install-info`; read it before running the non-preview form. Full entry shape and the manual-config fallback: [`references/mcp_wiring.md`](references/mcp_wiring.md).
+`--print --json` writes nothing and prints the exact `command`/`env` the install would write, sourced from `GET /api/mcp/install-info`; read it before running the non-preview form. Full entry shape and the manual-config fallback: [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 > **This repo does not use `od mcp install opencode`.** These commands document the daemon CLI's general native-MCP-registration capability; this repo wires Open Design through Code Mode MCP instead (`.utcp_config.json`'s `open_design` manual call template, already configured with the same connection details). Never run `node "$OD_BIN" mcp install opencode` (without `--print --json`) in this repo — it deep-merges a redundant native entry into the user's global `~/.config/opencode/opencode.json`, which is not the intended integration point here.
 
@@ -130,7 +130,7 @@ Generation is **multi-turn, not one-shot**: a single `start_run` (MCP) or `od ru
 
 > **⛔ MANDATORY before turn 1.** Load `sk-design` and run its ground → token-system → critique on the subject. The brief you pass to `start_run` (`--message`) and every `od ui respond` answer MUST be shaped by that judgment — Open Design generates, it does not decide the design. A run composed without `sk-design` is not permitted.
 
-Answering the form (`od ui list` to find the `surfaceId`, then `od ui respond --run <runId> <surfaceId> --value ...` / `--value-json ...` / `--skip`, or a follow-up message such as "use the recommended defaults") fires the **build run** that writes the design files and gives the project an `entryFile` and a `previewUrl`. Poll `get_run(runId)` and fetch with `get_artifact`. The inner agent is `claude` / `opencode` / `gemini`, per `od run start --help`; `opencode` needs an explicit `--model <id>`. Other headless write verbs: `od automation` and `od media generate` — every one is **mutating** and a STOP-and-confirm point. Full multi-turn command sequence and every mutating verb: [`references/tool_surface.md`](references/tool_surface.md) §5, [`references/od_cli_reference.md`](references/od_cli_reference.md) §5.
+Answering the form (`od ui list` to find the `surfaceId`, then `od ui respond --run <runId> <surfaceId> --value ...` / `--value-json ...` / `--skip`, or a follow-up message such as "use the recommended defaults") fires the **build run** that writes the design files and gives the project an `entryFile` and a `previewUrl`. Poll `get_run(runId)` and fetch with `get_artifact`. The inner agent is `claude` / `opencode` / `gemini`, per `od run start --help`; `opencode` needs an explicit `--model <id>`. Other headless write verbs: `od automation` and `od media generate` — every one is **mutating** and a STOP-and-confirm point. Full multi-turn command sequence and every mutating verb: [`references/tool-surface.md`](references/tool-surface.md) §5, [`references/od-cli-reference.md`](references/od-cli-reference.md) §5.
 
 > **Adding a file is not creating a design.** `od artifacts create --name <path> --input <file>` only **adds one file** to a project. It does NOT create a rendered design and does NOT update the project preview. To create a design that renders, use the multi-turn flow above, never `artifacts create`.
 
@@ -174,14 +174,14 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### Core References
 
-- [od_cli_reference.md](references/od_cli_reference.md) - Locating the CLI, the daemon/socket model, and the full `od` verb surface with read-only vs mutating classification.
-- [mcp_wiring.md](references/mcp_wiring.md) - Wiring the MCP server into opencode and Claude Code: the install commands, the written config shape, the manual fallback, and daemon-URL discovery.
-- [tool_surface.md](references/tool_surface.md) - The ~18 MCP tools, the surface / gate / omit policy, and the live-verification requirement.
-- [smart_router_pseudocode.md](references/smart_router_pseudocode.md) - The Section 2 router's full implementation: intent classification, resource mapping, and the `design_gate` hard-coupling check.
+- [od-cli-reference.md](references/od-cli-reference.md) - Locating the CLI, the daemon/socket model, and the full `od` verb surface with read-only vs mutating classification.
+- [mcp-wiring.md](references/mcp-wiring.md) - Wiring the MCP server into opencode and Claude Code: the install commands, the written config shape, the manual fallback, and daemon-URL discovery.
+- [tool-surface.md](references/tool-surface.md) - The ~18 MCP tools, the surface / gate / omit policy, and the live-verification requirement.
+- [smart-router-pseudocode.md](references/smart-router-pseudocode.md) - The Section 2 router's full implementation: intent classification, resource mapping, and the `design_gate` hard-coupling check.
 
 ### Reference Loading Notes
 
-- Load only what the detected direction requires (see Section 2). `od_cli_reference.md` is the baseline; load `mcp_wiring.md` for WIRE, `tool_surface.md` for READ/RUN.
+- Load only what the detected direction requires (see Section 2). `od-cli-reference.md` is the baseline; load `mcp-wiring.md` for WIRE, `tool-surface.md` for READ/RUN.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 
 ---
@@ -213,7 +213,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### Related Skills
 
-- **`sk-design`** owns the design judgment — the **MANDATORY partner for all design work** (see the MANDATORY PAIRING banner above). The two share the real-UI loop in `sk-design` (`real_ui_loop.md`), with this skill's Open Design transport for it in `references/design_parity_transport.md`.
+- **`sk-design`** owns the design judgment — the **MANDATORY partner for all design work** (see the MANDATORY PAIRING banner above). The two share the real-UI loop in `sk-design` (`real-ui-loop.md`), with this skill's Open Design transport for it in `references/design-parity-transport.md`.
 - **`sk-code`** owns application-code standards for adapting any reused tokens/components into a real app.
 - **`mcp-figma`** is the sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon model and gating taxonomy.
 - **`mcp-chrome-devtools`** can drive a real browser only if a last-mile visual preview is needed; it is never the way to operate Open Design.
@@ -221,6 +221,6 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/od_cli_reference.md` (CLI + daemon model). **Conditional**: `references/mcp_wiring.md` (WIRE), `references/tool_surface.md` (READ/RUN) per detected direction, `references/smart_router_pseudocode.md` when implementing or modifying the router.
+**Required**: `references/od-cli-reference.md` (CLI + daemon model). **Conditional**: `references/mcp-wiring.md` (WIRE), `references/tool-surface.md` (READ/RUN) per detected direction, `references/smart-router-pseudocode.md` when implementing or modifying the router.
 
 Upstream: Open Design is [nexu-io/open-design](https://github.com/nexu-io/open-design), an open-source local-first design tool. This skill documents driving its installed desktop app from the terminal; it does not vendor or redistribute Open Design.

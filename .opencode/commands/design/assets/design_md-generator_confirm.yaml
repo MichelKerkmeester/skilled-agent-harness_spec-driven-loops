@@ -47,7 +47,7 @@ workflow:
     action: "Match the resolved inputs against the trigger below; cite the selected card (or the fallback) by relative path before substantial output"
     trigger_table:
       - request_shape: "Measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface"
-        card: "procedures/design_system_extraction.md"
+        card: "procedures/design-system-extraction.md"
       - request_shape: "No trigger matches"
         card: "none - state 'Procedure applied: none - baseline md-generator pipeline' and continue with phase detection"
     output: selected_procedure_card
@@ -65,7 +65,7 @@ workflow:
 
   step_6_prepare_handoff:
     purpose: Prepare implementation handoff only when accepted design output moves to code
-    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
     condition: "Only when the user accepts the design output for build"
     output: handoff_manifest
 
@@ -85,4 +85,4 @@ pipeline:
   accepts_from: "a live source URL; this stage has no upstream design command"
   hands_to_next: ["/design:foundations", "/design:interface", "/design:audit"]
   recommend_only: true
-  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when extracted evidence informs implementation"
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when extracted evidence informs implementation"

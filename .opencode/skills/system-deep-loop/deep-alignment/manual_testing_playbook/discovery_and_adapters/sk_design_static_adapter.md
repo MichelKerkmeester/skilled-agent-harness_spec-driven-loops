@@ -74,7 +74,7 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | discover/check, required headings, banned-pattern regexes, `checkAuditRubric` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md` | Full adapter specification incl. STATIC-ONLY scope and required-heading scope |
-| `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md` | The Style Reference format the adapter checks against |
+| `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md` | The Style Reference format the adapter checks against |
 
 ---
 

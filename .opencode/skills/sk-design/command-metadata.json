@@ -49,7 +49,7 @@
         "order": 3,
         "skill": "design-audit",
         "resource": ".opencode/skills/sk-design/design-audit/procedures/",
-        "action": "choose at most one private procedure card (accessibility_audit.md for WCAG/contrast/keyboard/forms review, ai_slop_check.md for AI-template/generic-visual-language detection) matching the request, or ../shared/procedures/polish_gate_orchestration.md for full pre-delivery polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline audit workflow' if no card matches"
+        "action": "choose at most one private procedure card (accessibility-audit.md for WCAG/contrast/keyboard/forms review, ai-slop-check.md for AI-template/generic-visual-language detection) matching the request, or ../shared/procedures/polish-gate-orchestration.md for full pre-delivery polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline audit workflow' if no card matches"
       },
       {
         "order": 4,
@@ -60,7 +60,7 @@
       {
         "order": 5,
         "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
@@ -90,8 +90,8 @@
         "ownerMode": "audit",
         "strictness": "advisory",
         "referenceSources": [
-          "design-audit/references/hardening_edge_cases.md",
-          "design-audit/references/transform_remediation.md"
+          "design-audit/references/hardening-edge-cases.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "a built surface to harden for production",
         "fixtures": ["harden.positive", "harden.negative.mint-command"]
@@ -101,8 +101,8 @@
         "ownerMode": "audit",
         "strictness": "advisory",
         "referenceSources": [
-          "design-audit/references/critique_hardening.md",
-          "design-audit/references/transform_remediation.md"
+          "design-audit/references/critique-hardening.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "a near-final surface to assess for polish readiness",
         "fixtures": ["polish.positive", "polish.negative.mint-command"]
@@ -219,7 +219,7 @@
         "order": 3,
         "skill": "design-foundations",
         "resource": ".opencode/skills/sk-design/design-foundations/procedures/",
-        "action": "choose at most one private procedure card (tweakable_design_controls.md for user-adjustable options/controls/tunable variants, component_system_inventory.md for component extraction/reusable parts/system inventory, hierarchy_rhythm_review.md for hierarchy/rhythm/spacing/density review) matching the request, or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline foundations workflow' if no card matches"
+        "action": "choose at most one private procedure card (tweakable-design-controls.md for user-adjustable options/controls/tunable variants, component-system-inventory.md for component extraction/reusable parts/system inventory, hierarchy-rhythm-review.md for hierarchy/rhythm/spacing/density review) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline foundations workflow' if no card matches"
       },
       {
         "order": 4,
@@ -230,7 +230,7 @@
       {
         "order": 5,
         "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
@@ -260,8 +260,8 @@
         "ownerMode": "foundations",
         "strictness": "advisory",
         "referenceSources": [
-          "design-foundations/references/type/typography_system.md",
-          "design-foundations/assets/token_starter.md"
+          "design-foundations/references/type/typography-system.md",
+          "design-foundations/assets/token-starter.md"
         ],
         "requires": "a type system or target surface to set",
         "fixtures": ["typeset.positive", "typeset.negative.mint-command"]
@@ -271,8 +271,8 @@
         "ownerMode": "foundations",
         "strictness": "advisory",
         "referenceSources": [
-          "design-foundations/references/color/oklch_workflow.md",
-          "design-foundations/references/color/palette_theming.md"
+          "design-foundations/references/color/oklch-workflow.md",
+          "design-foundations/references/color/palette-theming.md"
         ],
         "requires": "a palette or surface to color",
         "fixtures": ["colorize.positive", "colorize.negative.mint-command"]
@@ -389,7 +389,7 @@
         "order": 3,
         "skill": "design-interface",
         "resource": ".opencode/skills/sk-design/design-interface/procedures/",
-        "action": "choose at most one private procedure card (discovery_question_round.md for missing material brief facts, aesthetic_direction.md for greenfield direction without a stronger brand/system, wireframe_exploration.md for low-fidelity structure or storyboard, variation_set.md for multiple high-fidelity directions or alternatives, prototype_flow_spec.md for prototype/demo/stateful interaction briefs, deck_direction_spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
+        "action": "choose at most one private procedure card (discovery-question-round.md for missing material brief facts, aesthetic-direction.md for greenfield direction without a stronger brand/system, wireframe-exploration.md for low-fidelity structure or storyboard, variation-set.md for multiple high-fidelity directions or alternatives, prototype-flow-spec.md for prototype/demo/stateful interaction briefs, deck-direction-spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
       },
       {
         "order": 4,
@@ -400,7 +400,7 @@
       {
         "order": 5,
         "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
@@ -504,9 +504,9 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform_application.md",
-          "design-interface/references/design-process/design_principles.md",
-          "design-audit/references/transform_remediation.md"
+          "design-interface/references/design-process/transform-application.md",
+          "design-interface/references/design-process/design-principles.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "an interface surface to push louder",
         "fixtures": ["bolder.positive", "bolder.negative.mint-command"]
@@ -516,9 +516,9 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform_application.md",
-          "design-interface/references/design-process/design_principles.md",
-          "design-audit/references/transform_remediation.md"
+          "design-interface/references/design-process/transform-application.md",
+          "design-interface/references/design-process/design-principles.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "an interface surface to calm",
         "fixtures": ["quieter.positive", "quieter.negative.mint-command"]
@@ -528,9 +528,9 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform_application.md",
-          "design-interface/references/design-process/variation_diversity.md",
-          "design-audit/references/transform_remediation.md"
+          "design-interface/references/design-process/transform-application.md",
+          "design-interface/references/design-process/variation-diversity.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "an interface surface to reduce to essentials",
         "fixtures": ["distill.positive", "distill.negative.mint-command"]
@@ -540,9 +540,9 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform_application.md",
-          "design-interface/references/design-process/real_ui_loop.md",
-          "design-audit/references/transform_remediation.md"
+          "design-interface/references/design-process/transform-application.md",
+          "design-interface/references/design-process/real-ui-loop.md",
+          "design-audit/references/transform-remediation.md"
         ],
         "requires": "an interface surface to add an earned moment to",
         "fixtures": ["delight.positive", "delight.negative.mint-command"]
@@ -659,7 +659,7 @@
         "order": 3,
         "skill": "design-md-generator",
         "resource": ".opencode/skills/sk-design/design-md-generator/procedures/",
-        "action": "select the private design_system_extraction.md card when the request involves measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline md-generator pipeline' if the card does not match"
+        "action": "select the private design-system-extraction.md card when the request involves measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline md-generator pipeline' if the card does not match"
       },
       {
         "order": 4,
@@ -670,7 +670,7 @@
       {
         "order": 5,
         "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
@@ -806,7 +806,7 @@
         "order": 3,
         "skill": "design-motion",
         "resource": ".opencode/skills/sk-design/design-motion/procedures/",
-        "action": "choose a private procedure card only when its trigger matches (interaction_states_pass.md for hover/active/focus/disabled/loading/selected/navigation/form/custom-widget interaction-state work), or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline motion workflow' if no card matches"
+        "action": "choose a private procedure card only when its trigger matches (interaction-states-pass.md for hover/active/focus/disabled/loading/selected/navigation/form/custom-widget interaction-state work), or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline motion workflow' if no card matches"
       },
       {
         "order": 4,
@@ -817,7 +817,7 @@
       {
         "order": 5,
         "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
+        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],

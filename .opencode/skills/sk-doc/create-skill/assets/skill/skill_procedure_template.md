@@ -227,7 +227,7 @@ Placement:
 
 ### Real-World Implementation
 
-`sk-design` (`.opencode/skills/sk-design/`) runs this exact pattern in production at hub scale: one parent hub, five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards. `sk-design/shared/procedure_card_schema.md` is the schema this template generalizes from — read it for a second, hub-scale worked example.
+`sk-design` (`.opencode/skills/sk-design/`) runs this exact pattern in production at hub scale: one parent hub, five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards. `sk-design/shared/procedure-card-schema.md` is the schema this template generalizes from — read it for a second, hub-scale worked example.
 
 ### Templates
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates (use when no trigger-based selection is needed)

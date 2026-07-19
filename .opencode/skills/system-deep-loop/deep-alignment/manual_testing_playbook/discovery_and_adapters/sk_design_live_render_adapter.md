@@ -74,7 +74,7 @@ If `check` with no render-result returns zero findings (a silent pass) instead o
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs` | discover/check, `REQUIRED_DISPATCH_BOUNDARY`, four short-circuit conditions, threshold checks |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md` | Full adapter specification incl. Section 8 (no standalone renderer) |
-| `.opencode/skills/sk-design/design-audit/references/accessibility_performance.md` | The threshold source (contrast/touch-target/CWV values) the adapter cites |
+| `.opencode/skills/sk-design/design-audit/references/accessibility-performance.md` | The threshold source (contrast/touch-target/CWV values) the adapter cites |
 
 ---
 
