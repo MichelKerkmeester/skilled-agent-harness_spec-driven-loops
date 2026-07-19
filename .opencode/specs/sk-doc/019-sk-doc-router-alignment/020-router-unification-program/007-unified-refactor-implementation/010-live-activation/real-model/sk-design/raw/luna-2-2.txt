@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-luna-fast
 [0m
-{"skill":"sk-design","reason":"Audits UI accessibility, responsiveness, and design quality."}
+{"skill":"sk-design","reason":"Audits UI accessibility, responsiveness, and visual quality/design slop."}

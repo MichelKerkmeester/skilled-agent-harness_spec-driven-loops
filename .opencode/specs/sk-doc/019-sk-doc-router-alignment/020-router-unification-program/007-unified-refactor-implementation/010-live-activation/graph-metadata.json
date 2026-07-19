@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The compiled router contract is shadow-complete but never bound",
     "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-07-19T15:59:17.717Z",
+    "last_save_at": "2026-07-19T16:57:24.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:694f65d2fa4fa17af077e85318a31f9fc16844b001d31dfea364983fe502ac6d",
+    "source_fingerprint": "sha256:0a04e605a4f09ee18a0c8f0e7c354c5a7d6bc35d666b2bedae1fb55afd0d6744",
     "source_doc_hashes": {
       "spec.md": "e9a290f6880bb774a6c94b007f1124fe7ae90e544a265d0dfce702a6e51158ca",
       "plan.md": "834a2452aecff6fc32b77fc95cd429cf97c95b698832348ed2b42e35a048bbe4",
       "tasks.md": "6ab0d7e2de0f700975153f2613aa403760d5362e3490e8ce7dbd1a1e4dfd745e",
-      "checklist.md": "db0469d74ddfdf968df929018f84a800fcc72d5267a431a6a35b59232e210bd6",
-      "implementation-summary.md": "9b9fa2ce2543b4042479ead521dfc3c3f20c2e47e5acaf430c3c82bb6a87d3a2"
+      "checklist.md": "266d9df2e8bcc5bc3611cca802ae96f394effa4e92e700532d7b47cc9ac1cd65",
+      "implementation-summary.md": "ac6c705fbce6c9ce75d2e60fc874794cfce4ee5833c9c3ad9f81a4daa9eabc23"
     },
     "last_active_child_id": null,
     "last_active_at": null

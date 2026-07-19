@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-prompt","reason":"user wants prompt engineering help for a chatbot"}
+{"skill":"sk-prompt","reason":"user asked to improve a prompt for a chatbot"}

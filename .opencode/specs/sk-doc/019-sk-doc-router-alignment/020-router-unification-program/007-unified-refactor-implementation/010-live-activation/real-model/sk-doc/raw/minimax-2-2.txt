@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-doc","reason":"user requested SKILL.md and reference scaffolding"}
+{"skill":"sk-doc","reason":"Creating a SKILL.md with reference scaffolds is skill authoring via sk-doc"}

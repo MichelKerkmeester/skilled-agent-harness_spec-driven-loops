@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-code","reason":"TypeScript code fix in scorer lane file"}
+{"skill":"sk-code","reason":"TypeScript bug fix in application code"}

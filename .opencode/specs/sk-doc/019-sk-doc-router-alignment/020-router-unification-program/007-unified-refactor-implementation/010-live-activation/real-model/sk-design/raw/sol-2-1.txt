@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"sk-design","reason":"Design audit covering accessibility, responsiveness, focus states, and visual quality."}
+{"skill":"sk-design","reason":"UI design audit covering accessibility, responsiveness, and visual quality."}

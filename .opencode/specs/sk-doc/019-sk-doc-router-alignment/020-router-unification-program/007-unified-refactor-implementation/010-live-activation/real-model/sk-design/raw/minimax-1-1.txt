@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-design","reason":"distinctive visual direction for a SaaS pricing page UI"}
+{"skill":"sk-design","reason":"UI / visual direction for a pricing page"}

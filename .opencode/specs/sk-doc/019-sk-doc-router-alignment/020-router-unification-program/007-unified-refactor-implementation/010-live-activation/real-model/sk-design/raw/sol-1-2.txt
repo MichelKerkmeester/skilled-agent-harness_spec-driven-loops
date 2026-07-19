@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"sk-design","reason":"Distinctive visual direction and UI design for a SaaS pricing page."}
+{"skill":"sk-design","reason":"The request is primarily about distinctive UI visual direction and interface design."}

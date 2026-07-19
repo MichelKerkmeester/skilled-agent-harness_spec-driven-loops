@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-doc","reason":"validating documentation quality against standards"}
+{"skill":"sk-doc","reason":"user asked to validate documentation quality against sk-doc standards"}

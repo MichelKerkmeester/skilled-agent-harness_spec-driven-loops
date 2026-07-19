@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"mcp-tooling","reason":"Chrome DevTools HAR capture is an MCP transport task"}
+{"skill":"mcp-tooling","reason":"Chrome DevTools transport for staging HAR capture"}

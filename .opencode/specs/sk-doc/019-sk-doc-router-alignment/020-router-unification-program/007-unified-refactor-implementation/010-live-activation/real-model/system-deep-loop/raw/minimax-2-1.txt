@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"system-deep-loop","reason":"deep review requires iterative convergence and severity findings"}
+{"skill":"system-deep-loop","reason":"deep review with convergence and severity-ranked findings"}

@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"sk-doc","reason":"documentation quality validation against sk-doc standards"}
+{"skill":"sk-doc","reason":"The request is a documentation quality audit against sk-doc standards."}

@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"system-deep-loop","reason":"deep research request investigating advisor routing behavior"}
+{"skill":"system-deep-loop","reason":"user requested deep research investigation and research summary"}

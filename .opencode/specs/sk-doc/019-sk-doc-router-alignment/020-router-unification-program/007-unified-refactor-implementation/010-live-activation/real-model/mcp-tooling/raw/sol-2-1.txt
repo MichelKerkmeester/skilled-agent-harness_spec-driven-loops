@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"mcp-tooling","reason":"ClickUp task updates are handled through the ClickUp MCP transport."}
+{"skill":"mcp-tooling","reason":"ClickUp task status and comment operations use the ClickUp MCP transport."}

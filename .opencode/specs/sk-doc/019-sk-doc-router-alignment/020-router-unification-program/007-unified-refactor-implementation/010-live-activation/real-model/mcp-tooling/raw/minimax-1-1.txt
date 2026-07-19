@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"mcp-tooling","reason":"user requested Chrome DevTools HAR capture"}
+{"skill":"mcp-tooling","reason":"Chrome DevTools is an MCP transport under mcp-tooling"}

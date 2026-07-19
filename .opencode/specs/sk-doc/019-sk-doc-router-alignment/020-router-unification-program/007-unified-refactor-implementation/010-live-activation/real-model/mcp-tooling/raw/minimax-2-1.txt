@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"mcp-tooling","reason":"ClickUp task update routes through mcp-click-up transport"}
+{"skill":"mcp-tooling","reason":"ClickUp task update routed via MCP transport hub"}

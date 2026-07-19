@@ -14,11 +14,10 @@
     {
       "prompt_idx": 1,
       "model": "luna",
-      "run1_skill": "timeout",
+      "run1_skill": "sk-prompt",
       "run2_skill": "sk-prompt",
       "expected": "sk-prompt",
-      "pass": false,
-      "status": "error"
+      "pass": true
     },
     {
       "prompt_idx": 2,
@@ -63,7 +62,7 @@
     }
   ],
   "perModelPass": {
-    "luna": "0/2",
+    "luna": "1/2",
     "sol": "2/2",
     "minimax": "2/2"
   },

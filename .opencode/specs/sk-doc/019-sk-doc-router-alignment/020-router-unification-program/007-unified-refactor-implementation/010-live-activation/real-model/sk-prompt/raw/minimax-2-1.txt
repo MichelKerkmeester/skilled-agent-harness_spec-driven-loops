@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-prompt","reason":"user asks for DeepSeek coding prompt guidance"}
+{"skill":"sk-prompt","reason":"small-model coding prompt framework and scaffold guidance"}

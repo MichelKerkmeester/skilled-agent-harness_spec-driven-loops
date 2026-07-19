@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"cli-external-orchestration","reason":"user explicitly requests delegation to OpenCode"}
+{"skill":"cli-external-orchestration","reason":"user requested delegation to OpenCode CLI"}

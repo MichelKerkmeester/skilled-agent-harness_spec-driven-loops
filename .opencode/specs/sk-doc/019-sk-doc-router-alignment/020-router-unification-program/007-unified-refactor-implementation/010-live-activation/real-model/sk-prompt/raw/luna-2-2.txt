@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-luna-fast
 [0m
-{"skill":"sk-prompt","reason":"Requests guidance on DeepSeek-v4-pro's coding-task framework and scaffold."}
+{"skill":"sk-prompt","reason":"Asks for DeepSeek coding-task prompt framework and scaffold guidance."}

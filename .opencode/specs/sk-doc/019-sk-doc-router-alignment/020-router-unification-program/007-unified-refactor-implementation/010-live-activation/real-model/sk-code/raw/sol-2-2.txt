@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"sk-code","reason":"Application code refactoring with behavior change"}
+{"skill":"sk-code","reason":"Refactoring application TypeScript behavior and error handling."}

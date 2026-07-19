@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"system-deep-loop","reason":"The request explicitly requires deep research for iterative investigation and synthesis."}
+{"skill":"system-deep-loop","reason":"The request explicitly requires deep research for an iterative investigation and research summary."}

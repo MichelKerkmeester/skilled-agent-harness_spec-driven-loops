@@ -22,10 +22,11 @@
     {
       "prompt_idx": 2,
       "model": "luna",
-      "run1_skill": "cli-external-orchestration",
+      "run1_skill": "timeout",
       "run2_skill": "cli-external-orchestration",
       "expected": "cli-external-orchestration",
-      "pass": true
+      "pass": false,
+      "status": "error"
     },
     {
       "prompt_idx": 1,
@@ -61,7 +62,7 @@
     }
   ],
   "perModelPass": {
-    "luna": "2/2",
+    "luna": "1/2",
     "sol": "2/2",
     "minimax": "2/2"
   },

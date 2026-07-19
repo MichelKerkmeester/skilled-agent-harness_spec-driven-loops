@@ -15,9 +15,10 @@
       "prompt_idx": 1,
       "model": "luna",
       "run1_skill": "mcp-tooling",
-      "run2_skill": "mcp-tooling",
+      "run2_skill": "timeout",
       "expected": "mcp-tooling",
-      "pass": true
+      "pass": false,
+      "status": "error"
     },
     {
       "prompt_idx": 2,
@@ -61,7 +62,7 @@
     }
   ],
   "perModelPass": {
-    "luna": "2/2",
+    "luna": "1/2",
     "sol": "2/2",
     "minimax": "2/2"
   },

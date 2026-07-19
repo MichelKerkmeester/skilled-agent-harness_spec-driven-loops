@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"mcp-tooling","reason":"ClickUp task management is routed through mcp-click-up transport"}
+{"skill":"mcp-tooling","reason":"user asked to mark ClickUp task done with note"}

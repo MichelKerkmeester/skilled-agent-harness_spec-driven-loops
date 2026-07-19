@@ -1,4 +1,4 @@
 [0m
 > build · gpt-5.6-sol-fast
 [0m
-{"skill":"sk-prompt","reason":"The request is to improve a chatbot prompt."}
+{"skill":"sk-prompt","reason":"The request is specifically about improving a prompt."}

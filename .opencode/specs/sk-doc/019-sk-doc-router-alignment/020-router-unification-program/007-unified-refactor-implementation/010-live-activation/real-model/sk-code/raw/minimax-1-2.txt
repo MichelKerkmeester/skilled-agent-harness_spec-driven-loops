@@ -1,4 +1,4 @@
 [0m
 > build · MiniMax-M3
 [0m
-{"skill":"sk-code","reason":"TypeScript code fix in existing source file"}
+{"skill":"sk-code","reason":"implement TypeScript empty-prompt fallback"}
