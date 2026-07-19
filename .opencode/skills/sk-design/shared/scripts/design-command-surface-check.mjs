@@ -7,6 +7,8 @@ import { pathToFileURL } from "node:url";
 
 const REQUIRED_FIELDS = [
   "command",
+  "canonicalCommand",
+  "compatibilityAliases",
   "ownerMode",
   "description",
   "descriptionRole",
@@ -41,6 +43,13 @@ const COMMANDS = [
   "/design:md-generator",
   "/design:motion"
 ];
+const CANONICAL_COMMAND_BY_MODE = new Map([
+  ["interface", "/interface:design"],
+  ["foundations", "/interface:foundations"],
+  ["motion", "/interface:motion"],
+  ["audit", "/interface:audit"],
+  ["md-generator", "/interface:design-reference"]
+]);
 
 const FRONTMATTER_DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
 const DRIFT_FIELDS = [
@@ -89,8 +98,8 @@ const REQUIRED_RETURN_STATUS_TOKENS = [
 ];
 const STATUS_ONLY_FAILURE_PATTERN = /STATUS=FAIL\s+ERROR="<message>"/;
 const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
-const INTERFACE_COMMAND = "/design:interface";
-const INTERFACE_AUDIT_ROUTE = "/design:audit";
+const INTERFACE_COMMAND = "/interface:design";
+const INTERFACE_AUDIT_ROUTE = "/interface:audit";
 const INTERFACE_TASK_CLASSES = new Set(["sibling-command", "argument", "internal", "hidden"]);
 const TASK_PROJECTION_STRICTNESS = new Set(["advisory"]);
 const TASK_PROJECTION_FIELDS = ["verb", "ownerMode", "strictness", "referenceSources", "requires", "fixtures"];
@@ -108,7 +117,7 @@ const HANDOFF_RESOURCE = ".opencode/skills/sk-design/shared/sk-code-handoff.md";
 const MODE_SKILL_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/SKILL\.md$/;
 const MODE_PROCEDURES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/procedures\/$/;
 const MODE_REFERENCES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/references\/$/;
-const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
+const DESIGN_COMMAND_PATTERN = /\/(?:design|interface):[a-z-]+/;
 const DESCRIPTION_ROLES = new Set(["hub-keyword-projection"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
   "output",
@@ -130,7 +139,7 @@ const metadataUrl = new URL("command-metadata.json", skillRootUrl);
 const registryUrl = new URL("mode-registry.json", skillRootUrl);
 const hubRouterUrl = new URL("hub-router.json", skillRootUrl);
 const interfaceSkillUrl = new URL("design-interface/SKILL.md", skillRootUrl);
-const commandsRootUrl = new URL("commands/design/", opencodeRootUrl);
+const commandsRootUrl = new URL("commands/", opencodeRootUrl);
 const SIBLING_DISCRIMINATOR_START = "<!-- ANCHOR:sibling-discriminator -->";
 const SIBLING_DISCRIMINATOR_END = "<!-- /ANCHOR:sibling-discriminator -->";
 const REGISTER_SECTION_START = "<!-- ANCHOR:register -->";
@@ -197,10 +206,11 @@ async function main() {
   }
 
   const records = [...metadata].sort((a, b) => a.command.localeCompare(b.command));
+  const canonicalRecords = projectRecordsToCanonical(records);
   const transportTokens = readTransportTokens(registry);
   const drift = [
-    ...(await collectSurfaceDrift(records)),
-    ...collectRosterReconciliationDrift(records, workflowModes, registry, hubRouter, wrapperRoster, transportTokens)
+    ...(await collectSurfaceDrift(canonicalRecords)),
+    ...collectRosterReconciliationDrift(records, canonicalRecords, workflowModes, registry, hubRouter, wrapperRoster, transportTokens)
   ].sort(compareDrift);
 
   emitAndExit(
@@ -209,6 +219,7 @@ async function main() {
       stage: drift.length > 0 ? "surface" : "complete",
       metadata: {
         commandCount: records.length,
+        compatibilityAliasCount: records.reduce((count, record) => count + record.compatibilityAliases.length, 0),
         workflowModes: [...workflowModes].sort(),
         aliasCount: records.reduce((count, record) => count + record.aliases.length, 0)
       },
@@ -224,32 +235,31 @@ async function readJson(url) {
 }
 
 async function readWrapperRoster() {
-  const entries = await readdir(commandsRootUrl, { withFileTypes: true });
-  const wrappers = await Promise.all(
-    entries
-      .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
-      .map(async (entry) => {
-        const command = `/design:${entry.name.slice(0, -3)}`;
-        const relativePath = `.opencode/commands/design/${entry.name}`;
-        const markdown = await readFile(new URL(entry.name, commandsRootUrl), "utf8");
-        let frontmatter = null;
-        let frontmatterError = null;
+  const wrappers = (
+    await Promise.all(["design", "interface"].map(async (namespace) => {
+      const namespaceUrl = new URL(`${namespace}/`, commandsRootUrl);
+      const entries = await readdir(namespaceUrl, { withFileTypes: true });
+      return Promise.all(
+        entries
+          .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+          .map(async (entry) => {
+            const command = `/${namespace}:${entry.name.slice(0, -3)}`;
+            const relativePath = `.opencode/commands/${namespace}/${entry.name}`;
+            const markdown = await readFile(new URL(entry.name, namespaceUrl), "utf8");
+            let frontmatter = null;
+            let frontmatterError = null;
 
-        try {
-          frontmatter = parseFrontmatter(markdown);
-        } catch (error) {
-          frontmatterError = error instanceof Error ? error.message : String(error);
-        }
+            try {
+              frontmatter = parseFrontmatter(markdown);
+            } catch (error) {
+              frontmatterError = error instanceof Error ? error.message : String(error);
+            }
 
-        return {
-          command,
-          relativePath,
-          markdown,
-          frontmatter,
-          frontmatterError
-        };
-      })
-  );
+            return { command, relativePath, markdown, frontmatter, frontmatterError };
+          })
+      );
+    }))
+  ).flat();
 
   return wrappers.sort((a, b) => a.command.localeCompare(b.command));
 }
@@ -359,6 +369,14 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       errors.push(`${command}: ownerMode must match a workflowMode`);
     }
 
+    const expectedCanonical = CANONICAL_COMMAND_BY_MODE.get(record?.ownerMode);
+    if (record?.canonicalCommand !== expectedCanonical) {
+      errors.push(`${command}: canonicalCommand must be ${expectedCanonical ?? "a registered canonical command"}`);
+    }
+    if (!Array.isArray(record?.compatibilityAliases) || !sameValue(record.compatibilityAliases, [command])) {
+      errors.push(`${command}: compatibilityAliases must contain only the legacy command token`);
+    }
+
     for (const field of ["description", "argumentHint", "accepts", "returns", "deferToHubWhen"]) {
       if (typeof record?.[field] !== "string" || record[field].length === 0) {
         errors.push(`${command}: ${field} must be a non-empty string`);
@@ -399,7 +417,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       )
     );
 
-    if (command === INTERFACE_COMMAND) {
+    if (record?.ownerMode === "interface") {
       errors.push(...validateInterfaceTasks(record, command, interfaceIntentLanes, expectedCommands));
     }
 
@@ -1434,70 +1452,67 @@ async function collectSurfaceDrift(records) {
   return drift.sort(compareDrift);
 }
 
-function collectRosterReconciliationDrift(records, workflowModes, registry, hubRouter, wrappers, transportTokens) {
+function collectRosterReconciliationDrift(records, canonicalRecords, workflowModes, registry, hubRouter, wrappers) {
   const drift = [];
-  const metadataCommands = new Set(records.map((record) => record.command));
+  const canonicalCommands = new Set(canonicalRecords.map((record) => record.command));
+  const aliasCommands = new Set(records.flatMap((record) => record.compatibilityAliases));
+  const expectedWrappers = new Set([...canonicalCommands, ...aliasCommands]);
   const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
-  const hubModes = readHubRouterModes(hubRouter);
-  const hubCommands = commandSetForModes(hubModes, registry);
   const registryCommands = commandSetForModes(workflowModes, registry);
-  const reconciledCommands = intersectSets(metadataCommands, wrapperCommands, hubCommands, registryCommands);
+  const canonicalByMode = hubRouter?.commandSurface?.canonicalByMode ?? {};
+  const aliasMap = hubRouter?.commandSurface?.compatibilityAliases ?? {};
+  const reconciledCommands = intersectSets(canonicalCommands, wrapperCommands);
 
   for (const wrapper of wrappers) {
-    if (!metadataCommands.has(wrapper.command)) {
-      drift.push(rosterDrift("orphan-wrapper", wrapper.command, "metadata record", wrapper.relativePath));
+    if (!expectedWrappers.has(wrapper.command)) {
+      drift.push(rosterDrift("orphan-wrapper", wrapper.command, "metadata command or compatibility alias", wrapper.relativePath));
     }
-
     if (wrapper.frontmatterError) {
       drift.push(rosterDrift("dead-wrapper", wrapper.command, "parseable frontmatter", wrapper.frontmatterError));
     }
-
     if (!hasCommandTitle(wrapper.markdown, wrapper.command)) {
       drift.push(rosterDrift("dead-wrapper", wrapper.command, `# ${wrapper.command}`, "<missing or mismatched title>"));
     }
-
     if (hasPlaceholderWrapper(wrapper)) {
       drift.push(rosterDrift("placeholder-wrapper", wrapper.command, "specific argument contract", GENERIC_ARGUMENT_HINT));
     }
+
+    if (aliasCommands.has(wrapper.command)) {
+      const canonical = aliasMap[wrapper.command];
+      if (!canonical || !wrapper.markdown.includes(canonical)) {
+        drift.push(rosterDrift("alias-route-drift", wrapper.command, canonical ?? "canonical alias target", "<missing target>"));
+      }
+      if (!wrapper.markdown.includes("$ARGUMENTS")) {
+        drift.push(rosterDrift("alias-route-drift", wrapper.command, "$ARGUMENTS passthrough", "<missing>"));
+      }
+      if (!/do not invoke another public command/i.test(wrapper.markdown)) {
+        drift.push(rosterDrift("alias-route-drift", wrapper.command, "no nested public-command dispatch", "<missing>"));
+      }
+    }
   }
 
-  for (const command of sortedSet(metadataCommands)) {
+  for (const command of sortedSet(expectedWrappers)) {
     if (!wrapperCommands.has(command)) {
       drift.push(rosterDrift("missing-wrapper", command, wrapperPathForCommand(command).relativePath, "<missing>"));
     }
-
-    if (!hubCommands.has(command)) {
-      drift.push(rosterDrift("route-fixture-drift", command, "hub-router routable command", "<missing router signal>"));
-    }
   }
 
-  for (const command of sortedSet(wrapperCommands)) {
-    if (!hubCommands.has(command)) {
-      drift.push(rosterDrift("route-fixture-drift", command, "hub-router routable command", "wrapper-only command"));
+  records.forEach((record, index) => {
+    const canonical = canonicalRecords[index];
+    if (canonicalByMode[record.ownerMode] !== canonical.command) {
+      drift.push(rosterDrift("route-fixture-drift", canonical.command, `hub-router commandSurface.canonicalByMode.${record.ownerMode}`, canonicalByMode[record.ownerMode] ?? "<missing>"));
     }
-  }
-
-  for (const command of sortedSet(hubCommands)) {
-    if (transportTokens.has(command)) {
-      continue;
+    for (const alias of record.compatibilityAliases) {
+      if (aliasMap[alias] !== canonical.command) {
+        drift.push(rosterDrift("alias-route-drift", alias, canonical.command, aliasMap[alias] ?? "<missing>"));
+      }
+      if (!registryCommands.has(alias)) {
+        drift.push(rosterDrift("route-fixture-drift", alias, "mode-registry compatibility command token", "<missing>"));
+      }
     }
+  });
 
-    const workflowMode = command.replace("/design:", "");
-
-    if (!registryCommands.has(command)) {
-      drift.push(rosterDrift("route-fixture-drift", command, "mode-registry workflowMode", `hub-router routerSignals.${workflowMode}`));
-    }
-
-    if (!metadataCommands.has(command)) {
-      drift.push(rosterDrift("route-fixture-drift", command, "metadata record", `hub-router routerSignals.${workflowMode}`));
-    }
-
-    if (!wrapperCommands.has(command) && !metadataCommands.has(command)) {
-      drift.push(rosterDrift("missing-wrapper", command, wrapperPathForCommand(command).relativePath, `hub-router routerSignals.${workflowMode}`));
-    }
-  }
-
-  for (const record of records) {
+  for (const record of canonicalRecords) {
     drift.push(...collectDanglingHandoffDrift(record, reconciledCommands));
   }
 
@@ -2613,23 +2628,31 @@ function escapeRegExp(value) {
 }
 
 function wrapperPathForCommand(command) {
-  const name = command.replace("/design:", "");
-  const relativePath = `.opencode/commands/design/${name}.md`;
+  const match = command.match(/^\/([a-z0-9-]+):([a-z0-9-]+)$/);
+  if (!match) {
+    throw new Error(`invalid command token: ${command}`);
+  }
+  const [, namespace, name] = match;
+  const relativePath = `.opencode/commands/${namespace}/${name}.md`;
   return {
-    commandPrefix: `/design:${name}`,
+    commandPrefix: command,
     relativePath,
-    url: new URL(`${name}.md`, commandsRootUrl)
+    url: new URL(`${namespace}/${name}.md`, commandsRootUrl)
   };
 }
 
 function assetPathsForCommand(command) {
-  const name = command.replace("/design:", "");
-  const assetsRootUrl = new URL("assets/", commandsRootUrl);
+  const match = command.match(/^\/([a-z0-9-]+):([a-z0-9-]+)$/);
+  if (!match) {
+    throw new Error(`invalid command token: ${command}`);
+  }
+  const [, namespace, name] = match;
+  const assetsRootUrl = new URL(`${namespace}/assets/`, commandsRootUrl);
 
   const asset = (suffix, extension) => {
-    const fileName = `design-${name}-${suffix}.${extension}`;
+    const fileName = `${namespace}-${name}-${suffix}.${extension}`;
     return {
-      relativePath: `.opencode/commands/design/assets/${fileName}`,
+      relativePath: `.opencode/commands/${namespace}/assets/${fileName}`,
       url: new URL(fileName, assetsRootUrl)
     };
   };
@@ -2639,6 +2662,20 @@ function assetPathsForCommand(command) {
     auto: asset("auto", "yaml"),
     confirm: asset("confirm", "yaml")
   };
+}
+
+function projectRecordsToCanonical(records) {
+  const commandMap = new Map(records.map((record) => [record.command, record.canonicalCommand]));
+
+  return records.map((record) => {
+    let source = JSON.stringify(record);
+    for (const [legacy, canonical] of commandMap) {
+      source = source.split(legacy).join(canonical);
+    }
+    const projected = JSON.parse(source);
+    projected.command = record.canonicalCommand;
+    return projected;
+  });
 }
 
 function wordOverlapRatio(text, phrase) {
@@ -2871,7 +2908,7 @@ function formatTextReport(report) {
 
   if (report.metadata) {
     lines.push(
-      `METADATA commands=${report.metadata.commandCount} aliases=${report.metadata.aliasCount} workflowModes=${report.metadata.workflowModes.join(",")}`
+      `METADATA commands=${report.metadata.commandCount} compatibilityAliases=${report.metadata.compatibilityAliasCount} aliases=${report.metadata.aliasCount} workflowModes=${report.metadata.workflowModes.join(",")}`
     );
   }
 
@@ -2897,6 +2934,7 @@ export {
   commandSetForModes,
   expectedChoreographyDrift,
   parseInterfaceIntentSignalKeys,
+  projectRecordsToCanonical,
   readRegistryAliasesByMode,
   readWorkflowModes,
   validateDiscriminator,

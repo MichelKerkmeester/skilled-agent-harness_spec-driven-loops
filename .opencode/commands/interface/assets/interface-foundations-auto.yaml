@@ -1,0 +1,76 @@
+role: sk-design foundations creation command, autonomous execution
+purpose: Create static foundations for a target
+action: Apply workflowMode=foundations to $ARGUMENTS through the shared creation contract
+
+task_projections:
+  typeset: "Apply within workflowMode=foundations."
+  colorize: "Apply within workflowMode=foundations."
+  negative_corpus: "These are advisory verbs, never standalone commands."
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the registry-driven design hub
+    action: "Read .opencode/skills/sk-design/SKILL.md and mode-registry.json"
+    output: hub_context
+  step_2_load_creation_contract:
+    purpose: Establish the shared lifecycle and evidence vocabulary
+    action: "Read .opencode/skills/sk-design/shared/creation-contract.md"
+    output: creation_contract
+  step_3_route_proof:
+    purpose: Prove the canonical static-system route
+    action: "Record command=/interface:foundations, workflowMode=foundations, and proof environment"
+    output: route_proof
+  step_4_context_manifest:
+    purpose: Load target, real content, existing tokens, constraints, viewports, themes, and runtime context
+    action: "Read .opencode/skills/sk-design/shared/context-loading-contract.md and name loaded sources"
+    output: context_manifest
+  step_5_progressive_brief:
+    purpose: Resolve register, visual problem, density, accessibility target, preserve constraints, and output
+    action: "Classify facts and record bounded reversible assumptions"
+    output: resolved_brief
+  step_6_grounding:
+    purpose: Ground the static scaffold in owned precedent or one named principle
+    action: "Record provenance, fit axes, decision changed, and limitations; no-fit is valid"
+    output: grounding_record
+  step_7_load_mode:
+    purpose: Load the stable foundations mode and applicable static references
+    action: "Read .opencode/skills/sk-design/design-foundations/SKILL.md, then references/ and assets as required"
+    output: mode_context
+  step_8_select_procedure_card:
+    purpose: Select at most one private card or the explicit fallback
+    action: "Choose procedures/tweakable-design-controls.md, procedures/component-system-inventory.md, procedures/hierarchy-rhythm-review.md, or ../shared/procedures/polish-gate-orchestration.md when its trigger matches; otherwise state 'Procedure applied: none - baseline foundations workflow'"
+    output: mode_plan
+  step_9_run_foundations_work:
+    purpose: Produce only applicable static-system artifacts
+    action: "Create primitive, semantic, and component tokens plus type roles, spacing rhythm, grid/measure, hierarchy, responsive deltas, and theme deltas as applicable"
+    output: foundations_plan
+  step_10_critique_revision:
+    purpose: Test the scaffold against real content and one named static criterion
+    action: "Revise only the failed static criterion and preserve accepted constraints"
+    output: critique_validation
+  step_11_proof:
+    purpose: Validate deterministic static gates and declare runtime ceiling
+    action: "Run token/schema and applicable contrast/layout checks; separate authored direction from browser-measured evidence"
+    output: evidence_ledger
+  step_12_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md and preserve exact token roles and values"
+    output: next_action_handoff
+
+deliverable:
+  name: "Visual System Foundations Plan"
+  visible_blocks: [Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff]
+  required_fields: [axis, target, tokenDecisions, contrastEvidence]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Visual System Foundations Plan" NEXT=/interface:design,/interface:motion,/interface:audit PROOF=axis,target,tokenDecisions,contrastEvidence'
+  missing_input: "STATUS=ASK MISSING=<input>"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "system - turns direction or measured evidence into static visual-system decisions"
+  accepts_from: ["/interface:audit", "/interface:design", "/interface:design-reference", "/interface:motion"]
+  hands_to_next: ["/interface:design", "/interface:motion", "/interface:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

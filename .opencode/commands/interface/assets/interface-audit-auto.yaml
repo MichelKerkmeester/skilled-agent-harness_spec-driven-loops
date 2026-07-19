@@ -1,0 +1,76 @@
+role: sk-design audit creation command, autonomous execution
+purpose: Diagnose a design surface, create bounded remediation, and re-verify
+action: Apply workflowMode=audit to $ARGUMENTS through the shared creation contract
+
+task_projections:
+  harden: "Apply within workflowMode=audit."
+  polish: "Apply within workflowMode=audit."
+  negative_corpus: "These are advisory verbs, never standalone commands."
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the registry-driven design hub
+    action: "Read .opencode/skills/sk-design/SKILL.md and mode-registry.json"
+    output: hub_context
+  step_2_load_creation_contract:
+    purpose: Establish the shared lifecycle, mutation boundary, and evidence vocabulary
+    action: "Read .opencode/skills/sk-design/shared/creation-contract.md"
+    output: creation_contract
+  step_3_route_proof:
+    purpose: Prove the canonical audit route and evidence ceiling
+    action: "Record command=/interface:audit, workflowMode=audit, measurement transport if needed, and proof environment"
+    output: route_proof
+  step_4_context_manifest:
+    purpose: Load target state, journeys, viewports, constraints, baseline, axes, severity policy, and runtime evidence
+    action: "Read .opencode/skills/sk-design/shared/context-loading-contract.md and name loaded and blocked evidence"
+    output: context_manifest
+  step_5_progressive_brief:
+    purpose: Resolve scope, baseline, mutation boundary, and acceptance
+    action: "Classify facts; always require confirmation before audit mutation"
+    output: resolved_brief
+  step_6_grounding:
+    purpose: Establish observable controls rather than aesthetic preference
+    action: "Record baseline or control provenance, scenario, decision changed, and limitations; no-fit is valid but no baseline means no improvement claim"
+    output: grounding_record
+  step_7_load_mode:
+    purpose: Load the stable audit mode and required evidence references
+    action: "Read .opencode/skills/sk-design/design-audit/SKILL.md, then references/ and assets as required"
+    output: mode_context
+  step_8_select_procedure_card:
+    purpose: Select at most one private card or the explicit fallback
+    action: "Choose procedures/accessibility-audit.md, procedures/ai-slop-check.md, or ../shared/procedures/polish-gate-orchestration.md when its trigger matches; otherwise state 'Procedure applied: none - baseline audit workflow'"
+    output: mode_plan
+  step_9_run_audit_work:
+    purpose: Produce reproducible findings and bounded remediation before mutation
+    action: "Capture observations, label severity and confidence, cluster root causes, and define remediation acceptance criteria; do not apply fixes"
+    output: design_quality_audit_report
+  step_10_critique_revision:
+    purpose: Validate findings against evidence and scope
+    action: "Reject unsupported aesthetic findings and narrow remediation to evidenced causes"
+    output: critique_validation
+  step_11_proof:
+    purpose: Re-test matched scenarios and qualify the verdict
+    action: "Compare matched baseline and re-test evidence when available; otherwise report the explicit evidence ceiling and residual risks"
+    output: evidence_ledger
+  step_12_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md; emit accepted findings only and require explicit amendment for conflicts"
+    output: next_action_handoff
+
+deliverable:
+  name: "Design Quality Audit Report"
+  visible_blocks: [Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff]
+  required_fields: [target, evidenceInventory, severityFindings, qualityScore]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Design Quality Audit Report" NEXT=/interface:foundations,/interface:design,/interface:motion PROOF=target,evidenceInventory,severityFindings,qualityScore'
+  missing_input: "STATUS=ASK MISSING=<input>"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "review - validates design output before the build handoff"
+  accepts_from: ["/interface:foundations", "/interface:design", "/interface:design-reference", "/interface:motion"]
+  hands_to_next: ["/interface:foundations", "/interface:design", "/interface:motion"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after finding acceptance"

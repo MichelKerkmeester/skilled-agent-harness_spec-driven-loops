@@ -1,0 +1,88 @@
+role: sk-design interface creation command, autonomous execution
+purpose: Create or reshape an end-to-end interface direction
+action: Apply workflowMode=interface to $ARGUMENTS through the shared creation contract
+
+operating_mode:
+  approvals: none
+  intake: progressive
+  confirmation: "Only for route, identity, access, destructive action, or acceptance changes"
+
+user_inputs:
+  target: "Interface target. REQUIRED."
+  register: "brand|product; default auto"
+  mode: "direction|directions|redesign|preflight|build|aesthetic; default direction"
+
+task_projections:
+  bolder: "Apply within workflowMode=interface."
+  quieter: "Apply within workflowMode=interface."
+  distill: "Apply within workflowMode=interface."
+  delight: "Apply within workflowMode=interface."
+  negative_corpus: "These are advisory verbs, never standalone commands."
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the registry-driven design hub
+    action: "Read .opencode/skills/sk-design/SKILL.md and mode-registry.json"
+    output: hub_context
+  step_2_load_creation_contract:
+    purpose: Establish the shared lifecycle, envelope, authority, and proof vocabulary
+    action: "Read .opencode/skills/sk-design/shared/creation-contract.md"
+    output: creation_contract
+  step_3_route_proof:
+    purpose: Prove the canonical route before design work
+    action: "Record command=/interface:design, workflowMode=interface, supporting foundations bundle when building UI, and the proof environment"
+    output: route_proof
+  step_4_context_manifest:
+    purpose: Load the target, owned system, content, data, constraints, artifacts, and runtime context
+    action: "Read .opencode/skills/sk-design/shared/context-loading-contract.md and name every loaded source"
+    output: context_manifest
+  step_5_progressive_brief:
+    purpose: Resolve target, subject, audience, one job, register, pinned axes, preserve constraints, fidelity, output, and proof bar
+    action: "Classify fields as resolved, auto-resolvable, or confirmation-required and record bounded assumptions"
+    output: resolved_brief
+  step_6_grounding:
+    purpose: Ground one decision without turning references into a style menu
+    action: "Use the owned system first, then at most one brief-fit exemplar and one contrast; record provenance, decision changed, and limitations; no-fit is valid"
+    output: grounding_record
+  step_7_load_mode:
+    purpose: Load the stable interface mode and only required private resources
+    action: "Read .opencode/skills/sk-design/design-interface/SKILL.md, then references/ and assets as required"
+    output: mode_context
+  step_8_select_procedure_card:
+    purpose: Select at most one private card or the explicit fallback
+    action: "Choose procedures/discovery-question-round.md, procedures/aesthetic-direction.md, procedures/wireframe-exploration.md, procedures/variation-set.md, procedures/prototype-flow-spec.md, procedures/deck-direction-spec.md, or ../shared/procedures/polish-gate-orchestration.md when its trigger matches; otherwise state 'Procedure applied: none - baseline interface workflow'"
+    output: mode_plan
+  step_9_run_creative_work:
+    purpose: Produce the brief-specific interface artifact before implementation
+    action: "Create and apply the token/layout/signature plan through the interface mode; use the ordered foundations bundle for UI production"
+    output: interface_direction_spec
+  step_10_critique_revision:
+    purpose: Test the direction against the brief and defaults
+    action: "Run anti-default critique and one named criterion; make one targeted revision for a failed criterion"
+    output: critique_validation
+  step_11_proof:
+    purpose: Qualify deterministic and available runtime evidence
+    action: "Validate the resolved brief, critique, handoff schema, and any representative render inspection; apply typed evidence levels and an explicit ceiling"
+    output: evidence_ledger
+  step_12_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md; preserve accepted decisions and request explicit amendment for conflicts"
+    output: next_action_handoff
+
+deliverable:
+  name: "Interface Direction Spec"
+  visible_blocks: [Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff]
+  required_fields: [target, register, designDials, preflightResult]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult'
+  missing_input: "STATUS=ASK MISSING=<input>"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "direction - frames the interface decision before static systems, behavior, audit, or build"
+  accepts_from: ["/interface:audit", "/interface:foundations", "/interface:design-reference", "/interface:motion"]
+  hands_to_next: ["/interface:foundations", "/interface:motion", "/interface:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

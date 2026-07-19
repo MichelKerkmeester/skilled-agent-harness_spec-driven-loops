@@ -1,0 +1,71 @@
+role: sk-design motion creation command, autonomous execution
+purpose: Create temporal behavior for a transition
+action: Apply workflowMode=motion to $ARGUMENTS through the shared creation contract
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the registry-driven design hub
+    action: "Read .opencode/skills/sk-design/SKILL.md and mode-registry.json"
+    output: hub_context
+  step_2_load_creation_contract:
+    purpose: Establish the shared lifecycle and evidence vocabulary
+    action: "Read .opencode/skills/sk-design/shared/creation-contract.md"
+    output: creation_contract
+  step_3_route_proof:
+    purpose: Prove the canonical temporal route
+    action: "Record command=/interface:motion, workflowMode=motion, and proof environment"
+    output: route_proof
+  step_4_context_manifest:
+    purpose: Load trigger, states, elements, runtime, performance budget, accessibility policy, and proof surface
+    action: "Read .opencode/skills/sk-design/shared/context-loading-contract.md and name loaded sources"
+    output: context_manifest
+  step_5_progressive_brief:
+    purpose: Resolve intent, before/after state, interruption/reversal, material, and constraints
+    action: "Classify facts and record bounded reversible assumptions"
+    output: resolved_brief
+  step_6_grounding:
+    purpose: Ground one behavior-changing decision
+    action: "Use one behavior-fit exemplar when available; record provenance and decision changed; no-fit is valid"
+    output: grounding_record
+  step_7_load_mode:
+    purpose: Load the stable motion mode and applicable references
+    action: "Read .opencode/skills/sk-design/design-motion/SKILL.md, then references/ and assets as required"
+    output: mode_context
+  step_8_select_procedure_card:
+    purpose: Select a private card only when its trigger matches
+    action: "Choose procedures/interaction-states-pass.md or ../shared/procedures/polish-gate-orchestration.md when applicable; otherwise state 'Procedure applied: none - baseline motion workflow'"
+    output: mode_plan
+  step_9_run_motion_work:
+    purpose: Define behavior and mechanism before timings
+    action: "Produce the temporal narrative, choreography table, interruption/reversal model, and semantic reduced-motion equivalent"
+    output: motion_design_spec
+  step_10_critique_revision:
+    purpose: Test purpose, state continuity, interruption, and reduced-motion parity
+    action: "Revise only the failed criterion rather than resetting the full motion direction"
+    output: critique_validation
+  step_11_proof:
+    purpose: Separate authored timing from runtime measurement
+    action: "Validate state/choreography/reduced-motion contracts and upgrade only with interaction or frame-quality evidence"
+    output: evidence_ledger
+  step_12_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md and preserve the chosen animation stack boundary"
+    output: next_action_handoff
+
+deliverable:
+  name: "Motion Design Spec"
+  visible_blocks: [Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff]
+  required_fields: [componentState, motionPurpose, timingModel, reducedMotionPath]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design,/interface:foundations,/interface:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath'
+  missing_input: "STATUS=ASK MISSING=<input>"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "behavior - specifies temporal behavior after direction or foundations and before audit or build"
+  accepts_from: ["/interface:audit", "/interface:foundations", "/interface:design"]
+  hands_to_next: ["/interface:design", "/interface:foundations", "/interface:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

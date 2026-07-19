@@ -1,0 +1,51 @@
+# Interface Motion Presentation Contract
+
+## 1. Progressive Intake
+
+Resolve trigger, intent, before/after state, affected elements, interruption/reversal, runtime, performance budget, material, accessibility policy, and proof surface. Reject motion with no state or attention purpose.
+
+```text
+Interface Motion setup
+Which transition, before/after states, intent, interruption behavior, runtime/library, performance budget, reduced-motion policy, and proof surface apply?
+```
+
+## 2. Common Visible Output
+
+```text
+Route Proof
+Resolved Brief
+Context Manifest
+Grounding Record
+Creation/Remediation Artifact - Motion Design Spec
+Critique/Validation
+Evidence Ledger
+Next Action/Handoff
+```
+
+## 3. Results Display
+
+```text
+STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design,/interface:foundations,/interface:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath
+STATUS=ASK MISSING=<input>
+STATUS=FAIL ERROR=<named-cause>
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested target |
+|---|---|
+| motion choices change or depend on the overall interface direction | `/interface:design` |
+| motion constraints affect static layout, token, or responsive decisions | `/interface:foundations` |
+| the motion spec is ready for performance, accessibility, or quality review | `/interface:audit` |
+| accepted motion moves to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
+
+`HANDOFF_REQUIRED=false`. Recommendations never silently chain.
+
+## 5. Example Usage
+
+```text
+/interface:motion modal-open-close --library framer-motion
+```
+
+Returns: a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior.

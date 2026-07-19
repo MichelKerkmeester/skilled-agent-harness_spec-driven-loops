@@ -1,0 +1,22 @@
+{
+  "run_id": "1784444104016-7oed3t",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database",
+  "base_artifact_dir": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -1,18 +1,18 @@
 ---
 title: "sk-design: Feature Catalog"
-description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, styles-library grounding, transport separation, and private procedure-card selection."
+description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, indexed style retrieval, canonical interface creation commands, transport separation, and private procedure-card selection."
 trigger_phrases:
   - "sk-design feature catalog"
   - "design family hub capabilities"
   - "procedure card system"
   - "design proof gates"
-last_updated: "2026-07-18"
-version: 1.1.0.0
+last_updated: "2026-07-19"
+version: 1.2.0.0
 ---
 
 # sk-design: Feature Catalog
 
-This catalog inventories the live `sk-design` hub surface. The hub routes one public design-family identity to five mode packets, keeps mode logic in those packets, names proof expectations before ready claims, and separates design judgment from transport mechanics.
+This catalog inventories the live `sk-design` hub surface. The hub routes one public design-family identity to five stable mode packets, exposes canonical `/interface:*` creation commands, keeps mode logic in those packets, names proof expectations before ready claims, and separates design judgment from transport mechanics. Style retrieval retains authoritative flat files by default while offering an opt-in indexed backend.
 
 ---
 
@@ -116,11 +116,27 @@ The committed styles corpus has a deterministic retrieval surface that filters e
 
 #### Current Reality
 
-The engine checks a byte-stable manifest over 1,290 bundles, uses an in-memory full-text accelerator with a bounded source-scan fallback and refuses stale or unprovenanced hydration. The corpus remains advisory evidence rather than a source of design authority.
+The `legacy|shadow|persistent` adapter defaults to the flat-file legacy engine, which checks a byte-stable manifest over 1,290 bundles, uses an in-memory full-text accelerator with a bounded source-scan fallback and refuses stale or unprovenanced hydration. The flat files remain authoritative, and the corpus remains advisory evidence rather than a source of design authority.
 
 #### Source Files
 
 See [`styles-library-utilization/retrieval-engine.md`](styles-library-utilization/retrieval-engine.md) for implementation and validation anchors.
+
+---
+
+### Indexed Style Database
+
+#### Description
+
+The styles library has an opt-in SQLite and FTS5 retrieval backend with a rebuildable vector projection, incremental generation publishing and eligibility-first weighted-RRF ranking.
+
+#### Current Reality
+
+The indexer runs `DISCOVER` through `PUBLISH`, while retrieval fuses structured, FTS5 and vector ranks only after eligibility filtering. The adapter supports `legacy`, `shadow` and `persistent` modes but defaults to `legacy`; flat files remain authoritative and persistent reads require explicit opt-in.
+
+#### Source Files
+
+See [`styles-library-utilization/style-database-backend.md`](styles-library-utilization/style-database-backend.md) for lifecycle, adapter and validation anchors.
 
 ---
 
@@ -169,3 +185,21 @@ Formatter emission, prompt instructions and validation resolve from `V3_SCHEMA`.
 #### Source Files
 
 See [`styles-library-utilization/md-generator-schema-and-study.md`](styles-library-utilization/md-generator-schema-and-study.md) for schema, STUDY and leak-gate anchors.
+
+---
+
+## 5. CREATION COMMAND SURFACE
+
+### Interface Creation Commands
+
+#### Description
+
+Five canonical `/interface:*` commands provide one creation surface for design, foundations, motion, audit and design-reference workflows.
+
+#### Current Reality
+
+`/interface:{design,foundations,motion,audit,design-reference}` maps to the unchanged `interface`, `foundations`, `motion`, `audit` and `md-generator` mode IDs. All five commands reference one shared nine-stage creation contract. The corresponding `/design:*` commands remain thin compatibility aliases.
+
+#### Source Files
+
+See [`creation-command-surface/interface-creation-commands.md`](creation-command-surface/interface-creation-commands.md) for command mappings, compatibility boundaries and validation anchors.

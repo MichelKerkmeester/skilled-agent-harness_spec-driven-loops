@@ -1,0 +1,51 @@
+# Interface Design Reference Presentation Contract
+
+## 1. Progressive Intake
+
+Resolve canonical URL, allowed origin, representative routes/states/viewports/themes, private access, dynamic loading, output, overwrite policy, coverage, and validation bar. Private access, overwrite, and missing canonical source always require confirmation.
+
+```text
+Interface Design Reference setup
+What canonical URL/origin, capture matrix, access method, output directory, overwrite decision, coverage target, and validation bar apply?
+```
+
+## 2. Common Visible Output
+
+```text
+Route Proof
+Resolved Brief
+Context Manifest
+Grounding Record
+Creation/Remediation Artifact - Style Reference DESIGN.md
+Critique/Validation
+Evidence Ledger
+Next Action/Handoff
+```
+
+## 3. Results Display
+
+```text
+STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:foundations,/interface:design,/interface:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore
+STATUS=ASK MISSING=<input>
+STATUS=FAIL ERROR=<named-cause>
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested target |
+|---|---|
+| measured CSS should be distilled into a static visual-system plan | `/interface:foundations` |
+| measured evidence should inform a new or reshaped interface direction | `/interface:design` |
+| the captured surface needs quality review or hardening based on measured evidence | `/interface:audit` |
+| accepted evidence informs implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
+
+`HANDOFF_REQUIRED=false`. Recommendations never silently chain.
+
+## 5. Example Usage
+
+```text
+/interface:design-reference https://stripe.com --output design/reference
+```
+
+Returns: a Style Reference DESIGN.md and extracted token data under the output directory.

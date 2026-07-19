@@ -1,0 +1,54 @@
+{
+  "topic": "How should the 1,291-style sk-design styles/ library become a real indexed database, grounded in the in-repo sqlite+embeddings memory store and runtime graph databases?",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database",
+  "artifactDir": ".opencode/specs/sk-design/012-style-database-and-interface-commands/001-research-style-database/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-19T06:57:51Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784444104016-7oed3t",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

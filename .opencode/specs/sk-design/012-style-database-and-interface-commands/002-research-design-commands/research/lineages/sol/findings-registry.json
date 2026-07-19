@@ -1,0 +1,1116 @@
+{
+  "sessionId": "fanout-sol-1784445510640-ztutfl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 20,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-19T08:05:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-concrete-creation-work-is-absent-from-each-current-router-presentation-asse",
+      "inboxId": null,
+      "text": "What concrete creation work is absent from each current router, presentation asset, and workflow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-reusable-prompt-structures-appear-in-claude-design-templates-open-design-a",
+      "inboxId": null,
+      "text": "Which reusable prompt structures appear in Claude design templates, Open Design, and aura.build skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-exact-interface-command-names-and-user-jobs-form-the-smallest-coherent-crea",
+      "inboxId": null,
+      "text": "What exact `/interface:*` command names and user jobs form the smallest coherent creation surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-command-specific-brief-exemplar-build-flow-output-and-verification-scaffold",
+      "inboxId": null,
+      "text": "What command-specific brief, exemplar, build-flow, output, and verification scaffold should each command provide?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 12,
+      "resolved": true
+    },
+    {
+      "id": "question-5-how-should-each-creation-command-hand-off-to-the-matching-sk-design-mode-without",
+      "inboxId": null,
+      "text": "How should each creation command hand off to the matching `sk-design` mode without duplicating design taste or mode doctrine?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-concrete-creation-work-is-absent-from-each-current-router-presentation-asse",
+      "inboxId": null,
+      "text": "What concrete creation work is absent from each current router, presentation asset, and workflow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-reusable-prompt-structures-appear-in-claude-design-templates-open-design-a",
+      "inboxId": null,
+      "text": "Which reusable prompt structures appear in Claude design templates, Open Design, and aura.build skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-3-what-exact-interface-command-names-and-user-jobs-form-the-smallest-coherent-crea",
+      "inboxId": null,
+      "text": "What exact `/interface:*` command names and user jobs form the smallest coherent creation surface?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-4-what-command-specific-brief-exemplar-build-flow-output-and-verification-scaffold",
+      "inboxId": null,
+      "text": "What command-specific brief, exemplar, build-flow, output, and verification scaffold should each command provide?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 12
+    },
+    {
+      "id": "question-5-how-should-each-creation-command-hand-off-to-the-matching-sk-design-mode-without",
+      "inboxId": null,
+      "text": "How should each creation command hand off to the matching `sk-design` mode without duplicating design taste or mode doctrine?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which external template structures best solve intake and exemplar grounding?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should all five modes remain standalone commands under `/interface`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How external exemplars should be selected and bounded.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether audit belongs in a creation namespace despite being evaluative.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How a multi-turn tool such as Open Design changes the build scaffold.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How audit should fit the namespace.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The final namespace treatment of audit and md generation.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How Aura packages reusable skills and references.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact per-command scaffolds.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final command names and whether audit fits the namespace.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact creation template for each command.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Five command-specific field and stage specializations.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-rewrite-should-preserve-thin-command-ownership-boundaries-but-make-the-command",
+      "text": "A rewrite should preserve thin command ownership boundaries but make the command prompt a creation-template entrypoint: normalize a brief, ground references, select a mode-owned procedure, execute, critique/verify, and hand off. The command should orchestrate inputs and outputs; `sk-design` remains the source of taste and domain rules. [INFERENCE: based on findings 1-3]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-presentation-assets-ask-only-the-minimum-routing-inputs-and-describe-a-returned-",
+      "text": "Presentation assets ask only the minimum routing inputs and describe a returned artifact. They do not gather a robust brief, request or discover exemplars, expose ambiguity/default handling, or preview the scaffolded creation stages. [SOURCE: .opencode/commands/design/assets/design-interface-presentation.txt:13-31] [SOURCE: .opencode/commands/design/assets/design-interface-presentation.txt:83-91]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-deeper-assets-are-not-empty-routers-interface-already-selects-procedure-card",
+      "text": "The deeper assets are not empty routers. Interface already selects procedure cards, resolves register/dials, and runs a ground -> token-system -> anti-default critique -> build -> self-critique sequence; foundations and md-generator similarly carry real mode workflows. The defect is therefore discoverability and prompt-entry usefulness, not total absence of internal choreography. [SOURCE: .opencode/commands/design/assets/design-interface-auto.yaml:51-101] [SOURCE: .opencode/commands/design/assets/design-foundations-auto.yaml:40-79] [SOURCE: .opencode/commands/design/assets/design-md-generator-auto.yaml:39-73]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-wrappers-are-intentionally-routing-centric-each-names-one-user-job-pins-one-",
+      "text": "The wrappers are intentionally routing-centric: each names one user job, pins one `sk-design` mode, supplies sibling discriminators and preconditions, resolves `:auto|:confirm`, and delegates execution to assets. They do not themselves turn an underspecified design ask into a structured creative brief or show the user the creation sequence. [SOURCE: .opencode/commands/design/interface.md:9-17] [SOURCE: .opencode/commands/design/audit.md:9-17] [SOURCE: .opencode/commands/design/foundations.md:9-17] [SOURCE: .opencode/commands/design/motion.md:9-17] [SOURCE: .opencode/commands/design/md-generator.md:9-17]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-a-compact-shared-envelope-can-cover-target-subject-audience-job-register-content",
+      "text": "A compact shared envelope can cover `target`, `subject`, `audience`, `job`, `register`, `content/data`, `constraints`, `preserve`, `references`, `fidelity`, and `acceptance`; each command then adds only its discriminating fields. [INFERENCE: based on the cross-contract comparison]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-a-separate-interface-brief-command-is-unnecessary-for-the-initial-set-brief-norm",
+      "text": "A separate `/interface:brief` command is unnecessary for the initial set. Brief normalization is a shared internal phase in every creation command; exposing it separately creates an artifact users must manually feed into the real command. [SOURCE: .opencode/commands/design/assets/design-interface-auto.yaml:61-90]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-current-intake-is-optimized-for-dispatch-target-plus-axis-scope-library-output-a",
+      "text": "Current intake is optimized for dispatch: target plus axis/scope/library/output and Brand/Product register. It omits audience, user/job, content/data, constraints, preserve/change boundaries, desired fidelity, owned system, references, and acceptance evidence. [SOURCE: .opencode/commands/design/assets/design-audit-presentation.txt:11-31] [SOURCE: .opencode/commands/design/assets/design-foundations-presentation.txt:11-30] [SOURCE: .opencode/commands/design/assets/design-motion-presentation.txt:11-30] [SOURCE: .opencode/commands/design/assets/design-md-generator-presentation.txt:11-30]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-intake-should-be-progressive-resolve-facts-from-arguments-and-context-first-ask-",
+      "text": "Intake should be progressive: resolve facts from arguments and context first, ask only material unknowns together, and explicitly own minor choices. Forcing every field into every invocation would turn useful scaffolding into questionnaire friction. [INFERENCE: based on current auto/confirm split and interface's existing missing-brief procedure]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-its-executable-scaffold-is-explicit-and-ordered-brainstorm-a-compact-token-syste",
+      "text": "Its executable scaffold is explicit and ordered: brainstorm a compact token system, critique against known defaults, revise, build from the revised plan, and self-critique the render. The plan has concrete slots for palette, type roles, layout/wireframe, and one signature. [SOURCE: https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-its-grounding-rule-converts-missing-brief-facts-into-a-bounded-assumption-name-s",
+      "text": "Its grounding rule converts missing brief facts into a bounded assumption: name subject, audience, and page job, state the choice, then derive from the subject's world. This is a better fallback than either failing on thin briefs or asking an exhaustive interview. [SOURCE: https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-the-external-prompt-starts-with-a-role-quality-stakes-brief-specificity-and-one-",
+      "text": "The external prompt starts with a role, quality stakes, brief specificity, and one justified risk. That establishes a creative contract before mechanics, unlike the current command's setup-first framing. [SOURCE: https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-the-local-design-interface-mode-already-vendors-and-expands-this-doctrine-includ",
+      "text": "The local `design-interface` mode already vendors and expands this doctrine, including ground -> token system -> critique -> build -> self-critique plus quality and handoff gates. Commands should invoke and expose the phase contract, not duplicate the principles text. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:14-16] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:59-69] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:196-227]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-the-reusable-command-template-is-therefore-creative-contract-brief-resolution-gr",
+      "text": "The reusable command template is therefore: `Creative Contract -> Brief Resolution -> Grounding Evidence -> Mode Call -> Visible Plan/Build Stages -> Critique/Proof -> Handoff`. Mode-specific content fills these slots. [INFERENCE: based on findings 1-4]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-a-style-chooser-is-explicitly-rejected-resolve-at-most-one-system-from-subject-a",
+      "text": "A style chooser is explicitly rejected. Resolve at most one system from subject and brief; exemplar grounding is evidence for a decision, not a gallery of vibes. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:156-163]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-open-design-generation-is-deliberately-multi-turn-turn-1-asks-a-discovery-form-a",
+      "text": "Open Design generation is deliberately multi-turn: turn 1 asks a discovery form about fidelity, data, and behavior and writes no files; answering it fires the build. A creation command must represent clarification as a lifecycle stage, not pretend one prompt always produces a design. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:127-135] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/od-cli-reference.md:179-187]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-open-design-s-real-ui-loop-adds-three-creation-critical-stages-missing-from-visi",
+      "text": "Open Design's real-UI loop adds three creation-critical stages missing from visible command prompts: reuse an owned/matched system before generating, inspect the actual `previewUrl` rather than trusting file creation, and route targeted one-change revisions. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design-parity-transport.md:22-40]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-the-brief-and-discovery-answers-must-be-shaped-by-sk-design-judgment-before-tran",
+      "text": "The brief and discovery answers must be shaped by `sk-design` judgment before transport invocation. This directly validates the target architecture: command template orchestrates, mode decides, optional transport realizes. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:20-24] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:129-133]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-the-reusable-lifecycle-becomes-ground-reuse-select-one-exemplar-brief-clarificat",
+      "text": "The reusable lifecycle becomes `ground -> reuse/select one exemplar -> brief -> clarification checkpoint -> mode-owned plan -> build/render -> inspect -> targeted revise (max two) -> proof/handoff`. Open Design is one optional realization branch; commands must also work without it. [INFERENCE: based on findings 1-4]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-aura-defines-skills-as-reusable-instructions-for-coding-design-agents-invoked-by",
+      "text": "Aura defines skills as reusable instructions for coding/design agents, invoked by referencing `@` in a prompt. Its public framing emphasizes repeatable workflows rather than one-off generated output. [SOURCE: https://aura.build/assets/Skills-DW2PxyfC.js]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-aura-s-broader-builder-treats-templates-components-assets-design-systems-snippet",
+      "text": "Aura's broader builder treats templates, components, assets, design systems, snippets, and prior projects as reference inputs while exporting portable frontend output. Exemplar grounding should therefore accept heterogeneous references and state their role, not only a screenshot or style name. [SOURCE: https://aura.build/llms.txt]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-aura-s-recommended-frontend-skill-categories-are-concrete-process-slices-layout-",
+      "text": "Aura's recommended frontend skill categories are concrete process slices: layout critique, responsive QA, animation review, accessibility checks, component polish, prompt review, and design-system alignment. This supports keeping mode-specific commands rather than one giant `/interface:design-everything`. [SOURCE: https://aura.build/assets/Skills-DW2PxyfC.js]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-source-refresh-converts-github-urls-to-raw-content-and-stores-the-refreshed-mark",
+      "text": "Source refresh converts GitHub URLs to raw content and stores the refreshed Markdown, making provenance and updateability first-class. The project-native analogue should record reference identity and preserve/transform/reject decisions, but read references live and avoid copying them into command files. [SOURCE: https://aura.build/assets/githubUtils-zKYT_cu2.js] [INFERENCE: mapped to the local no-copy design authority]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-the-skill-object-is-a-portable-prompt-package-title-description-markdown-content",
+      "text": "The skill object is a portable prompt package: title, description, Markdown content, optional source URL, keywords parsed from frontmatter, provenance/author, visibility, views, and forks/uses. A creation command can borrow this explicit metadata/provenance shape without becoming a skill marketplace. [SOURCE: https://aura.build/assets/Skills-DW2PxyfC.js] [SOURCE: https://aura.build/assets/githubUtils-zKYT_cu2.js]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-audit-belongs-under-interface-even-though-it-evaluates-rather-than-creates-the-n",
+      "text": "Audit belongs under `/interface` even though it evaluates rather than creates: the namespace represents the complete interface-design lifecycle, and audit has a distinct findings/backlog handoff contract. Calling the namespace creation-only would also misdescribe foundations and extraction. [SOURCE: .opencode/skills/sk-design/SKILL.md:23-35] [SOURCE: .opencode/skills/sk-design/shared/sk-code-handoff.md:71-79]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-confirm-interface-interface-design-interface-interface-is-tautological-while-des",
+      "text": "Confirm `interface -> /interface:design`; `/interface:interface` is tautological, while `design` is the dominant end-to-end creation job. [SOURCE: .opencode/skills/sk-design/mode-registry.json:41-59]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-final-set-interface-design-interface-foundations-interface-motion-interface-audi",
+      "text": "Final set: `/interface:design`, `/interface:foundations`, `/interface:motion`, `/interface:audit`, `/interface:design-reference`. Keep internal mode keys unchanged; public command names map to registry modes. [INFERENCE: naming synthesis from findings 1-5]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-keep-five-commands-the-registry-exposes-five-genuinely-distinct-workflow-modes-w",
+      "text": "Keep five commands. The registry exposes five genuinely distinct workflow modes with different intent vocabulary and one non-command transport; merging modes would fight the smallest-useful-mode rule. [SOURCE: .opencode/skills/sk-design/mode-registry.json:39-164] [SOURCE: .opencode/skills/sk-design/SKILL.md:140-153]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-refine-md-generator-interface-design-reference-not-design-md-creation-the-mode-e",
+      "text": "Refine `md-generator -> /interface:design-reference`, not `design-md-creation`. The mode extracts measured CSS into a Style Reference `DESIGN.md`; “creation” overstates generative authorship and hides the live-source/provenance job. [SOURCE: .opencode/skills/sk-design/mode-registry.json:125-143] [SOURCE: .opencode/commands/design/md-generator.md:13-17]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-refine-the-other-three-proposed-design-prefixes-to-interface-foundations-interfa",
+      "text": "Refine the other three proposed `design-*` prefixes to `/interface:foundations`, `/interface:motion`, and `/interface:audit`. The namespace already supplies interface context, and the short nouns exactly match stable workflowMode keys and user vocabulary. [SOURCE: .opencode/skills/sk-design/mode-registry.json:62-123]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-every-command-should-instantiate-this-nine-stage-skeleton-1-creative-contract-2-",
+      "text": "Every command should instantiate this nine-stage skeleton: `1 Creative Contract; 2 Resolve Brief; 3 Context Manifest; 4 Ground One Exemplar; 5 Route/Load Mode; 6 Show Plan; 7 Execute Mode/Optional Transport; 8 Critique + Proof; 9 Deliver + Handoff`. [INFERENCE: combines external patterns with local contracts]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-handoff-uses-the-existing-exact-envelope-what-locked-values-signature-moves-reus",
+      "text": "Handoff uses the existing exact envelope (`WHAT`, `LOCKED VALUES`, `SIGNATURE MOVES`, `REUSE LIST`, `STACK BOUNDARY`, `OPEN RISKS/VERIFICATION`, `NEVER-CHANGE`) and occurs only after acceptance. [SOURCE: .opencode/skills/sk-design/shared/sk-code-handoff.md:32-45] [SOURCE: .opencode/skills/sk-design/shared/sk-code-handoff.md:93-100]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-proof-is-mode-owned-and-claim-gated-context-loaded-register-dials-contrast-prefl",
+      "text": "Proof is mode-owned and claim-gated. Context loaded, register/dials, contrast, preflight, interaction states, audit evidence, and decision rationale apply only when triggered; a generic command-level “verified” boolean is unsafe. [SOURCE: .opencode/skills/sk-design/shared/context-loading-contract.md:44-71] [SOURCE: .opencode/skills/sk-design/shared/context-loading-contract.md:266-279]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-the-command-template-must-reuse-not-restate-the-hub-s-five-intake-groups-goal-su",
+      "text": "The command template must reuse, not restate, the hub's five intake groups: goal, surface, inputs, constraints, and proof expectations. Intake must visibly precede route selection. [SOURCE: .opencode/skills/sk-design/SKILL.md:44-57]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-the-shared-grounding-record-should-contain-source-identity-source-type-why-relev",
+      "text": "The shared grounding record should contain `source identity`, `source type`, `why relevant`, `provenance/rights`, `preserve`, `transform`, `reject`, and `counterfactual default changed`. No match is a valid result; references never select the mode or prove quality. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:200-206]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-the-visible-output-contract-should-always-include-six-blocks-design-read-resolve",
+      "text": "The visible output contract should always include six blocks: `Design Read`, `Resolved Brief`, `Grounding Record`, `Creation Plan`, `Mode Artifact`, and `Proof + Handoff`. Audit relabels Design Read as Audit Read; design-reference relabels Mode Artifact as extraction output, but shape stays stable. [INFERENCE: consistency rule]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-brief-intake-resolve-target-surface-subject-audience-single-job-brand-product-re",
+      "text": "**Brief intake:** resolve target/surface, subject, audience, single job, Brand/Product register, pinned axes, existing system/components, real content/data, preserve/never-change constraints, desired fidelity, output surface, and proof bar. If subject/audience/job are absent, make one bounded assumption and state it; ask one question only when route or acceptance changes. [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md:48-62]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-exemplar-grounding-search-owned-system-first-then-select-at-most-one-subject-fit",
+      "text": "**Exemplar grounding:** search owned system first; then select at most one subject-fit corpus or shipped-UI anchor plus an optional contrast/rejected default. Record source, role, provenance, preserve/transform/reject, and the counterfactual changed. `no-fit` is valid. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:200-206]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-mode-boundary-the-command-names-stages-and-passes-the-resolved-brief-grounding-r",
+      "text": "**Mode boundary:** the command names stages and passes the resolved brief/grounding record to `workflowMode=interface`; it does not prescribe palettes, typefaces, signatures, or aesthetic rules. `foundations` is an ordered supporting mode for build/redesign, not a replacement route. [SOURCE: .opencode/skills/sk-design/SKILL.md:166-172]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-scaffolded-flow-context-manifest-design-read-register-dials-interface-mode-found",
+      "text": "**Scaffolded flow:** `Context Manifest -> Design Read/register+dials -> interface mode + foundations build bundle -> one procedure card -> compact token system + layout/wireframe + signature -> anti-default critique/revision -> optional direction approval -> real-UI reuse/render/check/revise loop -> interface preflight -> handoff`. [SOURCE: .opencode/skills/sk-design/SKILL.md:155-184] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md:33-40]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-visible-output-design-read-resolved-brief-grounding-record-direction-plan-tokens",
+      "text": "**Visible output:** `Design Read`, `Resolved Brief`, `Grounding Record`, `Direction Plan` (tokens/layout/signature), `Critique Revision`, `Interface Direction Spec`, `Preflight Proof`, and accepted `sk-code` handoff. [SOURCE: .opencode/skills/sk-design/shared/sk-code-handoff.md:50-59]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-brief-intake-target-surface-brand-product-register-visual-problem-content-densit",
+      "text": "**Brief intake:** target surface, Brand/Product register, visual problem, content density, existing tokens/components, accessibility target, viewport/theme matrix, preserve constraints, and requested output (direction, tokens, or implementation-ready spec). Route runtime animation, interaction feel, or empirical browser diagnosis elsewhere. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:32-40]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-creative-build-require-a-compact-semantic-scaffold-covering-only-applicable-laye",
+      "text": "**Creative build:** require a compact semantic scaffold covering only applicable layers: primitive/semantic/component tokens, type roles, spacing rhythm, grid/measure, hierarchy, state/theme deltas. Explicitly connect each choice to subject/job instead of emitting generic token inventories.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-exemplar-grounding-owned-tokens-and-shipped-system-are-primary-evidence-an-exter",
+      "text": "**Exemplar grounding:** owned tokens and shipped system are primary evidence; an external exemplar is useful only for one named axis such as editorial hierarchy, density, or palette relationship. Never copy a whole style identity. Record transformed principle and rejected mismatch. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:77-81]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-scaffolded-flow-context-manifest-axis-classification-static-authoring-boundary-f",
+      "text": "**Scaffolded flow:** `Context Manifest -> axis classification -> static-authoring boundary -> foundations mode -> axis-specific reference load -> semantic token scaffold -> component/application mapping -> responsive/theme states -> contrast/readability/overflow checks -> optional rendered proof -> accepted handoff`. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:48-69]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-visible-output-foundations-read-resolved-constraints-grounding-record-token-type",
+      "text": "**Visible output:** `Foundations Read`, `Resolved Constraints`, `Grounding Record`, `Token/Type/Layout Scaffold`, `Responsive and Theme Matrix`, `Validation Evidence`, `Open Decisions`, and accepted handoff. Runtime measurements are labeled unverified until produced by a browser/build executor.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-brief-intake-trigger-user-intent-state-transition-semantic-before-after-affected",
+      "text": "**Brief intake:** trigger, user intent, state transition, semantic before/after, affected elements, interruption/reversal needs, platform/runtime, performance budget, motion material, accessibility policy, and proof surface. A named animation without a state purpose is insufficient input. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:36-43]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-creative-build-make-the-main-transition-legible-as-a-temporal-narrative-what-per",
+      "text": "**Creative build:** make the main transition legible as a temporal narrative: what persists, exits, enters, leads attention, and confirms completion. Define duration/easing only after behavior and mechanism. Require equivalent state comprehension under reduced motion rather than merely setting duration to zero.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-exemplar-grounding-prefer-behavior-specific-evidence-the-same-transition-class-o",
+      "text": "**Exemplar grounding:** prefer behavior-specific evidence (the same transition class or interaction problem), not visual resemblance. Capture trigger, sequencing principle, material/physics cue, transformed use, and what is intentionally not copied.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-scaffolded-flow-context-manifest-intent-state-map-motion-mode-behavior-mechanism",
+      "text": "**Scaffolded flow:** `Context Manifest -> intent/state map -> motion mode -> behavior/mechanism/timing/orchestration/quality references as needed -> choreography table -> interruption/reversal model -> reduced-motion equivalent -> performance constraints -> optional prototype/render -> inspect timing/continuity/input paths -> accepted handoff`. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:49-69]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-visible-output-motion-read-state-intent-map-grounding-record-choreography-table-",
+      "text": "**Visible output:** `Motion Read`, `State/Intent Map`, `Grounding Record`, `Choreography Table`, `Interruption and Reduced-Motion Contract`, `Prototype/Implementation Notes`, `Quality Evidence`, and accepted handoff. Evidence must separate authored timings from runtime-measured frame/performance results.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-brief-intake-target-build-state-user-journeys-and-viewports-known-constraints-ba",
+      "text": "**Brief intake:** target/build state, user journeys and viewports, known constraints, baseline evidence, applicable axes (accessibility, responsive, performance, theming, anti-slop), severity policy, mutation boundary, and proof environment. If no runnable surface exists, declare a static-review evidence ceiling. [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:34-42]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-creative-build-boundary-audit-may-create-a-prioritized-remediation-design-accept",
+      "text": "**Creative build boundary:** audit may create a prioritized remediation design, acceptance criteria, and accepted handoff; it must not silently mutate or invent a new visual direction. Findings remain hypotheses until reproduced against an observable symptom. No baseline means no `improved` claim.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-exemplar-grounding-references-are-comparative-controls-not-desired-aesthetics-se",
+      "text": "**Exemplar grounding:** references are comparative controls, not desired aesthetics. Select an owned standard or comparable shipped interaction for a named criterion; record criterion, observed delta, transferability, and environmental differences. Never mark a mismatch as a defect merely because an exemplar differs.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-scaffolded-flow-context-manifest-scope-baseline-audit-mode-axis-references-tooli",
+      "text": "**Scaffolded flow:** `Context Manifest -> scope/baseline -> audit mode -> axis references + tooling route -> evidence capture -> finding severity/confidence -> root-cause cluster -> remediation brief -> approval/mutation boundary -> sk-code implementation -> same-scenario re-test -> before/after evidence -> residual-risk verdict`. [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:49-75]",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-visible-output-audit-scope-baseline-evidence-ledger-findings-by-severity-root-ca",
+      "text": "**Visible output:** `Audit Scope`, `Baseline`, `Evidence Ledger`, `Findings by Severity`, `Root-Cause/Remediation Plan`, `Accepted Fix Handoff`, `Re-test Delta`, and `Residual Risks/Verdict`. Each finding identifies observation, impact, evidence, confidence, and confirmation method.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-brief-intake-canonical-url-allowed-origin-scope-representative-routes-states-vie",
+      "text": "**Brief intake:** canonical URL, allowed origin/scope, representative routes/states/viewports/themes, access/auth constraints, dynamic-loading behavior, output target, overwrite policy, desired coverage, and validation bar. Require explicit confirmation before overwrite because extraction is a generated artifact operation. [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:28-40]",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-creative-build-boundary-this-command-reconstructs-a-reusable-style-reference-it-",
+      "text": "**Creative build boundary:** this command reconstructs a reusable style reference; it does not redesign the source, fabricate missing values, or normalize intentional exceptions away. Derived semantic names must be labeled inferred and tied to raw evidence. If extraction fails, preserve diagnostics rather than emit a plausible generic design system.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-grounding-provenance-the-source-website-is-the-primary-exemplar-and-must-remain-",
+      "text": "**Grounding/provenance:** the source website is the primary exemplar and must remain attributable. Record URL, retrieval time, routes/states/viewports observed, stylesheet origins, inaccessible surfaces, and source-vs-inferred status for every extracted category. External inspiration has no role in faithful extraction.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-scaffolded-flow-source-manifest-access-preflight-md-generator-mode-embedded-extr",
+      "text": "**Scaffolded flow:** `Source Manifest -> access/preflight -> md-generator mode -> embedded extract-write-validate pipeline -> route/state capture -> CSS/token/type/layout/component evidence normalization -> v3 DESIGN.md assembly -> schema validator -> representative visual spot-check -> coverage/limitations report`. [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:44-66]",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-visible-output-source-manifest-capture-matrix-stylesheet-evidence-extracted-syst",
+      "text": "**Visible output:** `Source Manifest`, `Capture Matrix`, `Stylesheet Evidence`, `Extracted System`, `Inferences and Exceptions`, `Validation Results`, `Coverage/Limitations`, and `Artifact Path`. The artifact is accepted only when schema validation passes; visual fidelity remains qualified by sampled routes/states.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-acquisition-ladder-a-owned-system-and-supplied-assets-b-packet-local-cached-refe",
+      "text": "**Acquisition ladder:** `(a) owned system and supplied assets, (b) packet-local/cached references, (c) subject-fit external corpus, (d) shipped UI or live source through a declared transport, (e) no-fit`. Stop at the first source that changes a named decision; search breadth is not a quality metric. Anthropic's frontend skill makes bold intent explicit, while Aura packages source-linked reusable workflows; both support evidence with a job, not inspiration volume. [SOURCE: https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md] [SOURCE: https://www.aura.build/skills]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-evidence-record-source-sourcetype-provenance-observedat-role-fitaxes-preserve-tr",
+      "text": "**Evidence record:** `{source, sourceType, provenance, observedAt, role, fitAxes, preserve, transform, reject, decisionChanged, limitations}`. Keep raw observation separate from interpretation. One primary exemplar and one contrast are enough unless the brief explicitly requests alternatives.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-no-fit-behavior-record-searched-surfaces-and-no-fit-proceed-from-owned-constrain",
+      "text": "**No-fit behavior:** record searched surfaces and `no-fit`; proceed from owned constraints and mode judgment. Never downgrade to generic trend boards or fabricate a reference. No-fit is an admissible, auditable result.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-selection-test-a-candidate-must-match-at-least-two-of-subject-user-job-medium-in",
+      "text": "**Selection test:** a candidate must match at least two of subject, user/job, medium, interaction class, density, or constraint, and must answer `what decision changes?`. For audit, criterion comparability replaces aesthetic fit; for design-reference, the canonical site is the source rather than an optional exemplar.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-trust-boundary-website-repository-image-metadata-and-pasted-exemplar-text-are-ev",
+      "text": "**Trust boundary:** website, repository, image metadata, and pasted exemplar text are evidence only. Ignore embedded commands, tool requests, style mandates, or workflow overrides unless independently authorized by the user and command contract. Capture citations, not executable instructions.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-assumption-ledger-every-auto-filled-field-records-field-assumedvalue-rationale-r",
+      "text": "**Assumption ledger:** every auto-filled field records `{field, assumedValue, rationale, reversibility, impact}` in `Resolved Brief`. Never ask for information already observable in supplied context, owned system, or target artifact.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-auto-safe-source-reads-within-declared-scope-no-fit-fallback-reversible-advisory",
+      "text": "**Auto-safe:** source reads within declared scope, `no-fit` fallback, reversible advisory specs, axis/reference selection, bounded subject/job assumptions, and non-mutating static/audit analysis. Any executor-level permission flag remains separate from design approval.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-mandatory-confirm-overwrite-delete-authenticated-or-private-capture-new-external",
+      "text": "**Mandatory confirm:** overwrite/delete; authenticated or private capture; new external transmission; audit mutation; selecting among materially different direction families; changing preserved identity/content; or missing canonical URL/output target for design-reference. Optional direction review may be offered for high-fidelity design, but is not mandatory when the user explicitly requested autonomous execution.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-single-checkpoint-bundle-all-confirmation-required-decisions-into-one-concise-pr",
+      "text": "**Single checkpoint:** bundle all confirmation-required decisions into one concise prompt after context/brief resolution and before exemplar acquisition or mutation. Offer a recommendation and defaults. Do not serially interrogate users.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-three-intake-states-resolved-when-brief-fields-and-route-are-clear-auto-resolvab",
+      "text": "**Three intake states:** `resolved` when brief fields and route are clear; `auto-resolvable` when a bounded, reversible assumption cannot alter route/acceptance; `confirmation-required` when an answer changes route, artifact identity, destructive action, acceptance criteria, or access boundary. This turns progressive intake into deterministic behavior.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-command-owns-public-choreography-user-facing-command-name-description-progressiv",
+      "text": "**Command owns public choreography:** user-facing command name/description, progressive intake, context manifest, grounding request, stage order, approval checkpoints, visible output contract, and explicit downstream handoff. This is reusable creation scaffolding, not taste.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-4-context-envelope-command-workflowmode-request-resolvedbrief-assumptionledger-con",
+      "text": "**Context envelope:** `{command, workflowMode, request, resolvedBrief, assumptionLedger, contextManifest, groundingRecord, constraints, stage, acceptedDecisions, proofPlan, mutationBoundary, outputTarget}`. Each stage appends evidence; no layer reinterprets accepted decisions silently.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-5-dispatch-pattern-command-loads-sk-design-with-one-registry-mode-interface-design",
+      "text": "**Dispatch pattern:** command loads `sk-design` with one registry mode; `interface:design` may order the foundations build bundle after direction; transports are nested only when the selected mode calls for them; accepted implementation work emits the shared handoff. This retains one authority path and makes command templates testable.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-mode-owns-judgment-classification-design-read-axis-mode-specific-references-proc",
+      "text": "**Mode owns judgment:** classification, Design Read, axis/mode-specific references, procedure selection, aesthetic/technical decisions, critique standards, proof gates, and domain-specific failure behavior. Stable internal `workflowMode` values remain `interface`, `foundations`, `motion`, `audit`, `md-generator`. [SOURCE: .opencode/skills/sk-design/mode-registry.json]",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-3-transport-owns-operations-open-design-browser-figma-refero-mobbin-and-extraction",
+      "text": "**Transport owns operations:** Open Design, browser, Figma, Refero/Mobbin, and extraction backends retrieve/render/inspect/write only within their contracts. They do not select taste or override mode authority. `sk-code` alone owns application-code implementation and stack verification. [SOURCE: .opencode/skills/sk-design/shared/sk-code-handoff.md:9-18]",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-16-2-conflicts-use-precedence-explicit-user-amendment-accepted-brief-owned-system-pre",
+      "text": "Conflicts use precedence: explicit user amendment > accepted brief > owned system/preserve constraints > fit exemplar > mode defaults. A lower source cannot silently override a higher one.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-1-every-command-needs-a-degradation-ladder-full-rendered-measured-proof-artifact-s",
+      "text": "Every command needs a **degradation ladder**: full rendered/measured proof -> artifact/static proof -> advisory direction with explicit evidence ceiling -> hard stop only when canonical target, destructive consent, or required access is absent.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-4-quality-failures-trigger-one-targeted-revision-cycle-with-cited-failing-criterio",
+      "text": "Quality failures trigger one targeted revision cycle with cited failing criterion; they do not trigger broad aesthetic resets or random alternative generation.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-3-safety-stops-are-narrow-destructive-overwrite-actions-private-access-transmissio",
+      "text": "Safety stops are narrow: destructive/overwrite actions, private access/transmission, contradictory accepted constraints, missing canonical extraction source, and inability to meet a user-declared mandatory acceptance test.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-5-the-templates-remain-usable-in-degraded-environments-because-judgment-and-artifa",
+      "text": "The templates remain usable in degraded environments because judgment and artifact production are independent of optional transports, while proof labels remain honest.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-17-2-additive-rollout-add-canonical-commands-first-and-test-them-keep-existing-design",
+      "text": "**Additive rollout:** add canonical commands first and test them. Keep existing `/design:interface`, `/design:foundations`, `/design:motion`, `/design:audit`, and `/design:md-generator` as thin compatibility aliases that forward the unchanged argument payload to the canonical command or shared template. This is justified backward compatibility because the current commands are shipped surfaces.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-1-canonical-public-mapping-interface-design-workflowmode-interface-interface-found",
+      "text": "**Canonical public mapping:** `/interface:design -> workflowMode=interface`; `/interface:foundations -> foundations`; `/interface:motion -> motion`; `/interface:audit -> audit`; `/interface:design-reference -> md-generator`. Public language describes user intent; internal IDs stay registry-stable.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-4-deprecation-evidence-log-alias-usage-if-the-runtime-offers-telemetry-announce-ca",
+      "text": "**Deprecation evidence:** log alias usage if the runtime offers telemetry; announce canonical replacements in command descriptions; remove aliases only after a documented release window, zero/acceptable usage, and repository-wide reference migration. No immediate removal date should be invented.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-5-parity-gate-for-each-alias-canonical-pair-test-argument-preservation-selected-wo",
+      "text": "**Parity gate:** for each alias/canonical pair, test argument preservation, selected `workflowMode`, stage/output contract, tool permissions, and downstream handoff. Add collision/discoverability checks for the new `interface` namespace and update documentation/search references atomically with implementation.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-3-single-source-canonical-command-templates-should-share-a-small-declarative-contr",
+      "text": "**Single source:** canonical command templates should share a small declarative contract or literal include pattern only if the command runtime supports it. Otherwise old routers remain tiny forwarders; never maintain two full prompt bodies. Internal `mode-registry.json` is unchanged.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-18-1-common-envelope-every-command-returns-route-proof-resolved-brief-context-manifes",
+      "text": "**Common envelope:** every command returns `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact`, `Critique or Validation`, `Evidence Ledger`, and `Next Action/Handoff`. Command-specific labels may refine these blocks but cannot omit them.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-3-evidence-item-schema-claim-level-method-sourceorcommand-artifact-scenario-expect",
+      "text": "**Evidence item schema:** `{claim, level, method, sourceOrCommand, artifact, scenario, expected, observed, timestamp, limitations}`. A claim cannot use a stronger level than its method supports; missing runtime transport yields `authored` or `blocked`, not `verified`.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-2-evidence-levels-authored-specified-but-not-executed-observed-direct-inspection-m",
+      "text": "**Evidence levels:** `authored` (specified but not executed), `observed` (direct inspection), `measured` (tool-produced metric), `validated` (deterministic schema/static gate), `verified` (acceptance scenario passed), `blocked` (required proof unavailable), and `not-applicable`. Do not collapse these into one boolean.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-4-per-command-proof-design-requires-anti-default-critique-plus-optional-render-ins",
+      "text": "**Per-command proof:** design requires anti-default critique plus optional render inspection; foundations requires contrast/readability/responsive/theme validation; motion requires state continuity, input/reversal, reduced-motion, and runtime quality when built; audit requires reproducible findings and matched baseline/re-test for delta; design-reference requires schema validation, provenance, and capture coverage.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-5-template-tests-assert-canonical-route-mode-all-common-blocks-normalized-groundin",
+      "text": "**Template tests:** assert canonical route/mode, all common blocks, normalized grounding fields or explicit no-fit, assumption ledger, no embedded taste presets, no direct app-code mutation, accepted handoff schema, and evidence-level consistency. Alias tests additionally assert argument and output parity.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-19-4-composition-triggers-design-reference-feeds-evidence-when-recreating-adapting-a-",
+      "text": "**Composition triggers:** design-reference feeds evidence when recreating/adapting a live system; foundations is extracted from design when implementation needs tokens/static rules; motion is invoked only for temporal states; audit follows a runnable artifact or explicitly operates at a static evidence ceiling. Any stage can terminate with a usable advisory artifact.",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-5-conflict-protocol-when-downstream-evidence-contradicts-accepted-direction-stop-t",
+      "text": "**Conflict protocol:** when downstream evidence contradicts accepted direction, stop the affected branch, report `accepted claim vs observed fact`, propose the smallest amendment, and resume only after acceptance. Audit cannot silently redesign; build constraints cannot silently erase signature decisions.",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-3-continuity-object-pass-briefid-artifactversion-accepteddecisions-preservedconstr",
+      "text": "**Continuity object:** pass `{briefId, artifactVersion, acceptedDecisions, preservedConstraints, groundingRecord, unresolvedDecisions, proofStatus, evidenceRefs, nextRecommendedMode}`. Downstream stages append versioned deltas; they do not overwrite accepted upstream decisions without a visible amendment.",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-1-lifecycle-order-is-conditional-not-mandatory-design-reference-source-evidence-de",
+      "text": "**Lifecycle order is conditional, not mandatory:** `design-reference (source evidence) -> design (direction) -> foundations (static system) -> motion (temporal behavior) -> sk-code build -> audit (evidence/remediation)`. Start at the smallest command matching the user job; do not force the whole chain.",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-2-no-nested-public-commands-a-command-may-load-ordered-sk-design-modes-or-hand-off",
+      "text": "**No nested public commands:** a command may load ordered `sk-design` modes or hand off an accepted envelope, but must not invoke another `/interface:*` command and restart intake. `/interface:design` uses the foundations build bundle directly when required. This prevents recursion and duplicate authority.",
+      "addedAtIteration": 19,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c70d9dd5137d",
+      "text": "Rebuilding by deleting the owned YAML workflows: this would discard existing mode choreography rather than expose and strengthen it.",
+      "contentHash": "c70d9dd5137d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4e0dd6fa43b6",
+      "text": "Treating every current command as containing no generative logic at all; that is inaccurate once owned assets are included.",
+      "contentHash": "4e0dd6fa43b6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-574b23ad1c5e",
+      "text": "A mandatory eleven-question interview on every run.",
+      "contentHash": "574b23ad1c5e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1dcdf6328fcc",
+      "text": "A public `/interface:brief` command in the initial command set.",
+      "contentHash": "1dcdf6328fcc",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2d481efdcc84",
+      "text": "Copying the full Anthropic skill into every command.",
+      "contentHash": "2d481efdcc84",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9731545cb9ac",
+      "text": "Making a fixed visual style or named aesthetic part of command intake.",
+      "contentHash": "9731545cb9ac",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3bb75f621701",
+      "text": "Requiring Open Design for every `/interface:*` command.",
+      "contentHash": "3bb75f621701",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-423699dd2bdf",
+      "text": "Surfacing Open Design's system library as an aesthetic menu.",
+      "contentHash": "423699dd2bdf",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4294957ad065",
+      "text": "Treating file creation as proof that a design is complete.",
+      "contentHash": "4294957ad065",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0ef263dee658",
+      "text": "Storing exemplar bodies inside command prompts.",
+      "contentHash": "0ef263dee658",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ca599105a96f",
+      "text": "The static `/skills` HTML contains only a client shell; useful evidence required the shipped route bundle and `llms.txt`.",
+      "contentHash": "ca599105a96f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7ace0a75863d",
+      "text": "Treating Aura's library as evidence for a public style chooser.",
+      "contentHash": "7ace0a75863d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2def539a2ce3",
+      "text": "`/interface:design-md-creation` because it obscures extraction/provenance.",
+      "contentHash": "2def539a2ce3",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3f9bcf0f485d",
+      "text": "One `/interface:design` mega-command.",
+      "contentHash": "3f9bcf0f485d",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d97a7946fdfd",
+      "text": "Redundant `design-` prefix on every child.",
+      "contentHash": "d97a7946fdfd",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-71ff8aeadfbd",
+      "text": "A command-level universal `verified=true` result.",
+      "contentHash": "71ff8aeadfbd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-2944a14d5789",
+      "text": "Duplicating mode doctrine in a shared command template.",
+      "contentHash": "2944a14d5789",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-67014502946c",
+      "text": "Failing when exemplar retrieval returns no fit.",
+      "contentHash": "67014502946c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3258d3bf2568",
+      "text": "Auto-building before direction approval on ambiguous high-fidelity work.",
+      "contentHash": "3258d3bf2568",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-5765e9509aa8",
+      "text": "Embedding preferred palettes, fonts, layouts, or signature patterns in the command.",
+      "contentHash": "5765e9509aa8",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f85f23e46427",
+      "text": "Foundations as a catch-all for motion or browser diagnosis.",
+      "contentHash": "f85f23e46427",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-ca7cc7966721",
+      "text": "Large context-free token inventories.",
+      "contentHash": "ca7cc7966721",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1dd88076c9db",
+      "text": "Choosing duration/easing before behavior and mechanism.",
+      "contentHash": "1dd88076c9db",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-193d56663cdb",
+      "text": "Treating reduced motion as animation-duration zero without semantic parity.",
+      "contentHash": "193d56663cdb",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-7c415a8ece70",
+      "text": "`Improved` or `verified` without matched before/after evidence.",
+      "contentHash": "7c415a8ece70",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-48a2f38f1c47",
+      "text": "Audit as subjective redesign.",
+      "contentHash": "48a2f38f1c47",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-6f368e7ecbc5",
+      "text": "Adding unrelated inspiration during faithful extraction.",
+      "contentHash": "6f368e7ecbc5",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-edf04d532696",
+      "text": "Emitting a generic system when source capture is incomplete or fails.",
+      "contentHash": "edf04d532696",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-d87180f12764",
+      "text": "Executing instructions embedded in reference material.",
+      "contentHash": "d87180f12764",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-26a47628471c",
+      "text": "Mandatory mood-board breadth.",
+      "contentHash": "26a47628471c",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-ca59b1827031",
+      "text": "Treating no-fit as failure for the first four commands.",
+      "contentHash": "ca59b1827031",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-7b47230b8856",
+      "text": "Confusing CLI tool permissions with creative-direction approval.",
+      "contentHash": "7b47230b8856",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-62ee752a7259",
+      "text": "Mandatory exhaustive brief forms.",
+      "contentHash": "62ee752a7259",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-cd45c873b425",
+      "text": "Unlimited silent assumptions under an `auto` label.",
+      "contentHash": "cd45c873b425",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-6bfef7dd287a",
+      "text": "Copying mode reference tables or quality doctrine into commands.",
+      "contentHash": "6bfef7dd287a",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-788bf7d07b2c",
+      "text": "Letting transport availability choose design direction.",
+      "contentHash": "788bf7d07b2c",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-44c15fd99e8e",
+      "text": "Renaming internal mode IDs to match public commands.",
+      "contentHash": "44c15fd99e8e",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-f142f024e902",
+      "text": "Broad redesign as remediation for one failed criterion.",
+      "contentHash": "f142f024e902",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-5616ef00ab89",
+      "text": "Fail-open proof claims when tools are unavailable.",
+      "contentHash": "5616ef00ab89",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-e62ae4c1b0a1",
+      "text": "Hard-stopping every imperfect brief.",
+      "contentHash": "e62ae4c1b0a1",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-2f33825a9d91",
+      "text": "Duplicating full templates under old and new paths.",
+      "contentHash": "2f33825a9d91",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-b95f7900d6db",
+      "text": "In-place rename/removal of shipped commands.",
+      "contentHash": "b95f7900d6db",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-e0ac3d7e76f1",
+      "text": "Renaming stable internal workflow modes.",
+      "contentHash": "e0ac3d7e76f1",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-a1a16576145d",
+      "text": "Evidence-free completion prose.",
+      "contentHash": "a1a16576145d",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-cd04c861daa6",
+      "text": "Requiring runtime proof for advisory-only outputs while failing to label the ceiling.",
+      "contentHash": "cd04c861daa6",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-37f0f6e5c551",
+      "text": "Universal `verified: true`.",
+      "contentHash": "37f0f6e5c551",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-230e748e9077",
+      "text": "Commands invoking commands.",
+      "contentHash": "230e748e9077",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-f1229fe9162f",
+      "text": "Mandatory full-pipeline execution.",
+      "contentHash": "f1229fe9162f",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-fb78945a46c9",
+      "text": "Silent downstream amendment of accepted decisions.",
+      "contentHash": "fb78945a46c9",
+      "addedAtIteration": 19
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 12,
+    "keyFindings": 95,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.24,
+    "coverageBySources": {
+      "other": 42
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/research/lineages/sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

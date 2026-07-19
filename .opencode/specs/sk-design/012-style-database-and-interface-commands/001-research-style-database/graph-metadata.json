@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-style-database-and-interface-commands/001-research-style-database",
+  "spec_folder": "sk-design/012-style-database-and-interface-commands/001-research-style-database",
+  "parent_id": "sk-design/012-style-database-and-interface-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "style database research",
+      "mirror speckit db for styles",
+      "style retrieval architecture"
+    ],
+    "key_topics": [
+      "style",
+      "database",
+      "research",
+      "mirror",
+      "speckit",
+      "styles",
+      "retrieval",
+      "architecture",
+      "291-style",
+      "library",
+      "opencode",
+      "skills"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Init",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evaluator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "externalized",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 1,291-style library in `.opencode/skills/sk-design/styles/` is ~13k flat files with only a file-walking retrieval engine (`styles/engine`, packet 011)",
+    "created_at": "2026-07-19T06:17:50.113Z",
+    "last_save_at": "2026-07-19T08:04:54.223Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:faae9d7b560643ad355039e546ecd578289e9840f7696b55e4f069d7570447a8",
+    "source_doc_hashes": {
+      "spec.md": "a547167ba8e4181fb4fa0085ddf5ff8be4efe991a8c07a6daebc35b65cfb3d0c",
+      "plan.md": "ba6a7194d7d83538046c59fc143ef60a9c8e0b27520daba1747e58e1f50cda23",
+      "tasks.md": "412acabf43dc801124a58d5c899eb10d75863eefdd2d93df23bdf7cae80b9ca4",
+      "checklist.md": "e00c735a11693832b029d4034ed87f6f4b21e92220f6a63efff47ecae83307a0",
+      "implementation-summary.md": "c28d27280c5114153d60292615de8ea6ec9dd3dce06b850006bad8f868ed4206",
+      "research/research.md": "fbc4197629b41c6e2ffc37a359a96c7300b610e65e39dd4415cbb4975e906b8b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,61 @@
+# Interface Design Presentation Contract
+
+Presentation source of truth for `/interface:design`.
+
+## 1. Progressive Intake
+
+| Field | State when omitted | Action |
+|---|---|---|
+| target | confirmation-required | Ask once; never guess |
+| subject, audience, one job | auto-resolvable only when bounded and reversible | Record in Assumption Ledger |
+| register, pinned axes, preserve constraints, fidelity, acceptance | confirmation-required when route or outcome changes | Bundle into one prompt |
+| owned system, content/data, output surface | resolved from inspectable context when possible | Name source in Context Manifest |
+
+Consolidated prompt:
+
+```text
+Interface Design setup
+What target, audience/job, Brand or Product register, preserve/change boundary, output surface, and proof bar should govern this direction?
+Reply in one message. Mark any field "infer" only when a reversible assumption is acceptable.
+```
+
+## 2. Common Visible Output
+
+```text
+Route Proof
+Resolved Brief
+Context Manifest
+Grounding Record
+Creation/Remediation Artifact - Interface Direction Spec
+Critique/Validation
+Evidence Ledger
+Next Action/Handoff
+```
+
+## 3. Results Display
+
+```text
+STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult
+STATUS=ASK MISSING=<input>
+STATUS=FAIL ERROR=<named-cause>
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested target | Reason |
+|---|---|---|
+| the direction needs a static token, type, spacing, or theming system | `/interface:foundations` | Turn direction into a static visual system |
+| the direction needs purposeful animation, transitions, or micro-interactions | `/interface:motion` | Specify temporal behavior |
+| the interface direction is ready for findings-first review and scoring | `/interface:audit` | Validate quality before build |
+| accepted direction moves to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Preserve accepted decisions during build |
+
+`HANDOFF_REQUIRED=false`. Recommendations never silently chain.
+
+## 5. Example Usage
+
+```text
+/interface:design dashboard-shell --mode redesign
+```
+
+Returns: a deliberate interface direction with rationale, visual choices, critique, and handoff notes.

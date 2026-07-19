@@ -22,6 +22,23 @@
       }
     ]
   },
+  "commandSurface": {
+    "canonicalNamespace": "interface",
+    "canonicalByMode": {
+      "interface": "/interface:design",
+      "foundations": "/interface:foundations",
+      "motion": "/interface:motion",
+      "audit": "/interface:audit",
+      "md-generator": "/interface:design-reference"
+    },
+    "compatibilityAliases": {
+      "/design:interface": "/interface:design",
+      "/design:foundations": "/interface:foundations",
+      "/design:motion": "/interface:motion",
+      "/design:audit": "/interface:audit",
+      "/design:md-generator": "/interface:design-reference"
+    }
+  },
   "routerSignals": {
     "interface": {
       "weight": 4,

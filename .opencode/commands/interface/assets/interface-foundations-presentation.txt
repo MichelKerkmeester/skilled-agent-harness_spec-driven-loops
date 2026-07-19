@@ -1,0 +1,51 @@
+# Interface Foundations Presentation Contract
+
+## 1. Progressive Intake
+
+Resolve axis, target, register, visual problem, density, existing tokens, accessibility target, viewport/theme matrix, preserve constraints, and output. Bundle only route-, identity-, overwrite-, access-, or acceptance-changing questions.
+
+```text
+Interface Foundations setup
+Which static axis and target, Brand or Product register, existing system/preserve boundary, viewport/theme coverage, and proof bar apply?
+```
+
+## 2. Common Visible Output
+
+```text
+Route Proof
+Resolved Brief
+Context Manifest
+Grounding Record
+Creation/Remediation Artifact - Visual System Foundations Plan
+Critique/Validation
+Evidence Ledger
+Next Action/Handoff
+```
+
+## 3. Results Display
+
+```text
+STATUS=OK PRODUCES="Visual System Foundations Plan" NEXT=/interface:design,/interface:motion,/interface:audit PROOF=axis,target,tokenDecisions,contrastEvidence
+STATUS=ASK MISSING=<input>
+STATUS=FAIL ERROR=<named-cause>
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested target |
+|---|---|
+| static system decisions are ready to become a concrete interface direction or screen treatment | `/interface:design` |
+| tokens or layout decisions need temporal behavior, transitions, or state choreography | `/interface:motion` |
+| the static system is ready for quality review, contrast evidence, or hardening | `/interface:audit` |
+| accepted tokens move to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
+
+`HANDOFF_REQUIRED=false`. Recommendations never silently chain.
+
+## 5. Example Usage
+
+```text
+/interface:foundations color marketing-site
+```
+
+Returns: a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable.

@@ -2,7 +2,7 @@
 name: sk-design
 description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five design modes (interface, foundations, motion, audit, md-generator) plus a nested Open Design transport packet via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.3.0
+version: 1.6.0.0
 metadata:
   author: OpenCode
   family: sk-hub
@@ -12,7 +12,7 @@ metadata:
 
 # Design Family Hub (sk-design)
 
-One skill, five design modes plus a nested transport packet, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
+One skill, five design modes plus a nested transport packet, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Its canonical creation commands use the `/interface:*` namespace and share one nine-stage creation contract; `/design:*` remains as a thin compatibility-alias surface. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic - each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 ---
 
@@ -29,6 +29,18 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 | **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/design-md-generator/` |
 | **design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/design-mcp-open-design/` |
 
+### Canonical Creation Commands
+
+| Command | Stable `workflowMode` |
+|---|---|
+| `/interface:design` | `interface` |
+| `/interface:foundations` | `foundations` |
+| `/interface:motion` | `motion` |
+| `/interface:audit` | `audit` |
+| `/interface:design-reference` | `md-generator` |
+
+These commands share `shared/creation-contract.md`. The existing `/design:interface`, `/design:foundations`, `/design:motion`, `/design:audit`, and `/design:md-generator` commands remain thin compatibility aliases. The aliases are additive; internal mode IDs are unchanged.
+
 ### When NOT to Use
 - A single quick read/edit with no design judgment — use the relevant skill directly.
 - Pure implementation after design direction is settled — hand off to `sk-code`.
@@ -39,7 +51,7 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode.
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode. Canonical `/interface:*` commands and their `/design:*` compatibility aliases resolve to the same stable mode IDs.
 
 ### Manager Intake Before Routing
 
@@ -59,7 +71,7 @@ If a required fact is unknown and changes the route or acceptance bar, ask a foc
 ### The discriminator
 - **`workflowMode`** — the public mode key (every mode): `interface`, `foundations`, `motion`, `audit`, `md-generator`, and the `design-mcp-open-design` transport.
 - **`packetKind`** — `workflow` for the five design-judgment modes; `transport` for `design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
-- **`backendKind`** — which backend runs the mode: `reference-base` (the four doc-guidance modes cite the shared design reference base), `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server).
+- **`backendKind`** — which backend runs the mode: `reference-base` (the four doc-guidance modes cite the shared design reference base), `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
 
 ### Routing rule
 ```
@@ -194,6 +206,8 @@ sk-design/
   mode-registry.json     # the discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
   shared/                # shared design reference base the hub + modes cite
+  styles/_engine/        # legacy|shadow|persistent retrieval adapter (default: legacy)
+  styles/_db/            # SQLite + FTS5 persistent index and rebuildable vectors
   design-interface/  design-foundations/  design-motion/  design-audit/  design-md-generator/   # five design mode packets
   design-mcp-open-design/  # nested transport packet (packetKind: "transport")
 ```
@@ -202,6 +216,8 @@ Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`
 
 ### Backend
 The four doc-guidance modes (interface, foundations, motion, audit) consume the shared **design reference base** under `shared/` — `anti-slop-principles.md`, `cognitive-laws.md`, `design-token-vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across modes without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
+
+Style-library retrieval passes through the `legacy|shadow|persistent` adapter under `styles/_engine/`. The adapter defaults to `legacy`, and the flat style files remain authoritative. When explicitly enabled, the persistent backend under `styles/_db/` provides SQLite and FTS5 storage, a rebuildable vector projection, an incremental `DISCOVER` to `PUBLISH` indexer, and eligibility-first weighted-RRF retrieval across structured, FTS5, and vector lanes.
 
 ---
 
@@ -235,6 +251,8 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 ## 5. REFERENCES
 
 - Shared reference base: `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, `shared/design-token-vocabulary.md` (cited by every doc-guidance mode).
+- Creation commands: `shared/creation-contract.md` (nine-stage contract shared by canonical `/interface:*` commands and reached by `/design:*` compatibility aliases).
+- Style retrieval: `styles/_engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/_db/README.md` (persistent index lifecycle).
 - Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
@@ -259,6 +277,11 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - `motion` — animation, transitions, micro-interactions, temporal feel.
 - `audit` — accessibility, performance, critique, hardening, production readiness.
 - `md-generator` — `DESIGN.md` / style-reference extraction other skills consume.
+
+### Creation Command Surface
+- Canonical commands: `/interface:design`, `/interface:foundations`, `/interface:motion`, `/interface:audit`, and `/interface:design-reference`.
+- Compatibility aliases: `/design:interface`, `/design:foundations`, `/design:motion`, `/design:audit`, and `/design:md-generator`.
+- Both surfaces resolve to the same unchanged `workflowMode` values; aliases do not create or rename modes.
 
 ### Transports and Consumers
 - `mcp-figma` (external sibling skill) and `design-mcp-open-design` (nested transport packet, resolved through this hub's own `mode-registry.json`) are transports. Use them after the design mode is chosen, with the user-visible plan naming what the transport will do.

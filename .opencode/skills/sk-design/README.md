@@ -1,11 +1,11 @@
 ---
 title: "sk-design"
-description: "The single advisor-routable design skill: a hub that routes to five design modes (interface, foundations, motion, audit, md-generator) plus a nested Open Design transport packet."
+description: "The single advisor-routable design skill, with five canonical /interface:* creation commands, five stable design modes, style-library retrieval, and a nested Open Design transport packet."
 trigger_phrases:
   - "design skill"
   - "ui design interface foundations motion audit"
   - "design system tokens accessibility"
-version: 1.2.1.0
+version: 1.3.0.0
 ---
 
 # sk-design
@@ -19,7 +19,7 @@ version: 1.2.1.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Distinctive UI design and the full design surface: visual direction, design systems, motion, quality audit and live-site CSS extraction. |
-| **Invoke with** | `Skill(sk-design)`, the `/design:*` commands or the `design` agent. |
+| **Invoke with** | `Skill(sk-design)`, the canonical `/interface:*` creation commands or the `design` agent. Existing `/design:*` names remain compatibility aliases. |
 | **Works on** | A design request, an existing interface or a live URL to extract from. |
 | **Produces** | Design direction and tokens, motion specs, an audit with scores or a Style Reference DESIGN.md. |
 
@@ -33,18 +33,18 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 ### What It Does
 
-`Skill(sk-design)` loads the hub, and the hub routes the request to one of five design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of five design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. The five canonical `/interface:*` creation commands resolve to those unchanged mode IDs through one shared nine-stage creation contract; the older `/design:*` commands remain thin compatibility aliases. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Let the advisor route a design request, run a `/design:*` command, or read `SKILL.md`.
+**Step 1: Invoke it.** Let the advisor route a design request, run a canonical `/interface:*` command, or read `SKILL.md`. The corresponding `/design:*` aliases still work.
 
 **Step 2: Run a mode.** For example, a visual-system pass:
 
 ```bash
-/design:foundations
+/interface:foundations
 ```
 
 The hub resolves the request to the `design-foundations` mode and applies it.
@@ -64,6 +64,14 @@ A design request resolves through the hub to one mode when a single design axis 
 | `design-motion` | Animation, transitions, micro-interactions and reduced-motion behavior. |
 | `design-audit` | Design QA: accessibility, performance, responsive, anti-slop and quality scoring. |
 | `design-md-generator` | Extraction of a live site's real CSS into a Style Reference DESIGN.md. |
+
+### Creation commands
+
+The canonical creation surface maps `/interface:{design,foundations,motion,audit,design-reference}` to the stable `interface`, `foundations`, `motion`, `audit`, and `md-generator` modes. All five commands share [`shared/creation-contract.md`](./shared/creation-contract.md). The corresponding `/design:{interface,foundations,motion,audit,md-generator}` names are additive compatibility aliases, not renamed modes.
+
+### Style retrieval backend
+
+Style-library retrieval can run through the `legacy`, `shadow`, or `persistent` adapter in `styles/_engine/`. It defaults to `legacy`, so the flat files remain authoritative. The opt-in persistent backend under `styles/_db/` uses SQLite and FTS5 with a rebuildable vector projection, an incremental `DISCOVER` through `PUBLISH` indexer, and eligibility-first weighted-RRF retrieval.
 
 ### One advisor identity
 
@@ -99,6 +107,8 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
+| [`shared/creation-contract.md`](./shared/creation-contract.md) | Shared nine-stage lifecycle for the five canonical `/interface:*` creation commands. |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory, including the indexed style backend and creation-command surface. |
 | [`benchmark/`](./benchmark/) | Frozen baseline and after-009 skill-benchmark reports for router trace scoring. |
 | [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) | Eight-category, 37-scenario hub playbook covering mode routing (including the nested transport packet), advisor integration, transform verbs, md-generator, shared references, parity behavior, fallback/resilience, and hub manager intake. |
 | [`shared/procedures/polish-gate-orchestration.md`](./shared/procedures/polish-gate-orchestration.md) | Shared maintainer-facing procedure card for polish-gate orchestration across modes. |

@@ -36,8 +36,8 @@ const surfacesByCommand = new Map(
     metadata.map(async (record) => {
       const name = record.command.replace("/design:", "");
       const [auto, confirm] = await Promise.all([
-        readFile(new URL(`design_${name}_auto.yaml`, assetsRootUrl), "utf8"),
-        readFile(new URL(`design_${name}_confirm.yaml`, assetsRootUrl), "utf8")
+        readFile(new URL(`design-${name}-auto.yaml`, assetsRootUrl), "utf8"),
+        readFile(new URL(`design-${name}-confirm.yaml`, assetsRootUrl), "utf8")
       ]);
       return [record.command, { auto, confirm }];
     })

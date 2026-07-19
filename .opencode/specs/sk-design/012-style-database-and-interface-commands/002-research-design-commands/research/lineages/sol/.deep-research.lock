@@ -1,0 +1,11 @@
+{
+  "owner_pid": 60401,
+  "started_at_iso": "2026-07-19T07:24:18.502Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-19T07:24:18.502Z",
+  "packet_id": ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-19T07:24:18.502Z",
+  "acquire_nonce": "60401-1784445858503-46766076-f0b3-42df-83f5-ccc8728e52a5"
+}

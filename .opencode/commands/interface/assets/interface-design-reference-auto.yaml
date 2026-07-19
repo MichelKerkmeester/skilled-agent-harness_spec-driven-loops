@@ -1,0 +1,76 @@
+role: sk-design design-reference creation command, autonomous execution
+purpose: Extract a provenance-rich validated Style Reference DESIGN.md from a canonical live source
+action: Apply workflowMode=md-generator to $ARGUMENTS through the shared creation contract
+
+backend_boundary:
+  mutation: "Only the owned extract-write-validate pipeline may write artifacts"
+  pipeline: "design-md-generator/backend/scripts/guided-run.ts"
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the registry-driven design hub
+    action: "Read .opencode/skills/sk-design/SKILL.md and mode-registry.json"
+    output: hub_context
+  step_2_load_creation_contract:
+    purpose: Establish the shared lifecycle, source trust, and evidence vocabulary
+    action: "Read .opencode/skills/sk-design/shared/creation-contract.md"
+    output: creation_contract
+  step_3_route_proof:
+    purpose: Prove the canonical extraction route and output policy
+    action: "Record command=/interface:design-reference, workflowMode=md-generator, canonical source, and proof environment"
+    output: route_proof
+  step_4_context_manifest:
+    purpose: Load source origin, representative routes/states/viewports/themes, access, dynamic loading, output, and overwrite policy
+    action: "Name the capture matrix and every loaded source"
+    output: context_manifest
+  step_5_progressive_brief:
+    purpose: Resolve source identity, access, output, overwrite, coverage, and validation bar
+    action: "Hard-stop for missing canonical target, private access without consent, or overwrite without confirmation"
+    output: resolved_brief
+  step_6_grounding:
+    purpose: Treat the canonical website as the primary exemplar
+    action: "Record URL, origin, observed time, capture role, coverage, and limitations; no unrelated fallback is allowed"
+    output: grounding_record
+  step_7_load_mode:
+    purpose: Load the stable md-generator mode and owned backend
+    action: "Read .opencode/skills/sk-design/design-md-generator/SKILL.md, then references/ and assets as required"
+    output: mode_context
+  step_8_select_procedure_card:
+    purpose: Select the extraction procedure card
+    action: "Choose procedures/design-system-extraction.md for measured extraction; otherwise state 'Procedure applied: none - baseline md-generator pipeline' and stop if no canonical extraction job remains"
+    output: mode_plan
+  step_9_run_extraction_work:
+    purpose: Run the owned extract-write-validate pipeline
+    action: "Capture measured CSS and tokens, write v3 DESIGN.md, validate provenance and schema, and label inferred semantics and gaps"
+    output: style_reference_design_md
+  step_10_critique_revision:
+    purpose: Compare artifact coverage with the capture matrix
+    action: "Correct only source-traceable gaps; never add unrelated inspiration or generic replacement content"
+    output: critique_validation
+  step_11_proof:
+    purpose: Validate schema, provenance, and available sampled visual coverage
+    action: "Record sourceUrl, extractedTokensDigest, fidelityScore, capture failures, and the evidence ceiling"
+    output: evidence_ledger
+  step_12_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md and preserve source provenance and inferred-field labels"
+    output: next_action_handoff
+
+deliverable:
+  name: "Style Reference DESIGN.md"
+  visible_blocks: [Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff]
+  required_fields: [sourceUrl, extractedTokensDigest, fidelityScore]
+  file_outputs: ["<output>/DESIGN.md"]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:foundations,/interface:design,/interface:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore'
+  missing_input: "STATUS=ASK MISSING=<input>"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "extract - the pipeline origin for measured source evidence before design judgment or audit"
+  accepts_from: []
+  hands_to_next: ["/interface:foundations", "/interface:design", "/interface:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after artifact acceptance"

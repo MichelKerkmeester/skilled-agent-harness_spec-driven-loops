@@ -22,6 +22,10 @@ import { applyEligibility } from './eligibility.mjs';
 import { rankEligibleStyles } from './rank-fts.mjs';
 import { assembleCandidateCards } from './cards.mjs';
 import { bindHydrationManifest, hydrateBoundStyle } from './hydrate.mjs';
+import {
+  dispatchStyleHydrate,
+  dispatchStyleQuery,
+} from './persistent-adapter.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -116,7 +120,7 @@ export async function runBuild(argumentsList, options = {}) {
  * @param {Object} [options] - Overridable paths for isolated fixtures.
  * @returns {Promise<Object>} Query result with at most five eligible cards.
  */
-export async function runQuery(request, options = {}) {
+async function runLegacyQuery(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
   const manifestPath = options.manifestPath
     ?? path.join(corpusRoot, '_retrieval-manifest.json');
@@ -162,7 +166,7 @@ export async function runQuery(request, options = {}) {
  * @param {Object} [options] - Overridable paths for isolated fixtures.
  * @returns {Promise<Object>} Hydration result or refusal.
  */
-export async function runHydrate(request, options = {}) {
+async function runLegacyHydrate(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
   const manifestPath = options.manifestPath
     ?? path.join(corpusRoot, '_retrieval-manifest.json');
@@ -171,6 +175,36 @@ export async function runHydrate(request, options = {}) {
   const bound = await bindHydrationManifest(manifest, request, { corpusRoot });
   if (!bound.ok) return bound;
   return hydrateBoundStyle(bound.binding, { corpusRoot });
+}
+
+/**
+ * Query through the legacy-default database migration adapter.
+ *
+ * @param {Object} request - Generic retrieval request.
+ * @param {Object} [options] - Paths and explicit adapter mode.
+ * @returns {Promise<Object>} Query result preserving the legacy card contract.
+ */
+export function runQuery(request, options = {}) {
+  return dispatchStyleQuery(
+    request,
+    { corpusRoot: options.corpusRoot ?? CORPUS_ROOT, ...options },
+    runLegacyQuery,
+  );
+}
+
+/**
+ * Hydrate through the legacy-default database migration adapter.
+ *
+ * @param {Object} request - Existing hydration request.
+ * @param {Object} [options] - Paths and explicit adapter mode.
+ * @returns {Promise<Object>} Existing hydration result or refusal.
+ */
+export function runHydrate(request, options = {}) {
+  return dispatchStyleHydrate(
+    request,
+    { corpusRoot: options.corpusRoot ?? CORPUS_ROOT, ...options },
+    runLegacyHydrate,
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -191,12 +225,18 @@ export async function runCli(argumentsList = process.argv.slice(2)) {
     return result.ok ? 0 : 1;
   }
   if (command === 'query') {
-    const result = await runQuery(await readRequest(commandArguments));
+    const result = await runQuery(await readRequest(commandArguments), {
+      styleDatabaseMode: optionValue(commandArguments, '--backend') ?? undefined,
+      databasePath: optionValue(commandArguments, '--database') ?? undefined,
+    });
     writeJson(result);
     return 0;
   }
   if (command === 'hydrate') {
-    const result = await runHydrate(await readRequest(commandArguments));
+    const result = await runHydrate(await readRequest(commandArguments), {
+      styleDatabaseMode: optionValue(commandArguments, '--backend') ?? undefined,
+      databasePath: optionValue(commandArguments, '--database') ?? undefined,
+    });
     writeJson(result);
     return result.ok ? 0 : 1;
   }

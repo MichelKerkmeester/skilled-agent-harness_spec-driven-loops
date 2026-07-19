@@ -1,0 +1,51 @@
+# Interface Audit Presentation Contract
+
+## 1. Progressive Intake
+
+Resolve target state, journeys, viewports, constraints, baseline, axes, severity policy, mutation boundary, and proof environment. Audit mutation is confirmation-required; review-only evidence collection is not.
+
+```text
+Interface Audit setup
+What target, journeys/viewports, baseline, audit axes, severity policy, mutation boundary, and mandatory proof scenarios apply?
+```
+
+## 2. Common Visible Output
+
+```text
+Route Proof
+Resolved Brief
+Context Manifest
+Grounding Record
+Creation/Remediation Artifact - Design Quality Audit Report and bounded remediation brief
+Critique/Validation
+Evidence Ledger
+Next Action/Handoff
+```
+
+## 3. Results Display
+
+```text
+STATUS=OK PRODUCES="Design Quality Audit Report" NEXT=/interface:foundations,/interface:design,/interface:motion PROOF=target,evidenceInventory,severityFindings,qualityScore
+STATUS=ASK MISSING=<input>
+STATUS=FAIL ERROR=<named-cause>
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested target |
+|---|---|
+| audit findings need static token, contrast, or system decisions before another pass | `/interface:foundations` |
+| findings point to a changed interface direction rather than local fixes | `/interface:design` |
+| findings involve animation, timing, state feedback, or reduced-motion behavior | `/interface:motion` |
+| accepted findings move to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
+
+`HANDOFF_REQUIRED=false`. Recommendations never silently chain.
+
+## 5. Example Usage
+
+```text
+/interface:audit src/components/Checkout.tsx --scope a11y --score
+```
+
+Returns: a findings-first design quality report with evidence, scores, owners, and verification notes.

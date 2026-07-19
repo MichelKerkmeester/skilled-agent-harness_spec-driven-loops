@@ -1,6 +1,8 @@
 [
   {
     "command": "/design:audit",
+    "canonicalCommand": "/interface:audit",
+    "compatibilityAliases": ["/design:audit"],
     "ownerMode": "audit",
     "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -172,6 +174,8 @@
   },
   {
     "command": "/design:foundations",
+    "canonicalCommand": "/interface:foundations",
+    "compatibilityAliases": ["/design:foundations"],
     "ownerMode": "foundations",
     "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -342,6 +346,8 @@
   },
   {
     "command": "/design:interface",
+    "canonicalCommand": "/interface:design",
+    "compatibilityAliases": ["/design:interface"],
     "ownerMode": "interface",
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -612,6 +618,8 @@
   },
   {
     "command": "/design:md-generator",
+    "canonicalCommand": "/interface:design-reference",
+    "compatibilityAliases": ["/design:md-generator"],
     "ownerMode": "md-generator",
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -759,6 +767,8 @@
   },
   {
     "command": "/design:motion",
+    "canonicalCommand": "/interface:motion",
+    "compatibilityAliases": ["/design:motion"],
     "ownerMode": "motion",
     "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
     "descriptionRole": "hub-keyword-projection",
