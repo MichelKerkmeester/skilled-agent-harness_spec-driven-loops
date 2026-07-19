@@ -9,6 +9,7 @@
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const {
@@ -39,7 +40,49 @@ const ACTIVATION_ORDER = Object.freeze([
 ]);
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
 const APPROVED_PREFLIGHTS = new WeakMap();
+const HYPOTHETICAL_PREFLIGHTS = new WeakMap();
 const CARD_MARKER = 'fleet-policy-card-v1';
+const IMPLEMENTATION_ROOT = path.resolve(__dirname, '..', '..');
+const COMMITTED_ACTIVATION_MANIFESTS = Object.freeze([
+  {
+    filePath: path.join(IMPLEMENTATION_ROOT, '001-compiler-n1-shadow', 'activation', 'manifest.json'),
+    skillId: 'mcp-code-mode',
+    sourceId: '001-compiler-n1-shadow/activation/manifest.json',
+  },
+  {
+    filePath: path.join(
+      IMPLEMENTATION_ROOT,
+      '006-parent-hub-rollout',
+      '001-sk-code',
+      'activation',
+      'manifest.json',
+    ),
+    skillId: 'sk-code',
+    sourceId: '006-parent-hub-rollout/001-sk-code/activation/manifest.json',
+  },
+  {
+    filePath: path.join(
+      IMPLEMENTATION_ROOT,
+      '006-parent-hub-rollout',
+      '002-system-deep-loop',
+      'activation',
+      'manifest.json',
+    ),
+    skillId: 'system-deep-loop',
+    sourceId: '006-parent-hub-rollout/002-system-deep-loop/activation/manifest.json',
+  },
+  {
+    filePath: path.join(
+      IMPLEMENTATION_ROOT,
+      '006-parent-hub-rollout',
+      '003-mcp-tooling',
+      'activation',
+      'manifest.json',
+    ),
+    skillId: 'mcp-tooling',
+    sourceId: '006-parent-hub-rollout/003-mcp-tooling/activation/manifest.json',
+  },
+]);
 
 class CleanupError extends Error {
   constructor(code, message, details = {}) {
@@ -191,18 +234,61 @@ function orderPolicySnapshots(policySnapshots) {
   });
 }
 
-function assertFleetReady(activationManifests, policySnapshots) {
+function manifestEvidence(skillId, sourceId, bytes) {
+  let manifest;
+  try {
+    manifest = JSON.parse(bytes.toString('utf8'));
+  } catch (error) {
+    throw new CleanupError('PREFLIGHT_MANIFEST_INVALID', `${skillId} activation manifest is invalid JSON`, {
+      causeMessage: error.message,
+      skillId,
+      sourceId,
+    });
+  }
+  assertExactKeys(manifest, new Set([
+    'schemaVersion',
+    'selectedPolicy',
+    'servingAuthority',
+    'shadowOnly',
+  ]), `committed activation manifest ${skillId}`);
+  assertExactKeys(manifest.selectedPolicy, new Set([
+    'effectivePolicyHash',
+    'generation',
+  ]), `committed activation policy ${skillId}`);
+  if (manifest.schemaVersion !== 'V1') {
+    throw new CleanupError('PREFLIGHT_MANIFEST_INVALID', `${skillId} activation manifest must use schema V1`);
+  }
+  return {
+    manifest,
+    manifestHash: sha256(bytes),
+    skillId,
+    sourceId,
+  };
+}
+
+/**
+ * Read the exact committed activation-manifest bytes that own serving authority.
+ *
+ * @returns {Array<Object>} Ordered committed manifest evidence and byte hashes
+ */
+function readCommittedActivationEvidence() {
+  return COMMITTED_ACTIVATION_MANIFESTS.map((descriptor) => manifestEvidence(
+    descriptor.skillId,
+    descriptor.sourceId,
+    fs.readFileSync(descriptor.filePath),
+  ));
+}
+
+function hypotheticalEvidence(activationManifests) {
   if (!Array.isArray(activationManifests)
     || activationManifests.length !== ACTIVATION_ORDER.length) {
     throw new CleanupError('PREFLIGHT_INCOMPLETE', 'every fleet activation manifest is required');
   }
-  const snapshots = orderPolicySnapshots(policySnapshots);
-  const policyPins = snapshots.map(policyPin);
   const ids = activationManifests.map((manifest) => manifest.skillId);
   if (canonicalize(ids) !== canonicalize(ACTIVATION_ORDER)) {
     throw new CleanupError('PREFLIGHT_ORDER_INVALID', 'activation manifests are outside activation order');
   }
-  for (const [index, manifest] of activationManifests.entries()) {
+  return activationManifests.map((manifest) => {
     assertExactKeys(manifest, new Set([
       'canaryGreen',
       'effectivePolicyHash',
@@ -210,37 +296,145 @@ function assertFleetReady(activationManifests, policySnapshots) {
       'servingAuthority',
       'skillId',
     ]), `activation manifest ${manifest.skillId}`);
+    const projected = {
+      schemaVersion: 'V1',
+      selectedPolicy: {
+        effectivePolicyHash: manifest.effectivePolicyHash,
+        generation: manifest.generation,
+      },
+      servingAuthority: manifest.servingAuthority,
+      shadowOnly: manifest.servingAuthority !== 'compiled',
+    };
+    return {
+      canaryGreen: manifest.canaryGreen,
+      ...manifestEvidence(
+        manifest.skillId,
+        `hypothetical/${manifest.skillId}/activation/manifest.json`,
+        canonicalBytes(projected),
+      ),
+    };
+  });
+}
+
+function readinessFromEvidence(evidence, policySnapshots) {
+  if (!Array.isArray(evidence) || evidence.length !== ACTIVATION_ORDER.length) {
+    throw new CleanupError('PREFLIGHT_INCOMPLETE', 'every fleet activation manifest is required');
+  }
+  const snapshots = orderPolicySnapshots(policySnapshots);
+  const policyPins = snapshots.map(policyPin);
+  const ids = evidence.map((entry) => entry.skillId);
+  if (canonicalize(ids) !== canonicalize(ACTIVATION_ORDER)) {
+    throw new CleanupError('PREFLIGHT_ORDER_INVALID', 'activation manifests are outside activation order');
+  }
+  for (const [index, entry] of evidence.entries()) {
+    const manifest = entry.manifest;
     const expectedPin = policyPins[index];
     if (manifest.servingAuthority !== 'compiled'
-      || manifest.canaryGreen !== true
-      || !Number.isSafeInteger(manifest.generation)
-      || manifest.generation < 1
-      || !DIGEST_PATTERN.test(manifest.effectivePolicyHash || '')) {
-      throw new CleanupError('PREFLIGHT_BLOCKED', `${manifest.skillId} is not fully rolled out`, {
-        skillId: manifest.skillId,
+      || manifest.shadowOnly !== false
+      || entry.canaryGreen === false
+      || !Number.isSafeInteger(manifest.selectedPolicy.generation)
+      || manifest.selectedPolicy.generation < 1
+      || !DIGEST_PATTERN.test(manifest.selectedPolicy.effectivePolicyHash || '')) {
+      throw new CleanupError('PREFLIGHT_BLOCKED', `${entry.skillId} is not fully rolled out`, {
+        manifestHash: entry.manifestHash,
+        reason: 'not-rolled-out',
+        servingAuthority: manifest.servingAuthority,
+        shadowOnly: manifest.shadowOnly,
+        skillId: entry.skillId,
+        sourceId: entry.sourceId,
       });
     }
-    if (manifest.generation !== expectedPin.activationGeneration
-      || manifest.effectivePolicyHash !== expectedPin.effectivePolicyHash) {
-      throw new CleanupError('PREFLIGHT_POLICY_MISMATCH', `${manifest.skillId} manifest is not bound to its compiled snapshot`);
+    if (manifest.selectedPolicy.generation !== expectedPin.activationGeneration
+      || manifest.selectedPolicy.effectivePolicyHash !== expectedPin.effectivePolicyHash) {
+      throw new CleanupError('PREFLIGHT_POLICY_MISMATCH', `${entry.skillId} manifest is not bound to its compiled snapshot`);
     }
   }
   const snapshotDigest = sha256(canonicalBytes(snapshots));
+  const evidenceHash = sha256(canonicalBytes(evidence.map((entry) => ({
+    manifestHash: entry.manifestHash,
+    skillId: entry.skillId,
+  }))));
+  return { evidenceHash, snapshotDigest };
+}
+
+/**
+ * Mint a cleanup capability only from the exact committed rollout selectors.
+ *
+ * @param {Array<Object>} policySnapshots - Ordered compiled policy snapshots
+ * @returns {Object} Opaque cleanup preflight capability
+ */
+function assertFleetReady(policySnapshots) {
+  const committedEvidence = readCommittedActivationEvidence();
+  const readiness = readinessFromEvidence(committedEvidence, policySnapshots);
   const token = Object.freeze({
-    digest: sha256(canonicalBytes({ activationManifests, snapshotDigest })),
+    digest: sha256(canonicalBytes(readiness)),
+    evidenceHash: readiness.evidenceHash,
+    kind: 'committed',
   });
-  APPROVED_PREFLIGHTS.set(token, snapshotDigest);
+  APPROVED_PREFLIGHTS.set(token, readiness);
   return token;
 }
 
-function assertApprovedPreflight(preflight, policySnapshots) {
-  const approvedSnapshotDigest = preflight && APPROVED_PREFLIGHTS.get(preflight);
-  if (!approvedSnapshotDigest) {
-    throw new CleanupError('PREFLIGHT_REQUIRED', 'deletion requires an approved external preflight');
+/**
+ * Model a fully rolled-out fleet inside an isolated temporary simulation root.
+ *
+ * @param {Array<Object>} activationManifests - Synthetic positive-control manifests
+ * @param {Array<Object>} policySnapshots - Ordered compiled policy snapshots
+ * @returns {Object} Hypothetical-only preflight that cannot authorize a real path
+ */
+function createHypotheticalPreflight(activationManifests, policySnapshots) {
+  const readiness = readinessFromEvidence(
+    hypotheticalEvidence(activationManifests),
+    policySnapshots,
+  );
+  const simulationRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'fleet-cleanup-hypothetical-'));
+  const token = Object.freeze({
+    authorization: 'HYPOTHETICAL_ONLY',
+    digest: sha256(canonicalBytes({
+      activationManifests,
+      snapshotDigest: readiness.snapshotDigest,
+    })),
+    evidenceHash: readiness.evidenceHash,
+    kind: 'hypothetical',
+    simulationRoot,
+  });
+  HYPOTHETICAL_PREFLIGHTS.set(token, readiness);
+  return token;
+}
+
+function pathIsWithin(rootPath, candidatePath) {
+  const relative = path.relative(
+    fs.realpathSync(rootPath),
+    fs.realpathSync(candidatePath),
+  );
+  return relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
+}
+
+function assertApprovedPreflight(preflight, policySnapshots, targetPath) {
+  const approved = preflight && APPROVED_PREFLIGHTS.get(preflight);
+  const hypothetical = preflight && HYPOTHETICAL_PREFLIGHTS.get(preflight);
+  if (!approved && !hypothetical) {
+    throw new CleanupError('PREFLIGHT_REQUIRED', 'deletion requires an approved committed preflight');
+  }
+  if (approved) {
+    const currentEvidence = readCommittedActivationEvidence();
+    const currentEvidenceHash = sha256(canonicalBytes(currentEvidence.map((entry) => ({
+      manifestHash: entry.manifestHash,
+      skillId: entry.skillId,
+    }))));
+    if (currentEvidenceHash !== approved.evidenceHash) {
+      throw new CleanupError('PREFLIGHT_EVIDENCE_DRIFT', 'committed activation manifest bytes changed after preflight');
+    }
+  }
+  if (hypothetical && targetPath && !pathIsWithin(preflight.simulationRoot, targetPath)) {
+    throw new CleanupError(
+      'PREFLIGHT_HYPOTHETICAL_ONLY',
+      'hypothetical rollout evidence can operate only inside its isolated simulation root',
+    );
   }
   if (policySnapshots) {
     const snapshotDigest = sha256(canonicalBytes(orderPolicySnapshots(policySnapshots)));
-    if (snapshotDigest !== approvedSnapshotDigest) {
+    if (snapshotDigest !== (approved || hypothetical).snapshotDigest) {
       throw new CleanupError('PREFLIGHT_POLICY_MISMATCH', 'preflight token is bound to different policy snapshots');
     }
   }
@@ -475,7 +669,7 @@ function deleteLegacySkill({
   routeGoldGate,
   skillId,
 }) {
-  assertApprovedPreflight(preflight);
+  assertApprovedPreflight(preflight, undefined, manifestPath);
   if (typeof routeGoldGate !== 'function') {
     throw new CleanupError('ROUTE_GOLD_GATE_REQUIRED', 'a real route-gold gate is required');
   }
@@ -777,10 +971,12 @@ module.exports = {
   candidateAfterDeletion,
   canonicalBytes,
   createInitialManifest,
+  createHypotheticalPreflight,
   deleteLegacySkill,
   generatePolicyCard,
   manifestBytes,
   parsePolicyCard,
+  readCommittedActivationEvidence,
   replayPolicyCard,
   rollbackToRetained,
   scoreRouteGoldPlan,

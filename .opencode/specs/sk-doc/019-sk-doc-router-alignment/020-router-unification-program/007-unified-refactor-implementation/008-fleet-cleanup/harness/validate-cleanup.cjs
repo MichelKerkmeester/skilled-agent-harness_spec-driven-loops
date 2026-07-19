@@ -48,6 +48,7 @@ const PARENT_HUBS = Object.freeze([
   { directory: '002-system-deep-loop', skillId: 'system-deep-loop' },
   { directory: '003-mcp-tooling', skillId: 'mcp-tooling' },
 ]);
+let workspaceRoot = os.tmpdir();
 
 const {
   compile,
@@ -102,14 +103,17 @@ function scorerDigests() {
 }
 
 function assertCode(action, expectedCode) {
+  let captured;
   assert.throws(action, (error) => {
     assert.equal(error.code, expectedCode);
+    captured = error;
     return true;
   });
+  return captured;
 }
 
 function makeWorkspace(prefix, manifestBytes, fencingEpoch = 0) {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  const directory = fs.mkdtempSync(path.join(workspaceRoot, prefix));
   const manifestPath = path.join(directory, 'manifest.json');
   const fencePath = path.join(directory, 'fence-state.json');
   writeBytes(manifestPath, manifestBytes);
@@ -249,12 +253,41 @@ function n1Gate(snapshot) {
   };
 }
 
+function failedGate(snapshot, error) {
+  return {
+    normalized: {
+      canaryGreen: false,
+      candidateGeneration: snapshot.policy.activationGeneration,
+      candidatePolicyHash: snapshot.policy.effectivePolicyHash,
+      destinationRolloutGreen: false,
+      errorCode: error.code || 'CANDIDATE_GATE_ERROR',
+      errorMessage: error.message,
+      legacyServingBeforeCleanup: true,
+      rollbackGreen: false,
+      routeGoldGreen: false,
+      skillId: snapshot.skillId,
+    },
+    report: null,
+  };
+}
+
 function loadCommittedContext() {
   const n1 = loadN1Snapshot();
   const parents = PARENT_HUBS.map(loadParentSnapshot);
   const snapshots = [n1, ...parents];
-  const parentGates = PARENT_HUBS.map(parentGate);
-  const n1Evidence = n1Gate(n1);
+  const parentGates = PARENT_HUBS.map((descriptor, index) => {
+    try {
+      return parentGate(descriptor);
+    } catch (error) {
+      return failedGate(parents[index], error);
+    }
+  });
+  let n1Evidence;
+  try {
+    n1Evidence = n1Gate(n1);
+  } catch (error) {
+    n1Evidence = failedGate(n1, error);
+  }
   return {
     aliasesBySkill: Object.fromEntries(snapshots.map((snapshot) => [
       snapshot.skillId,
@@ -266,6 +299,31 @@ function loadCommittedContext() {
       entry.report,
     ])),
     snapshots,
+  };
+}
+
+function assertCurrentFleetBlocked(context) {
+  const committedEvidence = cleanup.readCommittedActivationEvidence();
+  const blocked = assertCode(
+    () => cleanup.assertFleetReady(context.snapshots),
+    'PREFLIGHT_BLOCKED',
+  );
+  assert.equal(blocked.details.reason, 'not-rolled-out');
+  assert.equal(blocked.details.servingAuthority, 'legacy');
+  assert.equal(blocked.details.shadowOnly, true);
+  committedEvidence.forEach((entry) => {
+    assert.equal(entry.manifest.servingAuthority, 'legacy');
+    assert.equal(entry.manifest.shadowOnly, true);
+    assert.equal(entry.manifest.selectedPolicy.generation, 0);
+    assert.equal(entry.manifest.selectedPolicy.effectivePolicyHash, null);
+  });
+  return {
+    authorized: false,
+    blockCode: blocked.code,
+    blockReason: blocked.details.reason,
+    committedEvidence,
+    servingAuthority: 'legacy',
+    shadowOnly: true,
   };
 }
 
@@ -369,11 +427,19 @@ function routeGoldPlans(context) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function runPreflightFalsifier(context, preflight, initialBytes) {
-  const blockedManifests = JSON.parse(JSON.stringify(FIXTURE.rolledOutManifests));
-  blockedManifests[0] = FIXTURE.fabricatedLegacyManifest;
+  const blockedManifests = JSON.parse(JSON.stringify(FIXTURE.hypotheticalRolledOutManifests));
+  blockedManifests[0] = FIXTURE.hypotheticalLegacyManifest;
   assertCode(
-    () => cleanup.assertFleetReady(blockedManifests, context.snapshots),
+    () => cleanup.createHypotheticalPreflight(blockedManifests, context.snapshots),
     'PREFLIGHT_BLOCKED',
+  );
+  const mismatchedManifests = JSON.parse(
+    JSON.stringify(FIXTURE.hypotheticalRolledOutManifests),
+  );
+  mismatchedManifests[0].generation += 1;
+  assertCode(
+    () => cleanup.createHypotheticalPreflight(mismatchedManifests, context.snapshots),
+    'PREFLIGHT_POLICY_MISMATCH',
   );
   const mismatchedSnapshots = JSON.parse(JSON.stringify(context.snapshots));
   mismatchedSnapshots[0].aliases.push('snapshot-binding-drift');
@@ -398,7 +464,8 @@ function runPreflightFalsifier(context, preflight, initialBytes) {
     }), 'PREFLIGHT_REQUIRED');
     return {
       deletionWithoutTokenBlocked: true,
-      fabricatedManifestRejected: true,
+      hypotheticalLegacyManifestRejected: true,
+      mismatchedManifestPinRejected: true,
       snapshotBindingMismatchRejected: true,
     };
   } finally {
@@ -501,20 +568,68 @@ function runPreimageFalsifier(preflight, initialBytes, plan, baseline) {
   }
 }
 
+function runStaleCasFalsifier() {
+  const finalPath = path.join(PHASE_ROOT, 'compiled', 'final-manifest.json');
+  const finalBytes = fs.readFileSync(finalPath);
+  const workspace = makeWorkspace('fleet-stale-cas-', finalBytes, 1);
+  try {
+    assertCode(() => cleanup.atomicFleetSwap({
+      expectedFencingEpoch: 0,
+      expectedPriorBytes: finalBytes,
+      fencePath: workspace.fencePath,
+      manifestPath: workspace.manifestPath,
+      nextBytes: finalBytes,
+      token: 'stale-cas-control',
+    }), 'STALE_FENCE');
+    assert.ok(fs.readFileSync(workspace.manifestPath).equals(finalBytes));
+    return { staleCasBlocked: true, targetBytesUnchanged: true };
+  } finally {
+    fs.rmSync(workspace.directory, { force: true, recursive: true });
+  }
+}
+
+function runHypotheticalPathBoundary(preflight, initialBytes) {
+  const priorWorkspaceRoot = workspaceRoot;
+  workspaceRoot = os.tmpdir();
+  const workspace = makeWorkspace('fleet-hypothetical-boundary-', initialBytes);
+  try {
+    assertCode(() => cleanup.deleteLegacySkill({
+      expectedFencingEpoch: 0,
+      expectedPriorBytes: initialBytes,
+      expectedRouteGoldDigest: '0'.repeat(64),
+      fencePath: workspace.fencePath,
+      manifestPath: workspace.manifestPath,
+      preflight,
+      retainedDirectory: workspace.retainedDirectory,
+      routeGoldGate: () => ({ corruptionInput: {}, inputs: [] }),
+      skillId: FIXTURE.activationOrder[0],
+    }), 'PREFLIGHT_HYPOTHETICAL_ONLY');
+    assert.ok(fs.readFileSync(workspace.manifestPath).equals(initialBytes));
+    return { outsideSimulationRootBlocked: true, targetBytesUnchanged: true };
+  } finally {
+    fs.rmSync(workspace.directory, { force: true, recursive: true });
+    workspaceRoot = priorWorkspaceRoot;
+  }
+}
+
 function runPreflightGuardRemovalFalsifier(context) {
   const libraryPath = path.join(PHASE_ROOT, 'lib', 'fleet-cleanup.cjs');
-  const mutant = loadMutant(libraryPath, [[
-    "    if (manifest.servingAuthority !== 'compiled'\n      || manifest.canaryGreen !== true\n      || !Number.isSafeInteger(manifest.generation)\n      || manifest.generation < 1\n      || !DIGEST_PATTERN.test(manifest.effectivePolicyHash || '')) {",
-    '    if (false) {',
-  ]]);
-  const fabricated = JSON.parse(JSON.stringify(FIXTURE.rolledOutManifests));
-  fabricated[0] = {
-    ...FIXTURE.fabricatedLegacyManifest,
-    effectivePolicyHash: context.snapshots[0].policy.effectivePolicyHash,
-    generation: context.snapshots[0].policy.activationGeneration,
-  };
-  assert.doesNotThrow(() => mutant.assertFleetReady(fabricated, context.snapshots));
-  return { removedManifestContentGuardAcceptsFabrication: true };
+  const mutant = loadMutant(libraryPath, [
+    [
+      'function assertFleetReady(policySnapshots) {',
+      'function assertFleetReady(policySnapshots, activationManifests) {',
+    ],
+    [
+      '  const committedEvidence = readCommittedActivationEvidence();',
+      '  const committedEvidence = hypotheticalEvidence(activationManifests);',
+    ],
+  ]);
+  const token = mutant.assertFleetReady(
+    context.snapshots,
+    FIXTURE.hypotheticalRolledOutManifests,
+  );
+  assert.equal(token.kind, 'committed');
+  return { removedCommittedEvidenceBindingAcceptsSelfAttestation: true };
 }
 
 function runRouteGoldScorerGuardRemovalFalsifier(context, initialBytes, baseline) {
@@ -523,7 +638,12 @@ function runRouteGoldScorerGuardRemovalFalsifier(context, initialBytes, baseline
     '    routeGold = scoreRouteGoldPlan(routeGoldGate(skillId, candidate));',
     '    routeGold = routeGoldGate(skillId, candidate);',
   ]]);
-  const mutantPreflight = mutant.assertFleetReady(FIXTURE.rolledOutManifests, context.snapshots);
+  const mutantPreflight = mutant.createHypotheticalPreflight(
+    FIXTURE.hypotheticalRolledOutManifests,
+    context.snapshots,
+  );
+  const priorWorkspaceRoot = workspaceRoot;
+  workspaceRoot = mutantPreflight.simulationRoot;
   const workspace = makeWorkspace('fleet-scorer-mutant-', initialBytes);
   try {
     assert.doesNotThrow(() => mutant.deleteLegacySkill({
@@ -541,6 +661,8 @@ function runRouteGoldScorerGuardRemovalFalsifier(context, initialBytes, baseline
     return { removedRealScorerGuardAcceptsSelfAttestation: true };
   } finally {
     fs.rmSync(workspace.directory, { force: true, recursive: true });
+    workspaceRoot = priorWorkspaceRoot;
+    fs.rmSync(mutantPreflight.simulationRoot, { force: true, recursive: true });
   }
 }
 
@@ -789,124 +911,49 @@ function run() {
   assert.deepEqual(scorerBefore, EXPECTED_SCORER_DIGESTS);
   assert.deepEqual(FIXTURE.activationOrder, cleanup.ACTIVATION_ORDER);
   const context = loadCommittedContext();
-  const preflight = cleanup.assertFleetReady(FIXTURE.rolledOutManifests, context.snapshots);
-  const initialManifest = cleanup.createInitialManifest({
-    aliasesBySkill: context.aliasesBySkill,
-    bakeWindow: FIXTURE.bakeWindow,
-    policySnapshots: context.snapshots,
-    preflight,
-  });
-  const initialBytes = cleanup.manifestBytes(initialManifest);
-  const plans = routeGoldPlans(context);
-  const baselines = Object.fromEntries(cleanup.ACTIVATION_ORDER.map((skillId) => [
-    skillId,
-    cleanup.scoreRouteGoldPlan(plans.map.get(skillId)),
-  ]));
-  Object.values(baselines).forEach((baseline) => {
-    assert.equal(baseline.green, true);
-    assert.equal(baseline.corruptedObservationPass, false);
-    assert.equal(baseline.writeBackAttempts, 0);
-  });
-  const preflightFalsifier = runPreflightFalsifier(context, preflight, initialBytes);
-  const routeGoldFalsifier = runRouteGoldRollbackFalsifier(
-    preflight,
-    initialBytes,
-    plans.map.get(FIXTURE.activationOrder[0]),
-    baselines[FIXTURE.activationOrder[0]],
+  const currentFleet = assertCurrentFleetBlocked(context);
+  const committedBindingFalsifier = runPreflightGuardRemovalFalsifier(context);
+  const preflight = cleanup.createHypotheticalPreflight(
+    FIXTURE.hypotheticalRolledOutManifests,
+    context.snapshots,
   );
-  const preimageFalsifier = runPreimageFalsifier(
-    preflight,
-    initialBytes,
-    plans.map.get(FIXTURE.activationOrder[0]),
-    baselines[FIXTURE.activationOrder[0]],
-  );
-  const guardRemovalFalsifier = {
-    ...runPreflightGuardRemovalFalsifier(context),
-    ...runRouteGoldScorerGuardRemovalFalsifier(
-      context,
-      initialBytes,
-      baselines[FIXTURE.activationOrder[0]],
-    ),
-  };
-  const sequence = runDeletionSequence(
-    context,
-    preflight,
-    initialManifest,
-    plans.map,
-    baselines,
-  );
+  workspaceRoot = preflight.simulationRoot;
   try {
-    const card = runCardGates(sequence, context);
-    const finalDrift = runFinalDriftGate(sequence.finalBytes);
-    const rollback = runRollbackDrill(sequence);
-    const artifacts = runArtifactGate(sequence, card.card);
+    const initialManifest = cleanup.createInitialManifest({
+      aliasesBySkill: context.aliasesBySkill,
+      bakeWindow: FIXTURE.bakeWindow,
+      policySnapshots: context.snapshots,
+      preflight,
+    });
+    const initialBytes = cleanup.manifestBytes(initialManifest);
+    const preflightFalsifier = runPreflightFalsifier(context, preflight, initialBytes);
+    const staleCasFalsifier = runStaleCasFalsifier();
+    const pathBoundary = runHypotheticalPathBoundary(preflight, initialBytes);
     const staticGates = runStaticGates(context, scorerBefore);
-    const report = {
-      aliasRemoval: {
-        aliasGuardRemovalRoutes: card.aliasGuardRemovalRoutes,
-        aliasRetirementDecisions: card.aliasRetirementDecisions,
-        aliasMutationRejected: card.aliasMutationRejected,
-        defaultUnionMutationRejected: card.defaultUnionMutationRejected,
-        postCleanupAliases: 0,
-      },
-      artifacts,
-      bakeWindow: rollback,
-      deletions: sequence.deletions.map((entry) => ({
-        driver: entry.driver,
-        generation: entry.generation,
-        retainedHash: entry.priorHash,
-        routeGoldDigest: entry.routeGoldDigest,
-        routeGoldGreen: true,
-        routeGoldRealScorer: entry.routeGoldRealScorer,
-        routeGoldRows: entry.routeGoldRows,
-        skillId: entry.skillId,
-      })),
-      drift: {
-        ...finalDrift,
-        preimageMutationRejected: preimageFalsifier.plantedPreimageDriftBlocked,
-      },
-      finalState: {
-        dualReadSkillIds: sequence.finalManifest.dualReadSkillIds,
-        legacyInputs: sequence.finalManifest.legacyInputs,
-        resolver: sequence.finalManifest.resolver,
-        soleResolver: sequence.finalManifest.soleResolver,
-      },
-      guardRemovalFalsifier,
-      noOverEmission: {
-        defaultUnionAbsent: card.defaultUnionAbsent,
-        zeroSignalDecision: card.zeroSignalDecision,
-      },
-      preflight: {
-        externalEvidence: context.gateEvidence,
-        rolledOutManifests: FIXTURE.rolledOutManifests,
-        ...preflightFalsifier,
-      },
-      policyCard: {
-        corruptedCardRejected: card.corruptedCardRejected,
-        outOfBandReplayIgnoresCorruption: card.outOfBandReplayIgnoresCorruption,
-      },
-      routeGoldFalsifier,
-      singleton: {
-        deletionDriver: sequence.deletions[0].driver,
-        emptyCompositionCollections: plans.n1Trace.compositionRules,
-        rankCalls: plans.n1Trace.rankCalls,
-        routeGoldGreen: baselines['mcp-code-mode'].green,
-      },
-      staticGates,
-      status: 'GREEN',
+    const hypotheticalPositiveControl = {
+      authorization: preflight.authorization,
+      evidenceHash: preflight.evidenceHash,
+      initialManifestHash: cleanup.sha256(initialBytes),
+      label: 'If the fleet were fully rolled out, cleanup would mint only this isolated simulation capability.',
+      manifests: FIXTURE.hypotheticalRolledOutManifests,
+      pathBoundary,
+      preflightFalsifier,
+      staleCasFalsifier,
+      status: 'HYPOTHETICAL_READY_ONLY',
+      wouldMintDigest: preflight.digest,
     };
-    if (process.argv.includes('--snapshot')) {
-      return {
-        artifactSnapshot: {
-          finalManifest: sequence.finalBytes.toString('utf8'),
-          policyCard: card.card.markdown,
-        },
-        report,
-      };
-    }
+    const report = {
+      antiHollowGreen: committedBindingFalsifier,
+      candidateGateEvidence: context.gateEvidence,
+      currentFleet,
+      hypotheticalPositiveControl,
+      staticGates,
+      status: 'PREFLIGHT_BLOCKED',
+    };
     return report;
   } finally {
-    fs.rmSync(sequence.workspace.directory, { force: true, recursive: true });
+    workspaceRoot = os.tmpdir();
+    fs.rmSync(preflight.simulationRoot, { force: true, recursive: true });
   }
 }
 

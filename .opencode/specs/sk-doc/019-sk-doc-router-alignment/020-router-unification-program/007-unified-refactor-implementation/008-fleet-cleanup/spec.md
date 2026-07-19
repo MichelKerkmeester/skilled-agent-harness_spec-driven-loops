@@ -7,7 +7,7 @@ trigger_phrases:
   - "remove compatibility aliases hot card"
 importance_tier: "critical"
 contextType: "implementation"
-status: "implemented-contract"
+status: "blocked-shadow"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

@@ -7,7 +7,7 @@ trigger_phrases:
   - "dual-read retirement approach"
 importance_tier: "critical"
 contextType: "implementation"
-status: "implemented-contract"
+status: "blocked-shadow"
 ---
 # Implementation Plan: Fleet Cleanup — Retire the Legacy Dual-Read Path
 
@@ -32,20 +32,20 @@ Retire the legacy dual-read resolution path fleet-wide, one skill at a time, beh
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 006 (Stages 4 + 6) green for all four hubs; activation manifest shows every hub on the compiled generation.
-  - **Evidence**: the validator executes committed singleton/execution and parent-hub gates, binds candidate generations 1–4, and issues the cleanup token only after all external receipts are green; checked-in source manifests remain legacy-authoritative as required before this modeled cleanup.
-- [x] A recorded post-rollout fingerprint exists to drift-check the terminal state against.
-  - **Evidence**: the canonical final manifest is frozen at SHA-256 `062261a3e4746064d2951f7ed34efbaeac5d74e30bc531d97d51f7f6be72fa73` and byte-compared on every validator run.
-- [x] Retained-prior-generation storage and bake-window policy are defined.
-  - **Evidence**: each deletion fsyncs a uniquely hashed prior manifest; four generations remain present through the validator's bake window and discard authorization stays false.
+- [ ] Phase 006 (Stages 4 + 6) green for all four hubs; activation manifest shows every hub on the compiled generation.
+  - **Evidence**: all four committed selectors are `servingAuthority:"legacy"`, `shadowOnly:true`, generation `0`, hash `5485c5a4...`; `system-deep-loop` also reports `shadow-partial` route-gold.
+- [ ] A recorded post-rollout fingerprint exists to drift-check the terminal state against.
+  - **Evidence**: `compiled/final-manifest.json` is a hypothetical artifact only; no post-rollout committed selector exists while readiness is blocked.
+- [ ] Retained-prior-generation storage and bake-window policy are defined.
+  - **Evidence**: the implementation exists, but no real cleanup token or deletion is authorized in the committed shadow state.
 
 ### Definition of Done
-- [x] Legacy dual-read resolver deleted; compiled policy is the sole resolver (SC-001).
-  - **Evidence**: the phase-local terminal manifest has empty legacy collections, all four retired IDs, `resolver:"EffectivePolicy"`, and `soleResolver:true`; no live deletion is performed.
-- [x] Every per-skill deletion left route-gold byte-identical; drift check green (SC-003/SC-005).
-  - **Evidence**: generations 5–8 preserve their baseline replay digests across 2, 5, 11, and 8 real-scorer rows; final canonical bytes match the frozen manifest.
-- [x] Hot card carries no alias array; regenerated from snapshot (SC-004).
-  - **Evidence**: `compiled/PolicyCardV1.md` byte-matches generator output, reports zero post-cleanup compatibility arrays, and rejects a planted retained property.
+- [ ] Legacy dual-read resolver deleted; compiled policy is the sole resolver (SC-001).
+  - **Evidence**: blocked; every committed activation manifest remains legacy-authoritative and no real deletion ran.
+- [ ] Every per-skill deletion left route-gold byte-identical; drift check green (SC-003/SC-005).
+  - **Evidence**: blocked before deletion; the current `system-deep-loop` candidate gate is `shadow-partial` with seven resource mismatches.
+- [ ] Hot card carries no alias array; regenerated from snapshot (SC-004).
+  - **Evidence**: the checked-in card is a hypothetical terminal artifact, not evidence of current fleet authority.
 - [x] `git diff` shows zero changes to `router-replay.cjs` (REQ-007).
   - **Evidence**: no git command was run by instruction; independent before/after SHA-256 verification proves the scorer family unchanged at the three protected digests.
 
@@ -82,30 +82,30 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Readiness Preflight
-- [x] Read the activation manifest; confirm all four hubs on the compiled generation with zero open canary mismatch.
-  - **Evidence**: external acceptance candidate tuples and committed gate outputs are bound into the preflight; current checked-in manifests are additionally confirmed legacy-authoritative before cleanup.
-- [x] Record the post-rollout fingerprint to drift-check the terminal state against.
-  - **Evidence**: the terminal selector SHA-256 is `062261a3...`; a planted generation change throws `FINAL_STATE_DRIFT`.
-- [x] Confirm retained-generation storage + bake-window policy are in place.
-  - **Evidence**: four retained prior files remain hash-identical through the final deletion and rollback drill.
+- [ ] Read the activation manifest; confirm all four hubs on the compiled generation with zero open canary mismatch.
+  - **Evidence**: the exact committed bytes were read and disprove readiness: all four selectors are legacy/shadow-only; cleanup returns `PREFLIGHT_BLOCKED`.
+- [ ] Record the post-rollout fingerprint to drift-check the terminal state against.
+  - **Evidence**: no real post-rollout fingerprint exists; the frozen generation-8 file remains hypothetical.
+- [ ] Confirm retained-generation storage + bake-window policy are in place.
+  - **Evidence**: implementation is present, but the real preflight blocks before retained-generation creation.
 
 ### Phase 2: Per-Skill Deletion (activation order)
-- [x] `mcp-code-mode` (N=1): delete legacy artifacts via the skillId-parameterized driver; fenced CAS; route-gold replay; drift check; retain prior generation.
-  - **Evidence**: generation 5 uses `deleteLegacySkill`, passes 2 real-scorer rows, retains hash `c25a6322...`, and records zero rank/composition calls.
-- [x] `sk-code`: same path.
-  - **Evidence**: generation 6 uses the same driver, passes 5 real-scorer rows, and retains hash `c225dfac...`.
-- [x] `system-deep-loop`: same path.
-  - **Evidence**: generation 7 uses the same driver, passes 11 real-scorer rows, and retains hash `f32901eb...`.
-- [x] `mcp-tooling`: same path.
-  - **Evidence**: generation 8 uses the same driver, passes 8 real-scorer rows, and retains hash `34eb9f60...`.
+- [ ] `mcp-code-mode` (N=1): delete legacy artifacts via the skillId-parameterized driver; fenced CAS; route-gold replay; drift check; retain prior generation.
+  - **Evidence**: blocked before deletion by the committed legacy/shadow-only selector.
+- [ ] `sk-code`: same path.
+  - **Evidence**: blocked before deletion by the committed legacy/shadow-only selector.
+- [ ] `system-deep-loop`: same path.
+  - **Evidence**: blocked by both the committed legacy/shadow-only selector and current `shadow-partial` route-gold.
+- [ ] `mcp-tooling`: same path.
+  - **Evidence**: blocked before deletion by the committed legacy/shadow-only selector.
 
 ### Phase 3: Hot-Card & Final State
-- [x] Strip the compatibility alias array from the hot card by regenerating `PolicyCardV1.md` from the compiled snapshot.
-  - **Evidence**: card bytes equal the generator output and a planted compatibility property throws `HOT_CARD_ALIASES_REMAIN`.
-- [x] Run the final drift check + document-parity + full route-gold family.
-  - **Evidence**: frozen manifest/card parity is byte-exact, final drift is green, and all 26 per-deletion route-gold rows pass.
-- [x] Prove byte-exact fenced-CAS rollback of the retained prior generation; document the post-effect (external COMMIT) limit.
-  - **Evidence**: rollback restores `34eb9f60...` exactly; the contract and implementation summary state that committed external effects remain destination-owned.
+- [ ] Strip the compatibility alias array from the hot card by regenerating `PolicyCardV1.md` from the compiled snapshot.
+  - **Evidence**: blocked; no real terminal selector or live cleanup is authorized.
+- [ ] Run the final drift check + document-parity + full route-gold family.
+  - **Evidence**: blocked; the current candidate evidence includes seven `system-deep-loop` resource mismatches.
+- [ ] Prove byte-exact fenced-CAS rollback of the retained prior generation; document the post-effect (external COMMIT) limit.
+  - **Evidence**: stale CAS is rejected in the harness, but no real deletion/rollback drill is authorized.
 
 ## 5. TESTING STRATEGY
 
@@ -147,10 +147,10 @@ Phase 1 (Readiness) ──► Phase 2 (Per-Skill Deletion, ordered) ──► Ph
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deletion Checklist
-- [x] Prior generation retained and byte-hashed for the skill about to be cleaned.
-  - **Evidence**: each of the four deletions fsyncs a retained file before its candidate swap and verifies the retained SHA-256 against the prior bytes.
-- [x] Route-gold + drift-check baselines captured for delta comparison.
-  - **Evidence**: per-skill replay digests and the frozen expected manifest bytes are captured before the ordered deletion loop.
+- [ ] Prior generation retained and byte-hashed for the skill about to be cleaned.
+  - **Evidence**: no skill is eligible for cleanup while the committed selectors remain legacy/shadow-only.
+- [ ] Route-gold + drift-check baselines captured for delta comparison.
+  - **Evidence**: the current candidate gate is not fleet-green; `system-deep-loop` is `shadow-partial`.
 
 ### Rollback Procedure
 1. Fenced CAS to the retained prior generation for the affected skill.
