@@ -176,7 +176,20 @@ function filterScenarios(scenarios, filter) {
 // executors. Contamination-lint is a drift FINDING in router mode (the playbook
 // intentionally carries trigger words) and is skipped entirely in live mode.
 function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, playbookDir, scenariosFilter, scenarioRows, lintFindings, warningsOut }) {
-  const { scenarios, warnings } = loadPlaybookScenarios({ skillRoot, playbookDir });
+  let scenarios;
+  let warnings;
+  try {
+    ({ scenarios, warnings } = loadPlaybookScenarios({ skillRoot, playbookDir }));
+  } catch (err) {
+    // A skill with no playbook corpus at all scores zero scenarios rather than
+    // aborting: the structural/registry connectivity gate is evaluated upstream
+    // and independently, so an absent corpus must not preempt its verdict. A
+    // legacy underscore playbook root stays fail-closed — only the genuinely
+    // empty case is absorbed here; every other load error re-throws.
+    if (!err || err.code !== 'MISSING_PLAYBOOK_ROOT') throw err;
+    scenarios = [];
+    warnings = [];
+  }
   if (warningsOut) warningsOut.push(...warnings);
   for (const sc of filterScenarios(scenarios, scenariosFilter)) {
     const observed = dispatchScenario({ scenario: sc, skillRoot, traceMode, executor });
