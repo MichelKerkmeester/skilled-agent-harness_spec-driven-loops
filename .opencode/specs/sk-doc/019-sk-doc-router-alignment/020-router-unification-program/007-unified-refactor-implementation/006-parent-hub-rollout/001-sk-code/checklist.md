@@ -61,7 +61,7 @@ contextType: "implementation"
 - [x] CHK-020 [P0] Byte-identical compilation is checked against the authored registry bytes.
   - **Evidence**: Independent recompilation returns the fixed canonical policy hash `54bdc95a97fbe397b61d298a09af3a90c9533c92613d9d6b70324300c195cc06`; a caller-supplied self-description is rejected.
 - [x] CHK-021 [P0] The reference surface bundle has actor-first order-of-loading.
-  - **Evidence**: `review my webflow animation for jank` returns `route(surfaceBundle, [code-review(actor), code-webflow(evidence)])`; execution evidence reports `routeLoadingOrder: [actor, evidence]`.
+  - **Evidence**: With the validated policy/risk-bound certificate, `review my webflow animation for jank` returns `route(surfaceBundle, [code-review(actor), code-webflow(evidence)])`; execution evidence reports `routeLoadingOrder: [actor, evidence]`.
 - [x] CHK-022 [P0] Real route-gold scoring is GREEN without a self-oracle.
   - **Evidence**: Five typed real-hub cases pass the read-only `evaluateRouteGold`; corrupting an observation makes the real scorer fail (`corruptedObservationPass: false`).
 - [x] CHK-023 [P0] Evidence cannot COMMIT and actor COMMIT requires VERIFY.
@@ -69,13 +69,15 @@ contextType: "implementation"
 - [x] CHK-024 [P0] Every aggregate hard block is driven with a specific refusal code.
   - **Evidence**: Fixtures drive evidence COMMIT, negative authority/target/tool, pinned-tuple mismatch, mixed generations, exact-route recovery artifacts, COMMIT without VERIFY, and scorer-edit-required; each maps to its named activation block.
 - [x] CHK-025 [P0] Advisor drift and availability never rewrite a decision.
-  - **Evidence**: `live` plus identity match contributes rank evidence; stale, absent, unavailable, and projection drift contribute no rank authority and preserve the same route identity.
+  - **Evidence**: `live` plus identity match contributes non-authority rank evidence; stale, absent, unavailable, and projection drift preserve the same route identity only when the separate identity-bound certificate gate licenses the multi-candidate route.
 - [x] CHK-026 [P0] No-over-emission behavior is exact.
-  - **Evidence**: Zero leaf signal defers with `no-match`, a surface alone defers, and ambiguity emits one clarify sourced from the fallback checklist; negative projections carry empty intents/resources.
+  - **Evidence**: Zero leaf signal defers, a surface alone defers, ambiguity emits one checklist clarify, and absent/stale/policy-mismatched/risk-mismatched certificates emit target-free `clarify` rather than a multi-candidate signal route.
 - [x] CHK-027 [P0] Document-only replay genuinely matches the machine snapshot.
-  - **Evidence**: All five fixtures match with terminal `DOCUMENT_ONLY_UNATTESTED`; a planted card divergence is rejected instead of falling back to machine policy.
+  - **Evidence**: All five fixtures match on decision action, selection, targets, basis, and authority with terminal `DOCUMENT_ONLY_UNATTESTED`; controller rank evidence and certificate evidence remain out-of-band, and a planted card divergence is rejected.
 - [x] CHK-028 [P0] Fenced rollback is byte-exact and mixed generations are refused.
   - **Evidence**: The drill performs accept, fenced CAS, pin, and rollback; prior/restored SHA-256 both equal `5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23`, final fence epoch is 2, and mixed pins fail `MIXED_GENERATION_OBSERVED`.
+- [x] CHK-029 [P1] The certificate gate has a live teeth-and-falsifier proof.
+  - **Evidence**: Valid certificate `dd5e53e2…e1a3` emits the certified bundle; absent, stale, policy-mismatched, and risk-mismatched handles clarify; bypassing the controller on the same no-certificate input reverts to `route(surfaceBundle, basis:signal)`.
 
 <!-- /ANCHOR:testing -->
 ---
@@ -91,6 +93,10 @@ contextType: "implementation"
   - **Evidence**: All 29 authored aliases resolve through the generated compatibility projection; an unmapped alias returns `null`, and projection drift is detected.
 - [x] CHK-033 [P0] Legacy remains serving-authoritative after the Stage-4 proof.
   - **Evidence**: Candidate and eligible manifests report `servingAuthority: legacy` and `shadowOnly: true`; no live routing file was changed.
+- [x] CHK-034 [P1] The frozen decision contract independently validates controller outputs.
+  - **Evidence**: The harness reparses the certified route, all four certificate-gated negative decisions, and the N=1 route through `parseRouteDecision`; every comparison is byte-equivalent and reports `externalOraclePass: true`.
+- [x] CHK-035 [P1] N=1 remains deterministic without certificate resolution.
+  - **Evidence**: The single-quality fixture returns `route(single)` with `calibrationStatus: unvalidated`, `rankCalls: 0`, and `thresholdCalls: 0`.
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -112,11 +118,13 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-050 [P0] Spec, plan, tasks, checklist, and summary agree on the canary state.
-  - **Evidence**: Authored docs report Stage-4 GREEN while retaining legacy serving authority and explicitly excluding a live flip.
+  - **Evidence**: Authored docs report the phase harness and certificate gate GREEN, strict packet validation blocked, legacy serving authority retained, and no live flip.
 - [x] CHK-051 [P0] Design decisions cite the approved synthesis.
-  - **Evidence**: `implementation-summary.md` cites synthesis §§2.1–2.3, 7, 8.1–8.3, 9, and 10.
-- [x] CHK-052 [P1] Required anchors are exact, balanced, and ordered.
-  - **Evidence**: The final anchor scan checks each checklist and implementation-summary anchor appears once, opens/closes once, and follows the required order.
+  - **Evidence**: `implementation-summary.md` cites synthesis §3 Idea 5, §4 recovery rung 2, §5, §§7–10, and records the certificate boundary as evidence rather than authority.
+- [ ] CHK-052 [P1] Required anchors are exact, balanced, and ordered.
+  - **Evidence**: Checklist and implementation-summary anchors are balanced, but strict validation confirms legacy `spec.md`, `plan.md`, and `tasks.md` are missing required anchors; structural rewrites are outside the authorized status/checkbox/evidence-only doc scope.
+- [ ] CHK-053 [P0] Strict Level-2 packet validation passes.
+  - **Evidence**: `validate.sh --strict` was run and failed on baseline missing generated package runtime files, missing local `tsx`, legacy template/anchor structure, and pre-existing metadata shape; fixing those requires writes outside this phase or disallowed structural doc changes.
 
 <!-- /ANCHOR:docs -->
 ---
@@ -137,12 +145,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 23 | 23/23 |
-| P1 Items | 5 | 5/5 |
+| P0 Items | 24 | 23/24 |
+| P1 Items | 8 | 7/8 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-19  
-**Verification Scope**: Phase-local compile, routing, real-scorer replay, authority, advisor, document parity, activation, and rollback gates.  
-**External Boundary**: `validate.sh --strict` was not run; the execution brief reserves it for the orchestrator from the main tree.
+**Verification Scope**: Phase-local compile, selective-controller certificate gate, external decision oracle, routing, real-scorer replay, authority, advisor, document parity, activation, and rollback gates.  
+**External Boundary**: Strict packet validation was run and remains red for baseline tooling/generated-runtime and legacy packet-structure failures outside the authorized edit boundary.
 
 <!-- /ANCHOR:summary -->

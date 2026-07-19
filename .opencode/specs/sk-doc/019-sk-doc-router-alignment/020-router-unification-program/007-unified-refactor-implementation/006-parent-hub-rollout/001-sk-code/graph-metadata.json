@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "lib/registry-compiler.cjs",
       "lib/canary-router.cjs",
@@ -176,13 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Shadow",
+        "name": "Strict Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Pattern Shadow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a workflow mode with read-only surfaces [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`]",
     "created_at": "2026-07-18T13:13:19.473Z",
-    "last_save_at": "2026-07-18T23:41:38.432Z",
+    "last_save_at": "2026-07-19T04:18:14.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a29b556def61fc102660017c34a1429b45515d8a8df3d85a2acd1b9d0fac568",
+    "source_fingerprint": "sha256:8d6f1392cab4a6a3f9f7df68b926989739933a5e9c2cbdf097f323ea9eb1cd86",
     "source_doc_hashes": {
-      "spec.md": "a2ab7129c8b4b7603faa024326a21ed3776c4ae4e15f202e58ea61d52ece2594",
-      "plan.md": "7afb599dd2204c0950972b1644cff5e47efdf524f12caf39164bbfb16bfc78a0",
-      "tasks.md": "c1fed7e1e150eb25be84585dd5cd5d6b60831cfcc17e45ef36a632366958e077",
-      "checklist.md": "8d064f0e2157d6b5f40ae1fe7e244f1999e04e6b5f13ac7d0b065104d7fef1cb",
-      "implementation-summary.md": "83dddacd4a374703bc9ba391f34298f3f34017b1e5453937c03bff11953fa55f"
+      "spec.md": "67a91a264bbde2ca7a9c2c469bb4a558fe3a30b23ddd2142ba1568d3d0372d0e",
+      "plan.md": "cba046a02e2089ca8f35ca2e9cf34fba255b6532c4ae350f4725eb1dd220e468",
+      "tasks.md": "eb054c642ae779f47b33001440b39a132536e05e8b60a02da4f719b470fc4b1d",
+      "checklist.md": "e0f80f79666978eee55e9fd580620d6dcfad1a4f36798278a459f9104065d50d",
+      "implementation-summary.md": "c018641c481ab8de973eacfed57338a6bba4602ac6ced4392eae63915bf65a5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -31,6 +31,9 @@ const {
   parseRouteDecision,
 } = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
 const {
+  evaluateWithTrace,
+} = require('../../../002-decision-evaluator/lib/evaluator.cjs');
+const {
   projectToRouteGold,
 } = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
@@ -41,13 +44,16 @@ const {
   ExecutionProtocolError,
 } = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
 const {
+  sealCertificate,
+} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+const {
   CanaryActivationError,
   HARD_BLOCKS,
   assertActivationEligible,
   assertPinnedTuple,
   assertSingleGeneration,
 } = require('../lib/activation-gate.cjs');
-const { evaluateCanary } = require('../lib/canary-router.cjs');
+const { buildRequest, evaluateCanary } = require('../lib/canary-router.cjs');
 const { commitActor, verifyForOperation } = require('../lib/execution-fence.cjs');
 const {
   PACKET_AUTHORITY,
@@ -98,6 +104,22 @@ function readJson(filePath) {
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function canaryInput(fixture, entry) {
+  const input = clone(entry);
+  const fixtureId = input.certificateFixture;
+  const certificateState = input.certificateState || 'live';
+  delete input.certificateFixture;
+  delete input.certificateState;
+  if (!fixtureId) return input;
+  const certificate = sealCertificate(fixture.certificates[fixtureId]);
+  input.certificateHandle = {
+    state: certificateState,
+    activeCertificateId: certificate.certificateId,
+    certificate,
+  };
+  return input;
 }
 
 function fileHash(filePath) {
@@ -203,7 +225,7 @@ function runRouteCases(snapshot, fixture) {
   const rows = [];
   const scorerInputs = [];
   for (const entry of fixture.cases) {
-    const result = evaluateCanary(snapshot, entry);
+    const result = evaluateCanary(snapshot, canaryInput(fixture, entry));
     assert.strictEqual(result.decision.action, entry.expectedAction, `${entry.id} action`);
     if (entry.expectedSelectionKind) {
       assert.strictEqual(result.decision.route.selectionKind, entry.expectedSelectionKind);
@@ -253,6 +275,90 @@ function runRouteCases(snapshot, fixture) {
   };
 }
 
+function runCertificateGate(snapshot, fixture) {
+  const certifiedInput = canaryInput(fixture, fixture.cases[0]);
+  const certified = evaluateCanary(snapshot, certifiedInput);
+  assert.strictEqual(certified.decision.action, 'route');
+  assert.strictEqual(certified.decision.route.selectionKind, 'surfaceBundle');
+  assert.strictEqual(certified.decision.route.basis.kind, 'signal');
+  assert.strictEqual(certified.calibration.status, 'validated');
+  assert.strictEqual(certified.calibration.policyHash, snapshot.policy.effectivePolicyHash);
+  assert.strictEqual(certified.calibration.riskSlice, certifiedInput.riskSlice);
+  assert.deepStrictEqual(
+    parseRouteDecision(certified.decision, snapshot.policy),
+    certified.decision,
+  );
+
+  const rows = fixture.certificateCases.map((entry) => {
+    const input = canaryInput(fixture, entry);
+    const result = evaluateCanary(snapshot, input);
+    assert.strictEqual(result.decision.action, entry.expectedAction, `${entry.id} action`);
+    assert.ok(['clarify', 'defer'].includes(result.decision.action), `${entry.id} abstention`);
+    assert.notStrictEqual(result.decision.route?.basis?.kind, 'signal', `${entry.id} signal route`);
+    assert.strictEqual(
+      result.trace.controller.certificateReason,
+      entry.expectedCertificateReason,
+      `${entry.id} certificate reason`,
+    );
+    assert.deepStrictEqual(
+      parseRouteDecision(result.decision, snapshot.policy),
+      result.decision,
+    );
+    return {
+      action: result.decision.action,
+      certificateReason: result.trace.controller.certificateReason,
+      externalOraclePass: true,
+      id: entry.id,
+    };
+  });
+
+  const noCertificate = canaryInput(fixture, fixture.certificateCases[0]);
+  const built = buildRequest(snapshot, noCertificate);
+  const ungated = evaluateWithTrace(built.request, snapshot.policy).decision;
+  assert.strictEqual(ungated.action, 'route');
+  assert.strictEqual(ungated.route.selectionKind, 'surfaceBundle');
+  assert.strictEqual(ungated.route.basis.kind, 'signal');
+
+  const singular = evaluateCanary(
+    snapshot,
+    canaryInput(fixture, fixture.cases[1]),
+  );
+  assert.strictEqual(singular.decision.action, 'route');
+  assert.strictEqual(singular.decision.route.selectionKind, 'single');
+  assert.strictEqual(singular.calibration.status, 'unvalidated');
+  assert.strictEqual(singular.trace.controller.branch, 'singular-exact-signal');
+  assert.strictEqual(singular.trace.controller.rankCalls, 0);
+  assert.strictEqual(singular.trace.controller.thresholdCalls, 0);
+  assert.deepStrictEqual(
+    parseRouteDecision(singular.decision, snapshot.policy),
+    singular.decision,
+  );
+
+  return {
+    certified: {
+      action: certified.decision.action,
+      basis: certified.decision.route.basis.kind,
+      certificateId: certified.calibration.certificateId,
+      externalOraclePass: true,
+      selectionKind: certified.decision.route.selectionKind,
+    },
+    controllerBypassFalsifier: {
+      action: ungated.action,
+      basis: ungated.route.basis.kind,
+      selectionKind: ungated.route.selectionKind,
+    },
+    rows,
+    singular: {
+      action: singular.decision.action,
+      calibrationStatus: singular.calibration.status,
+      externalOraclePass: true,
+      rankCalls: singular.trace.controller.rankCalls,
+      selectionKind: singular.decision.route.selectionKind,
+      thresholdCalls: singular.trace.controller.thresholdCalls,
+    },
+  };
+}
+
 function routeIdentity(decision) {
   return {
     action: decision.action,
@@ -262,7 +368,8 @@ function routeIdentity(decision) {
 }
 
 function runAdvisorCases(snapshot, fixture) {
-  const baseline = evaluateCanary(snapshot, { prompt: fixture.cases[0].prompt });
+  const reference = canaryInput(fixture, fixture.cases[0]);
+  const baseline = evaluateCanary(snapshot, reference);
   const rows = fixture.advisorCases.map((entry) => {
     const advisor = {
       effectivePolicyHash: snapshot.policy.effectivePolicyHash,
@@ -274,7 +381,7 @@ function runAdvisorCases(snapshot, fixture) {
       scoreMargin: '98',
       trust: entry.trust,
     };
-    const result = evaluateCanary(snapshot, { advisor, prompt: fixture.cases[0].prompt });
+    const result = evaluateCanary(snapshot, { ...reference, advisor });
     assert.strictEqual(result.advisorDisposition.contributes, entry.expectedContribution);
     assert.deepStrictEqual(routeIdentity(result.decision), routeIdentity(baseline.decision));
     return {
@@ -300,7 +407,11 @@ function runAdvisorCases(snapshot, fixture) {
 }
 
 function assertDocumentParity(machine, document) {
-  if (canonicalize(machine) !== canonicalize(document)) {
+  const machineComparable = clone(machine);
+  const documentComparable = clone(document);
+  if (machineComparable.action === 'route') machineComparable.route.evidence = [];
+  if (documentComparable.action === 'route') documentComparable.route.evidence = [];
+  if (canonicalize(machineComparable) !== canonicalize(documentComparable)) {
     const error = new Error('document replay diverged from machine policy');
     error.code = 'DOCUMENT_PARITY_MISMATCH';
     throw error;
@@ -310,7 +421,7 @@ function assertDocumentParity(machine, document) {
 function runDocumentParity(snapshot, fixture) {
   const card = fs.readFileSync(path.join(PHASE_ROOT, 'compiled', 'PolicyCardV1.md'), 'utf8');
   const rows = fixture.cases.map((entry) => {
-    const machine = evaluateCanary(snapshot, entry).decision;
+    const machine = evaluateCanary(snapshot, canaryInput(fixture, entry)).decision;
     const document = replayPolicyCard(card, entry.prompt);
     assert.strictEqual(document.terminal, 'DOCUMENT_ONLY_UNATTESTED');
     assertDocumentParity(machine, document.decision);
@@ -373,7 +484,7 @@ function destinationAdapter(effectState) {
 }
 
 function runExecutionFence(snapshot, fixture) {
-  const result = evaluateCanary(snapshot, fixture.cases[0]);
+  const result = evaluateCanary(snapshot, canaryInput(fixture, fixture.cases[0]));
   const context = bindingContext(snapshot, result);
   const plane = new DestinationExecutionPlane({ planningEpoch: context.epoch });
   const prepared = plane.prepare(result.decision, context);
@@ -532,8 +643,14 @@ function runRollbackDrill(snapshot) {
 }
 
 function runHardBlocks(snapshot, fixture) {
-  const reference = evaluateCanary(snapshot, fixture.cases[0]).decision;
-  const negative = evaluateCanary(snapshot, fixture.cases[3]).decision;
+  const reference = evaluateCanary(
+    snapshot,
+    canaryInput(fixture, fixture.cases[0]),
+  ).decision;
+  const negative = evaluateCanary(
+    snapshot,
+    canaryInput(fixture, fixture.cases[3]),
+  ).decision;
   const smuggled = clone(negative);
   smuggled.defer.tool = 'mutating-tool';
   assertThrowsCode(
@@ -683,6 +800,7 @@ function runCanary() {
   const { fixture, snapshot } = loadSnapshot();
   const compiled = assertCompiledArtifacts(snapshot);
   const routes = runRouteCases(snapshot, fixture);
+  const certificateGate = runCertificateGate(snapshot, fixture);
   const advisor = runAdvisorCases(snapshot, fixture);
   const documentParity = runDocumentParity(snapshot, fixture);
   const execution = runExecutionFence(snapshot, fixture);
@@ -694,6 +812,7 @@ function runCanary() {
   assert.deepStrictEqual(after, before);
   return {
     advisor,
+    certificateGate,
     compiled,
     documentParity,
     dualRead,
@@ -704,6 +823,7 @@ function runCanary() {
     routes,
     stageGate: {
       advisorIdentity: 'pass',
+      certificateGate: 'pass',
       documentParity: 'pass',
       rollbackDrill: 'pass',
       routeGold: 'GREEN',

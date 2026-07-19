@@ -78,8 +78,10 @@ contextType: "implementation"
 - [x] T026 Confirm no hard-block condition present (evidence commit, negative-with-authority, hash mismatch, mixed generation, clarify/handoff on exact route, COMMIT without VERIFY, scorer edit) — synthesis §9
 - [x] T027 Record compiled sk-code slice, fixtures, and rollback proof as reproducible evidence for the `006/002` (system-deep-loop) handoff — SC-005
 - [x] T028 Reconcile spec.md / plan.md / tasks.md completion claims; no conflicting states
+- [x] T029 Route evaluator-ranked positive candidates through the selective controller with the request-pinned policy/risk identity, external certificate handle, and shared uncertainty budget
+- [x] T030 Prove valid-certificate routing, absent/stale/mismatched abstention, N=1 constant folding, external decision-oracle acceptance, and the direct-evaluator bypass falsifier
 
-**Evidence**: Validator reports `status: GREEN`, all Stage-4 sub-gates pass, and the accepted candidate remains `legacy`/`shadowOnly` for safe handoff.
+**Evidence**: Validator reports `status: GREEN` and `certificateGate: pass`; the valid certificate emits the bundle, all four invalid certificate cases clarify, the N=1 case makes zero rank/threshold calls, and the accepted candidate remains `legacy`/`shadowOnly`.
 
 ---
 
@@ -90,8 +92,9 @@ contextType: "implementation"
 - [x] Stage-4 per-hub canary gate green for `sk-code`; scorer digests unchanged
 - [x] Byte-exact rollback drill demonstrated; prior generation retained
 - [x] Handoff evidence recorded for `006/002`
+- [ ] Strict Level-2 packet validation passes within the phase-only edit boundary
 
-**Evidence**: `checklist.md` records 23/23 P0 and 5/5 P1 checks with command-backed evidence; `implementation-summary.md` records the remaining external boundaries.
+**Evidence**: `checklist.md` records the certificate-gate and external-oracle proof with command-backed evidence. Strict validation was run and remains blocked by baseline package-runtime and legacy-template failures outside this fix's authorized edits.
 
 ---
 

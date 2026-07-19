@@ -53,10 +53,12 @@ FAILURE MODES:
 - [x] `sk-code` runs behind the typed evaluator in canary with zero hard route-gold mismatch; scorer digests unchanged.
 - [x] Actor-only-commits proven structurally; every non-`route` decision withholds authority.
 - [x] Advisor `live`/`stale`/`absent` parity and document parity both pass.
+- [x] Multi-candidate signal routes pass through the selective controller and require a live certificate bound to the pinned policy and risk slice.
 - [x] Byte-exact rollback drill demonstrated end to end.
 - [x] spec.md / plan.md / tasks.md reconciled; no conflicting completion claims.
+- [ ] Strict Level-2 packet validation passes without out-of-scope package rebuilds or structural rewrites.
 
-**Evidence**: `validate-canary.cjs` reports `status: GREEN`, `routeGold: GREEN`, document/advisor/rollback pass, and `servingAuthority: legacy`.
+**Evidence**: `validate-canary.cjs` reports `status: GREEN`, `certificateGate: pass`, `routeGold: GREEN`, document/advisor/rollback pass, and `servingAuthority: legacy`. Strict validation remains blocked by missing generated package runtime files, missing local `tsx`, and legacy packet structure that predates this scoped fix.
 
 ---
 
@@ -117,7 +119,7 @@ Required inventories before implementation:
 - [x] Project typed decisions through the compatibility projector; run route-gold; confirm zero hard mismatch and unchanged scorer digests.
 - [x] Run the document-only replay lane against the sk-code policy card; confirm parity.
 
-**Evidence**: Five decision rows pass real `evaluateRouteGold`; corrupted observation and planted document divergence both fail.
+**Evidence**: Five decision rows pass real `evaluateRouteGold`; a validated identity-matched certificate emits the reference bundle, four invalid certificate states abstain, the direct-evaluator bypass emits the forbidden signal bundle, and corrupted route-gold/document observations both fail.
 
 ### Phase 3: Fenced activation + rollback drill
 - [x] Add the sk-code entry to the fenced activation manifest (candidate generation), legacy serving-authoritative.

@@ -34,7 +34,7 @@ The authored shape is now compiled into a `surfaceBundle` route inside the close
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented — Stage-4 phase-local gate GREEN; legacy serving-authoritative |
+| **Status** | Implemented — certificate-gated phase harness GREEN; strict packet validation blocked; legacy serving-authoritative |
 | **Created** | 2026-07-18 |
 | **Branch** | `006-parent-hub-rollout/001-sk-code` |
 | **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
@@ -184,12 +184,12 @@ This phase must satisfy the shared migration model's **Stage 4 — Per-hub canar
 | Requirement / Criterion | Status | Evidence |
 |-------------------------|--------|----------|
 | REQ-001, NFR-D01 | Pass | Four roles derive from authored `packetKind`; byte-identical canonical recompile and source-byte mismatch rejection pass. |
-| REQ-002 | Pass | Reference request returns actor-first `surfaceBundle [code-review, code-webflow]`. |
+| REQ-002 | Pass | Reference request returns an actor-first `surfaceBundle [code-review, code-webflow]` only after the selective controller binds the live certificate to policy `77bf5a97…b31c` and risk slice `actor:mutating:composite`. |
 | REQ-003, SC-002 | Pass | Evidence VERIFY rejects, evidence COMMIT fails `ROLE_CANNOT_COMMIT`, and legal actor commit requires PREPARE→VERIFY→COMMIT. |
 | REQ-004, SC-001 | GREEN | Five typed real-hub rows pass the real read-only scorer; corruption fails; three protected scorer digests remain pinned. |
 | REQ-005, SC-003 | Pass | Fenced ship and rollback advance epochs 0→1→2; prior/restored manifest hashes are byte-identical; mixed generations fail closed. |
-| REQ-006, SC-004 | Pass | Live identity-match may rank; stale, absent, unavailable, and projection drift cannot rewrite the decision. |
-| REQ-007 | Pass | Zero signal and surface-only defer; ambiguous input emits one checklist-derived clarify. |
+| REQ-006, SC-004 | Pass | Advisor rank remains non-authority evidence; multi-candidate auto-route additionally requires the controller's live policy/risk-bound certificate, while stale, absent, unavailable, and projection drift cannot rewrite the certified route identity. |
+| REQ-007 | Pass | Zero signal and surface-only defer; ambiguous input emits one checklist-derived clarify; absent, stale, policy-mismatched, and risk-mismatched certificates abstain to `clarify` instead of emitting a signal bundle. |
 | REQ-008, SC-004 | Pass | Five document-only decisions match; planted divergence is rejected with no machine fallback. |
 | REQ-009 | Pass | All 29 authored aliases resolve and an unknown alias fails closed. |
 | SC-005 | Pass | Compiled snapshot, fixtures, validator, rollback proof, checklist, and summary are reproducible inputs for the next hub phase. |
