@@ -3,8 +3,10 @@
 const crypto = require('node:crypto');
 
 const {
+  DOMAIN_TAGS,
   canonicalize,
   computeProofHash,
+  hashArtifact,
 } = require('../../../000-contract-schemas/lib/canonical.cjs');
 const { destinationKey } = require('./registry-compiler.cjs');
 
@@ -24,13 +26,24 @@ function digest(value) {
   return crypto.createHash('sha256').update(canonicalize(value)).digest('hex');
 }
 
-function proofBody(destinationId, bindings, issuer, statement) {
+function idempotencyKey(bindings, target) {
+  return hashArtifact(DOMAIN_TAGS.RouteProofV1, {
+    bindingKind: 'idempotencyKey',
+    value: {
+      requestFactsHash: bindings.requestFactsHash,
+      target,
+      effectivePolicyHash: bindings.effectivePolicyHash,
+    },
+  });
+}
+
+function proofBody(target, bindings, issuer, statement) {
   return {
     attestation: { issuer, statementHash: digest(statement) },
-    destinationId,
+    destinationId: target.destinationId,
     epoch: bindings.generation,
     expiresAtEpoch: bindings.generation + 2,
-    idempotencyKey: digest({ destinationId, requestFactsHash: bindings.requestFactsHash }),
+    idempotencyKey: idempotencyKey(bindings, target),
     readSet: [
       { digest: bindings.requestFactsHash, resourceId: 'request-facts.v1' },
       { digest: bindings.effectivePolicyHash, resourceId: 'effective-policy.v1' },
@@ -147,7 +160,7 @@ class CompositionExecutor {
     }
     const legs = decision.route.targets.map((routeTarget, sequence) => {
       const body = proofBody(
-        routeTarget.destinationId,
+        routeTarget,
         this.bindings,
         'route-prepare-adapter',
         { bindings: this.bindings, sequence, target: routeTarget.destinationId },
@@ -167,7 +180,7 @@ class CompositionExecutor {
     if (!['approve', 'deny'].includes(decision)) fail('JUDGMENT_DECISION_INVALID', decision);
     const statement = { decision, ...this.bindings, target: leg.target.destinationId };
     const body = proofBody(
-      leg.target.destinationId,
+      leg.target,
       this.bindings,
       'destination-judgment-verify',
       statement,

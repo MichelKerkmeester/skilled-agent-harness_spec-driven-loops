@@ -37,6 +37,9 @@ const {
   scoreRouteGoldReadOnly,
 } = require('../../../002-decision-evaluator/replay-driver.cjs');
 const {
+  prepareRoute: prepareExecutionRoute,
+} = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
+const {
   ActivationGateError,
   HARD_BLOCKS,
   assertActivationEligible,
@@ -367,6 +370,34 @@ function runExecution(snapshot, fixture) {
   assert.strictEqual(duplicate.duplicate, true);
   assert.deepStrictEqual(duplicate.receipt, commit.receipt);
 
+  const idempotencyDecision = {
+    action: 'route',
+    route: {
+      authority: 'WithheldUntilVerify',
+      targets: [clone(legs[0].target)],
+    },
+    schemaVersion: 'V1',
+  };
+  const compositionKey = new CompositionExecutor(snapshot, worked.request, intent)
+    .prepare(idempotencyDecision).legs[0].proof.idempotencyKey;
+  const changedPolicySnapshot = clone(snapshot);
+  changedPolicySnapshot.policy.effectivePolicyHash = '0'.repeat(64);
+  const changedPolicyKey = new CompositionExecutor(changedPolicySnapshot, worked.request, intent)
+    .prepare(idempotencyDecision).legs[0].proof.idempotencyKey;
+  assert.notStrictEqual(changedPolicyKey, compositionKey);
+
+  const executionPlaneKey = prepareExecutionRoute(idempotencyDecision, {
+    authorityClass: 'composition-executor',
+    effectivePolicyHash: snapshot.policy.effectivePolicyHash,
+    epoch: snapshot.policy.activationGeneration,
+    expiresAtEpoch: snapshot.policy.activationGeneration + 2,
+    preconditions: [],
+    readSet: [{ digest: successful.bindings.intentHash, resourceId: 'pinned-intent.v1' }],
+    registryAuthorityHash: snapshot.destinationGraph.graphHash,
+    requestFactsHash: worked.request.requestFactsHash,
+  }).preparedLegs[0].proof.idempotencyKey;
+  assert.strictEqual(compositionKey, executionPlaneKey);
+
   const directTransport = snapshot.destinationGraph.destinations.find((entry) => (
     entry.effectClass === 'external-mutation-capable'
   ));
@@ -416,6 +447,13 @@ function runExecution(snapshot, fixture) {
     commitPath: commit.protocolPath,
     duplicateEffects: 0,
     externalEffectsSimulated: 1,
+    idempotencyTeeth: {
+      changedPolicyKey,
+      compositionKey,
+      effectivePolicyHashChangesKey: true,
+      executionPlaneKey,
+      matchesExecutionPlane: true,
+    },
     negativeWithheldAuthority: true,
     proofChecks: ['hash', 'epoch', 'expiry', 'read-set', 'authority', 'idempotency', 'receipt'],
     workedCase: targetModes(worked.decision),

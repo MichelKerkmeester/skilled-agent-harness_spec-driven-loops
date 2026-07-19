@@ -7,7 +7,7 @@ trigger_phrases:
   - "destination rollout read-only legs first"
 importance_tier: "critical"
 contextType: "implementation"
-status: "executed; phase-local validator GREEN; strict packet validation intentionally not run"
+status: "executed; execution-plane idempotency alignment and teeth fixtures GREEN; strict packet validation blocked by legacy template/runtime prerequisites"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -45,6 +45,7 @@ The plan proceeds in the order: (1) confirm the activation-order precondition an
 - [x] Stage 4 canary + Stage 6 destination-rollout gates defined with read-only-before-mutating sequencing
 - [x] Fixture families enumerated against the existing compatibility projector; scorer untouched
 - [x] Rollback drill defined, including the explicit "cannot undo external COMMIT" limit
+- [x] Composition idempotency binds request facts, the full target, and effective policy through the frozen `RouteProofV1` derivation; teeth prove policy sensitivity and execution-plane parity [synthesis §3 Idea 7, §8.2]
 
 ## 3. ARCHITECTURE
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: mcp-tooling Unified Router Canary"
-description: "Compiled transport/judgment graph, proof-gated Figma execution, real route-gold, Stage-6 rollout fencing, and byte-exact activation rollback."
+description: "Compiled transport/judgment graph, execution-plane-owned idempotency binding, proof-gated Figma execution, real route-gold, Stage-6 rollout fencing, and byte-exact activation rollback."
 trigger_phrases:
   - "mcp-tooling canary implementation"
   - "figma authority route proof"
@@ -18,7 +18,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Stage-4 and Stage-6 phase-local gates GREEN; strict packet validation not run |
+| **Status** | Execution-plane idempotency teeth, Stage-4, and Stage-6 GREEN; strict packet validation blocked |
 | **Date** | 2026-07-19 |
 | **Level** | 2 |
 | **Serving authority** | Legacy; candidate remains shadow-only |
@@ -43,6 +43,12 @@ The judgment destination produces an approving, intent-pinned `RouteProofV1` dur
 The transport receives a destination-local authority consumption record only at its own VERIFY,
 then reaches COMMIT once. Negative judgment, stale or mismatched bindings, transport-first order,
 and COMMIT without VERIFY all fail before an effect (synthesis §§2.1, 2.3, 7, 9).
+
+Every composition proof now derives its idempotency identity in the frozen `RouteProofV1` domain
+from `requestFactsHash`, the complete target (`destinationId`, `role`, `authorityRef`, and
+`mutatesWorkspace`), and `effectivePolicyHash`. This removes the raw destination-only digest that
+allowed different policy generations to collide while preserving proof as evidence and exactly-once
+handling as a destination-adapter property (synthesis §3 Idea 7, §8.2).
 
 Generated artifacts include the machine policy, richer destination graph, advisor projection,
 typed route gold, document-only policy card, blast-radius evidence, candidate/prior manifests,
@@ -78,6 +84,12 @@ rename, pins one generation per request, retains the prior bytes, and CASes back
 bytes. Stage 6 separately requires successful read-only Figma, Refero, and Mobbin legs before the
 external-mutation-capable Figma destination can be enabled (synthesis §9).
 
+The frozen execution plane keeps `idempotencyKey` and `bindingDigest` private, so the composition
+executor consumes the frozen `RouteProofV1` domain tag and canonical `hashArtifact` primitive with
+the exact owner preimage. The harness then calls the owner's exported `prepareRoute` as an oracle.
+One tooth holds request and target constant while changing only `effectivePolicyHash`; the other
+requires byte equality with the owner's key for the same binding tuple (synthesis §3 Idea 7, §8.2).
+
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -92,6 +104,7 @@ external-mutation-capable Figma destination can be enabled (synthesis §9).
 | Require all declared read-only transport legs before mutation enablement | External effects cannot rely on manifest rollback for recovery; pre-effect evidence must pass first (synthesis §9). |
 | Keep legacy serving-authoritative | This canary proves the candidate and rollback path without editing live routing state (synthesis §9). |
 | Keep `mcp-code-mode` outside the graph | Its live identity defines shared execution infrastructure, not design taste or a tooling-hub member (synthesis §§6–7). |
+| Bind composition idempotency to the frozen execution-plane identity | Proof remains evidence, while the destination adapter receives a key scoped to request facts, the full target, and effective policy; an owner-oracle fixture prevents domain or preimage drift (synthesis §3 Idea 7, §8.2). |
 
 <!-- /ANCHOR:decisions -->
 
@@ -107,6 +120,8 @@ external-mutation-capable Figma destination can be enabled (synthesis §9).
 | Authority refusal | Pass | Negative judgment withholds authority; dependent VERIFY and fabricated-ready COMMIT both fail `REQUIRES_AUTHORITY_UNSATISFIED` |
 | Ordering refusal | Pass | Transport COMMIT before its judgment predecessor fails `COMPOSE_AFTER_PREDECESSOR_UNRESOLVED` |
 | Stage-6 proof fence | Pass | Hash, epoch, expiry, read-set, authority, idempotency, and receipt fixtures pass |
+| Effective-policy idempotency tooth | Pass | Holding request and target constant yields `6fab63e8451349cb8b862d61cf0f486992fd6a1d55846400de743d0180723928` for the current policy and `c2b5a03ff21525d4e36672f6285f8131dd1db95adb116508d9e347f6edba2d00` for the policy-only variant |
+| Execution-plane parity tooth | Pass | Composition and the frozen owner's `prepareRoute` both derive `6fab63e8451349cb8b862d61cf0f486992fd6a1d55846400de743d0180723928` for the same binding tuple |
 | Read-only rollout | Pass | Premature enable fails; read-only Figma, Refero, and Mobbin proofs precede mutating Figma enablement |
 | Route-gold | GREEN | 8/8 typed rows pass real read-only `evaluateRouteGold`; corrupted observation fails; live hub producer confirms every positive tooling leg |
 | Advisor | Pass | Match may contribute; stale, absent, and drift cases cannot override |
@@ -116,6 +131,7 @@ external-mutation-capable Figma destination can be enabled (synthesis §9).
 | Rollback | Pass | Wrong preimage blocked; prior/restored bytes identical; fence epoch advances to 2 |
 | Source protection | Pass | Seven live authored inputs and three scorer files have identical before/after digests |
 | Static constraints | Pass | Seven code files; zero external dependencies, destination-name branches, or comment violations |
+| Strict packet validation | Blocked | `validate.sh <phase-folder> --strict` exits 2 with 11 errors and 3 warnings: legacy anchors/headers/frontmatter are nonconformant, and required validator runtime artifacts (`level-contract-resolver.js`, local `tsx`) are unavailable |
 
 Protected scorer digests:
 
@@ -141,7 +157,12 @@ Protected scorer digests:
 5. The fixture set covers canonical Figma interface/foundations routes, unapproved mutation,
    read-only transport, actor single, ambiguity, zero signal, and forbidden rejection. It is not
    an exhaustive natural-language corpus and does not claim calibrated auto-route thresholds.
-6. `validate.sh` was not run because the execution brief explicitly prohibited it. The phase-local
-   Stage-4 and Stage-6 validator is GREEN, but strict packet validation is not claimed.
+6. Strict packet validation is blocked. The packet predates the current anchor/header/frontmatter
+   contract, while the validator's required `level-contract-resolver.js` and local `tsx` runtime are
+   unavailable. Repair would require structural spec/plan/tasks changes or builds outside this
+   phase, both excluded by this execution scope.
+7. The frozen execution plane does not export its private idempotency helper. The composition
+   executor therefore consumes the frozen domain/canonical hash primitive and exact preimage, while
+   the owner-oracle fixture guards against drift until a direct helper export exists.
 
 <!-- /ANCHOR:limitations -->

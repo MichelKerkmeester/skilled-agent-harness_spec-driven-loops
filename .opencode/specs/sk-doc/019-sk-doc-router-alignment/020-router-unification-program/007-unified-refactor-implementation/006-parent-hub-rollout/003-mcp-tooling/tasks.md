@@ -7,7 +7,7 @@ trigger_phrases:
   - "stage 4 canary stage 6 destination rollout tasks"
 importance_tier: "critical"
 contextType: "implementation"
-status: "executed; all listed implementation tasks evidenced by the phase-local canary"
+status: "executed; execution-plane idempotency alignment and all listed tasks evidenced by the phase-local canary; strict packet validation blocked by legacy template/runtime prerequisites"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -76,6 +76,8 @@ status: "executed; all listed implementation tasks evidenced by the phase-local 
 - [x] T020 Define document-only parity: generated `PolicyCardV1.md` reaches the same decision and emits `PREPARED_DRAFT`, never claiming live activation freshness or committed effects [synthesis §8.3]
 - [x] T021 Define rollback = fenced CAS to byte-identical prior manifest; state explicitly it CANNOT undo an external COMMITted effect; post-effect recovery is destination-owned [synthesis §9]
 - [x] T022 Enumerate the hard gates that block activation and assert each: transport-supplies-judgment, missing authority edge, COMMIT-without-VERIFY, duplicate-key second effect, exact-route-with-clarify/handoff-artifacts, hash mismatch, mixed generations [synthesis §9]
+- [x] T023 Align composition idempotency with the frozen `RouteProofV1` binding over request facts, full target, and effective policy [synthesis §3 Idea 7]
+- [x] T024 Prove policy-only changes alter the key and the resulting key equals the execution-plane owner's derivation [synthesis §8.2]
 
 ---
 
@@ -87,6 +89,7 @@ status: "executed; all listed implementation tasks evidenced by the phase-local 
 - [x] Stage 4 canary + Stage 6 destination-rollout gates defined with read-only-before-mutating sequencing
 - [x] Route-gold green throughout; `router-replay.cjs` untouched
 - [x] Rollback drill defined including the external-COMMIT limit
+- [x] Composition idempotency teeth pass for effective-policy sensitivity and execution-plane parity
 
 ---
 
