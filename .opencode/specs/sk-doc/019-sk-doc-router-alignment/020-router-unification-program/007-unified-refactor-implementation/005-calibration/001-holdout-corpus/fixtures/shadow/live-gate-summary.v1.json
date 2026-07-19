@@ -3,8 +3,8 @@
   "measurementClass": "synthetic-shadow-example",
   "hubId": "mcp-tooling",
   "policyBinding": {
-    "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
-    "effectivePolicyHash": "3a388b0fa72def866114c48aabd89a50eb52ecccef23fbade432560636526efe",
+    "corpusId": "a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908",
+    "effectivePolicyHash": "7423eed368a780df3dc943efcd638e9bb92d070a605c40ed06f6942f3d1a42cf",
     "corpusGeneration": 1
   },
   "privacyFiltered": true,
@@ -16,7 +16,7 @@
       "offlineEceBps": 200,
       "liveEceBps": 225,
       "deletionLineage": {
-        "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+        "corpusId": "a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908",
         "retentionPolicyHash": "ca2334ac683f009a9c582685141ae065118bef82d78d8cbce9231a18f9f72707",
         "deletionKeyCount": 100
       }
@@ -27,7 +27,7 @@
       "offlineEceBps": 500,
       "liveEceBps": 525,
       "deletionLineage": {
-        "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
+        "corpusId": "a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908",
         "retentionPolicyHash": "ca2334ac683f009a9c582685141ae065118bef82d78d8cbce9231a18f9f72707",
         "deletionKeyCount": 50
       }

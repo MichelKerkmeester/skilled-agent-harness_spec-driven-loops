@@ -7,9 +7,9 @@
   "effectivePolicyIdentity": {
     "schemaVersion": "V1",
     "activationGeneration": 1,
-    "basePolicyHash": "ae4423d24346ca205d2ab7a91abb1f49a4cb320e1b2288f98396d90487733129"
+    "basePolicyHash": "714a4ffef601d6dc83aabacf5171174822827ea1ab921ea62ea5d21dfe79f3f3"
   },
-  "effectivePolicyHash": "1428951451d5edcbded3e32fdb2f2a5f767f60df28a24a75dec7bb3fa830f2a4",
+  "effectivePolicyHash": "2b6db3559da6cf5f617d5a164fcdda712fa951b0c3c4c2343a7d790df0b2852f",
   "records": [
     {
       "recordId": "deep-loop-route-research",
@@ -40,8 +40,8 @@
         "expectedLegacy": {
           "intents": ["research"],
           "resources": [
-            "deep-research/references/protocol/loop_protocol.md",
-            "deep-research/references/state/state_jsonl.md",
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
             "deep-research/references/convergence/convergence.md"
           ]
         }
@@ -249,6 +249,6 @@
     "priorGenerationRetained": true,
     "casFenceRequired": true
   },
-  "corpusHash": "89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753",
-  "corpusId": "89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753"
+  "corpusHash": "2b403b1ab9741c8e34369351cf81eb2a5c27dcae925ad91fddcfd417e09a0265",
+  "corpusId": "2b403b1ab9741c8e34369351cf81eb2a5c27dcae925ad91fddcfd417e09a0265"
 }

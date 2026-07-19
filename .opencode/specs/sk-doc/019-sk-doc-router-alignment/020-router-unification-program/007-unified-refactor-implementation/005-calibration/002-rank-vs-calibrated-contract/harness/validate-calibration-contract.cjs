@@ -69,13 +69,13 @@ const PROTECTED_DIGESTS = Object.freeze({
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs':
     'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs':
-    'b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf',
+    'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs':
-    '249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde',
+    '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
   '.opencode/skills/sk-code/mode-registry.json':
     '8caec917815b5704bcfb534f5d6b557403d76161678c87b327f6ecb35533ff91',
   '.opencode/skills/sk-code/SKILL.md':
-    'c46a9cf4d2b62cd22703fdebbadeefd6afcffb7d3ff3cbdb774622aeeb508f91',
+    '3e519c8f77768960a169f3a9906bbdc7afc68fe273b2d3f606f0d83fa2f7df84',
 });
 const SCORER_PATH = path.join(
   REPO_ROOT,

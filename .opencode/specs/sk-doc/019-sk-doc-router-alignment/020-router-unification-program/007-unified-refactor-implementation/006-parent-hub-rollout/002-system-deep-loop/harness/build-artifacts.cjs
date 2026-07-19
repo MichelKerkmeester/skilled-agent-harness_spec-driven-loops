@@ -61,8 +61,8 @@ function sourceBytes() {
     'SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'SKILL.md')),
     'leaf-manifest.json': fs.readFileSync(path.join(SKILL_ROOT, 'leaf-manifest.json')),
     'mode-registry.json': fs.readFileSync(path.join(SKILL_ROOT, 'mode-registry.json')),
-    'smart_routing.md': fs.readFileSync(
-      path.join(SKILL_ROOT, 'shared', 'references', 'smart_routing.md'),
+    'smart-routing.md': fs.readFileSync(
+      path.join(SKILL_ROOT, 'shared', 'references', 'smart-routing.md'),
     ),
   };
 }
@@ -77,7 +77,7 @@ function loadSnapshot() {
       leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
       registry: JSON.parse(bytes['mode-registry.json'].toString('utf8')),
       skillMarkdown: bytes['SKILL.md'].toString('utf8'),
-      smartRoutingMarkdown: bytes['smart_routing.md'].toString('utf8'),
+      smartRoutingMarkdown: bytes['smart-routing.md'].toString('utf8'),
       sourceBytes: bytes,
     }),
   };

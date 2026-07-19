@@ -22,7 +22,7 @@ contextType: "implementation"
 | **Date** | 2026-07-19 |
 | **Level** | 2 |
 | **Serving authority** | Legacy; candidate remains shadow-only |
-| **Effective policy** | `cbfeb97e7257226d9e53810953a2a09f32f2222133ac46d45d3b8bd3897efb75` |
+| **Effective policy** | `dba007a997945fb54b899a142d49ef158a6f8adefe1bd4b18486e1e0799652b3` |
 | **Destination graph** | `f8afb35281b150280bd764ee0be961a27ffcdcd63e99dd61914614533291daa2` |
 
 <!-- /ANCHOR:metadata -->
@@ -120,8 +120,8 @@ requires byte equality with the owner's key for the same binding tuple (synthesi
 | Authority refusal | Pass | Negative judgment withholds authority; dependent VERIFY and fabricated-ready COMMIT both fail `REQUIRES_AUTHORITY_UNSATISFIED` |
 | Ordering refusal | Pass | Transport COMMIT before its judgment predecessor fails `COMPOSE_AFTER_PREDECESSOR_UNRESOLVED` |
 | Stage-6 proof fence | Pass | Hash, epoch, expiry, read-set, authority, idempotency, and receipt fixtures pass |
-| Effective-policy idempotency tooth | Pass | Holding request and target constant yields `6fab63e8451349cb8b862d61cf0f486992fd6a1d55846400de743d0180723928` for the current policy and `c2b5a03ff21525d4e36672f6285f8131dd1db95adb116508d9e347f6edba2d00` for the policy-only variant |
-| Execution-plane parity tooth | Pass | Composition and the frozen owner's `prepareRoute` both derive `6fab63e8451349cb8b862d61cf0f486992fd6a1d55846400de743d0180723928` for the same binding tuple |
+| Effective-policy idempotency tooth | Pass | Holding request and target constant yields `9dc0b79420a72f924fa0a1c67a71b954f11a58d37c4cc9d72cbb1edc9cc48307` for the current policy and `c2b5a03ff21525d4e36672f6285f8131dd1db95adb116508d9e347f6edba2d00` for the policy-only variant |
+| Execution-plane parity tooth | Pass | Composition and the frozen owner's `prepareRoute` both derive `9dc0b79420a72f924fa0a1c67a71b954f11a58d37c4cc9d72cbb1edc9cc48307` for the same binding tuple |
 | Read-only rollout | Pass | Premature enable fails; read-only Figma, Refero, and Mobbin proofs precede mutating Figma enablement |
 | Route-gold | GREEN | 8/8 typed rows pass real read-only `evaluateRouteGold`; corrupted observation fails; live hub producer confirms every positive tooling leg |
 | Advisor | Pass | Match may contribute; stale, absent, and drift cases cannot override |
@@ -135,9 +135,9 @@ requires byte equality with the owner's key for the same binding tuple (synthesi
 
 Protected scorer digests:
 
-- `router-replay.cjs`: `b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf`
+- `router-replay.cjs`: `d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47`
 - `score-skill-benchmark.cjs`: `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c`
-- `load-playbook-scenarios.cjs`: `249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde`
+- `load-playbook-scenarios.cjs`: `5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029`
 
 <!-- /ANCHOR:verification -->
 

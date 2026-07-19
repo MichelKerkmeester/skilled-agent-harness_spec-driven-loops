@@ -65,11 +65,11 @@ const PROTECTED_FILES = Object.freeze({
   }),
   'router-replay.cjs': Object.freeze({
     path: path.resolve(SCORER_ROOT, 'router-replay.cjs'),
-    sha256: 'b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf',
+    sha256: 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
   }),
   'load-playbook-scenarios.cjs': Object.freeze({
     path: path.resolve(SCORER_ROOT, 'load-playbook-scenarios.cjs'),
-    sha256: '249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde',
+    sha256: '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
   }),
 });
 const HARD_FAILURE_REASONS = Object.freeze({

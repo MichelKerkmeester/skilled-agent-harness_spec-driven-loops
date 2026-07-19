@@ -71,7 +71,7 @@ function sourceDigests(sourceBytes) {
 function assertSourceIdentity(input) {
   const registryBytes = input.sourceBytes?.['mode-registry.json'];
   const skillBytes = input.sourceBytes?.['SKILL.md'];
-  const routerBytes = input.sourceBytes?.['smart_routing.md'];
+  const routerBytes = input.sourceBytes?.['smart-routing.md'];
   const manifestBytes = input.sourceBytes?.['leaf-manifest.json'];
   if (![registryBytes, skillBytes, routerBytes, manifestBytes].every(Buffer.isBuffer)) {
     fail('AUTHORED_SOURCE_BYTES_MISSING', 'all authored source bytes must be supplied');

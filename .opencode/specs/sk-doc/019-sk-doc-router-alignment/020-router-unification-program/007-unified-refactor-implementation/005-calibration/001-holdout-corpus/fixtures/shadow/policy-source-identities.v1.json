@@ -11,13 +11,13 @@
       "hubId": "system-deep-loop",
       "hubRouterPath": ".opencode/skills/system-deep-loop/hub-router.json",
       "modeRegistryPath": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "basePolicyHash": "ae4423d24346ca205d2ab7a91abb1f49a4cb320e1b2288f98396d90487733129"
+      "basePolicyHash": "714a4ffef601d6dc83aabacf5171174822827ea1ab921ea62ea5d21dfe79f3f3"
     },
     {
       "hubId": "mcp-tooling",
       "hubRouterPath": ".opencode/skills/mcp-tooling/hub-router.json",
       "modeRegistryPath": ".opencode/skills/mcp-tooling/mode-registry.json",
-      "basePolicyHash": "ae648bd9c76371308d111f2a17e516af441cf6320e4a39825233386e1b27d7fe"
+      "basePolicyHash": "4026276e82126123a8ff00323e9c2ada50f63b8a442613a7cf1042cdfec88e7e"
     }
   ]
 }

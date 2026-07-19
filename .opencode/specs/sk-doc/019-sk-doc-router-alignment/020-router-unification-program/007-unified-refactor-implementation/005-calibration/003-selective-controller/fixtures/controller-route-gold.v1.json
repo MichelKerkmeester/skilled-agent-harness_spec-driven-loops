@@ -89,12 +89,12 @@
     },
     "certificateHandle": {
       "state": "live",
-      "activeCertificateId": "de8f49083fb5df1150da09ae78a93efda6535cf52585449edca833850d106aca",
+      "activeCertificateId": "c22a53c18608c9d0fd5f9d20bf1abd90e79d115deb33730fa2eda7a4a4edc322",
       "certificate": {
-        "certificateId": "de8f49083fb5df1150da09ae78a93efda6535cf52585449edca833850d106aca",
+        "certificateId": "c22a53c18608c9d0fd5f9d20bf1abd90e79d115deb33730fa2eda7a4a4edc322",
         "schemaVersion": "V1",
-        "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
-        "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+        "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
+        "corpusHash": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
         "method": "selective-classification-threshold",
         "methodParams": {
           "abstentionThreshold": "0.720000",
@@ -116,7 +116,7 @@
         "generation": 1,
         "validatedAt": "2026-07-18T10:30:00.000Z",
         "validatedBy": "independent-calibration-validator",
-        "certHash": "62a3c54b53c86a13eccfcbb638d76aeb44274c1ba4bfa796a8f16d3182f18995"
+        "certHash": "772ff3b6f9622f5aebf207a7714dd163171ad388883448c0f9fcc8093117dbed"
       }
     },
     "budgetState": {
@@ -166,9 +166,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/quality"],
-        "observedIntents": ["quality"],
-        "observedResources": ["code-quality/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/quality"
+        ],
+        "observedIntents": [
+          "quality"
+        ],
+        "observedResources": [
+          "code-quality/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "certified-signal-route",
@@ -184,9 +190,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/code-review"],
-        "observedIntents": ["code-review"],
-        "observedResources": ["code-review/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/code-review"
+        ],
+        "observedIntents": [
+          "code-review"
+        ],
+        "observedResources": [
+          "code-review/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "certified-bounded-default",
@@ -287,9 +299,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/quality"],
-        "observedIntents": ["quality"],
-        "observedResources": ["code-quality/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/quality"
+        ],
+        "observedIntents": [
+          "quality"
+        ],
+        "observedResources": [
+          "code-quality/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "accepted-answer-certified-route",
@@ -411,9 +429,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/quality"],
-        "observedIntents": ["quality"],
-        "observedResources": ["code-quality/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/quality"
+        ],
+        "observedIntents": [
+          "quality"
+        ],
+        "observedResources": [
+          "code-quality/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "certified-signal-route",
@@ -430,9 +454,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/quality"],
-        "observedIntents": ["quality"],
-        "observedResources": ["code-quality/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/quality"
+        ],
+        "observedIntents": [
+          "quality"
+        ],
+        "observedResources": [
+          "code-quality/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "certified-signal-route",
@@ -449,9 +479,15 @@
       "typedGold": {
         "decisionAction": "route",
         "selectionKind": "single",
-        "targetQualifiedIds": ["sk-code/quality"],
-        "observedIntents": ["quality"],
-        "observedResources": ["code-quality/SKILL.md"]
+        "targetQualifiedIds": [
+          "sk-code/quality"
+        ],
+        "observedIntents": [
+          "quality"
+        ],
+        "observedResources": [
+          "code-quality/SKILL.md"
+        ]
       },
       "expectedTrace": {
         "branch": "singular-exact-signal",
@@ -462,11 +498,29 @@
     }
   ],
   "hardFailureCases": [
-    { "id": "second-user-turn", "mutation": "second-user-turn" },
-    { "id": "fourth-candidate-option", "mutation": "fourth-candidate-option" },
-    { "id": "third-attempt", "mutation": "third-attempt" },
-    { "id": "two-hundred-fifty-seventh-card-token", "mutation": "card-257-tokens" },
-    { "id": "singular-ranking-invocation", "mutation": "singular-ranking" },
-    { "id": "singular-bundle-hard-block", "mutation": "singular-ordered-bundle" }
+    {
+      "id": "second-user-turn",
+      "mutation": "second-user-turn"
+    },
+    {
+      "id": "fourth-candidate-option",
+      "mutation": "fourth-candidate-option"
+    },
+    {
+      "id": "third-attempt",
+      "mutation": "third-attempt"
+    },
+    {
+      "id": "two-hundred-fifty-seventh-card-token",
+      "mutation": "card-257-tokens"
+    },
+    {
+      "id": "singular-ranking-invocation",
+      "mutation": "singular-ranking"
+    },
+    {
+      "id": "singular-bundle-hard-block",
+      "mutation": "singular-ordered-bundle"
+    }
   ]
 }

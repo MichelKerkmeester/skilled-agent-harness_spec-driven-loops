@@ -7,9 +7,9 @@
   "effectivePolicyIdentity": {
     "schemaVersion": "V1",
     "activationGeneration": 1,
-    "basePolicyHash": "ae648bd9c76371308d111f2a17e516af441cf6320e4a39825233386e1b27d7fe"
+    "basePolicyHash": "4026276e82126123a8ff00323e9c2ada50f63b8a442613a7cf1042cdfec88e7e"
   },
-  "effectivePolicyHash": "3a388b0fa72def866114c48aabd89a50eb52ecccef23fbade432560636526efe",
+  "effectivePolicyHash": "7423eed368a780df3dc943efcd638e9bb92d070a605c40ed06f6942f3d1a42cf",
   "records": [
     {
       "recordId": "mcp-tooling-route-refero",
@@ -103,8 +103,8 @@
         "expectedLegacy": {
           "intents": ["mcp-click-up"],
           "resources": [
-            "mcp-click-up/references/cupt_commands.md",
-            "mcp-click-up/references/mcp_tools.md"
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
           ]
         }
       },
@@ -178,10 +178,10 @@
         "expectedLegacy": {
           "intents": ["mcp-chrome-devtools", "mcp-click-up"],
           "resources": [
-            "mcp-chrome-devtools/references/cdp_patterns.md",
-            "mcp-chrome-devtools/references/session_management.md",
-            "mcp-click-up/references/cupt_commands.md",
-            "mcp-click-up/references/mcp_tools.md"
+            "mcp-chrome-devtools/references/cdp-patterns.md",
+            "mcp-chrome-devtools/references/session-management.md",
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
           ]
         }
       },
@@ -399,6 +399,6 @@
     "priorGenerationRetained": true,
     "casFenceRequired": true
   },
-  "corpusHash": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607",
-  "corpusId": "648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607"
+  "corpusHash": "a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908",
+  "corpusId": "a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908"
 }

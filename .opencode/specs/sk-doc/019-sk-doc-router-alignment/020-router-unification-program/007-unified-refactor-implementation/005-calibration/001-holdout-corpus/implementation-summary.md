@@ -102,18 +102,18 @@ exited 0. It scored 15 records: 10 through the real legacy router and 5 through
 the real typed/compatibility projector chain, then passed all 15 through the
 exported `evaluateRouteGold`. The corrupted observation was rejected. Three
 frozen-canonical replay runs produced identical bytes with SHA-256
-`56b7058b4a3103d75f6a17de10719637f2506c49cee442eda8d9c603d09bc1fb`.
+`9ee9f59882cb4215a36d408db736ca9029eba1cd5bb01ae1c38f141d15769e01`.
 Protected SHA-256 values remained:
 
 - scorer: `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c`;
-- router replay: `b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf`;
-- playbook scenario loader: `249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde`.
+- router replay: `d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47`;
+- playbook scenario loader: `5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029`.
 
 The three sealed ids are:
 
-- `sk-code`: `be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca`;
-- `system-deep-loop`: `89dda474035dad9144a228f36ccc3462e8d190545841e19708c18084d81cd753`;
-- `mcp-tooling`: `648b0595295dc3957c45673073d0b9e99d6b53bad7538677389a135478c2b607`.
+- `sk-code`: `1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598`;
+- `system-deep-loop`: `2b403b1ab9741c8e34369351cf81eb2a5c27dcae925ad91fddcfd417e09a0265`;
+- `mcp-tooling`: `a6cc07b555ea1305436c8310b7d8c5df12fcd6cd208a9fe7cd09eba6ec36f908`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

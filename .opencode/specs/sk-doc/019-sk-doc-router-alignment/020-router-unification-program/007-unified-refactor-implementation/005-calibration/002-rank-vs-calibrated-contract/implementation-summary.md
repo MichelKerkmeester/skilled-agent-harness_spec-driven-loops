@@ -148,9 +148,9 @@ these results:
 - SC-002: `PASS` — negative branches have exact fields, probability-bearing
   decisions reject, and uncertified verdicts project only `clarify` or `defer`.
 - SC-003: `shadow-partial` — compatibility SHA-256 is
-  `7161e29edba39bf8bdd223de9eeb37081442861c5a474308065662a38e28add5`;
+  `0034e66902fdaafcf09cc3586f0e2e556e15f47d1c12f4a2f1fa14c8239973c1`;
   typed route-gold SHA-256 is
-  `da2a5f632439f780645eef45998404127a2987ae919829541fcda59df2d064c5`;
+  `7150aa5515c0557403ca29f10ef3ca71dced5f5875592e4b71d4ba50d025c53f`;
   the real scorer passes and its corrupted-observation falsifier fails.
 - SC-004: `PASS` — candidate cardinality and authority stay fixed; fenced CAS
   restores the retained validated temperature certificate, stale preimages
@@ -171,10 +171,10 @@ Exact negative results include `CALIBRATION_UNVALIDATED_FIELDS`,
 Protected SHA-256 values remain:
 
 - scorer: `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c`;
-- router replay: `b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf`;
-- scenario loader: `249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde`;
+- router replay: `d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47`;
+- scenario loader: `5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029`;
 - live registry: `8caec917815b5704bcfb534f5d6b557403d76161678c87b327f6ecb35533ff91`;
-- live skill: `c46a9cf4d2b62cd22703fdebbadeefd6afcffb7d3ff3cbdb774622aeeb508f91`.
+- live skill: `3e519c8f77768960a169f3a9906bbdc7afc68fe273b2d3f606f0d83fa2f7df84`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

@@ -53,7 +53,7 @@ contextType: "implementation"
 - [x] CHK-014 [P1] Negative decisions enforce exact branch fields and reject probability language in the input decision.
   - **Evidence**: `defer + estimatedError` and `clarify + confidence` reject with `PROBABILITY_LANGUAGE_FORBIDDEN`; a non-probability extra rejects with `NEGATIVE_DECISION_FIELDS_INVALID`.
 - [x] CHK-015 [P1] Projection invisibility is externally licensed, byte-for-byte, and hash-compared.
-  - **Evidence**: evaluator-produced envelopes with unvalidated versus validated sibling calibration share compatibility SHA-256 `7161e29edba39bf8bdd223de9eeb37081442861c5a474308065662a38e28add5` and typed route-gold SHA-256 `da2a5f632439f780645eef45998404127a2987ae919829541fcda59df2d064c5`.
+  - **Evidence**: evaluator-produced envelopes with unvalidated versus validated sibling calibration share compatibility SHA-256 `0034e66902fdaafcf09cc3586f0e2e556e15f47d1c12f4a2f1fa14c8239973c1` and typed route-gold SHA-256 `7150aa5515c0557403ca29f10ef3ca71dced5f5875592e4b71d4ba50d025c53f`.
 - [x] CHK-016 [P1] The real scorer evaluates distinct intent-derived gold and has a falsifier.
   - **Evidence**: a committed held-out corpus record supplies independently locked gold; exported `evaluateRouteGold` returns `pass:true`, while the corrupted observation returns `pass:false`.
 - [x] CHK-017 [P1] Certificate identities have fixed reproducibility vectors.

@@ -57,7 +57,7 @@ contextType: "implementation"
 - [x] Typed rows exercise the real projector chain and the real scorer has a falsifier.
   - **Evidence**: five rows run `projectTypedRouteGold -> projectLegacyObservation`; all 15 reach `evaluateRouteGold`, and a deliberately corrupted observation is rejected.
 - [x] Replay is byte-deterministic across at least three runs.
-  - **Evidence**: three frozen-canonical serialized outputs are byte-equal with SHA-256 `56b7058b4a3103d75f6a17de10719637f2506c49cee442eda8d9c603d09bc1fb`.
+  - **Evidence**: three frozen-canonical serialized outputs are byte-equal with SHA-256 `9ee9f59882cb4215a36d408db736ca9029eba1cd5bb01ae1c38f141d15769e01`.
 - [x] The explicit singleton record is accepted without creating a required calibration hub.
   - **Evidence**: harness output reports `mcp-code-mode`, `candidateCount: 1`, and `noCalibrationSlice: true`.
 <!-- /ANCHOR:testing -->

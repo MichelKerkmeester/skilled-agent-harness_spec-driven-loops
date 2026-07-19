@@ -39,11 +39,11 @@
         "expectedLegacy": {
           "intents": ["quality"],
           "resources": [
-            "references/stack_detection.md",
-            "references/phase_detection.md",
-            "references/smart_routing.md",
-            "references/universal/code_quality_standards.md",
-            "references/universal/code_style_guide.md"
+            "references/stack-detection.md",
+            "references/phase-detection.md",
+            "references/smart-routing.md",
+            "references/universal/code-quality-standards.md",
+            "references/universal/code-style-guide.md"
           ]
         }
       },
@@ -323,6 +323,6 @@
     "priorGenerationRetained": true,
     "casFenceRequired": true
   },
-  "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
-  "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca"
+  "corpusHash": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
+  "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598"
 }

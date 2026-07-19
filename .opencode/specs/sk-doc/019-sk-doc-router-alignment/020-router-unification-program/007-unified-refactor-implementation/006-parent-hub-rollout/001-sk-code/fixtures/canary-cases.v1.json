@@ -11,7 +11,7 @@
         "abstentionThreshold": "0.720000",
         "coverageTarget": "0.750000"
       },
-      "policyHash": "77bf5a97992b121439292d6c4fe5ac8e1a6f0a9a13fb1f2c90354d66d83fb31c",
+      "policyHash": "1dbf295d4608886358137f2a7541778629982db8583f0023e25dffcb2ee9d476",
       "riskSlice": "actor:mutating:composite",
       "evaluationWindow": {
         "corpusVersion": "V1",

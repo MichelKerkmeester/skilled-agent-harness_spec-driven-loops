@@ -53,27 +53,27 @@
       {
         "workflowMode": "quality",
         "leafResourceId": "stack-detection",
-        "resource": "references/stack_detection.md"
+        "resource": "references/stack-detection.md"
       },
       {
         "workflowMode": "quality",
         "leafResourceId": "phase-detection",
-        "resource": "references/phase_detection.md"
+        "resource": "references/phase-detection.md"
       },
       {
         "workflowMode": "quality",
         "leafResourceId": "smart-routing",
-        "resource": "references/smart_routing.md"
+        "resource": "references/smart-routing.md"
       },
       {
         "workflowMode": "quality",
         "leafResourceId": "quality-standards",
-        "resource": "references/universal/code_quality_standards.md"
+        "resource": "references/universal/code-quality-standards.md"
       },
       {
         "workflowMode": "quality",
         "leafResourceId": "style-guide",
-        "resource": "references/universal/code_style_guide.md"
+        "resource": "references/universal/code-style-guide.md"
       }
     ]
   },
@@ -107,8 +107,8 @@
   "certificateBodies": {
     "temperature": {
       "schemaVersion": "V1",
-      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
-      "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
+      "corpusHash": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
       "method": "temperature-scaling",
       "methodParams": { "temperature": "1.250000" },
       "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
@@ -125,8 +125,8 @@
     },
     "selective": {
       "schemaVersion": "V1",
-      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
-      "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
+      "corpusHash": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
       "method": "selective-classification-threshold",
       "methodParams": {
         "abstentionThreshold": "0.720000",
@@ -147,18 +147,18 @@
   },
   "expectedCertificateIdentities": {
     "temperature": {
-      "certificateId": "0a1db54787dbbce20c09e9eaeae41177fb87a27a0c682b0f14847f9e60919b9b",
-      "certHash": "3ae93112d15c2825207a9631c1744cb26a7808a0a50dce42430fb6f081f93566"
+      "certificateId": "6d372f4f3b95749c4e87b5c420199786e4d75543c741607c2d0eaf8bcdf979d6",
+      "certHash": "d546d0138b46a1cc6eee4bcab9d7125fe666be6496e36900ab0704deee57bd0a"
     },
     "selective": {
-      "certificateId": "218e3f09fa65b4eef94e4d1d30a0eba8f7d3278302e03955fd787e757c028d33",
-      "certHash": "d0b3fffb9bdf1a165d1d105d88daefec3c12950b4146a1adf98baed8634fa208"
+      "certificateId": "ba0cbbccd9cdca099186345181416043729a8e920044b6f82f7a4c85df14588e",
+      "certHash": "56c99ed7b4a56a6064698fb1fa6f3063799766830ccb53d0615114e07cba5d89"
     }
   },
   "trustedValidationAttestations": {
     "temperature": {
       "result": "validated",
-      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
       "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
       "riskSlice": "actor:mutating:single",
       "generation": 1,
@@ -170,7 +170,7 @@
     },
     "selective": {
       "result": "validated",
-      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusId": "1c04bf22a237ee93d7894a2ea85e02d1fbcb47aae58c9a81d30f50a1359bb598",
       "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
       "riskSlice": "actor:mutating:single",
       "generation": 1,

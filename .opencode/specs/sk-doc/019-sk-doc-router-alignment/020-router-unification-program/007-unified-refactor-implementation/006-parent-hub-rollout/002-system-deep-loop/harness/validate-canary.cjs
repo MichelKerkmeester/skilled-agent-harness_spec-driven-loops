@@ -97,13 +97,13 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '249be7c1cae9dcfe1faec8dcfc2965a0a0fc89e0af8e30bdd271625f300a6fde',
-  'router-replay.cjs': 'b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf',
+  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
+  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
   'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '1dc9add8cde80d4d8231ad29f9332f2885fd6421d6f7f9219a36de574d7779b1',
-  'mode-registry.json': 'ce62a3ba8bacfb3d4c37e4e7ea5daf9e516f66a173ee935b99c313d8f781e79d',
+  'SKILL.md': '59fa841a3dc0b85c0c01d87b2aa292b7209597f41d933826f69b87447c0b30dd',
+  'mode-registry.json': 'a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@ function compileWithRegistry(registry, generation) {
     leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
     registry,
     skillMarkdown: bytes['SKILL.md'].toString('utf8'),
-    smartRoutingMarkdown: bytes['smart_routing.md'].toString('utf8'),
+    smartRoutingMarkdown: bytes['smart-routing.md'].toString('utf8'),
     sourceBytes: bytes,
   });
 }
@@ -444,7 +444,7 @@ function assertCompiledArtifacts(snapshot) {
       leafManifest: JSON.parse(liveBytes['leaf-manifest.json'].toString('utf8')),
       registry: mismatchedRegistry,
       skillMarkdown: liveBytes['SKILL.md'].toString('utf8'),
-      smartRoutingMarkdown: liveBytes['smart_routing.md'].toString('utf8'),
+      smartRoutingMarkdown: liveBytes['smart-routing.md'].toString('utf8'),
       sourceBytes: liveBytes,
     }),
     (error) => assertCode(error, 'AUTHORED_SOURCE_IDENTITY_MISMATCH'),

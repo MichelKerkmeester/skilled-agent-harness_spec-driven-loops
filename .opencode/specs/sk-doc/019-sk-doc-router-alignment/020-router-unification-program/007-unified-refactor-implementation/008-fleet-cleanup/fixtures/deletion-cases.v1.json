@@ -12,28 +12,28 @@
   "hypotheticalRolledOutManifests": [
     {
       "canaryGreen": true,
-      "effectivePolicyHash": "3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5",
+      "effectivePolicyHash": "663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f",
       "generation": 1,
       "servingAuthority": "compiled",
       "skillId": "mcp-code-mode"
     },
     {
       "canaryGreen": true,
-      "effectivePolicyHash": "77bf5a97992b121439292d6c4fe5ac8e1a6f0a9a13fb1f2c90354d66d83fb31c",
+      "effectivePolicyHash": "1dbf295d4608886358137f2a7541778629982db8583f0023e25dffcb2ee9d476",
       "generation": 2,
       "servingAuthority": "compiled",
       "skillId": "sk-code"
     },
     {
       "canaryGreen": true,
-      "effectivePolicyHash": "8c630732567283d66ae69b969447f462a0818b65049f9104f6c4140ec3d2ff64",
+      "effectivePolicyHash": "82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032d6ff77cc3c",
       "generation": 3,
       "servingAuthority": "compiled",
       "skillId": "system-deep-loop"
     },
     {
       "canaryGreen": true,
-      "effectivePolicyHash": "cbfeb97e7257226d9e53810953a2a09f32f2222133ac46d45d3b8bd3897efb75",
+      "effectivePolicyHash": "dba007a997945fb54b899a142d49ef158a6f8adefe1bd4b18486e1e0799652b3",
       "generation": 4,
       "servingAuthority": "compiled",
       "skillId": "mcp-tooling"
