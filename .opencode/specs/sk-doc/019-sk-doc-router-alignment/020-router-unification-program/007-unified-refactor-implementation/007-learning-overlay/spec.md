@@ -7,6 +7,7 @@ trigger_phrases:
   - "vocabulary to destination overlay CAS"
 importance_tier: "critical"
 contextType: "implementation"
+status: "implemented-dormant"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

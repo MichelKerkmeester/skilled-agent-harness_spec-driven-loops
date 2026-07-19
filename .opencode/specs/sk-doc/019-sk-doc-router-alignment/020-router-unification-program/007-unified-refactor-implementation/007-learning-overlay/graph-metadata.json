@@ -36,11 +36,14 @@
       "pointer"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "spec.md",
+      "lib/correction-overlay.cjs",
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -59,6 +62,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "correction-overlay.cjs",
+        "kind": "file",
+        "path": "lib/correction-overlay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -156,23 +177,39 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offline Correction Overlay",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-07-18T14:47:38.392Z",
+    "last_save_at": "2026-07-19T01:52:30.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f7b53d75ee3736378eceae92f570b8f1049622672dd5c0d9322336486590650",
+    "source_fingerprint": "sha256:9dacac211cf86fae5ac29ee84ea0658efdd2e60ddf0caf13c5045d3536133e3d",
     "source_doc_hashes": {
-      "spec.md": "8cdc3e15e72d21c7dd8d8b7c8ab64fe8596e13251990ff17c5c6eb1e3656f263",
-      "plan.md": "a7d0509613a1190cc79c4f0e44a99541cbb1b56782f01c52ddbea316040cd46a",
-      "tasks.md": "487543f21b327cddf84d8fd6c42b7ed3aa4f37194996286e40f25898aa324a5f"
+      "spec.md": "120275d9d5c8c3b9ee32f08db1ff1e12adbd6bb64714d6a5e2cf2d8f8620c3fa",
+      "plan.md": "ab33078d16d17bbd018139ec122fd7783dd4a404e34d833ecc861bcb4f753581",
+      "tasks.md": "8ca34f7d7836dfd8dc7ca684d11ed4d7601dbda0c92df0b5490fbf726425a29e",
+      "checklist.md": "df16eb8c9dc35a95a6e530e7d7b18e562a4a8ec53844f4b34c3a16382a0a1638",
+      "implementation-summary.md": "5e9d83fc77ca2f218b8e149d25dde751c44de00574b0d99b17f9e35478b5532d"
     },
     "last_active_child_id": null,
     "last_active_at": null

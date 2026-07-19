@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "V1",
+  "retention": {
+    "currentEpoch": 120,
+    "maxAgeEpochs": 30,
+    "partition": "shadow-evaluation-2026-q3"
+  },
+  "alternateRetention": {
+    "currentEpoch": 120,
+    "maxAgeEpochs": 30,
+    "partition": "shadow-evaluation-2026-q4"
+  },
+  "records": [
+    {
+      "recordId": "receipt-implement-1",
+      "kind": "receipt",
+      "capturedAtEpoch": 111,
+      "vocabulary": ["implement"],
+      "correctedDestinationId": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "outcome": "corrected",
+      "content": "implement an offline module",
+      "privacyClaim": "clean"
+    },
+    {
+      "recordId": "handoff-figma-1",
+      "kind": "handoff",
+      "capturedAtEpoch": 112,
+      "vocabulary": ["figma"],
+      "correctedDestinationId": {
+        "skillId": "mcp-tooling",
+        "workflowMode": "figma",
+        "packetId": "packet-figma",
+        "packetKind": "transport",
+        "backendKind": "remote",
+        "runtimeDiscriminator": "plugin-api"
+      },
+      "outcome": "accepted",
+      "content": "open figma",
+      "privacyClaim": "clean"
+    },
+    {
+      "recordId": "receipt-private-1",
+      "kind": "receipt",
+      "capturedAtEpoch": 113,
+      "vocabulary": ["private correction"],
+      "correctedDestinationId": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "outcome": "corrected",
+      "content": "contact operator@example.com with password=hunter2",
+      "privacyClaim": "clean"
+    },
+    {
+      "recordId": "receipt-expired-1",
+      "kind": "receipt",
+      "capturedAtEpoch": 70,
+      "vocabulary": ["expired correction"],
+      "correctedDestinationId": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "outcome": "corrected",
+      "content": "old shadow sample",
+      "privacyClaim": "clean"
+    }
+  ],
+  "divergentRecords": [
+    {
+      "recordId": "receipt-construct-divergence",
+      "kind": "receipt",
+      "capturedAtEpoch": 114,
+      "vocabulary": ["construct"],
+      "correctedDestinationId": {
+        "skillId": "sk-code",
+        "workflowMode": "implementation",
+        "packetId": "packet-impl",
+        "packetKind": "workflow",
+        "backendKind": "native"
+      },
+      "outcome": "corrected",
+      "content": "construct the validation module",
+      "privacyClaim": "clean"
+    }
+  ],
+  "routeGold": [
+    {
+      "id": "base-implementation-route-preserved",
+      "taskText": "implement",
+      "observationKind": "intent"
+    },
+    {
+      "id": "base-figma-route-preserved",
+      "taskText": "figma",
+      "observationKind": "resource"
+    },
+    {
+      "id": "base-no-match-preserved",
+      "taskText": "construct the validation module",
+      "observationKind": "intent"
+    }
+  ],
+  "producerComparison": {
+    "skillRoot": ".opencode/skills/sk-code",
+    "taskText": "quality"
+  },
+  "approval": {
+    "proposedBy": "offline-trainer",
+    "approvedBy": "routing-safety-reviewer",
+    "approvedAtEpoch": 121
+  },
+  "telemetryEvidence": {
+    "source": "real-correction-telemetry",
+    "corpusHash": "756e234803b9f304f5fab2d85d2cfb623acaa11bab0585a9e1e00456cdaa915b",
+    "sampleSize": 2,
+    "baselineCorrect": 0,
+    "candidateCorrect": 2
+  }
+}

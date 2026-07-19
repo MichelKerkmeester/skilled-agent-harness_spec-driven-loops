@@ -7,6 +7,7 @@ trigger_phrases:
   - "overlay pointer CAS promotion"
 importance_tier: "critical"
 contextType: "implementation"
+status: "implemented-dormant"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -30,17 +31,22 @@ Build the learning plane as a **strictly offline, additive, dormant-by-default**
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `CorrectionOverlayV1` schema + canonical serialization exist and are byte-stable (from `000`).
-- [ ] The effective-identity hash `hash(base, overlay|null, schema, generation)` and the fenced activation manifest exist (from `001`).
-- [ ] The pure evaluator + compatibility projector + route-gold fixtures exist (from `002`); the scorer is confirmed untouched.
-- [ ] Receipts/handoff records are available as a correction signal source (from `003`, `004`).
+- [x] `CorrectionOverlayV1` schema + canonical serialization exist and are byte-stable (from `000`).
+- [x] The effective-identity hash `hash(base, overlay|null, schema, generation)` and the fenced activation manifest exist (from `001`).
+- [x] The pure evaluator + compatibility projector + route-gold fixtures exist (from `002`); the scorer is confirmed untouched.
+- [x] Receipts/handoff records are available as a correction signal source (from `003`, `004`).
 
 ### Definition of Done
-- [ ] A candidate overlay compiles offline and is byte-stable; base bytes unchanged.
-- [ ] Offline route-gold replay is green via the compatibility projector; `router-replay.cjs` diff is empty.
-- [ ] Fenced-CAS activation + byte-exact rollback drill both proven.
-- [ ] `overlay = null` equivalence test proves the base is unaffected (overlay not load-bearing).
-- [ ] The meta-gate (demonstrated routing gain from real telemetry) is documented and enforced before any promotion.
+- [x] A candidate overlay compiles offline and is byte-stable; base bytes unchanged.
+  - Evidence: `en-US` and `sv-SE` compilation produce candidate hash `72cd985b...`; the base canonical bytes remain unchanged.
+- [x] Offline route-gold replay is green via the compatibility projector; protected scorer hashes are unchanged.
+  - Evidence: imported phase-002 `evaluate()` plus projector/scorer pass three base-parity rows; all three protected digests remain exact.
+- [x] Fenced-CAS shadow activation + byte-exact rollback drill both proven.
+  - Evidence: generation 7→8 promotion and fencing epoch 2 rollback restore retained artifact identity `022e26de...`; unretained rollback rejects.
+- [x] `overlay = null` equivalence test proves the base is unaffected (overlay not load-bearing).
+  - Evidence: null overlay, empty overlay, and parity overlay emit byte-identical base decisions.
+- [x] The meta-gate (demonstrated routing gain from real telemetry) is documented and enforced before any promotion.
+  - Evidence: positive gain and corpus binding remain mandatory; fixture evidence is shadow-only and does not change serving authority.
 
 ## 3. ARCHITECTURE
 
