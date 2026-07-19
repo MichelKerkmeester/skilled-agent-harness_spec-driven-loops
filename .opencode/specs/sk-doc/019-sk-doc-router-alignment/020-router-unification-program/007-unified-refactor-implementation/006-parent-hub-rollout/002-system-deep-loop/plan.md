@@ -31,15 +31,15 @@ Compile the seven authored `system-deep-loop` public modes into seven content-ad
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The four projection fields and the destination-identity tuple (§2.2) are pinned to the authored `mode-registry.json` rows (no invented modes/packets).
-- [ ] The two confirmed collapse hazards (shared `deep-improvement` packet; shared `review` runtime key) have explicit no-collapse assertions specified.
-- [ ] `006/001` (`sk-code`) Stage-4 canary is green (activation-order precondition, §9).
+- [x] The four projection fields and the destination-identity tuple (§2.2) are pinned to the authored `mode-registry.json` rows (no invented modes/packets).
+- [x] The two confirmed collapse hazards (shared `deep-improvement` packet; shared `review` runtime key) have explicit no-collapse assertions specified.
+- [x] `006/001` (`sk-code`) Stage-4 canary is green (activation-order precondition, §9).
 
 ### Definition of Done
-- [ ] Seven destinations compiled; `count(destinations) == count(publicModes) != count(packets)`.
-- [ ] Deep-loop route-gold green under shadow replay; `router-replay.cjs` unmodified.
-- [ ] Stage-4 canary passed: zero hard mismatch, advisor identity matched-or-ignored, document parity, rollback drill proven byte-exact.
-- [ ] `spec.md` / `plan.md` / `tasks.md` reconciled; no completion claim without the canary evidence.
+- [x] Seven destinations compiled; `count(destinations) == count(publicModes) != count(packets)`.
+- [x] Deep-loop route-gold green under shadow replay; `router-replay.cjs` unmodified.
+- [x] Stage-4 canary passed: zero hard mismatch, advisor identity matched-or-ignored, document parity, rollback drill proven byte-exact.
+- [x] `spec.md` / `plan.md` / `tasks.md` reconciled; no completion claim without the canary evidence.
 
 ## 3. ARCHITECTURE
 
@@ -78,23 +78,34 @@ Required inventories:
 ## 5. IMPLEMENTATION PHASES
 
 ### Phase A: Extract + compile projections (REQ-001..004, 006)
-- [ ] Enumerate the seven registered modes and extract the four projections + identity tuple per mode from `mode-registry.json`.
-- [ ] Compile `CompiledPolicyV1.destinations[]` keyed by `(skillId, workflowMode, packetId, packetKind, backendKind)` + `runtimeLoopType` + `role`; assert injectivity over all seven.
-- [ ] Add no-collapse assertions: `deep-improvement` fan-out (3 distinct) and `review` runtime-key across `deep-review`/`deep-alignment` (2 distinct).
-- [ ] Fix `selectionKinds={single}`; assert no bundle can be emitted for a deep-loop request.
+- [x] Enumerate the seven registered modes and extract the four projections + identity tuple per mode from `mode-registry.json`.
+- [x] Compile `CompiledPolicyV1.destinations[]` keyed by `(skillId, workflowMode, packetId, packetKind, backendKind)` + `runtimeLoopType` + `role`; assert injectivity over all seven.
+- [x] Add no-collapse assertions: `deep-improvement` fan-out (3 distinct) and `review` runtime-key across `deep-review`/`deep-alignment` (2 distinct).
+- [x] Fix `selectionKinds={single}`; assert no bundle can be emitted for a deep-loop request.
 
 ### Phase B: Projections + parity (REQ-005, 009, 010)
-- [ ] Emit `AdvisorProjectionV1` with `effectivePolicyHash` + projection hash; preserve `routingClass` aliases; wire the annotation-only degradation on hash mismatch.
-- [ ] Build the compatibility projector against the `smart_routing.md` `{workflowMode, leafResourceId}` shape; author `TypedRouteGoldV1` fixtures.
-- [ ] Run shadow parity (zero live authority): deep-loop route-gold stays green; `router-replay.cjs` byte-unchanged.
-- [ ] (P1) Generate the deep-loop `PolicyCardV1.md`; run the document-only replay lane.
+- [x] Emit `AdvisorProjectionV1` with `effectivePolicyHash` + projection hash; preserve `routingClass` aliases; wire the annotation-only degradation on hash mismatch.
+- [x] Build the compatibility projector against the `smart_routing.md` `{workflowMode, leafResourceId}` shape; author `TypedRouteGoldV1` fixtures.
+- [x] Run shadow parity (zero live authority): deep-loop route-gold stays green; `router-replay.cjs` byte-unchanged.
+- [x] (P1) Generate the deep-loop `PolicyCardV1.md`; run the document-only replay lane.
 
 ### Phase C: Fenced canary + rollback (REQ-007, 008; Stage-4 gate)
-- [ ] Dual-read (Stage 2): confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves; unmapped fails closed.
-- [ ] Verify no over-emission: zero-signal request -> `defer(no-match)` (the `UNKNOWN_FALLBACK` checklist as the `clarify` payload); no default union.
-- [ ] Run the fenced canary: zero hard mismatch vs legacy; advisor identity matched-or-ignored; document parity passes.
-- [ ] Execute the rollback drill: CAS swap to the byte-identical prior manifest; assert a mixed-generation request hard-blocks.
-- [ ] Record the Stage-4 evidence and confirm the gate is open for `006/003` (`mcp-tooling`).
+- [x] Dual-read (Stage 2): confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves; unmapped fails closed.
+- [x] Verify no over-emission: zero-signal request -> `defer(no-match)` (the `UNKNOWN_FALLBACK` checklist as the `clarify` payload); no default union.
+- [x] Run the fenced canary: zero hard mismatch vs legacy; advisor identity matched-or-ignored; document parity passes.
+- [x] Execute the rollback drill: CAS swap to the byte-identical prior manifest; assert a mixed-generation request hard-blocks.
+- [x] Record the Stage-4 evidence and confirm the gate is open for `006/003` (`mcp-tooling`).
+
+### Implementation Evidence
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| Compile | Pass | `7` registry modes compile to `7` distinct public modes and injective destinations across `5` packets; duplicate/missing public modes fail specifically; canonical recompile is byte-identical. |
+| No-collapse | Pass | End-to-end authored-registry mutations fail with `SHARED_PACKET_COLLAPSE` and `RUNTIME_KEY_COLLAPSE`. |
+| Route-gold | GREEN | `11/11` delivered typed rows pass real read-only `evaluateRouteGold`; `7/7` positives come from live hub output; a persisted coherent tamper fails. |
+| Document parity | Pass | `15/15` full-request machine/document decisions match, including constraint-only `reject(forbidden)`; planted divergence fails closed. |
+| Activation | Pass | Nine aggregate hard blocks driven; CAS rollback restores byte-identical prior bytes at fence epoch `2`. |
+| Strict packet validation | Not run | The execution brief explicitly forbids `validate.sh`; this boundary remains recorded in `tasks.md` and the summary. |
 
 ## 6. VERIFICATION
 

@@ -21,6 +21,8 @@ This phase activates the council-synthesized compiled router contract (`../../..
 
 The work is therefore **not** a router rewrite. It is: compile the four explicit projections per mode, prove the compiled `system-deep-loop` policy against the existing deterministic route-gold through a compatibility projector (the shared scorer `router-replay.cjs` is never edited), run a fenced canary with a proven byte-exact rollback, and hand a green Stage-4 gate to `mcp-tooling`. Legacy routing stays serving-authoritative until the fenced CAS activation binds the compiled tuple.
 
+**Implementation status (2026-07-19):** Stage-4 phase-local canary GREEN. Seven modes compile to seven injective destinations across five packets; both no-collapse hazards, real route-gold, document parity, fenced activation, mixed-generation refusal, and byte-exact rollback are proven. Legacy remains serving-authoritative. Strict packet validation was not run because the execution brief explicitly prohibits `validate.sh`.
+
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -99,6 +101,21 @@ These apply to this phase and all sibling rollout phases (synthesis §10; master
 3. **Authority stays destination-local.** A proof or an advisor recommendation is **evidence, never a capability**; only destination VERIFY -> COMMIT consumes authority; every non-`route` decision structurally withholds authority.
 4. **Reversible + gated.** Fenced CAS activation with a retained prior generation; requests pin one generation; a proven rollback drill precedes hand-off.
 5. **No over-emission.** Zero-signal yields a typed `defer` with no fallback/default union; the full mode registry is never unioned into scored routes.
+
+### Implementation Evidence
+
+| Requirement / Criterion | Status | Evidence |
+|-------------------------|--------|----------|
+| REQ-001, REQ-004, SC-001 | Pass | `7` authored modes compile to `7` distinct public modes and injective identity tuples across `5` packets; duplicate/missing public modes fail specifically; byte-identical recompile and source mismatch rejection pass. |
+| REQ-002 | Pass | Three `deep-improvement` destinations preserve distinct modes and routing classes; an authored-registry mutation fails full compile as `SHARED_PACKET_COLLAPSE`. |
+| REQ-003 | Pass | `review` and `alignment` preserve separate packets at runtime key `review`; an authored-registry packet merge fails full compile as `RUNTIME_KEY_COLLAPSE`. |
+| REQ-005 | Pass | Advisor projection preserves all routing classes; stale/absent/unavailable/hash-drift evidence cannot rewrite a route. |
+| REQ-006 | Pass | All seven positive cases are `single`; a planted bundle fails `BUNDLE_EMISSION_FORBIDDEN`. |
+| REQ-007, SC-004 | Pass | Zero signal defers with empty targets and observations; ambiguity emits one checklist-derived clarify. |
+| REQ-008, SC-003, SC-005 | Pass | Fenced ship/rollback advances epoch `0→1→2`; prior/restored bytes match; mixed generations fail closed. |
+| REQ-009, SC-002 | GREEN | `11/11` delivered typed rows pass real read-only `evaluateRouteGold`; `7/7` positives come from live producer output; a persisted coherent tamper fails; scorer digests remain pinned. |
+| REQ-010 | Pass | Generated card enumerates seven projections; `15/15` full-request document decisions match, constraint-only reject is covered, and a planted divergence fails. |
+| Packet strict validation | Not run | Explicitly prohibited by the execution brief; `tasks.md` retains `T024` as blocked and the all-tasks completion criterion remains unchecked. |
 
 ## RELATED DOCUMENTS
 

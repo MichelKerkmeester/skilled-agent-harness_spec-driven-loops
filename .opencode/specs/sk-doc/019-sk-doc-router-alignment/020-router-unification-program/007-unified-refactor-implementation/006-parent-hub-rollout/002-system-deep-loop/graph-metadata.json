@@ -19,7 +19,10 @@
       "per-hub canary rollback drill",
       "system-deep-loop router activation tasks",
       "deep-loop no-collapse compile tasks",
-      "stage-4 canary task list"
+      "stage-4 canary task list",
+      "system-deep-loop canary verification",
+      "deep-improvement no-collapse evidence",
+      "deep-loop rollback drill"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -36,16 +39,93 @@
       "projection"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "lib/registry-compiler.cjs",
+      "lib/canary-router.cjs",
+      "lib/execution-fence.cjs",
+      "lib/policy-card.cjs",
+      "lib/activation-gate.cjs",
+      "fixtures/canary-cases.v1.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/shared/references/smart_routing.md",
-      "plan.md",
-      "tasks.md",
-      "spec.md"
+      "compiled/projection-graph.json",
+      "compiled/policy.json",
+      "compiled/route-gold.typed.json"
     ],
     "entities": [
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": "lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": "lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "execution-fence.cjs",
+        "kind": "file",
+        "path": "lib/execution-fence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy-card.cjs",
+        "kind": "file",
+        "path": "lib/policy-card.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "activation-gate.cjs",
+        "kind": "file",
+        "path": "lib/activation-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "mode-registry.json",
         "kind": "config",
@@ -65,21 +145,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "projection-graph.json",
+        "kind": "config",
+        "path": "compiled/projection-graph.json",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/policy.json",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "route-gold.typed.json",
+        "kind": "config",
+        "path": "compiled/route-gold.typed.json",
         "source": "derived"
       },
       {
@@ -123,77 +203,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Compile",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shadow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "different",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-07-18T14:47:36.184Z",
+    "last_save_at": "2026-07-19T00:30:27.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64aceaa3749bfa2788f980e7eb431bf94a6529e1c1d962139b10be81595dc0e8",
+    "source_fingerprint": "sha256:6a9f0bfb26129f2e3b10e745361c4ee43ac043314232efae3bbe753cb078eebc",
     "source_doc_hashes": {
-      "spec.md": "61cca3bbdbfe7ffbc78c187530837438ecae4cff699da0bd8aa95ef7ad3e075d",
-      "plan.md": "ea24ff5a7c274ed5ac3e48484c6866401a772dde5aed675bda662401301c7f72",
-      "tasks.md": "cac07a9007229a3e6cdb04b1332d23ed1670965116e177092cab67bc1a533c22"
+      "spec.md": "09d69fd9c06ce13063e8580c50dd5e263702efc15a278993c4dee6cfd996a690",
+      "plan.md": "5790d4c8ad4992f0f38a48de762ff37b7a55324e23d6769a1f0bbf60544167d0",
+      "tasks.md": "48ba054d518f2977e07c81de350de6e88e5113e2ca762f3165d57556e2a282cc",
+      "checklist.md": "ac9f41bd57e0d884b75f12c55db5fb9db23a5c393f6e3998ee743496cefaa634",
+      "implementation-summary.md": "c9bf3a5807d1845949d33e3295f9593329e7db637d399223e678e043bb9c6ac9"
     },
     "last_active_child_id": null,
     "last_active_at": null
