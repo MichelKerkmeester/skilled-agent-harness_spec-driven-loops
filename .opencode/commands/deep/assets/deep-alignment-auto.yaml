@@ -299,9 +299,14 @@ workflow:
           reducer gates on the DISCOVERED corpus, a non-empty corpus reduces to
           overallVerdict FAIL (incompleteCoverage), never a clean PASS, so a failed or
           empty first LEAF pass can no longer terminate the audit as a false PASS.
+          The seed is written WITHOUT --seal, so overall.sealed is false: a
+          non-authoritative placeholder. Only the terminal synthesis reduce seals the
+          verdict, so a run that dies before synthesis leaves an unsealed registry a
+          consumer can tell apart from a completed audit that genuinely failed.
         command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
         outputs:
           - registry_seeded: "deep-alignment-findings-registry.json exists with zero checked artifacts before dispatch"
+          - registry_sealed: "false -- the seed is preliminary; overall.sealed is stamped true only by the terminal synthesis reduce"
 
       step_init_complete:
         log: "Initialization complete. Config, state, and corpus files created. {lane_count} lane(s) resolved, {total_artifact_count} artifact(s) discovered."
@@ -517,6 +522,20 @@ workflow:
           - convergence_stability_json: "stability object ({stable, sampleSize, reason, window}) or null"
           - convergence_overall_verdict: "overallVerdict from the reducer's registry (PASS | CONDITIONAL | FAIL, from reduce-alignment-state.cjs)"
 
+      step_refresh_registry:
+        action: "Refresh the findings registry (unsealed) so it reflects every iteration completed so far"
+        note: |
+          Runs every iteration, after the convergence read, WITHOUT --seal. The registry is
+          otherwise only rewritten at synthesis, so a run that dies mid-loop -- a leaf
+          dispatch_failure, timeout, crash or kill before synthesis -- would strand the
+          pre-dispatch seed, a fail-closed FAIL indistinguishable from a completed audit
+          that failed. Rewriting here keeps the on-disk registry current with the iterations
+          that DID complete, while overall.sealed stays false so the verdict is never
+          mistaken for authoritative until synthesis seals it.
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
+        outputs:
+          - registry_refreshed: "registry reflects all completed iterations; overall.sealed stays false (preliminary) until synthesis"
+
       step_handle_convergence:
         action: "Act on the convergence decision"
         if_converged: { proceed_to: phase_synthesis }
@@ -532,10 +551,16 @@ workflow:
     steps:
 
       step_run_reducer:
-        action: "Reduce JSONL + deltas into the findings registry and the per-lane alignment report"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
+        action: "Reduce JSONL + deltas into the findings registry and the per-lane alignment report, and SEAL the verdict"
+        note: |
+          --seal stamps overall.sealed=true: this is the terminal, authoritative reduce,
+          reached only via a clean convergence / max-iterations / nothing-to-converge exit.
+          The seed and per-iteration refreshes never seal, so overall.sealed is the single
+          signal that distinguishes an authoritative verdict from a stranded preliminary one.
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder} --seal"
         outputs:
           - overall_verdict: "PASS | CONDITIONAL | FAIL, worst-lane rollup (never averaged)"
+          - sealed: "true -- synthesis seals the verdict authoritative"
           - lane_count: "Total resolved lanes"
           - findings_by_severity: "{P0, P1, P2} aggregate counts"
           - corruption_count: "Count of malformed JSONL lines encountered, else 0"

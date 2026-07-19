@@ -382,12 +382,22 @@ function buildOverallRollup(laneEntries, integrity = {}) {
     verdict = worstVerdict;
   }
 
+  // `sealed` marks whether this rollup is the terminal, authoritative reduce
+  // (the loop reached synthesis and sealed the verdict) or a non-authoritative
+  // pre-synthesis view: the pre-dispatch seed, or a per-iteration refresh
+  // written while the loop was still running. A seed or refresh over a
+  // non-empty-but-unaudited corpus is FAIL-closed by design; without this flag a
+  // consumer cannot tell that intentional placeholder FAIL apart from a
+  // completed audit that genuinely failed. Only a sealed rollup is authoritative.
+  const sealed = integrity.sealed === true;
+
   return {
     laneCount: laneEntries.length,
     applicableLaneCount: applicableLanes.length,
     findingsBySeverity,
     compositeScore: Math.round(compositeScore * 100) / 100,
     verdict,
+    sealed,
     nothingToConverge,
     incompleteCoverage,
     integrityFault,
@@ -418,6 +428,7 @@ function renderAlignmentReport(config, laneEntries, overall) {
     `- Target: ${normalizeText(config.alignmentTarget) || '[Unknown target]'}`,
     `- Lanes: ${overall.laneCount} (${overall.applicableLaneCount} applicable)`,
     `- Overall verdict: ${overall.verdict}${overall.nothingToConverge ? ' (nothing to converge -- zero applicable lanes)' : ''}`,
+    `- Result state: ${overall.sealed ? 'SEALED (authoritative -- the loop reached synthesis)' : 'PRELIMINARY (not sealed -- seed or interrupted run; the verdict above is NOT authoritative)'}`,
     `- Findings: P0 ${overall.findingsBySeverity.P0} / P1 ${overall.findingsBySeverity.P1} / P2 ${overall.findingsBySeverity.P2}`,
     `- Composite score: ${overall.compositeScore}`,
     '',
@@ -462,6 +473,9 @@ function renderAlignmentReport(config, laneEntries, overall) {
  * @param {string} specFolder - Path to the bound spec folder.
  * @param {Object} [options]
  * @param {boolean} [options.write=true]
+ * @param {boolean} [options.seal=false] - Stamp the rollup authoritative
+ *   (overall.sealed=true). Only the terminal synthesis reduce seals; the
+ *   pre-dispatch seed and per-iteration refreshes leave it false.
  * @returns {Object}
  */
 function reduceAlignmentState(specFolder, options = {}) {
@@ -486,6 +500,10 @@ function reduceAlignmentState(specFolder, options = {}) {
   const overall = buildOverallRollup(laneEntries, {
     totalDiscovered,
     hasCorruption: corruptionWarnings.length > 0,
+    // Only a terminal synthesis reduce passes seal:true; the pre-dispatch seed
+    // and every per-iteration refresh leave the registry unsealed so an
+    // interrupted run is never mistaken for an authoritative verdict.
+    sealed: options.seal === true,
   });
 
   const registry = {
@@ -516,21 +534,25 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   const positional = args.filter((arg) => !arg.startsWith('--'));
   const specFolder = positional[0];
+  // Terminal synthesis passes --seal to stamp the verdict authoritative; the
+  // pre-dispatch seed and per-iteration refreshes omit it and stay preliminary.
+  const seal = args.includes('--seal');
 
   if (!specFolder) {
     process.stderr.write(
-      'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs <spec-folder>\n',
+      'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs <spec-folder> [--seal]\n',
     );
     process.exit(1);
   }
 
   try {
-    const result = reduceAlignmentState(specFolder, { write: true });
+    const result = reduceAlignmentState(specFolder, { write: true, seal });
     process.stdout.write(
       `${JSON.stringify({
         registryPath: result.registryPath,
         reportPath: result.reportPath,
         overallVerdict: result.registry.overall.verdict,
+        sealed: result.registry.overall.sealed,
         laneCount: result.registry.overall.laneCount,
         findingsBySeverity: result.registry.overall.findingsBySeverity,
         corruptionCount: result.corruptionWarnings.length,

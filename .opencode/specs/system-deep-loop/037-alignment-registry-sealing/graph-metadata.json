@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/037-alignment-registry-sealing",
+  "spec_folder": "system-deep-loop/037-alignment-registry-sealing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment registry sealing",
+      "alignment seed stranded verdict",
+      "overall.sealed preliminary authoritative"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "registry",
+      "sealing",
+      "seed",
+      "stranded",
+      "verdict",
+      "overall",
+      "sealed",
+      "preliminary",
+      "authoritative",
+      "deep-alignment"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
+      ".opencode/commands/deep/assets/deep-alignment-confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-alignment-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to `incompleteCoverage` FAIL, so a failed or empty first pass can never terminate as a false PASS)",
+    "created_at": "2026-07-19T17:16:27.443Z",
+    "last_save_at": "2026-07-19T17:28:07.317Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b6eb084e4130c504c843e6e97014132d20fdda071a6ec83449824ce751042d04",
+    "source_doc_hashes": {
+      "spec.md": "4386724afa8e1e6d537f4829a2e19557cfd710e8e070d8a80ff25cab5a1117b4",
+      "plan.md": "acdab0a32217b6874eaea8392b3b99db878be26c87e1207e0aac86b8c331496e",
+      "tasks.md": "a6af1cd5e61d0be25598ebe7526e25e915e228a9fc8c24e2a880fef387dfe98e",
+      "checklist.md": "d1f4478d26bb2e4c49f722dcf70c85da7507d0ed315a478afb9ca9c4b06366d9",
+      "implementation-summary.md": "6740b35ab1f1b61a61071bb699c3e97d2d625ced9f4e08f242e9a79e6db96791"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

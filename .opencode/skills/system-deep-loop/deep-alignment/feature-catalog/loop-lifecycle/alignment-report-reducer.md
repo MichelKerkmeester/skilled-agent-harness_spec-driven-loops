@@ -7,7 +7,9 @@ trigger_phrases:
   - "per-lane verdict rollup"
   - "worst verdict not average"
   - "NOT_APPLICABLE lane"
-version: 1.0.0.1
+  - "registry seal state"
+  - "sealed verdict authoritative"
+version: 1.0.0.2
 ---
 
 # Alignment-report reducer
@@ -25,6 +27,8 @@ The `REPORT`-state reducer that folds the JSONL state log and deltas into a find
 It reads the frozen config's lanes, parses the append-only state log (reporting malformed lines as `corruptionWarnings` rather than dropping them), and loads the per-iteration delta findings. For each lane it dedups findings by content-hash or a common-field fallback, counts them by severity (weights P0 10.0 / P1 5.0 / P2 1.0, shared with the deep-review reducer), and derives a verdict: `FAIL` if any P0, `CONDITIONAL` if any P1, `PASS` otherwise, and `NOT_APPLICABLE` for a lane that never ran an iteration or discovered zero artifacts — so a lane with nothing to check is never silently folded into an aggregate PASS. Findings pass through in their raw adapter shapes (only severity is read structurally), because the five adapters' finding shapes are heterogeneous by design.
 
 The overall rollup is the worst per-lane verdict present (by severity rank), never an average — directly guarding the named risk that per-lane convergence could mask a single stuck lane. An all-`NOT_APPLICABLE` run reports a trivial PASS but flags `nothingToConverge` distinctly. It renders `alignment-report.md` with one section per lane (never a blended cross-authority report, honoring ALWAYS #5) plus an overall summary, and writes the registry alongside it.
+
+Every `overall` rollup also carries a `sealed` flag that distinguishes an authoritative verdict from a preliminary one. The registry is seeded FAIL-closed before the first dispatch and rewritten (unsealed) after each iteration, but only the terminal synthesis reduce passes `--seal` (`options.seal`) to set `sealed: true`. A run that dies before synthesis — a leaf dispatch failure, timeout, crash or kill — therefore leaves a `sealed: false` registry a consumer can tell apart from an authoritative verdict, rather than the pre-`sealed` behavior where a stranded seed FAIL was byte-identical to a completed audit that genuinely failed. Sealing is orthogonal to the verdict: it never launders a fail-closed FAIL into a pass. Only a `sealed: true` verdict is authoritative, and the report banner labels the state PRELIMINARY otherwise.
 
 **Difference from deep-review:** deep-review's reducer aggregates by its four fixed review dimensions and derives one release-readiness verdict for one target. deep-alignment's aggregates by per-run lanes, adds a `NOT_APPLICABLE` verdict deep-review has no need for, emits one report section per authority-lane, and rolls up by worst-verdict precedence so one failing lane cannot be averaged away.
 
@@ -46,6 +50,7 @@ The overall rollup is the worst per-lane verdict present (by severity rank), nev
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Confirms the reducer writes the registry + report, derives a `PASS` overall for a P2-only run, and marks a zero-artifact lane `NOT_APPLICABLE`. |
+| `scripts/tests/reducer-seal-state.test.cjs` | Regression test | Pins that the seed is preliminary (`sealed:false`), a completed iteration reduces to its real verdict while staying unsealed until a sealing reduce, sealing never launders a fail-closed FAIL, and the CLI `--seal` flag flows through to disk. |
 
 ---
 

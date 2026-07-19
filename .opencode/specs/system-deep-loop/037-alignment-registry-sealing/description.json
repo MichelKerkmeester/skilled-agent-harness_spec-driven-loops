@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/037-alignment-registry-sealing",
+  "description": "Mark the deep-alignment findings registry sealed only at terminal synthesis so a run that halts mid-loop no longer strands its fail-closed seed as an authoritative verdict.",
+  "keywords": [
+    "deep-alignment",
+    "registry",
+    "sealed",
+    "seed",
+    "stranded",
+    "verdict",
+    "synthesis",
+    "reducer",
+    "preliminary",
+    "authoritative",
+    "incompleteCoverage",
+    "fail-closed"
+  ],
+  "lastUpdated": "2026-07-19T17:15:21.000Z",
+  "specId": "037",
+  "folderSlug": "alignment-registry-sealing",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
