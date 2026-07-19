@@ -1,0 +1,24 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation",
+  "description": "The compiled router contract is shadow-complete but never bound",
+  "keywords": [
+    "compiled",
+    "router",
+    "contract",
+    "shadow-complete",
+    "never",
+    "bound"
+  ],
+  "lastUpdated": "2026-07-19T12:38:23.018Z",
+  "specId": "010",
+  "folderSlug": "live-activation",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
