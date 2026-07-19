@@ -38,9 +38,9 @@ Build the learning plane as a **strictly offline, additive, dormant-by-default**
 
 ### Definition of Done
 - [x] A candidate overlay compiles offline and is byte-stable; base bytes unchanged.
-  - Evidence: `en-US` and `sv-SE` compilation produce candidate hash `72cd985b...`; the base canonical bytes remain unchanged.
+  - Evidence: the evaluator preserves base hash `d8181c...`; recomputing over the merged execution graph would produce `149732...`, and the frozen combine produces evaluator hash `713b32...`.
 - [x] Offline route-gold replay is green via the compatibility projector; protected scorer hashes are unchanged.
-  - Evidence: imported phase-002 `evaluate()` plus projector/scorer pass three base-parity rows; all three protected digests remain exact.
+  - Evidence: imported phase-002 `evaluate()` plus projector/scorer pass three base-parity rows with replay hash `fdba309f...`; all three protected digests remain exact.
 - [x] Fenced-CAS shadow activation + byte-exact rollback drill both proven.
   - Evidence: generation 7→8 promotion and fencing epoch 2 rollback restore retained artifact identity `022e26de...`; unretained rollback rejects.
 - [x] `overlay = null` equivalence test proves the base is unaffected (overlay not load-bearing).

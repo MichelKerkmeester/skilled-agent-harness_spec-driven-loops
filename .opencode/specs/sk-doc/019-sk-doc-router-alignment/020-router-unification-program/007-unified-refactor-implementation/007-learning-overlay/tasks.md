@@ -48,11 +48,12 @@ status: "implemented-dormant"
 - [x] T009 Build the offline compiler that derives **only** vocabulary→destination adjustments from sanitized records (synthesis §2.1, §3 Idea 2).
 - [x] T010 Reject any candidate carrying a weight or any non-vocabulary field; keep weights a uniform inert `4` (synthesis open-q 3).
 - [x] T011 Freeze + content-address the candidate → `overlayHash`; assert base bytes unchanged and `overlayHash ≠ basePolicyHash` (REQ-001).
+  - Evidence: evaluator materialization keeps original base hash `d8181c...`; the old merged-graph recompute yields `149732...` and fails the regression assertion.
 
 ## Phase 4: Deterministic replay + safety/parity gates
 
 - [x] T012 Run the `002` evaluator + compatibility projector over route-gold for `base` and `base+candidate`; classify every delta (synthesis §8.2).
-  - Evidence: replay imports `evaluate()` and the compatibility projector; the planted learned alias is classified as base `defer` versus overlay `route` and fails real scorer parity.
+  - Evidence: replay materializes additive overlay nodes, derives destination signals from them, and calls imported `evaluate()` against the immutable base; the planted alias is classified as base `defer` versus overlay `route` and fails real scorer parity.
 - [x] T013 Assert `router-replay.cjs` is invoked read-only and its protected hash is unchanged; a required scorer edit is a migration failure, never applied (REQ-004, synthesis §10).
 - [x] T014 Encode the synthesis §9 hard gates as blocking checks (hash mismatch vs pinned tuple, mixed generations in one request, negative decision carrying a target, evidence target committing, COMMIT lacking VERIFY).
   - Evidence: promotion consumes the three authority verdicts before replay/CAS; route-gold and stale CAS remain blocking in the same call, and each rejects aggregate `999999.000000`.
@@ -73,9 +74,10 @@ status: "implemented-dormant"
 ## Phase 6: Verification
 
 - [x] T022 Verify offline route-gold replay is green for `base+candidate` and protected scorer hashes are unchanged (SC-002).
-  - Evidence: three rows pass with replay hash `8ae771ea...`; the router/scorer/loader digests remain `b039b8dd...`, `d5a9cc72...`, and `249be7c1...`.
+  - Evidence: three rows pass with replay hash `fdba309f...`; replay and promotion both retain base hash `d8181c...`, and the router/scorer/loader digests remain `b039b8dd...`, `d5a9cc72...`, and `249be7c1...`.
 - [x] T023 Verify the activated shadow tuple is byte-stable and the rollback drill is byte-exact (SC-003).
 - [x] T024 Verify no online-mutation path exists — serving policy immutable during a request; promotion only re-points the activation manifest (SC-004).
+  - Evidence: an external canonical-byte comparison remains equal before and after materialization, replay, and shadow promotion; only the fenced manifest pointer changes.
 - [x] T025 Verify destination-local authority — an overlay cannot make a non-`route` decision carry a target, cannot let evidence COMMIT, cannot bypass VERIFY (REQ-007).
   - Evidence: named gate outcomes are `NEGATIVE_TARGET_FORBIDDEN`, `ROLE_CANNOT_COMMIT`, and `COMMIT_WITHOUT_READY`; false verdicts block promotion.
 - [x] T026 Confirm the Stage 5 machinery enforces offline replay + safety/parity + independent approval + byte-stable tuple before any `overlay ≠ null` generation could serve (`spec.md` → MIGRATION GATE).

@@ -15,6 +15,7 @@ status: "implemented-dormant"
 | Delivery status | Implemented and shadow-validated; production overlay remains dormant |
 | Primary artifact | Separately hashed immutable `CorrectionOverlayV1` |
 | Effective identity | Canonical hash of base, overlay-or-null, schema, and activation generation |
+| Base identity | Original compiled-base hash is preserved through evaluator replay and promotion |
 | Runtime dependencies | Node built-ins plus frozen local contract libraries |
 | Serving authority | Legacy-authoritative and shadow-only; no live routing pointer changed |
 | Migration gate | Stage 5 machinery validated; real-corpus promotion remains unsatisfied |
@@ -46,24 +47,31 @@ the unresolved learnable-field question by invention.
 An effective tuple is computed by the frozen `canonical.cjs` over the base hash,
 overlay hash or null, schema version, and activation generation. Promotion pins
 one manifest generation per request and uses the committed generation/hash CAS.
-The base bytes never change. Learning therefore changes which frozen artifact a
-manifest selects, matching seam D in synthesis §4 while keeping the mutable
-online alternative eliminated as required by synthesis §6.
+Evaluator materialization keeps the original `basePolicyHash`, sets
+`overlayHash` to the candidate artifact identity, and computes only the effective
+hash from those separate axes. The additive detector/selector graph is an
+execution view, not a new base artifact. The base bytes never change. Learning
+therefore changes which frozen artifact a manifest selects, matching seam D in
+synthesis §4 while keeping the mutable online alternative eliminated as required
+by synthesis §6.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How Delivered
 
 `runRouteGoldReplay()` materializes candidate vocabulary as additive compiled
-detectors/selectors, then calls the imported phase-002 `evaluate()` for every
-base and base-plus-overlay request. The imported compatibility projector maps
-those real decisions into the scorer shape, and phase-002's read-only scorer
-subprocess supplies the verdict. Fixtures cannot provide expected intent or
-resource arrays: gold is derived from the authenticated base-policy decision.
-The learned `construct` divergence therefore evaluates as `route` against a base
-`defer` and fails route-gold parity. The protected router producer is also called
-read-only, and its intents and resources are compared with evaluator projection
-output rather than accepted merely because parsing succeeded.
+detectors/selectors without changing the base identity. Those execution-only
+nodes derive supplemental qualified destination observations, and the imported
+phase-002 `evaluate()` consumes them against the content-valid immutable base.
+Replay evidence separately binds the materialized effective tuple. The imported
+compatibility projector maps those real decisions into the scorer shape, and
+phase-002's read-only `evaluateRouteGold` subprocess supplies the verdict.
+Fixtures cannot provide expected intent or resource arrays: gold is derived from
+the authenticated base-policy decision. The learned `construct` divergence
+therefore evaluates as `route` against a base `defer` and fails route-gold
+parity. The protected router producer is also called read-only, and its intents
+and resources are compared with evaluator projection output rather than accepted
+merely because parsing succeeded.
 
 Promotion consumes negative-target-free, evidence-never-COMMIT, and
 COMMIT-requires-VERIFY verdicts before replay or CAS. Route-gold parity and the
@@ -105,6 +113,10 @@ optional posture from synthesis §5.3 and §12, not unfinished base behavior.
 - Overlay application is additive to the compiled base: it never replaces base
   detectors, so valid base routes remain byte-identical under a no-op or parity
   overlay. The real evaluator remains the sole decision authority.
+- The phase-002 evaluator authenticates compiled base bytes before decision. The
+  overlay adapter therefore uses materialized nodes to derive destination signals
+  but evaluates them against the unchanged base artifact; replay identity binds
+  the separate base-plus-overlay effective tuple (synthesis §4 seam D).
 - Overlay routing can only select a declared destination. Promotion consumes the
   real negative-target, evidence-COMMIT, and missing-VERIFY gate outcomes before
   activation. Recommendation never becomes capability (§2.1, §9).
@@ -120,17 +132,26 @@ Fresh targeted verification produced these results:
 
 - identity: base SHA-256
   `d8181caacfb1a60f76a6ab5c3bf0264fca055ebbce7a22a2c99a98c237995d1d`,
-  overlay SHA-256
-  `1dafd6d7b7bacf05a6300f0457d6069690de0bfca336e40deef7330b3fa4ab41`,
+  candidate SHA-256
+  `a2098a77be013ae6949eb1bdfa082f8fbdea7dc94b396e70f4ff22d378321260`,
+  evaluator effective SHA-256
+  `713b326932f386cff008d0353152a1387db7b382f71e81dcd0bba74c5b5a900e`,
+  promoted overlay SHA-256
+  `3f1d51d1a53b904c3ed7fd951c0acedbb953911941ea8644dabbc2ba6d8c9956`,
   and generation-8 effective SHA-256
-  `84a78b9be5ced4c580291c8b050b594c21b5b118ce6f907fc5288f2ab3be2cac`
-  reproduce through the frozen canonical library; changed overlay bytes retaining
-  the declared hash reject with `OVERLAY_HASH_MISMATCH`;
+  `47dc3628af256b5878f2fda7c6aaf9f0fdb496161a11c143189f54af0dbce833`
+  reproduce through the frozen canonical library; replay and promotion both
+  retain the original base axis;
+- immutable-base falsifier: external canonical bytes remain equal before and
+  after materialization; hashing the merged execution graph as a base would yield
+  `1497324364961b31ead1580af796f5b2a6ab649ec715340eb405bddc5986b42f`,
+  and temporarily restoring that old recompute makes the base equality assertion
+  fail against `d8181c...`;
 - vocabulary-only: adjustment fields are exactly `destinationId,vocabulary`;
   injected weight rejects with `OVERLAY_FIELD_FORBIDDEN`, and attempted online
   mutation throws `TypeError`;
 - replay: two independent three-row runs are byte-identical with replay SHA-256
-  `8ae771ea9e07c69cfd80eecc5bfe3a44f6efd024c6ff4560b6fe50a685e75849`;
+  `fdba309f76b82eb495862e70c2626aa90468347cfdcdbf24199b21b7ea5647b7`;
   base/no-op and base/parity-overlay decisions are byte-identical; the real
   evaluator divergence is `base:defer` versus `overlay:route` and scorer
   `pass:false`; caller-supplied gold rejects; scorer writes are zero;

@@ -43,11 +43,11 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-010 [P1] Effective identity binds base, overlay-or-null, schema, and generation once per request.
-  - **Evidence**: generation 8 reproduces effective SHA-256 `84a78b9be5ced4c580291c8b050b594c21b5b118ce6f907fc5288f2ab3be2cac`; mixed pins reject with `MIXED_GENERATIONS`.
+  - **Evidence**: replay reproduces evaluator SHA-256 `713b326932f386cff008d0353152a1387db7b382f71e81dcd0bba74c5b5a900e` from original base `d8181c...`, candidate `a2098a...`, schema V1, and generation 7; promoted generation 8 reproduces `47dc3628...`; mixed pins reject with `MIXED_GENERATIONS`.
 - [x] CHK-011 [P1] Overlay content is vocabulary-to-destination only and immutable.
   - **Evidence**: adjustment fields are exactly `destinationId,vocabulary`; injected `weight:4` rejects with `OVERLAY_FIELD_FORBIDDEN`, and an attempted post-compile vocabulary push throws `TypeError`.
 - [x] CHK-012 [P1] Deterministic replay is byte-identical and scored externally.
-  - **Evidence**: two complete three-row replays serialize identically, all base-derived rows pass phase-002's read-only scorer, replay SHA-256 is `8ae771ea9e07c69cfd80eecc5bfe3a44f6efd024c6ff4560b6fe50a685e75849`, and no scorer write is attempted.
+  - **Evidence**: two complete three-row replays serialize identically, all base-derived rows pass phase-002's read-only `evaluateRouteGold` scorer, replay SHA-256 is `fdba309f76b82eb495862e70c2626aa90468347cfdcdbf24199b21b7ea5647b7`, and no scorer write is attempted.
 - [x] CHK-013 [P1] The real route-gold verdict has a working falsifier.
   - **Evidence**: a corrupted observation expecting `implementation` but observing `figma` returns `pass:false` from the exported scorer.
 - [x] CHK-014 [P1] Aggregate score cannot override a hard route-gold gate.
@@ -65,24 +65,26 @@ contextType: "implementation"
 - [x] CHK-020 [P1] N=1 remains the load-bearing base case.
   - **Evidence**: the one-destination policy returns `{overlay:null, reason:"single-destination"}`, keeps `P=static`, and reproduces its existing effective hash without a skill-name branch.
 - [x] CHK-025 [P1] Replay decisions come only from the imported phase-002 evaluator.
-  - **Evidence**: `runRouteGoldReplay()` materializes additive detectors/selectors, calls imported `evaluate()`, then imported `projectToRouteGold()` and `scoreRouteGoldReadOnly()`; the substitute substring router is absent.
+  - **Evidence**: `runRouteGoldReplay()` materializes additive detectors/selectors, derives supplemental destination signals from those nodes, calls imported `evaluate()` against the content-valid immutable base, then imported `projectToRouteGold()` and read-only `evaluateRouteGold`; the substitute substring router is absent.
 - [x] CHK-026 [P1] Candidate ordering is locale-independent.
   - **Evidence**: planted `ä-mode`/`z-mode` ordering differs under `en-US` and `sv-SE`, while both compilations produce candidate SHA-256 `72cd985bccc56b9d06613494a54cca9231c1d203461b1f7cecc4b16b66c4e80c`.
 - [x] CHK-027 [P1] Declared artifact hashes authenticate canonical bytes before effective identity.
   - **Evidence**: changing promoted overlay vocabulary while retaining `overlayHash` rejects with `OVERLAY_HASH_MISMATCH` before `effectiveTuple()` returns.
 - [x] CHK-028 [P1] Producer parity compares values rather than parseability.
   - **Evidence**: protected producer intent `quality` and all four produced resources are deep-compared with the real evaluator/projector observation.
+- [x] CHK-029 [P1] Replay and promotion share the original immutable base axis.
+  - **Evidence**: evaluator, replay evidence, and promoted tuple all carry `d8181caacfb1a60f76a6ab5c3bf0264fca055ebbce7a22a2c99a98c237995d1d`; independently recomputing the frozen effective combine yields `713b3269...`, while the old merged-graph base recompute yields `14973243...` and turns the harness red at the base equality assertion.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
 - [x] CHK-021 [P1] Every anti-hollow guard is driven red at its real boundary.
-  - **Evidence**: exact failures cover real-evaluator route-gold divergence, each high-score promotion gate, locale-sensitive comparator restoration, caller-supplied gold, hash/bytes mismatch, unretained rollback, mixed corpus identities, injected weight, online mutation, same-person approval, unbound corpus, absent gain, mixed generations, and stale CAS.
+  - **Evidence**: exact failures cover merged-graph base recomputation, real-evaluator route-gold divergence, each high-score promotion gate, locale-sensitive comparator restoration, caller-supplied gold, hash/bytes mismatch, unretained rollback, mixed corpus identities, injected weight, online mutation, same-person approval, unbound corpus, absent gain, mixed generations, and stale CAS.
 - [x] CHK-022 [P1] Candidate-set closure is preserved.
   - **Evidence**: every adjustment destination must resolve in the compiled base index; a changed destination rejects with `CANDIDATE_SET_WIDENED`, and the harness reports candidate count 3 before and after overlay application.
 - [x] CHK-023 [P1] Base policy bytes are never rewritten by learning or promotion.
-  - **Evidence**: canonical base bytes captured before ingestion equal the bytes after candidate compilation and shadow promotion; `overlay=null`, an empty overlay, and the parity overlay emit byte-identical base decisions.
+  - **Evidence**: an external canonical-byte buffer captured before ingestion equals the bytes after materialization and shadow promotion; evaluator base remains `d8181c...`, while a counterfactual hash of the merged graph is `149732...`; `overlay=null`, an empty overlay, and the parity overlay emit byte-identical base decisions.
 - [x] CHK-024 [P1] The optional plane cannot silently become serving-authoritative.
   - **Evidence**: the bound upstream manifest validator admits only legacy-authoritative, shadow-only manifests; the harness result is `promoted-shadow`, not a live promotion.
 <!-- /ANCHOR:fix-completeness -->
@@ -122,7 +124,7 @@ contextType: "implementation"
 ## Summary
 
 - [x] CHK-060 [P1] Targeted executable verification covers every requested success criterion.
-  - **Evidence**: `node harness/validate-learning-overlay.cjs` exits 0 and reports all eight gates true for real-evaluator route-gold, no-op equivalence, immutable scorer, hard-gate preconditions, authenticated artifact CAS, single-partition corpus, locale-independent identity, and producer parity.
+  - **Evidence**: `node harness/validate-learning-overlay.cjs` exits 0, reports immutable-base/effective-combine/replay-promotion agreement true, and reports all eight existing gates true for route-gold, no-op equivalence, immutable scorer, hard gates, authenticated CAS, corpus partitioning, locale independence, and producer parity.
 - [ ] CHK-061 [P1] Repository strict spec validation is green.
   - Explicit user instruction forbids `validate.sh`; this check remains intentionally unsatisfied.
 <!-- /ANCHOR:summary -->

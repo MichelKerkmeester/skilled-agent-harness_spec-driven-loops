@@ -481,7 +481,6 @@ function materializeEvaluatorPolicy(candidate, basePolicy) {
   if (candidate.adjustments.length === 0) return basePolicy;
 
   const policy = clone(basePolicy);
-  delete policy.basePolicyHash;
   delete policy.overlayHash;
   delete policy.effectivePolicyHash;
   for (const [adjustmentIndex, adjustment] of candidate.adjustments.entries()) {
@@ -496,13 +495,14 @@ function materializeEvaluatorPolicy(candidate, basePolicy) {
       });
     }
   }
+  // Additive evaluator nodes are execution-only and cannot redefine the base artifact.
+  policy.basePolicyHash = basePolicy.basePolicyHash;
   policy.overlayHash = candidate.candidateId;
-  policy.basePolicyHash = computeBasePolicyHash(policy);
   policy.effectivePolicyHash = computeEffectivePolicyHash(policy);
   return deepFreeze(policy);
 }
 
-function replayRequest(fixture, policy) {
+function replayRequest(fixture, policy, supplementalObservations = []) {
   assertPlainObject(fixture, 'ROUTE_GOLD_FIXTURE_INVALID', 'route-gold fixture');
   if (Object.hasOwn(fixture, 'expectedIntents')
     || Object.hasOwn(fixture, 'expectedResources')) {
@@ -518,7 +518,10 @@ function replayRequest(fixture, policy) {
   }
   const request = {
     schemaVersion: 'V1',
-    observations: [{ kind: observationKind, value: fixture.taskText }],
+    observations: [
+      { kind: observationKind, value: fixture.taskText },
+      ...supplementalObservations,
+    ],
     evidence: [{
       id: 'compatibility:pinned-overlay-policy',
       kind: 'compatibility',
@@ -536,6 +539,27 @@ function replayRequest(fixture, policy) {
   };
   request.requestFactsHash = computeRequestFactsHash(request);
   return deepFreeze(request);
+}
+
+function overlayObservations(fixture, evaluatorPolicy) {
+  const normalizedTask = normalizeVocabulary(fixture.taskText);
+  const matchedDetectorIds = new Set(evaluatorPolicy.detectors
+    .filter((detector) => (
+      detector.id.startsWith('overlay-detector:')
+      && normalizedTask.includes(detector.value)
+    ))
+    .map((detector) => detector.id));
+  const qualifiedModes = evaluatorPolicy.selectors
+    .filter((selector) => (
+      selector.id.startsWith('overlay-selector:')
+      && selector.detectorIds.every((detectorId) => matchedDetectorIds.has(detectorId))
+    ))
+    .map((selector) => (
+      `${selector.destinationId.skillId}/${selector.destinationId.workflowMode}`
+    ));
+  return [...new Set(qualifiedModes)]
+    .sort(compareCodeUnits)
+    .map((value) => ({ kind: 'intent', value }));
 }
 
 function projectReplayDecision(decision, fixture, policy) {
@@ -565,9 +589,13 @@ function runRouteGoldReplay(candidate, basePolicy, fixtures) {
     const baselineRequest = replayRequest(fixture, basePolicy);
     const baselineDecision = evaluate(baselineRequest, basePolicy);
     const baselineProjection = projectReplayDecision(baselineDecision, fixture, basePolicy);
-    const request = replayRequest(fixture, evaluatorPolicy);
-    const decision = evaluate(request, evaluatorPolicy);
-    const projection = projectReplayDecision(decision, fixture, evaluatorPolicy);
+    const request = replayRequest(
+      fixture,
+      basePolicy,
+      overlayObservations(fixture, evaluatorPolicy)
+    );
+    const decision = evaluate(request, basePolicy);
+    const projection = projectReplayDecision(decision, fixture, basePolicy);
     return { fixture, baselineDecision, baselineProjection, decision, projection };
   });
   const scorer = scoreRouteGoldReadOnly(rows.map(({
@@ -597,6 +625,7 @@ function runRouteGoldReplay(candidate, basePolicy, fixtures) {
   }));
   const replayBody = {
     candidateId: candidate ? candidate.candidateId : null,
+    evaluatorBasePolicyHash: evaluatorPolicy.basePolicyHash,
     evaluatorPolicyHash: evaluatorPolicy.effectivePolicyHash,
     rows: verdictRows.map((row) => ({
       id: row.id,
@@ -610,6 +639,7 @@ function runRouteGoldReplay(candidate, basePolicy, fixtures) {
     rows: verdictRows,
     writeBackAttempts: scorer.writeBackAttempts,
     protectedDigests: scorer.trustedProtectedDigests,
+    evaluatorBasePolicyHash: evaluatorPolicy.basePolicyHash,
     evaluatorPolicyHash: evaluatorPolicy.effectivePolicyHash,
   });
 }

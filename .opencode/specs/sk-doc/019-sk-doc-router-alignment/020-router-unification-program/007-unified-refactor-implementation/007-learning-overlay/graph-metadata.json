@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-07-19T01:52:30.041Z",
+    "last_save_at": "2026-07-19T03:35:43.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9dacac211cf86fae5ac29ee84ea0658efdd2e60ddf0caf13c5045d3536133e3d",
+    "source_fingerprint": "sha256:43c77e9b810c5d9b5599111b5fe31fca9068092dd32560b0946223e9eca1f743",
     "source_doc_hashes": {
       "spec.md": "120275d9d5c8c3b9ee32f08db1ff1e12adbd6bb64714d6a5e2cf2d8f8620c3fa",
-      "plan.md": "ab33078d16d17bbd018139ec122fd7783dd4a404e34d833ecc861bcb4f753581",
-      "tasks.md": "8ca34f7d7836dfd8dc7ca684d11ed4d7601dbda0c92df0b5490fbf726425a29e",
-      "checklist.md": "df16eb8c9dc35a95a6e530e7d7b18e562a4a8ec53844f4b34c3a16382a0a1638",
-      "implementation-summary.md": "5e9d83fc77ca2f218b8e149d25dde751c44de00574b0d99b17f9e35478b5532d"
+      "plan.md": "94703bee38f659dcb366bbad817c554ecb7ab468b4108c196808e4a898eec136",
+      "tasks.md": "59e15b5c1010ed062eaf1e163e7c4809cda134aa88c913dd3d1b11d418027859",
+      "checklist.md": "4bd19c978cb6f61f9ce3a2ec99d5ac0c625b5a656229aa4cf1f2b24ae259ac91",
+      "implementation-summary.md": "26bf97e8e9c9970cce0cec4b771a999a8f9f62090d4f56405a62910210197b75"
     },
     "last_active_child_id": null,
     "last_active_at": null

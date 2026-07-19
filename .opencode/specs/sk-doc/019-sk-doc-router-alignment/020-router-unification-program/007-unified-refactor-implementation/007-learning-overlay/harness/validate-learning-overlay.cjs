@@ -55,6 +55,7 @@ const {
   effectiveTuple,
   ingestCorrectionRecords,
   makeBaseOnlyPolicy,
+  materializeEvaluatorPolicy,
   promoteCandidate,
   rollbackPromotion,
   runRouteGoldReplay,
@@ -341,6 +342,23 @@ function runValidation() {
   }, TypeError);
   const mutableOverlayRejection = 'TypeError';
 
+  const evaluatorPolicy = materializeEvaluatorPolicy(compiled.overlay, basePolicy);
+  const expectedEvaluatorIdentity = computeEffectivePolicyHash({
+    schemaVersion: basePolicy.schemaVersion,
+    activationGeneration: basePolicy.activationGeneration,
+    basePolicyHash: basePolicy.basePolicyHash,
+    overlayHash: compiled.overlay.candidateId,
+  });
+  const mergedGraphBaseHash = computeBasePolicyHash(evaluatorPolicy);
+  assert.strictEqual(
+    Buffer.from(canonicalize(basePolicy)).equals(baseBytesBefore),
+    true
+  );
+  assert.strictEqual(evaluatorPolicy.basePolicyHash, basePolicy.basePolicyHash);
+  assert.strictEqual(evaluatorPolicy.overlayHash, compiled.overlay.candidateId);
+  assert.strictEqual(evaluatorPolicy.effectivePolicyHash, expectedEvaluatorIdentity);
+  assert.notStrictEqual(mergedGraphBaseHash, basePolicy.basePolicyHash);
+
   const firstReplay = runRouteGoldReplay(compiled.overlay, basePolicy, fixtures.routeGold);
   const secondReplay = runRouteGoldReplay(compiled.overlay, basePolicy, fixtures.routeGold);
   assert.strictEqual(firstReplay.allPass, true);
@@ -357,6 +375,15 @@ function runValidation() {
     ...noOpBody,
     candidateId: hashArtifact(DOMAIN_TAGS.CorrectionOverlayV1, noOpBody),
   };
+  const nullOverlayIdentity = computeEffectivePolicyHash({
+    schemaVersion: basePolicy.schemaVersion,
+    activationGeneration: basePolicy.activationGeneration,
+    basePolicyHash: basePolicy.basePolicyHash,
+    overlayHash: null,
+  });
+  assert.strictEqual(materializeEvaluatorPolicy(null, basePolicy), basePolicy);
+  assert.strictEqual(materializeEvaluatorPolicy(noOpCandidate, basePolicy), basePolicy);
+  assert.strictEqual(basePolicy.effectivePolicyHash, nullOverlayIdentity);
   const noOpReplay = runRouteGoldReplay(noOpCandidate, basePolicy, fixtures.routeGold);
   assert.strictEqual(
     canonicalize(noOverlayReplay.rows.map((row) => row.decision)),
@@ -451,6 +478,9 @@ function runValidation() {
   assert.strictEqual(promotion.tuple.effectivePolicyHash, computeEffectivePolicyHash(
     promotion.tuple
   ));
+  assert.strictEqual(firstReplay.evaluatorBasePolicyHash, basePolicy.basePolicyHash);
+  assert.strictEqual(promotion.replay.evaluatorBasePolicyHash, basePolicy.basePolicyHash);
+  assert.strictEqual(promotion.tuple.basePolicyHash, basePolicy.basePolicyHash);
   assert.strictEqual(promotion.activePin.generation, basePolicy.activationGeneration + 1);
   assert.strictEqual(canonicalize(basePolicy), baseBytesBefore.toString('utf8'));
 
@@ -673,6 +703,15 @@ function runValidation() {
       effectivePolicyHash: promotion.tuple.effectivePolicyHash,
       generation: promotion.tuple.activationGeneration,
       reproducible: true,
+      evaluatorBasePreserved: evaluatorPolicy.basePolicyHash === basePolicy.basePolicyHash,
+      mergedGraphBaseHash,
+      mergedGraphWouldRedefineBase: mergedGraphBaseHash !== basePolicy.basePolicyHash,
+      expectedEvaluatorEffectivePolicyHash: expectedEvaluatorIdentity,
+      evaluatorEffectiveMatchesFrozenCombine:
+        evaluatorPolicy.effectivePolicyHash === expectedEvaluatorIdentity,
+      replayPromotionBaseAgreement:
+        firstReplay.evaluatorBasePolicyHash === promotion.tuple.basePolicyHash,
+      baseBytesPreserved: Buffer.from(canonicalize(basePolicy)).equals(baseBytesBefore),
       forgedCandidateRejected: identityRejection,
       declaredHashMismatchRejected: declaredHashMismatchRejection,
     },
@@ -691,7 +730,9 @@ function runValidation() {
       allPass: firstReplay.allPass,
       replayHash: firstReplay.replayHash,
       byteIdenticalRuns: canonicalize(firstReplay) === canonicalize(secondReplay),
+      evaluatorBasePolicyHash: firstReplay.evaluatorBasePolicyHash,
       evaluatorPolicyHash: firstReplay.evaluatorPolicyHash,
+      nullOverlayEffectivePolicyHash: noOverlayReplay.evaluatorPolicyHash,
       baseAndNoOpDecisionsByteIdentical: canonicalize(
         noOverlayReplay.rows.map((row) => row.decision)
       ) === canonicalize(noOpReplay.rows.map((row) => row.decision)),
