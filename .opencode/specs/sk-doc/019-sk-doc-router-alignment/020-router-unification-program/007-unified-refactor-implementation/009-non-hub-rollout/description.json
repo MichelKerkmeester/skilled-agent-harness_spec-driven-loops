@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+  "description": "Coordinate independently verified compiled-policy rollouts for standalone non-hub skills while preserving zero live authority.",
+  "keywords": [
+    "coordinate",
+    "independently",
+    "verified",
+    "compiled-policy",
+    "rollouts",
+    "standalone",
+    "non-hub",
+    "skills",
+    "while",
+    "preserving",
+    "zero",
+    "live",
+    "authority"
+  ],
+  "lastUpdated": "2026-07-19T10:20:40.586Z",
+  "specId": "009",
+  "folderSlug": "non-hub-rollout",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

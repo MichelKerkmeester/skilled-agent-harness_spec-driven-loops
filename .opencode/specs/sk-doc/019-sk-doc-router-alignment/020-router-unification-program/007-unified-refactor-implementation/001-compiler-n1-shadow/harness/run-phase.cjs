@@ -340,7 +340,7 @@ function verifyFailClosed(authoredSources) {
     authoredSources,
     (input) => { input.leaves[0].workflowMode = 'missing-leaf-mode'; },
     'UNRESOLVED_LEAF',
-    /assets\/config_template\.md/,
+    /assets\/config-template\.md/,
   ));
   failures.push(assertCompileFailure(
     authoredSources,
@@ -662,7 +662,7 @@ function verifyProtectedBaseline() {
   Object.entries(baseline.schemaFiles).forEach(([fileName, expected]) => {
     assert.equal(sha256File(path.join(schemaRoot, fileName)), expected, `schema changed: ${fileName}`);
   });
-  const playbook = hashTree(path.join(SKILL_ROOT, 'manual_testing_playbook'));
+  const playbook = hashTree(path.join(SKILL_ROOT, 'manual-testing-playbook'));
   assert.deepEqual(playbook, baseline.manualTestingPlaybook, 'legacy manual-testing gold changed');
   const trustedDigests = Object.entries(TRUSTED_PROTECTED_DIGESTS).map(([fileName, expected]) => {
     const actual = sha256File(path.join(BENCHMARK_ROOT, fileName));

@@ -86,7 +86,7 @@ FAILURE MODES:
 - [x] CHK-020 [P0] All shadow-local acceptance scenarios exercised (REQ-001..008)
   - **Evidence**: `node harness/run-phase.cjs` reports PASS for SC-001 through SC-007 and the standalone document-only replay. An in-process strict write-denial shim also exits 0; per-hub activation is explicitly outside this evidence.
 - [x] CHK-021 [P0] Determinism proven: ≥3× recompile → byte-identical body + identical `effectivePolicyHash` (SC-001)
-  - **Evidence**: Three in-process and two isolated-process compiles produced body SHA-256 `41fb01c03ce8fa4f8a32d2ca5362dcda3e6c6fa7ed80668067d4cee01e4174e2` and effective hash `3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5`; synthetic `z`/`ä` child fingerprints also match under `en_US.UTF-8` and `sv_SE.UTF-8`.
+  - **Evidence**: Three in-process and two isolated-process compiles produced body SHA-256 `25051d39c2d75bdbf5bb0ed5e072aff6221192c3c4b9fe46f7b497e4c8b18fbf` and effective hash `663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f`; synthetic `z`/`ä` child fingerprints also match under `en_US.UTF-8` and `sv_SE.UTF-8`.
 - [x] CHK-022 [P0] Three fail-closed negatives pass: missing mode, unresolved leaf, authority contradiction (SC-003)
   - **Evidence**: The driver asserted the exact error code and element for all three required faults, plus duplicate destination closure, and verified no output file existed after each failure.
 - [x] CHK-023 [P0] Route-gold stays green via the compatibility projector; scorer diff empty (SC-004)
@@ -98,7 +98,7 @@ FAILURE MODES:
 - [x] CHK-026 [P1] Edge cases tested: zero-signal `defer(no-match)`, ambiguous `clarify`, forbidden `reject`, concurrent activation loses on stale token (synthesis §5.2, §9)
   - **Evidence**: Typed fixtures and specific-error assertions cover `defer`, one-turn `clarify`, `reject`, zero rank calls, stale epochs, malformed and authority-bearing manifests, missing schema, complete duplicate identity, recursive advisor omission, and two same-name runtime-discriminated destinations that retain distinct qualified IDs. Receipt idempotency remains explicitly `false`.
 - [x] CHK-027 [P1] Three projections carry the same `effectivePolicyHash` (SC-007); document-only card route reaches `PREPARED_DRAFT`/`DOCUMENT_ONLY_UNATTESTED` (REQ-010)
-  - **Evidence**: All nine checked-in policy/projection/fixture artifacts are regenerated in memory and byte-compared, including the full card body. A re-hashed `publicMode="definitely-wrong"` mutation raises `ARTIFACT_DRIFT`; all projections carry effective hash `3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5`.
+  - **Evidence**: All nine checked-in policy/projection/fixture artifacts are regenerated in memory and byte-compared, including the full card body. A re-hashed `publicMode="definitely-wrong"` mutation raises `ARTIFACT_DRIFT`; all projections carry effective hash `663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f`.
 <!-- /ANCHOR:testing -->
 
 ---

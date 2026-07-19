@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
+  "description": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode",
+  "keywords": [
+    "compile",
+    "verify",
+    "standalone",
+    "system-code-graph",
+    "router",
+    "frozen",
+    "policy",
+    "contract",
+    "scorer",
+    "zero",
+    "live",
+    "authority"
+  ],
+  "lastUpdated": "2026-07-19T12:10:00.000Z",
+  "specId": "002",
+  "folderSlug": "system-code-graph",
+  "level": 2,
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "009-non-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

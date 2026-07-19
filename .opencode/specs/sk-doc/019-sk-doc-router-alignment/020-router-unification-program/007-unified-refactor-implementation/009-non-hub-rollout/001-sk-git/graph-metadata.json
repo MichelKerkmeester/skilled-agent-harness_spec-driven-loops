@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
+        "reason": "Reuses the generic compiler, projection, parity, and activation modules.",
+        "source": "authored",
+        "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git non-hub router rollout",
+      "sk-git compiled policy parity",
+      "sk-git fenced rollback",
+      "sk-git rollout plan",
+      "sk-git target-local harness",
+      "sk-git rollback verification",
+      "sk-git rollout tasks",
+      "sk-git compiled policy task list",
+      "sk-git rollout checklist",
+      "sk-git frozen scorer verification",
+      "sk-git rollback evidence",
+      "sk-git rollout implementation summary"
+    ],
+    "key_topics": [
+      "sk-git",
+      "non-hub",
+      "router",
+      "rollout",
+      "compiled",
+      "policy",
+      "parity",
+      "fenced",
+      "rollback",
+      "plan",
+      "target-local",
+      "harness"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "harness/run-sk-git.cjs",
+      "compiled/sk-git/policy.json",
+      "harness/source-contract.json",
+      "parity/shadow-parity.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "harness/support.cjs",
+      "harness/protected-replay.cjs",
+      "harness/fingerprint.cjs",
+      "activation/fenced-manifest.cjs",
+      "spec.md",
+      "compiled/sk-git/route-gold.typed.json"
+    ],
+    "entities": [
+      {
+        "name": "run-sk-git.cjs",
+        "kind": "file",
+        "path": "harness/run-sk-git.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/sk-git/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "source-contract.json",
+        "kind": "config",
+        "path": "harness/source-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-parity.cjs",
+        "kind": "file",
+        "path": "parity/shadow-parity.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "support.cjs",
+        "kind": "file",
+        "path": "harness/support.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "protected-replay.cjs",
+        "kind": "file",
+        "path": "harness/protected-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fingerprint.cjs",
+        "kind": "file",
+        "path": "harness/fingerprint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fenced-manifest.cjs",
+        "kind": "file",
+        "path": "activation/fenced-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-gold.typed.json",
+        "kind": "config",
+        "path": "compiled/sk-git/route-gold.typed.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Parse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer fixtures, or fenced rollback proof for it",
+    "created_at": "2026-07-19T00:00:00.000Z",
+    "last_save_at": "2026-07-19T10:43:04.382Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:911c9ad0ca1f91fc64cc63b832308e66ee7aac48fc428c3a6ff5b45400a0af9c",
+    "source_doc_hashes": {
+      "spec.md": "bd0eaf865aeb137c920c124e7807bd405c364a1c8b5fd6fed33d947579354f82",
+      "plan.md": "f46bdc080da778050a9f860dffc607f74e186c4201d21843b299b559768eae16",
+      "tasks.md": "b019430713006dd3d22cdd0672a10f20fd3a27805a780c806480bfbed25b9b4a",
+      "checklist.md": "3eddb9303691ee0a91f67fb6db422f92eac6d057e7b706a3ee179ddd59d57248",
+      "implementation-summary.md": "673058d1489bcf95e732f3d2e3f48ca691d23f4046696c04799abc17941e4365"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

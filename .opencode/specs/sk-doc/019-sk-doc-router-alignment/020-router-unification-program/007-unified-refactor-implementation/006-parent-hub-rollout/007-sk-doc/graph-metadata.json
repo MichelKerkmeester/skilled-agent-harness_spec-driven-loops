@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "children_ids": [],
+  "manual": {"depends_on": [], "supersedes": [], "related_to": []},
+  "derived": {
+    "trigger_phrases": ["sk-doc compiled router rollout", "sk-doc ordered documentation bundle", "sk-doc real route gold canary"],
+    "key_topics": ["sk-doc", "compiled router", "ordered bundle", "route gold", "real scorer", "shadow activation"],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md", "harness/build-artifacts.cjs", "harness/validate-canary.cjs", "compiled/policy.json", "compiled/route-gold.typed.json", "activation/acceptance.json"],
+    "entities": [],
+    "causal_summary": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the shared projector and real scorer, and retain legacy authority behind a fenced rollback path.",
+    "created_at": "2026-07-19T00:00:00.000Z",
+    "last_save_at": "2026-07-19T00:00:00.000Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"],
+    "source_fingerprint": "sha256:9e7b8716c82987a19279da05dad7f46bcd75d4ea965271135672f890daaaac0c",
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

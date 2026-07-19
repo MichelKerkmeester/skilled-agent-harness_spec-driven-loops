@@ -86,14 +86,14 @@ The compiler canonical-clones caller input, rejects unknown or unsupported autho
 | Check | Result |
 |-------|--------|
 | Phase 0 dependency | PASS: 11/11 contract harness groups before implementation |
-| Determinism | PASS: 3 in-process and 2 isolated-process compiles; body SHA-256 `41fb01c03ce8fa4f8a32d2ca5362dcda3e6c6fa7ed80668067d4cee01e4174e2`; effective hash `3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5`; `z`/`ä` fixture matches under `en_US.UTF-8` and `sv_SE.UTF-8` |
+| Determinism | PASS: 3 in-process and 2 isolated-process compiles; body SHA-256 `25051d39c2d75bdbf5bb0ed5e072aff6221192c3c4b9fe46f7b497e4c8b18fbf`; effective hash `663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f`; `z`/`ä` fixture matches under `en_US.UTF-8` and `sv_SE.UTF-8` |
 | Degeneracy and no name branch | PASS: one candidate, single selection, empty cross-target/bundle/handoff collections, null overlay, static posture, 7 leaves, 6 selectors, and 3 identity-normalized metamorphic variants covering advisor, policy-card, and every typed-route-gold byte projection |
 | Fail-closed and reference closure | PASS: eight exact typed errors/no-artifact assertions include an unexpected nested path, unsupported overlay, and N=1 bundle; caller-owned detector objects remain unfrozen |
 | Advisor projection | PASS: a nested path/tools object is recursively omitted; two same-name runtime-discriminated modes remain distinct by qualified identity |
 | Scorer and inputs untouched | PASS: 5 baseline files, 9 schemas, and the 28-file playbook tree match; protected router/scorer digests match trusted constants; 5 real-scorer rows pass while extra-resource and fabricated-oracle falsifiers fail |
 | Shadow parity | SHADOW-PARTIAL: the validated checked manifest derives legacy authority; observed effect arrays total zero; one match and three classified mismatches; per-hub activation remains deferred |
 | Rollback | PASS in memory: pre/restored SHA-256 `5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23`; fence advanced to 2; stale epochs, generation/hash CAS mismatch, malformed manifest, and authority-bearing manifest were rejected |
-| One-snapshot projections | PASS: 9 artifacts byte-match in-memory regeneration at effective hash `3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5`; a re-hashed drift mutation raises `ARTIFACT_DRIFT` |
+| One-snapshot projections | PASS: 9 artifacts byte-match in-memory regeneration at effective hash `663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f`; a re-hashed drift mutation raises `ARTIFACT_DRIFT` |
 | Document-only route | PASS: single route emits `PREPARED_DRAFT`; clarify/defer/reject resolve; all terminate `DOCUMENT_ONLY_UNATTESTED` |
 | Static quality | PASS: `node --check` on 14 CommonJS files, comment hygiene clean on all modified code, alignment drift scanned 29 files with 0 findings/errors/warnings/violations |
 | Dependencies and network | PASS: every phase import resolves against Node built-ins, phase-local files, two frozen contract files, or the two digest-pinned protected replay files; dynamic imports 0; no network call |

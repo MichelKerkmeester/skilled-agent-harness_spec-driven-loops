@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 5,
+  "cases": [
+    {
+      "id": "single-prompt-improve",
+      "prompt": "improve prompt for release notes",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedBasis": "signal",
+      "expectedModes": ["prompt-improve"],
+      "gold": {
+        "expectedIntents": ["prompt-improve"],
+        "expectedResources": ["prompt-improve/SKILL.md"]
+      }
+    },
+    {
+      "id": "single-prompt-models",
+      "prompt": "deepseek per-model profile",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedBasis": "signal",
+      "expectedModes": ["prompt-models"],
+      "gold": {
+        "expectedIntents": ["prompt-models"],
+        "expectedResources": ["prompt-models/SKILL.md"]
+      }
+    },
+    {
+      "id": "ordered-bundle-explicit-both",
+      "prompt": "run prompt-improve then prompt-models",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedBasis": "signal",
+      "expectedModes": ["prompt-improve", "prompt-models"],
+      "gold": {
+        "expectedIntents": ["prompt-improve", "prompt-models"],
+        "expectedResources": ["prompt-improve/SKILL.md", "prompt-models/SKILL.md"]
+      }
+    },
+    {
+      "id": "ambiguous-one-clarify",
+      "prompt": "prompt engineering improve prompt small model prompt deepseek",
+      "expectedAction": "clarify",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "zero-signal-default",
+      "prompt": "orchard inventory",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedBasis": "bounded-default",
+      "expectedModes": ["prompt-improve"],
+      "gold": {
+        "expectedIntents": ["prompt-improve"],
+        "expectedResources": ["prompt-improve/SKILL.md"]
+      }
+    },
+    {
+      "id": "dependency-defer",
+      "prompt": "small model prompt",
+      "constraints": ["dependency-failure"],
+      "expectedAction": "defer",
+      "expectedReason": "dependency-failure",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden prompt operation",
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "constraint-forbidden-reject",
+      "prompt": "orchard inventory",
+      "constraints": ["forbidden"],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "trust": "live", "expectedContribution": true },
+    { "id": "stale", "trust": "stale", "expectedContribution": false },
+    { "id": "absent", "trust": "absent", "expectedContribution": false },
+    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
+    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+  ]
+}

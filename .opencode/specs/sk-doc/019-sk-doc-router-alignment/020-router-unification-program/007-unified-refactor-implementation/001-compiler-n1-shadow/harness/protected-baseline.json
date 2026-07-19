@@ -1,19 +1,19 @@
 {
   "files": {
-    ".opencode/skills/mcp-code-mode/SKILL.md": "52e2ed79d31d7968a9bb339deb19f0d3373b67c01eacbe83ae1fe37d8efc9811",
-    ".opencode/skills/mcp-code-mode/leaf-manifest.json": "f2f7b6bb7aca17ac5a3f82403ef81622688e602541c2d61b284e49884a7a9c57",
+    ".opencode/skills/mcp-code-mode/SKILL.md": "4b6b4b389d2e2a7ab3fe05115c3af3b268670d7c6dbc5ccea9c8358806e69f7b",
+    ".opencode/skills/mcp-code-mode/leaf-manifest.json": "1d798d3f475f8381834008b683b881bb7d2dd88ad0bf5835e16120596d005253",
     ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs": "63a3dbbc3f0a1a89f99c561d1764132973a6f427aedb766e9104847d1d4d1a5f",
     ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
     ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas/lib/canonical.cjs": "65afc9696470219dbe1a46b0c4f3059a7d387da2d1160290fb3ed48864d53f83"
   },
   "manualTestingPlaybook": {
     "fileCount": 28,
-    "sha256": "3442cd2ef97f9781393b3018b3e1b89daa13c160466d10fc629aac1f0e428aeb"
+    "sha256": "ef4267f1af649701121e67638f894302333c10372b5d9c3d3ebe984c7bbec29f"
   },
   "schemaFiles": {
     "advisor-projection.v1.schema.json": "eec03815649317fbdf81031acea9473e27629b9641f0e687940fc515d849106c",
     "compiled-policy.v1.schema.json": "856dbe97ea10b58a87840190f804f09d7d6a5d5a4c83a187523fa6d3cc5fadd0",
-    "correction-overlay.v1.schema.json": "4ea6b446cb87d5771c60578fe08910a62b08155545d029d237658ac2c7e74129",
+    "correction-overlay.v1.schema.json": "7bd66ebd4c94b70f2c3f25c775cf5222754f110a3ab3540425a2442c6d07d34e",
     "policy-card.v1.schema.json": "bec9b4ec624afd2b9c2c1581f9bdf92c2f944f3f0e484fd6a86df94669be0ed8",
     "route-decision.v1.schema.json": "6b776b2fbdaf43996511d2d096bcc172d287d5a86609dd6c9dcd4013f481f5a7",
     "route-proof.v1.schema.json": "dc3cfa0e1d43aecc6171ab8386f11eaf0ea3c85deb10a7a06466a5e7e90355d9",

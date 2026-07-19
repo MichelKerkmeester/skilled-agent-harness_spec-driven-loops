@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 5,
+  "cases": [
+    {
+      "id": "opencode-single",
+      "prompt": "delegate to opencode for full plugin runtime",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["cli-opencode"],
+      "legacyExact": true,
+      "gold": {
+        "expectedIntents": ["cli-opencode"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "claude-single",
+      "prompt": "claude code review with extended thinking",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["cli-claude-code"],
+      "legacyExact": true,
+      "gold": {
+        "expectedIntents": ["cli-claude-code"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "codex-single",
+      "prompt": "codex diff review and codex web search",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["cli-codex"],
+      "legacyExact": true,
+      "gold": {
+        "expectedIntents": ["cli-codex"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "explicit-pair-ordered",
+      "prompt": "delegate to codex and delegate to opencode",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["cli-opencode", "cli-codex"],
+      "gold": {
+        "expectedIntents": ["cli-opencode", "cli-codex"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "explicit-triple-ordered",
+      "prompt": "cli-codex, cli-opencode, and cli-claude-code",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["cli-opencode", "cli-claude-code", "cli-codex"],
+      "gold": {
+        "expectedIntents": ["cli-opencode", "cli-claude-code", "cli-codex"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "semantic-tie-clarify",
+      "prompt": "extended thinking with a codex diff review",
+      "expectedAction": "clarify",
+      "gold": {
+        "expectedIntents": ["unknown"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "zero-signal-defer",
+      "prompt": "orchard inventory",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden external executor operation",
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["none"],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "state": "live", "drift": false, "contributes": true },
+    { "id": "stale", "state": "stale", "drift": false, "contributes": false },
+    { "id": "absent", "state": "absent", "drift": false, "contributes": false },
+    { "id": "projection-drift", "state": "live", "drift": true, "contributes": false }
+  ]
+}

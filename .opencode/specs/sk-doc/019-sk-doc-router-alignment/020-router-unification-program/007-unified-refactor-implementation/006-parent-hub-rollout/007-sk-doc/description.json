@@ -1,0 +1,12 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc",
+  "description": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the",
+  "keywords": ["sk-doc", "compiled-router", "parent-hub", "ordered-bundle", "route-gold", "real-scorer", "shadow-activation", "rollback"],
+  "lastUpdated": "2026-07-19T00:00:00.000Z",
+  "specId": "007",
+  "folderSlug": "sk-doc",
+  "parentChain": ["sk-doc", "019-sk-doc-router-alignment", "020-router-unification-program", "007-unified-refactor-implementation", "006-parent-hub-rollout"],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}
