@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-tooling subtree rollup gate (032 phase 008)"
+title: "Tasks: mcp-tooling subtree rollup gate (020 phase 008)"
 description: "Tasks for phase 008 of the mcp-tooling component naming migration: aggregate sibling evidence and prove the whole surface is kebab-clean without new migration work."
 trigger_phrases:
   - "mcp-tooling rollup gate tasks"

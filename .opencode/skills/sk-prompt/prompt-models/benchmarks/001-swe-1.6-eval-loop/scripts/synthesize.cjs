@@ -153,7 +153,7 @@ function writeSynthesis(opts) {
   lines.push('');
   if (best) {
     const meta = best.meta || {};
-    lines.push(`- Apply framework **${meta.framework || 'STAR'}** as the primary template in \`assets/prompt_templates.md\` §2 SWE-1.6.`);
+    lines.push(`- Apply framework **${meta.framework || 'STAR'}** as the primary template in \`assets/prompt-templates.md\` §2 SWE-1.6.`);
     lines.push(`- Set pre-planning density to **${meta.preplanning_density || 'medium'}**.`);
     lines.push(`- Sequential_thinking threshold winning variant used: **${meta.thinking_threshold || '5'}** thoughts.`);
     lines.push(`- Bundle-gate strictness: **${meta.bundle_gate_strictness || 'standard'}**.`);
@@ -173,8 +173,8 @@ function writeSynthesis(opts) {
   lines.push('');
   lines.push('004 reads this file as the BINDING contract. Apply winners to:');
   lines.push('- `.opencode/skills/cli-devin/SKILL.md` (§2 SMART ROUTING + §4 RULES)');
-  lines.push('- `.opencode/skills/cli-devin/assets/prompt_templates.md` (replace winners)');
-  lines.push('- `.opencode/skills/cli-devin/assets/prompt_quality_card.md` (refine CLEAR cutoffs if needed)');
+  lines.push('- `.opencode/skills/cli-devin/assets/prompt-templates.md` (replace winners)');
+  lines.push('- `.opencode/skills/cli-devin/assets/prompt-quality-card.md` (refine CLEAR cutoffs if needed)');
   lines.push('- `.opencode/skills/cli-devin/changelog/v1.0.5.0.md` (new entry)');
   lines.push('');
   lines.push('Strict-validate after each authored doc write. No 4-runtime mirror (skill, not agent per ADR-001 in 004).');

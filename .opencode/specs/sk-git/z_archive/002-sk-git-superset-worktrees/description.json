@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-git/z_archive/002-sk-git-superset-worktrees",
   "description": "The sk-git skill's worktree workflow is designed for manual, single-user operation",
   "keywords": [
@@ -11,7 +12,7 @@
     "single-user",
     "operation"
   ],
-  "lastUpdated": "2026-07-15T04:18:02.602Z",
+  "lastUpdated": "2026-07-18T03:48:55.174Z",
   "specId": "002",
   "folderSlug": "sk-git-superset-worktrees",
   "parentChain": [
@@ -19,6 +20,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

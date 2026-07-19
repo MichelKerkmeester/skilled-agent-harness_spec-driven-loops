@@ -1,9 +1,9 @@
 ---
-title: "Tasks: sk-git skill gate (032 phase 008/012/006)"
+title: "Tasks: sk-git skill gate (020 phase 008/012/006)"
 description: "Read-only tasks for the final sk-git sibling rollup and whole-surface naming gate."
 trigger_phrases:
   - "sk-git skill gate tasks"
-  - "032 sk-git rollup tasks"
+  - "020 sk-git rollup tasks"
   - "whole surface naming gate tasks"
 importance_tier: "important"
 contextType: "planning"
@@ -56,7 +56,7 @@ _memory:
 
 - [ ] T004 Reconcile the nine reference, three asset, 49 manual-playbook, and two benchmark-profile dispositions with sibling hashes.
 - [ ] T005 Verify the changelog/version evidence against the phase 005 contract.
-- [ ] T006 Run the all-path naming scan over .opencode/skills/sk-git and classify every underscore name by the 032 exemption set.
+- [ ] T006 Run the all-path naming scan over .opencode/skills/sk-git and classify every underscore name by the 020 exemption set.
 - [ ] T007 Run the active-pointer resolver and check for source/target duplicates.
 - [ ] T008 Record failures with the owning sibling phase; do not repair them in the gate.
 <!-- /ANCHOR:phase-2 -->

@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Changelog verification (032 phase 011)"
-description: "Blocking SOL verification contract for Changelog verification in the 032 sk-design naming subtree."
+title: "Checklist: Changelog verification (020 phase 011)"
+description: "Blocking SOL verification contract for Changelog verification in the 020 sk-design naming subtree."
 trigger_phrases:
   - "changelog-verify verification"
   - "sk-design changelog verification checklist"
-  - "032 changelog-verify gate"
+  - "020 changelog-verify gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Changelog verification (032 phase 011)
+# Checklist: Changelog verification (020 phase 011)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -52,7 +52,7 @@ This checklist is the blocking SOL verifier contract for phase 011. Every item i
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] A changelog entry explicitly identifies packet 032 and the sk-design subtree
+- [ ] CHK-001 [P0] A changelog entry explicitly identifies packet 020 and the sk-design subtree
 - [ ] CHK-002 [P0] The selected entry's version is greater than v1.4.3.0 and agrees across filename, heading, and body
 - [ ] CHK-003 [P0] The entry covers phases 001–010 and records the Python/package/tool-mandated exemption boundary
 <!-- /ANCHOR:testing -->

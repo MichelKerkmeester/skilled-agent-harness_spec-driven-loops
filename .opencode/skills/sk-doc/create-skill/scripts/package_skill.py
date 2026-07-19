@@ -44,6 +44,10 @@ try:
 except Exception:
     _description_budget = None
 
+_SHARED_SCRIPTS = Path(__file__).resolve().parents[2] / 'shared' / 'scripts'
+sys.path.insert(0, str(_SHARED_SCRIPTS))
+from naming_root_resolver import find_unsupported_root_dirs  # type: ignore
+
 # ───────────────────────────────────────────────────────────────
 # 1. VALIDATION CONSTANTS (aligned with skill_creation.md)
 # ───────────────────────────────────────────────────────────────
@@ -124,9 +128,31 @@ VERSIONED_DOC_SUBTREES = [
     'changelog',
 ]
 
-# Subtrees whose .md files are reference/asset docs requiring the 5-field block
-# and snake_case names (README.md is a distinct doc class and is exempt).
+# Subtrees whose .md files are reference/asset docs requiring the 5-field block.
+# README.md is a distinct doc class and is exempt.
 RESOURCE_DOC_SUBTREES = ['references', 'assets']
+
+# Exact names and subtree classes owned by interpreters, tools, or generated
+# output. Their spellings are contracts rather than authored filesystem slugs.
+TOOL_MANDATED_FILENAMES = {
+    '.utcp_config.json',
+    'README.md',
+    'SKILL.md',
+    'action.yaml',
+    'action.yml',
+    'conftest.py',
+    'package-lock.json',
+}
+EXEMPT_SUBTREES = {
+    '__mocks__',
+    '__pycache__',
+    '__snapshots__',
+    'changelog',
+    'dist',
+    'node_modules',
+    'z_archive',
+}
+KEBAB_CASE_SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 
 # Smart-router resilience markers expected in SKILL.md Section 2 (SMART ROUTING)
 # per skill_smart_router.md. A skill carrying the canonical pseudocode block
@@ -143,7 +169,7 @@ VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
 # Findings promoted from warning -> error under --strict. These are the create-skill
 # contract requirements (description budget, RULES subsections, resource-doc frontmatter,
 # smart-router markers, placeholder/TODO completeness). Recommended-section, file-type,
-# and snake_case-naming findings stay advisory.
+# and generated-path naming findings stay advisory outside strict mode.
 STRICT_PROMOTED_MARKERS = [
     "exceeds soft target",            # description budget (validate_frontmatter)
     "contains TODO placeholder",      # incomplete description
@@ -155,6 +181,7 @@ STRICT_PROMOTED_MARKERS = [
     "missing smart-router marker",    # SMART ROUTING resilience markers
     "SMART ROUTING must be its own H2 section",  # non-standalone/merged routing heading
     "Placeholder file should be removed",  # example_*/placeholder_*/sample_* files
+    "must use kebab-case",           # generated package path contract
 ]
 
 
@@ -288,7 +315,7 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
         if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
             return False, (
                 f"version '{version_value}' must be 4-part X.Y.Z.W "
-                f"(see references/frontmatter_versioning.md)"
+                f"(see references/frontmatter-versioning.md)"
             ), warnings, parsed
 
     return True, "Frontmatter valid", warnings, parsed
@@ -433,27 +460,13 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
                 warnings.append(f"Unexpected file type in scripts/: {file.name} (expected: {', '.join(VALID_SCRIPT_EXTENSIONS)}, README.md)")
 
     # References: recurse into domain subfolders (legacy code scanned top level
-    # only). README.md is a distinct doc class and is exempt from snake_case.
+    # only). Generated path naming is checked separately across the whole tree.
     if refs_dir.exists():
         for file in refs_dir.rglob('*'):
             if file.is_file() and file.name != 'README.md':
                 rel = file.relative_to(skill_path)
                 if file.suffix not in VALID_REFERENCE_EXTENSIONS:
                     warnings.append(f"Unexpected file type in references/: {rel} (expected: .md)")
-                # snake_case naming per skill_reference_template.md
-                elif not re.match(r'^[a-z0-9_]+\.md$', file.name):
-                    warnings.append(f"Reference file '{rel}' should use snake_case naming (no hyphens/camelCase/PascalCase)")
-
-    # Assets: recurse into category subfolders. README.md exempt.
-    if assets_dir.exists():
-        for file in assets_dir.rglob('*'):
-            if file.is_file() and file.name != 'README.md':
-                # snake_case naming per skill_asset_template.md; strip ALL extensions so
-                # multi-extension templates like prompt_pack_round.md.tmpl are judged on
-                # their base name, not the intermediate ".md".
-                name_without_ext = file.name.split('.')[0]
-                if not re.match(r'^[a-z0-9_]+$', name_without_ext):
-                    warnings.append(f"Asset file '{file.relative_to(skill_path)}' should use snake_case naming (no hyphens/camelCase/PascalCase)")
 
     placeholder_patterns = ['example_*', 'placeholder_*', 'sample_*']
     for pattern in placeholder_patterns:
@@ -463,6 +476,56 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
                     warnings.append(f"Placeholder file should be removed or renamed: {file}")
 
     return True, "Resources valid", warnings
+
+
+def _is_python_package_directory(path: Path) -> bool:
+    """Return whether a directory is an importable Python package."""
+    return path.is_dir() and (path / '__init__.py').is_file()
+
+
+def _is_exempt_package_path(path: Path, relative_path: Path) -> bool:
+    """Return whether a package path keeps a tool- or interpreter-owned name."""
+    if any(part.startswith('.') for part in relative_path.parts):
+        return True
+    if any(part in EXEMPT_SUBTREES for part in relative_path.parts):
+        return True
+    if path.is_dir():
+        return _is_python_package_directory(path)
+    if path.name in TOOL_MANDATED_FILENAMES:
+        return True
+    if path.suffix == '.py' or path.name.endswith('.tsbuildinfo'):
+        return True
+    return False
+
+
+def validate_generated_paths(skill_path: Path) -> Tuple[bool, str, List[str]]:
+    """Check package-relative names against the kebab-case output contract.
+
+    Args:
+        skill_path: Path to the skill directory.
+
+    Returns:
+        Tuple of (is_valid, message, warnings). Findings remain warnings for
+        debt-tolerant reads and are promoted by strict validation and packaging.
+    """
+    warnings = []
+
+    for path in sorted(skill_path.rglob('*')):
+        relative_path = path.relative_to(skill_path)
+        if _is_exempt_package_path(path, relative_path):
+            continue
+
+        slug = path.name if path.is_dir() else path.name.split('.')[0]
+        if KEBAB_CASE_SLUG_RE.fullmatch(slug):
+            continue
+
+        path_kind = 'directory' if path.is_dir() else 'file'
+        warnings.append(
+            f"Generated package {path_kind} '{relative_path}' must use kebab-case "
+            "(lowercase letters, digits, and hyphens)"
+        )
+
+    return True, "Generated package paths checked", warnings
 
 
 def _extract_frontmatter_block(content: str) -> Optional[str]:
@@ -671,6 +734,10 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     all_warnings = []
     skill_md = skill_path / 'SKILL.md'
 
+    unsupported_roots = find_unsupported_root_dirs(skill_path)
+    if unsupported_roots:
+        return False, f"Unsupported catalog/playbook root: {unsupported_roots[0]}", all_warnings
+
     if not skill_md.exists():
         return False, "SKILL.md not found", all_warnings
 
@@ -710,6 +777,11 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
         return False, message, all_warnings
 
     valid, message, warnings = validate_resources(skill_path)
+    all_warnings.extend(warnings)
+    if not valid:
+        return False, message, all_warnings
+
+    valid, message, warnings = validate_generated_paths(skill_path)
     all_warnings.extend(warnings)
     if not valid:
         return False, message, all_warnings
@@ -776,7 +848,7 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
         return None
 
     print("🔍 Validating skill against creation standards...")
-    valid, message, warnings = validate_skill(skill_path)
+    valid, message, warnings = validate_skill(skill_path, strict=True)
 
     if not valid:
         print(f"❌ Validation failed: {message}")

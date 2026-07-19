@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/011-skill-advisor-cli/002-hardening-and-tests",
+  "specFolder": "system-skill-advisor/z_archive/011-skill-advisor-cli/002-hardening-and-tests",
   "description": "The reconcile verdict depends on scorer parity staying true, the orphan-launcher incident class has no regression fixture, and rebuild/scan mutation",
   "keywords": [
     "reconcile",
@@ -19,11 +19,12 @@
     "scan",
     "mutation"
   ],
-  "lastUpdated": "2026-07-07T14:23:32.134Z",
+  "lastUpdated": "2026-07-18T03:48:57.280Z",
   "specId": "002",
   "folderSlug": "hardening-and-tests",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "011-skill-advisor-cli"
   ],
   "memorySequence": 0,

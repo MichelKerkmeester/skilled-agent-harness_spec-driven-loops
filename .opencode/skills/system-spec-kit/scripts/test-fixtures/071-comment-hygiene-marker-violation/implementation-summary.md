@@ -10,7 +10,7 @@ contextType: "general"
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -83,5 +83,5 @@ The fixture is verified by running the isolated comment hygiene harness category
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->

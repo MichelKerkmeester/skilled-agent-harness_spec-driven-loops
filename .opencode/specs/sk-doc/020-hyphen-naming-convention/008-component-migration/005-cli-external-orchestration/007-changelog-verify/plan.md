@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration changelog and version verification (032 phase 005.007)"
+title: "Implementation Plan: cli-external-orchestration changelog and version verification (020 phase 005.007)"
 description: "Verification plan for phase 007: inspect four release histories, compare new rename entries with child evidence and active metadata, preserve historical changelogs, and issue a pass/block handoff without changing the skill surface."
 trigger_phrases:
   - "cli-external changelog verification plan"

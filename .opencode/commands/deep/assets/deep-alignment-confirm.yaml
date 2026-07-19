@@ -1,0 +1,447 @@
+# ─────────────────────────────────────────────────────────────────
+# DEEP ALIGNMENT: STRUCTURED CONFORMANCE-AUDIT LOOP (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Deep Alignment Loop Manager
+purpose: Structured conformance audit with user approval before the iteration loop starts
+action: Run deep-alignment loop with user confirmation at the init checkpoint
+operating_mode:
+  workflow: iterative_loop
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: multi_gate
+  tracking: progressive_alignment_state
+  validation: convergence_detection
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING PRINCIPLES
+# ─────────────────────────────────────────────────────────────────
+operating_principles:
+  core: "Fresh context per iteration + externalized state = no context degradation"
+  approach: "Resolve lanes and discover corpora, show scope for approval, then dispatch focused alignment agents per lane slice to convergence"
+  mandate: "Never hold findings in memory; write everything to files, via Bash only -- this mode has no Write/Edit tool anywhere in its surface. Pause for user at the init gate. Audited artifacts are READ-ONLY."
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (from setup phase)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  alignment_target: "[ALIGNMENT_TARGET] - Human-readable label for what this run audits (e.g. a skill hub, a docs tree). REQUIRED."
+  lanes: "[LANES] - Array of {authority, artifactClass, scope} tuples, already resolved by the command layer before this workflow loads (either parsed from --lane-config via scripts/scoping.cjs, or bound from the operator's structured scoping answers). REQUIRED, non-empty."
+  lane_config_path: "[LANE_CONFIG_PATH] - Optional path to the --lane-config JSON file that produced `lanes`, kept for provenance in deep-alignment-config.json. Optional."
+  spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
+  session_id: "[SESSION_ID] - Optional caller-supplied session id. Default: timestamp."
+  max_iterations: 10
+  coverage_threshold: 1.0
+  stability_window: 2
+  batch_size: 5
+  # This mode always dispatches the native @deep-alignment agent on a fixed model;
+  # it resolves no external executor and honors only `kind` (native) and
+  # `timeout_seconds`. `model` / `reasoning_effort` / `service_tier` /
+  # `sandbox_mode` are reserved placeholders the workflow never reads -- the
+  # command surface must not advertise them as configurable until an
+  # executor-resolution branch actually exists (contract must match dispatch).
+  executor:
+    kind: native
+    model: null
+    reasoning_effort: null
+    service_tier: null
+    sandbox_mode: null
+    timeout_seconds: 900
+
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before phase_init"
+  purpose: "Load prior alignment context for the target and buffer it until config.json exists"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "{alignment_target}", mode: "focused", intent: "understand", includeContent: true }
+  when_to_skip: ["User says 'skip context' or 'fresh start'"]
+  behavior:
+    if_context_found: "Store full results as prior_context plus a concise prior_context_summary; show in gate_init_approval."
+    if_no_context: "Set prior_context and prior_context_summary to 'None' and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# SKILL REFERENCE
+# ─────────────────────────────────────────────────────────────────
+skill_reference:
+  skill: system-deep-loop
+  skill_md: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md
+  references:
+    scoping_protocol: .opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md
+    discover_contract: .opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md
+    lane_config_schema: .opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md
+    state_machine_wiring: .opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md
+  templates:
+    config: .opencode/skills/system-deep-loop/deep-alignment/assets/deep-alignment-config-template.json
+
+# ─────────────────────────────────────────────────────────────────
+# AGENT CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_config:
+  agent: deep-alignment
+  agent_file: ".opencode/agents/deep-alignment.md"
+  # Runtime-agnostic: resolve agent from active runtime directory (see AGENTS.md). Default shown is OpenCode runtime.
+  mode: subagent
+  model: opus
+  leaf_only: true
+  tools: [Read, Grep, Glob, Bash]
+  # No Write/Edit -- mode-registry.json's toolSurface for "alignment" forbids both;
+  # every state write this agent makes is Bash-mediated (heredoc/append), never tool-mediated.
+  mcp_servers: [mk-spec-memory]
+  tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
+
+# ─────────────────────────────────────────────────────────────────
+# STATE FILE PATHS
+# ─────────────────────────────────────────────────────────────────
+state_paths:
+  packet_dir: "{artifact_dir}"
+  local_packet_dir: "{spec_folder}/alignment"
+  config: "{artifact_dir}/deep-alignment-config.json"
+  corpus: "{artifact_dir}/deep-alignment-corpus.json"
+  state_log: "{artifact_dir}/deep-alignment-state.jsonl"
+  findings_registry: "{artifact_dir}/deep-alignment-findings-registry.json"
+  alignment_output: "{artifact_dir}/alignment-report.md"
+  lock_file: "{artifact_dir}/.deep-alignment.lock"
+  prompt_dir: "{artifact_dir}/prompts"
+  iteration_dir: "{artifact_dir}/iterations"
+  iteration_pattern: "{artifact_dir}/iterations/iteration-{NNN}.md"
+  delta_dir: "{artifact_dir}/deltas"
+  delta_pattern: "{artifact_dir}/deltas/iter-{NNN}.jsonl"
+  dispatch_receipts_dir: "{artifact_dir}/dispatch-receipts"
+  archive_root: "{artifact_archive_root}"
+  # NOTE: this mode has no strategy.md and no pause-sentinel file
+  # (references/state-machine-wiring.md §3) -- do not add either.
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+
+  step_resolve_artifact_root:
+    description: "Resolve artifact directory from spec_folder"
+    command: "node -e \"const { resolveArtifactRoot } = require('./.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'alignment')));\""
+    outputs:
+      - artifact_root_dir: "Resolved local alignment owner directory"
+      - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
+      - artifact_dir: "Resolved alignment packet directory for this target"
+      - artifact_archive_root: "Resolved local alignment archive directory for this target"
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 1: INITIALIZATION (INIT + SCOPE + DISCOVER states)
+  # ═══════════════════════════════════════════════════════════════
+  phase_init:
+    purpose: Create all state files, resolve lanes, and discover each lane's corpus
+    steps:
+
+      step_preflight_contract:
+        action: "Validate required setup bindings before any file writes"
+        verify:
+          - required_values_present: [alignment_target, lanes, spec_folder, max_iterations, coverage_threshold, stability_window, batch_size]
+          - lanes_non_empty: "FAIL if lanes resolves to an empty array -- SKILL.md ALWAYS #1: resolve lanes before discovering artifacts, never guess a scope"
+          - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
+        on_fail: "Halt with STATUS=FAIL and report the missing binding or empty lane list"
+
+      step_create_directories:
+        action: "Create spec folder and canonical alignment packet directories if they don't exist"
+        command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir} {state_paths.dispatch_receipts_dir}"
+
+      step_acquire_lock:
+        action: "Acquire the single-writer advisory lock before session classification"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+        on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, stop and present recovery choices -- another deep-alignment run already holds this packet."
+        on_workflow_exit:
+          action: "Release the lock as the final step of any workflow exit path (success or failure)"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent -- safe to invoke when already released"
+
+      step_classify_session:
+        action: "Classify the session before writing files"
+        inspect:
+          - "{state_paths.config}"
+          - "{state_paths.state_log}"
+          - "{state_paths.findings_registry}"
+        classify:
+          fresh: "None of the three state artifacts exist"
+          resume: "Config and JSONL both exist and config.mode == 'alignment' and agree on lanes/spec folder"
+          completed-session: "Resume artifacts exist and config.status == 'complete'"
+          invalid-state: "Any partial, missing, or contradictory combination"
+        outputs:
+          - session_state: "fresh | resume | completed-session | invalid-state"
+        on_resume:
+          ask: "Existing alignment session is consistent. Resume where it left off, or restart (archive the current alignment packet and start a fresh session)?"
+          options: [resume, restart, cancel]
+          on_resume_choice:
+            set: { lineage_mode: "resume", parent_session_id: "{session_id}" }
+            append_jsonl: '{"type":"event","event":"resumed","mode":"alignment","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","timestamp":"{ISO_8601_NOW}"}'
+            skip_to: phase_loop
+          on_restart_choice:
+            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+            set: { lineage_mode: "restart", parent_session_id: "{prior_session_id}", generation: "{prior_generation + 1}" }
+            append_jsonl: '{"type":"event","event":"restarted","mode":"alignment","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
+            skip_to: step_resolve_lanes
+          on_cancel_choice:
+            halt: true
+            message: "Alignment session preserved. Manually archive or edit alignment/ before re-running."
+        on_completed_session:
+          log: "Prior session already completed. Either archive the completed alignment/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
+          skip_to: phase_synthesis
+        on_invalid_state:
+          halt: true
+          message: "Existing deep-alignment state in alignment/ is incomplete or contradictory. Repair or archive the invalid alignment packet before continuing."
+        on_fresh:
+          action: "Proceed with a new session"
+          set: { lineage_mode: "new" }
+
+      step_resolve_lanes:
+        action: "Resolve lanes for this run (SCOPE state)"
+        note: "If lane_config_path is bound, parse and validate it here. Otherwise the operator's structured three-axis scoping answers (authority x artifactClass x scope), already collected by the command layer before this workflow loaded, are the source -- this step re-validates and freezes them; it never invents or infers a lane."
+        branch_on: "lane_config_path"
+        if_present:
+          action: "Parse and validate the bound --lane-config file"
+          command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config {lane_config_path} --json"
+          on_fail: "Halt with STATUS=FAIL and report the lane-config validation error verbatim (exit code 3 = input validation)"
+          bind: { resolved_lanes: "lanes array from the scoping.cjs --json output" }
+        if_absent:
+          action: "Freeze the lanes already resolved from the operator's structured scoping answers"
+          note: "The structured-answer path resolved lanes via scripts/scoping.cjs resolveLanesFromSelections() before this workflow loaded; there is no config file to re-parse, so bind resolved_lanes directly to the pre-bound `lanes`. Without this bind resolved_lanes is undefined on the no-config path, yet step_create_config, step_create_state_log, and step_discover_lanes all consume {resolved_lanes}."
+          bind: { resolved_lanes: "{lanes}" }
+        outputs:
+          - resolved_lanes: "Array of {authority, artifactClass, scope} tuples, identical in shape regardless of which path resolved them"
+
+      step_resolve_session_id:
+        action: "Resolve init session id from caller when supplied, else preserve timestamp fallback"
+        branch_on: "session_id"
+        if_present: { bind: { session_id_init: "{session_id}" } }
+        if_absent: { bind: { session_id_init: "{ISO_8601_NOW}" } }
+
+      step_create_config:
+        action: "Create deep-alignment-config.json from template with alignment-specific fields"
+        template: .opencode/skills/system-deep-loop/deep-alignment/assets/deep-alignment-config-template.json
+        populate:
+          alignmentTarget: "{alignment_target}"
+          sessionId: "{session_id_init}"
+          parentSessionId: null
+          lineageMode: "new"
+          generation: 1
+          createdAt: "{ISO_8601_NOW}"
+          maxIterations: "{max_iterations}"
+          convergence.coverageThreshold: "{coverage_threshold}"
+          convergence.stabilityWindow: "{stability_window}"
+          convergence.combination: "AND"
+          executionMode: "confirm"
+          executor: "{executor}"
+          mode: "alignment"
+          lanes: "{resolved_lanes}"
+          batchSize: "{batch_size}"
+          status: "initialized"
+        output: "{state_paths.config}"
+
+      step_create_state_log:
+        action: "Initialize JSONL state log with a config record"
+        content: '{"type":"config","mode":"alignment","alignmentTarget":"{alignment_target}","lanes":{resolved_lanes_json},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","maxIterations":{max_iterations},"coverageThreshold":{coverage_threshold},"stabilityWindow":{stability_window},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        output: "{state_paths.state_log}"
+
+      step_discover_lanes:
+        action: "Run each lane's adapter discover(scope) and assemble the corpus (DISCOVER state)"
+        for_each: "lane in resolved_lanes"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{lane.adapter}.cjs discover {lane.scope_cli_args}"
+        note: |
+          Every adapter returns the same `{artifacts, nodes}` shape (discover-contract.md §4)
+          regardless of authority -- the loop never branches on which authority produced it.
+        outputs:
+          - lane_artifacts: "artifacts array from this lane's discover() call"
+          - lane_nodes: "nodes array from this lane's discover() call, shaped for upsert.cjs"
+        on_empty: "An empty artifacts array is not an error -- the lane is recorded with zero artifacts and is NOT_APPLICABLE downstream (discover-contract.md §5)."
+
+      step_write_corpus:
+        action: "Aggregate all per-lane discover() results into deep-alignment-corpus.json"
+        content: '{"lanes":[{"laneId":"<authority>::<artifactClass>::<scope-summary>","authority":"<lane.authority>","artifactClass":"<lane.artifactClass>","adapter":"<lane.adapter>","scope":"<lane.scope>","artifacts":"<lane_artifacts>"}, ...]}'
+        output: "{state_paths.corpus}"
+
+      step_seed_coverage_graph:
+        action: "Seed the coverage graph with every discovered lane's FILE nodes before the first convergence check"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id_init}\" --seed-source \"deep-alignment-discover\" --seed-confidence \"1.0\" --nodes '{all_lane_nodes_json}'"
+        note: "loop-type is 'review' here only to reuse upsert.cjs's FILE-node seeding path (convergence.cjs's own loopType enum does not accept 'alignment' -- see references/state-machine-wiring.md §5). This run's actual convergence decision always comes from check-convergence.cjs, never convergence.cjs."
+        on_warning:
+          log: "Coverage graph seed inserted zero nodes (every lane discovered zero artifacts); continuing with an empty graph."
+          proceed: true
+
+      step_seed_findings_registry:
+        action: "Seed the reducer-owned findings registry before the approval gate and first LEAF dispatch"
+        note: |
+          The LEAF's input gate expects deep-alignment-findings-registry.json to exist,
+          and session classification inspects it. Running the reducer over the just-written
+          config/corpus and the still-iteration-free state log produces the registry with
+          every lane unchecked -- a truthful "nothing audited yet" baseline. Because the
+          reducer gates on the DISCOVERED corpus, a non-empty corpus reduces to
+          overallVerdict FAIL (incompleteCoverage), never a clean PASS, so a failed or
+          empty first LEAF pass can no longer terminate the audit as a false PASS.
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
+        outputs:
+          - registry_seeded: "deep-alignment-findings-registry.json exists with zero checked artifacts before dispatch"
+
+      # ─── APPROVAL GATE: Post-Init ───
+      gate_init_approval:
+        type: approval_gate
+        purpose: "Show resolved lanes, discovered corpus size, and convergence settings. Get approval to start the loop."
+        present: |
+          ## Alignment Initialization Complete
+
+          **Target**: {alignment_target}
+          **Lanes resolved**: {lane_count}
+          {lane_summary_lines}
+          **Total artifacts discovered**: {total_artifact_count}
+          **Max Iterations**: {max_iterations}
+          **Coverage Threshold**: {coverage_threshold} (100% = every discovered artifact checked at least once)
+          **Stability Window**: {stability_window} consecutive zero-new-findings iterations
+          **Known Context Summary**: {prior_context_summary}
+
+          **State files located in**: {state_paths.packet_dir}/
+
+          This loop is READ-ONLY by default -- it will never modify an audited artifact.
+          Remediation, if ever needed, is a separate, explicitly opted-in follow-up run.
+
+          Options:
+          A) Start alignment loop
+          B) Adjust lanes or scope
+          C) Cancel
+        wait_for: "User response"
+        on_A: { set: { current_iteration: 1, stuck_count: 0 }, proceed_to: phase_loop }
+        on_B: { action: "Apply user adjustments to lanes and re-run step_resolve_lanes / step_discover_lanes / step_write_corpus", return_to: gate_init_approval }
+        on_C: { action: "Cancel workflow", status: "CANCELLED" }
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 2: ITERATION LOOP (ITERATE + CONVERGE states)
+  # ═══════════════════════════════════════════════════════════════
+  phase_loop:
+    purpose: Dispatch alignment agent iterations until the coverage-AND-stability gate is satisfied
+    repeat: true
+    max_repeats: "{max_iterations}"
+    steps:
+
+      step_read_state:
+        action: "Read current state from JSONL, config, corpus, and the reducer's registry"
+        read:
+          - "{state_paths.state_log}"
+          - "{state_paths.config}"
+          - "{state_paths.corpus}"
+          - "{state_paths.findings_registry}"
+        extract:
+          - iteration_count: "Count lines where type === 'iteration'"
+          - current_iteration: "iteration_count + 1"
+          - session_id: "Extract sessionId from deep-alignment-config.json"
+          - generation: "Extract generation from deep-alignment-config.json, else 1"
+          - lane_summaries: "Per-lane {laneId, artifactsChecked, verdict} from the findings registry, else empty"
+
+      step_resolve_next_slice:
+        action: "Resolve the next lane + artifact slice to check this iteration"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs --spec-folder {spec_folder} --batch-size {batch_size} --json"
+        outputs:
+          - slice_done: "Boolean true when every lane's corpus is fully checked"
+          - slice_lane_id: "laneId of the resolved slice, when slice_done is false"
+          - slice_authority: "authority of the resolved slice"
+          - slice_artifact_class: "artifactClass of the resolved slice"
+          - slice_adapter: "adapter module of the resolved slice (adapters/<adapter>.cjs); defaults to the authority's own module"
+          - slice_scope: "scope of the resolved slice"
+          - slice_artifacts: "artifactsSlice array to hand the dispatched agent"
+          - slice_remaining: "remainingAfterThisSlice count"
+
+      step_dispatch_alignment_iteration:
+        action: "Dispatch a fresh deep-alignment LEAF agent for exactly one lane-slice iteration"
+        skip_when: "slice_done == true"
+        dispatch:
+          agent: deep-alignment
+          model: opus
+          context: |
+            Execute ONE deep-alignment iteration with these parameters:
+              specFolder: {spec_folder}
+              alignmentPacketRoot: {state_paths.packet_dir}
+              laneId: {slice_lane_id}
+              authority: {slice_authority}
+              adapter: {slice_adapter}
+              artifactClass: {slice_artifact_class}
+              scope: {slice_scope}
+              artifactsSlice: {slice_artifacts}
+              maxIterations: {max_iterations}
+              coverageThreshold: {coverage_threshold}
+              stabilityWindow: {stability_window}
+              mode: alignment
+              sessionId: {session_id}
+              generation: {generation}
+              lineageMode: {lineage_mode}
+            Check this slice's artifacts against the {slice_authority} authority's own
+            standard source. Re-probe every live-drift claim before asserting it
+            (Invariant 1). Suppress any finding matching {slice_authority}'s known-deviation
+            list (Invariant 2). Write the iteration narrative, append exactly one JSONL
+            iteration record, and write the delta file -- all via Bash; you have no
+            Write or Edit tool. Never modify an audited artifact.
+        wait_for_completion: true
+        outputs:
+          - iteration_status: "complete | timeout | error | stuck | insight | thought, from the dispatched agent's completion report"
+
+      step_check_convergence:
+        action: "Evaluate the coverage-AND-stability convergence gate (CONVERGE state)"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs --spec-folder {spec_folder} --max-iterations {max_iterations} --coverage-threshold {coverage_threshold} --stability-window {stability_window} --json"
+        append_jsonl: '{"type":"event","event":"convergence_check","mode":"alignment","run":{current_iteration},"decision":"{convergence_decision}","coverage":{convergence_coverage_json},"stability":{convergence_stability_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+        outputs:
+          - convergence_decision: "CONVERGED | CONTINUE | STOP_MAX_ITERATIONS | NOTHING_TO_CONVERGE"
+          - convergence_reason: "Human-readable reason string"
+          - convergence_coverage_json: "coverage object ({ratio, checked, discovered, threshold, met}) or null"
+          - convergence_stability_json: "stability object ({stable, sampleSize, reason, window}) or null"
+          - convergence_overall_verdict: "overallVerdict from the reducer's registry (PASS | CONDITIONAL | FAIL)"
+
+      step_handle_convergence:
+        action: "Act on the convergence decision"
+        if_converged: { proceed_to: phase_synthesis }
+        if_stop_max_iterations: { log: "Max iterations ({max_iterations}) reached without full convergence; proceeding to synthesis with current coverage/stability as recorded evidence.", proceed_to: phase_synthesis }
+        if_nothing_to_converge: { log: "Zero applicable lanes -- nothing to converge. Proceeding to synthesis.", proceed_to: phase_synthesis }
+        if_continue: { set: { current_iteration: "{current_iteration + 1}" }, repeat: phase_loop }
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 3: SYNTHESIS (REPORT state; REMEDIATE only on separate opt-in)
+  # ═══════════════════════════════════════════════════════════════
+  phase_synthesis:
+    purpose: Reduce all lane findings into one alignment-report.md and release the lock
+    steps:
+
+      step_run_reducer:
+        action: "Reduce JSONL + deltas into the findings registry and the per-lane alignment report"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
+        outputs:
+          - overall_verdict: "PASS | CONDITIONAL | FAIL, worst-lane rollup (never averaged)"
+          - lane_count: "Total resolved lanes"
+          - findings_by_severity: "{P0, P1, P2} aggregate counts"
+          - corruption_count: "Count of malformed JSONL lines encountered, else 0"
+
+      step_mark_config_complete:
+        action: "Mark the run's status complete in config.json now that synthesis has run"
+
+      step_release_lock:
+        action: "Release the single-writer lock as the final step of this workflow"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+
+      # ─── APPROVAL GATE: Final Presentation ───
+      gate_synthesis_review:
+        type: approval_gate
+        purpose: "Show the final per-lane rollup before closing out."
+        present: |
+          ## Deep Alignment Run Complete
+
+          **Target**: {alignment_target}
+          **Lanes**: {lane_count}
+          **Overall verdict**: {overall_verdict}
+          **Findings**: P0 {findings_by_severity.P0} / P1 {findings_by_severity.P1} / P2 {findings_by_severity.P2}
+          **Report**: {state_paths.alignment_output}
+          **Registry**: {state_paths.findings_registry}
+
+          REMEDIATE was never auto-invoked -- this run performed no remediation action.
+          If findings are FAIL/CONDITIONAL and remediation is wanted, that is a separate,
+          explicitly opted-in follow-up run (`deep-alignment/scripts/remediate-hook.cjs`
+          today only proves the hook point is enterable; it is not real remediation logic).
+
+          Next step:
+          - FAIL/CONDITIONAL lane(s) present -> `/speckit:plan` -> `/speckit:implement`
+          - All lanes PASS -> `/create:changelog`
+        wait_for: "User acknowledgment"
+        on_ack: { status: "COMPLETE" }

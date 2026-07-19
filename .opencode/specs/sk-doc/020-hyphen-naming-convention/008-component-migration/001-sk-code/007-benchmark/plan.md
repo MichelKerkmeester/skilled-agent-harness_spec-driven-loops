@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code benchmark artifacts (032 phase 008/007)"
+title: "Implementation Plan: sk-code benchmark artifacts (020 phase 008/007)"
 description: "Plan for renaming tracked sk-code benchmark storage labels through the semantic map, repairing benchmark navigation, and proving corpus/report discovery parity without rewriting generated artifacts."
 trigger_phrases:
   - "benchmark naming implementation plan"
@@ -112,7 +112,7 @@ Classify benchmark directories and files first, then rename only the seven track
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 006 playbook closure | Internal | Required | The canonical benchmark corpus path is unresolved. |
-| 032 frozen map | Internal | Required | Tracked versus generated storage cannot be distinguished. |
+| 020 frozen map | Internal | Required | Tracked versus generated storage cannot be distinguished. |
 | 000 benchmark baseline | Internal | Required | Report and corpus parity cannot be proven. |
 | Lane C harness | Internal | Required | Non-zero benchmark discovery cannot be checked. |
 <!-- /ANCHOR:dependencies -->

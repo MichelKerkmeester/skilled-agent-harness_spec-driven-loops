@@ -39,14 +39,43 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+      ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_harness.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_rename_tooling_fixture_harness.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,15 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -160,43 +195,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans.",
     "created_at": "2026-07-14T15:16:49Z",
-    "last_save_at": "2026-07-17T14:30:03.781Z",
+    "last_save_at": "2026-07-18T08:34:05.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a12a7eb13ed30a42b496c268f76abc000f64f057af7e2792c5c7901b2468a7ed",
+    "source_fingerprint": "sha256:ed81c4c255fdf7de7869e4cd1869014007a6f4d8aadf1e90a13b16ca46c45fea",
     "source_doc_hashes": {
-      "spec.md": "f7cf7c205e0f28d9b1cdf7148083950394030214403d2f17d5925f3267fa4590",
-      "plan.md": "4aa4ff7faa85f7da36eeb24fa8c8d2cf66b3e2b2a04ed6f7c7a1b0f8cd4ac84f",
-      "tasks.md": "5d22a6f12892a2256762042e793ed54f7efdabde6e0502d3e58645a6682ff487",
-      "checklist.md": "d21998d11b6a7c23d71b3f54e5febc076ed17385fd33ddd6bc655b6e4f8817e8"
+      "spec.md": "01c45319e777ab4456125c56e61cde67b8815657d6daef68589be283daa958ab",
+      "plan.md": "0aa07260e45a82c4967756b937597ed8c601a3f262cbeb73498d0f5c3abae842",
+      "tasks.md": "a964a088294c1b5a22ec99a05eee4b12b012cdf034788f7b6b2cdce6ae0fb579",
+      "checklist.md": "abe44961e44d4ff99787b63cabd7e275f6a8d07a98ecc256c5912ae099038ec0",
+      "implementation-summary.md": "30546f76f20f101c57da0b2c8b2fd75944cf24cf30bd822151385c3a6a7d0093"
     },
     "last_active_child_id": null,
     "last_active_at": null

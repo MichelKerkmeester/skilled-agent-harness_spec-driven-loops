@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode subtree skill gate (032 component 011 phase 007)"
+title: "Checklist: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
 description: "Blocking SOL verifier contract for sibling aggregation and the whole mcp-code-mode naming/reference rollup."
 trigger_phrases:
   - "mcp-code-mode subtree gate checklist"

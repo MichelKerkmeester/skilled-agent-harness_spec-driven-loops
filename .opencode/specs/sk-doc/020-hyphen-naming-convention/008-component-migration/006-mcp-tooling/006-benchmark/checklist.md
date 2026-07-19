@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-tooling benchmark naming closure (032 phase 006)"
+title: "Checklist: mcp-tooling benchmark naming closure (020 phase 006)"
 description: "Blocking SOL verifier contract for the benchmark boundary naming phase."
 trigger_phrases:
   - "mcp-tooling benchmark checklist"

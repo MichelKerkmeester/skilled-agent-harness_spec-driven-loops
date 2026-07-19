@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-generators-and-templates (032 phase 003)"
+title: "Feature Specification: create-generators-and-templates (020 phase 003)"
 description: "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions."
 trigger_phrases:
   - "create generators and templates naming"

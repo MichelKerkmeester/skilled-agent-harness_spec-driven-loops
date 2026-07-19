@@ -1,6 +1,6 @@
 ---
-title: "Tasks: verify ai-council agent naming (032 phase 001)"
-description: "Tasks for phase 001 of the 032 agents component migration: verify the ai-council filename candidate set."
+title: "Tasks: verify ai-council agent naming (020 phase 001)"
+description: "Tasks for phase 001 of the 020 agents component migration: verify the ai-council filename candidate set."
 trigger_phrases:
   - "ai-council agent naming tasks"
   - "agents phase 001 tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the 032 naming policy, exemption boundary, and pinned BASE for this read-only phase
+- [ ] T001 Confirm the 020 naming policy, exemption boundary, and pinned BASE for this read-only phase
 - [ ] T002 Confirm the three expected ai-council definition paths in the runtime inventory
 <!-- /ANCHOR:phase-1 -->
 

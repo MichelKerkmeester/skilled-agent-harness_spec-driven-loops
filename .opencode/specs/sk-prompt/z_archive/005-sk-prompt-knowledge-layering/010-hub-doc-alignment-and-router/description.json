@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+  "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
   "description": "The hub's `SKILL.md` §2 declared \"this skill has no runtime router of its own\" — a no-op that",
   "keywords": [
     "hub",
@@ -11,11 +11,12 @@
     "own",
     "no-op"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.728Z",
+  "lastUpdated": "2026-07-18T03:48:55.254Z",
   "specId": "010",
   "folderSlug": "hub-doc-alignment-and-router",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "005-sk-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

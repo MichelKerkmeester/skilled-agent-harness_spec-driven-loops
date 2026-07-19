@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop benchmark storage names (032 phase 007/009)"
+title: "Feature Specification: system-deep-loop benchmark storage names (020 phase 007/009)"
 description: "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and router_mode_a—while its report filenames are already kebab-case. This phase renames authored storage labels, repairs benchmark index/path references, and classifies fixture/profile and generated-output ownership without changing report payloads or benchmark scores."
 trigger_phrases:
   - "system-deep-loop benchmark naming"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop benchmark storage names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 009 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 009 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

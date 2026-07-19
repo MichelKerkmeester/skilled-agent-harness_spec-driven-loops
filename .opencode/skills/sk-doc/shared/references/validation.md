@@ -163,7 +163,7 @@ AI evaluates content based on extracted data and evaluation questions:
 
 ### Style Compliance (AI-Evaluated)
 
-AI checks style based on core_standards.md:
+AI checks style based on core-standards.md:
 
 **Key Style Checks**:
 - ✅ H2 numbered headings: ALL CAPS (e.g., `## 1. WHEN TO USE`)
@@ -527,18 +527,18 @@ fi
 ## 10. RELATED RESOURCES
 
 ### Reference Files
-- [core_standards.md](./core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](./core-standards.md) - Document type rules and structural requirements
 - [workflows.md](../../create-quality-control/references/workflows.md) - Execution modes and workflow details
 - [optimization.md](../../create-quality-control/references/optimization.md) - Content transformation patterns
-- [quick_reference.md](./quick_reference.md) - Quick command reference
-- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
+- [quick-reference.md](./quick-reference.md) - Quick command reference
+- [skill-creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
-- [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../../create-skill/assets/skill/skill_asset_template.md) - Bundled asset structure
-- [readme_template.md](../../create-readme/assets/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../create-command/assets/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../../create-readme/assets/install_guide_template.md) - Install guide template (14 sections)
-- [llmstxt_templates.md](../assets/llmstxt_templates.md) - llms.txt with decision framework
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)
+- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-asset-template.md](../../create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
+- [readme-template.md](../../create-readme/assets/readme-template.md) - Comprehensive README guide (13 sections)
+- [command-template.md](../../create-command/assets/command-template.md) - Command creation guide (19 sections)
+- [install-guide-template.md](../../create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
+- [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
+- [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)

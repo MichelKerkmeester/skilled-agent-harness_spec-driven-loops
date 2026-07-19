@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt changelog and version verification (032 phase 004.006)"
+title: "Tasks: sk-prompt changelog and version verification (020 phase 004.006)"
 description: "Tasks for phase 006 of the sk-prompt kebab-case program: inventory release evidence, compare versions and rename-set coverage, and issue a pass/block handoff without changing the skill surface."
 trigger_phrases:
   - "sk-prompt changelog verification tasks"

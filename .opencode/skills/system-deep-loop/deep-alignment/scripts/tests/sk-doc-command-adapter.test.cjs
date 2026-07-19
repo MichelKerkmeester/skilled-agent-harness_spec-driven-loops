@@ -78,19 +78,19 @@ function testExecutableEdges() {
     'a sequence item must be a direct edge with its source line',
   );
   const workflow = adapter.executableCommandEdges(
-    'workflow: .opencode/commands/doctor/assets/doctor_mcp_install.yaml',
+    'workflow: .opencode/commands/doctor/assets/doctor-mcp-install.yaml',
   );
   assert.deepEqual(
     workflow,
-    [{ target: '.opencode/commands/doctor/assets/doctor_mcp_install.yaml', line: 1, kind: 'workflow' }],
+    [{ target: '.opencode/commands/doctor/assets/doctor-mcp-install.yaml', line: 1, kind: 'workflow' }],
     'a .yaml mapping value must be a workflow edge',
   );
   const arrow = adapter.executableCommandEdges(
-    '  - `install` -> `.opencode/commands/doctor/assets/doctor_mcp_install.yaml`',
+    '  - `install` -> `.opencode/commands/doctor/assets/doctor-mcp-install.yaml`',
   );
   assert.deepEqual(
     arrow,
-    [{ target: '.opencode/commands/doctor/assets/doctor_mcp_install.yaml', line: 1, kind: 'subaction' }],
+    [{ target: '.opencode/commands/doctor/assets/doctor-mcp-install.yaml', line: 1, kind: 'subaction' }],
     'a route arrow must be a subaction edge',
   );
   for (const edge of [...mapping, ...listItem, ...workflow, ...arrow]) {

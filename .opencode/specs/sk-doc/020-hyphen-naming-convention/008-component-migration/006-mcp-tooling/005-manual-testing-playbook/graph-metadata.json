@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-tooling manual-testing-playbook naming",
       "hub routing playbook rename",
-      "032 mcp tooling phase 005",
+      "020 mcp tooling phase 005",
       "mcp-tooling hub playbook implementation plan",
       "hub routing scenario path repair",
       "mcp-tooling hub playbook tasks",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-07-17T14:30:24.673Z",
+    "last_save_at": "2026-07-17T20:26:10.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e066c9a345be4d5288f80da7a7cb6c7b316aafc87c4012079eabdef9098e2d20",
+    "source_fingerprint": "sha256:f70f6b958184c4c7ede8f6a92a5c635187f8f5e17ccc1d856ff31677aeef0c07",
     "source_doc_hashes": {
-      "spec.md": "63052f7d870278fcb8c6f490eaed9f5f8ac76dcbb62783da741f54a62c5fd4a2",
-      "plan.md": "5fd676c8d382b6beed3ffa60a69cba798a9dac036652e74e4d54991bfeb4ce5f",
-      "tasks.md": "115ef08cea0b481c2d3cc29b568e11510e34d5dbefc5ab925c8950b8ddef2ca4",
-      "checklist.md": "c6ef41e3f58d748b4a6ee6e62b34d4484c5282c67ccb9fd2684cf43780429efa"
+      "spec.md": "018bcc0b6f21783fa600fa36635f9e8e85bda489eef1a78130601eef23e8612e",
+      "plan.md": "b65aa0ffbba916f856a1c2db45d09216751bfca57a430c7a016c3af950075b78",
+      "tasks.md": "55e94597ca4063b25b1fefbd18a59a980d1f46a28e1285511f26f648ab75db00",
+      "checklist.md": "d845536f1f42da2516c914dabdf6e64010714727d9e05b330d14eabbdde36686"
     },
     "last_active_child_id": null,
     "last_active_at": null

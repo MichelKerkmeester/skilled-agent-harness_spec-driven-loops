@@ -3,7 +3,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve, relative } from 'node:path';
 
 // Drift guard for sk-code's machine-readable router. sk-code keeps its
-// authoritative router as prose tables in references/smart_routing.md and a
+// authoritative router as prose tables in references/smart-routing.md and a
 // flat, surface-unioned projection in the same file's machine-readable block,
 // which the Lane C benchmark reads. Those two views can drift. Per-intent
 // placement cannot be compared (the flat block unions Webflow/OpenCode/
@@ -22,9 +22,9 @@ const { parseRouter, loadSurfaceRouter, registryPacketRoots } = require(join(SKI
 
 // Router-internal navigation docs — intentionally NOT intent resources.
 const NON_ROUTED_ALLOWLIST = new Set([
-  'references/smart_routing.md',
-  'references/stack_detection.md',
-  'references/phase_detection.md',
+  'references/smart-routing.md',
+  'references/stack-detection.md',
+  'references/phase-detection.md',
 ]);
 
 function machineRouterPaths(): Set<string> {
@@ -68,7 +68,7 @@ function listRoutableMarkdown(): string[] {
 }
 
 function proseExplicitPaths(): Set<string> {
-  const md = readFileSync(join(SKCODE, 'shared', 'references', 'smart_routing.md'), 'utf8');
+  const md = readFileSync(join(SKCODE, 'shared', 'references', 'smart-routing.md'), 'utf8');
   const start = md.indexOf('## 4. WEBFLOW MAP');
   const end = md.indexOf('## 7. VERIFICATION COMMANDS');
   const prose = md.slice(start, end);
@@ -122,15 +122,15 @@ const SURFACES = ['code-webflow', 'code-opencode'];
 // single surface child): the surface-agnostic quality/error/checklist docs, the
 // shared patterns readme, and the one code-review checklist the parent cites.
 const PARENT_TIER_ALLOWLIST = new Set([
-  'references/universal/multi_agent_research.md',
-  'references/universal/code_quality_standards.md',
-  'references/universal/code_style_guide.md',
-  'references/universal/error_recovery.md',
-  'references/universal-debugging_checklist.md',
-  'references/universal-verification_checklist.md',
-  'references/performance_loading_checklist.md',
+  'references/universal/multi-agent-research.md',
+  'references/universal/code-quality-standards.md',
+  'references/universal/code-style-guide.md',
+  'references/universal/error-recovery.md',
+  'references/universal-debugging-checklist.md',
+  'references/universal-verification-checklist.md',
+  'references/performance-loading-checklist.md',
   'shared/assets/patterns/README.md',
-  'code-review/assets/code_quality_checklist.md',
+  'code-review/assets/code-quality-checklist.md',
 ]);
 
 const norm = (p: string): string => p.replace(/^\.\//, '');

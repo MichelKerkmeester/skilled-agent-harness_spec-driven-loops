@@ -43,9 +43,9 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/design/assets/design_audit_presentation.txt` |
-| Auto workflow | `.opencode/commands/design/assets/design_audit_auto.yaml` |
-| Confirm workflow | `.opencode/commands/design/assets/design_audit_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/design/assets/design-audit-presentation.txt` |
+| Auto workflow | `.opencode/commands/design/assets/design-audit-auto.yaml` |
+| Confirm workflow | `.opencode/commands/design/assets/design-audit-confirm.yaml` |
 
 ---
 
@@ -73,14 +73,14 @@ Register Ask-first question wording lives only in the presentation asset.
 
 | Mode | Target |
 |------|----------|
-| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design_audit_auto.yaml` |
-| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design_audit_confirm.yaml` |
+| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design-audit-auto.yaml` |
+| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design-audit-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/design/assets/design_audit_presentation.txt`:
+The following content lives only in `.opencode/commands/design/assets/design-audit-presentation.txt`:
 
 - Consolidated setup prompt wording (target, scope/score, register, execution-mode question).
 - Auto Resolution Table and Auto Fail-Fast Display.

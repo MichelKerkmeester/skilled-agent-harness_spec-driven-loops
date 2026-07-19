@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
-  "description": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 032",
+  "description": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020",
   "keywords": [
     "sk-doc",
     "component",
@@ -18,7 +18,7 @@
     "surface",
     "kebab-clean"
   ],
-  "lastUpdated": "2026-07-17T14:29:47.377Z",
+  "lastUpdated": "2026-07-18T03:48:54.938Z",
   "specId": "007",
   "folderSlug": "skill-gate",
   "parentChain": [

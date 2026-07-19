@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop",
   "description": "We have a rig (002) and a ratified design contract (001)",
   "keywords": [
     "rig",
@@ -8,11 +8,12 @@
     "design",
     "contract"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.726Z",
+  "lastUpdated": "2026-07-18T03:48:54.308Z",
   "specId": "003",
   "folderSlug": "eval-loop",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "018-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

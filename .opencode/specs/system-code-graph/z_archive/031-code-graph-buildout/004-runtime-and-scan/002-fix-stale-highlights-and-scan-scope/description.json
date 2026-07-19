@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
   "description": "Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:",
   "keywords": [
     "investigation",
@@ -10,11 +10,12 @@
     "three",
     "findings"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.792Z",
+  "lastUpdated": "2026-07-18T03:48:55.449Z",
   "specId": "002",
   "folderSlug": "fix-stale-highlights-and-scan-scope",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "004-runtime-and-scan"
   ],

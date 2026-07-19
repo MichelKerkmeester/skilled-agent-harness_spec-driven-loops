@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
   "description": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
   "keywords": [
     "phases",
@@ -14,11 +14,12 @@
     "integration",
     "surfaces"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.827Z",
+  "lastUpdated": "2026-07-18T03:48:55.534Z",
   "specId": "001",
   "folderSlug": "usefulness-test-methodology",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "008-real-world-usefulness-test-planning"
   ],

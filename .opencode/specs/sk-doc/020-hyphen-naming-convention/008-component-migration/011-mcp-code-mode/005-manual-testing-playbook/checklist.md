@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode manual-testing playbook (032 component 011 phase 005)"
+title: "Checklist: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
 description: "Blocking SOL verifier contract for the complete manual-testing tree rename, link closure, and scenario parity."
 trigger_phrases:
   - "mcp-code-mode manual playbook checklist"

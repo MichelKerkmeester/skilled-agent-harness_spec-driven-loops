@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and router_mode_a—while its report filenames are already kebab-case. This phase renames authored storage labels, repairs benchmark index/path references, and classifies fixture/profile and generated-output ownership without changing report payloads or benchmark scores.",
     "created_at": "2026-07-14T15:17:55Z",
-    "last_save_at": "2026-07-17T14:30:28.580Z",
+    "last_save_at": "2026-07-17T20:26:12.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a88b476ea15389413b24801fa675edb51bbf33a2399aa201446bb7f03f0bab2e",
+    "source_fingerprint": "sha256:ab4d5bf46b1fce3e2f8c7abafe9fb06cd14d673aae872b329e09b078590afe99",
     "source_doc_hashes": {
-      "spec.md": "a88155a5ae4f958c056ca724a300101cb7478c85a3385df062e191c5b6eb940b",
-      "plan.md": "2e77a58c129edaa23a9e851880974bbea30b0d48a4fd72d78dd53bde178b803b",
-      "tasks.md": "e39fa4521b96fd7ac23ef7bb5bd4d6823862a93e073340d788747905f23c2498",
-      "checklist.md": "69127cdb2a9687bdefab1b764c3b444ca807fa441ea3439ca02dfae027f5467b",
-      "decision-record.md": "963a36a71574c73b47e971c97bd615ee6cfe96a8010a75bace55f1651cdf78cf"
+      "spec.md": "be2ff2a433b468f64ad2edc2b53aa357550a36a0f1564b6cceb930e5eac8851a",
+      "plan.md": "d06c49ace6876cd1b1012398d93c746e9a6b5b407ad44ca0538a24e2eb6ae7f8",
+      "tasks.md": "84ec5bb7311bab9c8650f4dcd0cdb1c0774ee38c43e1d1c551b0d675529d9603",
+      "checklist.md": "25682d148a8511d7e35ee43084f7bab7f2089e1f77a7e39663050e734b4431b5",
+      "decision-record.md": "595bc9b26b7b73f4a82dfea761d955015e86b7dd5ef5aa7126def1a909efb2c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

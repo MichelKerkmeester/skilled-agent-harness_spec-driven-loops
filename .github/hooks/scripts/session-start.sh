@@ -8,8 +8,8 @@ trap 'rm -f "$INPUT_FILE"' EXIT
 cat > "$INPUT_FILE"
 
 cd "$REPO_ROOT"
-if [ -f ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js" ]; then
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js < "$INPUT_FILE"
+if [ -f ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/session-prime.js" ]; then
+  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/session-prime.js < "$INPUT_FILE"
 else
   printf '%s\n' 'Session context received. Current state:'
   printf '%s\n' ''

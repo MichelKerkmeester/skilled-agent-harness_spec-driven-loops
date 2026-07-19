@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt changelog and version verification (032 phase 004.006)"
+title: "Implementation Plan: sk-prompt changelog and version verification (020 phase 004.006)"
 description: "Verification plan for phase 006 of the sk-prompt kebab-case program: inspect new release entries, compare version metadata, preserve frozen changelog history, and hand evidence to the rollup gate."
 trigger_phrases:
   - "sk-prompt changelog verification plan"

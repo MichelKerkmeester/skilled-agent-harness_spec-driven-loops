@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode manual-testing playbook (032 component 011 phase 005)"
+title: "Feature Specification: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
 description: "The mcp-code-mode manual-testing tree uses snake_case for its root, eight category directories, the index, and 27 scenario files. This phase renames that filesystem tree to kebab-case and updates every active link and pointer while preserving scenario IDs, tool names, content keys, Python exemptions, and frozen changelog history."
 trigger_phrases:
   - "mcp-code-mode manual-testing playbook"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode manual-testing playbook
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 005 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 005 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -75,7 +75,7 @@ This phase renames the complete manual-testing tree to kebab-case, rewrites acti
 | REQ-003 | The playbook index follows the root and scenario renames | The root index, category tables, scenario links, and path references resolve under manual-testing-playbook |
 | REQ-004 | Every active playbook pointer is updated | A link/path scan finds no stale active manual_testing_playbook, category, or scenario path |
 | REQ-005 | Scenario semantics remain stable | Scenario IDs, objectives, prompts, expected signals, tool names, and evidence content are unchanged except for path strings |
-| REQ-006 | The 032 exemption boundary is honored | Frozen changelogs, identifiers, keys, fields, Python names, and runtime names are not renamed by this phase |
+| REQ-006 | The 020 exemption boundary is honored | Frozen changelogs, identifiers, keys, fields, Python names, and runtime names are not renamed by this phase |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

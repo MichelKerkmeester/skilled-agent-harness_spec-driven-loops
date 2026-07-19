@@ -26,7 +26,7 @@
  * shape fails closed instead of silently guessing a root.
  *
  * A packet's routable roots are `references/` and `assets/` for the parent-hub
- * packets, plus `feature_catalog/` and `manual_testing_playbook/` for a
+ * packets, plus `feature-catalog/` and `manual-testing-playbook/` for a
  * standalone skill whose feature catalog and manual-testing playbook are the
  * routed corpus itself (its scenario/feature docs are the leaves, not just the
  * gold that points elsewhere). Widening the legal-root set is purely additive:
@@ -49,12 +49,16 @@ const crypto = require('crypto');
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A leafResourceId must start under one of these packet-root-relative roots.
-// `references/` and `assets/` are the parent-hub packet roots; `feature_catalog/`
-// and `manual_testing_playbook/` extend the set for a standalone skill whose
+// `references/` and `assets/` are the parent-hub packet roots; `feature-catalog/`
+// and `manual-testing-playbook/` extend the set for a standalone skill whose
 // feature-catalog and playbook docs are themselves the routed leaves. Adding a
 // root is backward-compatible: it only ever admits more strings, never rejects a
 // previously-legal one, so no committed manifest changes bytes on this account.
-const LEAF_ROOTS = Object.freeze(['references/', 'assets/', 'feature_catalog/', 'manual_testing_playbook/']);
+const LEAF_ROOTS = Object.freeze(['references/', 'assets/', 'feature-catalog/', 'manual-testing-playbook/']);
+const CANONICAL_PACKAGE_ROOTS = Object.freeze({
+  'feature-catalog': 'feature-catalog',
+  'manual-testing-playbook': 'manual-testing-playbook',
+});
 
 // Bumped only when the shape of the typed pair or the manifest it feeds
 // changes in a way older consumers cannot read unmodified. Widening LEAF_ROOTS
@@ -82,6 +86,10 @@ class ContractError extends Error {
 
 function toPosix(value) {
   return String(value).replace(/\\/g, '/');
+}
+
+function canonicalPackageRoot(name) {
+  return CANONICAL_PACKAGE_ROOTS[name] || null;
 }
 
 /**
@@ -363,6 +371,7 @@ module.exports = {
   ContractError,
   CONTRACT_VERSION,
   LEAF_ROOTS,
+  canonicalPackageRoot,
   assertContainment,
   normalizeLeafResourceId,
   makeTypedPair,

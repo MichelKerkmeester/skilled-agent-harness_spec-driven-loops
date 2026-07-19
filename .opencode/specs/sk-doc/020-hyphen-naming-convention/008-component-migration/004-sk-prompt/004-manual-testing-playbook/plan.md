@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt manual-testing-playbook trees (032 phase 004.004)"
+title: "Implementation Plan: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
 description: "Implementation plan for phase 004 of the sk-prompt kebab-case program: rename both manual-testing-playbook trees, update active links, and prove scenario-ID and category coverage parity."
 trigger_phrases:
   - "sk-prompt manual testing playbook implementation plan"
@@ -109,7 +109,7 @@ BASE path/scenario manifests → two-tree rename map → filesystem move → act
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase inherits the 032 path naming and frozen-history rules and depends on `003-prompt-models` for sibling sequencing.
+The phase inherits the 020 path naming and frozen-history rules and depends on `003-prompt-models` for sibling sequencing.
 Root skill and README references are part of this phase because they consume playbook paths; benchmark paths remain with
 phase 005 and release evidence with phase 006.
 <!-- /ANCHOR:dependencies -->

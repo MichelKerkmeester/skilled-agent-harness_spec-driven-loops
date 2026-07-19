@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "system-code-graph subtree rollup gate",
       "system-code-graph skill gate",
-      "032 system-code-graph phase 008",
+      "020 system-code-graph phase 008",
       "system-code-graph subtree gate plan",
       "system-code-graph rollup verification",
       "code graph whole-surface naming gate",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 032 exemption boundary without performing new migration work.",
+    "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-07-17T14:30:38.257Z",
+    "last_save_at": "2026-07-17T20:26:16.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:61e8c5387e313cecb27082a95fafe065ccedc3522719fddd45e46fdd48d112c4",
+    "source_fingerprint": "sha256:9d6c8651772022db1d28b52ab4796b5ab0cf9bdf54b6d6368cfabf72ec3c97b2",
     "source_doc_hashes": {
-      "spec.md": "7de43a0eeed0682519610ec0bd3dfcf538f80c35bbfe857ca56a41382e7cff23",
-      "plan.md": "c6029c07120e378468ce964e605450edc8e48b1316f557db79b76379c5116128",
-      "tasks.md": "f13253568bba8afbbcfde5698be75ecb7560e8dec8cd7f75126c966a8a64c362",
-      "checklist.md": "3f659850111122ad15f25ddd7e14a97353b1fcfbcb8846e715fa35d9001fa81a"
+      "spec.md": "df7273bbe358ea28e62317d3a956623acc60cf160c9243aff684d1ce8c550870",
+      "plan.md": "a442484817de0d54c133af4f932431b327a2ce9a76d702342c27a5af893248ad",
+      "tasks.md": "5d8b25d4388725410dc124065894f55355a6c630dda7ee8c7e9130a9bf69480d",
+      "checklist.md": "55b806998762fe0bf409c7cab5109fbb86fb996cccde2df5e0d781bea59541bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

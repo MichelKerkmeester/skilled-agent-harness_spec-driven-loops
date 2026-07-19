@@ -22,7 +22,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/manage_presentation.txt` |
+| Presentation | `.opencode/commands/memory/assets/manage-presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the memory MCP tools and owns no workflow YAML by design.
 
@@ -75,12 +75,12 @@ Each recognized mode dispatches to the memory MCP tools below and applies the li
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/manage_presentation.txt`:
+The following content lives only in `.opencode/commands/memory/assets/manage-presentation.txt`:
 
 - Stats, scan, cleanup, retention, learned-trigger maintenance, ledger sweeps, bulk-delete, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays.
 - Confirmation prompts, protected-tier gates, dashboard layouts, result envelopes, and next-step text.
 - Valid-mode menu wording for unknown-mode recovery.
-- Stats dashboard render contract: `.opencode/commands/memory/assets/manage_presentation.txt` Section 2.
+- Stats dashboard render contract: `.opencode/commands/memory/assets/manage-presentation.txt` Section 2.
 
 The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
 

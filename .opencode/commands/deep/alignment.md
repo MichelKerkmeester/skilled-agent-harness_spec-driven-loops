@@ -76,7 +76,7 @@ You were invoked via `opencode run --command deep/alignment` with the `:auto` su
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
-- PROCEED immediately — as an ACTION, not an announcement. Your VERY NEXT output MUST be a tool call: `Read` the auto workflow YAML (`.opencode/commands/deep/assets/deep_alignment_auto.yaml`), then begin executing its steps as tool calls without pausing — its opening steps resolve the artifact root, create the `alignment/` packet directories, and acquire the loop lock (`alignment/.deep-alignment.lock`), so a run that has started leaves that lock and those directories behind as proof. Emit NO prose before that first tool call. Do NOT write "I'm now invoking the runner", "I'll load the YAML", or any sentence describing what you are about to do — there is no separate runner or command process that executes the YAML for you; YOU are the runner. A turn that ends after describing the handoff, with an empty `alignment/`, is a FAILED run.
+- PROCEED immediately — as an ACTION, not an announcement. Your VERY NEXT output MUST be a tool call: `Read` the auto workflow YAML (`.opencode/commands/deep/assets/deep-alignment-auto.yaml`), then begin executing its steps as tool calls without pausing — its opening steps resolve the artifact root, create the `alignment/` packet directories, and acquire the loop lock (`alignment/.deep-alignment.lock`), so a run that has started leaves that lock and those directories behind as proof. Emit NO prose before that first tool call. Do NOT write "I'm now invoking the runner", "I'll load the YAML", or any sentence describing what you are about to do — there is no separate runner or command process that executes the YAML for you; YOU are the runner. A turn that ends after describing the handoff, with an empty `alignment/`, is a FAILED run.
 - DISPATCH ONLY the AUDIT; EXECUTE the ORCHESTRATION yourself. You do NOT read, edit, patch, or audit the target artifacts yourself — the `deep-alignment` leaf you dispatch does that. But YOU execute the auto workflow YAML's own orchestration steps, step by step, as your own tool calls: its setup bash commands, the per-iteration leaf dispatch, reducer sync, convergence checks, and synthesis. "The YAML owns the loop" means those steps are written there for YOU to run — NOT that another process runs them. The `deep-alignment` leaf owns only its single-iteration artifacts; mixing your own inline audit work into the loop is a route violation.
 - ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-alignment` writes each iteration state record with the route-proof fields present — `target_agent: "deep-alignment"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "alignment"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
@@ -88,9 +88,9 @@ Your job is to EXECUTE the auto workflow YAML's orchestration yourself — emitt
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/deep/assets/deep_alignment_presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |
+| Presentation | `.opencode/commands/deep/assets/deep-alignment-presentation.txt` |
+| Auto workflow | `.opencode/commands/deep/assets/deep-alignment-auto.yaml` |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-alignment-confirm.yaml` |
 
 The presentation asset owns every dashboard, prompt, and result-template string this mode presents.
 
@@ -107,7 +107,7 @@ The presentation asset owns every dashboard, prompt, and result-template string 
 
 ### Lane Config Flag
 
-`--lane-config <file.json>` is the ONLY non-interactive lane-resolution path (ADR-011 LOCKED) — there is no inline per-flag lane syntax. The file must contain a JSON array of `{authority, artifactClass, scope}` objects; see `.opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md`.
+`--lane-config <file.json>` is the ONLY non-interactive lane-resolution path (ADR-011 LOCKED) — there is no inline per-flag lane syntax. The file must contain a JSON array of `{authority, artifactClass, scope}` objects; see `.opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md`.
 
 ### Convergence Flags
 
@@ -127,14 +127,14 @@ The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` 
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |
+| `:auto` | `.opencode/commands/deep/assets/deep-alignment-auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-alignment-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep_alignment_presentation.txt`:
+The following content lives only in `.opencode/commands/deep/assets/deep-alignment-presentation.txt`:
 
 - Startup-question wording, the consolidated setup prompt, three-axis scoping question text (authority x artifactClass x scope), and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution rules, and fail-fast display references.

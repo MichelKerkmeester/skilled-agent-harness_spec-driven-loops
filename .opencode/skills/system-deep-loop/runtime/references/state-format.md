@@ -1,0 +1,194 @@
+---
+title: Deep Loop Runtime State Format
+description: JSONL state, atomic write, repair, lock, validation, and graph event formats used by runtime/.
+trigger_phrases:
+  - "deep-loop state format"
+  - "jsonl repair"
+  - "atomic state"
+  - "loop lock state"
+  - "graphEvents"
+importance_tier: important
+contextType: implementation
+version: 1.4.0.3
+---
+
+# Deep Loop Runtime State Format
+
+State file and event formats used by the shared deep-loop runtime primitives.
+
+---
+
+## 1. OVERVIEW
+
+`runtime/` does not own the full deep-review or deep-research packet schema. It owns shared primitives used by those packets:
+
+- atomic JSON state writes
+- append-safe JSONL records
+- corrupt-tail repair
+- loop lock files
+- post-dispatch validation inputs and degraded verification events
+- optional `graphEvents` arrays consumed by coverage-graph scripts
+
+Consumer skills remain responsible for packet-specific config, strategy, dashboard, and final report files.
+
+---
+
+## 2. ATOMIC JSON STATE
+
+Source: `lib/deep-loop/atomic-state.ts`.
+
+```typescript
+writeStateAtomic(path: string, data: unknown): void
+```
+
+Write sequence:
+
+1. Serialize data as pretty JSON with trailing newline.
+2. Write to a temp file beside the target.
+3. fsync the temp file.
+4. Rename temp file over the target.
+5. fsync the parent directory.
+6. Remove temp file on failure when possible.
+
+Temp file naming:
+
+```text
+.<basename>.<pid>.<timestamp>.tmp
+```
+
+---
+
+## 3. JSONL REPAIR
+
+Source: `lib/deep-loop/jsonl-repair.ts`.
+
+```typescript
+type JsonlRepairResult = {
+  repaired: boolean;
+  originalBytes: number;
+  keptBytes: number;
+  droppedBytes: number;
+};
+```
+
+Repair behavior:
+
+- Missing files are treated as empty and unrepaired.
+- Valid JSON lines are preserved through the last valid newline-delimited line.
+- A final non-newline-terminated line is accepted only if it parses as JSON.
+- Corrupt trailing content is truncated.
+- Appends call repair before writing a new JSONL record.
+
+Append contract:
+
+```typescript
+appendJsonlRecord(path: string, record: Record<string, unknown>): void
+```
+
+---
+
+## 4. LOOP LOCK STATE
+
+Source: `lib/deep-loop/loop-lock.ts`.
+
+```typescript
+export interface LoopLockData {
+  ownerPid: number;
+  startedAtIso: string;
+  ttlMs: number;
+  lastHeartbeatIso: string;
+  packetId: string;
+  runtimeKind: ExecutorKind | 'main';
+}
+```
+
+Serialized lock file fields:
+
+| JSON field | Runtime field | Meaning |
+|---|---|---|
+| `owner_pid` | `ownerPid` | Process id that owns the lock. |
+| `started_at_iso` | `startedAtIso` | Acquisition timestamp. |
+| `ttl_ms` | `ttlMs` | Lock TTL in milliseconds. |
+| `last_heartbeat_iso` | `lastHeartbeatIso` | Last heartbeat timestamp. |
+| `packet_id` | `packetId` | Spec-folder packet identifier the lock is scoped to. |
+| `runtime_kind` | `runtimeKind` | Executor kind that owns the lock (or `main` for orchestrator-held locks). |
+
+Acquire behavior:
+
+- Missing lock creates exclusive lock.
+- Live holder returns held result.
+- Stale holder is removed and replaced.
+- Race after write verifies current lock still belongs to owner.
+
+---
+
+## 5. POST-DISPATCH VALIDATION INPUT
+
+Source: `lib/deep-loop/post-dispatch-validate.ts`.
+
+```typescript
+export type PostDispatchValidateInput = {
+  iterationFile: string;
+  stateLogPath: string;
+  previousStateLogSize: number;
+  requiredJsonlFields: string[];
+  executorKind?: ExecutorKind;
+  /**
+   * Per-iteration delta file path (e.g. `deltas/iter-003.jsonl`). When supplied,
+   * the validator asserts the file exists and is non-empty.
+   */
+  deltaFilePath?: string;
+  recipeConfig?: PostDispatchRecipeConfig;
+};
+```
+
+The state log must include a canonical record whose `type === 'iteration'`. Variants such as `iteration_start` are not treated as the final iteration record for validation.
+
+Review-depth v2 validation is controlled by `DEEP_REVIEW_V2_ENFORCEMENT`.
+
+| Value | Behavior |
+|---|---|
+| `strict` | Hard-fail v2 validation failures. |
+| `warn` | Emit typed advisories while allowing legacy records. |
+| unset / skip | Do not enforce v2 failures. |
+
+---
+
+## 6. GRAPH EVENTS
+
+Consumer iteration records may include optional `graphEvents` arrays.
+
+```json
+[
+  { "type": "node", "id": "finding-1", "kind": "FINDING", "label": "Missing guard" },
+  { "type": "edge", "id": "edge-1", "relation": "EVIDENCE_FOR", "source": "evidence-1", "target": "finding-1" }
+]
+```
+
+`scripts/upsert.cjs` accepts graph events through `--events <path>` or `--events -` and converts them into node and edge arrays. It also accepts explicit `--nodes '<json-array>'` and `--edges '<json-array>'`.
+
+---
+
+## 7. DISPATCH FAILURE RECORDS
+
+Source: `lib/deep-loop/executor-audit.ts`.
+
+When audited executor dispatch fails, the runtime can append a typed event to JSONL state. The event records iteration, executor kind, failure reason, exit status or signal when available, and provenance needed for later validation.
+
+The failure path uses `appendJsonlRecord` so corrupt trailing state is repaired before the dispatch failure is appended.
+
+---
+
+## 8. SOURCE ANCHORS
+
+| Path | State Role |
+|---|---|
+| `lib/deep-loop/atomic-state.ts` | Atomic JSON writes. |
+| `lib/deep-loop/jsonl-repair.ts` | JSONL repair and append. |
+| `lib/deep-loop/loop-lock.ts` | Lock-file schema and single-writer behavior. |
+| `lib/deep-loop/post-dispatch-validate.ts` | Iteration validation and v2 advisory records. |
+| `lib/deep-loop/executor-audit.ts` | Executor provenance and dispatch failure records. |
+| `scripts/upsert.cjs` | Graph event ingestion. |
+| `deep-review/assets/prompt-pack-iteration.md.tmpl` | Review graphEvents prompt contract. |
+| `deep-research/assets/prompt-pack-iteration.md.tmpl` | Research graphEvents prompt contract. |
+

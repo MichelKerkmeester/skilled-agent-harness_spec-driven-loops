@@ -1,17 +1,17 @@
-// SKIP-AT-LOAD: `../../mcp_server/code_graph/lib/structural-indexer.ts` migrated to
+// SKIP-AT-LOAD: `../../mcp-server/code_graph/lib/structural-indexer.ts` migrated to
 // system-code-graph/. This test still imports from the legacy path and cannot resolve;
 // stub describe.skip prevents the unresolved static import from breaking the suite.
 import { describe, it } from 'vitest';
 
 describe.skip('graph upgrades regression floor (orphaned by system-code-graph migration)', () => {
-  it.skip('coverage exists in system-code-graph/mcp_server/tests/', () => {});
+  it.skip('coverage exists in system-code-graph/mcp-server/tests/', () => {});
 });
 
 // Legacy import block kept for historical context; not executed.
 if (false) {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   // @ts-expect-error orphaned import path retained for historical context
-  const _orphans = require('../../mcp_server/code_graph/lib/structural-indexer.ts');
+  const _orphans = require('../../mcp-server/code_graph/lib/structural-indexer.ts');
 }
 
 /* Legacy block (unreachable):
@@ -20,13 +20,13 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   DETECTOR_PROVENANCE_VALUES,
   isDetectorProvenance,
-} from '../../mcp_server/lib/context/shared-payload.js';
+} from '../../mcp-server/lib/context/shared-payload.js';
 import {
   EVIDENCE_GAP_DETECTOR_PROVENANCE,
-} from '../../mcp_server/lib/search/evidence-gap-detector.ts';
+} from '../../mcp-server/lib/search/evidence-gap-detector.ts';
 import {
   detectorProvenanceFromParserBackend,
-} from '../../mcp_server/code_graph/lib/structural-indexer.ts';
+} from '../../mcp-server/code_graph/lib/structural-indexer.ts';
 
 const mocks = vi.hoisted(() => ({
   getDb: vi.fn(),
@@ -45,7 +45,7 @@ const mocks = vi.hoisted(() => ({
   })),
 }));
 
-vi.mock('../../mcp_server/code_graph/lib/code-graph-db.js', () => ({
+vi.mock('../../mcp-server/code_graph/lib/code-graph-db.js', () => ({
   getDb: mocks.getDb,
   queryEdgesFrom: mocks.queryEdgesFrom,
   queryEdgesTo: mocks.queryEdgesTo,
@@ -56,11 +56,11 @@ vi.mock('../../mcp_server/code_graph/lib/code-graph-db.js', () => ({
   getLastDetectorProvenance: mocks.getLastDetectorProvenance,
 }));
 
-vi.mock('../../mcp_server/code_graph/lib/ensure-ready.js', () => ({
+vi.mock('../../mcp-server/code_graph/lib/ensure-ready.js', () => ({
   ensureCodeGraphReady: mocks.ensureCodeGraphReady,
 }));
 
-import { handleCodeGraphQuery } from '../../mcp_server/code_graph/handlers/query.js';
+import { handleCodeGraphQuery } from '../../mcp-server/code_graph/handlers/query.js';
 
 describe('graph upgrades regression floor', () => {
   it('keeps detector provenance honest for fallback lanes', () => {

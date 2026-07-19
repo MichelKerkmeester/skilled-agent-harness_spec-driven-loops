@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
   "description": "Remove system-spec-kit MCP server source imports from system-code-graph and lock a process-boundary integration pattern.",
   "keywords": [
     "remove",
@@ -15,11 +15,12 @@
     "integration",
     "pattern"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.710Z",
+  "lastUpdated": "2026-07-18T03:48:57.122Z",
   "specId": "020",
   "folderSlug": "spec-kit-codegraph-decoupling",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

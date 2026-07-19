@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Template Compliant Level 3 Fixture [template:examples/level_3/tasks.md]"
+title: "Tasks: Template Compliant Level 3 Fixture [template:examples/level-3/tasks.md]"
 description: "Current-template Level 3 task list fixture."
 trigger_phrases:
   - "fixture"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read current Level 3 templates (`.opencode/skills/system-spec-kit/templates/examples/level_3/`) [5m]
+- [x] T001 Read current Level 3 templates (`.opencode/skills/system-spec-kit/templates/examples/level-3/`) [5m]
 - [x] T002 Read existing fixture 063 files (`.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/`) [5m]
 - [x] T003 Confirm fixture 054 remains intentionally broken (`.opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md`) [2m]
 

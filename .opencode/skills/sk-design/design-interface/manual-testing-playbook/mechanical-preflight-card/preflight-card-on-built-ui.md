@@ -1,6 +1,6 @@
 ---
 title: "ID-011 -- Mechanical pre-flight card on a built UI"
-description: "This scenario validates the Interface Pre-Flight Card for `ID-011`. It focuses on confirming a built or planned interface is walked box by box against the binary fill-in card in interface_preflight_card.md, that the verdict is SHIP only when every box passes, and that the register and dials set the context without relaxing any mechanical box."
+description: "This scenario validates the Interface Pre-Flight Card for `ID-011`. It focuses on confirming a built or planned interface is walked box by box against the binary fill-in card in interface-preflight-card.md, that the verdict is SHIP only when every box passes, and that the register and dials set the context without relaxing any mechanical box."
 contextType: reference
 version: 1.0.0.0
 id: ID-011
@@ -94,6 +94,6 @@ If the primary run passes, repeat with a surface set to a loud register (Brand) 
 
 - Group: Mechanical Pre-Flight Card
 - Playbook ID: ID-011
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `mechanical-preflight-card/preflight-card-on-built-ui.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

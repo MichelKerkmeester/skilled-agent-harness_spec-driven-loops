@@ -107,7 +107,7 @@ verify_installation() {
     else
         echo "  Warning: .utcp_config.json not found" >&2
         echo "  Create one using the template in:" >&2
-        echo "  .opencode/skills/mcp-code-mode/assets/config_template.md" >&2
+        echo "  .opencode/skills/mcp-code-mode/assets/config-template.md" >&2
     fi
 }
 

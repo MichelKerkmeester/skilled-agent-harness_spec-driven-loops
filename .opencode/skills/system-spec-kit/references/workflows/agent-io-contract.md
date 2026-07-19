@@ -29,7 +29,7 @@ status: optional-advisory
 
 ### Advisory Status For Design Handoffs
 
-Agent I/O is advisory-only: a convenience header that may opportunistically carry manifest or result digests as data, never as authority. The enforceable design gate is the design proof token plus the guarded boundary: guarded-proxy classification, the structured Open Design transport result, and parent re-validation. Presence of Agent I/O headers never substitutes for that gate, and absence of Agent I/O headers never passes a design handoff. Acceptance for this note is the advisory-only status, the real-gate naming, both failure directions, and the by-name pointer to `cli_child_pairing.md` "Agent I/O Is Not The Gate" as the canonical scoped statement; this prose adds no checker, schema, or refusal reason.
+Agent I/O is advisory-only: a convenience header that may opportunistically carry manifest or result digests as data, never as authority. The enforceable design gate is the design proof token plus the guarded boundary: guarded-proxy classification, the structured Open Design transport result, and parent re-validation. Presence of Agent I/O headers never substitutes for that gate, and absence of Agent I/O headers never passes a design handoff. Acceptance for this note is the advisory-only status, the real-gate naming, both failure directions, and the by-name pointer to `cli-child-pairing.md` "Agent I/O Is Not The Gate" as the canonical scoped statement; this prose adds no checker, schema, or refusal reason.
 
 ## 2. Dispatch Group
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: component migration (032 phase 008)"
+title: "Feature Specification: component migration (020 phase 008)"
 description: "The 14-way per-component fan-out that renames each skill subtree's snake_case filesystem names to kebab-case as a self-contained, dependency-closed closure. Lanes are scheduled from the phase 006 executable SCC condensation DAG under exclusive skill leases and one serial integration steward; phase number is grouping order, not a runtime sequence."
 trigger_phrases:
   - "component migration fan-out"
@@ -30,7 +30,7 @@ _memory:
 
 # Feature Specification: Component migration
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `007-shared-and-cross-cutting-closures`; successor `009-remove-transition-aliases`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `007-shared-and-cross-cutting-closures`; successor `009-remove-transition-aliases`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

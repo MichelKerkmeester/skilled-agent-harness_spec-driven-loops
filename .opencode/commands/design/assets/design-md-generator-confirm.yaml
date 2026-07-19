@@ -1,0 +1,88 @@
+# ─────────────────────────────────────────────────────────────────
+# DESIGN MD-GENERATOR WORKFLOW (INTERACTIVE MODE)
+# ─────────────────────────────────────────────────────────────────
+role: sk-design md-generator mode, interactive execution
+purpose: Extract a live site's real measured CSS into a Style Reference DESIGN.md
+action: Show the consolidated setup prompt once, then apply the md-generator mode to $ARGUMENTS
+
+operating_mode:
+  workflow: sequential_pipeline
+  approvals: consolidated_prompt_once
+  validation: self_validated
+
+user_inputs:
+  live_url: "Reachable live URL to extract. REQUIRED."
+  output: "Writable output directory (--output <dir>). REQUIRED."
+  register: "[brand|product] - design posture. Default: auto-resolved from declared register field, task cue, or surface in focus."
+
+checkpoint:
+  type: consolidated_setup_prompt
+  source: ".opencode/commands/design/assets/design-md-generator-presentation.txt Consolidated Prompt Template"
+  shown: "Always, even when $ARGUMENTS is fully specified."
+  wait_for: user_reply
+
+backend_boundary:
+  note: "md-generator is the only mutating sk-design mode (Write/Edit/Bash). The embedded TypeScript pipeline under backend/scripts/ is the sole mutating entrypoint; this workflow orchestrates it, never bypasses it."
+  entrypoints: [extract.ts, build-write-prompt.ts, validate.ts, report-gen.ts, preview-gen.ts, proof.ts]
+  guided_orchestrator: "backend/scripts/guided-run.ts wraps extract -> write-prompt -> validate -> report as one CLI entrypoint and is the preferred execution path over calling each script by hand."
+
+workflow:
+  step_0_show_prompt:
+    purpose: Show the consolidated setup prompt and wait for the user's reply
+    action: "Render the Consolidated Prompt Template from the presentation asset; wait for the reply before proceeding"
+    output: resolved_inputs
+
+  step_1_load_hub:
+    purpose: Load the sk-design parent hub routing table and shared references
+    action: "Read .opencode/skills/sk-design/SKILL.md"
+    output: hub_context
+
+  step_2_load_mode:
+    purpose: Load the md-generator mode contract
+    action: "Read .opencode/skills/sk-design/design-md-generator/SKILL.md, then its references/ and assets as the work requires"
+    output: mode_context
+
+  step_3_select_procedure_card:
+    purpose: Select the private procedure card when its trigger matches, or state the no-procedure fallback
+    action: "Match the resolved inputs against the trigger below; cite the selected card (or the fallback) by relative path before substantial output"
+    trigger_table:
+      - request_shape: "Measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface"
+        card: "procedures/design-system-extraction.md"
+      - request_shape: "No trigger matches"
+        card: "none - state 'Procedure applied: none - baseline md-generator pipeline' and continue with phase detection"
+    output: selected_procedure_card
+
+  step_4_run_pipeline:
+    purpose: Run the md-generator mode's own Three-Phase Pipeline against the resolved inputs and the selected procedure card's output
+    action: "EXTRACT (backend/scripts/extract.ts - crawl, collect computed CSS, tag token stability L1-L4) -> WRITE (backend/scripts/build-write-prompt.ts pre-renders value tables, then author DESIGN.md prose only) -> VALIDATE (backend/scripts/validate.ts - every hex/value traces to tokens.json); prefer backend/scripts/guided-run.ts as the single orchestrating entrypoint over calling each script individually"
+    output: design_md_and_tokens_json
+
+  step_5_optional_report:
+    purpose: Generate the optional visual report/preview/proof artifacts when requested
+    action: "backend/scripts/report-gen.ts, preview-gen.ts, proof.ts - invokable standalone against an existing tokens.json + DESIGN.md pair, per the mode's Backend Boundary Preservation"
+    condition: "Only when the user asks for a report, preview, or fidelity proof"
+    output: report_artifacts
+
+  step_6_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
+    condition: "Only when the user accepts the design output for build"
+    output: handoff_manifest
+
+deliverable:
+  name: "Style Reference DESIGN.md"
+  required_fields: [sourceUrl, extractedTokensDigest, fidelityScore]
+  file_outputs: ["<output>/DESIGN.md"]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/design:foundations,/design:interface,/design:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore'
+  missing_input: "STATUS=ASK MISSING=<input>, plus the Ask-first question from the presentation asset"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "extract - the pipeline origin for measured source evidence before design judgment or audit"
+  accepts_from: "a live source URL; this stage has no upstream design command"
+  hands_to_next: ["/design:foundations", "/design:interface", "/design:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when extracted evidence informs implementation"

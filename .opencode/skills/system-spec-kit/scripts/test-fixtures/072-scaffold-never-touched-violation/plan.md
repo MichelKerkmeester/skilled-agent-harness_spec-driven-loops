@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Scaffold Signature Violation [template:level_1/plan.md]"
+title: "Implementation Plan: Scaffold Signature Violation [template:level-1/plan.md]"
 description: "Required doc retaining scaffold-origin metadata while the spec claims Complete."
 trigger_phrases:
   - "scaffold signature violation fixture"

@@ -66,7 +66,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/cdp_patterns.md"
+DEFAULT_RESOURCE = "references/cdp-patterns.md"
 # Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
 # into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
 # zero-score routes load nothing and ask for disambiguation instead.
@@ -87,16 +87,16 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "CLI": ["references/cdp_patterns.md", "references/session_management.md"],
-    "MCP": ["references/session_management.md", "references/cdp_patterns.md"],
+    "CLI": ["references/cdp-patterns.md", "references/session-management.md"],
+    "MCP": ["references/session-management.md", "references/cdp-patterns.md"],
     "INSTALL": ["references/troubleshooting.md"],
     "TROUBLESHOOT": ["references/troubleshooting.md"],
-    "AUTOMATION": ["references/cdp_patterns.md", "references/session_management.md"],
+    "AUTOMATION": ["references/cdp-patterns.md", "references/session-management.md"],
 }
 
 LOADING_LEVELS = {
     "ON_DEMAND_KEYWORDS": ["full troubleshooting", "full session guide", "all patterns", "capture a har", "console errors", "routing dashboard", "staging", "devtools"],
-    "ON_DEMAND": ["references/troubleshooting.md", "references/session_management.md"],
+    "ON_DEMAND": ["references/troubleshooting.md", "references/session-management.md"],
 }
 
 def _task_text(task) -> str:
@@ -333,13 +333,13 @@ Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp_patterns.md`, `references/session_management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp_chrome_devtools_manuals.md`](assets/utcp_chrome_devtools_manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
 
 Scripts: `scripts/install.sh`.
 
 Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Feature catalog: [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
+Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
 
 Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
 

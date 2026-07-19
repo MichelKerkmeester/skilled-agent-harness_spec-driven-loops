@@ -1,5 +1,5 @@
 ---
-title: "Tasks: scripts command namespace naming (032 phase 008/013/006)"
+title: "Tasks: scripts command namespace naming (020 phase 008/013/006)"
 description: "Bounded audit tasks for proving the scripts namespace needs no physical rename and retaining the checker fixture contract."
 trigger_phrases:
   - "scripts namespace naming tasks"

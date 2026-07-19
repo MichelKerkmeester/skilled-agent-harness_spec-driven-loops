@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: sk-prompt hub root and shared boundary (032 phase 004.001)"
+title: "Decision Record: sk-prompt hub root and shared boundary (020 phase 004.001)"
 description: "Design decisions for phase 001: protect the sk-prompt routing contract, treat the absent shared/ subtree as an explicit census result, and keep delegated playbook and benchmark ownership separate."
 trigger_phrases:
   - "sk-prompt hub root decision record"

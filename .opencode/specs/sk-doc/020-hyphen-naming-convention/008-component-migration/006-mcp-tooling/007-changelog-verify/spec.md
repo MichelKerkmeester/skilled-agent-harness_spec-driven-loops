@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-tooling changelog verification (032 phase 007)"
-description: "The mcp-tooling changelog history predates the 032 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename."
+title: "Feature Specification: mcp-tooling changelog verification (020 phase 007)"
+description: "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename."
 trigger_phrases:
   - "mcp-tooling changelog verify"
   - "mcp tooling naming version bump"
-  - "032 mcp tooling phase 007"
+  - "020 mcp tooling phase 007"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-tooling Changelog Verification
 
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The existing root and component changelog files describe earlier releases and the parent-hub fold, but they do not yet provide evidence that the 032 naming migration was recorded as an append-only release. The verifier must also distinguish a new migration entry from edits to frozen history and confirm that the version bump matches the affected packet.
+The existing root and component changelog files describe earlier releases and the parent-hub fold, but they do not yet provide evidence that the 020 naming migration was recorded as an append-only release. The verifier must also distinguish a new migration entry from edits to frozen history and confirm that the version bump matches the affected packet.
 
 This phase reads the latest changelog entries, verifies the migration scope and exemption boundary, and blocks the subtree if the required append-only version entries are absent or inconsistent. It performs no filesystem rename.
 <!-- /ANCHOR:problem -->

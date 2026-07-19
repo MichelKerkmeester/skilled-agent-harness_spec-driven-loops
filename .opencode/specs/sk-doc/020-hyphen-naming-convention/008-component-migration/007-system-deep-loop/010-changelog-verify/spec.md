@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop changelog verification (032 phase 007/010)"
+title: "Feature Specification: system-deep-loop changelog verification (020 phase 007/010)"
 description: "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump. This verification-only phase checks the root changelog and declared version surfaces against phases 001-009 and performs no filesystem rename or unrelated history rewrite."
 trigger_phrases:
   - "system-deep-loop changelog verification"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop changelog verification
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Verification-only phase 010 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Verification-only phase 010 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

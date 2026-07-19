@@ -167,5 +167,5 @@ Expected result: shell syntax checks pass, the plist passes validation and the d
 - [`git-hooks/lib/README.md`](./git-hooks/lib/README.md)
 - [`git-hooks/tests/README.md`](./git-hooks/tests/README.md)
 - [`launchagents/README.md`](./launchagents/README.md)
-- [Spec Kit MCP environment reference](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md)
-- [Spec Kit MCP runtime README](../skills/system-spec-kit/mcp_server/README.md)
+- [Spec Kit MCP environment reference](../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md)
+- [Spec Kit MCP runtime README](../skills/system-spec-kit/mcp-server/README.md)

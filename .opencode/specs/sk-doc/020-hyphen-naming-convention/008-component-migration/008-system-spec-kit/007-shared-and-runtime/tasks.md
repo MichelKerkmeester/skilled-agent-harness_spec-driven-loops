@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Shared and runtime (032 subtree 008 phase 007)"
+title: "Tasks: Shared and runtime (020 subtree 008 phase 007)"
 description: "The shared/runtime part of system-spec-kit contains an underscore-bearing shared/mcp_server directory even though its TypeScript/shared-package surface can use kebab-case. This phase verifies the runtime tree, renames the permitted shared directory, updates its references, and preserves package manifests, tool names, generated databases, and Python package directories."
 trigger_phrases:
   - "system-spec-kit shared runtime"

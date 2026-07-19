@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-tooling hub root and shared naming closure (032 phase 001)"
+title: "Tasks: mcp-tooling hub root and shared naming closure (020 phase 001)"
 description: "Tasks for phase 001 of the mcp-tooling component naming migration: classify root/shared paths, repair hub references, and preserve exact contracts."
 trigger_phrases:
   - "mcp-tooling hub root tasks"

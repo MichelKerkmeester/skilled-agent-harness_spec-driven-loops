@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Skill gate (032 phase 012)"
-description: "Execution plan for Skill gate in the 032 sk-design naming subtree."
+title: "Implementation Plan: Skill gate (020 phase 012)"
+description: "Execution plan for Skill gate in the 020 sk-design naming subtree."
 trigger_phrases:
   - "skill-gate implementation plan"
   - "sk-design skill gate plan"
-  - "032 skill-gate tasks"
+  - "020 skill-gate tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Skill gate (032 phase 012)
+# Implementation Plan: Skill gate (020 phase 012)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

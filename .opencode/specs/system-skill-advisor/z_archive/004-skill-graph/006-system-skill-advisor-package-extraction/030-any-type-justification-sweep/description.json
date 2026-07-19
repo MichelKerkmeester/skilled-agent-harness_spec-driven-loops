@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/030-any-type-justification-sweep",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/030-any-type-justification-sweep",
   "description": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
   "keywords": [
     "packet",
@@ -12,11 +12,12 @@
     "coverage",
     "sweep"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.772Z",
+  "lastUpdated": "2026-07-18T03:48:57.130Z",
   "specId": "030",
   "folderSlug": "any-type-justification-sweep",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

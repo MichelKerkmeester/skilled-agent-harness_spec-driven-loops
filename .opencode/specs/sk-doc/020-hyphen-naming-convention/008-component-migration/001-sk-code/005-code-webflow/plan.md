@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-webflow filesystem names (032 phase 008/005)"
+title: "Implementation Plan: code-webflow filesystem names (020 phase 008/005)"
 description: "Plan for renaming code-webflow assets, playbook categories, references, symlink consumers, and benchmark labels through the frozen map, then proving browser-surface resource and scenario parity."
 trigger_phrases:
   - "code-webflow naming implementation plan"
@@ -114,7 +114,7 @@ Group the rename by actual closure: assets and their indexes, manual scenarios, 
 |------------|------|--------|-------------------|
 | 001 shared hub closure | Internal | Required | Shared workflow source and link paths may be stale. |
 | 002-004 mode closures | Internal | Required | Cross-mode resource edges may be unresolved. |
-| 032 frozen rename map | Internal | Required | Asset/reference/generated classification is ambiguous. |
+| 020 frozen rename map | Internal | Required | Asset/reference/generated classification is ambiguous. |
 | 000 baseline evidence | Internal | Required | Resource and browser parity cannot be measured. |
 <!-- /ANCHOR:dependencies -->
 

@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git benchmark (032 phase 008/012/004)"
+title: "Implementation Plan: sk-git benchmark (020 phase 008/012/004)"
 description: "Implementation plan for the sk-git benchmark profile-directory rename. The executor will move the two observed profiles, inventory report/fixture/storage-guide paths, repair exact path values, and compare benchmark evidence before and after."
 trigger_phrases:
   - "sk-git benchmark implementation plan"
-  - "032 benchmark profile phase plan"
+  - "020 benchmark profile phase plan"
   - "benchmark artifact parity plan"
 importance_tier: "important"
 contextType: "planning"
@@ -102,7 +102,7 @@ The executor will rename the two observed profile directories and inventory the 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 frozen map and BASE | Internal | Required | No safe classification or evidence baseline. |
+| 020 frozen map and BASE | Internal | Required | No safe classification or evidence baseline. |
 | Benchmark loader/registry | Internal | Required | Profile discovery and path closure cannot be proven. |
 | Phase 005 reference checker | Internal | Required | Path-value closure lacks a consistent evidence source. |
 | Lane C benchmark harness | Internal | Required | Scenario and score parity cannot be measured. |

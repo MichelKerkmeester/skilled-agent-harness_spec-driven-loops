@@ -1,6 +1,6 @@
 <!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
 ---
-title: "Verification Checklist: [NAME] [template:level_2/checklist.md]"
+title: "Verification Checklist: [NAME] [template:level-2/checklist.md]"
 description: "Verification Date: [YYYY-MM-DD]"
 trigger_phrases:
   - "verification"

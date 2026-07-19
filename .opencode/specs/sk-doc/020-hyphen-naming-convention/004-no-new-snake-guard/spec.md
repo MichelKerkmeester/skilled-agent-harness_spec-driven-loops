@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: no-new-snake_case guard (032 phase 004)"
+title: "Feature Specification: no-new-snake_case guard (020 phase 004)"
 description: "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced."
 trigger_phrases:
   - "no-new-snake_case guard"
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: No-new-snake_case guard
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `003-create-generators-and-templates`; successor `005-rename-and-reference-tooling`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `003-create-generators-and-templates`; successor `005-rename-and-reference-tooling`.
 
 > **RECONCILED — v4 reconciliation (2026-07-15).** The guard's exemption set must include the generated `.codex/` mirror (`.codex/prompts/**`, `.codex/agents/**`), produced by `.opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs` and `sync-agents.cjs`. The guard treats these as `generated` and never flags them directly, so the 37-file mirror — including the 2 known snake copies `agent_router.md`/`goal_opencode.md` — does not permanently fail the guard. Kebab correctness for the mirror is enforced at the PRODUCER and via the source command names (013-commands), not on the generated output. See the packet's v4-reconciliation-inventory.md.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 004 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -89,7 +89,7 @@ Nothing prevents snake_case from re-entering in-scope filesystem names. The prog
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 032 parent spec (import breakage, validator downgrade, non-reproducible builds,
+Inherits the program-level risks in the 020 parent spec (import breakage, validator downgrade, non-reproducible builds,
 over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
 <!-- /ANCHOR:risks -->
 

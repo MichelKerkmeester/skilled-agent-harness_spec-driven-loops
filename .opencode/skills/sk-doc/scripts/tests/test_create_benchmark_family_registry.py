@@ -17,13 +17,13 @@ GUIDE_ONLY_FAMILIES = frozenset({"agent_improvement"})
 RESOURCE_KEY_ALIASES = {"mcp_promotion": "shared"}
 CONFORMANCE_ASSETS = frozenset(
     {
-        "conformance_benchmark_contract_template.md",
-        "conformance_benchmark_fixture_manifest_template.md",
-        "conformance_benchmark_lane_config_template.md",
-        "conformance_benchmark_readme_template.md",
+        "conformance-benchmark-contract-template.md",
+        "conformance-benchmark-fixture-manifest-template.md",
+        "conformance-benchmark-lane-config-template.md",
+        "conformance-benchmark-readme-template.md",
     }
 )
-CONFORMANCE_GUIDE = "conformance_benchmark_authoring_guide.md"
+CONFORMANCE_GUIDE = "conformance-benchmark-authoring-guide.md"
 LANE_OWNED_TEMPLATE_PATTERN = re.compile(
     r"(?:^|[_-])(runner|rubric|scorer|adapter|reducer)(?:[_-]|$)",
     re.IGNORECASE,
@@ -74,7 +74,7 @@ def validate_registry() -> None:
         "guide-only family allowlist must remain a subset of FAMILIES"
     )
     for family in families:
-        resource_key = RESOURCE_KEY_ALIASES.get(family, family)
+        resource_key = RESOURCE_KEY_ALIASES.get(family, family.replace("_", "-"))
         reference_dir = references_root / resource_key
         asset_dir = assets_root / resource_key
         assert reference_dir.is_dir(), (
@@ -85,8 +85,12 @@ def validate_registry() -> None:
         assert asset_dir.is_dir(), f"family '{family}' is missing assets/{resource_key}/"
 
     resource_keys = _resource_keys(assets_root) | _resource_keys(references_root)
+    # Disk dirs are kebab-case; map each back to the token that documents it — the snake_case
+    # family key for the benchmark families, or the dir's own name (shared) when no family key
+    # kebab-cases to it.
+    doc_token_by_dir = {family.replace("_", "-"): family for family in families}
     for resource_key in sorted(resource_keys):
-        token = f"`{resource_key}`"
+        token = f"`{doc_token_by_dir.get(resource_key, resource_key)}`"
         assert token in family_table, (
             f"resource key '{resource_key}' is missing from the SKILL family table"
         )
@@ -94,7 +98,7 @@ def validate_registry() -> None:
             f"resource key '{resource_key}' is missing from create-benchmark README.md"
         )
 
-    conformance_asset_dir = assets_root / "conformance_benchmark"
+    conformance_asset_dir = assets_root / "conformance-benchmark"
     conformance_assets = {
         path.name for path in conformance_asset_dir.iterdir() if path.is_file()
     }
@@ -102,7 +106,7 @@ def validate_registry() -> None:
         "conformance_benchmark is missing one or more required templates: "
         f"{sorted(CONFORMANCE_ASSETS - conformance_assets)}"
     )
-    guide_path = references_root / "conformance_benchmark" / CONFORMANCE_GUIDE
+    guide_path = references_root / "conformance-benchmark" / CONFORMANCE_GUIDE
     assert guide_path.is_file(), f"conformance_benchmark guide missing: {guide_path}"
 
     for template_path in assets_root.rglob("*template*"):

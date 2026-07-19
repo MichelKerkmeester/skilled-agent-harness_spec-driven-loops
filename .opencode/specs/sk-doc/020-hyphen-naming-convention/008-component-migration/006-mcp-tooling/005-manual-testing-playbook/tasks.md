@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-tooling hub manual-testing-playbook naming closure (032 phase 005)"
+title: "Tasks: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
 description: "Tasks for phase 005 of the mcp-tooling component naming migration: rename the hub-level playbook tree and repair its navigation."
 trigger_phrases:
   - "mcp-tooling hub playbook tasks"

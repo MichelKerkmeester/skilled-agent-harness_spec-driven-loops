@@ -24,7 +24,7 @@ readonly MIN_NODE_VERSION="18"
 # ───────────────────────────────────────────────────────────────
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _UTILS="${SCRIPT_DIR}/_utils.sh"
-[[ -f "$_UTILS" ]] || _UTILS="$(cd "${SCRIPT_DIR}/../../.." && pwd)/install_guides/install_scripts/_utils.sh"
+[[ -f "$_UTILS" ]] || _UTILS="$(cd "${SCRIPT_DIR}/../../.." && pwd)/install-guides/install-scripts/_utils.sh"
 source "$_UTILS"
 
 # ───────────────────────────────────────────────────────────────
@@ -272,11 +272,11 @@ add_to_opencode_json() {
     backup_file "${config_file}"
     
     # MCP configuration for opencode.json
-    # Uses embedded source from .opencode/skills/mcp-code-mode/mcp_server/
-    # This requires: npm install in mcp_server/ directory (done in verify step)
+    # Uses embedded source from .opencode/skills/mcp-code-mode/mcp-server/
+    # This requires: npm install in mcp-server/ directory (done in verify step)
     local mcp_config='{
         "type": "local",
-        "command": ["node", ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"],
+        "command": ["node", ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"],
         "environment": {
             "UTCP_CONFIG_FILE": ".utcp_config.json"
         }
@@ -302,7 +302,7 @@ verify_installation() {
 
     local project_root
     project_root=$(find_project_root) || return 1
-    local mcp_server_dir="${project_root}/.opencode/skills/mcp-code-mode/mcp_server"
+    local mcp_server_dir="${project_root}/.opencode/skills/mcp-code-mode/mcp-server"
     local entry_point="${mcp_server_dir}/dist/index.js"
 
     if [[ "${DRY_RUN}" == "true" ]]; then
@@ -354,7 +354,7 @@ print_summary() {
     echo "  - .env.example      : API key templates"
     echo ""
     echo "MCP Server location:"
-    echo "  - .opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
+    echo "  - .opencode/skills/mcp-code-mode/mcp-server/dist/index.js"
     echo ""
     echo "Next steps:"
     echo "  1. Copy API keys from .env.example to .env"

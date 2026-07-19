@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/032-code-graph-scatter/016-code-graph-p1-config-extraction",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/016-code-graph-p1-config-extraction",
   "description": "cli-opencode + deepseek-v4-pro --variant high dispatched: new config-defaults.ts with CODE_GRAPH_DEFAULTS (ttlMs, findFilesMaxDepth,",
   "keywords": [
     "cli-opencode",
@@ -13,11 +13,12 @@
     "ttlms",
     "findfilesmaxdepth"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.871Z",
+  "lastUpdated": "2026-07-18T03:48:55.615Z",
   "specId": "016",
   "folderSlug": "code-graph-p1-config-extraction",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 0,

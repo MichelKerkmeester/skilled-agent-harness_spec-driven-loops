@@ -1,9 +1,9 @@
 ---
-title: "Tasks: sk-git manual testing playbook (032 phase 008/012/003)"
+title: "Tasks: sk-git manual testing playbook (020 phase 008/012/003)"
 description: "Tasks for the sk-git manual-testing-playbook directory and scenario filename rename."
 trigger_phrases:
   - "sk-git manual playbook tasks"
-  - "032 manual scenario rename tasks"
+  - "020 manual scenario rename tasks"
   - "playbook discovery parity tasks"
 importance_tier: "important"
 contextType: "planning"

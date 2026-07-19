@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-review filesystem names (032 phase 008/004)"
+title: "Implementation Plan: code-review filesystem names (020 phase 008/004)"
 description: "Plan for renaming code-review assets, review scenarios, references, and benchmark labels through the frozen map, then proving review navigation and findings behavior remain intact."
 trigger_phrases:
   - "code-review naming implementation plan"
@@ -112,7 +112,7 @@ Move review assets, manual scenarios, reference files, and classified benchmark 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 001-003 sk-code handoffs | Internal | Required | Shared path consumers and mode interactions may remain stale. |
-| 032 frozen rename map | Internal | Required | Scenario/identifier distinctions cannot be proven. |
+| 020 frozen rename map | Internal | Required | Scenario/identifier distinctions cannot be proven. |
 | 000 baseline evidence | Internal | Required | Scenario and review parity cannot be measured. |
 | 005 rename/reference tooling | Internal | Required | Dynamic review-resource references may be missed. |
 <!-- /ANCHOR:dependencies -->

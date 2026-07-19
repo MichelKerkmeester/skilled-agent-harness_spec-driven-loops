@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # create-changelog References — Overflow Map
 
-Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../../shared/assets/changelog_template.md](../../shared/assets/changelog_template.md). These reference files carry only supplementary detail that would bloat the SKILL.md — worked examples, version-bump nuance, and placement and release edge cases.
+Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../../shared/assets/changelog-template.md](../../shared/assets/changelog-template.md). These reference files carry only supplementary detail that would bloat the SKILL.md — worked examples, version-bump nuance, and placement and release edge cases.
 
 ---
 
@@ -36,9 +36,9 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Worked examples** — a fully written global component entry and a packet-local nested entry, each annotated for why it is shaped that way | [worked_examples.md](worked_examples.md) | Modeling a real entry and you want a filled-in example, not the blank template |
-| **Version-bump rules** — concrete major/minor/patch/build examples, real sk-doc release shapes, the first-entry case, and the "major means breaking, not large" distinction | [version_bump_rules.md](version_bump_rules.md) | Choosing or calculating a global four-part version and the SKILL.md bump table is not concrete enough |
-| **Topology and edge cases** — the output-mode placement table, hub-versus-packet judgment, back-dating, source-format conflicts, and the optional GitHub release flow with its unknowns | [topology_edge_cases.md](topology_edge_cases.md) | Deciding where a changelog belongs, or handling release, back-dating, or format-conflict edge cases |
+| **Worked examples** — a fully written global component entry and a packet-local nested entry, each annotated for why it is shaped that way | [worked-examples.md](worked-examples.md) | Modeling a real entry and you want a filled-in example, not the blank template |
+| **Version-bump rules** — concrete major/minor/patch/build examples, real sk-doc release shapes, the first-entry case, and the "major means breaking, not large" distinction | [version-bump-rules.md](version-bump-rules.md) | Choosing or calculating a global four-part version and the SKILL.md bump table is not concrete enough |
+| **Topology and edge cases** — the output-mode placement table, hub-versus-packet judgment, back-dating, source-format conflicts, and the optional GitHub release flow with its unknowns | [topology-edge-cases.md](topology-edge-cases.md) | Deciding where a changelog belongs, or handling release, back-dating, or format-conflict edge cases |
 
 ---
 
@@ -49,13 +49,13 @@ Load the file that matches the current task:
 - [../README.md](../README.md) - packet overview and quick start
 
 ### Shared format
-- [../../shared/assets/changelog_template.md](../../shared/assets/changelog_template.md) - canonical global changelog and release-note format (compact and expanded)
+- [../../shared/assets/changelog-template.md](../../shared/assets/changelog-template.md) - canonical global changelog and release-note format (compact and expanded)
 
 ### Command surface
 - `.opencode/commands/create/changelog.md` - thin router for `/create:changelog`
-- `.opencode/commands/create/assets/create_changelog_auto.yaml` - autonomous workflow source
-- `.opencode/commands/create/assets/create_changelog_confirm.yaml` - checkpointed workflow source
-- `.opencode/commands/create/assets/create_changelog_presentation.txt` - setup fields, release prompt, and result display
+- `.opencode/commands/create/assets/create-changelog-auto.yaml` - autonomous workflow source
+- `.opencode/commands/create/assets/create-changelog-confirm.yaml` - checkpointed workflow source
+- `.opencode/commands/create/assets/create-changelog-presentation.txt` - setup fields, release prompt, and result display
 
 ### Packet-local (nested) output
 - `.opencode/skills/system-spec-kit/templates/changelog/root.md` - packet-local root template

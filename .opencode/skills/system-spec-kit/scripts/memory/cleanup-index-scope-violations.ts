@@ -165,7 +165,7 @@ function collectSummary(database: InstanceType<typeof Database>): ViolationSumma
     ),
     zFutureRows: countQuery(
       database,
-      "SELECT COUNT(*) AS count FROM memory_index WHERE file_path LIKE '%/z_future/%' OR spec_folder LIKE '%z_future%'",
+      "SELECT COUNT(*) AS count FROM memory_index WHERE file_path LIKE '%/z-future/%' OR spec_folder LIKE '%z_future%'",
     ),
     externalRows: countQuery(
       database,

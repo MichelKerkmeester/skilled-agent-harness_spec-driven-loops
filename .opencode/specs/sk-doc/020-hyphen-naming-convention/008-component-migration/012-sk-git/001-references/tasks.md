@@ -1,9 +1,9 @@
 ---
-title: "Tasks: sk-git references (032 phase 008/012/001)"
+title: "Tasks: sk-git references (020 phase 008/012/001)"
 description: "Tasks for the sk-git reference-file rename and pointer-closure phase."
 trigger_phrases:
   - "sk-git references tasks"
-  - "032 reference rename tasks"
+  - "020 reference rename tasks"
   - "reference pointer closure tasks"
 importance_tier: "important"
 contextType: "planning"

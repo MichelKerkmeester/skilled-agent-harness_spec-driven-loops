@@ -26,11 +26,11 @@ function readWorkspaceFile(relativePath: string): string {
   const primaryDocs = [
     '.opencode/skills/system-deep-loop/deep-research/SKILL.md',
     '.opencode/skills/system-deep-loop/deep-research/README.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/guides/capability_matrix.md',
-    '.opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json',
+    '.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md',
+    '.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md',
+    '.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md',
+    '.opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md',
+    '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
   ];
 
   const runtimeMirrors = [
@@ -40,8 +40,8 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.opencode/commands/deep/assets/deep_research_auto.yaml',
-    '.opencode/commands/deep/assets/deep_research_confirm.yaml',
+    '.opencode/commands/deep/assets/deep-research-auto.yaml',
+    '.opencode/commands/deep/assets/deep-research-confirm.yaml',
   ];
 
   it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {

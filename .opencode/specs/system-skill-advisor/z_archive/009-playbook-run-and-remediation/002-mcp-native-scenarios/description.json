@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios",
+  "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/002-mcp-native-scenarios",
   "description": "The native MCP tool scenarios NC-001..009 exercise `advisorrecommend`, `advisorstatus`, `advisorvalidate`, `advisorrebuild`,",
   "keywords": [
     "native",
@@ -13,11 +13,12 @@
     "advisorvalidate",
     "advisorrebuild"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.134Z",
+  "lastUpdated": "2026-07-18T03:48:57.250Z",
   "specId": "002",
   "folderSlug": "mcp-native-scenarios",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "009-playbook-run-and-remediation"
   ],
   "memorySequence": 1,

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: root and OpenCode infrastructure strays (032 phase 007 child 001)"
+title: "Checklist: root and OpenCode infrastructure strays (020 phase 007 child 001)"
 description: "Blocking SOL verifier contract for the root and OpenCode infrastructure closure: census classification, semantic targets, reference resolution, exemption protection, and downstream handoff."
 trigger_phrases:
   - "root infrastructure closure checklist"

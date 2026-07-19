@@ -12,16 +12,16 @@
   "derived": {
     "trigger_phrases": [
       "sk-git changelog verification",
-      "032 sk-git version bump",
+      "020 sk-git version bump",
       "migration changelog evidence",
       "sk-git changelog verification plan",
-      "032 sk-git version verification",
+      "020 sk-git version verification",
       "migration release evidence plan",
       "sk-git changelog tasks",
-      "032 version bump verification tasks",
+      "020 version bump verification tasks",
       "migration release evidence tasks",
       "sk-git changelog checklist",
-      "032 version bump verification",
+      "020 version bump verification",
       "migration release evidence acceptance"
     ],
     "key_topics": [
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook renames. This read-only phase verifies that shipped release evidence matches the actual migration; benchmark (004) is not yet migrated on v4, so its changelog coverage is deferred until that phase executes.",
     "created_at": "2026-07-14T15:18:29Z",
-    "last_save_at": "2026-07-17T14:30:42.610Z",
+    "last_save_at": "2026-07-17T20:26:18.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f563d698580152e126a6a86de329c2366956f4e63dd4ecb35870a0723e06f786",
+    "source_fingerprint": "sha256:0376c601f78bd5285b791ecc877b1de7f3930474929e99a03a4d0f00d1aee638",
     "source_doc_hashes": {
-      "spec.md": "35f0feacd86806a1197ff23e90386e6dab242bc53fff49d71a8e1aee6179c338",
-      "plan.md": "559c2d2dd21459d8059ed902ea52529730ca853ab17205a8a971beaa6150ad3f",
-      "tasks.md": "c0bb6c8e51287d0dd29654b163d0b0466b71935c76cd7a31ceb5e3d08568fe00",
-      "checklist.md": "b49ab693ba6847ca507f32d3a3dafec634fd05b2c395b42fdbb24497c2de968e"
+      "spec.md": "8b869d1c5827a848806faabbb1eb3a68e5fde9690efa7b176bbb89b937a85e25",
+      "plan.md": "6cbd229fb8095ef4e03c55d92c58649ea26a7ebbe571be2d977cbf55684cc626",
+      "tasks.md": "7ee62f5c9cb145a7a8148974626f9241b178ce591be750de960fa6b0a8918354",
+      "checklist.md": "999d378f54af69e7e53c0fb17d4cf9ce116f29c42b0f6a5cc55c972247188b6e"
     },
     "last_active_child_id": null,
     "last_active_at": null

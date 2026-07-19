@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
   "description": "The extracted advisor skill lives at `.opencode/skills/system-skill-advisor/`, but its graph metadata and compiled graph still used `skilladvisor` as",
   "keywords": [
     "extracted",
@@ -16,11 +16,12 @@
     "still",
     "skilladvisor"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.636Z",
+  "lastUpdated": "2026-07-18T03:48:57.109Z",
   "specId": "010",
   "folderSlug": "skill-id-field-rename",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

@@ -29,7 +29,7 @@ import {
   upsertNode,
   type CoverageEdge,
   type CoverageNode,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-db.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');

@@ -54,5 +54,5 @@ This scenario validates audit `Context, Proof, And Direct Fallback`: current-ses
 
 - Group: Procedure Card Contract
 - Playbook ID: AUDIT-PROCCARD-003
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/direct-fallback-without-subagents.md`

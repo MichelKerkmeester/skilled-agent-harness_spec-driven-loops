@@ -27,49 +27,49 @@ from typing import Any, Dict, List, Optional, Tuple
 
 TEST_CASES: List[Dict[str, Any]] = [
     {
-        "file": "valid_readme.md",
+        "file": "valid-readme.md",
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
         "description": "Valid README with TOC and double-dash anchors"
     },
     {
-        "file": "valid_skill.md",
+        "file": "valid-skill.md",
         "doc_type": "skill",
         "expected_exit": 0,
         "expected_errors": [],
         "description": "Valid SKILL.md with all required sections"
     },
     {
-        "file": "missing_toc.md",
+        "file": "missing-toc.md",
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
         "description": "README without a TOC is valid (TOCs are no longer used in skill docs)"
     },
     {
-        "file": "single_dash_anchors.md",
+        "file": "single-dash-anchors.md",
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
         "description": "TOC anchor format is no longer validated (TOCs are not used; format check is moot)"
     },
     {
-        "file": "missing_emojis.md",
+        "file": "missing-emojis.md",
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
         "description": "README without H2 emojis (valid - emojis not required)"
     },
     {
-        "file": "missing_sections.md",
+        "file": "missing-sections.md",
         "doc_type": "skill",
         "expected_exit": 1,
         "expected_errors": ["missing_required_section"],
         "description": "SKILL.md missing required sections (smart_routing, how_it_works, rules)"
     },
     {
-        "file": "valid_command.md",
+        "file": "valid-command.md",
         "doc_type": "command",
         "expected_exit": 0,
         "expected_errors": [],
@@ -77,7 +77,7 @@ TEST_CASES: List[Dict[str, Any]] = [
         "description": "Valid command doc using explicit --type command"
     },
     {
-        "file": "valid_install_guide.md",
+        "file": "valid-install-guide.md",
         "doc_type": "install_guide",
         "expected_exit": 0,
         "expected_errors": [],
@@ -85,7 +85,7 @@ TEST_CASES: List[Dict[str, Any]] = [
         "description": "Valid install guide doc using explicit --type install_guide"
     },
     {
-        "file": "command/auto_detect_command.md",
+        "file": "command/auto-detect-command.md",
         "doc_type": None,
         "expected_exit": 0,
         "expected_errors": [],
@@ -93,7 +93,7 @@ TEST_CASES: List[Dict[str, Any]] = [
         "description": "Command doc auto-detects from /command/ path"
     },
     {
-        "file": "valid_spec.md",
+        "file": "valid-spec.md",
         "doc_type": "spec",
         "expected_exit": 0,
         "expected_errors": [],
@@ -101,7 +101,7 @@ TEST_CASES: List[Dict[str, Any]] = [
         "description": "Valid spec doc using explicit --type spec"
     },
     {
-        "file": "specs/auto_detect_spec.md",
+        "file": "specs/auto-detect-spec.md",
         "doc_type": None,
         "expected_exit": 0,
         "expected_errors": [],

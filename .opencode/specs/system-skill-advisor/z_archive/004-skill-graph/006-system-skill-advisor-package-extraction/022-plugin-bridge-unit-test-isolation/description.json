@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation",
   "description": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion",
   "keywords": [
     "packet",
@@ -18,11 +18,12 @@
     "every",
     "assertion"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.705Z",
+  "lastUpdated": "2026-07-18T03:48:57.124Z",
   "specId": "022",
   "folderSlug": "plugin-bridge-unit-test-isolation",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

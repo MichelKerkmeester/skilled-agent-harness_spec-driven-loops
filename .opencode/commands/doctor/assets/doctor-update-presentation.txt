@@ -1,0 +1,203 @@
+# /doctor:update Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:update`: startup confirmation, mid-run prompts, cross-subsystem dashboards, validation displays, status outputs, restart-required messages, related commands, and next-step text. The command router owns flag parsing and asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Startup Confirmation
+
+Ask this prompt before any mutating phase unless `--force=true`. Lightweight read-only status probes are allowed only after flag parsing.
+
+```text
+/doctor:update rebuilds ALL spec-kit databases in dependency order with
+snapshots + auto-rollback on regression. ETA 8-25 min.
+
+Mid-run prompts:
+   SHORT  steps    -> auto (no prompt)
+   MEDIUM steps    -> 1 combined prompt   (Q-MED)
+   LONG-POLE step  -> ETA prompt + skip   (Q-LONG, 5-15 min)
+
+   1) Proceed
+   X) Cancel
+```
+
+Accept `1`, `A`, `Y`, `Proceed`, or Enter as proceed. Accept `X`, `N`, or `Cancel` as `STATUS=CANCELLED`. If input is empty, ask again once; on second empty input, return `STATUS=CANCELLED`.
+
+## 2. Mid-Run Prompt Catalog
+
+Use these prompts verbatim. Do not paraphrase, summarize, or split them into multiple messages.
+
+### Q-MED - Combined Medium-Tier Prompt
+
+When: before `code_graph_scan` and/or `eval_run_ablation`. Suppressed if `--force=true`.
+
+```text
+Medium-tier steps next:
+   code_graph_scan      ~1-3 min   (mutates code-graph.sqlite + config.json)
+   eval_run_ablation    ~2-4 min   (mutates speckit-eval.db)
+
+Phase 3 snapshots in place -> auto-rollback on gold-battery regression.
+
+   1) Run both
+   2) Run code_graph_scan only (skip eval)
+   X) Cancel + rollback
+```
+
+Accept `1`, `A`, `Y`, or `Proceed` as both. Accept `2` or `Skip` as code-graph only. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+
+### Q-LONG - Long-Pole ETA Prompt
+
+When: before `memory_index_scan` over context-index and vector-index. Suppressed if `--force=true`.
+
+```text
+LONG-POLE: memory_index_scan over the active profile DBs (Memory MCP + vector index if Voyage/OpenAI keyed).
+
+   ETA      5-15 min  (depends on corpus size; Voyage/OpenAI add API throughput when keyed)
+   Mutates  full re-index   (rollback available via Phase 3 snapshot)
+   Network  Voyage/OpenAI API required only when keyed - confirm credentials
+
+   1) Proceed
+   2) Skip   (advisor -> STALE; deep-loop init still runs)
+   X) Cancel + rollback
+```
+
+Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `2` or `Skip` as skipped and marked stale. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+
+### Q-PROBE - Active-MCP-Client Prompt
+
+When: Phase 2 detects one or more other MCP clients connected to the spec-kit memory server. Always fires; `--force` reduces it to a single confirmation rather than per-client prompts.
+
+```text
+Active MCP client(s) detected:
+   [comma-separated client_id list]
+
+The rebuild will cancel their open transactions and stale their cache until reconnect.
+
+   1) Proceed anyway
+   X) Cancel  (rerun when clients are idle)
+```
+
+Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `X`, `N`, or `Cancel` as `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+
+### Q-LEGACY - Per-File Legacy Cleanup Prompt
+
+When: Phase 9 processes each file listed in the migration manifest's legacy cleanup targets and `--cleanup-legacy=true`.
+
+```text
+Legacy file: [absolute path]
+   Reason:   [manifest reason string]
+   Size:     [human-readable size]
+
+   Y) Delete  (irreversible)
+   N) Keep    (default if empty)
+   A) Yes to ALL remaining
+   Q) Quit cleanup  (keep the rest, continue to Phase 10)
+```
+
+Accept `Y` or `Delete` as delete. Accept `N`, `Keep`, `Skip`, or empty as keep. Accept `A` or `All` as auto-delete remaining. Accept `Q` or `Quit` as exit Phase 9 early.
+
+### Q-FAIL - Step-Failure Recovery Prompt
+
+When: a step fails its first run and the 5-second-backoff retry. Suppressed if `--force=true`; force mode auto-rolls back.
+
+```text
+Step "[step_name]" failed after retry.
+   Phase:    [N]
+   Exit:     [code]
+   Snapshot: [path]
+
+Error (last 5 stderr lines):
+[excerpt]
+
+   1) Rollback + cancel       (default if empty after re-ask)
+   2) Continue without rollback   (DANGEROUS - subsequent steps may regress)
+   3) Retry once more
+```
+
+Accept `1`, `A`, `Y`, or `Rollback` as rollback plus `STATUS=ROLLED_BACK`. Accept `2` or `Continue` as log warning, skip step, and continue. Accept `3` or `Retry` as a third attempt. Empty input re-asks once; second empty input defaults to rollback.
+
+## 3. Setup Dashboard
+
+Render after flag parsing and before YAML load.
+
+```text
+DOCTOR UPDATE SETUP
+Workflow: .opencode/commands/doctor/assets/doctor-update.yaml
+Presentation: .opencode/commands/doctor/assets/doctor-update-presentation.txt
+Mode: INTERACTIVE
+Flags: force=[true|false] no_snapshot=[true|false] cleanup_legacy=[true|false] migrate=[true|false] keep_snapshots=[true|false] resume_bootstrap=[true|false]
+Snapshots: [enabled|disabled]
+Next: load workflow YAML
+```
+
+## 4. Cross-Subsystem Health Dashboard
+
+Render before selecting dependency actions.
+
+```text
+Cross-Subsystem Health Dashboard
+
+| Subsystem     | Status | Age | Coverage | Recommended Action |
+|---------------|--------|-----|----------|--------------------|
+| code-graph    | [OK|STALE|MISSING|REGRESSED] | [age] | [n/a|metric] | [scan|skip|rollback] |
+| context-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [index-scan|skip|rollback] |
+| causal-edges  | [OK|LOW-COVERAGE|REGRESSED] | [age] | [metric] | [init-links|skip|rollback] |
+| skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
+| advisor       | [OK|INVALID|STALE] | [age] | [n/a|metric] | [rebuild|validate] |
+| deep-loop     | [OK|EMPTY|STALE] | [age] | [n/a|metric] | [upsert|skip] |
+| eval          | [OK|STALE|SKIPPED] | [age] | [n/a|metric] | [run-ablation|skip] |
+```
+
+## 5. Status Output Templates
+
+### Final Status
+
+```text
+Doctor Update Result
+
+Final status: STATUS=[OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED]
+State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+Snapshots: [kept|cleaned|skipped]
+Touched subsystems: [list]
+Validation: [gold-battery and schema summary]
+```
+
+### Restart Required
+
+```text
+STATUS=RESTART_REQUIRED
+
+Runtime bootstrap completed before database rebuild started.
+Restart OpenCode so MCP tools register, then rerun:
+  /doctor:update --resume-bootstrap
+```
+
+### Failure
+
+```text
+STATUS=FAIL ERROR="[message]"
+State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+Failed phase: [phase]
+Next: inspect the state log and rerun with the safest applicable flag set.
+```
+
+### Rolled Back
+
+```text
+STATUS=ROLLED_BACK
+Reason: [step failure|gold-battery regression|operator choice]
+Restored snapshots: [list]
+State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+```
+
+## 6. Related Commands Display
+
+| Command | When To Use |
+|---------|-------------|
+| `/doctor memory` | Isolated context-index and vector-index health diagnosis |
+| `/doctor causal-graph` | Isolated causal edge coverage diagnosis |
+| `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
+| `/doctor code-graph` | Isolated structural graph diagnosis |
+| `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
+| `/doctor skill-budget` | Advisor budget/status helper |
+| `/doctor:mcp debug --fix` | MCP infrastructure repair before subsystem diagnostics |
+
+End interactive presentations with: `What would you like to do next?`

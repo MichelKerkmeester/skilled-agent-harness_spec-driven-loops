@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "hub-root-and-shared naming phase",
       "sk-design hub/shared phase",
-      "032 hub-root-and-shared",
+      "020 hub-root-and-shared",
       "hub-root-and-shared implementation plan",
       "sk-design hub/shared plan",
-      "032 hub-root-and-shared tasks",
+      "020 hub-root-and-shared tasks",
       "hub-root-and-shared tasks",
       "sk-design hub/shared execution",
-      "032 hub-root-and-shared checklist",
+      "020 hub-root-and-shared checklist",
       "hub-root-and-shared verification",
       "sk-design hub/shared checklist",
-      "032 hub-root-and-shared gate"
+      "020 hub-root-and-shared gate"
     ],
     "key_topics": [
       "hub-root-and-shared",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean.",
     "created_at": "2026-07-14T15:17:13Z",
-    "last_save_at": "2026-07-17T14:30:09.269Z",
+    "last_save_at": "2026-07-17T20:26:03.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:eb746e03fc21b58ea3112bfb5b230574dcd4928962d124d5ecbadd6d2130bc2d",
+    "source_fingerprint": "sha256:4202fb6d2d1819a7325ad56dd2ab2b35a11af07e0f8771faf395eede7bc96a24",
     "source_doc_hashes": {
-      "spec.md": "7b1dbfa5fce9dbb025738521484e66dd3be3e94912090610e1b738fa09d90402",
-      "plan.md": "8412d88b96250917d3e76f80a8c166a4dabfaf05924b04fc2bff35e0640f53e6",
-      "tasks.md": "d008bbd1a0ffccd997095477f526054c147daafe9d2c780456466dcbebf78847",
-      "checklist.md": "a988a4a903fd0ada41f1446f4dc8acc2157d56910dcb842a9263d1ceadf3ba29"
+      "spec.md": "ed4a3cb3f32732b64abe65a43c9cf392b4fcb5e9967655cea117d1ae1d78e53d",
+      "plan.md": "8423ddaff99de73c2bdefcbedc602d1b7b7ed08deed46da3403be0db58dc739e",
+      "tasks.md": "5f0f981dcbad1e3be70ea37b72715b97f30fd6e5343a34d3fa0224582e541b0f",
+      "checklist.md": "9d4df8c62188da6e86ce32032f333c1528023943c39b9a76b704a8b3ec7e1eb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

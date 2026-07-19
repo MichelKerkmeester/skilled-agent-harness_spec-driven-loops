@@ -70,7 +70,7 @@ Need a named runtime persona with authority and tool policy?
 ## 4. RELATED RESOURCES
 
 - [README.md](README.md) - reference route map for the create-agent packet
-- [permission_design.md](permission_design.md) - once the answer is "agent", how to scope its frontmatter and permissions
-- [common_pitfalls.md](common_pitfalls.md) - failure modes, including creating an agent for reusable knowledge alone
+- [permission-design.md](permission-design.md) - once the answer is "agent", how to scope its frontmatter and permissions
+- [common-pitfalls.md](common-pitfalls.md) - failure modes, including creating an agent for reusable knowledge alone
 - [create-skill README](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
-- [command_template.md](../../create-command/assets/command_template.md) - companion scaffold for slash-command entry points
+- [command-template.md](../../create-command/assets/command-template.md) - companion scaffold for slash-command entry points

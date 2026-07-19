@@ -89,25 +89,25 @@ speckit/
 ├── plan.md           # /speckit:plan - Planning only (+ `--intake-only` standalone intake)
 ├── resume.md         # /speckit:resume - Resume existing work
 └── assets/           # YAML workflow definitions
-    ├── speckit_complete_auto.yaml
-    ├── speckit_complete_confirm.yaml
-    ├── speckit_implement_auto.yaml
-    ├── speckit_implement_confirm.yaml
-    ├── speckit_plan_auto.yaml
-    ├── speckit_plan_confirm.yaml
-    ├── speckit_resume_auto.yaml
-    └── speckit_resume_confirm.yaml
+    ├── speckit-complete-auto.yaml
+    ├── speckit-complete-confirm.yaml
+    ├── speckit-implement-auto.yaml
+    ├── speckit-implement-confirm.yaml
+    ├── speckit-plan-auto.yaml
+    ├── speckit-plan-confirm.yaml
+    ├── speckit-resume-auto.yaml
+    └── speckit-resume-confirm.yaml
 
 deep/                 # Deep workflows (research, review, AI council)
 ├── research.md               # /deep:research - Autonomous deep research loop
 ├── review.md                 # /deep:review - Autonomous code review loop
 ├── ai-council.md             # /deep:ai-council - Multi-topic deep AI council
 └── assets/
-    ├── deep_research_auto.yaml
-    ├── deep_research_confirm.yaml
-    ├── deep_review_auto.yaml
-    ├── deep_review_confirm.yaml
-    └── deep_ai-council_auto.yaml
+    ├── deep-research-auto.yaml
+    ├── deep-research-confirm.yaml
+    ├── deep-review-auto.yaml
+    ├── deep-review-confirm.yaml
+    └── deep-ai-council-auto.yaml
 
 > Note: `/doctor skill-advisor` previously lived under `speckit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
@@ -143,13 +143,13 @@ The `complete` command combines research, plan, and implement into a single invo
 
 | Command | Delegates To |
 |---------|-------------|
-| plan | Main agent owns planning and may reuse the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`); /deep:research optional |
+| plan | Main agent owns planning and may reuse the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake-contract.md`); /deep:research optional |
 | implement | @general (code changes), distributed governance for packet docs |
 | deep-research | /deep:research (iterative investigation) |
 | deep-review | /deep:review (iterative code audit) |
 | resume | Loads memory context, continues from last state |
 | phase | Main agent creates packet folders, @general runs scripts as needed |
-| complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`) when packet state requires repair |
+| complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake-contract.md`) when packet state requires repair |
 
 <!-- /ANCHOR:workflow-progression -->
 

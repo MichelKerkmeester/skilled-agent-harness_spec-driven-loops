@@ -334,7 +334,7 @@ tool_info("figma.figma_<tool>")
 
 Calls go through `call_tool_chain()` using the naming convention `figma.figma_<tool>`. Live-confirmed tools include `get_figma_data` and `download_figma_images`. Always discover the live tool set before invoking, rather than assuming a tool exists or is read-only.
 
-The **official** Figma Dev Mode MCP is out of scope for this release and is not a documented or supported path here. See `references/mcp_wiring.md` for the future-option note.
+The **official** Figma Dev Mode MCP is out of scope for this release and is not a documented or supported path here. See `references/mcp-wiring.md` for the future-option note.
 
 ---
 
@@ -348,7 +348,7 @@ The CLI's verbs fall into classes, and the gate depends on the class.
 - **Arbitrary** verbs `eval`, `raw` and `run` execute arbitrary instructions. The skill treats them as mutating and reviews the code or command before running it, even when the prompt sounds exploratory.
 - **Never** auto-patch Figma (yolo is consent-gated) and **never** auto-delete.
 
-Full taxonomy: `references/tool_surface.md`.
+Full taxonomy: `references/tool-surface.md`.
 
 ---
 
@@ -394,9 +394,9 @@ See `references/troubleshooting.md` for the full symptom, cause and fix detail, 
 | -------- | -------- | ------- |
 | README | `.opencode/skills/mcp-tooling/mcp-figma/README.md` | Human orientation and quick start |
 | SKILL.md | `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md` | Runtime instructions and routing |
-| CLI Reference | `.opencode/skills/mcp-tooling/mcp-figma/references/figma_cli_reference.md` | Binary identity, daemon, connect modes |
-| Tool Surface | `.opencode/skills/mcp-tooling/mcp-figma/references/tool_surface.md` | Read-only, mutating and destructive taxonomy |
-| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md` | Optional Framelink MCP through Code Mode |
+| CLI Reference | `.opencode/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md` | Binary identity, daemon, connect modes |
+| Tool Surface | `.opencode/skills/mcp-tooling/mcp-figma/references/tool-surface.md` | Read-only, mutating and destructive taxonomy |
+| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md` | Optional Framelink MCP through Code Mode |
 | Troubleshooting | `.opencode/skills/mcp-tooling/mcp-figma/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream

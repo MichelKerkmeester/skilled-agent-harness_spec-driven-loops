@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "design-motion naming phase",
       "sk-design design-motion phase",
-      "032 design-motion",
+      "020 design-motion",
       "design-motion implementation plan",
       "sk-design design-motion plan",
-      "032 design-motion tasks",
+      "020 design-motion tasks",
       "design-motion tasks",
       "sk-design design-motion execution",
-      "032 design-motion checklist",
+      "020 design-motion checklist",
       "design-motion verification",
       "sk-design design-motion checklist",
-      "032 design-motion gate"
+      "020 design-motion gate"
     ],
     "key_topics": [
       "design-motion",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance.",
     "created_at": "2026-07-14T15:17:16Z",
-    "last_save_at": "2026-07-17T14:30:10.073Z",
+    "last_save_at": "2026-07-17T20:26:04.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b160e7213464dc5f389a89551040e17b85663f58225f73177259865fb57c85c7",
+    "source_fingerprint": "sha256:367a7cb22f0947743e032eeb92025bb5b7537395cf384b902abb703aa9bdb9b4",
     "source_doc_hashes": {
-      "spec.md": "1ca1d25b494d093a22a4bb284f5699a289d71ea09ea475d977b5f819298764ac",
-      "plan.md": "bf8e973861b1d870ca6e0ccf1b60bf075c28f2343fb4651706500c5cac0db230",
-      "tasks.md": "a658c0345d026c8a40419cecf8d087dd13951d806c37dc91951a8b3179ffe0bc",
-      "checklist.md": "761680e072066aa182cd0458e60a9b9aefcb7ca8e69b6a8cb5258c92ce56b7a2"
+      "spec.md": "e9fafd4e74144eb5159b31f5bb6a5aa8d0496923d037e19cf19bf55c76a33bc7",
+      "plan.md": "1952b1073f75886220dc88c7e0e11dbb2bfc00411fb7892b28e51386c58408fc",
+      "tasks.md": "cb4f4f163c2845e54081f8f5b9a2df7405634217f2b15f4b47adab3a8330eca5",
+      "checklist.md": "64c5e2ff65ec4d0d32970b6fe573d501ecba5023483d7a8b802825150541e34e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: inventory and frozen rename map (032 phase 006)"
-description: "Implementation Plan for phase 006 of the 032 kebab-case filesystem-naming program: inventory and frozen rename map."
+title: "Implementation Plan: inventory and frozen rename map (020 phase 006)"
+description: "Implementation Plan for phase 006 of the 020 kebab-case filesystem-naming program: inventory and frozen rename map."
 trigger_phrases:
   - "inventory and frozen rename map implementation plan"
   - "hyphen naming phase 006 implementation plan"
@@ -101,7 +101,7 @@ Before any rename, the in-scope surface must be frozen into a fully-classified r
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
+Inherits the 020 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
 (rebuilt in the worktree), and sk-git for the worktree lifecycle. Phase-specific dependencies are the predecessor
 phases named in this phase's spec adjacency.
 <!-- /ANCHOR:dependencies -->

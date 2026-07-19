@@ -1,6 +1,6 @@
-# 032 Execution Parallelization Strategy — Epochal Wavefront
+# 020 Execution Parallelization Strategy — Epochal Wavefront
 
-> **Status:** Planning reference for the 032 migration EXECUTION (phases 006–011). This is authored guidance, not an
+> **Status:** Planning reference for the 020 migration EXECUTION (phases 006–011). This is authored guidance, not an
 > execution log — no migration runs during this authoring pass. Scope is the `sk-doc/020-hyphen-naming-convention` packet.
 >
 > **Provenance:** Distilled from a read-only GPT-5.6-SOL (ultra, fast) analysis run on 2026-07-15 and grounded against the
@@ -180,7 +180,7 @@ Atomic leases in the shared Git common directory:
 
 ```sh
 G=$(git rev-parse --path-format=absolute --git-common-dir)
-mkdir "$G/032-leases/<skill>.<scc>.lock"   # mkdir is the atomic claim
+mkdir "$G/020-leases/<skill>.<scc>.lock"   # mkdir is the atomic claim
 ```
 
 Each lease records owner/session, worktree, branch, epoch, SCC, `EXEC_BASE`, touch-set hash, heartbeat, expiry, and state:

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-opencode component naming (032 phase 005.002)"
+title: "Checklist: cli-opencode component naming (020 phase 005.002)"
 description: "Blocking SOL verifier contract for the cli-opencode component: complete reference/asset map, active path closure, schema and dispatch parity, and delegated-surface protection."
 trigger_phrases:
   - "cli-opencode naming checklist"

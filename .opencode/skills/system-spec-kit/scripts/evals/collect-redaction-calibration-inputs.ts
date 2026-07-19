@@ -52,7 +52,7 @@ function buildCommandMatrix(workspaceRoot: string, specFolder: string): CommandS
     { command: 'python3', args: ['--version'], cwd: workspaceRoot },
     { command: 'ls', args: ['-la'], cwd: workspaceRoot },
     { command: 'ls', args: ['-la', '.opencode/skills/system-spec-kit'], cwd: workspaceRoot },
-    { command: 'ls', args: ['-la', '.opencode/skills/system-spec-kit/mcp_server'], cwd: workspaceRoot },
+    { command: 'ls', args: ['-la', '.opencode/skills/system-spec-kit/mcp-server'], cwd: workspaceRoot },
     { command: 'ls', args: ['-la', specFolder], cwd: workspaceRoot },
   ];
 

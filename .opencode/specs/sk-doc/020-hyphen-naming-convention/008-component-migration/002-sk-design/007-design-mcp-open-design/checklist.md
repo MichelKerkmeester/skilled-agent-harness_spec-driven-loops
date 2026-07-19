@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Design-mcp-open-design (032 phase 007)"
-description: "Blocking SOL verification contract for Design-mcp-open-design in the 032 sk-design naming subtree."
+title: "Checklist: Design-mcp-open-design (020 phase 007)"
+description: "Blocking SOL verification contract for Design-mcp-open-design in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-mcp-open-design verification"
   - "sk-design design-mcp-open-design checklist"
-  - "032 design-mcp-open-design gate"
+  - "020 design-mcp-open-design gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Design-mcp-open-design (032 phase 007)
+# Checklist: Design-mcp-open-design (020 phase 007)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

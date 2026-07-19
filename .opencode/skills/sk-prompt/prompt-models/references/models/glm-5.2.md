@@ -24,7 +24,7 @@ Single source of truth for how to prompt GLM-5.2 in the small-model rotation. Fr
 
 ### Purpose
 
-This profile is the single source for how to prompt GLM-5.2, the flagship long-horizon coding model dispatched through `cli-opencode` on the dedicated **Z.AI GLM Coding Plan** (provider `zai-coding-plan`, slug `zai-coding-plan/glm-5.2`). It mirrors the `glm-5.2` entry in `model_profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt GLM-5.2, the flagship long-horizon coding model dispatched through `cli-opencode` on the dedicated **Z.AI GLM Coding Plan** (provider `zai-coding-plan`, slug `zai-coding-plan/glm-5.2`). It mirrors the `glm-5.2` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
@@ -62,7 +62,7 @@ GLM-5.2 is the **flagship long-horizon coding** model in the rotation — Z.AI p
 **Avoid:** RCAF (objectively weakest on strict validators — benchmark 008)
 **Pre-planning density:** LEAN
 
-These choices mirror `recommended_frameworks` in [`../../assets/model_profiles.json`](../../assets/model_profiles.json) entry `glm-5.2` (the DATA source of truth). See `../../../prompt-improve/references/patterns_evaluation.md` for the generic COSTAR / TIDD-EC / RCAF definitions — this profile records the per-model choice and rationale only.
+These choices mirror `recommended_frameworks` in [`../../assets/model-profiles.json`](../../assets/model-profiles.json) entry `glm-5.2` (the DATA source of truth). See `../../../prompt-improve/references/patterns-evaluation.md` for the generic COSTAR / TIDD-EC / RCAF definitions — this profile records the per-model choice and rationale only.
 
 **Why COSTAR for GLM-5.2 (empirical, benchmark 008):** On invalid-dominant strict validators, four frameworks tied at perfect correctness — COSTAR, TIDD-EC, CIDI, RACE — while RCAF was the measured-weakest (correctness 0.976, the only sub-perfect framework, plus the worst format adherence at 0.889). Among the perfect tier, COSTAR is the safest default: it is the **most token-efficient** (13 median output words vs TIDD-EC 38, CIDI/RACE 94) AND the most cross-validated pick — it is also the empirical winner for kimi-k2.7-code (benchmark 007) and MiMo-V2.5-Pro (benchmark 004), two comparable strong coding models. COSTAR frames by objective + output-shape rather than guardrails, which fits a strong model that does not need heavy scaffolding. TIDD-EC (fallback) tied on correctness and is the 2nd-most token-efficient. **Avoid RCAF** — it was the only framework to miss strict-validator edges and had the weakest format adherence. The trust verdict was a TIE among the perfect tier (top-pair COSTAR vs TIDD-EC, margin 0, 90% CI [0,0]), so this is "best-of-tied + corroborated", not a decisive single winner.
 
@@ -90,7 +90,7 @@ These choices mirror `recommended_frameworks` in [`../../assets/model_profiles.j
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-The generic COSTAR framework definition lives in [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — do not restate it here.
+The generic COSTAR framework definition lives in [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md) — do not restate it here.
 
 The scaffold below is the GLM-5.2-specific COSTAR fill (lean pre-planning). Copy-paste-ready; executor-agnostic (no opencode invocation wrapper — those live in the executor cards).
 
@@ -134,7 +134,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../assets/model-profiles.json`](../../assets/model-profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -206,10 +206,10 @@ Round 1: attach the reference image + the house-style/design-system contract →
 
 ## 8. SEE ALSO
 
-- [`../../assets/model_profiles.json`](../../assets/model_profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
-- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, TIDD-EC, RCAF, full library).
+- [`../../assets/model-profiles.json`](../../assets/model-profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
+- [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md) — Generic framework definitions (COSTAR, TIDD-EC, RCAF, full library).
 - [`../../../../cli-external-orchestration/cli-opencode/SKILL.md`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Z.AI GLM Coding Plan); non-TTY rule, permissions, model-selection guidance.
-- [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.
+- [`../pattern-index.md`](../pattern-index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see mimo-v2.5-pro for the other 1M-context rotation peer, and kimi-k2.7-code for the other COSTAR-winning coding model.
 - [`../vision-audit-benchmark.md`](../vision-audit-benchmark.md) — Cross-model vision capability + design-audit accuracy (GLM generates but confabulates audits; MiniMax-M3 is the accurate auditor).
 - **Benchmark outputs:** `../../benchmarks/008-glm-5.2-prompt-framework/` — results.json, aggregate.json, synthesis.md.

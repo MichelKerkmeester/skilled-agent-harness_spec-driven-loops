@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-review filesystem names (032 phase 007/004)"
+title: "Feature Specification: deep-review filesystem names (020 phase 007/004)"
 description: "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state, convergence, playbooks, and assets. This phase renames those in-scope paths to kebab-case and repairs their consumers without changing review findings, convergence, state, or tool contracts."
 trigger_phrases:
   - "deep-review kebab-case migration"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Deep-review filesystem names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | deep-review |
-| **Origin** | Phase 004 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

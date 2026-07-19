@@ -7,8 +7,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   generateFolderDescriptions,
   isGeneratedMetadataZExclusionEnabled,
-} from '../../mcp_server/lib/search/folder-discovery.js';
-import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../../mcp_server/lib/utils/index-scope.js';
+} from '../../mcp-server/lib/search/folder-discovery.js';
+import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../../mcp-server/lib/utils/index-scope.js';
 import { planBackfill, runBackfill } from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();
@@ -160,20 +160,20 @@ describe('per-folder failure isolation', () => {
 
 describe('authoritative z_* exclusion helper', () => {
   it('excludes only z_future from generated metadata while keeping z_archive', () => {
-    expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z_future/001-x/graph-metadata.json')).toBe(true);
+    expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z-future/001-x/graph-metadata.json')).toBe(true);
     expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/z_archive/001-x/graph-metadata.json')).toBe(false);
     expect(isExcludedFromGeneratedMetadata('/specs/system-spec-kit/910-active/graph-metadata.json')).toBe(false);
 
     // The two policies now agree: z_archive stays in both the generated metadata
     // and the memory index, only the z_future staging area is dropped.
     expect(shouldIndexForMemory('/specs/system-spec-kit/z_archive/001-x/spec.md')).toBe(true);
-    expect(shouldIndexForMemory('/specs/system-spec-kit/z_future/001-x/spec.md')).toBe(false);
+    expect(shouldIndexForMemory('/specs/system-spec-kit/z-future/001-x/spec.md')).toBe(false);
   });
 
   it('refuses a z_* prefixed folder in the description scanner by default', () => {
     const { specsRoot } = createSpecTree();
     writePacket(
-      path.join(specsRoot, 'system-spec-kit', 'z_future', '001-staging-packet'),
+      path.join(specsRoot, 'system-spec-kit', 'z-future', '001-staging-packet'),
       'Staging Packet',
       'A z_future staging packet that must never enter the descriptions cache.',
     );
@@ -188,7 +188,7 @@ describe('authoritative z_* exclusion helper', () => {
   it('restores the prior scanner behavior when the flag is toggled off', () => {
     const { specsRoot } = createSpecTree();
     writePacket(
-      path.join(specsRoot, 'system-spec-kit', 'z_future', '001-staging-packet'),
+      path.join(specsRoot, 'system-spec-kit', 'z-future', '001-staging-packet'),
       'Staging Packet',
       'A z_future staging packet admitted only when the exclusion is disabled.',
     );

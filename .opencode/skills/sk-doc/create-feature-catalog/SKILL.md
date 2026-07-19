@@ -9,7 +9,7 @@ version: 1.0.1.1
 
 # Create Feature Catalog
 
-`create-feature-catalog` is the feature-inventory workflow packet of the `sk-doc` parent hub. It authors canonical current-state catalogs rooted at `feature_catalog/feature_catalog.md`, with category folders and one per-feature reference file per root catalog entry.
+`create-feature-catalog` is the feature-inventory workflow packet of the `sk-doc` parent hub. It authors canonical current-state catalogs rooted at `feature-catalog/feature-catalog.md`, with category folders and one per-feature reference file per root catalog entry.
 
 Feature catalogs are the canonical inventory for what a system does today. They organize capabilities by category, summarize current behavior in a root catalog, and link to per-feature files that carry implementation anchors, tests, and metadata.
 
@@ -28,9 +28,9 @@ Use this workflow when the request involves:
 - Creating a canonical feature inventory for a skill, system, MCP surface, CLI surface, or documentation family.
 - Splitting a large feature surface into a root catalog plus per-feature files.
 - Documenting shipped behavior with source-file anchors, validation anchors, and stable feature slugs.
-- Creating or updating `feature_catalog/feature_catalog.md`.
+- Creating or updating `feature-catalog/feature-catalog.md`.
 - Creating category folders such as `retrieval/` or `mutation/`.
-- Creating per-feature files such as `unified_context_retrieval.md` under category folders.
+- Creating per-feature files such as `unified-context-retrieval.md` under category folders.
 - Linking manual testing playbooks, README summaries, or operator docs back to a stable feature reference.
 
 Keyword triggers: `feature catalog`, `feature inventory`, `catalog package`, `per-feature files`, `source anchors`, `root catalog`, `capability inventory`, `capabilities`, `/create:feature-catalog`.
@@ -171,34 +171,36 @@ def route_feature_catalog_request(request):
 ### Canonical Shape
 
 ```text
-feature_catalog/
-├── feature_catalog.md
-├── category_name/
-│   ├── feature_name.md
-│   └── another_feature_name.md
-└── another_category/
-    └── feature_name.md
+feature-catalog/
+├── feature-catalog.md
+├── category-name/
+│   ├── feature-name.md
+│   └── another-feature-name.md
+└── another-category/
+    └── feature-name.md
 ```
 
 Invariants:
 
-- Root file is always `feature_catalog.md` in lowercase.
-- Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix).
-- Per-feature files use `feature_name.md` without numeric prefixes.
+- Root file is always `feature-catalog.md` in lowercase.
+- Category directories use descriptive kebab-case names such as `category-name` (no numeric prefix).
+- Per-feature files use kebab-case names such as `feature-name.md` without numeric prefixes.
 - One root entry maps to exactly one per-feature file.
 - Slugs should remain stable after publication.
-- Display order is owned by the root catalog index (`feature_catalog.md`), not the folder name.
+- Display order is owned by the root catalog index (`feature-catalog.md`), not the folder name.
 - Per-feature snippet order is defined by the root catalog listing order; filenames do not encode order.
 
 ### Required Resources
 
 Use these packet resources while authoring:
 
-- `assets/feature_catalog_template.md` for the root catalog scaffold.
-- `assets/feature_catalog_snippet_template.md` for each per-feature file.
-- `../shared/references/quick_reference.md` and `../shared/references/validation.md` before delivery.
-- `../shared/references/frontmatter_versioning.md` when checking frontmatter version fields.
-- `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common_pitfalls.md`](references/common_pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
+- `assets/feature-catalog-template.md` for the root catalog scaffold.
+- `assets/feature-catalog-snippet-template.md` for each per-feature file.
+- `../shared/references/quick-reference.md` and `../shared/references/validation.md` before delivery.
+- `../shared/references/frontmatter-versioning.md` when checking frontmatter version fields.
+- `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common-pitfalls.md`](references/common-pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
+
+The source assets keep the filenames `feature-catalog-template.md` and `feature-catalog-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.
 
 ---
 
@@ -210,9 +212,9 @@ Follow this workflow in order.
 2. Decide whether a catalog is warranted; use a README summary instead when the feature surface is small, complete, stable, or too volatile for a maintained catalog.
 3. Decide the category taxonomy before writing prose.
 4. Stabilize category names, feature names, and feature slugs before polishing descriptions.
-5. Create `feature_catalog/feature_catalog.md` from `assets/feature_catalog_template.md`.
-6. Create one category folder per root section using a descriptive `underscore_case` slug such as `category_name`; the root catalog listing defines display order.
-7. Create one per-feature file for each root entry using `assets/feature_catalog_snippet_template.md`.
+5. Create `feature-catalog/feature-catalog.md` from `assets/feature-catalog-template.md`.
+6. Create one category folder per root section using a descriptive kebab-case slug such as `category-name`; the root catalog listing defines display order.
+7. Create one per-feature file for each root entry using `assets/feature-catalog-snippet-template.md`.
 8. Write concise root summaries and link each feature to its per-feature file.
 9. Fill each per-feature `## 2. HOW IT WORKS` section with current behavior.
 10. Use plain prose for short `HOW IT WORKS` sections and H3 subheadings for sections longer than three paragraphs.
@@ -321,15 +323,15 @@ Cross-reference rule:
 - Catalogs should stay focused on current behavior, not test execution detail.
 - Manual execution scenario matrices belong in playbooks, not catalogs.
 
-Validation workflow — run from the repo root so the validator resolves the `feature_catalog` doc type on per-feature leaves (leaf detection keys on any `feature_catalog/<category>/` subfolder path):
+Validation workflow — run from the repo root so the validator resolves the `feature_catalog` doc type on per-feature leaves (leaf detection accepts the canonical `feature-catalog/<category>/` path during the bounded compatibility window):
 
 ```bash
 # Root catalog (detected as the readme doc type)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/feature_catalog.md
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature_catalog/feature_catalog.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature-catalog/feature-catalog.md
 
 # Each per-feature leaf (detected as the feature_catalog doc type; validates the Validation And Tests table taxonomy)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/<category_name>/feature_name.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/<category-name>/feature-name.md
 ```
 
 The validator machine-checks the root-catalog structure and each leaf's Validation And Tests table, but not cross-file link targets or source-anchor accuracy. Manually verify:
@@ -354,10 +356,10 @@ Validator boundary:
 
 ### ✅ ALWAYS
 
-1. Use `assets/feature_catalog_template.md` for the root catalog scaffold.
-2. Use `assets/feature_catalog_snippet_template.md` for per-feature files.
-3. Preserve the canonical root path `feature_catalog/feature_catalog.md`.
-4. Name category folders with a descriptive `underscore_case` slug such as `category_name`; let the root catalog index own display order.
+1. Use `assets/feature-catalog-template.md` for the root catalog scaffold.
+2. Use `assets/feature-catalog-snippet-template.md` for per-feature files.
+3. Preserve the canonical root path `feature-catalog/feature-catalog.md`.
+4. Name category folders with a descriptive kebab-case slug such as `category-name`; let the root catalog index own display order.
 5. Keep per-feature filenames stable after publication.
 6. Keep per-feature filenames free of numeric prefixes.
 7. Include source-file and validation anchors for every feature claim.
@@ -378,7 +380,7 @@ Validator boundary:
 6. Never cite mutable packet numbers where current source paths, commands, or feature names should be used.
 7. Never use numeric prefixes on per-feature filenames.
 8. Never add numeric prefixes to category folder names; the root catalog index owns display order.
-9. Never use hyphens in category folder or per-feature filename path segments.
+9. Never use underscores in category folder or per-feature filename path segments.
 10. Never put manual execution scenario matrices in the catalog.
 11. Never omit source anchors for feature claims.
 12. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
@@ -413,8 +415,8 @@ Validator boundary:
 
 The catalog package is complete when:
 
-- The root catalog exists at `feature_catalog/feature_catalog.md` and was built from the packet template.
-- Category folders use descriptive `underscore_case` slugs with no numeric prefixes, and display order is owned by the root catalog index.
+- The root catalog exists at `feature-catalog/feature-catalog.md` and was built from the packet template.
+- Category folders use descriptive kebab-case slugs with no numeric prefixes, and display order is owned by the root catalog index.
 - Every root entry links to exactly one per-feature file, and every per-feature file is represented in the root catalog.
 - Each per-feature file carries frontmatter with a stable title, description, at least three `trigger_phrases`, and a four-part version, plus source-file and validation or test anchors for every feature claim.
 - Prose describes current shipped behavior from the caller or operator perspective, with any rollout or compatibility layer labeled explicitly.
@@ -428,9 +430,9 @@ The primary contract is this `SKILL.md`. Load the resources below only for overf
 
 - `references/README.md` - route map for the packet reference set.
 - `references/examples.md` - annotated walkthrough of a shipped feature-catalog package.
-- `references/common_pitfalls.md` - deep-dive pitfalls with before/after fixes and the template-versus-reference split.
-- `assets/feature_catalog_template.md` - root catalog scaffold.
-- `assets/feature_catalog_snippet_template.md` - per-feature file scaffold.
-- `../shared/references/quick_reference.md` - condensed commands and file locations.
+- `references/common-pitfalls.md` - deep-dive pitfalls with before/after fixes and the template-versus-reference split.
+- `assets/feature-catalog-template.md` - root catalog scaffold.
+- `assets/feature-catalog-snippet-template.md` - per-feature file scaffold.
+- `../shared/references/quick-reference.md` - condensed commands and file locations.
 - `../shared/references/validation.md` - shared validation and quality-scoring workflow.
-- `../shared/references/frontmatter_versioning.md` - four-part version field rules.
+- `../shared/references/frontmatter-versioning.md` - four-part version field rules.

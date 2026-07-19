@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration hub root and shared boundary (032 phase 005.001)"
+title: "Implementation Plan: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "Implementation plan for the cli-external-orchestration root/shared boundary: capture the live root census, protect exact router contracts, apply only owned path mappings, and keep playbook and benchmark ownership delegated."
 trigger_phrases:
   - "cli-external hub root implementation plan"
@@ -48,7 +48,7 @@ The plan starts with a direct-child census and records the current absence of `s
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 032 scope/exemption record and component phase map are available.
+- [ ] The 020 scope/exemption record and component phase map are available.
 - [ ] Candidate and BASE SHAs are pinned and the direct root census is captured.
 - [ ] Each root child has an ownership and naming disposition before any rename.
 
@@ -107,7 +107,7 @@ Pinned root inventory → ownership/classification ledger → owned source-targe
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the 032 exemption and dependency-closure rules. Phases 002–006 may update paths beneath the hub, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
+The phase consumes the 020 exemption and dependency-closure rules. Phases 002–006 may update paths beneath the hub, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

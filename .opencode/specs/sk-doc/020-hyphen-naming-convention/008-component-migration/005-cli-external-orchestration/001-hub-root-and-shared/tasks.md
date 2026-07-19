@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration hub root and shared boundary (032 phase 005.001)"
+title: "Tasks: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "Tasks for the cli-external-orchestration root/shared boundary: build the ownership ledger, preserve exact routing contracts, and verify delegated playbook and benchmark ownership."
 trigger_phrases:
   - "cli-external hub root tasks"

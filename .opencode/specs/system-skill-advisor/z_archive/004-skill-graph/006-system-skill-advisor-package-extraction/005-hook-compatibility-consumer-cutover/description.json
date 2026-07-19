@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
   "description": "ADR-001 split the advisor into a standalone package and MCP server, but live consumers still carry mixed assumptions",
   "keywords": [
     "adr-001",
@@ -17,11 +17,12 @@
     "mixed",
     "assumptions"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.645Z",
+  "lastUpdated": "2026-07-18T03:48:57.104Z",
   "specId": "005",
   "folderSlug": "hook-compatibility-consumer-cutover",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

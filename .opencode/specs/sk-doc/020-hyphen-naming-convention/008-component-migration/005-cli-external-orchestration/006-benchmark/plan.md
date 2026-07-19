@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration benchmark naming (032 phase 005.006)"
+title: "Implementation Plan: cli-external-orchestration benchmark naming (020 phase 005.006)"
 description: "Implementation plan for the cli-external-orchestration benchmark boundary: prove the current .gitkeep-only baseline, classify execution-time authored/generated artifacts, update active paths, and preserve benchmark semantics."
 trigger_phrases:
   - "cli-external benchmark implementation plan"
@@ -48,7 +48,7 @@ The live benchmark directory contains only `.gitkeep`; no fixture, profile, stor
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 005 playbook handoff and the 032 generated/frozen exemption record are available.
+- [ ] Phase 005 playbook handoff and the 020 generated/frozen exemption record are available.
 - [ ] Candidate/BASE SHAs and the benchmark-only inventory are captured.
 - [ ] `.gitkeep` and any execution-time descendants have an explicit disposition before mutation.
 
@@ -108,7 +108,7 @@ BASE benchmark inventory → authored/generated/frozen classification → semant
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes phase 005's playbook handoff and the 032 authored/generated/frozen boundary. It is intentionally tolerant of a zero-candidate live tree and must not absorb non-benchmark component or release work.
+The phase consumes phase 005's playbook handoff and the 020 authored/generated/frozen boundary. It is intentionally tolerant of a zero-candidate live tree and must not absorb non-benchmark component or release work.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

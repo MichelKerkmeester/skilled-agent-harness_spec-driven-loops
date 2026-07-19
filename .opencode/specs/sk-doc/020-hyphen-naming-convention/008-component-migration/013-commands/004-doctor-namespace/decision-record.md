@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: doctor route and exemption boundary (032 phase 008/013/004)"
+title: "Decision Record: doctor route and exemption boundary (020 phase 008/013/004)"
 description: "Design decisions for preserving the doctor route manifest and Python helper while renaming maintained doctor asset filenames and path-valued route entries."
 trigger_phrases:
   - "doctor route manifest decision"
@@ -41,7 +41,7 @@ The doctor namespace has maintained asset filenames with underscores, but `_rout
 
 ### DR-001 — Preserve exact and Python names
 
-Keep `.opencode/commands/doctor/_routes.yaml` at its exact name and leave `scripts/audit_descriptions.py` unchanged. Treat the route manifest name as a tool-facing contract and the Python filename as an explicit 032 exemption.
+Keep `.opencode/commands/doctor/_routes.yaml` at its exact name and leave `scripts/audit_descriptions.py` unchanged. Treat the route manifest name as a tool-facing contract and the Python filename as an explicit 020 exemption.
 
 ### DR-002 — Rewrite route paths, not route identity
 

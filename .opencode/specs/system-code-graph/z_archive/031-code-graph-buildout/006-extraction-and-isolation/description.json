@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/006-extraction-and-isolation",
   "description": "The system-code-graph extraction and standalone-MCP isolation track: extraction, extraction design and decision record, standalone-MCP topology pivot,",
   "keywords": [
     "system-code-graph",
@@ -13,11 +13,12 @@
     "topology",
     "pivot"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.822Z",
+  "lastUpdated": "2026-07-18T03:48:55.526Z",
   "specId": "006",
   "folderSlug": "extraction-and-isolation",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 0,

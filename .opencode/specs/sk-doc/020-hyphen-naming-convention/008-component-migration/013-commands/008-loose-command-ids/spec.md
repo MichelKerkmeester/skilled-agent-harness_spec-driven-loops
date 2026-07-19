@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: loose command ID naming (032 phase 008/013/008)"
+title: "Feature Specification: loose command ID naming (020 phase 008/013/008)"
 description: "Classify the two snake_case root command files against their public slash-command and plugin contracts, then rename only filesystem names that are not tool-mandated while preserving exact command IDs."
 trigger_phrases:
   - "loose command ID naming"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: loose command ID naming
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 008 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 008 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

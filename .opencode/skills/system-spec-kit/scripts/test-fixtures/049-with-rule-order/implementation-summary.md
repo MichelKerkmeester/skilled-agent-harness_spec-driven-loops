@@ -1,4 +1,4 @@
-<!-- SPECKIT_TEMPLATE_SOURCE: level_1/implementation-summary.md | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: level-1/implementation-summary.md | v2.2 -->
 
 # Implementation Summary
 

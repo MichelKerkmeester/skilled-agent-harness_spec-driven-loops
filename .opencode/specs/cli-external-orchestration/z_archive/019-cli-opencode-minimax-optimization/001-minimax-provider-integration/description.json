@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+  "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
   "description": "cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry",
   "keywords": [
     "cli-opencode",
@@ -15,11 +15,12 @@
     "minimax",
     "entry"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.795Z",
+  "lastUpdated": "2026-07-18T03:48:54.324Z",
   "specId": "001",
   "folderSlug": "minimax-provider-integration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "019-cli-opencode-minimax-optimization"
   ],
   "memorySequence": 0,

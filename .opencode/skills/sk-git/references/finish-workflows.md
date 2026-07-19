@@ -431,7 +431,7 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
 
 **Important**:
 - `gh release create` is MANDATORY — pushing a tag does NOT create a GitHub release
-- Release notes MUST use plain-English style -- see PUBLIC_RELEASE.md Section 7 for the full template and rules
+- Release notes MUST use plain-English style -- see PUBLIC-RELEASE.md Section 7 for the full template and rules
 - Write like you are explaining to a smart person who is not a developer
 - Every fix explained as: what was broken, what we did, why it matters
 - No jargon without explanation; no metrics soup

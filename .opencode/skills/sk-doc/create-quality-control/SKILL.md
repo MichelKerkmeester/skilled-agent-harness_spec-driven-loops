@@ -449,13 +449,13 @@ Edited documents must also satisfy:
 Use these only for deep overflow detail, edge cases, exhaustive templates and long examples. Start at the route map, then open the single-concern file the task needs:
 - `references/README.md` - Route map over the reference set.
 - `references/workflows.md` - The four execution modes and mode selection (externally cited entry file).
-- `references/validation_and_enforcement.md` - Validation touchpoints, enforcement approval-prompt templates, phase interactions and troubleshooting.
-- `references/workflow_examples.md` - Worked command examples and batch/multi-file processing.
+- `references/validation-and-enforcement.md` - Validation touchpoints, enforcement approval-prompt templates, phase interactions and troubleshooting.
+- `references/workflow-examples.md` - Worked command examples and batch/multi-file processing.
 - `references/optimization.md` - Optimization procedure: quality heuristics, analysis workflow, README strategy, checklist and iteration (externally cited entry file).
-- `references/transformation_patterns.md` - The 16 transformation patterns with worked before/after examples.
+- `references/transformation-patterns.md` - The 16 transformation patterns with worked before/after examples.
 - `../shared/scripts/extract_structure.py` - Structure extraction, metrics, checklist data and DQI.
 - `../shared/scripts/validate_document.py` - Pre-delivery document validation gate.
 - `../shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
-- `../shared/references/core_standards.md` - Document type detection and structural rules.
+- `../shared/references/core-standards.md` - Document type detection and structural rules.
 - `../shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
-- `../shared/references/hvr_rules.md` - Human Voice Rules for natural documentation style.
+- `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.

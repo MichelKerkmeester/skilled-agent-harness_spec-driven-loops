@@ -1,5 +1,5 @@
 ---
-title: "Tasks: code-quality filesystem names (032 phase 008/003)"
+title: "Tasks: code-quality filesystem names (020 phase 008/003)"
 description: "Execution tasks for the code-quality filesystem rename and quality-mode path closure."
 trigger_phrases:
   - "code-quality naming tasks"

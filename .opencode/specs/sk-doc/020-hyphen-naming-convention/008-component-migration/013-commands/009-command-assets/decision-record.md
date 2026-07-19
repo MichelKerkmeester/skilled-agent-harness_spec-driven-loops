@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: command asset residual boundary (032 phase 008/013/009)"
+title: "Decision Record: command asset residual boundary (020 phase 008/013/009)"
 description: "Design decisions for residual ownership, cross-namespace pointer closure, and preservation of generated, tool, and fixture boundaries."
 trigger_phrases:
   - "command asset residual decision"

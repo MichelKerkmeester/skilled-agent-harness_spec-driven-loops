@@ -43,6 +43,16 @@ const ID_RE = /\b([A-Z]{2,4})-(\d{3})\b/;
 // of these; any other value (or none) falls through to the skill-agnostic
 // heuristics below.
 const VALID_SCENARIO_KINDS = new Set(['browser', 'advisor', 'routing']);
+const PLAYBOOK_ROOT_NAMES = Object.freeze(['manual-testing-playbook']);
+const PLAYBOOK_INDEX_NAMES = Object.freeze(['manual-testing-playbook.md']);
+
+class PlaybookLoadError extends Error {
+  constructor(code, message) {
+    super(message);
+    this.name = 'PlaybookLoadError';
+    this.code = code;
+  }
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -101,6 +111,50 @@ function classifyKind(scenarioId, category, expectedSurface, passCriteria, decla
 
 function readFileSafe(p) {
   try { return fs.readFileSync(p, 'utf8'); } catch { return null; }
+}
+
+function isUnsupportedPlaybookRoot(name) {
+  const normalized = String(name || '').toLowerCase().replace(/-/g, '_');
+  return normalized.startsWith('manual_testing_playbook') && !PLAYBOOK_ROOT_NAMES.includes(name);
+}
+
+function resolvePlaybookDir(skillRoot, explicitDir) {
+  if (explicitDir) {
+    if (isUnsupportedPlaybookRoot(path.basename(explicitDir))) {
+      throw new PlaybookLoadError('UNSUPPORTED_PLAYBOOK_ROOT', `unsupported playbook root: ${explicitDir}`);
+    }
+    if (!fs.existsSync(explicitDir) || !fs.statSync(explicitDir).isDirectory()) {
+      throw new PlaybookLoadError('MISSING_PLAYBOOK_ROOT', `playbook directory not found: ${explicitDir}`);
+    }
+    return explicitDir;
+  }
+  if (!skillRoot) throw new PlaybookLoadError('MISSING_SKILL_ROOT', 'skillRoot is required when playbookDir is absent');
+  // Fail closed first: a legacy underscore playbook dir must be migrated, never silently
+  // ignored in favor of a canonical sibling.
+  const unsupported = fs.existsSync(skillRoot)
+    ? fs.readdirSync(skillRoot, { withFileTypes: true }).find((entry) => entry.isDirectory() && isUnsupportedPlaybookRoot(entry.name))
+    : null;
+  if (unsupported) {
+    throw new PlaybookLoadError('UNSUPPORTED_PLAYBOOK_ROOT', `unsupported playbook root: ${path.join(skillRoot, unsupported.name)}`);
+  }
+  const present = PLAYBOOK_ROOT_NAMES.map((name) => path.join(skillRoot, name)).filter((candidate) => fs.existsSync(candidate));
+  if (present.length === 1) return present[0];
+  throw new PlaybookLoadError('MISSING_PLAYBOOK_ROOT', `no supported playbook root under ${skillRoot}`);
+}
+
+function resolvePlaybookIndex(playbookDir) {
+  const present = PLAYBOOK_INDEX_NAMES.map((name) => path.join(playbookDir, name)).filter((candidate) => fs.existsSync(candidate));
+  if (present.length > 1) {
+    throw new PlaybookLoadError('COEXISTING_PLAYBOOK_INDEXES', `both supported playbook indexes exist under ${playbookDir}`);
+  }
+  const unsupported = fs.readdirSync(playbookDir, { withFileTypes: true }).find((entry) => {
+    if (!entry.isFile() || !entry.name.endsWith('.md') || PLAYBOOK_INDEX_NAMES.includes(entry.name)) return false;
+    return entry.name.replace(/\.md$/, '').replace(/-/g, '_').startsWith('manual_testing_playbook');
+  });
+  if (unsupported) {
+    throw new PlaybookLoadError('UNSUPPORTED_PLAYBOOK_INDEX', `unsupported playbook index: ${path.join(playbookDir, unsupported.name)}`);
+  }
+  return present[0] || null;
 }
 
 function escapeRegExp(value) {
@@ -462,7 +516,7 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
       const full = path.join(cur, e.name);
       if (e.isDirectory()) { stack.push(full); continue; }
       if (!e.isFile() || !e.name.endsWith('.md')
-          || e.name === 'manual_testing_playbook.md' || e.name === 'feature_catalog.md'
+          || e.name === 'manual-testing-playbook.md' || e.name === 'feature-catalog.md'
           || e.name === 'manual-testing-playbook.md' || e.name === 'feature-catalog.md') continue;
       const text = readFileSafe(full);
       if (!text) continue;
@@ -613,22 +667,10 @@ function deriveTypedGoldFromBodyGold(expectedResources, byMode) {
  * @returns {{ scenarios: Array, shape: 'sk-code'|'sk-doc'|'none', warnings: string[] }}
  */
 function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
-  // Accept either the snake_case (repo standard) or kebab-case playbook dir name.
-  // Prefer whichever exists so kebab-migrated packets and snake incumbents both resolve.
-  const dir = playbookDir
-    || ['manual_testing_playbook', 'manual-testing-playbook']
-        .map((n) => path.join(skillRoot, n))
-        .find((p) => fs.existsSync(p))
-    || path.join(skillRoot, 'manual_testing_playbook');
+  const dir = resolvePlaybookDir(skillRoot, playbookDir);
   const warnings = [];
-  if (!fs.existsSync(dir)) {
-    return { scenarios: [], shape: 'none', warnings: [`no playbook at ${dir}`] };
-  }
-  const rootPath = ['manual_testing_playbook.md', 'manual-testing-playbook.md']
-    .map((n) => path.join(dir, n))
-    .find((p) => fs.existsSync(p))
-    || path.join(dir, 'manual_testing_playbook.md');
-  const rootText = readFileSafe(rootPath);
+  const rootPath = resolvePlaybookIndex(dir);
+  const rootText = rootPath ? readFileSafe(rootPath) : null;
   const index = rootText ? parseRootIndex(rootText) : [];
   const rootMap = rootText ? parseRootScenarioTables(rootText) : {};
 
@@ -659,7 +701,10 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 
   // No root index table -> sk-doc YAML-frontmatter shape.
   const scenarios = loadYamlFrontmatterScenarios(dir, warnings);
-  return { scenarios, shape: scenarios.length ? 'sk-doc' : 'none', warnings };
+  if (!scenarios.length) {
+    throw new PlaybookLoadError('EMPTY_PLAYBOOK', `no scenarios found under ${dir}`);
+  }
+  return { scenarios, shape: 'sk-doc', warnings };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -667,6 +712,10 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  PlaybookLoadError,
+  PLAYBOOK_ROOT_NAMES,
+  resolvePlaybookDir,
+  resolvePlaybookIndex,
   loadPlaybookScenarios,
   classifyKind,
   extractPaths,

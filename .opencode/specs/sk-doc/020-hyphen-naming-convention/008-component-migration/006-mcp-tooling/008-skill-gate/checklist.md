@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-tooling subtree rollup gate (032 phase 008)"
+title: "Checklist: mcp-tooling subtree rollup gate (020 phase 008)"
 description: "Blocking SOL verifier contract for sibling aggregation and the exemption-aware whole mcp-tooling naming gate."
 trigger_phrases:
   - "mcp-tooling rollup checklist"

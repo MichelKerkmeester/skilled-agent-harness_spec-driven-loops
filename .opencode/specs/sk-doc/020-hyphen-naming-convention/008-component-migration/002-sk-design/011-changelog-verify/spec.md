@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Changelog verification (032 phase 011)"
+title: "Feature Specification: Changelog verification (020 phase 011)"
 description: "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only."
 trigger_phrases:
   - "changelog-verify naming phase"
   - "sk-design changelog verification phase"
-  - "032 changelog-verify"
+  - "020 changelog-verify"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Changelog verification (032 phase 011)
+# Feature Specification: Changelog verification (020 phase 011)
 
 > Phase 011 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 11 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 11 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -58,14 +58,14 @@ The rename program needs an auditable sk-design release-note entry that identifi
 ## 3. SCOPE
 
 ### In Scope
-- Inspect the changelog history and identify the entry that records the completed 032 sk-design naming work.
+- Inspect the changelog history and identify the entry that records the completed 020 sk-design naming work.
 - Verify the entry's version is greater than v1.4.3.0 and is consistent across filename, heading, and body.
 - Verify the entry names the affected phases and states that Python scripts/package dirs and tool-mandated names were preserved.
 - Return evidence and fail the phase if the required entry is absent or mismatched; do not create a substitute migration.
 
 ### Live candidate boundary
 - Current release history includes `changelog/v1.4.3.0.md`; the next migration entry must use a greater version and an exact release-note filename
-- The verification target is an append-only entry naming packet 032, the sk-design subtree, the component/catalog/playbook/benchmark scope, and the exemption boundary
+- The verification target is an append-only entry naming packet 020, the sk-design subtree, the component/catalog/playbook/benchmark scope, and the exemption boundary
 - The changelog directory currently has no underscore-bearing filenames; this phase performs no filesystem rename
 
 ### Out of Scope
@@ -79,7 +79,7 @@ The rename program needs an auditable sk-design release-note entry that identifi
 
 | ID | Requirement | Acceptance Criteria |
 |-------|-------|-------|
-| REQ-001 | A matching migration entry exists. | The changelog contains an entry that explicitly identifies packet 032 and the sk-design subtree. |
+| REQ-001 | A matching migration entry exists. | The changelog contains an entry that explicitly identifies packet 020 and the sk-design subtree. |
 | REQ-002 | The version bump is real and internally consistent. | The migration entry's version is greater than v1.4.3.0 and agrees across filename, heading, and body. |
 | REQ-003 | The scope statement matches the migration map. | The entry covers component phases 001–007, catalog 008, playbook 009, benchmark 010, and the no-rename verify/gate phases. |
 | REQ-004 | The exemption boundary is recorded. | The entry states Python scripts/package directories and tool-mandated names were not renamed. |

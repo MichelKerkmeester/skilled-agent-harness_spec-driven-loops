@@ -1,9 +1,9 @@
 ---
-title: "Tasks: sk-git benchmark (032 phase 008/012/004)"
+title: "Tasks: sk-git benchmark (020 phase 008/012/004)"
 description: "Tasks for the sk-git benchmark profile-directory and path-value rename phase."
 trigger_phrases:
   - "sk-git benchmark tasks"
-  - "032 benchmark profile rename tasks"
+  - "020 benchmark profile rename tasks"
   - "benchmark evidence parity tasks"
 importance_tier: "important"
 contextType: "planning"

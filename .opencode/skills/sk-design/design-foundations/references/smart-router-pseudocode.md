@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Foundations Smart Router Pseudocode
 
-The authoritative routing logic discovers markdown at runtime, guards every path inside the skill folder, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. This is the mode-specific implementation of the general resilience pattern in [skill_smart_router.md](../../../sk-doc/create-skill/assets/skill/skill_smart_router.md): `discover_markdown_resources()` and `_guard_in_skill()` supply the discovery and guard mechanics, `route_foundations_resources()` supplies the `foundations`-specific `INTENT_SIGNALS`, `RESOURCE_MAP`, and `UNKNOWN_FALLBACK_CHECKLIST`.
+The authoritative routing logic discovers markdown at runtime, guards every path inside the skill folder, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. This is the mode-specific implementation of the general resilience pattern in [skill-smart-router.md](../../../sk-doc/create-skill/assets/skill/skill-smart-router.md): `discover_markdown_resources()` and `_guard_in_skill()` supply the discovery and guard mechanics, `route_foundations_resources()` supplies the `foundations`-specific `INTENT_SIGNALS`, `RESOURCE_MAP`, and `UNKNOWN_FALLBACK_CHECKLIST`.
 
 ---
 

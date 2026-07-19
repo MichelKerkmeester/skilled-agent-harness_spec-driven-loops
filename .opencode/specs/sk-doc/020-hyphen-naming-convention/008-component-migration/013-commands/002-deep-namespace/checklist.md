@@ -1,5 +1,5 @@
 ---
-title: "Checklist: deep command namespace naming (032 phase 008/013/002)"
+title: "Checklist: deep command namespace naming (020 phase 008/013/002)"
 description: "Blocking SOL verification contract for the maintained deep asset closure and generated contract boundary."
 trigger_phrases:
   - "deep namespace naming checklist"

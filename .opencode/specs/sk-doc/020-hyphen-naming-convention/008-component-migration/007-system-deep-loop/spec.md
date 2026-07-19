@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop component migration (032 phase 007)"
+title: "Feature Specification: system-deep-loop component migration (020 phase 007)"
 description: "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary."
 trigger_phrases:
   - "system-deep-loop kebab-case migration"

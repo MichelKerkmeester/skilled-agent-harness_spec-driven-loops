@@ -1,6 +1,6 @@
 ---
-title: "Tasks: verify code agent naming (032 phase 002)"
-description: "Tasks for phase 002 of the 032 agents component migration: verify the code filename candidate set."
+title: "Tasks: verify code agent naming (020 phase 002)"
+description: "Tasks for phase 002 of the 020 agents component migration: verify the code filename candidate set."
 trigger_phrases:
   - "code agent naming tasks"
   - "agents phase 002 tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the 032 naming policy, exemption boundary, and pinned BASE for this read-only phase
+- [ ] T001 Confirm the 020 naming policy, exemption boundary, and pinned BASE for this read-only phase
 - [ ] T002 Confirm the three expected code definition paths in the runtime inventory
 <!-- /ANCHOR:phase-1 -->
 

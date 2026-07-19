@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop manual-testing-playbook names (032 phase 007/008)"
+title: "Implementation Plan: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
 description: "Plan for renaming the root manual-testing-playbook directory, five category directories, and 19 scenario files through the frozen semantic map, then repairing benchmark and routing references while preserving scenario IDs and content."
 trigger_phrases:
   - "system-deep-loop manual playbook implementation plan"

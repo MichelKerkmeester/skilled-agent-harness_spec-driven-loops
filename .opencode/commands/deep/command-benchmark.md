@@ -13,7 +13,7 @@ Workflow router for the deterministic command-conformance lane and the bounded b
 
 This Markdown owns dispatch-context verification, the blocking input gate, input binding, mode and axis selection, and execution-target selection. Workflow execution and evidence writes belong to the YAML assets. Subject checks, verdict reduction, and matrix execution remain with their existing owners.
 
-Load `.opencode/commands/deep/assets/deep_command-benchmark_presentation.txt` before displaying setup questions, resolved-input confirmations, checkpoints, terminal output, errors, or next steps.
+Load `.opencode/commands/deep/assets/deep-command-benchmark-presentation.txt` before displaying setup questions, resolved-input confirmations, checkpoints, terminal output, errors, or next steps.
 
 ### PHASE 0: DISPATCH-CONTEXT CHECK
 
@@ -43,12 +43,12 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 
 | Purpose | Asset |
 |---|---|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_command-benchmark_presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep_command-benchmark_auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml` |
-| Reused conformance workflow | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` or `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |
-| Stable conformance lane | `.opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/lane-config.json` |
-| Behavioral matrix | `.opencode/skills/system-deep-loop/deep-alignment/assets/command_benchmark/command_benchmark_matrix.json` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep-command-benchmark-presentation.txt` |
+| Auto workflow | `.opencode/commands/deep/assets/deep-command-benchmark-auto.yaml` |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-command-benchmark-confirm.yaml` |
+| Reused conformance workflow | `.opencode/commands/deep/assets/deep-alignment-auto.yaml` or `.opencode/commands/deep/assets/deep-alignment-confirm.yaml` |
+| Stable conformance lane | `.opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json` |
+| Behavioral matrix | `.opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json` |
 | Behavioral matrix scheduler | `.opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
 
 ## 3. MODE ROUTING
@@ -62,8 +62,8 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 
 | Mode | Target |
 |---|---|
-| `:auto` | `.opencode/commands/deep/assets/deep_command-benchmark_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml` |
+| `:auto` | `.opencode/commands/deep/assets/deep-command-benchmark-auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-command-benchmark-confirm.yaml` |
 
 The selected workflow binds the stable lane config and executing spec folder directly into the matching alignment workflow asset. It invokes the behavioral matrix scheduler with its frozen `--matrix` and `--out-dir` interface. `all` composes the two target outputs side by side and never combines their subject results.
 

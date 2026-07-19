@@ -4,7 +4,7 @@ description: "The sk-doc scripts tree contains snake_case markdown fixture filen
 trigger_phrases:
   - "sk-doc scripts naming"
   - "sk-doc test fixture kebab-case"
-  - "032 scripts phase"
+  - "020 scripts phase"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"

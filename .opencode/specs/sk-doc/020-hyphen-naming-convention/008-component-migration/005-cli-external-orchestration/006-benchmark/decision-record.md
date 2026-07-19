@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-external-orchestration benchmark naming (032 phase 005.006)"
+title: "Decision Record: cli-external-orchestration benchmark naming (020 phase 005.006)"
 description: "Design decisions for the benchmark boundary: record the current .gitkeep-only baseline, map authored artifacts explicitly if they appear, and preserve generated output and benchmark data semantics."
 trigger_phrases:
   - "cli-external benchmark decision record"

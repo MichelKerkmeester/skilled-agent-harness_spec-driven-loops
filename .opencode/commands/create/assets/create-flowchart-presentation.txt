@@ -1,0 +1,172 @@
+# /create:flowchart Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/create:flowchart`: startup questions, setup/status dashboards, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are create-flowchart packet resources available?
+
+Indicators:
+- `.opencode/skills/sk-doc/create-flowchart/SKILL.md` is readable
+- `.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh` exists
+- `.opencode/skills/sk-doc/create-flowchart/assets/*.md` pattern assets are available
+- `.opencode/skills/sk-doc/create-flowchart/references/notation-and-validator.md` is readable
+- `.opencode/skills/sk-doc/create-flowchart/references/pattern-selection.md` is readable
+
+If all indicators are present:
+- create_flowchart_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+CREATE-FLOWCHART RESOURCES REQUIRED
+
+This command requires the create-flowchart packet for:
+- Pattern-first flowchart creation
+- Notation and branch-label rules
+- Packet-local validation
+
+Required validator:
+bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh <target-flowchart.md>
+
+STATUS=FAIL ERROR="create-flowchart resources unavailable"
+```
+
+## 2. Auto Setup Resolution
+
+For `:auto`, resolve setup using the system auto-mode contract, then load `create-flowchart-auto.yaml` only when every required field is available.
+
+Resolution tiers:
+
+| Tier | Use When | Output |
+| --- | --- | --- |
+| Tier 1 | `$ARGUMENTS`, flags, pre-bound answers, and defaults resolve all required fields | Persist config and load auto workflow |
+| Tier 2 | One or two required fields remain genuinely ambiguous | Ask one narrow question per missing field |
+| Tier 3 | Required fields remain unresolved | Emit missing-inputs error and do not load YAML |
+
+Pre-bound setup schema:
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  target_flowchart_path: docs/workflows/example-flowchart.md
+  source_process: Describe the workflow, journey, decision tree, approval loop, or system interaction.
+  workflow_shape: decision
+  execution_mode: AUTONOMOUS
+  memory_choice: skip
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `target_flowchart_path` | Yes | Positional markdown path or marker `target_flowchart_path` | none | No |
+| `source_process` | Yes | Remaining positional text, prompt-body source, or marker `source_process` | none | Yes, when missing |
+| `workflow_shape` | Yes | marker `workflow_shape`, explicit shape word, or derived from source process | derive when confidence >=80% | Yes, when ambiguous |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker `execution_mode` | `AUTONOMOUS` under `:auto` | No |
+| `memory_choice` | No | marker `memory_choice`, prior-session detection, or default | `skip` when no prior continuity exists | No |
+
+## 3. Consolidated Startup Prompt
+
+Ask one prompt containing only applicable questions. Do not split these questions across turns.
+
+```text
+Before proceeding, please answer:
+
+Q0. Target Flowchart Path (if not provided)
+Use a workspace-relative `.md` path whose non-exempt directory segments and filename stem are kebab-case, for example `docs/workflows/example-flowchart.md`.
+Where should the markdown flowchart be created?
+Format: workspace-relative `.md` path, for example docs/workflows/release-flowchart.md.
+
+Q1. Source Process (if not provided)
+What workflow, decision tree, approval loop, user journey, parallel process, or system interaction should the flowchart represent?
+
+Q2. Workflow Shape (if not clear)
+A) Linear sequence
+B) Conditional branching / decision tree
+C) Parallel execution / fan-out and fan-in
+D) Approval and revision loop
+E) System swimlane
+F) User journey
+
+Q3. Execution Mode (if no :auto/:confirm suffix)
+A) Interactive - confirm at each step
+B) Autonomous - execute without prompts
+
+Q4. Prior Session Context (if existing context is relevant)
+A) Load nearby documentation and existing target file
+B) Load only source material named in the request
+C) Skip
+
+Reply with answers, for example: docs/workflows/release-flowchart.md, B, A, C
+```
+
+Hard stops:
+
+- Do not proceed until all applicable questions are answered.
+- Do not create a flowchart without an explicit target markdown path.
+- Do not auto-select execution mode without suffix or explicit choice.
+- Do not infer the source process from context, screenshots, or conversation history.
+
+## 4. Setup Dashboard
+
+After parsing setup, display or maintain this dashboard internally before loading YAML.
+
+| Field | Required | Value | Source |
+| --- | --- | --- | --- |
+| `create_flowchart_verified` | Yes | `[value]` | Phase 0 self-check |
+| `target_flowchart_path` | Yes | `[value]` | Q0 or `$ARGUMENTS` |
+| `source_process` | Yes | `[value]` | Q1, `$ARGUMENTS`, or pre-bound marker |
+| `workflow_shape` | Yes | `[value]` | Q2, derived shape, or pre-bound marker |
+| `execution_mode` | Yes | `[value]` | Suffix or Q3 |
+| `memory_loaded` | Conditional | `[value]` | Q4 when applicable |
+
+Proceed only when every required field has a value.
+
+## 5. Completion Result Template
+
+```text
+Flowchart Creation Complete
+
+Flowchart: [flowchart-name]
+Location: [target-flowchart-path]
+Pattern: [selected-pattern-asset]
+
+Source:
+- Process: [source-process-summary]
+- Audience: [audience]
+- Scope: [scope-summary]
+- Unknowns: [unknowns-or-none]
+
+Validation:
+- Command: bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target-flowchart-path]
+- Result: PASSED
+
+Output:
+- Single markdown flowchart file created
+
+Next Steps:
+- Review the diagram for source-process accuracy
+- Update the source process if branch outcomes change
+
+STATUS=OK PATH=[target-flowchart-path]
+```
+
+Failure display:
+
+```text
+Flowchart Creation Failed
+
+Error: [error]
+Step: [failed step]
+
+STATUS=FAIL ERROR="[error message]"
+```

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-server directory and manifest closure (032 component 011 phase 001)"
+title: "Checklist: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "Blocking SOL verifier contract for the mcp_server to mcp-server directory and package-path closure."
 trigger_phrases:
   - "mcp-server closure checklist"

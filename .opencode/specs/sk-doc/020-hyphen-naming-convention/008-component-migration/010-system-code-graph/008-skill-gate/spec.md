@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: system-code-graph subtree rollup gate (032 phase 008)"
-description: "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 032 exemption boundary without performing new migration work."
+title: "Feature Specification: system-code-graph subtree rollup gate (020 phase 008)"
+description: "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work."
 trigger_phrases:
   - "system-code-graph subtree rollup gate"
   - "system-code-graph skill gate"
-  - "032 system-code-graph phase 008"
+  - "020 system-code-graph phase 008"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: system-code-graph Subtree Rollup Gate
 
@@ -61,7 +61,7 @@ remain outside those individual maps, and an underscore in a Python package, too
 surface, test-magic path, or frozen history must not be misclassified as migration debt.
 
 This phase aggregates the evidence from phases 001–007, scans the complete system-code-graph naming surface with the
-032 exemption boundary, checks active path/reference closure, and blocks handoff until every sibling contract and the
+020 exemption boundary, checks active path/reference closure, and blocks handoff until every sibling contract and the
 whole-surface naming result are green. It performs no new rename, reference repair, changelog edit, or code change.
 <!-- /ANCHOR:problem -->
 
@@ -81,7 +81,7 @@ whole-surface naming result are green. It performs no new rename, reference repa
 - Any new filesystem rename, reference rewrite, changelog edit, code change, or repair of an individual sibling phase.
 - Renaming code identifiers, MCP tool IDs, JSON/YAML/TOML keys, frontmatter fields, Python files/package directories,
   tool-mandated names, generated/lockfile output, test-magic names, or frozen history.
-- Other 032 component-migration subtrees and the central whole-repo gate.
+- Other 020 component-migration subtrees and the central whole-repo gate.
 
 ### Files to Change
 
@@ -118,7 +118,7 @@ whole-surface naming result are green. It performs no new rename, reference repa
 The main risk is allowing the rollup gate to become an unreviewed cleanup phase. The checklist therefore fails on any
 remaining in-scope name or unresolved path and routes the finding to its owning sibling instead of authorizing an
 opportunistic fix. A second risk is treating every underscore as debt; the final scan must distinguish filesystem names
-from identifiers and apply the 032 Python, tool, generated, test-magic, and frozen-history boundaries exactly.
+from identifiers and apply the 020 Python, tool, generated, test-magic, and frozen-history boundaries exactly.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

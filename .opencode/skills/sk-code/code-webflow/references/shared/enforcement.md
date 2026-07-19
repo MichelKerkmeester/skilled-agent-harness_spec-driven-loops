@@ -14,7 +14,7 @@ version: 3.5.0.2
 
 # Webflow Code Style Enforcement: Cross-Language Workflow
 
-This file enforces rules that apply to all Webflow languages (JavaScript and CSS). Per-language enforcement (JS naming conventions, JS initialization patterns, CSS custom properties, CSS attribute selectors, CSS BEM, CSS animation properties) lives in the matching language `quality_standards.md`.
+This file enforces rules that apply to all Webflow languages (JavaScript and CSS). Per-language enforcement (JS naming conventions, JS initialization patterns, CSS custom properties, CSS attribute selectors, CSS BEM, CSS animation properties) lives in the matching language `quality-standards.md`.
 
 ---
 
@@ -105,7 +105,7 @@ Use this enforcement reference when:
 2. Numbered section headers using `/* ─... */` format
 3. Standard section order (when applicable)
 
-> **Note for CSS:** Section organization guidelines for CSS follow the same numbered-header structure but with CSS-specific section names. See [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) for CSS section-organization details.
+> **Note for CSS:** Section organization guidelines for CSS follow the same numbered-header structure but with CSS-specific section names. See [`../css/quality-standards/patterns-and-naming-enforcement.md`](../css/quality-standards/patterns-and-naming-enforcement.md) for CSS section-organization details.
 
 ### Pattern Recognition
 
@@ -172,7 +172,7 @@ Use this enforcement reference when:
 2. Comments explain reasoning, constraints, or platform requirements
 3. Platform prefixes: WEBFLOW, MOTION, LENIS, HLS.JS
 
-> **Cross-stack motion.dev reference**: For the Motion API and integration assumptions behind `MOTION:` comments, see [`../animation/quick_start.md`](../animation/quick_start.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). This file remains the Webflow style-enforcement source for comment quality.
+> **Cross-stack motion.dev reference**: For the Motion API and integration assumptions behind `MOTION:` comments, see [`../animation/quick-start.md`](../animation/quick-start.md) and [`../animation/integration-patterns.md`](../animation/integration-patterns.md). This file remains the Webflow style-enforcement source for comment quality.
 
 ### Pattern Recognition
 
@@ -243,9 +243,9 @@ if (element) {
 Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 
 1. **Identify file type** - JavaScript or CSS
-2. **Load** [`code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview_header_and_comments.md)
+2. **Load** [`code-quality-checklist.md`](../../../code-quality/assets/code-quality-checklist/overview-header-and-comments.md)
 3. **Apply cross-language rules** from this document (Sections 2-4: file headers, section organization, comment quality)
-4. **Apply per-language rules** from the matching `quality_standards.md` ([JS](../javascript/quality_standards/init_dom_error_and_async.md) | [CSS](../css/quality_standards/patterns_and_naming_enforcement.md))
+4. **Apply per-language rules** from the matching `quality-standards.md` ([JS](../javascript/quality-standards/init-dom-error-and-async.md) | [CSS](../css/quality-standards/patterns-and-naming-enforcement.md))
 5. **Check** each P0 item systematically for that file type
 6. **Fix** any P0 violations found
 7. **Check** P1 items
@@ -259,8 +259,8 @@ For formal findings-first review output, run `sk-code`'s code-review mode as bas
 
 | File Type | Cross-Language (this file) | Per-Language Quality Standards |
 |-----------|---------------------------|-------------------------------|
-| JavaScript (`.js`) | Sections 2-4 (headers, organization, comments) | [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) (naming, init patterns) |
-| CSS (`.css`) | Sections 2-4 (headers, organization, comments) | [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) (custom properties, BEM, attribute selectors, animations) |
+| JavaScript (`.js`) | Sections 2-4 (headers, organization, comments) | [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) (naming, init patterns) |
+| CSS (`.css`) | Sections 2-4 (headers, organization, comments) | [`../css/quality-standards/patterns-and-naming-enforcement.md`](../css/quality-standards/patterns-and-naming-enforcement.md) (custom properties, BEM, attribute selectors, animations) |
 | Both | All cross-language + both per-language files | Combined |
 
 ### Violation Resolution Flow
@@ -292,22 +292,22 @@ If you cannot resolve a violation:
 
 For language-specific enforcement, see:
 
-- **JavaScript** naming conventions + initialization patterns: [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md)
-- **CSS** custom properties + attribute selectors + BEM + animation properties: [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md)
+- **JavaScript** naming conventions + initialization patterns: [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md)
+- **CSS** custom properties + attribute selectors + BEM + animation properties: [`../css/quality-standards/patterns-and-naming-enforcement.md`](../css/quality-standards/patterns-and-naming-enforcement.md)
 
 ---
 
 ## 7. RELATED RESOURCES
 
 ### Primary Standards (per-language tree)
-- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS style guide
-- [`../css/style_guide.md`](../css/style_guide.md) — CSS style guide
-- [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — JS quality patterns + enforcement
-- [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) — CSS quality patterns + enforcement
-- [`./cross_language_rules.md`](./cross_language_rules.md) — cross-language file naming, comment principles, banner format
+- [`../javascript/style-guide/overview-naming-and-structure.md`](../javascript/style-guide/overview-naming-and-structure.md) — JS style guide
+- [`../css/style-guide.md`](../css/style-guide.md) — CSS style guide
+- [`../javascript/quality-standards/init-dom-error-and-async.md`](../javascript/quality-standards/init-dom-error-and-async.md) — JS quality patterns + enforcement
+- [`../css/quality-standards/patterns-and-naming-enforcement.md`](../css/quality-standards/patterns-and-naming-enforcement.md) — CSS quality patterns + enforcement
+- [`./cross-language-rules.md`](./cross-language-rules.md) — cross-language file naming, comment principles, banner format
 
 ### Checklists
-- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview_header_and_comments.md) — validation checklist
+- [`../../../assets/webflow/checklists/code-quality-checklist.md`](../../../code-quality/assets/code-quality-checklist/overview-header-and-comments.md) — validation checklist
 
 ### Production Examples
 

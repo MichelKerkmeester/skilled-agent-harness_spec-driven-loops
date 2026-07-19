@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git skill gate (032 phase 008/012/006)"
-description: "Read-only implementation plan for the sk-git rollup gate. The verifier will reconcile sibling SOL evidence, scan the complete tracked skill surface against the 032 exemption set, and prove the component is naming-clean without performing new migration work."
+title: "Implementation Plan: sk-git skill gate (020 phase 008/012/006)"
+description: "Read-only implementation plan for the sk-git rollup gate. The verifier will reconcile sibling SOL evidence, scan the complete tracked skill surface against the 020 exemption set, and prove the component is naming-clean without performing new migration work."
 trigger_phrases:
   - "sk-git skill gate plan"
-  - "032 sk-git rollup verification"
+  - "020 sk-git rollup verification"
   - "component naming gate plan"
 importance_tier: "important"
 contextType: "planning"
@@ -42,7 +42,7 @@ _memory:
 | **Execution** | Inspect the pinned candidate; mutate no tracked file |
 
 ### Overview
-The gate will first reconcile sibling status, scope counts, map hashes, and no-mutation proofs. It will then scan every tracked path under sk-git, classify names against the 032 exemption boundary, resolve active path references, compare final version evidence, and issue a blocking pass or a routed failure.
+The gate will first reconcile sibling status, scope counts, map hashes, and no-mutation proofs. It will then scan every tracked path under sk-git, classify names against the 020 exemption boundary, resolve active path references, compare final version evidence, and issue a blocking pass or a routed failure.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -64,7 +64,7 @@ The gate will first reconcile sibling status, scope counts, map hashes, and no-m
 
 - **Sibling evidence rollup**: consumes each child checklist and report without replacing its owning acceptance contract.
 - **Aggregate map reconciliation**: compares counts and hashes for references, assets, manual playbook, benchmark profiles, and changelog evidence.
-- **Full-surface naming scan**: scans all tracked sk-git paths, not only the four migration leaves, then applies the 032 exemptions.
+- **Full-surface naming scan**: scans all tracked sk-git paths, not only the four migration leaves, then applies the 020 exemptions.
 - **Pointer/version closure**: resolves active source paths and compares changelog, SKILL.md, and README.md versions.
 - **Read-only gate**: any failure is reported with owner and evidence; no repair happens here.
 <!-- /ANCHOR:architecture -->
@@ -96,7 +96,7 @@ The gate will first reconcile sibling status, scope counts, map hashes, and no-m
 |-------------|--------------|
 | REQ-001 | Read sibling checklists/reports and verify P0 status, hashes, counts, and no stray implementation artifacts. |
 | REQ-002 | Recompute aggregate path counts and hashes; compare references 9, assets 3, manual playbook 49, benchmark profiles 2, and changelog evidence. |
-| REQ-003 | Scan every tracked path under sk-git and classify each underscore name against the exact 032 exemption boundary. |
+| REQ-003 | Scan every tracked path under sk-git and classify each underscore name against the exact 020 exemption boundary. |
 | REQ-004 | Resolve active path references and compare changelog/v1.3.2.0.md with SKILL.md and README.md versions. |
 | REQ-005 | Capture status/diff before and after; require no gate mutation. |
 <!-- /ANCHOR:testing -->
@@ -107,7 +107,7 @@ The gate will first reconcile sibling status, scope counts, map hashes, and no-m
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Sibling phases 001 through 005 | Internal | Required | The rollup cannot distinguish missing work from a gate failure. |
-| 032 convention and frozen map | Internal | Required | Naming and exemption classification are undefined. |
+| 020 convention and frozen map | Internal | Required | Naming and exemption classification are undefined. |
 | Full tracked sk-git inventory | Internal | Required | A partial scan can produce a false pass. |
 | Final candidate commit | Internal | Required | No-mutation and hash evidence cannot be pinned. |
 <!-- /ANCHOR:dependencies -->

@@ -17,23 +17,23 @@ const MANIFEST_PATH = '.opencode/commands/deep/assets/compiled/manifest.jsonl';
 const COMMANDS = {
   'deep/ai-council': {
     slug: 'deep_ai-council',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_ai-council.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep_ai-council.contract.md',
+    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-ai-council.body.md',
+    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-ai-council.contract.md',
   },
   'deep/review': {
     slug: 'deep_review',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_review.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep_review.contract.md',
+    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-review.body.md',
+    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-review.contract.md',
   },
   'deep/research': {
     slug: 'deep_research',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_research.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep_research.contract.md',
+    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-research.body.md',
+    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-research.contract.md',
   },
   'deep/alignment': {
     slug: 'deep_alignment',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_alignment.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep_alignment.contract.md',
+    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-alignment.body.md',
+    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-alignment.contract.md',
   },
 };
 

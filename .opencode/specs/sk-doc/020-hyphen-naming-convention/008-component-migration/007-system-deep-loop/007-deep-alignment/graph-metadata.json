@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names.",
     "created_at": "2026-07-14T15:17:53Z",
-    "last_save_at": "2026-07-17T14:30:27.994Z",
+    "last_save_at": "2026-07-17T20:26:12.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f731eb607928f787d75b1316df416170333a71b6414b673e8614b0f9c1f2c1b8",
+    "source_fingerprint": "sha256:263a29c3d41f410eea4aeb8d6fa300a8e664f0822ee0b307e6bcd2aed5d1a357",
     "source_doc_hashes": {
-      "spec.md": "42c8c2191289dbeab2084465e38c8610687afef60482ae3f56c0f7214c9c1a98",
-      "plan.md": "ff4cabf26c08fb8c4a076e6ea65f6374e3afba152053e6c02e650ccf86240310",
-      "tasks.md": "0af18475915a12cd5b91febcd5f1604d26e159929ffa248a3eb932f140241640",
-      "checklist.md": "630c55e5a29b027e6f4a12f7b191316c6bfe0553fc9f6da292e2c13c14c4f176",
-      "decision-record.md": "d619dee8a58f670c850d6f060fba7e219e95eda6b021604d7b5236eeb5634598"
+      "spec.md": "213389a5a356ce917dd772c5629dc186fcfb6e781ff4aa2a48e590d73ea38a1b",
+      "plan.md": "5422e9c0578d26e9eff8f76d178dcfe4a33fb36c8a8acd3cc391da3884e492db",
+      "tasks.md": "0457147122c22935cc8cd2b05108eb1bed06314b9a0e7c47a9651ec1f833c559",
+      "checklist.md": "4016f101fd5a1e8d929ae57129237b81071a7ffde7e47f97fca1678172cdcbeb",
+      "decision-record.md": "f9e432f9be7af9a2dae5dae8d16bc3053d57edeb1b376c10738653eafeff89dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -32,7 +32,7 @@ _memory:
 |--------|-------|
 | **Surface** | `.opencode/skills/sk-doc/scripts/` |
 | **Change class** | Non-Python filename rename plus reference update |
-| **Execution** | Isolated worktree at the pinned 032 baseline |
+| **Execution** | Isolated worktree at the pinned 020 baseline |
 
 ### Overview
 

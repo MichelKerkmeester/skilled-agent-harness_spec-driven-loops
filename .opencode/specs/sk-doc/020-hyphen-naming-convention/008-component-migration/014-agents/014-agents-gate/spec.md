@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: agents surface rollup gate (032 phase 014)"
+title: "Feature Specification: agents surface rollup gate (020 phase 014)"
 description: "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope snake_case filesystem name outside the program exemption set."
 trigger_phrases:
   - "agents surface rollup gate"
   - "agents naming gate"
-  - "032 phase 014 agents"
+  - "020 phase 014 agents"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Agents Surface Rollup Gate
 
-> Phase adjacency under the 032 agents component parent (grouping order, not a runtime dependency): predecessor 013-review-verify; successor None.
+> Phase adjacency under the 020 agents component parent (grouping order, not a runtime dependency): predecessor 013-review-verify; successor None.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 014 of the 032 agents component migration |
+| **Origin** | Phase 014 of the 020 agents component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -101,7 +101,7 @@ The purpose is to close the agents subtree as a verified naming surface without 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is a false green caused by a missing sibling, an uncounted runtime format, or a silent disagreement between a leaf and the rollup. Mitigation is a 14-row sibling matrix, a 39-path expected inventory, a union-of-candidate-sets check, and a blocking discrepancy rule. The gate inherits the 032 convention, exemption, and baseline evidence; it does not perform migration.
+The main risk is a false green caused by a missing sibling, an uncounted runtime format, or a silent disagreement between a leaf and the rollup. Mitigation is a 14-row sibling matrix, a 39-path expected inventory, a union-of-candidate-sets check, and a blocking discrepancy rule. The gate inherits the 020 convention, exemption, and baseline evidence; it does not perform migration.
 
 <!-- /ANCHOR:risks -->
 

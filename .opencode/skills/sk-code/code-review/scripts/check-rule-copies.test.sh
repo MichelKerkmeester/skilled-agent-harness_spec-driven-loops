@@ -23,7 +23,7 @@ TARGETS=(
   ".opencode/skills/sk-code/code-review/SKILL.md"
   ".opencode/skills/sk-code/code-review/README.md"
   ".opencode/skills/sk-code/code-review/changelog/v1.3.0.0.md"
-  ".opencode/skills/sk-code/code-review/references/pr_state_dedup.md"
+  ".opencode/skills/sk-code/code-review/references/pr-state-dedup.md"
   ".opencode/skills/sk-code/SKILL.md"
   "CLAUDE.md"
 )

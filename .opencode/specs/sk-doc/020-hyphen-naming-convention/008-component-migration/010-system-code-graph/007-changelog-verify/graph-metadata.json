@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "system-code-graph changelog verification",
       "system-code-graph naming version bump",
-      "032 system-code-graph phase 007",
+      "020 system-code-graph phase 007",
       "system-code-graph changelog verification plan",
       "system-code-graph version bump check",
       "code graph release evidence",
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 032 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
+    "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-07-17T14:30:37.981Z",
+    "last_save_at": "2026-07-17T20:26:16.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1e2ba6caa8acf429ffb5313e67764037932e5785ae1a4fe531a27ac4ab93c212",
+    "source_fingerprint": "sha256:f39b7db646c45f56b7b5eba2123c42b784cce2aee5c50fd5a7dd08bf2bdf910a",
     "source_doc_hashes": {
-      "spec.md": "9c5465523aa88d7fe09ed1e4958ed76347fe18bb9175acba2c6bfd832f08f82a",
-      "plan.md": "7bb2b36a3887f8104b835866322272eea624937c19b778fb69eb5f3820c4eb79",
-      "tasks.md": "ec589337fea5641ceef84c82fe4660af1a07e9b9fb088e1364856f682224ad8d",
-      "checklist.md": "1f6e030633a25275c812a443891db2bdeb406bf1291b20cbcb782bb72b93c4b9"
+      "spec.md": "08b918712c824dea2beed01d15f31214de3b97aaf63c599a1919a3e5a51f68e4",
+      "plan.md": "364e3c5689be4004eb0c45bc098a115a116a4f7e1fe60dea5c46e07963b99a42",
+      "tasks.md": "6dcb352d3f6c1c48c651ef74c2273f4f799d610395eb4e5e2caed6e450af9890",
+      "checklist.md": "1b98b07e379dd29bbf9ab1ca526d00c4daeb64429329c5799492d20a728b23cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

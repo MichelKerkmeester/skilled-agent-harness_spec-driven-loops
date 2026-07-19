@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-claude-code component naming (032 phase 005.003)"
+title: "Tasks: cli-claude-code component naming (020 phase 005.003)"
 description: "Tasks for the cli-claude-code component rename: map four references and two assets, update local links, preserve provider contracts, and verify delegated ownership."
 trigger_phrases:
   - "cli-claude-code naming tasks"

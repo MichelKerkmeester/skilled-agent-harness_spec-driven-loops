@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt benchmark artifact names (032 phase 004.005)"
+title: "Implementation Plan: sk-prompt benchmark artifact names (020 phase 004.005)"
 description: "Implementation plan for phase 005 of the sk-prompt kebab-case program: rename authored benchmark directories, classify generated raw output, update active paths, and preserve benchmark semantics."
 trigger_phrases:
   - "sk-prompt benchmark implementation plan"
@@ -110,7 +110,7 @@ BASE benchmark inventory → authored/generated/frozen classification → semant
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase inherits the 032 generated/frozen exemption and dependency-closed rename rules. It depends on `004-manual-testing-playbook`
+The phase inherits the 020 generated/frozen exemption and dependency-closed rename rules. It depends on `004-manual-testing-playbook`
 for the shared playbook references and hands release evidence to `006-changelog-verify`; prompt-models asset filenames remain
 with phase 003 even when benchmark prose mentions them.
 <!-- /ANCHOR:dependencies -->

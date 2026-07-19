@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: design command namespace naming (032 phase 008/013/003)"
+title: "Implementation Plan: design command namespace naming (020 phase 008/013/003)"
 description: "Plan for renaming the maintained design workflow and presentation assets through the frozen map and repairing all path-valued consumers without changing design command behavior."
 trigger_phrases:
   - "design namespace naming plan"
@@ -108,8 +108,8 @@ Rename the 15 `design_*` asset files individually, then repair the command and a
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter keys or miss path consumers. |
-| 032 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter keys or miss path consumers. |
+| 020 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
 | 000 baseline route evidence | Internal | Required before verification | Design behavior parity lacks a pinned comparison. |
 | Commands parent handoff | Internal | Required before execution | Shared asset ownership may be duplicated. |
 <!-- /ANCHOR:dependencies -->

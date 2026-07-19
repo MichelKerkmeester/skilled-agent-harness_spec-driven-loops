@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/009-playbook-run-and-remediation/004-shell-python-daemon",
+  "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/004-shell-python-daemon",
   "description": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI),",
   "keywords": [
     "remaining",
@@ -15,11 +15,12 @@
     "auto-update",
     "auto-indexing"
   ],
-  "lastUpdated": "2026-07-07T12:56:31.992Z",
+  "lastUpdated": "2026-07-18T03:48:57.251Z",
   "specId": "004",
   "folderSlug": "shell-python-daemon",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "009-playbook-run-and-remediation"
   ],
   "memorySequence": 1,

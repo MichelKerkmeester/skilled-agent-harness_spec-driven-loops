@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: semantic rename engine (032 phase 005.001)"
+title: "Implementation Plan: semantic rename engine (020 phase 005.001)"
 description: "Implementation plan for the semantic, exemption-aware git-mv engine: validate the explicit map, derive dependency-closure batches, preflight collisions, execute only on explicit apply, and journal idempotent rollback."
 trigger_phrases:
   - "semantic rename engine implementation plan"
@@ -11,13 +11,13 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T07:35:59Z"
     last_updated_by: "codex"
-    recent_action: "Authored the semantic rename engine implementation plan"
-    next_safe_action: "Implement map validation and closure planning"
+    recent_action: "Completed implementation and fixture verification"
+    next_safe_action: "Consume the engine report in the reference checker child"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "All execution begins with a read-only preflight and a complete operation plan."
@@ -33,7 +33,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | Rename tooling in the isolated 032 worktree |
+| **Surface** | Rename tooling in the isolated 020 worktree |
 | **Change class** | Deterministic filesystem rename engine |
 | **Execution** | Dry-run first; explicit apply only against a validated semantic map |
 
@@ -48,16 +48,16 @@ authoring pass does not invoke it.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase 001 policy and exemption boundary is available as an input contract.
-- [ ] Phase 006's semantic map fields and dependency-closure identity are agreed before the engine accepts a map.
-- [ ] A disposable Git fixture can represent regular files, symlinks, executable files, leading underscores, and double underscores.
-- [ ] Apply and rollback state transitions are defined independently of the eventual CLI surface.
+- [x] The policy and exemption boundary is available through `check_no_new_snake_case.py` constants and `naming_root_resolver.py`.
+- [x] The map contract is explicit in `rename_engine_core.py:172` and binds BASE, map hash, classifications and dependencies.
+- [x] `FixtureRepository` seeds regular files, symlinks, executable files, leading underscores and double underscores.
+- [x] `apply_plan` and `rollback_plan` expose journaled state transitions independently of CLI parsing.
 
 ### Definition of Done
-- [ ] Dry-run, explicit apply, collision abort, exemption skip, idempotent rerun, and rollback behavior meet the phase requirements.
-- [ ] A mixed-extension dependency closure stays in one batch and produces a deterministic operation order.
-- [ ] Symlink mode `120000` and executable bits are verified against a pre-operation manifest.
-- [ ] The engine emits enough map and operation evidence for phase 002's checker and ledger.
+- [x] `test_semantic_rename_engine.py` passes 17/17 dry-run, apply, collision, exemption, rerun and rollback tests.
+- [x] `test_mixed_extension_cycle_is_one_dependency_scc` keeps TypeScript, JSON and Markdown paths in one batch.
+- [x] `test_apply_preserves_symlink_and_executable_modes_and_is_idempotent` proves modes `120000` and `100755` remain unchanged.
+- [x] `build_plan` emits source, target, classification, batch, dependencies, state and reason for every map row.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

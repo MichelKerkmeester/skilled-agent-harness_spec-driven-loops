@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop subtree skill gate (032 phase 007/011)"
+title: "Implementation Plan: system-deep-loop subtree skill gate (020 phase 007/011)"
 description: "Plan for aggregating phases 001-010 and running one read-only, exemption-aware whole-surface naming and reference gate. This phase performs no new migration work."
 trigger_phrases:
   - "system-deep-loop skill gate implementation plan"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/016-cli-devin-creation",
+  "specFolder": "cli-external-orchestration/z_archive/016-cli-devin-creation",
   "description": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI",
   "keywords": [
     "repo",
@@ -17,11 +17,12 @@
     "delegate",
     "tasks"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.716Z",
+  "lastUpdated": "2026-07-18T03:48:54.300Z",
   "specId": "016",
   "folderSlug": "cli-devin-creation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

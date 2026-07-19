@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify deep-alignment agent naming (032 phase 005)"
-description: "Checklist for phase 005 of the 032 agents component migration: verify the deep-alignment filename candidate set."
+title: "Checklist: verify deep-alignment agent naming (020 phase 005)"
+description: "Checklist for phase 005 of the 020 agents component migration: verify the deep-alignment filename candidate set."
 trigger_phrases:
   - "deep-alignment agent naming checklist"
   - "agents phase 005 checklist"

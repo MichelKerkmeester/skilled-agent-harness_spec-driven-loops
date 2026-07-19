@@ -20,7 +20,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 | Purpose | Asset |
 |---------|-------|
 | Route manifest | `.opencode/commands/doctor/_routes.yaml` |
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt` |
+| Presentation source of truth | `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt` |
 
 ## 3. MODE ROUTING
 
@@ -39,18 +39,18 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 | Target | Workflow |
 |--------|----------|
-| `memory` | `.opencode/commands/doctor/assets/doctor_memory.yaml` |
-| `embeddings` | `.opencode/commands/doctor/assets/doctor_embeddings.yaml` |
-| `causal-graph` | `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` |
-| `code-graph` | `.opencode/commands/doctor/assets/doctor_code-graph.yaml` |
-| `deep-loop` | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` |
-| `skill-advisor` | `.opencode/commands/doctor/assets/doctor_skill-advisor.yaml` |
-| `skill-budget` | `.opencode/commands/doctor/assets/doctor_skill-budget.yaml` |
-| `parent-skill` | `.opencode/commands/doctor/assets/doctor_parent-skill.yaml` |
-| `skill-graph-freshness` | `.opencode/commands/doctor/assets/doctor_skill-graph-freshness.yaml` |
-| `fable-mode` | `.opencode/commands/doctor/assets/doctor_fable-mode.yaml` |
+| `memory` | `.opencode/commands/doctor/assets/doctor-memory.yaml` |
+| `embeddings` | `.opencode/commands/doctor/assets/doctor-embeddings.yaml` |
+| `causal-graph` | `.opencode/commands/doctor/assets/doctor-causal-graph.yaml` |
+| `code-graph` | `.opencode/commands/doctor/assets/doctor-code-graph.yaml` |
+| `deep-loop` | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` |
+| `skill-advisor` | `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml` |
+| `skill-budget` | `.opencode/commands/doctor/assets/doctor-skill-budget.yaml` |
+| `parent-skill` | `.opencode/commands/doctor/assets/doctor-parent-skill.yaml` |
+| `skill-graph-freshness` | `.opencode/commands/doctor/assets/doctor-skill-graph-freshness.yaml` |
+| `fable-mode` | `.opencode/commands/doctor/assets/doctor-fable-mode.yaml` |
 
-1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`.
+1. Read `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
 3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
 4. If target is unresolved, ask the presentation contract's target-resolution prompt and wait.
@@ -63,7 +63,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`:
+The following content lives only in `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`:
 
 - Target-resolution menu, help text, accepted answers, and failure wording.
 - Per-target setup prompts for unresolved fields.

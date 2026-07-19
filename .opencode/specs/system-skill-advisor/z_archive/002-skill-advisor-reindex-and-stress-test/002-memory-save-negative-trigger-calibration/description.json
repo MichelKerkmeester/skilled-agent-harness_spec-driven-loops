@@ -2,7 +2,7 @@
   "status": "complete",
   "completionPct": 100,
   "lastOutcome": "CP-101 and CP-104 now pass without regressing save context.",
-  "specFolder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "specFolder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
   "description": "Plan phase to reduce memory:save false positives for ordinary file-save prompts while preserving context-preservation routing.",
   "keywords": [
     "plan",
@@ -20,11 +20,11 @@
     "context-preservation",
     "routing"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.544Z",
+  "lastUpdated": "2026-07-18T03:48:57.063Z",
   "specId": "002",
   "folderSlug": "memory-save-negative-trigger-calibration",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-skill-advisor",
     "z_archive",
     "002-skill-advisor-reindex-and-stress-test"
   ],

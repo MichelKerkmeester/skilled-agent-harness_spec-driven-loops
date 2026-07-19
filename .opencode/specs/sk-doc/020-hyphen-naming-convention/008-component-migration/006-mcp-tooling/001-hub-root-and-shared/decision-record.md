@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: mcp-tooling hub root and shared naming boundary (032 phase 001)"
+title: "Decision Record: mcp-tooling hub root and shared naming boundary (020 phase 001)"
 description: "The phase boundary decisions for root-owned mcp-tooling routing material, an absent shared directory, and delegated child surfaces."
 trigger_phrases:
   - "mcp-tooling root naming decision"
@@ -31,7 +31,7 @@ _memory:
 <!-- ANCHOR:context -->
 ## Context
 
-The mcp-tooling root contains the public hub contract and navigation for three component packets. The baseline has root-level manual-testing-playbook and benchmark directories, but no physical shared/ directory. A root sweep that treats every descendant as shared would steal files from later phases and could rename exact routing contracts. The 032 program also requires filesystem names to use kebab-case while preserving tool-mandated names and non-filesystem identifiers.
+The mcp-tooling root contains the public hub contract and navigation for three component packets. The baseline has root-level manual-testing-playbook and benchmark directories, but no physical shared/ directory. A root sweep that treats every descendant as shared would steal files from later phases and could rename exact routing contracts. The 020 program also requires filesystem names to use kebab-case while preserving tool-mandated names and non-filesystem identifiers.
 <!-- /ANCHOR:context -->
 
 <!-- ANCHOR:decisions -->
@@ -57,7 +57,7 @@ SKILL.md and mode-registry.json remain exact filenames. Root Markdown links and 
 ## References
 
 - Parent spec: ../spec.md
-- 032 program scope and exemption boundary: ../../../../../../spec.md
+- 020 program scope and exemption boundary: ../../../../../../spec.md
 - Hub contract: .opencode/skills/mcp-tooling/SKILL.md
 - Mode registry: .opencode/skills/mcp-tooling/mode-registry.json
 <!-- /ANCHOR:references -->

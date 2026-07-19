@@ -130,11 +130,11 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 |---------|------------|---------|
 | Agent | `/create:agent <name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
-| Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature_catalog/` package |
+| Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
 | Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
-| Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
+| Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual-testing-playbook/` package |
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
 | Benchmark | `/create:benchmark <skill> <spec-packet> [create\|update]` | Promote a curated MCP benchmark folder and report into a skill |
 | Flowchart | `/create:flowchart <target-flowchart.md> [source/process description]` | Create a validated ASCII flowchart markdown file |

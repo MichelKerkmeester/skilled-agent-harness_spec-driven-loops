@@ -12,16 +12,16 @@
   "derived": {
     "trigger_phrases": [
       "sk-git assets kebab-case",
-      "032 sk-git asset rename",
+      "020 sk-git asset rename",
       "asset template pointer closure",
       "sk-git assets implementation plan",
-      "032 sk-git asset phase plan",
+      "020 sk-git asset phase plan",
       "asset template rename plan",
       "sk-git assets tasks",
-      "032 asset rename tasks",
+      "020 asset rename tasks",
       "asset template pointer tasks",
       "sk-git assets checklist",
-      "032 asset rename verification",
+      "020 asset rename verification",
       "asset template pointer acceptance"
     ],
     "key_topics": [
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact.",
     "created_at": "2026-07-14T15:18:27Z",
-    "last_save_at": "2026-07-17T14:30:41.674Z",
+    "last_save_at": "2026-07-17T20:26:18.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:48a3920fdd595d4053aec6026ba5a10a386265c4807b255d80e4f8a12016244c",
+    "source_fingerprint": "sha256:8d78bf34b6aa491a634f42658b19064d20a05d4ec57ed4a684408fde2c76f680",
     "source_doc_hashes": {
-      "spec.md": "b071c0fa6878082747632d2e5d5b805a42e9dc3986a2876ab948d8734cd41937",
-      "plan.md": "8a75a29d8d3bca784a2bc34fbddd9adc70f12e1cc2d049ce89c6850db6ddd4dc",
-      "tasks.md": "efced6ce14487e5deb17cd5f9d4461b5439c0b80412255314506407d1a0c3e1d",
-      "checklist.md": "c6e22b44f304dae991d0988f7b2601d44cc009d1e217d8dc08045948eb8250d4"
+      "spec.md": "0d22fe27dffd41392af2cdb7157e4622953aefad0d61642d1983831460bdced8",
+      "plan.md": "7be46aceb13e847be9e1bac6a302b7086ce09b92d5960dcb28728bae14f80915",
+      "tasks.md": "501b2322ccbf3f78fbf59326a5544ed9bc4dceef32777d55b9a6983efd08f5db",
+      "checklist.md": "a57e647603786fcc87c002fd99437f5f223300687b34f3d6661e1c61f165789b"
     },
     "last_active_child_id": null,
     "last_active_at": null

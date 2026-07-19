@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/006-graph-causal-visited-guard",
+  "specFolder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/006-graph-causal-visited-guard",
   "description": "The graph-causal lane's per-seed breadth-first walk called `seen.add(edge.targetId)` before the multiplier/threshold/score logic, so the first edge to",
   "keywords": [
     "graph-causal",
@@ -18,11 +18,12 @@
     "logic",
     "first"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.492Z",
+  "lastUpdated": "2026-07-18T03:48:57.321Z",
   "specId": "006",
   "folderSlug": "graph-causal-visited-guard",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "016-skill-advisor-tuning"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code component migration (032 phase 008)"
+title: "Feature Specification: sk-code component migration (020 phase 008)"
 description: "The sk-code family contains a hub, shared evidence, workflow modes, surface packets, playbook scenarios, and benchmark storage whose filesystem names still use snake_case. This phase defines nine independently verifiable child contracts that migrate that surface to kebab-case while preserving tool-mandated names and the program exemption boundary."
 trigger_phrases:
   - "sk-code component migration"
@@ -62,7 +62,7 @@ The sk-code surface is a nested family rather than one flat directory: a routing
 
 ### Purpose
 
-Define one child contract per sk-code component so the migration can rename in-scope filesystem names and repair every path reference as dependency-closed work, with one final child proving the whole subtree is kebab-clean under the 032 exemptions.
+Define one child contract per sk-code component so the migration can rename in-scope filesystem names and repair every path reference as dependency-closed work, with one final child proving the whole subtree is kebab-clean under the 020 exemptions.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:phase-map -->

@@ -26,7 +26,7 @@
     "trigger_phrases": [
       "system-spec-kit naming phases",
       "system-spec-kit kebab-case migration",
-      "032 system-spec-kit component migration"
+      "020 system-spec-kit component migration"
     ],
     "key_topics": [
       "system-spec-kit",
@@ -100,15 +100,15 @@
     ],
     "causal_summary": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate.",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-07-17T14:30:29.384Z",
+    "last_save_at": "2026-07-17T20:26:13.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7d3305c85b3ee8c7a0a4c0e679e6fb6e2fac2b6ce184323a6afc0afaf79b3859",
+    "source_fingerprint": "sha256:f4bace0b5a16e16d8b905512ddffb7f178871b3252ac3aec5abf6f00a6e0bae6",
     "source_doc_hashes": {
-      "spec.md": "01d236e4ddbf9eed09249574407d27dac7d462c37c582683a98588605d0902af"
+      "spec.md": "b2b45591e2254a89ad0459dc99df72cc0b2b8a95694740c86f89483e20d22695"
     },
     "last_active_child_id": null,
     "last_active_at": null

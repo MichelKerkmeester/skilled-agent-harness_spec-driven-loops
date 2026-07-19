@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/025-code-graph-core/008-doc-symbol-lane",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core/008-doc-symbol-lane",
   "description": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage =",
   "keywords": [
     "code-graph",
@@ -14,11 +14,12 @@
     "tree-sitter-parser",
     "parserlanguage"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.745Z",
+  "lastUpdated": "2026-07-18T03:48:55.347Z",
   "specId": "008",
   "folderSlug": "doc-symbol-lane",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "025-code-graph-core"
   ],
   "memorySequence": 0,

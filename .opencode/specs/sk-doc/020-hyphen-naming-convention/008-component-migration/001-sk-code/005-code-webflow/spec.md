@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-webflow filesystem names (032 phase 008/005)"
+title: "Feature Specification: code-webflow filesystem names (020 phase 008/005)"
 description: "The code-webflow surface contains snake_case asset files, animation and implementation reference trees, manual-playbook categories, and benchmark labels. These names are embedded in browser/runtime guidance and links, so this phase defines a complete kebab-case rename/reference closure while preserving Webflow, JavaScript, CSS, HTML, and Motion.dev behavior."
 trigger_phrases:
   - "code-webflow naming migration"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: code-webflow filesystem names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 005 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

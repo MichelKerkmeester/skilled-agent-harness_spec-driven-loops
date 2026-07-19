@@ -1,5 +1,5 @@
 ---
-title: "Tasks: semantic rename engine (032 phase 005.001)"
+title: "Tasks: semantic rename engine (020 phase 005.001)"
 description: "Tasks for the semantic rename engine: explicit map validation, dependency-closure batching, exemption-aware preflight, dry-run/apply state, idempotency, mode preservation, and rollback."
 trigger_phrases:
   - "semantic rename engine tasks"
@@ -11,13 +11,13 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T07:35:59Z"
     last_updated_by: "codex"
-    recent_action: "Authored the semantic rename engine task contract"
-    next_safe_action: "Implement the setup tasks after phase 004 is available"
+    recent_action: "Completed the engine and disposable-repository tests"
+    next_safe_action: "Hand the dry-run report schema to the reference checker child"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Task evidence must come from disposable repositories or read-only plan output, never from a real migration run."
@@ -41,40 +41,40 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the semantic map fields, path normalization rules, and operation states shared with phase 006.
-- [ ] T002 Define the exemption classifier for Python files and package directories, vendored/third-party trees, generated or lockfile output, tool-mandated names, test-runner magic, and frozen surfaces.
-- [ ] T003 [P] Seed disposable Git repositories containing regular files, symlinks, executable files, leading underscores, double underscores, and mixed-extension references.
+- [x] T001 Record the semantic map fields, path normalization rules and operation states in `rename_engine_core.py:172` and `rename_engine_core.py:622`.
+- [x] T002 Define the exemption classifier in `rename_engine_core.py:287` with imported guard and resolver policy.
+- [x] T003 [P] Seed disposable Git repositories through `FixtureRepository` in `test_semantic_rename_engine.py:37`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Validate explicit source-to-target entries and reject duplicate, unsafe, exact, case-folded, or NFC-colliding targets before execution.
-- [ ] T005 Build dependency-closure batches from the reference graph; keep mixed extensions in the same closure.
-- [ ] T006 Implement exemption-aware skip dispositions with a reason for every skipped candidate.
-- [ ] T007 Implement deterministic dry-run output and require an explicit apply action before calling `git mv`.
-- [ ] T008 Preserve symlink mode `120000` and executable bits, and expose a before/after manifest comparison.
-- [ ] T009 Implement idempotent reruns and an inverse operation journal that supports batch rollback after an apply failure.
+- [x] T004 Validate explicit paths and collision keys in `rename_engine_core.py:119`, `rename_engine_core.py:153` and `rename_engine_core.py:462`.
+- [x] T005 Build SCC batches in `rename_engine_core.py:340` and `rename_engine_core.py:382`.
+- [x] T006 Emit exemption reasons through `rename_engine_core.py:287` and `build_plan` report rows.
+- [x] T007 Keep the CLI dry-run default in `semantic_rename_engine.py:66`; only `--apply` reaches `apply_plan`.
+- [x] T008 Compare tracked mode manifests in `rename_engine_core.py:584`; fixture evidence covers `120000` and `100755`.
+- [x] T009 Journal low-level inverses in `rename_engine_core.py:918` and replay them in `rename_engine_core.py:1075`.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Verify: Dry-run produces zero writes, index changes, mode changes, or partial renames in a disposable Git repository.
-- [ ] T011 Verify: A closure containing mixed extensions is planned as one dependency batch, not split by extension.
-- [ ] T012 Verify: Exact, case-folded, and NFC collisions abort before any write; leading and double underscores use explicit safe targets.
-- [ ] T013 Verify: Every policy exemption is skipped with a reason and no Python package directory or tool-mandated name is renamed.
-- [ ] T014 Verify: Apply preserves symlink mode and executable bits, and a second run reports no pending operations.
-- [ ] T015 Verify: An injected apply failure is reported and the inverse journal restores the completed portion of the batch.
+- [x] T010 Verify: `test_dry_run_is_repeatable_and_changes_nothing` and `test_cli_defaults_to_a_read_only_dry_run` pass.
+- [x] T011 Verify: `test_mixed_extension_cycle_is_one_dependency_scc` passes.
+- [x] T012 Verify: `test_exact_casefold_and_nfc_target_collisions_abort`, `test_existing_casefold_and_nfc_collisions_abort_without_writes` and semantic-target fixtures pass.
+- [x] T013 Verify: `test_policy_exemptions_are_skipped_and_rename_misclassification_fails` passes.
+- [x] T014 Verify: `test_apply_preserves_symlink_and_executable_modes_and_is_idempotent` passes.
+- [x] T015 Verify: `test_injected_failure_is_journaled_and_explicit_rollback_restores_clean_tree` passes.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All engine tasks complete with evidence in the phase checklist.
-- [ ] All requirements in `spec.md` meet their acceptance criteria.
-- [ ] The engine's map and operation outputs are consumable by phase 002.
-- [ ] No real repository migration was executed as part of this phase's implementation evidence.
+- [x] All engine tasks have evidence in `checklist.md`.
+- [x] All requirements in `spec.md` have named fixture coverage.
+- [x] The report exposes a row for every map entry plus ordered SCC batch membership.
+- [x] All mutating evidence ran inside `FixtureRepository`; the worktree received no migration rename.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

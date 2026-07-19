@@ -59,7 +59,7 @@ const COMMAND_CONTRACT = path.join(
   'sk-doc',
   'create-command',
   'assets',
-  'command_contract.json',
+  'command-contract.json',
 );
 const TOPOLOGY_TAXONOMY = path.join(
   REPO_ROOT,
@@ -76,7 +76,7 @@ const ADAPTER_REFERENCE = path.resolve(
   '..',
   'references',
   'adapters',
-  'sk_doc_command_adapter.md',
+  'sk-doc-command-adapter.md',
 );
 const KNOWN_DEVIATIONS_MD = path.resolve(
   __dirname,
@@ -84,7 +84,7 @@ const KNOWN_DEVIATIONS_MD = path.resolve(
   '..',
   'references',
   'adapters',
-  'sk_doc_command_known_deviations.md',
+  'sk-doc-command-known-deviations.md',
 );
 
 const referenceChecks = require(REFERENCE_CHECKS_CJS);

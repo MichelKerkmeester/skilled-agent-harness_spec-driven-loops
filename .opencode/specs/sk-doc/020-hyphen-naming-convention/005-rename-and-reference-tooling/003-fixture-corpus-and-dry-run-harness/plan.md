@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: fixture corpus and dry-run harness (032 phase 005.003)"
+title: "Implementation Plan: fixture corpus and dry-run harness (020 phase 005.003)"
 description: "Implementation plan for disposable Git fixtures and a deterministic harness that exercises the rename engine and reference checker across semantic, exemption, collision, reference, idempotency, rollback, and zero-scan cases without touching the real migration tree."
 trigger_phrases:
   - "fixture corpus implementation plan"
@@ -11,13 +11,17 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T08:32:34Z"
     last_updated_by: "codex"
-    recent_action: "Authored the fixture corpus and dry-run harness implementation plan"
-    next_safe_action: "Implement the fixture seed and disposable Git lifecycle"
+    recent_action: "Completed the fixture corpus implementation plan"
+    next_safe_action: "Use the verified fixture evidence in the map-freeze phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Every harness run starts from a fresh disposable repository and compares against a captured baseline."
@@ -48,14 +52,14 @@ missing references, dynamic sites, and zero scans.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 engine and phase 002 checker contracts define inputs, outputs, statuses, and failure semantics.
-- [ ] The fixture matrix names every supported reference class and every exemption class from the 032 policy.
-- [ ] The harness can create an isolated temporary Git repository and capture its baseline without using the real worktree.
+- [x] Phase 001 engine and phase 002 checker contracts define inputs, outputs, statuses, and failure semantics. Evidence: `semantic_rename_engine.py`, `reference_checker.py` and `reference_rewrite_executor.py` are imported by the runner.
+- [x] The fixture matrix names every supported reference class and every exemption class from the 020 policy. Evidence: `corpus.json` declares the exact coverage sets.
+- [x] The harness can create an isolated temporary Git repository and capture its baseline without using the real worktree. Evidence: `test_boundary_and_flag_guards_fail_before_fixture_mutation` passes.
 
 ### Definition of Done
-- [ ] Positive and negative scenarios cover the full engine/checker contract, including empty scans and dynamic sites.
-- [ ] Repeated seeded runs produce the same plans, ledger outcomes, counts, and exit codes.
-- [ ] Apply and rollback tests prove the fixture returns to its baseline and the real repository remains untouched.
+- [x] Positive and negative scenarios cover the full engine/checker contract, including empty scans and dynamic sites. Evidence: `10/10` scenarios pass.
+- [x] Repeated seeded runs produce the same plans, ledger outcomes, counts, and exit codes. Evidence: `2/2` repeat hashes match.
+- [x] Apply and rollback tests prove the fixture returns to its baseline and the real repository remains untouched. Evidence: `test_explicit_apply_and_rollback_remain_inside_disposable_repositories` passes.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -121,10 +125,10 @@ rolling back or deleting the disposable repository and verifying that the real w
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 rename engine | Internal predecessor | Planned | Engine scenarios cannot run |
-| Phase 002 reference checker and ledger | Internal predecessor | Planned | Reference and disposition scenarios cannot run |
+| Phase 001 rename engine | Internal predecessor | Complete | Engine scenarios cannot run |
+| Phase 002 reference checker and ledger | Internal predecessor | Complete | Reference and disposition scenarios cannot run |
 | Git executable and filesystem metadata | Runtime | Required | Baseline, `git mv`, symlink, and rollback assertions cannot run |
-| 032 policy exemption boundary | Internal policy | Defined | Negative fixtures would not prove the correct scope |
+| 020 policy exemption boundary | Internal policy | Defined | Negative fixtures would not prove the correct scope |
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

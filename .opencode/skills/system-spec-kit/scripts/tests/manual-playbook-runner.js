@@ -9,7 +9,7 @@ const SKILL_ROOT = cwd.endsWith(path.join('.opencode', 'skill', 'system-spec-kit
     ? cwd
     : path.resolve(cwd, '.opencode/skills/system-spec-kit');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
-const PLAYBOOK_ROOT = path.join(SKILL_ROOT, 'manual_testing_playbook');
+const PLAYBOOK_ROOT = path.join(SKILL_ROOT, 'manual-testing-playbook');
 const DEFAULT_REPORT_ROOT = path.resolve(REPO_ROOT, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/015-full-playbook-execution/scratch/manual-playbook-results');
 const SPEC_REPORT_ROOT = process.env.MANUAL_PLAYBOOK_REPORT_ROOT
     ? path.resolve(process.env.MANUAL_PLAYBOOK_REPORT_ROOT)
@@ -157,7 +157,7 @@ function readScenarioFiles() {
                 stack.push(full);
                 continue;
             }
-            if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'manual_testing_playbook.md') {
+            if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'manual-testing-playbook.md') {
                 files.push(full);
             }
         }
@@ -1418,7 +1418,7 @@ async function main() {
         }
     }
     const fixture = await createManualPlaybookFixture('gate-i-manual-playbook');
-    const handlers = await import('../../mcp_server/dist/handlers/index.js');
+    const handlers = await import('../../mcp-server/dist/handlers/index.js');
     const results = discovery.parseFailures.map(scenarioResultFromParseFailure);
     try {
         for (const definition of definitions) {

@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify ai-council agent naming (032 phase 001)"
-description: "Checklist for phase 001 of the 032 agents component migration: verify the ai-council filename candidate set."
+title: "Checklist: verify ai-council agent naming (020 phase 001)"
+description: "Checklist for phase 001 of the 020 agents component migration: verify the ai-council filename candidate set."
 trigger_phrases:
   - "ai-council agent naming checklist"
   - "agents phase 001 checklist"

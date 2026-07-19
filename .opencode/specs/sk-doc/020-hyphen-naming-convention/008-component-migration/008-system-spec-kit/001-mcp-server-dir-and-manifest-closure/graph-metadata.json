@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt.",
     "created_at": "2026-07-14T15:17:57Z",
-    "last_save_at": "2026-07-17T14:30:29.683Z",
+    "last_save_at": "2026-07-17T20:26:13.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b22cc694b0e1319a5fa6e621faa1b8b4fada8e962406a0cd256712cdc1e6c7ab",
+    "source_fingerprint": "sha256:2a628a75f103d6393e978f140ba81419aba02c4c6f8e88e74cbd9a507bcc7020",
     "source_doc_hashes": {
-      "spec.md": "5a1478af14a98559941aa54e4a3902a476ffe1178a9a77b26c8755a087dafdd6",
-      "plan.md": "7dd2563c377b8a470f844a5bcd68c6ef7ad57145c83a17edc9de37b70392c4e4",
-      "tasks.md": "a840086aef0dae9a8b06afec0d835a47b08927cdbc1613822edd068f7a47c6e3",
-      "checklist.md": "7931acb1574b2a55559b1382a8efeaa7b7bc0bb9d1c7e87c774be5f294e0dab9",
-      "decision-record.md": "2857827d7b558a05a4136755345ea0d83be6c70ed4faef9e309df0e0823d6278"
+      "spec.md": "78d693127f210bd821430ae7a5297446f459277c50f5c4b92df79df31487af41",
+      "plan.md": "4406c72dc5333f47e86bf7ea61800243fac8abf67f75eba874925526f6daacda",
+      "tasks.md": "135c385c09e89c6fc1189b8febb325c20bacdc108bf873934c8939fa98d4cfc5",
+      "checklist.md": "fac9ba09afe4cb0dcbd8b02390e6993efba1bb1ad99c624bf6b61fe5626f3a6d",
+      "decision-record.md": "b231206644cd6575374c697c1e3bed8cad34de5a8f3359a341c09bd9380128eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Design Phase [template:examples/level_1/tasks.md]"
+title: "Tasks: Design Phase [template:examples/level-1/tasks.md]"
 description: "Current-template Level 1 task list for the design phase validation child."
 trigger_phrases:
   - "phase"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read current Level 1 templates (`.opencode/skills/system-spec-kit/templates/examples/level_1/`)
+- [x] T001 Read current Level 1 templates (`.opencode/skills/system-spec-kit/templates/examples/level-1/`)
 - [x] T002 Read existing design child files (`.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/001-design/`)
 
 <!-- /ANCHOR:phase-1 -->

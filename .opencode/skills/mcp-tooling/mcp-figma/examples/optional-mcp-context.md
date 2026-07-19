@@ -22,7 +22,7 @@ The mcp-figma skill works fully with the CLI alone. This walkthrough covers the 
 - A Figma personal access token is in `.env` as `figma_FIGMA_API_KEY`. Code Mode prefixes every manual's env vars with the manual name, so a bare `FIGMA_API_KEY` will NOT work.
 - Never paste the token into user-facing output.
 
-Snippets to verify or (re)create the manual and the `.env` line: [`../assets/utcp_figma_manual.md`](../assets/utcp_figma_manual.md) and [`../assets/env_template.md`](../assets/env_template.md).
+Snippets to verify or (re)create the manual and the `.env` line: [`../assets/utcp-figma-manual.md`](../assets/utcp-figma-manual.md) and [`../assets/env-template.md`](../assets/env-template.md).
 
 ---
 
@@ -65,8 +65,8 @@ Treat both confirmed tools as read-only context pulls. The CLI (`figma-ds-cli`) 
 
 | What you see | Cause | Fix |
 |---|---|---|
-| `list_tools()` has no `figma` entries | Manual not registered in `.utcp_config.json` | Add the manual from [`../assets/utcp_figma_manual.md`](../assets/utcp_figma_manual.md), restart the session |
+| `list_tools()` has no `figma` entries | Manual not registered in `.utcp_config.json` | Add the manual from [`../assets/utcp-figma-manual.md`](../assets/utcp-figma-manual.md), restart the session |
 | `Variable 'figma_FIGMA_API_KEY' not found` | Bare `FIGMA_API_KEY` set instead of the prefixed key | Use `figma_FIGMA_API_KEY` in `.env` |
 | A `figma.figma_<tool>` call fails | Tool name assumed instead of discovered | Run `search_tools()` / `tool_info()` first |
 
-Full wiring detail: [`../references/mcp_wiring.md`](../references/mcp_wiring.md). Scenario contract: [`../manual_testing_playbook/optional_mcp/framelink_discovery.md`](../manual_testing_playbook/optional_mcp/framelink_discovery.md).
+Full wiring detail: [`../references/mcp-wiring.md`](../references/mcp-wiring.md). Scenario contract: [`../manual-testing-playbook/optional-mcp/framelink-discovery.md`](../manual-testing-playbook/optional-mcp/framelink-discovery.md).

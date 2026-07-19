@@ -30,7 +30,7 @@ const path = require('node:path');
 // The default benchmark-profiles directory both Lane B steps fall back to when
 // --profiles-dir is not supplied. Kept identical to the prior in-file literals.
 const DEFAULT_PROFILES_DIR =
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles';
+  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CORE LOGIC

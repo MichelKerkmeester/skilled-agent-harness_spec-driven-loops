@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-figma naming closure (032 phase 004)"
+title: "Tasks: mcp-figma naming closure (020 phase 004)"
 description: "Tasks for phase 004 of the mcp-tooling component naming migration: rename Figma paths, repair references, and preserve helper semantics."
 trigger_phrases:
   - "mcp-figma naming tasks"

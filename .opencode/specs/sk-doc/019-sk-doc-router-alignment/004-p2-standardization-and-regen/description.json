@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/018-sk-doc-router-alignment/004-p2-standardization-and-regen",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/004-p2-standardization-and-regen",
   "description": "The ten packets placed trigger lines and handoff boundaries inconsistently, and the JSON projections were not derived from a uniform source shape",
   "keywords": [
     "ten",
@@ -18,12 +18,12 @@
     "source",
     "shape"
   ],
-  "lastUpdated": "2026-07-13T14:31:59.063Z",
+  "lastUpdated": "2026-07-18T03:48:54.807Z",
   "specId": "004",
   "folderSlug": "p2-standardization-and-regen",
   "parentChain": [
     "sk-doc",
-    "018-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

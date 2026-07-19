@@ -25,7 +25,7 @@ const SEED_DEFINITIONS = {
     files: {
       'flag-spec.md': `# cli-devin documented flag list (fixture seed)
 
-This file lists the REAL cli-devin flags per references/cli_reference.md.
+This file lists the REAL cli-devin flags per references/cli-reference.md.
 Use ONLY these flags when constructing dispatch commands.
 
 ## Real flags (use these)

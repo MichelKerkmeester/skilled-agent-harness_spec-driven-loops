@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
   "description": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'`",
   "keywords": [
     "finding",
@@ -14,11 +14,12 @@
     "parserhealth",
     "quarantined"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.850Z",
+  "lastUpdated": "2026-07-18T03:48:55.580Z",
   "specId": "006",
   "folderSlug": "parser-quarantine-recovery",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],

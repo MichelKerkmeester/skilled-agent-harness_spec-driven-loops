@@ -19,7 +19,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCRIPTS_DIR = path.join(SKILL_ROOT, 'scripts');
-const MCP_SERVER_DIR = path.join(SKILL_ROOT, 'mcp_server');
+const MCP_SERVER_DIR = path.join(SKILL_ROOT, 'mcp-server');
 const TEMPLATES_DIR = path.join(SKILL_ROOT, 'templates');
 const createdTempRoots = new Set<string>();
 
@@ -202,18 +202,18 @@ describe('spec-folder creation and template parity', () => {
   // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps template levels and required files available', () => {
     expect(fs.existsSync(path.join(SCRIPTS_DIR, 'spec', 'create.sh'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_1'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_2'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_3'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-1'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-3'))).toBe(true);
 
     const workspaceRoot = makeTempWorkspace();
     const specPath = createTestSpecFolder(workspaceRoot, '004-creation-test', 3);
 
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_2', 'spec.md'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_2', 'plan.md'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_2', 'tasks.md'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_2', 'checklist.md'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_3', 'decision-record.md'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'plan.md'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'tasks.md'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'checklist.md'))).toBe(true);
+    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-3', 'decision-record.md'))).toBe(true);
 
     expect(fs.existsSync(path.join(specPath, 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(specPath, 'plan.md'))).toBe(true);
@@ -221,7 +221,7 @@ describe('spec-folder creation and template parity', () => {
     expect(fs.existsSync(path.join(specPath, 'memory'))).toBe(true);
     expect(fs.existsSync(path.join(specPath, 'scratch'))).toBe(true);
 
-    const specTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'level_2', 'spec.md'), 'utf-8');
+    const specTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'level-2', 'spec.md'), 'utf-8');
     const hasTableFormat = specTemplate.includes('| **Level**');
     const hasPlaceholders = specTemplate.includes('[') || specTemplate.includes('{{');
     expect(hasTableFormat || hasPlaceholders).toBe(true);

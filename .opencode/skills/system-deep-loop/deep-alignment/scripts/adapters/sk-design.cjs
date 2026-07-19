@@ -10,8 +10,8 @@
 // ║ drives chrome-devtools. Live-render audits belong to a separate          ║
 // ║ live-render adapter, not this one.                                       ║
 // ║                                                                          ║
-// ║ Full specification: ../../references/adapters/sk_design_adapter.md       ║
-// ║ Suppression list: ../../references/adapters/sk_design_known_deviations.md║
+// ║ Full specification: ../../references/adapters/sk-design-adapter.md       ║
+// ║ Suppression list: ../../references/adapters/sk-design-known-deviations.md║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -23,7 +23,7 @@
  * Reads files; never renders, never invokes the extraction pipeline.
  *
  * discover(scope) takes the real, live scope shape from
- * ../../references/discover_contract.md §3 / ../../references/lane_config_schema.md §5.
+ * ../../references/discover-contract.md §3 / ../../references/lane-config-schema.md §5.
  * sk-design's registered artifact-class is `designs`, which pairs with
  * `paths`/`globs` scopes (a `branchRange` scope resolves to an empty result
  * — see discover()'s own comment for why).
@@ -61,13 +61,13 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode
 const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 
 const SK_DESIGN_DIR = path.join(SKILLS_DIR, 'sk-design');
-const DESIGN_MD_FORMAT_MD = path.join(SK_DESIGN_DIR, 'design-md-generator', 'references', 'design_md_format.md');
-const DESIGN_TOKEN_VOCAB_MD = path.join(SK_DESIGN_DIR, 'shared', 'design_token_vocabulary.md');
-const AUDIT_CONTRACT_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'audit_contract.md');
-const ACCESSIBILITY_PERFORMANCE_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'accessibility_performance.md');
-const ANTI_PATTERNS_PRODUCTION_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'anti_patterns_production.md');
-const AI_FINGERPRINT_TELLS_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'ai_fingerprint_tells.md');
-const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk_design_known_deviations.md');
+const DESIGN_MD_FORMAT_MD = path.join(SK_DESIGN_DIR, 'design-md-generator', 'references', 'design-md-format.md');
+const DESIGN_TOKEN_VOCAB_MD = path.join(SK_DESIGN_DIR, 'shared', 'design-token-vocabulary.md');
+const AUDIT_CONTRACT_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'audit-contract.md');
+const ACCESSIBILITY_PERFORMANCE_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'accessibility-performance.md');
+const ANTI_PATTERNS_PRODUCTION_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'anti-patterns-production.md');
+const AI_FINGERPRINT_TELLS_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'ai-fingerprint-tells.md');
+const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-design-known-deviations.md');
 
 // Same excluded-segments set sk-doc.cjs ports from validate_document.py:54-64,
 // reused here for consistency across every deep-alignment discover() walker.
@@ -355,16 +355,16 @@ function standardSource(authority) {
     determinism: 'hybrid', // Section 4.3: structural checks are deterministic; audit-rubric judgment is reasoning-agent (mirrors sk-doc's two-layer shape)
     scopeBoundary: 'static-only-v1', // live-render belongs to a separate live-render adapter, not this one — see sk_design_adapter.md Section 1
     rules: {
-      structuralFormat: { doc: 'design_md_format.md', path: DESIGN_MD_FORMAT_MD },
-      tokenVocabulary: { doc: 'design_token_vocabulary.md', path: DESIGN_TOKEN_VOCAB_MD },
-      auditContract: { doc: 'audit_contract.md', path: AUDIT_CONTRACT_MD },
+      structuralFormat: { doc: 'design-md-format.md', path: DESIGN_MD_FORMAT_MD },
+      tokenVocabulary: { doc: 'design-token-vocabulary.md', path: DESIGN_TOKEN_VOCAB_MD },
+      auditContract: { doc: 'audit-contract.md', path: AUDIT_CONTRACT_MD },
       accessibilityPerformance: {
-        doc: 'accessibility_performance.md', path: ACCESSIBILITY_PERFORMANCE_MD,
+        doc: 'accessibility-performance.md', path: ACCESSIBILITY_PERFORMANCE_MD,
         note: 'reasoning-agent-layer input only in v1 -- contrast/touch-target thresholds need a rendered surface or a stated color-pairing this adapter cannot mechanically derive from DESIGN.md alone. See sk_design_adapter.md Section 4.4.',
       },
-      antiPatternsProduction: { doc: 'anti_patterns_production.md', path: ANTI_PATTERNS_PRODUCTION_MD },
+      antiPatternsProduction: { doc: 'anti-patterns-production.md', path: ANTI_PATTERNS_PRODUCTION_MD },
       aiFingerprintTells: {
-        doc: 'ai_fingerprint_tells.md', path: AI_FINGERPRINT_TELLS_MD,
+        doc: 'ai-fingerprint-tells.md', path: AI_FINGERPRINT_TELLS_MD,
         note: 'reasoning-agent-layer input only in v1 -- see sk_design_adapter.md Section 4.4.',
       },
     },

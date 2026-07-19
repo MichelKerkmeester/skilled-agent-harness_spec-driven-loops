@@ -78,7 +78,7 @@ mcp-tooling/
   description.json
   graph-metadata.json
   changelog/
-  manual_testing_playbook/
+  manual-testing-playbook/
   benchmark/
   mcp-chrome-devtools/
     SKILL.md

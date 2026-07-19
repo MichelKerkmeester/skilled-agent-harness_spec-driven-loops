@@ -18,7 +18,7 @@ const RUNNER = path.join(__dirname, '..', 'behavior-bench-run.cjs');
 const FAKE_LEG = path.join(__dirname, 'fixtures', 'fake-leg.js');
 const SMOKE_SCENARIO = path.join(__dirname, 'fixtures', 'SMOKE-000-fake.md');
 const DAB_GOLDEN = path.join(__dirname, 'fixtures', 'dab-v1-golden.json');
-const DAB_SCENARIOS = path.join(__dirname, '..', '..', '..', 'deep-alignment', 'behavior_benchmark', 'scenarios');
+const DAB_SCENARIOS = path.join(__dirname, '..', '..', '..', 'deep-alignment', 'behavior-benchmark', 'scenarios');
 
 function loadSmokeContract() {
   const md = fs.readFileSync(SMOKE_SCENARIO, 'utf8');

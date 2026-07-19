@@ -27,7 +27,7 @@ Current state:
 ```text
 fixtures/
 `-- low-sample-benchmark/   # Insufficient-data and insufficient-sample scenario
-    +-- improvement_config.json
+    +-- improvement-config.json
     +-- agent-improvement-state.jsonl
     +-- improvement-journal.jsonl
     +-- benchmark-results.json

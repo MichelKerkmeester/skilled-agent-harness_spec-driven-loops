@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Config, checkpoints, vectors, and constitutional verification (032 subtree 008 phase 010)"
+title: "Tasks: Config, checkpoints, vectors, and constitutional verification (020 subtree 008 phase 010)"
 description: "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for permitted snake_case filesystem names. The pinned inventory has zero rename candidates in the three runtime agent directories; generated/vector/checkpoint artifacts and tool-mandated names retain their exempt disposition."
 trigger_phrases:
   - "system-spec-kit agent directory naming audit"

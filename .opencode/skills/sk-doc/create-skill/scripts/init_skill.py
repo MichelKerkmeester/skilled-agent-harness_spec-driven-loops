@@ -93,10 +93,10 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         return None
 
     template_path = (
-        Path(__file__).parent.parent
+        Path(__file__).resolve().parent.parent
         / 'assets'
         / 'skill'
-        / 'skill_scaffold_template.md'
+        / 'skill-scaffold-template.md'
     )
     try:
         skill_template = template_path.read_text(encoding='utf-8')
@@ -148,13 +148,13 @@ def init_parent_skill(skill_name: str, path: str) -> Optional[Path]:
         return None
 
     scaffold_dir = (
-        Path(__file__).parent.parent
+        Path(__file__).resolve().parent.parent
         / 'assets'
-        / 'parent_skill'
+        / 'parent-skill'
         / 'scaffold'
     )
-    hub_template_path = scaffold_dir / 'hub_skill_scaffold.md'
-    packet_template_path = scaffold_dir / 'packet_skill_scaffold.md'
+    hub_template_path = scaffold_dir / 'hub-skill-scaffold.md'
+    packet_template_path = scaffold_dir / 'packet-skill-scaffold.md'
     try:
         hub_template = hub_template_path.read_text(encoding='utf-8')
         packet_template = packet_template_path.read_text(encoding='utf-8')
@@ -312,7 +312,7 @@ def init_parent_skill(skill_name: str, path: str) -> Optional[Path]:
         changelog_dir.mkdir(parents=True, exist_ok=False)
         for directory_name in (
             'changelog',
-            'manual_testing_playbook',
+            'manual-testing-playbook',
             'benchmark',
         ):
             (skill_dir / directory_name).mkdir()

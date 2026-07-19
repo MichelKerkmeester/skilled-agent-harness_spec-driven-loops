@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation",
   "description": "Today the skill-advisor has no routing target for small-model concerns",
   "keywords": [
     "today",
@@ -9,11 +9,11 @@
     "small-model",
     "concerns"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.068Z",
+  "lastUpdated": "2026-07-18T03:48:55.222Z",
   "specId": "002",
   "folderSlug": "sentinel-skill-foundation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive",
     "004-sk-prompt-small-model-optimization"
   ],

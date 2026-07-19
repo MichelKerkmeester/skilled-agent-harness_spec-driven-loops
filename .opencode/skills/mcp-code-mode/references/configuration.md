@@ -763,9 +763,9 @@ python scripts/validate_config.py .utcp_config.json
 
 ### Reference Files
 - [architecture.md](./architecture.md) - System architecture and data flow
-- [naming_convention.md](./naming_convention.md) - Critical naming patterns for tool calls
-- [tool_catalog.md](./tool_catalog.md) - Complete list of available MCP tools
+- [naming-convention.md](./naming-convention.md) - Critical naming patterns for tool calls
+- [tool-catalog.md](./tool-catalog.md) - Complete list of available MCP tools
 
 ### Templates
-- [config_template.md](../assets/config_template.md) - Configuration template
-- [env_template.md](../assets/env_template.md) - Environment variables example
+- [config-template.md](../assets/config-template.md) - Configuration template
+- [env-template.md](../assets/env-template.md) - Environment variables example

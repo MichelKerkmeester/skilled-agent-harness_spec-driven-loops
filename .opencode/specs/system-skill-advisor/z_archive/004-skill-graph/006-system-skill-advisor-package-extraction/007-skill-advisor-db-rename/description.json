@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
   "description": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`",
   "keywords": [
     "system-skill-advisor",
@@ -13,11 +13,12 @@
     "skill-graph",
     "sqlite"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.619Z",
+  "lastUpdated": "2026-07-18T03:48:57.106Z",
   "specId": "007",
   "folderSlug": "skill-advisor-db-rename",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

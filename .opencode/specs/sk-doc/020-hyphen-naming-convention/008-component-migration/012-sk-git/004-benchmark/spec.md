@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git benchmark (032 phase 008/012/004)"
+title: "Feature Specification: sk-git benchmark (020 phase 008/012/004)"
 description: "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers. This phase moves the benchmark filesystem names to kebab-case and proves that benchmark evidence, fixture discovery, and storage-guide references remain intact."
 trigger_phrases:
   - "sk-git benchmark kebab-case"
-  - "032 benchmark profile rename"
+  - "020 benchmark profile rename"
   - "benchmark artifact path closure"
 importance_tier: "important"
 contextType: "planning"
@@ -28,7 +28,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git benchmark
 
@@ -45,7 +45,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 004 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -91,7 +91,7 @@ The purpose is to rename the observed benchmark profile directories to kebab-cas
 | REQ-002 | Profile and artifact path consumers use kebab-case. | The benchmark loader, registries, report path values, SKILL.md/README.md pointers, and storage/fixture guidance resolve with zero stale source paths. |
 | REQ-003 | Benchmark evidence is semantically unchanged. | Scenario IDs, report keys, scores, model labels, fixtures, and storage semantics match the pre-rename baseline; only approved filesystem/path values differ. |
 | REQ-004 | Already-compliant report filenames remain stable unless the frozen census identifies a real additional rename. | skill-benchmark-report.json and skill-benchmark-report.md remain present under both hyphenated profile directories. |
-| REQ-005 | The 032 exemption boundary and component scope are honored. | No key, field, code identifier, Python/tool-mandated name, sibling surface, or frozen content is changed. |
+| REQ-005 | The 020 exemption boundary and component scope are honored. | No key, field, code identifier, Python/tool-mandated name, sibling surface, or frozen content is changed. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -105,7 +105,7 @@ The purpose is to rename the observed benchmark profile directories to kebab-cas
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase depends on the frozen 032 map and the benchmark loader's path contract. Its main risks are treating report content as filesystem names, losing a profile during directory movement, or changing benchmark evidence while repairing a path. The checklist requires profile/report discovery parity, JSON/Markdown path resolution, and content/key/score parity.
+The phase depends on the frozen 020 map and the benchmark loader's path contract. Its main risks are treating report content as filesystem names, losing a profile during directory movement, or changing benchmark evidence while repairing a path. The checklist requires profile/report discovery parity, JSON/Markdown path resolution, and content/key/score parity.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

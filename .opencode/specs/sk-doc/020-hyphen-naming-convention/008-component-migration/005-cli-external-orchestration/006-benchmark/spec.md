@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: cli-external-orchestration benchmark naming (032 phase 005.006)"
-description: "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 032 authored-versus-generated naming boundary and records an explicit zero-candidate baseline."
+title: "Feature Specification: cli-external-orchestration benchmark naming (020 phase 005.006)"
+description: "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline."
 trigger_phrases:
   - "cli-external benchmark kebab-case"
   - "benchmark fixture profile storage naming"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-external-orchestration benchmark naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration |
-| **Origin** | Phase 006 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 006 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,7 +105,7 @@ This phase records the zero-candidate baseline, classifies any execution-time be
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The primary risk is either inventing a rename for the empty current tree or treating future generated raw output as authored filesystem content. The phase depends on phase 005's playbook handoff and the 032 generated/frozen exemption; a zero-candidate census and explicit execution-time ledger prevent both errors.
+The primary risk is either inventing a rename for the empty current tree or treating future generated raw output as authored filesystem content. The phase depends on phase 005's playbook handoff and the 020 generated/frozen exemption; a zero-candidate census and explicit execution-time ledger prevent both errors.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

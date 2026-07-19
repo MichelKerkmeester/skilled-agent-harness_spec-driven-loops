@@ -13,23 +13,23 @@
     "sourceMap": true,
     "composite": true,
     "verbatimModuleSyntax": true,
-    "rootDir": "./mcp_server",
-    "outDir": "./mcp_server/dist",
-    "tsBuildInfoFile": "./mcp_server/dist/tsconfig.tsbuildinfo",
+    "rootDir": "./mcp-server",
+    "outDir": "./mcp-server/dist",
+    "tsBuildInfoFile": "./mcp-server/dist/tsconfig.tsbuildinfo",
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "include": [
-    "mcp_server/**/*.ts"
+    "mcp-server/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "mcp_server/dist",
-    "mcp_server/tests/**/*.ts",
-    "mcp_server/stress_test/**/*.ts",
-    "mcp_server/**/__tests__/**/*.ts",
+    "mcp-server/dist",
+    "mcp-server/tests/**/*.ts",
+    "mcp-server/stress-test/**/*.ts",
+    "mcp-server/**/__tests__/**/*.ts",
     "**/*.test.ts",
     "**/*.vitest.ts",
     "**/*.test-d.ts"

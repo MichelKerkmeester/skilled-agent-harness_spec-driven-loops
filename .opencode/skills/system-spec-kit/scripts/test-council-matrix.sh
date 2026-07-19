@@ -10,7 +10,7 @@ fi
 
 cd "$REPO_ROOT"
 
-npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council
+npm run --prefix .opencode/skills/system-spec-kit/mcp-server test:council
 python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill --strict
 

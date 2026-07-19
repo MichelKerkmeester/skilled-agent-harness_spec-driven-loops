@@ -1,0 +1,35 @@
+{
+  "name": "@spec-kit/scripts",
+  "version": "1.7.2",
+  "description": "CLI tools for spec-kit context generation and memory management",
+  "type": "module",
+  "main": "dist/memory/generate-context.js",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+    "lint": "tsc --noEmit",
+    "test": "vitest run --config ../mcp-server/vitest.config.ts --root . && npm run test:legacy && npm run test:validation",
+    "test:task-enrichment": "vitest run tests/task-enrichment.vitest.ts --config ../mcp-server/vitest.config.ts --root .",
+    "test:legacy": "npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js",
+    "test:validation": "node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh",
+    "check:ast": "npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts",
+    "check": "npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts"
+  },
+  "dependencies": {
+    "@spec-kit/mcp-server": "file:../mcp-server",
+    "@spec-kit/shared": "file:../shared",
+    "better-sqlite3": "12.6.2",
+    "js-yaml": "^4.3.0",
+    "sqlite-vec": "0.1.7-alpha.2"
+  },
+  "optionalDependencies": {
+    "sqlite-vec-darwin-arm64": "0.1.7-alpha.2"
+  },
+  "devDependencies": {
+    "tsx": "4.22.4",
+    "vitest": "^4.1.9"
+  }
+}

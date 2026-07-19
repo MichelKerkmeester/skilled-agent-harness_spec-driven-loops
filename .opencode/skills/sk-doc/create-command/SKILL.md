@@ -11,7 +11,7 @@ version: 1.0.1.1
 
 `create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.opencode/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.
 
-This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command_template.md`, `assets/command_router_template.md`, `assets/command_presentation_template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
+This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command-template.md`, `assets/command-router-template.md`, `assets/command-presentation-template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
 
 This packet is lean and self-contained. The advisor identity lives at the `sk-doc` hub root; do not add packet-local `graph-metadata.json`.
 
@@ -119,6 +119,7 @@ Determine the command invocation before writing:
 - Root command: `.opencode/commands/<command>.md` becomes `/<command>`.
 - Namespace command: `.opencode/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
 - Namespace and action names use lowercase hyphen-case.
+- Each command, namespace and action segment matches `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscores, empty segments and ambiguous normalization; the emitted `.md` stem must equal the validated action name.
 
 For grouped related actions, prefer a namespace directory:
 
@@ -357,9 +358,9 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 - Subaction route-manifest (`topology: subaction-route-manifest`) — a direct-dispatch router that resolves sub-actions through an owned `_routes.yaml` manifest.
 - Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it).
 
-Which family uses which topology is defined by the machine-readable command contract (`assets/command_contract.json`, validated by `assets/command_contract.schema.json`); consult it rather than a hand-maintained family list. Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
+Which family uses which topology is defined by the machine-readable command contract (`assets/command-contract.json`, validated by `assets/command-contract.schema.json`); consult it rather than a hand-maintained family list. Use `assets/command-router-template.md` for the canonical numbered router skeleton, and `assets/command-presentation-template.md` for the full presentation asset skeleton.
 
-**Template self-sufficiency.** Each router variant must be authorable from its template alone — `command_router_template.md` plus the family's `command_contract.json` entry carry every section, vocabulary, and asset-path shape a new router needs. If a required shape is not derivable from the template and the contract, the template is incomplete: fix the template rather than copying a sibling command. This keeps the contract the single source and lets `generate-command-routers.cjs --check` detect drift instead of it hiding in hand-copied prose.
+**Template self-sufficiency.** Each router variant must be authorable from its template alone — `command-router-template.md` plus the family's `command-contract.json` entry carry every section, vocabulary, and asset-path shape a new router needs. If a required shape is not derivable from the template and the contract, the template is incomplete: fix the template rather than copying a sibling command. This keeps the contract the single source and lets `generate-command-routers.cjs --check` detect drift instead of it hiding in hand-copied prose.
 
 ### Step 12: Add Destructive-Action Safety
 
@@ -462,15 +463,15 @@ A command produced through this packet is complete when:
 Use these only for overflow detail, long examples, and exact skeletons:
 
 - `references/README.md` - overflow route map for this packet; indexes the single-concern reference files below.
-- `references/worked_example.md` - the canonical file contract plus a fully worked split command (router `.md` and presentation `.txt`).
-- `references/router_presentation_split.md` - router/presentation ownership, the before/after split transformation, and the behavior-preserving rule.
-- `references/argument_hints_and_modes.md` - argument-hint design patterns, `:auto`/`:confirm` mode design, and frontmatter/description budget tips.
-- `references/common_pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
-- `assets/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
-- `assets/command_router_template.md` - canonical numbered router skeleton with variant call-outs.
-- `assets/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
-- `assets/command_contract.json` / `assets/command_contract.schema.json` - machine-readable behavioral contract for the command families and its schema.
-- `../shared/references/core_standards.md` - shared document quality standards.
+- `references/worked-example.md` - the canonical file contract plus a fully worked split command (router `.md` and presentation `.txt`).
+- `references/router-presentation-split.md` - router/presentation ownership, the before/after split transformation, and the behavior-preserving rule.
+- `references/argument-hints-and-modes.md` - argument-hint design patterns, `:auto`/`:confirm` mode design, and frontmatter/description budget tips.
+- `references/common-pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
+- `assets/command-template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
+- `assets/command-router-template.md` - canonical numbered router skeleton with variant call-outs.
+- `assets/command-presentation-template.md` - full `_presentation.txt` skeleton for split command families.
+- `assets/command-contract.json` / `assets/command-contract.schema.json` - machine-readable behavioral contract for the command families and its schema.
+- `../shared/references/core-standards.md` - shared document quality standards.
 - `../shared/references/validation.md` - shared validation expectations.
 - `../shared/scripts/validate_document.py` - blocking structure validation.
 - `../shared/scripts/extract_structure.py` - structure extraction for review.

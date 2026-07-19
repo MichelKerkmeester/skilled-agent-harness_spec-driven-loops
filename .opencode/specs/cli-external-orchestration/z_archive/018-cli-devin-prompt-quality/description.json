@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "description": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic",
   "keywords": [
     "cli-devin",
@@ -17,11 +17,12 @@
     "block",
     "systematic"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.725Z",
+  "lastUpdated": "2026-07-18T03:48:54.323Z",
   "specId": "018",
   "folderSlug": "cli-devin-prompt-quality",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

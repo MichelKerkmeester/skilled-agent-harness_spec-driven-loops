@@ -104,7 +104,7 @@ function readManifestDigest(skillRoot) {
 
 /**
  * Load public/private fixture pairs from a fixtures dir
- * (assets/skill_benchmark/fixtures/<skill-id>/ with <id>.public.json +
+ * (assets/skill-benchmark/fixtures/<skill-id>/ with <id>.public.json +
  * <id>.private.json pairs). Falls back to the --fixtures-dir override.
  *
  * @param {string} fixturesDir - Directory containing fixture pairs.

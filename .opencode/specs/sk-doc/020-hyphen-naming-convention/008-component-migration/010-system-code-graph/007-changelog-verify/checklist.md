@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-code-graph changelog verification (032 phase 007)"
+title: "Checklist: system-code-graph changelog verification (020 phase 007)"
 description: "Blocking SOL verifier contract for the system-code-graph migration changelog, version bump, scope, exemption, history, and mutation checks."
 trigger_phrases:
   - "system-code-graph changelog checklist"

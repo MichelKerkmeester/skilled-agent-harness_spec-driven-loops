@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-tooling benchmark naming",
       "benchmark fixture profile kebab-case",
-      "032 mcp tooling phase 006",
+      "020 mcp tooling phase 006",
       "mcp-tooling benchmark implementation plan",
       "benchmark artifact path census",
       "mcp-tooling benchmark tasks",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files.",
     "created_at": "2026-07-14T15:17:45Z",
-    "last_save_at": "2026-07-17T14:30:24.939Z",
+    "last_save_at": "2026-07-17T20:26:11.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5f728e34496e847a947e7aa3fc41154674965deb2ba914eb09ce5e8ea02c1f96",
+    "source_fingerprint": "sha256:fbf552e2afb9370ee9202e3e3cefd083bd288ab3a95a5268671bf52235cafed3",
     "source_doc_hashes": {
-      "spec.md": "d98afd816bb77d894a2700a7ea08ab561d286058605aab8c386ba47ad7ab14fc",
-      "plan.md": "7155370607dcece696f6ba4941df7125c276a4cd8611403845067a36b66a75aa",
-      "tasks.md": "1aaa2502a0cc15d4937a3a5a2e83f39fe9a60182f8f4d67063fe31bb84f77c12",
-      "checklist.md": "b3e039c8aefc6fccd2659ba19f0155eaa2172fb16530b62518da92ffe7a38e35"
+      "spec.md": "40cd0d8bc4e8fe36da002344615c35cd4559f0cf690cf1e53f29637263b1d976",
+      "plan.md": "7e6dda9eb96f12c539151e02914393f9b99d91e1d8058d5194f8ee20e2265010",
+      "tasks.md": "0c47a705ad237aa5387e832ebbe04117b5572e55401f972c7ec22c7801d0fe90",
+      "checklist.md": "10d264c8a979f9422e7fa2efd38651156cb2f74eca143012dcf649e266854858"
     },
     "last_active_child_id": null,
     "last_active_at": null

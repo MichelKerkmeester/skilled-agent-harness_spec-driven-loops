@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-codex component naming (032 phase 005.004)"
+title: "Tasks: cli-codex component naming (020 phase 005.004)"
 description: "Tasks for the cli-codex component rename: map five references and two assets, update local links, preserve Codex safety contracts, and verify delegated ownership."
 trigger_phrases:
   - "cli-codex naming tasks"

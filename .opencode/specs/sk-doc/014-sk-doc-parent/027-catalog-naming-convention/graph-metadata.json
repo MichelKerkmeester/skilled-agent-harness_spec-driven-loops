@@ -39,11 +39,18 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
       "spec.md",
       "003-underscore-content-folders-and-files/spec.md",
       "004-remove-superset-copilot-hook-bridge/spec.md"
     ],
     "entities": [
+      {
+        "name": "filesystem-naming-convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -89,15 +96,15 @@
     ],
     "causal_summary": "Program parent grouping all naming-convention governance for feature_catalog / manual_testing_playbook content across every skill. Holds three children: the two completed de-numbering packets (former top-level 025 category folders, 026 snippet filenames, re-nested here as 001/002) and the new hyphen->underscore restyle of content folders and files (003). Root purpose only; the re-nest mechanics live in context-index.md and each child's own docs.",
     "created_at": "2026-07-12T00:00:00.000Z",
-    "last_save_at": "2026-07-17T13:38:22.974Z",
+    "last_save_at": "2026-07-18T05:27:38.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1ed168c8e09ecc11a38707d08637c32a64e4c2d3ddb6584b08af90f0cd20f4a1",
+    "source_fingerprint": "sha256:b7776286cb652382303ff3bc1ff864635579d85f748259a021de0bf418f2a365",
     "source_doc_hashes": {
-      "spec.md": "ff119d4a6ab58e53e3848cfc4199483603d5153021e937cfdf004c010dd84a04"
+      "spec.md": "2fcbc4a264619363df9369c5a77475117916f48b5bed5f9778336dffb2b1a7ad"
     },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
     "last_active_at": "2026-07-12T00:00:00.000Z"

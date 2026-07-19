@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop manual-testing-playbook names (032 phase 007/008)"
+title: "Tasks: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
 description: "Execution tasks for renaming the root manual-testing-playbook corpus and repairing benchmark, router, index, and Markdown path consumers while preserving scenario identity."
 trigger_phrases:
   - "system-deep-loop manual playbook tasks"

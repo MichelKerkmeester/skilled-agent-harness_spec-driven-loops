@@ -23,9 +23,9 @@ const path = require('path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DIGEST_RE = /^sha256:[a-f0-9]{64}$/;
-const CANONICAL_ASSET_REL = 'shared/design_dispatch_boundary.md';
+const CANONICAL_ASSET_REL = 'shared/design-dispatch-boundary.md';
 const DESIGN_INTERFACE_REL = 'design-interface/SKILL.md';
-const DESIGN_INTERFACE_REF = '../shared/design_dispatch_boundary.md';
+const DESIGN_INTERFACE_REF = '../shared/design-dispatch-boundary.md';
 
 const REQUIRED_PAYLOAD_DIGESTS = [
   'contextManifestDigest',

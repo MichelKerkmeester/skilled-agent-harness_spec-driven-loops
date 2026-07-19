@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git changelog verification (032 phase 008/012/005)"
+title: "Feature Specification: sk-git changelog verification (020 phase 008/012/005)"
 description: "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook renames. This read-only phase verifies that shipped release evidence matches the actual migration; benchmark (004) is not yet migrated on v4, so its changelog coverage is deferred until that phase executes."
 trigger_phrases:
   - "sk-git changelog verification"
-  - "032 sk-git version bump"
+  - "020 sk-git version bump"
   - "migration changelog evidence"
 importance_tier: "important"
 contextType: "planning"
@@ -30,7 +30,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git changelog verification
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 005 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

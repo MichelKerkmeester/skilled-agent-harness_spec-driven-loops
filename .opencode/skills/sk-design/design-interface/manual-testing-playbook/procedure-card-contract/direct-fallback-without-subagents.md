@@ -68,5 +68,5 @@ Subagent unavailability must not lower the proof bar or grant mutating tools to 
 
 - Group: Procedure Card Contract
 - Playbook ID: ID-020
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/direct-fallback-without-subagents.md`

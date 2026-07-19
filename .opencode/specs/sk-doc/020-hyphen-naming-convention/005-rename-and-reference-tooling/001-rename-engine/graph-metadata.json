@@ -39,15 +39,22 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "checklist.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "decision-record.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -76,6 +77,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -157,20 +164,20 @@
         "source": "derived"
       },
       {
-        "name": "phase",
+        "name": "imported",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-07-17T14:30:03.205Z",
+    "last_save_at": "2026-07-18T07:39:06.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57ed58e6c5a5c69e545a00ae5964dc429f8ecbb2a6509ade288e6e40b01a5dfb",
+    "source_fingerprint": "sha256:bc81fb4359679ed33a480687d1bc9c1894daec6de3bb5b387b20ad776ec27290",
     "source_doc_hashes": {
-      "spec.md": "e8d23b2d466b2bf0c2938563ba7d7be3d64381811b93699876feefc9bcfb6508",
-      "plan.md": "06413911df92f1cba9d61a79f0ad258ab02119af1b581b7e068075d8c246ad98",
-      "tasks.md": "b15fef50a02af71c9e67a03ac185e97639c0d48218f93dc0d29ac637b2a6d5b9",
-      "checklist.md": "aa240e56c7ad7124567b5653746cbcbb9d4f122a64fdf0bf7e08ccac57de6d85",
-      "decision-record.md": "adcca7c5cbb84449a6bcf80683a88cbfab0c36f80315b9fa1897d0749e917e20"
+      "spec.md": "1891cff9eb9cde0bb8808a0ceaf7436709526dad2e0304e83ac514111b31cee1",
+      "plan.md": "997f6fe31491b63b5015e966ff651dc1b3d78e867b844f50a0f5f46da521cc37",
+      "tasks.md": "87b5cbe0c5468263edfebfffffe0ed761a96f37240e5cb70e45e68f0509ee142",
+      "checklist.md": "e6e1581a54368d0acb522672d1c48ab273e6ea55637e44e1b363a92a39d8c461",
+      "decision-record.md": "181269bfa05fec7947f3a589d1fb4a8bc0a81a0c1cdf062f05a859de253ffbc1",
+      "implementation-summary.md": "b2079bbfa7e7e767611af734e960b0c0256f2505890114fc3e769ad3a8eaa26d"
     },
     "last_active_child_id": null,
     "last_active_at": null

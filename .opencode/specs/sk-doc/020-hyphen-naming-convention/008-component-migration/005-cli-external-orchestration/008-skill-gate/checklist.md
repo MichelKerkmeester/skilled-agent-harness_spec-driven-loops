@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-external-orchestration subtree rollup gate (032 phase 005.008)"
+title: "Checklist: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
 description: "Blocking SOL verifier contract for the cli-external-orchestration rollup: sibling completion, full scope-aware naming census, active-reference closure, release-evidence reconciliation, and mutation prohibition."
 trigger_phrases:
   - "cli-external subtree rollup gate checklist"

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture",
   "description": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema +",
   "keywords": [
     "author",
@@ -16,11 +16,12 @@
     "dim",
     "schema"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.224Z",
+  "lastUpdated": "2026-07-18T03:48:57.264Z",
   "specId": "001",
   "folderSlug": "pluggable-architecture",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "010-skill-advisor-embedder-stack"
   ],
   "memorySequence": 1,

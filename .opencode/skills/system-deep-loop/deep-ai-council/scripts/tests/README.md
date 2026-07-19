@@ -23,7 +23,7 @@ vitest harnesses validating deep-ai-council orchestration and registry behavior.
 ## 3. HOW TO RUN
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp-server
 node_modules/.bin/vitest run --no-coverage \
   /absolute/path/to/.opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/<filename>.vitest.ts
 ```

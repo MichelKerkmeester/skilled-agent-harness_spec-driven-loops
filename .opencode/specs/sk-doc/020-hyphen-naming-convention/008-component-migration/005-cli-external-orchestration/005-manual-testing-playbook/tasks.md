@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration manual-testing-playbook naming (032 phase 005.005)"
+title: "Tasks: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "Tasks for the four-tree playbook migration: inventory categories and scenarios, build a complete path map, update recursive links, preserve scenario contracts, and verify ownership boundaries."
 trigger_phrases:
   - "cli-external manual playbook tasks"

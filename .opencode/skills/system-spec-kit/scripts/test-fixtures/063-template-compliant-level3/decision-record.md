@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Template Compliant Level 3 Fixture [template:examples/level_3/decision-record.md]"
+title: "Decision Record: Template Compliant Level 3 Fixture [template:examples/level-3/decision-record.md]"
 description: "Current-template Level 3 decision record fixture."
 trigger_phrases:
   - "fixture"

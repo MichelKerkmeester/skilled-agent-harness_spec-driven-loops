@@ -54,7 +54,7 @@ echo "-- Module Probes --"
 echo ""
 
 # Probe better-sqlite3
-if node -e "require('$ROOT_DIR/mcp_server/node_modules/better-sqlite3')" 2>/dev/null; then
+if node -e "require('$ROOT_DIR/mcp-server/node_modules/better-sqlite3')" 2>/dev/null; then
   echo "better-sqlite3:    [OK] loads"
 else
   echo "better-sqlite3:    [FAIL] did not load" >&2

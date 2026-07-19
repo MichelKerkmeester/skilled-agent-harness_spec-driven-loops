@@ -1,0 +1,181 @@
+---
+title: Shared Smart-Router Helpers for cli-* Skills
+description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+trigger_phrases:
+  - "shared smart router helpers"
+  - "intent signals dictionary"
+  - "loading level semantics"
+  - "unknown fallback checklist"
+  - "resource map scoring"
+importance_tier: normal
+contextType: implementation
+version: 3.6.0.11
+---
+
+# Shared Smart-Router Helpers (cli-* family)
+
+The three cli-* sibling skills (`cli-claude-code`, `cli-opencode`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all three files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
+
+> Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/create-skill/assets/skill/skill-smart-router.md).
+
+---
+
+## 1. OVERVIEW
+
+Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+
+---
+
+## 2. HELPER FUNCTIONS
+
+```python
+import re
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/cli-reference.md"
+
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
+def score_intents(task) -> dict[str, float]:
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword_present(keyword, text):
+                scores[intent] += cfg["weight"]
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["UNKNOWN"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
+
+def get_routing_key(task, intents: list[str]) -> str:
+    explicit = str(getattr(task, "provider", "")).strip().lower()
+    if explicit:
+        return explicit
+    return "<PROVIDER>" if intents else "unknown"
+
+def route_<PROVIDER>_resources(task):
+    inventory = discover_markdown_resources()
+    scores = score_intents(task)
+    intents = select_intents(scores, ambiguity_delta=1.0)
+    routing_key = get_routing_key(task, intents)
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    # 1. ALWAYS load baseline + fast-path prompt-quality asset
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+
+    # 2. UNKNOWN FALLBACK: no keywords matched at all
+    if max(scores.values()) == 0:
+        return {
+            "intents": ["UNKNOWN"],
+            "routing_key": routing_key,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    # 3. CONDITIONAL: intent-mapped resources
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
+
+    # 4. ON_DEMAND: explicit keyword triggers
+    text = _task_text(task)
+    if any(keyword_present(keyword, text) for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
+
+    # 5. Safety net
+    if not loaded:
+        load_if_available(DEFAULT_RESOURCE)
+
+    result = {"intents": intents, "routing_key": routing_key, "intent_scores": scores, "resources": loaded}
+    if len(loaded) <= len(LOADING_LEVELS["ALWAYS"]):
+        result["notice"] = f"No knowledge base found for routing key '{routing_key}' beyond always-load resources"
+    return result
+```
+
+Replace `<PROVIDER>` with the provider slug (`claude_code`, `opencode`, `opencode`).
+
+---
+
+## 3. LOADING-LEVEL SEMANTICS
+
+| Level         | When to load            | Resources                                                       |
+| ------------- | ----------------------- | --------------------------------------------------------------- |
+| `ALWAYS`      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md`  |
+| `CONDITIONAL` | If intent signals match | Intent-mapped reference docs from `RESOURCE_MAP`                |
+| `ON_DEMAND`   | Only on explicit request| Extended templates and patterns (gated by `ON_DEMAND_KEYWORDS`) |
+
+---
+
+## 4. UNKNOWN_FALLBACK RETURN CONTRACT
+
+When no keyword matches `score_intents()` returns all-zero scores. The router returns:
+
+```python
+{
+    "intents": ["UNKNOWN"],
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+    "resources": loaded,  # ALWAYS-tier resources only
+}
+```
+
+The caller surfaces `disambiguation_checklist` to the user before re-routing.
+
+---
+
+## 5. PROVIDER-SPECIFIC DICTIONARIES
+
+Each cli-* SKILL.md provides its own:
+- `INTENT_SIGNALS` — provider-specific keyword-to-weight intent map
+- `RESOURCE_MAP` — provider-specific intent-to-reference-files map
+- `LOADING_LEVELS` — provider-specific `ALWAYS` / `ON_DEMAND_KEYWORDS` / `ON_DEMAND` lists
+- `UNKNOWN_FALLBACK_CHECKLIST` — provider-specific disambiguation prompts
+
+See each skill's SKILL.md §2 Smart Routing for these inline dictionaries.
+
+---

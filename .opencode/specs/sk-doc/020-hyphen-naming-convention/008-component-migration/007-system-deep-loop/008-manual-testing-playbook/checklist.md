@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop manual-testing-playbook names (032 phase 007/008)"
+title: "Checklist: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
 description: "Blocking SOL verification contract for the root manual-testing-playbook tree, its five categories, scenario corpus, and reference closure."
 trigger_phrases:
   - "system-deep-loop manual testing playbook checklist"

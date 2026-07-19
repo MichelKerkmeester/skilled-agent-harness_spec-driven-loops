@@ -43,7 +43,7 @@ async function loadPlugin() {
   return import(pluginUrl);
 }
 
-const DATABASE_RELATIVE_DIR = path.join('.opencode', 'skills', 'system-code-graph', 'mcp_server', 'database');
+const DATABASE_RELATIVE_DIR = path.join('.opencode', 'skills', 'system-code-graph', 'mcp-server', 'database');
 
 function seedReadiness(projectDir, graphFreshness) {
   const dir = path.join(projectDir, DATABASE_RELATIVE_DIR);

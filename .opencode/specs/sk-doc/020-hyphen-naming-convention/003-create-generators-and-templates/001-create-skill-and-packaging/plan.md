@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: create-skill scaffolding and packaging (032 phase 003 child 001)"
+title: "Implementation Plan: create-skill scaffolding and packaging (020 phase 003 child 001)"
 description: "Update the create-skill scaffold and package contract at their existing naming boundaries, then prove the emitted temporary trees and archives obey kebab-case without renaming Python implementation files."
 trigger_phrases:
   - "create-skill scaffolding implementation plan"
@@ -10,13 +10,13 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:41:37.848Z"
     last_updated_by: "codex"
-    recent_action: "Authored the implementation plan for create-skill output naming and package checks"
-    next_safe_action: "Inventory current scaffold outputs and package validation branches before implementation"
+    recent_action: "Completed the scaffold, package check, template, and regression plan"
+    next_safe_action: "No child work remains"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,15 +42,15 @@ Use the existing `init_skill.py` output branches as the source of truth for stan
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The standalone and parent-hub output branches in `init_skill.py` are inventoried.
-- [ ] The package-name, folder-match, resource-path, and archive-name checks in `package_skill.py` are identified.
-- [ ] The Python, Python-package, and tool-mandated exemptions are pinned to the 032 policy.
-- [ ] Existing create-skill regression fixtures are mapped to the changed checks.
+- [x] The standalone and parent-hub output branches in `init_skill.py` are inventoried.
+- [x] The package-name, folder-match, resource-path, and archive-name checks in `package_skill.py` are identified.
+- [x] The Python, Python-package, and tool-mandated exemptions are pinned to the 020 policy.
+- [x] Existing create-skill regression fixtures are mapped to the changed checks.
 
 ### Definition of Done
-- [ ] Standalone and parent-hub temporary scaffolds contain only canonical generated names plus exemptions.
-- [ ] Package checks reject new noncanonical generated names and accept valid packages.
-- [ ] Tests prove the generated output and exemption boundary.
+- [x] Standalone and parent-hub temporary scaffolds contain only canonical generated names plus exemptions.
+- [x] Package checks reject new noncanonical generated names and accept valid packages.
+- [x] Tests prove the generated output and exemption boundary.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -66,19 +66,19 @@ Use the existing `init_skill.py` output branches as the source of truth for stan
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the 032 policy/exemption set and inspect both scaffold modes, package checks, templates, and existing tests.
-- [ ] Create temporary standalone and parent-hub fixture inputs without changing tracked skill trees.
+- [x] Confirm the 020 policy/exemption set and inspect both scaffold modes, package checks, templates, and existing tests.
+- [x] Create temporary standalone and parent-hub fixture inputs without changing tracked skill trees.
 
 ### Phase 2: Implementation
-- [ ] Enforce kebab-case for generated skill roots, packet names, and generic parent-hub storage directories.
-- [ ] Align package folder/frontmatter checks, generated resource-path checks, and archive-root naming with the emitted contract.
-- [ ] Update create-skill templates and packaging guidance so generated reference/asset examples use hyphens while exempt names stay explicit.
-- [ ] Add regression fixtures for invalid names, valid names, archives, Python files/package directories, and tool-mandated files.
+- [x] Enforce kebab-case for generated skill roots, packet names, and generic parent-hub storage directories.
+- [x] Align package folder/frontmatter checks, generated resource-path checks, and archive-root naming with the emitted contract.
+- [x] Update create-skill templates and packaging guidance so generated reference/asset examples use hyphens while exempt names stay explicit.
+- [x] Add regression fixtures for invalid names, valid names, archives, Python files/package directories, and tool-mandated files.
 
 ### Phase 3: Verification
-- [ ] Generate standalone and parent-hub trees in temporary directories and inspect every relative path.
-- [ ] Run package checks against valid and invalid fixtures and inspect the zip member list.
-- [ ] Run the focused create-skill regression suites and record exit codes and fixture counts.
+- [x] Generate standalone and parent-hub trees in temporary directories and inspect every relative path.
+- [x] Run package checks against valid and invalid fixtures and inspect the zip member list.
+- [x] Run the focused create-skill regression suites and record exit codes and fixture counts.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -97,7 +97,7 @@ Use the existing `init_skill.py` output branches as the source of truth for stan
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase inherits the 032 pinned worktree and policy from phases 000/001. It uses the existing create-skill template set and focused Python regression suites. Later rename phases own existing repository debt; this phase must not depend on a retroactive rename to prove newly generated output.
+The phase inherits the 020 pinned worktree and policy from phases 000/001. It uses the existing create-skill template set and focused Python regression suites. Later rename phases own existing repository debt; this phase must not depend on a retroactive rename to prove newly generated output.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

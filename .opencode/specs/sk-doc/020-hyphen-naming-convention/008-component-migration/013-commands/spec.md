@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: commands component migration (032 phase 008/013)"
+title: "Feature Specification: commands component migration (020 phase 008/013)"
 description: "The .opencode/commands surface contains namespaced command assets and loose root commands with filesystem names that do not consistently use kebab-case. This phase parent defines independent child contracts for each command namespace, loose command IDs, the shared asset closure, and the final commands-surface gate while preserving command IDs, tool-mandated names, Python files, generated output, and data keys."
 trigger_phrases:
   - "commands component migration"
@@ -61,7 +61,7 @@ The `.opencode/commands/` surface combines seven namespaced command families, tw
 
 ### Purpose
 
-Define one independently executable child contract per commands surface so in-scope filesystem names become kebab-case, every path and link reference follows its owner, exact command IDs and tool contracts remain stable, and the final child can prove the subtree is clean under the 032 exemption boundary.
+Define one independently executable child contract per commands surface so in-scope filesystem names become kebab-case, every path and link reference follows its owner, exact command IDs and tool contracts remain stable, and the final child can prove the subtree is clean under the 020 exemption boundary.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:phase-map -->

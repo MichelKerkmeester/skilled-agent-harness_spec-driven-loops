@@ -48,7 +48,7 @@ These rules ONLY live in the skill files. Authoring a dispatch without reading t
 
 1. Any time you write `<binary> --model <X>` for a CLI that has a corresponding `cli-X` skill:
    - First `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md`
-   - Then compose the prompt per that skill's §3 (HOW IT WORKS) + relevant `assets/prompt_templates.md` if cited
+   - Then compose the prompt per that skill's §3 (HOW IT WORKS) + relevant `assets/prompt-templates.md` if cited
 2. For deep-loop / deep-review iter dispatches: ALSO read the equivalent iter contract for the chosen CLI
 3. If `sk-prompt` skill is available, hand prompt composition to `sk-prompt` per the cli-X skill's directive
 4. When dispatching: use the canonical invocation shape from the skill's §3 Core Invocation Pattern — copy-edit, not synthesize from memory

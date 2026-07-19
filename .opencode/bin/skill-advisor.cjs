@@ -19,8 +19,8 @@ const { spawnSync } = require('child_process');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const opencodeDir = path.resolve(__dirname, '..');
-const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp_server');
-const cliDist = path.join(mcpServerDir, 'dist', 'mcp_server', 'skill-advisor-cli.js');
+const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp-server');
+const cliDist = path.join(mcpServerDir, 'dist', 'mcp-server', 'skill-advisor-cli.js');
 const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
 const defaultSocketDir = '/tmp/mk-skill-advisor';
 const socketFileName = 'daemon-ipc.sock';
@@ -68,7 +68,7 @@ function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
 }
 
 function ensureFreshDist() {
-  const result = checkPackageFreshness('system-skill-advisor/mcp_server', {
+  const result = checkPackageFreshness('system-skill-advisor/mcp-server', {
     workspaceRoot: path.dirname(opencodeDir),
     entry: 'skill-advisor-cli',
     allowStale,

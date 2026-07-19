@@ -1,5 +1,5 @@
 ---
-title: "Checklist: remove transition aliases (032 phase 009)"
+title: "Checklist: remove transition aliases (020 phase 009)"
 description: "Blocking SOL verifier contract for phase 009: remove the bounded coexistence aliases after the physical migration and prove unsupported legacy names fail closed."
 trigger_phrases:
   - "remove transition aliases checklist"

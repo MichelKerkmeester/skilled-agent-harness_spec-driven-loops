@@ -1,6 +1,6 @@
 # sk-prompt Benchmark Summary
 
-Rigorous Lane-C skill-benchmark pass over the merged `sk-prompt` parent hub, run 2026-07-09 as a post-merge verification (packet `skilled-agent-orchestration/124-sk-prompt-parent` is complete; this is a deeper follow-on check, not new packet scope). Invocations verified against the deep-improvement skill's own authoritative docs: `references/skill_benchmark/{operator_guide,scoring_contract,routing_optimization}.md`.
+Rigorous Lane-C skill-benchmark pass over the merged `sk-prompt` parent hub, run 2026-07-09 as a post-merge verification (packet `skilled-agent-orchestration/124-sk-prompt-parent` is complete; this is a deeper follow-on check, not new packet scope). Invocations verified against the deep-improvement skill's own authoritative docs: `references/skill-benchmark/{operator_guide,scoring_contract,routing_optimization}.md`.
 
 ## Hub level (`sk-prompt`)
 
@@ -26,7 +26,7 @@ SP-001's inversion is a single-sample ("approximate" attribution) result from an
 
 ## Individual packets (`prompt-improve`, `prompt-models`)
 
-**Correction from an earlier draft of this summary**: this is a real, named conformance gap, not an inherent architectural fact. `deep-improvement/references/skill_benchmark/routing_optimization.md` §6 (Parent-Hub Routing) states the doctrine's actual expectation plainly: *"Re-run Lane C on both the child and the parent. The child should pass its own routing contract."* `sk-code`'s children (`code-review`, `code-quality`, `code-webflow`, `code-opencode`) meet that bar because each one was authored with its own `INTENT_SIGNALS`/`RESOURCE_MAP` block — that's why they benchmark individually with real Mode-A/Mode-B scores. `sk-prompt`'s two children do not meet it yet:
+**Correction from an earlier draft of this summary**: this is a real, named conformance gap, not an inherent architectural fact. `deep-improvement/references/skill-benchmark/routing-optimization.md` §6 (Parent-Hub Routing) states the doctrine's actual expectation plainly: *"Re-run Lane C on both the child and the parent. The child should pass its own routing contract."* `sk-code`'s children (`code-review`, `code-quality`, `code-webflow`, `code-opencode`) meet that bar because each one was authored with its own `INTENT_SIGNALS`/`RESOURCE_MAP` block — that's why they benchmark individually with real Mode-A/Mode-B scores. `sk-prompt`'s two children do not meet it yet:
 
 - **`prompt-improve`**: its in-skill router is `INTENT_MODEL`, with per-keyword weighted tuples (`[("rcaf", 5), ("framework", 4), ...]`) — a pre-canon shape never migrated to `INTENT_SIGNALS`.
 - **`prompt-models`**: routes by direct model-alias lookup (`MODEL_ALIASES` → `routing_key`), not intent classification — a genuinely different routing pattern (its own `SKILL.md` names it "Pattern 3: model id is the runtime key"), which may warrant a different Lane-C measurement approach rather than a forced `INTENT_SIGNALS` retrofit.
@@ -40,7 +40,7 @@ Verified what's actually checkable today instead of forcing a number:
 
 ## Known follow-ups (not blocking)
 
-1. **Migrate `prompt-improve`'s `INTENT_MODEL` to a canon `INTENT_SIGNALS` block** (or an explicitly-justified documented exception) so it can pass its own routing contract per `routing_optimization.md` §6 — the real fix for individual-packet benchmarking, not a benchmark-tooling workaround.
+1. **Migrate `prompt-improve`'s `INTENT_MODEL` to a canon `INTENT_SIGNALS` block** (or an explicitly-justified documented exception) so it can pass its own routing contract per `routing-optimization.md` §6 — the real fix for individual-packet benchmarking, not a benchmark-tooling workaround.
 2. **Decide `prompt-models`' Lane-C measurement path** — either an entity/alias-routing extension to the engine, or an explicit doctrine exception for alias-based routers (raise as a cross-hub question, not a sk-prompt-only one).
 3. Author an `SA-*` advisor-probe scenario to unlock D1-inter scoring at the hub level.
 4. Author a full D4 hallucination ablation pass (distinct from the D4-R task-outcome instrument already run).

@@ -3,7 +3,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
-import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../../mcp_server/hooks/shared-provenance.js';
+import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../../mcp-server/hooks/shared-provenance.js';
 
 import {
   type BoundSpecFolder,

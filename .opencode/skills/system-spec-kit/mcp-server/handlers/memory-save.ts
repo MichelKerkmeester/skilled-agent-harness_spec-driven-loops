@@ -1,0 +1,4176 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Memory Save Handler
+// ───────────────────────────────────────────────────────────────
+/* --- 1. DEPENDENCIES --- */
+
+// Node built-ins
+import { randomUUID } from 'node:crypto';
+import * as fs from 'node:fs';
+import path from 'path';
+
+// Shared packages
+import { validateFilePath } from '@spec-kit/shared/utils/path-security';
+import {
+  evaluateMemorySufficiency,
+  MEMORY_SUFFICIENCY_REJECTION_CODE,
+  type MemorySufficiencyResult,
+} from '@spec-kit/shared/parsing/memory-sufficiency';
+import {
+  validateMemoryTemplateContract,
+  type MemoryTemplateContractResult,
+} from '@spec-kit/shared/parsing/memory-template-contract';
+import {
+  evaluateSpecDocHealth,
+  type SpecDocHealthResult,
+} from '@spec-kit/shared/parsing/spec-doc-health';
+
+// Internal modules
+import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
+import { scrubSecretsDetailed } from '../lib/parsing/secret-scrubber.js';
+import { createFilePathValidator } from '../utils/validators.js';
+import * as memoryParser from '../lib/parsing/memory-parser.js';
+import { hashesMatch } from '../lib/content-id.js';
+import { normalizeTier } from '../lib/scoring/importance-tiers.js';
+import * as transactionManager from '../lib/storage/transaction-manager.js';
+import * as checkpoints from '../lib/storage/checkpoints.js';
+import * as preflight from '../lib/validation/preflight.js';
+import { requireDb } from '../utils/index.js';
+import type { MCPResponse } from './types.js';
+import { createAppendOnlyMemoryRecord, recordLineageVersion, retirePredecessorForActiveReindex } from '../lib/storage/lineage-state.js';
+import { determineAction } from '../lib/storage/reconsolidation.js';
+import * as causalEdges from '../lib/storage/causal-edges.js';
+
+import { runQualityGate, isQualityGateEnabled } from '../lib/validation/save-quality-gate.js';
+import {
+  isPostInsertEnrichmentEnabled,
+  isPostInsertEnrichmentAsync,
+  isSaveQualityGateEnabled,
+  isSaveReconsolidationEnabled,
+  resolveSavePlannerMode,
+} from '../lib/search/search-flags.js';
+
+import { getCanonicalPathKey, resolveCanonicalPath } from '../lib/utils/canonical-path.js';
+import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
+import { findSimilarMemories } from './pe-gating.js';
+import { runPostMutationHooks } from './mutation-hooks.js';
+import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
+import { indexChunkedMemoryFile, shouldUseChunkedIndexing } from './chunking-orchestrator.js';
+import { applyPostInsertMetadata } from './save/db-helpers.js';
+import {
+  createMemoryRecord,
+  findSamePathExistingMemory,
+  type CreateRecordIdentityHints,
+  type MemoryScopeMatch,
+} from './save/create-record.js';
+import {
+  buildGovernanceLogicalKey,
+  buildGovernancePostInsertFields,
+  ensureGovernanceRuntime,
+  recordGovernanceAudit,
+  recordTierDowngradeAudit,
+  validateGovernedIngest,
+  type GovernanceDecision,
+} from '../lib/governance/scope-governance.js';
+import { delete_memory_from_database } from '../lib/search/vector-index-mutations.js';
+import { MAX_TRIGGERS_PER_MEMORY } from '../lib/search/vector-index-types.js';
+import {
+  runQualityLoop,
+} from './quality-loop.js';
+import type {
+  QualityLoopResult,
+} from './quality-loop.js';
+
+// O2-5/O2-12: V-rule validation (previously only in workflow path)
+import {
+  validateMemoryQualityContent,
+  determineValidationDisposition,
+} from './v-rule-bridge.js';
+
+// Save pipeline modules
+import type {
+  IndexResult,
+  RouteCategory,
+  MergeModeHint,
+  SaveArgs,
+  AtomicSaveParams,
+  AtomicSaveOptions,
+  AtomicSaveResult,
+  PlannerAdvisory,
+  PlannerBlocker,
+  PlannerFollowUpAction,
+  PlannerRouteTarget,
+} from './save/index.js';
+import { checkExistingRow, checkContentHashDedup } from './save/dedup.js';
+import { generateOrCacheEmbedding, persistPendingEmbeddingCacheWrite } from './save/embedding-pipeline.js';
+import { evaluateAndApplyPeDecision } from './save/pe-orchestration.js';
+import {
+  findScopeFilteredCandidates,
+  getRequestedScope,
+  runReconsolidationIfEnabled,
+} from './save/reconsolidation-bridge.js';
+import {
+  runPostInsertEnrichmentIfEnabled,
+  runPostInsertEnrichment,
+  shouldRunPostInsertEnrichment,
+  buildDeferredEnrichmentResult,
+} from './save/post-insert.js';
+import type { PostInsertEnrichmentResult } from './save/post-insert.js';
+import {
+  markEnrichmentPending,
+  needsEnrichmentRepair,
+  POST_INSERT_ENRICHMENT_VERSION,
+  recordEnrichmentResult,
+  repairEnrichmentOnReplay,
+} from './save/enrichment-state.js';
+import {
+  buildIndexResult,
+  buildPlannerResponse,
+  buildSaveResponse,
+  classifySaveErrorCode,
+  extractSaveErrorDetails,
+  serializePlannerAdvisory,
+  serializePlannerBlocker,
+  serializePlannerFollowUpAction,
+  serializePlannerProposedEdit,
+  serializePlannerRouteTarget,
+} from './save/response-builder.js';
+import type {
+  IndexingOrigin,
+  ReconsolidationFailureReason,
+  ReconsolidationOperationState,
+} from './save/types.js';
+import { atomicIndexMemory } from './save/atomic-index-memory.js';
+import { createMCPErrorResponse } from '../lib/response/envelope.js';
+import {
+  buildTier3Prompt,
+  createContentRouter,
+  getTier3Contract,
+  isTier3RoutingEnabled,
+  InMemoryRouterCache,
+  TIER2_FALLBACK_PENALTY,
+  TIER3_THRESHOLD,
+  type RoutingDecision,
+  type Tier3ClassifierInput,
+  type Tier3RawResponse,
+} from '../lib/routing/content-router.js';
+import { anchorMergeOperation } from '../lib/merge/anchor-merge-operation.js';
+import {
+  readThinContinuityRecord,
+  upsertThinContinuityInMarkdown,
+  type ThinContinuityRecord,
+} from '../lib/continuity/thin-continuity-record.js';
+import {
+  runSpecDocStructureRule,
+  buildContinuityFingerprint,
+  type ContaminationPlan,
+  type MergePlan,
+  type PostSavePlan,
+} from '../lib/validation/spec-doc-structure.js';
+import { detectSpecLevelFromParsed } from './handler-utils.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
+import {
+  applyWriteProvenance,
+  persistSourceKind,
+  type SourceKind,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
+import {
+  detectInjectionMarkers,
+  INJECTION_MARKER_QUALITY_FLAG,
+  INJECTION_MARKER_RESIDUE_REJECTED_FLAG,
+} from '../lib/extraction/redaction-gate.js';
+import {
+  deleteIdempotencyReceiptByKey,
+  extractMemoryIdFromResponse,
+  isMemoryIdempotencyEnabled,
+  lookupIdempotencyReceipt,
+  lookupIdempotencyReceiptByKey,
+  markResponseWithReceiptStoreConflict,
+  shouldStoreMemorySaveReceipt,
+  storeIdempotencyReceipt,
+  type IdempotencyReceiptKey,
+} from '../lib/storage/idempotency-receipts.js';
+import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
+
+// Extracted sub-modules
+import { withSpecFolderLock } from './save/spec-folder-mutex.js';
+import { buildParsedMemoryEvidenceSnapshot } from './save/markdown-evidence-builder.js';
+import {
+  applyInsufficiencyMetadata,
+  buildInsufficiencyRejectionResult,
+  buildTemplateContractRejectionResult,
+  buildDryRunSummary,
+  buildPlannerAdvisory,
+  buildPlannerBlocker,
+} from './save/validation-responses.js';
+
+import { markMemorySuperseded } from './pe-gating.js';
+import { resolveMemoryReference } from './causal-links-processor.js';
+import { refreshAutoEntitiesForMemory } from '../lib/extraction/entity-extractor.js';
+
+// Feature catalog: Memory indexing (memory_save)
+// Feature catalog: Verify-fix-verify memory quality loop
+// Feature catalog: Dry-run preflight for memory_save
+// Feature catalog: Prediction-error save arbitration
+
+
+// Create local path validator
+const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
+const MANUAL_FALLBACK_SOURCE_CLASSIFICATION = 'manual-fallback' as const;
+export const MEMORY_INDEX_SCOPE_EXCLUDED_ERROR_CODE = 'E_MEMORY_INDEX_SCOPE_EXCLUDED';
+const ROUTED_CONTINUITY_ANCHOR_ID = '_memory.continuity';
+const tier3RoutingCache = new InMemoryRouterCache();
+
+function emitPostInsertEnrichmentSubscribers(memoryId: number, sourceOperation: string): void {
+  try {
+    runPostMutationHooks(sourceOperation, {
+      memoryId,
+      statediffActions: [createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: String(memoryId),
+        sourceOperation,
+      })],
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(`[memory-save] Post-insert enrichment subscriber dispatch failed: ${message}`);
+  }
+}
+
+async function repairReplayEnrichmentIfNeeded(
+  database: Parameters<typeof needsEnrichmentRepair>[0],
+  memoryId: number | undefined,
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+): Promise<void> {
+  if (memoryId == null || !needsEnrichmentRepair(database, memoryId)) {
+    return;
+  }
+
+  await repairEnrichmentOnReplay({
+    database,
+    parsed,
+    plannerMode: 'full-auto',
+  }, memoryId);
+}
+
+interface PreparedParsedMemory {
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>;
+  validation: ReturnType<typeof memoryParser.validateParsedMemory>;
+  qualityLoopResult: QualityLoopResult;
+  sufficiencyResult: MemorySufficiencyResult;
+  templateContract: MemoryTemplateContractResult;
+  specDocHealth: SpecDocHealthResult | null;
+  finalizedFileContent: string | null;
+  sourceClassification: 'template-generated' | typeof MANUAL_FALLBACK_SOURCE_CLASSIFICATION;
+}
+
+function createIndexScopeExcludedResponse(
+  requestId: string,
+  canonicalPath: string,
+  originalPath: string,
+): MCPResponse {
+  return createMCPErrorResponse({
+    tool: 'memory_save',
+    error: `Memory indexing excluded for path: ${canonicalPath}`,
+    code: MEMORY_INDEX_SCOPE_EXCLUDED_ERROR_CODE,
+    details: {
+      requestId,
+      canonicalPath,
+      filePath: originalPath,
+    },
+    recovery: {
+      hint: 'Move the file into an indexable spec folder or constitutional rule path before retrying.',
+      actions: ['Verify the path is not under z-future/ or external/'],
+      severity: 'warning',
+    },
+  });
+}
+
+type ParsedMemoryWithIndexHints = ReturnType<typeof memoryParser.parseMemoryFile> & {
+  _skipIndex?: boolean;
+  _vRuleIndexBlockIds?: string[];
+};
+
+interface RoutedSaveOptions extends CreateRecordIdentityHints {
+  routeAs?: RouteCategory;
+  mergeModeHint?: MergeModeHint;
+}
+
+interface RoutedRecordIdentity {
+  targetDocPath: string;
+  canonicalFilePath: string;
+  targetAnchorId: string | null;
+  routeAs: RouteCategory | null;
+  continuitySourceKey: string | null;
+}
+
+type CanonicalPacketLevel = 'L1' | 'L2' | 'L3' | 'L3+';
+type CanonicalPacketKind = 'feature' | 'phase' | 'remediation' | 'research' | 'unknown';
+
+interface CanonicalAtomicValidatorPlan {
+  folder: string;
+  level: string;
+  mergePlan: MergePlan | null;
+  contaminationPlan: ContaminationPlan | null;
+  postSavePlan: PostSavePlan | null;
+}
+
+interface CanonicalAtomicPrepared {
+  preparedMemory: PreparedParsedMemory;
+  routing: RoutedSaveOptions;
+  validatorPlan: CanonicalAtomicValidatorPlan | null;
+}
+
+const STANDARD_MEMORY_TEMPLATE_MARKERS = [
+  '## continue session',
+  '## recovery hints',
+  '<!-- memory metadata -->',
+];
+const CANONICAL_SPEC_DOCUMENT_TYPES = new Set([
+  'spec',
+  'plan',
+  'tasks',
+  'checklist',
+  'decision_record',
+  'implementation_summary',
+  'research',
+  'handover',
+  'resource_map',
+]);
+const ROUTE_CATEGORIES = new Set<RouteCategory>([
+  'narrative_progress',
+  'narrative_delivery',
+  'decision',
+  'handover_state',
+  'research_finding',
+  'task_update',
+  'metadata_only',
+  'drop',
+]);
+
+class VRuleUnavailableError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'VRuleUnavailableError';
+  }
+}
+
+function isVRuleUnavailableResult(value: unknown): value is {
+  passed: false;
+  status: 'error' | 'warning';
+  message: string;
+  _unavailable: true;
+} {
+  return typeof value === 'object'
+    && value !== null
+    && 'passed' in value
+    && (value as { passed?: unknown }).passed === false
+    && 'status' in value
+    && typeof (value as { status?: unknown }).status === 'string'
+    && 'message' in value
+    && typeof (value as { message?: unknown }).message === 'string';
+}
+
+function classifyMemorySaveSource(
+  content: string,
+): 'template-generated' | typeof MANUAL_FALLBACK_SOURCE_CLASSIFICATION {
+  const normalizedContent = content.toLowerCase();
+  const hasAnyStandardMarker = STANDARD_MEMORY_TEMPLATE_MARKERS.some((marker) => normalizedContent.includes(marker));
+  return hasAnyStandardMarker ? 'template-generated' : MANUAL_FALLBACK_SOURCE_CLASSIFICATION;
+}
+
+// Files that are structural metadata for graph traversal and continuity, not
+// semantic-search corpus. The memory-sufficiency gate is built around markdown
+// anchors and prose evidence; pure-JSON structural files cannot satisfy it by
+// construction. We exempt them from the sufficiency floor so they index with
+// whatever flattened text the indexer produces — graph traversal already reads
+// these files directly from disk for parent/child/status, so the embedding is
+// best-effort, not load-bearing.
+const STRUCTURAL_METADATA_FILENAMES = new Set<string>(['graph-metadata.json']);
+
+function isStructuralMetadataFile(filePath: string): boolean {
+  return STRUCTURAL_METADATA_FILENAMES.has(path.basename(filePath));
+}
+
+function shouldBypassTemplateContract(
+  sourceClassification: PreparedParsedMemory['sourceClassification'],
+  sufficiencyResult: MemorySufficiencyResult,
+  templateContract: MemoryTemplateContractResult,
+  specDocHealth?: SpecDocHealthResult | null,
+  documentType?: string,
+): boolean {
+  const isValidCanonicalSpecDoc = Boolean(
+    documentType
+      && CANONICAL_SPEC_DOCUMENT_TYPES.has(documentType)
+      && specDocHealth?.pass === true,
+  );
+
+  return sourceClassification === MANUAL_FALLBACK_SOURCE_CLASSIFICATION
+    && sufficiencyResult.pass
+    && !templateContract.valid
+    && (
+      isValidCanonicalSpecDoc
+      || (
+        sufficiencyResult.evidenceCounts.primary === 0
+        && sufficiencyResult.evidenceCounts.support >= 3
+        && sufficiencyResult.evidenceCounts.anchors >= 1
+      )
+    );
+}
+
+function buildQualityLoopMetadata(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  database: ReturnType<typeof requireDb>,
+): Record<string, unknown> {
+  return {
+    title: parsed.title ?? '',
+    triggerPhrases: parsed.triggerPhrases,
+    specFolder: parsed.specFolder,
+    contextType: parsed.contextType,
+    importanceTier: parsed.importanceTier,
+    causalLinks: parsed.causalLinks,
+    filePath: parsed.filePath,
+    lastModified: parsed.lastModified,
+    resolveReference: (reference: string) => resolveMemoryReference(database, reference) !== null,
+  };
+}
+
+function mergeTriggerPhrases(
+  authoredPhrases: readonly string[],
+  extractedPhrases: readonly string[],
+): string[] {
+  const merged: string[] = [];
+  const seen = new Set<string>();
+  for (const phrase of [...authoredPhrases, ...extractedPhrases]) {
+    const cleaned = phrase.trim().replace(/\s+/g, ' ');
+    const key = cleaned.toLowerCase();
+    if (!cleaned || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    merged.push(cleaned);
+    if (merged.length >= MAX_TRIGGERS_PER_MEMORY) {
+      break;
+    }
+  }
+  return merged;
+}
+
+function isSandboxConstitutionalSource(filePath: string): boolean {
+  const normalized = path.resolve(filePath).replace(/\\/g, '/').toLowerCase();
+  return normalized.startsWith('/tmp/')
+    || normalized.startsWith('/private/tmp/')
+    || normalized.includes('/tmp/')
+    || normalized.includes('/sandbox/')
+    || normalized.includes('sandbox');
+}
+
+function prepareParsedMemoryForIndexing(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  database: ReturnType<typeof requireDb>,
+  options: {
+    emitEvalMetrics?: boolean;
+    qualityLoopMode?: 'advisory' | 'full-auto';
+  } = {},
+): PreparedParsedMemory {
+  // Resolve to the canonical path before applying memory-index governance.
+  const canonicalFilePath = resolveCanonicalPath(path.resolve(parsed.filePath));
+  if (!shouldIndexForMemory(canonicalFilePath)) {
+    throw new Error(`Memory indexing excluded for path: ${parsed.filePath}`);
+  }
+  if (parsed.importanceTier === 'constitutional' && isSandboxConstitutionalSource(canonicalFilePath)) {
+    throw new Error(`Constitutional memory saves from temporary or sandbox paths are rejected: ${parsed.filePath}`);
+  }
+  if (parsed.importanceTier === 'constitutional' && !isIndexableConstitutionalMemoryPath(canonicalFilePath)) {
+    console.warn('[memory-save] importance_tier=constitutional rejected for non-constitutional path; downgrading to important', {
+      file_path: parsed.filePath,
+    });
+    try {
+      recordTierDowngradeAudit(database, {
+        logicalKey: buildGovernanceLogicalKey(parsed.specFolder, canonicalFilePath, null),
+        requestedTier: 'constitutional',
+        nextTier: 'important',
+        source: 'memory_save',
+        filePath: parsed.filePath,
+        canonicalFilePath,
+      });
+    } catch (error: unknown) {
+      console.warn(
+        '[memory-save] governance_audit insert failed for tier downgrade:',
+        error instanceof Error ? error.message : String(error),
+      );
+    }
+    parsed.importanceTier = 'important';
+  }
+
+  const validation = memoryParser.validateParsedMemory(parsed);
+  if (validation.warnings && validation.warnings.length > 0) {
+    console.warn(`[memory] Warning for ${path.basename(parsed.filePath)}:`);
+    validation.warnings.forEach((warning: string) => console.warn(`[memory]   - ${warning}`));
+  }
+
+  // O2-5/O2-12: Run V-rule validation (previously only in workflow path)
+  const vRuleResult = validateMemoryQualityContent(parsed.content, { filePath: parsed.filePath });
+  if (isVRuleUnavailableResult(vRuleResult) && vRuleResult.status === 'error') {
+    throw new VRuleUnavailableError(vRuleResult.message);
+  }
+  if (vRuleResult && '_unavailable' in vRuleResult) {
+    validation.warnings.push('V-rule validator module unavailable — quality gate bypassed. Save proceeds without V-rule enforcement.');
+  }
+  if (vRuleResult && !isVRuleUnavailableResult(vRuleResult) && !vRuleResult.valid) {
+    const vRuleDisposition = determineValidationDisposition(
+      vRuleResult.failedRules,
+      parsed.memoryTypeSource || null,
+    );
+    if (vRuleDisposition && vRuleDisposition.disposition === 'abort_write') {
+      const failedRuleIds = vRuleDisposition.blockingRuleIds;
+      console.error(`[memory-save] V-rule hard block for ${path.basename(parsed.filePath)}: ${failedRuleIds.join(', ')}`);
+      // Return early with a rejected quality loop result so callers see the block
+      const rejectScore = { total: 0, breakdown: { triggers: 0, anchors: 0, budget: 0, coherence: 0 }, issues: [`V-rule hard block: ${failedRuleIds.join(', ')}`] };
+      return {
+        parsed,
+        validation,
+        qualityLoopResult: {
+          passed: false,
+          score: rejectScore,
+          attempts: 0,
+          fixes: [],
+          rejected: true,
+          rejectionReason: `V-rule hard block: ${failedRuleIds.join(', ')}`,
+        },
+        sufficiencyResult: {
+          pass: false,
+          rejectionCode: MEMORY_SUFFICIENCY_REJECTION_CODE,
+          score: 0,
+          reasons: [`V-rule hard block: ${failedRuleIds.join(', ')}`],
+          evidenceCounts: { primary: 0, support: 0, total: 0, semanticChars: 0, uniqueWords: 0, anchors: 0, triggerPhrases: 0 },
+        },
+        templateContract: { valid: true, violations: [], missingAnchors: [], unexpectedTemplateArtifacts: [] } as MemoryTemplateContractResult,
+        specDocHealth: null,
+        finalizedFileContent: null,
+        sourceClassification: 'template-generated',
+      };
+    }
+    if (vRuleDisposition && vRuleDisposition.disposition === 'write_skip_index') {
+      console.warn(`[memory-save] V-rule index block for ${path.basename(parsed.filePath)}: ${vRuleDisposition.indexBlockingRuleIds.join(', ')}`);
+      validation.warnings.push(`V-rule index block: ${vRuleDisposition.indexBlockingRuleIds.join(', ')}`);
+      // F07-002: Flag to skip indexing for write_skip_index disposition
+      const parsedWithIndexHints = parsed as ParsedMemoryWithIndexHints;
+      parsedWithIndexHints._skipIndex = true;
+      parsedWithIndexHints._vRuleIndexBlockIds = vRuleDisposition.indexBlockingRuleIds;
+    }
+  }
+
+  const qualityLoopResult = runQualityLoop(parsed.content, buildQualityLoopMetadata(parsed, database), {
+    emitEvalMetrics: options.emitEvalMetrics,
+    mode: options.qualityLoopMode ?? 'advisory',
+  });
+  parsed.qualityScore = qualityLoopResult.score.total;
+  parsed.qualityFlags = Array.from(new Set([
+    ...(parsed.qualityFlags ?? []),
+    ...qualityLoopResult.score.issues,
+  ]));
+  if (qualityLoopResult.fixedTriggerPhrases) {
+    parsed.triggerPhrases = mergeTriggerPhrases(
+      parsed.triggerPhrases ?? [],
+      qualityLoopResult.fixedTriggerPhrases,
+    );
+  }
+  const finalizedFileContent = qualityLoopResult.fixedContent
+    && qualityLoopResult.passed
+    ? qualityLoopResult.fixedContent
+    : null;
+  if (finalizedFileContent) {
+    parsed.content = finalizedFileContent;
+    parsed.contentHash = memoryParser.computeContentHash(parsed.content);
+  }
+
+  const sourceClassification = classifyMemorySaveSource(parsed.content);
+  if (sourceClassification === MANUAL_FALLBACK_SOURCE_CLASSIFICATION) {
+    const warning = 'Manual fallback save mode detected; standard generate-context template markers are missing.';
+    console.warn(`[memory-save] ${warning} ${path.basename(parsed.filePath)}`);
+    validation.warnings.push(warning);
+  }
+
+  const sufficiencyResult = evaluateMemorySufficiency(
+    {
+      ...buildParsedMemoryEvidenceSnapshot(parsed),
+      sourceClassification,
+    },
+  );
+  applyInsufficiencyMetadata(parsed, sufficiencyResult);
+  const templateContract = validateMemoryTemplateContract(parsed.content);
+
+  // Non-blocking spec doc health annotation
+  // Canonical saves land directly in the spec folder (e.g. .../NNN-name/decision-record.md),
+  // so the immediate parent is usually the spec folder itself.
+  let specDocHealth: SpecDocHealthResult | null = null;
+  if (parsed.specFolder && parsed.filePath) {
+    try {
+      const absFilePath = path.resolve(parsed.filePath);
+      const immediateParent = path.dirname(absFilePath);
+      const candidates = [immediateParent, path.dirname(immediateParent)];
+      for (const candidate of candidates) {
+        if (fs.existsSync(path.join(candidate, 'spec.md'))) {
+          specDocHealth = evaluateSpecDocHealth(candidate);
+          break;
+        }
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(
+        `[memory-save] spec-doc-health annotation skipped for ${path.basename(parsed.filePath)}: ${message}`
+      );
+    }
+  }
+
+  return {
+    parsed,
+    validation,
+    qualityLoopResult,
+    sufficiencyResult,
+    templateContract,
+    specDocHealth,
+    finalizedFileContent,
+    sourceClassification,
+  };
+}
+
+async function finalizeMemoryFileContent(
+  filePath: string,
+  content: string,
+): Promise<void> {
+  const backupPath = `${filePath}.${randomUUID().slice(0, 8)}.bak`;
+  const tempPath = `${filePath}.${randomUUID().slice(0, 8)}.tmp`;
+  let backupCreated = false;
+  let tempCreated = false;
+
+  try {
+    try {
+      await fs.promises.copyFile(filePath, backupPath);
+      backupCreated = true;
+    } catch (backupErr: unknown) {
+      const errCode = typeof backupErr === 'object' && backupErr !== null && 'code' in backupErr
+        ? String((backupErr as NodeJS.ErrnoException).code)
+        : '';
+      if (errCode !== 'ENOENT') {
+        throw backupErr;
+      }
+    }
+
+    await fs.promises.writeFile(tempPath, content, 'utf-8');
+    tempCreated = true;
+    await fs.promises.rename(tempPath, filePath);
+    tempCreated = false;
+  } catch (writeErr: unknown) {
+    if (tempCreated) {
+      try {
+        await fs.promises.unlink(tempPath);
+      } catch {
+        // Best-effort cleanup only.
+      }
+    }
+    if (backupCreated) {
+      try {
+        await fs.promises.copyFile(backupPath, filePath);
+      } catch (restoreErr: unknown) {
+        console.warn(
+          '[memory-save] Auto-fix file restore failed after finalize error:',
+          restoreErr instanceof Error ? restoreErr.message : String(restoreErr),
+        );
+      }
+    }
+    throw writeErr;
+  } finally {
+    if (tempCreated) {
+      try {
+        await fs.promises.unlink(tempPath);
+      } catch {
+        // Best-effort cleanup only.
+      }
+    }
+    if (backupCreated) {
+      try {
+        await fs.promises.unlink(backupPath);
+      } catch {
+        // Best-effort cleanup only.
+      }
+    }
+  }
+}
+
+function appendResultWarning<T extends Record<string, unknown>>(result: T, warning: string | null): T {
+  if (!warning) {
+    return result;
+  }
+
+  const r = result as Record<string, unknown>;
+  const warnings = Array.isArray(r.warnings)
+    ? [...(r.warnings as string[])]
+    : [];
+  warnings.push(warning);
+  r.warnings = warnings;
+  return result;
+}
+
+class SaveTimeReconsolidationAbort extends Error {
+  readonly result: {
+    status: 'failed';
+    reason: ReconsolidationFailureReason;
+    warnings?: string[];
+    persistedState?: ReconsolidationOperationState;
+  };
+
+  constructor(result: SaveTimeReconsolidationAbort['result']) {
+    super(result.reason);
+    this.name = 'SaveTimeReconsolidationAbort';
+    this.result = result;
+  }
+}
+
+function buildSaveTimeReconsolidationFailureResult(args: {
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>;
+  validation: { warnings: string[] };
+  reconWarnings: string[];
+  failure: SaveTimeReconsolidationAbort['result'];
+  message?: string;
+}): IndexResult {
+  const warnings = [
+    ...args.validation.warnings,
+    ...args.reconWarnings,
+    ...(args.failure.warnings ?? []),
+  ];
+
+  return {
+    status: 'error',
+    id: 0,
+    specFolder: args.parsed.specFolder,
+    title: args.parsed.title ?? '',
+    triggerPhrases: args.parsed.triggerPhrases,
+    contextType: args.parsed.contextType,
+    importanceTier: args.parsed.importanceTier,
+    memoryType: args.parsed.memoryType,
+    memoryTypeSource: args.parsed.memoryTypeSource,
+    qualityScore: args.parsed.qualityScore,
+    qualityFlags: args.parsed.qualityFlags,
+    warnings,
+    error: args.message ?? `Save-time reconsolidation failed: ${args.failure.reason}`,
+    message: args.message ?? `Save-time reconsolidation failed: ${args.failure.reason}`,
+    saveTimeReconsolidation: args.failure,
+  };
+}
+
+function applyInjectionMarkerCapturePolicy(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  validationWarnings: string[],
+): IndexResult | null {
+  const detection = detectInjectionMarkers(parsed.content);
+  if (!detection.markerDetected) {
+    return null;
+  }
+
+  parsed.contentHash = memoryParser.computeContentHash(detection.cleanedText);
+  parsed.qualityFlags = Array.from(new Set([
+    ...(parsed.qualityFlags ?? []),
+    INJECTION_MARKER_QUALITY_FLAG,
+    ...(detection.residueRejected ? [INJECTION_MARKER_RESIDUE_REJECTED_FLAG] : []),
+  ]));
+  const categories = Array.from(new Set(detection.matches.map((match) => match.category))).join(', ');
+  validationWarnings.push(`Prompt-injection marker detected (${categories}); stored body preserved, index hash excludes marker text.`);
+
+  if (!detection.residueRejected) {
+    return null;
+  }
+
+  return {
+    status: 'rejected',
+    id: 0,
+    specFolder: parsed.specFolder,
+    title: parsed.title ?? '',
+    triggerPhrases: parsed.triggerPhrases,
+    contextType: parsed.contextType,
+    importanceTier: parsed.importanceTier,
+    memoryType: parsed.memoryType,
+    memoryTypeSource: parsed.memoryTypeSource,
+    qualityScore: parsed.qualityScore,
+    qualityFlags: parsed.qualityFlags,
+    warnings: validationWarnings,
+    rejectionReason: 'Prompt-injection marker residue exceeds safe capture threshold',
+    message: 'Prompt-injection marker residue exceeds safe capture threshold',
+  };
+}
+
+function recordCrossPathPeSupersedes(
+  database: ReturnType<typeof requireDb>,
+  memoryId: number,
+  supersededMemoryId: number | null,
+  samePathMemoryId: number | null,
+  reason: string | null | undefined,
+): void {
+  if (supersededMemoryId == null || supersededMemoryId === samePathMemoryId) {
+    return;
+  }
+
+  causalEdges.init(database);
+  const evidence = reason && reason.trim().length > 0
+    ? reason.trim()
+    : 'Prediction-error contradiction across different file paths';
+  causalEdges.insertEdge(
+    String(memoryId),
+    String(supersededMemoryId),
+    causalEdges.RELATION_TYPES.SUPERSEDES,
+    1.0,
+    evidence,
+    true,
+    'auto',
+  );
+}
+
+interface ChunkedInsertTracker {
+  parentId: number | null;
+  childIds: Set<number>;
+}
+
+function createChunkedInsertTracker(): ChunkedInsertTracker {
+  return {
+    parentId: null,
+    childIds: new Set<number>(),
+  };
+}
+
+function trackChunkedInsert(
+  tracker: ChunkedInsertTracker,
+  memoryId: number,
+  fields: Record<string, unknown>,
+): void {
+  if (typeof fields.chunk_index === 'number') {
+    tracker.childIds.add(memoryId);
+    return;
+  }
+
+  if (tracker.parentId == null) {
+    tracker.parentId = memoryId;
+  }
+}
+
+function rollbackCreatedChunkTree(
+  database: ReturnType<typeof requireDb>,
+  tracker: ChunkedInsertTracker,
+): { attempted: boolean; cleaned: boolean; error?: string } {
+  if (tracker.parentId == null) {
+    return { attempted: false, cleaned: false };
+  }
+
+  const childIds = new Set<number>(tracker.childIds);
+  try {
+    const persistedChildRows = database.prepare(`
+      SELECT id
+      FROM memory_index
+      WHERE parent_id = ?
+    `).all(tracker.parentId) as Array<{ id: number }>;
+    for (const row of persistedChildRows) {
+      childIds.add(row.id);
+    }
+  } catch {
+    // Best-effort lookup only. Tracked IDs remain authoritative for cleanup.
+  }
+
+  const cleanupErrors: string[] = [];
+  for (const childId of childIds) {
+    try {
+      if (!delete_memory_from_database(database, childId)) {
+        cleanupErrors.push(`Chunk ${childId} was not deleted`);
+      }
+    } catch (error: unknown) {
+      cleanupErrors.push(`Chunk ${childId} cleanup failed: ${getAtomicSaveErrorMessage(error)}`);
+    }
+  }
+
+  try {
+    if (!delete_memory_from_database(database, tracker.parentId)) {
+      cleanupErrors.push(`Parent ${tracker.parentId} was not deleted`);
+    }
+  } catch (error: unknown) {
+    cleanupErrors.push(`Parent ${tracker.parentId} cleanup failed: ${getAtomicSaveErrorMessage(error)}`);
+  }
+
+  if (cleanupErrors.length > 0) {
+    return {
+      attempted: true,
+      cleaned: false,
+      error: cleanupErrors.join('; '),
+    };
+  }
+
+  return { attempted: true, cleaned: true };
+}
+
+function captureAtomicSaveOriginalState(filePath: string): { existed: boolean; content: string | null } {
+  if (!fs.existsSync(filePath)) {
+    return { existed: false, content: null };
+  }
+
+  return {
+    existed: true,
+    content: fs.readFileSync(filePath, 'utf-8'),
+  };
+}
+
+function getAtomicSaveErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function deleteAtomicSaveFile(filePath: string): { deleted: boolean; existed: boolean; error?: string } {
+  const existed = fs.existsSync(filePath);
+  if (!existed) {
+    return { deleted: false, existed: false };
+  }
+
+  try {
+    fs.unlinkSync(filePath);
+    return { deleted: true, existed: true };
+  } catch (error: unknown) {
+    return {
+      deleted: false,
+      existed: true,
+      error: getAtomicSaveErrorMessage(error),
+    };
+  }
+}
+
+function restoreAtomicSaveOriginalState(
+  filePath: string,
+  originalState: { existed: boolean; content: string | null },
+): { restored: boolean; error?: string } {
+  try {
+    if (!originalState.existed) {
+      const deleteResult = deleteAtomicSaveFile(filePath);
+      if (!deleteResult.existed || deleteResult.deleted) {
+        return { restored: true };
+      }
+      return {
+        restored: false,
+        error: deleteResult.error ?? `Failed to remove promoted file at ${filePath}`,
+      };
+    }
+
+    if (typeof originalState.content !== 'string') {
+      return { restored: false, error: 'Original file content is unavailable for rollback' };
+    }
+
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, originalState.content, 'utf-8');
+    return { restored: true };
+  } catch (error: unknown) {
+    return {
+      restored: false,
+      error: getAtomicSaveErrorMessage(error),
+    };
+  }
+}
+
+function cleanupAtomicSavePendingFile(
+  pendingPath: string,
+): { cleaned: boolean; existed: boolean; error?: string } {
+  try {
+    const deleteResult = deleteAtomicSaveFile(pendingPath);
+    if (!deleteResult.existed || deleteResult.deleted) {
+      return {
+        cleaned: true,
+        existed: deleteResult.existed,
+      };
+    }
+    return {
+      cleaned: false,
+      existed: deleteResult.existed,
+      error: deleteResult.error ?? `Failed to remove pending file at ${pendingPath}`,
+    };
+  } catch (error: unknown) {
+    return {
+      cleaned: false,
+      existed: true,
+      error: getAtomicSaveErrorMessage(error),
+    };
+  }
+}
+
+function applyRoutedSaveHints(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  routing: RoutedSaveOptions,
+): ReturnType<typeof memoryParser.parseMemoryFile> {
+  const parsedWithHints = parsed as ParsedMemoryWithIndexHints & Record<string, unknown>;
+  if (routing.targetDocPath) {
+    parsedWithHints.targetDocPath = routing.targetDocPath;
+    parsedWithHints.target_doc_path = routing.targetDocPath;
+  }
+  if (routing.targetAnchorId) {
+    parsedWithHints.targetAnchorId = routing.targetAnchorId;
+    parsedWithHints.target_anchor_id = routing.targetAnchorId;
+    parsedWithHints.anchorId = routing.targetAnchorId;
+    parsedWithHints.anchor_id = routing.targetAnchorId;
+  }
+  if (routing.routeAs) {
+    parsedWithHints.routeAs = routing.routeAs;
+    parsedWithHints.route_as = routing.routeAs;
+  }
+  if (routing.continuitySourceKey) {
+    parsedWithHints.continuitySourceKey = routing.continuitySourceKey;
+    parsedWithHints.continuity_source_key = routing.continuitySourceKey;
+  }
+  return parsedWithHints;
+}
+
+function buildRoutedSaveOptions(
+  filePath: string,
+  routeAs?: RouteCategory,
+  mergeModeHint?: MergeModeHint,
+  targetAnchorId?: string,
+): RoutedSaveOptions | undefined {
+  if (!routeAs && !mergeModeHint && !targetAnchorId) {
+    return undefined;
+  }
+
+  return {
+    targetDocPath: filePath,
+    ...(routeAs ? { routeAs } : {}),
+    ...(mergeModeHint ? { mergeModeHint } : {}),
+    ...(targetAnchorId ? { targetAnchorId } : {}),
+  };
+}
+
+function shouldUseCanonicalRouting(_params: Pick<AtomicSaveParams, 'routeAs' | 'mergeModeHint' | 'targetAnchorId'>): boolean {
+  // Test-only bypass: allows the atomic-save failure-injection suite
+  // to exercise the legacy prepareParsedMemoryForIndexing path without
+  // setting up full Tier 3 classifier fixtures.
+  if (process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING === 'true') return false;
+  return true; // Canonical routing is always enabled (Tier 3 LLM routing on by default)
+}
+
+function pickRoutedIdentityValue(value: unknown): string | null {
+  return typeof value === 'string' && value.trim().length > 0 ? value.trim() : null;
+}
+
+function pickRouteCategory(value: unknown): RouteCategory | null {
+  const normalized = pickRoutedIdentityValue(value);
+  if (!normalized || !ROUTE_CATEGORIES.has(normalized as RouteCategory)) {
+    return null;
+  }
+  return normalized as RouteCategory;
+}
+
+function isMergeModeHint(value: unknown): value is MergeModeHint {
+  return value === 'append-as-paragraph'
+    || value === 'insert-new-adr'
+    || value === 'append-table-row'
+    || value === 'update-in-place'
+    || value === 'append-section';
+}
+
+function resolveRoutedRecordIdentity(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  routedFilePath: string,
+  routing: RoutedSaveOptions,
+): RoutedRecordIdentity {
+  const routedRecord = parsed as unknown as Record<string, unknown>;
+  const routeAs = pickRouteCategory(routing.routeAs ?? routedRecord.routeAs ?? routedRecord.route_as);
+  const continuitySourceKey = pickRoutedIdentityValue(
+    routing.continuitySourceKey
+    ?? routedRecord.continuitySourceKey
+    ?? routedRecord.continuity_source_key
+    ?? routedRecord.sourceKey
+    ?? routedRecord.source_key,
+  );
+  const explicitTargetAnchorId = pickRoutedIdentityValue(
+    routing.targetAnchorId
+    ?? routedRecord.targetAnchorId
+    ?? routedRecord.target_anchor_id
+    ?? routedRecord.anchorId
+    ?? routedRecord.anchor_id,
+  );
+
+  return {
+    targetDocPath: routing.targetDocPath ?? routedFilePath,
+    canonicalFilePath: routing.canonicalFilePath ?? getCanonicalPathKey(routing.targetDocPath ?? routedFilePath),
+    targetAnchorId: explicitTargetAnchorId ?? ((routeAs === 'metadata_only' || continuitySourceKey !== null) ? ROUTED_CONTINUITY_ANCHOR_ID : null),
+    routeAs,
+    continuitySourceKey,
+  };
+}
+
+function toCanonicalPacketLevel(level: number | null): CanonicalPacketLevel {
+  if (level === 1) return 'L1';
+  if (level === 2) return 'L2';
+  if (level === 3) return 'L3';
+  return 'L3+';
+}
+
+function toValidatorLevel(packetLevel: CanonicalPacketLevel): string {
+  return packetLevel.replace(/^L/u, '');
+}
+
+function normalizePhaseAnchor(value: string | null | undefined): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const trimmed = value.trim();
+  const match = trimmed.match(/^phase(?:[\s_-]+)?(\d+)$/iu);
+  return match ? `phase-${match[1]}` : null;
+}
+
+function inferPhaseAnchorFromText(text: string): string | null {
+  const match = text.match(/\bphase(?:[\s_-]+)?(\d+)\b/iu);
+  return match ? `phase-${match[1]}` : null;
+}
+
+function inferPhaseAnchorFromSpecFolder(specFolder: string): string | null {
+  return inferPhaseAnchorFromText(specFolder.replace(/\//g, ' '));
+}
+
+function deriveLikelyPhaseAnchorForCanonicalRouting(params: {
+  routingChunkText: string;
+  specFolder: string;
+  targetAnchorId?: string;
+}): string | null {
+  return normalizePhaseAnchor(params.targetAnchorId)
+    ?? inferPhaseAnchorFromText(params.routingChunkText)
+    ?? inferPhaseAnchorFromSpecFolder(params.specFolder);
+}
+
+function stripMarkdownFrontmatter(markdown: string): string {
+  return markdown.replace(/^(?:\uFEFF)?---\r?\n[\s\S]*?\r?\n---(?:\r?\n)?/u, '');
+}
+
+function normalizeRoutingChunkText(markdown: string): string {
+  return stripMarkdownFrontmatter(markdown)
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/\r\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function extractFrontmatterScalar(markdown: string, key: string): string | null {
+  const frontmatterMatch = markdown.match(/^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n)?/u);
+  if (!frontmatterMatch?.[1]) {
+    return null;
+  }
+
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const scalarMatch = frontmatterMatch[1].match(
+    new RegExp(`^\\s*${escapedKey}:\\s*["']?([^"'\r\n]+)["']?\\s*$`, 'imu'),
+  );
+  return scalarMatch?.[1]?.trim() ?? null;
+}
+
+function hasNumericSpecFolderName(folderPath: string): boolean {
+  return /^\d{3}(?:[-_].+)?$/u.test(path.basename(folderPath));
+}
+
+function hasChildSpecFolders(specFolderAbsolute: string): boolean {
+  try {
+    const entries = fs.readdirSync(specFolderAbsolute, { withFileTypes: true });
+    return entries.some((entry) => {
+      if (!entry.isDirectory() || !hasNumericSpecFolderName(entry.name)) {
+        return false;
+      }
+      return fs.existsSync(path.join(specFolderAbsolute, entry.name, 'spec.md'));
+    });
+  } catch {
+    return false;
+  }
+}
+
+function deriveCanonicalPacketKind(
+  specFolderAbsolute: string,
+  specFolderKey: string,
+): CanonicalPacketKind {
+  const specMdPath = path.join(specFolderAbsolute, 'spec.md');
+  let specContent = '';
+  try {
+    specContent = fs.readFileSync(specMdPath, 'utf8');
+  } catch {
+    specContent = '';
+  }
+
+  const packetType = extractFrontmatterScalar(specContent, 'type')?.toLowerCase() ?? '';
+  const title = extractFrontmatterScalar(specContent, 'title')?.toLowerCase() ?? '';
+  const description = extractFrontmatterScalar(specContent, 'description')?.toLowerCase() ?? '';
+  const folderName = path.basename(specFolderAbsolute).toLowerCase();
+  const semanticHint = `${folderName} ${title} ${description}`;
+
+  if (packetType === 'research') {
+    return 'research';
+  }
+  if (/\bremediation\b/u.test(semanticHint)) {
+    return 'remediation';
+  }
+
+  const parentFolder = path.dirname(specFolderAbsolute);
+  const hasNumericParentPacket = hasNumericSpecFolderName(parentFolder)
+    && fs.existsSync(path.join(parentFolder, 'spec.md'));
+  if (!hasChildSpecFolders(specFolderAbsolute) && hasNumericParentPacket) {
+    return 'phase';
+  }
+
+  const normalizedSpecFolder = specFolderKey.replace(/^specs\//u, '');
+  const depth = normalizedSpecFolder.split('/').filter(Boolean).length;
+  if (depth <= 2) {
+    return 'feature';
+  }
+
+  return hasNumericParentPacket ? 'phase' : 'feature';
+}
+
+function getTier3RoutingEndpoint(): string | null {
+  const endpoint = process.env.LLM_REFORMULATION_ENDPOINT?.trim();
+  return endpoint ? endpoint.replace(/\/+$/u, '') : null;
+}
+
+function extractTier3MessageText(content: unknown): string | null {
+  if (typeof content === 'string') {
+    const trimmed = content.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  }
+  if (Array.isArray(content)) {
+    const text = content
+      .map((entry) => {
+        if (!entry || typeof entry !== 'object') {
+          return '';
+        }
+        const textValue = (entry as { text?: unknown }).text;
+        return typeof textValue === 'string' ? textValue : '';
+      })
+      .join('')
+      .trim();
+    return text.length > 0 ? text : null;
+  }
+  return null;
+}
+
+function isTier3RawResponseShape(parsed: unknown): parsed is Tier3RawResponse {
+  if (!parsed || typeof parsed !== 'object') {
+    return false;
+  }
+
+  const record = parsed as Record<string, unknown>;
+  return typeof record.category === 'string'
+    && typeof record.confidence === 'number'
+    && typeof record.target_doc === 'string'
+    && typeof record.target_anchor === 'string'
+    && typeof record.merge_mode === 'string'
+    && typeof record.reasoning === 'string';
+}
+
+function parseTier3ClassifierResponse(rawText: string): Tier3RawResponse | null {
+  try {
+    const parsed = JSON.parse(rawText) as Record<string, unknown>;
+    if (!parsed || typeof parsed !== 'object') {
+      return null;
+    }
+    return isTier3RawResponseShape(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+async function classifyWithTier3Llm(input: Tier3ClassifierInput): Promise<Tier3RawResponse | null> {
+  const endpoint = getTier3RoutingEndpoint();
+  if (!endpoint) {
+    return null;
+  }
+
+  const apiKey = process.env.LLM_REFORMULATION_API_KEY?.trim() ?? '';
+  const contract = getTier3Contract();
+  const prompt = buildTier3Prompt(input);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), contract.timeoutMs);
+
+  try {
+    const response = await fetch(`${endpoint}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+      },
+      body: JSON.stringify({
+        model: contract.model,
+        messages: [
+          { role: 'system', content: prompt.system },
+          { role: 'user', content: prompt.user },
+        ],
+        reasoning_effort: contract.reasoningEffort,
+        temperature: contract.temperature,
+        max_tokens: contract.maxOutputTokens,
+        response_format: { type: 'json_object' },
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json() as {
+      choices?: Array<{
+        message?: {
+          content?: unknown;
+        };
+      }>;
+    };
+    const rawText = extractTier3MessageText(data.choices?.[0]?.message?.content);
+    return rawText ? parseTier3ClassifierResponse(rawText) : null;
+  } catch {
+    clearTimeout(timeoutId);
+    return null;
+  }
+}
+
+function buildCanonicalRouter(options: { tier3Enabled?: boolean } = {}) {
+  return createContentRouter({
+    classifyWithTier3: classifyWithTier3Llm,
+    cache: tier3RoutingCache,
+    tier3Enabled: options.tier3Enabled,
+  });
+}
+
+function collapseInlineWhitespace(value: string): string {
+  return value.replace(/\s+/g, ' ').trim();
+}
+
+function clipInlineText(value: string, maxLength = 96): string {
+  const normalized = collapseInlineWhitespace(value);
+  return normalized.length <= maxLength ? normalized : `${normalized.slice(0, maxLength - 3).trimEnd()}...`;
+}
+
+function extractParagraphs(markdown: string): string[] {
+  return normalizeRoutingChunkText(markdown)
+    .split(/\n\s*\n/g)
+    .map((entry) => collapseInlineWhitespace(entry))
+    .filter(Boolean);
+}
+
+function extractListItems(markdown: string): string[] {
+  return normalizeRoutingChunkText(markdown)
+    .split(/\r?\n/g)
+    .map((line) => line.match(/^\s*(?:[-*+]|\d+\.)\s+(.+)$/u)?.[1] ?? '')
+    .map((line) => clipInlineText(line, 120))
+    .filter(Boolean);
+}
+
+function resolveSpecFolderAbsoluteFromFilePath(filePath: string, specFolder: string): string {
+  const normalizedFilePath = filePath.replace(/\\/g, '/');
+  const normalizedSpecFolder = specFolder.replace(/^specs\//u, '');
+  const markers = [
+    `/specs/${normalizedSpecFolder}/`,
+    `/specs/${specFolder}/`,
+  ];
+
+  for (const marker of markers) {
+    const markerIndex = normalizedFilePath.lastIndexOf(marker);
+    if (markerIndex >= 0) {
+      return path.normalize(`${normalizedFilePath.slice(0, markerIndex)}${marker.slice(0, -1)}`);
+    }
+  }
+
+  return path.resolve(path.dirname(filePath), '..');
+}
+
+function resolveMetadataHostDocPath(specFolderAbsolute: string): string {
+  const implementationSummaryPath = path.join(specFolderAbsolute, 'implementation-summary.md');
+  if (fs.existsSync(implementationSummaryPath)) {
+    return implementationSummaryPath;
+  }
+
+  return path.join(specFolderAbsolute, 'spec.md');
+}
+
+function resolveCanonicalTargetDocPath(
+  specFolderAbsolute: string,
+  routedDocPath: string,
+): string {
+  if (routedDocPath === 'spec-frontmatter' || routedDocPath === 'implementation-summary.md') {
+    return resolveMetadataHostDocPath(specFolderAbsolute);
+  }
+  return path.join(specFolderAbsolute, routedDocPath);
+}
+
+function clampRoutingConfidence(value: number): number {
+  return Math.min(1, Math.max(0, value));
+}
+
+function selectTier2FailOpenFallback(
+  specFolderAbsolute: string,
+  decision: RoutingDecision,
+): {
+  category: RouteCategory;
+  confidence: number;
+  targetDocPath: string;
+  routedDocPath: string;
+  targetAnchorId: string;
+  mergeMode: RoutingDecision['target']['mergeMode'];
+  warningMessage: string;
+} | null {
+  if (decision.tierUsed !== 3) {
+    return null;
+  }
+
+  for (const hit of decision.tier2TopK) {
+    if (hit.category === 'drop') {
+      continue;
+    }
+    const fallbackConfidence = clampRoutingConfidence(hit.similarity - TIER2_FALLBACK_PENALTY);
+    if (fallbackConfidence < TIER3_THRESHOLD) {
+      continue;
+    }
+
+    const targetDocPath = resolveCanonicalTargetDocPath(specFolderAbsolute, hit.target_doc);
+    if (!fs.existsSync(targetDocPath)) {
+      continue;
+    }
+
+    return {
+      category: hit.category as RouteCategory,
+      confidence: fallbackConfidence,
+      targetDocPath,
+      routedDocPath: hit.target_doc,
+      targetAnchorId: hit.target_anchor,
+      mergeMode: hit.merge_intent,
+      warningMessage: `Tier 3 routing was unusable; fell back to Tier 2 prototype match ${hit.category}.`,
+    };
+  }
+
+  return null;
+}
+
+function buildFallbackContinuityRecord(params: {
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>;
+  routeCategory: RouteCategory;
+  targetDocPath: string;
+  specFolderAbsolute: string;
+  currentContent: string;
+}): ThinContinuityRecord {
+  const { parsed, routeCategory, targetDocPath, specFolderAbsolute, currentContent } = params;
+  const relativeTargetPath = path.relative(specFolderAbsolute, targetDocPath).replace(/\\/g, '/');
+  const absoluteSpecFolder = specFolderAbsolute.replace(/\\/g, '/');
+  const packetPointerFromPath = absoluteSpecFolder.includes('/specs/')
+    ? absoluteSpecFolder.split('/specs/')[1]
+    : parsed.specFolder.replace(/^specs\//u, '');
+  const title = clipInlineText(parsed.title ?? (normalizeRoutingChunkText(currentContent) || 'Updated canonical continuity'));
+  const nextActionByRoute: Record<RouteCategory, string> = {
+    narrative_progress: 'Review routed update',
+    narrative_delivery: 'Verify delivery route',
+    decision: 'Review ADR follow-up',
+    handover_state: 'Resume routed handover',
+    research_finding: 'Review cited finding',
+    task_update: 'Verify task alignment',
+    metadata_only: 'Refresh continuity',
+    drop: 'Inspect refused route',
+  };
+
+  return {
+    packet_pointer: packetPointerFromPath,
+    last_updated_at: new Date().toISOString().replace(/\.\d{3}Z$/u, 'Z'),
+    last_updated_by: 'memory-save',
+    recent_action: title,
+    next_safe_action: nextActionByRoute[routeCategory],
+    blockers: [],
+    key_files: relativeTargetPath ? [relativeTargetPath] : [],
+    session_dedup: {
+      fingerprint: buildContinuityFingerprint(currentContent),
+      session_id: 'memory-save',
+      parent_session_id: null,
+    },
+    completion_pct: 0,
+    open_questions: [],
+    answered_questions: [],
+  };
+}
+
+function buildCanonicalMergePayload(params: {
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>;
+  routeCategory: RouteCategory;
+  mergeMode: MergeModeHint;
+  content: string;
+}): Record<string, unknown> {
+  const { parsed, routeCategory, mergeMode, content } = params;
+  const paragraphs = extractParagraphs(content);
+  const firstParagraph = paragraphs[0] ?? clipInlineText(content, 160);
+  const secondParagraph = paragraphs[1] ?? firstParagraph;
+  const listItems = extractListItems(content);
+
+  switch (mergeMode) {
+    case 'append-as-paragraph':
+      return { paragraph: firstParagraph };
+    case 'append-section':
+      return {
+        title: clipInlineText(parsed.title ?? `${routeCategory.replace(/_/g, ' ')} update`, 72),
+        body: normalizeRoutingChunkText(content) || firstParagraph,
+      };
+    case 'insert-new-adr':
+      return {
+        title: clipInlineText(parsed.title ?? 'Captured canonical decision', 80),
+        context: firstParagraph,
+        decision: secondParagraph,
+        consequences: listItems.slice(0, 3),
+      };
+    case 'update-in-place': {
+      const targetId = content.match(/\b(?:T\d{3}|CHK-\d{3})\b/u)?.[0];
+      if (!targetId) {
+        throw new Error(`Canonical task update could not find a target task/checklist id in routed content.`);
+      }
+      const checked = /\[[xX]\]/u.test(content)
+        ? true
+        : (/\[[ ]\]/u.test(content) ? false : undefined);
+      return {
+        targetId,
+        ...(checked === undefined ? {} : { checked }),
+        evidence: clipInlineText(parsed.title ?? firstParagraph, 96),
+      };
+    }
+    case 'append-table-row':
+      return {
+        cells: [
+          clipInlineText(parsed.title ?? routeCategory, 48),
+          'Updated',
+          clipInlineText(firstParagraph, 96),
+        ],
+        dedupeColumn: 0,
+      };
+    default:
+      return { paragraph: firstParagraph };
+  }
+}
+
+async function buildCanonicalAtomicPreparedSave(
+  params: AtomicSaveParams,
+  database: ReturnType<typeof requireDb>,
+): Promise<{ status: 'ready'; prepared: CanonicalAtomicPrepared; persistedContent: string; persistedFilePath: string } | { status: 'abort'; result: AtomicSaveResult }> {
+  const preparedMemory = prepareParsedMemoryForIndexing(
+    memoryParser.parseMemoryContent(params.file_path, params.content),
+    database,
+    {
+      qualityLoopMode: params.plannerMode === 'full-auto' ? 'full-auto' : 'advisory',
+    },
+  );
+  if (!preparedMemory.validation.valid) {
+    return {
+      status: 'abort',
+      result: {
+        success: false,
+        filePath: params.file_path,
+        status: 'error',
+        summary: 'Atomic save preflight failed',
+        message: 'Parsed content failed validation before canonical atomic save',
+        error: `Validation failed: ${preparedMemory.validation.errors.join(', ')}`,
+      },
+    };
+  }
+
+  if (preparedMemory.qualityLoopResult.fixes.length > 0 && preparedMemory.qualityLoopResult.passed && preparedMemory.qualityLoopResult.fixedContent) {
+    console.error(`[memory-save] Quality loop applied ${preparedMemory.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(params.file_path)} before canonical pending-file promotion`);
+  }
+
+  const specFolderAbsolute = resolveSpecFolderAbsoluteFromFilePath(params.file_path, preparedMemory.parsed.specFolder);
+  const packetLevel = toCanonicalPacketLevel(detectSpecLevelFromParsed(path.join(specFolderAbsolute, 'spec.md')));
+  const packetKind = deriveCanonicalPacketKind(specFolderAbsolute, preparedMemory.parsed.specFolder);
+  const saveMode = params.routeAs ? 'route-as' : 'natural';
+  const tier3Enabled = isTier3RoutingEnabled();
+  const router = buildCanonicalRouter({ tier3Enabled });
+  const routingChunkText = normalizeRoutingChunkText(params.content);
+  const likelyPhaseAnchor = deriveLikelyPhaseAnchorForCanonicalRouting({
+    routingChunkText,
+    specFolder: preparedMemory.parsed.specFolder,
+    targetAnchorId: params.targetAnchorId,
+  });
+  const decision = await router.classifyContent(
+    {
+      id: path.basename(params.file_path),
+      text: routingChunkText,
+      sourceField: params.routeAs === 'metadata_only' ? 'preflight' : 'observations',
+      routeAs: params.routeAs,
+      metadata: params.targetAnchorId ? { targetAnchorId: params.targetAnchorId } : undefined,
+    },
+    {
+      specFolder: preparedMemory.parsed.specFolder,
+      packetLevel,
+      sessionMeta: {
+        spec_folder: preparedMemory.parsed.specFolder,
+        packet_level: packetLevel,
+        packet_kind: packetKind,
+        save_mode: saveMode,
+        recent_docs_touched: [],
+        recent_anchors_touched: [],
+        likely_phase_anchor: likelyPhaseAnchor,
+      },
+    },
+  );
+
+  let effectiveDecision = decision;
+  const applyTier2FailOpenFallback = (): boolean => {
+    const fallback = selectTier2FailOpenFallback(specFolderAbsolute, effectiveDecision);
+    if (!fallback) {
+      return false;
+    }
+    effectiveDecision = {
+      ...effectiveDecision,
+      category: fallback.category,
+      confidence: fallback.confidence,
+      target: {
+        docPath: fallback.routedDocPath,
+        anchorId: fallback.targetAnchorId,
+        mergeMode: fallback.mergeMode,
+      },
+      tierUsed: 2,
+      warningMessage: fallback.warningMessage,
+      refusal: false,
+    };
+    return true;
+  };
+
+  if ((effectiveDecision.refusal || effectiveDecision.category === 'drop') && !applyTier2FailOpenFallback()) {
+    return {
+      status: 'abort',
+      result: {
+        success: false,
+        filePath: params.file_path,
+        status: 'rejected',
+        summary: 'Canonical routed save refused to merge content',
+        message: `${effectiveDecision.warningMessage ?? 'Router refused to route canonical content safely'} Nothing was written; "${effectiveDecision.target.docPath}" is only a manual-review suggestion.`,
+        routeCategory: effectiveDecision.category,
+        targetDocPath: effectiveDecision.target.docPath,
+      },
+    };
+  }
+
+  if (params.mergeModeHint && params.mergeModeHint !== effectiveDecision.target.mergeMode) {
+    return {
+      status: 'abort',
+      result: {
+        success: false,
+        filePath: params.file_path,
+        status: 'rejected',
+        summary: 'Canonical routed save rejected conflicting merge-mode hint',
+        message: `mergeModeHint "${params.mergeModeHint}" did not match routed mode "${effectiveDecision.target.mergeMode}"`,
+        routeCategory: effectiveDecision.category,
+        mergeMode: params.mergeModeHint,
+        targetDocPath: effectiveDecision.target.docPath,
+      },
+    };
+  }
+
+  let targetDocPath = resolveCanonicalTargetDocPath(specFolderAbsolute, effectiveDecision.target.docPath);
+  if (!fs.existsSync(targetDocPath) && !applyTier2FailOpenFallback()) {
+    return {
+      status: 'abort',
+      result: {
+        success: false,
+        filePath: targetDocPath,
+        status: 'error',
+        summary: 'Canonical routed save target document is missing',
+        message: `Target document "${targetDocPath}" does not exist`,
+        routeCategory: effectiveDecision.category,
+      },
+    };
+  }
+  targetDocPath = resolveCanonicalTargetDocPath(specFolderAbsolute, effectiveDecision.target.docPath);
+
+  const originalTargetContent = fs.readFileSync(targetDocPath, 'utf8');
+  const routedMergeMode = params.mergeModeHint ?? effectiveDecision.target.mergeMode;
+  if (!isMergeModeHint(routedMergeMode)) {
+    return {
+      status: 'abort',
+      result: {
+        success: false,
+        filePath: targetDocPath,
+        status: 'rejected',
+        summary: 'Canonical routed save refused unsupported merge mode',
+        message: `Routed merge mode "${effectiveDecision.target.mergeMode}" is not supported by atomic writer saves`,
+        routeCategory: effectiveDecision.category,
+        targetDocPath,
+        targetAnchorId: effectiveDecision.target.anchorId ?? undefined,
+      },
+    };
+  }
+  const mergeMode: MergeModeHint = routedMergeMode;
+  const relativeTargetFile = path.relative(specFolderAbsolute, targetDocPath).replace(/\\/g, '/');
+
+  let persistedContent = originalTargetContent;
+  let targetAnchorId = effectiveDecision.target.anchorId;
+
+  if (effectiveDecision.category === 'metadata_only') {
+    const readResult = readThinContinuityRecord(params.content);
+    const continuityRecord = readResult.ok && readResult.record
+      ? readResult.record
+      : buildFallbackContinuityRecord({
+          parsed: preparedMemory.parsed,
+          routeCategory: effectiveDecision.category,
+          targetDocPath,
+          specFolderAbsolute,
+          currentContent: params.content,
+        });
+    const writeResult = upsertThinContinuityInMarkdown(persistedContent, continuityRecord, {
+      fallbackActor: 'memory-save',
+      fallbackPacketPointer: preparedMemory.parsed.specFolder,
+      fallbackTimestamp: new Date().toISOString(),
+    });
+    if (!writeResult.ok || !writeResult.markdown) {
+      return {
+        status: 'abort',
+        result: {
+          success: false,
+          filePath: targetDocPath,
+        status: 'rejected',
+        summary: 'Canonical continuity update failed validation',
+        message: writeResult.errors.map((error) => `${error.code}:${error.field}:${error.message}`).join('; '),
+        routeCategory: effectiveDecision.category,
+        mergeMode,
+        targetDocPath,
+        targetAnchorId: ROUTED_CONTINUITY_ANCHOR_ID,
+        },
+      };
+    }
+    persistedContent = writeResult.markdown;
+    targetAnchorId = ROUTED_CONTINUITY_ANCHOR_ID;
+  } else {
+    let mergedDocument: string;
+    try {
+      const mergeResult = anchorMergeOperation({
+        documentContent: originalTargetContent,
+        docPath: relativeTargetFile,
+        anchorId: targetAnchorId,
+        mergeMode,
+        payload: buildCanonicalMergePayload({
+          parsed: preparedMemory.parsed,
+          routeCategory: effectiveDecision.category,
+          mergeMode,
+          content: params.content,
+        }) as never,
+        dedupeFingerprint: buildContinuityFingerprint(params.content),
+      });
+      mergedDocument = mergeResult.updatedDocument;
+    } catch (error: unknown) {
+      return {
+        status: 'abort',
+        result: {
+          success: false,
+          filePath: targetDocPath,
+          status: 'rejected',
+          summary: 'Canonical anchor merge failed',
+          message: error instanceof Error ? error.message : String(error),
+          routeCategory: effectiveDecision.category,
+          mergeMode,
+          targetDocPath,
+          targetAnchorId,
+        },
+      };
+    }
+
+    const continuityRecord = buildFallbackContinuityRecord({
+      parsed: preparedMemory.parsed,
+      routeCategory: effectiveDecision.category,
+      targetDocPath,
+      specFolderAbsolute,
+      currentContent: params.content,
+    });
+    const writeResult = upsertThinContinuityInMarkdown(mergedDocument, continuityRecord, {
+      fallbackActor: 'memory-save',
+      fallbackPacketPointer: preparedMemory.parsed.specFolder,
+      fallbackTimestamp: new Date().toISOString(),
+    });
+    if (!writeResult.ok || !writeResult.markdown) {
+      return {
+        status: 'abort',
+        result: {
+          success: false,
+          filePath: targetDocPath,
+        status: 'rejected',
+        summary: 'Canonical continuity update failed after merge',
+        message: writeResult.errors.map((error) => `${error.code}:${error.field}:${error.message}`).join('; '),
+        routeCategory: effectiveDecision.category,
+        mergeMode,
+        targetDocPath,
+        targetAnchorId,
+        },
+      };
+    }
+    persistedContent = writeResult.markdown;
+  }
+
+  const routing: RoutedSaveOptions = {
+    targetDocPath,
+    canonicalFilePath: getCanonicalPathKey(targetDocPath),
+    targetAnchorId,
+    routeAs: effectiveDecision.category,
+    mergeModeHint: mergeMode,
+    continuitySourceKey: 'frontmatter',
+  };
+
+  return {
+    status: 'ready',
+    persistedContent,
+    persistedFilePath: targetDocPath,
+    prepared: {
+      preparedMemory,
+      routing,
+      validatorPlan: {
+        folder: specFolderAbsolute,
+        level: toValidatorLevel(packetLevel),
+        mergePlan: effectiveDecision.category === 'metadata_only'
+          ? null
+          : {
+              targetFile: relativeTargetFile,
+              targetAnchor: targetAnchorId,
+              mergeMode,
+              chunkText: routingChunkText,
+            },
+        contaminationPlan: {
+          routeCategory: effectiveDecision.category,
+          chunkText: routingChunkText,
+          routeOverrideAccepted: effectiveDecision.overrideApplied,
+        },
+        postSavePlan: params.plannerMode === 'full-auto'
+          ? {
+              file: relativeTargetFile,
+              expectedFingerprint: buildContinuityFingerprint(persistedContent),
+              expectedContent: persistedContent,
+              snapshotContent: originalTargetContent,
+              expectedSize: Buffer.byteLength(persistedContent, 'utf8'),
+            }
+          : null,
+      },
+    },
+  };
+}
+
+function validateCanonicalPreparedSave(
+  prepared: CanonicalAtomicPrepared,
+): { ok: true; warnings: string[] } | { ok: false; rejection: IndexResult } {
+  if (!prepared.validatorPlan) {
+    return { ok: true, warnings: [] };
+  }
+
+  const warnings: string[] = [];
+  const rules: Array<{
+    rule: 'FRONTMATTER_MEMORY_BLOCK' | 'MERGE_LEGALITY' | 'SPEC_DOC_SUFFICIENCY' | 'CROSS_ANCHOR_CONTAMINATION' | 'POST_SAVE_FINGERPRINT';
+    mergePlan?: MergePlan | null;
+    contaminationPlan?: ContaminationPlan | null;
+    postSavePlan?: PostSavePlan | null;
+  }> = [
+    { rule: 'FRONTMATTER_MEMORY_BLOCK' },
+    { rule: 'MERGE_LEGALITY', mergePlan: prepared.validatorPlan.mergePlan },
+    { rule: 'SPEC_DOC_SUFFICIENCY' },
+    { rule: 'CROSS_ANCHOR_CONTAMINATION', contaminationPlan: prepared.validatorPlan.contaminationPlan },
+  ];
+
+  if (prepared.validatorPlan.postSavePlan) {
+    rules.push({ rule: 'POST_SAVE_FINGERPRINT', postSavePlan: prepared.validatorPlan.postSavePlan });
+  }
+
+  for (const entry of rules) {
+    const result = runSpecDocStructureRule({
+      folder: prepared.validatorPlan.folder,
+      level: prepared.validatorPlan.level,
+      rule: entry.rule,
+      mergePlan: entry.mergePlan ?? null,
+      contaminationPlan: entry.contaminationPlan ?? null,
+      postSavePlan: entry.postSavePlan ?? null,
+    });
+    if (result.status === 'warn') {
+      warnings.push(...result.diagnostics.map((diagnostic) => `${entry.rule}:${diagnostic.code}:${diagnostic.detail}`));
+    }
+    if (result.status === 'fail') {
+      return {
+        ok: false,
+        rejection: {
+          status: 'rejected',
+          id: 0,
+          specFolder: prepared.preparedMemory.parsed.specFolder,
+          title: prepared.preparedMemory.parsed.title ?? '',
+          message: result.diagnostics.map((diagnostic) => `${diagnostic.code}: ${diagnostic.detail}`).join('; ') || result.message,
+          rejectionReason: `${entry.rule} failed for canonical routed save`,
+          routeCategory: prepared.routing.routeAs ?? undefined,
+          mergeMode: prepared.routing.mergeModeHint ?? undefined,
+          targetDocPath: prepared.routing.targetDocPath ?? undefined,
+          targetAnchorId: prepared.routing.targetAnchorId ?? undefined,
+          warnings,
+        },
+      };
+    }
+  }
+
+  return { ok: true, warnings };
+}
+
+function buildAtomicPlannerRouteTarget(prepared: CanonicalAtomicPrepared): PlannerRouteTarget {
+  return serializePlannerRouteTarget({
+    routeCategory: prepared.routing.routeAs ?? 'drop',
+    targetDocPath: prepared.routing.targetDocPath ?? prepared.preparedMemory.parsed.filePath,
+    canonicalFilePath: prepared.routing.canonicalFilePath ?? undefined,
+    targetAnchorId: prepared.routing.targetAnchorId ?? null,
+    mergeMode: prepared.routing.mergeModeHint ?? undefined,
+  });
+}
+
+function buildAtomicPlannerFollowUpActions(
+  params: AtomicSaveParams,
+  prepared: CanonicalAtomicPrepared,
+): PlannerFollowUpAction[] {
+  const specFolder = prepared.preparedMemory.parsed.specFolder;
+  const applyArgs: Record<string, unknown> = {
+    filePath: params.file_path,
+    plannerMode: 'full-auto',
+    ...(params.routeAs ? { routeAs: params.routeAs } : {}),
+    ...(params.mergeModeHint ? { mergeModeHint: params.mergeModeHint } : {}),
+    ...(params.targetAnchorId ? { targetAnchorId: params.targetAnchorId } : {}),
+  };
+
+  const followUpActions: PlannerFollowUpAction[] = [
+    serializePlannerFollowUpAction({
+      action: 'apply',
+      title: 'Apply canonical save',
+      description: 'Run the canonical atomic writer in explicit full-auto mode.',
+      args: applyArgs,
+    }),
+    serializePlannerFollowUpAction({
+      action: 'refresh-graph',
+      title: 'Refresh graph metadata',
+      description: 'Refresh the packet graph metadata after applying the save.',
+      tool: 'refreshGraphMetadata',
+      args: {
+        specFolder,
+      },
+    }),
+    serializePlannerFollowUpAction({
+      action: 'reindex',
+      title: 'Reindex touched spec docs',
+      description: 'Run incremental spec-doc indexing so the save is immediately searchable.',
+      tool: 'reindexSpecDocs',
+      args: {
+        specFolder,
+      },
+    }),
+  ];
+
+  if (!isSaveReconsolidationEnabled()) {
+    followUpActions.push(serializePlannerFollowUpAction({
+      action: 'reconsolidate',
+      title: 'Run full-auto fallback with reconsolidation',
+      description: 'Use the backward-compatible full-auto save path when you explicitly want reconsolidation-on-save.',
+      tool: 'memory_save',
+      args: applyArgs,
+    }));
+  }
+
+  if (!isPostInsertEnrichmentEnabled()) {
+    followUpActions.push(serializePlannerFollowUpAction({
+      action: 'enrich',
+      title: 'Run enrichment backfill',
+      description: 'Backfill entity extraction, summaries, cross-doc linking, and graph lifecycle after the canonical save is applied.',
+      tool: 'runEnrichmentBackfill',
+      args: {
+        specFolder,
+      },
+    }));
+  }
+
+  return followUpActions;
+}
+
+function buildAtomicPlannerAdvisories(
+  prepared: CanonicalAtomicPrepared,
+  warnings: string[],
+): PlannerAdvisory[] {
+  const advisories: PlannerAdvisory[] = [];
+  const routeCategory = prepared.routing.routeAs ?? undefined;
+  const targetDocPath = prepared.routing.targetDocPath ?? undefined;
+  const targetAnchorId = prepared.routing.targetAnchorId ?? null;
+  const templateContractBypassed = shouldBypassTemplateContract(
+    prepared.preparedMemory.sourceClassification,
+    prepared.preparedMemory.sufficiencyResult,
+    prepared.preparedMemory.templateContract,
+    prepared.preparedMemory.specDocHealth,
+    prepared.preparedMemory.parsed.documentType,
+  );
+
+  for (const warning of warnings) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'SPEC_DOC_WARNING',
+      message: warning,
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  for (const warning of prepared.preparedMemory.validation.warnings) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'INPUT_WARNING',
+      message: warning,
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  if (!prepared.preparedMemory.qualityLoopResult.passed || prepared.preparedMemory.qualityLoopResult.fixes.length > 0) {
+    const qualityMessage = prepared.preparedMemory.qualityLoopResult.rejectionReason
+      ?? (prepared.preparedMemory.qualityLoopResult.fixes.length > 0
+        ? `Quality loop would apply ${prepared.preparedMemory.qualityLoopResult.fixes.length} fix(es) in full-auto mode.`
+        : 'Quality loop reported advisory issues for this save.');
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'QUALITY_LOOP_ADVISORY',
+      message: qualityMessage,
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  if (!prepared.preparedMemory.sufficiencyResult.pass) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'SUFFICIENCY_ADVISORY',
+      message: prepared.preparedMemory.sufficiencyResult.reasons.join(' '),
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  if (!prepared.preparedMemory.templateContract.valid && templateContractBypassed) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'TEMPLATE_CONTRACT_ADVISORY',
+      message: prepared.preparedMemory.templateContract.violations
+        .map((violation) => violation.message || violation.code)
+        .join('; '),
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  if (!isSaveReconsolidationEnabled()) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'RECONSOLIDATION_DEFERRED',
+      message: 'Reconsolidation available as follow-up action. Planner-first saves do not run supersede, reinforce, or create-linked reconsolidation work by default.',
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  if (!isPostInsertEnrichmentEnabled()) {
+    advisories.push(serializePlannerAdvisory(buildPlannerAdvisory({
+      code: 'ENRICHMENT_DEFERRED',
+      message: 'Post-insert enrichment is deferred by default. Run the enrichment backfill follow-up after applying the canonical save when immediate entities or graph links matter.',
+      routeCategory,
+      targetDocPath,
+      targetAnchorId,
+    })));
+  }
+
+  return advisories;
+}
+
+function buildAtomicPlannerReadyResult(
+  params: AtomicSaveParams,
+  prepared: CanonicalAtomicPrepared,
+  validation: { ok: true; warnings: string[] } | { ok: false; rejection: IndexResult },
+  options: AtomicSaveOptions = {},
+): AtomicSaveResult {
+  const routeTarget = buildAtomicPlannerRouteTarget(prepared);
+  const blockers: PlannerBlocker[] = [];
+  const templateContractBypassed = shouldBypassTemplateContract(
+    prepared.preparedMemory.sourceClassification,
+    prepared.preparedMemory.sufficiencyResult,
+    prepared.preparedMemory.templateContract,
+    prepared.preparedMemory.specDocHealth,
+    prepared.preparedMemory.parsed.documentType,
+  );
+  if (!validation.ok && options.force !== true) {
+    blockers.push(serializePlannerBlocker(buildPlannerBlocker({
+      code: 'SPEC_DOC_STRUCTURE_BLOCKER',
+      message: validation.rejection.message ?? validation.rejection.rejectionReason ?? 'Planner blocked canonical save.',
+      routeCategory: routeTarget.routeCategory,
+      targetDocPath: routeTarget.targetDocPath,
+      targetAnchorId: routeTarget.targetAnchorId ?? null,
+    })));
+  }
+  if (!prepared.preparedMemory.templateContract.valid && !templateContractBypassed && options.force !== true) {
+    blockers.push(serializePlannerBlocker(buildPlannerBlocker({
+      code: 'TEMPLATE_CONTRACT_BLOCKER',
+      message: prepared.preparedMemory.templateContract.violations
+        .map((violation) => violation.message || violation.code)
+        .join('; '),
+      routeCategory: routeTarget.routeCategory,
+      targetDocPath: routeTarget.targetDocPath,
+      targetAnchorId: routeTarget.targetAnchorId ?? null,
+    })));
+  }
+
+  const advisories = buildAtomicPlannerAdvisories(
+    prepared,
+    validation.ok ? validation.warnings : (validation.rejection.warnings ?? []),
+  );
+  const status = blockers.length > 0 ? 'blocked' : 'planned';
+  const contentPreview = prepared.preparedMemory.finalizedFileContent
+    ?? prepared.preparedMemory.parsed.content
+    ?? params.content;
+
+  return {
+    success: blockers.length === 0,
+    filePath: routeTarget.targetDocPath,
+    status,
+    summary: blockers.length > 0
+      ? 'Planner blocked canonical save'
+      : 'Planner prepared canonical save plan',
+    message: blockers.length > 0
+      ? 'Planner found blocker(s) that must be resolved before the canonical save can run.'
+      : 'Planner prepared a non-mutating canonical save plan.',
+    plannerMode: 'plan-only',
+    routeCategory: routeTarget.routeCategory,
+    mergeMode: routeTarget.mergeMode,
+    targetDocPath: routeTarget.targetDocPath,
+    targetAnchorId: routeTarget.targetAnchorId ?? undefined,
+    routeTarget,
+    proposedEdits: [
+      serializePlannerProposedEdit({
+        targetDocPath: routeTarget.targetDocPath,
+        targetAnchorId: routeTarget.targetAnchorId ?? null,
+        mergeMode: routeTarget.mergeMode,
+        routeCategory: routeTarget.routeCategory,
+        summary: `Apply the canonical ${routeTarget.routeCategory.replace(/_/g, ' ')} update to the routed document.`,
+        contentPreview: contentPreview.slice(0, 280),
+      }),
+    ],
+    blockers,
+    advisories,
+    followUpActions: buildAtomicPlannerFollowUpActions(params, prepared),
+  };
+}
+
+function buildAtomicPlannerAbortResult(
+  params: AtomicSaveParams,
+  result: AtomicSaveResult,
+): AtomicSaveResult {
+  const routeCategory = result.routeCategory ?? params.routeAs ?? 'drop';
+  const routeTarget = serializePlannerRouteTarget({
+    routeCategory,
+    targetDocPath: result.targetDocPath ?? result.filePath,
+    targetAnchorId: result.targetAnchorId ?? params.targetAnchorId ?? null,
+    mergeMode: result.mergeMode ?? params.mergeModeHint,
+  });
+
+  return {
+    success: false,
+    filePath: routeTarget.targetDocPath,
+    status: 'blocked',
+    summary: result.summary ?? 'Planner blocked canonical save',
+    message: result.message ?? result.error ?? 'Planner could not prepare a canonical save.',
+    plannerMode: 'plan-only',
+    routeCategory: routeTarget.routeCategory,
+    mergeMode: routeTarget.mergeMode,
+    targetDocPath: routeTarget.targetDocPath,
+    targetAnchorId: routeTarget.targetAnchorId ?? undefined,
+    routeTarget,
+    proposedEdits: [],
+    blockers: [
+      serializePlannerBlocker(buildPlannerBlocker({
+        code: result.status === 'error' ? 'PLANNER_ERROR' : 'PLANNER_BLOCKER',
+        message: result.message ?? result.error ?? result.summary ?? 'Planner could not prepare a canonical save.',
+        routeCategory: routeTarget.routeCategory,
+        targetDocPath: routeTarget.targetDocPath,
+        targetAnchorId: routeTarget.targetAnchorId ?? null,
+      })),
+    ],
+    advisories: [],
+    followUpActions: [
+      serializePlannerFollowUpAction({
+        action: 'apply',
+        title: 'Retry in full-auto mode after resolving blockers',
+        description: 'Request explicit full-auto mode once the blocking issue is fixed.',
+        args: {
+          filePath: params.file_path,
+          plannerMode: 'full-auto',
+          ...(params.routeAs ? { routeAs: params.routeAs } : {}),
+          ...(params.mergeModeHint ? { mergeModeHint: params.mergeModeHint } : {}),
+          ...(params.targetAnchorId ? { targetAnchorId: params.targetAnchorId } : {}),
+        },
+      }),
+    ],
+  };
+}
+
+function isCanonicalAtomicPrepared(value: unknown): value is CanonicalAtomicPrepared {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const candidate = value as Record<string, unknown>;
+  return typeof candidate.preparedMemory === 'object'
+    && candidate.preparedMemory !== null
+    && typeof candidate.routing === 'object'
+    && candidate.routing !== null;
+}
+
+function resolveIndexingOrigin(options: {
+  origin?: IndexingOrigin;
+  fromScan?: boolean;
+}): IndexingOrigin {
+  return options.origin ?? (options.fromScan ? 'scan' : 'direct');
+}
+
+async function processPreparedMemory(
+  prepared: PreparedParsedMemory,
+  filePath: string,
+  options: {
+    force?: boolean;
+    asyncEmbedding?: boolean;
+    plannerMode?: AtomicSaveParams['plannerMode'];
+    origin?: IndexingOrigin;
+    fromScan?: boolean;
+    persistQualityLoopContent?: boolean;
+    refreshFromDiskAfterLock?: boolean;
+    specFolderLockAlreadyHeld?: boolean;
+    scope?: MemoryScopeMatch;
+    qualityGateMode?: 'enforce' | 'warn-only';
+    routing?: RoutedSaveOptions;
+    provenance?: WriteProvenanceContext;
+  } = {},
+): Promise<IndexResult> {
+  const {
+    force = false,
+    asyncEmbedding = false,
+    plannerMode: requestedPlannerMode,
+    origin,
+    fromScan = false,
+    persistQualityLoopContent = true,
+    refreshFromDiskAfterLock = false,
+    specFolderLockAlreadyHeld = false,
+    scope = {},
+    qualityGateMode = 'enforce',
+    routing = {},
+    provenance = {},
+  } = options;
+  const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
+  const indexingOrigin = resolveIndexingOrigin({ origin, fromScan });
+
+  const evaluatePreparedMemory = (currentPrepared: PreparedParsedMemory): IndexResult | null => {
+    const {
+      parsed,
+      validation,
+      qualityLoopResult,
+      sufficiencyResult,
+      templateContract,
+      sourceClassification,
+    } = currentPrepared;
+    const templateContractBypassed = shouldBypassTemplateContract(
+      sourceClassification,
+      sufficiencyResult,
+      templateContract,
+      currentPrepared.specDocHealth,
+      parsed.documentType,
+    );
+
+    if (!qualityLoopResult.passed && qualityLoopResult.rejected) {
+      if (qualityGateMode === 'warn-only') {
+        console.warn(`[memory-save] V-rule warn-only (spec doc) for ${path.basename(filePath)}: ${qualityLoopResult.rejectionReason}`);
+      } else {
+        return {
+          status: 'rejected',
+          id: 0,
+          specFolder: parsed.specFolder,
+          title: parsed.title ?? '',
+          triggerPhrases: parsed.triggerPhrases,
+          contextType: parsed.contextType,
+          importanceTier: parsed.importanceTier,
+          qualityScore: parsed.qualityScore,
+          qualityFlags: parsed.qualityFlags,
+          warnings: validation.warnings,
+          rejectionReason: qualityLoopResult.rejectionReason,
+          message: qualityLoopResult.rejectionReason,
+        };
+      }
+    }
+
+    if (!sufficiencyResult.pass) {
+      if (isStructuralMetadataFile(filePath)) {
+        console.warn(`[memory-save] Sufficiency exempt for structural metadata file ${path.basename(filePath)}: ${sufficiencyResult.reasons.join('; ')}`);
+      } else if (qualityGateMode === 'warn-only') {
+        console.warn(`[memory-save] Sufficiency warn-only (spec doc) for ${path.basename(filePath)}: ${sufficiencyResult.reasons.join('; ')}`);
+      } else {
+        return buildInsufficiencyRejectionResult(parsed, validation, sufficiencyResult);
+      }
+    }
+
+    if (!templateContract.valid) {
+      if (isStructuralMetadataFile(filePath)) {
+        console.warn(
+          `[memory-save] Template contract exempt for structural metadata file ${path.basename(filePath)}: ${templateContract.violations.map((v: { message?: string; rule?: string }) => v.message || v.rule).join('; ')}`,
+        );
+      } else if (templateContractBypassed) {
+        console.warn(
+          `[memory-save] Template contract bypassed in ${MANUAL_FALLBACK_SOURCE_CLASSIFICATION} mode for ${path.basename(filePath)}: ${templateContract.violations.map((v: { message?: string; rule?: string }) => v.message || v.rule).join('; ')}`,
+        );
+      } else if (qualityGateMode === 'warn-only') {
+        console.warn(
+          `[memory-save] Template contract warn-only (spec doc) for ${path.basename(filePath)}: ${templateContract.violations.map((v: { message?: string; rule?: string }) => v.message || v.rule).join('; ')}`,
+        );
+      } else {
+        return buildTemplateContractRejectionResult(parsed, validation, templateContract);
+      }
+    }
+
+    return null;
+  };
+
+  if (!refreshFromDiskAfterLock) {
+    const earlyResult = evaluatePreparedMemory(prepared);
+    if (earlyResult) {
+      return earlyResult;
+    }
+  }
+
+  const runWithinSpecFolderLock = async (): Promise<IndexResult> => {
+    const database = requireDb();
+    const activePrepared = refreshFromDiskAfterLock
+      ? prepareParsedMemoryForIndexing(memoryParser.parseMemoryFile(filePath), database, {
+          qualityLoopMode: 'full-auto',
+        })
+      : prepared;
+    const lockedResult = evaluatePreparedMemory(activePrepared);
+    if (lockedResult) {
+      return lockedResult;
+    }
+    const injectionMarkerRejection = applyInjectionMarkerCapturePolicy(
+      activePrepared.parsed,
+      activePrepared.validation.warnings,
+    );
+    if (injectionMarkerRejection) {
+      return injectionMarkerRejection;
+    }
+    const {
+      parsed,
+      validation,
+      finalizedFileContent,
+    } = activePrepared;
+    const routedFilePath = routing.targetDocPath ?? filePath;
+    const writeProvenance: WriteProvenanceContext = {
+      tool: 'memory_save',
+      filePath: routedFilePath,
+      scope,
+      ...provenance,
+    };
+    const routedParsed = Object.keys(routing).length > 0
+      ? applyRoutedSaveHints(parsed, {
+          ...routing,
+          targetDocPath: routedFilePath,
+        })
+      : parsed;
+    const recordIdentity = resolveRoutedRecordIdentity(routedParsed, routedFilePath, {
+      ...routing,
+      targetDocPath: routedFilePath,
+    });
+    const canonicalFilePath = recordIdentity.canonicalFilePath;
+    const samePathDedupExclusion = {
+      canonicalFilePath,
+      filePath: routedFilePath,
+      ...(recordIdentity.targetAnchorId != null ? { targetAnchorId: recordIdentity.targetAnchorId } : {}),
+    };
+    const samePathExisting = findSamePathExistingMemory(
+      database,
+      routedParsed.specFolder,
+      canonicalFilePath,
+      routedFilePath,
+      scope,
+      recordIdentity,
+    );
+    const shouldChunkContent = shouldUseChunkedIndexing(routedParsed.content, plannerMode);
+    const shouldPersistFinalizedFile = persistQualityLoopContent && typeof finalizedFileContent === 'string';
+    let finalizeWarning: string | null = null;
+
+    // DEDUP: Check existing row by file path
+    const existingResult = checkExistingRow(
+      database,
+      routedParsed,
+      canonicalFilePath,
+      routedFilePath,
+      recordIdentity.targetAnchorId,
+      force,
+      validation.warnings,
+      scope,
+    );
+    if (existingResult) return existingResult;
+
+    // NOTE: Content-hash dedup (C5-1) moved inside BEGIN IMMEDIATE transaction
+    // to eliminate TOCTOU race between check and insert.
+
+    // EMBEDDING GENERATION (with persistent SQLite cache)
+    const embeddingResult = await generateOrCacheEmbedding(database, routedParsed, routedFilePath, asyncEmbedding);
+    const {
+      embedding,
+      status: embeddingStatus,
+      failureReason: embeddingFailureReason,
+      pendingCacheWrite,
+    } = embeddingResult;
+
+    // the rollout: Quality Gate (before PE gating, after embedding)
+    if (isSaveQualityGateEnabled() && isQualityGateEnabled()) {
+      try {
+        const qualityGateResult = runQualityGate({
+          title: routedParsed.title,
+          content: routedParsed.content,
+          specFolder: routedParsed.specFolder,
+          triggerPhrases: routedParsed.triggerPhrases,
+          contextType: routedParsed.contextType,
+          mode: 'legacy',
+          semanticDedupExclusion: samePathDedupExclusion,
+          embedding: embedding,
+          findSimilar: embedding ? (emb, gateOptions) => {
+            return findSimilarMemories(emb as Float32Array, {
+              limit: gateOptions.limit,
+              specFolder: gateOptions.specFolder,
+              excludeFilePath: gateOptions.excludeFilePath,
+              excludeCanonicalFilePath: gateOptions.excludeCanonicalFilePath,
+              tenantId: scope.tenantId,
+              userId: scope.userId,
+              agentId: scope.agentId,
+              sessionId: scope.sessionId,
+            }).map(m => ({
+              id: m.id,
+              file_path: m.file_path,
+              similarity: m.similarity,
+            }));
+          } : null,
+        });
+
+        if (!qualityGateResult.pass && !qualityGateResult.warnOnly && qualityGateMode !== 'warn-only') {
+          console.error(`[memory-save] TM-04: Quality gate REJECTED save for ${path.basename(routedFilePath)}: ${qualityGateResult.reasons.join('; ')}`);
+          return {
+            status: 'rejected',
+            id: 0,
+            specFolder: routedParsed.specFolder,
+            title: routedParsed.title ?? '',
+            qualityScore: routedParsed.qualityScore,
+            qualityFlags: routedParsed.qualityFlags,
+            rejectionReason: `Quality gate rejected: ${qualityGateResult.reasons.join('; ')}`,
+            message: `Quality gate rejected: ${qualityGateResult.reasons.join('; ')}`,
+            qualityGate: {
+              pass: false,
+              reasons: qualityGateResult.reasons,
+              layers: qualityGateResult.layers,
+            },
+          };
+        }
+
+        if (!qualityGateResult.pass && qualityGateMode === 'warn-only') {
+          console.warn(`[memory-save] TM-04: Quality gate warn-only (spec doc) for ${path.basename(routedFilePath)}: ${qualityGateResult.reasons.join('; ')}`);
+        }
+
+        if (qualityGateResult.wouldReject) {
+          console.warn(`[memory-save] TM-04: Quality gate WARN-ONLY for ${path.basename(routedFilePath)}: ${qualityGateResult.reasons.join('; ')}`);
+        }
+      } catch (qgErr: unknown) {
+        const message = qgErr instanceof Error ? qgErr.message : String(qgErr);
+        console.warn(`[memory-save] TM-04: Quality gate error (proceeding with save): ${message}`);
+        // Quality gate errors must not block saves
+      }
+    }
+
+    const duplicatePrecheck = checkContentHashDedup(
+      database,
+      routedParsed,
+      force,
+      validation.warnings,
+      samePathDedupExclusion,
+      scope,
+    );
+    if (duplicatePrecheck) {
+      await repairReplayEnrichmentIfNeeded(database, duplicatePrecheck.id, routedParsed);
+      return duplicatePrecheck;
+    }
+
+    persistPendingEmbeddingCacheWrite(database, pendingCacheWrite, routedFilePath);
+
+    // PE GATING
+    const peResult = evaluateAndApplyPeDecision(
+      database, routedParsed, embedding, force, validation.warnings, embeddingStatus, routedFilePath, scope, writeProvenance,
+    );
+    if (peResult.earlyReturn) return peResult.earlyReturn;
+
+    let reconResult: Awaited<ReturnType<typeof runReconsolidationIfEnabled>> = {
+      earlyReturn: null,
+      warnings: [],
+      saveTimeReconsolidation: {
+        status: 'skipped',
+        persistedState: { kind: 'create' },
+      },
+    };
+
+    // Complete async reconsolidation planning before chunking or
+    // taking the SQLite writer lock, so chunked saves do not bypass the gate
+    // and BEGIN IMMEDIATE only covers synchronous DB mutation work.
+    reconResult = await runReconsolidationIfEnabled(
+      database,
+      routedParsed,
+      routedFilePath,
+      force,
+      embedding,
+      scope,
+      { plannerMode, provenance: writeProvenance },
+    );
+    if (reconResult.earlyReturn) return reconResult.earlyReturn;
+    if (reconResult.saveTimeReconsolidation.status === 'failed') {
+      return buildSaveTimeReconsolidationFailureResult({
+        parsed: routedParsed,
+        validation,
+        reconWarnings: reconResult.warnings,
+        failure: {
+          status: 'failed',
+          reason: reconResult.saveTimeReconsolidation.reason ?? 'conflict_failed',
+          ...(reconResult.saveTimeReconsolidation.warnings
+            ? { warnings: reconResult.saveTimeReconsolidation.warnings }
+            : {}),
+          ...(reconResult.saveTimeReconsolidation.persistedState
+            ? { persistedState: reconResult.saveTimeReconsolidation.persistedState }
+            : {}),
+        },
+      });
+    }
+
+    if (shouldChunkContent) {
+      console.error(`[memory-save] File exceeds chunking threshold (${routedParsed.content.length} chars), using chunked indexing`);
+      const chunkedInsertTracker = createChunkedInsertTracker();
+      const chunkedResult = await indexChunkedMemoryFile(routedFilePath, routedParsed, {
+        force,
+        scope,
+        provenance: writeProvenance,
+        applyPostInsertMetadata: (db, memoryId, fields) => {
+          applyPostInsertMetadata(db, memoryId, fields);
+          trackChunkedInsert(chunkedInsertTracker, memoryId, fields as Record<string, unknown>);
+        },
+      });
+
+      if (
+        peResult.supersededId != null
+        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
+      ) {
+        try {
+          const finalizeChunkedPeTx = database.transaction(() => {
+            if (chunkedResult.id > 0) {
+              recordCrossPathPeSupersedes(
+                database,
+                chunkedResult.id,
+                peResult.supersededId,
+                samePathExisting?.id ?? null,
+                peResult.decision.reason,
+              );
+            }
+            if (peResult.supersededId != null && !markMemorySuperseded(peResult.supersededId)) {
+              throw new Error(`Failed to mark predecessor ${peResult.supersededId} as superseded`);
+            }
+          });
+          finalizeChunkedPeTx.immediate();
+        } catch (supersedeErr: unknown) {
+          const cleanup = rollbackCreatedChunkTree(database, chunkedInsertTracker);
+          const cleanupSuffix = cleanup.cleaned
+            ? ' Rolled back the newly created chunk tree.'
+            : cleanup.attempted && cleanup.error
+              ? ` Cleanup failed: ${cleanup.error}`
+              : '';
+          return {
+            ...chunkedResult,
+            status: 'error',
+            error: `Failed to mark predecessor ${peResult.supersededId} as superseded after chunked indexing: ${getAtomicSaveErrorMessage(supersedeErr)}`,
+            message: `Chunked indexing succeeded, but predecessor ${peResult.supersededId} could not be superseded.${cleanupSuffix}`,
+          };
+        }
+      }
+
+      if (
+        shouldPersistFinalizedFile
+        && finalizedFileContent
+        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
+      ) {
+        try {
+          await finalizeMemoryFileContent(routedFilePath, finalizedFileContent);
+        } catch (finalizeErr: unknown) {
+          finalizeWarning = `Quality-loop file persistence failed after chunked indexing: ${finalizeErr instanceof Error ? finalizeErr.message : String(finalizeErr)}`;
+          console.warn(`[memory-save] ${finalizeWarning}`);
+        }
+      }
+
+      if (peResult.decision.action !== 'CREATE') {
+        chunkedResult.pe_action = peResult.decision.action;
+        chunkedResult.pe_reason = peResult.decision.reason;
+      }
+      if (peResult.supersededId != null) {
+        chunkedResult.superseded_id = peResult.supersededId;
+      }
+      if (Array.isArray(reconResult.warnings) && reconResult.warnings.length > 0) {
+        const existingWarnings = Array.isArray(chunkedResult.warnings)
+          ? [...(chunkedResult.warnings as string[])]
+          : [];
+        chunkedResult.warnings = [...existingWarnings, ...reconResult.warnings];
+      }
+      if (reconResult.assistiveRecommendation) {
+        reconResult.assistiveRecommendation.advisory_stale = true;
+        chunkedResult.assistiveRecommendation = reconResult.assistiveRecommendation;
+      }
+      chunkedResult.saveTimeReconsolidation = reconResult.saveTimeReconsolidation;
+
+      return appendResultWarning(chunkedResult, finalizeWarning);
+    }
+
+    // A4 FIX: Wrap dedup-check + insert in a single transaction for DB-level
+    // atomicity. Uses database.transaction() so inner transaction() calls in
+    // createMemoryRecord / index_memory correctly nest via SAVEPOINTs instead
+    // of failing with "cannot start a transaction within a transaction".
+    // withSpecFolderLock handles in-process serialization; this transaction
+    // provides defense-in-depth against multi-process races.
+    let existing: { id: number; content_hash: string } | undefined;
+
+    // C5-1: Content-hash dedup check BEFORE the write transaction — reads are
+    // safe outside the transaction and this avoids an early-return inside the
+    // transaction callback (which would COMMIT an empty tx unnecessarily).
+    const dupResult = checkContentHashDedup(
+      database,
+      routedParsed,
+      force,
+      validation.warnings,
+      samePathDedupExclusion,
+      scope,
+    );
+    if (dupResult) {
+      await repairReplayEnrichmentIfNeeded(database, dupResult.id, routedParsed);
+      return dupResult;
+    }
+
+    const requestedScope = getRequestedScope(scope);
+    const writeTransaction = database.transaction((): number => {
+      if (!force && isSaveReconsolidationEnabled() && indexingOrigin !== 'scan' && embedding) {
+        const complementRecheck = findScopeFilteredCandidates({
+          database,
+          embedding,
+          parsed: routedParsed,
+          requestedScope,
+          limit: 1,
+          minSimilarity: 50,
+          overfetchMultiplier: 3,
+        });
+        const topCandidate = complementRecheck.candidates.find((candidate) => candidate.id !== samePathExisting?.id);
+        if (topCandidate) {
+          const transactionalAction = determineAction(topCandidate.similarity);
+          if (transactionalAction !== 'complement') {
+            throw new SaveTimeReconsolidationAbort({
+              status: 'failed',
+              reason: 'candidate_changed',
+              warnings: [
+                `Transactional reconsolidation blocked create after ${transactionalAction} candidate #${topCandidate.id} appeared before commit.`,
+              ],
+              persistedState: {
+                kind: transactionalAction,
+                candidateMemoryIds: [topCandidate.id],
+              },
+            });
+          }
+        }
+      }
+
+      // CREATE NEW MEMORY
+      existing = findSamePathExistingMemory(
+        database,
+        routedParsed.specFolder,
+        canonicalFilePath,
+        routedFilePath,
+        scope,
+        recordIdentity,
+      ) as { id: number; content_hash: string } | undefined;
+
+      // A same-path re-index whose file content changed appends a new version
+      // row; the prior row for this logical key is retired below so re-indexing
+      // replaces in place rather than leaving a deprecated duplicate. Scoped to
+      // this branch only — PE-gate / reconsolidation lineage (createMemoryRecord)
+      // is intentionally preserved.
+      const samePathSupersededPredecessorId =
+        existing && !hashesMatch(routedParsed.content, existing.content_hash) ? existing.id : null;
+
+      // Retire the same-path predecessor before inserting the new version so the
+      // active-row uniqueness guard holds at insert time. Deprecating (not deleting)
+      // keeps the predecessor row, its lineage chain, and its history intact while
+      // removing it from the active-row guard; the new version supersedes it in place.
+      const reindexTierCarry = samePathSupersededPredecessorId != null
+        ? retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId)
+        : null;
+
+      const memoryId = samePathSupersededPredecessorId != null
+        ? createAppendOnlyMemoryRecord({
+            database,
+            parsed: routedParsed,
+            filePath: routedFilePath,
+            embedding,
+            embeddingFailureReason,
+            predecessorMemoryId: samePathSupersededPredecessorId,
+            anchorId: recordIdentity.targetAnchorId,
+            tenantId: scope.tenantId,
+            userId: scope.userId,
+            agentId: scope.agentId,
+            sessionId: scope.sessionId,
+            actor: 'mcp:memory_save',
+          })
+        : createMemoryRecord(
+            database,
+            routedParsed,
+            routedFilePath,
+            embedding,
+            embeddingFailureReason,
+            peResult.decision,
+            scope,
+            recordIdentity,
+            writeProvenance,
+          );
+
+      if (samePathSupersededPredecessorId != null) {
+        applyWriteProvenance(database, memoryId, writeProvenance);
+      }
+
+      // A human's tier decision on the retired predecessor carries forward to the
+      // reindexed successor. Re-stamp after provenance so the manual tier and its
+      // human source-kind survive the reindex instead of resetting to the default.
+      if (reindexTierCarry != null) {
+        database
+          .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+          .run(normalizeTier(reindexTierCarry.importanceTier), memoryId);
+        persistSourceKind(database, memoryId, reindexTierCarry.sourceKind as SourceKind);
+      }
+
+      // F1.01 fix: Mark superseded memory AFTER new record creation, inside
+      // the same transaction, so a creation failure rolls back both operations.
+      if (peResult.supersededId != null) {
+        const supersededOk = markMemorySuperseded(peResult.supersededId);
+        // C5-3: Supersede failure should abort the transaction
+        if (!supersededOk) {
+          throw new Error(`Failed to mark predecessor ${peResult.supersededId} as superseded`);
+        }
+      }
+
+      recordLineageVersion(database, {
+        memoryId,
+        predecessorMemoryId: samePathSupersededPredecessorId,
+        actor: 'mcp:memory_save',
+        transitionEvent: samePathSupersededPredecessorId != null ? 'SUPERSEDE' : 'CREATE',
+      });
+      markEnrichmentPending(database, memoryId, POST_INSERT_ENRICHMENT_VERSION);
+
+      return memoryId;
+    });
+
+    let id: number;
+    try {
+      id = writeTransaction.immediate();
+    } catch (error: unknown) {
+      if (error instanceof SaveTimeReconsolidationAbort) {
+        return buildSaveTimeReconsolidationFailureResult({
+          parsed: routedParsed,
+          validation,
+          reconWarnings: reconResult.warnings,
+          failure: error.result,
+          message: `Save aborted before commit: ${error.result.reason}`,
+        });
+      }
+      throw error;
+    }
+
+    if (shouldPersistFinalizedFile && finalizedFileContent) {
+      try {
+        await finalizeMemoryFileContent(routedFilePath, finalizedFileContent);
+      } catch (finalizeErr: unknown) {
+        finalizeWarning = `[file-persistence-failed] Quality-loop file persistence failed after DB commit: ${finalizeErr instanceof Error ? finalizeErr.message : String(finalizeErr)}. DB row committed — manual file recovery may be needed.`;
+        console.warn(`[memory-save] ${finalizeWarning}`);
+      }
+    }
+
+    // Data integrity: clean stale auto-entities before re-extraction on update
+    // When a memory is superseded or replaced in-place, purge the predecessor's
+    // auto-entity rows so the entity catalog reflects only active content.
+    if (existing && existing.id !== id) {
+      try {
+        refreshAutoEntitiesForMemory(database, existing.id, []);
+        console.error(`[memory-save] Cleaned stale auto-entities for superseded memory #${existing.id}`);
+      } catch (entityCleanupErr: unknown) {
+        // Entity cleanup failure must not block save — log and continue
+        console.warn(`[memory-save] Auto-entity cleanup for #${existing.id} failed:`, entityCleanupErr instanceof Error ? entityCleanupErr.message : String(entityCleanupErr));
+      }
+    }
+    if (peResult.supersededId != null && peResult.supersededId !== existing?.id) {
+      try {
+        refreshAutoEntitiesForMemory(database, peResult.supersededId, []);
+        console.error(`[memory-save] Cleaned stale auto-entities for PE-superseded memory #${peResult.supersededId}`);
+      } catch (entityCleanupErr: unknown) {
+        console.warn(`[memory-save] Auto-entity cleanup for PE #${peResult.supersededId} failed:`, entityCleanupErr instanceof Error ? entityCleanupErr.message : String(entityCleanupErr));
+      }
+    }
+
+    if (embedding) {
+      try {
+        recordNearDuplicateCheck({
+          database,
+          memoryId: id,
+          specFolder: routedParsed.specFolder,
+          contentHash: routedParsed.contentHash,
+          embedding,
+          scope,
+        });
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[memory-save] Near-duplicate advisory skipped: ${message}`);
+      }
+    }
+
+    // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking.
+    // When enrichment is enabled and async (default), run the bundle in the background so the
+    // save returns immediately. The row was marked enrichment-pending inside the commit
+    // transaction (markEnrichmentPending), so a crash before the background run completes is
+    // recovered by the pending-marker replay/backfill path. SPECKIT_POST_INSERT_ENRICHMENT_SYNC
+    // forces synchronous execution when a caller needs the graph fresh in the same response.
+    let postInsertEnrichmentResult: PostInsertEnrichmentResult;
+    if (shouldRunPostInsertEnrichment(plannerMode) && isPostInsertEnrichmentAsync()) {
+      scheduleBackgroundEnrichment(id, routedParsed);
+      postInsertEnrichmentResult = buildDeferredEnrichmentResult('async-background');
+    } else {
+      postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(
+        database,
+        id,
+        routedParsed,
+        { plannerMode },
+      );
+      recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+      emitPostInsertEnrichmentSubscribers(id, 'post-insert-enrichment');
+    }
+    const { causalLinksResult, enrichmentStatus, executionStatus } = postInsertEnrichmentResult;
+
+    if (reconResult.assistiveRecommendation) {
+      reconResult.assistiveRecommendation.advisory_stale = true;
+      if (reconResult.saveTimeReconsolidation.persistedState) {
+        reconResult.saveTimeReconsolidation.persistedState.advisory_stale = true;
+      }
+    }
+
+    // BUILD RESULT
+    return appendResultWarning(buildIndexResult({
+      database,
+      existing,
+      embeddingStatus,
+      id,
+      parsed: routedParsed,
+      validation,
+      reconWarnings: reconResult.warnings,
+      peDecision: peResult.decision,
+      embeddingFailureReason,
+      asyncEmbedding,
+      causalLinksResult,
+      enrichmentStatus,
+      enrichmentExecutionStatus: executionStatus,
+      saveTimeReconsolidation: reconResult.saveTimeReconsolidation,
+      filePath: routedFilePath,
+      routeCategory: routing.routeAs ?? recordIdentity.routeAs ?? undefined,
+      mergeMode: routing.mergeModeHint,
+      targetDocPath: routedFilePath,
+      targetAnchorId: recordIdentity.targetAnchorId,
+    }), finalizeWarning);
+  };
+
+  if (specFolderLockAlreadyHeld) {
+    return runWithinSpecFolderLock();
+  }
+
+  return withSpecFolderLock(prepared.parsed.specFolder, runWithinSpecFolderLock);
+}
+
+/* --- 8. INDEX MEMORY FILE --- */
+
+type BaseIndexMemoryFileOptions = {
+  force?: boolean;
+  parsedOverride?: ReturnType<typeof memoryParser.parseMemoryFile> | null;
+  asyncEmbedding?: boolean;
+  plannerMode?: AtomicSaveParams['plannerMode'];
+  scope?: MemoryScopeMatch;
+  qualityGateMode?: 'enforce' | 'warn-only';
+  routing?: RoutedSaveOptions;
+  provenance?: WriteProvenanceContext;
+  // Validated governance decision threaded from the bulk scan/ingest paths so
+  // their indexed rows carry the same provenance/retention/scope metadata the
+  // direct memory_save path applies post-insert. Omitted for ungoverned saves.
+  governance?: GovernanceDecision;
+};
+
+type IndexMemoryFileOptions = BaseIndexMemoryFileOptions & {
+  origin?: IndexingOrigin;
+  fromScan?: never;
+};
+
+type LegacyIndexMemoryFileOptions = BaseIndexMemoryFileOptions & {
+  fromScan?: boolean;
+  origin?: never;
+};
+
+/** Parse, validate, and index a memory file with PE gating, FSRS scheduling, and causal links */
+async function indexMemoryFile(
+  filePath: string,
+  {
+    force = false,
+    parsedOverride = null as ReturnType<typeof memoryParser.parseMemoryFile> | null,
+    asyncEmbedding = false,
+    plannerMode,
+    scope = {} as MemoryScopeMatch,
+    qualityGateMode = 'enforce' as 'enforce' | 'warn-only',
+    routing,
+    provenance,
+    governance,
+    ...originOptions
+  }: IndexMemoryFileOptions | LegacyIndexMemoryFileOptions = {},
+): Promise<IndexResult> {
+  // Reuse parsed content when provided by caller to avoid a second parse.
+  const indexingOrigin = resolveIndexingOrigin(originOptions);
+  const parsed = parsedOverride || memoryParser.parseMemoryFile(filePath);
+  const database = requireDb();
+  const prepared = prepareParsedMemoryForIndexing(parsed, database);
+  const validation = prepared.validation;
+  if (!validation.valid) {
+    throw new Error(`Validation failed: ${validation.errors.join(', ')}`);
+  }
+  if (prepared.qualityLoopResult.fixes.length > 0 && prepared.qualityLoopResult.passed && prepared.qualityLoopResult.fixedContent) {
+    console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
+  }
+
+  // When a governance decision is threaded in (bulk scan/ingest), derive the
+  // scope tuple from it so the row is created under the governed scope, matching
+  // how the direct save path seeds saveScope from governanceDecision.normalized.
+  const effectiveScope: MemoryScopeMatch = governance
+    ? {
+        tenantId: governance.normalized.tenantId ?? null,
+        userId: governance.normalized.userId ?? null,
+        agentId: governance.normalized.agentId ?? null,
+        sessionId: governance.normalized.sessionId ?? null,
+      }
+    : scope;
+  const effectiveProvenance: WriteProvenanceContext | undefined = provenance ?? (governance || indexingOrigin === 'scan'
+    ? {
+        provenanceSource: governance?.normalized.provenanceSource || (indexingOrigin === 'scan' ? 'memory_index_scan' : undefined),
+        provenanceActor: governance?.normalized.provenanceActor || (indexingOrigin === 'scan' ? 'system-scan' : undefined),
+        tool: indexingOrigin === 'scan' ? 'memory_index_scan' : 'memory_save',
+      }
+    : undefined);
+
+  const result = await processPreparedMemory(prepared, filePath, {
+    force,
+    asyncEmbedding,
+    plannerMode,
+    origin: indexingOrigin,
+    persistQualityLoopContent: true,
+    refreshFromDiskAfterLock: parsedOverride !== null,
+    scope: effectiveScope,
+    qualityGateMode,
+    routing,
+    provenance: effectiveProvenance,
+  });
+
+  // Apply provenance/retention/deleteAfter metadata post-insert, mirroring the
+  // direct memory_save path so governed bulk/scan/async ingests are not silently
+  // downgraded to ungoverned rows. Only for freshly written rows.
+  if (governance && typeof result.id === 'number' && result.id > 0
+    && result.status !== 'unchanged' && result.status !== 'duplicate') {
+    applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governance));
+  }
+
+  return result;
+}
+
+async function indexMemoryFileFromScan(
+  filePath: string,
+  options: BaseIndexMemoryFileOptions = {},
+): Promise<IndexResult> {
+  return indexMemoryFile(filePath, {
+    ...options,
+    origin: 'scan',
+  });
+}
+
+/* --- 8b. BACKGROUND ENRICHMENT SCHEDULER --- */
+
+// Concurrency cap so a save burst cannot schedule unbounded background enrichment (each run does
+// entity extraction + a summary embedding + graph lifecycle). Excess work queues and drains as
+// slots free.
+const MAX_BACKGROUND_ENRICHMENTS = 4;
+let activeBackgroundEnrichments = 0;
+const backgroundEnrichmentQueue: Array<() => void> = [];
+
+// Set during shutdown BEFORE closeDb. A deferred/queued enrichment run re-resolves the DB handle via
+// requireDb(), which REOPENS a closed connection — so without this fence a run firing during the
+// shutdown drain would reopen the DB and write fresh WAL frames after the TRUNCATE checkpoint, leaving
+// a non-empty WAL at rest and defeating the close durability guarantee. Same hazard the fileWatcher
+// and ingestWorker fences guard against.
+let enrichmentShuttingDown = false;
+
+/**
+ * Fence the background-enrichment scheduler for shutdown: stop accepting/draining work and let any
+ * in-flight run bail before it touches the DB. Synchronous so fatalShutdown can call it in its
+ * pre-close fence block, before any await lets a queued setImmediate run fire. Dropped rows remain
+ * enrichment-pending in the commit transaction and are recovered by the backfill path on next boot.
+ */
+export function shutdownBackgroundEnrichment(): void {
+  enrichmentShuttingDown = true;
+  backgroundEnrichmentQueue.length = 0;
+}
+
+// Bound the OVERFLOW queue, not just concurrency. A sustained live-save flood (saves arriving faster
+// than the 4-wide drain) would otherwise grow the queue — and the parsed payload each entry retains —
+// without bound. On overflow we DROP rather than push: the row is enrichment-pending in the commit
+// transaction, so the backfill path re-enriches it. The counters below make a backed-up or failing
+// scheduler visible through memory_health (otherwise a stuck scheduler is a silent enrichment outage).
+const MAX_QUEUED_ENRICHMENTS = 2000;
+let enrichmentDroppedTotal = 0;
+let enrichmentFailureTotal = 0;
+let enrichmentLastError: string | null = null;
+let enrichmentLastErrorAt: string | null = null;
+let enrichmentSuppressedWarnings = 0;
+
+/** Scheduler observability snapshot for memory_health — counters plus caller-supplied gauges, no DB access. */
+export function getBackgroundEnrichmentStats(pendingByStatus: Record<string, number> = {}): {
+  active: number;
+  queued: number;
+  pending: number;
+  failed: number;
+  max: number;
+  maxQueued: number;
+  droppedTotal: number;
+  failureTotal: number;
+  lastError: string | null;
+  lastErrorAt: string | null;
+} {
+  return {
+    active: activeBackgroundEnrichments,
+    queued: backgroundEnrichmentQueue.length,
+    pending: pendingByStatus.pending ?? 0,
+    failed: pendingByStatus.failed ?? 0,
+    max: MAX_BACKGROUND_ENRICHMENTS,
+    maxQueued: MAX_QUEUED_ENRICHMENTS,
+    droppedTotal: enrichmentDroppedTotal,
+    failureTotal: enrichmentFailureTotal,
+    lastError: enrichmentLastError,
+    lastErrorAt: enrichmentLastErrorAt,
+  };
+}
+
+/**
+ * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
+ * - re-resolves the DB handle when the run starts (covers a recycle before the run begins; a recycle
+ *   mid-run throws on the post-await write and the row falls back to the pending-marker backfill),
+ * - skips rows that were superseded/deprecated before the deferred run starts, so it never
+ *   repopulates purged entity/graph data for an inactive row,
+ * - caps concurrency. The row was marked enrichment-pending inside the commit transaction, so a
+ *   skipped or dropped run is recovered by the pending-marker replay/backfill path.
+ */
+function scheduleBackgroundEnrichment(
+  memoryId: number,
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+): void {
+  if (enrichmentShuttingDown) return; // do not schedule new enrichment work during shutdown
+  // Reserve a slot and schedule on a macrotask. The counter MUST be incremented here, at schedule
+  // time — not inside the deferred callback. If it were bumped inside the callback, a burst (a startup
+  // scan calling this once per row) would race: every call reads the still-zero counter before any
+  // callback runs, all pass the cap, and unbounded setImmediate callbacks pile up that then drain as a
+  // synchronous microtask chain and starve the event loop, so the daemon's IPC accept() never runs.
+  // Re-arming dequeued work through setImmediate (rather than calling it inline from the finally)
+  // returns control to the poll phase between runs.
+  const start = (task: () => void): void => {
+    activeBackgroundEnrichments++;
+    // setImmediate (a MACROTASK boundary) is required here, not queueMicrotask: only a macrotask hands
+    // control back to libuv's poll phase, so the IPC accept() runs between enrichment runs.
+    setImmediate(task);
+  };
+  const run = (): void => {
+    void (async () => {
+      try {
+        if (enrichmentShuttingDown) return; // fenced before this run started — do not reopen the DB during shutdown
+        let db: ReturnType<typeof requireDb>;
+        try {
+          db = requireDb();
+        } catch {
+          return; // DB unavailable (e.g. recycle in flight) — row stays pending for backfill repair
+        }
+        const row = db
+          .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
+          .get(memoryId) as { importance_tier?: string } | undefined;
+        if (!row || row.importance_tier === 'deprecated' || row.importance_tier === 'archived') {
+          return; // superseded/removed/archived since the save — do not repopulate stale graph/entity data (mirrors the search layer's inactive-tier exclusion)
+        }
+        const result = await runPostInsertEnrichment(db, memoryId, parsed);
+        if (enrichmentShuttingDown) return; // shutdown began during the embed await — do not write after the close checkpoint
+        recordEnrichmentResult(db, memoryId, result);
+        emitPostInsertEnrichmentSubscribers(memoryId, 'post-insert-enrichment-async');
+      } catch (bgErr: unknown) {
+        enrichmentFailureTotal++;
+        enrichmentLastError = bgErr instanceof Error ? bgErr.message : String(bgErr);
+        enrichmentLastErrorAt = new Date().toISOString();
+        // Rate-limit the per-failure warning so a systemic failure burst cannot spam the log; the
+        // running total + last error stay available via memory_health. Log the first few, then suppress
+        // and fold a suppressed-count summary into the next emitted line.
+        if (enrichmentFailureTotal <= 5 || enrichmentFailureTotal % 100 === 0) {
+          const suppressed = enrichmentSuppressedWarnings;
+          enrichmentSuppressedWarnings = 0;
+          console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${enrichmentLastError} (total=${enrichmentFailureTotal}${suppressed ? `, ${suppressed} suppressed since last log` : ''})`);
+        } else {
+          enrichmentSuppressedWarnings++;
+        }
+      } finally {
+        activeBackgroundEnrichments--;
+        if (!enrichmentShuttingDown) {
+          const next = backgroundEnrichmentQueue.shift();
+          if (next) start(next);
+        }
+      }
+    })();
+  };
+  if (activeBackgroundEnrichments < MAX_BACKGROUND_ENRICHMENTS) {
+    start(run);
+  } else if (backgroundEnrichmentQueue.length < MAX_QUEUED_ENRICHMENTS) {
+    backgroundEnrichmentQueue.push(run);
+  } else {
+    // Overflow: drop rather than grow the queue (and its retained parsed payloads) without bound under
+    // a sustained save flood. The row is enrichment-pending in the commit transaction, so the backfill
+    // path re-enriches it later. Surfaced via the dropped counter in memory_health.
+    enrichmentDroppedTotal++;
+  }
+}
+
+/* --- 9. MEMORY SAVE HANDLER --- */
+
+/** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
+async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
+  // Top-level classify-catch: any throw that escapes the inner handler (pre-index path/DB
+  // validation, governance runtime setup, etc.) is mapped to a specific code instead of the
+  // generic E081 catch-all the dispatcher would otherwise apply. A thrown error that already
+  // carries a code (e.g. preflight.PreflightError) keeps it.
+  const requestId = randomUUID();
+  try {
+    return await handleMemorySaveInner(args, requestId);
+  } catch (error: unknown) {
+    if (error instanceof VRuleUnavailableError) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: error.message,
+        code: 'E_RUNTIME',
+        details: { requestId },
+        recovery: {
+          hint: 'Build the Spec Kit scripts workspace and retry the save.',
+          actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
+    const message = error instanceof Error ? error.message : String(error);
+    const existingCode = (error as { code?: string }).code;
+    const code = typeof existingCode === 'string' && existingCode.length > 0
+      ? existingCode
+      : classifySaveErrorCode(message);
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: message,
+      code,
+      details: { requestId, ...extractSaveErrorDetails(message) },
+      recovery: {
+        hint: 'Inspect the error message for the specific failure; transient DB locks are usually retryable.',
+        actions: ['Resolve the reported cause', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
+  }
+}
+
+async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_save');
+
+  const restoreBarrier = checkpoints.getRestoreBarrierStatus();
+
+  if (restoreBarrier) {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: restoreBarrier.message,
+      code: restoreBarrier.code,
+      details: {
+        requestId,
+      },
+      recovery: {
+        hint: 'Retry memory_save after checkpoint_restore maintenance completes.',
+        actions: ['Wait for the restore to finish', 'Retry the save request'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  const {
+    filePath: file_path,
+    force = false,
+    dryRun = false,
+    plannerMode: requestedPlannerMode,
+    skipPreflight = false,
+    asyncEmbedding = false,
+    routeAs,
+    mergeModeHint,
+    targetAnchorId,
+    tenantId,
+    userId,
+    agentId,
+    sessionId,
+    provenanceSource,
+    provenanceActor,
+    governedAt,
+    retentionPolicy,
+    deleteAfter,
+  } = args;
+  const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
+  const shouldPlanCanonicalSave = !dryRun && Boolean(routeAs || mergeModeHint || targetAnchorId);
+
+  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation).
+  // Return a classified validation error instead of a bare throw, which the dispatcher would
+  // otherwise flatten into the generic "unexpected error" (E081).
+  if (!file_path || typeof file_path !== 'string') {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: 'filePath is required and must be a string',
+      code: 'E089',
+      details: { requestId },
+      recovery: {
+        hint: 'Pass an absolute path to a canonical spec document or constitutional memory.',
+        actions: ['Provide a non-empty filePath string', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  await checkDatabaseUpdated();
+
+  const validatedPath: string = validateFilePathLocal(file_path);
+
+  // Fail fast with a clear message when the target file does not exist, before any
+  // db processing flattens it into the generic "unexpected error" (E081). Probing
+  // the validated path (not the raw caller path) avoids a path-existence oracle on
+  // unvalidated input.
+  if (!fs.existsSync(validatedPath)) {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: `File not found: ${validatedPath}`,
+      code: 'E089',
+      details: { requestId, filePath: validatedPath },
+      recovery: {
+        hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
+        actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  const canonicalValidatedPath = resolveCanonicalPath(validatedPath);
+  const database = requireDb();
+
+  if (!shouldIndexForMemory(canonicalValidatedPath)) {
+    return createIndexScopeExcludedResponse(requestId, canonicalValidatedPath, validatedPath);
+  }
+
+  // A non-canonical target (e.g. a scratch file outside specs/**) returns a clear
+  // validation error rather than a bare throw the dispatcher would surface as E081.
+  if (!memoryParser.isMemoryFile(validatedPath)) {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, review-report.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
+      code: 'E089',
+      details: { requestId, filePath: validatedPath },
+      recovery: {
+        hint: 'Save a canonical spec document or constitutional memory; scratch files outside specs/** are not indexable.',
+        actions: ['Move the content into a spec folder under specs/** or .opencode/specs/**', 'Retry memory_save with the canonical path'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  // Fail fast with a clear message when a spec doc's folder lacks both structural
+  // metadata files, instead of the generic save "unexpected error" (E081).
+  if (path.basename(canonicalValidatedPath) !== 'description.json'
+    && path.basename(canonicalValidatedPath) !== 'graph-metadata.json'
+    && !canonicalValidatedPath.includes('/constitutional/')) {
+    const specFolderDir = path.dirname(canonicalValidatedPath);
+    const missingMetadata = ['description.json', 'graph-metadata.json']
+      .filter((name) => !fs.existsSync(path.join(specFolderDir, name)));
+    if (missingMetadata.length === 2) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: `Spec folder is missing required metadata (${missingMetadata.join(', ')}): ${specFolderDir}`,
+        code: 'E089',
+        details: { requestId, filePath: canonicalValidatedPath, missingMetadata },
+        recovery: {
+          hint: 'Generate the spec-folder metadata before indexing its other documents.',
+          actions: ['Run generate-context.js / generate-description.js for this spec folder', 'Then retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
+  }
+
+  if (typeof database.exec === 'function') {
+    ensureGovernanceRuntime(database);
+  }
+
+  const governanceDecision = validateGovernedIngest({
+    tenantId,
+    userId,
+    agentId,
+    sessionId,
+    provenanceSource,
+    provenanceActor,
+    governedAt,
+    retentionPolicy,
+    deleteAfter,
+  });
+
+  if (!governanceDecision.allowed) {
+    recordGovernanceAudit(database, {
+      action: 'memory_save',
+      decision: 'deny',
+      tenantId,
+      userId,
+      agentId,
+      sessionId,
+      reason: governanceDecision.reason ?? 'governance_rejected',
+      metadata: { issues: governanceDecision.issues },
+    });
+    // Surface the governance rejection with its own code + issue list instead of a bare
+    // throw that the dispatcher would report as the generic E081 "unexpected error".
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: `Governed ingest rejected: ${governanceDecision.issues.join('; ')}`,
+      code: 'E085',
+      details: { requestId, issues: governanceDecision.issues },
+      recovery: {
+        hint: 'Supply the required governed-ingest provenance/scope fields and retry.',
+        actions: ['Provide the missing tenant/provenance/actor metadata', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  // Shared dry-run response builder — both the skipPreflight and post-preflight
+  // dry-run branches delegate here to prevent near-duplicate envelope drift.
+  async function buildDryRunResponse(
+    preparedDryRun: PreparedParsedMemory,
+    parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+    preflightValidation: {
+      skipped: boolean;
+      errors: preflight.PreflightIssue[];
+      warnings: preflight.PreflightResult['warnings'];
+      details: Record<string, unknown>;
+      wouldPass: boolean;
+    },
+  ) {
+    const templateContractPass = preparedDryRun.templateContract.valid
+      || shouldBypassTemplateContract(
+        preparedDryRun.sourceClassification,
+        preparedDryRun.sufficiencyResult,
+        preparedDryRun.templateContract,
+        preparedDryRun.specDocHealth,
+        preparedDryRun.parsed.documentType,
+      );
+    const bypassMode = shouldBypassTemplateContract(
+      preparedDryRun.sourceClassification,
+      preparedDryRun.sufficiencyResult,
+      preparedDryRun.templateContract,
+      preparedDryRun.specDocHealth,
+      preparedDryRun.parsed.documentType,
+    );
+    const { createMCPSuccessResponse } = await import('../lib/response/envelope.js');
+    const dryRunSummary = !preflightValidation.wouldPass
+      ? `Pre-flight validation failed: ${preflightValidation.errors.length} error(s)`
+      : bypassMode
+        ? 'Dry-run would pass in manual-fallback mode with deferred indexing.'
+        : buildDryRunSummary(
+            preparedDryRun.sufficiencyResult,
+            preparedDryRun.qualityLoopResult,
+            preparedDryRun.templateContract,
+          );
+
+    const wouldPass = preflightValidation.wouldPass
+      && preparedDryRun.validation.valid
+      && preparedDryRun.qualityLoopResult.rejected !== true
+      && templateContractPass
+      && preparedDryRun.sufficiencyResult.pass;
+
+    const hints: string[] = !preflightValidation.wouldPass
+      ? ['Fix validation errors before saving', 'Use skipPreflight: true to bypass validation']
+      : templateContractPass && preparedDryRun.sufficiencyResult.pass
+        ? [
+            'Dry-run complete - no changes made',
+            ...(preflightValidation.skipped ? ['Pre-flight checks were skipped because skipPreflight=true'] : []),
+            ...(bypassMode
+              ? ['Manual-fallback mode would bypass the strict memory template contract for this save']
+              : []),
+          ]
+        : [
+            'Dry-run complete - no changes made',
+            ...(preflightValidation.skipped ? ['Pre-flight checks were skipped because skipPreflight=true'] : []),
+            ...(!preparedDryRun.templateContract.valid
+              ? ['Rendered content must match the memory template contract before indexing']
+              : []),
+            'Not enough context was available to save a durable memory',
+            ...(!preflightValidation.skipped
+              ? ['Add concrete file, tool, decision, blocker, next action, or outcome evidence and retry']
+              : []),
+          ];
+
+    return createMCPSuccessResponse({
+      tool: 'memory_save',
+      summary: dryRunSummary,
+      data: {
+        status: 'dry_run',
+        would_pass: wouldPass,
+        file_path: validatedPath,
+        spec_folder: parsed.specFolder,
+        title: parsed.title,
+        validation: preflightValidation.skipped
+          ? { skipped: true, errors: [], warnings: [], details: { skipped: true } }
+          : { errors: preflightValidation.errors, warnings: preflightValidation.warnings, details: preflightValidation.details },
+        qualityLoop: {
+          passed: preparedDryRun.qualityLoopResult.passed,
+          rejected: preparedDryRun.qualityLoopResult.rejected,
+          fixes: preparedDryRun.qualityLoopResult.fixes,
+          rejectionReason: preparedDryRun.qualityLoopResult.rejectionReason,
+        },
+        templateContract: preparedDryRun.templateContract,
+        sufficiency: preparedDryRun.sufficiencyResult,
+        specDocHealth: preparedDryRun.specDocHealth,
+        rejectionCode: preparedDryRun.sufficiencyResult.pass ? undefined : MEMORY_SUFFICIENCY_REJECTION_CODE,
+        message: dryRunSummary,
+      },
+      hints,
+    });
+  }
+
+  // DryRun must remain non-mutating even when preflight is explicitly skipped.
+  if (dryRun && skipPreflight) {
+    const parsedForDryRun = memoryParser.parseMemoryFile(validatedPath);
+    const preparedDryRun = prepareParsedMemoryForIndexing(parsedForDryRun, database, {
+      emitEvalMetrics: false,
+      qualityLoopMode: 'advisory',
+    });
+    return buildDryRunResponse(preparedDryRun, parsedForDryRun, {
+      skipped: true, errors: [], warnings: [], details: {}, wouldPass: true,
+    });
+  }
+
+  const saveScope: MemoryScopeMatch = {
+    tenantId: governanceDecision.normalized.tenantId,
+    userId: governanceDecision.normalized.userId ?? null,
+    agentId: governanceDecision.normalized.agentId ?? null,
+    sessionId: governanceDecision.normalized.sessionId,
+  };
+  let idempotencyKey: IdempotencyReceiptKey | null = null;
+
+  // PRE-FLIGHT VALIDATION
+  let parsedForPreflight: ReturnType<typeof memoryParser.parseMemoryFile> | null = null;
+  if (!skipPreflight) {
+    parsedForPreflight = memoryParser.parseMemoryFile(validatedPath);
+
+    const preflightResult = preflight.runPreflight(
+      {
+        content: parsedForPreflight.content,
+        file_path: validatedPath,
+        spec_folder: parsedForPreflight.specFolder,
+        database: database,
+        find_similar: findSimilarMemories as Parameters<typeof preflight.runPreflight>[0]['find_similar'],
+        tenantId: saveScope.tenantId ?? undefined,
+        userId: saveScope.userId ?? undefined,
+        agentId: saveScope.agentId ?? undefined,
+      },
+      {
+        dry_run: dryRun,
+        check_anchors: true,
+        check_duplicates: !force,
+        check_similar: false,
+        check_tokens: true,
+        check_size: true,
+        strict_anchors: false,
+      }
+    );
+
+    if (dryRun) {
+      let preparedDryRun: PreparedParsedMemory;
+      try {
+        preparedDryRun = prepareParsedMemoryForIndexing(parsedForPreflight, database, {
+          emitEvalMetrics: false,
+          qualityLoopMode: 'advisory',
+        });
+      } catch (error: unknown) {
+        if (error instanceof VRuleUnavailableError) {
+          return createMCPErrorResponse({
+            tool: 'memory_save',
+            error: error.message,
+            code: 'E_RUNTIME',
+            details: { requestId },
+            recovery: {
+              hint: 'Build the Spec Kit scripts workspace and retry the save.',
+              actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+              severity: 'warning',
+            },
+          });
+        }
+        // Classify dry-run preparation failures so even validation-only runs surface the
+        // specific cause instead of the generic E081 catch-all at the dispatcher.
+        const dryRunErrorMessage = error instanceof Error ? error.message : String(error);
+        return createMCPErrorResponse({
+          tool: 'memory_save',
+          error: dryRunErrorMessage,
+          code: classifySaveErrorCode(dryRunErrorMessage),
+          details: { requestId, ...extractSaveErrorDetails(dryRunErrorMessage) },
+          recovery: {
+            hint: 'Inspect the error message for the specific dry-run preparation failure.',
+            actions: ['Resolve the reported cause', 'Retry memory_save'],
+            severity: 'warning',
+          },
+        });
+      }
+      return buildDryRunResponse(preparedDryRun, parsedForPreflight, {
+        skipped: false,
+        errors: preflightResult.errors,
+        warnings: preflightResult.warnings,
+        details: preflightResult.details,
+        wouldPass: preflightResult.dry_run_would_pass ?? preflightResult.pass,
+      });
+    }
+
+    if (!preflightResult.pass) {
+      if (shouldPlanCanonicalSave) {
+        return buildPlannerResponse({
+          planner: {
+            filePath: validatedPath,
+            specFolder: parsedForPreflight.specFolder,
+            title: parsedForPreflight.title ?? path.basename(validatedPath),
+            status: 'blocked',
+            message: 'Planner found blocker(s) during pre-flight validation.',
+            plannerMode: 'plan-only',
+            routeTarget: serializePlannerRouteTarget({
+              routeCategory: routeAs ?? 'drop',
+              targetDocPath: validatedPath,
+              targetAnchorId: targetAnchorId ?? null,
+              mergeMode: mergeModeHint,
+            }),
+            proposedEdits: [],
+            blockers: preflightResult.errors.map((entry: string | { message: string; code?: string }) =>
+              serializePlannerBlocker(buildPlannerBlocker({
+                code: typeof entry === 'string' ? 'PREFLIGHT_BLOCKER' : (entry.code ?? 'PREFLIGHT_BLOCKER'),
+                message: typeof entry === 'string' ? entry : entry.message,
+                routeCategory: routeAs ?? undefined,
+                targetDocPath: validatedPath,
+                targetAnchorId: targetAnchorId ?? null,
+              }))
+            ),
+            advisories: preflightResult.warnings.map((entry: string | { message: string }) =>
+              serializePlannerAdvisory(buildPlannerAdvisory({
+                code: 'PREFLIGHT_WARNING',
+                message: typeof entry === 'string' ? entry : entry.message,
+                routeCategory: routeAs ?? undefined,
+                targetDocPath: validatedPath,
+                targetAnchorId: targetAnchorId ?? null,
+              }))
+            ),
+            followUpActions: [
+              serializePlannerFollowUpAction({
+                action: 'apply',
+                title: 'Retry with full-auto after fixing pre-flight blockers',
+                description: 'Fix the reported blockers, then request explicit full-auto mode.',
+                args: {
+                  filePath: validatedPath,
+                  plannerMode: 'full-auto',
+                  ...(routeAs ? { routeAs } : {}),
+                  ...(mergeModeHint ? { mergeModeHint } : {}),
+                  ...(targetAnchorId ? { targetAnchorId } : {}),
+                },
+              }),
+            ],
+          },
+        });
+      }
+
+      const errorMessages = preflightResult.errors.map((e: string | { message: string }) =>
+        typeof e === 'string' ? e : e.message
+      ).join('; ');
+
+      // Use the actual error code from the
+      // First validation error instead of hardcoding ANCHOR_FORMAT_INVALID.
+      const firstError = preflightResult.errors[0];
+      const errorCode = (typeof firstError === 'object' && firstError?.code)
+        ? firstError.code
+        : preflight.PreflightErrorCodes.ANCHOR_FORMAT_INVALID;
+      throw new preflight.PreflightError(
+        errorCode,
+        `Pre-flight validation failed: ${errorMessages}`,
+        {
+          errors: preflightResult.errors,
+          warnings: preflightResult.warnings,
+          recoverable: true,
+          suggestion: 'Fix the validation errors and retry, or use skipPreflight=true to bypass',
+        }
+      );
+    }
+
+    if (preflightResult.warnings.length > 0) {
+      console.warn(`[preflight] ${validatedPath}: ${preflightResult.warnings.length} warning(s)`);
+      preflightResult.warnings.forEach((w: string | { message: string }) => {
+        const msg = typeof w === 'string' ? w : w.message;
+        console.warn(`[preflight]   - ${msg}`);
+      });
+    }
+  }
+
+  if (!shouldPlanCanonicalSave && isMemoryIdempotencyEnabled()) {
+    try {
+      const parsedForIdempotency = parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath);
+      // The compared payload IS the fingerprint object: both lookup inputs
+      // below point at this same idempotencySemantics value, so payloadHash
+      // always equals requestFingerprintHash and the receiptKey is derived from
+      // it. Consequence: distinct logical requests always produce distinct
+      // keys, so the same-key/different-payload 'conflict' status can never fire
+      // from this caller (a force-flip yields a key MISS, not a conflict). The
+      // conflict branch below is fail-safe defense-in-depth, not active
+      // protection. To make conflicts detectable, the payload would have to
+      // carry MORE than the key material (e.g. execution-mode flags); it
+      // deliberately does not, so a benign flag flip cannot become a false
+      // hard conflict.
+      const idempotencySemantics = {
+        filePath: canonicalValidatedPath,
+        contentHash: parsedForIdempotency.contentHash,
+        routeAs: routeAs ?? null,
+        mergeModeHint: mergeModeHint ?? null,
+        targetAnchorId: targetAnchorId ?? null,
+        scope: saveScope,
+        // A force-flipped retry is a DIFFERENT logical request: keeping force in
+        // the key material makes it a distinct key (a clean MISS that re-runs),
+        // never a collision with the non-forced receipt.
+        force: force === true,
+      };
+      const lookup = lookupIdempotencyReceipt(database, {
+        operation: 'memory_save',
+        contentHash: parsedForIdempotency.contentHash,
+        requestFingerprint: idempotencySemantics,
+        payload: idempotencySemantics,
+      });
+      idempotencyKey = lookup.key;
+      if (lookup.status === 'replay') {
+        // A receipt is a replay cache, not proof the cached response still
+        // describes the live state. After an A->B->A revert the receipt for A
+        // is intact but the active row now holds B (or, after deletion, a
+        // superseded row), so replaying A's old response would diverge from
+        // the index. Honor the replay ONLY when the active row for this logical
+        // identity still carries the receipt's content_hash AND is the same row
+        // the cached response reports. Content alone is insufficient: a planner
+        // re-create of identical content (the planner branch skips this whole
+        // block and never refreshes the receipt) produces a NEW id, so a
+        // content-only match would replay a response naming a deleted id and
+        // strand a follow-up update by that id. Mirror the handler's own
+        // active-row identity (findSamePathExistingMemory) and exclude retired
+        // tiers so a deprecated/archived predecessor cannot satisfy the match.
+        const activeRow = database.prepare(`
+          SELECT id, content_hash
+          FROM memory_index
+          WHERE spec_folder = ?
+            AND parent_id IS NULL
+            AND (canonical_file_path = ? OR file_path = ?)
+            AND ${targetAnchorId != null ? 'anchor_id = ?' : 'anchor_id IS NULL'}
+            AND ((? IS NULL AND tenant_id IS NULL) OR tenant_id = ?)
+            AND ((? IS NULL AND user_id IS NULL) OR user_id = ?)
+            AND ((? IS NULL AND agent_id IS NULL) OR agent_id = ?)
+            AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+            AND COALESCE(importance_tier, 'normal') NOT IN ('deprecated', 'archived')
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(
+          parsedForIdempotency.specFolder,
+          canonicalValidatedPath,
+          validatedPath,
+          ...(targetAnchorId != null ? [targetAnchorId] : []),
+          saveScope.tenantId ?? null, saveScope.tenantId ?? null,
+          saveScope.userId ?? null, saveScope.userId ?? null,
+          saveScope.agentId ?? null, saveScope.agentId ?? null,
+          saveScope.sessionId ?? null, saveScope.sessionId ?? null,
+        ) as { id: number; content_hash: string } | undefined;
+
+        const replayMemoryId = extractMemoryIdFromResponse(lookup.response);
+        if (
+          activeRow
+          && hashesMatch(parsedForIdempotency.content, activeRow.content_hash)
+          && hashesMatch(parsedForIdempotency.content, lookup.key.contentHash)
+          && (replayMemoryId == null || activeRow.id === replayMemoryId)
+        ) {
+          return lookup.response;
+        }
+        // Stale receipt for this attempt: drop the cache entry so the
+        // re-indexed write stores its current response (the post-write store
+        // uses ON CONFLICT DO NOTHING and would otherwise lose to and re-serve
+        // the stale receipt), then fall through to the normal save/reindex path.
+        deleteIdempotencyReceiptByKey(database, lookup.key);
+      } else if (lookup.status === 'conflict') {
+        // Unreachable from this caller: payload === requestFingerprint (above),
+        // so a key match implies a payload match and lookup never returns
+        // 'conflict'. Kept as fail-safe defense-in-depth in case the key
+        // material and payload ever diverge.
+        return createMCPErrorResponse({
+          tool: 'memory_save',
+          error: 'Idempotency key conflict: same server-derived key with changed payload',
+          code: 'idempotency_key_conflict',
+          details: { requestId, receiptKey: lookup.key.receiptKey },
+          recovery: {
+            hint: 'Retry the original byte-identical request or submit a fresh logical write.',
+            severity: 'warning',
+          },
+        });
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt lookup skipped: ${message}`);
+      idempotencyKey = null;
+    }
+  }
+
+  if (shouldPlanCanonicalSave) {
+    const plannerResult = await atomicSaveMemory({
+      file_path: validatedPath,
+      content: fs.readFileSync(validatedPath, 'utf8'),
+      plannerMode,
+      ...(routeAs ? { routeAs } : {}),
+      ...(mergeModeHint ? { mergeModeHint } : {}),
+      ...(targetAnchorId ? { targetAnchorId } : {}),
+    }, { force });
+
+    return buildPlannerResponse({
+      planner: {
+        filePath: validatedPath,
+        specFolder: (parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath)).specFolder,
+        title: (parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath)).title ?? path.basename(validatedPath),
+        status: plannerResult.status === 'blocked' ? 'blocked' : 'planned',
+        message: plannerResult.message ?? 'Planner prepared a non-mutating canonical save plan.',
+        plannerMode: 'plan-only',
+        routeTarget: plannerResult.routeTarget ?? serializePlannerRouteTarget({
+          routeCategory: routeAs ?? 'drop',
+          targetDocPath: plannerResult.targetDocPath ?? validatedPath,
+          targetAnchorId: plannerResult.targetAnchorId ?? targetAnchorId ?? null,
+          mergeMode: plannerResult.mergeMode ?? mergeModeHint,
+        }),
+        proposedEdits: plannerResult.proposedEdits ?? [],
+        blockers: plannerResult.blockers ?? [],
+        advisories: plannerResult.advisories ?? [],
+        followUpActions: plannerResult.followUpActions ?? [],
+      },
+    });
+  }
+
+  let result: IndexResult;
+  try {
+    result = await indexMemoryFile(validatedPath, {
+      force,
+      parsedOverride: parsedForPreflight,
+      asyncEmbedding,
+      plannerMode,
+      scope: saveScope,
+      routing: buildRoutedSaveOptions(validatedPath, routeAs, mergeModeHint, targetAnchorId),
+      provenance: (provenanceSource || provenanceActor)
+        ? { provenanceSource, provenanceActor, tool: 'memory_save' }
+        : undefined,
+    });
+  } catch (error: unknown) {
+    if (error instanceof VRuleUnavailableError) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: error.message,
+        code: 'E_RUNTIME',
+        details: { requestId },
+        recovery: {
+          hint: 'Build the Spec Kit scripts workspace and retry the save.',
+          actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
+    // Classify deep save/index failures (sqlite busy, embedding, db error, etc.) so the
+    // response code points at the actual failure mode instead of the generic E081 catch-all.
+    const indexErrorMessage = error instanceof Error ? error.message : String(error);
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: indexErrorMessage,
+      code: classifySaveErrorCode(indexErrorMessage),
+      details: { requestId, ...extractSaveErrorDetails(indexErrorMessage) },
+      recovery: {
+        hint: 'Inspect the error message for the specific failure; transient DB/embedding issues are usually retryable.',
+        actions: ['Resolve the reported cause', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
+  }
+
+  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
+    // Wrap governance metadata in a transaction with rollback on failure.
+    // If governance application fails, delete the orphaned memory row to prevent
+    // persisted rows without tenant/session/retention metadata.
+    const applyGovernanceTx = database.transaction(() => {
+      applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governanceDecision));
+      recordGovernanceAudit(database, {
+        action: 'memory_save',
+        decision: 'allow',
+        memoryId: result.id,
+        tenantId,
+        userId,
+        agentId,
+        sessionId,
+        reason: 'governed_ingest',
+        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
+      });
+    });
+    try {
+      applyGovernanceTx();
+    } catch (govErr: unknown) {
+      // C2 FIX: Use full delete helper to clean up ALL ancillary records
+      // (vec_memories, BM25 index, causal edges, projections, etc.)
+      // not just memory_index, to prevent orphaned search phantoms.
+      const govErrorMessage = govErr instanceof Error ? govErr.message : String(govErr);
+      console.error('[memory-save] Governance metadata failed, removing orphaned memory:', govErrorMessage);
+      try { delete_memory_from_database(database, result.id); } catch (_: unknown) { /* best-effort cleanup */ }
+      // The orphan rollback above already ran; return a classified error (sqlite-busy / db
+      // failures map to E087/E088) instead of a bare throw the dispatcher would surface as the
+      // generic E081 catch-all.
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: govErrorMessage,
+        code: classifySaveErrorCode(govErrorMessage),
+        details: { requestId, ...extractSaveErrorDetails(govErrorMessage) },
+        recovery: {
+          hint: 'The memory was rolled back after a post-insert metadata write failed; transient DB locks are retryable.',
+          actions: ['Resolve the reported cause', 'Retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
+  }
+
+  const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
+  if (idempotencyKey && shouldStoreMemorySaveReceipt(result, response)) {
+    try {
+      const won = storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      if (!won) {
+        // A concurrent same-key save already stored the canonical receipt. Replay the
+        // first winner's response so this mutating loser returns the idempotent result
+        // instead of its own separately-created response.
+        const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
+        if (winner.status === 'replay') {
+          return winner.response;
+        }
+        if (winner.status === 'conflict') {
+          // Different-payload winner: this loser's mutation landed, so an
+          // error would lie and replaying the winner would answer a
+          // different request — return the loser's response with the
+          // conflict made visible instead of silent.
+          return markResponseWithReceiptStoreConflict(response, idempotencyKey, winner.storedPayloadHash);
+        }
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt store failed; continuing without replay receipt: ${message}`);
+    }
+  }
+  return response;
+}
+
+/* --- 10. ATOMIC MEMORY SAVE --- */
+
+/**
+ * Save memory content to disk with retry + rollback guarded indexing.
+ *
+ * The file write promotes a pending file while holding the per-spec-folder
+ * mutex so concurrent saves cannot overwrite each other between disk
+ * promotion and indexing. If indexing later fails, the original file content
+ * is restored before the error is returned and before the lock is released.
+ */
+async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOptions = {}): Promise<AtomicSaveResult> {
+  // Scrub once at the entry so every durably persisted artifact (canonical
+  // markdown, continuity merge, pending-file promotion) carries redacted text,
+  // not only the parsed/index copy the parser scrubs. Fail-closed: a scrubber
+  // failure throws and refuses the write rather than persisting raw content.
+  if (typeof params.content === 'string' && params.content.length > 0) {
+    const scrubResult = scrubSecretsDetailed(params.content);
+    if (scrubResult.redactions > 0) {
+      console.warn(
+        `[memory-save] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] before durable save`,
+      );
+      params = { ...params, content: scrubResult.text };
+    }
+  }
+  const { file_path, routeAs, mergeModeHint, targetAnchorId } = params;
+  const database = requireDb();
+  const routing = buildRoutedSaveOptions(file_path, routeAs, mergeModeHint, targetAnchorId);
+  const plannerMode = params.plannerMode ?? resolveSavePlannerMode();
+
+  if (shouldUseCanonicalRouting(params) && plannerMode !== 'full-auto') {
+    const canonicalPrepared = await buildCanonicalAtomicPreparedSave(params, database);
+    if (canonicalPrepared.status !== 'ready') {
+      return buildAtomicPlannerAbortResult(params, canonicalPrepared.result);
+    }
+
+    return buildAtomicPlannerReadyResult(
+      params,
+      canonicalPrepared.prepared,
+      validateCanonicalPreparedSave(canonicalPrepared.prepared),
+      options,
+    );
+  }
+
+  return atomicIndexMemory<PreparedParsedMemory | CanonicalAtomicPrepared>(params, options, {
+    prepare: async (currentParams, _context) => {
+      if (shouldUseCanonicalRouting(currentParams)) {
+        const canonicalPrepared = await buildCanonicalAtomicPreparedSave(currentParams, database);
+        if (canonicalPrepared.status !== 'ready') {
+          return canonicalPrepared;
+        }
+
+        return {
+          status: 'ready',
+          prepared: canonicalPrepared.prepared,
+          specFolder: canonicalPrepared.prepared.preparedMemory.parsed.specFolder,
+          persistedContent: canonicalPrepared.persistedContent,
+          persistedFilePath: canonicalPrepared.persistedFilePath,
+        } as const;
+      }
+
+      const { file_path: currentFilePath, content: currentContent } = currentParams;
+      const prepared = prepareParsedMemoryForIndexing(
+        memoryParser.parseMemoryContent(currentFilePath, currentContent),
+        database,
+        {
+          qualityLoopMode: currentParams.plannerMode === 'full-auto' ? 'full-auto' : 'advisory',
+        },
+      );
+
+      if (!prepared.validation.valid) {
+        return {
+          status: 'abort',
+          result: {
+            success: false,
+            filePath: currentFilePath,
+            status: 'error',
+            summary: 'Atomic save preflight failed',
+            message: 'Parsed content failed validation before atomic save',
+            error: `Validation failed: ${prepared.validation.errors.join(', ')}`,
+          },
+        } as const;
+      }
+
+      if (prepared.qualityLoopResult.fixes.length > 0 && prepared.qualityLoopResult.passed && prepared.qualityLoopResult.fixedContent) {
+        console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(currentFilePath)} before pending-file promotion`);
+      }
+
+      return {
+        status: 'ready',
+        prepared,
+        specFolder: prepared.parsed.specFolder,
+        persistedContent: prepared.qualityLoopResult.passed && prepared.qualityLoopResult.fixedContent
+          ? prepared.qualityLoopResult.fixedContent
+          : currentContent,
+      } as const;
+    },
+    prepareLocked: async ({ ready, params: currentParams }) => {
+      if (!isCanonicalAtomicPrepared(ready.prepared)) {
+        return ready;
+      }
+
+      // Rebuild the canonical merge while the spec-folder lock is held so
+      // concurrent routed saves always merge against the latest on-disk doc.
+      const canonicalPrepared = await buildCanonicalAtomicPreparedSave(currentParams, database);
+      if (canonicalPrepared.status !== 'ready') {
+        return canonicalPrepared;
+      }
+
+      return {
+        status: 'ready',
+        prepared: canonicalPrepared.prepared,
+        specFolder: canonicalPrepared.prepared.preparedMemory.parsed.specFolder,
+        persistedContent: canonicalPrepared.persistedContent,
+        persistedFilePath: canonicalPrepared.persistedFilePath,
+      } as const;
+    },
+    indexPrepared: ({ ready, params: currentParams, force }) => {
+      const effectiveFilePath = ready.persistedFilePath ?? currentParams.file_path;
+      const routedPrepared = isCanonicalAtomicPrepared(ready.prepared)
+        ? ready.prepared
+        : null;
+
+      if (routedPrepared) {
+        const validationResult = validateCanonicalPreparedSave(routedPrepared);
+        if (!validationResult.ok) {
+          return validationResult.rejection;
+        }
+
+        return processPreparedMemory(routedPrepared.preparedMemory, effectiveFilePath, {
+          force,
+          asyncEmbedding: true,
+          plannerMode: currentParams.plannerMode,
+          persistQualityLoopContent: false,
+          specFolderLockAlreadyHeld: true,
+          qualityGateMode: 'warn-only',
+          routing: routedPrepared.routing,
+        }).then((result) => {
+          for (const warning of validationResult.warnings) {
+            appendResultWarning(result, warning);
+          }
+          return result;
+        });
+      }
+
+      return processPreparedMemory(ready.prepared as PreparedParsedMemory, currentParams.file_path, {
+        force,
+        asyncEmbedding: true,
+        plannerMode: currentParams.plannerMode,
+        persistQualityLoopContent: false,
+        specFolderLockAlreadyHeld: true,
+        routing: buildRoutedSaveOptions(currentParams.file_path, currentParams.routeAs, currentParams.mergeModeHint, currentParams.targetAnchorId),
+      });
+    },
+    getPendingPath: (currentFilePath) => `${transactionManager.getPendingPath(currentFilePath)}.${randomUUID().slice(0, 8)}`,
+    withSpecFolderLock,
+    captureOriginalState: captureAtomicSaveOriginalState,
+    restoreOriginalState: restoreAtomicSaveOriginalState,
+    cleanupPendingFile: cleanupAtomicSavePendingFile,
+    writePendingFile: (pendingPath, persistedContent) => {
+      fs.mkdirSync(path.dirname(pendingPath), { recursive: true });
+      fs.writeFileSync(pendingPath, persistedContent, 'utf-8');
+    },
+    promotePendingFile: (pendingPath, currentFilePath) => {
+      fs.mkdirSync(path.dirname(currentFilePath), { recursive: true });
+      fs.renameSync(pendingPath, currentFilePath);
+    },
+    mapSuccessResult: (indexResult, context) => {
+      const effectiveFilePath = context.ready.persistedFilePath ?? file_path;
+      const routedRouteCategory = indexResult.routeCategory ?? routing?.routeAs;
+      const routedMergeMode = indexResult.mergeMode ?? routing?.mergeModeHint;
+      const routedTargetDocPath = indexResult.targetDocPath ?? effectiveFilePath;
+
+      if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
+        applyPostInsertMetadata(database, indexResult.id, {});
+      }
+
+      const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
+      let postMutationFeedback: ReturnType<typeof buildMutationHookFeedback> | null = null;
+      if (shouldEmitPostMutationFeedback) {
+        let postMutationHooks: import('./mutation-hooks.js').MutationHookResult;
+        try {
+          postMutationHooks = runPostMutationHooks('atomic-save', {
+            filePath: routedTargetDocPath,
+            specFolder: indexResult.specFolder,
+            memoryId: indexResult.id,
+            statediffActions: [createStatediffAction('upsert', {
+              target: 'memory_index',
+              key: String(indexResult.id),
+              sourceOperation: 'atomic-save',
+              metadata: {
+                filePath: routedTargetDocPath ?? null,
+                specFolder: indexResult.specFolder ?? null,
+                status: indexResult.status ?? null,
+              },
+            })],
+          });
+        } catch (hookError: unknown) {
+          const msg = hookError instanceof Error ? hookError.message : String(hookError);
+          postMutationHooks = {
+            latencyMs: 0, triggerCacheCleared: false,
+            constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+            graphSignalsCacheCleared: false, coactivationCacheCleared: false,
+            errors: [msg],
+          };
+        }
+        postMutationFeedback = buildMutationHookFeedback('atomic-save', postMutationHooks);
+      }
+
+      const message = indexResult.message ?? (
+        indexResult.status === 'duplicate'
+          ? 'Memory skipped (duplicate content)'
+          : `Memory ${indexResult.status} successfully`
+      );
+      const hints: string[] = [];
+
+      if (indexResult.embeddingStatus === 'pending') {
+        hints.push('Memory will be fully indexed when embedding provider becomes available');
+      }
+      if (indexResult.embeddingStatus === 'partial') {
+        hints.push('Large file indexed via chunking: parent record + individual chunk records with embeddings');
+      }
+      if (postMutationFeedback) {
+        hints.push(...postMutationFeedback.hints);
+      } else if (indexResult.status === 'duplicate') {
+        hints.push('Duplicate content matched an existing indexed memory, so caches were left unchanged');
+      }
+
+      return {
+        success: true,
+        filePath: routedTargetDocPath,
+        status: indexResult.status,
+        id: indexResult.id,
+        specFolder: indexResult.specFolder,
+        title: indexResult.title,
+        summary: message,
+        message,
+        embeddingStatus: indexResult.embeddingStatus,
+        ...(routedRouteCategory ? { routeCategory: routedRouteCategory } : {}),
+        ...(routedMergeMode ? { mergeMode: routedMergeMode } : {}),
+        ...(routedTargetDocPath ? { targetDocPath: routedTargetDocPath } : {}),
+        ...(indexResult.targetAnchorId ? { targetAnchorId: indexResult.targetAnchorId } : {}),
+        ...(postMutationFeedback ? { postMutationHooks: postMutationFeedback.data } : {}),
+        ...(hints.length > 0 ? { hints } : {}),
+      };
+    },
+  });
+}
+
+/** Return transaction manager metrics for atomicity monitoring */
+function getAtomicityMetrics(): Record<string, unknown> {
+  return transactionManager.getMetrics();
+}
+
+/* --- 12. EXPORTS --- */
+
+export {
+  // Primary exports (defined in this module)
+  indexMemoryFile,
+  indexMemoryFileFromScan,
+  indexChunkedMemoryFile,
+  handleMemorySave,
+  atomicSaveMemory,
+  getAtomicityMetrics,
+};
+
+export const __memorySaveTestables = {
+  applyInjectionMarkerCapturePolicy,
+  isSandboxConstitutionalSource,
+  mergeTriggerPhrases,
+};
+
+// Backward-compatible aliases (snake_case) — only for symbols defined in this module
+const index_memory_file = indexMemoryFile;
+const index_memory_file_from_scan = indexMemoryFileFromScan;
+const index_chunked_memory_file = indexChunkedMemoryFile;
+const handle_memory_save = handleMemorySave;
+const atomic_save_memory = atomicSaveMemory;
+const get_atomicity_metrics = getAtomicityMetrics;
+
+export {
+  index_memory_file,
+  index_memory_file_from_scan,
+  index_chunked_memory_file,
+  handle_memory_save,
+  atomic_save_memory,
+  get_atomicity_metrics,
+};

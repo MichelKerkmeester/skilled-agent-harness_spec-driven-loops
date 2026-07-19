@@ -128,7 +128,7 @@ test('goal command documentation exposes the registered command contract', async
 
 test('goal plugin reference links the OpenCode command document', async () => {
   const referenceDoc = await readFile(
-    join(opencodeRoot, 'skills', 'system-spec-kit', 'references', 'hooks', 'goal_plugin.md'),
+    join(opencodeRoot, 'skills', 'system-spec-kit', 'references', 'hooks', 'goal-plugin.md'),
     'utf8',
   );
   assert.match(referenceDoc, /\.opencode\/commands\/goal-opencode\.md/);

@@ -6,12 +6,12 @@ import {
   extractCodeFenceTechnologies,
   extractHeadings,
   extractRelationPhrases,
-} from '../../mcp_server/lib/search/deterministic-extractor.ts';
+} from '../../mcp-server/lib/search/deterministic-extractor.ts';
 import {
   EVIDENCE_GAP_DETECTOR_PROVENANCE,
   detectEvidenceGap,
   predictGraphCoverage,
-} from '../../mcp_server/lib/search/evidence-gap-detector.ts';
+} from '../../mcp-server/lib/search/evidence-gap-detector.ts';
 
 const FROZEN_DETERMINISTIC_SAMPLE = `
 # OAuth Runtime Notes

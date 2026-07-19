@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Design-motion (032 phase 004)"
-description: "Task breakdown for Design-motion in the 032 sk-design naming subtree."
+title: "Tasks: Design-motion (020 phase 004)"
+description: "Task breakdown for Design-motion in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-motion tasks"
   - "sk-design design-motion execution"
-  - "032 design-motion checklist"
+  - "020 design-motion checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Design-motion (032 phase 004)
+# Tasks: Design-motion (020 phase 004)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

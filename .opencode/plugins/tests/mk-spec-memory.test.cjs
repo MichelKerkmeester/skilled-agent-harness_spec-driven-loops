@@ -20,7 +20,7 @@ const SCHEMA_PATH = path.join(
   '.opencode',
   'skills',
   'system-spec-kit',
-  'mcp_server',
+  'mcp-server',
   'plugin_bridges',
   'spec-kit-opencode-message-schema.mjs',
 );
@@ -29,7 +29,7 @@ const HOOK_ROOT = path.join(
   '.opencode',
   'skills',
   'system-spec-kit',
-  'mcp_server',
+  'mcp-server',
   'hooks',
   'claude',
 );
@@ -115,7 +115,7 @@ function runUserPromptFixture(targetSource, input, timeout = 5000) {
     '.opencode',
     'skills',
     'system-skill-advisor',
-    'mcp_server',
+    'mcp-server',
     'dist',
     'hooks',
     'claude',

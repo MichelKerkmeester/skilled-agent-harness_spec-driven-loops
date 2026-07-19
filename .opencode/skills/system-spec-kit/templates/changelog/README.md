@@ -131,6 +131,6 @@ Generated changelogs should reference available packet docs and avoid claiming t
 
 | Document | Role |
 |---|---|
-| [sk-doc changelog template](../../../sk-doc/assets/changelog_template.md) | Global changelog and release-note template. |
+| [sk-doc changelog template](../../../sk-doc/assets/changelog-template.md) | Global changelog and release-note template. |
 
 <!-- /ANCHOR:related -->

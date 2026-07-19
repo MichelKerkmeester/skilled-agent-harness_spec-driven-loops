@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Tiny Catalog Sync [template:level_3/spec.md]"
+title: "Feature Specification: Tiny Catalog Sync [template:level-3/spec.md]"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"

@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 // Single source of truth for context type definitions, canonical
 // values, and legacy alias mappings. Used across shared/,
-// mcp_server/, and scripts/.
+// mcp-server/, and scripts/.
 // ---------------------------------------------------------------
 
 /** The 4 canonical context types after the decision/discovery migration. */

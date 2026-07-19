@@ -1,0 +1,453 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Gold Query Verifier
+// ───────────────────────────────────────────────────────────────
+// Loads and validates the code-graph gold query battery.
+
+import { readFileSync } from 'node:fs';
+import { basename, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  isRecord,
+  parseOutlineQueryResult,
+  type CodeGraphQueryResponse,
+} from './query-result-adapter.js';
+
+/**
+ * Resolve the mcp_server root by walking up from this module's directory to the
+ * enclosing `mcp_server` folder. Works identically whether the module is loaded
+ * from `mcp-server/lib/` (TS source under vitest) or `mcp-server/dist/lib/`
+ * (compiled runtime), since both sit under the same `mcp_server` folder; a
+ * fixed relative depth would differ between the two and mis-resolve from dist.
+ */
+function resolveServerRoot(): string {
+  let current = dirname(fileURLToPath(import.meta.url));
+  for (let i = 0; i < 12; i++) {
+    if (basename(current) === 'mcp-server') {
+      return current;
+    }
+    const parent = dirname(current);
+    if (parent === current) break; // filesystem root
+    current = parent;
+  }
+  // Fallback — should not happen in normal deployments
+  return process.cwd();
+}
+
+/**
+ * Canonical on-disk path to the gold battery, shipped inside this skill's own
+ * runtime `assets/` directory. Re-exported so handlers do not redeclare it.
+ *
+ * The battery lives with the skill, never in a spec folder: spec folders are
+ * ephemeral documentation/research artifacts that get renamed, re-nested, or
+ * deleted, which would leave this runtime dependency dangling at startup.
+ */
+export const DEFAULT_GOLD_BATTERY_PATH = resolve(
+  resolveServerRoot(),
+  'assets',
+  'code-graph-gold-queries.json',
+);
+
+export interface GoldQuery {
+  id: string;
+  category: string;
+  query: string;
+  source_file: string;
+  source_line?: number;
+  expected_top_K_symbols: string[];
+}
+
+export interface GoldBattery {
+  schema_version: 1;
+  pass_policy: {
+    overall_pass_rate: number;
+    edge_focus_pass_rate: number;
+  };
+  queries: GoldQuery[];
+}
+
+export interface ProbeResult {
+  queryId: string;
+  category: string;
+  query: string;
+  sourceFile: string;
+  sourceLine?: number;
+  expectedTopK: string[];
+  probe: {
+    operation: string;
+    subject: string;
+    expectedSymbolsPath?: string;
+    limit?: number;
+  };
+  matchedSymbols: string[];
+  missingSymbols: string[];
+  status: 'passed' | 'failed' | 'blocked' | 'error';
+  reason?: string;
+}
+
+export interface VerifyResult {
+  batteryPath: string;
+  queryCount: number;
+  pass_policy: GoldBattery['pass_policy'];
+  overall_pass_rate: number;
+  edge_focus_pass_rate: number;
+  overallPassRate: number;
+  categoryPassRates: Record<string, number>;
+  missingSymbols: string[];
+  unexpectedErrors: string[];
+  passed: boolean;
+  probes: ProbeResult[];
+}
+
+export interface GoldQueryOutlineProbe {
+  operation: 'outline';
+  subject: string;
+  limit: number;
+}
+
+export interface GoldQueryOutlineArgs extends GoldQueryOutlineProbe {
+  verificationGateBypass: 'gold-query-verifier';
+}
+
+interface BatteryExecutionOptions {
+  failFast?: boolean;
+  includeDetails?: boolean;
+}
+
+const EDGE_FOCUS_CATEGORIES = new Set([
+  'cross-module',
+  'exported-type',
+  'regression-detection',
+]);
+
+function getRequiredString(
+  record: Record<string, unknown>,
+  fieldName: string,
+  context: string,
+): string {
+  const value = record[fieldName];
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    throw new Error(`${context} must include a non-empty string "${fieldName}"`);
+  }
+  return value;
+}
+
+function getRequiredStringArray(
+  record: Record<string, unknown>,
+  fieldName: string,
+  context: string,
+): string[] {
+  const value = record[fieldName];
+  if (!Array.isArray(value) || value.length === 0) {
+    throw new Error(`${context} must include a non-empty array "${fieldName}"`);
+  }
+
+  const normalized = value.map((entry, index) => {
+    if (typeof entry !== 'string' || entry.trim().length === 0) {
+      throw new Error(`${context}.${fieldName}[${index}] must be a non-empty string`);
+    }
+    return entry;
+  });
+
+  return normalized;
+}
+
+function getRequiredRate(
+  record: Record<string, unknown>,
+  keys: readonly string[],
+  context: string,
+): number {
+  for (const key of keys) {
+    const value = record[key];
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      if (value < 0 || value > 1) {
+        throw new Error(`${context}.${key} must be between 0 and 1`);
+      }
+      return value;
+    }
+  }
+
+  throw new Error(`${context} must include one of: ${keys.join(', ')}`);
+}
+
+function parseSourceLocation(queryRecord: Record<string, unknown>, context: string): {
+  source_file: string;
+  source_line?: number;
+} {
+  const rawSourceFile = queryRecord.source_file;
+  if (typeof rawSourceFile === 'string' && rawSourceFile.trim().length > 0) {
+    return { source_file: rawSourceFile };
+  }
+
+  const rawSourceFileLine = queryRecord['source_file:line'];
+  if (typeof rawSourceFileLine !== 'string' || rawSourceFileLine.trim().length === 0) {
+    throw new Error(`${context} must include "source_file" or "source_file:line"`);
+  }
+
+  const match = /^(.*):(\d+)$/.exec(rawSourceFileLine);
+  if (!match) {
+    throw new Error(`${context} has invalid "source_file:line" format: ${rawSourceFileLine}`);
+  }
+
+  const sourceFile = match[1];
+  const sourceLine = Number.parseInt(match[2], 10);
+  if (sourceFile.trim().length === 0 || !Number.isInteger(sourceLine) || sourceLine < 1) {
+    throw new Error(`${context} has invalid "source_file:line" value: ${rawSourceFileLine}`);
+  }
+
+  return {
+    source_file: sourceFile,
+    source_line: sourceLine,
+  };
+}
+
+// The v1 battery validates that each expected symbol is DISCOVERABLE in the
+// outline of its source file — a presence check, not a relevance-ranked
+// query-result-count check. Fields that imply richer semantics (a per-entry
+// `probe` hook, or an `expected_count` of relevance-ranked query hits) are
+// not part of v1: the runner always probes via `outline`, so a count tied to
+// the semantic `query` string is not comparable to outline output and is left
+// unenforced rather than asserted against the wrong signal. Extra asset fields
+// are tolerated and ignored so the battery JSON can carry research metadata
+// without changing what the gate actually proves.
+function parseQuery(record: unknown, index: number): GoldQuery {
+  const context = `gold battery query at index ${index}`;
+  if (!isRecord(record)) {
+    throw new Error(`${context} must be an object`);
+  }
+
+  const sourceLocation = parseSourceLocation(record, context);
+
+  return {
+    id: getRequiredString(record, 'id', context),
+    category: getRequiredString(record, 'category', context),
+    query: getRequiredString(record, 'query', context),
+    source_file: sourceLocation.source_file,
+    ...(sourceLocation.source_line !== undefined ? { source_line: sourceLocation.source_line } : {}),
+    expected_top_K_symbols: getRequiredStringArray(record, 'expected_top_K_symbols', context),
+  };
+}
+
+function normalizeSymbol(value: string): string {
+  return value.trim();
+}
+
+function buildProbeResult(
+  goldQuery: GoldQuery,
+  probe: GoldQueryOutlineProbe,
+  matchedSymbols: string[],
+  missingSymbols: string[],
+  status: ProbeResult['status'],
+  reason: string | undefined,
+  includeDetails: boolean,
+): ProbeResult {
+  const baseResult: ProbeResult = {
+    queryId: goldQuery.id,
+    category: goldQuery.category,
+    query: goldQuery.query,
+    sourceFile: goldQuery.source_file,
+    ...(goldQuery.source_line !== undefined ? { sourceLine: goldQuery.source_line } : {}),
+    expectedTopK: [...goldQuery.expected_top_K_symbols],
+    probe,
+    matchedSymbols,
+    missingSymbols,
+    status,
+    ...(reason ? { reason } : {}),
+  };
+
+  if (includeDetails || status !== 'passed') {
+    return baseResult;
+  }
+
+  return {
+    ...baseResult,
+    matchedSymbols: [],
+    missingSymbols: [],
+  };
+}
+
+export async function executeBattery(
+  battery: GoldBattery,
+  query: (args: GoldQueryOutlineArgs) => Promise<CodeGraphQueryResponse>,
+  opts?: BatteryExecutionOptions,
+): Promise<VerifyResult> {
+  const failFast = opts?.failFast ?? false;
+  const includeDetails = opts?.includeDetails ?? false;
+  const probes: ProbeResult[] = [];
+  const missingSymbols = new Set<string>();
+  const unexpectedErrors: string[] = [];
+  const categoryTotals = new Map<string, { total: number; passed: number }>();
+
+  let passedCount = 0;
+  let edgeFocusPassedCount = 0;
+  let edgeFocusTotalCount = 0;
+
+  for (const goldQuery of battery.queries) {
+    const probe: GoldQueryOutlineProbe = {
+      operation: 'outline',
+      subject: goldQuery.source_file,
+      limit: 200,
+    };
+    const queryArgs: GoldQueryOutlineArgs = {
+      ...probe,
+      verificationGateBypass: 'gold-query-verifier',
+    };
+
+    const categoryCounter = categoryTotals.get(goldQuery.category) ?? { total: 0, passed: 0 };
+    categoryCounter.total += 1;
+    categoryTotals.set(goldQuery.category, categoryCounter);
+
+    if (EDGE_FOCUS_CATEGORIES.has(goldQuery.category)) {
+      edgeFocusTotalCount += 1;
+    }
+
+    try {
+      const rawResponse = await query(queryArgs);
+      const parsed = parseOutlineQueryResult(rawResponse);
+
+      if (parsed.status !== 'ok') {
+        const status = parsed.status;
+        const reason = parsed.reason ?? `Query returned status "${status}"`;
+        probes.push(
+          buildProbeResult(goldQuery, probe, [], [...goldQuery.expected_top_K_symbols], status, reason, includeDetails),
+        );
+        unexpectedErrors.push(`${goldQuery.id}: ${reason}`);
+        goldQuery.expected_top_K_symbols.forEach(symbol => missingSymbols.add(symbol));
+        if (failFast) {
+          break;
+        }
+        continue;
+      }
+
+      const discoveredSymbols = new Set<string>();
+      for (const node of parsed.data.nodes) {
+        if (node.name) {
+          discoveredSymbols.add(normalizeSymbol(node.name));
+        }
+        if (node.fqName) {
+          discoveredSymbols.add(normalizeSymbol(node.fqName));
+        }
+      }
+
+      const matched: string[] = [];
+      const missing: string[] = [];
+      for (const expectedSymbol of goldQuery.expected_top_K_symbols) {
+        if (discoveredSymbols.has(normalizeSymbol(expectedSymbol))) {
+          matched.push(expectedSymbol);
+        } else {
+          missing.push(expectedSymbol);
+          missingSymbols.add(expectedSymbol);
+        }
+      }
+
+      const status: ProbeResult['status'] = missing.length === 0 ? 'passed' : 'failed';
+      const reason = missing.length === 0
+        ? undefined
+        : `Missing expected symbols: ${missing.join(', ')}`;
+
+      if (status === 'passed') {
+        passedCount += 1;
+        categoryCounter.passed += 1;
+        if (EDGE_FOCUS_CATEGORIES.has(goldQuery.category)) {
+          edgeFocusPassedCount += 1;
+        }
+      }
+
+      probes.push(buildProbeResult(goldQuery, probe, matched, missing, status, reason, includeDetails));
+      if (failFast && status !== 'passed') {
+        break;
+      }
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : String(error);
+      probes.push(
+        buildProbeResult(
+          goldQuery,
+          probe,
+          [],
+          [...goldQuery.expected_top_K_symbols],
+          'error',
+          reason,
+          includeDetails,
+        ),
+      );
+      unexpectedErrors.push(`${goldQuery.id}: ${reason}`);
+      goldQuery.expected_top_K_symbols.forEach(symbol => missingSymbols.add(symbol));
+      if (failFast) {
+        break;
+      }
+    }
+  }
+
+  const queryCount = battery.queries.length;
+  const overallPassRate = queryCount === 0 ? 0 : passedCount / queryCount;
+  const edgeFocusPassRate = edgeFocusTotalCount === 0 ? overallPassRate : edgeFocusPassedCount / edgeFocusTotalCount;
+  const categoryPassRates = Object.fromEntries(
+    [...categoryTotals.entries()].map(([category, counts]) => [
+      category,
+      counts.total === 0 ? 0 : counts.passed / counts.total,
+    ]),
+  );
+
+  return {
+    batteryPath: '<in-memory>',
+    queryCount,
+    pass_policy: battery.pass_policy,
+    overall_pass_rate: overallPassRate,
+    edge_focus_pass_rate: edgeFocusPassRate,
+    overallPassRate,
+    categoryPassRates,
+    missingSymbols: [...missingSymbols],
+    unexpectedErrors,
+    passed:
+      overallPassRate >= battery.pass_policy.overall_pass_rate
+      && edgeFocusPassRate >= battery.pass_policy.edge_focus_pass_rate,
+    probes,
+  };
+}
+
+export function loadGoldBattery(path: string): GoldBattery {
+  const raw = readFileSync(path, 'utf8');
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw) as unknown;
+  } catch (error) {
+    throw new Error(
+      `Failed to parse gold battery JSON at ${path}: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+
+  if (!isRecord(parsed)) {
+    throw new Error(`Gold battery at ${path} must be a JSON object`);
+  }
+
+  if (parsed.schema_version !== 1) {
+    throw new Error(`Gold battery at ${path} must declare schema_version === 1`);
+  }
+
+  const passPolicyValue = parsed.pass_policy;
+  if (!isRecord(passPolicyValue)) {
+    throw new Error(`Gold battery at ${path} must include an object "pass_policy"`);
+  }
+
+  const queriesValue = parsed.queries;
+  if (!Array.isArray(queriesValue)) {
+    throw new Error(`Gold battery at ${path} must include an array "queries"`);
+  }
+
+  return {
+    schema_version: 1,
+    pass_policy: {
+      overall_pass_rate: getRequiredRate(
+        passPolicyValue,
+        ['overall_pass_rate', 'overall_top_k_symbol_pass_floor'],
+        'pass_policy',
+      ),
+      edge_focus_pass_rate: getRequiredRate(
+        passPolicyValue,
+        ['edge_focus_pass_rate', 'edge_focus_pass_floor'],
+        'pass_policy',
+      ),
+    },
+    queries: queriesValue.map((query, index) => parseQuery(query, index)),
+  };
+}

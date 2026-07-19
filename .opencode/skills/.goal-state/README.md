@@ -110,5 +110,5 @@ Other skills can invoke the plugin tools through the command surface, but they d
 
 - [`mk-goal.js`](../../plugins/mk-goal.js) reads, writes, archives and cleans this state.
 - [`/goal` command](../../commands/goal-opencode.md) routes user actions to the plugin tools without handling state.
-- [OpenCode Goal Plugin Contract](../system-spec-kit/references/hooks/goal_plugin.md) documents the operator contract, environment controls and verification surfaces.
+- [OpenCode Goal Plugin Contract](../system-spec-kit/references/hooks/goal-plugin.md) documents the operator contract, environment controls and verification surfaces.
 - [System Spec Kit](../system-spec-kit/) documents the wider runtime-injection and continuity system while keeping goal state outside Spec Kit Memory.

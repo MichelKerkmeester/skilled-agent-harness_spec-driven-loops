@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Scripts tree (032 subtree 008 phase 004)"
+title: "Feature Specification: Scripts tree (020 subtree 008 phase 004)"
 description: "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic."
 trigger_phrases:
   - "system-spec-kit scripts tree"
@@ -26,7 +26,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Scripts tree
 
@@ -45,7 +45,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 004 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 004 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

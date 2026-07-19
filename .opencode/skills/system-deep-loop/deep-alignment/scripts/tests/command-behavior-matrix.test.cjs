@@ -20,8 +20,8 @@ const SCHEDULER_PATH = path.resolve(
 );
 const MATRIX_PATH = path.join(
   REPO_ROOT,
-  '.opencode/skills/system-deep-loop/deep-alignment/assets/command_benchmark',
-  'command_benchmark_matrix.json',
+  '.opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark',
+  'command-benchmark-matrix.json',
 );
 const RUNNER_PATH = path.join(
   REPO_ROOT,

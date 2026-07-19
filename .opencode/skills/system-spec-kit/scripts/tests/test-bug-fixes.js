@@ -12,17 +12,17 @@ const fs = require('fs');
 */
 
 const ROOT = path.join(__dirname, '..', '..');
-const LIB_PATH = path.join(ROOT, 'mcp_server', 'dist', 'lib');
+const LIB_PATH = path.join(ROOT, 'mcp-server', 'dist', 'lib');
 const SEARCH_PATH = path.join(LIB_PATH, 'search');
 const PARSING_PATH = path.join(LIB_PATH, 'parsing');
 const SHARED_PATH = path.join(ROOT, 'shared');
-const DB_PATH = path.join(ROOT, 'mcp_server', 'database');
-const CONFIG_PATH = path.join(ROOT, 'mcp_server', 'configs');
+const DB_PATH = path.join(ROOT, 'mcp-server', 'database');
+const CONFIG_PATH = path.join(ROOT, 'mcp-server', 'configs');
 const VECTOR_INDEX_PATH = path.join(SEARCH_PATH, 'vector-index.js');
 const VECTOR_INDEX_MUTATIONS_PATH = path.join(SEARCH_PATH, 'vector-index-mutations.js');
 const VECTOR_INDEX_STORE_PATH = path.join(SEARCH_PATH, 'vector-index-store.js');
 const VECTOR_INDEX_QUERIES_PATH = path.join(SEARCH_PATH, 'vector-index-queries.js');
-const DB_STATE_PATH = path.join(ROOT, 'mcp_server', 'dist', 'core', 'db-state.js');
+const DB_STATE_PATH = path.join(ROOT, 'mcp-server', 'dist', 'core', 'db-state.js');
 
 // Test results
 const results = {
@@ -73,15 +73,15 @@ async function testBug001() {
   try {
     const dbUpdatedFile = path.join(DB_PATH, '.db-updated');
     
-    // Test 1: Notification file mechanism now lives in mcp_server/
+    // Test 1: Notification file mechanism now lives in mcp-server/
     // NOTE (v3.4.1.0 + r2 cleanup): scripts-side `notifyDatabaseUpdated` was
     // retired with the [spec]/memory/*.md write path. Ownership of the
     // `.db-updated` cross-connection notification marker moved to
-    // mcp_server/core (config.ts defines DB_UPDATED_FILE; index.ts imports
-    // and writes it). This test now asserts ownership lives in mcp_server/
+    // mcp-server/core (config.ts defines DB_UPDATED_FILE; index.ts imports
+    // and writes it). This test now asserts ownership lives in mcp-server/
     // and the retired scripts-side wrapper stays deleted (negative assertion).
-    const mcpServerCoreConfig = path.join(ROOT, 'mcp_server', 'core', 'config.ts');
-    const mcpServerCoreIndex = path.join(ROOT, 'mcp_server', 'core', 'index.ts');
+    const mcpServerCoreConfig = path.join(ROOT, 'mcp-server', 'core', 'config.ts');
+    const mcpServerCoreIndex = path.join(ROOT, 'mcp-server', 'core', 'index.ts');
     const scriptsMemoryIndexerTs = path.join(ROOT, 'scripts', 'core', 'memory-indexer.ts');
 
     let mechanismInMcpServer = false;
@@ -100,10 +100,10 @@ async function testBug001() {
     }
 
     if (mechanismInMcpServer && scriptsSideRetired) {
-      pass('T-005a: Notification mechanism in mcp_server/ (post-v3.4.1.0)',
-           'DB_UPDATED_FILE defined in mcp_server/core/config.ts + imported in mcp_server/core/index.ts; scripts-side notifyDatabaseUpdated stays retired');
+      pass('T-005a: Notification mechanism in mcp-server/ (post-v3.4.1.0)',
+           'DB_UPDATED_FILE defined in mcp-server/core/config.ts + imported in mcp-server/core/index.ts; scripts-side notifyDatabaseUpdated stays retired');
     } else {
-      fail('T-005a: Notification mechanism in mcp_server/ (post-v3.4.1.0)',
+      fail('T-005a: Notification mechanism in mcp-server/ (post-v3.4.1.0)',
            `mechanismInMcpServer=${mechanismInMcpServer}, scriptsSideRetired=${scriptsSideRetired}`);
     }
     
@@ -337,7 +337,7 @@ async function testBug007() {
   try {
     // After modularization, query validation moved to utils/validators.js
     const validators = fs.readFileSync(
-      path.join(ROOT, 'mcp_server', 'dist', 'utils', 'validators.js'),
+      path.join(ROOT, 'mcp-server', 'dist', 'utils', 'validators.js'),
       'utf8'
     );
     

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cross-skill symlink closure (032 phase 007 child 002)"
+title: "Feature Specification: cross-skill symlink closure (020 phase 007 child 002)"
 description: "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable target mode moves as one dependency-closed operation."
 trigger_phrases:
   - "cross-skill symlink closure"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Cross-Skill Symlink Closure
 

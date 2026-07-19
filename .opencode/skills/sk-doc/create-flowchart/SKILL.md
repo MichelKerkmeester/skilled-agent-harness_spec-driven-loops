@@ -11,7 +11,7 @@ version: 1.0.1.0
 
 `create-flowchart` is the `sk-doc` workflow packet for creating ASCII-style markdown flowcharts from real processes, decision trees, user journeys, approval loops, parallel pipelines, and system interactions. The core creation workflow lives here. The pattern assets under `assets/` are examples and shape guides, not the primary contract.
 
-This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It uses shared sk-doc quality standards from `../shared/` when surrounding markdown quality is in scope. It must not add packet-local advisor metadata such as `graph-metadata.json`.
+This packet owns flowchart authoring and `scripts/validate-flowchart.sh`. It uses shared sk-doc quality standards from `../shared/` when surrounding markdown quality is in scope. It must not add packet-local advisor metadata such as `graph-metadata.json`.
 
 ---
 
@@ -79,7 +79,7 @@ INTENT_MODEL = {
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the target artifact (standalone file vs embedded section) and path",
     "Confirm the source process, audience, and workflow shape",
-    "Confirm the terminal outcomes and the validate_flowchart.sh validation path",
+    "Confirm the terminal outcomes and the validate-flowchart.sh validation path",
 ]
 
 def discover_markdown_resources() -> set[str]:
@@ -145,7 +145,7 @@ Before drafting, establish:
 - Audience: who must understand the diagram and what decision or action it should support.
 - Scope boundary: what is included, what is intentionally omitted, and whether surrounding prose is in scope.
 - Terminal outcomes: success, failure, blocked, canceled, complete, published, deployed, or equivalent end states.
-- Validation command: the exact path that will be passed to `scripts/validate_flowchart.sh`.
+- Validation command: the exact path that will be passed to `scripts/validate-flowchart.sh`.
 
 Read the target file before editing it. Use `Glob` or `Grep` to locate nearby diagrams and preserve the local style when editing an existing document.
 
@@ -157,12 +157,12 @@ Choose one closest pattern before drafting. Load the asset for visual guidance a
 
 | Workflow Shape | Pattern Asset | Use For |
 | --- | --- | --- |
-| Linear sequence | `assets/simple_workflow.md` | Installation steps, setup flows, tutorials, basic operational processes. |
-| Conditional branching | `assets/decision_tree_flow.md` | Decision trees, validations, retries, alternate outcomes, failure handling. |
-| Parallel execution | `assets/parallel_execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
-| Approval and revision | `assets/approval_workflow_loops.md` | Review cycles, governance gates, sign-off loops, rework paths, escalation. |
-| System swimlane | `assets/system_architecture_swimlane.md` | Layers, services, APIs, storage, caches, queues, data flows, error paths. |
-| User journey | `assets/user_onboarding.md` | Onboarding, activation, progressive setup, education, completion states. |
+| Linear sequence | `assets/simple-workflow.md` | Installation steps, setup flows, tutorials, basic operational processes. |
+| Conditional branching | `assets/decision-tree-flow.md` | Decision trees, validations, retries, alternate outcomes, failure handling. |
+| Parallel execution | `assets/parallel-execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
+| Approval and revision | `assets/approval-workflow-loops.md` | Review cycles, governance gates, sign-off loops, rework paths, escalation. |
+| System swimlane | `assets/system-architecture-swimlane.md` | Layers, services, APIs, storage, caches, queues, data flows, error paths. |
+| User journey | `assets/user-onboarding.md` | Onboarding, activation, progressive setup, education, completion states. |
 
 Use the pattern's demonstrated features, not its content. Do not copy placeholder business logic, fake timings, fake owners, or unrelated system components.
 
@@ -171,6 +171,8 @@ Use the pattern's demonstrated features, not its content. Do not copy placeholde
 ## 5. Output Shape
 
 For a standalone flowchart file, use this shape unless the surrounding project has a stronger local convention:
+
+Write the file as `<flowchart-slug>.md`, where the slug matches `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing, empty or ambiguous names instead of applying a blind character replacement. Embedded flowcharts keep the host document's existing filename.
 
 ````markdown
 # <Flowchart Name>
@@ -239,7 +241,7 @@ Follow this order for every creation or rewrite task:
 Validator command from this packet directory:
 
 ```bash
-bash scripts/validate_flowchart.sh <target-flowchart.md>
+bash scripts/validate-flowchart.sh <target-flowchart.md>
 ```
 
 Shared document validation, only when the surrounding markdown document is in scope:
@@ -303,7 +305,7 @@ For user journeys:
 
 ## 9. Validator Contract
 
-`scripts/validate_flowchart.sh` is required before delivery for any generated or edited flowchart file.
+`scripts/validate-flowchart.sh` is required before delivery for any generated or edited flowchart file.
 
 It checks:
 
@@ -342,7 +344,7 @@ Always:
 - Include terminal states when the workflow can end.
 - Keep raw markdown readable in a terminal.
 - Use one visual style within a diagram.
-- Run `bash scripts/validate_flowchart.sh <target-flowchart.md>` before handoff.
+- Run `bash scripts/validate-flowchart.sh <target-flowchart.md>` before handoff.
 - Run shared markdown validation when editing the larger document is in scope.
 
 Never:
@@ -374,7 +376,7 @@ The task is successful when:
 - The diagram reflects the real source process rather than generic filler.
 - Branches, retries, joins, escalations, skip paths, and terminal states are explicit where applicable.
 - The flowchart is readable in raw markdown and rendered markdown.
-- `scripts/validate_flowchart.sh` exits `0` for the flowchart target, or the validator failure is explicitly reported.
+- `scripts/validate-flowchart.sh` exits `0` for the flowchart target, or the validator failure is explicitly reported.
 - Shared sk-doc validation is run when the surrounding markdown document is edited and in scope.
 - No packet-local advisor metadata is created.
 

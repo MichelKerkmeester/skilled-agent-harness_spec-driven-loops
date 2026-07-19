@@ -7,8 +7,8 @@
 // ║ rules). Shape copied from the reference adapter (sk-doc.cjs);            ║
 // ║ content is sk-git's own (100% deterministic, single-layer).              ║
 // ║                                                                          ║
-// ║ Full specification: ../../references/adapters/sk_git_adapter.md          ║
-// ║ Suppression list:    ../../references/adapters/sk_git_known_deviations.md║
+// ║ Full specification: ../../references/adapters/sk-git-adapter.md          ║
+// ║ Suppression list:    ../../references/adapters/sk-git-known-deviations.md║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -21,7 +21,7 @@
  * branch-naming conformance for worktree-created branches.
  *
  * discover(scope) takes the real, live scope shape from
- * ../../references/discover_contract.md §3 / ../../references/lane_config_schema.md §5.
+ * ../../references/discover-contract.md §3 / ../../references/lane-config-schema.md §5.
  * sk-git's registered artifact-class is `git-history`, which pairs with a
  * `branchRange` scope (`{type:'branchRange', from, to}`); a `paths`/`globs`
  * scope resolves to an empty result — see discover()'s own comment for why.
@@ -64,7 +64,7 @@ const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 const SK_GIT_DIR = path.join(SKILLS_DIR, 'sk-git');
 const SK_GIT_SKILL_MD = path.join(SK_GIT_DIR, 'SKILL.md');
 const COMMIT_MSG_HOOK = path.join(REPO_ROOT, '.opencode', 'scripts', 'git-hooks', 'commit-msg');
-const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk_git_known_deviations.md');
+const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-git-known-deviations.md');
 
 // Ported verbatim from .opencode/scripts/git-hooks/commit-msg:44-48's case
 // statement, and confirmed identical to SKILL.md:322-323's exemption list

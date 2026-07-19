@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-SKILL_CONTRACT_PATH = Path(__file__).parent.parent / "assets" / "skill_contract.json"
+SKILL_CONTRACT_PATH = Path(__file__).parent.parent / "assets" / "skill-contract.json"
 _SKILL_CONTRACT_CACHE: Optional[Dict[str, Any]] = None
 
 

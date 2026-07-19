@@ -1,5 +1,5 @@
 ---
-title: "Checklist: deep-research filesystem names (032 phase 007/003)"
+title: "Checklist: deep-research filesystem names (020 phase 007/003)"
 description: "Blocking SOL verification contract for the deep-research resource, state, artifact, catalog, playbook, and reference rename closure."
 trigger_phrases:
   - "deep-research checklist"

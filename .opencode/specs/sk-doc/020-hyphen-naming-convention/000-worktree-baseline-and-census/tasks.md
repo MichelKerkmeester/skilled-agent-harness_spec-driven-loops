@@ -1,6 +1,6 @@
 ---
-title: "Tasks: worktree, baseline, and census (032 phase 000)"
-description: "Tasks for phase 000 of the 032 kebab-case filesystem-naming program: worktree, baseline, and census."
+title: "Tasks: worktree, baseline, and census (020 phase 000)"
+description: "Tasks for phase 000 of the 020 kebab-case filesystem-naming program: worktree, baseline, and census."
 trigger_phrases:
   - "worktree, baseline, and census tasks"
   - "hyphen naming phase 000 tasks"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Tasks authored for the 032 phased tree"
+    recent_action: "Tasks authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -46,7 +46,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T002 Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it
-- [ ] T003 Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 032-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-017-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-017-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`
+- [ ] T003 Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 020-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-020-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-020-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`
 - [ ] T004 A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`)
 - [ ] T005 Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report
 <!-- /ANCHOR:phase-2 -->

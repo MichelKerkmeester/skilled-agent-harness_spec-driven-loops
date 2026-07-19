@@ -28,10 +28,10 @@ Packet-local files:
 - `README.md` - human orientation for this packet.
 - `references/README.md` - route map over the reference set (start here).
 - `references/workflows.md` - the four execution modes and mode selection (externally cited entry file).
-- `references/validation_and_enforcement.md` - validation touchpoints, enforcement approval prompts, phase chaining, and troubleshooting.
-- `references/workflow_examples.md` - worked command examples and batch/multi-file processing.
+- `references/validation-and-enforcement.md` - validation touchpoints, enforcement approval prompts, phase chaining, and troubleshooting.
+- `references/workflow-examples.md` - worked command examples and batch/multi-file processing.
 - `references/optimization.md` - optimization procedure: heuristics, analysis workflow, README strategy, checklist, and iteration (externally cited entry file).
-- `references/transformation_patterns.md` - the 16 transformation patterns with worked before/after examples.
+- `references/transformation-patterns.md` - the 16 transformation patterns with worked before/after examples.
 - `changelog/.gitkeep` - packet-local changelog placeholder.
 
 There are no packet-local `assets/` or `scripts/` directories in `create-quality-control`.
@@ -41,10 +41,10 @@ Shared backbone used by this packet:
 - `../shared/scripts/extract_structure.py` - source of truth for structure metrics, checklist results, and DQI.
 - `../shared/scripts/validate_document.py` - pre-delivery markdown validation gate.
 - `../shared/scripts/quick_validate.py` - fast validation for files, folders, or skill packets.
-- `../shared/references/core_standards.md` - document type detection and structural standards.
+- `../shared/references/core-standards.md` - document type detection and structural standards.
 - `../shared/references/validation.md` - DQI bands and validation severity.
-- `../shared/references/hvr_rules.md` - Human Voice Rules for natural documentation style.
-- `../shared/references/quick_reference.md` - command and quality-gate cheat sheet.
+- `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
+- `../shared/references/quick-reference.md` - command and quality-gate cheat sheet.
 - `../shared/assets/` - shared templates and rules used across `sk-doc`.
 
 ## 4. QUICK START
@@ -68,7 +68,7 @@ Typical workflow:
 2. Load `references/README.md` (route map) and, for modes, `references/workflows.md`.
 3. Run `../shared/scripts/extract_structure.py <file>`.
 4. Interpret DQI and checklist output with `../shared/references/validation.md`.
-5. Apply HVR review using `../shared/references/hvr_rules.md`.
+5. Apply HVR review using `../shared/references/hvr-rules.md`.
 6. If the user requested edits, use `references/optimization.md` and edit only the target document.
 7. Validate with `../shared/scripts/validate_document.py <file>`.
 8. Re-run extraction after edits to confirm the final state.

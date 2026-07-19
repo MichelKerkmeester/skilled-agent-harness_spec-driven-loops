@@ -119,9 +119,9 @@ VERIFICATION CHECK:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_agent-improvement_presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt` |
+| Auto workflow | `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml` |
 
 ---
 
@@ -132,9 +132,9 @@ VERIFICATION CHECK:
 3. Resolve `lane` before the agent-path check. Explicit `--lane` or marker `lane` signals are evaluated first. An explicit `lane=model-benchmark` that conflicts with a supplied agent path must fail fast with a one-line conflict error or ask one disambiguation question through the presentation contract.
 4. If `lane=model-benchmark` is resolved by explicit lane, marker lane, `--profile`, benchmark-profile input, or Q(lane), hand off to `/deep:model-benchmark` and load `.opencode/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml`; do not ask the Lane A Q0/Q1/Q3 questions.
 5. For Lane A, resolve `target_path` from `$ARGUMENTS` or the presentation contract's Q0, derive `target_profile` from the target path, resolve `spec_folder` from `--spec-folder` or Q1, resolve `scoring_mode` as `dynamic`, and resolve `max_iterations` from `--iterations` or default `5`.
-6. For `:auto`, resolve setup from `$ARGUMENTS` flags, the optional `PRE-BOUND SETUP ANSWERS:` marker block, and the presentation contract's default resolution table. When all required fields are resolved, persist `{spec_folder}/improvement/agent-improvement-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml`.
+6. For `:auto`, resolve setup from `$ARGUMENTS` flags, the optional `PRE-BOUND SETUP ANSWERS:` marker block, and the presentation contract's default resolution table. When all required fields are resolved, persist `{spec_folder}/improvement/agent-improvement-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml`.
 7. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when that field is genuinely ambiguous and no default exists. Missing `target_path` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
-8. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml`.
+8. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml`.
 9. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 10. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
 
@@ -144,8 +144,8 @@ VERIFICATION CHECK:
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` |
+| `:auto` | `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml` |
 
 If Lane B is selected, auto-route to `/deep:model-benchmark` and its dedicated workflow assets instead of the agent-improvement YAMLs.
 
@@ -153,7 +153,7 @@ If Lane B is selected, auto-route to `/deep:model-benchmark` and its dedicated w
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep_agent-improvement_presentation.txt`:
+The following content lives only in `.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.

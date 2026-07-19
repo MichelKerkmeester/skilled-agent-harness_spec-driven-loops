@@ -150,7 +150,7 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
 
 | File | Action | Purpose |
 |------|--------|---------|
-| mcp_server/tool-schemas.ts | Modified | Added output schema for session_bootstrap |
+| mcp-server/tool-schemas.ts | Modified | Added output schema for session_bootstrap |
 
 ## Verification
 
@@ -161,7 +161,7 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
     writeFile(path.join(phaseSpec, 'tasks.md'), `- [x] T001 Fix schema drift
 - [x] T002 Update packet docs`);
     writeFile(path.join(phaseSpec, 'checklist.md'), `## P0
-- [x] Ship schema fix [EVIDENCE: mcp_server/tool-schemas.ts]
+- [x] Ship schema fix [EVIDENCE: mcp-server/tool-schemas.ts]
 ## P2
 - [ ] Save extra review notes`);
 

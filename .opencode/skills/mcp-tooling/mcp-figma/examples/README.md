@@ -132,10 +132,10 @@ Full failure catalog: [`../references/troubleshooting.md`](../references/trouble
 ### Skill Documentation
 
 - [`../SKILL.md`](../SKILL.md) - Routing, gating taxonomy, ALWAYS/NEVER rules
-- [`../references/figma_cli_reference.md`](../references/figma_cli_reference.md) - CLI/daemon/connect model and command examples
-- [`../references/tool_surface.md`](../references/tool_surface.md) - Read-only / mutating / destructive taxonomy
-- [`../feature_catalog/feature_catalog.md`](../feature_catalog/feature_catalog.md) - Full capability inventory with class tags
-- [`../manual_testing_playbook/manual_testing_playbook.md`](../manual_testing_playbook/manual_testing_playbook.md) - The scenario contracts these examples mirror
+- [`../references/figma-cli-reference.md`](../references/figma-cli-reference.md) - CLI/daemon/connect model and command examples
+- [`../references/tool-surface.md`](../references/tool-surface.md) - Read-only / mutating / destructive taxonomy
+- [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md) - Full capability inventory with class tags
+- [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md) - The scenario contracts these examples mirror
 
 ### Contributing
 

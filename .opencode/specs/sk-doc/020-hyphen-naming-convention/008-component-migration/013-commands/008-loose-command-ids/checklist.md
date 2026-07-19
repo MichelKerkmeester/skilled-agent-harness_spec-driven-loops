@@ -1,5 +1,5 @@
 ---
-title: "Checklist: loose command ID naming (032 phase 008/013/008)"
+title: "Checklist: loose command ID naming (020 phase 008/013/008)"
 description: "Blocking SOL verification contract for root command filename classification, public ID preservation, and approved path closure."
 trigger_phrases:
   - "loose command ID checklist"

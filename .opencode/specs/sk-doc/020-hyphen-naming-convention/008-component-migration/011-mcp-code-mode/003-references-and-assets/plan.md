@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode references and assets (032 component 011 phase 003)"
+title: "Implementation Plan: mcp-code-mode references and assets (020 component 011 phase 003)"
 description: "Apply a four-entry semantic rename map to the mcp-code-mode reference and asset files, then resolve all active links and pointers from the skill guides, templates, scripts, and cross-references."
 trigger_phrases:
   - "mcp-code-mode references assets implementation plan"
@@ -101,7 +101,7 @@ mentions and underscore-bearing tool names as non-path or frozen dispositions.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase depends on the 032 exemption policy, phase 001's package-root closure, the semantic rename/reference checker, and a Markdown link resolver. The manual-playbook links that point into this surface remain in the consumer inventory but their scenario-file renames belong to phase 005.
+This phase depends on the 020 exemption policy, phase 001's package-root closure, the semantic rename/reference checker, and a Markdown link resolver. The manual-playbook links that point into this surface remain in the consumer inventory but their scenario-file renames belong to phase 005.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

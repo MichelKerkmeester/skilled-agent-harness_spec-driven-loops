@@ -573,7 +573,7 @@ function determineVerdict(state, gateResult):
 
 ## 8. RECOVERY, REPORTING, AND GRAPH-AWARE CONVERGENCE
 
-Stuck-recovery strategies, the convergence report format, and graph-aware review convergence live in `convergence_recovery.md` for navigability.
+Stuck-recovery strategies, the convergence report format, and graph-aware review convergence live in `convergence-recovery.md` for navigability.
 
 ---
 

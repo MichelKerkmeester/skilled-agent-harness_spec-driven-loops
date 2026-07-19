@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph changelog verification (032 phase 007)"
+title: "Tasks: system-code-graph changelog verification (020 phase 007)"
 description: "Tasks for phase 007 of the system-code-graph component naming migration: verify the append-only release entry, version bump, scope, exemptions, and mutation-free behavior without renaming files."
 trigger_phrases:
   - "system-code-graph changelog tasks"

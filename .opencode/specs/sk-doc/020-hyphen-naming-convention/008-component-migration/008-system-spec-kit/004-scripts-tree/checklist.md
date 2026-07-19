@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Scripts tree (032 subtree 008 phase 004)"
+title: "Checklist: Scripts tree (020 subtree 008 phase 004)"
 description: "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic."
 trigger_phrases:
   - "system-spec-kit scripts tree"

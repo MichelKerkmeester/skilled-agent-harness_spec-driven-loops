@@ -21,15 +21,15 @@ Illustrative visual-direction cues for `interface`, each a citeable example of a
 
 ### Purpose
 
-These files name a few realized looks in concrete terms so the skill can say "the realized look closest to this brief is X" and then deviate from it deliberately, the same critique-against move `design_inventory.md` and `design_references_mcp.md` make. They are reference cues for grounding, never a pick-a-vibe axis. The grounded, anti-default process in `design_principles.md` stays the authority, and `real_ui_loop.md` Section 8 forbids surfacing any of this as a style chooser, preset menu, or named aesthetic dial.
+These files name a few realized looks in concrete terms so the skill can say "the realized look closest to this brief is X" and then deviate from it deliberately, the same critique-against move `design-inventory.md` and `design-references-mcp.md` make. They are reference cues for grounding, never a pick-a-vibe axis. The grounded, anti-default process in `design-principles.md` stays the authority, and `real-ui-loop.md` Section 8 forbids surfacing any of this as a style chooser, preset menu, or named aesthetic dial.
 
 ### Not A Chooser
 
-This index is not a catalog to select from. Do not show the table to the user as options, do not drop a cue onto a brief as a fixed template, and do not treat the cues as reusable presets. Resolve at most one realized look from the subject as the named default to push against, then take the one justified aesthetic risk away from it. If the same cue could be reused across briefs, it has become a preset and must not ship (`variation_diversity.md`, `real_ui_loop.md` Section 8).
+This index is not a catalog to select from. Do not show the table to the user as options, do not drop a cue onto a brief as a fixed template, and do not treat the cues as reusable presets. Resolve at most one realized look from the subject as the named default to push against, then take the one justified aesthetic risk away from it. If the same cue could be reused across briefs, it has become a preset and must not ship (`variation-diversity.md`, `real-ui-loop.md` Section 8).
 
 ### Usage
 
-Reach for a cue only at the critique step (`design_principles.md` STEP 2), after the subject is grounded, to name the realized default in one line. It is a constraint to deviate from, subordinate to grounding and the anti-default critique, never the design decision itself.
+Reach for a cue only at the critique step (`design-principles.md` STEP 2), after the subject is grounded, to name the realized default in one line. It is a constraint to deviate from, subordinate to grounding and the anti-default critique, never the design decision itself.
 
 ---
 

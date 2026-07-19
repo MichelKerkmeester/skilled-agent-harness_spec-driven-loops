@@ -29,7 +29,7 @@ function writeMatrix(runtimes: Array<Record<string, unknown>>): string {
 function writeRawMatrix(matrix: Record<string, unknown>): string {
   const dir = mkdtempSync(join(tmpdir(), 'runtime-cap-'));
   tempDirs.push(dir);
-  const matrixPath = join(dir, 'runtime_capabilities.json');
+  const matrixPath = join(dir, 'runtime-capabilities.json');
   writeFileSync(matrixPath, JSON.stringify(matrix), 'utf8');
   return matrixPath;
 }
@@ -101,8 +101,8 @@ describe('per-skill shims stay byte-compatible', () => {
   });
 
   it('point DEFAULT_CAPABILITY_PATH at each skill assets dir', () => {
-    expect(dr.DEFAULT_CAPABILITY_PATH.endsWith('system-deep-loop/deep-research/assets/runtime_capabilities.json')).toBe(true);
-    expect(drv.DEFAULT_CAPABILITY_PATH.endsWith('system-deep-loop/deep-review/assets/runtime_capabilities.json')).toBe(true);
+    expect(dr.DEFAULT_CAPABILITY_PATH.endsWith('system-deep-loop/deep-research/assets/runtime-capabilities.json')).toBe(true);
+    expect(drv.DEFAULT_CAPABILITY_PATH.endsWith('system-deep-loop/deep-review/assets/runtime-capabilities.json')).toBe(true);
   });
 
   it('preserve the frozen baseline runtime id set', () => {

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: command asset emitters (032 phase 003 child 004)"
+title: "Feature Specification: command asset emitters (020 phase 003 child 004)"
 description: "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched."
 trigger_phrases:
   - "create command asset emitter naming"
@@ -11,20 +11,23 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:38:11Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 contract for create command asset emission"
-    next_safe_action: "Inventory all create asset output patterns and align them with sibling generator contracts"
+    recent_action: "Completed kebab-case emission contracts and regression coverage for create command assets"
+    next_safe_action: "Integrate this child with the phase 003 parent after central review"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/commands/create/assets/tests/test_emitted_name_contract.py"
+      - ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json"
+      - ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Command Asset Emitters
 
@@ -38,10 +41,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child 004 of phase 003 in the 032 kebab-case filesystem-naming program |
+| **Origin** | Child 004 of phase 003 in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

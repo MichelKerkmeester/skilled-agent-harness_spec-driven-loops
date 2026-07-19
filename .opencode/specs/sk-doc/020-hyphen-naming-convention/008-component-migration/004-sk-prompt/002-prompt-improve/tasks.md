@@ -1,5 +1,5 @@
 ---
-title: "Tasks: prompt-improve asset and reference names (032 phase 004.002)"
+title: "Tasks: prompt-improve asset and reference names (020 phase 004.002)"
 description: "Tasks for phase 002 of the sk-prompt kebab-case program: rename prompt-improve assets and references, close active path consumers, and verify scope."
 trigger_phrases:
   - "prompt-improve asset and reference tasks"

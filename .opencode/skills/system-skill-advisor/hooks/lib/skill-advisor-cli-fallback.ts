@@ -14,8 +14,8 @@ import type {
   AdvisorHookStatus,
   AdvisorRuntime,
   SkillAdvisorBriefOptions,
-} from '../../mcp_server/lib/skill-advisor-brief.js';
-import type { AdvisorRecommendation } from '../../mcp_server/lib/subprocess.js';
+} from '../../mcp-server/lib/skill-advisor-brief.js';
+import type { AdvisorRecommendation } from '../../mcp-server/lib/subprocess.js';
 
 interface CliFallbackPaths {
   readonly repoRoot: string;
@@ -179,7 +179,7 @@ function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): Cl
     const opencodeDir = join(current, '.opencode');
     const cliPath = join(opencodeDir, 'bin', 'skill-advisor.cjs');
     const bridgePath = join(opencodeDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
-    const defaultDbDir = join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp_server', 'database');
+    const defaultDbDir = join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp-server', 'database');
     if (existsSync(cliPath) && existsSync(bridgePath)) {
       return {
         repoRoot: current,

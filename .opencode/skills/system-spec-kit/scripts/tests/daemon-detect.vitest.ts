@@ -62,12 +62,12 @@ describe('isSpecMemoryDaemonAlive', () => {
   });
 
   // Regression guard: the default lease path MUST resolve to the launcher's real
-  // location <system-spec-kit>/mcp_server/database/, NOT scripts/mcp_server/. A fixed up-count from
-  // dist/core previously landed at the nonexistent scripts/mcp_server/database -> the guard was dead code.
-  it('resolves the default lease path to the launcher-canonical system-spec-kit/mcp_server/database dir', () => {
+  // location <system-spec-kit>/mcp-server/database/, NOT scripts/mcp-server/. A fixed up-count from
+  // dist/core previously landed at the nonexistent scripts/mcp-server/database -> the guard was dead code.
+  it('resolves the default lease path to the launcher-canonical system-spec-kit/mcp-server/database dir', () => {
     const resolved = resolveSpecMemoryDaemonLeasePath();
-    expect(resolved.endsWith(path.join('system-spec-kit', 'mcp_server', 'database', '.mk-spec-memory-launcher.json'))).toBe(true);
-    expect(resolved.includes(path.join('scripts', 'mcp_server'))).toBe(false);
+    expect(resolved.endsWith(path.join('system-spec-kit', 'mcp-server', 'database', '.mk-spec-memory-launcher.json'))).toBe(true);
+    expect(resolved.includes(path.join('scripts', 'mcp-server'))).toBe(false);
   });
 
   // ─────────────────────────────────────────────────────────────────

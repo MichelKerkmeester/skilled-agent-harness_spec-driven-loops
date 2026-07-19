@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git changelog verification (032 phase 008/012/005)"
+title: "Implementation Plan: sk-git changelog verification (020 phase 008/012/005)"
 description: "Read-only implementation plan for verifying the sk-git migration changelog and version bump. The verifier will compare the v1.3.2.0 entry with sibling evidence and version consumers, then prove phase 005 made no mutation."
 trigger_phrases:
   - "sk-git changelog verification plan"
-  - "032 sk-git version verification"
+  - "020 sk-git version verification"
   - "migration release evidence plan"
 importance_tier: "important"
 contextType: "planning"

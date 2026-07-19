@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop benchmark names (032 phase 007/009)"
+title: "Decision Record: system-deep-loop benchmark names (020 phase 007/009)"
 description: "L2 design decisions for the root benchmark naming phase, including storage-label scope, report/schema protections, generated output handling, and fixture/profile ownership."
 trigger_phrases:
   - "system-deep-loop benchmark decisions"

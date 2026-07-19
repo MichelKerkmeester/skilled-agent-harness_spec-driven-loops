@@ -2,45 +2,45 @@
   "modes": [
     {
       "leaves": [
-        "assets/prompt_quality_card.md",
-        "assets/prompt_templates.md",
-        "references/agent_delegation.md",
-        "references/claude_tools.md",
-        "references/cli_reference.md",
-        "references/integration_patterns.md"
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/claude-tools.md",
+        "references/cli-reference.md",
+        "references/integration-patterns.md"
       ],
       "packet": "cli-claude-code",
       "workflowMode": "cli-claude-code"
     },
     {
       "leaves": [
-        "assets/prompt_quality_card.md",
-        "assets/prompt_templates.md",
-        "references/agent_delegation.md",
-        "references/cli_reference.md",
-        "references/codex_tools.md",
-        "references/hook_contract.md",
-        "references/integration_patterns.md"
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/cli-reference.md",
+        "references/codex-tools.md",
+        "references/hook-contract.md",
+        "references/integration-patterns.md"
       ],
       "packet": "cli-codex",
       "workflowMode": "cli-codex"
     },
     {
       "leaves": [
-        "assets/permissions_matrix.example-packet-local.json",
-        "assets/permissions_matrix.example-readonly.json",
-        "assets/permissions_matrix.example-repo-wide.json",
-        "assets/permissions_matrix.schema.json",
-        "assets/prompt_quality_card.md",
-        "assets/prompt_templates.md",
-        "references/agent_delegation.md",
-        "references/cli_reference.md",
-        "references/context_budget.md",
-        "references/destructive_scope_violations.md",
-        "references/integration_patterns.md",
-        "references/opencode_tools.md",
-        "references/permissions_matrix.md",
-        "references/self_invocation_guard.md"
+        "assets/permissions-matrix.example-packet-local.json",
+        "assets/permissions-matrix.example-readonly.json",
+        "assets/permissions-matrix.example-repo-wide.json",
+        "assets/permissions-matrix.schema.json",
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/cli-reference.md",
+        "references/context-budget.md",
+        "references/destructive-scope-violations.md",
+        "references/integration-patterns.md",
+        "references/opencode-tools.md",
+        "references/permissions-matrix.md",
+        "references/self-invocation-guard.md"
       ],
       "packet": "cli-opencode",
       "workflowMode": "cli-opencode"

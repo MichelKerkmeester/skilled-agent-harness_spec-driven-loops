@@ -26,7 +26,7 @@ This scenario validates that the single motion-owned private card, `procedures/i
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm motion selects `interaction_states_pass.md` and cites interaction matrix, visible focus, feedback coverage, timing, and reduced motion before guidance.
+- Objective: Confirm motion selects `interaction-states-pass.md` and cites interaction matrix, visible focus, feedback coverage, timing, and reduced motion before guidance.
 - Real user request: `Tune every visible state for a toolbar interaction.`
 - Prompt: `motion: define hover, focus, active, loading, selected, disabled, and reduced-motion behavior for this toolbar. State the selected private procedure card and proof line first.`
 - Expected execution process: Read `SKILL.md`; select `procedures/interaction-states-pass.md`; record public mode, affected states, motion budget, reduced-motion bar, timing/easing decisions, and verification risks.
@@ -52,5 +52,5 @@ This scenario validates that the single motion-owned private card, `procedures/i
 
 - Group: Procedure Card Contract
 - Playbook ID: MOTION-PROCCARD-001
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/card-selection-proof.md`

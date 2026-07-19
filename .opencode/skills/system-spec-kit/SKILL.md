@@ -92,17 +92,17 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - `references/hooks/` for prompt-time advisor hooks, the OpenCode goal plugin, runtime hook parity, and hook validation playbooks.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory_system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp_server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature_catalog/` + `manual_testing_playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
 
 ### Template and Script Sources of Truth
 
 - Level definitions and template size guidance: level specifications reference
-- Template usage and composition rules: [template_guide.md](./references/templates/template_guide.md)
+- Template usage and composition rules: [template-guide.md](./references/templates/template-guide.md)
 - Use the Level contract for operational templates; `create.sh` and the Level contract resolver share the same template index.
 - Use `templates/changelog/` for packet-local nested changelog generation at completion time.
 - Script architecture, build outputs, and runtime entrypoints: [scripts/README.md](./scripts/README.md)
-- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
-- Nested packet changelog workflow: [nested_changelog.md](./references/workflows/nested_changelog.md)
+- Memory save JSON schema and workflow contracts: [save-workflow.md](./references/memory/save-workflow.md)
+- Nested packet changelog workflow: [nested-changelog.md](./references/workflows/nested-changelog.md)
 
 Primary operational scripts:
 - `spec/validate.sh`
@@ -110,7 +110,7 @@ Primary operational scripts:
 - `spec/archive.sh`
 - `spec/check-completion.sh`
 - `spec/recommend-level.sh`
-- `mcp_server/lib/templates/level-contract-resolver.ts`
+- `mcp-server/lib/templates/level-contract-resolver.ts`
 
 Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in §3):
 - `0`: success.
@@ -126,7 +126,7 @@ Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI 
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:research` to `../system-deep-loop/deep-research/references/protocol/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick-reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:research` to `../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -142,7 +142,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/workflows/quick_reference.md"
+DEFAULT_RESOURCE = "references/workflows/quick-reference.md"
 
 INTENT_SIGNALS = {
     "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
@@ -166,84 +166,84 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "PLAN": [
-        "references/templates/template_guide.md",
-        "references/workflows/intake_contract.md",
-        "references/validation/template_compliance_contract.md",
-        "assets/level_decision_matrix.md",
-        "assets/complexity_decision_matrix.md",
+        "references/templates/template-guide.md",
+        "references/workflows/intake-contract.md",
+        "references/validation/template-compliance-contract.md",
+        "assets/level-decision-matrix.md",
+        "assets/complexity-decision-matrix.md",
     ],
     "RESEARCH": [
-        "references/workflows/quick_reference.md",
-        "references/workflows/worked_examples.md",
-        "references/memory/epistemic_vectors.md",
+        "references/workflows/quick-reference.md",
+        "references/workflows/worked-examples.md",
+        "references/memory/epistemic-vectors.md",
     ],
     "IMPLEMENT": [
-        "references/validation/validation_rules.md",
-        "references/validation/template_compliance_contract.md",
-        "references/templates/template_guide.md",
-        "assets/template_mapping.md",
+        "references/validation/validation-rules.md",
+        "references/validation/template-compliance-contract.md",
+        "references/templates/template-guide.md",
+        "assets/template-mapping.md",
     ],
     "DEBUG": [
         "references/debugging/troubleshooting.md",
-        "references/debugging/universal_debugging_methodology.md",
-        "references/workflows/quick_reference.md",
+        "references/debugging/universal-debugging-methodology.md",
+        "references/workflows/quick-reference.md",
     ],
     "COMPLETE": [
-        "references/validation/validation_rules.md",
-        "references/workflows/nested_changelog.md",
-        "references/workflows/intake_contract.md",
-        "references/workflows/spec_folder_write_recipe.md",
-        "references/workflows/spec_folder_authoring_checklist.md",
+        "references/validation/validation-rules.md",
+        "references/workflows/nested-changelog.md",
+        "references/workflows/intake-contract.md",
+        "references/workflows/spec-folder-write-recipe.md",
+        "references/workflows/spec-folder-authoring-checklist.md",
     ],
     "MEMORY": [
-        "references/memory/memory_system.md",
-        "references/memory/save_workflow.md",
-        "references/memory/trigger_config.md",
+        "references/memory/memory-system.md",
+        "references/memory/save-workflow.md",
+        "references/memory/trigger-config.md",
     ],
     "HANDOVER": [
-        "references/workflows/quick_reference.md",
+        "references/workflows/quick-reference.md",
     ],
     "PHASE": [
-        "references/structure/phase_definitions.md",
-        "references/structure/sub_folder_versioning.md",
-        "references/validation/phase_checklists.md",
+        "references/structure/phase-definitions.md",
+        "references/structure/sub-folder-versioning.md",
+        "references/validation/phase-checklists.md",
     ],
     "RETRIEVAL_TUNING": [
-        "references/memory/embedder_architecture.md",
-        "references/memory/embedding_resilience.md",
-        "references/memory/embedder_pluggability.md",
-        "references/memory/trigger_config.md",
+        "references/memory/embedder-architecture.md",
+        "references/memory/embedding-resilience.md",
+        "references/memory/embedder-pluggability.md",
+        "references/memory/trigger-config.md",
     ],
     "INTAKE": [
-        "references/workflows/intake_contract.md",
-        "references/templates/template_guide.md",
-        "references/validation/template_compliance_contract.md",
+        "references/workflows/intake-contract.md",
+        "references/templates/template-guide.md",
+        "references/validation/template-compliance-contract.md",
     ],
     "HOOKS": [
-        "references/hooks/skill_advisor_hook.md",
-        "references/hooks/skill_advisor_hook_validation.md",
-        "references/hooks/goal_plugin.md",
-        "references/config/hook_system.md",
+        "references/hooks/skill-advisor-hook.md",
+        "references/hooks/skill-advisor-hook-validation.md",
+        "references/hooks/goal-plugin.md",
+        "references/config/hook-system.md",
     ],
     "LAUNCHER": [
-        "references/config/launcher_lease.md",
-        "references/memory/memory_system.md",
+        "references/config/launcher-lease.md",
+        "references/memory/memory-system.md",
     ],
     "RENAME": [
-        "references/workflows/rename_pattern.md",
+        "references/workflows/rename-pattern.md",
     ],
     "EVALUATION": [
-        "references/memory/epistemic_vectors.md",
-        "references/config/environment_variables.md",
+        "references/memory/epistemic-vectors.md",
+        "references/config/environment-variables.md",
     ],
     "SCORING_CALIBRATION": [
-        "references/config/environment_variables.md",
+        "references/config/environment-variables.md",
     ],
     "ROLLOUT_FLAGS": [
-        "references/config/environment_variables.md",
+        "references/config/environment-variables.md",
     ],
     "GOVERNANCE": [
-        "references/config/environment_variables.md",
+        "references/config/environment-variables.md",
     ],
 }
 
@@ -264,10 +264,10 @@ LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/memory:save", "/speckit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
     "ON_DEMAND": [
-        "references/validation/phase_checklists.md",
-        "references/templates/template_guide.md",
-        "references/workflows/intake_contract.md",
-        "references/hooks/skill_advisor_hook_validation.md",
+        "references/validation/phase-checklists.md",
+        "references/templates/template-guide.md",
+        "references/workflows/intake-contract.md",
+        "references/hooks/skill-advisor-hook-validation.md",
     ],
 }
 
@@ -419,7 +419,7 @@ def route_speckit_resources(task):
 
 Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves.
 
-The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 41 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/spec-memory.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon. MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Prompt-time callers must pass `--warm-only` (probe-only, exit `75` instead of cold-spawning); non-prompt contexts auto-spawn the daemon through the launcher. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`references/cli/daemon_cli_reference.md`](references/cli/daemon_cli_reference.md). See `mcp_server/ENV_REFERENCE.md` ("CLI front door") for the warm-only/prompt-time env flags. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp_server/ENV_REFERENCE.md`.
+The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 41 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/spec-memory.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon. MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Prompt-time callers must pass `--warm-only` (probe-only, exit `75` instead of cold-spawning); non-prompt contexts auto-spawn the daemon through the launcher. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`references/cli/daemon-cli-reference.md`](references/cli/daemon-cli-reference.md). See `mcp-server/ENV-REFERENCE.md` ("CLI front door") for the warm-only/prompt-time env flags. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory-system.md`, `references/memory/save-workflow.md`, and `mcp-server/ENV-REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp-server/ENV-REFERENCE.md`.
 
 `memory_index_scan` is self-maintaining: overlapping scan calls return a `coalesced:true` success envelope instead of a raw E429 error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` with a `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep. `memory_health` now includes an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) and counts for indexed/pending/failed rows.
 
@@ -438,11 +438,11 @@ Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecatio
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `references/hooks/goal_plugin.md`, `mcp_server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook-system.md`, `references/hooks/skill-advisor-hook.md`, `references/hooks/goal-plugin.md`, `mcp-server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
 
 ### OpenCode Goal Plugin
 
-The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal_plugin.md`](./references/hooks/goal_plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
+The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal-plugin.md`](./references/hooks/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 
@@ -471,7 +471,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
 16. **Apply the phased-packet preference without bypassing qualification** - Suggest `/speckit:plan :with-phases` only when phase complexity score >= 25 AND documentation level >= 3. If either condition fails, use a standard packet; if the work is new or unrelated, create a separate packet and evaluate that packet independently.
 17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
-   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and, for `.opencode/specs/` targets, the system-spec-kit spec-folder docs (`references/workflows/spec_folder_authoring_checklist.md` + `references/workflows/spec_folder_write_recipe.md`) BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `speckit_complete_auto.yaml` and `speckit_complete_confirm.yaml` for the YAML contract.
+   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and, for `.opencode/specs/` targets, the system-spec-kit spec-folder docs (`references/workflows/spec-folder-authoring-checklist.md` + `references/workflows/spec-folder-write-recipe.md`) BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `speckit-complete-auto.yaml` and `speckit-complete-confirm.yaml` for the YAML contract.
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `mk-spec-memory-handler`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
@@ -529,7 +529,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Worktree isolation | `.opencode/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
 | Session cleanup | `.opencode/scripts/session-cleanup.sh` (renamed from `claude-session-cleanup.sh` with a back-compat shim retained) resolves PIDs across claude/opencode/opencode runtimes |
 
-Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../system-deep-loop/deep-research/references/protocol/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 
@@ -537,7 +537,7 @@ Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repair
 
 ## 7. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick_reference.md`, `references/templates/template_guide.md`, `references/validation/validation_rules.md`, `references/memory/save_workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 

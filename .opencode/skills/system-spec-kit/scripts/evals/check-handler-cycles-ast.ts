@@ -5,7 +5,7 @@
 // ───────────────────────────────────────────────────────────────
 // 1. CHECK HANDLER CYCLES AST
 // ───────────────────────────────────────────────────────────────
-// Detects circular import/re-export dependencies in mcp_server/handlers.
+// Detects circular import/re-export dependencies in mcp-server/handlers.
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -17,12 +17,12 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 function resolveHandlersRoot(): string {
   const candidates = [
     // Source layout (tsx): scripts/evals/check-handler-cycles-ast.ts
-    path.resolve(moduleDir, '../../mcp_server/handlers'),
+    path.resolve(moduleDir, '../../mcp-server/handlers'),
     // Compiled layout (node): scripts/dist/evals/check-handler-cycles-ast.js
-    path.resolve(moduleDir, '../../../mcp_server/handlers'),
+    path.resolve(moduleDir, '../../../mcp-server/handlers'),
     // CWD fallbacks
-    path.resolve(process.cwd(), '../mcp_server/handlers'),
-    path.resolve(process.cwd(), 'mcp_server/handlers'),
+    path.resolve(process.cwd(), '../mcp-server/handlers'),
+    path.resolve(process.cwd(), 'mcp-server/handlers'),
   ];
 
   for (const candidate of candidates) {

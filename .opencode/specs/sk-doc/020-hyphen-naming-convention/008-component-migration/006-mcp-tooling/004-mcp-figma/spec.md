@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-figma naming closure (032 phase 004)"
+title: "Feature Specification: mcp-figma naming closure (020 phase 004)"
 description: "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install guide, and a leading-underscore shared shell helper. This phase renames those filesystem paths to safe kebab-compatible targets and updates references without changing Figma transport behavior or shell identifiers."
 trigger_phrases:
   - "mcp-figma kebab-case"
   - "figma catalog playbook rename"
-  - "032 mcp tooling phase 004"
+  - "020 mcp tooling phase 004"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-figma Naming Closure
 
@@ -92,7 +92,7 @@ This phase moves the Figma filesystem surface to semantic kebab-case targets, in
 | REQ-001 | Rename the complete Figma filesystem closure | The 14 underscored directories, 30 underscored files, INSTALL_GUIDE.md, asset/reference paths, and _common.sh have explicit semantic targets |
 | REQ-002 | Repair every local reference | Markdown links, source commands, path tables, index entries, and path-derived values resolve to the new paths |
 | REQ-003 | Preserve transport and shell semantics | The mcp-figma allowed-tool boundary, Figma command identifiers, shell variables, JSON/YAML/TOML keys, and frontmatter fields remain unchanged |
-| REQ-004 | Honor the 032 exemption boundary | No Python path, generated/lockfile output, changelog history, or tool/package-mandated name is renamed |
+| REQ-004 | Honor the 020 exemption boundary | No Python path, generated/lockfile output, changelog history, or tool/package-mandated name is renamed |
 | REQ-005 | Prove the Figma packet remains usable | Feature/playbook discovery, shell syntax, and parent-hub checks pass with non-zero resources |
 <!-- /ANCHOR:requirements -->
 

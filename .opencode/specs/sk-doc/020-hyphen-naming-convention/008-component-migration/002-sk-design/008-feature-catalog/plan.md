@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Feature-catalog (032 phase 008)"
-description: "Execution plan for Feature-catalog in the 032 sk-design naming subtree."
+title: "Implementation Plan: Feature-catalog (020 phase 008)"
+description: "Execution plan for Feature-catalog in the 020 sk-design naming subtree."
 trigger_phrases:
   - "feature-catalog implementation plan"
   - "sk-design feature-catalog plan"
-  - "032 feature-catalog tasks"
+  - "020 feature-catalog tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Feature-catalog (032 phase 008)
+# Implementation Plan: Feature-catalog (020 phase 008)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

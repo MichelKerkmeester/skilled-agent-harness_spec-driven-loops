@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-claude-code component naming (032 phase 005.003)"
+title: "Checklist: cli-claude-code component naming (020 phase 005.003)"
 description: "Blocking SOL verifier contract for the cli-claude-code component: complete six-file map, active link closure, provider-contract parity, and delegated-surface protection."
 trigger_phrases:
   - "cli-claude-code naming checklist"

@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Manual-testing-playbook (032 phase 009)"
+title: "Feature Specification: Manual-testing-playbook (020 phase 009)"
 description: "The sk-design hub and mode packets use manual_testing_playbook roots, category directories, scenario files, and index names with underscores, and catalog/index references point into those paths."
 trigger_phrases:
   - "manual-testing-playbook naming phase"
   - "sk-design manual-testing-playbook phase"
-  - "032 manual-testing-playbook"
+  - "020 manual-testing-playbook"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Manual-testing-playbook (032 phase 009)
+# Feature Specification: Manual-testing-playbook (020 phase 009)
 
 > Phase 009 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 9 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 9 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: system-code-graph changelog verification (032 phase 007)"
-description: "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 032 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename."
+title: "Feature Specification: system-code-graph changelog verification (020 phase 007)"
+description: "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename."
 trigger_phrases:
   - "system-code-graph changelog verification"
   - "system-code-graph naming version bump"
-  - "032 system-code-graph phase 007"
+  - "020 system-code-graph phase 007"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: system-code-graph Changelog Verification
 
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The current system-code-graph release history ends at v1.3.0.0, which predates the 032 kebab-case filesystem
+The current system-code-graph release history ends at v1.3.0.0, which predates the 020 kebab-case filesystem
 migration. The subtree needs evidence that the complete package, script, reference, runtime, feature-catalog, and
 manual-playbook rename set was recorded in an append-only release entry, with a version bump that agrees with the
 skill's release metadata and with the exemptions that were deliberately preserved.
@@ -82,7 +82,7 @@ does not edit changelogs, rename paths, or repair migration references.
 - Any filesystem rename, reference rewrite, code change, version edit, or changelog-history rewrite.
 - Inventing or repairing a release entry when the migration evidence is missing; that is a blocking finding for the
   owning migration or release phase.
-- Other 032 component-migration subtrees and the central whole-repo gate.
+- Other 020 component-migration subtrees and the central whole-repo gate.
 
 ### Files to Change
 

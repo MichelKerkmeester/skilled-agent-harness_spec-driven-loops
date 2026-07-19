@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: convention policy and scope (032 phase 001)"
-description: "Implementation Plan for phase 001 of the 032 kebab-case filesystem-naming program: convention policy and scope."
+title: "Implementation Plan: convention policy and scope (020 phase 001)"
+description: "Implementation Plan for phase 001 of the 020 kebab-case filesystem-naming program: convention policy and scope."
 trigger_phrases:
   - "convention policy and scope implementation plan"
   - "hyphen naming phase 001 implementation plan"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored for the 032 phased tree"
+    recent_action: "Plan authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -110,7 +110,7 @@ There is no single authoritative statement that kebab-case (hyphens) is the cano
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
+Inherits the 020 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
 (rebuilt in the worktree), and sk-git for the worktree lifecycle. Phase-specific dependencies are the predecessor
 phases named in this phase's spec adjacency.
 <!-- /ANCHOR:dependencies -->

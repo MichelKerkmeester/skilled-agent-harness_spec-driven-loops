@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-server directory and manifest closure (032 component 011 phase 001)"
+title: "Tasks: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "Tasks for the semantic mcp_server to mcp-server directory rename and its package, installer, diagnostic, metadata, and entrypoint reference closure."
 trigger_phrases:
   - "mcp-server closure tasks"

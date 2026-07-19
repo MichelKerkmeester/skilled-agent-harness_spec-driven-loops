@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: sk-prompt subtree rollup gate (032 phase 004.007)"
-description: "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 032 exemption boundary. It performs no new rename or reference migration."
+title: "Feature Specification: sk-prompt subtree rollup gate (020 phase 004.007)"
+description: "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration."
 trigger_phrases:
   - "sk-prompt naming rollup gate"
   - "sk-prompt kebab-clean verification"
@@ -25,12 +25,12 @@ _memory:
     open_questions: []
     answered_questions:
       - "This gate aggregates sibling evidence and does not introduce a new migration map."
-      - "The final scan must classify retained non-kebab names against the 032 exemption and sibling disposition records."
+      - "The final scan must classify retained non-kebab names against the 020 exemption and sibling disposition records."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-prompt subtree rollup gate
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Final rollup gate for the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Final rollup gate for the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -64,7 +64,7 @@ performs one scope-aware census of `.opencode/skills/sk-prompt/`; it reports gap
 ### In Scope
 - Verify the blocking checklists and handoffs for phases 001–006 are complete and mutually consistent.
 - Scan the hub, prompt-improve, prompt-models, playbook, benchmark, and active metadata surfaces for retained in-scope snake_case filesystem names.
-- Confirm every retained non-kebab name has a valid 032 exemption, tool-mandated/protected disposition, generated/frozen disposition, or sibling-owned evidence record.
+- Confirm every retained non-kebab name has a valid 020 exemption, tool-mandated/protected disposition, generated/frozen disposition, or sibling-owned evidence record.
 - Confirm active path references resolve after all child migrations and that phase 006 release evidence matches the final map.
 - Aggregate the final evidence and issue a pass/block result for the sk-prompt subtree.
 

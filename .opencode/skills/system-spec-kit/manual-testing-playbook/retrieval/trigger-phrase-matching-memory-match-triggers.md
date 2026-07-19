@@ -1,0 +1,73 @@
+---
+title: "EX-003 -- Trigger phrase matching (memory_match_triggers)"
+description: "This scenario validates Trigger phrase matching (memory_match_triggers) for `EX-003`. It focuses on Fast recall path."
+audited_post_018: true
+version: 3.6.0.16
+id: retrieval-trigger-phrase-matching-memory-match-triggers
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+---
+
+# EX-003 -- Trigger phrase matching (memory_match_triggers)
+
+## 1. OVERVIEW
+
+This scenario validates Trigger phrase matching (memory_match_triggers) for `EX-003`. It focuses on Fast recall path plus trigger-cache reload efficiency.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Fast recall path plus trigger-cache reload efficiency.
+- Real user request: `Please validate Trigger phrase matching (memory_match_triggers) against memory_match_triggers(prompt,include_cognitive:true,sessionId:ex003) and tell me whether the expected signals are present: Fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse.`
+- Prompt: `Validate memory_match_triggers with cognitive enrichment and confirm trigger hits, cache reload, and prepared-statement reuse.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if matched triggers return with cognitive fields and cache reload evidence shows the partial index source plus prepared-statement reuse on the same DB connection. FAIL if trigger hits are missing, cognitive enrichment is absent, reload falls back to a full-table source, or each reload recompiles the loader statement.
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+`Validate memory_match_triggers with cognitive enrichment and confirm trigger hits, cache reload, and prepared-statement reuse.`
+
+### Commands
+
+1. Run `memory_match_triggers(prompt,include_cognitive:true,sessionId:ex003)` and capture the returned matches
+2. In a debug harness or test shell on the same SQLite connection, call `refreshTriggerCache()` or clear+reload the trigger cache twice
+3. Capture query-plan, schema, or instrumentation evidence that the reload source is constrained to successful rows with non-empty `trigger_phrases` and backed by `idx_trigger_cache_source`
+4. Confirm the second reload on the same DB connection reuses the cached prepared loader statement instead of preparing a new one
+
+### Expected
+
+Fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse
+
+### Evidence
+
+Trigger output + cache-refresh logs or instrumentation + query-plan/schema evidence for `idx_trigger_cache_source`
+
+### Pass / Fail
+
+- **Pass**: matched triggers return with cognitive fields and cache reload evidence shows the partial index source plus prepared-statement reuse on the same DB connection
+- **Fail**: trigger hits are missing, cognitive enrichment is absent, reload falls back to a full-table source, or each reload recompiles the loader statement.
+
+### Failure Triage
+
+Retry with higher-quality trigger phrase -> inspect trigger-cache clear/reload instrumentation -> verify `idx_trigger_cache_source` exists and the reload query still filters to successful rows with non-empty trigger phrases
+
+## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Feature catalog: [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../../feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Retrieval
+- Playbook ID: EX-003
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `retrieval/trigger-phrase-matching-memory-match-triggers.md`

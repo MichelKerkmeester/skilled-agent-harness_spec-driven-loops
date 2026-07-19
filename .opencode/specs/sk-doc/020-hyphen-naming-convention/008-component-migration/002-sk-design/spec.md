@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: sk-design component migration (032 phase parent)"
+title: "Feature Specification: sk-design component migration (020 phase parent)"
 description: "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts, changelog evidence, and final gate."
 trigger_phrases:
   - "sk-design naming phases"
   - "sk-design kebab-case migration"
-  - "032 sk-design component migration"
+  - "020 sk-design component migration"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The sk-design surface spans a routing hub, shared reference base, six mode packets, feature catalogs, manual playbooks, benchmark snapshots, and changelog records. Its non-exempt filesystem names must follow the 032 kebab-case convention while Python scripts/package directories and tool-mandated names remain exact.
+The sk-design surface spans a routing hub, shared reference base, six mode packets, feature catalogs, manual playbooks, benchmark snapshots, and changelog records. Its non-exempt filesystem names must follow the 020 kebab-case convention while Python scripts/package directories and tool-mandated names remain exact.
 
 This parent organizes one child phase per coherent surface so each child can inventory names, update path references, and hand evidence to the final gate. The child documents own all implementation detail.
 <!-- /ANCHOR:problem -->

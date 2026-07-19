@@ -37,7 +37,7 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 
 Routing is **registry-driven** (invokable-hub, Option E). `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. When invoked as `Skill(system-deep-loop[, "<mode>: <request>"])`, the hub classifies the request to a `workflowMode`, resolves it through the registry, and loads `registry[mode].packet`. The advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then picks the mode. The `/deep:*` commands and native agent types remain as complementary surfaces — they reach the same packets through static routers/agent definitions — and the hub holds NO per-mode logic.
 
-This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at `shared/references/smart_routing.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
+This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at `shared/references/smart-routing.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
 
 ### Note on the frontmatter `allowed-tools` grant
 
@@ -85,7 +85,7 @@ system-deep-loop/
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
-Each active mode packet keeps its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature_catalog/`, or `manual_testing_playbook/` as applicable, with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder follows the standard `folder == packetSkillName` convention (`deep-ai-council`); its legacy public surfaces (the `/deep:ai-council` command and the `ai-council` agent) intentionally keep the shorter `ai-council` key, so always resolve the packet path through `mode-registry.json` rather than hardcoding it.
+Each active mode packet keeps its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature-catalog/`, or `manual-testing-playbook/` as applicable, with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The `deep-ai-council` packet folder follows the standard `folder == packetSkillName` convention (`deep-ai-council`); its legacy public surfaces (the `/deep:ai-council` command and the `ai-council` agent) intentionally keep the shorter `ai-council` key, so always resolve the packet path through `mode-registry.json` rather than hardcoding it.
 
 ### Backend
 All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out, the council primitives, and the promoted plumbing (capability resolver, artifact-root, loop-lock CLI, lifecycle taxonomy). The runtime never gains an `improvement` loopType — improvement stays host-driven.
@@ -149,6 +149,6 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Sibling example: `.opencode/skills/sk-design/` (the same invokable-hub + `mode-registry.json` Option E pattern).
 - Registry: `mode-registry.json` (this hub's routing contract).

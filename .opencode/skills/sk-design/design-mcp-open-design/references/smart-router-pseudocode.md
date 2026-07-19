@@ -13,7 +13,7 @@ version: 1.5.0.0
 
 # design-mcp-open-design: Smart Router Pseudocode
 
-> **Resilience pattern:** see [sk-doc smart-router template](../../../sk-doc/create-skill/assets/skill/skill_smart_router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
+> **Resilience pattern:** see [sk-doc smart-router template](../../../sk-doc/create-skill/assets/skill/skill-smart-router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
 
 This is the reference implementation behind [`SKILL.md`](../SKILL.md) Section 2 (SMART ROUTING): the keyword-weighted intent classifier, the resource map per direction, and the `design_gate` hard-coupling check that blocks any RUN or design-feeding READ without a classified `openDesignPurpose`.
 

@@ -70,5 +70,5 @@ Audit card selection changes the evidence bar. Accessibility review needs contra
 
 - Group: Procedure Card Contract
 - Playbook ID: AUDIT-PROCCARD-001
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/card-selection-proof.md`

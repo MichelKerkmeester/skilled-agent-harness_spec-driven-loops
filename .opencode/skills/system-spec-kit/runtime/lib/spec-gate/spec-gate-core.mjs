@@ -40,7 +40,7 @@ import { dirname, join, resolve } from 'node:path';
 // The shared Gate-3 classifier compiles to ESM (`shared/package.json` declares
 // "type":"module"), so this core must be ESM too -- a CommonJS `require()` of an
 // ESM module fails at runtime. Import the already-compiled dist artifact
-// directly; nothing under `mcp_server/` is touched or rebuilt by this module.
+// directly; nothing under `mcp-server/` is touched or rebuilt by this module.
 import { classifyPrompt, validateSpecFolderBinding } from '../../../shared/dist/gate-3-classifier.js';
 
 // ─────────────────────────────────────────────────────────────────────────────

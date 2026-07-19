@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning.",
     "created_at": "2026-07-14T15:17:38Z",
-    "last_save_at": "2026-07-17T14:30:21.850Z",
+    "last_save_at": "2026-07-17T20:26:09.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b803fd2e6269aaacd88854d5e84bf5e5e6744b9f01cdef32c2b38f8d5ec4cd8f",
+    "source_fingerprint": "sha256:e64b80d54985dd26c9d78a2b4205b0bde94162a36c20f89989020b03e7656d23",
     "source_doc_hashes": {
-      "spec.md": "c6edeca3ef292549da995e90a1a364bdc4736f4fdf2ad3b3aa3fa5a4863fdcfc",
-      "plan.md": "533bcdb816b3c97bf2badd448bde0545a4c8921e1d0dc527c71aa1ef702514b7",
-      "tasks.md": "c9d3a1d94cd2066e409cd2389978d52ecb805a5908622ebcd081da968b15d80f",
-      "checklist.md": "a994323b1221f3599a57400368dff953ecaf56bff0b7aafd1489fe8947af78f2",
-      "decision-record.md": "8b7d76e009afaf7d6305373d8cd0f6949ed9f012e4d85610ac5ea678df9d853f"
+      "spec.md": "96b6d567e33d01967cc2f4adbb5816fa8b93dc23b8ac33a72c1a222da4538f28",
+      "plan.md": "6e157759128552f3fbb6b4464940b5e71d2f6afdebb158b804bc5090c263130b",
+      "tasks.md": "5d3a7880669ed5a021520cbe8f46ade48dc1f2411d2f322b7f3248d5beb543c5",
+      "checklist.md": "b3da372be49b62d865cca390a82e16af1c3d20301ff9ced482ff20ec42d671e8",
+      "decision-record.md": "19d4412d2a6bd6894a907d10d1a3def8b29650d446c86bca670e2550a3319c19"
     },
     "last_active_child_id": null,
     "last_active_at": null

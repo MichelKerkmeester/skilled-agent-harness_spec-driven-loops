@@ -31,7 +31,7 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const CONTRACT_RELATIVE_PATH = '.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml';
+const CONTRACT_RELATIVE_PATH = '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
 const SNAPSHOT_ARTIFACT_ID = 'review-contract-snapshot';
 const MAPPING_KEY_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*):(?: (.*))?$/;
 

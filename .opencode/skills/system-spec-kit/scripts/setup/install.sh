@@ -18,7 +18,7 @@ source "${SCRIPT_DIR}/_utils.sh"
 readonly MCP_NAME="mk-spec-memory"
 readonly MCP_DISPLAY_NAME="Spec Kit Memory"
 readonly SPEC_KIT_ROOT_DIR=".opencode/skills/system-spec-kit"
-readonly MCP_SERVER_DIR="${SPEC_KIT_ROOT_DIR}/mcp_server"
+readonly MCP_SERVER_DIR="${SPEC_KIT_ROOT_DIR}/mcp-server"
 readonly MCP_SERVER_SCRIPT="dist/context-server.js"
 readonly MCP_CANONICAL_DB_DIR="${MCP_SERVER_DIR}/database"
 readonly MIN_NODE_VERSION="20.11.0"
@@ -189,8 +189,8 @@ configure_mcp() {
         "command": ["node", "'"${MCP_SERVER_DIR}/${MCP_SERVER_SCRIPT}"'"],
         "environment": {
             "EMBEDDINGS_PROVIDER": "auto",
-            "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
-            "_NOTE_1_DATABASE": "Auto-derives profile-specific DB files inside: .opencode/skills/system-spec-kit/mcp_server/database/",
+            "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database",
+            "_NOTE_1_DATABASE": "Auto-derives profile-specific DB files inside: .opencode/skills/system-spec-kit/mcp-server/database/",
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), Ollama active manifests, HF Local (768 dims, no API needed)",
             "_NOTE_3_CLOUD_PROVIDERS": "Auto mode is local-first: Ollama (default, nomic-embed-text-v1.5, 768 dims) -> hf-local (pure-Node nomic) -> OpenAI -> Voyage. Cloud tiers are opt-in last resorts; set VOYAGE_API_KEY or OPENAI_API_KEY only to enable cloud embeddings (or pin EMBEDDINGS_PROVIDER to force a tier).",
             "_NOTE_4_PORTABLE": "Uses relative paths and auto-derived DB names so provider switches do not require manual sqlite path edits",

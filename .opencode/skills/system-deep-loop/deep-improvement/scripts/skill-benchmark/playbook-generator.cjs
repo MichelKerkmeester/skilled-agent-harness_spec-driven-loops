@@ -10,7 +10,7 @@
  *
  * Mutation boundary (Lane C is diagnostic-by-default): this NEVER writes into a
  * skill's live playbook. It is opt-in (`createMissing`), writes only to a
- * clearly-namespaced `manual_testing_playbook/_generated_staging/` dir, and
+ * clearly-namespaced `manual-testing-playbook/_generated_staging/` dir, and
  * emits a promoteHint for the operator to review + land. Generated scenarios are
  * tier `T1-auto` (the honesty anchor: a generator that read the router can't
  * author a true holdout; T2 stays human).
@@ -43,6 +43,7 @@ const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
  * @returns {{intents:string[],resourceTargets:string[],negatives:string[],existingCount:number,routerParseable:boolean}} Coverage analysis.
  */
 function analyzeCoverage(skillRoot) {
+  const existing = loadPlaybookScenarios({ skillRoot }).scenarios;
   const skillMd = fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
   const router = parseRouter(skillMd, skillRoot);
   // A parent hub's router only carries the mode keys (implement/quality/debug/...);
@@ -58,7 +59,6 @@ function analyzeCoverage(skillRoot) {
   const resourceTargets = [...new Set(Object.values(router.resourceMap).flat())];
   const m = /#{1,3}\s*When NOT to Use([\s\S]*?)(?:\n#{1,3}\s|$)/i.exec(skillMd);
   const negatives = m ? (m[1].match(/^\s*[-*]\s+(.+)$/gm) || []).map((s) => s.replace(/^\s*[-*]\s+/, '').trim().slice(0, 140)) : [];
-  const existing = loadPlaybookScenarios({ skillRoot }).scenarios;
   return { intents, resourceTargets, negatives, existingCount: existing.length, routerParseable: router.parseable };
 }
 
@@ -176,10 +176,8 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
   if (!createMissing) {
     return { staged: [], proposalDir: null, coverage, promoteHint: 'pass createMissing:true to author staged scenarios' };
   }
-  // Stage under whichever playbook dir name the skill uses (snake standard or kebab-migrated).
-  const playbookName = fs.existsSync(path.join(skillRoot, 'manual-testing-playbook'))
-    ? 'manual-testing-playbook'
-    : 'manual_testing_playbook';
+  // Stage under the canonical kebab-case playbook dir.
+  const playbookName = 'manual-testing-playbook';
   const stagingDir = path.join(skillRoot, playbookName, '_generated_staging');
   const specs = coverage.intents.map((intent, i) => ({ id: `AG-${String(i + 1).padStart(3, '0')}`, intent, negative: false, stage: 'routing' }));
   const authorFn = author || (async (spec) => ({

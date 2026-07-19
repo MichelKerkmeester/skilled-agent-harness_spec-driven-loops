@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "manual-testing-playbook naming phase",
       "sk-design manual-testing-playbook phase",
-      "032 manual-testing-playbook",
+      "020 manual-testing-playbook",
       "manual-testing-playbook implementation plan",
       "sk-design manual-testing-playbook plan",
-      "032 manual-testing-playbook tasks",
+      "020 manual-testing-playbook tasks",
       "manual-testing-playbook tasks",
       "sk-design manual-testing-playbook execution",
-      "032 manual-testing-playbook checklist",
+      "020 manual-testing-playbook checklist",
       "manual-testing-playbook verification",
       "sk-design manual-testing-playbook checklist",
-      "032 manual-testing-playbook gate"
+      "020 manual-testing-playbook gate"
     ],
     "key_topics": [
       "manual-testing-playbook",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use manual_testing_playbook roots, category directories, scenario files, and index names with underscores, and catalog/index references point into those paths.",
     "created_at": "2026-07-14T15:17:20Z",
-    "last_save_at": "2026-07-17T14:30:11.453Z",
+    "last_save_at": "2026-07-17T20:26:05.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e450f4f98b4df4fc1675695c028c8ed7329d2cc44929711393167880c72904d7",
+    "source_fingerprint": "sha256:1020e7aabef2b03881a7141e52d89d8abf2824fd73017b33019492ea7ae8d58d",
     "source_doc_hashes": {
-      "spec.md": "6f29e1c39611c7c76d2a7f11c4e738273bac582090c752cb349faa94e38ead28",
-      "plan.md": "e903e333f13144dcbc3cb0e6142705817c4657ec6afe72fcff9930a01beb8c4e",
-      "tasks.md": "8320350691c22a06e2cfbc44ff2fb1327552cfca39d2ae1df96176e91736c262",
-      "checklist.md": "7e4ca21c2d9583e3d0bc73fb07538890dda4f992b1f123283c6f0281639adb2a"
+      "spec.md": "d1b7ebded21d82bdec07349b1e81bed5ab322a8c85d8a838285076d3af372a53",
+      "plan.md": "a0edc5fc8a4ea3e3c67703be7f631d558ddf2c7af8ceb13b8772290a24ae9355",
+      "tasks.md": "ecf3f1dbacdeaf8433efd02e272459f474f73041b5ea0bcf297d7091bdc45177",
+      "checklist.md": "9a64510f252d1d58ef972a3e29e97585a3469d63389db962c15bc3430cc2872b"
     },
     "last_active_child_id": null,
     "last_active_at": null

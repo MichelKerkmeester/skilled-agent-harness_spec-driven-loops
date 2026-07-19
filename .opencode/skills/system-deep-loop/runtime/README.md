@@ -35,7 +35,7 @@ version: 1.5.0.1
 
 ### Why This Skill Exists
 
-Several deep loops shared the same runtime code. Each needed executor config parsing. Each needed atomic state-log writes and single-writer locking. Each needed a coverage graph that survives a session crash. Each needed Bayesian convergence scoring. Before this skill existed, all of that lived inside `system-spec-kit/mcp_server/` and got reached through MCP tools. The consumer modes depended on the internals of a separate package, every workflow call paid the MCP marshalling and JSON-parse round-trip, and each loop would otherwise duplicate executor config, atomic-state writes, JSONL repair, single-writer locking, coverage-graph ownership, Bayesian scoring and fallback routing.
+Several deep loops shared the same runtime code. Each needed executor config parsing. Each needed atomic state-log writes and single-writer locking. Each needed a coverage graph that survives a session crash. Each needed Bayesian convergence scoring. Before this skill existed, all of that lived inside `system-spec-kit/mcp-server/` and got reached through MCP tools. The consumer modes depended on the internals of a separate package, every workflow call paid the MCP marshalling and JSON-parse round-trip, and each loop would otherwise duplicate executor config, atomic-state writes, JSONL repair, single-writer locking, coverage-graph ownership, Bayesian scoring and fallback routing.
 
 The consolidation moved the shared runtime into this peer skill. The MCP tools are gone, and direct script invocation replaced them. One step instead of two, one hardened implementation every loop shares.
 
@@ -152,7 +152,7 @@ The deprecated standalone context loop no longer consumes fan-out. Runtime `cont
 | What you see | Why | Fix |
 |---|---|---|
 | Script exits with code 2 (DB error) | The SQLite database is missing, corrupt or locked by another writer | Confirm `database/deep-loop-graph.sqlite` exists and is writable. If a stale `database/.deep-loop-graph-writer.lock` survived a crash, remove it after confirming no live writer (`ps aux | grep convergence.cjs`). |
-| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is valid for the script, and `--session-id` has no path-traversal characters. Active convergence loop types are `research`, `review` and `council`; fan-out accepts only `research` and `review`; legacy `context` is retained only where a script explicitly documents historical artifact compatibility. `improvement` is host-driven, not a runtime `loopType`. The full contract is in `references/script_interface_contract.md`. |
+| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is valid for the script, and `--session-id` has no path-traversal characters. Active convergence loop types are `research`, `review` and `council`; fan-out accepts only `research` and `review`; legacy `context` is retained only where a script explicitly documents historical artifact compatibility. `improvement` is host-driven, not a runtime `loopType`. The full contract is in `references/script-interface-contract.md`. |
 | Convergence returns CONTINUE past a high iteration count | The typed convergence signals are not passing the stop thresholds | Check the iteration outputs for corrupt data that injects fake coverage or contradiction signals. If outputs are valid, the loop is genuinely surfacing new evidence and the hard cap is the correct stop. |
 | Loop-lock acquisition times out | A long-running upsert holds the lock, or a stale lock survived a crash | Raise `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` for contended workloads. For a stale lock, remove the writer lockfile after confirming no live writer. |
 | A state log is corrupt mid-line | The crash happened during a write, not at a line boundary | `jsonl-repair` recovers only trailing corruption. For mid-line corruption, inspect the file and delete the broken line. The loop resumes from the last intact record. |
@@ -194,11 +194,11 @@ The skill ships a feature catalog and a manual testing playbook that together co
 
 ### Feature Catalog
 
-`feature_catalog/` documents each capability across its domains: executor config, prompt rendering, validation, state safety, scoring, the coverage graph, the script entry points, council primitives and the fan-out pool. Every entry names inputs, outputs, the owning resource and acceptance criteria.
+`feature-catalog/` documents each capability across its domains: executor config, prompt rendering, validation, state safety, scoring, the coverage graph, the script entry points, council primitives and the fan-out pool. Every entry names inputs, outputs, the owning resource and acceptance criteria.
 
 ### Manual Testing Playbook
 
-`manual_testing_playbook/` provides deterministic scenarios across the same domains. The root playbook defines preconditions, expected signals and pass, fail or partial verdict rules. Each scenario maps to a dedicated feature file with the canonical invocation and live source anchors.
+`manual-testing-playbook/` provides deterministic scenarios across the same domains. The root playbook defines preconditions, expected signals and pass, fail or partial verdict rules. Each scenario maps to a dedicated feature file with the canonical invocation and live source anchors.
 
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/runtime/README.md --type readme
@@ -247,9 +247,9 @@ The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.open
 
 | Document | Purpose |
 |---|---|
-| [`references/script_interface_contract.md`](./references/script_interface_contract.md) | The `.cjs` argv contract, exit-code matrix and stdout JSON shape every script honors |
-| [`references/coverage_graph_schema.md`](./references/coverage_graph_schema.md) | SQLite schema, node-kind allow-list, relation kinds and indexes |
-| [`references/integration_points.md`](./references/integration_points.md) | Consumer surface map: which skill calls which script and imports which module |
-| [`references/state_format.md`](./references/state_format.md) | Runtime state JSONL record types and the tmpfile-plus-rename write contract |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Per-feature canonical inventory across the runtime domains |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator-facing deterministic scenarios with preconditions and expected signals |
+| [`references/script-interface-contract.md`](./references/script-interface-contract.md) | The `.cjs` argv contract, exit-code matrix and stdout JSON shape every script honors |
+| [`references/coverage-graph-schema.md`](./references/coverage-graph-schema.md) | SQLite schema, node-kind allow-list, relation kinds and indexes |
+| [`references/integration-points.md`](./references/integration-points.md) | Consumer surface map: which skill calls which script and imports which module |
+| [`references/state-format.md`](./references/state-format.md) | Runtime state JSONL record types and the tmpfile-plus-rename write contract |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Per-feature canonical inventory across the runtime domains |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator-facing deterministic scenarios with preconditions and expected signals |

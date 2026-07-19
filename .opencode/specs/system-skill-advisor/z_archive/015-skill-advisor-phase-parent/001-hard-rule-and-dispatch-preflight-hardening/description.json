@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening",
+  "specFolder": "system-skill-advisor/z_archive/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening",
   "description": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with",
   "keywords": [
     "two",
@@ -18,11 +18,12 @@
     "stalled",
     "iterations"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.155Z",
+  "lastUpdated": "2026-07-18T03:48:57.291Z",
   "specId": "001",
   "folderSlug": "hard-rule-and-dispatch-preflight-hardening",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "015-skill-advisor-phase-parent"
   ],
   "memorySequence": 0,

@@ -37,6 +37,6 @@ Spec a toast notification and a settings drawer toggle so I can hand them to the
 ## Pass Criteria
 
 - Names the owner, exactly one purpose and the full state path for each card.
-- Cites timing and easing from `motion_strategy.md`, not new values invented in the card.
+- Cites timing and easing from `motion-strategy.md`, not new values invented in the card.
 - Defines a reduced-motion equivalent that keeps the state change and removes movement (toast fades only, drawer swaps instantly).
 - Leaves no blank cell, since a card with blanks is not ready to hand to `sk-code`.

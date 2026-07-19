@@ -18,11 +18,11 @@ version: 1.0.0.1
 
 The [`mk-skill-advisor.js`](../../plugins/mk-skill-advisor.js) OpenCode plugin requests a Skill Advisor brief for a user prompt before the model runs. It sends the prompt and routing thresholds to the advisor bridge, injects the returned brief into system context and falls back to a fixed safety directive when the advisor cannot return a brief. This prompt-time routing supports Gate 2, where the advisor recommends a matching skill before that skill handles the task.
 
-The plugin keeps its prompt cache in memory. Its cache key includes the session, prompt, thresholds, workspace and a source signature computed from advisor implementation files, skill metadata and graph artifacts. That signature invalidates cached recommendations when the routing inputs change. The plugin does not read or write `.advisor-state` directly. The related [`system-skill-advisor`](../system-skill-advisor/SKILL.md) server and daemon own the state documented here, while the plugin reaches that logic through the [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs) bridge.
+The plugin keeps its prompt cache in memory. Its cache key includes the session, prompt, thresholds, workspace and a source signature computed from advisor implementation files, skill metadata and graph artifacts. That signature invalidates cached recommendations when the routing inputs change. The plugin does not read or write `.advisor-state` directly. The related [`system-skill-advisor`](../system-skill-advisor/SKILL.md) server and daemon own the state documented here, while the plugin reaches that logic through the [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs) bridge.
 
 The bridge probes advisor status before it builds a native brief. Status combines the generation metadata in this folder with the skill graph database and source files to report freshness and trust. A usable graph can still serve recommendations when daemon evidence is unavailable if its trust state remains `live` or `stale`. In that case the bridge marks the native route as degraded rather than treating the graph as unusable.
 
-The `skill-graph-daemon-lease.sqlite` file here holds two tables. Its `skill_graph_daemon_lease` table is a legacy fallback location, because the active daemon lease now lives under [`system-skill-advisor/mcp_server/database/`](../system-skill-advisor/mcp_server/database/). The advisor watcher uses this same file as the default store for its `quarantined_skill` table.
+The `skill-graph-daemon-lease.sqlite` file here holds two tables. Its `skill_graph_daemon_lease` table is a legacy fallback location, because the active daemon lease now lives under [`system-skill-advisor/mcp-server/database/`](../system-skill-advisor/mcp-server/database/). The advisor watcher uses this same file as the default store for its `quarantined_skill` table.
 
 The raw runtime data in this folder is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving machine-specific state.
 
@@ -114,7 +114,7 @@ Freshness and caller trust are separate outputs. Freshness comes from this gener
 
 The daemon lease uses SQLite WAL mode. A lease owner updates `heartbeat_at` while it remains active and deletes its row when it releases the lease. Another process can reclaim a lease after its heartbeat becomes stale.
 
-New lease acquisitions default to `system-skill-advisor/mcp_server/database/skill-graph-daemon-lease.sqlite`. A caller can override that database path. Lease status also checks the `.advisor-state` database when no override is present, but only as a legacy fallback after the active path does not show a held lease. The active database uses its containing directory as `workspace_key`. The legacy lookup uses the workspace root.
+New lease acquisitions default to `system-skill-advisor/mcp-server/database/skill-graph-daemon-lease.sqlite`. A caller can override that database path. Lease status also checks the `.advisor-state` database when no override is present, but only as a legacy fallback after the active path does not show a held lease. The active database uses its containing directory as `workspace_key`. The legacy lookup uses the workspace root.
 
 The lease prevents two watcher daemons from owning the same workspace database. The default heartbeat interval is 5 seconds and the default stale threshold is 30 seconds. On stale takeover, daemon startup publishes `unavailable` before watcher creation and `live` after the watcher starts. During shutdown, the daemon suppresses watcher generation writes, drains pending work, closes the watcher, publishes a terminal `unavailable` generation and releases the lease.
 
@@ -124,7 +124,7 @@ The daemon watcher discovers each visible skill's `SKILL.md`, `graph-metadata.js
 
 Before reindexing, the watcher checks that an existing `SKILL.md` starts with frontmatter containing both `name` and `description`. A malformed file causes the watcher to insert or replace a `quarantined_skill` row with reason `MALFORMED_SKILL_MD`. The watcher skips that skill's reindex. Once the file passes the check again, the watcher sets `recovered_at` for its active row and resumes normal processing. An active quarantine keeps `recovered_at` null, and daemon status counts only those active rows.
 
-The `.advisor-state` SQLite file remains the default active quarantine store even though its lease table is only a legacy fallback. This split is intentional in the current code and explains why the database can still change on an active installation that keeps its daemon lease under `mcp_server/database/`.
+The `.advisor-state` SQLite file remains the default active quarantine store even though its lease table is only a legacy fallback. This split is intentional in the current code and explains why the database can still change on an active installation that keeps its daemon lease under `mcp-server/database/`.
 
 ### 3.4 OPERATOR BOUNDARY
 
@@ -186,10 +186,10 @@ This state supports routing but does not replace the recommended skill. For exam
 |---|---|
 | [`mk-skill-advisor.js`](../../plugins/mk-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
 | [`system-skill-advisor/SKILL.md`](../system-skill-advisor/SKILL.md) | Gate 2 routing contract and standalone advisor MCP overview. |
-| [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs) | Connects the OpenCode plugin to advisor status and recommendation handlers. |
-| [`generation.ts`](../system-skill-advisor/mcp_server/lib/freshness/generation.ts) | Reads, validates and atomically publishes generation metadata. |
-| [`generation-metadata.ts`](../system-skill-advisor/mcp_server/schemas/generation-metadata.ts) | Defines the generation metadata schema. |
-| [`lease.ts`](../system-skill-advisor/mcp_server/lib/daemon/lease.ts) | Defines the daemon lease database, heartbeat and release behavior, including the legacy `.advisor-state` fallback path. |
-| [`watcher.ts`](../system-skill-advisor/mcp_server/lib/daemon/watcher.ts) | Defines the `quarantined_skill` table and its default location in this folder. |
-| [`watcher-orchestrator.ts`](../system-skill-advisor/mcp_server/lib/daemon/watcher-orchestrator.ts) | Validates changed skills, controls quarantine recovery, reindexes and publishes watcher generations. |
-| [`lifecycle.ts`](../system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts) | Coordinates lease ownership, watcher startup, stale takeover and terminal shutdown state. |
+| [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs) | Connects the OpenCode plugin to advisor status and recommendation handlers. |
+| [`generation.ts`](../system-skill-advisor/mcp-server/lib/freshness/generation.ts) | Reads, validates and atomically publishes generation metadata. |
+| [`generation-metadata.ts`](../system-skill-advisor/mcp-server/schemas/generation-metadata.ts) | Defines the generation metadata schema. |
+| [`lease.ts`](../system-skill-advisor/mcp-server/lib/daemon/lease.ts) | Defines the daemon lease database, heartbeat and release behavior, including the legacy `.advisor-state` fallback path. |
+| [`watcher.ts`](../system-skill-advisor/mcp-server/lib/daemon/watcher.ts) | Defines the `quarantined_skill` table and its default location in this folder. |
+| [`watcher-orchestrator.ts`](../system-skill-advisor/mcp-server/lib/daemon/watcher-orchestrator.ts) | Validates changed skills, controls quarantine recovery, reindexes and publishes watcher generations. |
+| [`lifecycle.ts`](../system-skill-advisor/mcp-server/lib/daemon/lifecycle.ts) | Coordinates lease ownership, watcher startup, stale takeover and terminal shutdown state. |

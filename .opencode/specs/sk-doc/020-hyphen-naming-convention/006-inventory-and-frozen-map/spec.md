@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: inventory and frozen rename map (032 phase 006)"
+title: "Feature Specification: inventory and frozen rename map (020 phase 006)"
 description: "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated."
 trigger_phrases:
   - "inventory and frozen rename map"
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Inventory and frozen rename map
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `005-rename-and-reference-tooling`; successor `007-shared-and-cross-cutting-closures`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `005-rename-and-reference-tooling`; successor `007-shared-and-cross-cutting-closures`.
 
 > **RECONCILED — v4 reconciliation (2026-07-15).** Two authoring-time assumptions no longer hold and this phase absorbs the correction: (1) **BASE is not the authoring structure SHA.** The frozen map and its digest must pin to the **current migration tip at execution time**, because concurrent v4 work has already landed part of the in-scope surface (the sk-git kebab pilot: references, assets, manual-testing-playbook). Those entries satisfy the invariant in the ALREADY-APPLIED direction (source absent, target present) and must carry an explicit `already-applied` disposition instead of being flagged as missing sources. (2) **The generated `.codex/prompts/` surface is now in scope**, produced by `.opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs` and classified `generated` — naming is corrected at the producer, never by hand-renaming outputs; two known snake regressions (`agent_router.md`, `goal_opencode.md`) are flagged for a producer fix. Full inventory: the packet's v4-reconciliation-inventory.md.
 
@@ -45,7 +45,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 006 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 006 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -100,7 +100,7 @@ Before any rename, the in-scope surface must be frozen into a bijective, fully-c
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 032 parent spec (import breakage, validator downgrade, non-reproducible builds,
+Inherits the program-level risks in the 020 parent spec (import breakage, validator downgrade, non-reproducible builds,
 over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
 <!-- /ANCHOR:risks -->
 

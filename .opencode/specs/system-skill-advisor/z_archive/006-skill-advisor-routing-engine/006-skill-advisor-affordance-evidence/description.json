@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
+  "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
   "description": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
   "keywords": [
     "skill",
@@ -13,11 +13,12 @@
     "config",
     "reference"
   ],
-  "lastUpdated": "2026-07-07T14:23:32.102Z",
+  "lastUpdated": "2026-07-18T03:48:57.212Z",
   "specId": "006",
   "folderSlug": "skill-advisor-affordance-evidence",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 1,

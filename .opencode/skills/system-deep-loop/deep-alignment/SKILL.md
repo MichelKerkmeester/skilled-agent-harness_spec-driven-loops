@@ -71,9 +71,9 @@ The general entry point for this skill is `/deep:alignment`. The specialized `/d
 
 | Level | When to Load | Resources |
 |-------|-------------|-----------|
-| ALWAYS | Every skill invocation | `references/scoping_protocol.md` |
+| ALWAYS | Every skill invocation | `references/scoping-protocol.md` |
 | CONDITIONAL | If intent/state signals match | Lane config schema, discover contract, state-machine wiring, the active lane's selected adapter + known-deviation pair |
-| ON_DEMAND | Only on explicit request | Adapter specs outside the active lane, `assets/deep_alignment_config_template.json` |
+| ON_DEMAND | Only on explicit request | Adapter specs outside the active lane, `assets/deep-alignment-config-template.json` |
 
 ### Smart Router Pseudocode
 
@@ -87,7 +87,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/scoping_protocol.md"
+DEFAULT_RESOURCE = "references/scoping-protocol.md"
 
 INTENT_SIGNALS = {
     "ALIGNMENT_SCOPE":    {"weight": 4, "keywords": ["alignment lane", "scoping question", "lane-config", "artifact-class", ":auto", ":confirm"]},
@@ -107,30 +107,30 @@ NOISY_SYNONYMS = {
 
 # RESOURCE_MAP: state-scoped protocol references plus the config asset.
 RESOURCE_MAP = {
-    "ALIGNMENT_SCOPE":    ["references/scoping_protocol.md", "references/lane_config_schema.md"],
-    "ALIGNMENT_DISCOVER": ["references/discover_contract.md"],
-    "ALIGNMENT_CHECK":    ["references/state_machine_wiring.md"],
-    "ALIGNMENT_CONVERGE": ["references/state_machine_wiring.md"],
-    "ALIGNMENT_REPORT":   ["references/state_machine_wiring.md"],
+    "ALIGNMENT_SCOPE":    ["references/scoping-protocol.md", "references/lane-config-schema.md"],
+    "ALIGNMENT_DISCOVER": ["references/discover-contract.md"],
+    "ALIGNMENT_CHECK":    ["references/state-machine-wiring.md"],
+    "ALIGNMENT_CONVERGE": ["references/state-machine-wiring.md"],
+    "ALIGNMENT_REPORT":   ["references/state-machine-wiring.md"],
 }
 
 # ADAPTER_RESOURCE_MAP: adapter + known-deviation prompt pack, keyed by the
 # active lane's selected adapter. Default adapters keep their authority name.
 ADAPTER_RESOURCE_MAP = {
-    "sk-doc":    ["references/adapters/sk_doc_adapter.md", "references/adapters/sk_doc_known_deviations.md"],
-    "sk-doc-command": ["references/adapters/sk_doc_command_adapter.md", "references/adapters/sk_doc_command_known_deviations.md"],
-    "sk-git":    ["references/adapters/sk_git_adapter.md", "references/adapters/sk_git_known_deviations.md"],
-    "sk-design": ["references/adapters/sk_design_adapter.md", "references/adapters/sk_design_known_deviations.md", "references/adapters/sk_design_live_render_adapter.md"],
-    "sk-design-live-render": ["references/adapters/sk_design_adapter.md", "references/adapters/sk_design_known_deviations.md", "references/adapters/sk_design_live_render_adapter.md"],
-    "sk-code":   ["references/adapters/sk_code_adapter.md", "references/adapters/sk_code_known_deviations.md"],
+    "sk-doc":    ["references/adapters/sk-doc-adapter.md", "references/adapters/sk-doc-known-deviations.md"],
+    "sk-doc-command": ["references/adapters/sk-doc-command-adapter.md", "references/adapters/sk-doc-command-known-deviations.md"],
+    "sk-git":    ["references/adapters/sk-git-adapter.md", "references/adapters/sk-git-known-deviations.md"],
+    "sk-design": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md", "references/adapters/sk-design-live-render-adapter.md"],
+    "sk-design-live-render": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md", "references/adapters/sk-design-live-render-adapter.md"],
+    "sk-code":   ["references/adapters/sk-code-adapter.md", "references/adapters/sk-code-known-deviations.md"],
 }
 
 PHASE_RESOURCE_MAP = {
-    "scope":    ["references/scoping_protocol.md", "references/lane_config_schema.md"],
-    "discover": ["references/discover_contract.md"],
-    "iterate":  ["references/state_machine_wiring.md"],
-    "converge": ["references/state_machine_wiring.md"],
-    "report":   ["references/state_machine_wiring.md"],
+    "scope":    ["references/scoping-protocol.md", "references/lane-config-schema.md"],
+    "discover": ["references/discover-contract.md"],
+    "iterate":  ["references/state-machine-wiring.md"],
+    "converge": ["references/state-machine-wiring.md"],
+    "report":   ["references/state-machine-wiring.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -240,11 +240,11 @@ def route_alignment_resources(task, dispatch_context):
 
 | State | Signal | Resources to Load |
 |-------|--------|-------------------|
-| SCOPE | No `deep-alignment-config.json` yet, or lane-resolution/`--lane-config` keywords | `scoping_protocol.md`, `lane_config_schema.md` |
-| DISCOVER | Config frozen, corpus not yet built | `discover_contract.md`, the active lane's selected adapter spec |
+| SCOPE | No `deep-alignment-config.json` yet, or lane-resolution/`--lane-config` keywords | `scoping-protocol.md`, `lane-config-schema.md` |
+| DISCOVER | Config frozen, corpus not yet built | `discover-contract.md`, the active lane's selected adapter spec |
 | ITERATE | Corpus exists, `deep-alignment-state.jsonl` advancing | the active lane's adapter + known-deviations pair |
-| CONVERGE | `check-convergence.cjs` dispatch context | `state_machine_wiring.md` (convergence formula) |
-| REPORT | Convergence returned `CONVERGED`/`STOP_MAX_ITERATIONS`/`NOTHING_TO_CONVERGE` | `state_machine_wiring.md` (reducer wiring) |
+| CONVERGE | `check-convergence.cjs` dispatch context | `state-machine-wiring.md` (convergence formula) |
+| REPORT | Convergence returned `CONVERGED`/`STOP_MAX_ITERATIONS`/`NOTHING_TO_CONVERGE` | `state-machine-wiring.md` (reducer wiring) |
 
 ---
 
@@ -301,16 +301,16 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 
 ### Core References
 
-- [scoping_protocol.md](./references/scoping_protocol.md) - Three-axis ARTIFACT-CLASS x AUTHORITY x SCOPE lane resolution
-- [lane_config_schema.md](./references/lane_config_schema.md) - `--lane-config` JSON shape, authority/artifact-class validity, and the error contract
-- [discover_contract.md](./references/discover_contract.md) - The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract
-- [state_machine_wiring.md](./references/state_machine_wiring.md) - State-to-script wiring, the `alignment/` file layout, and the convergence formula
-- [adapters/sk_doc_adapter.md](./references/adapters/sk_doc_adapter.md), [adapters/sk_git_adapter.md](./references/adapters/sk_git_adapter.md), [adapters/sk_design_adapter.md](./references/adapters/sk_design_adapter.md), [adapters/sk_design_live_render_adapter.md](./references/adapters/sk_design_live_render_adapter.md), [adapters/sk_code_adapter.md](./references/adapters/sk_code_adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
-- [adapters/sk_doc_known_deviations.md](./references/adapters/sk_doc_known_deviations.md), [adapters/sk_git_known_deviations.md](./references/adapters/sk_git_known_deviations.md), [adapters/sk_design_known_deviations.md](./references/adapters/sk_design_known_deviations.md), [adapters/sk_code_known_deviations.md](./references/adapters/sk_code_known_deviations.md) - Per-authority known-deviation suppression lists
+- [scoping-protocol.md](./references/scoping-protocol.md) - Three-axis ARTIFACT-CLASS x AUTHORITY x SCOPE lane resolution
+- [lane-config-schema.md](./references/lane-config-schema.md) - `--lane-config` JSON shape, authority/artifact-class validity, and the error contract
+- [discover-contract.md](./references/discover-contract.md) - The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract
+- [state-machine-wiring.md](./references/state-machine-wiring.md) - State-to-script wiring, the `alignment/` file layout, and the convergence formula
+- [adapters/sk-doc-adapter.md](./references/adapters/sk-doc-adapter.md), [adapters/sk-git-adapter.md](./references/adapters/sk-git-adapter.md), [adapters/sk-design-adapter.md](./references/adapters/sk-design-adapter.md), [adapters/sk-design-live-render-adapter.md](./references/adapters/sk-design-live-render-adapter.md), [adapters/sk-code-adapter.md](./references/adapters/sk-code-adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
+- [adapters/sk-doc-known-deviations.md](./references/adapters/sk-doc-known-deviations.md), [adapters/sk-git-known-deviations.md](./references/adapters/sk-git-known-deviations.md), [adapters/sk-design-known-deviations.md](./references/adapters/sk-design-known-deviations.md), [adapters/sk-code-known-deviations.md](./references/adapters/sk-code-known-deviations.md) - Per-authority known-deviation suppression lists
 
 ### Templates and Assets
 
-- [deep_alignment_config_template.json](./assets/deep_alignment_config_template.json) - Config template with convergence defaults, file-protection rules, and script wiring
+- [deep-alignment-config-template.json](./assets/deep-alignment-config-template.json) - Config template with convergence defaults, file-protection rules, and script wiring
 
 ### Reference Loading Notes
 
@@ -366,7 +366,7 @@ This skill operates within the behavioral framework defined in the active runtim
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/scoping_protocol.md` and `references/lane_config_schema.md` for lane resolution; `references/discover_contract.md` and the active lane's selected adapter spec for discovery and checking; `references/state_machine_wiring.md` for convergence and reducer wiring.
+**Required**: `references/scoping-protocol.md` and `references/lane-config-schema.md` for lane resolution; `references/discover-contract.md` and the active lane's selected adapter spec for discovery and checking; `references/state-machine-wiring.md` for convergence and reducer wiring.
 
 **Optional**: the remaining adapter and known-deviation docs, loaded only when a lane selects that adapter.
 
@@ -374,7 +374,7 @@ This skill operates within the behavioral framework defined in the active runtim
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference and asset docs dynamically under `references/` and `assets/`. Start with `references/scoping_protocol.md`, `references/lane_config_schema.md`, `references/discover_contract.md`, and `references/state_machine_wiring.md`, then load the active lane's selected adapter and known-deviation pair, and `assets/deep_alignment_config_template.json` when the config shape is needed.
+The router discovers reference and asset docs dynamically under `references/` and `assets/`. Start with `references/scoping-protocol.md`, `references/lane-config-schema.md`, `references/discover-contract.md`, and `references/state-machine-wiring.md`, then load the active lane's selected adapter and known-deviation pair, and `assets/deep-alignment-config-template.json` when the config shape is needed.
 
 Scripts: `scripts/scoping.cjs`, `scripts/check-convergence.cjs`, `scripts/partition-corpus.cjs`, `scripts/remediate-hook.cjs`, and `scripts/adapters/<authority>.cjs`.
 

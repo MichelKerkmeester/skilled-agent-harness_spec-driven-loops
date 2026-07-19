@@ -8,7 +8,7 @@ const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const SKDESIGN = join(REPO_SKILLS, 'sk-design');
 const FIXTURES = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures');
-const ASSET = join(SKDESIGN, 'shared', 'design_dispatch_boundary.md');
+const ASSET = join(SKDESIGN, 'shared', 'design-dispatch-boundary.md');
 
 const { routeSkillResources } = require(join(SB, 'router-replay.cjs'));
 const {
@@ -124,7 +124,7 @@ describe('design boundary proof parity — canonical asset and declared copies',
     tempRoots.push(root);
     cpSync(SKDESIGN, root, { recursive: true });
 
-    const canonical = join(root, 'shared', 'design_dispatch_boundary.md');
+    const canonical = join(root, 'shared', 'design-dispatch-boundary.md');
     const copyPath = join(root, 'declared-copy.md');
     writeFileSync(copyPath, readFileSync(canonical, 'utf8'));
 

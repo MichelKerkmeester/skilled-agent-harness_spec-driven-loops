@@ -55,7 +55,7 @@ A code request resolves through the hub to a primary workflow mode and/or one-or
 | `code-webflow` | Frontend evidence (CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify) plus the Motion.dev animation overlay. |
 | `code-opencode` | System-code evidence (TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists). |
 
-The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow_implement.md`, `workflow_debug.md`, and `workflow_verify.md`, symlinked into each surface, so the active surface carries the full workflow. "review my webflow animation for jank" resolves to `[code-review, code-webflow]`.
+The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, symlinked into each surface, so the active surface carries the full workflow. "review my webflow animation for jank" resolves to `[code-review, code-webflow]`.
 
 ### One advisor identity
 

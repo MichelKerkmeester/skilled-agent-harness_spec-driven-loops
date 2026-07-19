@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: cli-external-orchestration subtree rollup gate (032 phase 005.008)"
-description: "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 032 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation."
+title: "Feature Specification: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
+description: "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 020 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation."
 trigger_phrases:
   - "cli-external subtree rollup gate"
   - "cli-external kebab-clean verifier"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-external-orchestration subtree rollup gate
 
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration |
-| **Origin** | Rollup gate phase 008 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Rollup gate phase 008 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,7 +65,7 @@ This gate joins all sibling evidence with a final scope-aware census and active-
 ### In Scope
 - Read phases 001–007 checklists, path maps, benchmark dispositions, release-evidence matrix, and handoffs.
 - Enumerate the complete `.opencode/skills/cli-external-orchestration/` tree, including root files, three CLI components, four playbook roots, and `benchmark/`.
-- Reconcile every retained non-kebab filesystem name with an approved 032 exemption, generated/frozen disposition, tool contract, or sibling map.
+- Reconcile every retained non-kebab filesystem name with an approved 020 exemption, generated/frozen disposition, tool contract, or sibling map.
 - Resolve active path references against all sibling source-target maps and verify no stale in-scope source path remains.
 - Publish a reproducible pass/block matrix for the parent packet and central validation.
 

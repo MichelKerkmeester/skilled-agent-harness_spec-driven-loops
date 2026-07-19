@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/006-cli-skill-improved-prompting",
+  "specFolder": "cli-external-orchestration/z_archive/006-cli-skill-improved-prompting",
   "description": "The CLI orchestrator skills currently rely on static prompt templates without a lightweight framework-selection or quality-check layer",
   "keywords": [
     "cli",
@@ -16,11 +16,12 @@
     "quality-check",
     "layer"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.718Z",
+  "lastUpdated": "2026-07-18T03:48:54.290Z",
   "specId": "006",
   "folderSlug": "cli-skill-improved-prompting",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

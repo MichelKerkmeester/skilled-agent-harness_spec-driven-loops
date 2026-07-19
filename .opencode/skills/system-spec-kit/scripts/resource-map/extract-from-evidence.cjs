@@ -34,7 +34,7 @@ const CATEGORY_ORDER = [
   {
     key: 'Skills',
     heading: '## 5. Skills',
-    description: '> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.',
+    description: '> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `scripts/`, `shared/`, `mcp-server/`.',
   },
   {
     key: 'Specs',

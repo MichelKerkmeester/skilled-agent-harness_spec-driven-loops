@@ -6,8 +6,8 @@ import { join, resolve } from 'node:path';
 
 import { createHermeticEnv, runtimeRoot, type HermeticEnv } from '../helpers/spawn-cjs';
 
-const RESEARCH_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep_research_auto.yaml');
-const REVIEW_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep_review_auto.yaml');
+const RESEARCH_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
+const REVIEW_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml');
 const YAML_PATH = RESEARCH_YAML_PATH;
 
 type JsonRecord = Record<string, unknown>;

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode changelog verification (032 component 011 phase 006)"
+title: "Checklist: mcp-code-mode changelog verification (020 component 011 phase 006)"
 description: "Blocking SOL verifier contract for the rename-set changelog entry, version bump, and frozen-history check."
 trigger_phrases:
   - "mcp-code-mode changelog verify checklist"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
   "description": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
   "keywords": [
     "packet",
@@ -12,11 +12,12 @@
     "coverage",
     "sweep"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.738Z",
+  "lastUpdated": "2026-07-18T03:48:57.128Z",
   "specId": "027",
   "folderSlug": "typescript-header-normalization",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

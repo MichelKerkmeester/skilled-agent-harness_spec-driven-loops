@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Hub root and shared (032 phase 001)"
+title: "Feature Specification: Hub root and shared (020 phase 001)"
 description: "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean."
 trigger_phrases:
   - "hub-root-and-shared naming phase"
   - "sk-design hub/shared phase"
-  - "032 hub-root-and-shared"
+  - "020 hub-root-and-shared"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Hub root and shared (032 phase 001)
+# Feature Specification: Hub root and shared (020 phase 001)
 
 > Phase 001 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 1 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 1 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "design-foundations naming phase",
       "sk-design design-foundations phase",
-      "032 design-foundations",
+      "020 design-foundations",
       "design-foundations implementation plan",
       "sk-design design-foundations plan",
-      "032 design-foundations tasks",
+      "020 design-foundations tasks",
       "design-foundations tasks",
       "sk-design design-foundations execution",
-      "032 design-foundations checklist",
+      "020 design-foundations checklist",
       "design-foundations verification",
       "sk-design design-foundations checklist",
-      "032 design-foundations gate"
+      "020 design-foundations gate"
     ],
     "key_topics": [
       "design-foundations",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary.",
     "created_at": "2026-07-14T15:17:15Z",
-    "last_save_at": "2026-07-17T14:30:09.819Z",
+    "last_save_at": "2026-07-17T20:26:04.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ab356f2addc3c0c6fcb5d3728c33feb5df60f9717df36cf82d355e8eed3daa3b",
+    "source_fingerprint": "sha256:fe31d236b3742dd9ed916bdcf692a6e90a9d6552a282c479eaf6d1722edbcc38",
     "source_doc_hashes": {
-      "spec.md": "9757f666d27d747eff18ec0ddc38c6b98c9efacfb85815cf8fe600fbb59c99b9",
-      "plan.md": "3dc5a3ddbc365430b22949d99876f48505c5ab89f431a9c72b573e7787b9dadf",
-      "tasks.md": "ae6e3128b58f5ca5d8ffb363d1c84e43f460759e5379d79804f9e9dbfa7caaa5",
-      "checklist.md": "b0a38b92a96c808caff68e90b8884da1fab673452d14b42a813d84372f97d517"
+      "spec.md": "1b6d0b134ef80993cabc70edb13386975ebada95a6f9203f8ba2043edf02f593",
+      "plan.md": "136065504f00cb7c270c6de891dced2d3eb6d5dbfd01dd34f6399eab97be1e56",
+      "tasks.md": "6b2f56ca39dd30b2ab716daefa8a75b36afbde149f5efa443e3ffc8fdb9d2ff6",
+      "checklist.md": "440413c4f8caecbbd80ee3097bde5cf584b1355a62db88467821ef0cb8f44d7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

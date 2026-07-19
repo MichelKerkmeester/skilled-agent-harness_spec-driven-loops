@@ -9,7 +9,7 @@ Quick validation script for skills - enhanced version
 Validates:
 - SKILL.md exists
 - YAML frontmatter present and valid
-- Required fields: name, description, version (skills only; 4-part X.Y.Z.W -- see references/frontmatter_versioning.md)
+- Required fields: name, description, version (skills only; 4-part X.Y.Z.W -- see references/frontmatter-versioning.md)
 - Optional fields: allowed-tools
 - Name format: hyphen-case
 - Description: single line (no YAML block format)
@@ -23,7 +23,7 @@ Output formats:
 - JSON (with --json flag)
 
 Description budget reference: see
-.opencode/skills/sk-doc/shared/assets/frontmatter_templates.md
+.opencode/skills/sk-doc/shared/assets/frontmatter-templates.md
 § "Description Budget & Trim Style". Constants below are the single source of
 truth for the python validators; doc-side constants live in the markdown file.
 """
@@ -90,7 +90,7 @@ def check_description_length(
             None,
             f"Description is {length} chars, exceeds soft target of {soft_target}. "
             f"Project total budget is ~5,600 chars (default 8,000 minus built-ins); "
-            f"trim per .opencode/skills/sk-doc/shared/assets/frontmatter_templates.md "
+            f"trim per .opencode/skills/sk-doc/shared/assets/frontmatter-templates.md "
             f"§ 'Description Budget & Trim Style'.",
         )
     return (None, None)
@@ -251,19 +251,19 @@ def validate_skill(
                 warnings.append(f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — prefer mcp__<server>__<tool>")
 
     # version is REQUIRED for skills (4-part X.Y.Z.W); commands keep it optional.
-    # See references/frontmatter_versioning.md.
+    # See references/frontmatter-versioning.md.
     version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
     if version_match:
         version_value = strip_matching_quotes(version_match.group(1))
         if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
             return False, (
                 f"version '{version_value}' must be 4-part X.Y.Z.W "
-                f"(see references/frontmatter_versioning.md)"
+                f"(see references/frontmatter-versioning.md)"
             ), warnings
     elif kind == 'skill':
         return False, (
             "Missing required 'version' in frontmatter "
-            "(4-part X.Y.Z.W; see references/frontmatter_versioning.md)"
+            "(4-part X.Y.Z.W; see references/frontmatter-versioning.md)"
         ), warnings
 
     return True, "Skill is valid!", warnings

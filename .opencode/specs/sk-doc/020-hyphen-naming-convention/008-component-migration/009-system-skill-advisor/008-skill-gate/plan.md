@@ -37,7 +37,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Repository filesystem, Markdown, TypeScript/Node, Python compatibility surface |
-| **Framework** | 032 rename-map, SOL checklist, and sk-doc validation conventions |
+| **Framework** | 020 rename-map, SOL checklist, and sk-doc validation conventions |
 | **Storage** | Source tree, phase evidence, generated reports |
 | **Testing** | Sibling checklist aggregation, scoped naming scan, links, builds, discovery, release evidence |
 

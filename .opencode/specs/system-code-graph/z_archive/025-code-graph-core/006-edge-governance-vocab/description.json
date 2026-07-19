@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/025-code-graph-core/006-edge-governance-vocab",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core/006-edge-governance-vocab",
   "description": "The code-graph edge table is ungoverned at write time",
   "keywords": [
     "code-graph",
@@ -10,11 +10,12 @@
     "write",
     "time"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.744Z",
+  "lastUpdated": "2026-07-18T03:48:55.345Z",
   "specId": "006",
   "folderSlug": "edge-governance-vocab",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "025-code-graph-core"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode runtime (032 component 011 phase 004)"
+title: "Checklist: mcp-code-mode runtime (020 component 011 phase 004)"
 description: "Blocking SOL verifier contract for the runtime filename census, no-op proof, and executable path closure."
 trigger_phrases:
   - "mcp-code-mode runtime checklist"

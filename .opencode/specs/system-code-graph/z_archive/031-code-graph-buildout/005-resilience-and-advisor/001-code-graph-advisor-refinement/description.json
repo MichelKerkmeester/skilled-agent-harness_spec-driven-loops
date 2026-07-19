@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement",
   "description": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered",
   "keywords": [
     "code",
@@ -18,11 +18,12 @@
     "limitations",
     "discovered"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.809Z",
+  "lastUpdated": "2026-07-18T03:48:55.493Z",
   "specId": "001",
   "folderSlug": "code-graph-advisor-refinement",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "005-resilience-and-advisor"
   ],

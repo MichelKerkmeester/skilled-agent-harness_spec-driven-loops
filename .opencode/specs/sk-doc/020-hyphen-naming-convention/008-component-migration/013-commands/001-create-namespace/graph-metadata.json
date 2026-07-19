@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `.opencode/commands/create/assets/` tree has maintained filenames such as `createagentauto.yaml`, `createfeaturecatalogconfirm.yaml`, and `createmanualtestingplaybookpresentation.txt`",
     "created_at": "2026-07-14T15:18:31Z",
-    "last_save_at": "2026-07-17T14:30:43.498Z",
+    "last_save_at": "2026-07-17T20:26:19.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:abd88c5c24391406cf87128186af81ff3b5cc8509fb0525a80e540b3a034f2aa",
+    "source_fingerprint": "sha256:f240bc966298abaf8a5aec91fcf1f8dcd0eb80644d373f5b36d0d100f18626ba",
     "source_doc_hashes": {
-      "spec.md": "f58e2bfa55b2b7d3b20a181aeec06bb4e837dfc7140c8bd565f610f6e69a54bb",
-      "plan.md": "254ef4f2dbf081ed46647a05aadb10c7a2c9bd0e0dab21df883f9d5341c7bdb6",
-      "tasks.md": "b11dbf25f917d6d962aa64d220b0e64548746e3f13a7cba3f38ac8f923bda287",
-      "checklist.md": "fb06a3a09a610e6f21277729df69b1bc6a56dbca7d716b5d13185606dc20126d"
+      "spec.md": "f42238be607040770ebf2ab5553b06d2a54aca67f1b6271d342f71273b582d72",
+      "plan.md": "d78493e1473d13bfd8eab218d3133940f00cabc61852d618dd2fd6a85b6f91e1",
+      "tasks.md": "b1eea0f2e82c493818d152d797d5d50233c52bfe1438115d6323c5de5146b3e1",
+      "checklist.md": "5d831c2ffe8071a4db164e36a0a783bcc57b2f0d88c125a0cdb790dbf03e969c"
     },
     "last_active_child_id": null,
     "last_active_at": null

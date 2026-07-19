@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           },
           {
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }
         ]
@@ -119,7 +119,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
           }
         ]
       },
@@ -127,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 10
           }
         ]
@@ -147,7 +147,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/compact-inject.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/compact-inject.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
           }
         ]
       }

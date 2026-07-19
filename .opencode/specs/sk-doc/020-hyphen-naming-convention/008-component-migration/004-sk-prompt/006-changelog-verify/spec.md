@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt changelog and version verification (032 phase 004.006)"
+title: "Feature Specification: sk-prompt changelog and version verification (020 phase 004.006)"
 description: "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs."
 trigger_phrases:
   - "sk-prompt changelog verification"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-prompt changelog and version verification
 
@@ -50,7 +50,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Verification phase 006 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Verification phase 006 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

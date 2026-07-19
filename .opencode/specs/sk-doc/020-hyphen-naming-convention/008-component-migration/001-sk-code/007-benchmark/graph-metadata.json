@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
     "created_at": "2026-07-14T15:17:11Z",
-    "last_save_at": "2026-07-17T14:30:08.249Z",
+    "last_save_at": "2026-07-17T20:26:03.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3efd8100c106d6cf381ec0c83647314c0f863f7044dc48a347541b618a87b8bb",
+    "source_fingerprint": "sha256:504e3e0186f7662b82d361b3055e9e32c32262801d6cbc56f9b2cfddbc8945ce",
     "source_doc_hashes": {
-      "spec.md": "3c426679cf443cf7b2727b7a96a0bb82a988451ce87f0e66539bf477b5f28d08",
-      "plan.md": "96cf3bb6c214d1848bc276bbc74dd0d46fc79b3953b85075eb8467910c4534c7",
-      "tasks.md": "a814b2d9b73bf068bf4bbd66840058e5ca3ed3e181451d698189f9fbbdce9a9b",
-      "checklist.md": "19a085bb08e765769a6231af19e5261171623b91401fafd3d8e59d6e2e4e00a7"
+      "spec.md": "86c959a1852a8df325c555b0da3d9946730768aca170335613d3503b797b3f0f",
+      "plan.md": "de08f51a3f62a61701c70c01ea91f1b924073ae3d3ba292188aa22f8213fe076",
+      "tasks.md": "e4ea01abb358eb51e5fbe3e8985ad8848976e8310a64fa7e6c4b199a35448303",
+      "checklist.md": "b1b46138c300e6fccf042246b0f81f3bb15a20a8135e845f4e563160a11734e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

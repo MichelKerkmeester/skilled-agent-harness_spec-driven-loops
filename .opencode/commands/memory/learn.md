@@ -27,7 +27,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/learn_presentation.txt` |
+| Presentation | `.opencode/commands/memory/assets/learn-presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the memory MCP tools and constitutional-rule filesystem writes and owns no workflow YAML by design.
 
@@ -57,7 +57,7 @@ This command dispatches to the constitutional-rule directory and the memory MCP 
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/learn_presentation.txt`:
+The following content lives only in `.opencode/commands/memory/assets/learn-presentation.txt`:
 
 - Overview, list, budget, create, edit, remove, confirmation, and result displays.
 - Constitutional-rule qualification prompts, approval wording, cancellation wording, and error displays.

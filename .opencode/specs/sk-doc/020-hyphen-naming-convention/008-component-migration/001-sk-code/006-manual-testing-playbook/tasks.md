@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code manual-testing-playbook tree (032 phase 008/006)"
+title: "Tasks: sk-code manual-testing-playbook tree (020 phase 008/006)"
 description: "Execution tasks for the hub-level sk-code playbook filesystem rename and scenario graph closure."
 trigger_phrases:
   - "manual playbook naming tasks"

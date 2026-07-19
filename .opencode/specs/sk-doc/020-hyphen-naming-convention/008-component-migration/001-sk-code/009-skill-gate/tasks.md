@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code subtree rollup gate (032 phase 008/009)"
+title: "Tasks: sk-code subtree rollup gate (020 phase 008/009)"
 description: "Execution tasks for reconciling sk-code phases 001-008, checking the full scope-aware naming surface, resolving active references, and recording the final pass/block result without migration work."
 trigger_phrases:
   - "sk-code skill gate tasks"
@@ -52,7 +52,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 Build the sibling matrix for phases 001-008, including ownership, blockers, map consistency, and phase 008 release evidence.
-- [ ] T005 Run the scope-aware filesystem census and classify every retained non-kebab name under the 032 exemption boundary.
+- [ ] T005 Run the scope-aware filesystem census and classify every retained non-kebab name under the 020 exemption boundary.
 - [ ] T006 Resolve active path references, links, imports, registries, and path-valued metadata against the completed maps.
 - [ ] T007 Record findings only; perform no rename, reference rewrite, changelog edit, metadata repair, or content migration.
 <!-- /ANCHOR:phase-2 -->

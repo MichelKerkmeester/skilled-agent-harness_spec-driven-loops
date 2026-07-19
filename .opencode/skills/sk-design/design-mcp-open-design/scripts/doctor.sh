@@ -87,7 +87,7 @@ fi
 OPENCODE_CONFIG="$HOME/.config/opencode/opencode.json"
 if [ -f "$OPENCODE_CONFIG" ]; then
   if grep -qi 'open-design' "$OPENCODE_CONFIG" 2>/dev/null; then
-    warn "opencode native config: open-design entry present -- not this repo's integration point (see references/mcp_wiring.md Section 5b); remove it unless you specifically want native wiring too"
+    warn "opencode native config: open-design entry present -- not this repo's integration point (see references/mcp-wiring.md Section 5b); remove it unless you specifically want native wiring too"
   else
     info "opencode native config: open-design entry not found (expected in this repo -- Code Mode is canonical)"
   fi

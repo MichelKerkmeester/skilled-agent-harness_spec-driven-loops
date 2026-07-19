@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify design agent naming (032 phase 009)"
-description: "Checklist for phase 009 of the 032 agents component migration: verify the design filename candidate set."
+title: "Checklist: verify design agent naming (020 phase 009)"
+description: "Checklist for phase 009 of the 020 agents component migration: verify the design filename candidate set."
 trigger_phrases:
   - "design agent naming checklist"
   - "agents phase 009 checklist"

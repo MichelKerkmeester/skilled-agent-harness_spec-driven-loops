@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The doctor asset tree contains route targets such as `doctormcpdebug.yaml`, `doctormcpinstall.yaml`, `doctorskillgraphfreshness.yaml`, and `doctorupdatepresentation.txt`",
     "created_at": "2026-07-14T15:18:33Z",
-    "last_save_at": "2026-07-17T14:30:44.415Z",
+    "last_save_at": "2026-07-17T20:26:19.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7c018e7c9633590c9b6f925c535cb324abdfdeec2f79c8d044fc747090433f3c",
+    "source_fingerprint": "sha256:28040a10a2d5e1cbbe2e027927eb12d307647116a41e1e92c5d2ec3f1e20017a",
     "source_doc_hashes": {
-      "spec.md": "84edd273083962e5a9142163fe173fb5bbf2414083b983ea4bb3e686452fa2fe",
-      "plan.md": "6e063bd6619a8e4b33faa8f0a4712df316af58b0b2c3ea4bee3eeb9aa601eb18",
-      "tasks.md": "e0b0be249e2ec6c1dd127d642c68b059a52a4d223a9ee8c07bcd6bebb07ee8a6",
-      "checklist.md": "1a360a786555bfe48dd169139a294deb8315848bd4cb552362c24f12799b4257",
-      "decision-record.md": "08906bc1bab282b47eaae11487f42574efac00946e90133c6d36327043336fa9"
+      "spec.md": "41046004cbd057a5ba51d35cc1499c6cc03ac1d53d742fd103bb5dde32db19f9",
+      "plan.md": "502a579dce0a49acc0442254bbd127d0dcfca05e7629161dce37a42d5ee883e7",
+      "tasks.md": "7efda675a4ed0c3155a42ec52a971673694d4cb3bbfb6c63a1757ef4cc4d2c04",
+      "checklist.md": "ed471904f23b3427828710655d53292283dd0fa7eb9d42ce04785a4517112f29",
+      "decision-record.md": "201270ee8e8dddb94900d375b641a3e9bef7c9da7457a5c218ff27dce3fff79c"
     },
     "last_active_child_id": null,
     "last_active_at": null

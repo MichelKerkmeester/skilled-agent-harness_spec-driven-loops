@@ -39,7 +39,7 @@ version: 1.0.0.0
 
 Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity, tool surface and advisor routing. `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, and `cli-codex` when multiple are explicitly requested (an `orderedBundle` outcome), and `defaultMode` is `cli-opencode`, but genuinely unclear or contradictory dispatch intent still defers to disambiguation instead of defaulting silently.
 
-All three packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual_testing_playbook/` and `changelog/` (`cli-opencode/` additionally keeps `scripts/`). The hub carries the single `graph-metadata.json` advisor identity for all three, unioning their intent signals, trigger phrases, domains and outward edges.
+All three packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/` (`cli-opencode/` additionally keeps `scripts/`). The hub carries the single `graph-metadata.json` advisor identity for all three, unioning their intent signals, trigger phrases, domains and outward edges.
 
 ---
 

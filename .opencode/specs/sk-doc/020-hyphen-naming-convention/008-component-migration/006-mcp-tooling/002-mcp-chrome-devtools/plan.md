@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-chrome-devtools naming closure (032 phase 002)"
+title: "Implementation Plan: mcp-chrome-devtools naming closure (020 phase 002)"
 description: "This plan renames the Chrome DevTools component's underscored playbook, scenario, reference, and install-guide paths using an explicit map, then repairs links and path-derived metadata while preserving identifiers and tool contracts."
 trigger_phrases:
   - "mcp-chrome-devtools naming implementation plan"
@@ -34,7 +34,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling/mcp-chrome-devtools |
 | **Change class** | Filesystem rename plus Markdown/frontmatter path repair |
-| **Execution** | Dependency-closed component batch from the frozen 032 map |
+| **Execution** | Dependency-closed component batch from the frozen 020 map |
 
 ### Overview
 The packet's 8 snake_case directories and 28 underscored files are concentrated in its manual-testing-playbook and references trees, with INSTALL_GUIDE.md as the top-level documentation exception. The implementation renames those paths in one component closure, then updates every path reference and path-derived category value. Tool names, identifiers, and frontmatter keys remain untouched.
@@ -101,7 +101,7 @@ The packet's 8 snake_case directories and 28 underscored files are concentrated 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 001 hub boundary | Internal | Required | Root route references may be stale |
-| Frozen 032 rename map | Internal | Required | No safe rename targets |
+| Frozen 020 rename map | Internal | Required | No safe rename targets |
 | Markdown/link resolver | Internal | Required | Broken playbook navigation can escape review |
 | Chrome scenario inventory | Internal | Required | Silent scenario loss |
 <!-- /ANCHOR:dependencies -->

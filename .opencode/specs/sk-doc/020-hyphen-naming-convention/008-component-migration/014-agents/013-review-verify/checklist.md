@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify review agent naming (032 phase 013)"
-description: "Checklist for phase 013 of the 032 agents component migration: verify the review filename candidate set."
+title: "Checklist: verify review agent naming (020 phase 013)"
+description: "Checklist for phase 013 of the 020 agents component migration: verify the review filename candidate set."
 trigger_phrases:
   - "review agent naming checklist"
   - "agents phase 013 checklist"

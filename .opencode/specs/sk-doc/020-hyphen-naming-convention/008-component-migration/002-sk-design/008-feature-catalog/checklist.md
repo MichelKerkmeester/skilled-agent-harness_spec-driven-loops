@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Feature-catalog (032 phase 008)"
-description: "Blocking SOL verification contract for Feature-catalog in the 032 sk-design naming subtree."
+title: "Checklist: Feature-catalog (020 phase 008)"
+description: "Blocking SOL verification contract for Feature-catalog in the 020 sk-design naming subtree."
 trigger_phrases:
   - "feature-catalog verification"
   - "sk-design feature-catalog checklist"
-  - "032 feature-catalog gate"
+  - "020 feature-catalog gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Feature-catalog (032 phase 008)
+# Checklist: Feature-catalog (020 phase 008)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -68,16 +68,16 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
-| `animate_on_scroll.js` | JS source file in this folder. |
-| `cdn_bootstrap.js` | JS source file in this folder. |
-| `es_module_bootstrap.js` | JS source file in this folder. |
-| `hover_gesture.js` | JS source file in this folder. |
-| `in_view_reveal.js` | JS source file in this folder. |
-| `layout_transition.js` | JS source file in this folder. |
-| `principled_reveal.js` | Principle-driven reveal sequence with timing, anticipation, and stagger-direction vocabulary. |
-| `spring_animation.js` | JS source file in this folder. |
-| `stagger_animation.js` | JS source file in this folder. |
-| `timeline_sequence.js` | JS source file in this folder. |
+| `animate-on-scroll.js` | JS source file in this folder. |
+| `cdn-bootstrap.js` | JS source file in this folder. |
+| `es-module-bootstrap.js` | JS source file in this folder. |
+| `hover-gesture.js` | JS source file in this folder. |
+| `in-view-reveal.js` | JS source file in this folder. |
+| `layout-transition.js` | JS source file in this folder. |
+| `principled-reveal.js` | Principle-driven reveal sequence with timing, anticipation, and stagger-direction vocabulary. |
+| `spring-animation.js` | JS source file in this folder. |
+| `stagger-animation.js` | JS source file in this folder. |
+| `timeline-sequence.js` | JS source file in this folder. |
 
 ---
 
@@ -117,4 +117,4 @@ Expected output: Findings recorded in the current release-alignment review evide
 |---|---|
 | [`sk-code/SKILL.md`](../../../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../../SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../../../sk-doc/create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../../sk-doc/create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

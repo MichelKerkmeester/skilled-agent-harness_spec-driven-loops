@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+  "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
   "description": "Child 001 wires the cosine lane shadow-only",
   "keywords": [
     "child",
@@ -9,11 +9,12 @@
     "lane",
     "shadow-only"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.826Z",
+  "lastUpdated": "2026-07-18T03:48:57.145Z",
   "specId": "004",
   "folderSlug": "ablation-sweep-and-weight-promotion",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

@@ -63,6 +63,8 @@ python3 scripts/create_diff.py compare-pair --before old.md --after new.md --rep
 python3 scripts/validate_report.py review.html
 ```
 
+If `--report` is omitted, the engine derives `<after-slug>.diff.html` with a lowercase kebab-case slug. Explicit report basenames must already be lowercase kebab-case, and an existing report is never overwritten.
+
 Run `python3 scripts/create_diff.py capabilities` to see supported formats and fidelity tiers. Try it against the shipped fixtures — see `assets/fixtures/README.md`.
 
 ## 5. HUB RELATIONSHIP

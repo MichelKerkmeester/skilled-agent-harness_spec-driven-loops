@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "benchmark naming phase",
       "sk-design benchmark phase",
-      "032 benchmark",
+      "020 benchmark",
       "benchmark implementation plan",
       "sk-design benchmark plan",
-      "032 benchmark tasks",
+      "020 benchmark tasks",
       "benchmark tasks",
       "sk-design benchmark execution",
-      "032 benchmark checklist",
+      "020 benchmark checklist",
       "benchmark verification",
       "sk-design benchmark checklist",
-      "032 benchmark gate"
+      "020 benchmark gate"
     ],
     "key_topics": [
       "benchmark",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-07-17T14:30:11.717Z",
+    "last_save_at": "2026-07-17T20:26:05.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b00d2d946e872d2cc051e10b68ca060bece9d46941db4f8381dad8b2c1b2ea2e",
+    "source_fingerprint": "sha256:ef1fc05ecda0e25237cbef7deb4c1b771f9dc49f8656f047a2cc978d0a8d4807",
     "source_doc_hashes": {
-      "spec.md": "ccd64fe2014f1612a2b77eb6250e66a3250eede3d9c56d04f757e00a760c29d5",
-      "plan.md": "08c58b12a8cb27fbe752b40847d457ded014f87f41f3a00812f2376f6b742dec",
-      "tasks.md": "749ffe2aecf35e6d5d991784844d05ee1b555114ab79d19db404be28f803ed04",
-      "checklist.md": "58ccf24fb33b3c746866da1b8d7e5e0332b182c168138ea77643ed511cb79e75",
-      "decision-record.md": "b95906914b7ecb10e61949d620e2376ee152d8ab2e2852b43706b83d63d8754e"
+      "spec.md": "2d866cdbccce1b8b5f00274eb59b615ae1436c41299539b24a3eb7dcaf805d3b",
+      "plan.md": "0b308e417c4ba3283cc7e7f0f91cc115a6178c9e6ed2cea7cebbd1d0fcbd9179",
+      "tasks.md": "66f978745278dce83dfe2658bfff5634b4c553f93fd0d7adbdcb4438d40472cd",
+      "checklist.md": "b12eeb94dd3cb2ab9227283f2d0d268bb4d01a322f0d3a962ff13fc65986a79e",
+      "decision-record.md": "92793067ccb8de768316dc353be93d81bf87950b06af24ccdbafc81574d1c106"
     },
     "last_active_child_id": null,
     "last_active_at": null

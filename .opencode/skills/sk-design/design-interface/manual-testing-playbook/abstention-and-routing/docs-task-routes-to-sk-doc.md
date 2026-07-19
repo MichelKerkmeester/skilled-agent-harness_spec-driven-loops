@@ -87,6 +87,6 @@ If the primary run passes, repeat with a request that asks to "make the docs loo
 
 - Group: Abstention And Routing
 - Playbook ID: ID-006
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `abstention-and-routing/docs-task-routes-to-sk-doc.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

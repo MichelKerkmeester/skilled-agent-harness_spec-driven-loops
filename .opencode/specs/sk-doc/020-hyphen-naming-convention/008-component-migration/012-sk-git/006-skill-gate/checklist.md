@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git skill gate (032 phase 008/012/006)"
+title: "Checklist: sk-git skill gate (020 phase 008/012/006)"
 description: "Blocking SOL verification contract for the read-only sk-git sibling rollup and whole-surface naming gate."
 trigger_phrases:
   - "sk-git skill gate checklist"
-  - "032 sk-git rollup verification"
+  - "020 sk-git rollup verification"
   - "whole surface naming gate acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -43,7 +43,7 @@ This checklist is the blocking SOL verifier contract for phase 006. The verifier
 
 - [ ] CHK-001 [P0] Sibling phases 001 through 005 have passing P0 contracts, pinned reports, matching map hashes/counts, and no stray implementation-summary.md or scratch/ in their leaves.
 - [ ] CHK-002 [P0] The candidate and BASE SHAs are pinned and the complete tracked .opencode/skills/sk-git path inventory is captured.
-- [ ] CHK-003 [P1] The 032 exemption boundary and each excluded surface are recorded before the all-path scan.
+- [ ] CHK-003 [P1] The 020 exemption boundary and each excluded surface are recorded before the all-path scan.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -57,7 +57,7 @@ This checklist is the blocking SOL verifier contract for phase 006. The verifier
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] The full tracked-path scan finds zero in-scope snake_case directories or files outside the 032 exemption set.
+- [ ] CHK-007 [P0] The full tracked-path scan finds zero in-scope snake_case directories or files outside the 020 exemption set.
 - [ ] CHK-008 [P0] Active path resolution finds zero stale source pointers and zero source/target duplicate roots or files.
 - [ ] CHK-009 [P0] Changelog/v1.3.2.0.md, SKILL.md, and README.md expose consistent version and scope evidence.
 <!-- /ANCHOR:testing -->
@@ -80,7 +80,7 @@ This checklist is the blocking SOL verifier contract for phase 006. The verifier
 ## Documentation
 
 - [ ] CHK-014 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree that phase 006 is a read-only rollup gate.
-- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

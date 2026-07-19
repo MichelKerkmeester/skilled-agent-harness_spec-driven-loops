@@ -19,7 +19,10 @@
       "worktree, baseline, and census tasks",
       "hyphen naming phase 000 tasks",
       "worktree, baseline, and census checklist",
-      "hyphen naming phase 000 checklist"
+      "hyphen naming phase 000 checklist",
+      "hyphen naming phase 000 summary",
+      "worktree baseline census summary",
+      "020 baseline implementation summary"
     ],
     "key_topics": [
       "worktree",
@@ -33,17 +36,72 @@
       "plan",
       "tasks",
       "checklist",
-      "migration"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "shared/package.json",
+      "scripts/package.json",
+      ".opencode/skills/system-spec-kit/package.json",
+      ".opencode/skills/system-spec-kit/shared/package.json",
+      ".opencode/skills/system-spec-kit/scripts/package.json",
+      ".opencode/skills/system-spec-kit/package-lock.json",
+      "baseline/gates/baseline.json",
+      "baseline/gates/install-summary.md",
+      "baseline/gates/realpath-proof.txt",
+      "baseline/gates/reproducible-install.md",
+      "baseline/gates/lane-c-baseline.json",
       "spec.md",
       "plan.md",
+      "baseline/census/census.json",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.json",
+        "kind": "config",
+        "path": "baseline/gates/baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "install-summary.md",
+        "kind": "doc",
+        "path": "baseline/gates/install-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "realpath-proof.txt",
+        "kind": "file",
+        "path": "baseline/gates/realpath-proof.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reproducible-install.md",
+        "kind": "doc",
+        "path": "baseline/gates/reproducible-install.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-c-baseline.json",
+        "kind": "config",
+        "path": "baseline/gates/lane-c-baseline.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,6 +115,12 @@
         "source": "derived"
       },
       {
+        "name": "census.json",
+        "kind": "config",
+        "path": "baseline/census/census.json",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -66,6 +130,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -133,73 +203,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Capture Lane",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-07-17T14:30:00.261Z",
+    "last_save_at": "2026-07-18T05:16:23.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf61cb198d6820eb0c7b8a05495b6d9d54dfa5767b29cbd0e9b799347c93001a",
+    "source_fingerprint": "sha256:158bff6b3227421b04f0627ff516907ad569d2775b7800749173a316b2d33a94",
     "source_doc_hashes": {
-      "spec.md": "a288deb3999c3733a7b36a92154329fa9f1ad98848f3a520ae4c9ca6dfd5eff5",
-      "plan.md": "ee51c06028266812cdf2f38f239968e6d7635eab402ddff94ab5dd15160846b4",
-      "tasks.md": "e2b2be705b58383b0cf1660de1884ed3928ec441281ec5baf54dbecbab569516",
-      "checklist.md": "e8a27be18d39c384bd39a3f0fae5ca4cae8074a837f784ef053f44611c773054"
+      "spec.md": "3e81e1589a51b6781574913546062af3c034470c23e1ccdb03908a69dc072c9a",
+      "plan.md": "22ab488c5af3ae0d9b73d965d4193fc2693795f9355e81536bd7d677b25c6bb3",
+      "tasks.md": "eee08c886560b73b80eb15d70d984e873ebfe0eb43f327db8c303f0d2ca86e01",
+      "checklist.md": "ab7b8254467914352e3c89262499a5a238b82c991f4c8d8cf8c520fa42ac1b9d",
+      "implementation-summary.md": "8d45033adc650aacf6cee7c8c6e971c6e33f6a73142ff23c1a809ce66de9b76d"
     },
     "last_active_child_id": null,
     "last_active_at": null

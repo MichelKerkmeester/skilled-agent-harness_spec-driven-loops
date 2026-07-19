@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
   "description": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in",
   "keywords": [
     "mcp-figma",
@@ -16,11 +16,12 @@
     "mcp",
     "agent"
   ],
-  "lastUpdated": "2026-07-15T07:46:45.491Z",
+  "lastUpdated": "2026-07-18T03:48:54.420Z",
   "specId": "003",
   "folderSlug": "mcp-figma-skill-removal",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "003-mcp-figma-transfer"
   ],
   "memorySequence": 0,

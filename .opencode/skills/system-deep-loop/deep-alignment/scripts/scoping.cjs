@@ -11,8 +11,8 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // Implements the SCOPE-state lane resolution and --lane-config parsing
-// specified in ../references/scoping_protocol.md and
-// ../references/lane_config_schema.md. Both the interactive path
+// specified in ../references/scoping-protocol.md and
+// ../references/lane-config-schema.md. Both the interactive path
 // (resolveLanesFromSelections) and the non-interactive path
 // (resolveLanesFromConfig / parseLaneConfigFile) funnel through the same
 // validateLane()/validateScope() pair, so the two paths can never diverge in
@@ -207,7 +207,7 @@ function validateLane(rawLane, label) {
 
 /**
  * Resolve lanes from an already-JSON-parsed --lane-config document (a bare
- * array of lane objects -- see references/lane_config_schema.md for the
+ * array of lane objects -- see references/lane-config-schema.md for the
  * full shape). An empty array is valid and resolves to zero lanes -- not an
  * error, mirroring how an empty scope resolves to zero-coverage rather than
  * failing.
@@ -219,7 +219,7 @@ function validateLane(rawLane, label) {
  */
 function resolveLanesFromConfig(config) {
   if (!Array.isArray(config)) {
-    throw inputError('lane-config file must contain a JSON array of lane objects (see references/lane_config_schema.md)');
+    throw inputError('lane-config file must contain a JSON array of lane objects (see references/lane-config-schema.md)');
   }
   return config.map((lane, index) => validateLane(lane, `lanes[${index}]`));
 }
@@ -239,7 +239,7 @@ function resolveLanesFromConfig(config) {
  */
 function resolveLanesFromSelections(selections) {
   if (!Array.isArray(selections)) {
-    throw inputError('selections must be an array (see references/scoping_protocol.md)');
+    throw inputError('selections must be an array (see references/scoping-protocol.md)');
   }
   const lanes = [];
   selections.forEach((selection, selectionIndex) => {
@@ -330,7 +330,7 @@ function main(argv = process.argv.slice(2)) {
     // Config-file only, no inline-flag fallback: the interactive question is
     // the only other path, and it is owned by the invoking command/agent,
     // not this script.
-    throw inputError('--lane-config <file.json> is required in the non-interactive path; the interactive scoping question (references/scoping_protocol.md) is the fallback when this flag is not supplied by the invoking command');
+    throw inputError('--lane-config <file.json> is required in the non-interactive path; the interactive scoping question (references/scoping-protocol.md) is the fallback when this flag is not supplied by the invoking command');
   }
   const lanes = parseLaneConfigFile(args.laneConfig);
   if (args.json) {

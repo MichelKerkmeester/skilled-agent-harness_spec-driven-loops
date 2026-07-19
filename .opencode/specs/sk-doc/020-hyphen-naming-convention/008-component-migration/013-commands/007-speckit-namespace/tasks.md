@@ -1,5 +1,5 @@
 ---
-title: "Tasks: speckit command namespace naming (032 phase 008/013/007)"
+title: "Tasks: speckit command namespace naming (020 phase 008/013/007)"
 description: "Execution tasks for the speckit workflow/presentation asset rename and reference closure."
 trigger_phrases:
   - "speckit namespace naming tasks"

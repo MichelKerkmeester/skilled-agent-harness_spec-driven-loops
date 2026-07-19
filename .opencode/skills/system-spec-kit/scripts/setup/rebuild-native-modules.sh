@@ -20,7 +20,7 @@ echo ""
 
 # Step 1: Rebuild better-sqlite3 (mcp_server)
 echo "── Step 1: Rebuilding better-sqlite3..."
-cd "$ROOT_DIR/mcp_server"
+cd "$ROOT_DIR/mcp-server"
 npm rebuild better-sqlite3
 echo "   ✓ better-sqlite3 rebuilt"
 

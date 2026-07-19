@@ -1,0 +1,208 @@
+{
+  "sourceAssetFilenames": [
+    "create_agent_auto.yaml",
+    "create_agent_confirm.yaml",
+    "create_agent_presentation.txt",
+    "create_benchmark_auto.yaml",
+    "create_benchmark_confirm.yaml",
+    "create_benchmark_presentation.txt",
+    "create_changelog_auto.yaml",
+    "create_changelog_confirm.yaml",
+    "create_changelog_presentation.txt",
+    "create_command_auto.yaml",
+    "create_command_confirm.yaml",
+    "create_command_presentation.txt",
+    "create_diff_auto.yaml",
+    "create_diff_confirm.yaml",
+    "create_diff_presentation.txt",
+    "create_feature_catalog_auto.yaml",
+    "create_feature_catalog_confirm.yaml",
+    "create_feature_catalog_presentation.txt",
+    "create_flowchart_auto.yaml",
+    "create_flowchart_confirm.yaml",
+    "create_flowchart_presentation.txt",
+    "create_manual_testing_playbook_auto.yaml",
+    "create_manual_testing_playbook_confirm.yaml",
+    "create_manual_testing_playbook_presentation.txt",
+    "create_readme_auto.yaml",
+    "create_readme_confirm.yaml",
+    "create_readme_presentation.txt",
+    "create_skill_auto.yaml",
+    "create_skill_confirm.yaml",
+    "create_skill_parent_auto.yaml",
+    "create_skill_parent_confirm.yaml",
+    "create_skill_parent_presentation.txt",
+    "create_skill_presentation.txt"
+  ],
+  "requiredTokens": {
+    "create_agent_auto.yaml": [
+      "Name for the agent in kebab-case",
+      "[agent_path]/[agent_name].md"
+    ],
+    "create_agent_confirm.yaml": [
+      "Name for the agent in kebab-case",
+      "[agent_path]/[agent_name].md"
+    ],
+    "create_benchmark_auto.yaml": [
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
+      "assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md"
+    ],
+    "create_benchmark_confirm.yaml": [
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
+      "assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md"
+    ],
+    "create_changelog_auto.yaml": [
+      ".opencode/changelog/{primary_component}/v{next_version}.md"
+    ],
+    "create_changelog_confirm.yaml": [
+      ".opencode/changelog/{primary_component}/v{next_version}.md"
+    ],
+    "create_command_auto.yaml": [
+      "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
+    ],
+    "create_command_confirm.yaml": [
+      "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
+    ],
+    "create_command_presentation.txt": [
+      "<stem>-auto.yaml",
+      "<stem>-confirm.yaml",
+      "<stem>-presentation.txt"
+    ],
+    "create_feature_catalog_auto.yaml": [
+      "feature-catalog/feature-catalog.md",
+      "feature-catalog/category-name/feature-name.md"
+    ],
+    "create_feature_catalog_confirm.yaml": [
+      "feature-catalog/feature-catalog.md",
+      "feature-catalog/category-name/feature-name.md"
+    ],
+    "create_feature_catalog_presentation.txt": [
+      ".opencode/skills/system-spec-kit/feature-catalog"
+    ],
+    "create_flowchart_auto.yaml": [
+      "non-exempt directory segments and filename stem use kebab-case"
+    ],
+    "create_flowchart_confirm.yaml": [
+      "non-exempt directory segments and filename stem use kebab-case"
+    ],
+    "create_flowchart_presentation.txt": [
+      "docs/workflows/example-flowchart.md"
+    ],
+    "create_manual_testing_playbook_auto.yaml": [
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "manual-testing-playbook/category-name/scenario-name.md"
+    ],
+    "create_manual_testing_playbook_confirm.yaml": [
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "manual-testing-playbook/category-name/scenario-name.md"
+    ],
+    "create_manual_testing_playbook_presentation.txt": [
+      ".opencode/skills/system-spec-kit/manual-testing-playbook"
+    ],
+    "create_readme_auto.yaml": [
+      "example: \"mcp-semantic-search.md\"",
+      "Non-exempt directory segments and the markdown filename stem must use kebab-case."
+    ],
+    "create_readme_confirm.yaml": [
+      "example: \"mcp-semantic-search.md\"",
+      "Non-exempt directory segments and the markdown filename stem must use kebab-case."
+    ],
+    "create_readme_presentation.txt": [
+      "install-guides/mcp-semantic-search.md"
+    ],
+    "create_skill_auto.yaml": [
+      "filename_pattern: \"[topic]-workflow.md\"",
+      "filename_pattern: \"quick-reference.md\""
+    ],
+    "create_skill_confirm.yaml": [
+      "filename_pattern: \"[topic]-workflow.md\"",
+      "filename_pattern: \"quick-reference.md\""
+    ],
+    "create_skill_parent_auto.yaml": [
+      "manual-testing-playbook/"
+    ],
+    "create_skill_parent_confirm.yaml": [
+      "manual-testing-playbook/"
+    ]
+  },
+  "forbiddenTokens": {
+    "create_benchmark_auto.yaml": [
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
+      "assets/conformance-benchmark/README.md"
+    ],
+    "create_benchmark_confirm.yaml": [
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
+      "assets/conformance-benchmark/README.md"
+    ],
+    "create_command_auto.yaml": [
+      "Creates router .md plus _auto.yaml"
+    ],
+    "create_command_confirm.yaml": [
+      "Creates router .md plus _auto.yaml"
+    ],
+    "create_feature_catalog_auto.yaml": [
+      "catalog_dirname: feature_catalog",
+      "feature-catalog/feature-catalog.md"
+    ],
+    "create_feature_catalog_confirm.yaml": [
+      "catalog_dirname: feature_catalog",
+      "feature-catalog/feature-catalog.md"
+    ],
+    "create_manual_testing_playbook_auto.yaml": [
+      "playbook_dirname: manual_testing_playbook",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "create_manual_testing_playbook_confirm.yaml": [
+      "playbook_dirname: manual_testing_playbook",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "create_readme_auto.yaml": [
+      "prefix: \"MCP -\""
+    ],
+    "create_readme_confirm.yaml": [
+      "prefix: \"MCP -\""
+    ],
+    "create_skill_auto.yaml": [
+      "filename_rule: \"snake_case"
+    ],
+    "create_skill_confirm.yaml": [
+      "filename_rule: \"snake_case"
+    ],
+    "create_skill_parent_auto.yaml": [
+      "Create the hub changelog/ and manual-testing-playbook/"
+    ],
+    "create_skill_parent_confirm.yaml": [
+      "Create the hub changelog/ and manual-testing-playbook/"
+    ]
+  },
+  "emittedPaths": [
+    "sample-skill/SKILL.md",
+    "sample-skill/README.md",
+    "sample-skill/references/topic-workflow.md",
+    "sample-skill/assets/topic-template.md",
+    "sample-skill/feature-catalog/feature-catalog.md",
+    "sample-skill/feature-catalog/authentication/session-renewal.md",
+    "sample-skill/manual-testing-playbook/manual-testing-playbook.md",
+    "sample-skill/manual-testing-playbook/authentication/expired-session.md",
+    "commands/create/example.md",
+    "commands/create/example-auto.yaml",
+    "commands/create/example-confirm.yaml",
+    "commands/create/example-presentation.txt",
+    "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/benchmark-report.md",
+    "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/SOURCE.md",
+    "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/results.csv",
+    "sample-skill/assets/conformance-benchmark/README.md",
+    "sample-skill/assets/conformance-benchmark/search-conformance/conformance-benchmark.md",
+    "sample-skill/assets/conformance-benchmark/search-conformance/lane-config.json",
+    "sample-skill/assets/conformance-benchmark/search-conformance/fixtures/fixture-manifest.json",
+    "install-guides/mcp-semantic-search.md",
+    "docs/workflows/example-flowchart.md",
+    "agents/quality-gate.md"
+  ],
+  "exemptSegments": [
+    "mcp_server",
+    "README.md",
+    "SKILL.md",
+    "SOURCE.md"
+  ]
+}

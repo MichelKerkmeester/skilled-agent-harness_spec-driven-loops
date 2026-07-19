@@ -11,7 +11,7 @@ trigger_phrases:
 
 > Reports for benchmarking how well `system-deep-loop` is routed, discovered, and used in practice, kept beside the skill they measure.
 
-> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) §10 ([`skill_benchmark_readme_template.md`](../../sk-doc/create-benchmark/assets/skill_benchmark/skill_benchmark_readme_template.md), [`skill_benchmark_storage_guide.md`](../../sk-doc/create-benchmark/references/skill_benchmark/skill_benchmark_storage_guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays in deep-improvement.
+> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) §10 ([`skill-benchmark-readme-template.md`](../../sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays in deep-improvement.
 
 ---
 
@@ -48,9 +48,9 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 | Run label | What it is | Verdict/Status | Evidence |
 |---|---|---|---|
 | [`baseline/`](./baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./baseline/skill-benchmark-report.md) |
-| [`router_mode_a/`](./router_mode_a/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./router_mode_a/skill-benchmark-report.md) |
-| [`live_mode_b/`](./live_mode_b/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 93 (live) | [report](./live_mode_b/skill-benchmark-report.md) |
-| [`after_d3_proxy/`](./after_d3_proxy/) | Router-mode run after the D3-efficiency proxy adjustment | PASS · 100 (router) | [report](./after_d3_proxy/skill-benchmark-report.md) |
+| [`router-mode-a/`](./router-mode-a/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./router-mode-a/skill-benchmark-report.md) |
+| [`live-mode-b/`](./live-mode-b/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 93 (live) | [report](./live-mode-b/skill-benchmark-report.md) |
+| [`after-d3-proxy/`](./after-d3-proxy/) | Router-mode run after the D3-efficiency proxy adjustment | PASS · 100 (router) | [report](./after-d3-proxy/skill-benchmark-report.md) |
 
 ## 3. RE-RUNNING
 

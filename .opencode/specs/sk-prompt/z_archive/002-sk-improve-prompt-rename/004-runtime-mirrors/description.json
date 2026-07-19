@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/002-sk-improve-prompt-rename/004-runtime-mirrors",
+  "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors",
   "description": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID",
   "keywords": [
     "runtime",
@@ -15,11 +15,12 @@
     "old",
     "skill"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.544Z",
+  "lastUpdated": "2026-07-18T03:48:55.204Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "002-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

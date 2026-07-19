@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git manual testing playbook (032 phase 008/012/003)"
+title: "Checklist: sk-git manual testing playbook (020 phase 008/012/003)"
 description: "Blocking SOL verification contract for the sk-git manual-testing-playbook tree rename."
 trigger_phrases:
   - "sk-git manual playbook checklist"
-  - "032 scenario rename verification"
+  - "020 scenario rename verification"
   - "manual discovery parity acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -77,7 +77,7 @@ This checklist is the blocking SOL verifier contract for phase 003. **This phase
 ## Documentation
 
 - [ ] CHK-014 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree on the 49-entry map and the 41-scenario invariant.
-- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

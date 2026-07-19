@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-07-17T14:30:08.519Z",
+    "last_save_at": "2026-07-17T20:26:03.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:63cb8b5bb75613466ba41b2aca42c4ae5f9decd59f606a93cd0a96d4fc887643",
+    "source_fingerprint": "sha256:0849645add8c4d0d45bb67c9564ec8ae8ab8de65092a9645b10db9b41bc61228",
     "source_doc_hashes": {
-      "spec.md": "4646fdaa3a1961c4be2e5e93dbc92247b6cbce814617f4bc277df8b6c4e988b0",
-      "plan.md": "e53aaa6ac7b57613ac72f6beba9b3a0c6b9236666a5b35344c3e8bcdec9359e7",
-      "tasks.md": "4995125a2318cd15fe7f0be3a448714229455d64b5dee14a620c7860e09df06e",
-      "checklist.md": "49b1b39435d62be8836c7ea0ff31fb94b8296501768cb545acb9f36f90d491d0"
+      "spec.md": "7a6c50f58637575ca287a8d9c42dbd31a4cc2744457f17a263530708ce785cce",
+      "plan.md": "4798f781b56daf85537105d9916dfb50bda63da4d16b615387881960fa1c8949",
+      "tasks.md": "e082983e92f449f30ede997f2c9a0ed36317bb81f9d1e64515c37c9216300000",
+      "checklist.md": "9d9c7827d5ad57857ba78d8fb7ebdfe77279cf93aa51e3232ae422a94db51f4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

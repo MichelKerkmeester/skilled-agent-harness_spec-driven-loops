@@ -50,4 +50,4 @@ The migration policy is indefinite read support plus current-version writes.
 
 ## 4. EXTENSION PROCESS LINK
 
-For new document types, follow `EXTENSION_GUIDE.md` and add both the manifest document entry and a per-document `sectionGates` profile.
+For new document types, follow `EXTENSION-GUIDE.md` and add both the manifest document entry and a per-document `sectionGates` profile.

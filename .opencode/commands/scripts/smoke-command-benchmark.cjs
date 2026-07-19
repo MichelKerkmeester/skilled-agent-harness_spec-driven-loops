@@ -9,15 +9,15 @@ const { spawnSync } = require('node:child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '../../..');
 const COMMAND_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/command-benchmark.md');
-const AUTO_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep_command-benchmark_auto.yaml');
-const CONFIRM_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml');
-const PRESENTATION_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep_command-benchmark_presentation.txt');
-const MATRIX_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/command_benchmark/command_benchmark_matrix.json');
+const AUTO_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep-command-benchmark-auto.yaml');
+const CONFIRM_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep-command-benchmark-confirm.yaml');
+const PRESENTATION_PATH = path.join(REPO_ROOT, '.opencode/commands/deep/assets/deep-command-benchmark-presentation.txt');
+const MATRIX_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json');
 const SCHEDULER_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs');
 const PILOT_IDS = ['DAB-012', 'DAB-013', 'DAB-014', 'DAB-015'];
 const SCOPING_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs');
-const LANE_CONFIG_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/lane-config.json');
-const BROKEN_LANE_CONFIG_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/__missing-lane-config__.json');
+const LANE_CONFIG_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json');
+const BROKEN_LANE_CONFIG_PATH = path.join(REPO_ROOT, '.opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/__missing-lane-config__.json');
 
 function parseArgs(argv) {
   const values = {};
@@ -74,10 +74,10 @@ function assertRouterWiring() {
   assert.match(command, /<spec-folder>/);
   assert.match(command, /--axis=conformance\|behavior\|all/);
   for (const workflow of [auto, confirm]) {
-    assert.match(workflow, /deep_alignment_(?:auto|confirm)\.yaml/);
+    assert.match(workflow, /deep-alignment-(?:auto|confirm)\.yaml/);
     assert.match(workflow, /command-surface\/lane-config\.json/);
     assert.match(workflow, /run-command-behavior-matrix\.cjs/);
-    assert.match(workflow, /command_benchmark_matrix\.json/);
+    assert.match(workflow, /command-benchmark-matrix\.json/);
     assert.doesNotMatch(workflow, /(?:opencode\s+run[^\n]*deep\/alignment|\/deep:alignment)/);
   }
   assert.match(presentation, /STATUS=<OK\|FAIL> INSTRUMENT=<VALID\|INVALID> CONFORMANCE=/);

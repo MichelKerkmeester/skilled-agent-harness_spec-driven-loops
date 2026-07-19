@@ -1,0 +1,5 @@
+map: .opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/frozen-map/frozen-rename-map.json
+tip: 2bccd03be9f1f0813ece6089761470cfcdc3b84a  base_sha_matches: true
+entries: 4451  rename_pending: 3697  already_applied: 66
+violations: {"baseShaMismatch":0,"existenceFlag":0,"diskRecheck":0,"bothPresent":0,"bothAbsent":0,"dupTarget":0,"observedShaMismatch":0,"snakeTarget":0,"unknownClass":0}
+RESULT: PASS

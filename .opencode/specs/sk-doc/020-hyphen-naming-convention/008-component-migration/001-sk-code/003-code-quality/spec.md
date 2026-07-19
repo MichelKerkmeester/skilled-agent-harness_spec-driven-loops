@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-quality filesystem names (032 phase 008/003)"
+title: "Feature Specification: code-quality filesystem names (020 phase 008/003)"
 description: "The sk-code quality mode contains snake_case checklist, manual-playbook, and benchmark names that are referenced by the quality mode's routing and author-gate documentation. This phase defines the in-scope kebab-case rename and reference repair without changing quality rules, identifiers, or tool-mandated names."
 trigger_phrases:
   - "code-quality naming migration"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: code-quality filesystem names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 003 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 003 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shared sk-code layer is the source for surface detection, routing, universal verification, workflow doctrine, and reusable asset patterns",
     "created_at": "2026-07-14T15:17:06Z",
-    "last_save_at": "2026-07-17T14:30:06.603Z",
+    "last_save_at": "2026-07-17T20:26:02.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5dc37572299891b6f3780d6c0bf0d354f33368e3bc3efa4310ad113b2e5fb52f",
+    "source_fingerprint": "sha256:96e47bcd87ce9bb5ec79e5ce06c6526a5fe346d4bb7da7795d3e8b1fff2d101a",
     "source_doc_hashes": {
-      "spec.md": "b5d6b2aba466fe9dc4df0188f408030ccf598d8ebae00a64fcdff2d7ad806422",
-      "plan.md": "df06959d9bb6b2044c88fc5c6f51fec2ae673b5ebc8c4470788653dfec871240",
-      "tasks.md": "9ef1cb24d1e10643970c3848f46fb136347f4195064ac5c6a5b72b61b3fdc7a6",
-      "checklist.md": "913e20ceedb4e2ebe9e80f0c58b41f042a3927128308ae6383ecf2e5f17363ad"
+      "spec.md": "f407bde942bfacbcd52deba2d4276a8fa4e3e1082eda18a58753a0b0f766e9e6",
+      "plan.md": "c1c88534093aaaecccfe8efd19c79e84f43416bf38f79e993c2a84af7e7230e4",
+      "tasks.md": "000e13b793c08feddfc360a0537d3ffc2ff9242d3d877ef67d156d1d726f0fac",
+      "checklist.md": "ec5acdc6d7cdb4e39a9954988610ebe2a1a25eb7ed7692c532a41394a35f3ba8"
     },
     "last_active_child_id": null,
     "last_active_at": null

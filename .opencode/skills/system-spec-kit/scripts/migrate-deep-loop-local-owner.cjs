@@ -30,7 +30,7 @@ const WALK_SKIP_DIRS = new Set([
   'research',
   'review',
   'research_archive',
-  'review_archive',
+  'review-archive',
   'scratch',
   'iterations',
   'deltas',

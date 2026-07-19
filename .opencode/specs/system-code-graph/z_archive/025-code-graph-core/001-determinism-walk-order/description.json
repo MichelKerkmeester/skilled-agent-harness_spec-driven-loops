@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/025-code-graph-core/001-determinism-walk-order",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core/001-determinism-walk-order",
   "description": "Before this pass, the code-graph impact/dependency walk ranked callers/callees on a single seam, `rankContextEdges` feeding `finalize()` in",
   "keywords": [
     "pass",
@@ -17,11 +17,12 @@
     "feeding",
     "finalize"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.739Z",
+  "lastUpdated": "2026-07-18T03:48:55.341Z",
   "specId": "001",
   "folderSlug": "determinism-walk-order",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "025-code-graph-core"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: commands subtree rollup gate (032 phase 008/013/010)"
+title: "Feature Specification: commands subtree rollup gate (020 phase 008/013/010)"
 description: "Aggregate the ten commands-surface child phases and accept the subtree only when every in-scope filesystem name is kebab-clean or covered by the program exemption set, with references closed."
 trigger_phrases:
   - "commands subtree rollup gate"
@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: commands subtree rollup gate
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 010 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 010 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

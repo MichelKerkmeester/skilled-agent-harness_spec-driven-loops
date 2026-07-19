@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-research filesystem names (032 phase 007/003)"
+title: "Tasks: deep-research filesystem names (020 phase 007/003)"
 description: "Execution tasks for renaming deep-research resources and repairing state, artifact, catalog, playbook, and command path consumers without changing research contracts."
 trigger_phrases:
   - "deep-research tasks"

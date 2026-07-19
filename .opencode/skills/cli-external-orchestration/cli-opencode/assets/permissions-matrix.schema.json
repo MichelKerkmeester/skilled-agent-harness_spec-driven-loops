@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opencode.local/schemas/permissions-matrix.schema.json",
+  "title": "cli-opencode permissions matrix",
+  "description": "Structured pre-tool-call permissions matrix for cli-opencode deep-loop dispatches. Resolution semantics: rules are evaluated by operation_class and target_glob; the most-specific matching glob wins, where specificity is longer literal prefix plus fewer wildcards, and the first rule in rules[] breaks exact ties. Empty or malformed matrices default-deny at runtime.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "rules"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Permissions matrix schema version. Phase 003 ships version 1.0."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable matrix purpose and resolution notes."
+    },
+    "rules": {
+      "type": "array",
+      "description": "Permission rules. Runtime selection uses most-specific glob wins; first-in-array breaks equal-specificity ties.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target_glob",
+          "operation_class",
+          "scope",
+          "effect",
+          "rationale"
+        ],
+        "properties": {
+          "target_glob": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Glob for the tool target. File operations use path globs; Bash operations use Exec(<command>) targets such as Exec(rg) or Exec(rm)."
+          },
+          "operation_class": {
+            "type": "string",
+            "enum": [
+              "read",
+              "write",
+              "edit",
+              "delete",
+              "execute"
+            ],
+            "description": "Normalized operation class derived from the tool call."
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "packet-local",
+              "repo-wide",
+              "external"
+            ],
+            "description": "Authoring scope label for audit and migration review."
+          },
+          "effect": {
+            "type": "string",
+            "enum": [
+              "allow",
+              "deny"
+            ],
+            "description": "Decision applied when this rule is the most-specific match."
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Audit explanation included in deny reasons."
+          }
+        }
+      }
+    }
+  }
+}

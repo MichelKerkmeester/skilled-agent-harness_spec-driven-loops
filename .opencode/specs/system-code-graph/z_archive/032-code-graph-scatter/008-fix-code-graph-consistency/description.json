@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/032-code-graph-scatter/008-fix-code-graph-consistency",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/008-fix-code-graph-consistency",
   "description": "Nine consistency-and-resilience defects across the code-graph indexing, query, and doctor-workflow surface area leak partial-write, contention,",
   "keywords": [
     "nine",
@@ -16,11 +16,12 @@
     "partial-write",
     "contention"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.865Z",
+  "lastUpdated": "2026-07-18T03:48:55.606Z",
   "specId": "008",
   "folderSlug": "fix-code-graph-consistency",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 1,

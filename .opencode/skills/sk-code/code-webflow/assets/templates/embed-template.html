@@ -1,0 +1,81 @@
+<!--
+   COPY-PASTE TEMPLATE for Webflow custom HTML embed blocks.
+
+   Where to use: Webflow Designer → Embed element on any page.
+
+   Conventions enforced (see references/webflow/html/style-guide.md):
+     - Section header /* ─ × 63 / title / ─ × 63 */ for grouping (5-space indent for HTML)
+     - Inline label <!-- Label --> above each distinct block (Title-case, parenthetical context for non-obvious)
+     - End-marker <!-- End ComponentName --> for multi-line blocks (5+ lines)
+     - data-component="name" marks JS-managed root
+     - data-action / data-target for JS event delegation
+     - kebab-case for all data attribute names
+     - Semantic HTML over <div> when role applies (use Designer tag-override)
+     - aria-* state synced from JS (initial values must match collapsed/closed state)
+
+   Replace ALL placeholder text marked [LIKE_THIS] before shipping.
+   Delete this introductory comment block once the embed is live.
+-->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     1. COMPONENT MARKUP ([component-name])
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Root component marker — JS targets this with [data-component="[name]"] -->
+<div data-component="[name]" data-state="initial">
+
+  <!-- Trigger button — JS routes via data-action -->
+  <button
+    data-action="toggle"
+    data-target="panel-[name]-1"
+    aria-expanded="false"
+    aria-controls="panel-[name]-1"
+    type="button"
+    class="[block]--trigger"
+  >
+    <span class="[block]--label">[Trigger label]</span>
+  </button>
+
+  <!-- Target panel — initial state matches aria-expanded="false" -->
+  <div
+    id="panel-[name]-1"
+    data-target
+    role="region"
+    aria-labelledby="panel-[name]-1-trigger"
+    hidden
+  >
+    <!-- [Replace with panel content; can be plain markup, no Webflow Designer dependency] -->
+    <p>Panel content goes here.</p>
+  </div>
+
+</div>
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     2. INSTANCE-SPECIFIC OVERRIDES (optional)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- If this embed needs config that JS reads, put it as data-* on the root. -->
+<!-- Avoid <script>config = {...}</script> patterns — they don't survive Webflow page transitions. -->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     3. JS HANDOFF NOTES
+─────────────────────────────────────────────────────────────── -->
+
+<!--
+   The component JS (loaded via Footer Code panel as a versioned R2 script) targets:
+     - [data-component="[name]"]                 — root selector
+     - [data-action="toggle"]                    — trigger element
+     - [data-target] / [aria-controls]           — target panel
+     - aria-expanded="true|false"                — synced from JS state
+     - hidden attribute                          — synced from JS state
+
+   When JS toggles the panel:
+     - aria-expanded flips on the trigger
+     - hidden attribute toggles on the target
+     - data-state on root updates ("initial" → "expanded" → "collapsed")
+
+   See references/webflow/javascript/quality-standards.md §13 Action Routing Pattern.
+-->

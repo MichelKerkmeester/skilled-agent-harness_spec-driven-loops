@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
+  "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
   "description": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal",
   "keywords": [
     "setup-a",
@@ -16,11 +16,12 @@
     "llama-cpp",
     "metal"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.816Z",
+  "lastUpdated": "2026-07-18T03:48:57.143Z",
   "specId": "002",
   "folderSlug": "semantic-routing-lane",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

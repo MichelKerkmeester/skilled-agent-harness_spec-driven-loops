@@ -1,5 +1,5 @@
 ---
-title: "Tasks: reference checker and disposition ledger (032 phase 005.002)"
+title: "Tasks: reference checker and disposition ledger (020 phase 005.002)"
 description: "Tasks for the whole-repository checker and ledger: enumerate scan coverage, resolve typed path references, disposition dynamic sites, validate map-row completeness, and fail on empty or unresolved scans."
 trigger_phrases:
   - "reference checker tasks"
@@ -41,40 +41,40 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Define the map-entry and dynamic-site ledger rows, terminal statuses, evidence fields, and pre/post rename state.
-- [ ] T002 Enumerate tracked files, symlinks, generated/lockfile handling, and the zero-scan failure rule.
-- [ ] T003 [P] Define the resolver coverage matrix for JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries, and symlinks.
+- [x] T001 Define the map-entry and dynamic-site ledger rows, terminal statuses, evidence fields, and pre/post rename state. Evidence: `reference_checker_models.py`.
+- [x] T002 Enumerate tracked files, symlinks, generated/lockfile handling, and the zero-scan failure rule. Evidence: `tracked_manifest`.
+- [x] T003 [P] Define the resolver coverage matrix for JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries, and symlinks. Evidence: `extract_references`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement the tracked-file and symlink manifest with a non-empty scan assertion.
-- [ ] T005 Implement typed extraction and resolution for JS/TS modules, Markdown links, and registry paths.
-- [ ] T006 Implement JSON/YAML/TOML and frontmatter path-value checks without treating keys or identifiers as paths.
-- [ ] T007 Implement shell sourcing, executable paths, symlink targets, and exemption-aware reporting.
-- [ ] T008 Detect dynamic `require`, `source`, and glob sites and require an explicit disposition for each.
-- [ ] T009 Implement map reconciliation, ledger schema validation, and non-zero outcomes for unresolved or ambiguous references.
+- [x] T004 Implement the tracked-file and symlink manifest with a non-empty scan assertion. Evidence: `test_zero_tracked_files_is_a_hard_failure`.
+- [x] T005 Implement typed extraction and resolution for JS/TS modules, Markdown links, and registry paths. Evidence: `test_complete_matrix_emits_cas_ready_read_only_ledger`.
+- [x] T006 Implement JSON/YAML/TOML and frontmatter path-value checks without treating keys or identifiers as paths. Evidence: `old_config` exclusion fixture.
+- [x] T007 Implement shell sourcing, executable paths, symlink targets, and exemption-aware reporting. Evidence: `symlink-target` and `shell-source` fixture rows.
+- [x] T008 Detect dynamic `require`, `source`, and glob sites and require an explicit disposition for each. Evidence: `DYNAMIC_DISPOSITIONS`.
+- [x] T009 Implement map reconciliation, ledger schema validation, and non-zero outcomes for unresolved or ambiguous references. Evidence: `validate_ledger`.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Verify: A non-empty scan reports every supported file/reference class and a zero-file scan fails non-zero.
-- [ ] T011 Verify: Planted JS/TS, Markdown, JSON/YAML/TOML value, shell, registry, and symlink references resolve or fail with location evidence.
-- [ ] T012 Verify: Code identifiers, JSON/YAML/TOML keys, frontmatter fields, Python exemptions, generated output, tool-mandated names, and frozen paths are not misclassified.
-- [ ] T013 Verify: Every rename-map entry has one decision, rationale, status, and evidence row.
-- [ ] T014 Verify: Every dynamic `require`, `source`, and glob site is dispositioned; an undispositioned site fails the checker.
-- [ ] T015 Verify: The checker is read-only and leaves tracked content, modes, and the Git index unchanged.
+- [x] T010 Verify: A non-empty scan reports every supported file/reference class and a zero-file scan fails non-zero. Evidence: `test_zero_tracked_files_is_a_hard_failure`.
+- [x] T011 Verify: Planted JS/TS, Markdown, JSON/YAML/TOML value, shell, registry, and symlink references resolve or fail with location evidence. Evidence: 7/7 resolver kinds.
+- [x] T012 Verify: Code identifiers, JSON/YAML/TOML keys, frontmatter fields, Python exemptions, generated output, tool-mandated names, and frozen paths are not misclassified. Evidence: 4/4 preserve classes.
+- [x] T013 Verify: Every rename-map entry has one decision, rationale, status, and evidence row. Evidence: 13/13 map rows.
+- [x] T014 Verify: Every dynamic `require`, `source`, and glob site is dispositioned; an undispositioned site fails the checker. Evidence: `producer-routed` fixture.
+- [x] T015 Verify: The checker is read-only and leaves tracked content, modes, and the Git index unchanged. Evidence: `git_snapshot` equality.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All checker and ledger tasks complete with evidence in the phase checklist.
-- [ ] All requirements in `spec.md` meet their acceptance criteria.
-- [ ] Phase 003 can consume the ledger schema and deterministic failure semantics.
-- [ ] No rename or reference rewrite was executed against the real repository.
+- [x] All checker and ledger tasks complete with evidence in the phase checklist. Evidence: `checklist.md` 16/16.
+- [x] All requirements in `spec.md` meet their acceptance criteria. Evidence: `test_reference_checker.py` 9/9.
+- [x] Phase 003 can consume the ledger schema and deterministic failure semantics. Evidence: `LEDGER_SCHEMA_VERSION = 1`.
+- [x] No rename or reference rewrite was executed against the real repository. Evidence: `git_snapshot` equality.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

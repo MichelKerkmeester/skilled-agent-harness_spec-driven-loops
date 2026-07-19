@@ -1,0 +1,21 @@
+== realpath proof (BASE gate, post-hardening) ==
+BASE 1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe
+generated 2026-07-18T04:42:19Z
+
+All install + build outputs resolve INSIDE the worktree (no symlink to main):
+.opencode/skills/system-spec-kit/node_modules exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/node_modules
+.opencode/skills/system-spec-kit/node_modules/@types/node exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/node_modules/@types/node
+.opencode/skills/system-spec-kit/node_modules/@modelcontextprotocol/sdk exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/node_modules/@modelcontextprotocol/sdk
+.opencode/skills/system-spec-kit/shared/dist exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/shared/dist
+.opencode/skills/system-spec-kit/scripts/dist exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/scripts/dist
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
+.opencode/skills/system-spec-kit/mcp_server/dist exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/mcp_server/dist
+.opencode/skills/system-spec-kit/mcp_server/dist/api/index.js exit=0 [IN-WORKTREE]
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec/.opencode/skills/system-spec-kit/mcp_server/dist/api/index.js

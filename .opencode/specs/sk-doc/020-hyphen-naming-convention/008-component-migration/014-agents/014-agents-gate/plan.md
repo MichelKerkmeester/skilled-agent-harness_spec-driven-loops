@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: agents surface rollup gate (032 phase 014)"
-description: "Implementation Plan for phase 014 of the 032 agents component migration: aggregate sibling evidence and close the whole agents naming surface."
+title: "Implementation Plan: agents surface rollup gate (020 phase 014)"
+description: "Implementation Plan for phase 014 of the 020 agents component migration: aggregate sibling evidence and close the whole agents naming surface."
 trigger_phrases:
   - "agents surface rollup gate implementation plan"
   - "agents naming gate plan"
-  - "032 phase 014 agents plan"
+  - "020 phase 014 agents plan"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
@@ -105,7 +105,7 @@ The blocking invariant is: every expected definition path is present exactly onc
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 001-ai-council-verify through 013-review-verify | Internal | Required | The rollup cannot prove leaf coverage |
-| 032 convention policy and exemption boundary | Internal | Required | The whole-surface scan has no authoritative scope |
+| 020 convention policy and exemption boundary | Internal | Required | The whole-surface scan has no authoritative scope |
 | Pinned BASE inventory | Internal | Required | Counts and path evidence are not reproducible |
 <!-- /ANCHOR:dependencies -->
 

@@ -1,10 +1,10 @@
 ---
-title: "Checklist: agents surface rollup gate (032 phase 014)"
-description: "Checklist for phase 014 of the 032 agents component migration: aggregate sibling evidence and close the agents naming gate."
+title: "Checklist: agents surface rollup gate (020 phase 014)"
+description: "Checklist for phase 014 of the 020 agents component migration: aggregate sibling evidence and close the agents naming gate."
 trigger_phrases:
   - "agents surface rollup gate checklist"
   - "agents naming gate checklist"
-  - "032 phase 014 agents checklist"
+  - "020 phase 014 agents checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"

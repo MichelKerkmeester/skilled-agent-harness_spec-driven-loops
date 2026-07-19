@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-opencode filesystem names (032 phase 008/002)"
+title: "Feature Specification: code-opencode filesystem names (020 phase 008/002)"
 description: "The code-opencode evidence packet contains snake_case asset, playbook, reference, benchmark, and symlink names that are embedded in OpenCode routing documentation. This phase renames those filesystem names to kebab-case and repairs their references while preserving SKILL.md, Python files, Python package directories, and other exact-name contracts."
 trigger_phrases:
   - "code-opencode naming migration"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: code-opencode filesystem names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 002 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -116,7 +116,7 @@ Rename every in-scope snake_case directory and file in code-opencode to kebab-ca
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The packet mixes documentation paths with executable-adjacent resource loading and contains Python scripts that must not be renamed. A blind sweep could either break resource routing or make an import package unavailable. The mitigation is a classified map, a path-value/reference scan, explicit .py/package fixtures, and language-specific discovery checks. The phase depends on the shared-name handoff and the 032 frozen map.
+The packet mixes documentation paths with executable-adjacent resource loading and contains Python scripts that must not be renamed. A blind sweep could either break resource routing or make an import package unavailable. The mitigation is a classified map, a path-value/reference scan, explicit .py/package fixtures, and language-specific discovery checks. The phase depends on the shared-name handoff and the 020 frozen map.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

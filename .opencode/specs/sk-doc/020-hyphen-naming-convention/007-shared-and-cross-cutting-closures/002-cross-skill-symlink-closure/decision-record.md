@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: atomic cross-skill symlink closures (032 phase 007 child 002)"
+title: "Decision Record: atomic cross-skill symlink closures (020 phase 007 child 002)"
 description: "Decision record for treating a symlink target, every link-node, relative target string, and dependent path reference as one atomic dependency closure during the kebab-case filesystem-name program."
 trigger_phrases:
   - "atomic symlink decision"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 <!-- ANCHOR:adr-001 -->
 ## ADR-001: Move a symlink target and every pointer as one closure
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-07-14 |
-| **Deciders** | 032 naming-program maintainers |
+| **Deciders** | 020 naming-program maintainers |
 
 <!-- ANCHOR:adr-001-context -->
 

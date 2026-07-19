@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/032-code-graph-scatter/005-code-graph-phase-runner",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/005-code-graph-phase-runner",
   "description": "`codegraph/lib/structural-indexer.ts:1369` `indexFiles()` runs scan stages inlined with no phase abstraction",
   "keywords": [
     "codegraph",
@@ -13,11 +13,12 @@
     "phase",
     "abstraction"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.863Z",
+  "lastUpdated": "2026-07-18T03:48:55.602Z",
   "specId": "005",
   "folderSlug": "code-graph-phase-runner",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 1,

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-07-17T14:30:29.948Z",
+    "last_save_at": "2026-07-17T20:26:13.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d053bfa1a3a743b1cf5e13b457044e8c874bbf76446b98547e341cbbf2d645f2",
+    "source_fingerprint": "sha256:149afd7f834144c198cb467d0049c097f5e8bf35a883b12e5e4949b6b1dc88b9",
     "source_doc_hashes": {
-      "spec.md": "b57e4c7032864b054c7c8684985549448f9fd036f9191d90176cebeb7ab309f2",
-      "plan.md": "507521d3429a3c20276c3a76134d1e5810af5fc969966a3538518f8359c95f2b",
-      "tasks.md": "66fc86a387a8d5d5ac01441abf8993ed83579556b6ad09c7f550a4f92ca6bc74",
-      "checklist.md": "634f699aa04966285bd1b3bfd5b3ce945ed99ab3115be246b8ed7e36415d1f30",
-      "decision-record.md": "3d583308528bb95316c235d79acd93f5e04cd7d56d649425130a8a05efc99f38"
+      "spec.md": "8017ee263c71aa898e368d6cd9c960e6226ce80c8303a998ee36192b172c6ff9",
+      "plan.md": "94471e7245bab4f4902f4b8b5bd06a99af36d566e50c53eee43ba1c267cb4e51",
+      "tasks.md": "cd20ff8809c91287e8573fb9c98ee5f63a7419e89c71cd4301c8e54a3fe31272",
+      "checklist.md": "cdeb89a026ce51f9f426323e8ea58a3470e885775b2732dcd67cfb27f7f25240",
+      "decision-record.md": "ea6604c9148f81e1d7ce47cb251f7acf61a7c4b1cbb4caf1a9263e572957e437"
     },
     "last_active_child_id": null,
     "last_active_at": null

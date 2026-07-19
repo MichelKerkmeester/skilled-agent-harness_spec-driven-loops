@@ -1,0 +1,79 @@
+---
+title: "PHASE-004 -- Phase link validation"
+description: "This scenario validates Phase link validation for `PHASE-004`. It focuses on Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity."
+version: 3.6.0.16
+id: tooling-and-scripts-phase-link-validation
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/validation/phase-checklists.md
+---
+
+# PHASE-004 -- Phase link validation
+
+## 1. OVERVIEW
+
+This scenario validates Phase link validation for `PHASE-004`. It focuses on Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity.
+- Real user request: `Please validate Phase link validation against bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and tell me whether the expected signals are present: 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity.`
+- Prompt: `Validate Phase link validation against bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if all 4 link types are checked, valid folders exit 0, missing/broken links exit 1 with warn-level messages, and no link issue produces error severity
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate Phase link validation against bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.
+```
+
+### Commands
+
+1. Use the phase folder from PHASE-002
+2. `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>`
+3. Verify output checks 4 link types: Phase Documentation Map, parent back-references, predecessor links, successor links
+4. Confirm all links pass on a well-formed phase folder (exit code
+5. Remove a child folder and re-run; verify Phase Documentation Map check warns about missing child (exit code
+6. Edit a child spec.md to corrupt the parent back-reference and re-run; verify back-reference check warns (exit code
+7. Confirm all issues are reported at warn severity, not error
+
+### Expected
+
+4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
+
+### Evidence
+
+Command transcript + output for valid and invalid cases + exit codes
+
+### Pass / Fail
+
+- **Pass**: all 4 link types are checked, valid folders exit 0, missing/broken links exit 1 with warn-level messages, and no link issue produces error severity
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Verify check-phase-links.sh exists and has execute permission; check spec.md contains expected link markers; verify child folder naming matches expected pattern
+
+## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Tooling and Scripts
+- Playbook ID: PHASE-004
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `tooling-and-scripts/phase-link-validation.md`

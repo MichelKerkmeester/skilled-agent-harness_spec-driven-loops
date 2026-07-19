@@ -79,7 +79,7 @@ Zero issues means the README matches the house template.
 
 ### Framework Selection
 
-The skill evaluates seven frameworks against five task characteristics: complexity, urgency, audience specificity, creative need and precision. It scores at least three frameworks before choosing a primary and an alternative. The definitions live in `references/patterns_evaluation.md`.
+The skill evaluates seven frameworks against five task characteristics: complexity, urgency, audience specificity, creative need and precision. It scores at least three frameworks before choosing a primary and an alternative. The definitions live in `references/patterns-evaluation.md`.
 
 | Framework | Elements | Best for |
 |---|---|---|
@@ -201,8 +201,8 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt-improve/README.md --type readme` reports zero issues |
-| Manual testing playbook | Scenarios under `manual_testing_playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
-| Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual_testing_playbook/escalation_tiers/` |
+| Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
+| Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
 
 ---
 
@@ -211,11 +211,11 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the mode table, the agent contract and the full rule set |
-| [`references/patterns_evaluation.md`](./references/patterns_evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
-| [`references/depth_framework.md`](./references/depth_framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
-| [`references/design_generation_patterns.md`](./references/design_generation_patterns.md) | Design-generation prompt patterns for open-design: the grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer and the sk-code handoff |
+| [`references/patterns-evaluation.md`](./references/patterns-evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
+| [`references/depth-framework.md`](./references/depth-framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
+| [`references/design-generation-patterns.md`](./references/design-generation-patterns.md) | Design-generation prompt patterns for open-design: the grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer and the sk-code handoff |
 | [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |
-| [`assets/format_guide_markdown.md`](./assets/format_guide_markdown.md) | Markdown delivery format deep-dive |
-| [`assets/format_guide_json.md`](./assets/format_guide_json.md) | JSON delivery format deep-dive |
-| [`assets/format_guide_yaml.md`](./assets/format_guide_yaml.md) | YAML delivery format deep-dive |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Scenario-based manual validation covering all modes, the DEPTH-CLEAR loop and the agent contract |
+| [`assets/format-guide-markdown.md`](./assets/format-guide-markdown.md) | Markdown delivery format deep-dive |
+| [`assets/format-guide-json.md`](./assets/format-guide-json.md) | JSON delivery format deep-dive |
+| [`assets/format-guide-yaml.md`](./assets/format-guide-yaml.md) | YAML delivery format deep-dive |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Scenario-based manual validation covering all modes, the DEPTH-CLEAR loop and the agent contract |

@@ -68,11 +68,11 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
-| `component_template.js` | JS source file in this folder. |
-| `component_template.css` | CSS source template in this folder. |
-| `form_scaffold_template.html` | HTML form scaffold template in this folder. |
-| `embed_template.html` | HTML embed template in this folder. |
-| `head_footer_code_template.html` | HTML head/footer code template in this folder. |
+| `component-template.js` | JS source file in this folder. |
+| `component-template.css` | CSS source template in this folder. |
+| `form-scaffold-template.html` | HTML form scaffold template in this folder. |
+| `embed-template.html` | HTML embed template in this folder. |
+| `head-footer-code-template.html` | HTML head/footer code template in this folder. |
 
 ---
 
@@ -112,4 +112,4 @@ Expected output: Findings recorded in the current refinement and release-alignme
 |---|---|
 | [`sk-code/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../../sk-doc/create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../sk-doc/create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

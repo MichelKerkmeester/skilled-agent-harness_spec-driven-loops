@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
+  "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
   "description": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps,",
   "keywords": [
     "phases",
@@ -16,11 +16,12 @@
     "audit",
     "maps"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.698Z",
+  "lastUpdated": "2026-07-18T03:48:54.336Z",
   "specId": "003",
   "folderSlug": "cli-gemini-full-purge",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "021-cli-gemini-deprecation"
   ],
   "memorySequence": 0,

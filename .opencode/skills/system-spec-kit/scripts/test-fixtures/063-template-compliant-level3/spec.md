@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Template Compliant Level 3 Fixture [template:examples/level_3/spec.md]"
+title: "Feature Specification: Template Compliant Level 3 Fixture [template:examples/level-3/spec.md]"
 description: "Current-template Level 3 validator fixture for clean strict validation coverage."
 trigger_phrases:
   - "fixture"

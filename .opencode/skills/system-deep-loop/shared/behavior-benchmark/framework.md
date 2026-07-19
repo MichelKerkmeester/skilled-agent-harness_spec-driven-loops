@@ -320,12 +320,12 @@ alone to keep a fixture frozen.
 
 ## PACKAGE CONVENTIONS
 
-Each deep-loop sub-skill carries a `behavior_benchmark/` directory with this
+Each deep-loop sub-skill carries a `behavior-benchmark/` directory with this
 fixed layout:
 
 ```
-<sub-skill>/behavior_benchmark/
-  behavior_benchmark.md     # index: scenario table, link here, baseline table
+<sub-skill>/behavior-benchmark/
+  behavior-benchmark.md     # index: scenario table, link here, baseline table
   scenarios/<PREFIX>-NNN-<slug>.md
   baselines/claude-baseline.md
 ```
@@ -340,7 +340,7 @@ fixed layout:
 | `RSB` | `deep-research` |
 | `RVB` | `deep-review` |
 
-`behavior_benchmark.md` is the index for the package: it lists the scenario
+`behavior-benchmark.md` is the index for the package: it lists the scenario
 table, links back to this framework as the normative contract, and reproduces
 the per-scenario baseline table. `baselines/claude-baseline.md` records each
 scenario's checkpoint values plus **capture provenance**: the date, the host and

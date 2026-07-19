@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP-server inner directories (032 subtree 008 phase 002)"
+title: "Feature Specification: MCP-server inner directories (020 subtree 008 phase 002)"
 description: "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically."
 trigger_phrases:
   - "mcp-server inner directories"
@@ -26,7 +26,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: MCP-server inner directories
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 002 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 002 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

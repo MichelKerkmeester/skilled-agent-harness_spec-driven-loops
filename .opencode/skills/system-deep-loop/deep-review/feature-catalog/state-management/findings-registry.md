@@ -1,0 +1,60 @@
+---
+title: "Findings registry"
+description: "Holds the reducer-owned view of active, resolved, repeated, and blocked findings."
+trigger_phrases:
+  - "findings registry"
+  - "deep-review-findings-registry.json"
+  - "reducer-owned findings"
+  - "active resolved findings"
+  - "fail-closed reducer"
+version: 1.11.0.7
+---
+
+# Findings registry
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Holds the reducer-owned view of active, resolved, repeated, and blocked findings.
+
+`deep-review-findings-registry.json` is the reduced state surface for the loop. It condenses raw iteration history into the totals and lists that convergence, dashboards, and synthesis read directly.
+
+## 2. HOW IT WORKS
+
+The findings registry is machine-owned and regenerated after every iteration and lifecycle transition. It stores open and resolved findings, dimension coverage, severity totals, open and resolved counts, convergence score, blocked-stop history, graph convergence fields, repeated or severity-changed findings, and corruption warnings.
+
+The reducer contract is fail-closed by default. Malformed JSONL or missing machine-owned strategy anchors are treated as reducer failures unless an explicit escape hatch is used. That makes the registry both a summary artifact and a guardrail surface that can stop the loop from trusting broken packet state.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `references/state/state-format.md` | Schema | Defines the registry schema, blocked-stop history, graph fields, and fail-closed semantics. |
+| `references/protocol/loop-protocol.md` | Protocol | Defines reducer refresh inputs, outputs, and metrics consumed during the loop. |
+| `SKILL.md` | Skill contract | Declares canonical reducer inputs, outputs, and metric names. |
+| `assets/review-mode-contract.yaml` | Contract | Declares reducer IO and output surfaces that stay aligned with the registry. |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop history reaches reducer-owned state. |
+| `manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md` | Manual scenario | Exercises fail-closed reducer behavior. |
+| `manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Verifies registry alignment with synthesis-time deduplication. |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: State management
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `state-management/findings-registry.md`
+- Primary sources: `references/state/state-format.md`, `references/protocol/loop-protocol.md`, `SKILL.md`, `assets/review-mode-contract.yaml`
+Related references:
+- [config-management.md](../../feature-catalog/state-management/config-management.md) — Config management
+- [dashboard.md](dashboard.md) — Dashboard

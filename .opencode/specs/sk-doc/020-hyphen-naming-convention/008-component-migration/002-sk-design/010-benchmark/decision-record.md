@@ -1,10 +1,10 @@
 ---
-title: "Decision Record: sk-design benchmark artifact labels (032 phase 010)"
+title: "Decision Record: sk-design benchmark artifact labels (020 phase 010)"
 description: "Phase decision record for preserving benchmark snapshot identity while changing underscore-bearing run-label directories to kebab-case."
 trigger_phrases:
   - "sk-design benchmark naming decision"
   - "benchmark snapshot path labels"
-  - "032 phase 010 decision record"
+  - "020 phase 010 decision record"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"

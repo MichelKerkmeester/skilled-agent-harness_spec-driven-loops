@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 032 exemption set, with no new rename work.",
+    "causal_summary": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-07-17T14:30:29.121Z",
+    "last_save_at": "2026-07-17T20:26:13.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:19f828d3b7bc09bbd7ba0487c1bcd6e4e5691725282d66f03f32cf627884bc7a",
+    "source_fingerprint": "sha256:48edf09f01af3fd3fd04cf2c07b0e913f8f92a65c6b194ef1781ba772dcd3221",
     "source_doc_hashes": {
-      "spec.md": "1f4a00adba4b6e29efd487040b31543fe51551e8901679fe57d2c2144bed26da",
-      "plan.md": "ad3da9ec4012ea4410d2f6e3c2b0e0ca0bb2e919c65d4589b58ec74028b654c7",
-      "tasks.md": "fe6503c5f55756a376b4acb51aa50a5acb5993e4e31e7fa189cfce9455364047",
-      "checklist.md": "81aa76abde57deb89baac899fc98054ea47d7e80ccb18b40ca0a3fc2f144c5e7"
+      "spec.md": "1f3d6651f3365a52c187428cb919e8d498bcf1a09dbb1c368ece30a8aec38044",
+      "plan.md": "ed138345171fa07898ba016b96b9187fb61b2ed377e181148932f86d5cd5a7e8",
+      "tasks.md": "dbda625ee29f6ffd2275e4738786735cde0db37c31628d8b50525548957d5c96",
+      "checklist.md": "58f8f130a396f70d9d08c612eca0588f1114e439f7470a1e3f3f10df85ad9118"
     },
     "last_active_child_id": null,
     "last_active_at": null

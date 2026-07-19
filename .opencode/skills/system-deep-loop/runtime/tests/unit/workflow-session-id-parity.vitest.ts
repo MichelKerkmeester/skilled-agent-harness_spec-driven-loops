@@ -45,13 +45,13 @@ const FANOUT_RUN_SCRIPT = resolve(RUNTIME_ROOT, 'scripts', 'fanout-run.cjs');
 const MODE_CONTRACTS: readonly ModeContract[] = [
   {
     mode: 'review',
-    fileName: 'deep_review_auto.yaml',
+    fileName: 'deep-review-auto.yaml',
     fallback: '{ISO_8601_NOW}',
     configSessionKey: 'sessionId',
   },
   {
     mode: 'research',
-    fileName: 'deep_research_auto.yaml',
+    fileName: 'deep-research-auto.yaml',
     fallback: '{AUTO_SESSION_ID}',
     configSessionKey: 'lineage.sessionId',
   },

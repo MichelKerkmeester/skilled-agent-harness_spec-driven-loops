@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt subtree rollup gate (032 phase 004.007)"
+title: "Tasks: sk-prompt subtree rollup gate (020 phase 004.007)"
 description: "Tasks for phase 007 of the sk-prompt kebab-case program: aggregate sibling evidence, reconcile path classifications, run the final census, and publish a pass/block gate without new migration work."
 trigger_phrases:
   - "sk-prompt rollup gate tasks"
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Reconcile every retained non-kebab filesystem name with the 032 exemption set or an owning sibling disposition (`phase evidence`)
+- [ ] T005 Reconcile every retained non-kebab filesystem name with the 020 exemption set or an owning sibling disposition (`phase evidence`)
 - [ ] T006 [P] Resolve active references against the final child source-target maps (`.opencode/skills/sk-prompt/`)
 - [ ] T007 [P] Check phase 006 release evidence against the final map and version metadata (`006-changelog-verify/`)
 - [ ] T008 Record each unknown, stale, conflicting, or incomplete result as a blocking finding routed to its owner (`phase evidence`)

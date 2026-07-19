@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: reference checker and disposition ledger (032 phase 005.002)"
+title: "Implementation Plan: reference checker and disposition ledger (020 phase 005.002)"
 description: "Implementation plan for a read-only whole-repository reference checker: enumerate tracked files and symlinks, resolve code and path-valued references, classify dynamic sites, and validate a complete disposition ledger against the semantic rename map."
 trigger_phrases:
   - "reference checker implementation plan"
@@ -48,16 +48,16 @@ decision, rationale, status, and evidence. A zero-file scan or unresolved/ambigu
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001's semantic map and operation-state fields are stable enough to identify source and target paths.
-- [ ] The scan root and tracked-file manifest rules are explicit, including symlink entries and generated/lockfile handling.
-- [ ] Resolver coverage is enumerated for JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries, and symlinks.
-- [ ] The ledger distinguishes map-entry rows from dynamic-site rows and defines terminal statuses.
+- [x] Phase 001's semantic map and operation-state fields are stable enough to identify source and target paths.
+- [x] The scan root and tracked-file manifest rules are explicit, including symlink entries and generated/lockfile handling.
+- [x] Resolver coverage is enumerated for JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries and symlinks.
+- [x] The ledger distinguishes map-entry rows from dynamic-site rows and defines terminal statuses.
 
 ### Definition of Done
-- [ ] A non-empty scan proves coverage across every supported reference class.
-- [ ] Every map entry and dynamic `require`, `source`, and glob site has a valid ledger row.
-- [ ] Missing, ambiguous, stale, zero-scan, and invalid-ledger states fail non-zero.
-- [ ] The checker does not execute repository code or alter identifiers, keys, frontmatter fields, or production references.
+- [x] A non-empty scan proves coverage across every supported reference class.
+- [x] Every map entry and dynamic `require`, `source` and glob site has a valid ledger row.
+- [x] Missing, ambiguous, stale, zero-scan and invalid-ledger states fail non-zero.
+- [x] The checker does not execute repository code or alter identifiers, keys, frontmatter fields or production references.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

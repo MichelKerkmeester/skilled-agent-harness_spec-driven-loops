@@ -1,0 +1,366 @@
+{
+  "generatedAt": "2026-06-20T11:01:38.588Z",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite",
+  "queries": [
+    {
+      "id": 1,
+      "query": "bash output truncated",
+      "memoryId": 1,
+      "title": "Bash Output Truncation — Make Verdicts Visible",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 2,
+      "query": "cli-devin",
+      "memoryId": 2,
+      "title": "CLI DISPATCH — Skill Preload Mandate",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 3,
+      "query": "code graph scope",
+      "memoryId": 3,
+      "title": "Code-Graph Scope — Everything Here Is Intentional",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 4,
+      "query": "code comment",
+      "memoryId": 5,
+      "title": "Comment Hygiene — No Ephemeral Artifact Pointers in Code Comments",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 5,
+      "query": "search",
+      "memoryId": 8,
+      "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 6,
+      "query": "push to main",
+      "memoryId": 9,
+      "title": "Main Branch — Owner's AIs Push Directly",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 7,
+      "query": "save memory",
+      "memoryId": 10,
+      "title": "MEMORY — Spec-Kit System Only",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 8,
+      "query": "text link button disabled summary",
+      "memoryId": 11,
+      "title": "Implementation Summary: Text Link Button Disabled State",
+      "specFolder": "anobel.com/001-button-text-link-disabled-state",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 9,
+      "query": "deep-review",
+      "memoryId": 12,
+      "title": "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 10,
+      "query": "spec folder name",
+      "memoryId": 13,
+      "title": "Spec-Folder Naming & Rename Convention",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 11,
+      "query": "done",
+      "memoryId": 14,
+      "title": "Verify Before Completion Claims",
+      "specFolder": "system-spec-kit",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 12,
+      "query": "text link button disabled plan",
+      "memoryId": 15,
+      "title": "Implementation Plan: Text Link Button Disabled State",
+      "specFolder": "anobel.com/001-button-text-link-disabled-state",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 13,
+      "query": "anobel.com/001-button-text-link-disabled-state",
+      "memoryId": 16,
+      "title": "Description: Feature Specification: Text Link Button Disabled State",
+      "specFolder": "anobel.com/001-button-text-link-disabled-state",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 14,
+      "query": "text link button disabled",
+      "memoryId": 17,
+      "title": "Feature Specification: Text Link Button Disabled State",
+      "specFolder": "anobel.com/001-button-text-link-disabled-state",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 15,
+      "query": "link card collapse expand checklist",
+      "memoryId": 18,
+      "title": "QA Checklist: Link Card Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": true
+    },
+    {
+      "id": 16,
+      "query": "anobel.com/002-link-card-button-and-mobile-animation",
+      "memoryId": 19,
+      "title": "Description: Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 17,
+      "query": "text link button disabled tasks",
+      "memoryId": 20,
+      "title": "Tasks: Text Link Button Disabled State",
+      "specFolder": "anobel.com/001-button-text-link-disabled-state",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 18,
+      "query": "link card handover",
+      "memoryId": 21,
+      "title": "Session Handover: Link Card Collapse/Expand — Button, Mobile Animation, Color, Minify",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 19,
+      "query": "link card collapse expand plan",
+      "memoryId": 22,
+      "title": "Implementation Plan: Link Card Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 20,
+      "query": "link card collapse expand summary",
+      "memoryId": 23,
+      "title": "Implementation Summary: Link Card Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 21,
+      "query": "link card collapse expand",
+      "memoryId": 24,
+      "title": "Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 22,
+      "query": "link card collapse expand tasks",
+      "memoryId": 25,
+      "title": "Tasks: Link Card Button & Mobile Animation Fixes",
+      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 23,
+      "query": "slider refactor summary",
+      "memoryId": 26,
+      "title": "Implementation Summary: Slider JS Refactor & Variant Split",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 24,
+      "query": "slider refactor",
+      "memoryId": 27,
+      "title": "Feature Specification: Slider JS Refactor & Variant Split",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 25,
+      "query": "anobel.com/003-slider-refactor",
+      "memoryId": 28,
+      "title": "Description: Rebrand testimonial slider to generic slider base, split into slider_testimonial.js (with image colour states) and slider_timeline.js (without). Scope per-variant collision constants.",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 26,
+      "query": "handover: slider js refactor & variant split",
+      "memoryId": 29,
+      "title": "Handover: Slider JS Refactor & Variant Split",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 27,
+      "query": "slider refactor plan",
+      "memoryId": 30,
+      "title": "Implementation Plan: Slider JS Refactor & Variant Split",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 28,
+      "query": "slider refactor tasks",
+      "memoryId": 32,
+      "title": "Tasks: Slider JS Refactor & Variant Split",
+      "specFolder": "anobel.com/003-slider-refactor",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 29,
+      "query": "sk-code router benchmarkability decision",
+      "memoryId": 1047,
+      "title": "Decision Record: sk-code Router Benchmarkability",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 30,
+      "query": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+      "memoryId": 1048,
+      "title": "Description: Feature Specification: sk-code Router Benchmarkability",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 31,
+      "query": "skill-benchmark live playbook mode",
+      "memoryId": 1049,
+      "title": "Feature Specification: Lane C Skill-Benchmark Live Playbook Mode (Mode B)",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 32,
+      "query": "Lane C mode B checklist",
+      "memoryId": 1050,
+      "title": "Verification Checklist: Lane C Live Playbook Mode (Mode B)",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "querySource": "trigger_derived",
+      "procedural": true
+    },
+    {
+      "id": 33,
+      "query": "sk-code router benchmarkability tasks",
+      "memoryId": 1051,
+      "title": "Tasks: sk-code Router Benchmarkability",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 34,
+      "query": "sk-code remediation summary",
+      "memoryId": 1052,
+      "title": "Implementation Summary: sk-code Routing-Efficiency Remediation (research complete)",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 35,
+      "query": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "memoryId": 1053,
+      "title": "Description: Feature Specification: Lane C Skill-Benchmark Live Playbook Mode (Mode B)",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 36,
+      "query": "Lane C mode B tasks",
+      "memoryId": 1054,
+      "title": "Tasks: Lane C Live Playbook Mode (Mode B)",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 37,
+      "query": "sk-code remediation plan",
+      "memoryId": 1055,
+      "title": "Plan: sk-code Routing-Efficiency and Usefulness Remediation",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 38,
+      "query": "sk-code routing efficiency remediation",
+      "memoryId": 1056,
+      "title": "Feature Specification: sk-code Routing-Efficiency and Usefulness Remediation",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    },
+    {
+      "id": 39,
+      "query": "sk-code remediation checklist",
+      "memoryId": 1057,
+      "title": "Verification Checklist: sk-code Routing-Efficiency Remediation Research",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "querySource": "trigger_derived",
+      "procedural": true
+    },
+    {
+      "id": 40,
+      "query": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "memoryId": 1058,
+      "title": "Description: Feature Specification: sk-code Routing-Efficiency and Usefulness Remediation",
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "querySource": "trigger_derived",
+      "procedural": false
+    }
+  ]
+}

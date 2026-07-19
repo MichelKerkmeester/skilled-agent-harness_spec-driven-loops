@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 032 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
+    "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-07-17T14:30:22.142Z",
+    "last_save_at": "2026-07-17T20:26:09.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ec992e8248e82befe7a740d8893eb47022a3c5ef10f7f7391c6f234539a18501",
+    "source_fingerprint": "sha256:cab466ac3c91bf5bf53d8b3771c95a4e36f1bdc4be76823c4abacfccb67f1539",
     "source_doc_hashes": {
-      "spec.md": "1339446931c354077684a89c83bd35b46d36d1f8c6e652f8cc5d06d72953aae6",
-      "plan.md": "66d9acd76f14cc671fcdbf3914f751115a3d0e90f840c3f5c6f0a8b483e7a05d",
-      "tasks.md": "dfa3ede45d2254075aa49fc2d64ffd8a343d0decc16271a05e9e70d8e43ce0db",
-      "checklist.md": "34f9be42453020dcc26cd0a0f2db9840be0690353be4acffcc5b9d531a43fc6d",
-      "decision-record.md": "18be437b568104941ec14532e6bb11814039fc2935da58bb87a17c6edb8616f7"
+      "spec.md": "3b651f250d0eaa3fa02d18850440472c15b94e6e032dd8ee7430edf7e3ceb88f",
+      "plan.md": "f26ed489c564cdbdbeff6eb19538bcb60b1adfd4428b59e3ae21b6907831e0be",
+      "tasks.md": "bef288d7dbb4f74c5f4f0ba9cfbfa9ee34ebb2586d9366551b09c98d8f212a23",
+      "checklist.md": "dec2f9dc0e2b4f42cfa7f77bebc3e285f4d9adb296c8a688d8b25a564f126ee7",
+      "decision-record.md": "8dd1a7015659c74f04f4e9769da277195055008b153a3f9a97fd9427635c1a92"
     },
     "last_active_child_id": null,
     "last_active_at": null

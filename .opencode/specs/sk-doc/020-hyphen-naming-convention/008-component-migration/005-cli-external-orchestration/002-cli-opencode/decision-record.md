@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-opencode component naming (032 phase 005.002)"
+title: "Decision Record: cli-opencode component naming (020 phase 005.002)"
 description: "Design decisions for the cli-opencode rename: use an explicit local reference/asset map, rewrite path-valued schema consumers without changing data keys, and keep playbook/scripts/history ownership separate."
 trigger_phrases:
   - "cli-opencode naming decision record"
@@ -50,7 +50,7 @@ Update Markdown links, `SKILL.md`/README path entries, schema `$id`/glob/path va
 
 ### DR-003 — Keep playbook, scripts, and frozen history outside this map
 
-The nested `manual_testing_playbook/` tree belongs to phase 005. Existing hyphenated JavaScript under `scripts/` is protected by inventory, and changelog history is frozen under the 032 program boundary.
+The nested `manual_testing_playbook/` tree belongs to phase 005. Existing hyphenated JavaScript under `scripts/` is protected by inventory, and changelog history is frozen under the 020 program boundary.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:consequences -->

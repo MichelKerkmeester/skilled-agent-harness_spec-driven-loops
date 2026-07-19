@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: hub root and shared sk-code names (032 phase 008/001)"
+title: "Feature Specification: hub root and shared sk-code names (020 phase 008/001)"
 description: "The sk-code hub's shared assets and references still use snake_case names, including workflow documents, shared checklists, router references, and reusable pattern files. This phase defines the hub/shared rename closure while keeping exact tool names, Python exemptions, and shared symlink behavior intact."
 trigger_phrases:
   - "sk-code hub shared naming"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Hub root and shared sk-code names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 001 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -115,7 +115,7 @@ Rename every in-scope snake_case filesystem name owned by the sk-code hub/shared
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The shared workflow files are symlinked into code-opencode and code-webflow, so changing only the source basename can leave dangling links or stale load paths. The mitigation is a rename-map row for each source, link node, and consumer plus a post-rename symlink and markdown-link scan. The phase depends on the 032 frozen map and the cross-cutting closure handoff; it does not authorize component-wide content changes.
+The shared workflow files are symlinked into code-opencode and code-webflow, so changing only the source basename can leave dangling links or stale load paths. The mitigation is a rename-map row for each source, link node, and consumer plus a post-rename symlink and markdown-link scan. The phase depends on the 020 frozen map and the cross-cutting closure handoff; it does not authorize component-wide content changes.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

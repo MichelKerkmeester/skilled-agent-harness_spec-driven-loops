@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: mcp-code-mode scripts (032 component 011 phase 002)"
-description: "The mcp-code-mode scripts surface must be audited under the 032 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file."
+title: "Feature Specification: mcp-code-mode scripts (020 component 011 phase 002)"
+description: "The mcp-code-mode scripts surface must be audited under the 020 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file."
 trigger_phrases:
   - "mcp-code-mode scripts naming"
   - "mcp-code-mode phase 002"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode scripts
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 002 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 002 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -88,7 +88,7 @@ This phase produces an auditable script-name map, renames only a non-Python snak
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is treating an underscore in a shell variable, command, or Python filename as a filesystem candidate. This phase depends on phase 001's package-root state, the 032 semantic rename map, and a path-aware reference checker that distinguishes filenames from content identifiers.
+The main risk is treating an underscore in a shell variable, command, or Python filename as a filesystem candidate. This phase depends on phase 001's package-root state, the 020 semantic rename map, and a path-aware reference checker that distinguishes filenames from content identifiers.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

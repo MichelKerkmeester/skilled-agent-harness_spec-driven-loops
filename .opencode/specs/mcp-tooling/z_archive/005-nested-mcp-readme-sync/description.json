@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/005-nested-mcp-readme-sync",
+  "specFolder": "mcp-tooling/z_archive/005-nested-mcp-readme-sync",
   "description": "The packet-135 QA audit (two read-only gpt-5.5-fast reviewers) found three nested `mcpserver` READMEs that had drifted behind their real tool sets",
   "keywords": [
     "packet-135",
@@ -21,11 +21,12 @@
     "tool",
     "sets"
   ],
-  "lastUpdated": "2026-07-15T07:46:45.458Z",
+  "lastUpdated": "2026-07-18T03:48:54.424Z",
   "specId": "005",
   "folderSlug": "nested-mcp-readme-sync",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

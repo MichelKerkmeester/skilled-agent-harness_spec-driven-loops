@@ -48,7 +48,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/rcaf__chunk.json"
+      "raw": "runs/rcaf--chunk.json"
     },
     {
       "tag": "rcaf__parseRange",
@@ -90,7 +90,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/rcaf__parseRange.json"
+      "raw": "runs/rcaf--parseRange.json"
     },
     {
       "tag": "race__chunk",
@@ -132,7 +132,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/race__chunk.json"
+      "raw": "runs/race--chunk.json"
     },
     {
       "tag": "race__parseRange",
@@ -174,7 +174,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/race__parseRange.json"
+      "raw": "runs/race--parseRange.json"
     },
     {
       "tag": "cidi__chunk",
@@ -216,7 +216,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/cidi__chunk.json"
+      "raw": "runs/cidi--chunk.json"
     },
     {
       "tag": "cidi__parseRange",
@@ -258,7 +258,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/cidi__parseRange.json"
+      "raw": "runs/cidi--parseRange.json"
     },
     {
       "tag": "tidd-ec__chunk",
@@ -300,7 +300,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/tidd-ec__chunk.json"
+      "raw": "runs/tidd-ec--chunk.json"
     },
     {
       "tag": "tidd-ec__parseRange",
@@ -342,7 +342,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/tidd-ec__parseRange.json"
+      "raw": "runs/tidd-ec--parseRange.json"
     },
     {
       "tag": "costar__chunk",
@@ -384,7 +384,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/costar__chunk.json"
+      "raw": "runs/costar--chunk.json"
     },
     {
       "tag": "costar__parseRange",
@@ -426,7 +426,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/costar__parseRange.json"
+      "raw": "runs/costar--parseRange.json"
     }
   ],
   "retry_provenance": [
@@ -448,9 +448,9 @@
         "output_words": 40,
         "ms": 12127
       },
-      "failed_raw_preserved": "runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "failed_raw_preserved": "runs/rcaf--chunk.M3-FAILED-empty-exit0.json",
       "retry_results_file": "results-minimax-m3-high-rcafchunk-retry.json"
     }
   ],
-  "note": "rcaf__chunk first attempt failed (empty text, exit 0); retried once per policy and recovered. Counts reflect post-retry 10/10. Original failure preserved in retry_provenance + runs/rcaf__chunk.M3-FAILED-empty-exit0.json."
+  "note": "rcaf__chunk first attempt failed (empty text, exit 0); retried once per policy and recovered. Counts reflect post-retry 10/10. Original failure preserved in retry_provenance + runs/rcaf--chunk.M3-FAILED-empty-exit0.json."
 }

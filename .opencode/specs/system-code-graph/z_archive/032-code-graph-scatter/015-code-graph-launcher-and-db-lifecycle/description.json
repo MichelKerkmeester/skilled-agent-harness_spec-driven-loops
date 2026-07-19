@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/032-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
   "description": "The code-index audit found stale/orphan-prone launcher and server ownership",
   "keywords": [
     "code-index",
@@ -12,11 +12,12 @@
     "server",
     "ownership"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.871Z",
+  "lastUpdated": "2026-07-18T03:48:55.614Z",
   "specId": "015",
   "folderSlug": "code-graph-launcher-and-db-lifecycle",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 7,

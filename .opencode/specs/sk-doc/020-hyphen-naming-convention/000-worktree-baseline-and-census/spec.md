@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: worktree, baseline, and census (032 phase 000)"
+title: "Feature Specification: worktree, baseline, and census (020 phase 000)"
 description: "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th"
 trigger_phrases:
   - "worktree, baseline, and census"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored for the 032 phased tree"
+    recent_action: "Phase spec authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Worktree, baseline, and census
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor none (first phase); successor `001-convention-policy-and-scope`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor none (first phase); successor `001-convention-policy-and-scope`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 000 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 000 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,7 +55,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 
 ### In Scope
 - Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it.
-- Create the isolated migration worktree off BASE by **allocating** an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 032-hyphen-naming` (never hand-number the clone-wide counter) — yielding branch `sk-doc/{NNNN}-017-hyphen-naming` and directory `.worktrees/{NNNN}-sk-doc-017-hyphen-naming` — with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
+- Create the isolated migration worktree off BASE by **allocating** an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 020-hyphen-naming` (never hand-number the clone-wide counter) — yielding branch `sk-doc/{NNNN}-020-hyphen-naming` and directory `.worktrees/{NNNN}-sk-doc-020-hyphen-naming` — with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
 - A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`).
 - Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report.
 
@@ -87,7 +87,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 032 parent spec (import breakage, validator downgrade, non-reproducible builds,
+Inherits the program-level risks in the 020 parent spec (import breakage, validator downgrade, non-reproducible builds,
 over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
 <!-- /ANCHOR:risks -->
 

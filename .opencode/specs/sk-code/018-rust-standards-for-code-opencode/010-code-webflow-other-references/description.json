@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references",
   "description": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
   "keywords": [
@@ -11,7 +12,7 @@
     "largest",
     "debuggingworkflows"
   ],
-  "lastUpdated": "2026-07-11T17:01:17.931Z",
+  "lastUpdated": "2026-07-18T03:48:54.461Z",
   "specId": "010",
   "folderSlug": "code-webflow-other-references",
   "parentChain": [
@@ -19,6 +20,5 @@
     "018-rust-standards-for-code-opencode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

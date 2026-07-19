@@ -43,8 +43,8 @@ scripts/evals/
 
 Allowed import surfaces:
 
-- `../../mcp_server/api`
-- `../../mcp_server/api/*`
+- `../../mcp-server/api`
+- `../../mcp-server/api/*`
 - `../../shared/`
 
 Restricted import surfaces:
@@ -52,7 +52,7 @@ Restricted import surfaces:
 - `@spec-kit/mcp-server/lib*`
 - `@spec-kit/mcp-server/core*`
 - `@spec-kit/mcp-server/handlers*`
-- Relative imports into `../../mcp_server/{lib,core,handlers}`
+- Relative imports into `../../mcp-server/{lib,core,handlers}`
 
 ---
 

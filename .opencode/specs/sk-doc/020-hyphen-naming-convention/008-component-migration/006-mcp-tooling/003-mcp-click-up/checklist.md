@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-click-up naming closure (032 phase 003)"
+title: "Checklist: mcp-click-up naming closure (020 phase 003)"
 description: "Blocking SOL verifier contract for the ClickUp component naming phase."
 trigger_phrases:
   - "mcp-click-up naming checklist"

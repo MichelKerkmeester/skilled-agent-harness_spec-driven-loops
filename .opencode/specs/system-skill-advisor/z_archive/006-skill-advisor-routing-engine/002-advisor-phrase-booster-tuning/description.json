@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
+  "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
   "description": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace —",
   "keywords": [
     "skill",
@@ -14,11 +14,12 @@
     "splits",
     "whitespace"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.885Z",
+  "lastUpdated": "2026-07-18T03:48:57.189Z",
   "specId": "002",
   "folderSlug": "advisor-phrase-booster-tuning",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 0,

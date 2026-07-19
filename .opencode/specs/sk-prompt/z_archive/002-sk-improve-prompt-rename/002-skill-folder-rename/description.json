@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/002-sk-improve-prompt-rename/002-skill-folder-rename",
+  "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename",
   "description": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
   "keywords": [
     "canonical",
@@ -12,11 +12,12 @@
     "identify",
     "sk-improve-prompt"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.597Z",
+  "lastUpdated": "2026-07-18T03:48:55.202Z",
   "specId": "002",
   "folderSlug": "skill-folder-rename",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "002-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

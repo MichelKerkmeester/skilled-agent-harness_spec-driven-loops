@@ -7,7 +7,7 @@ export default {
     include: [
       'tests/**/*.vitest.ts',
       'scripts/tests/**/*.vitest.ts',
-      'mcp_server/tests/**/*.vitest.ts',
+      'mcp-server/tests/**/*.vitest.ts',
     ],
     globals: true,
   },

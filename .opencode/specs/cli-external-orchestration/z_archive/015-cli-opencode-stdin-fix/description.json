@@ -24,7 +24,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "cli-external-orchestration/015-cli-opencode-stdin-fix",
+  "specFolder": "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix",
   "description": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
   "keywords": [
     "opencode",
@@ -40,11 +40,12 @@
     "shell",
     "automation"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.724Z",
+  "lastUpdated": "2026-07-18T03:48:54.299Z",
   "specId": "015",
   "folderSlug": "cli-opencode-stdin-fix",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

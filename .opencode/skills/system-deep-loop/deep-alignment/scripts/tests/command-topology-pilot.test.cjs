@@ -14,16 +14,16 @@ const test = require('node:test');
 const { parseScenario } = require('../../../shared/behavior-benchmark/behavior-bench-run.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
-const PACKAGE_ROOT = path.resolve(__dirname, '../../behavior_benchmark');
+const PACKAGE_ROOT = path.resolve(__dirname, '../../behavior-benchmark');
 const SCENARIO_ROOT = path.join(PACKAGE_ROOT, 'scenarios');
-const INDEX_PATH = path.join(PACKAGE_ROOT, 'behavior_benchmark.md');
+const INDEX_PATH = path.join(PACKAGE_ROOT, 'behavior-benchmark.md');
 const BASELINE_PATH = path.join(PACKAGE_ROOT, 'baselines/claude-baseline.md');
 const SPEC_ROOT = path.join(
   REPO_ROOT,
   '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot',
 );
 const RESULT_ROOT = path.join(SPEC_ROOT, 'evidence');
-const FIXTURE_ROOT = path.join(SPEC_ROOT, 'behavior_benchmark/fixtures');
+const FIXTURE_ROOT = path.join(SPEC_ROOT, 'behavior-benchmark/fixtures');
 const FIXTURE_ROOT_REL = path.relative(REPO_ROOT, FIXTURE_ROOT).split(path.sep).join('/');
 const ALLOWED_PROBES = new Set([
   'file_exists',

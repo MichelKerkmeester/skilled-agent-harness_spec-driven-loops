@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
   "description": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12",
   "keywords": [
     "resilience-research",
@@ -16,11 +16,12 @@
     "plans",
     "iter"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.814Z",
+  "lastUpdated": "2026-07-18T03:48:55.506Z",
   "specId": "003",
   "folderSlug": "code-graph-backend-resilience-implementation",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "005-resilience-and-advisor"
   ],

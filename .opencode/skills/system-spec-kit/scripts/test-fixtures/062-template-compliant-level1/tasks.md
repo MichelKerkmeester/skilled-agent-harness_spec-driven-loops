@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Level 1 Fixture [template:level_1/tasks.md]"
+title: "Tasks: Level 1 Fixture [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "fixture"

@@ -1,0 +1,125 @@
+# ─────────────────────────────────────────────────────────────────
+# COMMAND-SURFACE BENCHMARK: COMPOSED RUN (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Command Benchmark Router
+purpose: Compose command conformance and behavioral evidence after the operator confirms the bound run
+action: Present pre-bound inputs for approval, dispatch selected targets, preserve their evidence, and report separate axis results
+
+operating_mode:
+  workflow: two_axis_dispatch
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: run_gate
+  tracking: owner_evidence_pointers
+  validation: instrument_and_subject_separated
+
+user_inputs:
+  spec_folder: "[SPEC_FOLDER] - Explicit executing spec folder. REQUIRED."
+  run_id: "[RUN_ID] - Immutable identifier for this input identity. REQUIRED."
+  axis: "[AXIS] - conformance, behavior, or all. Default: all."
+  execution_mode: "INTERACTIVE"
+
+fixed_inputs:
+  alignment_target: "OpenCode command surface"
+  lane_config_path: .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json
+  matrix_path: .opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json
+  matrix_scheduler: .opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs
+
+execution_targets:
+  conformance:
+    workflow: .opencode/commands/deep/assets/deep-alignment-confirm.yaml
+    bind:
+      alignment_target: "{fixed_inputs.alignment_target}"
+      lanes: "{resolved_lanes}"
+      lane_config_path: "{fixed_inputs.lane_config_path}"
+      spec_folder: "{spec_folder}"
+      session_id: "{run_id}"
+      max_iterations: 10
+      coverage_threshold: 1.0
+      stability_window: 2
+      batch_size: 5
+  behavior:
+    command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs --matrix .opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json --out-dir {state_paths.behavioral_dir}"
+
+state_paths:
+  alignment_dir: "{spec_folder}/alignment"
+  evidence_root: "{spec_folder}/evidence/command-benchmark/{run_id}"
+  run_manifest: "{spec_folder}/evidence/command-benchmark/{run_id}/run-manifest.json"
+  deterministic_dir: "{spec_folder}/evidence/command-benchmark/{run_id}/deterministic"
+  alignment_evidence: "{spec_folder}/evidence/command-benchmark/{run_id}/deterministic/alignment-evidence.json"
+  behavioral_dir: "{spec_folder}/evidence/command-benchmark/{run_id}/behavioral"
+  matrix_reconciliation: "{spec_folder}/evidence/command-benchmark/{run_id}/behavioral/command-behavior-matrix.reconciliation.json"
+  matrix_results: "{spec_folder}/evidence/command-benchmark/{run_id}/behavioral/matrix-results.json"
+  cells_dir: "{spec_folder}/evidence/command-benchmark/{run_id}/behavioral/cells"
+  scorecard_dir: "{spec_folder}/evidence/command-benchmark/{run_id}/scorecard"
+  scorecard_json: "{spec_folder}/evidence/command-benchmark/{run_id}/scorecard/command-benchmark-scorecard.json"
+  scorecard_md: "{spec_folder}/evidence/command-benchmark/{run_id}/scorecard/command-benchmark-scorecard.md"
+
+result_contract:
+  success_status: "STATUS=OK when every requested instrument completed validly, regardless of subject outcome"
+  failure_status: "STATUS=FAIL only when dispatch or instrumentation is invalid or failed"
+  valid_subject_failure: "INSTRUMENT=VALID remains publishable when either owner reports a subject FAIL"
+  axes: "CONFORMANCE and BEHAVIOR remain native, separate, and non-averaged"
+  invalid_axis: "An invalid requested instrument reports that subject axis as NOT_EVALUATED"
+  unselected_axis: "An unselected axis reports NOT_RUN"
+
+workflow:
+  phase_preflight:
+    description: "Validate bindings, resolve the stable lane, and wait at the run gate"
+    steps:
+      step_validate_bindings:
+        verify:
+          - required_values_present: [spec_folder, run_id, axis, execution_mode]
+          - spec_folder_is_within: "specs/ or .opencode/specs/"
+          - axis_is_one_of: [conformance, behavior, all]
+        on_fail: "Set STATUS=FAIL and INSTRUMENT=INVALID; do not publish a subject verdict."
+      step_resolve_lanes:
+        skip_when: "axis == behavior"
+        action: "Run the alignment owner's lane-config parser and bind its returned lanes without altering them"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --json"
+        outputs:
+          - resolved_lanes: "The parser-owned lanes array"
+      gate_run_approval:
+        type: approval_gate
+        purpose: "Confirm the explicit spec folder, immutable run ID, selected axis, and frozen targets"
+        present_from: ".opencode/commands/deep/assets/deep-command-benchmark-presentation.txt#consolidated-setup"
+        wait_for: "Operator response"
+        on_A: { proceed_to: phase_prepare }
+        on_B: { action: "Apply explicit input changes and return to the run gate", return_to: gate_run_approval }
+        on_C: { action: "Cancel without creating run evidence", status: "CANCELLED" }
+
+  phase_prepare:
+    description: "Create only the frozen evidence roots after approval"
+    steps:
+      step_create_evidence_layout:
+        command: "mkdir -p {state_paths.deterministic_dir} {state_paths.cells_dir} {state_paths.scorecard_dir}"
+
+  phase_conformance:
+    skip_when: "axis == behavior"
+    steps:
+      step_execute_alignment_workflow:
+        action: "Load execution_targets.conformance.workflow and execute it step by step with execution_targets.conformance.bind already resolved. Do not invoke another command and do not copy the alignment loop."
+        on_fail: "Record deterministic instrumentation INVALID and its diagnostic pointer; do not translate it into a subject FAIL."
+      step_record_alignment_evidence:
+        action: "Write alignment-evidence.json as a pointer and integrity summary for the accepted alignment state, deltas, findings registry, and reduced report. Copy the engine-owned verdict without recomputing it."
+
+  phase_behavior:
+    skip_when: "axis == conformance"
+    steps:
+      step_execute_behavior_matrix:
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs --matrix .opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json --out-dir {state_paths.behavioral_dir}"
+        on_exit_75: "Record retryable behavioral instrumentation and halt without a subject verdict."
+        on_fail: "Record behavioral instrumentation INVALID and its diagnostics; do not translate it into a subject FAIL."
+      step_publish_matrix_results:
+        action: "Copy the scheduler-owned reconciliation byte-for-byte to matrix-results.json; retain its original file and runner-owned cell evidence."
+        command: "cp {state_paths.matrix_reconciliation} {state_paths.matrix_results}"
+
+  phase_report:
+    description: "Write identity and pointer records, then render owner-produced results separately"
+    steps:
+      step_write_run_manifest:
+        action: "Write run-manifest.json with the run identity, input hashes, requested axes, instrument states, and evidence pointers. Do not duplicate owner rules."
+      step_write_scorecard_projection:
+        action: "Project native owner results and pointers into the machine scorecard, then render its Markdown twin without deriving a combined subject result."
+      step_emit_terminal_envelope:
+        action: "Render the presentation contract's terminal line. STATUS reflects instrumentation only; CONFORMANCE and BEHAVIOR preserve their owners' subject results."

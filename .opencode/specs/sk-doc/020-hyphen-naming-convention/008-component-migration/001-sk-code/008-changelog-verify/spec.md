@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code changelog and version verification (032 phase 008/008)"
+title: "Feature Specification: sk-code changelog and version verification (020 phase 008/008)"
 description: "Verification-only phase for the sk-code rename set: confirm the append-only changelog entry, the post-migration version bump, the exemption boundary, and the evidence supplied by phases 001-007 without performing any rename."
 trigger_phrases:
   - "sk-code changelog verification"
@@ -29,13 +29,13 @@ _memory:
     open_questions: []
     answered_questions:
       - "This phase verifies release evidence only; it performs no filesystem rename."
-      - "The changelog must cover the actual 001-007 rename surfaces and the 032 exemption boundary."
+      - "The changelog must cover the actual 001-007 rename surfaces and the 020 exemption boundary."
       - "The post-migration version must exceed BASE 4.1.0.0 and agree across active version surfaces."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-code changelog and version verification
 
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Verification-only phase 008 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Verification-only phase 008 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

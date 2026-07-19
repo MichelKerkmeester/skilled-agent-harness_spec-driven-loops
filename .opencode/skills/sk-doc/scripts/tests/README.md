@@ -79,12 +79,12 @@ Run the owning package test command from the nearest package boundary.
 | `test_changelog_validator.py` | Regression tests for changelog document-type detection and validation. |
 | `test_extract_structure_regressions.py` | Regression tests for `extract_structure.py`. |
 | `test_feature_catalog_validation.py` | Unit test for the feature-catalog validation-table check. |
-| `test_flowchart_validator.sh` | Tests for `validate_flowchart.sh` (box alignment + labels). |
-| `test_frontmatter_version.mjs` | Unit/integration tests for `frontmatter-version.mjs`. |
+| `test-flowchart-validator.sh` | Tests for `validate-flowchart.sh` (box alignment + labels). |
+| `test-frontmatter-version.mjs` | Unit/integration tests for `frontmatter-version.mjs`. |
 | `test_package_skill_regressions.py` | Regression tests for `package_skill.py`. |
 | `test_quick_validate_086.py` | Tests for `quick_validate.py`. |
 | `test_validator.py` | Tests for `validate_document.py`. |
-| `valid_*.md`, `missing_*.md`, `single_dash_anchors.md`, `command/`, `specs/` | Test fixtures and expected-shape sample documents (data, not code). |
+| `valid_*.md`, `missing_*.md`, `single-dash-anchors.md`, `command/`, `specs/` | Test fixtures and expected-shape sample documents (data, not code). |
 
 <!-- /ANCHOR:structure -->
 
@@ -136,6 +136,6 @@ Expected output: Findings list current README template alignment and freshness d
 |---|---|
 | [`sk-doc/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
 
 <!-- /ANCHOR:related-documents -->

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: hoisted shared script closures (032 phase 007 child 003)"
+title: "Feature Specification: hoisted shared script closures (020 phase 007 child 003)"
 description: "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree."
 trigger_phrases:
   - "hoisted shared script closures"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Hoisted Shared Script Closures
 

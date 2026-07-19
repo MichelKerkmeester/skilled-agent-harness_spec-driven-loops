@@ -26,7 +26,7 @@
     "trigger_phrases": [
       "sk-design naming phases",
       "sk-design kebab-case migration",
-      "032 sk-design component migration"
+      "020 sk-design component migration"
     ],
     "key_topics": [
       "sk-design",
@@ -107,15 +107,15 @@
     ],
     "causal_summary": "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts, changelog evidence, and final gate.",
     "created_at": "2026-07-14T15:16:55Z",
-    "last_save_at": "2026-07-17T14:30:09.025Z",
+    "last_save_at": "2026-07-17T20:26:03.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:942284029eec66c6925ff485ce09ea9eb17e2920cb36847983fba0a5b3cc540e",
+    "source_fingerprint": "sha256:0d8f1157598f6ab7118f28c1fcfe6890a1f5d117310fc462069247a758906567",
     "source_doc_hashes": {
-      "spec.md": "9d73210117de0c0dec544c67c2b9d22b6ec343ca395d829cec90f903d5ee4c2d"
+      "spec.md": "a8f8d3367cd4e23ee321e4710ba965665f8798d6f3265ab3894b33f0994c380c"
     },
     "last_active_child_id": null,
     "last_active_at": null

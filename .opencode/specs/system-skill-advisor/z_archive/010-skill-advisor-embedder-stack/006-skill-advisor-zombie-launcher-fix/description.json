@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
   "description": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while",
   "keywords": [
     "phase",
@@ -17,11 +17,12 @@
     "processes",
     "while"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.264Z",
+  "lastUpdated": "2026-07-18T03:48:57.270Z",
   "specId": "006",
   "folderSlug": "skill-advisor-zombie-launcher-fix",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "010-skill-advisor-embedder-stack"
   ],
   "memorySequence": 0,

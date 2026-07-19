@@ -1054,7 +1054,7 @@ function buildGraphConvergenceRollup(records) {
 
   // Persist the raw signal payload (dimensionCoverage, findingStability,
   // p0ResolutionRate, evidenceDensity, hotspotSaturation -- see
-  // references/state/state_jsonl.md "Graph Convergence Event") alongside the
+  // references/state/state-jsonl.md "Graph Convergence Event") alongside the
   // blended score, so downstream analysis can replay WHY the decision was
   // made, not just THAT it was made.
   const signals = (latest.signals && typeof latest.signals === 'object' && !Array.isArray(latest.signals))

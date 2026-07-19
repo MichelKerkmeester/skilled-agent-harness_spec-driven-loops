@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: memory command namespace naming (032 phase 008/013/005)"
+title: "Implementation Plan: memory command namespace naming (020 phase 008/013/005)"
 description: "Plan for renaming the four maintained memory presentation assets and repairing every command, README, and external path pointer without changing memory tool behavior."
 trigger_phrases:
   - "memory namespace naming plan"
@@ -109,8 +109,8 @@ Rename the four presentation files individually, update command and README path 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter data keys or miss path consumers. |
-| 032 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter data keys or miss path consumers. |
+| 020 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
 | 000 baseline memory-flow evidence | Internal | Required before verification | Presentation/tool parity lacks a pinned comparison. |
 | Commands parent handoff | Internal | Required before execution | Shared asset ownership may be duplicated. |
 <!-- /ANCHOR:dependencies -->

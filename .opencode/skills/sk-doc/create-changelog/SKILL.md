@@ -11,7 +11,7 @@ version: 1.0.1.1
 
 `create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It creates global component changelog files under `.opencode/changelog/{component}/v{VERSION}.md` or packet-local nested changelogs under a spec packet's `changelog/` folder, depending on source topology.
 
-The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `../shared/assets/changelog_template.md` as the shared global changelog template and the `references/` set (routed by `references/README.md`) only for supplementary worked examples or edge cases.
+The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `../shared/assets/changelog-template.md` as the shared global changelog template and the `references/` set (routed by `references/README.md`) only for supplementary worked examples or edge cases.
 
 ---
 
@@ -187,6 +187,8 @@ Global changelogs live at:
 .opencode/changelog/{component}/v{VERSION}.md
 ```
 
+Resolve `{component}` as a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject ambiguous component hints rather than emitting a guessed or underscore-bearing directory. The `v{VERSION}.md` filename is an exact version contract and is not slug-normalized.
+
 Global mode uses four-part semantic versions:
 
 ```text
@@ -219,6 +221,8 @@ Nested output paths from the shared template:
 1. Root spec folders write to `changelog/changelog-<packet>-root.md`.
 2. Phase child folders write to `../changelog/changelog-<packet>-<phase-folder>.md`.
 
+`<packet>` and `<phase-folder>` are validated lowercase kebab-case segments. Preserve the fixed `changelog-` prefix and `-root.md` suffix, and reject an input whose semantic slug cannot be resolved without collision.
+
 Nested mode uses the spec-kit generator and templates:
 
 ```bash
@@ -231,7 +235,7 @@ Canonical nested templates are `.opencode/skills/system-spec-kit/templates/chang
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `../shared/assets/changelog_template.md` before generating global changelog content. It defines compact and expanded formats.
+Read `../shared/assets/changelog-template.md` before generating global changelog content. It defines compact and expanded formats.
 
 ### Shared Format Facts
 
@@ -374,7 +378,7 @@ The shared template does not define `Added`, `Changed`, `Fixed`, or `Removed` as
 
 ### Source Contract Mismatch
 
-The auto workflow contains older validation snippets that require `# v{VERSION}`, a version-date header, and `###` highlight headings. The shared template is the newer detailed format source for global changelog prose and says files start directly with the summary paragraph, use H4 category subsections in compact format, and use H4 item headings in expanded format. When these conflict, follow `../shared/assets/changelog_template.md` and record the YAML mismatch as a source inconsistency rather than inventing a hybrid format.
+The auto workflow contains older validation snippets that require `# v{VERSION}`, a version-date header, and `###` highlight headings. The shared template is the newer detailed format source for global changelog prose and says files start directly with the summary paragraph, use H4 category subsections in compact format, and use H4 item headings in expanded format. When these conflict, follow `../shared/assets/changelog-template.md` and record the YAML mismatch as a source inconsistency rather than inventing a hybrid format.
 
 ---
 
@@ -434,7 +438,7 @@ Complete these seven steps in order. The SKILL.md is the primary workflow contra
 1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
 2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.opencode/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.opencode/changelog/{resolved_folder}/` exists.
 3. **Determine version.** If nested mode, skip version calculation. If global mode, list existing files in the target folder, parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
-4. **Generate content.** Read `../shared/assets/changelog_template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-major changes. Select expanded format for 10 or more changes, major changes, or breaking changes. Write a 1-3 sentence summary that leads with why the release matters. Generate category sections, files-changed detail, test impact when applicable, schema changes when applicable, and upgrade guidance.
+4. **Generate content.** Read `../shared/assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-major changes. Select expanded format for 10 or more changes, major changes, or breaking changes. Write a 1-3 sentence summary that leads with why the release matters. Generate category sections, files-changed detail, test impact when applicable, schema changes when applicable, and upgrade guidance.
 5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, files changed are real paths, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
 6. **Write the file.** If nested mode, run `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.opencode/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
 7. **Report and preserve context.** Report status, path, component, version, bump type, summary, section count, and files tracked. If a spec folder was the source, note that context can be preserved through the normal memory save workflow. Do not claim completion until the written file has been verified.
@@ -533,7 +537,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 ### ✅ ALWAYS
 
 1. Always follow the seven-step workflow in order.
-2. Always read `../shared/assets/changelog_template.md` before generating global changelog content.
+2. Always read `../shared/assets/changelog-template.md` before generating global changelog content.
 3. Always dynamically discover global changelog component folders from `.opencode/changelog/`.
 4. Always resolve global mode to an existing component folder before writing.
 5. Always validate global version sequencing before writing.
@@ -572,10 +576,10 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 
 Use these only when the core path above is not enough:
 
-1. `../shared/assets/changelog_template.md` for the canonical global changelog and release-note format.
-2. `references/README.md` route-map to the overflow set: `references/worked_examples.md` (filled-in global and packet-local entries), `references/version_bump_rules.md` (concrete four-part version choices), and `references/topology_edge_cases.md` (placement, back-dating, source conflicts, and the optional GitHub release flow).
+1. `../shared/assets/changelog-template.md` for the canonical global changelog and release-note format.
+2. `references/README.md` route-map to the overflow set: `references/worked-examples.md` (filled-in global and packet-local entries), `references/version-bump-rules.md` (concrete four-part version choices), and `references/topology-edge-cases.md` (placement, back-dating, source conflicts, and the optional GitHub release flow).
 3. `.opencode/commands/create/changelog.md` for the thin `/create:changelog` router boundary.
-4. `.opencode/commands/create/assets/create_changelog_auto.yaml` and `create_changelog_confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints); both resolve to this same packet contract.
+4. `.opencode/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints); both resolve to this same packet contract.
 
 ---
 
@@ -586,7 +590,7 @@ The workflow is successful when:
 1. The output mode is correctly classified as global or packet-local nested.
 2. Global output is written to `.opencode/changelog/{component}/v{VERSION}.md`, or nested output is written through the spec-kit nested generator to the packet `changelog/` path.
 3. Global versioning is sequential, unique, and four-part.
-4. The file follows the compact or expanded shape from `../shared/assets/changelog_template.md`.
+4. The file follows the compact or expanded shape from `../shared/assets/changelog-template.md`.
 5. The changelog explains what changed, why it matters, files changed, test or schema impact when applicable, and upgrade guidance.
 6. Optional release-note body uses the changelog content and appends the full changelog path when `--release` is requested.
 7. Validation passes, or any remaining issue is escalated with exact evidence.

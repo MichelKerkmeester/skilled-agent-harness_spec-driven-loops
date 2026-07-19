@@ -357,7 +357,7 @@ function buildHubRouteTelemetry({ skillRoot, intents, router, taskLower }) {
 }
 
 // Some skills keep the authoritative router in a referenced doc (e.g.
-// references/smart_routing.md) rather than inlining it in SKILL.md. When the
+// references/smart-routing.md) rather than inlining it in SKILL.md. When the
 // inline dictionaries are absent we follow that pointer and parse the same
 // INTENT_SIGNALS / RESOURCE_MAP block from the referenced file. Inline always
 // wins; a skill with no inline block and no parseable referenced doc stays
@@ -375,7 +375,7 @@ function findReferencedRouterDoc(skillMdText, skillRoot) {
     }
   }
   // Convention fallback: a router doc at the well-known location.
-  const conventional = path.join(skillRoot, 'references', 'smart_routing.md');
+  const conventional = path.join(skillRoot, 'references', 'smart-routing.md');
   return fs.existsSync(conventional) ? conventional : null;
 }
 
@@ -544,8 +544,8 @@ function detectOpencodeLanguages(taskLower) {
 // hubs without one) yields null and is left on the normal path unchanged.
 function loadSurfaceRouter(skillRoot) {
   const candidates = [
-    path.join(skillRoot, 'shared', 'references', 'smart_routing.md'),
-    path.join(skillRoot, 'references', 'smart_routing.md'),
+    path.join(skillRoot, 'shared', 'references', 'smart-routing.md'),
+    path.join(skillRoot, 'references', 'smart-routing.md'),
   ];
   for (const doc of candidates) {
     if (!fs.existsSync(doc)) continue;

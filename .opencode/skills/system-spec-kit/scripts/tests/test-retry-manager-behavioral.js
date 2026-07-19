@@ -12,7 +12,7 @@ const Database = require('better-sqlite3');
 */
 
 const ROOT = path.join(__dirname, '..', '..');
-const MCP_DIST = path.join(ROOT, 'mcp_server', 'dist');
+const MCP_DIST = path.join(ROOT, 'mcp-server', 'dist');
 const VECTOR_INDEX_PATH = path.join(MCP_DIST, 'lib', 'search', 'vector-index');
 const EMBEDDINGS_PATH = path.join(MCP_DIST, 'lib', 'providers', 'embeddings');
 const RETRY_MANAGER_PATH = path.join(MCP_DIST, 'lib', 'providers', 'retry-manager');
@@ -1318,7 +1318,7 @@ async function main() {
   log('═══════════════════════════════════════════════════════════');
   log('🧪 RETRY MANAGER — BEHAVIORAL TESTS');
   log('═══════════════════════════════════════════════════════════');
-  log(`   Source: mcp_server/lib/providers/retry-manager.ts`);
+  log(`   Source: mcp-server/lib/providers/retry-manager.ts`);
   log(`   Re-export: scripts/lib/retry-manager.ts`);
   log('');
 

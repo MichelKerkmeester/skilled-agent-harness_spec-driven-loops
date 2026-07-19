@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
   "description": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral",
   "keywords": [
     "subset",
@@ -16,11 +16,12 @@
     "reconciling",
     "behavioral"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.856Z",
+  "lastUpdated": "2026-07-18T03:48:55.591Z",
   "specId": "003",
   "folderSlug": "deferred-wip-overlapping-findings",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "011-source-bug-and-misalignment-audit"
   ],

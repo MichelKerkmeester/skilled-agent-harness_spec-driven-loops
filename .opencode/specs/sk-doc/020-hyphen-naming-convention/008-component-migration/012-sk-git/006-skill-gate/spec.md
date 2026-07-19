@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git skill gate (032 phase 008/012/006)"
-description: "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface is kebab-clean within the 032 exemption boundary. This phase adds no migration work."
+title: "Feature Specification: sk-git skill gate (020 phase 008/012/006)"
+description: "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface is kebab-clean within the 020 exemption boundary. This phase adds no migration work."
 trigger_phrases:
   - "sk-git skill gate"
-  - "032 sk-git naming rollup"
+  - "020 sk-git naming rollup"
   - "sk-git subtree kebab-case gate"
 importance_tier: "important"
 contextType: "planning"
@@ -29,7 +29,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git skill gate
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 006 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 006 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -64,13 +64,13 @@ The purpose is to provide that blocking rollup contract. The phase consumes sibl
 - Verify the final status and SOL evidence for phases 001-references, 002-assets, 003-manual-testing-playbook, 004-benchmark, and 005-changelog-verify.
 - Reconcile the aggregate source-to-target dispositions, including the nine reference entries, three asset entries, 49 manual-playbook entries, two benchmark profile directories, and the changelog/version evidence.
 - Scan every tracked filesystem path under .opencode/skills/sk-git for in-scope snake_case names, including root files, feature-catalog paths, scripts, changelog, and benchmark contents.
-- Apply the 032 exemption boundary: Python scripts, Python package directories, tool-mandated names, keys/fields, and frozen content are not treated as failures.
+- Apply the 020 exemption boundary: Python scripts, Python package directories, tool-mandated names, keys/fields, and frozen content are not treated as failures.
 - Verify that no stale active pointer or source/target duplicate remains and that the final changelog/version evidence is consistent.
 
 ### Out of Scope
 - Any new rename, reference rewrite, code change, changelog edit, version bump, release, or commit.
 - Repairing a sibling phase failure inside the gate; the gate reports the owning phase and evidence needed for correction.
-- Files outside .opencode/skills/sk-git, other 032 component subtrees, or frozen history beyond read-only inspection.
+- Files outside .opencode/skills/sk-git, other 020 component subtrees, or frozen history beyond read-only inspection.
 - Treating underscores in content, identifiers, keys, fields, or exempt names as filesystem violations.
 
 ### Files to Change
@@ -98,7 +98,7 @@ The purpose is to provide that blocking rollup contract. The phase consumes sibl
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All five sibling phase contracts pass and their evidence is reconciled.
-- **SC-002**: The complete tracked sk-git surface has zero in-scope snake_case filesystem names outside the 032 exemption set.
+- **SC-002**: The complete tracked sk-git surface has zero in-scope snake_case filesystem names outside the 020 exemption set.
 - **SC-003**: Active path references, source/target duplicates, aggregate map hashes, and version evidence are consistent.
 <!-- /ANCHOR:success-criteria -->
 

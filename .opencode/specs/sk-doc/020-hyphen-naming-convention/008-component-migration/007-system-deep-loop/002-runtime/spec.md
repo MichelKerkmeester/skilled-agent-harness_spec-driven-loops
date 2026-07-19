@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop runtime names (032 phase 007/002)"
+title: "Feature Specification: system-deep-loop runtime names (020 phase 007/002)"
 description: "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests. This phase renames those in-scope names to kebab-case and updates path consumers while preserving the package workspace, tool-mandated files, database contracts, and all code/data identifiers."
 trigger_phrases:
   - "system-deep-loop runtime naming"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop runtime names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 002 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

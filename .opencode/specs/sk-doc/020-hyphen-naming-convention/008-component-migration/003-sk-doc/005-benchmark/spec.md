@@ -4,7 +4,7 @@ description: "The root sk-doc benchmark directory is assigned a naming phase for
 trigger_phrases:
   - "sk-doc benchmark artifact naming"
   - "root benchmark kebab-case audit"
-  - "032 benchmark phase"
+  - "020 benchmark phase"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"

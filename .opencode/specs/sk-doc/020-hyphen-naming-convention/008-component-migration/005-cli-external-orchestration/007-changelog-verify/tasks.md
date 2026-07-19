@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration changelog and version verification (032 phase 005.007)"
+title: "Tasks: cli-external-orchestration changelog and version verification (020 phase 005.007)"
 description: "Tasks for the verification-only release phase: inventory four changelog surfaces, compare rename-set coverage and versions with child evidence, preserve history, and hand off a pass/block matrix."
 trigger_phrases:
   - "cli-external changelog verification tasks"

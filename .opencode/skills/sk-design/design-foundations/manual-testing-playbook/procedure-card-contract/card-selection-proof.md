@@ -56,5 +56,5 @@ This scenario validates `design-foundations/SKILL.md` section `Procedure Card Se
 
 - Group: Procedure Card Contract
 - Playbook ID: FOUND-PROCCARD-001
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/card-selection-proof.md`

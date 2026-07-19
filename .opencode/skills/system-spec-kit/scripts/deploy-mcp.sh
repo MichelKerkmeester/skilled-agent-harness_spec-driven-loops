@@ -50,11 +50,11 @@ build_pkg() {
 
 echo "== Building MCP server dists =="
 # mk-spec-memory: builds @spec-kit/shared too via TS project references.
-build_pkg "mk-spec-memory" ".opencode/skills/system-spec-kit/mcp_server"
+build_pkg "mk-spec-memory" ".opencode/skills/system-spec-kit/mcp-server"
 # mk-code-index (code-graph): builds from the SKILL root (tsconfig lives there).
 build_pkg "code-graph" ".opencode/skills/system-code-graph"
 # mk-skill-advisor: build if it ships a build script.
-build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp_server"
+build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
 if [ "$FAIL" -ne 0 ]; then
   echo "!! One or more builds failed — NOT recycling. Fix builds first." >&2
@@ -79,14 +79,14 @@ fi
 
 if [ "$RECYCLE" -eq 1 ]; then
   echo "== Recycling mk-spec-memory daemon (transparent) =="
-  CHILD="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | head -1 || true)"
+  CHILD="$(pgrep -f 'system-spec-kit/mcp-server/dist/context-server.js' | head -1 || true)"
   if [ -z "$CHILD" ]; then
     echo "  No running mk-spec-memory daemon child found — it will load fresh dist on next start."
   else
     kill -TERM "$CHILD" && echo "  SIGTERM sent to daemon child $CHILD; owner launcher will respawn from fresh dist."
     i=0
     while [ $i -lt 60 ]; do
-      NEW="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | grep -v "^$CHILD$" | head -1 || true)"
+      NEW="$(pgrep -f 'system-spec-kit/mcp-server/dist/context-server.js' | grep -v "^$CHILD$" | head -1 || true)"
       [ -n "$NEW" ] && { echo "  Respawned daemon child: $NEW"; break; }
       sleep 0.5; i=$((i+1))
     done

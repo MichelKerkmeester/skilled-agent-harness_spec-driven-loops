@@ -57,7 +57,7 @@ skill-name/
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills
-  - Grouped example: `references/core_standards.md`, `references/validation.md`
+  - Grouped example: `references/core-standards.md`, `references/validation.md`
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together for clarity
@@ -86,7 +86,7 @@ Validation reminder:
 
 ### README.md Guidance
 
-Create `README.md` when the skill needs human-facing orientation beyond runtime routing. Use [skill_readme_template.md](../../assets/skill/skill_readme_template.md) for skill package READMEs rather than the generic folder README template.
+Create `README.md` when the skill needs human-facing orientation beyond runtime routing. Use [skill-readme-template.md](../../assets/skill/skill-readme-template.md) for skill package READMEs rather than the generic folder README template.
 
 Include a skill README when:
 - Operators need a quick start, examples, troubleshooting or FAQ.
@@ -116,7 +116,7 @@ Router parity checklist for modern skills:
 - Optional `UNKNOWN_FALLBACK_CHECKLIST` for low-confidence requests
 
 Smart-router resilience reference:
-- Use [skill_smart_router.md](../../assets/skill/skill_smart_router.md) as the canonical pattern for runtime markdown discovery, guarded existence-checked loading, extensible routing keys, and multi-tier fallback behavior.
+- Use [skill-smart-router.md](../../assets/skill/skill-smart-router.md) as the canonical pattern for runtime markdown discovery, guarded existence-checked loading, extensible routing keys, and multi-tier fallback behavior.
 - Preserve each skill's domain-specific intent model, resource map, and loading levels; only standardize discovery, loading, routing-key, and fallback mechanics.
 
 **Section Boundary Rules:**
@@ -166,7 +166,7 @@ Documentation loaded as needed to inform the agent's process and thinking.
 
 **Examples**:
 - `references/schema.md` - Database schema documentation
-- `references/api_docs.md` - API endpoint specifications
+- `references/api-docs.md` - API endpoint specifications
 - `references/policies.md` - Company policies and guidelines
 - `create-quality-control/references/workflows.md` - Detailed workflow documentation
 
@@ -181,7 +181,7 @@ Documentation loaded as needed to inform the agent's process and thinking.
 - Keep only essential instructions in SKILL.md
 - Move detailed reference material to references files
 
-**Frontmatter contract**: every reference and asset markdown file carries the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`); `README.md` files are exempt. The Skill Advisor harvests these fields as routing signal — see [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) for the template and field rules.
+**Frontmatter contract**: every reference and asset markdown file carries the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`); `README.md` files are exempt. The Skill Advisor harvests these fields as routing signal — see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) for the template and field rules.
 
 #### Assets Directory (`assets/`)
 
@@ -197,7 +197,7 @@ Files used within the output the agent produces (not loaded into context).
 - `assets/logo.png` - Brand logo
 - `assets/template.html` - HTML template
 - `assets/font.ttf` - Custom font
-- `assets/frontmatter_templates.md` - YAML frontmatter examples
+- `assets/frontmatter-templates.md` - YAML frontmatter examples
 
 **Benefits**:
 - Separates output resources from documentation
@@ -253,27 +253,27 @@ Use this operating pattern:
 ### Templates
 
 Use these templates when authoring layered skills:
-- Skill template: `../../assets/skill/skill_md_template.md`
-- Skill README template: `../../assets/skill/skill_readme_template.md`
-- Reference template: `../../assets/skill/skill_reference_template.md`
-- Asset template: `../../assets/skill/skill_asset_template.md`
+- Skill template: `../../assets/skill/skill-md-template.md`
+- Skill README template: `../../assets/skill/skill-readme-template.md`
+- Reference template: `../../assets/skill/skill-reference-template.md`
+- Asset template: `../../assets/skill/skill-asset-template.md`
 
 ---
 
 ## 4. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [creation_workflow.md](../skill/creation_workflow.md) - The 6-step skill creation process
-- [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
-- [parent_skills_nested_packets.md](../parent_skill/parent_skills_nested_packets.md) - Parent skills with nested mode packets
+- [creation-workflow.md](../skill/creation-workflow.md) - The 6-step skill creation process
+- [validation-and-packaging.md](./validation-and-packaging.md) - Validation requirements and distribution
+- [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - Parent skills with nested mode packets
 
 ### Templates
-- [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [skill_readme_template.md](../../assets/skill/skill_readme_template.md) - Skill README file template
-- [skill_reference_template.md](../../assets/skill/skill_reference_template.md) - Reference file templates
-- [skill_asset_template.md](../../assets/skill/skill_asset_template.md) - Asset file templates
-- [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
+- [skill-md-template.md](../../assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-readme-template.md](../../assets/skill/skill-readme-template.md) - Skill README file template
+- [skill-reference-template.md](../../assets/skill/skill-reference-template.md) - Reference file templates
+- [skill-asset-template.md](../../assets/skill/skill-asset-template.md) - Asset file templates
+- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](../../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../../shared/references/validation.md) - Quality scoring and validation workflows

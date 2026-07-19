@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
   "description": "The post-013/009 Skill Advisor extraction needed end-to-end manual validation from the OpenCode runtime, not only package-level tests",
   "keywords": [
     "post-013",
@@ -17,11 +17,12 @@
     "package-level",
     "tests"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.657Z",
+  "lastUpdated": "2026-07-18T03:48:57.114Z",
   "specId": "014",
   "folderSlug": "manual-testing-playbook-validation",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

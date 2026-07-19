@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { loadGraphMetadata, loadPerFolderDescription } from '../../mcp_server/api';
+import { loadGraphMetadata, loadPerFolderDescription } from '../../mcp-server/api';
 import {
   collectResearchIterationDirectories,
   hasResearchIterationDirectories,

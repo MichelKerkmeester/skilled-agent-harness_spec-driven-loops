@@ -10,20 +10,20 @@ on:
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.opencode/skills/*/hub-router.json'
-      - '.opencode/skills/system-skill-advisor/mcp_server/**'
+      - '.opencode/skills/system-skill-advisor/mcp-server/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
-      - '.opencode/skills/sk-doc/create-skill/assets/parent_skill/**'
-      - '.opencode/skills/sk-doc/create-skill/references/parent_skill/**'
+      - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
+      - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
   pull_request:
     branches: [main]
     paths:
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.opencode/skills/*/hub-router.json'
-      - '.opencode/skills/system-skill-advisor/mcp_server/**'
+      - '.opencode/skills/system-skill-advisor/mcp-server/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
-      - '.opencode/skills/sk-doc/create-skill/assets/parent_skill/**'
-      - '.opencode/skills/sk-doc/create-skill/references/parent_skill/**'
+      - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
+      - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
 
 jobs:
   routing-drift:
@@ -40,7 +40,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Routing-registry drift-guard + parity suites
-        working-directory: .opencode/skills/system-skill-advisor/mcp_server
+        working-directory: .opencode/skills/system-skill-advisor/mcp-server
         # The drift-guard asserts the hardcoded Python/TS routing maps equal the
         # registry projection; the parity suites assert per-mode routing. The
         # routing surface is dependency-free (aliases.ts has no imports;

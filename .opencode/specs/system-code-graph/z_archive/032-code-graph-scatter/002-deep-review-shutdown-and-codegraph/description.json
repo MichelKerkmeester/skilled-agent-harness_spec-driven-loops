@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/032-code-graph-scatter/002-deep-review-shutdown-and-codegraph",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/002-deep-review-shutdown-and-codegraph",
   "description": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph",
   "keywords": [
     "recent",
@@ -12,11 +12,12 @@
     "at-rest-wal",
     "code-graph"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.861Z",
+  "lastUpdated": "2026-07-18T03:48:55.599Z",
   "specId": "002",
   "folderSlug": "deep-review-shutdown-and-codegraph",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 0,

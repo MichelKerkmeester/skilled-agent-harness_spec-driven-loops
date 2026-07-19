@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop runtime names (032 phase 007/002)"
+title: "Implementation Plan: system-deep-loop runtime names (020 phase 007/002)"
 description: "Plan for renaming runtime catalog/playbook directories and underscore-bearing runtime resources through the frozen semantic map, then repairing package, script, test, and documentation path consumers while preserving tool and data contracts."
 trigger_phrases:
   - "system-deep-loop runtime implementation plan"

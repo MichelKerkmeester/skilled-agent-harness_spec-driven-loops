@@ -6,8 +6,8 @@
 
 Catalog and playbook leaves are classified by their structural position (a subfolder of the
 catalog/playbook root), not by an ordinal folder-name prefix. The legacy `NN--slug`, hyphenated, and
-underscore forms must classify as typed documents; the root index file must not; and the guard must flag
-any hyphenated content path.
+underscore forms must classify as typed documents; the root index file must not. The content-name
+guard rejects underscore catalog/playbook roots and enforces kebab-case content by default.
 """
 import subprocess
 import sys
@@ -27,15 +27,15 @@ def run() -> int:
     failures = 0
 
     classification_cases = [
-        (f'{SKILL}/feature_catalog/06--mcp-tool-surface/x.md', 'feature_catalog', 'numbered catalog leaf'),
-        (f'{SKILL}/feature_catalog/mcp-tool-surface/x.md', 'feature_catalog', 'de-numbered catalog leaf'),
-        (f'{SKILL}/feature_catalog/mcp_tool_surface/x.md', 'feature_catalog', 'underscore catalog leaf'),
-        (f'{SKILL}/feature_catalog/feature_catalog.md', 'readme', 'catalog root index excluded'),
-        (f'{SKILL}/manual_testing_playbook/01--read-path/x.md', 'playbook_feature', 'numbered playbook leaf'),
-        (f'{SKILL}/manual_testing_playbook/read-path/x.md', 'playbook_feature', 'de-numbered playbook leaf'),
-        (f'{SKILL}/manual_testing_playbook/read_path/x.md', 'playbook_feature', 'underscore playbook leaf'),
-        (f'{SKILL}/manual_testing_playbook/manual_testing_playbook.md', 'readme', 'playbook root index excluded'),
-        (f'{SKILL}/feature_catalog/06--x/sub/deep.md', 'readme', 'deeper nesting not a leaf'),
+        (f'{SKILL}/feature-catalog/06--mcp-tool-surface/x.md', 'feature_catalog', 'numbered catalog leaf'),
+        (f'{SKILL}/feature-catalog/mcp-tool-surface/x.md', 'feature_catalog', 'de-numbered catalog leaf'),
+        (f'{SKILL}/feature-catalog/mcp-tool-surface/x.md', 'feature_catalog', 'underscore catalog leaf'),
+        (f'{SKILL}/feature-catalog/feature-catalog.md', 'readme', 'catalog root index excluded'),
+        (f'{SKILL}/manual-testing-playbook/01--read-path/x.md', 'playbook_feature', 'numbered playbook leaf'),
+        (f'{SKILL}/manual-testing-playbook/read-path/x.md', 'playbook_feature', 'de-numbered playbook leaf'),
+        (f'{SKILL}/manual-testing-playbook/read_path/x.md', 'playbook_feature', 'underscore playbook leaf'),
+        (f'{SKILL}/manual-testing-playbook/manual-testing-playbook.md', 'readme', 'playbook root index excluded'),
+        (f'{SKILL}/feature-catalog/06--x/sub/deep.md', 'readme', 'deeper nesting not a leaf'),
     ]
     for path, expected, label in classification_cases:
         got = detect_document_type(path, '', {})
@@ -47,30 +47,60 @@ def run() -> int:
 
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
-        (root / 'feature_catalog' / 'mcp_tool_surface').mkdir(parents=True)
-        (root / 'manual_testing_playbook' / 'read_path').mkdir(parents=True)
+        (root / 'feature_catalog' / 'mcp-tool-surface').mkdir(parents=True)
+        rejected = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
+        if rejected.returncode == 2:
+            print('PASS guard rejects an underscore catalog/playbook root')
+        else:
+            print(f'FAIL guard should reject underscore root (exit {rejected.returncode})')
+            failures += 1
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        category = root / 'feature-catalog' / 'mcp-tool-surface'
+        category.mkdir(parents=True)
+        (category / 'new-file.md').touch()
         clean = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
         if clean.returncode == 0:
-            print('PASS guard passes on an underscore tree')
+            print('PASS guard accepts kebab-case content by default')
         else:
-            print(f'FAIL guard should pass on clean tree (exit {clean.returncode})')
+            print(f'FAIL guard should accept kebab content (exit {clean.returncode})')
             failures += 1
 
-        (root / 'feature_catalog' / 'new-category').mkdir()
+        (category / 'legacy_name.md').touch()
         dirty = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
         if dirty.returncode == 1:
-            print('PASS guard fails on a freshly-created hyphenated category folder')
+            print('PASS guard rejects underscore content by default')
         else:
-            print(f'FAIL guard should fail on hyphenated tree (exit {dirty.returncode})')
+            print(f'FAIL guard should reject underscore content (exit {dirty.returncode})')
             failures += 1
 
-        (root / 'feature_catalog' / 'new-category').rmdir()
-        (root / 'feature_catalog' / 'mcp_tool_surface' / 'new-file.md').touch()
-        dirty = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
-        if dirty.returncode == 1:
-            print('PASS guard fails on a freshly-created hyphenated Markdown file')
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        target_category = root / 'feature-catalog' / 'mcp-tool-surface'
+        target_category.mkdir(parents=True)
+        (target_category / 'new-file.md').touch()
+        clean = subprocess.run(
+            [sys.executable, str(GUARD), '--enforce-hyphen-target', str(root)],
+            capture_output=True,
+            text=True,
+        )
+        if clean.returncode == 0:
+            print('PASS target guard accepts hyphenated content')
         else:
-            print(f'FAIL guard should fail on hyphenated Markdown file (exit {dirty.returncode})')
+            print(f'FAIL target guard should accept hyphenated content (exit {clean.returncode})')
+            failures += 1
+
+        (target_category / 'old_file.md').touch()
+        dirty = subprocess.run(
+            [sys.executable, str(GUARD), '--enforce-hyphen-target', str(root)],
+            capture_output=True,
+            text=True,
+        )
+        if dirty.returncode == 1:
+            print('PASS target guard rejects underscore content')
+        else:
+            print(f'FAIL target guard should reject underscore content (exit {dirty.returncode})')
             failures += 1
 
     print('\nALL PASS' if failures == 0 else f'\n{failures} FAILED')

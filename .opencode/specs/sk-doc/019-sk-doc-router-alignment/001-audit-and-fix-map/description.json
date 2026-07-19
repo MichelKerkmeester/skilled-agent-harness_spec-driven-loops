@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/018-sk-doc-router-alignment/001-audit-and-fix-map",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/001-audit-and-fix-map",
   "description": "Trigger ownership was inconsistent across packet source files and router projections",
   "keywords": [
     "trigger",
@@ -13,12 +13,12 @@
     "router",
     "projections"
   ],
-  "lastUpdated": "2026-07-13T14:31:59.095Z",
+  "lastUpdated": "2026-07-18T03:48:54.804Z",
   "specId": "001",
   "folderSlug": "audit-and-fix-map",
   "parentChain": [
     "sk-doc",
-    "018-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

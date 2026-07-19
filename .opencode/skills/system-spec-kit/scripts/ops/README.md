@@ -64,8 +64,8 @@ Arc 009 lifecycle helper map:
 | Surface | Helper |
 | --- | --- |
 | Deep loop runtime | `runtime//lib/deep-loop/loop-lock.ts`, `jsonl-repair.ts`, `atomic-state.ts` |
-| Code Graph | `system-code-graph/mcp_server/lib/owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts` |
-| Spec Kit runtime | `mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `mcp_server/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts` |
+| Code Graph | `system-code-graph/mcp-server/lib/owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts` |
+| Spec Kit runtime | `mcp-server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `mcp-server/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts` |
 | Ops | `scripts/ops/process-memory-harness.ts`, `scripts/ops/process-sweep.ts` |
 
 ## 6. BOUNDARIES
@@ -78,4 +78,4 @@ Arc 009 lifecycle helper map:
 
 - `../README.md`
 - `../spec/README.md`
-- `../../mcp_server/README.md`
+- `../../mcp-server/README.md`

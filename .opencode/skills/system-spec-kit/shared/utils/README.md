@@ -48,7 +48,7 @@ utils/token-estimate.ts -> no package imports
 Disallowed dependency direction:
 
 ```text
-utils/* -> mcp_server/*
+utils/* -> mcp-server/*
 utils/* -> scripts/*
 utils/* -> database modules
 utils/* -> network clients

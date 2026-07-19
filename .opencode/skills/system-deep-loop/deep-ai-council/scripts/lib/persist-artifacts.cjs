@@ -38,7 +38,7 @@ const {
 const DEFAULT_TIMESTAMP = '1970-01-01T00:00:00.000Z';
 const DEFAULT_MAX_ROUNDS = 3;
 const MAX_SLUG_LENGTH = 80;
-// Required report language for an all-seat-failure round (references/convergence/failure_handling.md).
+// Required report language for an all-seat-failure round (references/convergence/failure-handling.md).
 // Detecting it lets renderArtifacts() avoid recording a fabricated converged council_complete event.
 const ALL_SEATS_FAILED_PATTERN = /all\s+council\s+seats\s+failed/i;
 const OPTIONAL_ALIASES = {
@@ -443,8 +443,8 @@ ${parsed.recommendedPlan}
 ${parsed.planConfidence === null ? '[No numeric confidence captured]' : `${parsed.planConfidence}/100`}
 `;
 
-  // Never fabricate convergence (references/convergence/failure_handling.md,
-  // references/convergence/convergence_signals.md). An in-report "all seats failed"
+  // Never fabricate convergence (references/convergence/failure-handling.md,
+  // references/convergence/convergence-signals.md). An in-report "all seats failed"
   // marker always wins and resolves false. Absent that marker, a caller that already
   // knows a round exhausted max_rounds without reaching consensus can force false via
   // `options.convergence`. Only a genuinely unflagged, unmarked report defaults to true.

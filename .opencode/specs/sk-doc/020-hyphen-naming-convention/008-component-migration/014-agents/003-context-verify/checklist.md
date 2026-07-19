@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify context agent naming (032 phase 003)"
-description: "Checklist for phase 003 of the 032 agents component migration: verify the context filename candidate set."
+title: "Checklist: verify context agent naming (020 phase 003)"
+description: "Checklist for phase 003 of the 020 agents component migration: verify the context filename candidate set."
 trigger_phrases:
   - "context agent naming checklist"
   - "agents phase 003 checklist"

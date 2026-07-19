@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-code-graph subtree rollup gate (032 phase 008)"
+title: "Checklist: system-code-graph subtree rollup gate (020 phase 008)"
 description: "Blocking SOL verifier contract for sibling aggregation and the exemption-aware whole system-code-graph naming and active-reference gate."
 trigger_phrases:
   - "system-code-graph rollup checklist"

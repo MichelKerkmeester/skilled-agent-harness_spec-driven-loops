@@ -1,5 +1,5 @@
 ---
-title: "Checklist: code-opencode filesystem names (032 phase 008/002)"
+title: "Checklist: code-opencode filesystem names (020 phase 008/002)"
 description: "Blocking SOL verification contract for the code-opencode rename and resource-reference closure."
 trigger_phrases:
   - "code-opencode naming checklist"

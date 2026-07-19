@@ -18,7 +18,15 @@ from pathlib import Path
 
 # Three-digit ordinal prefix on a markdown scenario file, e.g. `001-routing.md`.
 NUMBERED_SNIPPET_FILE = re.compile(r'^\d{3}-.*\.md$')
-CATEGORY_ROOTS = ('feature_catalog', 'manual_testing_playbook')
+
+# Scan both the hyphen and underscore root forms while the naming migration is in
+# flight, sourced from the shared resolver so this guard and the classifier agree on
+# which roots exist. Fall back to local names if the sibling cannot be imported.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from naming_root_resolver import (  # type: ignore
+    ALL_ROOT_NAMES as CATEGORY_ROOTS,
+    find_unsupported_root_dirs,
+)
 
 
 def find_numbered_snippet_files(root: Path):
@@ -43,6 +51,11 @@ def main(argv) -> int:
     root = Path(args[0]) if args else Path('.opencode/skills')
     if not root.exists():
         print(f'ERROR: root not found: {root}', file=sys.stderr)
+        return 2
+
+    unsupported = find_unsupported_root_dirs(root)
+    if unsupported:
+        print(f'ERROR: unsupported catalog/playbook root: {unsupported[0]}', file=sys.stderr)
         return 2
 
     offenders = find_numbered_snippet_files(root)

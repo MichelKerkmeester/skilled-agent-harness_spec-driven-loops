@@ -20,9 +20,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit_complete_presentation.txt` |
-| Auto workflow | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` |
-| Confirm workflow | `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/speckit/assets/speckit-complete-presentation.txt` |
+| Auto workflow | `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` |
+| Confirm workflow | `.opencode/commands/speckit/assets/speckit-complete-confirm.yaml` |
 
 ---
 
@@ -41,9 +41,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` |
-| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` with `unattended_autopilot` enabled |
-| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` |
+| `:auto` | `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` |
+| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-complete-auto.yaml` with `unattended_autopilot` enabled |
+| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-complete-confirm.yaml` |
 
 ### UNATTENDED RESULT CONTRACT
 
@@ -68,7 +68,7 @@ Successful completion emits `reason: null`; it does not add a fifth terminal rea
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit_complete_presentation.txt`:
+The following content lives only in `.opencode/commands/speckit/assets/speckit-complete-presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

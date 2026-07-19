@@ -72,8 +72,8 @@ Per-fixture detail (pass% / format / words):
 ## Integration recommendation (for the user to apply to cli-opencode)
 
 Apply to the **cli-opencode / MiMo** dispatch path:
-- `cli-opencode/assets/prompt_templates.md` — add a MiMo-V2.5-Pro section using the **COSTAR** scaffold (Context / Objective / Style="precise, no preamble" / Tone / Audience="automated/downstream consumer" / Response) with **lean-to-medium** pre-planning. **RACE** is the equally-valid fallback (statistical tie). Explicitly note: do NOT use TIDD-EC / dense guardrail framing for MiMo (it ranked last).
-- `cli-opencode/assets/prompt_quality_card.md` — mark **COSTAR** as the empirical default for `xiaomi-token-plan-ams/mimo-v2.5-pro`; **RACE** as fallback. Record the divergence: MiMo ≠ MiniMax (MiniMax → TIDD-EC+dense; MiMo → COSTAR/RACE+lean).
+- `cli-opencode/assets/prompt-templates.md` — add a MiMo-V2.5-Pro section using the **COSTAR** scaffold (Context / Objective / Style="precise, no preamble" / Tone / Audience="automated/downstream consumer" / Response) with **lean-to-medium** pre-planning. **RACE** is the equally-valid fallback (statistical tie). Explicitly note: do NOT use TIDD-EC / dense guardrail framing for MiMo (it ranked last).
+- `cli-opencode/assets/prompt-quality-card.md` — mark **COSTAR** as the empirical default for `xiaomi-token-plan-ams/mimo-v2.5-pro`; **RACE** as fallback. Record the divergence: MiMo ≠ MiniMax (MiniMax → TIDD-EC+dense; MiMo → COSTAR/RACE+lean).
 - `sk-prompt-models/references/pattern-index.md` — add a MiMo prompt-framework row → cli-opencode canonical location, with the COSTAR/RACE-lean finding.
 - `sk-prompt/assets/model-profiles.json` — MiMo strengths note: "responds best to lean, output/audience-framed prompts (COSTAR/RACE); already scope/correctness-disciplined — guardrail-heavy framing is counterproductive and inflates output; avoid CIDI process-framing (intermittent tool-only file-writes instead of inline code)."
 - Key one-liner for the template: **MiMo is frontier-correct already — frame for format + brevity, not for guardrails.**

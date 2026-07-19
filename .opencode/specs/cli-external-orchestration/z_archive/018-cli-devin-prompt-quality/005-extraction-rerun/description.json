@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun",
   "description": "113/003 synthesis.md notes a known limitation: SWE 1.6 `--print` returns markdown text rather than files",
   "keywords": [
     "synthesis",
@@ -15,11 +15,12 @@
     "rather",
     "files"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.727Z",
+  "lastUpdated": "2026-07-18T03:48:54.310Z",
   "specId": "005",
   "folderSlug": "extraction-rerun",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "018-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

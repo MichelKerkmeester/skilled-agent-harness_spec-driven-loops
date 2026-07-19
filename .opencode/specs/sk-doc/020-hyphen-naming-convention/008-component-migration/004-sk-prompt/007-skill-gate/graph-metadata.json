@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 032 exemption boundary. It performs no new rename or reference migration.",
+    "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-07-17T14:30:20.069Z",
+    "last_save_at": "2026-07-17T20:26:08.267Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:458c877bd2db3c48532613c6a02a6de0e6da080a438508f78e1531a397d93766",
+    "source_fingerprint": "sha256:6ef5e808023a6db3f1a8dd446668c72e5093c31dd3b3fe1278010287131e33b5",
     "source_doc_hashes": {
-      "spec.md": "a03dd149df388b82756b6ba21acba226039a619ac78599425e08ea3b511a5619",
-      "plan.md": "59e15b86744e1f53e7f4e80ee53b0c370406693d2d61e32c0078f3b0539f0362",
-      "tasks.md": "e9c22f924a0bcf49491a58e982602d556e0b70dcd01b2177eb819e10954ed031",
-      "checklist.md": "0b85e755e3300b9f4f8c8c8dd2a157d6a0ef09f2557b830dddf60d49b3cd23c0"
+      "spec.md": "acb9f7052b8ddd69aefbf17cacf69c9753d63ba210e5f6c6d80db21a0663e05d",
+      "plan.md": "ff313cc3018e006797255fd651fbd728cb7dd72684cc56eb949bea50b7f54198",
+      "tasks.md": "5435fb3fe7e5aa1468bac1396ac18aa54eb6a458083bb6fd4f6ceba5b6127770",
+      "checklist.md": "9259442b9f78bc71168332538b0853f3d2658984b07a6c7897bf313f77a70e5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

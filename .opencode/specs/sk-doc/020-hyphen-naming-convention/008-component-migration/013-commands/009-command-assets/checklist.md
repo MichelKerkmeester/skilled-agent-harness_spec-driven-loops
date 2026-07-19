@@ -1,5 +1,5 @@
 ---
-title: "Checklist: command asset and reference closure (032 phase 008/013/009)"
+title: "Checklist: command asset and reference closure (020 phase 008/013/009)"
 description: "Blocking SOL verification contract for residual command asset ownership, kebab-case targets, and cross-namespace path closure."
 trigger_phrases:
   - "command asset closure checklist"

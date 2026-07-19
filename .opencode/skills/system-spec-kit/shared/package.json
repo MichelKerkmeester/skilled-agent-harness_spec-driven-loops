@@ -1,0 +1,28 @@
+{
+  "name": "@spec-kit/shared",
+  "version": "1.7.2",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./compact-merger": "./dist/compact-merger.js",
+    "./budget-allocator": "./dist/budget-allocator.js",
+    "./code-graph-contracts": "./dist/code-graph-contracts.js",
+    "./embeddings": "./dist/embeddings.js",
+    "./*.js": "./dist/*.js",
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+    "test": "echo 'No tests in shared workspace'",
+    "test:task-enrichment": "echo 'No task-enrichment tests in @spec-kit/shared'"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1"
+  }
+}

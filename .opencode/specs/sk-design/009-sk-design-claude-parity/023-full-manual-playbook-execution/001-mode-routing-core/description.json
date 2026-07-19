@@ -1,17 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
-  "description": "The sk-design `manualtestingplaybook`'s `01--mode-routing` category has never been dispatched for real",
+  "description": "The sk-design `manualtestingplaybook`'s `mode-routing` category has never been dispatched for real",
   "keywords": [
     "sk-design",
     "manualtestingplaybook",
-    "01-mode-routing",
+    "mode-routing",
     "category",
     "never",
     "dispatched",
     "real"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.261Z",
+  "lastUpdated": "2026-07-18T03:48:54.589Z",
   "specId": "001",
   "folderSlug": "mode-routing-core",
   "parentChain": [

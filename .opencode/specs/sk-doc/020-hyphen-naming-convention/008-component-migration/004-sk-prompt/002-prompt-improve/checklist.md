@@ -1,5 +1,5 @@
 ---
-title: "Checklist: prompt-improve asset and reference names (032 phase 004.002)"
+title: "Checklist: prompt-improve asset and reference names (020 phase 004.002)"
 description: "Blocking SOL verifier contract for phase 002 of the sk-prompt kebab-case program: six asset/reference renames, active path closure, and scope protection."
 trigger_phrases:
   - "prompt-improve asset and reference checklist"

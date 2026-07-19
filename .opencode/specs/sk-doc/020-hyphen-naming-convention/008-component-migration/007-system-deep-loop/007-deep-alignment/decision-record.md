@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-alignment names (032 phase 007/007)"
+title: "Decision Record: system-deep-loop deep-alignment names (020 phase 007/007)"
 description: "L2 design decisions for the deep-alignment naming phase, including filesystem-path versus embedded-key classification, adapter/catalog closure, and read-only authority boundaries."
 trigger_phrases:
   - "system-deep-loop alignment decisions"

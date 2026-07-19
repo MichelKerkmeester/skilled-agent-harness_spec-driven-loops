@@ -1,4 +1,4 @@
-<!-- SPECKIT_TEMPLATE_SOURCE: level_1/spec.md | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: level-1/spec.md | v2.2 -->
 
 # Test Feature - With Rule Order
 

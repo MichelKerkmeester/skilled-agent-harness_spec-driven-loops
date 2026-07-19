@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-codex component naming (032 phase 005.004)"
+title: "Feature Specification: cli-codex component naming (020 phase 005.004)"
 description: "The cli-codex component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Codex availability, sandbox, model, and review contracts."
 trigger_phrases:
   - "cli-codex kebab-case migration"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-codex component naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration / cli-codex |
-| **Origin** | Phase 004 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -104,7 +104,7 @@ This phase maps the seven local authored candidates to kebab-case, updates path-
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is treating Codex flags, model names, sandbox values, or structured data keys as filesystem names. The phase depends on the 032 path-vs-key boundary and phase 005's playbook ownership; a seven-entry map and contract comparison prevent semantic drift.
+The main risk is treating Codex flags, model names, sandbox values, or structured data keys as filesystem names. The phase depends on the 020 path-vs-key boundary and phase 005's playbook ownership; a seven-entry map and contract comparison prevent semantic drift.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

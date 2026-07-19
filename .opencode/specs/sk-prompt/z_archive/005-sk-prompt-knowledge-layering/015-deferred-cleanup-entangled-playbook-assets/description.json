@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+  "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
   "description": "Three deferred items remained after 014",
   "keywords": [
     "three",
@@ -8,11 +8,12 @@
     "items",
     "remained"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.679Z",
+  "lastUpdated": "2026-07-18T03:48:55.258Z",
   "specId": "015",
   "folderSlug": "deferred-cleanup-entangled-playbook-assets",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "005-sk-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

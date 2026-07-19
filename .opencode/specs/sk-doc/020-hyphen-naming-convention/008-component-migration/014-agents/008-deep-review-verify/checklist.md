@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify deep-review agent naming (032 phase 008)"
-description: "Checklist for phase 008 of the 032 agents component migration: verify the deep-review filename candidate set."
+title: "Checklist: verify deep-review agent naming (020 phase 008)"
+description: "Checklist for phase 008 of the 020 agents component migration: verify the deep-review filename candidate set."
 trigger_phrases:
   - "deep-review agent naming checklist"
   - "agents phase 008 checklist"

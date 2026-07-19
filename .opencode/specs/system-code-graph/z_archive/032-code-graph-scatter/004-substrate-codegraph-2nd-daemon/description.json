@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/032-code-graph-scatter/004-substrate-codegraph-2nd-daemon",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/004-substrate-codegraph-2nd-daemon",
   "description": "Two defects compounded in `run-substrate-stress-harness.mjs`",
   "keywords": [
     "two",
@@ -9,11 +9,12 @@
     "run-substrate-stress-harness",
     "mjs"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.862Z",
+  "lastUpdated": "2026-07-18T03:48:55.601Z",
   "specId": "004",
   "folderSlug": "substrate-codegraph-2nd-daemon",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 0,

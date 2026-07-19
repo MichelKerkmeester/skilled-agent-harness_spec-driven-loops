@@ -4,7 +4,7 @@ Generate and validate ASCII-style markdown flowcharts from real processes, decis
 
 ## 1. OVERVIEW
 
-This workflow packet turns a real process, decision tree, user journey, or system interaction into a validator-passing ASCII flowchart, using the packet's six pattern assets and its local validator (`scripts/validate_flowchart.sh`) instead of inventing diagram structure from scratch.
+This workflow packet turns a real process, decision tree, user journey, or system interaction into a validator-passing ASCII flowchart, using the packet's six pattern assets and its local validator (`scripts/validate-flowchart.sh`) instead of inventing diagram structure from scratch.
 
 ## 2. WHEN TO USE
 
@@ -25,27 +25,27 @@ Do not use it when a short bullet list is clearer, or when the requested output 
   The authoritative packet contract: activation triggers, routing rules, authoring workflow, validation requirements, and success criteria.
 
 - `references/`  
-  Overflow guidance beyond the inline contract, dissected into single-concern files behind a route-map: `README.md` (reference map), `worked_example.md` (a validator-passing decision-tree example), `notation_and_validator.md` (validator mechanics, box-width notation, common mistakes, and author judgment), and `pattern_selection.md` (pattern-selection detail and split heuristics).
+  Overflow guidance beyond the inline contract, dissected into single-concern files behind a route-map: `README.md` (reference map), `worked-example.md` (a validator-passing decision-tree example), `notation-and-validator.md` (validator mechanics, box-width notation, common mistakes, and author judgment), and `pattern-selection.md` (pattern-selection detail and split heuristics).
 
-- `assets/simple_workflow.md`  
+- `assets/simple-workflow.md`  
   Pattern for linear setup, tutorial, installation, or operational flows.
 
-- `assets/decision_tree_flow.md`  
+- `assets/decision-tree-flow.md`  
   Pattern for conditional branching, validation paths, retries, failure handling, and alternate outcomes.
 
-- `assets/parallel_execution.md`  
+- `assets/parallel-execution.md`  
   Pattern for fan-out/fan-in work, CI/CD, batch jobs, or multi-agent execution.
 
-- `assets/approval_workflow_loops.md`  
+- `assets/approval-workflow-loops.md`  
   Pattern for review cycles, governance gates, sign-off loops, and rework paths.
 
-- `assets/system_architecture_swimlane.md`  
+- `assets/system-architecture-swimlane.md`  
   Pattern for service, layer, API, database, queue, cache, and error-path interactions.
 
-- `assets/user_onboarding.md`  
+- `assets/user-onboarding.md`  
   Pattern for onboarding, activation, guided setup, and support journeys.
 
-- `scripts/validate_flowchart.sh`  
+- `scripts/validate-flowchart.sh`  
   Packet-local validator for flowchart structure, connector use, branch labels, nesting depth, and size warnings.
 
 - `changelog/`  
@@ -58,7 +58,7 @@ For shared markdown standards and the document-level validator, this packet reus
 `SKILL.md` holds the authoritative numbered authoring workflow — read it first. In brief: pick the closest pattern from `assets/`, draft with real source content and labeled branches, then run the packet-local validator before delivery:
 
 ```bash
-bash scripts/validate_flowchart.sh <target-flowchart.md>
+bash scripts/validate-flowchart.sh <target-flowchart.md>
 ```
 
 Fix validator errors before delivery; treat warnings as readability issues. Use `SKILL.md` for the full step-by-step workflow and `references/README.md` for overflow depth.
@@ -72,7 +72,7 @@ Create an ASCII flowchart for the release approval workflow, including rejection
 Likely pattern:
 
 ```text
-assets/approval_workflow_loops.md
+assets/approval-workflow-loops.md
 ```
 
 ## 5. HUB RELATIONSHIP

@@ -48,7 +48,7 @@ For a single planning pass, dispatch the `@ai-council` LEAF agent. It returns on
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "run an ai council for the login refactor" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "run an ai council for the login refactor" --threshold 0.8
 
 # Or dispatch the agent directly from an orchestrator
 @ai-council: Compare the streaming ingest plan against the batch ingest plan for specs/042-pipeline/ and persist the artifacts.
@@ -135,7 +135,7 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 
 ### Behavior Benchmark
 
-`behavior_benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
+`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
 
 ### Related Skills
 
@@ -151,9 +151,9 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 | What you see | Why | Fix |
 |---|---|---|
 | Council emits `non-converged` | The council hit `max_rounds` without two-of-three agreement and refused to fake consensus | Read the failed-round forensics under `failed/round-NNN-<timestamp>/`. Add a round with different lenses or accept the partial result as the honest answer. |
-| `persist-artifacts.cjs` exits 1 during capture | The report is missing a required section from the output schema | Compare the report against `references/structure/output_schema.md` and add the missing section. Run with `--strict-output` to enforce the full contract. |
+| `persist-artifacts.cjs` exits 1 during capture | The report is missing a required section from the output schema | Compare the report against `references/structure/output-schema.md` and add the missing section. Run with `--strict-output` to enforce the full contract. |
 | Per-seat files are absent from a persisted run | The report used a composition-table fallback instead of per-seat headings | Confirm the report uses valid per-seat headings or a composition table the parser accepts. |
-| Seats produce nearly identical proposals | Seat diversity was too low and the council repeated the same reasoning path | Assign distinct lenses per seat. Check the task-type-to-lens mapping in `references/patterns/seat_diversity_patterns.md` and re-run with more divergent seats. |
+| Seats produce nearly identical proposals | Seat diversity was too low and the council repeated the same reasoning path | Assign distinct lenses per seat. Check the task-type-to-lens mapping in `references/patterns/seat-diversity-patterns.md` and re-run with more divergent seats. |
 | `advise-council-completion.cjs` reports no `council_complete` event | The final event was never appended to the state log | Re-open the council context and append the completion event, or re-persist from a completed report. |
 | Advisor does not route "ai council" prompts | Stale or missing skill graph | Rebuild the skill-advisor graph, then retry the routing query. |
 
@@ -193,7 +193,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-ai-council/README.md --type readme` reports zero issues |
 | Skill package structure | `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council` exits 0 |
-| Playbook scenarios | Run the scenarios under `manual_testing_playbook/` across its nine categories: runtime routing, council deliberation, artifact persistence, convergence and rollback, scope boundaries, depth and failure handling, the writer-library contract, council-graph integration and council-graph value comparison |
+| Playbook scenarios | Run the scenarios under `manual-testing-playbook/` across its nine categories: runtime routing, council deliberation, artifact persistence, convergence and rollback, scope boundaries, depth and failure handling, the writer-library contract, council-graph integration and council-graph value comparison |
 
 ---
 
@@ -202,16 +202,16 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract |
-| [`references/integration/quick_reference.md`](./references/integration/quick_reference.md) | Operator cheat sheet for commands, artifacts and validation |
-| [`references/integration/loop_protocol.md`](./references/integration/loop_protocol.md) | End-to-end council workflow from packet resolution through recovery |
-| [`references/structure/output_schema.md`](./references/structure/output_schema.md) | Required report sections the persistence parser enforces |
-| [`references/scoring/scoring_rubric.md`](./references/scoring/scoring_rubric.md) | Five-dimension scoring and the Hunter, Skeptic and Referee critique roles |
-| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | Convergence rules, the two-of-three signal and escape hatches |
-| [`references/convergence/depth_dispatch.md`](./references/convergence/depth_dispatch.md) | Depth 0 parallel dispatch, Depth 1 sequential dispatch and deep-mode session hierarchy |
-| [`references/patterns/seat_diversity_patterns.md`](./references/patterns/seat_diversity_patterns.md) | The six strategy lenses and task-type-to-lens recommendations |
-| [`references/structure/folder_layout.md`](./references/structure/folder_layout.md) | Packet-local artifact tree shape and writer ownership |
-| [`references/structure/state_format.md`](./references/structure/state_format.md) | Append-only JSONL event semantics |
-| [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Round strategy template for seat setup and disagreement tracking |
-| [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Full feature inventory across the nine categories |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package with per-feature scenarios |
+| [`references/integration/quick-reference.md`](./references/integration/quick-reference.md) | Operator cheat sheet for commands, artifacts and validation |
+| [`references/integration/loop-protocol.md`](./references/integration/loop-protocol.md) | End-to-end council workflow from packet resolution through recovery |
+| [`references/structure/output-schema.md`](./references/structure/output-schema.md) | Required report sections the persistence parser enforces |
+| [`references/scoring/scoring-rubric.md`](./references/scoring/scoring-rubric.md) | Five-dimension scoring and the Hunter, Skeptic and Referee critique roles |
+| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | Convergence rules, the two-of-three signal and escape hatches |
+| [`references/convergence/depth-dispatch.md`](./references/convergence/depth-dispatch.md) | Depth 0 parallel dispatch, Depth 1 sequential dispatch and deep-mode session hierarchy |
+| [`references/patterns/seat-diversity-patterns.md`](./references/patterns/seat-diversity-patterns.md) | The six strategy lenses and task-type-to-lens recommendations |
+| [`references/structure/folder-layout.md`](./references/structure/folder-layout.md) | Packet-local artifact tree shape and writer ownership |
+| [`references/structure/state-format.md`](./references/structure/state-format.md) | Append-only JSONL event semantics |
+| [`assets/deep-ai-council-strategy.md`](./assets/deep-ai-council-strategy.md) | Round strategy template for seat setup and disagreement tracking |
+| [`assets/deep-ai-council-config.json`](./assets/deep-ai-council-config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Full feature inventory across the nine categories |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation package with per-feature scenarios |

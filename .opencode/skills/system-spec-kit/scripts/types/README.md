@@ -100,7 +100,7 @@ test -f .opencode/skills/system-spec-kit/scripts/dist/types/session-types.d.ts
 | Ownership | This folder owns script payload interfaces only. |
 | Runtime | Keep runtime logic in extractors, renderers, core modules or libraries. |
 | Imports | Prefer type-only imports when consumers only need compile-time shapes. |
-| Public APIs | MCP server request and response contracts belong under `mcp_server/`. |
+| Public APIs | MCP server request and response contracts belong under `mcp-server/`. |
 
 ---
 

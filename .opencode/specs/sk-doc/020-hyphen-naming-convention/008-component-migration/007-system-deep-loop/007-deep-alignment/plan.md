@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-alignment filesystem names (032 phase 007/007)"
+title: "Implementation Plan: deep-alignment filesystem names (020 phase 007/007)"
 description: "Plan for renaming deep-alignment assets, catalog/playbook paths, and adapter/state references through a path-aware semantic map, then proving that embedded identifiers, authority keys, and read-only behavior remain unchanged."
 trigger_phrases:
   - "deep-alignment implementation plan"

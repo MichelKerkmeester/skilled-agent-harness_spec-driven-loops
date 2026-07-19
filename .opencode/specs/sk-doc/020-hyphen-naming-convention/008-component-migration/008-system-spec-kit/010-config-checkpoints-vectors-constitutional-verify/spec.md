@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Config, checkpoints, vectors, and constitutional verification (032 subtree 008 phase 010)"
+title: "Feature Specification: Config, checkpoints, vectors, and constitutional verification (020 subtree 008 phase 010)"
 description: "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for permitted snake_case filesystem names. The pinned inventory has zero rename candidates in the three runtime agent directories; generated/vector/checkpoint artifacts and tool-mandated names retain their exempt disposition."
 trigger_phrases:
   - "system-spec-kit agent directory naming audit"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Config, checkpoints, vectors, and constitutional verification
 
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The 032 program must distinguish a genuinely compliant agent surface from a scan that silently skipped runtime-specific directories or misclassified artifacts. The pinned baseline has no permitted snake_case filesystem names in `.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`; adjacent `config/`, `checkpoints/`, `vectors/`, `constitutional/`, and `runtime/` paths require a recorded classification so generated/vector artifacts and exact tool names are not reported as migration defects.
+The 020 program must distinguish a genuinely compliant agent surface from a scan that silently skipped runtime-specific directories or misclassified artifacts. The pinned baseline has no permitted snake_case filesystem names in `.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`; adjacent `config/`, `checkpoints/`, `vectors/`, `constitutional/`, and `runtime/` paths require a recorded classification so generated/vector artifacts and exact tool names are not reported as migration defects.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

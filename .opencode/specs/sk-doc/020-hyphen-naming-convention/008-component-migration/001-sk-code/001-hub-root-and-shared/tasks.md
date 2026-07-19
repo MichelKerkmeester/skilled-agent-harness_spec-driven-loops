@@ -1,5 +1,5 @@
 ---
-title: "Tasks: hub root and shared sk-code names (032 phase 008/001)"
+title: "Tasks: hub root and shared sk-code names (020 phase 008/001)"
 description: "Execution tasks for the sk-code hub/shared filesystem rename and reference closure."
 trigger_phrases:
   - "hub shared naming tasks"

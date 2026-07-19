@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
   "description": "Code graph operations have no doctor surface",
   "keywords": [
     "code",
@@ -8,11 +8,12 @@
     "doctor",
     "surface"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.823Z",
+  "lastUpdated": "2026-07-18T03:48:55.527Z",
   "specId": "001",
   "folderSlug": "doctor-diagnostic-command-phase-a",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "007-docs-and-readmes"
   ],

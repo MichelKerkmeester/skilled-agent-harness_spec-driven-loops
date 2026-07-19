@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
     "created_at": "2026-07-14T15:18:35Z",
-    "last_save_at": "2026-07-17T14:30:45.033Z",
+    "last_save_at": "2026-07-17T20:26:19.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ae7da3a0a68e531c79a4eb0cbb0ce769fc376128fa7c51840fe95079b0563462",
+    "source_fingerprint": "sha256:677d77dc61c5c31002d414813494311ba5552dff53defedddaebdd24612d75ff",
     "source_doc_hashes": {
-      "spec.md": "79412e66fd2f228ea5896f56214a6b75a8808eeec881efb80b4544002692336b",
-      "plan.md": "877d61bb351ded369627856471dba25f3ec3a7c1a772e00b2f8dba25138d7f2c",
-      "tasks.md": "b0b71357fcae11db7f049da7222aa723c70e50d7130a5a418b061381436c1fa3",
-      "checklist.md": "9bc84f1184b1d29a7fde4be2765592af03e4aa306c3244d739c2f9055d41a2fd"
+      "spec.md": "e008e146fadb75e561baf06f2d366012a9a7607f44afcce1d8eb6bcfbf402bd3",
+      "plan.md": "056a08c6c7c9c1fb20deb7ac295aefa78abc98fb920d44c4456f8cc7a4d7a643",
+      "tasks.md": "25fbc0e392c7e808aa6cec9bceebb34749f0dd110c9e6596a316c7b4781db6b3",
+      "checklist.md": "faea6efce3197601d26b6514abd05ac7ab7a44c716f1aa9374499248f810447e"
     },
     "last_active_child_id": null,
     "last_active_at": null

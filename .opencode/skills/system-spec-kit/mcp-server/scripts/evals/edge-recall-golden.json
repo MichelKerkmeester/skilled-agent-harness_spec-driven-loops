@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-06-20T10:57:44.007Z",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite",
+  "note": "Derived from live open causal edges. Query = source memory title; expectedTargetMemoryId is the edge neighbor the graph edge path should recall.",
+  "items": [
+    {
+      "id": "edge-9534-9676",
+      "query": "Implementation Plan: Migrate High-Volume Skills (Wave B) [133/004/plan]",
+      "sourceMemoryId": 9534,
+      "expectedTargetMemoryId": 9676,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-9535-9683",
+      "query": "Implementation Plan: Migrate Remaining Skills (Wave C) [133/005/plan]",
+      "sourceMemoryId": 9535,
+      "expectedTargetMemoryId": 9683,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-9529-9687",
+      "query": "Implementation Plan: Reference Sweep, Validation & Guard [133/006/plan]",
+      "sourceMemoryId": 9529,
+      "expectedTargetMemoryId": 9687,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-10484-10486",
+      "query": "Implementation Plan: Code Graph Gold-Query Battery Repair",
+      "sourceMemoryId": 10484,
+      "expectedTargetMemoryId": 10486,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-10874-10873",
+      "query": "Feature Specification: Live two-session daemon re-election adoption test",
+      "sourceMemoryId": 10874,
+      "expectedTargetMemoryId": 10873,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-10873-10875",
+      "query": "Implementation Plan: Live two-session daemon re-election adoption test",
+      "sourceMemoryId": 10873,
+      "expectedTargetMemoryId": 10875,
+      "relation": "caused",
+      "strength": 1
+    },
+    {
+      "id": "edge-9250-9254",
+      "query": "Feature Specification: Front-Proxy Recycle Hardening",
+      "sourceMemoryId": 9250,
+      "expectedTargetMemoryId": 9254,
+      "relation": "caused",
+      "strength": 0.9
+    },
+    {
+      "id": "edge-9254-9255",
+      "query": "Implementation Plan: Front-Proxy Recycle Hardening",
+      "sourceMemoryId": 9254,
+      "expectedTargetMemoryId": 9255,
+      "relation": "caused",
+      "strength": 0.9
+    },
+    {
+      "id": "edge-9310-9309",
+      "query": "Feature Specification: Relation-Backfill Review Remediation",
+      "sourceMemoryId": 9310,
+      "expectedTargetMemoryId": 9309,
+      "relation": "caused",
+      "strength": 0.9
+    },
+    {
+      "id": "edge-9295-9294",
+      "query": "Feature Specification: Semantic Relation Inference (similarity + contradicts collectors)",
+      "sourceMemoryId": 9295,
+      "expectedTargetMemoryId": 9294,
+      "relation": "caused",
+      "strength": 0.9
+    },
+    {
+      "id": "edge-9303-9302",
+      "query": "Feature Specification: TOOL_LAYER_MAP Drift Fix (memory_causal_unlink L6)",
+      "sourceMemoryId": 9303,
+      "expectedTargetMemoryId": 9302,
+      "relation": "caused",
+      "strength": 0.9
+    },
+    {
+      "id": "edge-9302-9304",
+      "query": "Implementation Plan: TOOL_LAYER_MAP Drift Fix (memory_causal_unlink L6)",
+      "sourceMemoryId": 9302,
+      "expectedTargetMemoryId": 9304,
+      "relation": "caused",
+      "strength": 0.9
+    }
+  ]
+}

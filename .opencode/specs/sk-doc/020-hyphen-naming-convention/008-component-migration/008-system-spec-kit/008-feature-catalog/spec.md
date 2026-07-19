@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Feature catalog (032 subtree 008 phase 008)"
+title: "Feature Specification: Feature catalog (020 subtree 008 phase 008)"
 description: "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers."
 trigger_phrases:
   - "system-spec-kit feature catalog"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Feature catalog
 
@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 008 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 008 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

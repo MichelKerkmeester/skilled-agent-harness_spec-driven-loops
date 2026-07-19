@@ -61,7 +61,7 @@ read hub-router.json
 
 ### Executor Delegation
 
-A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, or `cli-codex`. See `system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts`.
+A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, or `cli-codex`. See `system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
 
 ---
 
@@ -77,7 +77,7 @@ cli-external-orchestration/
   description.json
   graph-metadata.json
   changelog/
-  manual_testing_playbook/
+  manual-testing-playbook/
   benchmark/
   cli-opencode/
     SKILL.md
@@ -85,21 +85,21 @@ cli-external-orchestration/
     references/
     assets/
     scripts/
-    manual_testing_playbook/
+    manual-testing-playbook/
     changelog/
   cli-claude-code/
     SKILL.md
     README.md
     references/
     assets/
-    manual_testing_playbook/
+    manual-testing-playbook/
     changelog/
   cli-codex/
     SKILL.md
     README.md
     references/
     assets/
-    manual_testing_playbook/
+    manual-testing-playbook/
     changelog/
 ```
 
@@ -149,5 +149,5 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`.
-- Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts`.
+- Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: `../system-spec-kit/constitutional/cli-dispatch-skill-preload.md`.

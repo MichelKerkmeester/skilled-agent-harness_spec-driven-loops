@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/008-routing-confidence-calibration",
+  "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/008-routing-confidence-calibration",
   "description": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from",
   "keywords": [
     "phase",
@@ -18,11 +18,12 @@
     "semantic",
     "weight"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.856Z",
+  "lastUpdated": "2026-07-18T03:48:57.148Z",
   "specId": "008",
   "folderSlug": "routing-confidence-calibration",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

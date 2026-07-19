@@ -34,6 +34,8 @@ _memory:
 
 # Feature Specification: Catalog & Playbook Naming-Convention Program
 
+> **⚠️ Child `003` (underscore restyle) SUPERSEDED** by `sk-doc/020-hyphen-naming-convention`. The repository-wide kebab-case canon reverses the catalog/playbook underscore decision: `feature_catalog/` and `manual_testing_playbook/` content returns to kebab-case as part of one canonical filesystem-naming form. Children `001`/`002` (de-numbering) and `004` (hook-bridge removal) are unaffected. Canonical rule: `.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md`.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 

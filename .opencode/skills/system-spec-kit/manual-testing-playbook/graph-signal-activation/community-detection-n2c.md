@@ -1,0 +1,74 @@
+---
+title: "022 -- Community detection (N2c)"
+description: "This scenario validates Community detection (N2c) for `022`. It focuses on Confirm community boost injection."
+audited_post_018: true
+version: 3.6.0.16
+id: graph-signal-activation-community-detection-n2c
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+---
+
+# 022 -- Community detection (N2c)
+
+## 1. OVERVIEW
+
+This scenario validates Community detection (N2c) for `022`. It focuses on Confirm community boost injection.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm community boost injection.
+- Real user request: `Please validate Community detection (N2c) against the documented validation surface and tell me whether the expected signals are present: Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum.`
+- Prompt: `Validate community detection and cite cluster assignment, co-member boost injection, and configured boost cap enforcement.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS: Cluster IDs assigned; co-members receive boost within cap; non-members get zero boost; FAIL: Missing cluster IDs or boost exceeds cap
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate community detection and cite cluster assignment, co-member boost injection, and configured boost cap enforcement.
+```
+
+### Commands
+
+1. Create communities
+2. Recompute
+3. Verify co-member injection/caps
+
+### Expected
+
+Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum
+
+### Evidence
+
+Community assignment output + co-member boost values + cap verification
+
+### Pass / Fail
+
+- **Pass**: Cluster IDs assigned; co-members receive boost within cap; non-members get zero boost
+- **Fail**: Missing cluster IDs or boost exceeds cap
+
+### Failure Triage
+
+Verify community detection algorithm → Check boost injection point in pipeline → Inspect cap enforcement
+
+## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Feature catalog: [graph-signal-activation/community-detection.md](../../feature-catalog/graph-signal-activation/community-detection.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Graph Signal Activation
+- Playbook ID: 022
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `graph-signal-activation/community-detection-n2c.md`

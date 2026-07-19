@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-07-17T14:30:31.900Z",
+    "last_save_at": "2026-07-17T20:26:15.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d9cde8327d173a948dda9f869a06789cd531df9f372751bd7ddec7d0a09ca4ee",
+    "source_fingerprint": "sha256:b0c0e52743005188a8f29f8caa90806179e4d0f207efc5cdaac997e5c4ab83ae",
     "source_doc_hashes": {
-      "spec.md": "f22abeaca12861a2c61be8b9d175929667b98dc885edd6cd8d5d9273085f6901",
-      "plan.md": "8fc434ffb664fb2440b50e35a3e6604940382df70f229ae88ba040c9514d243f",
-      "tasks.md": "8402c547afe8ff83a5a0355ff89b6ac84c4419b11be8191930cef824ae299345",
-      "checklist.md": "26abab6cd7ee6a1dc854bbc17e32ec6b24cc133da3c71cc4d3a89fc8ceac8e7a"
+      "spec.md": "9cf715d47dc8eb5c228b1f25bc7e0e6f249277226b8cc237244199880f292b2b",
+      "plan.md": "c275cde77ed91f70b35b4aa5fbdf8808bcab6d4877f3ac146f30577f45a0f24e",
+      "tasks.md": "5253241691f39b0501ca3edd96e362fcdeb8d59d096d6b3e693b768120ed7b31",
+      "checklist.md": "f3c8ca18adad362319acd421ba5d79e1192396ab1adf362c2d239fa1b211753e"
     },
     "last_active_child_id": null,
     "last_active_at": null

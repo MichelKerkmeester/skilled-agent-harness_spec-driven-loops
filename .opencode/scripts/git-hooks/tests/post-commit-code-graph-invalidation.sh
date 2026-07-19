@@ -87,7 +87,7 @@ seed_code_graph_files() {
 
 test_live_holder_gets_marker_without_deletion() {
   local workspace="$TEMP_ROOT/live-holder"
-  local db_dir="$workspace/.opencode/skills/system-code-graph/mcp_server/database"
+  local db_dir="$workspace/.opencode/skills/system-code-graph/mcp-server/database"
   local legacy_parent="$workspace/.opencode/.spec-kit/code-graph"
   local fake_bin="$workspace/fake-bin"
   local ready_file="$workspace/holder-ready"
@@ -128,7 +128,7 @@ test_live_holder_gets_marker_without_deletion() {
 
 test_dry_run_preserves_state() {
   local workspace="$TEMP_ROOT/dry-run"
-  local db_dir="$workspace/.opencode/skills/system-code-graph/mcp_server/database"
+  local db_dir="$workspace/.opencode/skills/system-code-graph/mcp-server/database"
   local fake_bin="$workspace/fake-bin"
   local stderr_file="$workspace/hook.stderr"
   local marker="$db_dir/.code-graph-invalidation.json"
@@ -148,7 +148,7 @@ test_dry_run_preserves_state() {
 }
 
 test_launcher_consumes_only_with_exclusive_ownership() {
-  local db_dir="$TEMP_ROOT/launcher/.opencode/skills/system-code-graph/mcp_server/database"
+  local db_dir="$TEMP_ROOT/launcher/.opencode/skills/system-code-graph/mcp-server/database"
   local marker="$db_dir/.code-graph-invalidation.json"
 
   seed_code_graph_files "$db_dir"

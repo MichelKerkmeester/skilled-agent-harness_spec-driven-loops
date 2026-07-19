@@ -1,0 +1,68 @@
+---
+title: "Negative feedback confidence signal"
+description: "Describes the negative validation demotion multiplier that decreases by 0.1 per negative feedback event (floor 0.3) with a 30-day half-life recovery, applied during Stage 2 feedback signals."
+trigger_phrases:
+  - "negative feedback confidence signal"
+  - "SPECKIT_NEGATIVE_FEEDBACK"
+  - "negative validation demotion multiplier"
+  - "30-day half-life score recovery"
+  - "memory_validate wasUseful false demotion"
+version: 3.6.0.14
+---
+
+# Negative feedback confidence signal
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Describes the negative validation demotion multiplier that decreases by 0.1 per negative feedback event (floor 0.3) with a 30-day half-life recovery, applied during Stage 2 feedback signals.
+
+When you tell the system a result was not helpful, it remembers that feedback and pushes that memory lower in future searches. The more times you say "not useful," the further it drops, but it can never be completely hidden. Over time the penalty fades, giving the spec-doc record a chance to recover. This way the system learns from your feedback without permanently burying anything.
+
+---
+
+## 2. HOW IT WORKS
+
+When you mark a spec-doc record as not useful via `memory_validate(wasUseful: false)`, the signal now flows into composite scoring as a demotion multiplier. The multiplier starts at 1.0, decreases by 0.1 per negative validation and floors at 0.3 so a spec-doc record is never suppressed below 30% of its natural score. Time-based recovery with a 30-day half-life (`RECOVERY_HALF_LIFE_MS`) gradually restores the multiplier: the penalty halves every 30 days since the last negative validation.
+
+Negative feedback events are persisted to a `negative_feedback_events` table. The search handler reads these events and applies the multiplier during the feedback signals step in Stage 2 of the pipeline. Runs behind the `SPECKIT_NEGATIVE_FEEDBACK` flag (default ON).
+
+**Sprint 8 update:** The unused `RECOVERY_HALF_LIFE_DAYS` constant was removed (the millisecond-based `RECOVERY_HALF_LIFE_MS` is the actual constant used in computation).
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp-server/lib/scoring/confidence-tracker.ts` | Lib | Confidence tracking |
+| `mcp-server/lib/scoring/negative-feedback.ts` | Lib | Negative feedback demotion |
+| `shared/normalization.ts` | Shared | Text normalization |
+| `shared/types.ts` | Shared | Type definitions |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/confidence-tracker.vitest.ts` | Automated test | Confidence tracking tests |
+| `mcp-server/tests/memory-types.vitest.ts` | Automated test | Memory type tests |
+| `mcp-server/tests/score-normalization.vitest.ts` | Automated test | Score normalization tests |
+| `mcp-server/tests/unit-composite-scoring-types.vitest.ts` | Automated test | Scoring type tests |
+| `mcp-server/tests/unit-folder-scoring-types.vitest.ts` | Automated test | Folder scoring type tests |
+| `mcp-server/tests/unit-normalization-roundtrip.vitest.ts` | Automated test | Normalization roundtrip |
+| `mcp-server/tests/unit-normalization.vitest.ts` | Automated test | Normalization unit tests |
+| `mcp-server/tests/unit-tier-classifier-types.vitest.ts` | Automated test | Tier classifier types |
+| `mcp-server/tests/unit-transaction-metrics-types.vitest.ts` | Automated test | Transaction metric types |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Scoring And Calibration
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `scoring-and-calibration/negative-feedback-confidence-signal.md`
+Related references:
+- [rrf-k-value-sensitivity-analysis.md](../../feature-catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md) — RRF K-value sensitivity analysis
+- [auto-promotion-on-validation.md](../../feature-catalog/scoring-and-calibration/auto-promotion-on-validation.md) — Auto-promotion on validation

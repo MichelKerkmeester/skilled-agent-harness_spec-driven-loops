@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: worktree, baseline, and census (032 phase 000)"
-description: "Implementation Plan for phase 000 of the 032 kebab-case filesystem-naming program: worktree, baseline, and census."
+title: "Implementation Plan: worktree, baseline, and census (020 phase 000)"
+description: "Implementation Plan for phase 000 of the 020 kebab-case filesystem-naming program: worktree, baseline, and census."
 trigger_phrases:
   - "worktree, baseline, and census implementation plan"
   - "hyphen naming phase 000 implementation plan"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored for the 032 phased tree"
+    recent_action: "Plan authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -58,7 +58,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 ## 3. ARCHITECTURE
 
 - Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it.
-- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 032-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-017-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-017-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
+- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 020-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-020-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-020-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
 - A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`).
 - Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report.
 <!-- /ANCHOR:architecture -->
@@ -71,7 +71,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 
 ### Phase 2: Implementation
 - Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it.
-- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 032-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-017-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-017-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
+- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 020-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-020-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-020-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
 - A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`).
 - Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report.
 
@@ -100,7 +100,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
+Inherits the 020 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
 (rebuilt in the worktree), and sk-git for the worktree lifecycle. Phase-specific dependencies are the predecessor
 phases named in this phase's spec adjacency.
 <!-- /ANCHOR:dependencies -->

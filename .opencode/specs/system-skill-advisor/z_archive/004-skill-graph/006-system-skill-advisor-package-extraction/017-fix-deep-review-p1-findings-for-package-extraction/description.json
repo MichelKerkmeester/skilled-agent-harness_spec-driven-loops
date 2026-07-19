@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
   "description": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a",
   "keywords": [
     "10-iteration",
@@ -18,11 +18,12 @@
     "directory",
     "block"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.695Z",
+  "lastUpdated": "2026-07-18T03:48:57.118Z",
   "specId": "017",
   "folderSlug": "fix-deep-review-p1-findings-for-package-extraction",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: deep command generated-output boundary (032 phase 008/013/002)"
+title: "Decision Record: deep command generated-output boundary (020 phase 008/013/002)"
 description: "Design decisions for separating maintained deep command assets and legacy bodies from generated compiled contract output during the kebab-case filesystem-name migration."
 trigger_phrases:
   - "deep generated contract decision"

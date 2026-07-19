@@ -1,5 +1,5 @@
 ---
-title: "Checklist: code-quality filesystem names (032 phase 008/003)"
+title: "Checklist: code-quality filesystem names (020 phase 008/003)"
 description: "Blocking SOL verification contract for the code-quality rename and quality-mode path closure."
 trigger_phrases:
   - "code-quality naming checklist"

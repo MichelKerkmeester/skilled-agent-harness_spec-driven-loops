@@ -1,0 +1,668 @@
+# ─────────────────────────────────────────────────────────────────
+# SMART SPECKIT: IMPLEMENT WORKFLOW (AUTONOMOUS MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for fully autonomous implementation
+purpose: Spec-driven implementation with complete autonomous execution
+action: Execute from task breakdown to completion with self-validation
+
+runtime_agent_path_resolution:
+  default: .opencode/agents
+  claude: .claude/agents
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential
+  compliance: MANDATORY
+  execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
+
+# ─────────────────────────────────────────────────────────────────
+# GATE 3 COMPLIANCE
+# ─────────────────────────────────────────────────────────────────
+gate_3_compliance:
+  status: ENFORCED_VIA_PHASES
+  mechanism: "Phase 1-3 blocking gates in implement.md"
+  machine_contract: ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts (classifyPrompt)"
+  standard_question: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Extend phased packet | E) Skip"
+  first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST"
+  failure_pattern_19:
+    triggers: ["comprehensive", "fix all", "15 agents", "implement everything"]
+    action: "STOP → Ask spec folder question → Wait for A/B/C/D/E"
+  self_verification: |
+    □ File modification detected? Did I ask spec folder question?
+    □ Did I wait for user's A/B/C/D/E response before using project tools?
+
+implementation_philosophy:
+  principle: "Correctness first, elegance second"
+  approach: "Systematic execution with continuous validation"
+  mandate: "Build incrementally, test thoroughly, deliver confidently"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED for implement workflow."
+  context: "[CONTEXT] - Background info, constraints, existing docs."
+  issues: "[ISSUES] - Known issues or concerns."
+  request: "[REQUEST] - Implementation scope. Default: comprehensive review."
+  environment: "[STAGING LINK] - Staging/production URL for browser testing."
+  scope: "[FILES] - Files/folders to work with."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer under :auto; set requires goal_objective."
+  goal_objective: "[TEXT] - Objective passed to mk_goal only when goal_prompt_choice is set."
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  spec_id:
+    derive_from: "specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
+    fallback: "numeric portion or timestamp"
+  defaults: { spec_folder_empty: "REQUIRED", context_empty: "Infer from REQUEST + codebase", issues_empty: "Use planning phase issues", environment_empty: "Skip browser testing", scope_empty: "specs/**" }
+  phase_folder_awareness:
+    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Also load parent spec.md for cross-reference context."
+    path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
+    # F-019-D4-02: phase_path_grammar (documentation-only, additive). The runtime
+    # parser already supports arbitrary nesting depth via is-phase-parent.ts
+    # walking each direct child. This grammar exists to make the supported shapes
+    # explicit for workflow authors and documentation consumers. Runtime behavior
+    # is unchanged.
+    phase_path_grammar:
+      note: "Phase folder paths are NOT limited to two levels. Any folder matching `^[0-9]{3}-[a-z0-9-]+$` whose direct child also matches that regex AND has spec.md OR description.json becomes a phase parent. Recursion is unbounded; depth is data, not policy."
+      shapes:
+        flat: "specs/{NNN-name}/" # leaf packet, no children
+        two_level: "specs/{NNN-parent}/{NNN-phase}/" # one layer of phases
+        three_level: "specs/{NNN-grandparent}/{NNN-parent}/{NNN-phase}/" # nested phases (e.g., 026/000/005)
+        deep: "specs/{NNN-A}/{NNN-B}/{NNN-C}/{NNN-D}/{NNN-E}/" # deeply nested phase-child topology
+      detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/mcp-server/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in scripts/lib/shell-common.sh. Both must agree."
+      spec_id_derivation: "spec_id is the FIRST {NNN} segment under specs/. For deep nests, parent_chain accumulates from outermost to innermost, and graph-metadata.json.parent_id encodes the immediate parent."
+  scope_policy: { default: "**", rule: "Implementation may edit any workspace file. Narrow to [FILES] scope when explicitly provided by the user." }
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render the optional session-goal offer only; do not call mk_goal."
+    skip: "Suppress the optional session-goal offer; do not call mk_goal."
+    set: "Set a session goal only when goal_objective is provided."
+  set_mutation:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    tool: mk_goal
+    invocation: 'mk_goal({ action: "set", objective: goal_objective })'
+  status_tool: mk_goal_status
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST HANDLING
+# ─────────────────────────────────────────────────────────────────
+request_handling:
+  default: "Conduct a comprehensive review of the spec folder and carry out its implementation fully autonomously."
+  override: "Use [REQUEST] if provided, else use default above"
+
+# ─────────────────────────────────────────────────────────────────
+# COMPONENT CREATION ROUTING
+# ─────────────────────────────────────────────────────────────────
+component_creation_routing:
+  purpose: "Prevent /speckit:implement from routing skill, agent, or command component scaffolding to @code."
+  trigger_paths:
+    - ".opencode/skills/**"
+    - ".opencode/agents/**"
+    - ".opencode/commands/**"
+  classify_before_dispatch:
+    component_authoring:
+      examples: ["skill scaffold", "agent role file", "command workflow", "template", "metadata", "package docs", "SKILL.md", "agent markdown", "command YAML"]
+      route: "@markdown for actual /create:* command execution; otherwise main-agent/direct sk-doc + system-spec-kit"
+      forbidden_route: "@code"
+    executable_code_subtask:
+      examples: ["script implementation", "test file", "MCP server source", "parser/compiler code"]
+      route: "@code only after scaffolding is complete and exact files, success criteria, and verification commands are named"
+  pre_dispatch_self_check:
+    - "If task prompt says Agent: @code for component_authoring, STOP and rewrite the task."
+    - "If subagent_type is general but embedded prompt names a different Agent than the selected route, STOP and rewrite the task."
+    - "If the task is an actual /create:* command, load @markdown and preserve the command semantics instead of approximating with @code."
+
+# ─────────────────────────────────────────────────────────────────
+# DOCUMENTATION LEVELS
+# ─────────────────────────────────────────────────────────────────
+documentation_levels:
+  level_1_baseline:
+    name: "Level 1 (Baseline)"
+    required_files: [spec.md, plan.md, tasks.md]
+    loc_guidance: "<100"
+    use_case: "Simple changes, bug fixes"
+  level_2_verification:
+    name: "Level 2 (Verification)"
+    required_files: [spec.md, plan.md, tasks.md, checklist.md]
+    loc_guidance: "100-499"
+    use_case: "Medium features, refactoring"
+  level_3_full:
+    name: "Level 3 (Full)"
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, decision-record.md]
+    loc_guidance: ">=500"
+    use_case: "Complex features, architecture changes"
+  level_selection:
+    note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
+    default: "Level 1 for simple tasks, escalate based on analysis"
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITES
+# ─────────────────────────────────────────────────────────────────
+prerequisites:
+  level_1_required: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md", "[SPEC_FOLDER]/tasks.md"]
+  level_2_required: ["[SPEC_FOLDER]/checklist.md"]
+  level_3_required: ["[SPEC_FOLDER]/decision-record.md"]
+  optional_artifacts: ["[SPEC_FOLDER]/research/research.md"]
+  verification: MUST EXIST BEFORE PROCEEDING
+  note: This workflow assumes planning completed via /speckit:plan
+
+# ─────────────────────────────────────────────────────────────────
+# AVAILABLE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+available_templates:
+  default_level: level_2
+  level_1:
+    tasks: level_contract_tasks.md
+    implementation_summary: level_contract_implementation-summary.md
+  level_2:
+    tasks: level_contract_tasks.md
+    checklist: level_contract_checklist.md
+    implementation_summary: level_contract_implementation-summary.md
+  level_3:
+    tasks: level_contract_tasks.md
+    checklist: level_contract_checklist.md
+    implementation_summary: level_contract_implementation-summary.md
+  level_3_plus:
+    tasks: level_contract_tasks.md
+    checklist: level_contract_checklist.md
+    implementation_summary: level_contract_implementation-summary.md
+  shared:
+    handover: level_contract_optional_handover.md
+    debug_delegation: level_contract_optional_debug-delegation.md
+    resource_map: level_contract_optional_resource-map.md
+
+template_compliance:
+  strict_validation_command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+  prompt_contract:
+    rule: "When this workflow writes tasks.md or implementation-summary.md, embed the matching inline scaffold below in the authoring prompt and preserve required ANCHOR/H2 order."
+  inline_scaffolds:
+    tasks_md: |
+      # Tasks: [NAME]
+      <!-- ANCHOR:notation --> ## Task Notation
+      <!-- ANCHOR:phase-1 --> ## Phase 1: Setup
+      <!-- ANCHOR:phase-2 --> ## Phase 2: Implementation
+      <!-- ANCHOR:phase-3 --> ## Phase 3: Verification
+      <!-- ANCHOR:completion --> ## Completion Criteria
+      <!-- ANCHOR:cross-refs --> ## Cross-References
+    implementation_summary_md: |
+      # Implementation Summary
+      <!-- ANCHOR:metadata --> ## Metadata
+      <!-- ANCHOR:what-built --> ## What Was Built
+      <!-- ANCHOR:how-delivered --> ## How It Was Delivered
+      <!-- ANCHOR:decisions --> ## Key Decisions
+      <!-- ANCHOR:verification --> ## Verification
+      <!-- ANCHOR:limitations --> ## Known Limitations
+
+# ─────────────────────────────────────────────────────────────────
+# PARALLEL DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+parallel_dispatch_config:
+  enabled: true
+  scoring: { domain_count: 0.35, file_count: 0.25, loc_estimate: 0.15, parallel_opportunity: 0.20, task_type: 0.05 }
+  thresholds: { direct_max: 20, ask_min: 20, min_domains: 2 }
+  session_preference_s: 3600
+  override_phrases:
+    direct: [ "proceed directly", "handle directly", "skip parallel", "skip agents" ]
+    parallel: [ "use parallel", "dispatch agents", "parallelize", "use agents" ]
+    auto: [ "auto-decide", "auto mode", "decide for me" ]
+  eligible_phases: [step_6_development]
+
+# ─────────────────────────────────────────────────────────────────
+# MULTI-AGENT DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+multi_agent_config:
+  enabled: true
+  dispatch_modes:
+    single: { id: A, label: "Single Agent", agents: 1, model: opus }
+    multi_small:
+      id: B
+      label: "Multi-Agent (1+2)"
+      orchestrator: { model: opus, role: coordinator }
+      workers:
+        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
+        - { role: test_agent, focus: "Test Implementation", step: 6 }
+    multi_large:
+      id: C
+      label: "Multi-Agent (1+3)"
+      orchestrator: { model: opus, role: coordinator }
+      workers:
+        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
+        - { role: test_agent, focus: "Test Implementation", step: 6 }
+        - { role: integration_agent, focus: "Integration and Polish", step: 6 }
+  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
+
+# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# These entries define WHICH agent to use IF a workflow step calls for it.
+# Do NOT dispatch agents based on reading this section.
+# Agents are activated ONLY when their designated step is executing.
+agent_availability:
+  review:
+    available_at_step: 7
+    condition: "ONLY dispatch when Step 7 is actively executing and all prior steps are completed"
+    agent_file: "[runtime_agent_path]/review.md"
+    standards_contract:
+      baseline: "sk-code"
+      overlay: "Load sk-code router-selected evidence"
+      precedence: "Router-selected style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
+    fallback: "general"
+    blocking: true
+    on_block: "P0 items incomplete. Address before completion."
+    dual_phase:
+      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code code-review mode: findings-first baseline + router-selected surface evidence)", blocking: false }
+      phase_b: { mode: 4, name: "Gate Validation", blocking: true }
+    not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
+  debug:
+    available_at_step: 6
+    condition: "ONLY surface a prompted offer when 3+ task failures observed during Step 6 development. Never auto-dispatch — the user opts in via Task tool."
+    agent_file: "[runtime_agent_path]/debug.md"
+    fallback: "general-purpose"
+    prompt_threshold: { counter: "task_failure_count", reset_on: "new_task", threshold: 3, mode: "operator-judgment", note: "Counter is documentation-only; the workflow operator surfaces the prompt based on observed repeated failures, never auto-routes." }
+    on_threshold: "Surface a single direct prompt: 'Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)'. On y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool. The workflow itself NEVER calls Task tool → @debug."
+    not_for: "proactive debugging, pre-step investigation, reviewing this workflow, or any autonomous routing"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────
+quality_gates:
+  enabled: true
+  pre_implementation:
+    location: "Before Step 6"
+    threshold: 70
+    blocking: hard
+    checks:
+      - { id: prerequisites_complete, points: 30 }
+      - { id: plan_clarity, points: 25 }
+      - { id: task_breakdown_quality, points: 25 }
+      - { id: checklist_verified, points: 20 }
+    on_fail: "PRE-IMPLEMENTATION GATE FAILED ({score}/100). Fix issues before coding."
+  post_implementation:
+    location: "After Step 7"
+    threshold: 70
+    blocking: hard
+    checks:
+      - { id: all_tasks_complete, points: 30 }
+      - { id: tests_pass, points: 25 }
+      - { id: summary_exists, points: 25 }
+      - { id: checklist_verified, points: 20 }
+    on_fail: "POST-IMPLEMENTATION GATE FAILED ({score}/100). Fix blocking issues."
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  enabled: true
+  thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
+  states: { CLOSED: normal_operation, OPEN: skip_affected_step, HALF_OPEN: test_single }
+  step_overrides: { step_7: "critical - must complete or fail explicitly" }
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with cited evidence" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification" }
+  scoring_weights: { pattern_alignment: 0.30, side_effect_awareness: 0.25, implementation_clarity: 0.25, test_coverage: 0.20 }
+  reply_format: ["Confidence: NN%", "Top factors: 2-3 bullets", "Next action"]
+  escalation: { timebox_minutes: 10, failed_threshold: 2 }
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  pre_implementation_validation: [plan_understood, tasks_clear, patterns_identified, confidence_80_plus, scope_bounded]
+  citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason] for plan departures"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  prerequisites_gate:
+    location: "Before Step 1"
+    requirements: ["spec.md exists in SPEC_FOLDER", "plan.md exists in SPEC_FOLDER"]
+    action_if_failed: "STOP - run /speckit:plan first"
+  step_completion_rule: "Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed. NEVER skip steps, NEVER proceed without completion, NEVER jump to coding before Step 5."
+  critical_steps:
+    step_6: { enforcement: "MUST mark tasks [x] in tasks.md", verification: "Count [x] vs [ ] — all must be [x]" }
+    step_7: { enforcement: "MUST create implementation-summary.md", verification: "File must exist in spec folder" }
+
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before Step 1"
+  purpose: "Load prior context from planning phase"
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { query: "planning context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: [summary, decisions, state, implementation] }
+  command_reference: "/memory:search"
+  when_to_skip: ["User says 'skip context' or 'fresh start'"]
+  behavior:
+    if_context_found: "Surface planning decisions before implementation"
+    if_no_context: "Proceed to Step 1 — rely on spec.md and plan.md"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_review_plan_and_spec:
+    purpose: Review spec and planning artifacts
+    code_search_guidance:
+      note: "Use Code Graph structural queries (code_graph_query) + Grep to verify plan references against codebase patterns; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
+      example_queries: ["project structure entry points", "similar feature implementation", "existing utility patterns"]
+    activities:
+    - Run check-prerequisites.sh --json --require-tasks
+    - Verify spec.md and plan.md exist
+    - Load and review all planning artifacts
+    - Understand requirements, analyze approach, identify dependencies, note constraints
+    required_documents: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md"]
+    optional_documents: [research/research.md, "decision-record-*.md"]
+    deep_analysis:
+      focus: comprehensive_plan_review
+      outputs: [requirements_summary, technical_approach_understanding, identified_dependencies, potential_challenges]
+    validation: planning_artifacts_understood
+
+  step_2_task_breakdown:
+    purpose: Create or validate tasks.md (Level 1+ requirement)
+    activities:
+    - Load plan.md for tech stack and architecture
+    - Load spec.md for user stories and priorities
+    - Generate tasks organized by user story with dependency graph
+    - Mark parallel-executable tasks with [P], define phases, generate estimates
+    - Create/validate tasks.md
+    outputs: [tasks.md]
+    template: level_contract_tasks.md
+    template_prompt_contract:
+      canonical_template: level_contract_tasks.md
+      inline_scaffold_key: tasks_md
+      writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
+    post_write_validation:
+      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      on_fail: "STOP and repair tasks.md template drift before proceeding"
+    validation: tasks_documented
+
+  step_3_analysis:
+    purpose: Verify consistency across all artifacts
+    activities: [Build requirements inventory, Build task coverage mapping, Run consistency checks, Generate gap analysis]
+    outputs: [consistency_report, coverage_verification]
+    validation: consistency_verified
+
+  step_4_quality_checklist:
+    purpose: Validate checklists AND USE THEM FOR VERIFICATION (Level 2+)
+    activities:
+    - Skip for Level 1, MANDATORY for Level 2+
+    - Load and parse checklist.md items with priorities (P0/P1/P2)
+    - "FOR EACH ITEM: verify condition, mark [x] with evidence, document blockers/deferrals"
+    - Ensure ALL P0 complete (HARD BLOCKER), ALL P1 complete or approved deferral
+    - Update checklist.md with verification marks
+    verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
+    outputs: { checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
+    validation: checklist_verified_and_marked
+
+  step_5_implementation_check:
+    purpose: Verify all prerequisites for implementation
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
+    checks: { prerequisites: verified, blockers: none, environment: ready }
+    validation: prerequisites_verified
+
+  step_5_5_preflight:
+    purpose: Capture epistemic baseline for learning measurement
+    optional: true
+    skip_if: ["Quick fix (<10 LOC)", "Continuation with existing PREFLIGHT"]
+    activities: [Capture knowledge level, Record codebase understanding, Document uncertainty, Establish context quality baseline]
+    scores:
+      knowledge: { range: "0-10", default: 5 }
+      uncertainty: { range: "0-10", default: 5 }
+      context: { range: "0-10", default: 5 }
+    output_format: |
+      ## PREFLIGHT Baseline - [timestamp]
+      ### Epistemic State
+      - Knowledge: [0-10] - [explanation]
+      - Uncertainty: [0-10] - [what's unclear]
+      - Context: [0-10] - [context quality]
+      ### Focus Areas
+      - [area 1] / [area 2]
+    validation: preflight_captured
+
+  step_6_development:
+    purpose: Execute implementation following task plan
+    component_creation_guard:
+      enforcement: MANDATORY
+      rule: "Apply component_creation_routing before any development dispatch touching .opencode/skills/**, .opencode/agents/**, or .opencode/commands/**."
+      on_violation: "STOP → rewrite dispatch for @markdown or main-agent/sk-doc execution; never send Agent: @code for component scaffolding."
+    pre_phase_parallel_check:
+      enabled: true
+      phase_domains: [code, testing]
+      complexity_boost: 15
+      decision_logic: "Check override phrases → session preference → sequential deps → calculate complexity → <20% direct, >=20%+2 domains → ask user"
+      on_parallel_dispatch:
+        agents:
+          - { name: "implementation_agent", focus: "Core implementation tasks from tasks.md" }
+          - { name: "test_agent", focus: "Test implementation and validation" }
+        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
+        warning: "Development tasks may have dependencies - verify task order"
+      fallback: "Proceed with activities below if dispatch fails or user chooses direct"
+    activities:
+    - Parse tasks.md, execute phase by phase
+    - Setup first (structure, dependencies, config)
+    - Follow TDD where applicable
+    - Core development (models, services, endpoints)
+    - Integration (database, middleware, logging)
+    - Update task checklist progressively (mark [x])
+    - Log progress after each task
+    debug_delegation:
+      trigger: "Same error 3+ times after fix attempts (operator-judgment threshold)"
+      enforcement: MANDATORY
+      action: |
+        STOP → surface a single direct prompt to the user:
+          ⚠️  3 task failures observed on this packet. The @debug agent runs a 5-phase fresh-perspective root-cause pass with no prior context — it costs one Task-tool dispatch and writes findings to a structured report.
+          Dispatch @debug? (y / continue manually / skip)
+        On y:
+          1. Run scaffold-debug-delegation.sh to generate <spec_folder>/debug-delegation.md (versioned to debug-delegation-NNN.md if a prior file exists) populated from the failure trail using the Debug Context Handoff schema at .opencode/agents/debug.md schema lines.
+          2. Surface a one-line confirmation with the scaffold path and a Task-tool invocation example for the user to copy.
+          3. The workflow itself NEVER invokes Task tool → @debug. The user dispatches.
+        On "continue manually": log "user declined debug at threshold N", proceed with existing manual flow, do NOT reset the failure counter.
+        On "skip": apply existing skip semantics (failure counter resets per reset_on: new_task).
+      no_autonomous_routing: true
+      reference: "debug delegation safety contract"
+    approach: autonomous_implementation_with_checkpoints
+    requirements: { follow: "Check skills folder for coding standards", update: task_checklist_progressively, test: before_commit, validate: continuously }
+    confidence_checkpoint:
+      evaluate_at: "Before each significant code change"
+      per_task_assessment:
+        scoring_factors:
+          - { factor: "Implementation clarity", weight: 0.35 }
+          - { factor: "Pattern alignment", weight: 0.30 }
+          - { factor: "Risk awareness", weight: 0.35 }
+        thresholds:
+          high_80_plus: "Implement task, mark [x]"
+          medium_40_79: "Implement with extra validation, add comments"
+          low_below_40: "STOP — A) Research B) Simplify C) Skip"
+      citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason]"
+    validation: development_complete
+
+  step_6_5_checkpoint_development:
+    purpose: Save context checkpoint after development phase
+    checkpoint: true
+    memory_action: save
+    activities: [Save checkpoint via system-spec-kit skill, Record development milestone, Preserve decisions/changes/insights]
+    tool_invocation:
+      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
+      note: "Intermediate checkpoint - development phase complete"
+    outputs: ["[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"]
+    validation: checkpoint_saved
+
+  step_7_completion:
+    purpose: Generate implementation summary and packet-local nested changelog when applicable
+    level_requirement: "All levels (MANDATORY - do not skip)"
+    enforcement_note: "MANDATORY for all levels. implementation-summary.md is a required file created after implementation completes."
+    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Generate packet-local nested changelog when the target is a spec root or phase child, Update all task status]
+    pre_completion_validation:
+      enforcement: MANDATORY
+      outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", system_error: "STOP and diagnose tooling or file I/O" }
+    summary_document:
+      location: "[SPEC_FOLDER]/implementation-summary.md"
+      required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]
+      canonical_template: level_contract_implementation-summary.md
+      inline_scaffold_key: implementation_summary_md
+      writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
+    nested_changelog:
+      generator:
+        command: "node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
+      evidence_sources: [implementation-summary.md, tasks.md, checklist.md, decision-record.md, spec.md]
+      output_rules:
+        root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
+        phase: "[PARENT_SPEC_FOLDER]/changelog/changelog-<packet>-<phase-folder>.md"
+    verification_summary:
+      checklist_verification:
+        required: true
+        must_include: [Total items verified, P0 status (all complete), P1 status (complete or deferred), Deferred P2 with reasons, Link to checklist.md]
+    post_write_validation:
+      command: ".opencode/skills/system-spec-kit/scripts/spec/validate.sh [SPEC_FOLDER] --strict"
+      on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
+    validation: implementation_complete
+    completion_checkpoint:
+      enforcement: HARD_BLOCK
+      before_marking_complete: "Verify implementation-summary.md exists with all required sections. If packet-local changelog applies, generate it before proceeding."
+      required_file: "[SPEC_FOLDER]/implementation-summary.md"
+
+  step_7_5_postflight:
+    purpose: Capture learning delta and calculate improvement
+    optional: true
+    skip_if: ["Quick fix (<10 LOC)", "No PREFLIGHT captured"]
+    activities: [Capture post-implementation knowledge, Record new understanding, Document reduced uncertainty, Calculate learning index]
+    scores:
+      knowledge: { range: "0-10", default: 7 }
+      uncertainty: { range: "0-10", default: 3 }
+      context: { range: "0-10", default: 8 }
+    learning_index_calculation: "Knowledge Delta + Uncertainty Reduction + Context Improvement / 3"
+    output_format: |
+      ## POSTFLIGHT Delta - [timestamp]
+      ### Epistemic State (Final)
+      - Knowledge: [0-10] - [learned]
+      - Uncertainty: [0-10] - [clarified]
+      - Context: [0-10] - [improved]
+      ### Learning Index
+      - Knowledge/Uncertainty/Context Deltas → **Learning Index: [X.X]/10**
+      ### Key Insights
+      - [insight 1] / [insight 2]
+    validation: postflight_captured
+
+  step_8_save_context:
+    purpose: Save conversation context
+    activities: [Invoke system-spec-kit skill, Preserve decisions/insights/changes, Index the routed canonical spec document for search]
+    tool_invocation:
+      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
+      note: "Activate context saving"
+    outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) and indexed via memory_save"]
+    validation: context_saved_successfully
+    memory_creation:
+      enforcement: HARD_BLOCK
+      method: "MUST use structured JSON input with generate-context.js"
+      command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]"
+      forbidden: ["Manual Write/Edit authoring of files under retired memory/ paths (the runtime rejects them)"]
+      violation_recovery: "DELETE the manually authored file, then re-run generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
+    post_save_indexing:
+      mcp_tool: memory_save
+      invocation: 'memory_save({ filePath: "[routed-canonical-spec-doc-path]" })'
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+      when: "Immediately after the canonical spec document is refreshed on disk"
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      required_sections:
+        - { type: "general", section: "Session summary", id: "GENERAL-SESSION-SUMMARY-{spec#}" }
+        - { type: "decision", section: "Key decisions", id: "DECISION-{topic}-{spec#}" }
+      optional_sections:
+        - { type: "implementation", id: "IMPLEMENTATION-{feature}-{spec#}" }
+        - { type: "files", id: "FILES-{spec#}" }
+      benefit: "93% token savings on anchor-based retrieval"
+    importance_tier:
+      assign: important
+      rationale: "Implementation sessions contain significant code decisions"
+      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+
+  step_9_session_handover_check:
+    purpose: Final workflow closeout after implementation
+    enforcement: MANDATORY_CHECK
+    activities: [Display closeout prompt, Wait for response, "If accepted: run /memory:save", "If declined: proceed to termination"]
+    handover_prompt:
+      display: "Implementation complete. Run /memory:save first if you want another indexed continuity refresh before ending the workflow."
+      options:
+        - { label: "Refresh Context", action: "Run /memory:save" }
+        - { label: "Skip", action: "Proceed to termination" }
+    behavior: { user_accepts: "Execute /memory:save", user_declines: "Proceed to termination" }
+    validation: workflow_finish_confirmed
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 9
+  message: "Implementation phase completed. Workflow terminated after step 9."
+  next_steps: [Review implementation-summary.md, Verify changes in staging, Prepare for code review and PR]
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION GUIDANCE
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute autonomously with self-validation at each checkpoint"
+  decision_making: [Follow technical plan, Make informed decisions, Document deviation reasoning, Proceed with best judgment]
+  validation_approach: [Self-validate after each change, Test incrementally, Verify against acceptance criteria, Ensure quality standards]
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  step_validation_fails: "Review requirements, ask clarifying questions, retry"
+  tests_fail: "Debug, fix, re-run before marking complete"
+  prerequisites_insufficient: "Return to /speckit:plan or ask user"
+  environment_unavailable: "Skip browser testing, document limitation"
+  unexpected_error: "Log error, document state, attempt graceful recovery"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - follow_workflow_sequence
+  - document_all_changes
+  - validate_before_completion
+  - update_task_checklist_progressively
+  - self_validate_and_proceed
+  - do_not_prompt_for_user_approval
+  - test_incrementally
+  - use_checklist_for_verification_level_2_plus
+  - mark_checklist_items_with_evidence
+  - complete_all_p0_items_before_done
+  - get_user_approval_for_p1_deferrals
+  NEVER:
+  - skip_workflow_steps
+  - ignore_blockers
+  - submit_without_validation
+  - expand_scope_beyond_spec
+  - proceed_without_self_validation
+  - claim_completion_without_checklist_verification_level_2_plus
+  - skip_p0_checklist_items
+  - defer_p1_items_without_user_approval

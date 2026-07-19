@@ -76,6 +76,6 @@ This ensures no query goes unanswered even when embeddings or the graph index ar
 
 ## Maintenance
 
-These routing tables are derived from the search handlers in `system-code-graph/` and `system-spec-kit/mcp_server/handlers/` (`memory-search`, `memory-context`, `memory-triggers`) plus the FTS5/BM25 search lib. When a handler's routing contract changes, update its docstring and this rule together.
+These routing tables are derived from the search handlers in `system-code-graph/` and `system-spec-kit/mcp-server/handlers/` (`memory-search`, `memory-context`, `memory-triggers`) plus the FTS5/BM25 search lib. When a handler's routing contract changes, update its docstring and this rule together.
 
 *Constitutional rule — always surfaces at top of search results*

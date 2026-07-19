@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: catalog and playbook generators (032 phase 003 child 002)"
+title: "Implementation Plan: catalog and playbook generators (020 phase 003 child 002)"
 description: "Align the catalog and playbook workflow packets with hyphenated output paths, then run the generated trees through phase 002's dual-name and fail-closed consumer matrix."
 trigger_phrases:
   - "catalog and playbook generator implementation plan"
@@ -11,13 +11,16 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:46:43Z"
     last_updated_by: "codex"
-    recent_action: "Authored the implementation plan for hyphenated catalog and playbook output"
-    next_safe_action: "Load phase 002's consumer contract and build the four-state fixture matrix"
+    recent_action: "Completed the implementation plan and verification gates"
+    next_safe_action: "No child work remains"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md"
+      - ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
+      - ".opencode/skills/sk-doc/scripts/tests/test_root_name_consumer_matrix.py"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,15 +46,15 @@ Change the two workflow packets at the point where they choose root, category, l
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002's dual-name read tolerance and fail-closed coexistence behavior are available for testing.
-- [ ] The current catalog and playbook output trees, templates, links, and path-valued frontmatter are inventoried.
-- [ ] The distinction between output names, source template filenames, and YAML/JSON keys is recorded.
-- [ ] Temporary fixture inputs can be generated without writing existing skill trees.
+- [x] Phase 002's dual-name read tolerance and fail-closed coexistence behavior are available for testing.
+- [x] The current catalog and playbook output trees, templates, links, and path-valued frontmatter are inventoried.
+- [x] The distinction between output names, source template filenames, and YAML/JSON keys is recorded.
+- [x] Temporary fixture inputs can be generated without writing existing skill trees.
 
 ### Definition of Done
-- [ ] Both generator families emit only canonical hyphenated roots, categories, leaves, and links.
-- [ ] Generated hyphenated trees classify and load correctly through phase 002.
-- [ ] Both-root coexistence fails closed and no silent `readme` downgrade remains.
+- [x] Both generator families emit only canonical hyphenated roots, categories, leaves, and links.
+- [x] Generated hyphenated trees classify and load correctly through phase 002.
+- [x] Both-root coexistence fails closed and no silent `readme` downgrade remains.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -67,19 +70,19 @@ Change the two workflow packets at the point where they choose root, category, l
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phase 002 has landed or provide its consumer fixtures at the candidate SHA.
-- [ ] Inventory every output example and path-valued field in both workflow packets.
-- [ ] Prepare isolated catalog and playbook fixture inputs with representative category and feature/scenario slugs.
+- [x] Confirm phase 002 has landed or provide its consumer fixtures at the candidate SHA.
+- [x] Inventory every output example and path-valued field in both workflow packets.
+- [x] Prepare isolated catalog and playbook fixture inputs with representative category and feature/scenario slugs.
 
 ### Phase 2: Implementation
-- [ ] Update catalog root, category, feature-file, link, and path-value output patterns to kebab-case.
-- [ ] Update playbook root, category, scenario-file, link, and path-value output patterns to kebab-case.
-- [ ] Keep current source template filenames and schema keys unchanged; document their later migration boundary.
+- [x] Update catalog root, category, feature-file, link, and path-value output patterns to kebab-case.
+- [x] Update playbook root, category, scenario-file, link, and path-value output patterns to kebab-case.
+- [x] Keep current source template filenames and schema keys unchanged; document their later migration boundary.
 
 ### Phase 3: Verification
-- [ ] Generate both output trees into temporary directories and list every relative path.
-- [ ] Run the phase 002 consumer matrix for old-only, new-only, both, and missing roots, including typed classification.
-- [ ] Record link/path resolution, conflict diagnostics, and the absence of underscore output names.
+- [x] Generate both output trees into temporary directories and list every relative path.
+- [x] Run the phase 002 consumer matrix for old-only, new-only, both, and missing roots, including typed classification.
+- [x] Record link/path resolution, conflict diagnostics, and the absence of underscore output names.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

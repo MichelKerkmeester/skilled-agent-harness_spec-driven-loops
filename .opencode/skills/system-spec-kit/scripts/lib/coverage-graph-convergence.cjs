@@ -1,5 +1,5 @@
 'use strict';
-// sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
+// sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp-server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
 
 // ---------------------------------------------------------------
 // MODULE: Coverage Graph Convergence

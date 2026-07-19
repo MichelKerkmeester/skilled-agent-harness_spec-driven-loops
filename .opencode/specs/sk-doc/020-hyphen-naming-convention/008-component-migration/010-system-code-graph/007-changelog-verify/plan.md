@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph changelog verification (032 phase 007)"
+title: "Implementation Plan: system-code-graph changelog verification (020 phase 007)"
 description: "This read-only plan compares the system-code-graph migration evidence with the next append-only changelog entry, version bump, exemption notes, and frozen-history baseline without changing the skill surface."
 trigger_phrases:
   - "system-code-graph changelog verification plan"
@@ -112,7 +112,7 @@ prior changelog history and non-changelog migration surfaces were not mutated by
 |------------|------|--------|-------------------|
 | Phases 001–006 reports | Internal | Required | Changelog scope cannot be matched |
 | Current release metadata | Repository data | Required | Expected bump cannot be determined |
-| 032 exemption/frozen-history policy | Program rule | Required | False positives or accepted history rewrites |
+| 020 exemption/frozen-history policy | Program rule | Required | False positives or accepted history rewrites |
 | Final rename map | Internal | Required | Release entry cannot be reconciled to actual paths |
 <!-- /ANCHOR:dependencies -->
 

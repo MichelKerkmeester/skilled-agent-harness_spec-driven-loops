@@ -425,7 +425,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
-The canonical schema for §8 lives at `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output_schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+The canonical schema for §8 lives at `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
 
 ### Multi-AI Council Report
 
@@ -647,7 +647,7 @@ File shape contracts:
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
 - `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder_layout.md`.
+Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md`.
 
 ---
 
@@ -667,7 +667,7 @@ Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structu
 2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Append state events; do not rewrite history.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
-Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md`.
+Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
 
 ---
 
@@ -700,7 +700,7 @@ type ArtifactSuperseded = {event:"artifact_superseded"; original_path:string; ro
 
 Writer-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; v1.2 writers emit `"1.2"`, `protocol:"ai-council"`, and `producer:"persist-artifacts@1.2.0"`.
 
-Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md`.
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
 
 ---
 
@@ -745,7 +745,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 
-The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md`.
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`.
 
 ---
 

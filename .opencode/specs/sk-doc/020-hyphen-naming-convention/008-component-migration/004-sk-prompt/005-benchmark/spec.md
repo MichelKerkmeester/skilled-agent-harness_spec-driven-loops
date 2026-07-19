@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt benchmark artifact names (032 phase 004.005)"
+title: "Feature Specification: sk-prompt benchmark artifact names (020 phase 004.005)"
 description: "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus generated raw-run filenames with double underscores. This phase renames authored benchmark paths, updates path references, and records generated/frozen output dispositions without changing benchmark payload keys, fixtures, profiles, or scores."
 trigger_phrases:
   - "sk-prompt benchmark kebab-case"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-prompt benchmark artifact names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Phase 005 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

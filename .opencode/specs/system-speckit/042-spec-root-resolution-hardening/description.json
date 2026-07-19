@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "specFolder": "system-speckit/042-spec-root-resolution-hardening",
   "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
   "keywords": [
     "spec-root",
@@ -15,12 +15,11 @@
     "legacy-first",
     "canonical-only"
   ],
-  "lastUpdated": "2026-07-17T11:00:40.514Z",
-  "specId": "008",
+  "lastUpdated": "2026-07-18T03:48:59.831Z",
+  "specId": "042",
   "folderSlug": "spec-root-resolution-hardening",
   "parentChain": [
-    "system-speckit",
-    "000-migration-from-soa-and-cleanup"
+    "system-speckit"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

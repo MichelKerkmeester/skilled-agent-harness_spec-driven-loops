@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { refreshGraphMetadataForSpecFolder } from '../../mcp_server/api';
+import { refreshGraphMetadataForSpecFolder } from '../../mcp-server/api';
 import { validateContinuityFreshness } from '../validation/continuity-freshness.js';
 
 const createdRoots = new Set<string>();

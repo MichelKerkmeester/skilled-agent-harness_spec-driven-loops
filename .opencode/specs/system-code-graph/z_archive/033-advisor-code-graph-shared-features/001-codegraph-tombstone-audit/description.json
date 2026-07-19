@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/033-advisor-code-graph-shared-features/001-codegraph-tombstone-audit",
+  "specFolder": "system-code-graph/z_archive/033-advisor-code-graph-shared-features/001-codegraph-tombstone-audit",
   "description": "The code graph hard-deletes nodes and edges during reindex and stale cleanup (`lib/code-graph-db.ts:692-704`, `:784-790`, `:890-905`), so after a file",
   "keywords": [
     "code",
@@ -15,11 +15,12 @@
     "code-graph-db",
     "file"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.872Z",
+  "lastUpdated": "2026-07-18T03:48:55.616Z",
   "specId": "001",
   "folderSlug": "codegraph-tombstone-audit",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "033-advisor-code-graph-shared-features"
   ],
   "memorySequence": 0,

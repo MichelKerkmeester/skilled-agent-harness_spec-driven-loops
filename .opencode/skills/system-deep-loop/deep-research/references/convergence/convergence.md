@@ -31,10 +31,10 @@ Load this hub when deciding whether a deep-research loop should continue, recove
 ### Key Sources
 
 - Command syntax: `.opencode/commands/deep/research.md`
-- Workflow algorithm: `.opencode/commands/deep/assets/deep_research_auto.yaml` and `_confirm.yaml`
-- Signal details: `references/convergence/convergence_signals.md`
-- Recovery details: `references/convergence/convergence_recovery.md`
-- Graph stop gates: `references/convergence/convergence_graph.md`
+- Workflow algorithm: `.opencode/commands/deep/assets/deep-research-auto.yaml` and `_confirm.yaml`
+- Signal details: `references/convergence/convergence-signals.md`
+- Recovery details: `references/convergence/convergence-recovery.md`
+- Graph stop gates: `references/convergence/convergence-graph.md`
 
 For iterative code review convergence, use `deep-review`. Review-mode algorithms and state are not part of the deep-research live contract.
 
@@ -125,7 +125,7 @@ Legacy labels are normalized before persistence:
 | MAD Noise Floor | `0.35` | 4 evidence iterations | Signal vs noise in `newInfoRatio` |
 | Question Entropy | `0.35` | 1 key question | Evidence-backed question coverage |
 
-The weighted stop score is normalized over active signals. STOP is nominated only when the normalized score is greater than `0.60`. See `convergence_signals.md` for exact signal rules and reporting.
+The weighted stop score is normalized over active signals. STOP is nominated only when the normalized score is greater than `0.60`. See `convergence-signals.md` for exact signal rules and reporting.
 
 ---
 
@@ -140,7 +140,7 @@ Every non-terminal STOP candidate must pass the gate bundle before the workflow 
 | Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | Emit `blocked_stop`, continue |
 | Graph Gate | When graph data exists, graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
 
-The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state_jsonl.md`.
+The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state-jsonl.md`.
 
 ---
 
@@ -148,12 +148,12 @@ The reducer surfaces legal-stop evidence through the findings registry and dashb
 
 | Resource | Use When |
 |----------|----------|
-| `convergence_signals.md` | Need scoring, `newInfoRatio`, `stuckCount`, MAD, entropy, report fields, or threshold tuning |
-| `convergence_recovery.md` | Need stuck recovery, recovery strategy selection, tiered errors, or escalation behavior |
-| `convergence_graph.md` | Need graph-aware STOP gates, graph convergence events, or coverage graph fallback behavior |
-| `convergence_reference_only.md` | Need future/reference-only models such as segment filtering, semantic convergence, or optimizer metadata |
-| `../state/state_jsonl.md` | Need JSONL event shapes persisted by the convergence workflow |
-| `../state/state_reducer_registry.md` | Need reducer-owned registry/dashboard fields derived from convergence |
+| `convergence-signals.md` | Need scoring, `newInfoRatio`, `stuckCount`, MAD, entropy, report fields, or threshold tuning |
+| `convergence-recovery.md` | Need stuck recovery, recovery strategy selection, tiered errors, or escalation behavior |
+| `convergence-graph.md` | Need graph-aware STOP gates, graph convergence events, or coverage graph fallback behavior |
+| `convergence-reference-only.md` | Need future/reference-only models such as segment filtering, semantic convergence, or optimizer metadata |
+| `../state/state-jsonl.md` | Need JSONL event shapes persisted by the convergence workflow |
+| `../state/state-reducer-registry.md` | Need reducer-owned registry/dashboard fields derived from convergence |
 
 ---
 

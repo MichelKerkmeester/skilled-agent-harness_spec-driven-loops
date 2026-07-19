@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop runtime names (032 phase 007/002)"
+title: "Checklist: system-deep-loop runtime names (020 phase 007/002)"
 description: "Blocking SOL verification contract for the runtime directory/file rename, package workspace closure, catalog/playbook discovery, and runtime parity."
 trigger_phrases:
   - "system-deep-loop runtime checklist"

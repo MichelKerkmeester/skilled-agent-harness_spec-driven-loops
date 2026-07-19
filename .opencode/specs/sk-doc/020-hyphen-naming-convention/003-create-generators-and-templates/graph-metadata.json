@@ -85,15 +85,15 @@
     ],
     "causal_summary": "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions.",
     "created_at": "2026-07-13T14:34:05.523Z",
-    "last_save_at": "2026-07-17T14:30:01.173Z",
+    "last_save_at": "2026-07-17T20:25:59.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:071e42095e9b405c19ffd27cf2d2cad9b26a30d497e54ec14b608426170e2ef7",
+    "source_fingerprint": "sha256:842159526dfaeadeb58d160fbd01eec348bd6ec1e24adad33f18478281f8ac97",
     "source_doc_hashes": {
-      "spec.md": "f7f6a545d11237b797f4a9a2af016a97d4353253e6dcc553e143e71594c5f3ac"
+      "spec.md": "2befe4d2a9076a042157f640d32d24c40dc781b219a8f87e6491b65522c6d4e6"
     },
     "last_active_child_id": null,
     "last_active_at": null

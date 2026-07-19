@@ -16,21 +16,21 @@ const SPECKIT_ROOT = join(OPENCODE_ROOT, 'commands', 'speckit');
 const OFFER_LINE = 'Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>';
 
 const PRESENTATION_FILES = [
-  'commands/speckit/assets/speckit_plan_presentation.txt',
-  'commands/speckit/assets/speckit_complete_presentation.txt',
-  'commands/speckit/assets/speckit_implement_presentation.txt',
-  'commands/speckit/assets/speckit_resume_presentation.txt',
+  'commands/speckit/assets/speckit-plan-presentation.txt',
+  'commands/speckit/assets/speckit-complete-presentation.txt',
+  'commands/speckit/assets/speckit-implement-presentation.txt',
+  'commands/speckit/assets/speckit-resume-presentation.txt',
 ];
 
 const WORKFLOW_YAML_FILES = [
-  'commands/speckit/assets/speckit_plan_auto.yaml',
-  'commands/speckit/assets/speckit_plan_confirm.yaml',
-  'commands/speckit/assets/speckit_complete_auto.yaml',
-  'commands/speckit/assets/speckit_complete_confirm.yaml',
-  'commands/speckit/assets/speckit_implement_auto.yaml',
-  'commands/speckit/assets/speckit_implement_confirm.yaml',
-  'commands/speckit/assets/speckit_resume_auto.yaml',
-  'commands/speckit/assets/speckit_resume_confirm.yaml',
+  'commands/speckit/assets/speckit-plan-auto.yaml',
+  'commands/speckit/assets/speckit-plan-confirm.yaml',
+  'commands/speckit/assets/speckit-complete-auto.yaml',
+  'commands/speckit/assets/speckit-complete-confirm.yaml',
+  'commands/speckit/assets/speckit-implement-auto.yaml',
+  'commands/speckit/assets/speckit-implement-confirm.yaml',
+  'commands/speckit/assets/speckit-resume-auto.yaml',
+  'commands/speckit/assets/speckit-resume-confirm.yaml',
 ];
 
 const ROUTER_FILES = [

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/005-specs-history-sweep",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/005-specs-history-sweep",
   "description": "The user chose to rewrite ALL references, including historical spec docs, logs, and changelogs (~700 files)",
   "keywords": [
     "user",
@@ -15,11 +15,12 @@
     "changelogs",
     "files"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.758Z",
+  "lastUpdated": "2026-07-18T03:48:55.268Z",
   "specId": "005",
   "folderSlug": "specs-history-sweep",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

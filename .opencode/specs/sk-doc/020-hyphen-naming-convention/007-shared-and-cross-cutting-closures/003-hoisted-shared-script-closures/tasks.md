@@ -1,5 +1,5 @@
 ---
-title: "Tasks: hoisted shared script closures (032 phase 007 child 003)"
+title: "Tasks: hoisted shared script closures (020 phase 007 child 003)"
 description: "Tasks for the multi-skill shared-script closure: build the consumer graph, classify exemptions and ownership, update every consumer, preserve modes, and publish downstream dependencies."
 trigger_phrases:
   - "shared script closure tasks"

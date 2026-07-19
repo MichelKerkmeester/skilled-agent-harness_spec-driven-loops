@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs')
 VALIDATE = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh'
-EXCLUDES = ('/z_archive/', '/z_future/', '/research/iterations/', '/review/iterations/',
+EXCLUDES = ('/z_archive/', '/z-future/', '/research/iterations/', '/review/iterations/',
             '/.tmp/', '/tmp-test-fixtures/')
 
 folders = set()

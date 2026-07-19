@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
-  "description": "The mcp-code-mode scripts surface must be audited under the 032 filesystem exemption boundary.",
+  "description": "The mcp-code-mode scripts surface must be audited under the 020 filesystem exemption boundary.",
   "keywords": [
     "mcp-code-mode",
     "scripts",
@@ -12,7 +12,7 @@
     "exemption",
     "boundary"
   ],
-  "lastUpdated": "2026-07-17T14:29:47.382Z",
+  "lastUpdated": "2026-07-18T03:48:55.038Z",
   "specId": "002",
   "folderSlug": "scripts",
   "parentChain": [

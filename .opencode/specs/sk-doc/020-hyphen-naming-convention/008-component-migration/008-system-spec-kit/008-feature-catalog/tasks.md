@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Feature catalog (032 subtree 008 phase 008)"
+title: "Tasks: Feature catalog (020 subtree 008 phase 008)"
 description: "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers."
 trigger_phrases:
   - "system-spec-kit feature catalog"

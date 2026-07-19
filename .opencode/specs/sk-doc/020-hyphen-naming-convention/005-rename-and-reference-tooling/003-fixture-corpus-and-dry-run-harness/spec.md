@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: fixture corpus and dry-run harness (032 phase 005.003)"
+title: "Feature Specification: fixture corpus and dry-run harness (020 phase 005.003)"
 description: "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans."
 trigger_phrases:
   - "fixture corpus dry-run harness"
@@ -12,13 +12,17 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T08:32:34Z"
     last_updated_by: "codex"
-    recent_action: "Extended harness coverage to the reference-rewrite executor drift and CAS cases"
-    next_safe_action: "Implement disposable fixtures for the engine, checker, and executor contracts"
+    recent_action: "Completed and verified the disposable fixture corpus"
+    next_safe_action: "Use the dry-run evidence before phase 006 freezes the repository map"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The harness creates disposable repositories and does not execute the real repo-wide migration."
@@ -27,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Fixture Corpus and Dry-Run Harness
 
@@ -41,10 +45,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child phase 003 of the 032 rename-and-reference-tooling program |
+| **Origin** | Child phase 003 of the 020 rename-and-reference-tooling program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

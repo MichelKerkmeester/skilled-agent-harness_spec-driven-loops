@@ -54,7 +54,7 @@ function createSpecTree(): SpecTree {
   const parent = path.join(specsRoot, 'system-spec-kit', '911-parent');
   const child = path.join(parent, '001-child-phase');
   const archive = path.join(specsRoot, 'system-spec-kit', 'z_archive', '001-archived-packet');
-  const future = path.join(specsRoot, 'z_future', '900-future-packet');
+  const future = path.join(specsRoot, 'z-future', '900-future-packet');
 
   writePacket(track, 'Track Packet', 'Regenerate a regular track packet onto the new format.');
   writePacket(parent, 'Parent Packet', 'A phase parent holding one child phase under it.');
@@ -181,7 +181,7 @@ describe('migrate-generated-json scoped contract', () => {
     const tree = createSpecTree();
     const summary = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: true });
 
-    const future = summary.outcomes.find((outcome) => outcome.specFolder === 'z_future/900-future-packet');
+    const future = summary.outcomes.find((outcome) => outcome.specFolder === 'z-future/900-future-packet');
     expect(future).toBeDefined();
     expect(future?.status).toBe('skipped-noop');
     expect(future?.reason).toBe('writer-rule-excluded');

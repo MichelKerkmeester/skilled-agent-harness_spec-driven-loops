@@ -97,10 +97,10 @@ is_target_command() {
     *"mk-spec-memory-launcher.cjs"*|\
     *"mk-skill-advisor-launcher.cjs"*|\
     *"mk-code-index-launcher.cjs"*|\
-    *"system-spec-kit/mcp_server/dist/context-server.js"*|\
-    *"system-skill-advisor/mcp_server/dist/"*"advisor-server.js"*|\
-    *"system-code-graph/mcp_server/dist/index.js"*|\
-    *"mcp-code-mode/mcp_server/dist/index.js"*|\
+    *"system-spec-kit/mcp-server/dist/context-server.js"*|\
+    *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*|\
+    *"system-code-graph/mcp-server/dist/index.js"*|\
+    *"mcp-code-mode/mcp-server/dist/index.js"*|\
     *"@modelcontextprotocol/server-sequential-thinking"*|\
     *"server-sequential-thinking"*|\
     *"clickup-mcp-server"*)

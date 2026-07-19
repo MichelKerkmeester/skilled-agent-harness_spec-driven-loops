@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable target mode moves as one dependency-closed operation.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-07-17T14:30:05.132Z",
+    "last_save_at": "2026-07-17T20:26:01.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a4a146158145dd68f5f0c6be34ed4ece3b6ddabf7ad170cb6fd8b9c93620c6a6",
+    "source_fingerprint": "sha256:075f02ca7d140ad383f8d661e3405d53ab2b7c01fe3311cd3b3519196c3aa2b9",
     "source_doc_hashes": {
-      "spec.md": "c7b54efab1b2096471f8f2da8454fc2b050cced99b76131a24920e6ba825eacc",
-      "plan.md": "6aa64786c8bb4bf0fb128e79facf9637ebaf1223c128c3f4bf36fe6cb592dfcb",
-      "tasks.md": "409d34e6f044188a95fa79c1fc06e69bd09b19403772b3f001869fc2175c3e69",
-      "checklist.md": "8d4466fd1c0e95c131ad4f3bfa2a18a35093a06aea45b5b174b90c85b02cdc9e",
-      "decision-record.md": "5badf3088c64d29f668bd47449e7af1a829c21d8238c77d22929fd6adb474b6c"
+      "spec.md": "933a0194377a7924bf1379a78e0ace771ea3c7c62a7469428b6182e819f6f431",
+      "plan.md": "f0c187f2d700953d39a6ff31ac910941af7c7ee3bef486754231f06917449268",
+      "tasks.md": "7f9d7b938f8a89c5a69ecdb9cfa2bd8670f34b8eba0cb19fa0525c6b1423c189",
+      "checklist.md": "057409a9efdff9643f1996435bc15e7465ba36d8c1c61a6dd90cbe2becb7d338",
+      "decision-record.md": "e1e20a9982a62e0a4a331754a80b8087a8d62504ed9fe4621b4cbaea0c268e76"
     },
     "last_active_child_id": null,
     "last_active_at": null

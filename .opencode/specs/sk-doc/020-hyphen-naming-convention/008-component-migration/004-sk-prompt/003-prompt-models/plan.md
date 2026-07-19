@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: prompt-models asset and reference names (032 phase 004.003)"
+title: "Implementation Plan: prompt-models asset and reference names (020 phase 004.003)"
 description: "Implementation plan for phase 003 of the sk-prompt kebab-case program: rename eight prompt-models asset/reference files, update active consumers, preserve JSON data semantics, and exclude benchmark output."
 trigger_phrases:
   - "prompt-models asset and reference implementation plan"

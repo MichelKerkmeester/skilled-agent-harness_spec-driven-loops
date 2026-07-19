@@ -1,0 +1,151 @@
+# /create:skill Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/create:skill`: startup questions, setup/status dashboards, operation display, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are you operating as @markdown OR under a valid chained parent handoff?
+
+Case A: Valid chained handoff detected with --chained
+- Required parent fields: skill_name, operation, execution_mode, parent_create_agent_verified=true
+- type is required only for reference-only or asset-only
+- If all fields are present: create_agent_verified = skipped-chained; chained_handoff_valid = true
+- If fields are missing: chained_handoff_valid = false and continue to Case B
+
+Case B: Standalone invocation
+- Verify @markdown indicators and sk-doc validation behavior
+- If present: create_agent_verified = true; phase_0_status = PASSED
+- If missing or uncertain: hard block
+```
+
+Hard-block message:
+
+```text
+This command requires @markdown for template-first generation and sk-doc validation.
+Restart with: @markdown /create:skill <skill-name> [operation] [type]
+
+STATUS=FAIL ERROR="Markdown agent required"
+```
+
+## 2. Auto Setup Resolution
+
+For `:auto`, resolve setup using the system auto-mode contract, then load `create-skill-auto.yaml` only when every required field is available.
+
+Pre-bound setup schema:
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  skill_name: my-skill
+  operation: full-create
+  type: workflow
+  skill_path: .opencode/skills/
+  execution_mode: AUTONOMOUS
+  spec_choice: new
+  spec_path: <spec-folder>
+  memory_choice: skip
+  chained_handoff_valid: false
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `skill_name` | Yes | first positional token, marker, or chained parent value | none | No |
+| `operation` | Yes | second positional token, marker, or chained parent value | none | No |
+| `type` | Conditional | third positional token, marker, or chained value | none | Yes, when operation requires type |
+| `skill_path` | Yes | `--path`, marker, or default | `.opencode/skills/` | No |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
+| `spec_choice` | Conditional | marker, chained value, or targeted choice | none | Yes, for full operations |
+| `spec_path` | Conditional | marker, derived from spec choice, or chained value | none | No |
+| `memory_choice` | No | marker, prior-work detection, or default | `skip` when no prior continuity exists | No |
+| `chained_handoff_valid` | No | `--chained` plus parent fields, marker, or default | `false` | No |
+
+## 3. Consolidated Startup Prompt
+
+Ask one prompt containing only applicable questions. Do not split these questions across turns.
+
+```text
+Before proceeding, please answer:
+
+Q0. Skill Name (if missing)
+Required format: hyphen-case.
+
+Q1. Operation (if missing)
+A) full-create - new skill end-to-end
+B) full-update - update existing skill and resources
+C) reference-only - create/update one reference document
+D) asset-only - create/update one asset document
+
+Q2. Type (only for reference-only or asset-only)
+For reference-only: workflow | patterns | debugging | tools | quick_ref
+For asset-only: template | lookup | example | guide
+
+Q3. Spec Folder (required for full-create/full-update)
+A) Existing
+B) New
+C) Update related
+D) Extend phased packet
+E) Skip
+
+For reference-only/asset-only:
+A) Attach existing spec path for continuity tracking
+B) Skip spec linkage
+
+Q4. Prior Work Context (when the existing spec has prior continuity)
+A) Load handover plus implementation-summary continuity
+B) Load canonical spec docs up to a recent cap
+C) Skip
+
+Q5. Execution Mode (if no :auto/:confirm suffix)
+A) Interactive (:confirm)
+B) Autonomous (:auto)
+```
+
+Hard stops:
+
+- Do not infer missing operation or type from context.
+- Do not split setup across multiple prompts.
+- Do not continue with missing required fields for the selected operation.
+
+## 4. Setup Dashboard
+
+| Field | Required | Rule | Value |
+| --- | --- | --- | --- |
+| `create_agent_verified` | Yes | `true` or `skipped-chained` | `[value]` |
+| `skill_name` | Yes | explicit, hyphen-case | `[value]` |
+| `operation` | Yes | one of four operation values | `[value]` |
+| `type` | Conditional | required for reference-only and asset-only | `[value]` |
+| `skill_path` | Yes | default if omitted | `[value]` |
+| `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
+| `spec_choice` | Conditional | required for full-create and full-update | `[value]` |
+| `spec_path` | Conditional | required for A/B/C/E | `[value]` |
+| `memory_choice` | No | prior-work choice or skip | `[value]` |
+
+Proceed only when every required field validates.
+
+## 5. Completion Result Template
+
+```text
+Unified Skill Workflow Complete
+
+Skill: [skill_name]
+Operation: [operation]
+Type: [type or N/A]
+Mode: [:auto|:confirm]
+Target: [skill_root_or_target_file]
+
+Validation:
+- DQI: [score] ([band])
+- Hard minimum: 75
+- Operation target: [operation_target]
+
+Context:
+- Spec path: [spec_path or none]
+- Memory saved: [yes/no]
+- Memory indexed: [yes/no]
+
+STATUS=[OK|CANCELLED|FAIL] PATH=[skill_root_or_target_file]
+```

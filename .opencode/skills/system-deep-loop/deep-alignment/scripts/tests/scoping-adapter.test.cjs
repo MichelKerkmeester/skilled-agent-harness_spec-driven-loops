@@ -66,12 +66,12 @@ function testPromptPackUsesSelectedAdapter() {
   ]);
 
   assert.deepEqual(entries[defaultLane.adapter], [
-    'references/adapters/sk_doc_adapter.md',
-    'references/adapters/sk_doc_known_deviations.md',
+    'references/adapters/sk-doc-adapter.md',
+    'references/adapters/sk-doc-known-deviations.md',
   ]);
   assert.deepEqual(entries[peerLane.adapter], [
-    'references/adapters/sk_doc_command_adapter.md',
-    'references/adapters/sk_doc_command_known_deviations.md',
+    'references/adapters/sk-doc-command-adapter.md',
+    'references/adapters/sk-doc-command-known-deviations.md',
   ]);
   assert.match(skillText, /if adapter:\n\s+return adapter if adapter in ADAPTER_RESOURCE_MAP else ""/);
   assert.match(skillText, /return authority if authority in ADAPTER_RESOURCE_MAP else ""/);

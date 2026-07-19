@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+  "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
   "description": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability",
   "keywords": [
     "checked-in",
@@ -18,11 +18,12 @@
     "tests",
     "capability"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.703Z",
+  "lastUpdated": "2026-07-18T03:48:54.334Z",
   "specId": "001",
   "folderSlug": "runtime-surface-and-skill-deletion",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "021-cli-gemini-deprecation"
   ],
   "memorySequence": 1,

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: doctor command namespace naming (032 phase 008/013/004)"
+title: "Feature Specification: doctor command namespace naming (020 phase 008/013/004)"
 description: "The doctor command namespace has maintained workflow assets with snake_case filenames, a route manifest with an exact tool-facing name, and a Python helper that is exempt by language. This phase renames only the maintained non-Python assets, repairs route path values, and preserves route IDs and tool contracts."
 trigger_phrases:
   - "doctor command namespace naming"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Doctor command namespace naming
 
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 004 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

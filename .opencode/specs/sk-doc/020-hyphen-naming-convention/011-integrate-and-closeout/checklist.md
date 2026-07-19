@@ -1,5 +1,5 @@
 ---
-title: "Checklist: integrate and close out (032 phase 011)"
+title: "Checklist: integrate and close out (020 phase 011)"
 description: "Blocking SOL verifier contract for phase 011: rebase onto the latest base, rerun the complete whole-repo gate, fast-forward only, and reconcile final packet state."
 trigger_phrases:
   - "integrate and close out checklist"

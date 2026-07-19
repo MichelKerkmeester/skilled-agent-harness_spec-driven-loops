@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-external-orchestration hub root and shared boundary (032 phase 005.001)"
+title: "Decision Record: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "Design decisions for the cli-external-orchestration hub boundary: protect exact routing contracts, record the absent shared subtree, and keep playbook and benchmark ownership with their dedicated phases."
 trigger_phrases:
   - "cli-external hub root decision record"

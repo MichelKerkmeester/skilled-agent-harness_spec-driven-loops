@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire",
   "description": "Refactor `refreshSkillEmbeddings()` to use the new EmbedderAdapter layer when an active pointer is set",
   "keywords": [
     "refactor",
@@ -11,11 +11,12 @@
     "pointer",
     "set"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.247Z",
+  "lastUpdated": "2026-07-18T03:48:57.266Z",
   "specId": "004",
   "folderSlug": "skill-graph-db-writer-cross-wire",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "010-skill-advisor-embedder-stack"
   ],
   "memorySequence": 1,

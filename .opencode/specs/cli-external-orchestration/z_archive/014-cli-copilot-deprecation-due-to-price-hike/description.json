@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike",
+  "specFolder": "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike",
   "description": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a",
   "keywords": [
     "github",
@@ -18,11 +18,12 @@
     "justified",
     "keeping"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.720Z",
+  "lastUpdated": "2026-07-18T03:48:54.298Z",
   "specId": "014",
   "folderSlug": "cli-copilot-deprecation-due-to-price-hike",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 5,
   "memoryNameHistory": [

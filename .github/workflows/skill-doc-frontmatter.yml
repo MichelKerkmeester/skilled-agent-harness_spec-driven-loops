@@ -15,7 +15,7 @@ jobs:
       - name: Run skill-doc frontmatter guard (coverage mode)
         run: |
           set -euo pipefail
-          GUARD=".opencode/skills/system-skill-advisor/mcp_server/scripts/check-skill-doc-frontmatter.sh"
+          GUARD=".opencode/skills/system-skill-advisor/mcp-server/scripts/check-skill-doc-frontmatter.sh"
           if [ ! -f "$GUARD" ]; then
             echo "::warning::frontmatter guard not found at $GUARD — skipping"
             exit 0

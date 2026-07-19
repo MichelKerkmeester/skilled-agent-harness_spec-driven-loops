@@ -32,7 +32,7 @@ _memory:
 |--------|-------|
 | **Surface** | `.opencode/skills/sk-doc/shared/` and root facade references |
 | **Change class** | Filesystem rename plus path-reference update |
-| **Execution** | Isolated worktree at the pinned 032 baseline |
+| **Execution** | Isolated worktree at the pinned 020 baseline |
 
 ### Overview
 

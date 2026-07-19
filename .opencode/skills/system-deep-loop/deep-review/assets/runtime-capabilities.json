@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "stopPolicy": "fail-closed",
+  "docPath": ".opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+  "resolverScript": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "runtimes": [
+    {
+      "id": "opencode",
+      "label": "OpenCode / Copilot",
+      "mirrorPath": ".opencode/agents/deep-review.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "memory"
+      ],
+      "hookBootstrap": false,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    },
+    {
+      "id": "claude",
+      "label": "Claude",
+      "mirrorPath": ".claude/agents/deep-review.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "memory"
+      ],
+      "hookBootstrap": true,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    }
+  ]
+}

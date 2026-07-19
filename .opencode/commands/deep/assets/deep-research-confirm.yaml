@@ -1,0 +1,1458 @@
+# ─────────────────────────────────────────────────────────────────
+# DEEP RESEARCH: AUTONOMOUS DEEP RESEARCH LOOP (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+# DEEP RESEARCH: AUTONOMOUS DEEP RESEARCH LOOP (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Deep Research Loop Manager
+purpose: Iterative deep research with convergence detection and user approval gates
+action: Run deep-research loop with user confirmation at each phase transition
+operating_mode:
+  workflow: iterative_loop
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: multi_gate
+  tracking: progressive_research_state
+  validation: convergence_detection
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING PRINCIPLES
+# ─────────────────────────────────────────────────────────────────
+operating_principles:
+  core: "Fresh context per iteration + externalized state = no context degradation"
+  approach: "Dispatch focused agent, show results, get approval, repeat or stop"
+  mandate: "Never hold findings in memory; write everything to files. Pause for user at each gate."
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (from setup phase)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  research_topic: "[RESEARCH_TOPIC] - Topic to investigate deeply. REQUIRED."
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
+  max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
+  convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
+  convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+  dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
+
+# ─────────────────────────────────────────────────────────────────
+# DRY-RUN CONTROL
+# ─────────────────────────────────────────────────────────────────
+dry_run_control:
+  enabled_when: "dry_run == true"
+  default: false
+  applies_to: "confirm workflow"
+  purpose: "Run safe setup and read-only inspection, then stop before side effects."
+  safe_operations:
+    - "Resolve setup inputs and artifact roots."
+    - "Read current state, strategy, focus, and convergence signals."
+    - "Render the next prompt to terminal preview without writing prompt files."
+  forbidden_operations:
+    - "Executor dispatch."
+    - "Persistent state, queue, lock, git index, memory, or graph mutation."
+    - "Reducer refresh or generated artifact writes."
+    - "Child-lineage spawn."
+  event_policy:
+    event_name: dry_run_halt
+    sink: "terminal JSONL preview only; never append to {state_paths.state_log}"
+    required_fields: [type, event, mode, boundary, step, timestamp]
+    optional_fields: [run, sessionId, generation, detail]
+  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation tagged with dry_run_boundary, emit dry_run_halt_event and halt."
+  boundary_labels:
+    child_spawn: "child-spawn"
+    state_mutation: "state-mutation"
+    dispatch: "dispatch"
+    reducer_refresh: "reducer-refresh"
+
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before phase_init"
+  purpose: "Load prior research context for the topic and buffer it until strategy.md exists"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "{research_topic}", mode: "focused", intent: "understand", includeContent: true }
+  when_to_skip: ["User says 'skip context' or 'fresh start'"]
+  behavior:
+    if_context_found: "Store full results as prior_context plus a concise prior_context_summary; inject after strategy.md is created."
+    if_no_context: "Set prior_context and prior_context_summary to 'None' and continue."
+
+# ─────────────────────────────────────────────────────────────────
+# SKILL REFERENCE
+# ─────────────────────────────────────────────────────────────────
+skill_reference:
+  skill: system-deep-loop
+  skill_md: .opencode/skills/system-deep-loop/deep-research/SKILL.md
+  references:
+    loop_protocol: .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+    spec_check_protocol: .opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md
+    state_format: .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md
+    convergence: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md
+  templates:
+    config: .opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+    strategy: .opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
+
+# ─────────────────────────────────────────────────────────────────
+# AGENT CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_config:
+  agent: deep-research
+  agent_file: ".opencode/agents/deep-research.md"
+  # Runtime-agnostic: resolve agent from active runtime directory (see AGENTS.md). Default shown is Claude runtime.
+  model: opus
+  leaf_only: true
+  tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+  mcp_servers: [mk-spec-memory]
+  tool_call_budget: { target: 8, max: 12 }
+
+# ─────────────────────────────────────────────────────────────────
+# STATE FILE PATHS
+# ─────────────────────────────────────────────────────────────────
+state_paths:
+  # Template paths document the canonical packet layout. Runtime resolution happens via
+  # step_resolve_artifact_root plus the shared resolver, so root specs keep
+  # root-local research/ and child phases keep local research/ packet dirs.
+  packet_dir: "{artifact_dir}"
+  config: "{artifact_dir}/deep-research-config.json"
+  state_log: "{artifact_dir}/deep-research-state.jsonl"
+  strategy: "{artifact_dir}/deep-research-strategy.md"
+  registry: "{artifact_dir}/findings-registry.json"
+  dashboard: "{artifact_dir}/deep-research-dashboard.md"
+  pause_sentinel: "{artifact_dir}/.deep-research-pause"
+  lock_file: "{artifact_dir}/.deep-research.lock"
+  prompt_dir: "{artifact_dir}/prompts"
+  iteration_dir: "{artifact_dir}/iterations"
+  iteration_pattern: "{artifact_dir}/iterations/iteration-{NNN}.md"
+  # Per-iteration structured delta stream — complement to the canonical state_log
+  # append. MUST contain at least one record with `type === "iteration"`; variants
+  # like `"iteration_delta"` are silently dropped by the reducer.
+  delta_dir: "{artifact_dir}/deltas"
+  delta_pattern: "{artifact_dir}/deltas/iter-{NNN}.jsonl"
+  research_output: "{artifact_dir}/research.md"
+  resource_map_output: "{artifact_dir}/resource-map.md"
+  archive_root: "{artifact_archive_root}"
+  synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+
+  step_resolve_artifact_root:
+    description: "Resolve artifact directory — use fan-out lineage override when provided, else resolve from spec_folder"
+    note: "Root specs keep research artifacts directly in {spec_folder}/research/. Child phases and sub-phases keep local packet directories in {spec_folder}/research/{packet}/, and archives stay local at {spec_folder}/research_archive/{packet}/."
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        artifact_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_root_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_subfolder: null
+        artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
+    if_absent:
+      command: "node -e \"const { resolveArtifactRoot } = require('./.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));\""
+      outputs:
+        - artifact_root_dir: "Resolved local research owner directory"
+        - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
+        - artifact_dir: "Resolved research packet directory for this target"
+        - artifact_archive_root: "Resolved local research archive directory for this target"
+
+  step_fanout_spawn:
+    description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+    skip_when: "config.fanout is absent"
+    dry_run_boundary: "child-spawn"
+    dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"child-spawn","step":"step_fanout_spawn","detail":"Fan-out would spawn child lineages.","timestamp":"{ISO_8601_NOW}"}'
+    instructions: |
+      Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
+      isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      fanout-run.cjs owns native and CLI lineage execution; native is run through the
+      deep/research command surface with config.fanout_lineage_artifact_dir so the LEAF
+      deep-research agent is used only for individual iterations, never as a full-loop
+      sub-agent or pasted phase-running prompt.
+      After all lineages complete, jump directly to phase_synthesis — skip phase_init and
+      phase_main_loop entirely (those are the single-executor path). The merge step in
+      phase_synthesis will consolidate results across all lineages.
+    sub_steps:
+      step_fanout_spawn_cli:
+        description: "Spawn all native and CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors"
+        command: |
+          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
+            --spec-folder {spec_folder} \
+            --loop-type research \
+            --research-topic "{research_topic}" \
+            --fanout-config-json '{config.fanout_json}' \
+            --base-artifact-dir {artifact_dir} \
+            --convergence-threshold {convergence_threshold}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 1: INITIALIZATION
+  # ═══════════════════════════════════════════════════════════════
+  phase_init:
+    purpose: Create all state files for the research session
+    steps:
+
+      step_preflight_contract:
+        action: "Validate required setup bindings and executable workflow contract before any file writes"
+        verify:
+          - required_values_present: [research_topic, spec_folder, max_iterations, convergence_threshold, convergence_mode]
+          - dry_run_normalized: "Boolean true or false before workflow loading; absent flag resolves to false."
+          - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
+          - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
+          - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
+        on_fail: "Halt with STATUS=FAIL and report the missing binding or unsupported contract reference"
+
+      step_create_directories:
+        action: "Create spec folder and research packet directories if they don't exist"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_directories","detail":"Research packet directories would be created if missing.","timestamp":"{ISO_8601_NOW}"}'
+        command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir}"
+
+      step_resolve_canonical_names:
+        action: "Resolve canonical research packet artifact names before classification"
+        inspect_legacy:
+          - "{state_paths.packet_dir}/config.json"
+          - "{state_paths.packet_dir}/state.jsonl"
+          - "{state_paths.packet_dir}/strategy.md"
+          - "{state_paths.packet_dir}/dashboard.md"
+          - "{state_paths.packet_dir}/.pause"
+        migration_policy: "dual-read / single-write for 4 weeks"
+        on_legacy_read:
+          dry_run_boundary: "state-mutation"
+          dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_resolve_canonical_names.on_legacy_read","detail":"A migration event would be appended for a legacy alias.","timestamp":"{ISO_8601_NOW}"}'
+          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
+
+      step_acquire_lock:
+        action: "Acquire the single-writer advisory lock before session classification"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_acquire_lock","detail":"The advisory lock would be acquired before mutable session work.","timestamp":"{ISO_8601_NOW}"}'
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+        on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, stop and present recovery choices — another deep-research run already holds this packet."
+        note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls; stale-lock override is confirm-only or explicit recovery-only."
+        on_halt:
+          action: "Release the lock before any terminal halt branch returns control"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
+        on_cancel:
+          action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
+        on_workflow_exit:
+          action: "Release the lock as the final step of any workflow exit path (success or failure)"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
+
+      step_classify_session:
+        action: "Classify the session before writing files"
+        inspect:
+          - "{state_paths.config}"
+          - "{state_paths.state_log}"
+          - "{state_paths.strategy}"
+        classify:
+          fresh: "None of the three state artifacts exist"
+          resume: "Config, JSONL, and strategy all exist and agree on topic/spec folder"
+          completed-session: "Resume artifacts exist and config.status == 'complete'"
+          invalid-state: "Any partial, missing, or contradictory combination"
+        outputs:
+          - session_state: "fresh | resume | completed-session | invalid-state"
+        on_resume:
+          show_dashboard: "{state_paths.dashboard}"
+          ask: "Existing research session is consistent. Resume where it left off, or restart (archive the current research packet under the root-level research_archive/ tree and start a fresh session)?"
+          options: [resume, restart, cancel]
+          on_resume_choice:
+            dry_run_boundary: "state-mutation"
+            dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_classify_session.on_resume_choice","detail":"A resume event would be appended before continuing.","timestamp":"{ISO_8601_NOW}"}'
+            set:
+              lineage_mode: "resume"
+              parent_session_id: "{session_id}"
+            append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"archivedPath":null,"timestamp":"{ISO_8601_NOW}","generation":{generation}}'
+            skip_to: gate_init_approval
+          on_restart_choice:
+            dry_run_boundary: "state-mutation"
+            dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_classify_session.on_restart_choice","detail":"The current research packet would be archived before restart.","timestamp":"{ISO_8601_NOW}"}'
+            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+            set:
+              lineage_mode: "restart"
+              parent_session_id: "{prior_session_id}"
+              generation: "{prior_generation + 1}"
+            append_jsonl: '{"type":"event","event":"restarted","mode":"research","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
+            skip_to: step_create_config
+          on_cancel_choice:
+            halt: true
+            message: "Research session preserved. Manually archive or edit research/ before re-running."
+          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-research/references/protocol/loop-protocol.md `Session Lifecycle` for the canonical one-session model."
+        on_completed_session:
+          log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
+          halt: true
+          message: "Completed deep-research packet detected. Archive or replace the existing research/ tree before starting a new session."
+        on_invalid_state:
+          halt: true
+          message: "Existing deep-research state is incomplete or contradictory. Repair or archive the invalid research packet before continuing."
+        on_fresh:
+          action: "Proceed with a new session"
+
+      step_create_config:
+        action: "Create deep-research-config.json from template"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_config","detail":"deep-research-config.json would be created from the template.","timestamp":"{ISO_8601_NOW}"}'
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+        populate:
+          topic: "{research_topic}"
+          maxIterations: "{max_iterations}"
+          # Semantic: newInfoRatio with negative-knowledge emphasis. See SKILL.md §"Convergence Threshold Semantics".
+          convergenceThreshold: "{convergence_threshold}"
+          antiConvergence.convergenceMode: "{convergence_mode}"
+          antiConvergence.divergent: {}
+          stuckThreshold: 3
+          maxDurationMinutes: 120
+          specFolder: "{spec_folder}"
+          resource_map_present: "{resource_map_present}"
+          resource_map.emit: true
+          createdAt: "{ISO_8601_NOW}"
+          status: "initialized"
+          executionMode: "confirm"
+          lineage.sessionId: "{AUTO_SESSION_ID}"
+          lineage.parentSessionId: null
+          lineage.lineageMode: "new"
+          lineage.generation: 1
+          lineage.continuedFromRun: null
+        output: "{state_paths.config}"
+
+      step_create_state_log:
+        action: "Initialize JSONL state log with config record"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_state_log","detail":"The initial config record would be written to the state log.","timestamp":"{ISO_8601_NOW}"}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"resource_map_present":{resource_map_present},"resource_map":{"emit":true},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        output: "{state_paths.state_log}"
+
+      step_create_strategy:
+        action: "Create strategy file from template with initial questions"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_strategy","detail":"deep-research-strategy.md would be created from the template.","timestamp":"{ISO_8601_NOW}"}'
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
+        populate:
+          topic: "{research_topic}"
+          key_questions: "Derive 3-5 key questions from the research topic"
+          known_context: "None"
+          known_context_summary: "None"
+          max_iterations: "{max_iterations}"
+          convergence_threshold: "{convergence_threshold}"
+        output: "{state_paths.strategy}"
+
+      step_create_registry:
+        action: "Initialize reducer-owned findings registry"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_registry","detail":"The reducer-owned findings registry would be initialized.","timestamp":"{ISO_8601_NOW}"}'
+        content: '{"openQuestions":[],"resolvedQuestions":[],"keyFindings":[],"ruledOutDirections":[],"metrics":{"iterationsCompleted":0,"openQuestions":0,"resolvedQuestions":0,"keyFindings":0,"convergenceScore":0,"coverageBySources":{}}}'
+        output: "{state_paths.registry}"
+
+      step_enrich_strategy_context:
+        action: "Ensure Known Context is written only after strategy.md exists"
+        condition: "prior_context_found"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_enrich_strategy_context","detail":"Prior context would be written into the strategy file.","timestamp":"{ISO_8601_NOW}"}'
+        edit: "{state_paths.strategy}"
+        note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
+
+      step_detect_spec_present:
+        action: "Classify late-INIT spec.md state after the durable research packet exists"
+        dry_run_event_policy: "Run the inspect and classify work, emit the spec_check_result as terminal JSONL preview only, and do not append it to the state log."
+        inspect:
+          - "{spec_folder}/spec.md"
+          - "{state_paths.lock_file}"
+        classify:
+          no-spec: "spec.md is absent before any pre-init mutation"
+          spec-present: "spec.md exists and approved host anchors are available for bounded mutation"
+          spec-just-created-by-this-run: "spec.md already carries this run's DR seed markers and should not be reseeded"
+          conflict-detected: "missing host anchor, duplicate markers, or generated-block ambiguity makes mutation unsafe"
+        outputs:
+          - folder_state: "no-spec | spec-present | spec-just-created-by-this-run | conflict-detected"
+          - normalized_topic: "Trim, lowercase, and collapse whitespace in research_topic before dedupe checks"
+        append_to_jsonl: '{"type":"event","event":"spec_check_result","folder_state":"{folder_state}","normalized_topic":"{normalized_topic}","specPath":"{spec_folder}/spec.md","lockPath":"{state_paths.lock_file}","timestamp":"{ISO_8601_NOW}"}'
+
+      gate_preinit_spec_mutation_approval:
+        type: approval_gate
+        purpose: "Approve the planned pre-init spec.md mutation before LOOP starts"
+        present: |
+          ## Pre-Init Spec Check
+
+          **Folder State**: {folder_state}
+          **Spec Path**: {spec_folder}/spec.md
+          **Normalized Topic**: {normalized_topic}
+          **Lock File**: {state_paths.lock_file}
+
+          Planned branch:
+          - `no-spec` -> seed Level 1 `spec.md` with `<!-- DR-SEED:REQUIREMENTS -->` and `<!-- DR-SEED:SCOPE -->`
+          - `spec-present` -> append bounded context in `Open Questions` and `Research Context`
+          - `spec-just-created-by-this-run` -> verify markers and continue without duplicate mutation
+          - `conflict-detected` -> halt fail-closed
+
+          Options:
+          A) Approve pre-init branch
+          B) Revise the planned branch
+          C) Cancel
+        wait_for: "User response"
+        on_A: { proceed_to: step_preinit_spec_branch }
+        on_B: { action: "Adjust the planned pre-init mutation inputs", return_to: gate_preinit_spec_mutation_approval }
+        on_C: { action: "Cancel workflow after releasing the advisory lock during cleanup", status: "CANCELLED" }
+
+      step_preinit_spec_branch:
+        action: "Run the bounded pre-init spec branch required by spec_check_protocol"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_preinit_spec_branch","detail":"The pre-init spec branch would create, edit, or append state records.","timestamp":"{ISO_8601_NOW}"}'
+        protocol_reference: ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md"
+        branches:
+          no-spec:
+            create: "{spec_folder}/spec.md"
+            seed_markers:
+              - "<!-- DR-SEED:REQUIREMENTS -->"
+              - "<!-- DR-SEED:SCOPE -->"
+            requirements_host: "Seed Requirements from the research ask without broadening scope"
+            scope_host: "Seed Scope from the research ask without inventing implementation details"
+            set:
+              folder_state: "spec-just-created-by-this-run"
+            append_to_jsonl: '{"type":"spec_mutation","event":"spec_seed_created","folder_state":"spec-just-created-by-this-run","anchors_touched":["Requirements","Scope"],"diff_summary":"Seeded Level 1 spec.md from research topic with DR seed markers.","seed_markers":["DR-SEED:REQUIREMENTS","DR-SEED:SCOPE"],"timestamp":"{ISO_8601_NOW}"}'
+          spec-present:
+            edit: "{spec_folder}/spec.md"
+            idempotency_check:
+              host_anchor: "Open Questions"
+              normalized_match: "Normalize the existing anchor text by lowercasing, stripping punctuation, collapsing whitespace, and trimming before comparing with {normalized_topic}."
+              if_match:
+                skip_append: true
+                append_to_jsonl: '{"type":"spec_mutation","event":"spec_preinit_context_deduped","folder_state":"spec-present","anchors_touched":["Open Questions"],"diff_summary":"Skipped duplicate pre-init topic append because normalized topic already exists in Open Questions.","normalized_topic":"{normalized_topic}","specPath":"{spec_folder}/spec.md","timestamp":"{ISO_8601_NOW}"}'
+              if_no_match:
+                append_only:
+                  - host_anchor: "Open Questions"
+                    content: "Add the normalized research topic only if it is not already present."
+                  - host_anchor: "Research Context"
+                    content: "Add a bounded note that deep-research is active for this topic and that research/research.md remains canonical."
+                append_to_jsonl: '{"type":"spec_mutation","event":"spec_preinit_context_added","folder_state":"spec-present","anchors_touched":["Open Questions","Research Context"],"diff_summary":"Appended bounded pre-init research context for the normalized topic.","normalized_topic":"{normalized_topic}","specPath":"{spec_folder}/spec.md","timestamp":"{ISO_8601_NOW}"}'
+          spec-just-created-by-this-run:
+            verify_markers:
+              - "<!-- DR-SEED:REQUIREMENTS -->"
+              - "<!-- DR-SEED:SCOPE -->"
+            note: "Treat already-seeded spec.md as a no-op guard and continue."
+          conflict-detected:
+            append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation_conflict","folder_state":"conflict-detected","reason":"Pre-init spec.md mutation is ambiguous or unsafe.","specPath":"{spec_folder}/spec.md","timestamp":"{ISO_8601_NOW}"}'
+            halt: true
+
+      # ─── APPROVAL GATE: Post-Init ───
+      gate_init_approval:
+        type: approval_gate
+        purpose: "Show initialization results and get approval to start loop"
+        present: |
+          ## Initialization Complete
+
+          **Topic**: {research_topic}
+          **Max Iterations**: {max_iterations}
+          **Convergence Threshold**: {convergence_threshold}
+          **Known Context Summary**: {prior_context_summary}
+          **Folder State**: {folder_state}
+
+          Review `{state_paths.strategy}` for the initial key questions and next focus.
+          Review `{spec_folder}/spec.md` for the approved pre-init branch and any DR seed markers or context notes.
+          Reducer-owned state will live in `{state_paths.registry}` and `{state_paths.dashboard}`.
+          **State files located in**: {state_paths.packet_dir}/
+
+          Options:
+          A) Start research loop
+          B) Adjust questions or parameters
+          C) Cancel
+        wait_for: "User response"
+        on_A: { set: { current_iteration: 1, current_segment: 1, stuck_count: 0 }, proceed_to: phase_loop }
+        on_B: { action: "Apply user adjustments to strategy.md and/or config", return_to: gate_init_approval }
+        on_C: { action: "Cancel workflow", status: "CANCELLED" }
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 2: ITERATION LOOP
+  # ═══════════════════════════════════════════════════════════════
+  phase_loop:
+    purpose: Dispatch agent iterations with approval at each step
+    repeat: true
+    max_repeats: "{max_iterations}"
+    steps:
+
+      step_read_state:
+        action: "Read current state from JSONL and strategy"
+        read:
+          - "{state_paths.state_log}"
+          - "{state_paths.strategy}"
+          - "{state_paths.config}"
+        extract:
+          - iteration_count: "Count lines where type === 'iteration'"
+          - current_iteration: "iteration_count + 1"
+          - current_segment: "Latest segment_start event segment, else 1"
+          - last_newInfoRatio: "Extract newInfoRatio from last iteration record"
+          - last_focus: "Extract focus from latest iteration record, else 'none yet'"
+          - ratio_prev: "Extract newInfoRatio from second-latest iteration record, else 'N/A'"
+          - ratio_latest: "Extract newInfoRatio from latest iteration record, else 'N/A'"
+          - next_focus: "Extract 'Next Focus' section from strategy.md"
+          - remaining_questions: "Count unchecked items in 'Key Questions'"
+          - remaining_questions_list: "List unchecked key questions from strategy.md"
+          - carried_forward_open_questions: "Extract 'Carried-Forward Open Questions' section from strategy.md, else '[None yet]'"
+          - answered_count: "Count answered questions from strategy.md"
+          - total_questions: "Count total questions tracked in strategy.md"
+          - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
+          - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
+          - latest_status: "Extract status from latest iteration record, else 'none yet'"
+          - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
+          - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
+          - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected focus; else 'none yet'"
+          - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
+
+      step_check_pause_sentinel:
+        action: "Check for pause sentinel file"
+        check: "Does {state_paths.pause_sentinel} exist?"
+        if_exists:
+          dry_run_event_policy: "Emit the userPaused event as terminal JSONL preview only; do not append it during dry-run."
+          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          message: "Research paused. Delete research/.deep-research-pause to resume."
+          halt: true
+        if_not_exists:
+          proceed: true
+
+      step_validate_convergence_config:
+        action: "Validate convergence mode when loading config"
+        if_convergence_mode_invalid:
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Unsupported convergenceMode; using default convergence behavior."
+
+      step_graph_convergence:
+        action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
+        dry_run_event_policy: "Run the convergence read, emit the graph_convergence event as terminal JSONL preview only, and do not append it to the state log."
+        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}"'
+        note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
+        outputs:
+          - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
+          - graph_decision_json: "JSON-encoded graph decision string, else null"
+          - graph_signals_json: "Tool signals object, else {}"
+          - graph_blockers_json: "Tool blockers array, else []"
+          - graph_trace_json: "Tool trace payload, else []"
+          - graph_convergence_score: "signals.blendedScore when present, else the best available graph score, else 0"
+        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+
+      step_check_convergence:
+        action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
+        algorithm: |
+          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses quality-guard overrides; record failed guards/blockers as synthesis evidence instead of continuing.
+          2. if remaining_questions == 0: STOP (all_questions_answered)
+          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          4. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
+               step_graph_convergence already recorded graph_decision, graph_signals_json, graph_blockers_json, and graph_convergence_score for this run.
+               The existing inline 3-signal vote still computes the inline STOP candidate and is not replaced.
+               signals = []
+               Filter: exclude iterations where status == thought from signal inputs (use only evidence iterations)
+               a) Rolling average (w=0.30, needs 3+ iterations):
+                  avg = mean(last 3 newInfoRatios)
+                  stop if avg < convergence_threshold
+               b) MAD noise floor (w=0.35, needs 4+ iterations):
+                  noiseFloor = MAD(all ratios) * 1.4826
+                  stop if latest ratio <= noiseFloor
+               c) Question entropy (w=0.35):
+                  coverage = answered / total questions
+                  stop if coverage >= 0.85
+               Redistribute weights for unavailable signals.
+               if weighted_stop_score > 0.60: inline_stop_candidate = true
+               Combined stop rule: STOP only if the inline 3-signal vote says STOP AND graph_decision is STOP_ALLOWED or absent.
+               if inline_stop_candidate and graph_decision == "STOP_BLOCKED":
+                 decision = "BLOCKED"
+                 reason = "blockedStop"
+                 stop_blocked = true
+                 blocked_by_json = JSON array derived from graph_blockers_json
+                 blocked_by_csv = comma-separated blocker names derived from graph_blockers_json
+                 gate_convergence_pass = false
+                 gate_convergence_score = graph_convergence_score
+                 gate_key_question_coverage_pass = no blocker named questionCoverage
+                 gate_evidence_density_pass = no blocker named sourceDiversity or evidenceDepth
+                 gate_evidence_density_sources = graph_signals_json.sourceDiversity or 0
+                 gate_hotspot_saturation_pass = true
+                 recovery_strategy = first blocker reason/message, else "Collect deeper graph evidence before stopping."
+               else if inline_stop_candidate and (graph_decision == "STOP_ALLOWED" or graph_decision is absent):
+                 decision = "STOP"
+                 reason = "composite_converged"
+                 stop_blocked = false
+          5. else: CONTINUE
+          6. if decision == "STOP" and reason != "maxIterationsReached":
+               guardResult = checkQualityGuards(state, strategy)
+               if not guardResult.passed:
+                 log: "Quality guard failed: {guardResult.violations}. Overriding STOP to CONTINUE."
+                 decision = "CONTINUE"
+          See convergence.md for full pseudocode and signal definitions.
+          Segment-aware convergence is experimental/reference-only; live workflow uses the current session as a single segment.
+        outputs:
+          - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
+          - reason: "Human-readable stop reason"
+          - stop_blocked: "Boolean marker set when graph convergence vetoes an inline STOP candidate"
+          - blocked_by_json: "JSON array of graph blocker names when decision == BLOCKED"
+          - blocked_by_csv: "Comma-separated graph blocker names when decision == BLOCKED"
+          - gate_convergence_pass: "Boolean pass/fail for the graph-assisted convergence gate"
+          - gate_convergence_score: "Numeric score recorded from graph convergence"
+          - gate_key_question_coverage_pass: "Boolean pass/fail derived from graph blocker coverage signals"
+          - gate_evidence_density_pass: "Boolean pass/fail derived from graph blocker evidence-depth signals"
+          - gate_evidence_density_sources: "Source-diversity count or equivalent evidence-depth proxy"
+          - gate_hotspot_saturation_pass: "Research placeholder gate; true unless an explicit blocker sets otherwise"
+          - recovery_strategy: "One-line hint describing the next research action when decision == BLOCKED or STUCK_RECOVERY"
+
+      step_emit_blocked_stop:
+        action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"
+        if_blocked:
+          dry_run_event_policy: "Emit the blocked_stop event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Graph convergence blocked STOP. Failed blockers: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
+          set:
+            decision: "CONTINUE"
+            reason: "blockedStop"
+            stop_blocked: false
+
+      step_handle_convergence:
+        action: "Act on convergence decision"
+        if_stop:
+          branch_on: "convergence_mode == 'divergent' AND reason is in ['composite_converged', 'all_questions_answered']"
+          if_divergent_eligible:
+            eligibility_contract:
+              required_decision: "STOP"
+              eligible_reasons: [composite_converged, all_questions_answered]
+              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused]
+              fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot."
+            steps:
+              step_prepare_divergent_pivot:
+                action: "Generate state-grounded research candidates and prepare or resume the pivot transaction"
+                dry_run_boundary: "state-mutation"
+                dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_prepare_divergent_pivot","run":{current_iteration},"detail":"An eligible divergent pivot would persist its transaction state here.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import {
+                    buildResearchPivotPreparationInput,
+                    renderResearchPivotSeatPrompt,
+                  } from './.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts';
+                  import {
+                    preparePivotTransaction,
+                  } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+
+                  const input = buildResearchPivotPreparationInput({
+                    artifactRoot: '{state_paths.packet_dir}',
+                    configPath: '{state_paths.config}',
+                    stateLogPath: '{state_paths.state_log}',
+                    strategyPath: '{state_paths.strategy}',
+                    registryPath: '{state_paths.registry}',
+                    currentIteration: Number('{current_iteration}'),
+                    maxIterations: Number('{max_iterations}'),
+                    triggerReason: '{reason}',
+                  });
+                  const prepared = await preparePivotTransaction(input);
+                  const seatPrompts = prepared.status === 'pending'
+                    ? Object.fromEntries(prepared.missingSeats.map((seat) => [
+                        seat.id,
+                        renderResearchPivotSeatPrompt(seat, prepared.dispatchContext),
+                      ]))
+                    : {};
+                  process.stdout.write(`${JSON.stringify({
+                    ...prepared,
+                    seatPrompts,
+                    boundaryRejections: input.boundaryRejections,
+                  })}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+                outputs:
+                  - pivot_prepare_json: "The complete parsed JSON result"
+                  - pivot_prepare_status: "status from the prepare result"
+                  - pivot_id: "pivotId from the prepare result"
+                  - pivot_paths_json: "paths from the prepare result as JSON"
+                  - pivot_resumed: "resumed from the prepare result"
+                  - pivot_missing_seat_ids: "missingSeats ids from a pending result"
+                  - pivot_seat_001_json: "The seat-001 mandate object from missingSeats"
+                  - pivot_seat_002_json: "The seat-002 mandate object from missingSeats"
+                  - pivot_seat_003_json: "The seat-003 mandate object from missingSeats"
+                  - pivot_seat_001_prompt: "seatPrompts['seat-001']"
+                  - pivot_seat_002_prompt: "seatPrompts['seat-002']"
+                  - pivot_seat_003_prompt: "seatPrompts['seat-003']"
+                  - pivot_dispatch_context_json: "dispatchContext from a pending result as JSON"
+                short_circuit: "When status is completed or failed, skip all dispatch and record steps and bind this result as pivot_result."
+
+              step_dispatch_pivot_seat_001:
+                action: "Natively dispatch the analytical research direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+                dry_run_boundary: "dispatch"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-research
+                    model: opus
+                    context_source: "pivot_seat_001_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_001."
+                outputs:
+                  - pivot_seat_001_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_001_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_001_error_json: "{name,message} when rejected"
+                  - pivot_seat_001_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_001_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_001_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_001:
+                action: "Durably record the seat-001 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_001_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_001_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_dispatch_pivot_seat_002:
+                action: "Natively dispatch the critical research direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
+                dry_run_boundary: "dispatch"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-research
+                    model: opus
+                    context_source: "pivot_seat_002_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_002."
+                outputs:
+                  - pivot_seat_002_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_002_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_002_error_json: "{name,message} when rejected"
+                  - pivot_seat_002_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_002_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_002_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_002:
+                action: "Durably record the seat-002 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_002_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_002_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_dispatch_pivot_seat_003:
+                action: "Natively dispatch the pragmatic research direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
+                dry_run_boundary: "dispatch"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-research
+                    model: opus
+                    context_source: "pivot_seat_003_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_003."
+                outputs:
+                  - pivot_seat_003_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_003_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_003_error_json: "{name,message} when rejected"
+                  - pivot_seat_003_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_003_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_003_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_003:
+                action: "Durably record the seat-003 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_003_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_003_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_finalize_divergent_pivot:
+                action: "Finalize the prepared pivot after all missing native seats are durable"
+                skip_when: "pivot_prepare_status != 'pending'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { finalizePivotTransaction } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  process.stdout.write(`${JSON.stringify(finalizePivotTransaction({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', resumed: {pivot_resumed} }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+                outputs:
+                  - pivot_finalize_json: "The complete parsed final result"
+
+              step_resolve_divergent_pivot_result:
+                action: "Use prepare's terminal result on resume/short-circuit, otherwise use finalize's result"
+                branch_on: "pivot_prepare_status"
+                if_pending: { bind: { pivot_result: "{pivot_finalize_json}" } }
+                if_completed_or_failed: { bind: { pivot_result: "{pivot_prepare_json}" } }
+
+              gate_divergent_pivot_choice:
+                type: approval_gate
+                purpose: "Approve the Council-selected research direction before it becomes the next focus"
+                branch_on: "pivot_result.status"
+                if_completed:
+                  present: |
+                    ## Divergent Pivot Candidate
+
+                    **Pivot**: {pivot_result.pivotId}
+                    **Council-selected candidate**: {pivot_result.selectedCandidate.id}
+                    **Focus**: {pivot_result.restoredFocus}
+                    **Agreement**: {pivot_result.agreement.endorsementCount}/3 material endorsements
+                    **Saturated direction**: {pivot_result.completedEvent.previousFocus}
+
+                    The Phase 2 adapter exposes an ordered candidate frontier and agreement tallies, but no ranked-candidate score contract. Choosing a different ranked candidate is therefore unavailable in this phase rather than inferred from array order.
+
+                    Options:
+                    A) Accept the Council-selected candidate and continue
+                    B) Choose a different ranked candidate (unavailable: no ranking contract)
+                    C) manualStop and proceed to the existing pre-synthesis gate
+                  wait_for: "User response"
+                  on_A:
+                    append_to_jsonl: '{"type":"event","event":"pivot_confirm_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{pivot_result.selectedCandidate},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                    set:
+                      next_focus: "{pivot_result.restoredFocus}"
+                      pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
+                      saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
+                    command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+                    proceed_to: gate_pre_iteration
+                  on_B:
+                    message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
+                    return_to: gate_divergent_pivot_choice
+                  on_C:
+                    append_to_jsonl: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                    set: { reason: "manualStop" }
+                    skip_to: gate_pre_synthesis
+                if_failed_recoverable:
+                  condition: "pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'"
+                  present: |
+                    ## Divergent Pivot Did Not Converge
+
+                    **Pivot**: {pivot_result.pivotId}
+                    **Failure**: {pivot_result.failureReason}
+                    **Agreement tallies**: {pivot_result.agreement.tallies}
+
+                    The adapter marked this insufficient-endorsement failure as recoverable by explicit operator override. The candidate frontier is unranked; any override must name an accepted candidate id and provide a rationale.
+
+                    Options:
+                    A) Fail closed to the existing pre-synthesis gate
+                    B) Explicitly override with accepted candidate id + rationale
+                    C) manualStop and proceed to the existing pre-synthesis gate
+                  wait_for: "User response"
+                  on_A: { skip_to: gate_pre_synthesis }
+                  on_B:
+                    action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier."
+                    append_to_jsonl: '{"type":"event","event":"pivot_override_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                    set:
+                      next_focus: "{operator_selected_candidate.focus}"
+                      pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
+                      saturated_directions: "{operator_saturated_directions}"
+                    command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+                    proceed_to: gate_pre_iteration
+                  on_C:
+                    append_to_jsonl: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                    set: { reason: "manualStop" }
+                    skip_to: gate_pre_synthesis
+                if_failed_unrecoverable:
+                  condition: "pivot_result.status == 'failed' AND (pivot_result.failedEvent is absent OR pivot_result.failedEvent.recoverableByOverride != true)"
+                  log: "Divergent pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to the existing pre-synthesis gate."
+                  skip_to: gate_pre_synthesis
+            on_error:
+              log: "Divergent pivot integration error; failing closed to the existing pre-synthesis gate."
+              skip_to: gate_pre_synthesis
+          if_existing_terminal_path:
+            log: "Loop stopping. Reason: {reason}"
+            skip_to: gate_pre_synthesis
+        if_stuck_recovery:
+          dry_run_event_policy: "Emit the stuckRecovery event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
+          set: { next_focus: "RECOVERY: Widen scope. Try fundamentally different approach. Least-explored question: {least_explored}" }
+          reset: { stuck_count: 0 }
+        if_continue:
+          log: "Iteration {current_iteration}: Continuing."
+
+      step_normalize_pause_events:
+        action: "Normalize pause and recovery lifecycle events to the frozen STOP_REASONS enum at emission time"
+        stop_reasons_enum: [converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused]
+        rule_pause_sentinel:
+          raw_event_forbidden: '{"type":"event","event":"paused"}'
+          canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        rule_stuck_recovery:
+          raw_event_forbidden: '{"type":"event","event":"stuck_recovery"}'
+          canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+
+      # ─── APPROVAL GATE: Pre-Iteration ───
+      gate_pre_iteration:
+        type: approval_gate
+        purpose: "Show planned focus and get approval before dispatching agent"
+        present: |
+          ## Iteration {current_iteration} of {max_iterations}
+
+          **Focus**: {next_focus}
+          **Remaining Questions**: {remaining_questions}
+          **Last newInfoRatio**: {last_newInfoRatio}
+          **Stuck Count**: {stuck_count}
+
+          Options:
+          A) Proceed with this focus
+          B) Change focus to: [user provides new focus]
+          C) Stop loop and synthesize now
+          D) Cancel entirely
+        wait_for: "User response"
+        on_A: { proceed_to: step_dispatch_iteration }
+        on_B: { action: "Update next_focus to user's choice", proceed_to: step_dispatch_iteration }
+        on_C: { proceed_to: gate_pre_synthesis }
+        on_D: { action: "Cancel workflow", status: "CANCELLED" }
+
+      step_dispatch_iteration:
+        action: "Dispatch one iteration via the selected executor"
+        dry_run_boundary: "dispatch"
+        dry_run_preview:
+          before_halt:
+            - "Generate the state summary."
+            - "Render the prompt pack to terminal preview without writing the prompt file."
+            - "Show the selected executor branch and command or native dispatch target that would run."
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"dispatch","step":"step_dispatch_iteration","run":{current_iteration},"detail":"Executor dispatch would start here.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        resolve_executor:
+          source: "config.executor"
+          loader: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+        pre_dispatch:
+          generate_summary: |
+            STATE SUMMARY (auto-generated):
+            Segment: {current_segment} | Iteration: {current_iteration} of {max_iterations}
+            Questions: {answered_count}/{total_questions} answered | Last focus: {last_focus}
+            Last 2 ratios: {ratio_prev} -> {ratio_latest} | Stuck count: {stuck_count}
+            Next focus: {next_focus}
+          render_prompt_pack:
+            template_path: ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl"
+            renderer: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+            output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
+            dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
+            variables:
+              state_summary: "{state_summary}"
+              research_topic: "{research_topic}"
+              current_iteration: "{current_iteration}"
+              max_iterations: "{max_iterations}"
+              next_focus: "{next_focus}"
+              remaining_questions_list: "{remaining_questions_list}"
+              carried_forward_open_questions: "{carried_forward_open_questions}"
+              last_3_summaries: "{last_3_summaries}"
+              pivot_lineage: "{pivot_lineage}"
+              saturated_directions: "{saturated_directions}"
+              state_paths_config: "{state_paths.config}"
+              state_paths_state_log: "{state_paths.state_log}"
+              state_paths_strategy: "{state_paths.strategy}"
+              state_paths_registry: "{state_paths.registry}"
+              state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
+              state_paths_delta_pattern: "{state_paths.delta_pattern}"
+        pre_dispatch_audit:
+          skip_when: "config.executor.type == 'native' or dry_run == true"
+          call: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          args:
+            stateLogPath: "{state_paths.state_log}"
+            executor: "{config.executor}"
+            iteration: "{current_iteration}"
+        branch_on: "config.executor.type"
+        if_native:
+          dispatch:
+            agent: deep-research
+            model: opus
+            context_source: "rendered_prompt_pack"
+          wait_for_completion: true
+        if_cli_copilot:
+          command: |
+            PROMPT_PATH='{state_paths.prompt_dir}/iteration-{current_iteration}.md'
+            PROMPT_SIZE=$(wc -c < "$PROMPT_PATH" | tr -d ' ')
+            if [ "$PROMPT_SIZE" -le 16384 ]; then
+              copilot \
+                -p "$(cat "$PROMPT_PATH")" \
+                --model "{config.executor.model}" \
+                --allow-all-tools \
+                --no-ask-user
+            else
+              copilot \
+                -p "Read the instructions in @$PROMPT_PATH and follow them exactly. Do not deviate." \
+                --model "{config.executor.model}" \
+                --allow-all-tools \
+                --no-ask-user
+            fi
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "copilot has no stdin support; prompt is positional"
+            - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
+            - "Large-prompt path relies on copilot honoring @path references within its prompt string"
+        if_cli_claude_code:
+          command: |
+            claude \
+              -p "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
+              --model "{config.executor.model}" \
+              --permission-mode acceptEdits \
+              --output-format text \
+              {optional_effort_flag}
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          render_hint:
+            optional_effort_flag: |
+              If config.executor.reasoningEffort is set and non-null, expand to: --effort {config.executor.reasoningEffort}
+              Otherwise expand to empty string.
+          notes:
+            - "claude-code default permission-mode is 'plan' (read-only); we override to 'acceptEdits' for iteration writes"
+            - "claude-code has no serviceTier flag"
+            - "claude-code supports --effort for reasoning depth"
+        if_cli_opencode:
+          command: |
+            opencode run \
+              --model "{config.executor.model}" \
+              --format json \
+              --dangerously-skip-permissions \
+              --pure \
+              --dir "{repo_root}" \
+              {optional_variant_flag} \
+              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
+              </dev/null
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          render_hint:
+            optional_variant_flag: |
+              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
+              Otherwise expand to empty string.
+          notes:
+            - "opencode run takes a positional message; prompt is fed via command substitution"
+            - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
+            - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
+        post_dispatch_validate:
+          validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          assert_exists: "{state_paths.iteration_pattern}"
+          assert_appended: "{state_paths.state_log}"
+          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus]
+          assert_canonical_type: "iteration"
+          assert_delta_file_exists: "{state_paths.delta_pattern}"
+          assert_delta_file_has_iteration_record: true
+          on_failure:
+            action: "emit schema_mismatch canonical conflict event"
+            escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
+        record_executor_audit:
+          skip_when: "config.executor.type == 'native'"
+          target: "{state_paths.state_log}"
+          field: "executor"
+          value:
+            type: "{config.executor.type}"
+            model: "{config.executor.model}"
+            reasoningEffort: "{config.executor.reasoningEffort}"
+            serviceTier: "{config.executor.serviceTier}"
+
+      step_reduce_state:
+        action: "Run the reducer to synchronize registry, dashboard, and strategy"
+        dry_run_boundary: "reducer-refresh"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_reduce_state","run":{current_iteration},"detail":"Reducer refresh would update registry, dashboard, and strategy.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
+        inputs:
+          latestJSONLDelta: "Latest JSONL records written since the previous iteration"
+          newIterationFile: "{state_paths.iteration_pattern}"
+          priorReducedState: "{state_paths.registry}"
+        outputs:
+          - "{state_paths.registry}"
+          - "{state_paths.dashboard}"
+          - "{state_paths.strategy}"
+        failure_modes:
+          malformed_delta: "skip + warn"
+          missing_iteration_file: "no-op + error"
+          schema_mismatch: "reject + conflict event"
+        guarantee: "Idempotent for identical inputs"
+
+      step_graph_upsert:
+        action: "Persist the latest iteration graph delta after the reducer refresh and after the iteration file exists"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_graph_upsert","run":{current_iteration},"detail":"Coverage graph nodes and edges would be persisted.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        read:
+          - "{state_paths.state_log}"
+        extract:
+          - latest_graph_events: "Read graphEvents from the latest iteration record, else []"
+          - graph_upsert_nodes_json: "Map latest_graph_events where type == 'node' to node payloads with label -> name and preserve remaining node fields"
+          - graph_upsert_edges_json: "Map latest_graph_events where type == 'edge' to edge payloads with source -> sourceId, target -> targetId, relation -> uppercase(relation), and preserve remaining edge fields"
+          - graph_upsert_event_count: "Count mapped node and edge events"
+        if_graph_events_present:
+          bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"research\" --session-id \"{config.lineage.sessionId}\" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'"
+          note: "Skip silently when graphEvents is missing or empty."
+        if_graph_events_missing:
+          proceed: true
+
+      step_evaluate_results:
+        action: "Verify iteration outputs and extract metrics"
+        verify:
+          - file_exists: "{state_paths.iteration_pattern}"
+          - jsonl_appended: "New iteration record in state.jsonl"
+          - strategy_updated: "Reducer refreshed strategy machine-owned sections"
+          - registry_updated: "Reducer refreshed findings-registry.json"
+        extract:
+          - newInfoRatio: "From latest JSONL iteration record"
+          - findings_count: "From latest JSONL iteration record"
+          - status: "From latest JSONL iteration record"
+          - latest_focus: "From latest JSONL iteration record"
+        on_missing_outputs:
+          action: "Mark iteration as 'error', continue to next"
+
+      # ─── APPROVAL GATE: Post-Iteration ───
+      gate_post_iteration:
+        type: approval_gate
+        purpose: "Show iteration results and get approval for next step"
+        present: |
+          ## Iteration {current_iteration} Results
+
+          **Focus**: {latest_focus}
+          **Findings**: {findings_count}
+          **newInfoRatio**: {newInfoRatio}
+          **Status**: {status}
+          **Remaining Questions**: {remaining_questions}
+          **Stuck Count**: {stuck_count}
+
+          **Recent Iteration Summary**:
+          {last_3_summaries}
+
+          Options:
+          A) Continue to next iteration
+          B) Continue with adjusted focus: [user provides]
+          C) Stop loop and synthesize
+          D) Cancel entirely
+        wait_for: "User response"
+        on_A: { proceed_to: step_update_tracking }
+        on_B: { action: "Set next_focus to user's choice in strategy.md", proceed_to: step_update_tracking }
+        on_C: { proceed_to: gate_pre_synthesis }
+        on_D: { action: "Cancel workflow", status: "CANCELLED" }
+
+      step_generate_dashboard:
+        action: "Generate or refresh the human-readable dashboard"
+        dry_run_boundary: "reducer-refresh"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_generate_dashboard","run":{current_iteration},"detail":"The dashboard would be regenerated from reducer-owned state.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        read:
+          - "{state_paths.state_log}"
+          - "{state_paths.registry}"
+          - "{state_paths.strategy}"
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md
+        output: "{state_paths.dashboard}"
+        note: "Auto-generated from JSONL + reducer registry + strategy. Never manually edited."
+
+      step_update_tracking:
+        action: "Update loop tracking variables"
+        set:
+          current_iteration: "{current_iteration + 1}"
+          stuck_count: "if status == 'thought': unchanged (skip). if status == 'insight': 0 (reset). if newInfoRatio < convergence_threshold: stuck_count + 1, else: 0"
+
+      step_loop_decision:
+        action: "Return to step_read_state for next iteration"
+        goto: step_read_state
+
+      # ─── WAVE ORCHESTRATION ───
+      # Wave mode is auto-only and conflicts with per-iteration approval gates.
+      # See spec_kit_deep-research_auto.yaml for wave steps.
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 3: SYNTHESIS
+  # ═══════════════════════════════════════════════════════════════
+  phase_synthesis:
+    purpose: Compile all iteration findings into final research/research.md
+    steps:
+
+      step_fanout_merge:
+        description: "Merge N lineage registries into one consolidated registry; skip when single-executor"
+        skip_when: "config.fanout is absent"
+        dry_run_boundary: "reducer-refresh"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_fanout_merge","detail":"Fan-out registries would be merged into the consolidated research packet.","timestamp":"{ISO_8601_NOW}"}'
+        command: |
+          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
+            --loop-type research \
+            --artifact-dir {artifact_dir}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
+
+      step_hydrate_summary_metrics:
+        action: "Hydrate summary metrics before synthesis"
+        read:
+          - "{state_paths.config}"
+          - "{state_paths.state_log}"
+          - "{state_paths.registry}"
+          - "{state_paths.strategy}"
+        extract:
+          - iteration_count: "Count lines where type === 'iteration'"
+          - current_iteration: "iteration_count + 1"
+          - current_segment: "Latest segment_start event segment, else 1"
+          - last_focus: "Extract focus from latest iteration record, else 'none yet'"
+          - ratio_prev: "Extract newInfoRatio from second-latest iteration record, else 'N/A'"
+          - ratio_latest: "Extract newInfoRatio from latest iteration record, else 'N/A'"
+          - remaining_questions: "Count unchecked items in 'Key Questions'"
+          - remaining_questions_list: "List unchecked key questions from strategy.md"
+          - answered_count: "Count answered questions from strategy.md"
+          - total_questions: "Count total questions tracked in strategy.md"
+          - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
+          - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
+          - reason: "Use the latest synthesis/recovery stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+
+      # ─── APPROVAL GATE: Pre-Synthesis ───
+      gate_pre_synthesis:
+        type: approval_gate
+        purpose: "Show loop summary and get approval to synthesize"
+        present: |
+          ## Research Loop Complete
+
+          **Total Iterations**: {iteration_count}
+          **Stop Reason**: {reason}
+          **Questions Answered**: {answered_count}/{total_questions}
+          **Recent Iteration Summary**: {last_3_summaries}
+
+          Review the iteration files in `{state_paths.iteration_dir}/` if you want more detail before synthesis.
+
+          Options:
+          A) Proceed to synthesis
+          B) Run more iterations (increase max)
+          C) Cancel (keep iteration files)
+        wait_for: "User response"
+        on_A: { proceed_to: step_read_all_iterations }
+        on_B: { action: "Increase max_iterations, return to loop", proceed_to: phase_loop }
+        on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
+
+      step_read_all_iterations:
+        action: "Read all iteration files and strategy"
+        read_pattern: "{state_paths.iteration_dir}/iteration-*.md"
+        read_also: "{state_paths.strategy}"
+
+      step_emit_resource_map:
+        action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
+        dry_run_boundary: "reducer-refresh"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_emit_resource_map","detail":"The reducer would emit resource-map output.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        read:
+          - "{state_paths.config}"
+          - "{state_paths.delta_dir}/iter-*.jsonl"
+        write:
+          - "{state_paths.resource_map_output}"
+        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
+
+      step_compile_research:
+        action: "Compile or finalize research/research.md"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_compile_research","detail":"research.md would be created or updated from iteration files.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        instructions: |
+          If research/research.md exists (progressive synthesis was active):
+            1. Read current research/research.md
+            2. Consolidate and deduplicate findings across all iterations
+            3. Fill any empty sections with findings from iteration files
+            4. Remove redundancy while preserving all unique findings
+            5. Add convergence report as appendix
+            6. Preserve the mandatory `## Eliminated Alternatives` section, then add or replace `## Divergence Map` immediately after it and before Section 12 Open Questions. Populate it from `{state_paths.registry}` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier.
+
+          If research/research.md does not exist:
+            1. Create research/research.md following 17-section template
+            2. Populate sections from iteration files
+            3. Add citations from original sources
+            4. Note unanswered questions in Open Questions section
+            5. After the mandatory `## Eliminated Alternatives` section and before Section 12 Open Questions, add `## Divergence Map` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier from `{state_paths.registry}`.
+          Divergence Map documents breadth. Never claim the topic converged merely because divergent mode broadened the investigated frontier.
+          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
+        output: "{state_paths.research_output}"
+
+      step_convergence_report:
+        action: "Generate and append convergence report"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_convergence_report","detail":"The convergence report would be appended and synthesis completion would be recorded.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        report: |
+          ## Convergence Report
+          - Stop reason: {reason}
+          - Total iterations: {iteration_count}
+          - Questions answered: {answered_count} / {total_questions}
+          - Remaining questions: {remaining_questions}
+          - Last 3 iteration summaries: {last_3_summaries}
+          - Convergence threshold: {convergence_threshold}
+          - Divergence summary: {divergence_summary}
+          - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
+        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+
+      gate_post_synthesis_spec_writeback:
+        type: approval_gate
+        purpose: "Approve bounded spec.md write-back before memory-save review"
+        present: |
+          ## Post-Synthesis Spec Write-Back
+
+          **Source of truth**: `{state_paths.research_output}`
+          **Target**: `{spec_folder}/spec.md`
+          **Generated Fence**:
+          - `<!-- BEGIN GENERATED: deep-research/spec-findings -->`
+          - `<!-- END GENERATED: deep-research/spec-findings -->`
+
+          Planned action:
+          - replace exactly one generated findings block under the chosen host anchor
+          - fail closed on missing host anchor, duplicate markers, or human edits inside the machine-owned block
+
+          Options:
+          A) Approve write-back
+          B) Revise before write-back
+          C) Defer spec.md write-back
+        wait_for: "User response"
+        on_A: { proceed_to: step_writeback_spec_findings }
+        on_B: { action: "Adjust the synthesis or write-back inputs", return_to: gate_post_synthesis_spec_writeback }
+        on_C:
+          dry_run_event_policy: "Emit the spec_synthesis_deferred event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"confirm_mode_deferred_writeback","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}'
+          proceed_to: step_update_config_status
+
+      step_writeback_spec_findings:
+        action: "Write or replace the bounded generated findings block in spec.md before config completion"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_writeback_spec_findings","detail":"Generated research findings would be written back to spec.md.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        edit: "{spec_folder}/spec.md"
+        host_anchor: "Use the chosen host anchor required by spec_check_protocol"
+        generated_fence_begin: "<!-- BEGIN GENERATED: deep-research/spec-findings -->"
+        generated_fence_end: "<!-- END GENERATED: deep-research/spec-findings -->"
+        fail_closed_conflict_check:
+          if_existing_generated_fence_present:
+            detect_manual_edits: "Use generated checksum metadata or an explicit MANUAL-EDIT marker inside the existing fence to detect human edits before overwrite."
+            on_manual_edit_conflict:
+              append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation_conflict","folder_state":"conflict-detected","reason":"Manual edits detected inside existing generated findings fence.","specPath":"{spec_folder}/spec.md","generatedFence":"deep-research/spec-findings","conflictKind":"generated-fence-manual-edit","timestamp":"{ISO_8601_NOW}"}'
+              halt: true
+        instructions:
+          - "Read `{state_paths.research_output}` as the canonical synthesis source."
+          - "Replace exactly one generated findings block under the chosen host anchor."
+          - "Fail closed if the host anchor is missing, duplicate markers exist, or human edits are detected inside the generated block."
+          - "Do not overwrite a generated block that fails checksum validation or carries an explicit MANUAL-EDIT marker."
+        append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation","phase":"post-synthesis","anchors_touched":["<chosen host anchor>"],"diff_summary":"Replaced generated deep-research findings fence from research/research.md.","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}'
+
+      step_update_config_status:
+        action: "Mark config as complete"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_update_config_status","detail":"The deep-research config status would be marked complete.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        edit: "{state_paths.config}"
+        set_field: { status: "complete" }
+
+      step_stage_artifact_dir:
+        action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_stage_artifact_dir","detail":"The research artifact directory would be staged in the git index.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        command: "git add {state_paths.artifact_dir}"
+        note: "Skill-owned contract fix (028): without this stage step, operators who do `git add research-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal — log warning and continue."
+        on_fail: "Log warning. Do not block synthesis. The artifact_dir may be outside a git repo (e.g., temp test fixture) which is a valid case."
+
+      # ─── APPROVAL GATE: Post-Synthesis ───
+      gate_post_synthesis:
+        type: approval_gate
+        purpose: "Show synthesis results and get approval"
+        present: |
+          ## Synthesis Complete
+
+          **research/research.md** has been compiled with findings from {iteration_count} iterations.
+          **Remaining Questions**: {remaining_questions_list}
+          Review `{state_paths.research_output}` before deciding whether to save memory.
+          Confirm-mode cleanup keeps the advisory lock until save, skip-save, or cancellation cleanup resolves.
+
+          Options:
+          A) Approve and save to memory
+          B) Request revisions to research/research.md
+          C) Skip memory save
+        wait_for: "User response"
+        on_A: { proceed_to: phase_save }
+        on_B: { action: "Apply user revisions", return_to: gate_post_synthesis }
+        on_C: { proceed_to: completion }
+
+  # ═══════════════════════════════════════════════════════════════
+  # PHASE 4: SAVE
+  # ═══════════════════════════════════════════════════════════════
+  phase_save:
+    purpose: Preserve research context to memory system
+    steps:
+
+      step_generate_context:
+        action: "Route continuity content into the correct canonical spec document via generate-context.js"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_generate_context","detail":"Continuity content would be routed into canonical spec documents.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        command: "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
+
+      step_index_memory:
+        action: "Index the routed canonical spec document with memory_save when immediate MCP visibility is required"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_index_memory","detail":"The routed canonical document would be indexed into memory.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        mcp_tool: memory_save
+        invocation: 'memory_save({ filePath: "[routed-canonical-spec-doc-path]" })'
+        note: "Use the actual canonical spec-doc path returned by generate-context.js (decision-record.md, implementation-summary.md, or handover.md); memory_index_scan remains the bulk fallback"
+
+      step_verify_save:
+        action: "Verify canonical save routed content into the correct spec document"
+        check: "Does {spec_folder}/implementation-summary.md, {spec_folder}/decision-record.md, or {spec_folder}/handover.md carry the new continuity update?"
+        on_fail: "Log warning but do not block completion"
+
+      step_release_lock:
+        action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_release_lock","detail":"The advisory lock would be released and recorded.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
+
+  # ═══════════════════════════════════════════════════════════════
+  # COMPLETION
+  # ═══════════════════════════════════════════════════════════════
+  completion:
+    message: |
+      Deep research complete.
+      Iterations: {iteration_count} | Stop reason: {reason}
+      Questions answered: {answered_count}/{total_questions}
+
+      Artifacts:
+        - research/research.md (compiled from {iteration_count} iterations)
+        - {iteration_count} iteration files in research/
+        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+        - Memory context saved
+
+      STATUS=OK PATH={spec_folder}
+    next_steps:
+      - "/speckit:plan [feature-description]"
+      - "/deep:research [new-topic] (for related deep research)"
+      - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
+
+# ─────────────────────────────────────────────────────────────────
+# REFERENCE-ONLY APPENDIX
+# ─────────────────────────────────────────────────────────────────
+reference_only_appendix:
+  checkpoint_commit:
+    note: "Checkpoint commits are intentionally excluded from workflow.steps."
+    commands:
+      - "git add {state_paths.iteration_pattern} {state_paths.state_log} {state_paths.strategy} {state_paths.research_output}"
+      - 'git commit -m "chore(deep-research): iteration {NNN} complete"'
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  agent_dispatch_timeout: "Retry once with reduced scope. If second timeout, mark as 'timeout' and show to user for decision."
+  state_file_missing: "If JSONL missing, reconstruct from iteration files. If strategy missing, create minimal version."
+  consecutive_failures: "After 3 consecutive errors, halt and present to user with options: Retry / Skip / Cancel."
+  memory_save_failure: "Preserve the research/ packet as backup. Inform user."
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  DRY_RUN_OVERRIDES:
+    - "When dry_run is true, dry_run_control overrides default dispatch, write, reducer, memory-save, and child-spawn requirements."
+    - "Dry-run preview events are emitted to terminal output only and are not persisted."
+  ALWAYS:
+    - follow_workflow_phases_in_order
+    - dispatch_deep_research_agent_per_iteration
+    - check_convergence_before_each_iteration
+    - write_all_state_to_files
+    - save_memory_context_after_synthesis
+    - respect_max_iterations_cap
+    - pause_at_approval_gates
+    - present_clear_options_at_each_gate
+  NEVER:
+    - skip_convergence_check
+    - dispatch_non_leaf_agents
+    - hold_iteration_findings_in_memory_only
+    - modify_config_after_initialization
+    - overwrite_jsonl_state_log
+    - proceed_past_approval_gate_without_user_response
+    - auto_approve_on_behalf_of_user

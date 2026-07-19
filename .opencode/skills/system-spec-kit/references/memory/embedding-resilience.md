@@ -1,0 +1,134 @@
+---
+title: Embedding Resilience
+description: Provider fallback, bootstrap probes, graceful degradation, and offline mode for reliable semantic search
+trigger_phrases:
+  - "embedding provider fallback"
+  - "bootstrap probe sequence"
+  - "degraded semantic search"
+  - "offline embedding mode"
+  - "embedding retry policy"
+importance_tier: normal
+contextType: implementation
+version: 3.6.0.17
+---
+
+# Embedding Resilience
+
+Spec-memory prefers a working semantic provider over a perfect one. Bootstrap auto-selection chooses the active embedder once, persists it in `vec_metadata`, and later search/save calls use that pointer to avoid model drift.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define provider fallback, bootstrap probes, degraded search behavior, retry policy, cache boundaries, and operator checks for resilient semantic search.
+
+### When to Use
+
+Load this reference when startup cannot select an embedder, semantic search degrades, cloud providers fail, or cache rows may cross provider/model/dimension boundaries.
+
+### Core Principle
+
+Prefer a visible degraded mode over silent vector drift. Missing or mismatched embedders must fail clearly before they corrupt retrieval quality.
+
+---
+
+## 2. BOOTSTRAP PROBE SEQUENCE
+
+When `vec_metadata` has no active pointer, daemon startup probes providers in this **local-first** order (ADR-014, 2026-05-19):
+
+1. Ollama: reachable `/api/tags`, choosing the first pulled model from `shared/embeddings/registry.ts` (currently `nomic-embed-text-v1.5`, tag `nomic-embed-text:v1.5`).
+2. hf-local: Node.js model server answers `/api/health` (launcher-supervised pure-Node `@huggingface/transformers`; ready or loading both count), selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
+3. OpenAI API: `OPENAI_API_KEY` plus a successful `text-embedding-3-small` embeddings request.
+4. Voyage API: `VOYAGE_API_KEY` plus a successful `voyage-code-3` embeddings request.
+
+The selected provider is persisted as:
+
+```text
+active_embedder_name
+active_embedder_dim
+active_embedder_provider
+```
+
+If no tier is available, startup fails with a tier-by-tier diagnostic. This is intentional: a missing embedder should be visible before the daemon serves stale or mismatched vectors.
+
+## 3. RUNTIME FALLBACK
+
+Provider creation still has bounded runtime fallback for transient failures:
+
+| Failed provider | Next candidates (in ADR-014 cascade order) |
+|-----------------|-----------------|
+| Ollama | hf-local only (the Ollama short list keeps the local-only progression) |
+| hf-local | OpenAI, Voyage |
+| OpenAI | Voyage |
+| Voyage | none |
+
+Runtime fallback is best-effort and may change dimensions. When that happens, logs must warn that existing vector tables may need reindexing.
+
+## 4. DEGRADED SEARCH
+
+If embeddings cannot be generated, retrieval degrades to cached rows and keyword search. Governance boundaries still apply in every degradation mode: fallback providers, cached embeddings, and keyword-only recovery must preserve caller scope.
+
+| Level | Condition | Search support |
+|-------|-----------|----------------|
+| Full | Active provider healthy | Vector similarity + keyword + FTS5 |
+| Reduced | Runtime fallback provider active | Vector similarity with fallback model + keyword |
+| Keyword only | All embedding providers failed | FTS5 full-text search + trigger matching |
+| Offline | Cache available, network unavailable | Cached embeddings + keyword |
+
+Search responses should include a degradation warning when semantic search is unavailable.
+
+### Rebuild in flight is transient, not corruption
+
+A `memory_health` status of `degraded` paired with a "N missing vectors" or "embedder rebuilding" note is usually a TRANSIENT rebuild lag, not a corrupted or dropped index. The vector shard re-embeds asynchronously after a provider swap, a `/doctor:update`, or a cold cache, so its coverage count climbs toward the `memory_index` row total while the embedder job runs. A `/doctor:update` that ends with `final_status: ok` plus a "N missing vectors, embedder rebuilding" note took the accept-with-note path for that lag; it did NOT roll back.
+
+Confirm vector health correctly before concluding corruption:
+
+- `memory_health.recallDegradation.degraded` is the authoritative vector-health flag. `false` means the vector layer is fine even when the top-level `status` still reads `degraded`, because the top-level flag also folds in non-vector subsystems and the in-flight re-embed.
+- `vectorSearchAvailable: true` plus a `memory_search` that returns real hits means semantic search is live right now.
+- `embedder_jobs` (status `running` then `completed`, with `processed` / `total`) shows the rebuild progressing. Sampling the active shard's `vec_<dim>` count twice a few seconds apart confirms it is climbing rather than stuck.
+- Do NOT query the canonical `context-index.sqlite` `sqlite_master` for `vec_*` tables to judge health. The `vec_memories*` and `vec_<dim>` tables live in the attached shard under `vectors/` (see [embedder-architecture.md](./embedder-architecture.md) §4). The main DB exposes only `vec_metadata`, so a `sqlite_master` scan there falsely looks like the vector tables were dropped.
+
+The misread to avoid: "main-DB `sqlite_master` shows no `vec_memories`" plus "health reads degraded, N vectors missing" looks like a broken index, but both are expected during a healthy async rebuild against the sharded layout. Verify the shard and `recallDegradation.degraded` before reporting a regression or running a repair.
+
+## 5. RETRY POLICY
+
+Transient cloud failures retry with bounded exponential backoff before falling through:
+
+| Condition | Action |
+|-----------|--------|
+| HTTP 429 | Retry with backoff, then fallback |
+| HTTP 5xx | Retry with backoff, then fallback |
+| Network timeout | Fallback |
+| Invalid API key | Skip provider |
+| Local provider unavailable | Fallback or fail with a clear startup error |
+
+Permanent authorization failures should not be retried.
+
+## 6. CACHE SHAPE
+
+Profile-keyed caches keep provider/model/dimension separate. Provider separation is handled via `profile_key` (derived from the active provider/model/dim), not a standalone `provider` column:
+
+```text
+content_hash  TEXT
+profile_key   TEXT
+input_kind    TEXT ('document' | 'query')
+model_id      TEXT
+embedding     BLOB
+dimensions    INTEGER
+created_at    TEXT
+last_used_at  TEXT
+```
+
+Never reuse a cache row across profile, input-kind, model, or dimension boundaries.
+
+## 7. OPERATOR CHECKS
+
+- `embedder_status` should report the active provider and any running reindex job.
+- `vec_metadata.active_embedder_name` should match the provider used for query encoding.
+- `vec_<dim>` should contain rows before the active pointer is trusted for vector search. Count it in the active shard file under `vectors/`, NOT in the canonical `context-index.sqlite` (which holds only `vec_metadata`).
+- `OLLAMA_BASE_URL` should point at the same Ollama daemon used to pull the selected model.
+- Before reporting a vector regression, distinguish a transient async rebuild (health `degraded` + "N missing vectors" that is climbing, `final_status: ok`) from real corruption (`recallDegradation.degraded: true`, `vectorSearchAvailable: false`, and `memory_search` returning no vector hits). See §4 "Rebuild in flight is transient, not corruption".
+
+Related architecture reference: [embedder-architecture.md](./embedder-architecture.md).

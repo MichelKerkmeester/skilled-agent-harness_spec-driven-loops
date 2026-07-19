@@ -15,12 +15,12 @@
 // ║ agent's own tool-use loop, never from a spawned subprocess, AND (per    ║
 // ║ direct research) that tool surface has no tool that renders an          ║
 // ║ arbitrary external URL/route in the first place — see                   ║
-// ║ ../../references/adapters/sk_design_live_render_adapter.md Section 8.   ║
+// ║ ../../references/adapters/sk-design-live-render-adapter.md Section 8.   ║
 // ║ check() is therefore a pure function over caller-supplied render         ║
 // ║ evidence, never a renderer itself. Direct mcp-chrome-devtools call       ║
 // ║ paths are forbidden — none exists anywhere in this file.                 ║
 // ║                                                                          ║
-// ║ Full specification: ../../references/adapters/sk_design_live_render_adapter.md ║
+// ║ Full specification: ../../references/adapters/sk-design-live-render-adapter.md ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -29,7 +29,7 @@
  * sk-design-live-render.cjs — the sk-design LIVE-RENDER authority adapter.
  *
  * discover(scope) takes the real, live scope shape from
- * ../../references/discover_contract.md §3 / ../../references/lane_config_schema.md §5:
+ * ../../references/discover-contract.md §3 / ../../references/lane-config-schema.md §5:
  * `{type:'paths'|'globs', values:[...]}` (a 'branchRange' scope resolves to an empty
  * result — a rendered UI state has no per-commit identity the way a tracked file does).
  * Each `values[i]` is classified as a full URL (`http://`/`https://`) or a repo-relative
@@ -78,9 +78,9 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode
 const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 
 const SK_DESIGN_DIR = path.join(SKILLS_DIR, 'sk-design');
-const ACCESSIBILITY_PERFORMANCE_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'accessibility_performance.md');
-const ANTI_PATTERNS_PRODUCTION_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'anti_patterns_production.md');
-const AI_FINGERPRINT_TELLS_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'ai_fingerprint_tells.md');
+const ACCESSIBILITY_PERFORMANCE_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'accessibility-performance.md');
+const ANTI_PATTERNS_PRODUCTION_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'anti-patterns-production.md');
+const AI_FINGERPRINT_TELLS_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'ai-fingerprint-tells.md');
 
 // Sibling to this adapter's own spec, matching sk-doc.cjs's KNOWN_DEVIATIONS_MD pattern.
 // Does NOT exist yet — see the adapter spec Section 6 for why (no real live-render run has

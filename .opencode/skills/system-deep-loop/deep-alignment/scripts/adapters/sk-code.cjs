@@ -17,15 +17,15 @@
 // ║ Every finding is tagged layer:'deterministic'|'reasoning-agent' — no    ║
 // ║ false determinism.                                                       ║
 // ║                                                                          ║
-// ║ Full specification: ../../references/adapters/sk_code_adapter.md         ║
-// ║ Suppression list:    ../../references/adapters/sk_code_known_deviations.md║
+// ║ Full specification: ../../references/adapters/sk-code-adapter.md         ║
+// ║ Suppression list:    ../../references/adapters/sk-code-known-deviations.md║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
 
 /**
  * sk-code.cjs — wraps the real, already-shipping sk-code surface-detection
- * router (stack_detection.md/smart_routing.md, reused not reimplemented)
+ * router (stack-detection.md/smart-routing.md, reused not reimplemented)
  * and the real deterministic pattern-drift tooling
  * (verify_alignment_drift.py for OPENCODE; verify-minification.mjs and
  * test-minified-runtime.mjs for WEBFLOW) behind the deep-alignment adapter
@@ -33,7 +33,7 @@
  * that tooling cannot check.
  *
  * discover(scope) takes the real, live scope shape from
- * ../../references/discover_contract.md §3 / ../../references/lane_config_schema.md §5:
+ * ../../references/discover-contract.md §3 / ../../references/lane-config-schema.md §5:
  * `{type:'paths', values:[...]}` or `{type:'globs', values:[...]}` (a 'branchRange' scope
  * resolves to an empty result — sk-code's only registered artifact-class is
  * "code", never "git-history"; see discover()'s own comment).
@@ -82,12 +82,12 @@ const TEST_MINIFIED_RUNTIME_MJS = path.join(SK_CODE_DIR, 'code-webflow', 'assets
 // header comment for why (it writes z_minified/*.min.js + manifest.tsv,
 // violating read-only-by-default).
 const MINIFY_WEBFLOW_MJS = path.join(SK_CODE_DIR, 'code-webflow', 'assets', 'scripts', 'minify-webflow.mjs');
-const SMART_ROUTING_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'smart_routing.md');
-const STACK_DETECTION_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'stack_detection.md');
+const SMART_ROUTING_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'smart-routing.md');
+const STACK_DETECTION_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'stack-detection.md');
 const OPENCODE_REFERENCES_DIR = path.join(SK_CODE_DIR, 'code-opencode', 'references');
 const WEBFLOW_REFERENCES_DIR = path.join(SK_CODE_DIR, 'code-webflow', 'references');
 const MOTION_OVERLAY_DIR = path.join(SK_CODE_DIR, 'code-webflow', 'references', 'animation');
-const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk_code_known_deviations.md');
+const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-code-known-deviations.md');
 
 // Ported verbatim from verify_alignment_drift.py:39-51's SUPPORTED_EXTENSIONS —
 // this is the exact extension set the OPENCODE deterministic layer (layer 1)
@@ -773,7 +773,7 @@ function checkDeterministic(artifact, absPath) {
   return [makeFinding({
     severity: 'P1', type: 'surface-undetected', subcheck: 'surface-detection', layer: 'deterministic',
     message: 'Neither WEBFLOW nor OPENCODE surface markers matched this artifact (stack_detection.md Section 2); no standard applied.',
-    artifact, sourceTool: 'stack_detection.md (ported classifier)',
+    artifact, sourceTool: 'stack-detection.md (ported classifier)',
   })];
 }
 

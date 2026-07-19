@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation",
+  "specFolder": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation",
   "description": "The advisor hand-rolls BFS twice for `transitivepath` and `subgraph` (`lib/skill-graph/skill-graph-queries.ts:296-354` and `:376-423`), duplicating",
   "keywords": [
     "advisor",
@@ -14,11 +14,12 @@
     "skill-graph-queries",
     "duplicating"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.368Z",
+  "lastUpdated": "2026-07-18T03:48:57.288Z",
   "specId": "007",
   "folderSlug": "advisor-bfs-consolidation",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "013-advisor-and-codegraph-migrated-items"
   ],
   "memorySequence": 0,

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-07-17T14:30:19.747Z",
+    "last_save_at": "2026-07-17T20:26:08.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:54869a84c219416f94b8c434f6c69d796d971a63006582a276ff7d68a6e13ef2",
+    "source_fingerprint": "sha256:5af84f8a815936d88cad13fec0e80e2e5022949240595001b4a67e11137b8616",
     "source_doc_hashes": {
-      "spec.md": "711a86f2c033d7560950ab3a5dc695b9c1bb5b5e663d054e6e188e653cb85d4b",
-      "plan.md": "0e6248e43ae7de07a5fdce5be8224a1d0b41a5628afa8fed8c6d821a27284920",
-      "tasks.md": "ad7fa694ad05c5c94819814c4542ca28a004859a6f20a148d35f43997785a4dd",
-      "checklist.md": "bc46084d714a18f288a5109e3922f0c53377f1c8dbaa8769bef8c73bba1069fb"
+      "spec.md": "49415c9bd9a2f7e0734540ec15911c8909dd6c9c1994981c331a7d082775d52f",
+      "plan.md": "883ca3b8824c06fce384731ffaebe7910da40efe00755f4d4ab3156c2ea9931f",
+      "tasks.md": "ae9f9f730cfdcba3d53846761067b439b8df8d689e51d96e600a2270f3944b60",
+      "checklist.md": "97b08526c498b6e9b3bb8c11e49bf57bf9f9afc21d2c90338ac3bf12d7309bba"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-tooling changelog verification (032 phase 007)"
+title: "Implementation Plan: mcp-tooling changelog verification (020 phase 007)"
 description: "This plan performs a read-only check of the root and component changelog entries, expected version bumps, migration scope, exemptions, and append-only history."
 trigger_phrases:
   - "mcp-tooling changelog verification plan"

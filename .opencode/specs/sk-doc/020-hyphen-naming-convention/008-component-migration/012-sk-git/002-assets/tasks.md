@@ -1,9 +1,9 @@
 ---
-title: "Tasks: sk-git assets (032 phase 008/012/002)"
+title: "Tasks: sk-git assets (020 phase 008/012/002)"
 description: "Tasks for the sk-git asset and template filename rename phase."
 trigger_phrases:
   - "sk-git assets tasks"
-  - "032 asset rename tasks"
+  - "020 asset rename tasks"
   - "asset template pointer tasks"
 importance_tier: "important"
 contextType: "planning"

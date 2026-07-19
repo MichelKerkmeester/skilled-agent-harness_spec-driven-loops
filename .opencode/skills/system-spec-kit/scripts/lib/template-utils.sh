@@ -38,11 +38,11 @@ get_level_templates_dir() {
     local level="$1"
     local base_dir="$2"
     case "$level" in
-        1) printf '%s\n' "$base_dir/level_1" ;;
-        2) printf '%s\n' "$base_dir/level_2" ;;
-        3) printf '%s\n' "$base_dir/level_3" ;;
-        "3+"|4) printf '%s\n' "$base_dir/level_3+" ;;
-        *) printf '%s\n' "$base_dir/level_1" ;;  # Default fallback
+        1) printf '%s\n' "$base_dir/level-1" ;;
+        2) printf '%s\n' "$base_dir/level-2" ;;
+        3) printf '%s\n' "$base_dir/level-3" ;;
+        "3+"|4) printf '%s\n' "$base_dir/level-3+" ;;
+        *) printf '%s\n' "$base_dir/level-1" ;;  # Default fallback
     esac
 }
 
@@ -189,10 +189,10 @@ _normalize_template_level() {
     case "$level_or_dir" in
         1|2|3|"3+"|phase) printf '%s\n' "$level_or_dir" ;;
         phase-parent) printf '%s\n' "phase" ;;
-        */level_1) printf '%s\n' "1" ;;
-        */level_2) printf '%s\n' "2" ;;
-        */level_3) printf '%s\n' "3" ;;
-        */level_3+) printf '%s\n' "3+" ;;
+        */level-1) printf '%s\n' "1" ;;
+        */level-2) printf '%s\n' "2" ;;
+        */level-3) printf '%s\n' "3" ;;
+        */level-3+) printf '%s\n' "3+" ;;
         */phase_parent) printf '%s\n' "phase" ;;
         *) printf '%s\n' "1" ;;
     esac
@@ -238,7 +238,7 @@ resolve_level_contract() {
     local skill_root
     skill_root="$(cd "$script_dir/../.." && pwd)"
     local loader="$skill_root/scripts/node_modules/tsx/dist/loader.mjs"
-    local resolver="$skill_root/mcp_server/lib/templates/level-contract-resolver.ts"
+    local resolver="$skill_root/mcp-server/lib/templates/level-contract-resolver.ts"
 
     if [[ ! -f "$loader" || ! -f "$resolver" ]]; then
         local manifest="$skill_root/templates/manifest/spec-kit-docs.json"

@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Manual-testing-playbook (032 phase 009)"
-description: "Blocking SOL verification contract for Manual-testing-playbook in the 032 sk-design naming subtree."
+title: "Checklist: Manual-testing-playbook (020 phase 009)"
+description: "Blocking SOL verification contract for Manual-testing-playbook in the 020 sk-design naming subtree."
 trigger_phrases:
   - "manual-testing-playbook verification"
   - "sk-design manual-testing-playbook checklist"
-  - "032 manual-testing-playbook gate"
+  - "020 manual-testing-playbook gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Manual-testing-playbook (032 phase 009)
+# Checklist: Manual-testing-playbook (020 phase 009)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

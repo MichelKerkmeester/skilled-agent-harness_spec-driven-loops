@@ -1,5 +1,5 @@
 ---
-title: "Checklist: hub root and shared sk-code names (032 phase 008/001)"
+title: "Checklist: hub root and shared sk-code names (020 phase 008/001)"
 description: "Blocking SOL verification contract for the sk-code hub/shared rename and reference closure."
 trigger_phrases:
   - "hub shared naming checklist"

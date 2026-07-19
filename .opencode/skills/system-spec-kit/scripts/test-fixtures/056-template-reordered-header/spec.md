@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Template Fixture [template:level_2/spec.md]"
+title: "Feature Specification: Template Fixture [template:level-2/spec.md]"
 description: "Validator fixture for reordered required header failures."
 trigger_phrases:
   - "fixture"

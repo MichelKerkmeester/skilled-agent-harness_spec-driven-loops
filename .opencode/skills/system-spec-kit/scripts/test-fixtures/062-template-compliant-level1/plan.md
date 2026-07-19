@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Level 1 Fixture [template:level_1/plan.md]"
+title: "Implementation Plan: Level 1 Fixture [template:level-1/plan.md]"
 description: "Implementation plan fixture for Level 1 template compliance."
 trigger_phrases:
   - "fixture"

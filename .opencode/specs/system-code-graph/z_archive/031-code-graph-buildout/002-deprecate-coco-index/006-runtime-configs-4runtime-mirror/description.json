@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/002-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
   "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
   "keywords": [
     "part",
@@ -9,11 +9,12 @@
     "deprecation",
     "arc"
   ],
-  "lastUpdated": "2026-07-15T18:35:45.691Z",
+  "lastUpdated": "2026-07-18T03:48:55.417Z",
   "specId": "006",
   "folderSlug": "runtime-configs-4runtime-mirror",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "002-deprecate-coco-index"
   ],

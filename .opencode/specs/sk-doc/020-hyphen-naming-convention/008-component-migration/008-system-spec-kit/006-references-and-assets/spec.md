@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: References and assets (032 subtree 008 phase 006)"
+title: "Feature Specification: References and assets (020 subtree 008 phase 006)"
 description: "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions."
 trigger_phrases:
   - "system-spec-kit references and assets"
@@ -26,7 +26,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: References and assets
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 006 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 006 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

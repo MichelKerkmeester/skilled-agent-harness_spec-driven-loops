@@ -1,0 +1,137 @@
+/* ───────────────────────────────────────────────────────────────
+   CATEGORY: COMPONENT NAME
+─────────────────────────────────────────────────────────────── */
+
+/*
+   COPY-PASTE TEMPLATE for new Webflow CSS files.
+
+   Conventions enforced (see references/webflow/css/style-guide.md):
+     - 3-line file header /* ─ × 63 / title / ─ × 63 */, title ALL CAPS
+     - Section headers same shape, numbered (1., 2., 3., ...), sub-numbered (1.1) when needed
+     - BEM naming: .block, .block--element (double-dash), .block-modifier (single-dash)
+     - Custom property prefixes: --font-*, --vw-*, --component-*, --state-*, --global-*
+     - Attribute selectors use [data-* i] flag for case-insensitivity
+     - Animations use ONLY transform / opacity / scale — never width/height/top/left/padding/margin
+     - prefers-reduced-motion: reduce override is MANDATORY for any animation
+     - 2-space indent (4-space tolerated for legacy files)
+
+   Replace ALL placeholder text marked [LIKE_THIS] before shipping.
+   Delete this introductory comment block once the file is real.
+*/
+
+
+/* ───────────────────────────────────────────────────────────────
+   1. CUSTOM PROPERTIES
+─────────────────────────────────────────────────────────────── */
+.[block] {
+  --[block]-padding: 1rem;
+  --[block]-radius: 0.5rem;
+  --[block]-transition-duration: 0.3s;
+  --[block]-easing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   2. BASE BLOCK
+─────────────────────────────────────────────────────────────── */
+.[block] {
+  display: block;
+  padding: var(--[block]-padding);
+  border-radius: var(--[block]-radius);
+  /* Transform/opacity only — no layout property animations */
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  transition:
+    transform var(--[block]-transition-duration) var(--[block]-easing),
+    opacity var(--[block]-transition-duration) var(--[block]-easing);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   3. ELEMENTS (BEM double-dash)
+─────────────────────────────────────────────────────────────── */
+.[block]--header {
+  margin: 0;
+}
+
+.[block]--body {
+  margin-top: 0.5rem;
+}
+
+.[block]--footer {
+  margin-top: 1rem;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   4. MODIFIERS (BEM single-dash)
+─────────────────────────────────────────────────────────────── */
+.[block]-featured {
+  background-color: var(--_color-tokens---bg-neutral--accent, #f5f5f5);
+}
+
+.[block]-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   5. INTERACTIVE STATES (data-attribute-driven)
+─────────────────────────────────────────────────────────────── */
+/* Show only when JavaScript marks the component as ready */
+[data-component="[name]" i][data-state="ready"] .[block] {
+  visibility: visible;
+}
+
+/* Hide while loading to prevent flash-of-unstyled-content */
+[data-component="[name]" i][data-state="loading"] .[block] {
+  visibility: hidden;
+}
+
+/* Active hover/focus state (lifted with transform — no layout shift) */
+.[block]:hover,
+.[block]:focus-within,
+.[block].is-active {
+  transform: translate3d(0, -0.25rem, 0) scale(1.02);
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   6. REDUCED MOTION (MANDATORY)
+   Honors prefers-reduced-motion: reduce by collapsing transitions
+   to near-instant. Required for accessibility compliance.
+─────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .[block] {
+    transition-duration: 1ms;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+
+/* ───────────────────────────────────────────────────────────────
+   7. RESPONSIVE BREAKPOINTS
+─────────────────────────────────────────────────────────────── */
+
+/* ───────────────────────────────────────────────────────────────
+   7.1 MOBILE: SIMPLIFY ANIMATIONS TO PREVENT SCROLL FLICKERING
+   Touch devices fire rapid IntersectionObserver / scroll callbacks.
+   Long transitions cause visible flickering when state changes
+   faster than the animation can complete. Mobile gets instant states.
+─────────────────────────────────────────────────────────────── */
+@media (hover: none),
+       (pointer: coarse) {
+  .[block] {
+    transition: none;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   7.2 DESKTOP REFINEMENTS (>= 992px)
+─────────────────────────────────────────────────────────────── */
+@media (min-width: 992px) {
+  .[block] {
+    padding: calc(var(--[block]-padding) * 1.5);
+  }
+}

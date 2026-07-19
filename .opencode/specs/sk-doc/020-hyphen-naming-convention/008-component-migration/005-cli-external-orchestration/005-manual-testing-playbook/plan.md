@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration manual-testing-playbook naming (032 phase 005.005)"
+title: "Implementation Plan: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "Implementation plan for the four cli-external-orchestration playbook trees: build a complete directory/file map, rename scenario paths in dependency order, update links, and prove scenario and frontmatter parity."
 trigger_phrases:
   - "cli-external manual playbook implementation plan"
@@ -49,7 +49,7 @@ The current inventory spans 34 directories and 116 files: the hub root has `hub_
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 001–004 have handed off their ownership boundaries and the 032 exemption record is available.
+- [ ] Phases 001–004 have handed off their ownership boundaries and the 020 exemption record is available.
 - [ ] Candidate/BASE SHAs and all four recursive inventories are captured.
 - [ ] Every category and file has a single owner and a rename/protected/exempt disposition.
 
@@ -110,7 +110,7 @@ Four-tree BASE inventory → ownership/classification ledger → segment-aware s
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase depends on phases 001–004 for root and component ownership boundaries and hands its complete playbook map to phase 006. Phase 007 later checks release evidence; the 032 exemption record governs frontmatter, identifiers, Python names, and frozen history.
+The phase depends on phases 001–004 for root and component ownership boundaries and hands its complete playbook map to phase 006. Phase 007 later checks release evidence; the 020 exemption record governs frontmatter, identifiers, Python names, and frozen history.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

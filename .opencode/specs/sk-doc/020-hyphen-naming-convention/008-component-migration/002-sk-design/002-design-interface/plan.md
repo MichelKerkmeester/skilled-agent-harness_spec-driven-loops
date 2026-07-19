@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Design-interface (032 phase 002)"
-description: "Execution plan for Design-interface in the 032 sk-design naming subtree."
+title: "Implementation Plan: Design-interface (020 phase 002)"
+description: "Execution plan for Design-interface in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-interface implementation plan"
   - "sk-design design-interface plan"
-  - "032 design-interface tasks"
+  - "020 design-interface tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Design-interface (032 phase 002)
+# Implementation Plan: Design-interface (020 phase 002)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

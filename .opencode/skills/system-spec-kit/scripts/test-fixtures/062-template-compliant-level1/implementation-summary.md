@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Level 1 template compliance fixture summary."
 trigger_phrases:
   - "fixture"

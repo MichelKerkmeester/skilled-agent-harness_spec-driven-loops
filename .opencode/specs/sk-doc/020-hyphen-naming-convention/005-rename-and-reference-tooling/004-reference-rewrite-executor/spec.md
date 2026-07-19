@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: static reference-rewrite executor (032 phase 005.004)"
+title: "Feature Specification: static reference-rewrite executor (020 phase 005.004)"
 description: "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved."
 trigger_phrases:
   - "static reference-rewrite executor"
@@ -12,13 +12,17 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the static reference-rewrite executor phase contract"
-    next_safe_action: "Implement CAS-protected static rewrite against the 002 ledger and 006 map"
+    last_updated_at: "2026-07-18T08:08:15Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified the fixture-only static reference-rewrite executor"
+    next_safe_action: "Supply the phase 006 frozen semantic map to a reviewed dry-run"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py"
+      - ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The executor rewrites only static reference sites the checker already dispositioned; it never discovers references itself."
@@ -28,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Static Reference-Rewrite Executor
 
@@ -44,10 +48,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child phase 004 of the 032 rename-and-reference-tooling program |
+| **Origin** | Child phase 004 of the 020 rename-and-reference-tooling program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -86,7 +90,7 @@ This is the mechanism that lets a drifted batch re-derive rather than be hand-fi
 - Reference discovery, classification, and the disposition ledger; phase 002 is the read-only checker that produces this phase's input.
 - Freezing the repository map or partitioning dependency-closed SCCs; phase 006 owns the executable frozen map.
 - Rewriting dynamic references by guessing a target, or altering code identifiers, JSON/YAML/TOML keys, or frontmatter fields.
-- The actual repo-wide reference rewrite; this authoring pass invokes nothing against the real tree.
+- The actual repo-wide reference rewrite. Implementation and evidence ran only in disposable fixture repositories.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -113,7 +117,7 @@ This is the mechanism that lets a drifted batch re-derive rather than be hand-fi
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase inherits the 032 program risks: over-broad rewrites, exemption leakage, broken references, concurrent worktrees, and
+The phase inherits the 020 program risks: over-broad rewrites, exemption leakage, broken references, concurrent worktrees, and
 non-reproducible execution. Its specific risks are a stale textual patch corrupting a concurrently-edited file, a dynamic
 reference rewritten to a guessed path, a partial apply that leaves references half-rewritten, and a rewrite reaching an exempt
 or generated surface.

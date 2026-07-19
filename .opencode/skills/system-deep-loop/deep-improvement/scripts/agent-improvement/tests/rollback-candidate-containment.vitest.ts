@@ -34,7 +34,7 @@ function writeJson(filePath: string, value: unknown) {
 function buildPacket(target: string) {
   const backup = path.join(work, 'backup.txt');
   const configPath = path.join(work, 'config.json');
-  const manifestPath = path.join(work, 'target_manifest.jsonc');
+  const manifestPath = path.join(work, 'target-manifest.jsonc');
 
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, 'CURRENT TARGET BODY\n', 'utf8');

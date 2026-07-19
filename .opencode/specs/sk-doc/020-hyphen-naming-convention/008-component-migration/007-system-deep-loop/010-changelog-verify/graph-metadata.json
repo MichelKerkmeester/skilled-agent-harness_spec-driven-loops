@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump. This verification-only phase checks the root changelog and declared version surfaces against phases 001-009 and performs no filesystem rename or unrelated history rewrite.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-07-17T14:30:28.854Z",
+    "last_save_at": "2026-07-17T20:26:13.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ce4a04dc5636d638e8e314e0567a7652b91cb32f8a1ea96053d67bb7d0768bda",
+    "source_fingerprint": "sha256:2623e48df90f25d3523adec571219f4448f3d12679f68f377f9ad0f66f91e2f6",
     "source_doc_hashes": {
-      "spec.md": "1ee3df3122fdd90fe0d731f0cb756ccf8676441435c4de2a4e86142cb55a3750",
-      "plan.md": "042de23c6efc7ad585ffafdd3f5a79c78f35c129454a3f61796e2f164274232f",
-      "tasks.md": "1538089e2f7b0b9066bebce309dfe0b6cbf558f52a1e3e4e8439412127682750",
-      "checklist.md": "d0220ce081e43a22175d1725d992cff38df3064b5d7701ba7cad88db97d79867"
+      "spec.md": "e4c45078500bca067de1954fbbd3abb6aa370f486318c38d6153b951fa87e782",
+      "plan.md": "7280d90230fa71883da87383324f18068f66e97567e25b43acafadcb78ab4486",
+      "tasks.md": "e06f4dd0e31a42c5d6bbea6e55be672c4cddc6443760c89b8a07ab9e9d819ec2",
+      "checklist.md": "7662a38444d79b9f7a334b3eaef0fa35da2895946fb72afcf51bf96171f8f4ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

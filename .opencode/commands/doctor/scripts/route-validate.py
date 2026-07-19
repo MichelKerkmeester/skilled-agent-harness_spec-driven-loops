@@ -125,7 +125,7 @@ def parse_router_allowed_tools(router_path: Path) -> set[str]:
 
 def parse_speckit_targets(router_path: Path) -> set[str]:
     """Extract target names from speckit.md's Workflow Assets table rows,
-    e.g. "| `memory` | `.opencode/commands/doctor/assets/doctor_memory.yaml` |"."""
+    e.g. "| `memory` | `.opencode/commands/doctor/assets/doctor-memory.yaml` |"."""
     if not router_path.exists():
         return set()
     text = router_path.read_text(encoding="utf-8")

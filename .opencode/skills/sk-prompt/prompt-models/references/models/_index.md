@@ -1,6 +1,6 @@
 ---
 title: Small-Model Prompt-Craft Profiles — Index
-description: Thin index of the per-model prompt-craft profiles that ARE this skill's hub content. One row per active small model — prompt framework + status — linking to each model's profile. Frameworks mirror prompt-models/assets/model_profiles.json recommended_frameworks (the DATA source of truth); executor MECHANICS stay in cli-opencode.
+description: Thin index of the per-model prompt-craft profiles that ARE this skill's hub content. One row per active small model — prompt framework + status — linking to each model's profile. Frameworks mirror prompt-models/assets/model-profiles.json recommended_frameworks (the DATA source of truth); executor MECHANICS stay in cli-opencode.
 trigger_phrases:
   - "small model profile index"
   - "prompt craft profiles index"
@@ -13,9 +13,9 @@ version: 0.8.0.12
 
 # Small-Model Prompt-Craft Profiles — Index
 
-These per-model profiles are the WEIGHT of `prompt-models` — its prompt-craft hub content. Each `<id>.md` records how to PROMPT that model: framework (primary + fallback), pre-planning density, scaffold shape, and gotchas. The framework choices below mirror `recommended_frameworks` in [`prompt-models/assets/model_profiles.json`](../../assets/model_profiles.json) (the DATA source of truth) and each profile cites it. Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode` — see [`../pattern_index.md`](../pattern_index.md).
+These per-model profiles are the WEIGHT of `prompt-models` — its prompt-craft hub content. Each `<id>.md` records how to PROMPT that model: framework (primary + fallback), pre-planning density, scaffold shape, and gotchas. The framework choices below mirror `recommended_frameworks` in [`prompt-models/assets/model-profiles.json`](../../assets/model-profiles.json) (the DATA source of truth) and each profile cites it. Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode` — see [`../pattern-index.md`](../pattern-index.md).
 
-> A profile path that is missing on disk is a roadmap pointer (profile not yet authored), not a broken link — same convention as `pattern_index.md`.
+> A profile path that is missing on disk is a roadmap pointer (profile not yet authored), not a broken link — same convention as `pattern-index.md`.
 
 ---
 
@@ -44,6 +44,6 @@ Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Op
 
 ## 2. RELATED
 
-- [`../pattern_index.md`](../pattern_index.md) — Locates executor-owned MECHANICS + ship status.
+- [`../pattern-index.md`](../pattern-index.md) — Locates executor-owned MECHANICS + ship status.
 - [`../../SKILL.md`](../../SKILL.md) — Hub workflow, dispatch matrix, rules.
-- [`../../assets/model_profiles.json`](../../assets/model_profiles.json) — The registry DATA every profile mirrors.
+- [`../../assets/model-profiles.json`](../../assets/model-profiles.json) — The registry DATA every profile mirrors.

@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify prompt-improver agent naming (032 phase 012)"
-description: "Checklist for phase 012 of the 032 agents component migration: verify the prompt-improver filename candidate set."
+title: "Checklist: verify prompt-improver agent naming (020 phase 012)"
+description: "Checklist for phase 012 of the 020 agents component migration: verify the prompt-improver filename candidate set."
 trigger_phrases:
   - "prompt-improver agent naming checklist"
   - "agents phase 012 checklist"

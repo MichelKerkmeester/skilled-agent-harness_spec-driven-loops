@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: mcp-server path closure (032 component 011 phase 001)"
+title: "Decision Record: mcp-server path closure (020 component 011 phase 001)"
 description: "The design choices for moving the embedded mcp_server directory to mcp-server without changing Python exemptions, tool-mandated package filenames, package identifiers, or the Node entrypoint contract."
 trigger_phrases:
   - "mcp-server path decision record"
@@ -31,7 +31,7 @@ _memory:
 ## Context
 
 The embedded Node MCP server is stored in mcp_server, and active shell, guide, diagnostic, metadata, and configured-entrypoint
-paths refer to that directory. The 032 policy requires permitted filesystem names to use kebab-case, but it explicitly
+paths refer to that directory. The 020 policy requires permitted filesystem names to use kebab-case, but it explicitly
 exempts Python names, tool-mandated filenames, generated/lockfile content, identifiers, and frozen history. The package
 directory therefore has to move without turning a filesystem rename into a package-contract rewrite.
 <!-- /ANCHOR:context -->
@@ -43,7 +43,7 @@ directory therefore has to move without turning a filesystem rename into a packa
 
 The execution map changes mcp_server to mcp-server. It keeps package-lock.json, tsconfig.json, .nvmrc, index.ts, and
 scripts/check-node.cjs with their existing names; package identifiers and JSON keys remain data contracts. A mechanical
-rename of every underscore-bearing token would violate the 032 exemption boundary and could change npm or TypeScript
+rename of every underscore-bearing token would violate the 020 exemption boundary and could change npm or TypeScript
 behavior.
 
 ### DR-002 — Move the full path consumer closure atomically

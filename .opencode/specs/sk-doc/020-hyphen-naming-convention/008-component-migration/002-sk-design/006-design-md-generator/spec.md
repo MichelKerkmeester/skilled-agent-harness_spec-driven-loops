@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Design-md-generator (032 phase 006)"
+title: "Feature Specification: Design-md-generator (020 phase 006)"
 description: "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure."
 trigger_phrases:
   - "design-md-generator naming phase"
   - "sk-design design-md-generator phase"
-  - "032 design-md-generator"
+  - "020 design-md-generator"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Design-md-generator (032 phase 006)
+# Feature Specification: Design-md-generator (020 phase 006)
 
 > Phase 006 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 6 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 6 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

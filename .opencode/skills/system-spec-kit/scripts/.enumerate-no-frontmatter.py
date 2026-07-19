@@ -14,7 +14,7 @@ for p in sorted(ROOT.rglob('*.md')):
     if p.name not in CANONICAL_BASENAMES:
         continue
     s = str(p)
-    if any(seg in s for seg in ('/z_archive/', '/z_future/', '/node_modules/',
+    if any(seg in s for seg in ('/z_archive/', '/z-future/', '/node_modules/',
                                  '/research/iterations/', '/review/iterations/',
                                  '/.tmp/', '/tmp-test-fixtures/')):
         continue

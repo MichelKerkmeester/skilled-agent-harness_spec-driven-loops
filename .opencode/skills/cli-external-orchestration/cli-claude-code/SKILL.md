@@ -95,13 +95,13 @@ if detect_self_invocation():
 
 | Level       | When to Load            | Resources                      |
 | ----------- | ----------------------- | ------------------------------ |
-| ALWAYS      | Every skill invocation  | `references/cli_reference.md`, `assets/prompt_quality_card.md` |
+| ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
 | CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
 | ON_DEMAND   | Only on explicit request| Extended templates and patterns |
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -121,19 +121,19 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "DEEP_REASONING":    ["references/cli_reference.md", "references/claude_tools.md"],
-    "CODE_EDITING":      ["references/cli_reference.md", "assets/prompt_templates.md"],
-    "STRUCTURED_OUTPUT": ["references/cli_reference.md", "references/claude_tools.md"],
-    "REVIEW":            ["references/integration_patterns.md", "references/agent_delegation.md"],
-    "AGENT_DELEGATION":  ["references/agent_delegation.md", "references/integration_patterns.md"],
-    "TEMPLATES":         ["assets/prompt_templates.md", "references/cli_reference.md"],
-    "PATTERNS":          ["references/integration_patterns.md", "references/cli_reference.md"],
+    "DEEP_REASONING":    ["references/cli-reference.md", "references/claude-tools.md"],
+    "CODE_EDITING":      ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "STRUCTURED_OUTPUT": ["references/cli-reference.md", "references/claude-tools.md"],
+    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
+    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
+    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
+    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
 }
 
 LOADING_LEVELS = {
-    "ALWAYS": ["references/cli_reference.md", "assets/prompt_quality_card.md"],
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
     "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "extended thinking", "json schema", "claude agent", "claude prompt", "diff-based edit"],
-    "ON_DEMAND": ["references/claude_tools.md", "assets/prompt_templates.md"],
+    "ON_DEMAND": ["references/claude-tools.md", "assets/prompt-templates.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -144,7 +144,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 ```
 
-**Call sequence** (using shared helpers from `shared_smart_router.md`):
+**Call sequence** (using shared helpers from `shared-smart-router.md`):
 
 1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
 2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
@@ -153,7 +153,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_claude_code_resources(task)` function body lives in [`shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md) — substitute `<PROVIDER>` = `claude_code`.
+The `route_claude_code_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `claude_code`.
 
 ---
 
@@ -226,7 +226,7 @@ claude -p "<prompt>" \
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. The full roster (including the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs), with cost and per-task selection guidance, lives in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) §6.
+`claude-sonnet-4-6` is the skill default. The full roster (including the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs), with cost and per-task selection guidance, lives in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) §6.
 
 | Model | ID | When to reach for it |
 |-------|----|----------------------|
@@ -238,7 +238,7 @@ Default to Sonnet unless the task needs Opus deep reasoning; name a current-gene
 
 ### Claude Code Agent Delegation
 
-Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when the task matches a specialization. Full roster and invocation patterns: [agent_delegation.md](./references/agent_delegation.md).
+Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
 
 | Task Type | Agent |
 |-----------|-------|
@@ -254,7 +254,7 @@ Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when th
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`, extended thinking, session `--continue`/`--resume`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) (§4–§13). Four gotchas that must be honored at routing time:
+The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`, extended thinking, session `--continue`/`--resume`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) (§4–§13). Four gotchas that must be honored at routing time:
 
 - **Non-interactive requires `-p` (print) mode** — `claude -p "prompt" --output-format text 2>&1`. `--output-format` defaults to `text`; use `json` (adds role/content/cost metadata) or `stream-json` only when a pipeline needs it. Capture stderr with `2>&1`.
 - **`--permission-mode plan` is read-only** — use it for review/analysis/exploration (no file writes). `bypassPermissions` auto-approves all writes and **requires explicit user approval**; the default mode already allows writes.
@@ -274,10 +274,10 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 5. Specify `--model` explicitly: default `claude-sonnet-4-6` unless task needs Opus (deep reasoning). Use Haiku only when explicitly requested or after adoption.
 6. Route to the appropriate `--agent <name>` when the task matches a specialization (see Section 3 routing table).
 7. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 interactively.
-8. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md`:
-   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
-   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model_profiles.json` `recommended_frameworks`); consult it before composing for any small model.
-   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
+8. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`:
+   1. **Fast path (default).** Build from the local `assets/prompt-quality-card.md`, which delegates the framework table + CLEAR check to the canonical card.
+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
+   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
 
    Tag the framework in the Bash invocation comment and use the returned `ENHANCED_PROMPT`. Apply the CLEAR 5-question check from the canonical card via the local delegating card.
 9. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) load `sk-code`'s code-review mode only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
@@ -302,9 +302,9 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Claude Code CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory_handback.md`](../../system-spec-kit/references/cli/memory_handback.md).
+When the calling AI needs to preserve session context from a Claude Code CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md).
 
-Claude-Code-specific Memory Epilogue template: see [assets/prompt_templates.md](./assets/prompt_templates.md) §11.
+Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](./assets/prompt-templates.md) §11.
 
 Example invocation:
 ```bash
@@ -317,18 +317,18 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 ### Core References
 
-- [cli_reference.md](./references/cli_reference.md) - Complete CLI flags, commands, models, authentication, and configuration
-- [integration_patterns.md](./references/integration_patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
-- [claude_tools.md](./references/claude_tools.md) - Unique capabilities and comparison with OpenCode
-- [agent_delegation.md](./references/agent_delegation.md) - 9 agent roster, routing table, and invocation patterns
+- [cli-reference.md](./references/cli-reference.md) - Complete CLI flags, commands, models, authentication, and configuration
+- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
+- [claude-tools.md](./references/claude-tools.md) - Unique capabilities and comparison with OpenCode
+- [agent-delegation.md](./references/agent-delegation.md) - 9 agent roster, routing table, and invocation patterns
 
 ### Templates and Assets
 
-- [prompt_templates.md](./assets/prompt_templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
 
 ### Shared (cli-* family)
-- [shared_smart_router.md](../../system-spec-kit/references/cli/shared_smart_router.md) - Helper-function bodies for the smart router.
-- [memory_handback.md](../../system-spec-kit/references/cli/memory_handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 - [Claude Code GitHub](https://github.com/anthropics/claude-code) - Official repository
@@ -339,7 +339,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 - Load only references needed for current intent.
 - Smart Routing (Section 2) is the single routing authority.
-- `cli_reference.md` is ALWAYS loaded as baseline.
+- `cli-reference.md` is ALWAYS loaded as baseline.
 
 ---
 
@@ -379,6 +379,6 @@ Key integrations:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/cli_reference.md`, `references/integration_patterns.md`, `assets/prompt_quality_card.md`, `assets/prompt_templates.md`, `references/agent_delegation.md`, `references/claude_tools.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/cli-reference.md`, `references/integration-patterns.md`, `assets/prompt-quality-card.md`, `assets/prompt-templates.md`, `references/agent-delegation.md`, `references/claude-tools.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Related skills: `cli-opencode` for sandboxed OpenAI perspective, `cli-opencode` for full OpenCode runtime dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.

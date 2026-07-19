@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-prompt benchmark artifact names (032 phase 004.005)"
+title: "Checklist: sk-prompt benchmark artifact names (020 phase 004.005)"
 description: "Blocking SOL verifier contract for phase 005 of the sk-prompt kebab-case program: authored benchmark path closure, generated-output disposition, and benchmark semantic parity."
 trigger_phrases:
   - "sk-prompt benchmark checklist"

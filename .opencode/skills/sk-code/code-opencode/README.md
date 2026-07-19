@@ -23,7 +23,7 @@ version: 1.0.0.4
 
 - `SKILL.md` — the surface contract, reference map, and standards.
 - `references/` — `typescript/`, `python/`, `shell/`, `rust/`, `config/`, `javascript/` (language standards); `shared/` (language-agnostic patterns, hooks, alignment verification).
-- `assets/checklists/` — component authoring (skill/agent/command/mcp_server) + per-language quality gates.
+- `assets/checklists/` — component authoring (skill/agent/command/mcp-server) + per-language quality gates.
 - `changelog/` — release history.
 
 Spec-folder authoring lives in system-spec-kit, not here. See `SKILL.md` for the full reference map and standards.

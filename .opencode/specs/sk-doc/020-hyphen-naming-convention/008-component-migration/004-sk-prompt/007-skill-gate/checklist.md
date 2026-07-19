@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-prompt subtree rollup gate (032 phase 004.007)"
+title: "Checklist: sk-prompt subtree rollup gate (020 phase 004.007)"
 description: "Blocking SOL verifier contract for phase 007 of the sk-prompt kebab-case program: sibling completion, full scope-aware naming census, active-reference closure, and final handoff."
 trigger_phrases:
   - "sk-prompt rollup gate checklist"

@@ -75,7 +75,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
-Lifecycle controls now include [run-now control](./feature_catalog/loop_lifecycle/run_now_control.md), [per-iteration memory upsert](./feature_catalog/loop_lifecycle/per_iteration_memory_upsert.md), and [loop-wide dry-run](./feature_catalog/loop_lifecycle/loop_wide_dry_run.md).
+Lifecycle controls now include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
 
 ### Externalized State
 
@@ -83,15 +83,15 @@ All continuity lives in packet files under `{spec_folder}/research/`, not in con
 
 Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
 
-Reducer-owned state also covers [injection inbox provenance](./feature_catalog/state_management/injection_inbox_provenance.md), [question conflict ownership](./feature_catalog/state_management/question_conflict_ownership.md), [rejected-pattern cache](./feature_catalog/state_management/rejected_pattern_cache.md), [ideas backlog lifecycle](./feature_catalog/state_management/ideas_backlog_lifecycle.md), and [dashboard sparkline trend](./feature_catalog/state_management/dashboard_sparkline_trend.md).
+Reducer-owned state also covers [injection inbox provenance](./feature-catalog/state-management/injection-inbox-provenance.md), [question conflict ownership](./feature-catalog/state-management/question-conflict-ownership.md), [rejected-pattern cache](./feature-catalog/state-management/rejected-pattern-cache.md), [ideas backlog lifecycle](./feature-catalog/state-management/ideas-backlog-lifecycle.md), and [dashboard sparkline trend](./feature-catalog/state-management/dashboard-sparkline-trend.md).
 
 ### Convergence Detection
 
 Convergence is a composite stop signal driven by the new-information ratio per iteration. The loop continues as long as iterations keep surfacing new findings. It stops when the ratio falls below the convergence threshold (default 0.05) for long enough. A quality gate also checks source diversity, focus alignment and weak-source prevention before accepting a stop. A stuck-recovery path handles iterations that add nothing, escalating after the stuck threshold (default 3) is reached.
 
-The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence_signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` and `deep-ai-council` each use a different default tuned to their domain.
+The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence-signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` and `deep-ai-council` each use a different default tuned to their domain.
 
-The minimum-iteration behavior is documented as the [anti-convergence floor](./feature_catalog/convergence/anti_convergence_floor.md).
+The minimum-iteration behavior is documented as the [anti-convergence floor](./feature-catalog/convergence/anti-convergence-floor.md).
 
 ### Progressive Synthesis
 
@@ -132,7 +132,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 | Packet resumes when you expected a new run | An active lineage exists in the config | Inspect `deep-research-config.json` for the current `sessionId`. Archive the existing `research/` tree and pass `--restart` or delete the config. |
 | Loop will not continue after pause | The pause file is still present | Remove `{spec_folder}/research/.deep-research-pause` and re-invoke the command |
 | Agent hits the tool-call cap every iteration | The focus area is too broad | Tighten the focus in `deep-research-strategy.md` to one sub-question per iteration |
-| Runtime mirror behaves differently across CLI executors | Provider quirks or missing capabilities | Compare the mirror against `references/guides/capability_matrix.md` and `assets/runtime_capabilities.json` |
+| Runtime mirror behaves differently across CLI executors | Provider quirks or missing capabilities | Compare the mirror against `references/guides/capability-matrix.md` and `assets/runtime-capabilities.json` |
 
 ---
 
@@ -172,11 +172,11 @@ The skill ships two validation packages. You can also check that this document p
 
 ### Feature Catalog
 
-The `feature_catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and research output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
+The `feature-catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and research output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
 
 ### Manual Testing Playbook
 
-Deterministic scenarios under `manual_testing_playbook/` cover loop lifecycle, state management, convergence and recovery, and research output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
+Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence and recovery, and research output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-research/README.md --type readme
@@ -191,28 +191,28 @@ Expected output: zero issues reported.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the rules and the full operating contract |
-| [`references/guides/quick_reference.md`](./references/guides/quick_reference.md) | One-page operator cheat sheet with commands, parameters, state files and the convergence tree |
-| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | Iteration lifecycle, dispatch rules, reducer sequencing and the command-owned state flow |
-| [`references/protocol/spec_check_protocol.md`](./references/protocol/spec_check_protocol.md) | Bounded `spec.md` anchoring, `folder_state` rules and generated-fence write-back |
+| [`references/guides/quick-reference.md`](./references/guides/quick-reference.md) | One-page operator cheat sheet with commands, parameters, state files and the convergence tree |
+| [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Iteration lifecycle, dispatch rules, reducer sequencing and the command-owned state flow |
+| [`references/protocol/spec-check-protocol.md`](./references/protocol/spec-check-protocol.md) | Bounded `spec.md` anchoring, `folder_state` rules and generated-fence write-back |
 | [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Live stop contract, legal-stop gates and convergence navigation hub |
-| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | New-information ratio, rolling average, noise floor, entropy, stuck count and reporting |
-| [`references/convergence/convergence_recovery.md`](./references/convergence/convergence_recovery.md) | Stuck recovery, recovery strategy selection, tiered errors and escalation |
-| [`references/convergence/convergence_graph.md`](./references/convergence/convergence_graph.md) | Graph-aware stop gates, coverage-graph events and graceful degradation |
-| [`references/state/state_format.md`](./references/state/state_format.md) | Packet file hub with owners, mutability rules and navigation |
-| [`references/state/state_jsonl.md`](./references/state/state_jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
-| [`references/state/state_outputs.md`](./references/state/state_outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
-| [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
-| [`references/guides/capability_matrix.md`](./references/guides/capability_matrix.md) | Runtime parity source of truth across OpenCode, Claude and OpenCode executors |
+| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | New-information ratio, rolling average, noise floor, entropy, stuck count and reporting |
+| [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection, tiered errors and escalation |
+| [`references/convergence/convergence-graph.md`](./references/convergence/convergence-graph.md) | Graph-aware stop gates, coverage-graph events and graceful degradation |
+| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file hub with owners, mutability rules and navigation |
+| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
+| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
+| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
+| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across OpenCode, Claude and OpenCode executors |
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer, dashboard generator and convergence evaluator |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep_research_config.json`](./assets/deep_research_config.json) | Config template with defaults for max iterations, convergence threshold and executor |
-| [`assets/deep_research_strategy.md`](./assets/deep_research_strategy.md) | Strategy template with focus areas, what worked, what failed and exhausted approaches |
-| [`assets/deep_research_dashboard.md`](./assets/deep_research_dashboard.md) | Dashboard template with convergence trend and iteration summary |
-| [`assets/prompt_pack_iteration.md.tmpl`](./assets/prompt_pack_iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
-| [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
-| [`feature_catalog/`](./feature_catalog/) | Feature inventory across loop lifecycle, state management, convergence and research output |
-| [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark (RSB): what the model does at `/deep:research` under realistic prompts — dispatch evidence, presentation, latency vs Claude |
+| [`assets/deep-research-config.json`](./assets/deep-research-config.json) | Config template with defaults for max iterations, convergence threshold and executor |
+| [`assets/deep-research-strategy.md`](./assets/deep-research-strategy.md) | Strategy template with focus areas, what worked, what failed and exhausted approaches |
+| [`assets/deep-research-dashboard.md`](./assets/deep-research-dashboard.md) | Dashboard template with convergence trend and iteration summary |
+| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
+| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
+| [`feature-catalog/`](./feature-catalog/) | Feature inventory across loop lifecycle, state management, convergence and research output |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark (RSB): what the model does at `/deep:research` under realistic prompts — dispatch evidence, presentation, latency vs Claude |
 
 ### Maintainer Checklist: Adding or Changing a Research-Loop Feature
 
@@ -220,8 +220,8 @@ A feature change to this skill typically touches more than one surface. Before c
 
 - [ ] **`SKILL.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
 - [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
-- [ ] **`feature_catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
-- [ ] **`manual_testing_playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
-- [ ] **command YAML/tests** -- `.opencode/commands/deep/assets/deep_research_auto.yaml` and `deep_research_confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
-- [ ] **`assets/`** -- templates (`deep_research_config.json`, `deep_research_strategy.md`, `deep_research_dashboard.md`, prompt pack) match the new shape
+- [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
+- [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
+- [ ] **command YAML/tests** -- `.opencode/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+- [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
 - [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent

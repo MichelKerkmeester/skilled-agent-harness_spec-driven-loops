@@ -32,12 +32,12 @@ const VALIDATION_DIR = path.join(ROOT, 'references', 'validation');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
 
 // Five Checks documentation path
-const FIVE_CHECKS_DOC = path.join(VALIDATION_DIR, 'five_checks.md');
+const FIVE_CHECKS_DOC = path.join(VALIDATION_DIR, 'five-checks.md');
 
 // Template paths
-const LEVEL_1_DIR = path.join(TEMPLATES_DIR, 'level_1');
-const LEVEL_2_DIR = path.join(TEMPLATES_DIR, 'level_2');
-const LEVEL_3_DIR = path.join(TEMPLATES_DIR, 'level_3');
+const LEVEL_1_DIR = path.join(TEMPLATES_DIR, 'level-1');
+const LEVEL_2_DIR = path.join(TEMPLATES_DIR, 'level-2');
+const LEVEL_3_DIR = path.join(TEMPLATES_DIR, 'level-3');
 const LEVEL_3PLUS_DIR = path.join(TEMPLATES_DIR, 'level_3+');
 const EXAMPLES_DIR = path.join(TEMPLATES_DIR, 'examples');
 const ADDENDUM_DIR = path.join(TEMPLATES_DIR, 'addendum');
@@ -426,27 +426,27 @@ async function testDecisionRecordIntegration() {
     const level3DecisionRecord = readFile(path.join(LEVEL_3_DIR, 'decision-record.md'));
     if (level3DecisionRecord) {
       if (level3DecisionRecord.includes('Five Checks Evaluation')) {
-        pass('T-DR-001: level_3/decision-record.md has Five Checks section', 'Section found');
+        pass('T-DR-001: level-3/decision-record.md has Five Checks section', 'Section found');
       } else {
-        fail('T-DR-001: level_3/decision-record.md has Five Checks section', 'Section not found');
+        fail('T-DR-001: level-3/decision-record.md has Five Checks section', 'Section not found');
       }
 
       // Test table format in Level 3
       const checks = parseFiveChecksTable(level3DecisionRecord);
       if (checks && checks.length === 5) {
-        pass('T-DR-002: level_3/decision-record.md has valid Five Checks table', `Found ${checks.length} checks`);
+        pass('T-DR-002: level-3/decision-record.md has valid Five Checks table', `Found ${checks.length} checks`);
       } else {
-        fail('T-DR-002: level_3/decision-record.md has valid Five Checks table', 'Table not parseable or incomplete');
+        fail('T-DR-002: level-3/decision-record.md has valid Five Checks table', 'Table not parseable or incomplete');
       }
 
       // Test Checks Summary line exists
       if (level3DecisionRecord.includes('Checks Summary') && level3DecisionRecord.includes('/5 PASS')) {
-        pass('T-DR-003: level_3/decision-record.md has Checks Summary', 'Summary line found');
+        pass('T-DR-003: level-3/decision-record.md has Checks Summary', 'Summary line found');
       } else {
-        fail('T-DR-003: level_3/decision-record.md has Checks Summary', 'Summary line not found');
+        fail('T-DR-003: level-3/decision-record.md has Checks Summary', 'Summary line not found');
       }
     } else {
-      fail('T-DR-001-003: level_3/decision-record.md tests', 'File not readable');
+      fail('T-DR-001-003: level-3/decision-record.md tests', 'File not readable');
     }
 
     // Test Level 3+ decision-record.md has Five Checks section
@@ -469,24 +469,24 @@ async function testDecisionRecordIntegration() {
     }
 
     // Test Example Level 3 decision-record.md has filled Five Checks
-    const exampleDecisionRecord = readFile(path.join(EXAMPLES_DIR, 'level_3', 'decision-record.md'));
+    const exampleDecisionRecord = readFile(path.join(EXAMPLES_DIR, 'level-3', 'decision-record.md'));
     if (exampleDecisionRecord) {
       // Check that example doesn't have placeholder [PASS/FAIL]
       const hasFilledResults = !exampleDecisionRecord.includes('[PASS/FAIL]') ||
         (exampleDecisionRecord.includes('PASS') && !exampleDecisionRecord.includes('[PASS/FAIL]'));
 
       if (hasFilledResults) {
-        pass('T-DR-006: examples/level_3/decision-record.md has filled results', 'No [PASS/FAIL] placeholders');
+        pass('T-DR-006: examples/level-3/decision-record.md has filled results', 'No [PASS/FAIL] placeholders');
       } else {
-        fail('T-DR-006: examples/level_3/decision-record.md has filled results', 'Still has [PASS/FAIL] placeholders');
+        fail('T-DR-006: examples/level-3/decision-record.md has filled results', 'Still has [PASS/FAIL] placeholders');
       }
 
       // Note: Example may not have Five Checks table (older examples)
       const hasChecksSection = exampleDecisionRecord.includes('Five Checks');
       if (hasChecksSection) {
-        pass('T-DR-007: examples/level_3/decision-record.md demonstrates Five Checks', 'Five Checks section found');
+        pass('T-DR-007: examples/level-3/decision-record.md demonstrates Five Checks', 'Five Checks section found');
       } else {
-        skip('T-DR-007: examples/level_3/decision-record.md demonstrates Five Checks', 'Example uses older format without Five Checks');
+        skip('T-DR-007: examples/level-3/decision-record.md demonstrates Five Checks', 'Example uses older format without Five Checks');
       }
     } else {
       skip('T-DR-006-007: Example decision-record.md tests', 'Example file not found');

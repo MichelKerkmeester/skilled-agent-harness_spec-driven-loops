@@ -86,7 +86,7 @@ templates/
 ├── manifest/              │ Templates, manifest and maintainer guides
 ├── examples/              │ Pre-rendered reference packets
 ├── changelog/             │ Template change records
-├── stress_test/           │ Deep-review grading materials
+├── stress-test/           │ Deep-review grading materials
 └── scratch/               │ Local debug space, gitignored
 ```
 
@@ -133,15 +133,15 @@ templates/
 │   ├── resource-map.md.tmpl
 │   ├── context-index.md.tmpl
 │   ├── README.md
-│   ├── EXTENSION_GUIDE.md
+│   ├── EXTENSION-GUIDE.md
 │   └── MIGRATION.md
 ├── examples/
-│   ├── level_1/
-│   ├── level_2/
-│   ├── level_3/
+│   ├── level-1/
+│   ├── level-2/
+│   ├── level-3/
 │   └── level_3+/
 ├── changelog/
-├── stress_test/
+├── stress-test/
 └── scratch/
 ```
 
@@ -164,7 +164,7 @@ templates/
 | `manifest/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
 | `manifest/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
 | `manifest/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
-| `manifest/EXTENSION_GUIDE.md`             | Explains how maintainers add a new document type.                                |
+| `manifest/EXTENSION-GUIDE.md`             | Explains how maintainers add a new document type.                                |
 | `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 
 <!-- /ANCHOR:key-files -->
@@ -178,7 +178,7 @@ templates/
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Imports   | Scripts read this folder as data. Template files do not import code.                                                                                 |
 | Exports   | Rendered packet docs are written into `specs/` by `create.sh`, not by this folder directly.                                                          |
-| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `mcp_server/lib/templates/`. |
+| Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `mcp-server/lib/templates/`. |
 
 Render flow:
 
@@ -249,10 +249,10 @@ For template changes, also run the template and resolver test suite used by the 
 ## 9. RELATED
 
 - [Manifest README](./manifest/README.md)
-- [Extension Guide](./manifest/EXTENSION_GUIDE.md)
+- [Extension Guide](./manifest/EXTENSION-GUIDE.md)
 - [Migration Guide](./manifest/MIGRATION.md)
 - [System Spec Kit Skill](../SKILL.md)
-- [Template Resolver](../mcp_server/lib/templates/level-contract-resolver.ts)
+- [Template Resolver](../mcp-server/lib/templates/level-contract-resolver.ts)
 - [Spec Scaffolder](../scripts/spec/create.sh)
 - [Spec Validator](../scripts/spec/validate.sh)
 

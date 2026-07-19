@@ -1,0 +1,1243 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "code-webflow",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-webflow"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 87,
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "applicable": false,
+      "status": "excluded-by-design",
+      "reason": "advisor-invisible surface bundled by advisor identity sk-code",
+      "delegatedMeasure": {
+        "targetSkill": "sk-code"
+      }
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 69
+    },
+    "D2": {
+      "points": 20,
+      "score": 69
+    },
+    "D3": {
+      "points": 15,
+      "score": 60
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D4"
+  ],
+  "excludedDimensions": [
+    "D1inter"
+  ],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "browser": 4,
+    "passed": 9
+  },
+  "headlineBottleneck": "browser",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "browser",
+      "detail": "4 scenario(s) first fail at stage 'browser'"
+    }
+  ],
+  "coverage": {
+    "routing": 9,
+    "advisor": 0,
+    "browser": 4,
+    "routedOut": 0,
+    "scored": 9
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "WF-009",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "WF-007",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "WF-008",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "WF-006",
+      "tier": "browser-gated",
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d2": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d3": {
+          "score": null,
+          "status": "skip-needs-browser"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "SKIP-NO-BROWSER",
+        "reason": "no browser-harness recipe for this scenario yet",
+        "evidence": []
+      }
+    },
+    {
+      "scenarioId": "WF-013",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.84,
+          "routedCount": 25,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 95,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"JavaScript\", \"resources\": [\"references/shared/dev-workflow/overview-nav-and-logging.md\", \"references/shared/dev-workflow/automation-errors-and-compat.md\", \"references/shared/dev-workflow/common-commands.md\", \"references/shared/dev-workflow/checklists_an"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-002",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/shared/cross-language-rules.md\", \"references/shared/enforcement.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-003",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 14,
+          "wastedCount": 7,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/debugging/debugging-workflows/systematic-four-phases.md\", \"references/debugging/debugging-workflows/rules-and-root-cause.md\", \"references/debugging/debugging-workflows/performance-debugging.md\", \"references/debuggi"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-001",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.6785714285714286,
+          "routedCount": 28,
+          "wastedCount": 9,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 90,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/implementation/implementation-workflows/condition-based-waiting.md\", \"references/implementation/implementation-workflows/validation-minification-and-cdn.md\", \"references/implementation/async-patterns/raf-ric-microt"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-005",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 14,
+          "wastedCount": 14,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 69,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"javascript\",\n  \"resources\": [\n    \"references/shared/dev-workflow/overview-nav-and-logging.md\",\n    \"references/shared/dev-workflow/automation-errors-and-compat.md\",\n    \"references/shared/dev-workflow/common-commands.md\",\n    \"references/shared/de"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-004",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.2857142857142857,
+          "routedCount": 7,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 78,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/verification/verification-workflows/gate-and-automated-options.md\", \"references/verification/verification-workflows/requirements-rules-and-checklist.md\", \"references/shared/dev-workflow/overview-nav-and-logging.md\""
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-010",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5555555555555556,
+          "routedCount": 9,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 86,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"none\", \"resources\": [\"references/deployment/cdn-deployment.md\", \"references/deployment/minification-guide/overview-terser-and-patterns.md\", \"references/deployment/minification-guide/workflow-verification-and-debugging.md\", \"references/deployment/minific"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-011",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 10,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/dev-workflow/overview-nav-and-logging.md\", \"references/shared/dev-workflow/automation-errors-and-compat.md\", \"references/shared/dev-workflow/common-commands.md\", \"references/shared/dev-workflow/checklists_and_deci"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "WF-012",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 11,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "code-webflow/assets/**",
+          "code-webflow/references/implementation/third-party-integrations"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"javascript\",\n  \"resources\": [\n    \"references/implementation/third-party-integrations/overview-hls-and-lenis.md\",\n    \"references/implementation/third-party-integrations/botpoison-and-finsweet.md\",\n    \"references/implementation/third_party_integra"
+      },
+      "routeTelemetry": null
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 13,
+    "traceMode": "live",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  }
+}

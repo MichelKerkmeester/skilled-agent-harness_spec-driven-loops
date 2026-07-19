@@ -19,7 +19,7 @@ const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
 const RUN_BENCHMARK = path.join(SCRIPTS, 'model-benchmark/run-benchmark.cjs');
 const MATERIALIZE = path.join(SCRIPTS, 'shared/materialize-benchmark-fixtures.cjs');
-const DEFAULT_PROFILE = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json');
+const DEFAULT_PROFILE = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json');
 
 let work: string;
 

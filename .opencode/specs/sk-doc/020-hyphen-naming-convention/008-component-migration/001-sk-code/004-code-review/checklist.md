@@ -1,5 +1,5 @@
 ---
-title: "Checklist: code-review filesystem names (032 phase 008/004)"
+title: "Checklist: code-review filesystem names (020 phase 008/004)"
 description: "Blocking SOL verification contract for the code-review rename and review-scenario path closure."
 trigger_phrases:
   - "code-review naming checklist"

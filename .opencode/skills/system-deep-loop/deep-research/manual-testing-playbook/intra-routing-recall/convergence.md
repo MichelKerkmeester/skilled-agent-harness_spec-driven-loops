@@ -1,0 +1,25 @@
+---
+id: DR-R03
+category: intra_routing_recall
+stage: routing
+title: 'Deep research convergence routing'
+expected_intent: CONVERGENCE
+expected_resources:
+  - references/guides/quick-reference.md
+  - references/convergence/convergence.md
+  - references/convergence/convergence-signals.md
+  - references/convergence/convergence-graph.md
+version: 1.0.0.0
+---
+
+# DR-R03: Deep research convergence routing
+
+## 2. SCENARIO CONTRACT
+
+- Prompt: `Evaluate convergence, the stop condition, diminishing returns, and newInfoRatio before ending the investigation.`
+- Expected intent: `CONVERGENCE`
+
+**Exact prompt**:
+```text
+Evaluate convergence, the stop condition, diminishing returns, and newInfoRatio before ending the investigation.
+```

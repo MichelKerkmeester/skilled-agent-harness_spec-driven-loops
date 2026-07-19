@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: verify orchestrate agent naming (032 phase 011)"
-description: "Implementation Plan for phase 011 of the 032 agents component migration: a read-only orchestrate filename candidate audit."
+title: "Implementation Plan: verify orchestrate agent naming (020 phase 011)"
+description: "Implementation Plan for phase 011 of the 020 agents component migration: a read-only orchestrate filename candidate audit."
 trigger_phrases:
   - "orchestrate agent naming implementation plan"
   - "agents phase 011 implementation plan"
@@ -43,7 +43,7 @@ This phase inventories the orchestrate definition in each runtime agent director
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 032 naming policy and exemption boundary are available
+- [ ] The 020 naming policy and exemption boundary are available
 - [ ] The pinned BASE and the three runtime agent directories are known
 - [ ] The expected orchestrate definition paths are listed in spec.md
 - [ ] The phase is explicitly verify-only
@@ -71,7 +71,7 @@ A path is a candidate only when its in-scope filesystem basename contains snake_
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the pinned BASE and read the 032 convention/exemption policy.
+- Confirm the pinned BASE and read the 020 convention/exemption policy.
 - Confirm all three expected orchestrate definition paths exist in the runtime inventory.
 
 ### Phase 2: Implementation
@@ -101,7 +101,7 @@ A path is a candidate only when its in-scope filesystem basename contains snake_
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 convention policy and exemption boundary | Internal | Required | Candidate classification has no authoritative scope |
+| 020 convention policy and exemption boundary | Internal | Required | Candidate classification has no authoritative scope |
 | Pinned BASE inventory | Internal | Required | The zero-candidate result cannot be reproduced |
 | 014-agents-gate | Internal | Downstream | The leaf evidence cannot be rolled up |
 <!-- /ANCHOR:dependencies -->

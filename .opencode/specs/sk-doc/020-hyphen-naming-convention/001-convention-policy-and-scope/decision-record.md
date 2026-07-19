@@ -1,10 +1,10 @@
 ---
-title: "Decision Record: kebab-case filesystem-naming program (032 phase 001)"
-description: "Program-level decision record for the 032 kebab-case filesystem-naming migration: the GPT-5.6-sol design-review outcome and the locked decisions (dual-name tolerance, dependency-closure batching, fresh-install worktree, packet numbering, exemption boundary) that shape the 032 phased plan."
+title: "Decision Record: kebab-case filesystem-naming program (020 phase 001)"
+description: "Program-level decision record for the 020 kebab-case filesystem-naming migration: the GPT-5.6-sol design-review outcome and the locked decisions (dual-name tolerance, dependency-closure batching, fresh-install worktree, packet numbering, exemption boundary) that shape the 020 phased plan."
 trigger_phrases:
   - "hyphen naming decision record"
   - "kebab-case migration decisions"
-  - "032 program decisions"
+  - "020 program decisions"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
@@ -74,7 +74,11 @@ A blind character substitution produces `_common.sh`→`-common.sh`, `__fixtures
 CLI hazards, and cannot see dynamic references. **Decision:** phase 005 builds a deterministic, dry-run-default rename
 engine driven by a semantic, explicitly-classified map with collision hard-abort (exact/casefold/NFC) and symlink-mode
 + exec-bit preservation, plus a rename-map-driven whole-repo reference checker that resolves modules, config path-values,
-and shell sourcing, dispositions every dynamic `require`/`source`/glob site, and fails on a zero-file scan.
+and shell sourcing, dispositions every dynamic `require`/`source`/glob site, and fails on a zero-file scan. The
+leading-hyphen hazard carries an **executable** criterion, not just a caution: a path operand beginning with `-` is
+rejected with a cited reason or executed through option-terminated argv (`git mv -- <src> <dst>`), proven by
+leading-hyphen source and target fixtures. Apply is additionally bound to an immutable plan identity (pinned BASE SHA +
+map hash) with an atomic pre-write revalidation of HEAD, map hash, clean tree, and the exact source/target set and order.
 
 ### DR-006 — A dedicated runtime/package-layout closure before general script renames
 Directories such as `mcp_server` (a declared `package-lock.json` workspace), `install_scripts`, `plugin_bridges`,
@@ -103,11 +107,42 @@ candidate commit lands. Each SOL report pins the candidate SHA, BASE SHA, and re
 codes, and discovery counts; proves `git diff-index --quiet HEAD --` after verification; and fails on zero
 tests/scenarios or unexpected tracked mutation. SOL reports findings; it does not repair.
 
-### DR-010 — Packet number stays 032
+### DR-010 — Packet number stays 020
 The concurrent session's `032-smart-routing-mechanism-notes` is being folded into `016-sk-doc-router-alignment` (their
-commit that merges 032+018 into the 016 phase parent), which frees `032`. The operator confirmed "Force 032". The review
-suggested `032` only because it read the origin state before that fold; that context makes `032` correct.
+commit that merges 020+018 into the 016 phase parent), which frees `020`. The operator confirmed "Force 020". The review
+suggested `020` only because it read the origin state before that fold; that context makes `020` correct.
+
+### DR-011 — Formally supersede the 027 catalog/playbook underscore restyle
+`sk-doc/014-sk-doc-parent/027-catalog-naming-convention` child `003` restyled `feature_catalog/` and
+`manual_testing_playbook/` content to `underscore_case`. **Decision:** that decision is superseded by this program.
+The repo-wide kebab-case canon returns catalog/playbook content to hyphens as one canonical filesystem-naming form, so the
+split-brain (hyphenated skill/command/phase trees versus underscored catalog/playbook content) is removed. The supersession
+is additive per the frozen-history rule: 027 carries a supersession banner pointing here, its completed work is not
+rewritten, and its unrelated children (`001`/`002` de-numbering, `004` hook-bridge removal) are unaffected. The canonical
+rule now lives at `.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md`.
 <!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:classification -->
+## Policy Classification Fixtures
+
+The policy taxonomy is exhaustive and mutually exclusive: every in-scope filesystem name is exactly one of
+`rename` / `exempt` / `frozen` / `generated` / `tool-mandated`. There is no "unknown" bucket by construction. The
+per-candidate application over the whole census is frozen in phase 006; the fixtures below prove the matcher is
+unambiguous at the policy level (positive = the class applies; negative = it does not, so the name renames).
+
+| Name | Class | Positive/Negative |
+|------|-------|-------------------|
+| `validate_document.py` | exempt (`.py`) | positive: Python source stays snake_case |
+| `mcp_server/` | exempt (Python import-package dir) | positive: `import mcp_server` would break under a hyphen |
+| `__snapshots__/`, `test_router.py` | exempt (test-runner magic) | positive: discovery matches the literal pattern |
+| `SKILL.md`, `.utcp_config.json`, `action.yml` | exempt (tool-mandated) | positive: a tool matches the name exactly |
+| `node_modules/`, `dist/`, `package-lock.json` | exempt (vendored / generated) | positive: not authored by this repo |
+| `z_archive/2025-old-thing/` | frozen (append-only history) | positive: excluded from the zero-snake gate |
+| `feature_catalog/read_path_freshness.md` | rename | negative for every exempt class: content doc, renames to hyphens |
+| `my_document.md` | rename | negative: a plain snake_case doc renames to `my-document.md` |
+| `packet_pointer:` (a frontmatter field) | out of scope | negative: a key/field name, never a filesystem rename target |
+| `{ "feature_catalog": ... }` (a JSON key) | out of scope | negative: structured-data key keeps idiomatic case |
+<!-- /ANCHOR:classification -->
 
 <!-- ANCHOR:consequences -->
 ## Consequences
@@ -128,4 +163,6 @@ suggested `032` only because it read the origin state before that fold; that con
 
 - Parent spec: `../spec.md` (000-011 phase map + sequencing invariants).
 - The GPT-5.6-sol review verdict and ranked findings shaped every decision above.
+- Canonical convention doc: `.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md`.
+- Superseded ADR: `.opencode/specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/spec.md` (child `003`).
 <!-- /ANCHOR:references -->

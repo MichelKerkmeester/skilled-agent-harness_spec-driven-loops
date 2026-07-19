@@ -345,28 +345,28 @@ export async function createManualPlaybookFixture(specFolder: string): Promise<F
 
   fs.mkdirSync(dbDir, { recursive: true });
   applyFixtureEnv(rootDir, dbDir, dbPath);
-  const { indexMemoryFile } = await import('../../../mcp_server/dist/handlers/memory-save.js');
+  const { indexMemoryFile } = await import('../../../mcp-server/dist/handlers/memory-save.js');
   const {
     handleCheckpointCreate,
     handleMemoryCausalLink,
-  } = await import('../../../mcp_server/dist/handlers/index.js');
-  const vectorIndex = await import('../../../mcp_server/dist/lib/search/vector-index.js') as VectorIndexModule;
-  const { init: initDbState } = await import('../../../mcp_server/dist/core/index.js') as { init: InitDbStateFn };
-  const checkpoints = await import('../../../mcp_server/dist/lib/storage/checkpoints.js') as { init: (db: unknown) => void };
-  const accessTracker = await import('../../../mcp_server/dist/lib/storage/access-tracker.js') as { init: (db: unknown) => void };
-  const hybridSearch = await import('../../../mcp_server/dist/lib/search/hybrid-search.js') as {
+  } = await import('../../../mcp-server/dist/handlers/index.js');
+  const vectorIndex = await import('../../../mcp-server/dist/lib/search/vector-index.js') as VectorIndexModule;
+  const { init: initDbState } = await import('../../../mcp-server/dist/core/index.js') as { init: InitDbStateFn };
+  const checkpoints = await import('../../../mcp-server/dist/lib/storage/checkpoints.js') as { init: (db: unknown) => void };
+  const accessTracker = await import('../../../mcp-server/dist/lib/storage/access-tracker.js') as { init: (db: unknown) => void };
+  const hybridSearch = await import('../../../mcp-server/dist/lib/search/hybrid-search.js') as {
     init: (db: unknown, vectorSearch: VectorIndexModule['vectorSearch'], graphSearch?: null) => void;
   };
-  const sessionBoost = await import('../../../mcp_server/dist/lib/search/session-boost.js') as { init: (db: unknown) => void };
-  const causalBoost = await import('../../../mcp_server/dist/lib/search/causal-boost.js') as { init: (db: unknown) => void };
-  const workingMemory = await import('../../../mcp_server/dist/lib/cognitive/working-memory.js') as { init: (db: unknown) => void };
-  const attentionDecay = await import('../../../mcp_server/dist/lib/cognitive/attention-decay.js') as { init: (db: unknown) => void };
-  const coActivation = await import('../../../mcp_server/dist/lib/cognitive/co-activation.js') as { init: (db: unknown) => void };
-  const sessionManager = await import('../../../mcp_server/dist/lib/session/session-manager.js') as {
+  const sessionBoost = await import('../../../mcp-server/dist/lib/search/session-boost.js') as { init: (db: unknown) => void };
+  const causalBoost = await import('../../../mcp-server/dist/lib/search/causal-boost.js') as { init: (db: unknown) => void };
+  const workingMemory = await import('../../../mcp-server/dist/lib/cognitive/working-memory.js') as { init: (db: unknown) => void };
+  const attentionDecay = await import('../../../mcp-server/dist/lib/cognitive/attention-decay.js') as { init: (db: unknown) => void };
+  const coActivation = await import('../../../mcp-server/dist/lib/cognitive/co-activation.js') as { init: (db: unknown) => void };
+  const sessionManager = await import('../../../mcp-server/dist/lib/session/session-manager.js') as {
     init: (db: unknown) => { success: boolean; error?: string };
     shutdown?: () => void;
   };
-  const { upsertThinContinuityInMarkdown } = await import('../../../mcp_server/dist/lib/continuity/thin-continuity-record.js');
+  const { upsertThinContinuityInMarkdown } = await import('../../../mcp-server/dist/lib/continuity/thin-continuity-record.js');
 
   vectorIndex.closeDb();
   vectorIndex.initializeDb(dbPath);

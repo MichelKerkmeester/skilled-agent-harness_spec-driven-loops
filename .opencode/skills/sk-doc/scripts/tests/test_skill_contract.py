@@ -32,7 +32,7 @@ def test_python_loader_reads_budget():
 
 
 def test_node_loader_reads_same_budget():
-    cjs = _SHARED_SCRIPTS / "skill_contract.cjs"
+    cjs = _SHARED_SCRIPTS / "skill-contract.cjs"
     script = (
         f"const c=require({str(cjs)!r});"
         "process.stdout.write(c.descriptionBudget('skill').softMax+'/'+c.descriptionBudget('command').softMax);"
@@ -50,7 +50,7 @@ def test_scaffold_template_order_matches_contract():
     contract = _load_contract_module()
     canonical = contract.load_skill_contract()["sections"]["skill"]["canonicalOrder"]
     template = (
-        _CREATE_SKILL / "assets" / "skill" / "skill_scaffold_template.md"
+        _CREATE_SKILL / "assets" / "skill" / "skill-scaffold-template.md"
     ).read_text(encoding="utf-8")
     headings = [
         re.sub(r"^\d+\.\s*", "", raw).strip().upper()
@@ -68,7 +68,7 @@ def test_scaffold_template_carries_contract_markers():
     contract = _load_contract_module()
     required = contract.smart_router_markers().get("required", [])
     template = (
-        _CREATE_SKILL / "assets" / "skill" / "skill_scaffold_template.md"
+        _CREATE_SKILL / "assets" / "skill" / "skill-scaffold-template.md"
     ).read_text(encoding="utf-8")
     missing = [marker for marker in required if marker not in template]
     assert missing == [], f"scaffold template missing contract markers: {missing}"

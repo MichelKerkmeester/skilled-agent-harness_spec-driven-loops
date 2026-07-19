@@ -150,9 +150,9 @@ function bootstrapLauncherEnv() {
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
-// DB lives SKILL-LOCAL at mcp_server/database/; SPECKIT_CODE_GRAPH_DB_DIR overrides.
+// DB lives SKILL-LOCAL at mcp-server/database/; SPECKIT_CODE_GRAPH_DB_DIR overrides.
 // Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first startup.
-let dbDir = path.join(kitDir, 'mcp_server', 'database');
+let dbDir = path.join(kitDir, 'mcp-server', 'database');
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
 const PID_FILE_NAME = '.mk-code-index-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
@@ -283,7 +283,7 @@ function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-code-graph');
-  dbDir = path.join(kitDir, 'mcp_server', 'database');
+  dbDir = path.join(kitDir, 'mcp-server', 'database');
   lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
 }
@@ -369,12 +369,12 @@ function daemonPidRegistryPath(registryDbDir = resolvedDbDir()) {
 }
 
 function legacyLeasePaths() {
-  // After the 2026-05-29 relocation, skill-local (mcp_server/database/) is the PRIMARY path.
+  // After the 2026-05-29 relocation, skill-local (mcp-server/database/) is the PRIMARY path.
   // The legacy probe now covers the former shared `.spec-kit` location plus the pre-rename
   // `skill/` (singular) typo dir, so a launcher still holding an old-location lease is detected.
   return [
     path.join(opencodeDir, '.spec-kit', 'code-graph', 'database', PID_FILE_NAME),
-    path.join(opencodeDir, 'skill', 'system-code-graph', 'mcp_server', 'database', PID_FILE_NAME),
+    path.join(opencodeDir, 'skill', 'system-code-graph', 'mcp-server', 'database', PID_FILE_NAME),
   ].map(canonicalizePath);
 }
 
@@ -1332,7 +1332,7 @@ function ensureLayout(actions) {
 
 function requiredArtifacts() {
   return [
-    path.join(kitDir, 'mcp_server', 'dist', 'index.js'),
+    path.join(kitDir, 'mcp-server', 'dist', 'index.js'),
   ];
 }
 
@@ -1608,7 +1608,7 @@ function launchServer() {
     process.env.SPECKIT_CODE_GRAPH_DB_DIR = resolvedDbDir();
   }
 
-  const server = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
+  const server = path.join(kitDir, 'mcp-server', 'dist', 'index.js');
   childProcess = spawn(process.execPath, [server], {
     cwd: root,
     env: buildChildEnv(),
@@ -1836,7 +1836,7 @@ async function launcherMain() {
       }
 
       buildIfNeeded(actions);
-      log(`ready: ${JSON.stringify({ start: started, end: now(), actions, server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')) })}`);
+      log(`ready: ${JSON.stringify({ start: started, end: now(), actions, server: rel(path.join(kitDir, 'mcp-server', 'dist', 'index.js')) })}`);
     }
 
     // Reap the orphan daemon recorded by the reclaimed prior owner lease before

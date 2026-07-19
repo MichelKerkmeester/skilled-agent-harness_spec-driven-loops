@@ -45,10 +45,10 @@ OPENCODE_DIR="$ROOT/.opencode"
 SKILLS_DIR="$OPENCODE_DIR/skills"
 LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$KIT_DIR/mcp_server/database"
+DB_DIR="$KIT_DIR/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
 LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
-MCP_DIST="$KIT_DIR/mcp_server/dist/context-server.js"
+MCP_DIST="$KIT_DIR/mcp-server/dist/context-server.js"
 GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
 
@@ -147,9 +147,9 @@ elif [[ -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]
 fi
 
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$KIT_DIR/mcp_server/database"
+DB_DIR="$KIT_DIR/mcp-server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-MCP_DIST="$KIT_DIR/mcp_server/dist/context-server.js"
+MCP_DIST="$KIT_DIR/mcp-server/dist/context-server.js"
 GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
 
@@ -167,7 +167,7 @@ fi
 need_build=false
 if [[ ! -f "$MCP_DIST" ]]; then
   need_build=true
-  record_action "detected missing mcp_server/dist/context-server.js"
+  record_action "detected missing mcp-server/dist/context-server.js"
 fi
 if [[ ! -f "$GRAPH_BACKFILL_DIST" || ! -f "$DESCRIPTION_DIST" ]]; then
   need_build=true
@@ -208,7 +208,7 @@ if [[ "$need_build" == true ]]; then
   record_action "installed dependencies and built @spec-kit/mcp-server plus @spec-kit/scripts"
 fi
 
-[[ -f "$MCP_DIST" ]] || fail "mcp_server/dist/context-server.js is still missing after bootstrap"
+[[ -f "$MCP_DIST" ]] || fail "mcp-server/dist/context-server.js is still missing after bootstrap"
 [[ -f "$GRAPH_BACKFILL_DIST" ]] || fail "scripts/dist/graph/backfill-graph-metadata.js is still missing after bootstrap"
 [[ -f "$DESCRIPTION_DIST" ]] || fail "scripts/dist/spec-folder/generate-description.js is still missing after bootstrap"
 

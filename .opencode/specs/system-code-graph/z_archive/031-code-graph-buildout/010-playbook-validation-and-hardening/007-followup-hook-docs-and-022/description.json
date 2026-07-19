@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
   "description": "Two non-blocking follow-ups remained after the 029 remediation",
   "keywords": [
     "two",
@@ -8,11 +8,12 @@
     "remained",
     "remediation"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.852Z",
+  "lastUpdated": "2026-07-18T03:48:55.582Z",
   "specId": "007",
   "folderSlug": "followup-hook-docs-and-022",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],

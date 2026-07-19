@@ -16,7 +16,7 @@
 // folder, validates it against the supported specs roots, and never walks the
 // repo-wide tree. The broad repo-wide walk lives behind an explicit --all flag
 // so a single-packet intent can no longer dirty unrelated sessions' folders.
-// In --all mode z_future/ is always skipped (it is not a supported specs root)
+// In --all mode z-future/ is always skipped (it is not a supported specs root)
 // and z_archive/ is included unless --active-only is passed.
 // ───────────────────────────────────────────────────────────────
 
@@ -42,7 +42,7 @@ import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 const SPEC_FOLDER_RE = /^\d{3}(?:[-_].+)?$/;
-const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z_future']);
+const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z-future']);
 const ARCHIVE_SEGMENT_RE = /(^|\/)(z_archive|z_future)(\/|$)/;
 const BACKFILL_PRUNE_REPORT_FILE = '.backfill-graph-metadata-prune-report.json';
 const PRUNE_REPORT_VERSION = 1;

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
   "description": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
   "keywords": [
     "sk-prompt",
@@ -12,11 +12,12 @@
     "framework",
     "guidance"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.690Z",
+  "lastUpdated": "2026-07-18T03:48:55.241Z",
   "specId": "003",
   "folderSlug": "land-recommended-frameworks-data",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "005-sk-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

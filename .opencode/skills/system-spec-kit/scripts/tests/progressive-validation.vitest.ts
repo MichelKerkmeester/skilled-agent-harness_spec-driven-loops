@@ -100,7 +100,7 @@ function readFile(dir: string, name: string): string {
 // FIXTURES - minimal spec.md templates for auto-fix tests
 /** minimal valid Level-1 fixture without placeholders. */
 const MINIMAL_SPEC_MD = `
-<!-- SPECKIT_TEMPLATE_SOURCE: level_1/spec.md | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: level-1/spec.md | v2.2 -->
 
 # Test Feature Spec
 

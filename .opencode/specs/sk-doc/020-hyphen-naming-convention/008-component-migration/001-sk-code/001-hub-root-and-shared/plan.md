@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: hub root and shared sk-code names (032 phase 008/001)"
+title: "Implementation Plan: hub root and shared sk-code names (020 phase 008/001)"
 description: "Plan for renaming the sk-code hub shared assets and references through the frozen semantic map, then repairing path consumers and symlink targets before behavior verification."
 trigger_phrases:
   - "hub shared naming implementation plan"
@@ -111,8 +111,8 @@ Use the phase 005 semantic source-to-target map to rename the shared reference a
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 006 frozen map | Internal | Required before execution | Candidate ownership and target names are unknown. |
-| 032 phase 007 shared closure handoff | Internal | Required before execution | Symlink ordering and cross-surface consumers may be missed. |
+| 020 phase 006 frozen map | Internal | Required before execution | Candidate ownership and target names are unknown. |
+| 020 phase 007 shared closure handoff | Internal | Required before execution | Symlink ordering and cross-surface consumers may be missed. |
 | 000 baseline manifests | Internal | Required before verification | Mode, link, and route parity cannot be proven. |
 | 005 rename/reference tooling | Internal | Required before execution | Manual renames would violate the semantic-map contract. |
 <!-- /ANCHOR:dependencies -->

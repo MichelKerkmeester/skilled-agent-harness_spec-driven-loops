@@ -154,6 +154,7 @@ python3 scripts/create_diff.py compare-pair --before old.md --after new.md --rep
 ### Report and verification
 
 - The report is a single self-contained HTML file (inlined CSS, no scripts, no network). Views: `--view unified` (default) or `--view side-by-side`.
+- Without `--report`, the source stem is semantically normalized to lowercase kebab-case and emitted as `<source-slug>.diff.html`. An explicit report basename must already use lowercase kebab-case and the engine refuses to overwrite an existing report.
 - Always verify a generated report is safe and self-contained before handing it off:
 
 ```bash

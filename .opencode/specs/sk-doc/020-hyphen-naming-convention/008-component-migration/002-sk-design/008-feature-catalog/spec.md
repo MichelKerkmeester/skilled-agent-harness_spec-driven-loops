@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Feature-catalog (032 phase 008)"
+title: "Feature Specification: Feature-catalog (020 phase 008)"
 description: "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to manual playbook paths."
 trigger_phrases:
   - "feature-catalog naming phase"
   - "sk-design feature-catalog phase"
-  - "032 feature-catalog"
+  - "020 feature-catalog"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Feature-catalog (032 phase 008)
+# Feature Specification: Feature-catalog (020 phase 008)
 
 > Phase 008 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 8 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 8 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

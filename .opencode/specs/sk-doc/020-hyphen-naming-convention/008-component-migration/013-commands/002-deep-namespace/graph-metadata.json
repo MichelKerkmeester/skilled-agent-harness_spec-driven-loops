@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
     "created_at": "2026-07-14T15:18:32Z",
-    "last_save_at": "2026-07-17T14:30:43.847Z",
+    "last_save_at": "2026-07-17T20:26:19.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e2855db09b8005af96fe61f83b28c562a3b28e649c578f20aabfbb24a9b7f668",
+    "source_fingerprint": "sha256:0b6bdeb8be334bc7d2156537b93f7ee1faec1352c23b16b3b07d31f8d9148fc3",
     "source_doc_hashes": {
-      "spec.md": "8b41d3b7c6dcbea6199ba948d9283b0249302b6fbe78da5ce8fcdc58136e2a97",
-      "plan.md": "684f693ffaec3add097afc1a62382cf93fc69720923da56e7f7e6448dedd43df",
-      "tasks.md": "d3b8d9c9467eea62bc16755268ccffc7ecfcb6d950c3d132b83097c0d19932fd",
-      "checklist.md": "132225bcd069bd1c1d6b19fe112ea65f186a6e4899fb92f2fc10e2b67016ca9f",
-      "decision-record.md": "0bee90d20de7b9cef9a6b8e99a5b444721c5eb16d02bcc1b5a76ca6beefb36e9"
+      "spec.md": "608659484fd0b1ff6ae670d465a3d392ba052e4f7fa342259994343bf3a17802",
+      "plan.md": "1f7054118b34d9c6db93a79dc520c152420ed7a1c06fbf9932fd368be32ac323",
+      "tasks.md": "2f6e8c58c0a7415179a3e301a31837414994464a145a53f64a2b723b4e2179fa",
+      "checklist.md": "a8fc8c182d31ce197d9823b87108fe13c84a8b1a688eb7aaeaaadd3a3ccf930c",
+      "decision-record.md": "be5405cc5dab31e9cd27ca4fd3346935dd7929494c807b289680a169db15f876"
     },
     "last_active_child_id": null,
     "last_active_at": null

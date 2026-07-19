@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify deep-improvement agent naming (032 phase 006)"
-description: "Checklist for phase 006 of the 032 agents component migration: verify the deep-improvement filename candidate set."
+title: "Checklist: verify deep-improvement agent naming (020 phase 006)"
+description: "Checklist for phase 006 of the 020 agents component migration: verify the deep-improvement filename candidate set."
 trigger_phrases:
   - "deep-improvement agent naming checklist"
   - "agents phase 006 checklist"

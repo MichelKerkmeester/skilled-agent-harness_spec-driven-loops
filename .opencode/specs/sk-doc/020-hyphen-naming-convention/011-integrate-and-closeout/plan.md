@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: integrate and close out (032 phase 011)"
-description: "Implementation Plan for phase 011 of the 032 kebab-case filesystem-naming program: rebase onto the latest base, rerun the complete phase 010 gate, fast-forward the integration target, and reconcile final packet state."
+title: "Implementation Plan: integrate and close out (020 phase 011)"
+description: "Implementation Plan for phase 011 of the 020 kebab-case filesystem-naming program: rebase onto the latest base, rerun the complete phase 010 gate, fast-forward the integration target, and reconcile final packet state."
 trigger_phrases:
   - "integrate and close out implementation plan"
   - "hyphen naming phase 011 implementation plan"
@@ -34,7 +34,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | Migration branch, integration worktree, and 032 packet rollup (phase 011) |
+| **Surface** | Migration branch, integration worktree, and 020 packet rollup (phase 011) |
 | **Change class** | Integration, final verification, and documentation closeout |
 | **Execution** | Rebase latest base, rerun phase 010, then fast-forward only |
 
@@ -61,7 +61,7 @@ This phase treats base integration as a new verification boundary. It records th
 ## 3. ARCHITECTURE
 
 - **Base identity**: record `B_latest`, the pre-rebase migration head, the post-rebase candidate, and the final integrated commit.
-- **Rebase boundary**: resolve conflicts in the integration worktree using the 032 policy and frozen map; stop on ambiguous ownership or scope.
+- **Rebase boundary**: resolve conflicts in the integration worktree using the 020 policy and frozen map; stop on ambiguous ownership or scope.
 - **Gate reuse**: invoke the phase 010 checklist and measurement contract unchanged, with all outputs tied to the post-rebase candidate.
 - **Linear integration**: use a fast-forward-only target update after the gate; a merge commit or forced update is a failure.
 - **Closeout rollup**: reconcile the child phase states and parent outcome from the final commit and evidence, then record the next packet state.

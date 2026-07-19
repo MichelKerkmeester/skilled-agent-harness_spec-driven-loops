@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/006-regenerate-verify",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/006-regenerate-verify",
   "description": "After the text rename, the derived indexes (advisor skill-graph + SQLite, spec-memory index, packet metadata `derived` blocks) still hold the old",
   "keywords": [
     "text",
@@ -19,11 +19,12 @@
     "hold",
     "old"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.292Z",
+  "lastUpdated": "2026-07-18T03:48:55.269Z",
   "specId": "006",
   "folderSlug": "regenerate-verify",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

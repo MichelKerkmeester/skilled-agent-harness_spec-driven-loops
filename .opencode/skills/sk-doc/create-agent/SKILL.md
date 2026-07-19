@@ -11,7 +11,7 @@ version: 1.0.1.1
 
 `create-agent` is the `sk-doc` workflow packet for creating or updating one runtime agent markdown file. The executable contract lives here: decide whether an agent is the right component, place it in the active runtime directory, author current frontmatter and authority boundaries, then validate before delivery.
 
-Use `references/README.md` (the overflow route map) and `assets/agent_template.md` only for deeper examples, exhaustive variants, and long-form reference detail. Do not make those files the primary workflow contract.
+Use `references/README.md` (the overflow route map) and `assets/agent-template.md` only for deeper examples, exhaustive variants, and long-form reference detail. Do not make those files the primary workflow contract.
 
 ---
 
@@ -162,9 +162,10 @@ The output file contract:
 
 1. The filename is kebab-case and ends in `.md`.
 2. The filename stem matches frontmatter `name` exactly.
-3. The file lives in the active runtime directory, not under `sk-doc`.
-4. The body is self-sufficient for the agent's role, boundaries, workflow, limits, and output contract.
-5. Reusable or deep domain guidance stays in skills or references and is linked, not pasted into the agent.
+3. The stem matches `^[a-z0-9]+(?:-[a-z0-9]+)*$`; reject underscores, empty segments, and ambiguous normalization instead of rewriting the name silently.
+4. The file lives in the active runtime directory, not under `sk-doc`.
+5. The body is self-sufficient for the agent's role, boundaries, workflow, limits, and output contract.
+6. Reusable or deep domain guidance stays in skills or references and is linked, not pasted into the agent.
 
 ### Canonical Frontmatter
 
@@ -230,7 +231,7 @@ Frontmatter rules:
 
 ### Required Body Shape
 
-Start from `assets/agent_template.md` when creating a new agent. At minimum, a production-ready agent includes:
+Start from `assets/agent-template.md` when creating a new agent. At minimum, a production-ready agent includes:
 
 1. H1 and short purpose statement.
 2. Hard boundary section that states nesting, delegation, and write limits.
@@ -246,7 +247,7 @@ Boundary variants: LEAF write-capable agents deny nested sub-agent dispatch and 
 
 The skeleton above is the default; start new agents from it. One alternate section vocabulary is also sanctioned — the **deep-loop leaf-iteration agents** (`@deep-alignment` / `@deep-review` / `@deep-research`, in both runtime directories). A per-iteration loop worker reads more clearly under lane-named headings, so these agents carry the same responsibilities under a different vocabulary: `ROUTING SCAN`, a lane `CONTRACT` (`ALIGNMENT CONTRACT` / `REVIEW CONTRACT`, or `ITERATION PROTOCOL` for the leaner research variant), `STATE MANAGEMENT` (`+ WRITE SAFETY` where the agent mutates), a lane `ADVERSARIAL CHECK` (`VERIFY-FIRST ADVERSARIAL CHECK` / `ADVERSARIAL SELF-CHECK`), and `RULES`.
 
-This is a documented shape, not drift. `--type agent` requires only `## 1. CORE WORKFLOW`, and the dialect still carries every hard-block boundary, capability, verification, and anti-pattern responsibility from "Required Body Shape" above. Reach for it only when authoring another member of the deep-loop iteration family — do not invent a fresh dialect for a one-off agent. The concrete section order and its two sub-variants are in `assets/agent_template.md` §9.
+This is a documented shape, not drift. `--type agent` requires only `## 1. CORE WORKFLOW`, and the dialect still carries every hard-block boundary, capability, verification, and anti-pattern responsibility from "Required Body Shape" above. Reach for it only when authoring another member of the deep-loop iteration family — do not invent a fresh dialect for a one-off agent. The concrete section order and its two sub-variants are in `assets/agent-template.md` §9.
 
 ### Ordered Creation Workflow
 
@@ -256,7 +257,7 @@ Follow this order for new agents and material rewrites:
 2. Decide whether the task truly needs a new agent instead of a skill, command, or existing agent.
 3. Search existing agents for overlap before creating a new one.
 4. Resolve the active runtime directory and target filename.
-5. Read `assets/agent_template.md` and use it as the scaffold; do not invent a new structure from scratch.
+5. Read `assets/agent-template.md` and use it as the scaffold; do not invent a new structure from scratch.
 6. Draft frontmatter first, especially `mode`, `temperature`, and each `permission` value.
 7. Confirm permissions against actual role needs before writing tool-heavy instructions.
 8. Write the hard boundary section before the general workflow.
@@ -308,7 +309,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 5. Never give a LEAF agent `task: allow`.
 6. Never paste full skill guidance into an agent body.
 7. Never write an agent into the wrong runtime directory.
-8. Never leave placeholders from `assets/agent_template.md` in the final file.
+8. Never leave placeholders from `assets/agent-template.md` in the final file.
 9. Never claim completion before validation passes or the blocker is reported.
 
 ### ⚠️ ESCALATE IF
@@ -340,8 +341,8 @@ Use these only when the core path above is not enough:
 
 1. `references/README.md` — route map over the overflow references below.
 2. `references/agent-vs-skill-vs-command.md` for the deeper agent vs skill vs command decision and its signals.
-3. `references/permission_design.md` for `mode` selection and least-authority permission design.
-4. `references/common_pitfalls.md` for recurring mistakes with why-it-breaks and correct fixes.
-5. `assets/agent_template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
+3. `references/permission-design.md` for `mode` selection and least-authority permission design.
+4. `references/common-pitfalls.md` for recurring mistakes with why-it-breaks and correct fixes.
+5. `assets/agent-template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
 6. `../shared/references/validation.md` for validation pipeline details.
-7. `../shared/references/core_standards.md` for shared document structure rules.
+7. `../shared/references/core-standards.md` for shared document structure rules.

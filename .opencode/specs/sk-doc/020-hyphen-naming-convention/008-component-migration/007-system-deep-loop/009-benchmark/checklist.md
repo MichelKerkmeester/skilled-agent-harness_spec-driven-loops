@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop benchmark names (032 phase 007/009)"
+title: "Checklist: system-deep-loop benchmark names (020 phase 007/009)"
 description: "Blocking SOL verification contract for the root benchmark storage-label rename set, generated reports, fixtures/profiles ownership, and reproducible outputs."
 trigger_phrases:
   - "system-deep-loop benchmark checklist"

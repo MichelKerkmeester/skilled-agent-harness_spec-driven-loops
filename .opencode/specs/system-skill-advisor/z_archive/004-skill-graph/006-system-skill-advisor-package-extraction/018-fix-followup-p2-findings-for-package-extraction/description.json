@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction",
   "description": "The review retained 28 P2 advisories across architecture, correctness, robustness, testing, security, performance, documentation, compatibility, and",
   "keywords": [
     "review",
@@ -16,11 +16,12 @@
     "documentation",
     "compatibility"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.701Z",
+  "lastUpdated": "2026-07-18T03:48:57.119Z",
   "specId": "018",
   "folderSlug": "fix-followup-p2-findings-for-package-extraction",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

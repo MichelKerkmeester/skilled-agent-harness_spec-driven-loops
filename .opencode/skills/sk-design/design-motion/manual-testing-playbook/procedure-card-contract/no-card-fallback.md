@@ -50,5 +50,5 @@ This scenario validates `Procedure applied: none - baseline motion workflow` for
 
 - Group: Procedure Card Contract
 - Playbook ID: MOTION-PROCCARD-002
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/no-card-fallback.md`

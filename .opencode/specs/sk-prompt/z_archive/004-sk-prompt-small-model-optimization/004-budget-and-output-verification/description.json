@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/004-budget-and-output-verification",
   "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction",
   "keywords": [
     "swe-1",
@@ -17,11 +17,11 @@
     "hints",
     "eviction"
   ],
-  "lastUpdated": "2026-07-09T10:02:45.969Z",
+  "lastUpdated": "2026-07-18T03:48:55.224Z",
   "specId": "004",
   "folderSlug": "budget-and-output-verification",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive",
     "004-sk-prompt-small-model-optimization"
   ],

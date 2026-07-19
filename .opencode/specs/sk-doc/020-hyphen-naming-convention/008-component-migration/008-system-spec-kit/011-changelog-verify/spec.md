@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Changelog verification (032 subtree 008 phase 011)"
+title: "Feature Specification: Changelog verification (020 subtree 008 phase 011)"
 description: "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries."
 trigger_phrases:
   - "system-spec-kit changelog verify"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Changelog verification
 
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The current system-spec-kit release baseline is v3.7.1.0, and its existing changelog entry does not yet serve as evidence for the 032 filesystem-name program. A release entry must identify the complete system-spec-kit rename set, state the Python/tool/generated/frozen exemptions, and align with the skill’s version metadata without pretending that this verify phase performed the migration.
+The current system-spec-kit release baseline is v3.7.1.0, and its existing changelog entry does not yet serve as evidence for the 020 filesystem-name program. A release entry must identify the complete system-spec-kit rename set, state the Python/tool/generated/frozen exemptions, and align with the skill’s version metadata without pretending that this verify phase performed the migration.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

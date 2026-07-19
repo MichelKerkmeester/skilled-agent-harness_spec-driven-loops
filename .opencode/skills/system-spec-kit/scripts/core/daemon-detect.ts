@@ -91,7 +91,7 @@ export function isProcessAlive(pid: number): boolean {
 
 // Walk up to the `system-spec-kit` root rather than a fixed up-count: this module compiles to
 // scripts/dist/core (3 ups) but could run from scripts/core under tsx (2 ups), so a hardcoded count is
-// layout-fragile. The launcher writes the lease to <system-spec-kit>/mcp_server/database/ — mirror that.
+// layout-fragile. The launcher writes the lease to <system-spec-kit>/mcp-server/database/ — mirror that.
 function findSystemSpecKitRoot(startDir: string): string | null {
   let dir = startDir;
   // eslint-disable-next-line no-constant-condition
@@ -105,12 +105,12 @@ function findSystemSpecKitRoot(startDir: string): string | null {
 
 export function resolveSpecMemoryDaemonLeasePath(): string {
   const kitRoot = findSystemSpecKitRoot(MODULE_DIR);
-  const threeUp = path.resolve(MODULE_DIR, '..', '..', '..', 'mcp_server', 'database');
+  const threeUp = path.resolve(MODULE_DIR, '..', '..', '..', 'mcp-server', 'database');
   const dbDir = canonicalizePath(
     kitRoot
-      ? path.join(kitRoot, 'mcp_server', 'database')
+      ? path.join(kitRoot, 'mcp-server', 'database')
       // Defensive fallback if the marker is absent: prefer the dist/core (3-up) layout, else 2-up.
-      : (fs.existsSync(threeUp) ? threeUp : path.resolve(MODULE_DIR, '..', '..', 'mcp_server', 'database')),
+      : (fs.existsSync(threeUp) ? threeUp : path.resolve(MODULE_DIR, '..', '..', 'mcp-server', 'database')),
   );
   return path.join(dbDir, LAUNCHER_LEASE_FILE_NAME);
 }

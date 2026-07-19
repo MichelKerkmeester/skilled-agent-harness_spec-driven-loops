@@ -26,7 +26,7 @@ Executes ONE alignment iteration within an autonomous conformance-audit loop: re
 
 ## Convergence Threshold Semantics
 
-**Default:** artifact-coverage threshold 1.0 (100% of discovered artifacts checked at least once) AND a 2-iteration zero-new-findings stability window — both required together, never either alone (`references/state_machine_wiring.md` §4).
+**Default:** artifact-coverage threshold 1.0 (100% of discovered artifacts checked at least once) AND a 2-iteration zero-new-findings stability window — both required together, never either alone (`references/state-machine-wiring.md` §4).
 
 **Semantic:** unlike `deep-review`'s single weighted-severity ratio, `deep-alignment` convergence is a two-signal AND-gate: every discovered artifact across all applicable lanes must be checked at least once (`coverageThreshold`), AND the last `stabilityWindow` iterations must each report `newFindingsRatio === 0`. `max-iterations` is an independent hard stop applied regardless of that AND-pair's outcome.
 
@@ -180,7 +180,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skills/sk-code/code-review/references/review_core.md` before assigning severity — the P0/P1/P2 severity scale and evidence-density discipline are the same shared vocabulary `reduce-alignment-state.cjs` uses (its `SEVERITY_WEIGHTS` mirror `reduce-state.cjs` exactly), reused as-is.
+- Load `.opencode/skills/sk-code/code-review/references/review-core.md` before assigning severity — the P0/P1/P2 severity scale and evidence-density discipline are the same shared vocabulary `reduce-alignment-state.cjs` uses (its `SEVERITY_WEIGHTS` mirror `reduce-state.cjs` exactly), reused as-is.
 - Do NOT tag findings by review dimension (correctness/security/traceability/maintainability) — that taxonomy does not apply in this mode. Tag each finding by its lane identity (`authority`, `artifactClass`, `scope`) plus the adapter's own `type` / `subcheck` / `layer` fields (for example `template-conformance`/`deterministic`, `reality-alignment`/`reasoning-agent`, `commit-message-grammar`/`deterministic`, `live-render-judgment`/`reasoning-agent`). Findings classification in this mode is per-lane, never per-dimension.
 - P0/P1 findings require concrete evidence and counterevidence review — a completed live re-probe, not a second reviewer's opinion, is this mode's counterevidence mechanism (Invariant 1).
 - P2 findings require actionable evidence and may include documented inference.
@@ -256,8 +256,8 @@ Use Read, Grep, Glob, Bash, and memory/code-graph MCP tools only within the decl
 | Integration | Canonical Surface | Agent Contract |
 |-------------|--------------------|-----------------|
 | Dispatcher command | `.opencode/commands/deep/alignment.md` (`/deep:alignment`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` | Owns loop state, corpus partitioning, and reducer refresh |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Auto workflow | `.opencode/commands/deep/assets/deep-alignment-auto.yaml` | Owns loop state, corpus partitioning, and reducer refresh |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-alignment-confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Review loop agent | `@deep-review` | Separate general-correctness iteration agent; do not delegate alignment work to it, and never absorb general-correctness work routed here |
 | Structural hub-check | `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Separate hub-structure checker; this agent never performs structural/registry checks, only artifact-content conformance |
@@ -313,7 +313,7 @@ This agent NEVER computes the overall or per-lane verdict itself — `runtime/sc
 - `new`: first run against the spec folder; no prior state.
 - `resume`: continue the active alignment session; same `sessionId`, no archive.
 - `restart`: archive the existing `alignment/`, mint a fresh `sessionId`, increment `generation`.
-- Canonical event contract mirrors `deep-review`'s lifecycle branches; see `references/state_machine_wiring.md` for this mode's own state-to-script map.
+- Canonical event contract mirrors `deep-review`'s lifecycle branches; see `references/state-machine-wiring.md` for this mode's own state-to-script map.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`.
 
@@ -330,7 +330,7 @@ Reducer boundary:
 
 ### File Paths
 
-All paths resolve from the target spec folder's `alignment/` packet directory (`references/state_machine_wiring.md` §3).
+All paths resolve from the target spec folder's `alignment/` packet directory (`references/state-machine-wiring.md` §3).
 
 | File | Path | Operation |
 |------|------|-----------|

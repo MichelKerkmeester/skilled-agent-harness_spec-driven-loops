@@ -1,5 +1,5 @@
 ---
-title: "Tasks: root and OpenCode infrastructure strays (032 phase 007 child 001)"
+title: "Tasks: root and OpenCode infrastructure strays (020 phase 007 child 001)"
 description: "Tasks for the root and OpenCode infrastructure dependency closure, including candidate classification, semantic targets, same-surface references, and downstream handoff."
 trigger_phrases:
   - "root infrastructure closure tasks"

@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-chrome-devtools naming closure (032 phase 002)"
+title: "Feature Specification: mcp-chrome-devtools naming closure (020 phase 002)"
 description: "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers."
 trigger_phrases:
   - "mcp-chrome-devtools kebab-case"
   - "chrome devtools playbook rename"
-  - "032 mcp tooling phase 002"
+  - "020 mcp tooling phase 002"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-chrome-devtools Naming Closure
 
@@ -90,7 +90,7 @@ This phase produces a kebab-case Chrome DevTools filesystem surface and a comple
 | REQ-001 | Rename every in-scope Chrome filesystem name | The seven category directories, root playbook directory/index, all underscored scenario files, INSTALL_GUIDE.md, and the two reference files have explicit kebab targets in the map |
 | REQ-002 | Update component-local references | Every Markdown link, path table, root-relative path, and path-derived category value resolves to the renamed resource |
 | REQ-003 | Preserve non-filesystem contracts | SKILL.md remains exact; bdg/CDP/scenario identifiers and frontmatter fields are unchanged |
-| REQ-004 | Honor the 032 exemption boundary | No Python file/package directory, changelog history, generated output, or tool-mandated name is renamed |
+| REQ-004 | Honor the 020 exemption boundary | No Python file/package directory, changelog history, generated output, or tool-mandated name is renamed |
 | REQ-005 | Prove component behavior is unchanged | The existing Chrome manual scenario inventory and parent-hub check pass with non-zero discovery |
 <!-- /ANCHOR:requirements -->
 

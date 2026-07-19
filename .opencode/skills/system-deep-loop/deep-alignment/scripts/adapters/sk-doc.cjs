@@ -7,8 +7,8 @@
 // ║ rules). This is the REFERENCE adapter — sk-git/sk-design and sk-code     ║
 // ║ copy this file's shape, not its content.                                 ║
 // ║                                                                          ║
-// ║ Full specification: ../../references/adapters/sk_doc_adapter.md          ║
-// ║ Suppression list:    ../../references/adapters/sk_doc_known_deviations.md║
+// ║ Full specification: ../../references/adapters/sk-doc-adapter.md          ║
+// ║ Suppression list:    ../../references/adapters/sk-doc-known-deviations.md║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -19,7 +19,7 @@
  * adapter contract. Wraps; does not reimplement document validation.
  *
  * discover(scope) takes the real, live scope shape from
- * ../../references/discover_contract.md §3 / ../../references/lane_config_schema.md §5:
+ * ../../references/discover-contract.md §3 / ../../references/lane-config-schema.md §5:
  * `{type:'paths', values:[...]}` or `{type:'globs', values:[...]}` (a 'branchRange' scope
  * resolves to an empty result — see discover()'s own comment for why).
  *
@@ -61,14 +61,14 @@ const SK_DOC_DIR = path.join(SKILLS_DIR, 'sk-doc');
 // Invoke the Python tools via their real shared/scripts/ directory, not the
 // scripts/ symlink: the tools resolve template_rules.json as script_dir.parent/
 // assets/, which is derived from the invoked path. Through the symlink that
-// resolves to the non-existent sk-doc/assets/ (exit 2, "template_rules.json not
+// resolves to the non-existent sk-doc/assets/ (exit 2, "template-rules.json not
 // found"); through the real dir it correctly resolves to sk-doc/shared/assets/.
 const VALIDATE_DOCUMENT_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'validate_document.py');
 const EXTRACT_STRUCTURE_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'extract_structure.py');
-const CORE_STANDARDS_MD = path.join(SK_DOC_DIR, 'shared', 'references', 'core_standards.md');
+const CORE_STANDARDS_MD = path.join(SK_DOC_DIR, 'shared', 'references', 'core-standards.md');
 const CREATE_SKILL_ASSETS_DIR = path.join(SK_DOC_DIR, 'create-skill', 'assets');
 const CREATE_SKILL_REFERENCES_DIR = path.join(SK_DOC_DIR, 'create-skill', 'references');
-const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk_doc_known_deviations.md');
+const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-doc-known-deviations.md');
 
 // Ported from validate_document.py:54-64 (EXCLUDED_PATH_PATTERNS) so discover() does not
 // waste cycles walking directories the validator would exclude anyway.

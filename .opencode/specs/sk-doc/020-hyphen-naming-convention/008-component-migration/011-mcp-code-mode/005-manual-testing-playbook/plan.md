@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode manual-testing playbook (032 component 011 phase 005)"
+title: "Implementation Plan: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
 description: "Rename the complete manual_testing_playbook tree through an explicit root, category, index, and scenario map. Rewrite active Markdown links and path pointers, then prove the 27-scenario inventory and scenario semantics are preserved."
 trigger_phrases:
   - "mcp-code-mode manual playbook implementation plan"

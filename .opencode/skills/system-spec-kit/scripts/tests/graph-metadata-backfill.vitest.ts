@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { loadGraphMetadata } from '../../mcp_server/lib/graph/graph-metadata-parser.js';
+import { loadGraphMetadata } from '../../mcp-server/lib/graph/graph-metadata-parser.js';
 import { collectSpecFolders, runBackfill } from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();

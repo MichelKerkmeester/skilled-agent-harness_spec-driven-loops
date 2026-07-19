@@ -150,6 +150,7 @@ const TOP = [
     leaf('rename-engine', 3),
     leaf('reference-checker-and-disposition-ledger', 3),
     leaf('fixture-corpus-and-dry-run-harness', 2),
+    leaf('reference-rewrite-executor', 2, { origin: 'added for execution readiness (CAS reference-rewrite executor)' }),
   ], { origin: '005-rename-and-reference-tooling (was leaf -> parent)' }),
   leaf('006-inventory-and-frozen-map', 3, { origin: '006-inventory-and-frozen-map (kept; scope expanded in content)', note: 'inventory + frozen bijective map + closure<->component map, hoist list, parallel go-list' }),
   parent('007-shared-and-cross-cutting-closures', [
@@ -234,7 +235,7 @@ const outPath = process.argv[2] || new URL('./phase-tree.json', import.meta.url)
 writeFileSync(outPath, JSON.stringify(manifest, null, 2));
 
 // ---- summary -----------------------------------------------------------------
-console.log('=== 032 phase-tree manifest ===');
+console.log('=== 020 phase-tree manifest ===');
 console.log('nodes:', nodes.length, '| leaves:', leaves.length, '| parents:', parents.length);
 console.log('leaf docs (est):', manifest.totals.leaf_docs_estimate);
 console.log('max depth:', maxDepth);

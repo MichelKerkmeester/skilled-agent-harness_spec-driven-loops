@@ -20,21 +20,21 @@ A section-by-section reading of a real, shipped feature catalog so a new catalog
 
 ## 1. OVERVIEW
 
-The packet `SKILL.md` states the contract; this reference shows a working instance of it. Everything below is drawn from the live catalog at `.opencode/skills/system-spec-kit/feature_catalog/`, the largest maintained catalog in the repo. Use it to calibrate scope: how terse a root entry should be, how a per-feature file is structured, and how the `HOW IT WORKS` sub-heading rule looks when applied to a genuinely long feature.
+The packet `SKILL.md` states the contract; this reference shows a working instance of its content model. Everything below is drawn from the live legacy catalog at `.opencode/skills/system-spec-kit/feature-catalog/`, the largest maintained catalog in the repo. That tree keeps its underscore root until the repository content migration. New output uses the canonical hyphenated paths shown below.
 
-Read this alongside the two scaffolds in `../assets/feature_catalog/`. The templates give you the empty shape; this walkthrough shows the shape filled in well.
+Read this alongside the two scaffolds in `../assets/feature-catalog/`. The templates give you the empty shape; this walkthrough shows the shape filled in well.
 
 ---
 
 ## 2. THE LIVE EXAMPLE
 
-Location: `.opencode/skills/system-spec-kit/feature_catalog/`
+Location: `.opencode/skills/system-spec-kit/feature-catalog/`
 
-Shape actually on disk:
+Canonical emitted shape, using content drawn from the live example:
 
 ```text
-feature_catalog/
-├── feature_catalog.md            # root inventory + navigation
+feature-catalog/
+├── feature-catalog.md            # root inventory + navigation
 ├── retrieval/                # ~17 per-feature files
 │   ├── unified-context-retrieval-memorycontext.md
 │   ├── semantic-and-lexical-search-memorysearch.md
@@ -45,13 +45,13 @@ feature_catalog/
 └── ...                           # twenty-plus category folders
 ```
 
-The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature_catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. Both the category folders and the per-feature files use bare descriptive slugs with no numeric prefix.
+The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature-catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. Both the category folders and the per-feature files use bare descriptive kebab-case slugs with no numeric prefix.
 
 ---
 
 ## 3. ROOT CATALOG ANATOMY
 
-The root `feature_catalog.md` opens with frontmatter carrying `title`, `description`, `trigger_phrases`, `last_updated`, and a 4-part `version`, then a short H1 intro that names what the system does today:
+The root `feature-catalog.md` opens with frontmatter carrying `title`, `description`, `trigger_phrases`, `last_updated`, and a 4-part `version`, then a short H1 intro that names what the system does today:
 
 ```markdown
 # Spec Kit Memory: Feature Catalog
@@ -111,13 +111,13 @@ trigger_phrases:
 
 **`## 2. HOW IT WORKS`** is long — well over three paragraphs — so it is broken into H3 sub-headings for navigation: `### Entry Point & Routing`, `### Configuration`, `### Async & Safety`, `### Post-Action Behavior`. This is exactly the sub-heading rule the contract requires for long sections; a short feature would use plain prose instead.
 
-**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns (Handler / Lib / Formatter rows pointing at real `mcp_server/**` paths). The `### Validation And Tests` table uses `File | Type | Role` columns with `Automated test` rows pointing at real `*.vitest.ts` files.
+**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns (Handler / Lib / Formatter rows pointing at real `mcp-server/**` paths). The `### Validation And Tests` table uses `File | Type | Role` columns with `Automated test` rows pointing at real `*.vitest.ts` files.
 
-**`## 4. SOURCE METADATA`** closes with the group, the canonical catalog source (`feature_catalog.md`), the feature file path, and a `Related references` link to a neighboring feature in the same category:
+**`## 4. SOURCE METADATA`** closes with the group, the canonical catalog source (`feature-catalog.md`), the feature file path, and a `Related references` link to a neighboring feature in the same category:
 
 ```markdown
 - Group: Retrieval
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `retrieval/unified-context-retrieval-memorycontext.md`
 Related references:
 - [semantic-and-lexical-search-memorysearch.md](semantic-and-lexical-search-memorysearch.md) — Semantic and lexical search (memory_search)
@@ -139,7 +139,7 @@ Related references:
 ## 6. RELATED RESOURCES
 
 - [../SKILL.md](../SKILL.md) - root-catalog and per-feature requirements this example illustrates
-- [common_pitfalls.md](common_pitfalls.md) - the defects this example avoids, with fixes
-- [../assets/feature_catalog/feature_catalog_template.md](../assets/feature_catalog/feature_catalog_template.md) - the empty root-catalog shape
-- [../assets/feature_catalog/feature_catalog_snippet_template.md](../assets/feature_catalog/feature_catalog_snippet_template.md) - the empty per-feature shape
-- `.opencode/skills/system-spec-kit/feature_catalog/` - the full live catalog read here
+- [common-pitfalls.md](common-pitfalls.md) - the defects this example avoids, with fixes
+- [../assets/feature-catalog/feature-catalog-template.md](../assets/feature-catalog/feature-catalog-template.md) - the empty root-catalog shape
+- [../assets/feature-catalog/feature-catalog-snippet-template.md](../assets/feature-catalog/feature-catalog-snippet-template.md) - the empty per-feature shape
+- `.opencode/skills/system-spec-kit/feature-catalog/` - the full live catalog read here

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: semantic rename engine (032 phase 005.001)"
+title: "Decision Record: semantic rename engine (020 phase 005.001)"
 description: "Design decisions for the semantic rename engine: dependency-closure batching, explicit source-to-target maps, exemption detection, dry-run and idempotency, filesystem-mode preservation, and journaled rollback."
 trigger_phrases:
   - "semantic rename engine decisions"
@@ -12,13 +12,13 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T07:35:59Z"
     last_updated_by: "codex"
-    recent_action: "Recorded the semantic rename engine design decisions"
-    next_safe_action: "Implement the engine with the recorded map, closure, and rollback contracts"
+    recent_action: "Verified the engine against the recorded decisions"
+    next_safe_action: "Use the dry-run report as the reference checker's input contract"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Dependency closure, not file extension, determines batch boundaries."
@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:context -->
 ## Context
 
-The 032 program changes filesystem names to kebab-case while preserving Python filenames and package directories, generated
+The 020 program changes filesystem names to kebab-case while preserving Python filenames and package directories, generated
 and lockfile output, tool-mandated names, test-runner magic, vendored/third-party trees, and frozen history. A mechanical
 underscore replacement would produce invalid or unsafe targets such as leading hyphens and doubled separators, and it could
 rename a path that the policy explicitly excludes. A file-extension queue would also split references across commits.

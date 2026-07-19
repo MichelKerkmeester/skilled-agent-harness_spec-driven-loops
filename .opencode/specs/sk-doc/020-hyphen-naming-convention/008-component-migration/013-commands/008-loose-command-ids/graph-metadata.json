@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-07-17T14:30:45.620Z",
+    "last_save_at": "2026-07-17T20:26:20.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a3b80d960e0a1c53807cd499a83816801057bcf403ea64c658548ef8434fd58d",
+    "source_fingerprint": "sha256:1d2baf2cadd32d4eef2e46da4b6b28fae98b3e414e23bbdc60a60a887ffdb9ca",
     "source_doc_hashes": {
-      "spec.md": "3a07af26dff46dc0d4ad6678a9de95a216b8bbcb5e2ddccd0b81502fcd00ade7",
-      "plan.md": "cf19b01cbc12a91e2405b72cdbd62a784ba6599e2c14a9e3ef1b8533e974d8fb",
-      "tasks.md": "147c069c2cae7a21603c6e4fa3fc15707a70843e7a4a2515419e54ecfdd3cc0f",
-      "checklist.md": "adf63fdadef872714c3e0160b6d9daf36c314604414523daed7dbbe3e3c82735",
-      "decision-record.md": "b6dbbd29d88b4ecdab729174d6d03bdcd7a6eb6b2857925eda44c75029be8a6e"
+      "spec.md": "f1b35379ea2503b155a78edd0e2195b4cee07376e8567aaee38416a463add889",
+      "plan.md": "0169740543676c6abf9168903ade9e04d9e1c247ec8a5b1f81f8e57ec5f10667",
+      "tasks.md": "d63c0bbe5cf19ff3e3bb17818d0392c6e433e2897e989de3e194094e4a816ba3",
+      "checklist.md": "6ca94d18ff91200e6b4d1992dbd33eeb2b234d5bb5c5dd2226e9ca530f645d39",
+      "decision-record.md": "8d4c7c2f2804b27faf06d94e014f96351aede021fa69a3300f95e0f895ed60ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

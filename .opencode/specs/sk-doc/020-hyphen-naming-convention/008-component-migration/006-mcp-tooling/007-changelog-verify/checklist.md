@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-tooling changelog verification (032 phase 007)"
+title: "Checklist: mcp-tooling changelog verification (020 phase 007)"
 description: "Blocking SOL verifier contract for changelog scope, version, and append-only history verification."
 trigger_phrases:
   - "mcp-tooling changelog checklist"

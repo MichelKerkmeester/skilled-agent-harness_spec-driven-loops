@@ -39,11 +39,11 @@ This document is a routing and reference surface only. Run the command entrypoin
 |---------|------------|-------------|
 | **agent** | `/create:agent <name> [description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
 | **changelog** | `/create:changelog <spec-folder-or-component> [--bump <major\|minor\|patch\|build>] [:auto\|:confirm]` | Create a changelog entry by detecting recent work, resolving the target component folder, and generating a formatted changelog file |
-| **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature_catalog/` package using the shipped `sk-doc` contract |
+| **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
 | **readme** | `/create:readme [readme\|install] <target> [flags] [:auto\|:confirm]` | Unified README and install guide creation |
 | **skill-parent** | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub `graph-metadata.json`, `mode-registry.json` source of truth, N `deep-<mode>` packets, non-discoverable `shared/`) |
 | **skill** | `/create:skill <name> <operation> [type] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
-| **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual_testing_playbook/` package using the shipped `sk-doc` contract |
+| **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
 | **benchmark** | `/create:benchmark <skill-name> <spec-packet> [create\|update] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Promote a curated MCP benchmark folder and report into a skill |
 | **flowchart** | `/create:flowchart <target-flowchart.md> [source/process description] [:auto\|:confirm]` | Create a validated ASCII flowchart markdown file |
@@ -76,26 +76,26 @@ create/
 ├── benchmark.md          # /create:benchmark command
 ├── flowchart.md          # /create:flowchart command
 └── assets/               # YAML workflow definitions
-    ├── create_agent_auto.yaml
-    ├── create_agent_confirm.yaml
-    ├── create_changelog_auto.yaml
-    ├── create_changelog_confirm.yaml
-    ├── create_feature_catalog_auto.yaml
-    ├── create_feature_catalog_confirm.yaml
-    ├── create_readme_auto.yaml
-    ├── create_readme_confirm.yaml
-    ├── create_skill_parent_auto.yaml
-    ├── create_skill_parent_confirm.yaml
-    ├── create_skill_auto.yaml
-    ├── create_skill_confirm.yaml
-    ├── create_manual_testing_playbook_auto.yaml
-    ├── create_manual_testing_playbook_confirm.yaml
-    ├── create_command_auto.yaml
-    ├── create_command_confirm.yaml
-    ├── create_benchmark_auto.yaml
-    ├── create_benchmark_confirm.yaml
-    ├── create_flowchart_auto.yaml
-    └── create_flowchart_confirm.yaml
+    ├── create-agent-auto.yaml
+    ├── create-agent-confirm.yaml
+    ├── create-changelog-auto.yaml
+    ├── create-changelog-confirm.yaml
+    ├── create-feature-catalog-auto.yaml
+    ├── create-feature-catalog-confirm.yaml
+    ├── create-readme-auto.yaml
+    ├── create-readme-confirm.yaml
+    ├── create-skill-parent-auto.yaml
+    ├── create-skill-parent-confirm.yaml
+    ├── create-skill-auto.yaml
+    ├── create-skill-confirm.yaml
+    ├── create-manual-testing-playbook-auto.yaml
+    ├── create-manual-testing-playbook-confirm.yaml
+    ├── create-command-auto.yaml
+    ├── create-command-confirm.yaml
+    ├── create-benchmark-auto.yaml
+    ├── create-benchmark-confirm.yaml
+    ├── create-flowchart-auto.yaml
+    └── create-flowchart-confirm.yaml
 ```
 
 ---
@@ -124,8 +124,8 @@ Each mode loads a separate YAML workflow from `assets/` when that command ships 
 The `--chained` flag on `/create:skill` doc-only operations indicates parent workflow handoff.
 
 The documentation-package commands preserve the live `sk-doc` contracts:
-- `/create:feature-catalog` produces `feature_catalog/feature_catalog.md` plus bare descriptive-slug category folders (the root catalog owns display order)
-- `/create:manual-testing-playbook` produces `manual_testing_playbook/manual_testing_playbook.md` plus bare descriptive-slug category folders (the root playbook owns display order) and no sidecar review/ledger files
+- `/create:feature-catalog` produces `feature-catalog/feature-catalog.md` plus bare descriptive-slug category folders (the root catalog owns display order)
+- `/create:manual-testing-playbook` produces `manual-testing-playbook/manual-testing-playbook.md` plus bare descriptive-slug category folders (the root playbook owns display order) and no sidecar review/ledger files
 
 ---
 
@@ -189,7 +189,7 @@ A: The command reads the most recent changelog entry in the target component fol
 | YAML workflow not found | Missing asset file | Check `assets/` contains the matching YAML for operation and mode |
 | Skill not found for skill operation | Wrong skill name | Use the exact folder name from `.opencode/skills/` |
 | Catalog or playbook update target missing | `update` used before the package exists | Re-run with `create` or point to the correct skill root |
-| Playbook scaffolds forbidden sidecar files | Using an outdated package shape | Use `/create:manual-testing-playbook`, which keeps review/orchestration guidance in `manual_testing_playbook.md` |
+| Playbook scaffolds forbidden sidecar files | Using an outdated package shape | Use `/create:manual-testing-playbook`, which keeps review/orchestration guidance in `manual-testing-playbook.md` |
 | `--chained` has no effect | Only meaningful for chained skill doc-only operations | Remove flag when running standalone |
 | `changelog` wrong component | File path mapping mismatch | Use `--component` override or select manually in `:confirm` mode |
 | `changelog` version conflict | File already exists | Command auto-increments BUILD segment. Specify `--bump` to override |
@@ -204,8 +204,8 @@ A: The command reads the most recent changelog entry in the target component fol
 | [sk-doc SKILL.md](../../skills/sk-doc/SKILL.md) | Templates and standards used by create commands |
 | [references/README.md](../../skills/sk-doc/create-feature-catalog/references/README.md) | Standards for rooted feature catalog packages |
 | [references/README.md](../../skills/sk-doc/create-manual-testing-playbook/references/README.md) | Standards for rooted testing playbook packages |
-| [agent_template.md](../../skills/sk-doc/create-agent/assets/agent_template.md) | Agent creation template |
-| [command_template.md](../../skills/sk-doc/create-command/assets/command_template.md) | Command creation template |
+| [agent-template.md](../../skills/sk-doc/create-agent/assets/agent-template.md) | Agent creation template |
+| [command-template.md](../../skills/sk-doc/create-command/assets/command-template.md) | Command creation template |
 | [references/README.md](../../skills/sk-doc/create-skill/references/README.md) | Skill creation workflow route-map (includes "Parent Skills with Nested Mode Packets") |
-| [parent_skill_hub_template.md](../../skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md) | Parent-skill hub `SKILL.md` template |
-| [parent_skill_registry_template.json](../../skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json) | Parent-skill `mode-registry.json` template |
+| [parent-skill-hub-template.md](../../skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md) | Parent-skill hub `SKILL.md` template |
+| [parent-skill-registry-template.json](../../skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json) | Parent-skill `mode-registry.json` template |

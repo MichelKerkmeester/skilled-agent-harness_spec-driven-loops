@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation",
   "description": "Phase C lands the budget engine in cli-devin only",
   "keywords": [
     "phase",
@@ -9,11 +9,11 @@
     "cli-devin",
     "only"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.088Z",
+  "lastUpdated": "2026-07-18T03:48:55.226Z",
   "specId": "006",
   "folderSlug": "budget-pattern-propagation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive",
     "004-sk-prompt-small-model-optimization"
   ],

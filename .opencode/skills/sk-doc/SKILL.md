@@ -82,7 +82,7 @@ classify the request to one or more workflowMode values using hub-router.json
   (dominant authoring/quality intent; a command like /create:agent resolves directly)
 
 if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
-  load_if_available("shared/references/quick_reference.md", seen)
+  load_if_available("shared/references/quick-reference.md", seen)
   return UNKNOWN_FALLBACK with a checklist to confirm workflowMode, target document/component, inputs, and validation expectations
 
 for each resolved workflowMode:
@@ -112,7 +112,7 @@ sk-doc/
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  changelog/  manual_testing_playbook/  benchmark/
+  changelog/  manual-testing-playbook/  benchmark/
   create-skill/  create-readme/  create-agent/  create-command/
   create-feature-catalog/  create-manual-testing-playbook/
   create-benchmark/  create-flowchart/  create-changelog/  create-diff/  create-quality-control/    # nested workflow packets
@@ -154,4 +154,4 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `create-changelog/`, `create-diff/`, `create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.
-- Parent-skill pattern: `create-skill/references/parent_skill/parent_skills_nested_packets.md`.
+- Parent-skill pattern: `create-skill/references/parent-skill/parent-skills-nested-packets.md`.

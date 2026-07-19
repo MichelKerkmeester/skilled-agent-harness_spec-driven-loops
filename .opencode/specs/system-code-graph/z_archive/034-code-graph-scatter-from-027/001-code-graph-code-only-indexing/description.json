@@ -1,7 +1,7 @@
 {
   "level": "1",
   "status": "complete",
-  "specFolder": "system-code-graph/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing",
+  "specFolder": "system-code-graph/z_archive/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing",
   "description": "The code graph (`mkcodeindex`) is meant to model code structure, but its default include globs pulled in `/.md`, registering markdown/prose docs as",
   "keywords": [
     "code",
@@ -19,11 +19,12 @@
     "prose",
     "docs"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.893Z",
+  "lastUpdated": "2026-07-18T03:48:55.641Z",
   "specId": "001",
   "folderSlug": "code-graph-code-only-indexing",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "034-code-graph-scatter-from-027"
   ],
   "memorySequence": 0,

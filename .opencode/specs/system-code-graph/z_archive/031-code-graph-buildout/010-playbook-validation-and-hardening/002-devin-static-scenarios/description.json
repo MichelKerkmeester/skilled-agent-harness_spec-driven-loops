@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
   "description": "7 of the 22 playbook scenarios are static/source-inspection or build-verification checks (MCP manifest post-rename, launcher startup prefix, mcp.json",
   "keywords": [
     "playbook",
@@ -16,11 +16,12 @@
     "prefix",
     "json"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.847Z",
+  "lastUpdated": "2026-07-18T03:48:55.576Z",
   "specId": "002",
   "folderSlug": "devin-static-scenarios",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],

@@ -21,7 +21,7 @@ const BRIDGE_PATH = path.join(
   '.opencode',
   'skills',
   'system-code-graph',
-  'mcp_server',
+  'mcp-server',
   'plugin_bridges',
   'mk-code-graph-bridge.mjs',
 );
@@ -30,7 +30,7 @@ const TRANSPORT_PATH = path.join(
   '.opencode',
   'skills',
   'system-code-graph',
-  'mcp_server',
+  'mcp-server',
   'plugin_bridges',
   'mk-code-graph-transport.mjs',
 );
@@ -82,7 +82,7 @@ async function importPlugin(execFile, tag = 'plugin') {
     )
     .replace("import { tool } from '@opencode-ai/plugin/tool';", 'const tool = (definition) => definition;')
     .replace(
-      /import \{\n  createSyntheticTextPart,[\s\S]*?from '\.\.\/skills\/system-spec-kit\/mcp_server\/plugin_bridges\/spec-kit-opencode-message-schema\.mjs';/,
+      /import \{\n  createSyntheticTextPart,[\s\S]*?from '\.\.\/skills\/system-spec-kit\/mcp-server\/plugin-bridges\/spec-kit-opencode-message-schema\.mjs';/,
       `const createSyntheticTextPart = (input) => ({
   id: input.id,
   sessionID: input.sessionID,
@@ -102,7 +102,7 @@ const isMessageAnchorLike = (anchor) => Boolean(
 );`,
     )
     .replace(
-      /from '\.\.\/skills\/system-code-graph\/mcp_server\/plugin_bridges\/mk-code-graph-transport\.mjs';/,
+      /from '\.\.\/skills\/system-code-graph\/mcp-server\/plugin-bridges\/mk-code-graph-transport\.mjs';/,
       `from ${JSON.stringify(pathToFileURL(TRANSPORT_PATH).href)};`,
     )
     .replace(/const BRIDGE_PATH = .*?;/, "const BRIDGE_PATH = '/test/mk-code-graph-bridge.mjs';");

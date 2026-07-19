@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: root and OpenCode infrastructure strays (032 phase 007 child 001)"
+title: "Feature Specification: root and OpenCode infrastructure strays (020 phase 007 child 001)"
 description: "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them."
 trigger_phrases:
   - "root and OpenCode infrastructure strays"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Root and OpenCode Infrastructure Strays
 
@@ -65,7 +65,7 @@ This child defines the census, semantic rename map, reference closure, and downs
 ## 3. SCOPE
 
 ### In Scope
-- Root-level filesystem-name candidates selected by the frozen 032 map.
+- Root-level filesystem-name candidates selected by the frozen 020 map.
 - `.opencode/commands/**`, `.opencode/install_guides/**`, `.opencode/bin/**`, and adjacent `.opencode` infrastructure names not owned by one skill subtree. `.opencode/bin/**` is already kebab-compliant on v4 (verify, no rename); its daemon `.cjs`/launcher entry-point names referenced by the CLAUDE.md dispatch tables are classified tool-mandated/exempt.
 - Command assets, install-guide scripts, shell sources, registries, and path-valued documentation that point at those candidates.
 - Explicit classification of every observed candidate as rename, exempt, frozen, generated, or tool-mandated.

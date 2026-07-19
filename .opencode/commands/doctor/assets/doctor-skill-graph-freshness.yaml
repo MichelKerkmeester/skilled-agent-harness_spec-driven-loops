@@ -1,0 +1,96 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SKILL-GRAPH FRESHNESS WORKFLOW (INTERACTIVE READ-ONLY MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running the skill-graph freshness diagnostic in interactive mode
+purpose: Read-only 3-way diff of the three skill-graph representations that drift while the canonical reindex is operator-gated — the Python-compiled scripts/skill-graph.json, the SQLite skill-graph.sqlite the daemon reads, and the on-disk graph-metadata.json source of truth
+action: Run skill-graph-freshness.cjs -> present the drift report (zombie / ghost / family mismatch / missing / null-timestamp) -> final status
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_only_diagnostic
+  compliance: MANDATORY
+  execution: interactive
+  approvals: none
+  tracking: diagnostic_report_and_exit_code
+  validation: script_exit_code
+  read_only: true
+
+# ─────────────────────────────────────────────────────────────────
+# FRESHNESS DIAGNOSTIC INVARIANT
+# ─────────────────────────────────────────────────────────────────
+freshness_doctor_invariant: |
+  The skill-graph freshness doctor is strictly read-only. The advisor routes off three
+  representations of the skill graph that drift because the canonical reindex is
+  operator-gated: the Python-compiled scripts/skill-graph.json, the SQLite the daemon
+  reads, and the depth-1 on-disk graph-metadata.json files (the source of truth). Drift
+  between reindexes is EXPECTED — undetected drift is not. The diagnostic diffs the three
+  sources and names the stale set:
+    - ZOMBIE:  a skill id present in SQLite but not on disk.
+    - GHOST:   a skill id present in the compiled json but not on disk.
+    - MISSING: a skill id on disk but absent from SQLite.
+    - FAMILY MISMATCH: same id, different family across sources.
+    - NULL derived.generated_at: identities never V2-sync-stamped.
+  It reads via stdlib node:sqlite (read-only), NEVER writes, NEVER re-indexes, and NEVER
+  self-heals — the canonical reindex stays operator-owned. It always exits 0 (informational).
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  contract: "local command design contract"
+  diagnostic_script: ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs"
+  compiled_graph: ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json"
+  sqlite_graph: ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"
+  disk_truth: ".opencode/skills/*/graph-metadata.json"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This workflow is read-only. It may execute the diagnostic script and print output, but it must not write files, reindex databases, mutate graph metadata, or self-heal any drift it reports."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_diagnose:
+    purpose: "Run the read-only skill-graph freshness diff."
+    activities:
+      - "Execute upstream_assets.diagnostic_script via Bash (no arguments)."
+      - "Capture stdout and exit code."
+    outputs:
+      - drift_report
+      - exit_code
+
+  phase_1_report:
+    purpose: "Present the drift report and the final status."
+    activities:
+      - "Print the drift report (source sizes + zombie/ghost/mismatch/missing/null-stamp sets)."
+      - "Note that every finding is report-only; the reindex is operator-gated."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT FORMAT
+# ─────────────────────────────────────────────────────────────────
+output_format: |
+  STATUS=OK always (informational diagnostic; the script exits 0).
+  The report names the stale set across the three graph representations; remediation
+  (the canonical reindex) is operator-gated and never performed by this diagnostic.

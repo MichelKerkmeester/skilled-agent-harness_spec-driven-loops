@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-chrome-devtools naming closure (032 phase 002)"
+title: "Tasks: mcp-chrome-devtools naming closure (020 phase 002)"
 description: "Tasks for phase 002 of the mcp-tooling component naming migration: rename Chrome DevTools paths and repair their references."
 trigger_phrases:
   - "mcp-chrome-devtools naming tasks"

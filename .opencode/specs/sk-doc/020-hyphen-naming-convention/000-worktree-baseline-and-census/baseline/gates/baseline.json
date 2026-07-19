@@ -1,0 +1,73 @@
+{
+  "baseSha": "1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe",
+  "headSha": "e3fa05d2c9e0c7b730d6e5e9eedc0df3c0474f09",
+  "headNote": "HEAD carries phase-000 baseline evidence only (census + gates); no renames. Tree at HEAD == BASE for all in-scope migration surfaces.",
+  "worktree": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0068-sk-doc-020-migration-exec",
+  "branch": "sk-doc/0068-020-migration-exec",
+  "toolVersions": {
+    "node": "v25.6.1",
+    "npm": "11.9.0",
+    "git": "git version 2.50.1 (Apple Git-155)"
+  },
+  "submodules": [],
+  "hardening": {
+    "rootCause": "system-spec-kit is an npm workspaces monorepo (workspaces: [shared, mcp_server, scripts]). Three manifests were untracked and therefore absent from a clean checkout: the workspace-root package.json, shared/package.json, scripts/package.json. Without the root manifest, npm ci reported 'could not read package.json' and mcp_server's file:../shared dependency could not resolve (install hung).",
+    "fix": "Track the three untracked manifests. The workspace lockfile (system-spec-kit/package-lock.json) was already committed; the fresh install reproduced it byte-for-byte (blob 1f4017e931), which is strong determinism evidence. Per-package lockfiles from an earlier attempt were wrong for a workspaces layout and were removed.",
+    "recipe": "reproducible-install.md"
+  },
+  "installs": {
+    ".opencode/skills/system-spec-kit": {
+      "command": "npm install (workspace root)",
+      "exitCode": 0,
+      "packages": 539,
+      "lockfile": "package-lock.json (root, tracked)",
+      "hoisted": ["@types/node@25.9.0", "@modelcontextprotocol/sdk@1.29.0"],
+      "log": "install-root.log",
+      "reproReplay": {
+        "command": "rm -rf node_modules */dist && npm ci && npm run build",
+        "ciExitCode": 0,
+        "buildExitCode": 0,
+        "note": "Deterministic install from the tracked lockfile reproduces a working toolchain."
+      }
+    }
+  },
+  "gates": {
+    "systemSpecKitBuild": {
+      "command": "npm run build (tsc --build)",
+      "exitCode": 0,
+      "dist": { "shared/dist": 67, "scripts/dist": 22, "mcp_server/dist": 33 },
+      "realpath": "all resolve INSIDE the worktree (realpath-proof.txt)"
+    },
+    "recursiveStrictValidation": {
+      "command": "validate.sh <node> --strict over every node with spec.md",
+      "nodesTotal": 177,
+      "errors": 0,
+      "warningOnlyNodes": 34,
+      "note": "Zero errors across the whole 020 tree. 34 nodes carry a single non-blocking PHASE_LINKS adjacency warning (sorted-order nav refs under 008-component-migration/{002-sk-design, 003-sk-doc/003-create-packets, 014-agents}); pre-existing at BASE, warnings are non-blocking per the plan."
+    },
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "errorsTS": 0
+    },
+    "testDiscovery": {
+      "starDotTestDotTs": 12,
+      "starDotVitestDotTs": 883,
+      "scriptsTestsTestStarDotJs": 21,
+      "scope": "system-spec-kit/{scripts,mcp_server,shared}, excluding node_modules + dist"
+    },
+    "laneC": {
+      "capturedVia": "deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs --skill <skill>",
+      "skDoc": { "scenarioCount": 32 },
+      "skCode": { "scenarioCount": 30 },
+      "file": "lane-c-baseline.json",
+      "note": "BASE corpus IDs recorded for the phase-002 parity check (count + IDs unchanged after consumer migration)."
+    },
+    "census": {
+      "file": "../census/census.json",
+      "candidates": 3882,
+      "collisions": 0,
+      "note": "Exemption-aware census; symlink-mode-manifest.json + collision-report.json alongside."
+    }
+  }
+}

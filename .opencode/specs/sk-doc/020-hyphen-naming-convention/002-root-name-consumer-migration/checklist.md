@@ -1,6 +1,6 @@
 ---
-title: "Checklist: root-name consumer migration (032 phase 002)"
-description: "Checklist for phase 002 of the 032 kebab-case filesystem-naming program: root-name consumer migration."
+title: "Checklist: root-name consumer migration (020 phase 002)"
+description: "Checklist for phase 002 of the 020 kebab-case filesystem-naming program: root-name consumer migration."
 trigger_phrases:
   - "root-name consumer migration checklist"
   - "hyphen naming phase 002 checklist"
@@ -36,54 +36,54 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] Predecessor phases have landed and the worktree is clean, pinned to BASE, with an isolated git index
+- [x] CHK-006 [P0] Predecessor phases have landed and the tracked baseline is pinned to `1ec0ad2947b`; `git status --short` identified only two pre-existing untracked node-version markers before implementation
 - [ ] CHK-007 [P2] The pinned BASE SHA and rename-map hash for this phase are recorded in the candidate report
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-008 [P1] Changes are scoped to this phase; no adjacent cleanup; exemptions honored
-- [ ] CHK-009 [P2] No code identifier / JSON-YAML-TOML key / frontmatter field was altered by a filesystem rename
+- [x] CHK-008 [P1] `git diff --check` passes across the 19 reviewed implementation and matrix paths; the two node-version markers remain excluded
+- [x] CHK-009 [P2] `test_root_name_consumer_matrix.py` proves root aliases change filesystem interpretation only; stable type ids and frontmatter keys remain unchanged
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] Matrix-test old/new roots on POSIX and Windows paths; the root index is excluded; real leaves never classify as `readme`; near-matches stay negative
-- [ ] CHK-002 [P0] Verify the `sk-doc/scripts/validate_document.py` symlink and mode 120000 are preserved after the edit
-- [ ] CHK-003 [P0] Run Lane C against old-only, new-only, both, and missing-root fixtures; coexistence and missing-root fail loudly
-- [ ] CHK-004 [P0] The inverse guard + redefined tests reject underscore catalog content and accept hyphenated content
-- [ ] CHK-013 [P0] Build the fail-closed matrix from the reviewed consumer manifest; every active skill family has a named consumer row and unsupported/un-migrated input fixture
-- [ ] CHK-014 [P0] `sk-doc` and its `create-*` packets refuse an un-migrated or unsupported root/index before typing or emission; no generic `readme` result is returned
-- [ ] CHK-015 [P0] `sk-code` and nested code packets refuse an unsupported path before routing or quality handling; no unrelated scope is selected
-- [ ] CHK-016 [P0] `sk-design` and nested design packets refuse an unsupported root/index before discovery; no empty or unrelated design result is returned
-- [ ] CHK-017 [P0] `sk-prompt` and `prompt-improve` refuse an un-migrated name before lookup; no guessed prompt path is returned
-- [ ] CHK-018 [P0] `mcp-code-mode` and `mcp-tooling` consumers refuse an unsupported playbook/catalog path before workflow or tool-scenario selection
-- [ ] CHK-019 [P0] `system-code-graph` refuses an un-migrated path before graph attachment; no node is linked to a guessed location
-- [ ] CHK-020 [P0] `system-deep-loop` and nested deep/runtime packets refuse an unsupported name before scenario discovery; no zero-scenario success or benchmark downgrade occurs
-- [ ] CHK-021 [P0] `system-skill-advisor` refuses an un-migrated root/index before inventory or projection; no empty or misrouted skill result is emitted
-- [ ] CHK-022 [P0] `system-spec-kit` refuses an unsupported name before runner execution or fixture enumeration; no workflow is silently skipped or misclassified
-- [ ] CHK-023 [P0] `cli-external-orchestration` and nested CLI packets refuse an un-migrated name before dispatch; no fallback to another CLI packet occurs
-- [ ] CHK-024 [P0] For every row intentionally served by the shared dual-name resolver, recognized old/new reads have typed parity and both physical roots fail with an explicit conflict
+- [x] CHK-001 [P0] `test_root_name_consumer_matrix.py` covers POSIX and Windows separators, typed leaf parity, root-index exclusion and unsupported near-match refusal
+- [x] CHK-002 [P0] `git ls-files -s .opencode/skills/sk-doc/scripts/validate_document.py` reports mode `120000`
+- [x] CHK-003 [P0] `test-root-name-consumer-matrix.cjs` covers old-only, new-only, coexisting, missing-root and unsupported-index Lane C fixtures
+- [x] CHK-004 [P0] `test_category_classification_denumbered.py` passes 14/14 checks across legacy-default and `--enforce-hyphen-target` modes
+- [x] CHK-013 [P0] `test_root_name_consumer_matrix.py` derives and covers 13/13 filesystem consumer rows from `consumer-manifest.md`
+- [x] CHK-014 [P0] `test_root_name_consumer_matrix.py` verifies classifier, packager, leaf generator, topology and three guards refuse unsupported roots before typing or emission
+- [x] CHK-015 [P0] `canonicalSkillScopeSubtree()` returns `null` for unsupported code-quality roots before `resolveDispatch()` selects a checker
+- [x] CHK-016 [P0] The 11-family classifier matrix includes `sk-design` and returns `UnsupportedRootError` before discovery
+- [x] CHK-017 [P0] The 11-family classifier matrix includes `sk-prompt`; unsupported roots raise before typed lookup
+- [x] CHK-018 [P0] The 11-family classifier matrix includes `mcp-code-mode` and `mcp-tooling`; unsupported roots raise before scenario selection
+- [x] CHK-019 [P0] The 11-family classifier matrix includes `system-code-graph`; unsupported roots raise before any typed attachment
+- [x] CHK-020 [P0] `PlaybookLoadError` blocks missing, coexisting and unsupported roots before Lane C discovery; live counts remain 32/30
+- [x] CHK-021 [P0] The manifest records `explicit.ts` as identifier-only; the `system-skill-advisor` filesystem fixture fails at the shared classifier boundary
+- [x] CHK-022 [P0] The 11-family classifier matrix includes `system-spec-kit`; unsupported roots raise before fixture enumeration
+- [x] CHK-023 [P0] The 11-family classifier matrix includes `cli-external-orchestration`; unsupported roots raise before dispatch
+- [x] CHK-024 [P0] `test_root_name_consumer_matrix.py` proves typed old/new parity and `RootCoexistenceError` for both catalog and playbook root pairs
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-005 [P1] The reviewed consumer manifest enumerates every root-name consumer and each is updated
+- [x] CHK-005 [P1] `consumer-manifest.md` retains 18 reviewed rows and corrects `explicit.ts` to identifier-only; 13/13 active filesystem rows have matrix coverage
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-010 [P2] No executable behavior or allowlist changed beyond the intended logic/rename; sandbox and gate posture preserved
+- [x] CHK-010 [P2] `git diff --check` and the scoped diff show no allowlist, sandbox or executable-permission changes
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-011 [P2] The phase outcome is reflected in the packet docs and the convention doc where applicable
+- [x] CHK-011 [P2] `implementation-summary.md` records delivered behavior, verification and the Git index-lock blocker
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

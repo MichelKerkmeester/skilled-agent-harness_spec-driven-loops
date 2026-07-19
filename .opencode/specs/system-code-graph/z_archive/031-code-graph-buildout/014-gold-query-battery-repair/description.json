@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/031-code-graph-buildout/014-gold-query-battery-repair",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/014-gold-query-battery-repair",
   "description": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
   "keywords": [
     "code",
@@ -19,11 +19,12 @@
     "gate",
     "fails"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.858Z",
+  "lastUpdated": "2026-07-18T03:48:55.595Z",
   "specId": "014",
   "folderSlug": "gold-query-battery-repair",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 2,

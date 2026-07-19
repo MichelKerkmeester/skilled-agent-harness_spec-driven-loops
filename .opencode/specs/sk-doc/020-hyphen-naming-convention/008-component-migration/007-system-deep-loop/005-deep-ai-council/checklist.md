@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop deep-ai-council names (032 phase 007/005)"
+title: "Checklist: system-deep-loop deep-ai-council names (020 phase 007/005)"
 description: "Blocking SOL verification contract for the deep-ai-council paired catalog/playbook rename set, artifact paths, and council-state parity."
 trigger_phrases:
   - "system-deep-loop deep ai council checklist"

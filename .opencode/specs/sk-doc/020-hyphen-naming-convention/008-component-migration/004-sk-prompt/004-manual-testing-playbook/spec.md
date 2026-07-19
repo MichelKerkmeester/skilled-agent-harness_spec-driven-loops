@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt manual-testing-playbook trees (032 phase 004.004)"
+title: "Feature Specification: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
 description: "The sk-prompt hub and prompt-improve packet contain manual-testing-playbook roots, category directories, scenario files, and index references with underscore-separated names. This phase renames both playbook trees to kebab-case, updates active links, and proves scenario IDs and coverage remain unchanged while frozen changelog history stays untouched."
 trigger_phrases:
   - "sk-prompt manual testing playbook kebab-case"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-prompt manual-testing-playbook trees
 
@@ -54,7 +54,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Phase 004 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

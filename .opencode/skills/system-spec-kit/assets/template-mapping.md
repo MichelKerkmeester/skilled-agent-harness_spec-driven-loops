@@ -1,0 +1,412 @@
+---
+title: Template Mapping
+description: Complete mapping of documentation levels to templates with scaffold and render commands.
+trigger_phrases:
+  - "template mapping"
+  - "level to template assignments"
+  - "template scaffold commands"
+  - "required templates by level"
+importance_tier: normal
+contextType: planning
+version: 3.6.0.39
+---
+
+# Template Mapping - Level to File Assignments
+
+Maps documentation levels to required templates with ready-to-use scaffold and render commands.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+This asset provides the definitive source for which templates are required at each documentation level. Use it to ensure spec folders contain all mandatory files before claiming completion.
+
+For cross-phase campaigns, keep one template set per owning phase folder rather than trying to share one spec packet across unrelated branches. Shared-memory or multi-runtime sweeps can share research inputs, but each implementation or truth-reconciliation branch should still resolve to an explicit parent phase for template ownership.
+
+### Usage
+
+1. Determine your documentation level (1, 2, 3, or 3+)
+2. Scaffold the required templates using the provided bash commands
+3. Follow the step-by-step template usage guide for proper folder setup
+4. Verify all placeholders are filled before proceeding
+5. When work spans multiple phases or multiple ownership branches, create or update the template set inside the owning phase folder and reference the sibling branches explicitly
+
+---
+
+## 2. TEMPLATE LOCATION
+
+### Resolution Model
+
+Spec folders are scaffolded through the Level contract resolver. The resolver selects the required files for the requested Level and renders the template content during `create.sh`; AI-facing instructions should talk about Level 1, Level 2, Level 3, Level 3+, and phase-parent contracts only.
+
+**Critical Rule:** Use the Level contract for the chosen Level. Never freehand required spec-folder documents.
+
+---
+
+## 3. REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
+
+```text
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
+                              ↓
+Level 2 (Verification): Level 1 + checklist.md
+                              ↓
+Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
+                              ↓
+Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder tracking
+```
+
+| Level               | Required Files                     | Adds To Previous        | Scaffold Commands          |
+| ------------------- | ---------------------------------- | ----------------------- | -------------------------- |
+| **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md` | (foundation)            | See Level 1 commands below |
+| **2: Verification** | Level 1 + `checklist.md`           | QA checklist            | See Level 2 commands below |
+| **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
+| **3+: Extended**    | Level 3 + approval workflow + compliance + stakeholders | Review tracking + coordination | See Level 3+ commands below |
+| **Phase Parent**    | `spec.md` + `description.json` + `graph-metadata.json` (lean trio) | None (control file only) | `create.sh --phase --phases N --phase-names a,b,c <description>` |
+
+**Phase Parent** rows above apply when the target folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND ≥1 such child has `spec.md` OR `description.json`). At a phase parent:
+- **Required:** `spec.md` (lean, rendered from `templates/manifest/phase-parent.spec.md.tmpl`), `description.json`, `graph-metadata.json`
+- **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
+- **Optional:** `templates/manifest/context-index.md.tmpl` (migration bridge, only if reorganized)
+
+Phase children continue to follow the normal Level 1–3+ rows above for their assigned level. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.
+
+**Level 1 Scaffold Commands (Baseline):**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/###-name --name feature-name
+```
+
+**Level 2 Scaffold Commands (complete set):**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/###-name --name feature-name
+```
+
+**Level 3 Scaffold Commands (complete set):**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/###-name --name feature-name
+# Optional:
+mkdir -p specs/###-name/research
+bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+  --level 3 \
+  --out-dir specs/###-name/research \
+  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+```
+
+**Level 3+ Scaffold Commands (complete set):**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+# Optional:
+mkdir -p specs/###-name/research
+bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+  --level 3+ \
+  --out-dir specs/###-name/research \
+  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+```
+
+---
+
+## 4. OPTIONAL TEMPLATES (Any Level)
+
+These templates are OPTIONAL and can be added at any documentation level:
+
+| Template File | Render As     | When to Use                          | Render Command                                                                        |
+| ------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
+| `research/research.md` | `research/research.md` | Comprehensive research documentation (Level 3+ typical) | Render `templates/manifest/research.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name/research` |
+| `resource-map.md` | `resource-map.md` | Lean path catalog of every file analyzed/created/updated/removed (any level) | Render `templates/manifest/resource-map.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name` |
+
+**Notes:**
+- These are OPTIONAL - only render when the packet benefits from them
+- `decision-record.md` is REQUIRED at Level 3, not optional
+- Topic-specific ADR files can be added as supplemental artifacts, but the required canonical file is always `decision-record.md`
+- `resource-map.md` is level-agnostic and pairs well with `implementation-summary.md` when reviewers need a scannable blast-radius view
+
+---
+
+## 5. FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
+
+### Level 1: Baseline Documentation
+
+```text
+specs/043-add-email-validation/
+├── spec.md                      (REQUIRED - from spec.md)
+├── plan.md                      (REQUIRED - from plan.md)
+├── tasks.md                     (REQUIRED - from tasks.md)
+└── implementation-summary.md    (REQUIRED - from implementation-summary.md, carries `_memory.continuity`)
+```
+
+**Content expectations:**
+- **spec.md**: Problem statement, requirements, success criteria
+- **plan.md**: Implementation approach, file changes, testing strategy
+- **tasks.md**: Task breakdown by user story, ordered by dependencies
+
+**Enforcement:** Hard block if any required file missing
+
+---
+
+### Level 2: Verification Added
+
+```text
+specs/044-modal-component/
+├── spec.md                      (REQUIRED - from Level 1)
+├── plan.md                      (REQUIRED - from Level 1)
+├── tasks.md                     (REQUIRED - from Level 1)
+├── implementation-summary.md    (REQUIRED - from Level 1)
+└── checklist.md                 (REQUIRED - adds QA validation)
+```
+
+**Additional expectations:**
+- **checklist.md**: Pre-implementation checks, implementation validation, testing checklist, deployment verification
+
+**Enforcement:** Hard block if `checklist.md` missing
+
+---
+
+### Level 3: Full Documentation
+
+```text
+specs/045-user-dashboard/
+├── spec.md                      (REQUIRED - from Level 2)
+├── plan.md                      (REQUIRED - from Level 2)
+├── tasks.md                     (REQUIRED - from Level 2)
+├── implementation-summary.md    (REQUIRED - from Level 2)
+├── checklist.md                 (REQUIRED - from Level 2)
+├── decision-record.md           (REQUIRED - architecture decisions)
+├── research/research.md         (OPTIONAL - comprehensive research)
+└── resource-map.md              (OPTIONAL - lean path catalog)
+```
+
+**Additional expectations:**
+- **decision-record.md**: Context, options considered, decision made, rationale, consequences
+
+**Enforcement:** Hard block if `decision-record.md` missing
+
+---
+
+### Level 3+: Extended Documentation
+
+```text
+specs/046-enterprise-migration/
+├── spec.md                      (REQUIRED - from Level 3, +approval workflow, +compliance, +stakeholders)
+├── plan.md                      (REQUIRED - from Level 3, +AI execution framework, +workstream coordination)
+├── tasks.md                     (REQUIRED - from Level 3, +3-tier format, +AI protocol, +workstreams)
+├── implementation-summary.md    (REQUIRED - from Level 3)
+├── checklist.md                 (REQUIRED - from Level 3, +extended items 100-150, +sign-offs, +compliance)
+├── decision-record.md           (REQUIRED - from Level 3, +decision authority, +review requirements)
+└── research/research.md         (OPTIONAL - comprehensive research)
+```
+
+**Additional expectations:**
+- **Extended checklist**: 100-150 items with P0/P1/P2 prioritization and approval tracking
+- **AI execution framework**: Pre-task checklists, execution rules, status tracking for multi-agent work
+- **Approval workflow**: Stakeholder tracking with reviewer checkpoints and compliance gates
+
+**Enforcement:** Hard block if any required file missing. All Level 3+ templates include `SPECKIT_LEVEL: 3+` frontmatter.
+
+---
+
+## 6. TEMPLATE STRUCTURE REQUIREMENTS
+
+All templates follow consistent structure:
+
+### 1. Numbered H2 Sections
+
+**Format:** `## N. EMOJI TITLE`
+
+**Example:** `## 3. 🛠️ IMPLEMENTATION`
+
+**Rules:**
+- Keep numbering sequential
+- Never remove emojis (visual scanning pattern)
+- Maintain consistent formatting
+
+### 2. Metadata Block
+
+First section sets expectations:
+
+**Level 1:** Metadata + Complexity + Success Criteria
+
+**Level 2/3:** Category, Tags, Priority, Status
+
+### 3. Placeholder Conventions
+
+- `[PLACEHOLDER]` - Must be replaced with actual content
+- `[NEEDS CLARIFICATION: ...]` - Unknown requirement (flag for user)
+- `<!-- SAMPLE CONTENT -->` - Remove before delivery
+
+### 4. Template Footer
+
+Accountability reminder (remove after filling):
+
+```html
+<!--
+  REPLACE SAMPLE CONTENT IN FINAL OUTPUT
+  - This template contains placeholders and examples
+  - Replace them with actual content
+-->
+```
+
+### 5. Continuity Artifact Anchors
+
+Generated continuity artifacts in `memory/` folders MUST use paired anchors for semantic indexing:
+
+**Required Format:**
+```markdown
+Content that will be indexed...
+```
+
+**Rules:**
+- Every opening `<!-- ANCHOR:name -->` MUST have a closing `<!-- /ANCHOR:name -->`
+- Anchor names must match exactly (case-sensitive)
+- Content between anchors is indexed for semantic search
+- Orphaned anchors (missing pair) will cause validation errors
+
+**Common Anchor Names:**
+- `summary` - Executive summary of the spec-doc record
+- `decisions` - Key decisions made
+- `blockers` - Current blockers or issues
+- `next-steps` - Planned next actions
+- `context` - Background context
+
+**Generation:** Use `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to update the packet's canonical continuity surfaces, primarily `_memory.continuity` inside `implementation-summary.md`.
+
+---
+
+## 7. TEMPLATE ADHERENCE RULES
+
+**Non-negotiable rules:**
+
+1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/manifest/`** - Never freehand documentation
+2. **Preserve numbering and emojis** - Maintain visual scanning pattern
+3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
+4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
+5. **Use canonical required filenames** - `decision-record.md` is required; topic-specific ADR files are supplemental artifacts, not replacements
+6. **Keep sections relevant** - State "N/A" instead of deleting sections
+7. **Link sibling documents** - Cross-reference spec.md ↔ plan.md ↔ tasks.md
+8. **Document level changes** - Note upgrades/downgrades in changelog
+9. **Keep history immutable** - Append to history, don't rewrite
+10. **Validate before coding** - Complete pre-implementation checklist first
+11. **Organize by priority** - Use P0/P1/P2 priority markers in checklists (P0=blocker, P1=must-do, P2=can-defer)
+12. **Cite evidence** - Mark completed items with verification evidence (e.g., `[x] Item - verified via grep/test output`)
+
+---
+
+## 8. STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
+
+### Step 1: Determine Level
+Use LOC as soft guidance + complexity/risk factors
+
+### Step 2: Find Next Number
+```bash
+ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
+```
+Add 1 to get next number.
+
+### Step 3: Create Folder
+```bash
+mkdir -p specs/###-short-name/
+```
+
+### Step 4: Copy Required Templates (Complete Sets)
+
+**Level 1 (Baseline) - ALL features start here:**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path specs/###-name --name feature-name
+```
+
+**Level 2 (Verification) - Complete set:**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path specs/###-name --name feature-name
+```
+
+**Level 3 (Full) - Complete set:**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/###-name --name feature-name
+```
+
+**Level 3+ (Extended) - Complete set:**
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+```
+
+### Step 5: Copy Optional Templates (Level 3/3+ - If Needed)
+
+```bash
+# Comprehensive Research
+mkdir -p specs/###-name/research
+bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+  --level 3 \
+  --out-dir specs/###-name/research \
+  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+```
+
+### Step 6: Fill Templates
+- Replace ALL `[PLACEHOLDER]` text
+- Remove sample/example sections
+- Adapt to specific feature
+- Remove instructional comments
+
+### Step 7: Present to User
+- Show level chosen
+- Show folder path
+- Show which templates used (required vs optional)
+- Explain approach
+
+### Step 8: Wait for Approval
+Get explicit "yes/go ahead/proceed" before ANY file changes.
+
+**Enforcement:** Verify required templates exist before claiming completion for the chosen level.
+
+---
+
+## 9. RELATED RESOURCES
+
+### Asset Files
+- [parallel-dispatch-config.md](./parallel-dispatch-config.md) - Complexity scoring and agent dispatch
+- [level-decision-matrix.md](./level-decision-matrix.md) - Level selection decision matrix
+
+### Reference Files
+- [template-guide.md](../references/templates/template-guide.md) - Template selection, adaptation, and quality standards
+- level specifications reference - Complete Level 1-3 requirements
+- [quick-reference.md](../references/workflows/quick-reference.md) - Commands, checklists, and troubleshooting
+
+### Scripts
+- Level contract resolver - manifest-backed Level template selection
+
+### Templates (Organized by Level)
+
+**Level 1 Templates (Baseline):**
+- [spec template](../templates/manifest/spec.md.tmpl) - Requirements and user stories template
+- [plan.md](../templates/manifest/plan.md.tmpl) - Technical implementation plan template
+- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+
+**Level 2 Templates (Verification):**
+- [spec template](../templates/manifest/spec.md.tmpl) - Requirements template with extended sections
+- [plan.md](../templates/manifest/plan.md.tmpl) - Implementation plan with verification
+- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/manifest/checklist.md.tmpl) - Validation checklist template
+
+**Level 3 Templates (Full Documentation):**
+- [spec template](../templates/manifest/spec.md.tmpl) - Comprehensive requirements template
+- [plan.md](../templates/manifest/plan.md.tmpl) - Full implementation plan template
+- [tasks.md](../templates/manifest/tasks.md.tmpl) - Detailed task breakdown template
+- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/manifest/checklist.md.tmpl) - Full validation checklist template
+- [decision-record.md](../templates/manifest/decision-record.md.tmpl) - Architecture Decision Records template
+
+**Level 3+ Templates (Extended):**
+- [spec template](../templates/manifest/spec.md.tmpl) - Requirements with approval workflow and compliance checkpoints
+- [plan.md](../templates/manifest/plan.md.tmpl) - Implementation plan with AI execution framework and workstream coordination
+- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown with 3-tier format and AI execution protocol
+- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/manifest/checklist.md.tmpl) - Extended checklist (100-150 items) with sign-offs and compliance
+- [decision-record.md](../templates/manifest/decision-record.md.tmpl) - Decision records with authority and review requirements
+
+**Optional Templates:**
+- [research.md.tmpl](../templates/manifest/research.md.tmpl) - Render to `research/research.md` for Level 3 research packets
+
+### Related Skills
+- `system-spec-kit` - Spec folder workflow orchestrator
+- `sk-doc` - Document quality and skill creation

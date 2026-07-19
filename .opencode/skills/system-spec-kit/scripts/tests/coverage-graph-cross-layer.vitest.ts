@@ -19,17 +19,17 @@ import {
   type CoverageEdge,
   type CoverageNode,
   type Namespace,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-db.js';
 import {
   findContradictions,
   findCoverageGaps,
   findUnverifiedClaims,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-query.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-query.js';
 import {
   computeNodeSignals,
   computeResearchSignals,
   computeReviewSignals,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-signals.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');

@@ -50,4 +50,4 @@ The script owns graph metadata refresh only. It should not edit authored spec do
 ## 6. RELATED
 
 - `../config/README.md`
-- `../../mcp_server/api/`
+- `../../mcp-server/api/`

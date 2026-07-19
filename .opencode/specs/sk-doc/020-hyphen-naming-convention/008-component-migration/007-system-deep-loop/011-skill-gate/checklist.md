@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop skill gate (032 phase 007/011)"
+title: "Checklist: system-deep-loop skill gate (020 phase 007/011)"
 description: "Blocking SOL rollup contract for sibling completion, whole-subtree kebab-case cleanliness, exemption handling, and behavior evidence."
 trigger_phrases:
   - "system-deep-loop skill gate checklist"

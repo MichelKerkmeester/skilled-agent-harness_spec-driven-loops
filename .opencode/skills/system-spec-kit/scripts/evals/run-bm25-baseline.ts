@@ -28,7 +28,7 @@ import {
   runBM25Baseline, recordBaselineMetrics,
   loadGroundTruth, initEvalDb,
   type BM25SearchFn, type BM25SearchResult, type BM25BaselineResult,
-} from '../../mcp_server/api/index.js';
+} from '../../mcp-server/api/index.js';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
@@ -36,7 +36,7 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 // -- Config ------------------------------------------------------
 
-const DB_DIR = path.resolve(moduleDir, '../../mcp_server/database');
+const DB_DIR = path.resolve(moduleDir, '../../mcp-server/database');
 const PROD_DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);
 const OUTPUT_PATH = '/tmp/bm25-baseline-result.json';
 

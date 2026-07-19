@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: README, agent, command, changelog, flowchart, diff, and benchmark generators (032 phase 003 child 003)"
+title: "Feature Specification: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
 description: "Seven create-* workflow packets still carry output examples and path rules that can produce underscore names. Their generated files and directories must use kebab-case, with README/SKILL/tool contracts and Python exemptions preserved."
 trigger_phrases:
   - "readme agent command benchmark generator naming"
@@ -13,18 +13,23 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 contract for seven create-* generator families"
-    next_safe_action: "Inventory each workflow's derived output path and exact-name exemptions"
+    recent_action: "Completed and verified the seven create-* output naming migrations"
+    next_safe_action: "No child work remains"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/create-readme/SKILL.md"
+      - ".opencode/skills/sk-doc/create-agent/SKILL.md"
+      - ".opencode/skills/sk-doc/create-command/SKILL.md"
+      - ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py"
+      - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
 
@@ -38,10 +43,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child 003 of phase 003 in the 032 kebab-case filesystem-naming program |
+| **Origin** | Child 003 of phase 003 in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -101,5 +106,5 @@ The families have different path contracts, so a shared mechanical replacement w
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking; the semantic naming rule and exemption boundary are fixed by the 032 parent and DR-005/DR-008.
+None blocking; the semantic naming rule and exemption boundary are fixed by the 020 parent and DR-005/DR-008.
 <!-- /ANCHOR:questions -->

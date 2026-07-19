@@ -83,7 +83,7 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'membership-only',
   },
   {
-    file: 'mcp_server/handlers/memory-index-discovery.ts:203-223,308-382',
+    file: 'mcp-server/handlers/memory-index-discovery.ts:203-223,308-382',
     symbol: 'findSpecDocuments / findGraphMetadataFiles',
     consumerOrEffect: 'Spec-document and graph-metadata discovery use legacy only when canonical is absent.',
     precedence: 'canonical-first',
@@ -114,39 +114,39 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'canonical-only',
   },
   {
-    file: 'mcp_server/startup-checks.ts:261-292',
+    file: 'mcp-server/startup-checks.ts:261-292',
     symbol: 'resolveWorkspaceSpecPath / resolveMovedFolder',
     consumerOrEffect: 'Startup drift-marker containment accepts only paths under the canonical root.',
     precedence: 'canonical-only',
   },
   {
-    file: 'mcp_server/context-server.ts:1602-1627',
+    file: 'mcp-server/context-server.ts:1602-1627',
     symbol: 'getPendingRecoveryLocations',
     consumerOrEffect: 'Startup pending-recovery scans the legacy root before the canonical root.',
     precedence: 'legacy-first',
   },
   {
-    file: 'mcp_server/lib/search/folder-discovery.ts:1363-1379',
+    file: 'mcp-server/lib/search/folder-discovery.ts:1363-1379',
     symbol: 'getSpecsBasePaths',
     consumerOrEffect:
       'Generic MCP spec-base discovery enumerates the legacy root before the canonical root.',
     precedence: 'legacy-first',
   },
   {
-    file: 'mcp_server/lib/resume/resume-ladder.ts:863-910',
+    file: 'mcp-server/lib/resume/resume-ladder.ts:863-910',
     symbol: 'resolveFromFolderPath / resolveSpecFolder',
     consumerOrEffect:
       'Resume packet resolution checks canonical before legacy while preserving absolute input.',
     precedence: 'canonical-first',
   },
   {
-    file: 'mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70',
+    file: 'mcp-server/lib/continuity/authored-continuity-snapshot.ts:50-70',
     symbol: 'normalizeSpecFolder / resolveSpecFolderPath',
     consumerOrEffect: 'Authored continuity resolution checks canonical before legacy.',
     precedence: 'canonical-first',
   },
   {
-    file: 'mcp_server/api/indexing.ts:68-92',
+    file: 'mcp-server/api/indexing.ts:68-92',
     symbol: 'resolveSpecFolderPath',
     consumerOrEffect:
       'Indexing resolves existing direct paths, discovery, canonical fallback, then legacy fallback.',

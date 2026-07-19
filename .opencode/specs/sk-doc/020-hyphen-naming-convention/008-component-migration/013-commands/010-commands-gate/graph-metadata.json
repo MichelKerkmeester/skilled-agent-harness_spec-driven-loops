@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
     "created_at": "2026-07-14T15:18:38Z",
-    "last_save_at": "2026-07-17T14:30:46.328Z",
+    "last_save_at": "2026-07-17T20:26:20.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2c5700baa5ab7a1e38b77af3fc7cce02941a79489635dde9f25b2c37dfae16ec",
+    "source_fingerprint": "sha256:8feb9f370c4febed67494bd324fcd7cc9ea481dd2b547a29b8c23516227a6936",
     "source_doc_hashes": {
-      "spec.md": "ebbeb4257c13b3793a34f19876a345acea8291b8d0784a13f5df772a2a8bef97",
-      "plan.md": "d64cebb07506300b3b6fec6d472de59745d123cd53458072e218506a1d3c723b",
-      "tasks.md": "2b304b13167b1684c8ed90dc3200637eeeab3c83b94a20b2565b065735bf9726",
-      "checklist.md": "1dcdc40bae824833996b11de91c58b4aa1a75df6ee55b989329231593283338b"
+      "spec.md": "ceaf66c32f32daabff63076397e40784145e22e33268e7a420074b613f4694df",
+      "plan.md": "330066bdee9452f7fe821b3cc4b09d012f233e7d9e3eb3a35150b2b0321077ca",
+      "tasks.md": "e3ff942405ada1b1602b7a8bbe169012ea078fe0e55d7726a93e059cb0d44364",
+      "checklist.md": "a602fc15bcd72cf60e375226d6924569a4f4b7d0af43934cbf0a51a6a7dd5a75"
     },
     "last_active_child_id": null,
     "last_active_at": null

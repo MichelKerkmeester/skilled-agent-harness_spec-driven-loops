@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/004-three-way-isolation-finalize",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/006-extraction-and-isolation/004-three-way-isolation-finalize",
   "description": "Close the last 1 production import in system-code-graph + the 6 in system-skill-advisor by duplicating symbols into each skill's lib/shared/, then",
   "keywords": [
     "close",
@@ -14,11 +14,12 @@
     "lib",
     "shared"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.822Z",
+  "lastUpdated": "2026-07-18T03:48:55.525Z",
   "specId": "004",
   "folderSlug": "three-way-isolation-finalize",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "006-extraction-and-isolation"
   ],

@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Design-mcp-open-design (032 phase 007)"
-description: "Execution plan for Design-mcp-open-design in the 032 sk-design naming subtree."
+title: "Implementation Plan: Design-mcp-open-design (020 phase 007)"
+description: "Execution plan for Design-mcp-open-design in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-mcp-open-design implementation plan"
   - "sk-design design-mcp-open-design plan"
-  - "032 design-mcp-open-design tasks"
+  - "020 design-mcp-open-design tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Design-mcp-open-design (032 phase 007)
+# Implementation Plan: Design-mcp-open-design (020 phase 007)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code manual-testing-playbook tree (032 phase 008/006)"
+title: "Implementation Plan: sk-code manual-testing-playbook tree (020 phase 008/006)"
 description: "Plan for renaming the hub-level sk-code manual-testing-playbook root, categories, and scenario files through the frozen map, then proving scenario-ID and benchmark-corpus parity."
 trigger_phrases:
   - "manual playbook naming implementation plan"
@@ -112,7 +112,7 @@ Move the hub playbook root, categories, index, and scenarios as one graph closur
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 001-005 component path handoffs | Internal | Required | Cross-surface scenario links may be unresolved. |
-| 032 frozen map | Internal | Required | Category and scenario ownership is ambiguous. |
+| 020 frozen map | Internal | Required | Category and scenario ownership is ambiguous. |
 | 000 scenario baseline | Internal | Required | Loss or duplication of scenarios cannot be detected. |
 | 007 benchmark child | Internal | Downstream | Benchmark storage is not renamed here, but its corpus path must be handed off. |
 <!-- /ANCHOR:dependencies -->

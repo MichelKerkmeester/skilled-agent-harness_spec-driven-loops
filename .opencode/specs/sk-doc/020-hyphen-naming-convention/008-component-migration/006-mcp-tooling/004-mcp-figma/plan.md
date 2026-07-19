@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-figma naming closure (032 phase 004)"
+title: "Implementation Plan: mcp-figma naming closure (020 phase 004)"
 description: "This plan renames the Figma component's catalog, playbook, asset, reference, install-guide, and shared-helper paths through an explicit semantic map, then repairs Markdown and shell references while preserving transport and identifier semantics."
 trigger_phrases:
   - "mcp-figma naming implementation plan"
@@ -35,7 +35,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling/mcp-figma |
 | **Change class** | Catalog/playbook/assets/scripts rename plus reference repair |
-| **Execution** | One dependency-closed component batch from the frozen 032 map |
+| **Execution** | One dependency-closed component batch from the frozen 020 map |
 
 ### Overview
 The Figma component census contains 14 snake_case directories and 30 underscored files. The implementation moves the catalog, playbook, assets, references, install guide, and helper path together, with scripts/common.sh as the safe semantic target for scripts/_common.sh. It then repairs Markdown links and shell source paths while leaving shell variables and Figma identifiers unchanged.
@@ -105,7 +105,7 @@ The Figma component census contains 14 snake_case directories and 30 underscored
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 001 hub boundary | Internal | Required | Root Figma route references may be stale |
-| Frozen 032 rename map | Internal | Required | No safe target or collision proof |
+| Frozen 020 rename map | Internal | Required | No safe target or collision proof |
 | bash | Runtime verifier | Required | Shared helper syntax cannot be proven |
 | mcp-figma transport contract | Tool contract | Preserve | Workspace safety boundary could change |
 <!-- /ANCHOR:dependencies -->

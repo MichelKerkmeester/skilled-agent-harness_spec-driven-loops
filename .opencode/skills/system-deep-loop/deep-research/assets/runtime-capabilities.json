@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "stopPolicy": "fail-closed",
+  "docPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "resolverScript": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "runtimes": [
+    {
+      "id": "opencode",
+      "label": "OpenCode / Copilot",
+      "mirrorPath": ".opencode/agents/deep-research.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "memory"
+      ],
+      "hookBootstrap": false,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    },
+    {
+      "id": "claude",
+      "label": "Claude",
+      "mirrorPath": ".claude/agents/deep-research.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "memory"
+      ],
+      "hookBootstrap": true,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    }
+  ]
+}

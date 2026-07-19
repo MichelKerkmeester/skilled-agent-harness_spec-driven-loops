@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The system-deep-loop hub root and shared boundary contain exact routing and metadata contracts that a broad rename could damage. The current inventory is already kebab-clean in this boundary, so this child verifies the no-op candidate set, renames any baseline drift only if present, and proves hub/shared references remain intact.",
     "created_at": "2026-07-14T15:17:48Z",
-    "last_save_at": "2026-07-17T14:30:26.168Z",
+    "last_save_at": "2026-07-17T20:26:11.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:32d3785547c27e07330c90901e5393602d5d6683319f00a51b49123cc691e10b",
+    "source_fingerprint": "sha256:a37030ef238aac2a273ce15f0f4c6e983c405a7084124519b1d81ece60fde399",
     "source_doc_hashes": {
-      "spec.md": "3fa5dc18296ec306d4af3bda1aaba202ae11739cf3345ce907643a8b20ff0590",
-      "plan.md": "ced99e940986c0b1d69c699714f4b65177826d4ae74cd88727aeceff446c3813",
-      "tasks.md": "aa8607b4ca499e8e472801ee6eb71f9ad91fdd869fe7caf5fe9f837655843f0c",
-      "checklist.md": "171c4e62781d2f6807403c82762cceebaeb1b7a1d6566fa506a4420d23a03314",
-      "decision-record.md": "b39c7954e3615238d6f1d3a5c62590948f07e56ae51e1d650aa0d1e04697cb22"
+      "spec.md": "5bcb06ce9ae425b99c3108a5b686ff11dfc6eb738f3871033b1d528c6a55e9f0",
+      "plan.md": "b9c0dae353376008c14b4562658cf3eb08473c59fef35a805c077f2b2167ad6a",
+      "tasks.md": "28809bba4be9a27d06484e1797d16eb3765eb1a2ec2dd9861cf2937019b6b9ff",
+      "checklist.md": "cfe1cca3cc7d3f2e10b4192677c10669235704b51efac5f0a82cdf0d3ba32053",
+      "decision-record.md": "07bb249b710e1537d56626de88cb8ad4b83b6f082cb95cc1be720140123dadc7"
     },
     "last_active_child_id": null,
     "last_active_at": null

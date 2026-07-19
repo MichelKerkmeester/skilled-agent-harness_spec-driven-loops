@@ -19,7 +19,10 @@
       "create-skill scaffolding tasks",
       "skill packaging naming tasks",
       "create-skill scaffolding checklist",
-      "skill packaging naming checklist"
+      "skill packaging naming checklist",
+      "create-skill implementation summary",
+      "skill package naming completion",
+      "kebab-case scaffold results"
     ],
     "key_topics": [
       "create-skill",
@@ -36,12 +39,13 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -181,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not.",
     "created_at": "2026-07-14T15:16:44Z",
-    "last_save_at": "2026-07-17T14:30:01.453Z",
+    "last_save_at": "2026-07-18T06:41:37.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b5709292e00c2f467a80ce5b72838aae17be71002870ec0d138037a1c9ae43b",
+    "source_fingerprint": "sha256:e48ecb1afb458a1910fb0d4fa8ead33344177f84474a251a7d7b90ad047e573b",
     "source_doc_hashes": {
-      "spec.md": "f841e23b2a71cd11cc78a9adb2857d8d2414cf2210e8ecccdbba181697b890b0",
-      "plan.md": "454ce49f924b831d842a6bf0cd11181b914ee3db63aea51cf3db21b4a571644f",
-      "tasks.md": "783953c91af362e0b85a9f8db992603b6aa95d2acac9d794761b39a6812d2923",
-      "checklist.md": "3d6e9d0567e3dcea77d624e9ce82ff2f7ead2cb8b113b66e24f21c03ef80a823"
+      "spec.md": "3f943c1e8ac6c22420a361f922e0c5b7b00a847871814df759d2847209a12ed9",
+      "plan.md": "d76826dad7898174563d69a86e5c769b97105e27bf08829fcb3c40dd1c083fdd",
+      "tasks.md": "703d154ef19fcef66d345065db19921ce73b756b3aa84670bc931bee38b34716",
+      "checklist.md": "6374a4931eb4d74cbbbe11c386d7edd39e5c317fff9db9f33874fa3c74e73cc0",
+      "implementation-summary.md": "3b72fecb5ee1f76a55de216f31cbc3fd4f1247356c242d579d253d0b2d626c95"
     },
     "last_active_child_id": null,
     "last_active_at": null

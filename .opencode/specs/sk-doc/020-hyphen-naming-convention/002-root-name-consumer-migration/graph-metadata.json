@@ -19,7 +19,9 @@
       "root-name consumer migration tasks",
       "hyphen naming phase 002 tasks",
       "root-name consumer migration checklist",
-      "hyphen naming phase 002 checklist"
+      "hyphen naming phase 002 checklist",
+      "root-name consumer migration summary",
+      "hyphen naming phase 002 implementation"
     ],
     "key_topics": [
       "root-name",
@@ -36,14 +38,22 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "manifest/consumer-manifest.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "consumer-manifest.md",
+        "kind": "doc",
+        "path": "manifest/consumer-manifest.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,6 +64,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -135,13 +151,19 @@
         "source": "derived"
       },
       {
+        "name": "Verify Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "matrix",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -169,43 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Run Lane",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-07-17T14:30:00.844Z",
+    "last_save_at": "2026-07-18T07:19:13.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:906337e45195535876c48b61f82f7b3285f2ff9a4d6d95c7892d7e425a8441d5",
+    "source_fingerprint": "sha256:a37c62e725ebc6a54ab23ebdd0388b12e659957c63833fa1ff6cf4bceeb7622c",
     "source_doc_hashes": {
-      "spec.md": "5403ea21d6bd67b002b24e26e01b7119c984f31a9394e20ac9a774821060ab26",
-      "plan.md": "e3ef86ae33b73a15dfd418d5fe9f45fed50463b8b986e5861a7dd99c608d5d26",
-      "tasks.md": "3b3a3d5b03056224583af24144e11d19a124fe345c40dabf5e245e8892f4d0dd",
-      "checklist.md": "7605002bf5e99830c699997ff84bc2b6ade1884fbadad2712866df4594f0204e"
+      "spec.md": "5865b14373e6e2fbdaa56bc3af9c72bbb921f09b70efe903eca08b9911f14623",
+      "plan.md": "cc5e5416e9000c295fa6f95e522e3a90269e63fad7eea0bc167cbbe5d8fc80eb",
+      "tasks.md": "859b7f590642026959f1cffcdc8475f15127f14e639a6659fbc6e80846442929",
+      "checklist.md": "0164f018084b7197b72942c47f946990f3fe4c7b8d729515927128b06b3c3e6c",
+      "implementation-summary.md": "258791715289073fa2aaee79d71c230485d1506c20c804c21c3411501fafd092"
     },
     "last_active_child_id": null,
     "last_active_at": null

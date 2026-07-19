@@ -50,22 +50,22 @@ sweep-reports/
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js
-.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js.map
-.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.d.ts
-.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.d.ts.map
-.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.js
-.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.js.map
-.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.d.ts
-.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.d.ts.map
+.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.js
+.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.js.map
+.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.d.ts
+.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.d.ts.map
+.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.js
+.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.js.map
+.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.d.ts
+.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.d.ts.map
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-spec-kit
 # ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js.map
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts.map
+.opencode/skills/system-spec-kit/mcp-server/lib/**/*.js
+.opencode/skills/system-spec-kit/mcp-server/lib/**/*.js.map
+.opencode/skills/system-spec-kit/mcp-server/lib/**/*.d.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/**/*.d.ts.map
 .opencode/skills/system-spec-kit/shared/**/*.js
 .opencode/skills/system-spec-kit/shared/**/*.js.map
 .opencode/skills/system-spec-kit/shared/**/*.d.ts
@@ -123,45 +123,45 @@ code-graph.sqlite
 # ───────────────────────────────────────────
 # Database: system-spec-kit
 # ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp_server/*.sqlite*
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
-.opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
-.opencode/skills/system-spec-kit/mcp_server/database/.db-updated
-.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock
-.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
-.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
-.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.lockdir/
-.opencode/skills/system-spec-kit/mcp_server/database/.unclean-shutdown
-.opencode/skills/system-spec-kit/mcp_server/database/.memory-drift-dirty-paths.json
-.opencode/skills/system-spec-kit/mcp_server/database/.memory-drift-dirty-paths.json.processing-*
-.opencode/skills/system-spec-kit/mcp_server/dist/database/
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/shared/mcp_server/database/.db-updated
+.opencode/skills/system-spec-kit/mcp-server/*.sqlite*
+.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite
+.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite.bak*
+.opencode/skills/system-spec-kit/mcp-server/database/**/*.sqlite*
+.opencode/skills/system-spec-kit/mcp-server/database/.db-updated
+.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.flock
+.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
+.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json
+.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.lockdir/
+.opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
+.opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json
+.opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json.processing-*
+.opencode/skills/system-spec-kit/mcp-server/dist/database/
+.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite
+.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/shared/mcp-server/database/.db-updated
 
 # ───────────────────────────────────────────
 # Database: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite-*
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite.bak*
-.opencode/skills/system-skill-advisor/mcp_server/database/*.db
-.opencode/skills/system-skill-advisor/mcp_server/database/*.db-*
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json
-.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json
-.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.lockdir/
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
+.opencode/skills/system-skill-advisor/mcp-server/database/*.db
+.opencode/skills/system-skill-advisor/mcp-server/database/*.db-*
+.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.json
+.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.lockdir/
 
 # ───────────────────────────────────────────
 # Database: system-code-graph
 # ───────────────────────────────────────────
 # Skill-local code-graph DB runtime state (DB relocated 2026-05-29; tracked docs like vectors/README.md stay)
-.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite*
-.opencode/skills/system-code-graph/mcp_server/database/.code-graph-*
-.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.*
+.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite*
+.opencode/skills/system-code-graph/mcp-server/database/.code-graph-*
+.opencode/skills/system-code-graph/mcp-server/database/.mk-code-index-launcher.*
 # Local activation symlink for the Barter Copywriter skill. The real source lives in the
 # Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
 .opencode/skills/barter-copywriter
@@ -173,11 +173,11 @@ code-graph.sqlite
 
 # Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
 # quarantine/recovery triplets) — generated per apply run, database-local only.
-.opencode/skills/system-code-graph/mcp_server/database/apply-audit/
-.opencode/skills/system-code-graph/mcp_server/database/quarantine-*/
-.opencode/skills/system-code-graph/mcp_server/database/recovery-*/
-.opencode/skills/system-code-graph/mcp_server/database/known-good-*/
-.opencode/skills/system-code-graph/mcp_server/database/bad-apply-*/
+.opencode/skills/system-code-graph/mcp-server/database/apply-audit/
+.opencode/skills/system-code-graph/mcp-server/database/quarantine-*/
+.opencode/skills/system-code-graph/mcp-server/database/recovery-*/
+.opencode/skills/system-code-graph/mcp-server/database/known-good-*/
+.opencode/skills/system-code-graph/mcp-server/database/bad-apply-*/
 
 # ───────────────────────────────────────────
 # Database: system-deep-loop/runtime
@@ -194,18 +194,18 @@ code-graph.sqlite
 # ───────────────────────────────────────────
 # Runtime: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl
-.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl.*
+.opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl
+.opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl.*
 
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit
 # ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp_server/.opencode/
-.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
-.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
-.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
-.opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
-.opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp-server/.opencode/
+.opencode/skills/system-spec-kit/mcp-server/skill_advisor/scripts/out/*.json
+.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Logs
@@ -238,7 +238,7 @@ _sandbox
 # Archive & testing fixtures
 # ═══════════════════════════════════════════════════════════════════════════════
 .opencode/agents/.provider-backups/
-.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/*/fixtures/states/*.tar.gz
+.opencode/skills/system-spec-kit/manual-testing-playbook/_sandbox/*/fixtures/states/*.tar.gz
 
 # ───────────────────────────────────────────
 # Eval-rig runtime materialization
@@ -291,8 +291,11 @@ _sandbox
 # ───────────────────────────────────────────
 AGENTS_Barter.md
 # Daemon ownership/lease files (ephemeral runtime state, never tracked)
-.opencode/skills/*/mcp_server/database/.*-owner.json
+.opencode/skills/*/mcp-server/database/.*-owner.json
 
 # Daemon crash-probe receipts (ephemeral per-machine runtime state)
 **/database/.crash-probe-receipt
 **/database/.spec-memory-owner.json
+
+# Native-module node/ABI version markers (regenerated per machine, never tracked)
+**/.node-version-marker

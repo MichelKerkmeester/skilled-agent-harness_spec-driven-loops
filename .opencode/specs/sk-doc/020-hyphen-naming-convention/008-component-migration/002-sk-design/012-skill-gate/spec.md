@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Skill gate (032 phase 012)"
+title: "Feature Specification: Skill gate (020 phase 012)"
 description: "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path remains in sk-design."
 trigger_phrases:
   - "skill-gate naming phase"
   - "sk-design skill gate phase"
-  - "032 skill-gate"
+  - "020 skill-gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Skill gate (032 phase 012)
+# Feature Specification: Skill gate (020 phase 012)
 
 > Phase 012 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 12 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 12 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-tooling skill gate",
       "mcp tooling subtree rollup",
-      "032 mcp tooling phase 008",
+      "020 mcp tooling phase 008",
       "mcp-tooling subtree gate plan",
       "mcp tooling rollup verification",
       "mcp-tooling rollup gate tasks",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 032 exemption set intact.",
+    "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact.",
     "created_at": "2026-07-14T15:17:47Z",
-    "last_save_at": "2026-07-17T14:30:25.519Z",
+    "last_save_at": "2026-07-17T20:26:11.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1e2520f235fbfe68c78e36745cee9b88b9c64e785082449717c4643eb6da369a",
+    "source_fingerprint": "sha256:693e319feaa38bbc2dd7ff6597ec62c486ab536aeab5b8ad644a1eebfff32432",
     "source_doc_hashes": {
-      "spec.md": "e62a1b01db08aabb5f5f161f4a0bd74f2a7c0268da94d6193c5efd9ac87e51e5",
-      "plan.md": "1b17fcf6ecab7be9651a48a6f9bec458348da972ee86d13aa66a411722b1021b",
-      "tasks.md": "60ba60a5c0d2613438c37027c9042a0fef190643597a92202311079297dd3a4d",
-      "checklist.md": "5162e74d40a354180703aa1029a4684e3fc8273737b4a80dd0ecffae1c1df293"
+      "spec.md": "8a4d362e73648136adc3a2005ea911bd81f55bba9852718314ffa97a8afaf926",
+      "plan.md": "29bb6357a11f0cc208ee62cd5aa7c501c6a43d91133acac5693e10ab8878342c",
+      "tasks.md": "d3439c0d846fab3c96717daa6ad3a7d29b50dd82567203056693cfdbf7ec9d10",
+      "checklist.md": "900b7ea4a8bd34927e659de2e7e411b5d94bbfaef2eae7e88d0e55c1332cf6b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

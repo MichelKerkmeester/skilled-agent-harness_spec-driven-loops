@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Tiny Catalog Sync [template:level_3/plan.md]"
+title: "Implementation Plan: Tiny Catalog Sync [template:level-3/plan.md]"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"

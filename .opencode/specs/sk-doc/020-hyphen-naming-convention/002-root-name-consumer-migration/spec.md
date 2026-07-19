@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: root-name consumer migration (032 phase 002)"
+title: "Feature Specification: root-name consumer migration (020 phase 002)"
 description: "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All "
 trigger_phrases:
   - "root-name consumer migration"
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Root-name consumer migration
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `001-convention-policy-and-scope`; successor `003-create-generators-and-templates`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `001-convention-policy-and-scope`; successor `003-create-generators-and-templates`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -38,10 +38,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 002 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -112,7 +112,7 @@ The verifier derives the final row set from the reviewed phase 002 consumer mani
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 032 parent spec (import breakage, validator downgrade, non-reproducible builds,
+Inherits the program-level risks in the 020 parent spec (import breakage, validator downgrade, non-reproducible builds,
 over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
 <!-- /ANCHOR:risks -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: sk-prompt benchmark artifact names (032 phase 004.005)"
+title: "Decision Record: sk-prompt benchmark artifact names (020 phase 004.005)"
 description: "Design decisions for phase 005: map authored benchmark paths explicitly, preserve generated raw output, and keep filesystem path changes separate from benchmark payload and data-key semantics."
 trigger_phrases:
   - "sk-prompt benchmark decision record"
@@ -37,7 +37,7 @@ _memory:
 
 The sk-prompt benchmark surface mixes authored report directories with generated evaluation output. The live authored
 directories `live_final/`, `router_final/`, and `router_mode_a/` use underscore-separated names, while prompt-models
-raw runs include names such as `cidi__chunk.json` and retry/archive artifacts. The 032 program permits path renames but
+raw runs include names such as `cidi__chunk.json` and retry/archive artifacts. The 020 program permits path renames but
 exempts generated output and requires benchmark data and payload semantics to remain unchanged.
 <!-- /ANCHOR:context -->
 

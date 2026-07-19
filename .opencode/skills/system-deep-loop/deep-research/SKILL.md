@@ -68,18 +68,18 @@ Use deep-research for multi-round technical investigation, source triangulation,
 
 ## 2. SMART ROUTING
 
-> Pattern: aligned with the [sk-doc smart-router resilience template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md).
+> Pattern: aligned with the [sk-doc smart-router resilience template](../../sk-doc/create-skill/assets/skill/skill-smart-router.md).
 
 ### Resource Domains
 
 The router discovers markdown resources from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP`. Keep routing domain-focused rather than hardcoding exhaustive inventories.
 
-- `references/guides/quick_reference.md` -- first-touch operator cheat sheet.
-- `references/protocol/loop_protocol.md` -- lifecycle, dispatch, reducer sequencing, command-owned state flow.
-- `references/protocol/spec_check_protocol.md` -- bounded `spec.md` anchoring and generated-fence write-back.
+- `references/guides/quick-reference.md` -- first-touch operator cheat sheet.
+- `references/protocol/loop-protocol.md` -- lifecycle, dispatch, reducer sequencing, command-owned state flow.
+- `references/protocol/spec-check-protocol.md` -- bounded `spec.md` anchoring and generated-fence write-back.
 - `references/convergence*.md` -- stop contracts, signals, recovery, graph gates, reference-only convergence ideas.
 - `references/state*.md` -- packet layout, JSONL records, markdown outputs, reducer ownership, reconstruction.
-- `references/guides/capability_matrix.md` -- runtime parity.
+- `references/guides/capability-matrix.md` -- runtime parity.
 - `assets/*.md` -- markdown templates and prompt assets safe for guarded markdown loading.
 
 ### Resource Loading Levels
@@ -94,10 +94,10 @@ The router discovers markdown resources from `references/` and `assets/`, then a
 
 | Phase | Signal | Primary Resources |
 |-------|--------|-------------------|
-| Init | No JSONL exists or setup context | `loop_protocol.md`, `state_format.md`, `state_jsonl.md` |
-| Iteration | Dispatch context includes iteration number | `loop_protocol.md`, `state_outputs.md`, `convergence_signals.md` |
-| Stuck | Dispatch context includes recovery language | `convergence_recovery.md`, `state_reducer_registry.md` |
-| Synthesis | STOP candidate or final report | `convergence.md`, `state_outputs.md`, `spec_check_protocol.md` |
+| Init | No JSONL exists or setup context | `loop-protocol.md`, `state-format.md`, `state-jsonl.md` |
+| Iteration | Dispatch context includes iteration number | `loop-protocol.md`, `state-outputs.md`, `convergence-signals.md` |
+| Stuck | Dispatch context includes recovery language | `convergence-recovery.md`, `state-reducer-registry.md` |
+| Synthesis | STOP candidate or final report | `convergence.md`, `state-outputs.md`, `spec-check-protocol.md` |
 
 ### Smart Router Pseudocode
 
@@ -108,7 +108,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/guides/quick_reference.md"
+DEFAULT_RESOURCE = "references/guides/quick-reference.md"
 
 INTENT_SIGNALS = {
     "LOOP_SETUP": {"weight": 4, "keywords": ["autoresearch", "deep research", "research loop", "autonomous research", "setup", "init"]},
@@ -122,32 +122,32 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "LOOP_SETUP": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_jsonl.md", "references/protocol/spec_check_protocol.md", "references/protocol/context_snapshot.md"],
-    "ITERATION": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md", "references/convergence/convergence_signals.md"],
-    "CONVERGENCE": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/convergence/convergence_graph.md"],
-    "RECOVERY": ["references/convergence/convergence_recovery.md", "references/state/state_reducer_registry.md"],
-    "STATE": ["references/state/state_format.md", "references/state/state_jsonl.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_research_strategy.md"],
-    "SPEC_ANCHORING": ["references/protocol/spec_check_protocol.md", "references/state/state_outputs.md"],
-    "RUNTIME_PARITY": ["references/guides/capability_matrix.md"],
-    "RESOURCE_MAP": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md"],
+    "LOOP_SETUP": ["references/protocol/loop-protocol.md", "references/state/state-format.md", "references/state/state-jsonl.md", "references/protocol/spec-check-protocol.md", "references/protocol/context-snapshot.md"],
+    "ITERATION": ["references/protocol/loop-protocol.md", "references/state/state-outputs.md", "references/convergence/convergence-signals.md"],
+    "CONVERGENCE": ["references/convergence/convergence.md", "references/convergence/convergence-signals.md", "references/convergence/convergence-graph.md"],
+    "RECOVERY": ["references/convergence/convergence-recovery.md", "references/state/state-reducer-registry.md"],
+    "STATE": ["references/state/state-format.md", "references/state/state-jsonl.md", "references/state/state-outputs.md", "references/state/state-reducer-registry.md", "assets/deep-research-strategy.md"],
+    "SPEC_ANCHORING": ["references/protocol/spec-check-protocol.md", "references/state/state-outputs.md"],
+    "RUNTIME_PARITY": ["references/guides/capability-matrix.md"],
+    "RESOURCE_MAP": ["references/protocol/loop-protocol.md", "references/state/state-outputs.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full protocol", "all references", "complete reference", "resume deep research", "state log", "research/iterations", "deltas", "overnight research", "active lineage", "reference-only", "optimizer"],
     "ON_DEMAND": [
-        "references/protocol/loop_protocol.md",
-        "references/protocol/spec_check_protocol.md",
+        "references/protocol/loop-protocol.md",
+        "references/protocol/spec-check-protocol.md",
         "references/convergence/convergence.md",
-        "references/convergence/convergence_signals.md",
-        "references/convergence/convergence_recovery.md",
-        "references/convergence/convergence_graph.md",
-        "references/convergence/convergence_reference_only.md",
-        "references/state/state_format.md",
-        "references/state/state_jsonl.md",
-        "references/state/state_outputs.md",
-        "references/state/state_reducer_registry.md",
-        "references/guides/capability_matrix.md",
+        "references/convergence/convergence-signals.md",
+        "references/convergence/convergence-recovery.md",
+        "references/convergence/convergence-graph.md",
+        "references/convergence/convergence-reference-only.md",
+        "references/state/state-format.md",
+        "references/state/state-jsonl.md",
+        "references/state/state-outputs.md",
+        "references/state/state-reducer-registry.md",
+        "references/guides/capability-matrix.md",
     ],
 }
 
@@ -264,7 +264,7 @@ This skill is invoked exclusively through `/deep:research:auto` or `/deep:resear
 
 ### Executor Selection Contract
 
-The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. Per-kind dispatch branches (`native`, `cli-opencode`, `cli-claude-code`) and flag-compatibility rules are in [loop_protocol.md §3](references/protocol/loop_protocol.md).
+The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. Per-kind dispatch branches (`native`, `cli-opencode`, `cli-claude-code`) and flag-compatibility rules are in [loop-protocol.md §3](references/protocol/loop-protocol.md).
 
 Executor invariants:
 
@@ -292,11 +292,11 @@ The live code-graph readiness contract reaches four TrustState values: `live`, `
 
 ### Resource Map Integration
 
-When `{spec_folder}/resource-map.md` exists at init, `resource_map_present: true` is persisted, the map is summarized into `deep-research-strategy.md` `Known Context`, and listed files count as known inventory (gaps flagged only when missing from the map). When absent, `resource_map_present: false` is persisted and the loop continues normally -- absence is informational, not a failure. Full field-level rules live in [state_outputs.md §6](references/state/state_outputs.md).
+When `{spec_folder}/resource-map.md` exists at init, `resource_map_present: true` is persisted, the map is summarized into `deep-research-strategy.md` `Known Context`, and listed files count as known inventory (gaps flagged only when missing from the map). When absent, `resource_map_present: false` is persisted and the loop continues normally -- absence is informational, not a failure. Full field-level rules live in [state-outputs.md §6](references/state/state-outputs.md).
 
 ### Bounded Context Snapshot Replacement
 
-For codebase-scoped targets, initialization captures a bounded, pointer-based snapshot (source paths/symbols, integration points, conventions, and gaps) into `deep-research-strategy.md` `Known Context` -- oriented toward the first iteration, not a substitute for `@context` or `/speckit:plan`. Full capture rules and routing guidance live in [context_snapshot.md](references/protocol/context_snapshot.md).
+For codebase-scoped targets, initialization captures a bounded, pointer-based snapshot (source paths/symbols, integration points, conventions, and gaps) into `deep-research-strategy.md` `Known Context` -- oriented toward the first iteration, not a substitute for `@context` or `/speckit:plan`. Full capture rules and routing guidance live in [context-snapshot.md](references/protocol/context-snapshot.md).
 
 ### Architecture: 3-Layer Integration
 
@@ -304,19 +304,19 @@ For codebase-scoped targets, initialization captures a bounded, pointer-based sn
 
 ### State Packet Location
 
-The research state packet always lives under the target spec's local `research/` folder: root-spec targets use `{spec_folder}/research/` directly; child-phase and sub-phase targets use **flat-first** -- a first run with an empty `research/` directory writes flat, and a `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists for a non-matching target. This avoids the unnecessary `pt-01` wrapper on first runs. Worked examples, the ownership model, and the file-protection table live in [state_format.md §2](references/state/state_format.md).
+The research state packet always lives under the target spec's local `research/` folder: root-spec targets use `{spec_folder}/research/` directly; child-phase and sub-phase targets use **flat-first** -- a first run with an empty `research/` directory writes flat, and a `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists for a non-matching target. This avoids the unnecessary `pt-01` wrapper on first runs. Worked examples, the ownership model, and the file-protection table live in [state-format.md §2](references/state/state-format.md).
 
 State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`.
 
 ### Core Innovation: Fresh Context Per Iteration
 
-Each agent dispatch gets a fresh context window. State continuity comes from files, not memory. This solves context degradation in long research sessions. Design provenance is documented in [quick_reference.md §1](references/guides/quick_reference.md).
+Each agent dispatch gets a fresh context window. State continuity comes from files, not memory. This solves context degradation in long research sessions. Design provenance is documented in [quick-reference.md §1](references/guides/quick-reference.md).
 
 ### Data Flow
 
 Init creates config, strategy, and state logs. Each loop reads state, checks convergence, dispatches `@deep-research`, writes iteration markdown and JSONL deltas, refreshes reducer-owned state, and either continues or synthesizes and saves continuity.
 
-Late-INIT can also anchor the research run to `spec.md`: the workflow acquires the advisory lock at `research/.deep-research.lock`, classifies `folder_state` (always one of `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`), seeds or appends bounded context before LOOP, and replaces exactly one generated findings fence under the chosen host anchor during SYNTHESIS -- while keeping `research/research.md` canonical. The lock is held from late-INIT through save, skip-save, or cancel cleanup. Full marker syntax, audit events, and bounded mutation rules live in [spec_check_protocol.md](references/protocol/spec_check_protocol.md).
+Late-INIT can also anchor the research run to `spec.md`: the workflow acquires the advisory lock at `research/.deep-research.lock`, classifies `folder_state` (always one of `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`), seeds or appends bounded context before LOOP, and replaces exactly one generated findings fence under the chosen host anchor during SYNTHESIS -- while keeping `research/research.md` canonical. The lock is held from late-INIT through save, skip-save, or cancel cleanup. Full marker syntax, audit events, and bounded mutation rules live in [spec-check-protocol.md](references/protocol/spec-check-protocol.md).
 
 ### Key Concepts
 
@@ -329,7 +329,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 ### ✅ ALWAYS
 
 1. **Read state first** -- Agent must read JSONL and strategy.md before any research action
-   - Init validates the research charter (Non-Goals + Stop Conditions); see `loop_protocol.md` Step 7a for the full check and confirm-mode review flow.
+   - Init validates the research charter (Non-Goals + Stop Conditions); see `loop-protocol.md` Step 7a for the full check and confirm-mode review flow.
 2. **One focus per iteration** -- Pick ONE research sub-topic from strategy.md "Next Focus"
 3. **Externalize findings** -- Write to iteration-NNN.md, not held in agent context
 4. **Update strategy** -- Append to "What Worked"/"What Failed", update "Next Focus"
@@ -368,7 +368,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
-Reference-only (documented for future design work, not part of the live executable contract for `/deep:research`; full detail in [loop_protocol.md §4-5](references/protocol/loop_protocol.md)):
+Reference-only (documented for future design work, not part of the live executable contract for `/deep:research`; full detail in [loop-protocol.md §4-5](references/protocol/loop-protocol.md)):
 1. **Wave orchestration** -- parallel question fan-out and pruning within a single lineage (intra-lineage wave)
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes are used internally by `fanout-run.cjs`; do not write them ad-hoc from within a research session
@@ -387,13 +387,13 @@ Reference-only (documented for future design work, not part of the live executab
 
 ## 5. REFERENCES
 
-Core documentation: `references/guides/quick_reference.md`, `references/protocol/loop_protocol.md`, `references/protocol/spec_check_protocol.md`, `references/convergence/convergence.md`, and `references/state/state_format.md`.
+Core documentation: `references/guides/quick-reference.md`, `references/protocol/loop-protocol.md`, `references/protocol/spec-check-protocol.md`, `references/convergence/convergence.md`, and `references/state/state-format.md`.
 
-Focused convergence references: `references/convergence/convergence_signals.md`, `references/convergence/convergence_recovery.md`, `references/convergence/convergence_graph.md`, and `references/convergence/convergence_reference_only.md`.
+Focused convergence references: `references/convergence/convergence-signals.md`, `references/convergence/convergence-recovery.md`, `references/convergence/convergence-graph.md`, and `references/convergence/convergence-reference-only.md`.
 
-Focused state references: `references/state/state_jsonl.md`, `references/state/state_outputs.md`, and `references/state/state_reducer_registry.md`.
+Focused state references: `references/state/state-jsonl.md`, `references/state/state-outputs.md`, and `references/state/state-reducer-registry.md`.
 
-Templates: `assets/deep_research_config.json`, `assets/deep_research_strategy.md`, `assets/deep_research_dashboard.md`, `assets/prompt_pack_iteration.md.tmpl`, and `assets/runtime_capabilities.json`.
+Templates: `assets/deep-research-config.json`, `assets/deep-research-strategy.md`, `assets/deep-research-dashboard.md`, `assets/prompt-pack-iteration.md.tmpl`, and `assets/runtime-capabilities.json`.
 
 Cross-skill alignment: `deep-research` owns iterative investigation; its resource family mirrors `deep-review`/`deep-ai-council`, but vocabulary stays novelty/sources/negative-knowledge/question-coverage/synthesis, not severity findings or council agreement.
 
@@ -451,7 +451,7 @@ Before research: recover context via `/speckit:resume` (`handover.md -> _memory.
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference and markdown asset docs dynamically: start with `references/guides/quick_reference.md`, then route by intent to loop protocol, spec anchoring, convergence, state, runtime parity, or recovery references.
+The router discovers reference and markdown asset docs dynamically: start with `references/guides/quick-reference.md`, then route by intent to loop protocol, spec anchoring, convergence, state, runtime parity, or recovery references.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 

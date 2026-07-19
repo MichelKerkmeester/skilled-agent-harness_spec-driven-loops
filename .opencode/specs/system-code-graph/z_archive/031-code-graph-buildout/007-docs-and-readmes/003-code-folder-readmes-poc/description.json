@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
   "description": "Author 3 sk-doc-aligned READMEs (CODE template, 9 anchored sections, YAML frontmatter, HVR-compliant prose) using a two-pass cli-devin + cli-opencode",
   "keywords": [
     "author",
@@ -18,11 +18,12 @@
     "cli-devin",
     "cli-opencode"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.824Z",
+  "lastUpdated": "2026-07-18T03:48:55.529Z",
   "specId": "003",
   "folderSlug": "code-folder-readmes-poc",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "007-docs-and-readmes"
   ],

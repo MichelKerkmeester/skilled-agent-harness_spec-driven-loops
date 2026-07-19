@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-external-orchestration changelog and version verification (032 phase 005.007)"
+title: "Checklist: cli-external-orchestration changelog and version verification (020 phase 005.007)"
 description: "Blocking SOL verifier contract for the cli-external-orchestration release phase: entry existence, rename-set coverage, version coherence, frozen-history protection, and phase 008 handoff."
 trigger_phrases:
   - "cli-external changelog verification checklist"

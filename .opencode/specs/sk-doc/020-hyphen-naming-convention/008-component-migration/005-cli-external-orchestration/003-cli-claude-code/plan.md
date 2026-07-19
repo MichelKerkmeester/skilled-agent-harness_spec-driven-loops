@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-claude-code component naming (032 phase 005.003)"
+title: "Implementation Plan: cli-claude-code component naming (020 phase 005.003)"
 description: "Implementation plan for the cli-claude-code component: map four reference files and two prompt assets, update local path-valued consumers, preserve Claude dispatch semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-claude-code implementation plan"
@@ -48,7 +48,7 @@ The plan explicitly maps `cli_reference.md`, `agent_delegation.md`, `claude_tool
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 handoff and the 032 exemption record are available.
+- [ ] Phase 002 handoff and the 020 exemption record are available.
 - [ ] Candidate/BASE SHAs and the complete component file inventory are captured.
 - [ ] Each source path has one owner and one rename/protected/delegated disposition.
 
@@ -108,7 +108,7 @@ BASE inventory → path/protected classification → six-entry map → filesyste
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes phase 002's component-boundary handoff and the 032 exemption record. Phase 005 owns the nested playbook references; phase 007 later verifies release evidence for this component and its siblings.
+The phase consumes phase 002's component-boundary handoff and the 020 exemption record. Phase 005 owns the nested playbook references; phase 007 later verifies release evidence for this component and its siblings.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

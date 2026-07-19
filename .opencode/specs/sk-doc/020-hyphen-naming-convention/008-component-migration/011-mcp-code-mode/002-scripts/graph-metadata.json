@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mcp-code-mode scripts surface must be audited under the 032 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file.",
+    "causal_summary": "The mcp-code-mode scripts surface must be audited under the 020 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file.",
     "created_at": "2026-07-14T15:18:21Z",
-    "last_save_at": "2026-07-17T14:30:39.230Z",
+    "last_save_at": "2026-07-17T20:26:16.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3c6f670b61182e1e3acb4c51db48ff0657efa2ceba141068bd29827488263b74",
+    "source_fingerprint": "sha256:5b3b870b4a0a9dfa0b22896d6a37d8f6e5aceb038baae139e66c89b82a52d08b",
     "source_doc_hashes": {
-      "spec.md": "2094f55d9a48a0b5b887d7bc90415467b7af190a4720da23426e36c36f7766ce",
-      "plan.md": "f81266c6b5aa5d72d4c7ae8f12b65a15c0ff288bab4c573b5425fa4caca97b7a",
-      "tasks.md": "9636ff25120acfe49e3edcc77939851bdd3f2b753e22c1f6e92c97569045f709",
-      "checklist.md": "5efd786bb72c8d837b3882e43e3a446f73454ee0da478dc4b5f722aec7abe69d"
+      "spec.md": "571b108686021814613cc63edbaff69611f778b3dfc3e145fe3515b835bf8322",
+      "plan.md": "f1351b34243cdad6fe4b469b3d09ef75983ad65f382d4e1ce24756a4e43f167e",
+      "tasks.md": "e7481bf92c88f77ea9555c044d863b6183a0e60fdf54b0c48ec727fc742dc879",
+      "checklist.md": "fdd4065016559831b035f1d606b73ec2ac3f173185ec878a1c8000aa1e61ea99"
     },
     "last_active_child_id": null,
     "last_active_at": null

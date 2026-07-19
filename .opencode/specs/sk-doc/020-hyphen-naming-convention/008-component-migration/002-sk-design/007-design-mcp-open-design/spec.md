@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Design-mcp-open-design (032 phase 007)"
+title: "Feature Specification: Design-mcp-open-design (020 phase 007)"
 description: "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts."
 trigger_phrases:
   - "design-mcp-open-design naming phase"
   - "sk-design design-mcp-open-design phase"
-  - "032 design-mcp-open-design"
+  - "020 design-mcp-open-design"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Design-mcp-open-design (032 phase 007)
+# Feature Specification: Design-mcp-open-design (020 phase 007)
 
 > Phase 007 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 7 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 7 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

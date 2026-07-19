@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh",
   "description": "The parent handover still opened with the original seven-child framing even though graph metadata already listed children 001-021",
   "keywords": [
     "parent",
@@ -18,11 +18,12 @@
     "listed",
     "children"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.726Z",
+  "lastUpdated": "2026-07-18T03:48:57.126Z",
   "specId": "025",
   "folderSlug": "parent-documentation-drift-refresh",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

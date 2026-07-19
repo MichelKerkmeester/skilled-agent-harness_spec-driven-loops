@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
   "description": "Eight advisor-quality findings sit across the skill-advisor surface",
   "keywords": [
     "eight",
@@ -10,11 +10,12 @@
     "skill-advisor",
     "surface"
   ],
-  "lastUpdated": "2026-07-07T14:23:32.132Z",
+  "lastUpdated": "2026-07-18T03:48:57.224Z",
   "specId": "008",
   "folderSlug": "fix-skill-advisor-quality",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "007-skill-advisor-production-hardening"
   ],
   "memorySequence": 2,

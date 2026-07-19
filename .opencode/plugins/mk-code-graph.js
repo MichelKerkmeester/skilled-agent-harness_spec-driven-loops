@@ -30,11 +30,11 @@ import {
   hasUnsafeMessageTransformParts,
   hasSyntheticTextPartMarker,
   isMessageAnchorLike,
-} from '../skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs';
+} from '../skills/system-spec-kit/mcp-server/plugin-bridges/spec-kit-opencode-message-schema.mjs';
 import {
   parseTransportPlan,
   diagnoseTransportPlanFailure,
-} from '../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs';
+} from '../skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-transport.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CONSTANTS AND TYPES
@@ -48,7 +48,7 @@ const RESUME_MODE = 'minimal';
 const MESSAGES_TRANSFORM_ENABLED = true;
 const MESSAGES_TRANSFORM_MODE = 'schema_aligned';
 const SYNTHETIC_METADATA_KEY = 'mkCodeGraph';
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs', import.meta.url));
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs', import.meta.url));
 let lastConfigError = null;
 
 async function loadConfig() {

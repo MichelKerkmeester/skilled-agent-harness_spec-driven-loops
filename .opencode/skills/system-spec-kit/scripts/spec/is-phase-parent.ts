@@ -19,7 +19,7 @@ const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 const DERIVED_CHILD_REGEX = /^[0-9]{3}(?:[-_].+)?$/;
 
 // Thresholds for phase-parent manifest health. Mirrors the
-// authoritative copy in mcp_server/lib/spec/is-phase-parent.ts so shell rules
+// authoritative copy in mcp-server/lib/spec/is-phase-parent.ts so shell rules
 // and TypeScript runtime callers see identical buckets.
 export const PHASE_PARENT_WARNING_THRESHOLD = 20;
 export const PHASE_PARENT_ERROR_THRESHOLD = 40;
@@ -109,7 +109,7 @@ export function listDerivedChildNames(specFolderAbsPath: string): string[] {
 }
 
 // Lightweight advisory health record — same logic as
-// mcp_server/lib/spec/is-phase-parent.ts so shell and TS runtime agree.
+// mcp-server/lib/spec/is-phase-parent.ts so shell and TS runtime agree.
 /** Assess the manifest-size health of a phase-parent folder. */
 export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentHealth {
   if (!isPhaseParent(specFolderAbsPath)) {

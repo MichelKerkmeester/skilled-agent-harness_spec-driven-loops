@@ -4,7 +4,7 @@ description: "The sk-doc component migration needs a changelog entry that names 
 trigger_phrases:
   - "sk-doc changelog verification"
   - "sk-doc version bump check"
-  - "032 changelog verify phase"
+  - "020 changelog verify phase"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-external-orchestration hub root and shared boundary (032 phase 005.001)"
+title: "Checklist: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "Blocking SOL verifier contract for the cli-external-orchestration root/shared boundary: complete ownership census, exact hub contracts, delegated-path protection, and reference closure."
 trigger_phrases:
   - "cli-external hub root checklist"

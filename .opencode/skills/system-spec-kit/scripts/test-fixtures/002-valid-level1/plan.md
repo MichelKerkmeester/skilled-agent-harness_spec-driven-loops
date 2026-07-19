@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Tiny Notes Export [template:level_1/plan.md]"
+title: "Implementation Plan: Tiny Notes Export [template:level-1/plan.md]"
 description: "A tiny fixture feature that exports one note to a text file for validation baseline checks."
 trigger_phrases:
   - "tiny notes export"

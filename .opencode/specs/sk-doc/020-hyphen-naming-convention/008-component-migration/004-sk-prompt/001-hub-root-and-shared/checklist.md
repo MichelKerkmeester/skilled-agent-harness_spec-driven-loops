@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-prompt hub root and shared boundary (032 phase 004.001)"
+title: "Checklist: sk-prompt hub root and shared boundary (020 phase 004.001)"
 description: "Blocking SOL verifier contract for phase 001 of the sk-prompt kebab-case program: root/shared inventory, exact hub contracts, and reference closure."
 trigger_phrases:
   - "sk-prompt hub root and shared checklist"

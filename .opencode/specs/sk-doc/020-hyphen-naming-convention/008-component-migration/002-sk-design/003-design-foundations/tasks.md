@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Design-foundations (032 phase 003)"
-description: "Task breakdown for Design-foundations in the 032 sk-design naming subtree."
+title: "Tasks: Design-foundations (020 phase 003)"
+description: "Task breakdown for Design-foundations in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-foundations tasks"
   - "sk-design design-foundations execution"
-  - "032 design-foundations checklist"
+  - "020 design-foundations checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Design-foundations (032 phase 003)
+# Tasks: Design-foundations (020 phase 003)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

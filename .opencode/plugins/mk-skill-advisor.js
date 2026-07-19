@@ -44,7 +44,7 @@ const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 const FALLBACK_DIRECTIVE = HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
 // Cache-signature paths follow the standalone advisor package to ensure
 // consistent cache invalidation across bridge and MCP server builds.
 // The bridge now dispatches through mk_skill_advisor instead of the old
@@ -52,11 +52,11 @@ const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp_se
 const ADVISOR_SOURCE_PATHS = [
   BRIDGE_PATH,
   fileURLToPath(new URL('../bin/mk-skill-advisor-launcher.cjs', import.meta.url)),
-  fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/advisor-server.ts', import.meta.url)),
-  fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js', import.meta.url)),
+  fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/advisor-server.ts', import.meta.url)),
+  fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js', import.meta.url)),
 ];
 const SKILL_ROOT_RELATIVE_PATH = join('.opencode', 'skills');
-const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'mcp_server');
+const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'mcp-server');
 const ADVISOR_JSON_RELATIVE_PATH = join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill-graph.json');
 const ADVISOR_SCRIPT_RELATIVE_PATHS = [
   join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill_advisor.py'),

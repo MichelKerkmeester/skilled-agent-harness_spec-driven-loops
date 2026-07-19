@@ -17,18 +17,18 @@ Do not use it for reusable knowledge alone, slash-command entry points alone, br
 | Path | Purpose |
 | --- | --- |
 | `SKILL.md` | Authoritative packet contract for `/create:agent` and agent-authoring rules. |
-| `references/` | Overflow route map (`README.md`) plus single-concern depth: `agent-vs-skill-vs-command.md`, `permission_design.md`, `common_pitfalls.md`. The primary workflow stays in `SKILL.md`; these hold only detail that would bloat it. |
-| `assets/agent_template.md` | Canonical scaffold for production agent files, including frontmatter shape, Section 0 boundaries, workflow, output verification, anti-patterns, and summary structure. |
+| `references/` | Overflow route map (`README.md`) plus single-concern depth: `agent-vs-skill-vs-command.md`, `permission-design.md`, `common-pitfalls.md`. The primary workflow stays in `SKILL.md`; these hold only detail that would bloat it. |
+| `assets/agent-template.md` | Canonical scaffold for production agent files, including frontmatter shape, Section 0 boundaries, workflow, output verification, anti-patterns, and summary structure. |
 | `changelog/` | Packet-local changelog history (`v1.0.0.0.md` is the initial release; `.gitkeep` keeps the directory tracked). |
 | `scripts/` | Not present in this packet. Use shared sk-doc validators from `../shared/scripts/`. |
 
 ## 4. QUICK START
 
 1. Read `SKILL.md` for the packet contract.
-2. Read `references/README.md` (the overflow route map) and `assets/agent_template.md` before writing an agent.
+2. Read `references/README.md` (the overflow route map) and `assets/agent-template.md` before writing an agent.
 3. Decide whether the requested component truly needs a named runtime persona with tool permissions and authority boundaries.
 4. Resolve the active runtime agent directory: `.opencode/agents/` for OpenCode/default, `.claude/agents/` for Claude Code.
-5. Copy from `assets/agent_template.md`, then replace placeholders with the agent's actual role, permissions, workflow, verification, and boundaries.
+5. Copy from `assets/agent-template.md`, then replace placeholders with the agent's actual role, permissions, workflow, verification, and boundaries.
 6. Validate the final agent file with the shared sk-doc validators.
 
 Example validation for an OpenCode agent:

@@ -56,20 +56,20 @@
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/phase_detection.md",
-      "detail": "references/phase_detection.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/phase-detection.md",
+      "detail": "references/phase-detection.md is not reachable from any RESOURCE_MAP intent"
     },
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/smart_routing.md",
-      "detail": "references/smart_routing.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/smart-routing.md",
+      "detail": "references/smart-routing.md is not reachable from any RESOURCE_MAP intent"
     },
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/stack_detection.md",
-      "detail": "references/stack_detection.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/stack-detection.md",
+      "detail": "references/stack-detection.md is not reachable from any RESOURCE_MAP intent"
     }
   ],
   "scenarioRows": [

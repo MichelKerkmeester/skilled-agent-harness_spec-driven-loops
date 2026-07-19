@@ -20,7 +20,7 @@ const { spawnSync } = require('child_process');
 
 const opencodeDir = path.resolve(__dirname, '..');
 const skillDir = path.join(opencodeDir, 'skills', 'system-code-graph');
-const cliDist = path.join(skillDir, 'mcp_server', 'dist', 'code-index-cli.js');
+const cliDist = path.join(skillDir, 'mcp-server', 'dist', 'code-index-cli.js');
 const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
 const defaultSocketDir = '/tmp/mk-code-index';
 const socketFileName = 'daemon-ipc.sock';
@@ -71,7 +71,7 @@ function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function ensureFreshDist() {
-  const result = checkPackageFreshness('system-code-graph/mcp_server', {
+  const result = checkPackageFreshness('system-code-graph/mcp-server', {
     workspaceRoot: path.dirname(opencodeDir),
     entry: 'code-index-cli',
     allowStale,

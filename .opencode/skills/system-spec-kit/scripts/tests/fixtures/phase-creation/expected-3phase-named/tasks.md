@@ -1,6 +1,6 @@
 <!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
 ---
-title: "Tasks: [NAME] [template:level_3/tasks.md]"
+title: "Tasks: [NAME] [template:level-3/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

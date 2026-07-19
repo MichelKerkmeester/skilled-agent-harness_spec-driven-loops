@@ -30,9 +30,9 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 | Severity | Class | Locus | Finding |
 | -------- | ----- | ----- | ------- |
-| P2 | orphan_reference | references/phase_detection.md | references/phase_detection.md is not reachable from any RESOURCE_MAP intent |
-| P2 | orphan_reference | references/smart_routing.md | references/smart_routing.md is not reachable from any RESOURCE_MAP intent |
-| P2 | orphan_reference | references/stack_detection.md | references/stack_detection.md is not reachable from any RESOURCE_MAP intent |
+| P2 | orphan_reference | references/phase-detection.md | references/phase-detection.md is not reachable from any RESOURCE_MAP intent |
+| P2 | orphan_reference | references/smart-routing.md | references/smart-routing.md is not reachable from any RESOURCE_MAP intent |
+| P2 | orphan_reference | references/stack-detection.md | references/stack-detection.md is not reachable from any RESOURCE_MAP intent |
 
 ## Scenarios
 

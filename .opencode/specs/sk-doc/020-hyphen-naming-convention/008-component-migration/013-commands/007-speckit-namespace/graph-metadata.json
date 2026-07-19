@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `.opencode/commands/speckit/assets/` tree contains `speckitcompleteauto.yaml`, `speckitimplementpresentation.txt`, `speckitplanconfirm.yaml`, and `speckitresumepresentation.txt`",
     "created_at": "2026-07-14T15:18:36Z",
-    "last_save_at": "2026-07-17T14:30:45.321Z",
+    "last_save_at": "2026-07-17T20:26:20.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:920543e79db31327838adf617433a23d1c5e515d6a1f30dd85364a7d4f21b58f",
+    "source_fingerprint": "sha256:3d066ed1ea50af9a60c0a11af2adf5bd73a3ce9872e7b6ddd7edb35eb2872e10",
     "source_doc_hashes": {
-      "spec.md": "db6be0fe0b3604680296653477993fec123334c5e77662c3aac70ce0e4785893",
-      "plan.md": "087ff7efc9de0c4c00d01e02a6722c1318db88a84756b172e3fe77dc866b115d",
-      "tasks.md": "83f41f2340aa0c4c03146fa880fb5bf0f13223686cda68735065b4e92d7cd010",
-      "checklist.md": "958e1123a419ee392ae30b96737d42f6a5bde1e0184773d5abc3dca4cb08ea63"
+      "spec.md": "7c5f1bfad450cd28fd1bd92f4cc79969f9d2c9a955a3d7a7bb7ff276b9d1b060",
+      "plan.md": "05461489df7772485c5bf7afd6a149d4a42c0ee38a6eb1b7beb3997586b8dd4e",
+      "tasks.md": "bbb420822c988155d679ab5552c10b75cbb9c1cfd5d149837c868a1108bda3a0",
+      "checklist.md": "c144d04190e0895d0f03c4dbffd09797e14a430858e0d0ae9c86d2e8bf3c7a28"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Template Compliant Level 3 Fixture [template:examples/level_3/checklist.md]"
+title: "Verification Checklist: Template Compliant Level 3 Fixture [template:examples/level-3/checklist.md]"
 description: "Current-template Level 3 checklist fixture with concrete evidence."
 trigger_phrases:
   - "fixture"

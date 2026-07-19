@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-codex component naming (032 phase 005.004)"
+title: "Checklist: cli-codex component naming (020 phase 005.004)"
 description: "Blocking SOL verifier contract for the cli-codex component: complete seven-file map, active link closure, Codex safety/dispatch parity, and delegated-surface protection."
 trigger_phrases:
   - "cli-codex naming checklist"

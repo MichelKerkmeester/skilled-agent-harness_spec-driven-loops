@@ -43,9 +43,9 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/design/assets/design_motion_presentation.txt` |
-| Auto workflow | `.opencode/commands/design/assets/design_motion_auto.yaml` |
-| Confirm workflow | `.opencode/commands/design/assets/design_motion_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/design/assets/design-motion-presentation.txt` |
+| Auto workflow | `.opencode/commands/design/assets/design-motion-auto.yaml` |
+| Confirm workflow | `.opencode/commands/design/assets/design-motion-confirm.yaml` |
 
 ---
 
@@ -73,14 +73,14 @@ Register Ask-first question wording lives only in the presentation asset.
 
 | Mode | Target |
 |------|----------|
-| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design_motion_auto.yaml` |
-| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design_motion_confirm.yaml` |
+| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design-motion-auto.yaml` |
+| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design-motion-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/design/assets/design_motion_presentation.txt`:
+The following content lives only in `.opencode/commands/design/assets/design-motion-presentation.txt`:
 
 - Consolidated setup prompt wording (component/state, library, register, execution-mode question).
 - Auto Resolution Table and Auto Fail-Fast Display.

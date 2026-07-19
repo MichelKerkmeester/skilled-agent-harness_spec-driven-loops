@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/004-doc-drift-alignment",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/007-docs-and-readmes/004-doc-drift-alignment",
   "description": "Authored docs under `.opencode/skills/system-code-graph/` disagree with the live runtime on four points: (1) tool count is claimed as `10` in 6 places",
   "keywords": [
     "authored",
@@ -18,11 +18,12 @@
     "claimed",
     "places"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.825Z",
+  "lastUpdated": "2026-07-18T03:48:55.530Z",
   "specId": "004",
   "folderSlug": "doc-drift-alignment",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "007-docs-and-readmes"
   ],

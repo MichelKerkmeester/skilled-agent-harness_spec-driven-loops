@@ -44,7 +44,7 @@ wait_for_file() {
 run_hook() {
   local before="${1:-HEAD^}"
   local after="${2:-HEAD}"
-  local database_dir="${SPEC_KIT_DB_DIR:-$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/database}"
+  local database_dir="${SPEC_KIT_DB_DIR:-$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/database}"
   (
     cd "$REPO_ROOT"
     SPEC_KIT_DB_DIR="$database_dir" bash -c 'source "$1"; mark_memory_drift_from_diff "$2" "$3"' \
@@ -153,7 +153,7 @@ git -C "$REPO_ROOT" add -f -A
 git -C "$REPO_ROOT" commit -qm 'second rename marker fixture'
 SECOND_RENAME_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD)"
 
-MARKER_PATH="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/database/.memory-drift-dirty-paths.json"
+MARKER_PATH="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json"
 LOCK_DIR="$MARKER_PATH.lock"
 OWNER_PATH="$LOCK_DIR/owner.json"
 

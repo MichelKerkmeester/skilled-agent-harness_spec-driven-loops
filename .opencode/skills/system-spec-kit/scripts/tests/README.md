@@ -62,7 +62,7 @@ Not owned here:
 
 - Validation scenario definitions live in `../test-fixtures/`.
 - Production templates live under `../../templates/`.
-- MCP server fixture JSON lives under `../../mcp_server/tests/fixtures/`.
+- MCP server fixture JSON lives under `../../mcp-server/tests/fixtures/`.
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
   "description": "The 015 deep review passed the `systemskilladvisor` to `mkskilladvisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var",
   "keywords": [
     "deep",
@@ -18,11 +18,12 @@
     "metadata",
     "env-var"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.672Z",
+  "lastUpdated": "2026-07-18T03:48:57.117Z",
   "specId": "016",
   "folderSlug": "fix-deep-review-p2-findings-for-package-extraction",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

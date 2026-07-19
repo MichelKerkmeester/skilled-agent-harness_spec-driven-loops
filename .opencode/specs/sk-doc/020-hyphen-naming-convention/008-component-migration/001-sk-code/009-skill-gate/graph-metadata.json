@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-07-17T14:30:08.780Z",
+    "last_save_at": "2026-07-17T20:26:03.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:412cab49ed0499c8121d6cb15e79212bdf190da75a711888c3d8797346d0c54b",
+    "source_fingerprint": "sha256:d4f2895a0222ed1dea89bc7ed857b39c8ca1cf50d5a6338b95e999e716a9e620",
     "source_doc_hashes": {
-      "spec.md": "41611396a06dadaf99ca47c7deea1c86155c0a0402e62eb6a838bbdff3ea8e89",
-      "plan.md": "8bdee043acebd255c317fce8b8dd4712528d5f02550c4f7ea2c3f90f6f67a508",
-      "tasks.md": "2b9011234f1b93ca5a35a7efc753c04650be60a9499e8317533066b754e29241",
-      "checklist.md": "40acdbe75dfeeece688d07e818f0c3a88c1de165274bdeb3a577ffef8b4ec1b6"
+      "spec.md": "576e7ddfcc70a4effdd1e096964d8a4ff7e03f5d4847f7324d2d0c3712ef1615",
+      "plan.md": "f19d04c9a01cee4facfa420a4501b090efb8009a4235d2383d80971ae3198283",
+      "tasks.md": "f3fdd3ef89f02463994d344ac31afcb08b82f0de140274b9286a2722ec6d9fb0",
+      "checklist.md": "6e6605f66bc2a69997037b2d3b56e86b42977f5c55a23d9c65b768c3a63ea60c"
     },
     "last_active_child_id": null,
     "last_active_at": null

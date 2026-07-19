@@ -22,7 +22,7 @@
       "hyphen naming phase 001 checklist",
       "hyphen naming decision record",
       "kebab-case migration decisions",
-      "032 program decisions"
+      "020 program decisions"
     ],
     "key_topics": [
       "convention",
@@ -41,13 +41,28 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
-      "tasks.md",
-      "decision-record.md"
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+      ".opencode/specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/spec.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,15 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "filesystem-naming-convention.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -163,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "Policy Classification Fixtures",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Case Filesystem",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co",
     "created_at": "2026-07-13T14:34:05.517Z",
-    "last_save_at": "2026-07-17T14:30:00.555Z",
+    "last_save_at": "2026-07-18T05:27:38.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +206,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9acbbd0306e0a999e4a7db81ba39c4563e194f636ce47f4c31914e05900e6da",
+    "source_fingerprint": "sha256:3895b075fb434921e15dd298a56b70361de5ca859016a88c613502796de0ae0b",
     "source_doc_hashes": {
-      "spec.md": "bcaef68fba98e65d60b681a98d74f082eeb58961ce2d90222fa7544dd84f3fee",
-      "plan.md": "b67ca52ccd71c88d4b31cfccb1518323d38457a7696e10ddcf6af9d6cd534065",
-      "tasks.md": "667b44dec153c42626f4314f6c15aabe1e4edb1dca5cd488470d6a70b8de8ce8",
-      "checklist.md": "5933525d62f734de294f7be33a9834b0ee1de3d7030dc760996b11c9fbfbad7e",
-      "decision-record.md": "c7aca1b1770f6cd71c75d8f66e69a33ec35347103153a125a1933724a0d29409"
+      "spec.md": "c87bb702b7d129295dcfaed8ec8606754a73d3f13070c030c3fe01c50e5181f4",
+      "plan.md": "c4149d20bb2cad9d2df9b696a5e6024a2d49150ced75160087d53208e72b922c",
+      "tasks.md": "c30d47e1b09b00242afd42ce1b437bf9c9bd2d0f5974bf03fcc0c06472234b90",
+      "checklist.md": "2223689e27b5935d0f1da8629b936a15fe261e5bfca62497aed1fa2438bf462b",
+      "decision-record.md": "5339878ab1fd17ee027910b9749406cb19212dbe0ec498fe47a02e3b2ea368f5",
+      "implementation-summary.md": "4a404ea7a17be06fd7482a4700c31a7fc4b0379776aa7a4fd8319d3b71b3f9e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

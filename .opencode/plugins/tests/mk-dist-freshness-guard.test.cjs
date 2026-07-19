@@ -69,7 +69,7 @@ function writeFileWithMtime(filePath, content, mtimeMs) {
 }
 
 function writeCodeModeFixture(dir, stale) {
-  const packageDir = path.join(dir, '.opencode', 'skills', 'mcp-code-mode', 'mcp_server');
+  const packageDir = path.join(dir, '.opencode', 'skills', 'mcp-code-mode', 'mcp-server');
   const sourceMtime = Date.now();
   const distMtime = stale ? sourceMtime - 10_000 : sourceMtime + 10_000;
 
@@ -183,8 +183,8 @@ test('invalidates a warm cache for watched source mutations', async (t) => {
     const tmpDir = temporaryDirectory(t, `mk-dist-freshness-guard-${tool}-`);
     writeAllPackageFixtures(tmpDir);
     const fixture = writeCodeModeFixture(tmpDir, false);
-    assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir }).status, 'prepared');
-    assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir }).status, 'recorded');
+    assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp-server', { workspaceRoot: tmpDir }).status, 'prepared');
+    assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp-server', { workspaceRoot: tmpDir }).status, 'recorded');
 
     const pluginModule = await loadPlugin();
     const hooks = await pluginModule.default({ directory: tmpDir });
@@ -249,14 +249,14 @@ test('requires staged build provenance and verifies source and dist content', (t
   const fixture = writeCodeModeFixture(tmpDir, false);
   const options = { workspaceRoot: tmpDir };
 
-  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', options).status, 'prepared');
-  assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', options).status, 'recorded');
-  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).origin, 'build');
+  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp-server', options).status, 'prepared');
+  assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp-server', options).status, 'recorded');
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp-server', options).origin, 'build');
 
   const sourceMtime = fs.statSync(fixture.sourcePath).mtime;
   fs.writeFileSync(fixture.sourcePath, 'export const value = 2;\n');
   fs.utimesSync(fixture.sourcePath, sourceMtime, sourceMtime);
-  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).status, 'stale');
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp-server', options).status, 'stale');
 
   fs.writeFileSync(fixture.sourcePath, 'export const value = 1;\n');
   fs.utimesSync(fixture.sourcePath, sourceMtime, sourceMtime);
@@ -264,16 +264,16 @@ test('requires staged build provenance and verifies source and dist content', (t
   fs.writeFileSync(fixture.distPath, 'export const value = 2;\n');
   fs.utimesSync(fixture.distPath, distStat.atime, distStat.mtime);
   assert.equal(fs.statSync(fixture.distPath).size, distStat.size);
-  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).status, 'stale');
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp-server', options).status, 'stale');
 });
 
 test('refuses promotion when watched input changes during a build', (t) => {
   const tmpDir = temporaryDirectory(t, 'dist-freshness-race-');
   const fixture = writeCodeModeFixture(tmpDir, false);
   const options = { workspaceRoot: tmpDir };
-  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', options).status, 'prepared');
+  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp-server', options).status, 'prepared');
   fs.writeFileSync(fixture.sourcePath, 'export const value = 2;\n');
-  const result = distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', options);
+  const result = distFreshness.recordPackageBuild('mcp-code-mode/mcp-server', options);
   assert.equal(result.status, 'error');
   assert.match(result.message, /changed while building/);
 });
@@ -286,31 +286,31 @@ test('keeps JSON build inputs watched and preserves checker mtime fallback', (t)
     '.opencode',
     'skills',
     'system-skill-advisor',
-    'mcp_server',
+    'mcp-server',
     'data',
     'routing-prototypes.json',
   );
   writeFileWithMtime(jsonPath, '{"value":1}\n', Date.now());
-  assert.equal(distFreshness.packageForSourceFile(jsonPath, { workspaceRoot: tmpDir }).id, 'system-skill-advisor/mcp_server');
+  assert.equal(distFreshness.packageForSourceFile(jsonPath, { workspaceRoot: tmpDir }).id, 'system-skill-advisor/mcp-server');
 
-  const fallback = distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir });
+  const fallback = distFreshness.checkPackageFreshness('mcp-code-mode/mcp-server', { workspaceRoot: tmpDir });
   assert.equal(fallback.status, 'fresh');
   assert.equal(fallback.origin, 'checker');
 
   const options = { workspaceRoot: tmpDir };
-  assert.equal(distFreshness.preparePackageBuild('system-skill-advisor/mcp_server', options).status, 'prepared');
-  assert.equal(distFreshness.recordPackageBuild('system-skill-advisor/mcp_server', options).status, 'recorded');
+  assert.equal(distFreshness.preparePackageBuild('system-skill-advisor/mcp-server', options).status, 'prepared');
+  assert.equal(distFreshness.recordPackageBuild('system-skill-advisor/mcp-server', options).status, 'recorded');
   const oldMtime = fs.statSync(jsonPath).mtime;
   fs.writeFileSync(jsonPath, '{"value":2}\n');
   fs.utimesSync(jsonPath, oldMtime, oldMtime);
-  assert.equal(distFreshness.checkPackageFreshness('system-skill-advisor/mcp_server', options).status, 'stale');
+  assert.equal(distFreshness.checkPackageFreshness('system-skill-advisor/mcp-server', options).status, 'stale');
 });
 
 test('prunes only old matching cache temporaries', (t) => {
   const tmpDir = temporaryDirectory(t, 'dist-freshness-temp-');
   writeCodeModeFixture(tmpDir, false);
   const options = { workspaceRoot: tmpDir };
-  const cached = distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp_server', options);
+  const cached = distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp-server', options);
   const oldTemp = `${cached.cachePath}.99999.tmp`;
   const recentTemp = `${cached.cachePath}.99998.tmp`;
   fs.writeFileSync(oldTemp, 'old');
@@ -318,7 +318,7 @@ test('prunes only old matching cache temporaries', (t) => {
   const oldDate = new Date(Date.now() - (48 * 60 * 60 * 1000));
   fs.utimesSync(oldTemp, oldDate, oldDate);
 
-  distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp_server', options);
+  distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp-server', options);
   assert.equal(fs.existsSync(oldTemp), false);
   assert.equal(fs.existsSync(recentTemp), true);
 });

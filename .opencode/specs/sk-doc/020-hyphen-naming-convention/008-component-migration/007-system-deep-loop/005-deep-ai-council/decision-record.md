@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-ai-council names (032 phase 007/005)"
+title: "Decision Record: system-deep-loop deep-ai-council names (020 phase 007/005)"
 description: "L2 design decisions for the deep-ai-council naming phase, including paired catalog/playbook mapping, artifact-state separation, and council parity evidence."
 trigger_phrases:
   - "system-deep-loop council decisions"

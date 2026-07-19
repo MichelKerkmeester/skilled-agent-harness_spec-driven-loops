@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-07-17T14:30:30.451Z",
+    "last_save_at": "2026-07-17T20:26:14.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:02843bdf6f66984c2ceedf4c76d28fa597e9dacd972927850377cfbcd6391d42",
+    "source_fingerprint": "sha256:3d4ffe102f62628ac98e9eddf055efda15d1dfe04703d2047f3529e00e36c284",
     "source_doc_hashes": {
-      "spec.md": "e2fdcca9bca769a8bac611cf3643bc36579bd1a7686b51956f6076e33788a5c5",
-      "plan.md": "85f27cbaa0e84ecae8902a1e1a73e9ea4372198d9a336ae61a0aeea681201d7f",
-      "tasks.md": "bdb0374399f97130a470ee9296b141f81e498646f2bcfec5c3c2e0a7ba3228c8",
-      "checklist.md": "e583d2197d2837153b641a81a20c93695ebf5510cddc3a4b27337c0d33b8e73c"
+      "spec.md": "c8ccc37e8531a23671751b3ad5b1d817faec018ef37bfffffbc5163a96b2b632",
+      "plan.md": "f25de410b5d02dd9175c406a0b4853765f93ce9732481255d508bf9872c3f86e",
+      "tasks.md": "a0fffe417ec386ac3f0bfbe36a17459973724063b39adc9dc9529be92e13668f",
+      "checklist.md": "7b5821f1bdfea3aeddf927d2f8bd5d01fd26985812ea8efbf5383820cae15b3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

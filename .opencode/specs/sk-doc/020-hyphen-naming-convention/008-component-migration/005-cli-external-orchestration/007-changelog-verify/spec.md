@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration changelog and version verification (032 phase 005.007)"
+title: "Feature Specification: cli-external-orchestration changelog and version verification (020 phase 005.007)"
 description: "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions."
 trigger_phrases:
   - "cli-external changelog verification"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-external-orchestration changelog and version verification
 
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration |
-| **Origin** | Verification phase 007 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Verification phase 007 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

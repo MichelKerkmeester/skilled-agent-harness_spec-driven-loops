@@ -5,10 +5,10 @@ set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 readonly -a YAML_FILES=(
-  ".opencode/commands/deep/assets/deep_research_auto.yaml"
-  ".opencode/commands/deep/assets/deep_research_confirm.yaml"
-  ".opencode/commands/deep/assets/deep_review_auto.yaml"
-  ".opencode/commands/deep/assets/deep_review_confirm.yaml"
+  ".opencode/commands/deep/assets/deep-research-auto.yaml"
+  ".opencode/commands/deep/assets/deep-research-confirm.yaml"
+  ".opencode/commands/deep/assets/deep-review-auto.yaml"
+  ".opencode/commands/deep/assets/deep-review-confirm.yaml"
 )
 
 missing=0

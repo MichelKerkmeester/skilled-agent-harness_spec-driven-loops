@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: convention policy and scope (032 phase 001)"
+title: "Feature Specification: convention policy and scope (020 phase 001)"
 description: "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co"
 trigger_phrases:
   - "convention policy and scope"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored for the 032 phased tree"
+    recent_action: "Phase spec authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Convention policy and scope
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `000-worktree-baseline-and-census`; successor `002-root-name-consumer-migration`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `000-worktree-baseline-and-census`; successor `002-root-name-consumer-migration`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 001 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -91,7 +91,7 @@ There is no single authoritative statement that kebab-case (hyphens) is the cano
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 032 parent spec (import breakage, validator downgrade, non-reproducible builds,
+Inherits the program-level risks in the 020 parent spec (import breakage, validator downgrade, non-reproducible builds,
 over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
 <!-- /ANCHOR:risks -->
 

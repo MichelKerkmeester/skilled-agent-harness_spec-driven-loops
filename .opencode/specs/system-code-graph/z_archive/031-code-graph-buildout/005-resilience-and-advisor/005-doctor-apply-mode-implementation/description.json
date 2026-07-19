@@ -28,7 +28,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
   "description": "`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `005-doctor-diagnostic-command-phase-a/`, with apply-mode",
   "keywords": [
     "doctor",
@@ -43,11 +43,12 @@
     "005-doctor-diagnostic-command-phase-a",
     "apply-mode"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.819Z",
+  "lastUpdated": "2026-07-18T03:48:55.520Z",
   "specId": "005",
   "folderSlug": "doctor-apply-mode-implementation",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "005-resilience-and-advisor"
   ],

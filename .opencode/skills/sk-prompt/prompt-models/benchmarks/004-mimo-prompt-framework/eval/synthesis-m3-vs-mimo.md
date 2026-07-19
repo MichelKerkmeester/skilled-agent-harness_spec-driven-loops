@@ -15,7 +15,7 @@
 
 | Cell | Model / reasoning | Succeeded | Failed | Wall (sum) | Per-dispatch min/max | Notes |
 |------|-------------------|-----------|--------|-----------|----------------------|-------|
-| **M3** | MiniMax-M3 / high | **10 / 10** | 0 (after 1 retry) | 244.8 s | 7.1 / 87.8 s | `rcaf__chunk` **first attempt failed** with empty assistant text at **exit 0** (6.0 s, empty stderr — a transient empty/tool-only turn, **NOT** quota/auth/timeout). Retried once per policy → recovered in 12.1 s (100% pass, format-adherent, 40 words). Failure preserved at `runs/rcaf__chunk.M3-FAILED-empty-exit0.json`; recovery recorded in `results-minimax-m3-high.json.retry_provenance` + `results-minimax-m3-high-rcafchunk-retry.json`. |
+| **M3** | MiniMax-M3 / high | **10 / 10** | 0 (after 1 retry) | 244.8 s | 7.1 / 87.8 s | `rcaf__chunk` **first attempt failed** with empty assistant text at **exit 0** (6.0 s, empty stderr — a transient empty/tool-only turn, **NOT** quota/auth/timeout). Retried once per policy → recovered in 12.1 s (100% pass, format-adherent, 40 words). Failure preserved at `runs/rcaf--chunk.M3-FAILED-empty-exit0.json`; recovery recorded in `results-minimax-m3-high.json.retry_provenance` + `results-minimax-m3-high-rcafchunk-retry.json`. |
 | **MiMo** | MiMo-V2.5-Pro / high | **10 / 10** | 0 | 160.5 s | 5.4 / 47.0 s | No retries needed. Clean run. |
 
 **20 / 20 real dispatches scored. 1 transient empty-turn (exit 0) retried once and recovered. Zero fabricated scores. Zero quota/auth failures.**
@@ -108,8 +108,8 @@
 
 ## Integration note (recommendation only — docs NOT edited)
 
-**Current documented state** (`cli-opencode/references/cli_reference.md`, `SKILL.md`):
-- `minimax-coding-plan/MiniMax-M3-highspeed` is recorded as the **account-asserted DEFAULT** MiniMax dispatch (cli_reference.md model table + decision matrix).
+**Current documented state** (`cli-opencode/references/cli-reference.md`, `SKILL.md`):
+- `minimax-coding-plan/MiniMax-M3-highspeed` is recorded as the **account-asserted DEFAULT** MiniMax dispatch (cli-reference.md model table + decision matrix).
 - `minimax-coding-plan/MiniMax-M2.7-highspeed` is recorded as the **confirmed-live fallback**.
 - MiniMax `--variant` behavior is documented as **"unverified — omitted by default; confirm against the MiniMax API before relying on it."**
 - MiniMax framework contract: **TIDD-EC + dense** (120/003, 7-fixture), "carried forward to M3 until re-benchmarked."
@@ -119,7 +119,7 @@
 - **`--variant high` is confirmed ACCEPTED for MiniMax-M3** — every dispatch ran under `--variant high` with clean exits; the pre-flight probe returned a valid text part + `step-finish/stop`. This contradicts the current "unverified" note for the MiniMax `--variant` row.
 
 **Recommendation (for the user to apply — I did NOT edit any docs):**
-1. **Record plain `minimax-coding-plan/MiniMax-M3` as confirmed-live** in the cli_reference.md model table — promote it from the (currently absent) plain-M3 entry to a "confirmed live (126/004, 2026-06-02)" row, alongside or in place of the account-asserted `MiniMax-M3-highspeed` default. The docs currently only list the `-highspeed` variants; plain `MiniMax-M3` is now empirically the responsive, dispatchable id.
+1. **Record plain `minimax-coding-plan/MiniMax-M3` as confirmed-live** in the cli-reference.md model table — promote it from the (currently absent) plain-M3 entry to a "confirmed live (126/004, 2026-06-02)" row, alongside or in place of the account-asserted `MiniMax-M3-highspeed` default. The docs currently only list the `-highspeed` variants; plain `MiniMax-M3` is now empirically the responsive, dispatchable id.
 2. **Update the MiniMax `--variant` row** from "unverified — omitted by default" to "**`--variant high` confirmed accepted for `MiniMax-M3` on opencode 1.15.13 (126/004); standing high default applies**." This removes a stale "unverified" caveat now contradicted by 20 clean dispatches.
 3. **Do NOT change the MiniMax framework contract.** Keep **TIDD-EC + dense** (120/003, 7-fixture, authoritative). This rig's COSTAR-for-M3 result is saturation-driven (format already clean on M3; ranking is brevity-only) and is **not** decision-grade evidence to flip the framework. Re-benchmark on the 127 tiered fixtures before touching the framework rec.
 4. **Do NOT change the MiMo framework contract.** **COSTAR + lean** is confirmed (decisive sole win this run); keep it.
@@ -132,7 +132,7 @@ These are recommendations only — the user applies any doc change to cli-openco
 
 - **Per-model scored results**: `results-minimax-m3-high.json` (10/10, with `retry_provenance` for the recovered `rcaf__chunk`), `results-mimo-v25pro-high.json` (10/10, clean).
 - **Retry detail**: `results-minimax-m3-high-rcafchunk-retry.json` (single-combo recovery run).
-- **Preserved failure**: `runs/rcaf__chunk.M3-FAILED-empty-exit0.json` (the empty-text exit-0 first attempt).
+- **Preserved failure**: `runs/rcaf--chunk.M3-FAILED-empty-exit0.json` (the empty-text exit-0 first attempt).
 - **Raw per-dispatch responses** (prompt + assistant text + exit + timing), archived per model so tag-reuse across runs does not clobber them: `runs-archive/minimax-m3-high/`, `runs-archive/mimo-v25pro-high/`. Live `runs/` holds the most-recent run's raw responses.
 - **Harness**: `run-mimo-bench.cjs` (`--model` / `--variant` / `--out`). Frameworks: `frameworks.cjs`. Fixtures + hidden suites: `fixtures.cjs`. Extraction + format check: `extract.cjs`. Isolated test runner: `runtests.cjs` / `runner-child.cjs`.
 - **Prior syntheses** (context): `synthesis.md` (default-reasoning MiMo, 5-framework origin), `synthesis-high-reasoning.md` (M2.7-highspeed × MiMo, 2×2 reasoning).

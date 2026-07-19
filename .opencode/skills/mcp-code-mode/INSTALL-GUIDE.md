@@ -346,7 +346,7 @@ Add to `opencode.json` in your project root.
 
 **Option B2: Embedded Source (For bundled projects)**
 
-Use this if the Code Mode source is embedded in your project at `.opencode/skills/mcp-code-mode/mcp_server/`:
+Use this if the Code Mode source is embedded in your project at `.opencode/skills/mcp-code-mode/mcp-server/`:
 
 ```json
 {
@@ -355,7 +355,7 @@ Use this if the Code Mode source is embedded in your project at `.opencode/skill
       "type": "local",
       "command": [
         "node",
-        ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
+        ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"
       ],
       "environment": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"
@@ -365,7 +365,7 @@ Use this if the Code Mode source is embedded in your project at `.opencode/skill
 }
 ```
 
-> **Note:** The embedded approach requires running `npm install` in the `mcp_server/` directory first. This is useful for projects that want to bundle the MCP server source for version control and portability.
+> **Note:** The embedded approach requires running `npm install` in the `mcp-server/` directory first. This is useful for projects that want to bundle the MCP server source for version control and portability.
 
 ### Option C: Configure for VS Code Copilot
 

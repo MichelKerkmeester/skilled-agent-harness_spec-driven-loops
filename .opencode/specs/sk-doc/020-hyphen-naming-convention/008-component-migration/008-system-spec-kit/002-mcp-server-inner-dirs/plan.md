@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: MCP-server inner directories (032 subtree 008 phase 002)"
+title: "Implementation Plan: MCP-server inner directories (020 subtree 008 phase 002)"
 description: "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically."
 trigger_phrases:
   - "mcp-server inner directories"

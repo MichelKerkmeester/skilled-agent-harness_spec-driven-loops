@@ -59,7 +59,7 @@ Each `compliance.jsonl` line can contain these fields:
 Example record:
 
 ```json
-{"promptId":"prompt-1","selectedSkill":"sk-doc","predictedRoute":["README_CREATION"],"allowedResources":["always:references/global/quick_reference.md","conditional:references/specific/readme_creation.md"],"actualReads":["references/specific/readme_creation.md"],"complianceClass":"missing_expected","timestamp":"2026-04-19T17:30:13.337Z"}
+{"promptId":"prompt-1","selectedSkill":"sk-doc","predictedRoute":["README_CREATION"],"allowedResources":["always:references/global/quick-reference.md","conditional:references/specific/readme_creation.md"],"actualReads":["references/specific/readme_creation.md"],"complianceClass":"missing_expected","timestamp":"2026-04-19T17:30:13.337Z"}
 ```
 
 ---

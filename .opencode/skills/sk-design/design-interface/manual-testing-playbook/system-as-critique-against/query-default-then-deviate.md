@@ -90,6 +90,6 @@ If the primary run passes, repeat the resolution for a second subject that impli
 
 - Group: System As Critique-Against
 - Playbook ID: ID-004
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `system-as-critique-against/query-default-then-deviate.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

@@ -40,7 +40,7 @@ instructions for a worker to follow (that worker should follow its own dispatch
 prompt, not re-run this command's full setup contract)?
 
 ├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Mandatory Input Gate (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill-benchmark/operator-guide.md`, then continue to the Mandatory Input Gate (also a HARD BLOCK)
 │
 └─ NO, with concrete evidence this file's content was pasted inline rather than
    invoked as the command itself:
@@ -78,7 +78,7 @@ concrete evidence of the pasted-inline case above.
 Resolve:
 - **target skill** — the skill id or root to benchmark (must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A; e.g. the `cli-*` skills).
 - **outputs dir** — where `skill-benchmark-report.{json,md}` are written.
-- **fixtures dir** (optional) — defaults to `<skill>/assets/skill_benchmark/fixtures/<skill-id>/`.
+- **fixtures dir** (optional) — defaults to `<skill>/assets/skill-benchmark/fixtures/<skill-id>/`.
 - **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 - **advisor mode** (optional) — `python` enables the opt-in D1-inter advisor probe; off by default and in CI.
 
@@ -86,12 +86,12 @@ Resolve:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt` |
+| Auto workflow | `.opencode/commands/deep/assets/deep-skill-benchmark-auto.yaml` |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml` |
 | Loop host (dispatch target) | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` (`--mode=skill-benchmark`) |
 | Benchmark orchestrator | `scripts/skill-benchmark/run-skill-benchmark.cjs` (D5 hard gate → per-scenario contamination-lint → router-replay → score → dual report) |
-| Methodology + operator guide | `references/skill_benchmark/operator_guide.md`, `references/skill_benchmark/routing_optimization.md`, and the target skill's SKILL.md |
+| Methodology + operator guide | `references/skill-benchmark/operator-guide.md`, `references/skill-benchmark/routing-optimization.md`, and the target skill's SKILL.md |
 
 ## 3. MODE ROUTING
 
@@ -104,8 +104,8 @@ Resolve:
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml` |
+| `:auto` | `.opencode/commands/deep/assets/deep-skill-benchmark-auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml` |
 
 Both workflows dispatch the benchmark loop host exactly once with the resolved inputs. The dispatch is byte-identical to the prior direct invocation — only required `--skill` and `--outputs-dir` are always passed; `--fixtures-dir`, `--trace-mode`, and `--advisor-mode` are appended only when set:
 
@@ -121,7 +121,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt`:
+The following content lives only in `.opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, resolved-input confirmation, and reply-format examples.
 - `:auto` setup resolution rules and fail-fast display references.
@@ -146,7 +146,7 @@ Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (
 **Optimize target.** Lane C also drives a **routing-optimization** workflow that turns the benchmark's own signals into concrete parent-router and per-child `skill.md` → `references/`/`assets/` routing fixes. It is **propose-by-default** — never mutate a target skill or its gold without explicit operator review. Runnable today (signal → fix, following the methodology reference):
 
 1. Run the benchmark above; read `dimensionScores.D5` + `bottlenecks[class="orphan_reference"]` (references reachable from no `RESOURCE_MAP` intent) and `dimensionScores.D3` (over-routing).
-2. Apply the fix class per signal, per `references/skill_benchmark/routing_optimization.md`: wire orphan references into a meaningful intent; map always-loaded files into `RESOURCE_MAP`; align each scenario's gold with the router's *declared* designed load; intent-gate genuine over-routing.
+2. Apply the fix class per signal, per `references/skill-benchmark/routing-optimization.md`: wire orphan references into a meaningful intent; map always-loaded files into `RESOURCE_MAP`; align each scenario's gold with the router's *declared* designed load; intent-gate genuine over-routing.
 3. Re-benchmark to confirm the rise and no regression; keep the parent `RESOURCE_MAP` a union of its children (drift guard).
 
 The **anti-gaming guard is mandatory** (methodology §7): never invent gold, never add keywords that misroute. `code-review` is the worked example (D5 85→100, live 69→100).

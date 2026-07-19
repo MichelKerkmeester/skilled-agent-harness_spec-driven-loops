@@ -14,7 +14,7 @@ const SKDESIGN_COMMAND_RECIPE_FIXTURE = join(
   'skill_benchmark',
   'fixtures',
   'sk_design',
-  'sk_design_command_recipe_valid.private.json',
+  'sk-design-command-recipe-valid.private.json',
 );
 
 // A genuinely router-less skill dir (no INTENT_SIGNALS/RESOURCE_MAP). The
@@ -139,7 +139,7 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('hub-router.json');
     expect(Object.keys(router.resourceMap).length).toBeGreaterThan(0);
-    // The retained surface router (shared/references/smart_routing.md) still carries
+    // The retained surface router (shared/references/smart-routing.md) still carries
     // the per-surface RESOURCE_MAP the hub projection does not expose.
     const surface = loadSurfaceRouter(SKCODE);
     expect(surface).toBeTruthy();
@@ -166,7 +166,7 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
   });
 
   it('does NOT rescue a router-less skill via the reference fallback', () => {
-    // A skill with no inline dicts AND no references/smart_routing.md stays unparseable.
+    // A skill with no inline dicts AND no references/smart-routing.md stays unparseable.
     const res = parseRouter('---\nname: x\n---\n# x\nno router, see references/foo.md for routing\n', makeRouterlessSkill());
     expect(res.parseable).toBe(false);
   });

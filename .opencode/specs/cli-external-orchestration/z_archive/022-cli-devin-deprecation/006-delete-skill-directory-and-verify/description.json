@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/022-cli-devin-deprecation/006-delete-skill-directory-and-verify",
+  "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/006-delete-skill-directory-and-verify",
   "description": "After all active references are removed and canonical assets re-homed, the cli-devin skill directory must be deleted and the whole deprecation",
   "keywords": [
     "active",
@@ -17,11 +17,12 @@
     "whole",
     "deprecation"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.690Z",
+  "lastUpdated": "2026-07-18T03:48:54.341Z",
   "specId": "006",
   "folderSlug": "delete-skill-directory-and-verify",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "022-cli-devin-deprecation"
   ],
   "memorySequence": 0,

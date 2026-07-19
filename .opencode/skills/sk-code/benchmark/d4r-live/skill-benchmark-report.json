@@ -1,0 +1,538 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "PASS",
+  "aggregateScore": 88,
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 100
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 60
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": 54,
+      "scoredCount": 5,
+      "attribution": "approximate",
+      "note": "task-outcome usefulness delta (skill-on vs off), separate from D4 hallucination"
+    },
+    "assetRecall": {
+      "score": 90,
+      "note": "deferred-asset support recall; advisory, not weighted"
+    }
+  },
+  "funnel": {
+    "passed": 5
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "coverage": {
+    "routing": 5,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 5
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "scenarioId": "SD-002",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.8888888888888888,
+          "routedCount": 9,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0.5,
+          "expectedAssets": [
+            "assets/opencode/checklists/typescript-checklist.md",
+            "assets/opencode/checklists/universal-checklist.md"
+          ],
+          "observedAssets": [
+            "assets/opencode/checklists/mcp-server-authoring.md",
+            "assets/opencode/checklists/typescript-checklist.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 97,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 34,
+        "activated": true,
+        "toolCalls": [
+          "skill",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "references/opencode/shared/*",
+          "references/opencode/typescript/*",
+          "references/universal/*",
+          "assets/opencode/checklists/*",
+          "references/*.md",
+          "references/smart-routing.md",
+          "references/stack-detection.md",
+          "references/phase-detection.md",
+          "references/universal/*.md",
+          "references/opencode/typescript/*.md",
+          "references/opencode/shared/*.md",
+          "references/opencode/debugging/*.md",
+          "references/opencode/implementation/*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"references/stack-detection.md\",\"references/phase-detection.md\",\"references/smart-routing.md\",\"references/universal/code-quality-standards.md\",\"references/opencode/shared/universal_patterns.md\",\"references/opencode/shared/code_org"
+      },
+      "d4TaskOutcome": {
+        "score": 0.41000000000000003,
+        "onScore": 0.27,
+        "offScore": 0.45,
+        "attribution": "approximate",
+        "instrument": "task-outcome",
+        "graderMode": "real"
+      }
+    },
+    {
+      "scenarioId": "LS-001",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5555555555555556,
+          "routedCount": 9,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "assets/opencode/checklists/typescript-checklist.md",
+            "assets/opencode/checklists/universal-checklist.md"
+          ],
+          "observedAssets": [
+            "assets/opencode/checklists/universal-checklist.md",
+            "assets/opencode/checklists/typescript-checklist.md",
+            "assets/opencode/checklists/mcp-server-authoring.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 86,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 14,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "references/smart-routing.md",
+          "references/stack-detection.md",
+          "references/phase-detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"references/stack-detection.md\",\"references/phase-detection.md\",\"references/smart-routing.md\",\"references/universal/code-quality-standards.md\",\"references/opencode/shared/universal_patterns.md\",\"references/opencode/shared/code_org"
+      },
+      "d4TaskOutcome": {
+        "score": 0.685,
+        "onScore": 0.72,
+        "offScore": 0.35,
+        "attribution": "approximate",
+        "instrument": "task-outcome",
+        "graderMode": "real"
+      }
+    },
+    {
+      "scenarioId": "LS-002",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.41666666666666663,
+          "routedCount": 12,
+          "wastedCount": 7,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "assets/opencode/checklists/python-checklist.md",
+            "assets/opencode/checklists/universal-checklist.md"
+          ],
+          "observedAssets": [
+            "assets/opencode/checklists/universal-checklist.md",
+            "assets/opencode/checklists/python-checklist.md",
+            "assets/opencode/checklists/mcp-server-authoring.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 82,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 21,
+        "activated": true,
+        "toolCalls": [
+          "skill",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [
+          "references/opencode/python/*",
+          "references/opencode/shared/*",
+          "references/universal/*",
+          "assets/opencode/checklists/*",
+          "references/*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"PYTHON\",\"resources\":[\"references/stack-detection.md\",\"references/smart-routing.md\",\"references/phase-detection.md\",\"references/universal/code-quality-standards.md\",\"references/universal/code-style-guide.md\",\"references/universal/error-recovery.md\",\"refere"
+      },
+      "d4TaskOutcome": {
+        "score": 0.435,
+        "onScore": 0.72,
+        "offScore": 0.85,
+        "attribution": "approximate",
+        "instrument": "task-outcome",
+        "graderMode": "real"
+      }
+    },
+    {
+      "scenarioId": "LS-003",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.7142857142857143,
+          "routedCount": 7,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "assets/opencode/checklists/shell-checklist.md",
+            "assets/opencode/checklists/universal-checklist.md"
+          ],
+          "observedAssets": [
+            "assets/opencode/checklists/universal-checklist.md",
+            "assets/opencode/checklists/shell-checklist.md",
+            "assets/scripts/verify_alignment_drift.py"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 91,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 20,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "references/opencode/shell/*",
+          "references/opencode/shared/*",
+          "assets/opencode/checklists/*shell*",
+          "references/universal/*",
+          "references/smart-routing.md",
+          "references/stack-detection.md",
+          "references/phase-detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"references/universal/code-quality-standards.md\",\"references/universal/error-recovery.md\",\"references/opencode/shared/universal_patterns.md\",\"references/opencode/shared/code_organization.md\",\"references/opencode/shell/quick_reference.m"
+      },
+      "d4TaskOutcome": {
+        "score": 0.55,
+        "onScore": 0.8,
+        "offScore": 0.7,
+        "attribution": "approximate",
+        "instrument": "task-outcome",
+        "graderMode": "real"
+      }
+    },
+    {
+      "scenarioId": "LS-004",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.41666666666666663,
+          "routedCount": 12,
+          "wastedCount": 7,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "assets/opencode/checklists/config-checklist.md",
+            "assets/opencode/checklists/universal-checklist.md"
+          ],
+          "observedAssets": [
+            "assets/opencode/checklists/universal-checklist.md",
+            "assets/opencode/checklists/config-checklist.md",
+            "assets/opencode/checklists/spec_folder_authoring.md",
+            "assets/opencode/recipes/spec_folder_write.md",
+            "assets/scripts/verify_alignment_drift.py"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 82,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 26,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "references/smart-routing.md",
+          "references/stack-detection.md",
+          "references/opencode/config/style-guide.md",
+          "references/opencode/config/quality-standards.md",
+          "references/universal/*.md",
+          "references/opencode/shared/*.md",
+          "references/opencode/config/*.md",
+          "assets/opencode/checklists/*.md",
+          "assets/scripts/*",
+          "assets/opencode/recipes/*.md",
+          "references/phase-detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"CONFIG\",\"resources\":[\"references/stack-detection.md\",\"references/smart-routing.md\",\"references/phase-detection.md\",\"references/universal/code-quality-standards.md\",\"references/universal/code-style-guide.md\",\"references/universal/error-recovery.md\",\"refere"
+      },
+      "d4TaskOutcome": {
+        "score": 0.61,
+        "onScore": 0.44,
+        "offScore": 0.22,
+        "attribution": "approximate",
+        "instrument": "task-outcome",
+        "graderMode": "real"
+      }
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 5,
+    "traceMode": "live",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  },
+  "parseWarnings": [
+    "SA-001: missing-exact-prompt"
+  ]
+}

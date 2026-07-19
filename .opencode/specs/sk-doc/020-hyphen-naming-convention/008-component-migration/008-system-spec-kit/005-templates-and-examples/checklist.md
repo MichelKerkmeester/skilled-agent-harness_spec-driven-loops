@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Templates and examples (032 subtree 008 phase 005)"
+title: "Checklist: Templates and examples (020 subtree 008 phase 005)"
 description: "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1, level_2, level_3, level_3+, stress_test, and EXTENSION_GUIDE.md. This phase moves permitted template paths and updates generator, renderer, and documentation pointers while preserving tool-mandated manifest templates."
 trigger_phrases:
   - "system-spec-kit templates and examples"

@@ -56,4 +56,4 @@ For syntax coverage after edits, run the package TypeScript or test command used
 ## 6. RELATED
 
 - `../config/README.md`
-- `../../../system-skill-advisor/mcp_server/`
+- `../../../system-skill-advisor/mcp-server/`

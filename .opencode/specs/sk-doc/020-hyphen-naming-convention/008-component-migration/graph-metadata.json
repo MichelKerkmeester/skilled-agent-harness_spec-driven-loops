@@ -95,15 +95,15 @@
     ],
     "causal_summary": "The 14-way per-component fan-out that renames each skill subtree's snake_case filesystem names to kebab-case as a self-contained, dependency-closed closure. Lanes are scheduled from the phase 006 executable SCC condensation DAG under exclusive skill leases and one serial integration steward; phase number is grouping order, not a runtime sequence.",
     "created_at": "2026-07-14T15:16:54Z",
-    "last_save_at": "2026-07-17T14:30:06.011Z",
+    "last_save_at": "2026-07-17T20:26:01.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a6fb457256fb060040497240752c0209c6ce86233a365103208c8bb543b9652c",
+    "source_fingerprint": "sha256:e8394dc5d09eae38858cbec8ab4a3146a402ba733f447340b7234917b8d5c7fe",
     "source_doc_hashes": {
-      "spec.md": "e7511f5f9e724dc1ed791db03a8a18cc1ec40f88f00479661fa14eb0f99c0b0c"
+      "spec.md": "1f6193c028e623ecd831c778e3818f4c98f4161a1e23bec23123f972f1babd2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

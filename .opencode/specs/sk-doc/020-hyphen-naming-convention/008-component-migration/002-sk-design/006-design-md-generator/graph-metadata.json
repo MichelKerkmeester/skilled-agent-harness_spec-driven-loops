@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "design-md-generator naming phase",
       "sk-design design-md-generator phase",
-      "032 design-md-generator",
+      "020 design-md-generator",
       "design-md-generator implementation plan",
       "sk-design design-md-generator plan",
-      "032 design-md-generator tasks",
+      "020 design-md-generator tasks",
       "design-md-generator tasks",
       "sk-design design-md-generator execution",
-      "032 design-md-generator checklist",
+      "020 design-md-generator checklist",
       "design-md-generator verification",
       "sk-design design-md-generator checklist",
-      "032 design-md-generator gate"
+      "020 design-md-generator gate"
     ],
     "key_topics": [
       "design-md-generator",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure.",
     "created_at": "2026-07-14T15:17:18Z",
-    "last_save_at": "2026-07-17T14:30:10.576Z",
+    "last_save_at": "2026-07-17T20:26:04.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e29b44862df254906c0e73a35c28c87a96a2dfcac5fa0679eddaa6b359238e90",
+    "source_fingerprint": "sha256:b2d9c45187e45c82e613e5c84b203ff3178a2688f881ec1e7e76b13edccf5eab",
     "source_doc_hashes": {
-      "spec.md": "620f9361ca9e72fa736e5f22fbcabce655446876a479b0e1d944f0fd984a5200",
-      "plan.md": "8e10691aacde1df14764b4c2690c57942ca5d1e297744711cfb2259a5a29ba5a",
-      "tasks.md": "9d801fd7b3440c09b0de834fc9bbee4680543dc64af19ecaf6f8bab1c3512386",
-      "checklist.md": "b853ce8766ac39d146fd66ad6027719efaf04729fc23367aaeaf7c26098a568e"
+      "spec.md": "faec5378b197de25cd5cbb974ee3e0cb53d2c2012878864a8eea8db591325018",
+      "plan.md": "32649586b82ac75c1a4e577d10fdccd2497a652ba68f253c7ea3020165aedceb",
+      "tasks.md": "4052b1e9a413c0597d2211e9935499171eecd164d9e2fcbb4da1a27dae3af02f",
+      "checklist.md": "c8bd03a40aeccf190ca8b7b1fa756ad497f5c0e6f430b1a1804cfec3a4a7840f"
     },
     "last_active_child_id": null,
     "last_active_at": null

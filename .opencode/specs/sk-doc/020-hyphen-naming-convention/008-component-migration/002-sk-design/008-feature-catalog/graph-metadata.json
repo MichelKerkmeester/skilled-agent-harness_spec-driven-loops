@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "feature-catalog naming phase",
       "sk-design feature-catalog phase",
-      "032 feature-catalog",
+      "020 feature-catalog",
       "feature-catalog implementation plan",
       "sk-design feature-catalog plan",
-      "032 feature-catalog tasks",
+      "020 feature-catalog tasks",
       "feature-catalog tasks",
       "sk-design feature-catalog execution",
-      "032 feature-catalog checklist",
+      "020 feature-catalog checklist",
       "feature-catalog verification",
       "sk-design feature-catalog checklist",
-      "032 feature-catalog gate"
+      "020 feature-catalog gate"
     ],
     "key_topics": [
       "feature-catalog",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to manual playbook paths.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-07-17T14:30:11.181Z",
+    "last_save_at": "2026-07-17T20:26:05.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3dffa3297a4ef510e11fee93837c4ed8cee3633677a153e6363a9a203ee35b73",
+    "source_fingerprint": "sha256:0c8a3649ab3beb5ab12b19d5ea603c385ac5516793bc5cc9599281784951a8ff",
     "source_doc_hashes": {
-      "spec.md": "d6239ecbb380fc680b9dde29efea207cc34bc59b91e6eed3785e806637d17b87",
-      "plan.md": "162ce233e58261e0e659d903e57a37b1df9a83c111300637a9a27cb9e6e04164",
-      "tasks.md": "c1514b04b40cd45957c9905a8be66ab4dc5f146c4bd05c50e05687f67a77e41c",
-      "checklist.md": "e12b16baeae761667c223a45112dfa142e7a5b199ab255a3dc5af6892f221b74"
+      "spec.md": "5a3ab5bf0e681beb54c5da9a9953c2bd5ebc9b2e04f5693c23d6000bb2c3a307",
+      "plan.md": "8349a3e3cf62920edd4a8f27fdb5cc0e0ad7fab136ba9b3abd367c26b7c1804e",
+      "tasks.md": "7bd87514caf7864b9bcb7a8db9e9b20e96026ceef7bcf567661e7a99f35ae2af",
+      "checklist.md": "20c9c40cf2df75b199aa0af60ee055beb46ac1dbea84b5ff2fed4930bdbb84fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

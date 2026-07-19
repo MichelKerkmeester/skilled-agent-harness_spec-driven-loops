@@ -24,7 +24,7 @@ mark_memory_drift_from_diff() {
 
   local drift_marker_script="$repo_root/.opencode/skills/system-spec-kit/scripts/dist/git-hooks/drift-marker-write.js"
   if [ ! -f "$drift_marker_script" ]; then
-    echo "memory-drift-marker: missing build artifact $drift_marker_script -- rebuild with: cd .opencode/skills/system-spec-kit/mcp_server && npm run build && cd ../scripts && npm run build" >&2
+    echo "memory-drift-marker: missing build artifact $drift_marker_script -- rebuild with: cd .opencode/skills/system-spec-kit/mcp-server && npm run build && cd ../scripts && npm run build" >&2
     return 0
   fi
 

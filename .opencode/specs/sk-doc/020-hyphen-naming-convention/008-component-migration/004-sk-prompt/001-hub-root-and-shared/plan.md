@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt hub root and shared boundary (032 phase 004.001)"
+title: "Implementation Plan: sk-prompt hub root and shared boundary (020 phase 004.001)"
 description: "Implementation plan for phase 001 of the sk-prompt kebab-case program: census the hub root/shared boundary, apply only owned path renames, preserve exact routing files, and hand delegated trees to their child phases."
 trigger_phrases:
   - "sk-prompt hub root implementation plan"
@@ -50,7 +50,7 @@ The plan starts with a direct-child census and records the current absence of `s
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-parent map and 032 scope/exemption record are available.
+- [ ] The phase-parent map and 020 scope/exemption record are available.
 - [ ] Candidate and BASE SHAs are pinned, and the direct root census is captured.
 - [ ] Each root child has an ownership and naming disposition before any rename.
 
@@ -109,7 +109,7 @@ Pinned root inventory → ownership/classification ledger → owned path map →
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the 032 exemption and dependency-closure rules. Phases 002–005 may update root references for paths they own, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
+The phase consumes the 020 exemption and dependency-closure rules. Phases 002–005 may update root references for paths they own, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

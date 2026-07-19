@@ -8,8 +8,8 @@ trap 'rm -f "$INPUT_FILE"' EXIT
 cat > "$INPUT_FILE"
 
 cd "$REPO_ROOT"
-if [ -f ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js" ]; then
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js < "$INPUT_FILE"
+if [ -f ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/user-prompt-submit.js" ]; then
+  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/user-prompt-submit.js < "$INPUT_FILE"
 else
   INSTRUCTIONS_PATH="${SPECKIT_COPILOT_INSTRUCTIONS_PATH:-$REPO_ROOT/.github/copilot-instructions.md}"
   mkdir -p "$(dirname "$INSTRUCTIONS_PATH")"

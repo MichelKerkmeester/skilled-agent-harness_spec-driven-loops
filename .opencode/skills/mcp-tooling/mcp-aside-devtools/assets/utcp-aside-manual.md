@@ -32,7 +32,7 @@ Use the snapshot and verification command below to compare the live registration
 ## 2. THE REGISTERED MANUAL (SNAPSHOT, DO NOT RE-APPLY)
 
 **Key Points**:
-- Manual `name` is `aside`. Live discovery (2026-07-16, `../references/discovery-fixture-2026-07-16.json`) returned exactly one aside entry, registry name **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}`); the TypeScript call surface inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line; `{manual_name}.{manual_name}_{tool_name}` per `mcp-code-mode/references/naming_convention.md`).
+- Manual `name` is `aside`. Live discovery (2026-07-16, `../references/discovery-fixture-2026-07-16.json`) returned exactly one aside entry, registry name **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}`); the TypeScript call surface inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line; `{manual_name}.{manual_name}_{tool_name}` per `mcp-code-mode/references/naming-convention.md`).
 - Transport is `stdio`: Code Mode spawns `aside mcp` directly from the installed binary. There is no URL, port, or remote endpoint; the server inherits the logged-in CLI account/provider context.
 - The `env` block is **intentionally empty and must stay empty**: Aside MCP auth is account/session-based. No API key or auth env var exists for this transport — no credential of any kind goes into `.utcp_config.json` or `.env`.
 - `command: "aside"` assumes PATH; if the Code Mode server's PATH differs, resolve the absolute path via `command -v aside` under that environment and substitute — as a reviewed config change, not an improvised one.

@@ -12,16 +12,16 @@
   "derived": {
     "trigger_phrases": [
       "sk-git references kebab-case",
-      "032 sk-git reference rename",
+      "020 sk-git reference rename",
       "reference pointer closure",
       "sk-git references implementation plan",
-      "032 sk-git reference phase plan",
+      "020 sk-git reference phase plan",
       "reference rename pointer closure plan",
       "sk-git references tasks",
-      "032 reference rename tasks",
+      "020 reference rename tasks",
       "reference pointer closure tasks",
       "sk-git references checklist",
-      "032 reference rename verification",
+      "020 reference rename verification",
       "reference pointer closure acceptance"
     ],
     "key_topics": [
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-07-17T14:30:41.362Z",
+    "last_save_at": "2026-07-17T20:26:17.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b27b6fc2785bb86f30c5d764a1614b197ac3b9044319cd6bf4cbd72b5dda5f99",
+    "source_fingerprint": "sha256:a51f133dfe5cc038032cee80090e32a9956034b723a277571619f55858755312",
     "source_doc_hashes": {
-      "spec.md": "4ff92cfcbcd159da4ce16e27dd488ae9520aaf966597271d7d6765f122c9db77",
-      "plan.md": "f8559400d58c2b292fd242fc2315b733f4c15939e81e092a138e61107ccc42f6",
-      "tasks.md": "49ce490e62e15952630e052b39057c808babb9de7c941301d0d708979d15aac3",
-      "checklist.md": "906b09a54901326f508d89297d19c8093733ae7ba4ad3f758c56ca826967bd90"
+      "spec.md": "820e9631153373e4931ee4f3eb5b227b4e5e92b4c34a57c6a4e48ab935f7aeb0",
+      "plan.md": "bd7eea19499b59b227f14d0dd300bbe7c1240e2c82aa550fa82ab1613293e85b",
+      "tasks.md": "30e1f74b7812baf7b62196aaf97ad83b75453e56f8af4667a9d79b57c44b584d",
+      "checklist.md": "77dc0c90b6c6f68774e61e51a18c2e33574cb187ef8aec115a9d4df9ea508e9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
-title: "Tasks: root-name consumer migration (032 phase 002)"
-description: "Tasks for phase 002 of the 032 kebab-case filesystem-naming program: root-name consumer migration."
+title: "Tasks: root-name consumer migration (020 phase 002)"
+description: "Tasks for phase 002 of the 020 kebab-case filesystem-naming program: root-name consumer migration."
 trigger_phrases:
   - "root-name consumer migration tasks"
   - "hyphen naming phase 002 tasks"
@@ -39,38 +39,38 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor phases landed and the pinned worktree is clean (per this phase's spec adjacency)
+- [x] T001 Confirm predecessor phases landed and the pinned tracked baseline is clean; evidence: `git rev-parse HEAD` and BASE `1ec0ad2947b`
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 The `validate_document.py` classifier: update the real file under `shared/scripts/` and preserve the `sk-doc/scripts/` symlink (mode 120000)
-- [ ] T003 The Lane C loader (`load-playbook-scenarios.cjs`) + generator (`playbook-generator.cjs`) hardcoded root/index names
-- [ ] T004 `parent-skill-check.cjs`, `post-edit-router.cjs`, and `package_skill.py` root-name references
-- [ ] T005 The inverse guard `check_no_hyphenated_catalog_content.py` + its tests, plus `test_category_classification_denumbered.py`, redefined to the hyphenated target
-- [ ] T006 A bounded dual-name tolerance: accept both roots for reads, emit only hyphens, fail closed if both physical roots coexist
-- [ ] T007 A per-skill fail-closed coexistence matrix for every consumer-manifest row and active skill family; unsupported or un-migrated names refuse without silent mis-resolution
+- [x] T002 Update `validate_document.py` and preserve the `sk-doc/scripts/` symlink; evidence: mode `120000`
+- [x] T003 Harden `load-playbook-scenarios.cjs` and `playbook-generator.cjs`; evidence: Lane C 32/30
+- [x] T004 Correct the absent `parent-skill-check.cjs` premise, update `post-edit-router.cjs`, and harden `package_skill.py`; evidence: 13/13 matrix rows
+- [x] T005 Redefine `check_no_hyphenated_catalog_content.py` and `test_category_classification_denumbered.py`; evidence: 14/14 checks
+- [x] T006 Add bounded dual-name tolerance and fail on physical coexistence; evidence: `RootCoexistenceError`
+- [x] T007 Add the per-skill fail-closed coexistence matrix; evidence: `test_root_name_consumer_matrix.py`
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Verify: Every runtime consumer of the catalog/playbook root/index names accepts the hyphenated roots — A reviewed consumer manifest lists each and all are updated
-- [ ] T009 Verify: The classifier change preserves the symlink and types hyphenated leaves correctly — A hyphenated catalog leaf classifies as its typed document, not `readme`; the symlink mode stays 120000
-- [ ] T010 Verify: A bounded dual-name tolerance accepts both roots but fails closed if both physically coexist — Both roots classify identically for reads; coexistence of both physical roots errors
-- [ ] T011 Verify: The Lane C loader + generator load unchanged against the hyphenated roots — Discovered-scenario count and IDs are unchanged
-- [ ] T012 Verify: The inverse guard and its tests are redefined to the hyphenated target — The guard rejects underscore catalog content and accepts hyphenated content
-- [ ] T013 Verify: Root-name handling is correct on POSIX and Windows-style path separators — Matrix tests pass for both separators
-- [ ] T014 Verify: Every consumer-manifest row and active skill family fails closed on an unsupported or un-migrated name — No row silently returns `readme`, an empty corpus, an unrelated category, or a guessed path
+- [x] T008 Verify every runtime consumer; evidence: `consumer-manifest.md` and 13/13 filesystem rows
+- [x] T009 Verify classifier typing and symlink preservation; evidence: `test_category_classification_denumbered.py` and mode `120000`
+- [x] T010 Verify alias parity and coexistence refusal; evidence: `test_root_name_consumer_matrix.py`
+- [x] T011 Verify Lane C discovery parity; evidence: `sk-doc=32` and `sk-code=30`
+- [x] T012 Verify the inverse guard target mode; evidence: `--enforce-hyphen-target`
+- [x] T013 Verify POSIX and Windows-style separators; evidence: `test_root_name_consumer_matrix.py`
+- [x] T014 Verify all active filesystem consumers and skill families; evidence: 13/13 rows and 11/11 families
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All tasks complete; evidence: T001-T014 14/14
+- [x] All requirements in `spec.md` met with matrix evidence
+- [x] Phase gate green; evidence: `validate.sh --strict`
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

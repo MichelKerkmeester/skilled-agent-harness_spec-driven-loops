@@ -1,5 +1,5 @@
 ---
-title: "Tasks: commands subtree rollup gate (032 phase 008/013/010)"
+title: "Tasks: commands subtree rollup gate (020 phase 008/013/010)"
 description: "Blocking aggregation tasks for sibling acceptance, whole-tree kebab-case closure, exemption evidence, and active reference integrity."
 trigger_phrases:
   - "commands rollup gate tasks"

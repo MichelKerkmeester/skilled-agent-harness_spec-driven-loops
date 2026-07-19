@@ -1,0 +1,52 @@
+{
+  "name": "system-spec-kit",
+  "version": "1.7.2",
+  "private": true,
+  "description": "Unified workspace for Semantic Memory MCP server and CLI tools",
+  "workspaces": [
+    "shared",
+    "mcp-server",
+    "scripts"
+  ],
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "start": "npm run start --workspace=@spec-kit/mcp-server",
+    "build": "tsc --build",
+    "typecheck": "npm run --workspaces=false typecheck:root",
+    "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p mcp-server/tsconfig.json && tsc --noEmit --composite false -p scripts/tsconfig.json",
+    "build:watch": "tsc --build --watch",
+    "test": "npm run --workspaces=false test:root",
+    "test:root": "node scripts/dist/memory/generate-context.js --help && echo 'CLI smoke test passed' && node scripts/tests/test-embeddings-factory.js && npm run test --workspace=@spec-kit/mcp-server && npm run test --workspace=@spec-kit/scripts",
+    "test:mcp": "npm run test --workspace=@spec-kit/mcp-server",
+    "test:cli": "node scripts/dist/memory/generate-context.js --help && echo 'CLI smoke test passed'",
+    "test:task-enrichment": "node mcp-server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root scripts --config ../mcp-server/vitest.config.ts",
+    "test:embeddings": "node scripts/tests/test-embeddings-factory.js",
+    "postinstall": "node scripts/setup/record-node-version.js"
+  },
+  "overrides": {
+    "hono": "^4.12.27",
+    "@hono/node-server": "^1.19.13",
+    "vite": "^8.1.2",
+    "esbuild": "^0.28.1",
+    "picomatch": "^4.0.4",
+    "path-to-regexp": "^8.4.0",
+    "postcss": "^8.5.10",
+    "js-yaml": "^4.3.0",
+    "protobufjs": "^7.6.4",
+    "tar": "^7.5.19",
+    "@protobufjs/utf8": "^1.1.1",
+    "@modelcontextprotocol/sdk": {
+      "hono": "^4.12.27",
+      "@hono/node-server": "^1.19.13"
+    }
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.2.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {}
+}

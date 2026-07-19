@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep command namespace naming (032 phase 008/013/002)"
+title: "Implementation Plan: deep command namespace naming (020 phase 008/013/002)"
 description: "Plan for renaming maintained deep command assets and legacy bodies, repairing their references, and refreshing generated contract metadata without renaming generated output files."
 trigger_phrases:
   - "deep namespace naming plan"
@@ -110,8 +110,8 @@ Apply the 25 maintained source-to-target rows as one dependency-closed closure. 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Manual asset edits could rename generated output or miss dynamic consumers. |
-| 032 phase 006 frozen map | Internal | Required before execution | Maintained/generated ownership and target names are not proven. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Manual asset edits could rename generated output or miss dynamic consumers. |
+| 020 phase 006 frozen map | Internal | Required before execution | Maintained/generated ownership and target names are not proven. |
 | Deep-loop contract compiler | Internal | Required before verification | Generated source paths and digests cannot be refreshed authoritatively. |
 | 000 baseline contract and route evidence | Internal | Required before verification | Generated and behavior parity cannot be compared. |
 <!-- /ANCHOR:dependencies -->

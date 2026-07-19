@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
   "description": "cli-opencode + deepseek-v4-pro --variant high dispatched waves 2-4: RoutingCalibration interface expansion, env-var overrides (SPECKIT_ADVISOR_*),",
   "keywords": [
     "cli-opencode",
@@ -15,11 +15,12 @@
     "env-var",
     "overrides"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.282Z",
+  "lastUpdated": "2026-07-18T03:48:57.272Z",
   "specId": "008",
   "folderSlug": "skill-advisor-interface-and-env-vars",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "010-skill-advisor-embedder-stack"
   ],
   "memorySequence": 0,

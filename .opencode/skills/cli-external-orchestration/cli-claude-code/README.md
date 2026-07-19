@@ -127,7 +127,7 @@ Example: `claude -p "Review @src/auth.ts for security issues" --agent review --p
 
 ### Auth Pre-Flight And Memory Handback
 
-cli-claude-code authenticates through the Claude subscription OAuth only. Before the first dispatch the skill checks whether the CLI is authenticated; if it is not, it surfaces the login command and waits rather than dispatching. It does not use an `ANTHROPIC_API_KEY`. The two OAuth options are `claude auth login` (interactive browser flow) and `claude setup-token` (a non-interactive OAuth token for CI/CD). When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
+cli-claude-code authenticates through the Claude subscription OAuth only. Before the first dispatch the skill checks whether the CLI is authenticated; if it is not, it surfaces the login command and waits rather than dispatching. It does not use an `ANTHROPIC_API_KEY`. The two OAuth options are `claude auth login` (interactive browser flow) and `claude setup-token` (a non-interactive OAuth token for CI/CD). When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory-handback.md`).
 
 ---
 
@@ -203,8 +203,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-claude-code/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md` |
-| Behavior | Run the scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session with valid Anthropic auth |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` |
+| Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth |
 
 ---
 
@@ -213,9 +213,9 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/cli_reference.md`](./references/cli_reference.md) | Complete CLI flags, commands, models and authentication |
-| [`references/integration_patterns.md`](./references/integration_patterns.md) | Cross-AI orchestration patterns, where the external AI conducts and Claude Code executes |
-| [`references/claude_tools.md`](./references/claude_tools.md) | Unique capabilities and a comparison with OpenCode |
-| [`references/agent_delegation.md`](./references/agent_delegation.md) | The agent roster, routing table and invocation patterns |
-| [`assets/prompt_quality_card.md`](./assets/prompt_quality_card.md) | Fast-path prompt discipline, the framework table and CLEAR check |
-| [`assets/prompt_templates.md`](./assets/prompt_templates.md) | Copy-paste prompt templates per task |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI flags, commands, models and authentication |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns, where the external AI conducts and Claude Code executes |
+| [`references/claude-tools.md`](./references/claude-tools.md) | Unique capabilities and a comparison with OpenCode |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | The agent roster, routing table and invocation patterns |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline, the framework table and CLEAR check |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates per task |

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: root and OpenCode infrastructure strays (032 phase 007 child 001)"
+title: "Implementation Plan: root and OpenCode infrastructure strays (020 phase 007 child 001)"
 description: "Execution plan for the root and OpenCode infrastructure closure: classify candidates, apply semantic targets, close same-surface references, and hand off cross-skill edges."
 trigger_phrases:
   - "root infrastructure closure implementation plan"
@@ -41,7 +41,7 @@ _memory:
 | **Execution** | Isolated worktree pinned to BASE, using the frozen map |
 
 ### Overview
-The phase will inventory root-level and `.opencode` infrastructure names that are not owned by one skill, classify each candidate against the 032 exemption boundary, and apply only explicit semantic source-to-target mappings. It will update same-surface path references and emit cross-skill symlink/shared-script edges for sibling closure phases.
+The phase will inventory root-level and `.opencode` infrastructure names that are not owned by one skill, classify each candidate against the 020 exemption boundary, and apply only explicit semantic source-to-target mappings. It will update same-surface path references and emit cross-skill symlink/shared-script edges for sibling closure phases.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -64,7 +64,7 @@ The phase will inventory root-level and `.opencode` infrastructure names that ar
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Candidate ledger**: enumerate root-level and `.opencode` infrastructure paths, then classify them with the 032 policy.
+- **Candidate ledger**: enumerate root-level and `.opencode` infrastructure paths, then classify them with the 020 policy.
 - **Semantic rename map**: pair each in-scope source with an explicit kebab-case target and collision evidence.
 - **Reference closure**: scan command assets, installer scripts, shell sources, registries, and path-valued docs before moving a candidate.
 - **Boundary handoff**: stop at symlink or shared-script edges owned by children 002 and 003, preserving the edge in the manifest.

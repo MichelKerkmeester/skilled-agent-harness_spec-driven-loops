@@ -137,7 +137,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 
 ### Auth Pre-Flight And Memory Handback
 
-cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed; if it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
+cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed; if it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory-handback.md`).
 
 ---
 
@@ -215,7 +215,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-codex/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-codex/manual_testing_playbook/manual_testing_playbook.md` |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md` |
 | Default dispatch | `codex exec "Say hello" --model gpt-5.5 -c service_tier="fast" --sandbox read-only` returns a greeting |
 
 ---
@@ -225,10 +225,10 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/cli_reference.md`](./references/cli_reference.md) | Complete CLI subcommands, flags, sandbox modes and config reference |
-| [`references/integration_patterns.md`](./references/integration_patterns.md) | Cross-AI orchestration patterns and workflows |
-| [`references/codex_tools.md`](./references/codex_tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
-| [`references/hook_contract.md`](./references/hook_contract.md) | Native hook contract and Spec Kit Memory startup wiring |
-| [`references/agent_delegation.md`](./references/agent_delegation.md) | Profile roster, routing table and invocation patterns |
-| [`assets/prompt_quality_card.md`](./assets/prompt_quality_card.md) | Fast-path prompt discipline and the CLEAR check |
-| [`assets/prompt_templates.md`](./assets/prompt_templates.md) | Copy-paste prompt templates for common tasks |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, sandbox modes and config reference |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
+| [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
+| [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit Memory startup wiring |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Profile roster, routing table and invocation patterns |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |

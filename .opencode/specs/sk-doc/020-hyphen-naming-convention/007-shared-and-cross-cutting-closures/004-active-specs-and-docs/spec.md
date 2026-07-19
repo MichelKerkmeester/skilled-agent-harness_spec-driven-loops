@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: active specs and documents (032 phase 007 child 004)"
+title: "Feature Specification: active specs and documents (020 phase 007 child 004)"
 description: "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract."
 trigger_phrases:
   - "active specs and documents naming"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Active Specs and Documents
 

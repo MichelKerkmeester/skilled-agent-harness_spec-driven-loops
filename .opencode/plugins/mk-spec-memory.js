@@ -37,7 +37,7 @@ const BRIEF_MARKER_DIGEST_CHARS = 16;
 const MIN_MAX_BRIEF_CHARS = BRIEF_MARKER_PREFIX.length + BRIEF_MARKER_DIGEST_CHARS + 1;
 const DISABLED_ENV = 'MK_SPEC_MEMORY_PLUGIN_DISABLED';
 const LEGACY_DISABLED_ENV = 'SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED';
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs', import.meta.url));
+const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs', import.meta.url));
 const SOURCE_PATHS = [
   BRIDGE_PATH,
   fileURLToPath(new URL('../bin/spec-memory.cjs', import.meta.url)),

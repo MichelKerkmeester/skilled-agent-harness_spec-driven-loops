@@ -1,0 +1,2585 @@
+{
+  "site-245188eaebf19d4217e4": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'"
+    ]
+  },
+  "site-74aaf5c3d225279a1c9d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "daemonLeasePath"
+    ]
+  },
+  "site-fa09e749feb750faa15e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'"
+    ]
+  },
+  "site-e3d66afd376b13171242": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'"
+    ]
+  },
+  "site-fdc5efa585d75946d4bf": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$SCRIPT_DIR/mcp-doctor-lib.sh\""
+    ]
+  },
+  "site-c4656155e9d214dcae89": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "contractLibPath"
+    ]
+  },
+  "site-2d53282903ad7266fb4c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "generatorPath"
+    ]
+  },
+  "site-0535f0c1c7e2e2aba90c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "generatorPath"
+    ]
+  },
+  "site-06071c0a2794359738bb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:161:46:dynamic-require"
+    ]
+  },
+  "site-001af954ceee185632da": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/_utils.sh\""
+    ]
+  },
+  "site-ba728f43415d93aa8e9d": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/_utils.sh\""
+    ]
+  },
+  "site-20ed62fb3289e1509cfe": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DIST_FRESHNESS_PATH"
+    ]
+  },
+  "site-582821aab29590a2f7f4": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "ROUTER_PATH"
+    ]
+  },
+  "site-78b0427ed8826adde3a4": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "\"$_UTILS\""
+    ]
+  },
+  "site-b638ec36538bd15352b7": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "\"$_UTILS\""
+    ]
+  },
+  "site-e2a6576780efc7b5de46": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-fb4a2d81f7136c515818": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-9e6b1aefb71a33586db2": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-5a315887d55564b6d356": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-b1d9d53fc9716a7d258b": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-1da577effbc7901b6c09": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-2f754c8b11dea37a5313": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-ceb205190804187c7735": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$HERE/_common.sh\""
+    ]
+  },
+  "site-cbab09debf6e8a775644": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "LOADER_PATH"
+    ]
+  },
+  "site-ab4ba44f99611b59877f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "GENERATOR_PATH"
+    ]
+  },
+  "site-ba0f7a3c338be0479c0e": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "POST_ROUTER_PATH"
+    ]
+  },
+  "site-2d276fccbb35c0148562": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "LEAF_GENERATOR_PATH"
+    ]
+  },
+  "site-f2686e167fd8abef2b09": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "LEAF_CONTRACT_PATH"
+    ]
+  },
+  "site-af4504bd3e2eaac2f49f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "TOPOLOGY_PATH"
+    ]
+  },
+  "site-286d4449dd125157bf13": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DRIFT_PATH"
+    ]
+  },
+  "site-7d007c04ff11d76689aa": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "\"$NAMING\""
+    ]
+  },
+  "site-764719288c74c270568a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-a138ae820c45802fb285": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(STATE_DIR, 'eval-loop-config.json'"
+    ]
+  },
+  "site-797f8cbe8ec737982798": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-5224d664f6ac71235def": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RIG_ROOT, 'grader', 'harness.cjs'"
+    ]
+  },
+  "site-ac538f5e5630f9a9a980": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-f811e96c058bd0d3bccc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "extractScriptPath"
+    ]
+  },
+  "site-136a3e1c4447b32c0078": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(EVAL_PACKET, 'scripts', 'render-variant.cjs'"
+    ]
+  },
+  "site-695a5e80bb0b61be841e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(EVAL_PACKET, 'scripts', 'dispatch-swe16.cjs'"
+    ]
+  },
+  "site-ba1248ced156a8289ef3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(EVAL_PACKET, 'scripts', 'score-variant.cjs'"
+    ]
+  },
+  "site-513a29bdf8274794ac03": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-3df60f07b85bdb7e8d7e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-c38688c0ce8184598515": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(STATE_DIR, 'eval-loop-config.json'"
+    ]
+  },
+  "site-0c1825aac329a7b10cab": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-edfade7c307fe5ce9d9f": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RIG_ROOT, 'grader', 'harness.cjs'"
+    ]
+  },
+  "site-235cffede84fe3dbc6c6": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'state', 'eval-loop-config.json'"
+    ]
+  },
+  "site-a31b477f391a6d71f69d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "extractScriptPath"
+    ]
+  },
+  "site-0ecc1e293005c3435fdb": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'lib', 'cache.cjs'"
+    ]
+  },
+  "site-46f88f9ca0250e074228": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(PACKET_ROOT, 'grader', 'harness.cjs'"
+    ]
+  },
+  "site-9fc4e516c9c99674895a": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "paths.bridgePath"
+    ]
+  },
+  "site-f291f7e9e8a207323dc0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "join(dirname(eslintPackagePath"
+    ]
+  },
+  "site-36f6bdf77b0d661e395d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "BRIDGE_PATH"
+    ]
+  },
+  "site-1f19c7fb541d9a79eca2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "join(repoRoot, launcherRelativePath"
+    ]
+  },
+  "site-4a5acce7d5f05e7f16c5": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "REFERENCE_CHECKS_CJS"
+    ]
+  },
+  "site-645fade05cb3f6fa7122": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, '..', 'score-model-variant.cjs'"
+    ]
+  },
+  "site-46097c83ed0e89cbac3b": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCORER_ROOT, 'grader', 'harness.cjs'"
+    ]
+  },
+  "site-3d4ebec56ae17a120333": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "BUNDLE_GATE"
+    ]
+  },
+  "site-d6f20732b1ca940dcf68": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DISPATCH_MODEL_PATH"
+    ]
+  },
+  "site-1ceb282d363e4f0d47ed": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "HARNESS_PATH"
+    ]
+  },
+  "site-e35f7986ae807faa4690": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DISPATCH_MODEL_PATH"
+    ]
+  },
+  "site-6b368ba1ddedc87666f4": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs'"
+    ]
+  },
+  "site-4d8102842afbbf1c9b3e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS, 'model-benchmark/scorer/grader/harness.cjs'"
+    ]
+  },
+  "site-ed137ee1dd2aa772f0f2": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'sweep-benchmark.cjs'"
+    ]
+  },
+  "site-c8cfc678172a0677003e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'lib/sweep-reporter.cjs'"
+    ]
+  },
+  "site-4599e04094572176168f": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(LIB, 'framework-renderer.cjs'"
+    ]
+  },
+  "site-0cc7ad04b99b07d39424": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(LIB, 'profile-validator.cjs'"
+    ]
+  },
+  "site-7ce6ae5d31e096b341bd": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(LIB, 'sweep-stats.cjs'"
+    ]
+  },
+  "site-d6aef621b2db1c498a16": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'sweep-benchmark.cjs'"
+    ]
+  },
+  "site-40f0df163ec2d58d6882": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(LIB, 'code-task-scorer.cjs'"
+    ]
+  },
+  "site-89b50969760730758878": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'sweep-benchmark.cjs'"
+    ]
+  },
+  "site-d1e9de59a38dc4b1d77e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'lib/sweep-stats.cjs'"
+    ]
+  },
+  "site-cbfb5d4d8bac19527223": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MB_ROOT, 'lib/sweep-reporter.cjs'"
+    ]
+  },
+  "site-0124b6b0ce7ce829ddf7": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "TSX_CJS_REGISTER"
+    ]
+  },
+  "site-1eb3ba24b4e00caf6392": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RUNTIME_DEEP_LOOP, 'atomic-state.ts'"
+    ]
+  },
+  "site-a4e7d1ad95894979fa06": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RUNTIME_DEEP_LOOP, 'jsonl-repair.ts'"
+    ]
+  },
+  "site-bdea5d2a7580f2dc90c3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SHARED, 'model-family.cjs'"
+    ]
+  },
+  "site-79eaa02a3766160f218e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SHARED, 'extract-deliverable.cjs'"
+    ]
+  },
+  "site-507e0ca0d0f7d644b645": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SHARED, 'rubric-guard.cjs'"
+    ]
+  },
+  "site-2c35d8df56fb8807c7ef": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "CHECK_SCRIPT"
+    ]
+  },
+  "site-bcac9ec3fa3e380042a0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(__dirname, moduleRel"
+    ]
+  },
+  "site-38fcf85717a5307ff040": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "CONTRACT_LIB_PATH"
+    ]
+  },
+  "site-85cd824b7ef332885ac0": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-b502e62d6fabf576a829": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-21b1d029e0fce82cfdb3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'router-replay.cjs'"
+    ]
+  },
+  "site-3ebfc92309b4e3e8bf6b": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'design-dispatch-boundary-proof.cjs'"
+    ]
+  },
+  "site-700e2ae5d74e19ec62dc": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'router-replay.cjs'"
+    ]
+  },
+  "site-a4f003bbe60289cdd742": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-98f8488e3d6177c92122": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'design-token-lint.cjs'"
+    ]
+  },
+  "site-152273585c6e0cf80682": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-dc5fc7e0617c17f04331": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-e2183687cfc1c8dd9355": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'router-replay.cjs'"
+    ]
+  },
+  "site-a16464735ba4352cc891": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(BENCHMARK_ROOT, 'parent-hub-vocab-sync.cjs'"
+    ]
+  },
+  "site-ead068ee8d3475fab118": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-962399e0b0b88fd9f9f3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'executor-dispatch.cjs'"
+    ]
+  },
+  "site-9b10686da76207af7e02": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-232a6c3c88c974f71ec9": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'live-executor.cjs'"
+    ]
+  },
+  "site-029a21609999cca41cd3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'browser-executor.cjs'"
+    ]
+  },
+  "site-c4b2ede37ef8e3466594": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'd4-ablation.cjs'"
+    ]
+  },
+  "site-e15f48bf0c7774cd7be8": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'playbook-generator.cjs'"
+    ]
+  },
+  "site-fc57398274469024c18c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-eb3f31251f9cf4bdab36": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'router-replay.cjs'"
+    ]
+  },
+  "site-f031963f540daa48f36f": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-109d90bd9ef8bd2ca9e3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-f7ac0d0d3056c4ae3dd5": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-9f8902cbd62bcf3ef900": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'build-report.cjs'"
+    ]
+  },
+  "site-ffc39c007ed0c62ea624": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'd5-connectivity.cjs'"
+    ]
+  },
+  "site-f9fb77c6abe3b3793cdb": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'"
+    ]
+  },
+  "site-a516a9c54ecafcbfcdaf": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'router-replay.cjs'"
+    ]
+  },
+  "site-d58bb0adc7d66e168142": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'executor-dispatch.cjs'"
+    ]
+  },
+  "site-7e755a0b6d19e35df0f1": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-8880ebde52b5867ca62a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'executor-dispatch.cjs'"
+    ]
+  },
+  "site-917f204652817d5f4025": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'router-replay.cjs'"
+    ]
+  },
+  "site-46b636afc3d169ab2974": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'contamination-lint.cjs'"
+    ]
+  },
+  "site-fe916f1a0c670d75b65c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'd5-connectivity.cjs'"
+    ]
+  },
+  "site-dc6238dc31571da07146": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'score-skill-benchmark.cjs'"
+    ]
+  },
+  "site-982c25463bb97ace5306": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'build-report.cjs'"
+    ]
+  },
+  "site-76009f0a98bf10edf0dc": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-bc3f2a3878f9ca37f9e7": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'advisor-probe.cjs'"
+    ]
+  },
+  "site-18eb6f70b67f3cfb3a94": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SKILL_ROOT, 'scripts', 'shared', 'loop-host.cjs'"
+    ]
+  },
+  "site-b469dbbc4d7d3df277c7": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-4db5638a565330cef208": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-44218a9a26210246728d": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-c45fd0e87378106630ed": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'run-skill-benchmark.cjs'"
+    ]
+  },
+  "site-5944b80df6cf64d0c32c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(SB, 'advisor-probe.cjs'"
+    ]
+  },
+  "site-af39cd933f86f3640db4": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'router-replay.cjs'"
+    ]
+  },
+  "site-cd72e8e5fbe62b56ad11": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(HARNESS, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-dace25f3888194a26197": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "process.argv[2]"
+    ]
+  },
+  "site-c41033ca2e3313193deb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "process.argv[2]"
+    ]
+  },
+  "site-722bba4abfdfd28bb05c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "RUNNER"
+    ]
+  },
+  "site-eb752604740a75b1a5f0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "bridgePath"
+    ]
+  },
+  "site-47e574e1452dc0d4caf9": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "ADVISOR_BRIDGE_HELPER_PATH"
+    ]
+  },
+  "site-6b0194128669dc07c3a8": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "paths.bridgePath"
+    ]
+  },
+  "site-d8a94128425f080beec3": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "bridgePath"
+    ]
+  },
+  "site-09115d744a26737a148d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "bridgePath"
+    ]
+  },
+  "site-6247d180ee19d4377ab4": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "BRIDGE_PATH"
+    ]
+  },
+  "site-09dee6638bba6c831a84": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(serverDir, '..', 'scripts', 'lib', 'dist-freshness.cjs'"
+    ]
+  },
+  "site-6eafba8cbd0baa434ae2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "paths.bridgePath"
+    ]
+  },
+  "site-28ff12b0d68f95cbeea9": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "paths.packageJsonPath"
+    ]
+  },
+  "site-57f435761d3c663024bc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "proxyModulePath"
+    ]
+  },
+  "site-a887325a6a9621f856eb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-release-integration.vitest.ts:34:55:dynamic-require"
+    ]
+  },
+  "site-c8676909afe992941d45": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "launcherPath"
+    ]
+  },
+  "site-b70feaaa64e5b03a4703": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "process.env.LAUNCHER_PATH"
+    ]
+  },
+  "site-675f4063189b4afa0b0c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "process.argv[2]"
+    ]
+  },
+  "site-acda5eb2e6b9bcf80616": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.resolve(__dirname, '..', '..', '..', '..', '..', '..', 'bin', 'hf-model-server.cjs'"
+    ]
+  },
+  "site-54a59b76064f1947e44f": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(repoRoot, '.opencode/bin/hf-model-server.cjs'"
+    ]
+  },
+  "site-2ed6f14effd3eb9fa064": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "process.argv[1]"
+    ]
+  },
+  "site-dbd7a18cf071c43a6936": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "LAUNCHER"
+    ]
+  },
+  "site-dea66bd9662b41a54d40": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "join(repoRoot, '.opencode/bin/mk-spec-memory-launcher.cjs'"
+    ]
+  },
+  "site-dd087748ccd029237e4d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "launcherPath"
+    ]
+  },
+  "site-59ef6ca0b2369e1e1961": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "require.resolve('../../../../bin/mk-spec-memory-launcher.cjs'"
+    ]
+  },
+  "site-f79dbb96f247bbb47d54": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "bridgeModulePath"
+    ]
+  },
+  "site-8c4a75916265c64a8d42": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "supervisionModulePath"
+    ]
+  },
+  "site-9dd28104437a4192eb05": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge.vitest.ts:120:27:dynamic-require"
+    ]
+  },
+  "site-073b971b2f4f820c4f32": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts:88:27:dynamic-require"
+    ]
+  },
+  "site-66d4bfcaf0b645ca5573": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "launcherPath"
+    ]
+  },
+  "site-971209e377619552c047": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "proxyModulePath"
+    ]
+  },
+  "site-9289c13990dede5a63f1": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "supervisionModulePath"
+    ]
+  },
+  "site-246fd6d191d7ff4a2bcb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs:41:74:dynamic-require"
+    ]
+  },
+  "site-5030e0a9d8b4001eece1": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/ops-common.sh\""
+    ]
+  },
+  "site-8e037df7dc577431a078": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/ops-common.sh\""
+    ]
+  },
+  "site-44f666d77fb23ffafcf9": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/ops-common.sh\""
+    ]
+  },
+  "site-c2c9fe386e0bfd1c84e3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/ops-common.sh\""
+    ]
+  },
+  "site-a23cd0c142e3a081dcd6": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${_check_evidence_dir}/../lib/check-priority-helper.sh\""
+    ]
+  },
+  "site-94c6cfb729efcb7812d3": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${_metadata_rule_dir}/../lib/parse-bool-flag.sh\""
+    ]
+  },
+  "site-8b5b66917029fa8f674b": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${_scaffold_rule_dir}/../lib/status-classifier.sh\""
+    ]
+  },
+  "site-3d76566f29e1d6b33262": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${_status_rule_dir}/../lib/status-classifier.sh\""
+    ]
+  },
+  "site-5ceab8a2c29b76f8ad21": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${_status_rule_dir}/../lib/parse-bool-flag.sh\""
+    ]
+  },
+  "site-bea91b15d9f8711ebc55": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$SCRIPT_DIR/../common.sh\""
+    ]
+  },
+  "site-81ad3ba25e938d3bb525": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/_utils.sh\""
+    ]
+  },
+  "site-44de45accf4991f5da56": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$SCRIPT_DIR/../lib/template-utils.sh\""
+    ]
+  },
+  "site-27848ce61e593d0e710a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/shell-common.sh\""
+    ]
+  },
+  "site-a5fa6834f07fd5f3382a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/git-branch.sh\""
+    ]
+  },
+  "site-bc15778a4c27b87c67f6": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/template-utils.sh\""
+    ]
+  },
+  "site-5133b0711f5e3dd13195": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/shell-common.sh\""
+    ]
+  },
+  "site-58f87e5b893a4b95d469": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/template-utils.sh\""
+    ]
+  },
+  "site-1c97eafe78992c884ccd": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/shell-common.sh\""
+    ]
+  },
+  "site-8d28dc08824b42aa6c10": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/shell-common.sh\""
+    ]
+  },
+  "site-40e5bcb0f13aa1b07c4c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"${SCRIPT_DIR}/../lib/shell-common.sh\""
+    ]
+  },
+  "site-f8a08c219b3e1e49555c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:81:52:dynamic-require"
+    ]
+  },
+  "site-dd8ecb4918cb62be8196": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "\"$LIB_DIR/shell-common.sh\""
+    ]
+  },
+  "site-4ba68eb5ab396945cc9c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "capabilityModulePath"
+    ]
+  },
+  "site-4467b4198166b805f227": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "reviewCapabilityModulePath"
+    ]
+  },
+  "site-4a814130a0228b160e69": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "reducerPath"
+    ]
+  },
+  "site-3b7fb9bbf538bae71c97": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "HELPER_PATH"
+    ]
+  },
+  "site-b76502b089ffeb53d5ae": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "parserPath"
+    ]
+  },
+  "site-55c37cd013d93d55d1a2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "VECTOR_INDEX_PATH"
+    ]
+  },
+  "site-e436ae7be0e8219a7400": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(CONFIG_PATH, 'search-weights.json'"
+    ]
+  },
+  "site-0fc731951bebec0771eb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js:1032:42:dynamic-require"
+    ]
+  },
+  "site-62c7e73fe120255f7c94": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "MODULE_PATH"
+    ]
+  },
+  "site-2097c6fa5274d2c43e10": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "async main"
+    ]
+  },
+  "site-7a017d14e2560710e10a": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "factoryResolved"
+    ]
+  },
+  "site-4f5c9e63f567b23ea334": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "embeddingsResolved"
+    ]
+  },
+  "site-3a3f6113bd2f5c580f73": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "factoryResolved"
+    ]
+  },
+  "site-53250f8394ca3306e33f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "embeddingsResolved"
+    ]
+  },
+  "site-f1164ed5690f2d3efc93": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "embeddingsPath"
+    ]
+  },
+  "site-0be0b5b686c0a4cd0c80": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "libPath"
+    ]
+  },
+  "site-a7da46e3c60305c547c1": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "sharedPath"
+    ]
+  },
+  "site-fec227033819bd22d074": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(libPath, 'embeddings/profile'"
+    ]
+  },
+  "site-b64ac724025e9be5dd3a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(libPath, 'embeddings/providers/hf-local'"
+    ]
+  },
+  "site-d83dba247cbf969d6824": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(libPath, 'embeddings/providers/openai'"
+    ]
+  },
+  "site-3351ef5bc7a68bd01d31": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(libPath, 'embeddings/factory'"
+    ]
+  },
+  "site-3af35fa75841c4874c06": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(libPath, 'embeddings.js'"
+    ]
+  },
+  "site-a2fcca4a85700349ddc3": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "filePath"
+    ]
+  },
+  "site-8ece735aee5dffdb91ba": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'collect-session-data'"
+    ]
+  },
+  "site-265218419b6e8e376ddc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'session-extractor'"
+    ]
+  },
+  "site-333a5093b6fbd01115a1": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'decision-extractor'"
+    ]
+  },
+  "site-f08f91380510cced518f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'file-extractor'"
+    ]
+  },
+  "site-0995274971258a817744": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'conversation-extractor'"
+    ]
+  },
+  "site-0940636e7961492a8cde": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'implementation-guide-extractor'"
+    ]
+  },
+  "site-3ce6dc07f2e9e1ca34e4": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'diagram-extractor'"
+    ]
+  },
+  "site-821a85144a5ba6f65a24": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'opencode-capture'"
+    ]
+  },
+  "site-ee34c7947f8eeb520edc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(LOADERS_DIR, 'data-loader'"
+    ]
+  },
+  "site-01a585bff912ea3c90b6": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'index'"
+    ]
+  },
+  "site-f6948ff23a0a97420b08": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'file-extractor'"
+    ]
+  },
+  "site-89e7d2a167e446195364": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'session-extractor'"
+    ]
+  },
+  "site-63f484a027aa1b63b89f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'decision-extractor'"
+    ]
+  },
+  "site-cf358146baa0057f8d31": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(EXTRACTORS_DIR, 'index'"
+    ]
+  },
+  "site-365c8e2e7567f025fd6c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "BETTER_SQLITE3_PATH"
+    ]
+  },
+  "site-cc9f32bdae3d2707d4b9": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:480:43:dynamic-require"
+    ]
+  },
+  "site-0e1929d3dc017687be8f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-folder-detector-functional.js:489:79:dynamic-require"
+    ]
+  },
+  "site-96a4beca36b827e23508": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-d9ae0966ed031c0a24fc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-fa7d81e3835439ec8500": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-c3f1a01903a465c52217": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-47254fad5bc08daf000d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-23ba4161b1f0e05bb2a0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-7233b8fe0975d9d62c61": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-ba01ecfdc80b613d1a02": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-0e8f9b043eba3aec3745": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-32b0f58db7b46e8eb855": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-adaa8e0acc2a8d82bf7d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-17ce303e08ba28a2e012": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-803fe96c48342a485370": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-5e2cf419f8c3b48b476f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-e4d7fc1e0f51ac51c0d2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'config'"
+    ]
+  },
+  "site-8f33b660d0adaf3be49e": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-1832285977ed50b29389": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'config'"
+    ]
+  },
+  "site-132a22e4472b26248dd6": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-ab9df18a2dfef5cbb764": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'config'"
+    ]
+  },
+  "site-bd7082343fa52873e97d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-60a82c68762f8e7e302b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DIST_LIB"
+    ]
+  },
+  "site-e308a3a6f477d8933aad": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "workingMemoryPath"
+    ]
+  },
+  "site-c740c1a4d81b4ce3f9a4": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "attentionDecayPath"
+    ]
+  },
+  "site-70b110980e96b609fb17": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "checkpointsPath"
+    ]
+  },
+  "site-7fe505cf3d1c686242ab": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "handlersPath"
+    ]
+  },
+  "site-349573d32af71feb3f77": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'dist', 'core', 'index.js'"
+    ]
+  },
+  "site-a30bbd54e2c3e0fe5812": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'dist', 'extractors', 'index.js'"
+    ]
+  },
+  "site-933c23dd8593ca907097": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'dist', 'spec-folder', 'index.js'"
+    ]
+  },
+  "site-2c76eee987e672f1fa3c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MCP_SERVER_DIR, 'dist', 'core', 'index.js'"
+    ]
+  },
+  "site-3b9838d0f1963c443ec2": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MCP_SERVER_DIR, 'dist', 'lib', 'search', 'vector-index.js'"
+    ]
+  },
+  "site-fbb8c7ad34b447cef3b1": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(MCP_SERVER_DIR, 'dist', 'lib', 'errors.js'"
+    ]
+  },
+  "site-ec21316042751222bef8": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'dist', 'core', 'workflow.js'"
+    ]
+  },
+  "site-b11265582f77eeb5f1e0": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'dist', 'core', 'workflow.js'"
+    ]
+  },
+  "site-573c9aece85d3e6874af": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(DIST_DIR, 'memory', 'validate-memory-quality.js'"
+    ]
+  },
+  "site-69eb501ccf539b8c0d3a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(DIST_DIR, 'extractors', 'contamination-filter.js'"
+    ]
+  },
+  "site-ffe2a4d2e61bc6eead30": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(DIST_DIR, 'extractors', 'decision-extractor.js'"
+    ]
+  },
+  "site-8d0e73d5445ec38d7519": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(DIST_DIR, 'extractors', 'quality-scorer.js'"
+    ]
+  },
+  "site-05f86fb824f38b707df0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "standalone CLI tools"
+    ]
+  },
+  "site-09eb634f6e4c702a6497": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "f"
+    ]
+  },
+  "site-14e1639d1e578537438f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "f"
+    ]
+  },
+  "site-e4e812b3f16751e84e2a": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "VECTOR_INDEX_PATH"
+    ]
+  },
+  "site-18508720a16de5e6503f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "RETRY_MANAGER_PATH"
+    ]
+  },
+  "site-e2428bc7fe12edd70efc": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'config'"
+    ]
+  },
+  "site-06946222aba78d597858": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'workflow'"
+    ]
+  },
+  "site-10dafa59d43e36a90362": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'validation-utils'"
+    ]
+  },
+  "site-8ad993087972a39a2746": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'topic-extractor'"
+    ]
+  },
+  "site-c36b2bc6a0f205c835ea": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'path-utils'"
+    ]
+  },
+  "site-14a7871eb966a68db3d8": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'input-normalizer'"
+    ]
+  },
+  "site-8fb4727a8be610ca6259": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'data-validator'"
+    ]
+  },
+  "site-c1d55906cb1e607bbe0e": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'logger'"
+    ]
+  },
+  "site-cab278c6053378d3fa31": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'message-utils'"
+    ]
+  },
+  "site-8af158192b7922bd9401": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'tool-detection'"
+    ]
+  },
+  "site-8635480e0a6c3e69ce2b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'phase-classifier'"
+    ]
+  },
+  "site-e109d8121c73015c8065": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'anchor-generator'"
+    ]
+  },
+  "site-aa39284b235ca76176ad": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'content-filter'"
+    ]
+  },
+  "site-c815d12cc77e1f3855a0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'flowchart-generator'"
+    ]
+  },
+  "site-e59c22d725cf02dca7f2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'semantic-summarizer'"
+    ]
+  },
+  "site-453601bac406bbcdb7d6": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'simulation-factory'"
+    ]
+  },
+  "site-7b6347ff63512d865abe": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'alignment-validator'"
+    ]
+  },
+  "site-fc32611d602b1f311186": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder'"
+    ]
+  },
+  "site-71d50b85d6356f84b715": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'folder-detector'"
+    ]
+  },
+  "site-52a18b740307ccb16575": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'loaders', 'data-loader'"
+    ]
+  },
+  "site-6a73daf5695f8349ee72": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'renderers', 'template-renderer'"
+    ]
+  },
+  "site-951c68cd7ad73e9987aa": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'file-extractor'"
+    ]
+  },
+  "site-50ca8bb640cca727e93c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'conversation-extractor'"
+    ]
+  },
+  "site-bcf73d7d4a8108c72afa": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'decision-extractor'"
+    ]
+  },
+  "site-74eece328305ed9cf240": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'session-extractor'"
+    ]
+  },
+  "site-8cd459a3a20194b42d07": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'collect-session-data'"
+    ]
+  },
+  "site-a60fda23efe9fa7fb85b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'config'"
+    ]
+  },
+  "site-05cb3f68e4b0b1b05383": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core', 'workflow'"
+    ]
+  },
+  "site-98f41e4a79cf7efa5d7c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'implementation-guide-extractor'"
+    ]
+  },
+  "site-d26b95534bacde66d10c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'session-extractor'"
+    ]
+  },
+  "site-cffb0cae35edab2a87ef": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'simulation-factory'"
+    ]
+  },
+  "site-3a8013873ca5b1bf1c83": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'anchor-generator'"
+    ]
+  },
+  "site-453e573ec38c1729db73": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'semantic-summarizer'"
+    ]
+  },
+  "site-eff0b6c1b399a516f823": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "mcpRetryManagerPath"
+    ]
+  },
+  "site-a901915ff4c4e045cc76": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'prompt-utils'"
+    ]
+  },
+  "site-14215790c6acafde8356": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'file-helpers'"
+    ]
+  },
+  "site-45a0af095b4564ec0cd8": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'utils', 'validation-utils'"
+    ]
+  },
+  "site-b7256cce004c0244151d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'ascii-boxes'"
+    ]
+  },
+  "site-934b4ac3010484071dc1": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'trigger-extractor'"
+    ]
+  },
+  "site-d7727dce6e0159220f8b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'embeddings'"
+    ]
+  },
+  "site-37ede423c8d24b4b9172": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'spec-folder', 'alignment-validator'"
+    ]
+  },
+  "site-33e939bedff81d695f94": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'extractors', 'diagram-extractor'"
+    ]
+  },
+  "site-d74f1a9be3e74f2c10cd": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'lib', 'decision-tree-generator'"
+    ]
+  },
+  "site-248e5f3e6796af429e7f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'memory', 'generate-context'"
+    ]
+  },
+  "site-d3a3361033f23a638363": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'core'"
+    ]
+  },
+  "site-f56cd018afa64d213501": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(SCRIPTS_DIR, 'memory', 'rank-memories'"
+    ]
+  },
+  "site-66e11910b71f56fc459a": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "DIST_WRAP"
+    ]
+  },
+  "site-f71bbb64efe7786ed9d0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-693dbeb3db04efaaed5f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-2bd3c2e6541c7dfa0061": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-5f52dd3e2c23ee6c8e4b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-56a4cf5fc06101b9a74b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-33f00ee6ce3f36528d49": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-cbf3838dc71081986937": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-c9b9bf59f57f9dca469e": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-6440391284b24c23f65d": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-f8675ecfc0fc291f4ce2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-a903ea3775e4e4c7ef7c": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-2ac37ed41e0d658a7472": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-23dae5441dd5637714cd": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-9d993d1311384f9ad71b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-5478e89373facd17c7a2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-8fd16d9e9b4361b1aaa2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-8858fe15efe357bbbbbb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-c7bbb1fbed069f5c6aa9": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-0ff5b6c29bf945ae14af": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-1d8eba8cfeddbd7b6114": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-d2ac5fed2dac7489232f": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-e02c733d9cf7ab87f688": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-d61897c1418dd12e4008": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-f8ed7b2cdd010211d59b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'index'"
+    ]
+  },
+  "site-6d37de4341afcee24b43": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'index'"
+    ]
+  },
+  "site-fefef3fd12753735f584": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'index'"
+    ]
+  },
+  "site-ac1ac55b367be57529de": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-2ecbe32948e9c5616d95": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-25693a2da3239af9a5e2": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-782738ad8953a1d5e977": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-7fbc577b9e013f2c38b0": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-04d7551451e5ea34448b": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-54f813d2653b8c9c1b45": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-0500b3eeb0eb1f882b67": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-110880725d3e1cfcb718": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-1220de04d0409ec5f450": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'memory', 'generate-context'"
+    ]
+  },
+  "site-81bd44fc747ec56b6248": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-bdcf9f93ec6239fc5adb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'memory', 'generate-context'"
+    ]
+  },
+  "site-3fa2bb98cf0706804f55": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'config'"
+    ]
+  },
+  "site-d3ad4dae7610d36f6cbb": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "path.join(DIST_DIR, 'core', 'subfolder-utils'"
+    ]
+  },
+  "site-657cac6a2a31ef83666d": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(HARNESS, 'router-replay.cjs'"
+    ]
+  },
+  "site-5d17e824ccade21c8a6a": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(HARNESS, 'load-playbook-scenarios.cjs'"
+    ]
+  },
+  "site-d662880f40811fb105b6": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(HARNESS, '_args.cjs'"
+    ]
+  },
+  "site-89f8fe890eab59a19af9": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "resolverPath"
+    ]
+  },
+  "site-697d84418ab221f9f669": {
+    "disposition": "manual-review-required",
+    "rationale": "runtime-resolved path expression cannot be statically proven unaffected; verify it does not resolve to a renamed name",
+    "evidence": [
+      "resolverPath"
+    ]
+  },
+  "site-89bf47f173bd7018dca0": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'fix-proposals.json'"
+    ]
+  },
+  "site-d846d97f053854f15c66": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'fix-proposals.json'"
+    ]
+  },
+  "site-93c80eeb2e335824d19d": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'fix-proposals.json'"
+    ]
+  },
+  "site-4d381c765a14e82ebf27": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'baseline-findings.json'"
+    ]
+  },
+  "site-1919d6c1bfdecb0dadd1": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'fix-proposals.json'"
+    ]
+  },
+  "site-d11baa31c2908cc7f1a7": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'baseline-findings.json'"
+    ]
+  },
+  "site-2f8074e04fde3d12b76e": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.resolve('.opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/review/baseline/baseline-findings.json'"
+    ]
+  },
+  "site-79e87b504b38e75ca125": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'baseline-findings.json'"
+    ]
+  },
+  "site-cb4dc81d549b687b8538": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(__dirname, 'fix-proposals.json'"
+    ]
+  },
+  "site-80e48cf1389b48ea41cb": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RT, 'manifest.json'"
+    ]
+  },
+  "site-98c5b2151a4a1488912c": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RT, 'round2-p1-worklist.json'"
+    ]
+  },
+  "site-ab5c7051a301f6f0fcd4": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RT, 'manifest.json'"
+    ]
+  },
+  "site-b7b9c0f3b5c9f0efeaaa": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(REVIEW, 'deep-review-findings-registry.json'"
+    ]
+  },
+  "site-dabe08213c280ab316d9": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(REVIEW, 'round2', 'code-verdicts.json'"
+    ]
+  },
+  "site-981d2a2aa674e9b45933": {
+    "disposition": "out-of-scope",
+    "rationale": "dynamic path literal targets only non-renamed (already-canonical) names",
+    "evidence": [
+      "path.join(RT, 'manifest.json'"
+    ]
+  }
+}

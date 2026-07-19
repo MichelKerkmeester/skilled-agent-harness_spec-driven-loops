@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/011-skill-advisor-cli/000-skill-advisor-cli-research",
+  "specFolder": "system-skill-advisor/z_archive/011-skill-advisor-cli/000-skill-advisor-cli-research",
   "description": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has",
   "keywords": [
     "mkskilladvisor",
@@ -16,11 +16,12 @@
     "brief",
     "surface"
   ],
-  "lastUpdated": "2026-07-07T14:23:32.121Z",
+  "lastUpdated": "2026-07-18T03:48:57.278Z",
   "specId": "000",
   "folderSlug": "skill-advisor-cli-research",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "011-skill-advisor-cli"
   ],
   "memorySequence": 1,

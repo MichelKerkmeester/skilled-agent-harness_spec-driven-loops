@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop changelog verification (032 phase 007/010)"
+title: "Implementation Plan: system-deep-loop changelog verification (020 phase 007/010)"
 description: "Plan for comparing the system-deep-loop changelog and version surfaces with phases 001-009, recording discrepancies for the final gate, and keeping verification non-mutating with respect to the rename."
 trigger_phrases:
   - "system-deep-loop changelog implementation plan"

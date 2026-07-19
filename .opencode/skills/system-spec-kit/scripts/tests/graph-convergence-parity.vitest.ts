@@ -8,7 +8,7 @@ import {
   computeResearchEvidenceDepthFromData,
   computeResearchQuestionCoverageFromData,
   computeResearchSourceDiversityFromData,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-signals.js';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');

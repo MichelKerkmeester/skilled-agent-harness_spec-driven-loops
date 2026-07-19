@@ -1,5 +1,5 @@
 ---
-title: "Checklist: hoisted shared script closures (032 phase 007 child 003)"
+title: "Checklist: hoisted shared script closures (020 phase 007 child 003)"
 description: "Blocking SOL verifier contract for the multi-skill shared-script closure: consumer ownership, semantic targets, lockstep references, exemption protection, syntax/discovery checks, and downstream handoff."
 trigger_phrases:
   - "shared script closure checklist"

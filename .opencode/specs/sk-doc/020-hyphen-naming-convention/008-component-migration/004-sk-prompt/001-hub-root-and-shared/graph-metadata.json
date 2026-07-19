@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-prompt hub root owns routing and packet-entry files, while delegated playbook and benchmark trees have their own phases. This phase inventories the root/shared boundary, renames only owned snake_case paths if present, and protects tool-mandated hub names and routing semantics.",
     "created_at": "2026-07-14T15:17:30Z",
-    "last_save_at": "2026-07-17T14:30:18.371Z",
+    "last_save_at": "2026-07-17T20:26:07.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:3c3fe44b35a7e8b02366a328e985fc8567d11b3ec4bb71791962ad0a50cc11af",
+    "source_fingerprint": "sha256:4ca97651b7773026f9a81139878da40d0a3604f1f081cfd814140bfc3b0baacb",
     "source_doc_hashes": {
-      "spec.md": "c140143e4a909634ab63fd89f493deafaf73fd8a4de05be5fc10731bb95ba16b",
-      "plan.md": "bd0d8ee94c8356ccbda569304e8300c8b57e59c04d090effc7dc7963c839500a",
-      "tasks.md": "61a156d17855a6cd7d23e2ce0c5a2d63b14b5e5bf4f84833bf06f796d18be558",
-      "checklist.md": "f4c0f9f98b2b7ad8e6aa9f2613676b8d848cd1da60af4a4bd1f1c3e0d4f3d260",
-      "decision-record.md": "13fa7007b3c14edb9ab8f6b5381954bbe15ad19b950123c1b027f8e91c14d6ed"
+      "spec.md": "94f34d859128d83a64fe0dea72c03e99d9d25a906cf564f16b8d896a2b35c775",
+      "plan.md": "a6cafcc45621f95d1a00d1bb61edbfce0b1507bc16f10626ff5b18c06e8f9127",
+      "tasks.md": "2e0b8c641091ecc0e8fe90bb1a57d1d4516200f84cc5b6633a29e200cee6257f",
+      "checklist.md": "b97464c3c1641a061a140c9a07bc66ffbc18ea06f47578c0a41b315c3336587a",
+      "decision-record.md": "80477013508d4ae7282c894e93c03dedeef9d533e72decfa4e670c448e9d0b8a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -72,7 +72,7 @@ const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 
 // Directories allowed at a hub root without being a registered packet.
 const DIRECTORY_ALLOWLIST = new Set([
-  'shared', 'changelog', 'benchmark', 'manual_testing_playbook', 'feature_catalog',
+  'shared', 'changelog', 'benchmark',
   'manual-testing-playbook', 'feature-catalog',
   'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist', 'runtime',
 ]);
@@ -81,12 +81,12 @@ const DIRECTORY_ALLOWLIST = new Set([
 // point at ITS OWN drift-guard (advisorRoutingContract.driftGuard or the
 // advisor-projection extension); this is only the fallback for deep-loop.
 const DEEP_LOOP_DRIFT_GUARD =
-  '.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts';
+  '.opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts';
 
 // Advisor entrypoint for the optional dynamic cross-check of the registry's
 // lexical projection against the live hardcoded map.
 const ADVISOR_SCRIPT =
-  '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py';
+  '.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py';
 const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 
 // The single global advisor projection map only mirrors this hub, so the
@@ -909,13 +909,12 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 9. manual_testing_playbook/ + benchmark baseline (canon: FAIL by default)
+  // 9. manual-testing-playbook/ + benchmark baseline (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
-  if (fs.existsSync(path.join(target, 'manual_testing_playbook'))
-      || fs.existsSync(path.join(target, 'manual-testing-playbook'))) {
-    pass('9a: manual_testing_playbook/ present');
+  if (fs.existsSync(path.join(target, 'manual-testing-playbook'))) {
+    pass('9a: manual-testing-playbook/ present');
   } else {
-    softFail('9a: manual_testing_playbook/ is missing');
+    softFail('9a: manual-testing-playbook/ is missing');
   }
   if (fs.existsSync(path.join(target, 'benchmark'))) {
     pass('9b: benchmark/ baseline present');

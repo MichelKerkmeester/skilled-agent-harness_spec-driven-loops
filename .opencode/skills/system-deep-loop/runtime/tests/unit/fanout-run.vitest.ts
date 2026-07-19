@@ -353,8 +353,8 @@ afterEach(() => {
 
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
 const reviewWorkflowPaths = [
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep_review_auto.yaml'),
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep_review_confirm.yaml'),
+  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml'),
+  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-confirm.yaml'),
 ];
 
 type ReviewInitSessionIds = {

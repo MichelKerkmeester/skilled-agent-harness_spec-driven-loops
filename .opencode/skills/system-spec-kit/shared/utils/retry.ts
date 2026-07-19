@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Retry
 // ---------------------------------------------------------------
-// Canonical location (moved from mcp_server/lib/utils/retry.js)
+// Canonical location (moved from mcp-server/lib/utils/retry.js)
 // ---------------------------------------------------------------
 
 import type { RetryConfig, ErrorClassification, RetryOptions, RetryAttemptLogEntry } from '../types.js';

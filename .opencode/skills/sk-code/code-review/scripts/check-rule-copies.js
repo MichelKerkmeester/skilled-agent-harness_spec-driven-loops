@@ -52,7 +52,7 @@ const EXACT_INVARIANTS = [
     strings: ['Review status: COMMENTED'],
   },
   {
-    file: '.opencode/skills/sk-code/code-review/references/pr_state_dedup.md',
+    file: '.opencode/skills/sk-code/code-review/references/pr-state-dedup.md',
     strings: ['Review status: COMMENTED'],
   },
 ];
@@ -63,7 +63,7 @@ const EXACT_INVARIANTS = [
 // forcing files to identical wording (one says "surface", another "stack").
 // The full statement lives in the shared verify workflow doctrine that each surface consumes.
 const IRON_LAW_FILES = [
-  '.opencode/skills/sk-code/shared/references/workflow_verify.md',
+  '.opencode/skills/sk-code/shared/references/workflow-verify.md',
   'CLAUDE.md',
   'AGENTS.md',
 ];

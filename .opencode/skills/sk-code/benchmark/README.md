@@ -19,7 +19,7 @@ The deep-improvement Lane C harness benchmarks `sk-code` against its own `manual
 
 Two trace modes score the same playbook corpus:
 
-- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/shared/references/smart_routing.md`. This is the CI gate.
+- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/shared/references/smart-routing.md`. This is the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation. This is the operator default for a true routing verdict.
 
 ### Key Statistics
@@ -51,7 +51,7 @@ Router mode (deterministic, no network):
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/router_final \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/router-final \
   --trace-mode=router
 ```
 
@@ -61,7 +61,7 @@ Live mode (dispatches through cli-opencode, needs a configured provider):
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/live_final \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/live-final \
   --trace-mode=live --advisor-mode=python \
   --scenarios=SD-001,LS-001,CS-001,RD-002,MR-001
 ```
@@ -90,21 +90,21 @@ benchmark/
 
 ### Run-Label Index
 
-Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk; the hyphenated display names in the tree above (`router-final`, `live-final`, `fixtures/sk-code`) refer to the same `router_final/`, `live_final/`, and `fixtures/sk_code/` folders. Verdicts are read from each folder's report.
+Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk; the hyphenated display names in the tree above (`router-final`, `live-final`, `fixtures/sk-code`) refer to the same `router-final/`, `live-final/`, and `fixtures/sk-code/` folders. Verdicts are read from each folder's report.
 
 | Run label | What it is | Verdict | Status |
 |---|---|---|---|
-| [`router_final/`](./router_final/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
-| [`live_final/`](./live_final/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
-| [`d4r_live/`](./d4r_live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
-| [`router_baseline/`](./router_baseline/) | Router-mode sidecar run | PASS · 85 | sidecar |
-| [`live_mode_b/`](./live_mode_b/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
-| [`live_remediated/`](./live_remediated/) | Live-mode run after a remediation pass, an intermediate before `live_final/` | CONDITIONAL · 79 | superseded |
+| [`router-final/`](./router-final/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
+| [`live-final/`](./live-final/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
+| [`d4r-live/`](./d4r-live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
+| [`router-baseline/`](./router-baseline/) | Router-mode sidecar run | PASS · 85 | sidecar |
+| [`live-mode-b/`](./live-mode-b/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
+| [`live-remediated/`](./live-remediated/) | Live-mode run after a remediation pass, an intermediate before `live-final/` | CONDITIONAL · 79 | superseded |
 | [`baseline/`](./baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
 | [`after/`](./after/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
 | [`full/`](./full/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
 | [`live/`](./live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
-| [`fixtures/sk_code/`](./fixtures/sk_code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
+| [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
 
 ---
 
@@ -129,7 +129,7 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 | Live dispatch returns null after about 4 minutes | `xhigh` reasoning variant is too slow per dispatch | Set `SKILL_BENCH_OPENCODE_VARIANT=high` |
 | `provider/model not found` or 401 in live mode | The provider is not configured | Run `opencode providers list`, then log in to the provider you name in `SKILL_BENCH_OPENCODE_MODEL` |
 | Browser scenarios skip with `SKIP-NO-BROWSER` | `bdg` (Chrome) is unavailable | Install `bdg`, or accept the honest skip for non-Chrome legs |
-| Router mode reports orphan references | A routable doc is not reachable from the router | Add it to `RESOURCE_MAP` or the always-loaded default in `smart_routing.md` |
+| Router mode reports orphan references | A routable doc is not reachable from the router | Add it to `RESOURCE_MAP` or the always-loaded default in `smart-routing.md` |
 
 ---
 
@@ -146,6 +146,6 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 | Document | Purpose |
 |---|---|
-| [`smart_routing.md`](../shared/references/smart_routing.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
+| [`smart-routing.md`](../shared/references/smart-routing.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
-| [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill_benchmark_readme_template.md`](../../sk-doc/create-benchmark/assets/skill_benchmark/skill_benchmark_readme_template.md), [`skill_benchmark_storage_guide.md`](../../sk-doc/create-benchmark/references/skill_benchmark/skill_benchmark_storage_guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |
+| [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill-benchmark-readme-template.md`](../../sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |

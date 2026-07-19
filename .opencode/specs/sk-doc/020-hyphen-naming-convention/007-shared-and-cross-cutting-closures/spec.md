@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: shared and cross-cutting dependency closures (032 phase 007)"
+title: "Feature Specification: shared and cross-cutting dependency closures (020 phase 007)"
 description: "Backbone phase for dependency closures whose filesystem-name changes and reference fan-out cross skill boundaries, shared script trees, root infrastructure, or active spec documentation."
 trigger_phrases:
   - "shared cross-cutting dependency closures"
@@ -104,7 +104,7 @@ Each child remains a planning contract. The component phases consume the child h
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-None blocking. Child execution uses the immutable BASE, the frozen bijective rename map, and the rename/reference tooling defined by the governing 032 phases.
+None blocking. Child execution uses the immutable BASE, the frozen bijective rename map, and the rename/reference tooling defined by the governing 020 phases.
 <!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS

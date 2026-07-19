@@ -1,5 +1,5 @@
 ---
-title: "Checklist: doctor command namespace naming (032 phase 008/013/004)"
+title: "Checklist: doctor command namespace naming (020 phase 008/013/004)"
 description: "Blocking SOL verification contract for the doctor asset, route, exact-name, and Python exemption closure."
 trigger_phrases:
   - "doctor namespace naming checklist"

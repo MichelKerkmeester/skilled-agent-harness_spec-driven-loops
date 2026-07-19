@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-alignment filesystem names (032 phase 007/007)"
+title: "Feature Specification: deep-alignment filesystem names (020 phase 007/007)"
 description: "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names."
 trigger_phrases:
   - "deep-alignment kebab-case migration"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Deep-alignment filesystem names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | deep-alignment |
-| **Origin** | Phase 007 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 007 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

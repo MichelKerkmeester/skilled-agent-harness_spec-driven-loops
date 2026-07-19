@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration subtree rollup gate (032 phase 005.008)"
+title: "Implementation Plan: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
 description: "Read-only rollup plan for phase 008: reconcile phases 001–007, enumerate the complete cli-external-orchestration surface, resolve final references, and publish a reproducible pass/block result without new migration work."
 trigger_phrases:
   - "cli-external subtree rollup gate plan"
@@ -51,7 +51,7 @@ The gate first checks every sibling contract, then joins their maps and scans th
 ### Definition of Ready
 - [ ] Phases 001–007 have candidate evidence, checklist verdicts, maps, and release handoff available.
 - [ ] Final candidate and BASE SHAs are pinned.
-- [ ] The 032 exemption record and every sibling disposition hash are available.
+- [ ] The 020 exemption record and every sibling disposition hash are available.
 
 ### Definition of Done
 - [ ] Every sibling phase is green with no contradictory ownership or release evidence.
@@ -83,7 +83,7 @@ Sibling evidence → map reconciliation → final filesystem census → active-r
 - [ ] Reconcile overlapping root-consumer ownership without creating a new rename map.
 
 ### Phase 2: Implementation
-- [ ] Classify each retained non-kebab filesystem name against 032 exemptions or sibling evidence.
+- [ ] Classify each retained non-kebab filesystem name against 020 exemptions or sibling evidence.
 - [ ] Resolve active references against all final source-target maps and target existence.
 - [ ] Record every mismatch as a blocking finding routed to the owning phase.
 
@@ -101,7 +101,7 @@ Sibling evidence → map reconciliation → final filesystem census → active-r
 | REQ-001 | Read every sibling checklist and reconcile P0/P1 verdicts, maps, hashes, and evidence paths |
 | REQ-002 | Scan the complete surface and classify every retained non-kebab filesystem name; fail on unknown |
 | REQ-003 | Resolve final maps and search skill/README/router/playbook/asset/benchmark consumers for stale source paths |
-| REQ-004 | Compare retained names with 032 exemptions and each owning child disposition |
+| REQ-004 | Compare retained names with 020 exemptions and each owning child disposition |
 | REQ-005 | Record SHAs, commands, exit codes, census/map hashes, release verdict, and findings |
 | REQ-006 | Confirm the gate's diff contains only rollup evidence and no migration mutation |
 <!-- /ANCHOR:testing -->

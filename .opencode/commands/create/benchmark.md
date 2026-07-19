@@ -19,16 +19,16 @@ Route /create:benchmark to its presentation contract and workflow YAML for famil
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create_benchmark_presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create_benchmark_auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` |
+| Presentation contract | `.opencode/commands/create/assets/create-benchmark-presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create-benchmark-auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create-benchmark-confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create_benchmark_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create-benchmark-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve `benchmark_family` from `--family=<FAMILIES-key>` or the single consolidated setup prompt.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
@@ -41,12 +41,12 @@ Route /create:benchmark to its presentation contract and workflow YAML for famil
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create_benchmark_auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` |
+| `:auto` | `.opencode/commands/create/assets/create-benchmark-auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-benchmark-confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create_benchmark_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create-benchmark-presentation.txt`:
 
 - Startup questions, Phase 0 verification, family and operation display, setup/status dashboards, completion template, and next-step text.
 
@@ -54,6 +54,6 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create_benchmark_auto.yaml` for `:auto`, `create_benchmark_confirm.yaml` for `:confirm` or an omitted mode) routes `mcp_promotion` through the existing benchmark-folder workflow. The `conformance_benchmark` branch copies and fills the four conformance templates, validates the authored Markdown and JSON, reports the package path, and terminates without invoking an adapter or deep-alignment. `:auto` executes autonomously; `:confirm` runs the same branch with checkpoints. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract.
+The bound workflow YAML (`create-benchmark-auto.yaml` for `:auto`, `create-benchmark-confirm.yaml` for `:confirm` or an omitted mode) routes `mcp_promotion` through the existing benchmark-folder workflow. The `conformance_benchmark` branch copies and fills the four conformance templates, validates the authored Markdown and JSON, reports the package path, and terminates without invoking an adapter or deep-alignment. `:auto` executes autonomously; `:confirm` runs the same branch with checkpoints. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract.
 
 User request: $ARGUMENTS

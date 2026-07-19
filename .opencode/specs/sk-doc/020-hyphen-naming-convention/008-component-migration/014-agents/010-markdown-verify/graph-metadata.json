@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for markdown across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:46Z",
-    "last_save_at": "2026-07-17T14:30:49.398Z",
+    "last_save_at": "2026-07-17T20:26:22.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b9464b2f6986c6759b5af0fcfd22814dea7c93aff8337d749540dac17b1da593",
+    "source_fingerprint": "sha256:20db4f2f5a0fd633707734a023ec598600d17dc944154754c50304ac5d15c8a7",
     "source_doc_hashes": {
-      "spec.md": "bf1fe6f994615fb1f62078b00a52e07009ea6e564be842a5524cfbd6290aa1a5",
-      "plan.md": "003d7d892d1775f132995924d652187cb5bf449ad7cb2754ea3640c6986ff28a",
-      "tasks.md": "7a36af26af579a49704cf5d7d8c4ba64208ea0fe9cd4db6ad1624b41f48f3a09",
-      "checklist.md": "dda717ce0bc4484aad4ed19ceef3d182e487d5fa9a4517bda063f5a710ce71e8"
+      "spec.md": "23e8821c5ce94d5220ddc22a00dd933a1b75fe284dd12453f3cbaf2fa325fca2",
+      "plan.md": "42fa95f56d258de4eadfe3c5c3130ab04f083660bbe25d14f6e35d12c4183931",
+      "tasks.md": "870dcbc89db02ea3568889d431babab826ffd9ee20198205ad7283fdbd6237eb",
+      "checklist.md": "3876fd4ce0ca26ffe8d71dc248d21fffd048c582b372d7b2bb6f82989b8c07ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

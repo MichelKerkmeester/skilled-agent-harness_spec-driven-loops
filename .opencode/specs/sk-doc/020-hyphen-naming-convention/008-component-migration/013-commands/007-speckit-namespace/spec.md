@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: speckit command namespace naming (032 phase 008/013/007)"
+title: "Feature Specification: speckit command namespace naming (020 phase 008/013/007)"
 description: "The speckit command namespace has compliant command markdown files but twelve snake_case workflow and presentation asset filenames. This phase renames those maintained assets, repairs command and README pointers, and preserves the /speckit:* command IDs and workflow keys."
 trigger_phrases:
   - "speckit command namespace naming"
@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Speckit command namespace naming
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 007 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 007 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

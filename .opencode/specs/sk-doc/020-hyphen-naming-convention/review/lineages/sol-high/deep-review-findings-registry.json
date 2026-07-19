@@ -1,0 +1,1783 @@
+{
+  "sessionId": "fanout-sol-high-1784307871185-l34e0c",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 20,
+    "timestamp": "2026-07-17T17:32:53.494Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Authoritative phase tree is not reproducible from its generator",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 149,
+      "description": "The checked-in authoritative phase tree cannot be regenerated from its declared source.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct generator replay plus manifest, parent, and graph comparison.",
+      "affectedSurfaceHints": [
+        "phase-tree generator",
+        "phase-tree manifest",
+        "scaffolding",
+        "graph refresh"
+      ],
+      "contentHash": "1ae5f7183da06c6c0a76f70e40f1179c5ee8edbbe9d5b7b91bdbba88a90b5cdc",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Root execution contract retains superseded phase identities",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 168,
+      "description": "Operational parent prose points executors at superseded phases.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact stale-number sweep compared with root map and graph metadata.",
+      "affectedSurfaceHints": [
+        "root success criteria",
+        "risk mitigations",
+        "resume routing",
+        "phase handoffs"
+      ],
+      "contentHash": "86793256e6a8493fe9b2b02e1c00abd375890070db3a9ec139ea438fb8792c52",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Rename apply is not bound to the reviewed repository and map snapshot",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md",
+      "line": 77,
+      "description": "Explicit apply may execute a reviewed rename plan against changed repository or map state.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Engine spec/decision/checklist and harness searched for stale-plan, snapshot, HEAD, cleanliness, and revalidation contracts; the reference executor's blob CAS does not cover git mv.",
+      "affectedSurfaceHints": [
+        "rename dry-run plan",
+        "apply preflight",
+        "operation journal",
+        "fixture harness"
+      ],
+      "contentHash": "48849318fb696f9d67dbbf87647280b1851f032fe5ef7d783df9e3dae74781b4",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Declared leading-hyphen hazard lacks an executable rejection criterion",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "line": 72,
+      "description": "The plan names an option-like path hazard without a testable engine behavior.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Policy-to-engine-to-harness exact search for leading-hyphen, argv, option termination, and option-like operands.",
+      "affectedSurfaceHints": [
+        "map validation",
+        "git mv argv",
+        "fixture corpus",
+        "security checklist"
+      ],
+      "contentHash": "4b2363a748ef16b78106d65fec6c385c16f058ad8701f57360d5f246f9702c06",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Execution identity is split across packet 020, legacy 032, and branch slug 017",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/tasks.md",
+      "line": 49,
+      "description": "The first executable phase cannot determine one canonical packet/worktree identity.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact packet-number and worktree-grammar sweep across root, phase 000, phase 001, and child titles.",
+      "affectedSurfaceHints": [
+        "worktree allocator",
+        "branch name",
+        "packet metadata",
+        "phase titles",
+        "verification evidence"
+      ],
+      "contentHash": "c1f7cf3ed1d39f026ff0600646b4c57547186c8611289b8d071e8e0626b38e24",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Most spec nodes point their HVR marker at a nonexistent path",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 36,
+      "description": "116 packet Markdown files reference .opencode/skills/sk-doc/references/hvr_rules.md, which does not exist; the live rule file is under sk-doc/shared/references and 17 packet files already use that path.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Corpus count excluding review artifacts plus filesystem existence check.",
+      "affectedSurfaceHints": [
+        "spec authoring guidance",
+        "review standards",
+        "template provenance"
+      ],
+      "contentHash": "f6bda5d871308e26ffce0d7fdcfbc280d1314528d075a7583540a602a8c120c8",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 1
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "adjacent_mutation_variant",
+      "adversarial_replay",
+      "artifact_contract",
+      "broken_standard_pointer",
+      "candidate_identity",
+      "cli_option_path",
+      "dependency_handoff",
+      "generated_artifact_drift",
+      "generator_replay",
+      "handoff_traceability",
+      "identity_drift",
+      "integration_identity",
+      "lifecycle_handoff",
+      "metadata_drift",
+      "mutation_boundary",
+      "phase_identity",
+      "requirement_evidence",
+      "rollback_integrity",
+      "stale_plan_replay",
+      "symlink_boundary",
+      "template_residue",
+      "terminal_consistency",
+      "topology_parity",
+      "transient_drift"
+    ],
+    "ruledOut": [
+      "additional missing standards target",
+      "additional_option_operand",
+      "adversarial_replay",
+      "artifact_contract",
+      "broken explicit relative link",
+      "broken_links",
+      "broken_standard_pointer",
+      "candidate_identity",
+      "closeout without consumer proof",
+      "component start before closure",
+      "dangling symlink acceptance",
+      "dependency_handoff",
+      "description slug mismatch",
+      "description_slug_mismatch",
+      "duplicate generated node",
+      "duplicate phase child",
+      "dynamic_guess",
+      "external execution redirect",
+      "filesystem node absent from manifest beyond F001",
+      "force-apply stale rewrite",
+      "gate without evidence source",
+      "generator_replay",
+      "graph_reciprocity",
+      "handoff_placeholder",
+      "historical_only_label",
+      "implicit pass on missing evidence",
+      "integration_identity",
+      "invalid metadata JSON",
+      "late severity escalation",
+      "lifecycle_handoff",
+      "manifest-only orphan beyond F001",
+      "merge-commit integration",
+      "metadata_drift",
+      "missing alias-removal owner",
+      "missing phase-008 consumer",
+      "missing_top_level_phase",
+      "mixed candidate evidence",
+      "mutating verifier",
+      "mutation without journal",
+      "mutation_boundary",
+      "non-deterministic batch replay",
+      "non-reciprocal graph edge",
+      "one-shot stale map",
+      "orphan top-level phase",
+      "ownerless dependency edge",
+      "packet_alias",
+      "parent map ordering drift",
+      "permanent transition alias",
+      "pre-rebase evidence reuse",
+      "repository escape",
+      "repository_boundary",
+      "requirement without execution task",
+      "requirement_evidence",
+      "rollback omission",
+      "rollback_absence",
+      "rollback_integrity",
+      "second option-like operand class",
+      "semantic_requirement_gap",
+      "stale reference patch force apply",
+      "stale spec hash",
+      "stale_hash",
+      "stale_reference_patch",
+      "success criterion without blocking check",
+      "symlink_boundary",
+      "synthesis artifact mismatch",
+      "target-only update",
+      "template_marker_absence",
+      "terminal_consistency",
+      "topology_parity",
+      "transient_generator_drift",
+      "unbounded rollback",
+      "uncited active finding",
+      "unclassified candidate escape",
+      "uncovered high-risk phase",
+      "unresolved handoff placeholder",
+      "unverified conflict resolution"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "generated_artifact_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "phase_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missing_top_level_phase": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "graph_reciprocity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "stale_plan_replay": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "cli_option_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repository_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "rollback_absence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "stale_reference_patch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "identity_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "handoff_traceability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "broken_links": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "semantic_requirement_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "metadata_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          13
+        ]
+      },
+      "broken_standard_pointer": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          17
+        ]
+      },
+      "template_residue": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_hash": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "description_slug_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "template_marker_absence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "handoff_placeholder": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "adversarial_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          6
+        ]
+      },
+      "transient_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "transient_generator_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "historical_only_label": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "packet_alias": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "adjacent_mutation_variant": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "dynamic_guess": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "additional_option_operand": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "artifact_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "unclassified candidate escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "one-shot stale map": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "non-deterministic batch replay": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "lifecycle_handoff": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "permanent transition alias": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "missing alias-removal owner": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "closeout without consumer proof": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "topology_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "duplicate phase child": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "orphan top-level phase": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "parent map ordering drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "candidate_identity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "mixed candidate evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "implicit pass on missing evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "mutating verifier": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "symlink_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "dangling symlink acceptance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "target-only update": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "external execution redirect": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "dependency_handoff": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          12
+        ]
+      },
+      "component start before closure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          12
+        ]
+      },
+      "ownerless dependency edge": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          12
+        ]
+      },
+      "missing phase-008 consumer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          12
+        ]
+      },
+      "invalid metadata JSON": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          13
+        ]
+      },
+      "stale spec hash": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          13
+        ]
+      },
+      "description slug mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          13
+        ]
+      },
+      "non-reciprocal graph edge": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          13
+        ]
+      },
+      "integration_identity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          14
+        ]
+      },
+      "pre-rebase evidence reuse": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          14
+        ]
+      },
+      "merge-commit integration": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          14
+        ]
+      },
+      "unverified conflict resolution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          14
+        ]
+      },
+      "rollback_integrity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          15
+        ]
+      },
+      "force-apply stale rewrite": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          15
+        ]
+      },
+      "unbounded rollback": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          15
+        ]
+      },
+      "mutation without journal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          15
+        ]
+      },
+      "requirement_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          16
+        ]
+      },
+      "requirement without execution task": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          16
+        ]
+      },
+      "gate without evidence source": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          16
+        ]
+      },
+      "success criterion without blocking check": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          16
+        ]
+      },
+      "additional missing standards target": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          17
+        ]
+      },
+      "broken explicit relative link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          17
+        ]
+      },
+      "unresolved handoff placeholder": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          17
+        ]
+      },
+      "generator_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          18
+        ]
+      },
+      "manifest-only orphan beyond F001": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          18
+        ]
+      },
+      "duplicate generated node": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          18
+        ]
+      },
+      "filesystem node absent from manifest beyond F001": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          18
+        ]
+      },
+      "mutation_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          19
+        ]
+      },
+      "stale reference patch force apply": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          19
+        ]
+      },
+      "repository escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          19
+        ]
+      },
+      "rollback omission": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          19
+        ]
+      },
+      "second option-like operand class": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          19
+        ]
+      },
+      "terminal_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          20
+        ]
+      },
+      "late severity escalation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          20
+        ]
+      },
+      "uncited active finding": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          20
+        ]
+      },
+      "uncovered high-risk phase": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          20
+        ]
+      },
+      "synthesis artifact mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          20
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "F001",
+        "F002",
+        "F005"
+      ],
+      "bugClass": "adversarial_replay",
+      "disposition": "ruled_out",
+      "rationale": "No downgrade or new finding; active findings remain confirmed.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:168-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/tasks.md:48-50"
+      ],
+      "reason": "No downgrade or new finding; active findings remain confirmed."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-01",
+      "dimension": "security",
+      "targetRefs": [
+        "F003",
+        "F004",
+        "rename/rewrite/harness contracts"
+      ],
+      "bugClass": "adversarial_replay",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; F003/F004 remain active and neighboring controls are adequate.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103"
+      ],
+      "reason": "No new finding; F003/F004 remain active and neighboring controls are adequate."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:54-88",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:82-99"
+      ],
+      "bugClass": "artifact_contract",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:54-88",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:82-99"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md:55-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/spec.md:55-94",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-92"
+      ],
+      "bugClass": "lifecycle_handoff",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md:55-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/spec.md:55-94",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-92"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:138-165",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-167"
+      ],
+      "bugClass": "topology_parity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:138-165",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-167"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:52-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec.md:78-98"
+      ],
+      "bugClass": "candidate_identity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:52-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec.md:78-98"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/checklist.md:35-74",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/spec.md:70-103"
+      ],
+      "bugClass": "symlink_boundary",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/checklist.md:35-74",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/spec.md:70-103"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 12,
+      "id": "SL-012-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/spec.md:77-106",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/spec.md:78-109"
+      ],
+      "bugClass": "dependency_handoff",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/spec.md:77-106",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/spec.md:78-109"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/graph-metadata.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/description.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30"
+      ],
+      "bugClass": "metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/graph-metadata.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/description.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 14,
+      "id": "SL-014-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:56-99",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/decision-record.md:50-104"
+      ],
+      "bugClass": "integration_identity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:56-99",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/decision-record.md:50-104"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 15,
+      "id": "SL-015-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:95-124",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:109-115"
+      ],
+      "bugClass": "rollback_integrity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:95-124",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:109-115"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 16,
+      "id": "SL-016-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:78-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/tasks.md:45-79",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/checklist.md:41-93"
+      ],
+      "bugClass": "requirement_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:78-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/tasks.md:45-79",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/checklist.md:41-93"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 17,
+      "id": "SL-017-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:34-37",
+        ".opencode/skills/sk-doc/shared/references/hvr_rules.md"
+      ],
+      "bugClass": "broken_standard_pointer",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:34-37",
+        ".opencode/skills/sk-doc/shared/references/hvr_rules.md"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 18,
+      "id": "SL-018-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:1-40"
+      ],
+      "bugClass": "generator_replay",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:1-40"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 19,
+      "id": "SL-019-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:53-75"
+      ],
+      "bugClass": "mutation_boundary",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:53-75"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 20,
+      "id": "SL-020-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+      ],
+      "bugClass": "terminal_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+      ],
+      "reason": "No new finding; existing registry remains authoritative."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "F001",
+        "F002",
+        "F005"
+      ],
+      "bugClass": "adversarial_replay",
+      "disposition": "ruled_out",
+      "rationale": "No downgrade or new finding; active findings remain confirmed.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:168-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/tasks.md:48-50"
+      ],
+      "proof": "No downgrade or new finding; active findings remain confirmed."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-01",
+      "dimension": "security",
+      "targetRefs": [
+        "F003",
+        "F004",
+        "rename/rewrite/harness contracts"
+      ],
+      "bugClass": "adversarial_replay",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; F003/F004 remain active and neighboring controls are adequate.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103"
+      ],
+      "proof": "No new finding; F003/F004 remain active and neighboring controls are adequate."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:54-88",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:82-99"
+      ],
+      "bugClass": "artifact_contract",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:54-88",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:82-99"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md:55-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/spec.md:55-94",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-92"
+      ],
+      "bugClass": "lifecycle_handoff",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md:55-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/spec.md:55-94",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-92"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:138-165",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-167"
+      ],
+      "bugClass": "topology_parity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:138-165",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-167"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:52-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec.md:78-98"
+      ],
+      "bugClass": "candidate_identity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:52-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec.md:78-98"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/checklist.md:35-74",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/spec.md:70-103"
+      ],
+      "bugClass": "symlink_boundary",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/checklist.md:35-74",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/spec.md:70-103"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 12,
+      "id": "SL-012-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/spec.md:77-106",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/spec.md:78-109"
+      ],
+      "bugClass": "dependency_handoff",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/spec.md:77-106",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/spec.md:78-109"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/graph-metadata.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/description.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30"
+      ],
+      "bugClass": "metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/graph-metadata.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/description.json",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 14,
+      "id": "SL-014-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:56-99",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/decision-record.md:50-104"
+      ],
+      "bugClass": "integration_identity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:56-99",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/decision-record.md:50-104"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 15,
+      "id": "SL-015-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:95-124",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:109-115"
+      ],
+      "bugClass": "rollback_integrity",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:95-124",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md:109-115"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 16,
+      "id": "SL-016-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:78-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/tasks.md:45-79",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/checklist.md:41-93"
+      ],
+      "bugClass": "requirement_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec.md:78-97",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/tasks.md:45-79",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/checklist.md:41-93"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 17,
+      "id": "SL-017-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:34-37",
+        ".opencode/skills/sk-doc/shared/references/hvr_rules.md"
+      ],
+      "bugClass": "broken_standard_pointer",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:34-37",
+        ".opencode/skills/sk-doc/shared/references/hvr_rules.md"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 18,
+      "id": "SL-018-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:1-40"
+      ],
+      "bugClass": "generator_replay",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs:149-153",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:104-145",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec.md:1-40"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 19,
+      "id": "SL-019-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:53-75"
+      ],
+      "bugClass": "mutation_boundary",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md:72-77",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md:77-103",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:53-75"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    },
+    {
+      "iteration": 20,
+      "id": "SL-020-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+      ],
+      "bugClass": "terminal_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No new finding; existing registry remains authoritative.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+        ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+      ],
+      "proof": "No new finding; existing registry remains authoritative."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "terminal_consistency"
+    ],
+    "covered": [
+      "terminal_consistency"
+    ],
+    "ruledOut": [
+      "late severity escalation",
+      "uncited active finding",
+      "uncovered high-risk phase",
+      "synthesis artifact mismatch"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+        ],
+        "findingRefs": []
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md:134-197",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json:1-30",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md:63-87",
+          ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md:81-99"
+        ],
+        "findingRefs": []
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

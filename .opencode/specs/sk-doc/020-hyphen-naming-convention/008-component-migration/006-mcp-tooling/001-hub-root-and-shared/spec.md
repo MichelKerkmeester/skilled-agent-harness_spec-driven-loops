@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-tooling hub root and shared naming closure (032 phase 001)"
+title: "Feature Specification: mcp-tooling hub root and shared naming closure (020 phase 001)"
 description: "The mcp-tooling hub owns routing metadata and shared navigation for three independent packets, but its root-level path ownership is not explicitly separated from the component and playbook phases. This phase classifies root/shared filesystem names, preserves exact tool contracts, and closes the hub's path references."
 trigger_phrases:
   - "mcp-tooling hub root naming"
   - "mcp-tooling shared assets kebab-case"
-  - "032 mcp-tooling phase 001"
+  - "020 mcp-tooling phase 001"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-tooling Hub Root and Shared Naming Closure
 
@@ -105,7 +105,7 @@ This phase leaves the hub routable with kebab-case filesystem paths, preserves e
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase depends on the frozen map and the 032 exemption boundary. The primary risk is accidentally absorbing the root playbook, benchmark, or component trees into this phase; the mitigation is a path-owner allowlist checked before any rename. A second risk is changing JSON keys while updating path values; the mitigation is a key-versus-value diff review.
+The phase depends on the frozen map and the 020 exemption boundary. The primary risk is accidentally absorbing the root playbook, benchmark, or component trees into this phase; the mitigation is a path-owner allowlist checked before any rename. A second risk is changing JSON keys while updating path values; the mitigation is a key-versus-value diff review.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

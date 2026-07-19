@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level_3/implementation-summary.md]"
+title: "Implementation Summary [template:examples/level-3/implementation-summary.md]"
 description: "Current-template Level 3 implementation summary fixture with concrete evidence."
 trigger_phrases:
   - "fixture"

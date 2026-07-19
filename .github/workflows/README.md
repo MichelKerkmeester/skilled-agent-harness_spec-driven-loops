@@ -46,7 +46,7 @@ workflows/
 |---|---|---|
 | `agent-mirror-sync.yml` | PR to `main` | The mirrored agent directories stay aligned |
 | `comment-hygiene.yml` | PR to `main` | Code comments carry no ephemeral artifact identifiers |
-| `isolation-check.yml` | PR to `main`, spec-kit `mcp_server/**` and `shared/**` | Isolation invariants in the spec-kit server |
+| `isolation-check.yml` | PR to `main`, spec-kit `mcp-server/**` and `shared/**` | Isolation invariants in the spec-kit server |
 | `markdown-link-integrity.yml` | PR to `main`, skills, commands and agent trees | Relative markdown links resolve |
 | `prompt-card-sync.yml` | PR to `main` | Prompt and knowledge cards match their sources |
 | `routing-registry-drift.yml` | Push and PR to `main`, `mode-registry.json`, `hub-router.json`, advisor and parent-skill files | The routing registries do not drift from the skills |

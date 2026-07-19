@@ -1,5 +1,5 @@
 ---
-title: "Tasks: MCP-server directory and manifest closure (032 subtree 008 phase 001)"
+title: "Tasks: MCP-server directory and manifest closure (020 subtree 008 phase 001)"
 description: "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt."
 trigger_phrases:
   - "mcp-server directory closure"

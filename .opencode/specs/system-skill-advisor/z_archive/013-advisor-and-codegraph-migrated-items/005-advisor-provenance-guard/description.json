@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard",
+  "specFolder": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard",
   "description": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no",
   "keywords": [
     "advisor",
@@ -15,11 +15,12 @@
     "durable",
     "sourcekind"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.352Z",
+  "lastUpdated": "2026-07-18T03:48:57.286Z",
   "specId": "005",
   "folderSlug": "advisor-provenance-guard",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "013-advisor-and-codegraph-migrated-items"
   ],
   "memorySequence": 0,

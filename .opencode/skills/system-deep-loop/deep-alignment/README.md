@@ -221,7 +221,7 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature_catalog/` inventories 21 features across four categories: lane resolution (5), the adapter contract (8), loop lifecycle (4) and the alignment contract (4). Each entry documents a description, how it works and the source files that implement it.
+The `feature-catalog/` inventories 21 features across four categories: lane resolution (5), the adapter contract (8), loop lifecycle (4) and the alignment contract (4). Each entry documents a description, how it works and the source files that implement it.
 
 The state-machine wiring ships its own test that pins the state-to-script contract:
 
@@ -231,7 +231,7 @@ node .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machin
 
 ### Manual Testing Playbook
 
-The `manual_testing_playbook/` runs 31 deterministic scenarios across 8 categories:
+The `manual-testing-playbook/` runs 31 deterministic scenarios across 8 categories:
 
 - Entry points and modes
 - Lane resolution and scoping
@@ -259,24 +259,24 @@ Expected output: zero blocking errors.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The mode contract: state machine, adapter contract, the four invariants and the boundary statement |
-| [`references/scoping_protocol.md`](./references/scoping_protocol.md) | The three-axis ARTIFACT-CLASS x AUTHORITY x SCOPE decision tree and lane resolution |
-| [`references/lane_config_schema.md`](./references/lane_config_schema.md) | The `--lane-config` JSON shape, authority/artifact-class validity and the error contract |
-| [`references/discover_contract.md`](./references/discover_contract.md) | The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract |
-| [`references/state_machine_wiring.md`](./references/state_machine_wiring.md) | The concrete state-to-script wiring, `alignment/` file layout and the convergence formula |
-| [`references/adapters/sk_doc_adapter.md`](./references/adapters/sk_doc_adapter.md) | The reference sk-doc adapter specification (validators, sub-checks, severity mapping) |
-| [`references/adapters/sk_git_adapter.md`](./references/adapters/sk_git_adapter.md) | The sk-git adapter specification |
-| [`references/adapters/sk_design_adapter.md`](./references/adapters/sk_design_adapter.md) | The sk-design adapter specification |
-| [`references/adapters/sk_code_adapter.md`](./references/adapters/sk_code_adapter.md) | The sk-code adapter specification |
-| [`references/adapters/sk_design_live_render_adapter.md`](./references/adapters/sk_design_live_render_adapter.md) | The sk-design live-render adapter specification |
-| [`references/adapters/sk_doc_known_deviations.md`](./references/adapters/sk_doc_known_deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_design, sk_code variants) |
+| [`references/scoping-protocol.md`](./references/scoping-protocol.md) | The three-axis ARTIFACT-CLASS x AUTHORITY x SCOPE decision tree and lane resolution |
+| [`references/lane-config-schema.md`](./references/lane-config-schema.md) | The `--lane-config` JSON shape, authority/artifact-class validity and the error contract |
+| [`references/discover-contract.md`](./references/discover-contract.md) | The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract |
+| [`references/state-machine-wiring.md`](./references/state-machine-wiring.md) | The concrete state-to-script wiring, `alignment/` file layout and the convergence formula |
+| [`references/adapters/sk-doc-adapter.md`](./references/adapters/sk-doc-adapter.md) | The reference sk-doc adapter specification (validators, sub-checks, severity mapping) |
+| [`references/adapters/sk-git-adapter.md`](./references/adapters/sk-git-adapter.md) | The sk-git adapter specification |
+| [`references/adapters/sk-design-adapter.md`](./references/adapters/sk-design-adapter.md) | The sk-design adapter specification |
+| [`references/adapters/sk-code-adapter.md`](./references/adapters/sk-code-adapter.md) | The sk-code adapter specification |
+| [`references/adapters/sk-design-live-render-adapter.md`](./references/adapters/sk-design-live-render-adapter.md) | The sk-design live-render adapter specification |
+| [`references/adapters/sk-doc-known-deviations.md`](./references/adapters/sk-doc-known-deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_design, sk_code variants) |
 | [`scripts/scoping.cjs`](./scripts/scoping.cjs) | Lane resolution: `AUTHORITY_ARTIFACT_CLASSES`, `validateLane`, `resolveLanesFromConfig`/`FromSelections` |
 | [`scripts/check-convergence.cjs`](./scripts/check-convergence.cjs) | The coverage-AND-stability-AND-max-iterations CONVERGE decision |
 | [`scripts/partition-corpus.cjs`](./scripts/partition-corpus.cjs) | Round-robin lane slicing for the next iteration |
 | [`scripts/remediate-hook.cjs`](./scripts/remediate-hook.cjs) | The gated, intentionally-unimplemented REMEDIATE hook point |
 | [`scripts/adapters/`](./scripts/adapters/) | The five per-authority adapters implementing `discover` / `standardSource` / `check` |
-| [`assets/deep_alignment_config_template.json`](./assets/deep_alignment_config_template.json) | Config template with convergence defaults, file-protection rules and script wiring |
+| [`assets/deep-alignment-config-template.json`](./assets/deep-alignment-config-template.json) | Config template with convergence defaults, file-protection rules and script wiring |
 | [`../runtime/scripts/reduce-alignment-state.cjs`](../runtime/scripts/reduce-alignment-state.cjs) | The per-lane reducer that builds the findings registry and the alignment report |
-| [`feature_catalog/`](./feature_catalog/) | Feature inventory across lane resolution, the adapter contract, loop lifecycle and the alignment contract |
-| [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark: scenario contracts for what the model does at the `/deep:alignment` command surface under realistic prompts |
+| [`feature-catalog/`](./feature-catalog/) | Feature inventory across lane resolution, the adapter contract, loop lifecycle and the alignment contract |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark: scenario contracts for what the model does at the `/deep:alignment` command surface under realistic prompts |
 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | The mode-packet establishment changelog |

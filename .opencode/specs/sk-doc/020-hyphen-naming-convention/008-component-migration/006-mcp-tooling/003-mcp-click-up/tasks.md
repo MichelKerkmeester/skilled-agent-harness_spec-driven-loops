@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-click-up naming closure (032 phase 003)"
+title: "Tasks: mcp-click-up naming closure (020 phase 003)"
 description: "Tasks for phase 003 of the mcp-tooling component naming migration: rename ClickUp catalog/playbook paths and repair their references."
 trigger_phrases:
   - "mcp-click-up naming tasks"

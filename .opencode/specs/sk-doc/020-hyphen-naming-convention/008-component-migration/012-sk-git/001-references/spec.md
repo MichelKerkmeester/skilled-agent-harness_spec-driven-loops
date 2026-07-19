@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git references (032 phase 008/012/001)"
+title: "Feature Specification: sk-git references (020 phase 008/012/001)"
 description: "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline."
 trigger_phrases:
   - "sk-git references kebab-case"
-  - "032 sk-git reference rename"
+  - "020 sk-git reference rename"
   - "reference pointer closure"
 importance_tier: "important"
 contextType: "planning"
@@ -27,7 +27,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git references
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 001 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -90,7 +90,7 @@ The purpose is to prove sk-git/references/ is addressable only through kebab-cas
 | REQ-002 | Reference files and their active consumers use kebab-case filesystem paths. | The rename/reference checker finds zero active pointers to the underscore source paths and every target resolves. |
 | REQ-003 | The rename preserves content and filesystem metadata while changing only path names and path-valued references. | Git reports rename status for each applicable file; mode, symlink, frontmatter fields, keys, and non-path values are unchanged. |
 | REQ-004 | The phase stays within the sk-git reference surface. | The candidate diff contains no asset, manual-playbook, benchmark, changelog, code, or sibling-surface rename. |
-| REQ-005 | The phase remains compatible with the 032 exemption boundary. | .py, Python package directories, tool-mandated names, keys, and frozen content are explicitly excluded from the candidate map. |
+| REQ-005 | The phase remains compatible with the 020 exemption boundary. | .py, Python package directories, tool-mandated names, keys, and frozen content are explicitly excluded from the candidate map. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -104,7 +104,7 @@ The purpose is to prove sk-git/references/ is addressable only through kebab-cas
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase depends on the 032 frozen rename map and the reference-checking tooling from phase 005. Its main risks are stale pointers hidden in router prose or asset links, a duplicate source and target path, and accidental edits to non-path text. The checklist requires a zero-broken-pointer scan, collision check, and path-scoped diff review.
+The phase depends on the 020 frozen rename map and the reference-checking tooling from phase 005. Its main risks are stale pointers hidden in router prose or asset links, a duplicate source and target path, and accidental edits to non-path text. The checklist requires a zero-broken-pointer scan, collision check, and path-scoped diff review.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

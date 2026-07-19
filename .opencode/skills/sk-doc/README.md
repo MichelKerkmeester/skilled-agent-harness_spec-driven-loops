@@ -55,7 +55,7 @@ It does not own code or spec folders. `sk-code` owns code standards and tests. `
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "validate my README" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "validate my README" --threshold 0.8
 
 # Or read the runtime instructions
 Read(".opencode/skills/sk-doc/SKILL.md")
@@ -87,7 +87,7 @@ Every document passes through the same sequence. The script parses the markdown,
 
 ### Scripts Versus AI
 
-The scripts own the deterministic work. `extract_structure.py` parses, measures and checks. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. `validate_flowchart.sh` checks box alignment and label consistency on ASCII diagrams. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding.
+The scripts own the deterministic work. `extract_structure.py` parses, measures and checks. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. `validate-flowchart.sh` checks box alignment and label consistency on ASCII diagrams. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding.
 
 ### The DQI
 
@@ -162,17 +162,17 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 | Document                                                                                                               | Purpose                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------|
 | [`SKILL.md`](./SKILL.md)                                                                                               | Runtime instructions, the smart router and the mode rules                                                     |
-| [`references/quick_reference.md`](shared/references/quick_reference.md)                                                | One-page command and gate cheat sheet                                                                         |
-| [`references/hvr_rules.md`](shared/references/hvr_rules.md)                                                            | Human Voice Rules, the writing standard all output must pass                                                  |
+| [`references/quick-reference.md`](shared/references/quick-reference.md)                                                | One-page command and gate cheat sheet                                                                         |
+| [`references/hvr-rules.md`](shared/references/hvr-rules.md)                                                            | Human Voice Rules, the writing standard all output must pass                                                  |
 | [`references/validation.md`](shared/references/validation.md)                                                          | DQI scoring criteria, quality gates and assessment interpretation                                             |
-| [`references/core_standards.md`](shared/references/core_standards.md)                                                  | Filename conventions, heading rules and document-type requirements                                            |
+| [`references/core-standards.md`](shared/references/core-standards.md)                                                  | Filename conventions, heading rules and document-type requirements                                            |
 | [`create-quality-control/references/workflows.md`](create-quality-control/references/workflows.md)                     | Execution workflows by mode and task type                                                                     |
 | [`create-quality-control/references/optimization.md`](create-quality-control/references/optimization.md)               | AI-friendly content transforms and the llms.txt format                                                        |
-| [`references/evergreen_packet_id_rule.md`](shared/references/evergreen_packet_id_rule.md)                              | Why runtime-state docs must not cite mutable spec-packet numbers                                              |
-| [`references/skill_creation.md`](create-skill/references/README.md)                                                    | The skill-creation workflow: understanding through packaging                                                  |
+| [`references/evergreen-packet-id-rule.md`](shared/references/evergreen-packet-id-rule.md)                              | Why runtime-state docs must not cite mutable spec-packet numbers                                              |
+| [`references/skill-creation.md`](create-skill/references/README.md)                                                    | The skill-creation workflow: understanding through packaging                                                  |
 | [`references/README.md`](create-agent/references/README.md)                                                            | Agent authority, permissions and the template-first workflow                                                  |
 | [`references/README.md`](create-readme/references/README.md)                                                           | README creation workflow and standards                                                                        |
-| [`references/install_guide/quality_and_standards.md`](create-readme/references/install_guide/quality_and_standards.md) | Five-phase install guide standards and validation checkpoints                                                 |
+| [`references/install-guide/quality-and-standards.md`](create-readme/references/install-guide/quality-and-standards.md) | Five-phase install guide standards and validation checkpoints                                                 |
 | [`references/README.md`](create-manual-testing-playbook/references/README.md)                                          | Playbook package structure, scenario tables and cross-reference index                                         |
 | [`references/README.md`](create-feature-catalog/references/README.md)                                                  | Feature catalog inventory standards and per-feature file structure                                            |
 | [`create-benchmark/README.md`](create-benchmark/README.md)                                                             | Benchmark family registry, including conformance authoring triggers and package boundaries                    |

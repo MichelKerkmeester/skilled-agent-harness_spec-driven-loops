@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `.opencode/commands/design/assets/` tree contains `designauditauto.yaml`, `designfoundationspresentation.txt`, `designinterfaceconfirm.yaml`, `designmd-generatorauto.yaml`, and `designmotionpresentation.txt`",
     "created_at": "2026-07-14T15:18:33Z",
-    "last_save_at": "2026-07-17T14:30:44.143Z",
+    "last_save_at": "2026-07-17T20:26:19.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2eef5964dc466ce4ef3dd16ea0ffe24c46b66b5bd6e1a196620d3bd84796798e",
+    "source_fingerprint": "sha256:bce215b9ae45ada8b564bb9dff16db9707516c687e2205239c127438d172ab29",
     "source_doc_hashes": {
-      "spec.md": "0e792a016233c1171753889be1728780423d4bc80a6c46ce649c79fc3665b6e1",
-      "plan.md": "73466f1577ed1462d914126f6841977b39cc9e097f72b34716e7bb6b9087410c",
-      "tasks.md": "2cb9d913127d28b2c33204abca0baaa8272a1fd8305eafa1a7904af3002d2023",
-      "checklist.md": "3fc458b8ae17e1cf2f1e4ecd86f8fb58152e2a7e7a4cf9db9a4aa23e527261f3"
+      "spec.md": "2cf08c811c5cda479bb0f3008989877cc53082c2456b3aabaff906456e38fa2a",
+      "plan.md": "07064ee278490b9ad47d57f7cf8fdc12b2eae008797c176931f9da89e5b600a3",
+      "tasks.md": "1734fdce711dcf16f01495eab045842880a25dc2be60309ed434524d32622e2a",
+      "checklist.md": "bc4bebfe9baa871611934903817bc09ea050ae4eb985942576011093076f9a73"
     },
     "last_active_child_id": null,
     "last_active_at": null

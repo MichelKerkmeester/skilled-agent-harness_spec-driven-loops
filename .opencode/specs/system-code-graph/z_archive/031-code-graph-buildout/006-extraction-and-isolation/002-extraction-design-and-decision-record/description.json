@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
   "description": "Code-graph today is a 108-file subsystem (29 lib TS + 10 handlers + 2 tools + 28 vitest + 16 in-package docs + 23 READMEs) inside `system-spec-kit`,",
   "keywords": [
     "code-graph",
@@ -17,11 +17,12 @@
     "inside",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.821Z",
+  "lastUpdated": "2026-07-18T03:48:55.524Z",
   "specId": "002",
   "folderSlug": "extraction-design-and-decision-record",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "006-extraction-and-isolation"
   ],

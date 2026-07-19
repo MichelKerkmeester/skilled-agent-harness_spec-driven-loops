@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep command namespace naming (032 phase 008/013/002)"
+title: "Tasks: deep command namespace naming (020 phase 008/013/002)"
 description: "Execution tasks for the maintained deep asset rename, legacy fallback closure, and generated contract refresh."
 trigger_phrases:
   - "deep namespace naming tasks"

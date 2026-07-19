@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: agents surface migration (032 component phase 014)"
-description: "The 032 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy."
+title: "Feature Specification: agents surface migration (020 component phase 014)"
+description: "The 020 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy."
 trigger_phrases:
   - "agents surface migration"
   - "agents kebab-case phase"

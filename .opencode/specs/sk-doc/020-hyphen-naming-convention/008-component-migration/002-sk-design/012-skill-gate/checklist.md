@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Skill gate (032 phase 012)"
-description: "Blocking SOL verification contract for Skill gate in the 032 sk-design naming subtree."
+title: "Checklist: Skill gate (020 phase 012)"
+description: "Blocking SOL verification contract for Skill gate in the 020 sk-design naming subtree."
 trigger_phrases:
   - "skill-gate verification"
   - "sk-design skill gate checklist"
-  - "032 skill-gate gate"
+  - "020 skill-gate gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Skill gate (032 phase 012)
+# Checklist: Skill gate (020 phase 012)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

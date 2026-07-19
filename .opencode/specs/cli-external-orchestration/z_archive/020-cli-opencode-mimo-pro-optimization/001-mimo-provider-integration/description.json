@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
   "description": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented",
   "keywords": [
     "mimo-v2",
@@ -12,11 +12,12 @@
     "framework",
     "documented"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.692Z",
+  "lastUpdated": "2026-07-18T03:48:54.330Z",
   "specId": "001",
   "folderSlug": "mimo-provider-integration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "020-cli-opencode-mimo-pro-optimization"
   ],
   "memorySequence": 0,

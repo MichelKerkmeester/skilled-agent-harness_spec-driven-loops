@@ -1,5 +1,5 @@
 ---
-title: "Checklist: memory command namespace naming (032 phase 008/013/005)"
+title: "Checklist: memory command namespace naming (020 phase 008/013/005)"
 description: "Blocking SOL verification contract for the memory presentation asset rename and reference closure."
 trigger_phrases:
   - "memory namespace naming checklist"

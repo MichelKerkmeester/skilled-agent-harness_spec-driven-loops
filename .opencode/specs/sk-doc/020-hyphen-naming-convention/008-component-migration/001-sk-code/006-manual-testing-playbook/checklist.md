@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-code manual-testing-playbook tree (032 phase 008/006)"
+title: "Checklist: sk-code manual-testing-playbook tree (020 phase 008/006)"
 description: "Blocking SOL verification contract for the hub-level sk-code playbook rename and scenario graph closure."
 trigger_phrases:
   - "manual playbook naming checklist"

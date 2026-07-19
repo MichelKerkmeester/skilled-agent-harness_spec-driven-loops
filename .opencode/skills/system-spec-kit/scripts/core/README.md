@@ -198,7 +198,7 @@ The childPid branch is load-bearing: a launcher pid that looks dead does not mak
 | `runWorkflow` | Function (`workflow.ts`) | Main context-save orchestration entry, serialized under the run lock. |
 | `isSpecMemoryDaemonAlive` | Function (`daemon-detect.ts`) | Returns `{ alive, pid }`; the writer-safety gate for standalone indexing. |
 | `isProcessAlive` | Function (`daemon-detect.ts`) | Liveness probe via `process.kill(pid, 0)`, reused by the workflow lock cleanup. |
-| `resolveSpecMemoryDaemonLeasePath` | Function (`daemon-detect.ts`) | Resolves the launcher lease path under `mcp_server/database/`. |
+| `resolveSpecMemoryDaemonLeasePath` | Function (`daemon-detect.ts`) | Resolves the launcher lease path under `mcp-server/database/`. |
 | `CONFIG` / `findActiveSpecsDir` | Export (`config.ts`) | Frozen runtime config and active specs-directory resolution. |
 | `index.ts` | Module | Public barrel for importing core helpers. |
 | `scripts/dist/memory/generate-context.js` | CLI script | Primary caller for core workflow behavior. |

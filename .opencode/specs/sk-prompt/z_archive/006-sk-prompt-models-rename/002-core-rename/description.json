@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/002-core-rename",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/002-core-rename",
   "description": "After `git mv`, the skill's own internal references still name the old folder: `references/models/.md` link `../../../sk-prompt-small-model/...` (now",
   "keywords": [
     "git",
@@ -17,11 +17,12 @@
     "sk-prompt-small-model",
     "now"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.281Z",
+  "lastUpdated": "2026-07-18T03:48:55.263Z",
   "specId": "002",
   "folderSlug": "core-rename",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

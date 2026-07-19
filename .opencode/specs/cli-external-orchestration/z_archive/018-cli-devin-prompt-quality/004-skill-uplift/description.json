@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/004-skill-uplift",
   "description": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
   "keywords": [
     "synthesis",
@@ -17,11 +17,12 @@
     "cli-devin",
     "dispatches"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.740Z",
+  "lastUpdated": "2026-07-18T03:48:54.309Z",
   "specId": "004",
   "folderSlug": "skill-uplift",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "018-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

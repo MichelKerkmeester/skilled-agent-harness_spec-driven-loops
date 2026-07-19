@@ -11,7 +11,7 @@ user-invocable: true
 
 # Figma (mcp-figma)
 
-Drive **Figma Desktop from the terminal** through the silships **figma-cli** (published as `figma-ds-cli`) so a coding agent can read, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**. The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma_cli_reference.md`](references/figma_cli_reference.md).
+Drive **Figma Desktop from the terminal** through the silships **figma-cli** (published as `figma-ds-cli`) so a coding agent can read, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**. The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma-cli-reference.md`](references/figma-cli-reference.md).
 
 > **Naming trap (read first).** The silships tool publishes to npm as **`figma-ds-cli`** (the unambiguous binary). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command only exists when installed from the silships repo (`main`, exposes both `figma-ds-cli` and `figma-cli`). This skill uses **`figma-ds-cli`** as the canonical command throughout.
 >
@@ -92,35 +92,35 @@ TASK CONTEXT
 The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring. This skill uses a **flat intent router**: there are no keyed `references/<key>/` or `assets/<key>/` subdirectories. References are the primary loaded resources. Assets are paste-ready snippets for the optional MCP path.
 
 ```text
-references/figma_cli_reference.md   # CLI/daemon/connect model + command examples
-references/tool_surface.md          # read-only / mutating / destructive taxonomy + gating
-references/mcp_wiring.md            # optional Figma MCP (Framelink) via Code Mode
+references/figma-cli-reference.md   # CLI/daemon/connect model + command examples
+references/tool-surface.md          # read-only / mutating / destructive taxonomy + gating
+references/mcp-wiring.md            # optional Figma MCP (Framelink) via Code Mode
 references/troubleshooting.md       # failure modes + fixes
-assets/utcp_figma_manual.md         # paste-ready Framelink figma .utcp_config.json manual + .env note
-assets/env_template.md              # the prefixed figma_FIGMA_API_KEY .env line
+assets/utcp-figma-manual.md         # paste-ready Framelink figma .utcp_config.json manual + .env note
+assets/env-template.md              # the prefixed figma_FIGMA_API_KEY .env line
 ```
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS (scored routes) | Every scored route (declared per intent in RESOURCE_MAP) | `references/figma_cli_reference.md` (binary/daemon/connect baseline) |
-| CONDITIONAL | Author/modify/tokens intent | `references/tool_surface.md` (gating taxonomy) |
-| CONDITIONAL | MCP_CONTEXT intent | `references/mcp_wiring.md` (Code Mode Framelink path) |
+| ALWAYS (scored routes) | Every scored route (declared per intent in RESOURCE_MAP) | `references/figma-cli-reference.md` (binary/daemon/connect baseline) |
+| CONDITIONAL | Author/modify/tokens intent | `references/tool-surface.md` (gating taxonomy) |
+| CONDITIONAL | MCP_CONTEXT intent | `references/mcp-wiring.md` (Code Mode Framelink path) |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
-| FALLBACK | Zero-score routes only | `references/figma_cli_reference.md` suggested (never auto-loaded) |
+| FALLBACK | Zero-score routes only | `references/figma-cli-reference.md` suggested (never auto-loaded) |
 | ALWAYS (design work) | A read/export feeds a design decision, OR an author/modify/token path will create or change design artifacts (render, create, bind, variants, tokens) | `sk-design` principles, applied before deciding or authoring |
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/figma_cli_reference.md"
+DEFAULT_RESOURCE = "references/figma-cli-reference.md"
 # Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
 # into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
 # zero-score routes load nothing and ask for disambiguation instead.
@@ -153,12 +153,12 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "CREATE_RENDER":        ["references/figma_cli_reference.md", "references/tool_surface.md"],
-    "DESIGN_SYSTEM_TOKENS": ["references/figma_cli_reference.md", "references/tool_surface.md"],
-    "INSPECT_EXPORT":       ["references/figma_cli_reference.md", "references/tool_surface.md"],
-    "CONNECT_SETUP_DAEMON": ["references/figma_cli_reference.md", "references/troubleshooting.md"],
-    "MCP_CONTEXT":          ["references/mcp_wiring.md", "assets/utcp_figma_manual.md", "assets/env_template.md", "references/figma_cli_reference.md"],
-    "TROUBLESHOOT":         ["references/troubleshooting.md", "references/figma_cli_reference.md"],
+    "CREATE_RENDER":        ["references/figma-cli-reference.md", "references/tool-surface.md"],
+    "DESIGN_SYSTEM_TOKENS": ["references/figma-cli-reference.md", "references/tool-surface.md"],
+    "INSPECT_EXPORT":       ["references/figma-cli-reference.md", "references/tool-surface.md"],
+    "CONNECT_SETUP_DAEMON": ["references/figma-cli-reference.md", "references/troubleshooting.md"],
+    "MCP_CONTEXT":          ["references/mcp-wiring.md", "assets/utcp-figma-manual.md", "assets/env-template.md", "references/figma-cli-reference.md"],
+    "TROUBLESHOOT":         ["references/troubleshooting.md", "references/figma-cli-reference.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -250,7 +250,7 @@ Figma Desktop must be **open with a file**, since figma-cli drives the live Desk
 
 ### Command classes (gating)
 
-The full per-command taxonomy lives in [`references/tool_surface.md`](references/tool_surface.md). Summary:
+The full per-command taxonomy lives in [`references/tool-surface.md`](references/tool-surface.md). Summary:
 - **READ-ONLY** (safe default): `status`, `var list/find`, `get`, `find`, `inspect`, `node tree`, `extract`, `export*`, `export-jsx`, `export-storybook`, `analyze*`, `a11y*`, `files`, `--dry-run` variants. (Local exports still write files, so require an explicit output path, never silently overwrite.)
 - **MUTATING** (gate): all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `gradient mesh`. App-level: `connect`, `unpatch`, `daemon start/stop/restart`, `config set`, `init-agent`. Design-affecting MUTATING verbs (authoring, tokens, binding, variants — everything except the app-level connection/daemon/config verbs) additionally carry the `sk-design` pairing precondition: the design judgment is made there first, then executed here.
 - **DESTRUCTIVE** (confirm + explicit target + rollback): `var delete-all`, `var delete-batch`, `delete/remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
@@ -258,7 +258,7 @@ The full per-command taxonomy lives in [`references/tool_surface.md`](references
 
 ### Optional Figma MCP via Code Mode (opt-in)
 
-The skill works **fully with the CLI alone**. When the agent must pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token). Calls go through `call_tool_chain()` with naming `figma.figma_<tool>`. The token must be in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Always discover first with `search_tools()` / `tool_info()` before invoking. Full detail + the snippet: [`references/mcp_wiring.md`](references/mcp_wiring.md).
+The skill works **fully with the CLI alone**. When the agent must pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token). Calls go through `call_tool_chain()` with naming `figma.figma_<tool>`. The token must be in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Always discover first with `search_tools()` / `tool_info()` before invoking. Full detail + the snippet: [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 ---
 
@@ -298,20 +298,20 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Core References
 
-- [figma_cli_reference.md](references/figma_cli_reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
-- [tool_surface.md](references/tool_surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
-- [mcp_wiring.md](references/mcp_wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
+- [figma-cli-reference.md](references/figma-cli-reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
+- [tool-surface.md](references/tool-surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
+- [mcp-wiring.md](references/mcp-wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
 - [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts, Code Mode env-var prefix).
 
 ### Templates and Assets
 
-- [utcp_figma_manual.md](assets/utcp_figma_manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
-- [env_template.md](assets/env_template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
+- [utcp-figma-manual.md](assets/utcp-figma-manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
+- [env-template.md](assets/env-template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
 
 ### Reference Loading Notes
 
-- References are the primary loaded resources. `figma_cli_reference.md` is the baseline (always). Load `tool_surface.md` for author/modify/token work, `mcp_wiring.md` only for MCP intent, `troubleshooting.md` for setup/errors.
-- Load the `assets/` snippets only for MCP_CONTEXT intent, alongside `mcp_wiring.md`.
+- References are the primary loaded resources. `figma-cli-reference.md` is the baseline (always). Load `tool-surface.md` for author/modify/token work, `mcp-wiring.md` only for MCP intent, `troubleshooting.md` for setup/errors.
+- Load the `assets/` snippets only for MCP_CONTEXT intent, alongside `mcp-wiring.md`.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 
 ---
@@ -356,15 +356,15 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/figma_cli_reference.md` (binary/daemon/connect baseline). **Conditional**: `tool_surface.md` (gating), `mcp_wiring.md` (MCP), `troubleshooting.md` (errors).
+**Required**: `references/figma-cli-reference.md` (binary/daemon/connect baseline). **Conditional**: `tool-surface.md` (gating), `mcp-wiring.md` (MCP), `troubleshooting.md` (errors).
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers reference and asset docs dynamically. Start from `references/figma_cli_reference.md` for the CLI/daemon/connect model, load `references/tool_surface.md` for the gating taxonomy, `references/mcp_wiring.md` for the optional Code Mode path, and `references/troubleshooting.md` for failures. References stay the primary loaded resources.
+The router (Section 2) discovers reference and asset docs dynamically. Start from `references/figma-cli-reference.md` for the CLI/daemon/connect model, load `references/tool-surface.md` for the gating taxonomy, `references/mcp-wiring.md` for the optional Code Mode path, and `references/troubleshooting.md` for failures. References stay the primary loaded resources.
 
-Assets: `assets/utcp_figma_manual.md` (paste-ready Framelink `figma` `.utcp_config.json` manual + `.env` note) and `assets/env_template.md` (the prefixed `figma_FIGMA_API_KEY` line), loaded only for the optional MCP_CONTEXT path.
+Assets: `assets/utcp-figma-manual.md` (paste-ready Framelink `figma` `.utcp_config.json` manual + `.env` note) and `assets/env-template.md` (the prefixed `figma_FIGMA_API_KEY` line), loaded only for the optional MCP_CONTEXT path.
 
 Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-only diagnostics), `scripts/connect-safe.sh`, `scripts/connect-yolo.sh`, `scripts/daemon.sh`, `scripts/unpatch.sh`, `scripts/print-utcp-snippets.sh`.
 

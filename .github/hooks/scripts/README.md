@@ -19,7 +19,7 @@ Current state:
 
 - Both wrappers run `set -euo pipefail` and capture stdin to a temp file that an `EXIT` trap removes.
 - Both resolve the repository root with `git rev-parse --show-toplevel` and fall back to the current directory.
-- The handlers live in `system-spec-kit/mcp_server/dist/hooks/copilot/`. The wrappers forward to them when built.
+- The handlers live in `system-spec-kit/mcp-server/dist/hooks/copilot/`. The wrappers forward to them when built.
 - Fallback when the handler is missing is not a no-op: `session-start.sh` prints a synthetic startup snapshot to stdout, and `user-prompt-submitted.sh` writes a fallback context block to `.github/copilot-instructions.md` (override the path with `SPECKIT_COPILOT_INSTRUCTIONS_PATH`), creating the parent directory if needed, then prints `{}`.
 
 ---
@@ -38,8 +38,8 @@ scripts/
 
 | File | Forwards to | Fallback when handler is missing |
 |---|---|---|
-| `session-start.sh` | `system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js` | Prints a synthetic startup snapshot to stdout |
-| `user-prompt-submitted.sh` | `system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js` | Writes a context block to `.github/copilot-instructions.md` (or `SPECKIT_COPILOT_INSTRUCTIONS_PATH`), then prints `{}` |
+| `session-start.sh` | `system-spec-kit/mcp-server/dist/hooks/copilot/session-prime.js` | Prints a synthetic startup snapshot to stdout |
+| `user-prompt-submitted.sh` | `system-spec-kit/mcp-server/dist/hooks/copilot/user-prompt-submit.js` | Writes a context block to `.github/copilot-instructions.md` (or `SPECKIT_COPILOT_INSTRUCTIONS_PATH`), then prints `{}` |
 
 ---
 

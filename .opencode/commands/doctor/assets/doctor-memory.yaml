@@ -1,0 +1,243 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: MEMORY CONTINUITY-INDEX WORKFLOW (INTERACTIVE DIAGNOSTIC MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running memory continuity-index diagnostics in interactive mode
+purpose: Read-only health check + drift detection with user review gates. No mutations. Report goes to packet-local scratch.
+action: Discovery → gate → analysis → gate → drift classification → recommendation → state log
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential
+  compliance: MANDATORY
+  execution: interactive
+  approvals: per_phase
+  tracking: phase_by_phase
+  validation: continuous_self_validation
+  intent: DIAGNOSE  # never APPLY in this YAML
+
+
+memory_doctor_invariant: |
+  Memory doctor is read-only by contract. It treats the canonical
+  context-index.sqlite DB as the memory-owned store it diagnoses but never
+  mutates. Rebuilds are owned by the /doctor:update orchestrator, which relies on
+  the per-file memory_index_scan transaction model so SIGINT uses the ~5 sec settle
+  window before restoring snapshots for cross-file consistency.
+
+upstream_assets:
+  contract: "local command design contract"
+  cli_health_command: "node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
+  files:
+    spec: "spec.md"  # flock, snapshots, and dashboard contract
+    decision_record: "decision-record.md"  # memory_index_scan transaction model rationale
+    tx_model: "decision-record.md#adr-001"  # per-file transactions + ~5 sec SIGINT settle
+    checklist: "checklist.md#doctor-memory"  # gold-battery acceptance bar
+  pass_policy:
+    minimum_result_count_per_query: 1  # existing memory gold-battery floor
+    post_result_count_floor_ratio: 0.80  # preserve current workflow threshold
+    recall_at_20_floor_ratio: 0.80  # preserve current Recall@20 proxy
+memory_doctor_philosophy:
+  principle: "Detect drift before it breaks memory_search; this command never mutates — rebuilds run through /doctor:update"
+  approach: "Read memory_health + memory_stats → classify drift signals → emit recommendations"
+  mandate: "This command is read-only by contract."
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (passed from Markdown setup phase)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "[EXECUTION_MODE] - INTERACTIVE (this YAML)"
+  intent: "[INTENT] - DIAGNOSE (this YAML)"
+  incremental: "[INCREMENTAL] - true|false (informational; no rebuild in this command)"
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+
+field_handling:
+  defaults:
+    incremental_empty: "false"
+  incremental_policy:
+    true: "diagnostic input only; recommend incremental apply when medium drift is detected"
+    false: "diagnostic input only; recommend full apply when high-severity drift is detected"
+mutation_boundaries:
+  allowed_targets:
+    - "mcp-server/database/context-index.sqlite"  # canonical memory DB
+    - "mcp-server/database/context-index*.sqlite.pre-doctor-memory.*.bak"  # memory snapshot files only
+  forbidden_targets:
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor memory
+    - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
+    - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a memory doctor target
+    - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
+    - ".opencode/skills/**/graph-metadata.json"
+    - ".opencode/agents/**/*.md"
+    - ".opencode/commands/doctor/*.md"
+    - ".opencode/commands/doctor/assets/doctor_*.yaml"
+    - "mcp-server/database/*code-graph*"
+    - "mcp-server/database/*deep-loop*"
+    - "mcp-server/database/*eval*"
+    - "mcp-server/database/*skill*"
+    - "mcp-server/database/*causal*"
+  enforcement: "This command is READ-ONLY by contract. No mutation phases exist in this YAML. Any attempted write halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'."
+  validator:
+    name: validate_targets
+    runs: "before any file write; diagnostic mode should never reach a write path"
+    steps:
+      - "For each target: resolve via realpath; reject absolute paths; reject paths containing `..` or symlinks escaping repo root"
+      - "Assert resolved target is repo-relative under repo_root"
+      - "Match resolved target against allowed_targets patterns only"
+      - "Reject any match against forbidden_targets patterns"
+      - "On first violation: abort, append violation to state log, exit STATUS=FAIL with diagnostic"
+    on_pass: "diagnostic reads may continue"
+    on_fail: "abort before any write; STATUS=FAIL ERROR=\"target validation failed: <path>\""
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE GATES
+# ─────────────────────────────────────────────────────────────────
+interactive_gates:
+  before_phase_1_analysis:
+    prompt: "Phase 0 complete. Continue to Phase 1? (y/n/details)"
+    blocking: true
+    approvals:
+      y: "continue to phase_1_analysis"
+      n: "STATUS=CANCELLED; emit state log with phase=phase_0_discovery"
+      details: "print Phase 0 discovery outputs, then ask again"
+  before_phase_2_recommendation:
+    prompt: "Phase 1 complete. Continue to Phase 2? (y/n/details)"
+    blocking: true
+    approvals:
+      y: "continue to phase_2_recommendation"
+      n: "STATUS=CANCELLED; emit state log with phase=phase_1_analysis"
+      details: "print Phase 1 drift classification outputs, then ask again"
+
+# ─────────────────────────────────────────────────────────────────
+# STALENESS SIGNALS
+# ─────────────────────────────────────────────────────────────────
+staleness_signals:
+  embedding_drift:
+    detection: "memory_health reports `embedding_health: degraded` OR records with `last_indexed_at` older than source file mtime"
+    severity: medium
+    transient_rebuild_guard: "Before classifying degraded embedding_health as drift, rule out an in-flight async re-embed. If memory_health.recallDegradation.degraded is false, OR embedder_jobs shows a running rebuild with a climbing processed/total, the degraded reading is transient rebuild lag, not drift — classify as transient (wait + re-probe), not a rebuild-worthy signal. Never judge vector health from the canonical context-index.sqlite sqlite_master: vec_memories*/vec_<dim> live in the attached shard under vectors/, so a main-DB scan shows only vec_metadata and falsely looks dropped (see references/memory/embedding-resilience.md §4)."
+  fts_miss:
+    detection: "memory_health reports `fts_health: degraded` OR new spec-doc files not in FTS index"
+    severity: medium
+  chunk_boundary_drift:
+    detection: "Anchors moved or sections renumbered since last index"
+    severity: low
+  trigger_phrase_drift:
+    detection: "Frontmatter trigger_phrases updated but indexed alias rows stale"
+    severity: low
+  embedding_provider_change:
+    detection: "Vector DB rows with old provider id (voyage-2 vs voyage-4)"
+    severity: high
+  divergent_alias_groups:
+    detection: "Same canonical name routed to different record IDs"
+    severity: high
+  hard_exclusion_risk:
+    detection: "memory_health data.exclusionAudit diagnostics include hard-exclusion-risk or exclusion-unclassified"
+    severity: high
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_discovery:
+    purpose: Probe memory_health + memory_stats; capture baseline
+    activities:
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
+      - "Run: memory_health({reportMode: 'full'})"
+      - "Inspect memory_health.data.exclusionAudit; classify hard_exclusion_risk from diagnostics without changing recall"
+      - "Run: memory_stats({})"
+      - "Bash: stat -f '%m %z' database/context-index.sqlite (mtime + size for canonical DB)"
+      - "Interactive gate: before_phase_1_analysis"
+    outputs:
+      - cli_availability: available|retryable-unavailable|failed
+      - total_records: N
+      - last_index_at: ISO_timestamp
+      - fts_health: ok|degraded|missing
+      - embedding_health: ok|degraded|missing
+      - canonical_db_size: {path: string, size: bytes}
+      - canonical_db_mtime: {path: string, mtime: epoch_seconds}
+    validation: discovery_complete
+    fail_fast:
+      - "memory_health returns error → STATUS=FAIL with diagnostic"
+      - "Database file missing → STATUS=DEGRADED, message='index not initialized'"
+
+  phase_1_analysis:
+    purpose: Classify drift signals + identify suspect records
+    activities:
+      - "Cross-reference memory_health output with mtime: any spec-doc file with mtime > last_index_at signals staleness"
+      - "Sample up to 5 records flagged as drift candidates"
+      - "Run memory_drift_why per sampled record (read-only)"
+      - "Aggregate drift signals into drift_classes count map"
+      - "Interactive gate: before_phase_2_recommendation"
+    outputs:
+      - drift_classes:
+          embedding_drift: N
+          fts_miss: M
+          chunk_boundary_drift: K
+          trigger_phrase_drift: L
+          embedding_provider_change: P
+          divergent_alias_groups: Q
+          hard_exclusion_risk: R
+      - sample_drift_explanations: [up to 5 entries]
+      - severity_max: low|medium|high
+    validation: analysis_complete
+
+  phase_2_recommendation:
+    purpose: Translate drift signals into recommended action
+    rules:
+      - "If severity_max == high (provider change OR divergent aliases) → recommend a full rebuild via /doctor:update"
+      - "If severity_max == medium (embedding OR fts drift) → recommend an incremental rebuild via /doctor:update"
+      - "Transient-rebuild exception: if the only medium signal is embedding_drift AND its transient_rebuild_guard matches (memory_health.recallDegradation.degraded is false OR embedder_jobs shows a running rebuild) → keep status=DEGRADED but recommend WAITing for the embedder job to finish and re-probing, NOT a rebuild. A rebuild would needlessly restart an already-healthy async re-embed."
+      - "If severity_max == low (boundary OR trigger drift) → recommend monitoring; rerun in 1-2 weeks"
+      - "If no drift → status=OK, no action needed"
+    outputs:
+      - status: OK|DEGRADED|STALE|MISSING
+      - recommended_command: string
+      - recommended_when: now|low-activity-window|monitor
+
+  phase_3_report:
+    purpose: Emit packet-local report + state log
+    activities:
+      - "Compose report following OUTPUT CONTRACT in memory.md"
+      - "Write to <packet_scratch>/doctor-memory-report.<timestamp>.md (mutation class: add-only per _routes.yaml; the canonical memory DB itself stays read-only)"
+      - "Print summary table to stdout"
+    outputs:
+      - report_path: string
+      - status: STATUS_OK | STATUS_DEGRADED | STATUS_STALE | STATUS_MISSING
+    validation: report_emitted
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT CONTRACT
+# ─────────────────────────────────────────────────────────────────
+output_contract:
+  format: markdown
+  required_sections:
+    - status_header
+    - database_state_table
+    - drift_signals_block
+    - recommendation_block
+  optional_sections:
+    - sample_drift_explanations
+  state_log:
+    path: "<packet_scratch>/doctor-memory-state.<timestamp>.json"
+    schema:
+      command: "/doctor memory"
+      mode: INTERACTIVE
+      intent: DIAGNOSE
+      timestamp: ISO_8601
+      duration_seconds: number
+      status: OK|DEGRADED|STALE|MISSING|FAIL|CANCELLED
+      drift_classes: object
+      recommendation: string
+
+# ─────────────────────────────────────────────────────────────────
+# HALT CONDITIONS
+# ─────────────────────────────────────────────────────────────────
+halt_conditions:
+  - "Phase 0 fails to read memory_health (MCP unavailable) → STATUS=FAIL"
+  - "Database files missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:update to bootstrap"
+  - "Any phase emits a write attempt → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
+  - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"

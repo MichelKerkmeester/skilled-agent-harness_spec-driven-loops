@@ -533,7 +533,7 @@ NOT contain them. Toolchains that depend on them break **silently**:
 ### Caveat 2: The memory / vector DBs are a SINGLE global instance
 
 The continuity DB and vector DBs live under
-`.opencode/skills/system-spec-kit/mcp_server/database/` and are **gitignored** — there is
+`.opencode/skills/system-spec-kit/mcp-server/database/` and are **gitignored** — there is
 exactly one instance shared across the repo, NOT one per worktree. Consequences:
 
 - DB-dependent ops (`memory_index_scan`, `generate-context.js` indexing, re-embed) read

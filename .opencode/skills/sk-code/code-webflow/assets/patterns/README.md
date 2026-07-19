@@ -68,10 +68,10 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
-| `interaction_gate_patterns.js` | JS source file in this folder. |
-| `performance_patterns.js` | JS source file in this folder. |
-| `validation_patterns.js` | JS source file in this folder. |
-| `wait_patterns.js` | JS source file in this folder. |
+| `interaction-gate-patterns.js` | JS source file in this folder. |
+| `performance-patterns.js` | JS source file in this folder. |
+| `validation-patterns.js` | JS source file in this folder. |
+| `wait-patterns.js` | JS source file in this folder. |
 
 ---
 
@@ -111,4 +111,4 @@ Expected output: Findings recorded in the current refinement and release-alignme
 |---|---|
 | [`sk-code/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../../sk-doc/create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../sk-doc/create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

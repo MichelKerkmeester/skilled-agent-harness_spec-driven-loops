@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
+  "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
   "description": "Two findings from the packet 008 audit:",
   "keywords": [
     "two",
@@ -7,11 +7,12 @@
     "packet",
     "audit"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.958Z",
+  "lastUpdated": "2026-07-18T03:48:57.214Z",
   "specId": "003",
   "folderSlug": "advisor-standards-alignment",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "007-skill-advisor-production-hardening"
   ],
   "memorySequence": 0,

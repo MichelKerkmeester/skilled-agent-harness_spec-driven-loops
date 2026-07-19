@@ -955,7 +955,7 @@ lsof -i :9222
 | Document        | Location                                                                  | Purpose              |
 | --------------- | ------------------------------------------------------------------------- | -------------------- |
 | SKILL.md        | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`                      | Complete workflows   |
-| CDP Patterns    | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`    | Domain patterns      |
+| CDP Patterns    | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md`    | Domain patterns      |
 | Troubleshooting | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md` | Detailed fixes       |
 | Examples        | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md`            | Production templates |
 | Code Mode Guide | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md`                          | Code Mode setup      |

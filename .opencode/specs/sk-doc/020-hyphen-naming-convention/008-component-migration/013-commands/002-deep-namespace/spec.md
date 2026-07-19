@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep command namespace naming (032 phase 008/013/002)"
+title: "Feature Specification: deep command namespace naming (020 phase 008/013/002)"
 description: "The deep command namespace mixes maintained workflow assets, legacy fallback bodies, and generated compiled contracts whose filenames and embedded source paths use underscores. This phase renames maintained filesystem names, preserves generated-output exemptions, and keeps deep command IDs and contract authority intact."
 trigger_phrases:
   - "deep command namespace naming"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Deep command namespace naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 002 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -74,7 +74,7 @@ Rename the maintained deep workflow, presentation, and legacy fallback files to 
 ### Out of Scope
 
 - The already-compliant command markdown files under `.opencode/commands/deep/` and the `assets/compiled/README.md` document.
-- Generated compiled filenames `deep_ai-council.contract.md`, `deep_alignment.contract.md`, `deep_research.contract.md`, and `deep_review.contract.md`; generated output remains an explicit 032 exemption. Their generated content may be refreshed only to reflect maintained source paths and digests.
+- Generated compiled filenames `deep_ai-council.contract.md`, `deep_alignment.contract.md`, `deep_research.contract.md`, and `deep_review.contract.md`; generated output remains an explicit 020 exemption. Their generated content may be refreshed only to reflect maintained source paths and digests.
 - Deep command IDs, workflow YAML keys, contract schema fields, Python/package names, lockfiles, and frozen history.
 - Other commands namespaces and the shared asset rollup owned by sibling phases.
 <!-- /ANCHOR:scope -->

@@ -13,11 +13,11 @@ const MB_ROOT = path.join(
 );
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures',
+  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures',
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles',
+  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles',
 );
 
 // The runtime module is CommonJS; load it through a require bridge so the .cjs
@@ -204,11 +204,11 @@ describe('hard fixture pack: shape + adversarial oracle density', () => {
 });
 
 describe('capability profile: loads and selects the hard pack', () => {
-  it('capability_m3_vs_mimo.json is a valid model-vs-model profile over the 4 hard fixtures', () => {
+  it('capability-m3-vs-mimo.json is a valid model-vs-model profile over the 4 hard fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -269,11 +269,11 @@ describe('harder fixture pack: shape + de-saturation oracle density', () => {
 describe('capability v2 profile: loads and selects the harder pack', () => {
   const V2_FIXTURES = [...HARDER_IDS, 'hard_roman_to_int'];
 
-  it('capability_m3_vs_mimo_v2.json validates and selects the 3 harder + retained roman fixtures', () => {
+  it('capability-m3-vs-mimo-v2.json validates and selects the 3 harder + retained roman fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v2.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -285,7 +285,7 @@ describe('capability v2 profile: loads and selects the harder pack', () => {
   });
 
   it('every fixture the v2 profile references resolves on disk and parses', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v2.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
     for (const id of profile.fixtures) {
       const p = path.join(FIXTURE_DIR, id + '.json');
       expect(fs.existsSync(p)).toBe(true);
@@ -358,11 +358,11 @@ describe('validation fixture pack: shape + adversarial-invalid dominance', () =>
 describe('capability v3 profile: loads and selects the validation pack', () => {
   const V3_FIXTURES = [...VALIDATION_IDS, 'hard_roman_to_int'];
 
-  it('capability_m3_vs_mimo_v3.json validates and selects the 3 validation + retained roman fixtures', () => {
+  it('capability-m3-vs-mimo-v3.json validates and selects the 3 validation + retained roman fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v3.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -375,7 +375,7 @@ describe('capability v3 profile: loads and selects the validation pack', () => {
   });
 
   it('every fixture the v3 profile references resolves on disk and parses', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v3.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
     for (const id of profile.fixtures) {
       const p = path.join(FIXTURE_DIR, id + '.json');
       expect(fs.existsSync(p)).toBe(true);

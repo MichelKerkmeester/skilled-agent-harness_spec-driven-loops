@@ -25,11 +25,11 @@ const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
 const WORKFLOWS = resolve(__dirname, '..', '..', '..');
 
 const RESOLVER_CONFORMANT = [
-  { label: 'deep-research', path: resolve(WORKFLOWS, 'deep-research', 'assets', 'runtime_capabilities.json') },
-  { label: 'deep-review', path: resolve(WORKFLOWS, 'deep-review', 'assets', 'runtime_capabilities.json') },
+  { label: 'deep-research', path: resolve(WORKFLOWS, 'deep-research', 'assets', 'runtime-capabilities.json') },
+  { label: 'deep-review', path: resolve(WORKFLOWS, 'deep-review', 'assets', 'runtime-capabilities.json') },
 ];
 
-const COUNCIL_MATRIX = resolve(WORKFLOWS, 'deep-ai-council', 'assets', 'runtime_capabilities.json');
+const COUNCIL_MATRIX = resolve(WORKFLOWS, 'deep-ai-council', 'assets', 'runtime-capabilities.json');
 
 // Every graph-backed mode mirrors the same supported runtime targets, so a matrix
 // that drops one (or grows an unannounced one) is per-mode drift.

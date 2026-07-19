@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-prompt manual-testing-playbook trees (032 phase 004.004)"
+title: "Checklist: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
 description: "Blocking SOL verifier contract for phase 004 of the sk-prompt kebab-case program: two playbook trees, active link closure, and scenario coverage parity."
 trigger_phrases:
   - "sk-prompt manual testing playbook checklist"

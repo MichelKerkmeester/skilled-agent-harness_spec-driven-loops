@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality/001-council-design",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/001-council-design",
   "description": "The bespoke deep-loop in 003 needs a binding rubric, fixture catalog, knob set, and convergence rule before any code is written",
   "keywords": [
     "bespoke",
@@ -17,11 +17,12 @@
     "code",
     "written"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.729Z",
+  "lastUpdated": "2026-07-18T03:48:54.302Z",
   "specId": "001",
   "folderSlug": "council-design",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "018-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

@@ -12,16 +12,16 @@
   "derived": {
     "trigger_phrases": [
       "sk-git benchmark kebab-case",
-      "032 benchmark profile rename",
+      "020 benchmark profile rename",
       "benchmark artifact path closure",
       "sk-git benchmark implementation plan",
-      "032 benchmark profile phase plan",
+      "020 benchmark profile phase plan",
       "benchmark artifact parity plan",
       "sk-git benchmark tasks",
-      "032 benchmark profile rename tasks",
+      "020 benchmark profile rename tasks",
       "benchmark evidence parity tasks",
       "sk-git benchmark checklist",
-      "032 benchmark profile verification",
+      "020 benchmark profile verification",
       "benchmark evidence parity acceptance"
     ],
     "key_topics": [
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers. This phase moves the benchmark filesystem names to kebab-case and proves that benchmark evidence, fixture discovery, and storage-guide references remain intact.",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-07-17T14:30:42.270Z",
+    "last_save_at": "2026-07-17T20:26:18.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b5cf018c5c90eb97f5b19c0a151e133cf504772af482cf595305234a8a75d636",
+    "source_fingerprint": "sha256:144c9627f5878484f26f610b04d51f0540f9ab243855ea3db609be2fa528fffa",
     "source_doc_hashes": {
-      "spec.md": "5b3d81e043376eb9eacd93779505919a35afcadcc1a51ef00992e281571f4d98",
-      "plan.md": "8046b80e67a39477836bb32859f0eaff8fed5bfdc504ab1da021248eb4f33429",
-      "tasks.md": "5baf3c380807efb831c1c690bab709cf5899cdf918e8f43a694d66154611df83",
-      "checklist.md": "b5a01c9d0fba420dfc2bc17539c6471b96a36363c480040ef21a29dbf00946bc"
+      "spec.md": "f3fad5df0079e6fdab0f9e99cbb546661e31d0f52369c9b56a063518681c9a45",
+      "plan.md": "5eee8675981c4d70041537a89fd3a14b07acda7290ab24ad2d7c10b9d7ed47b7",
+      "tasks.md": "eb23c5821e8053c0c115ad8dadb289c986c46c8792d7d0593357e2a466d59169",
+      "checklist.md": "f447d1f5040a6be10e17d3a0f5bf56fd793919bee58d3dd615ed610abd9d7a72"
     },
     "last_active_child_id": null,
     "last_active_at": null

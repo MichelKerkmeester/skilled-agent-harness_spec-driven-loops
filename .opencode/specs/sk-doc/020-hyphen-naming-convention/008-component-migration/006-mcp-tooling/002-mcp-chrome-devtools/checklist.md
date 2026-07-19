@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-chrome-devtools naming closure (032 phase 002)"
+title: "Checklist: mcp-chrome-devtools naming closure (020 phase 002)"
 description: "Blocking SOL verifier contract for the Chrome DevTools component naming phase."
 trigger_phrases:
   - "mcp-chrome-devtools naming checklist"

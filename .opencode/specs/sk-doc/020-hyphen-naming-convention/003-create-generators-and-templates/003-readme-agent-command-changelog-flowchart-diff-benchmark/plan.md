@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: README, agent, command, changelog, flowchart, diff, and benchmark generators (032 phase 003 child 003)"
+title: "Implementation Plan: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
 description: "Inventory seven create-* output contracts, update their packet guidance and templates, and verify each family in a disposable target with semantic kebab-case naming and explicit exemptions."
 trigger_phrases:
   - "create workflow artifact naming implementation plan"
@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the implementation plan for seven create-* output families"
-    next_safe_action: "Inventory output contracts and exact-name exemptions by generator family"
+    recent_action: "Completed the implementation plan and all verification gates"
+    next_safe_action: "No child work remains"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,15 +43,15 @@ First inventory each workflow's output path inputs, derived slug rules, exact-na
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Each of the seven packet output contracts has a concrete representative input and target.
-- [ ] Exact-name exemptions and user-provided target-path behavior are recorded before edits.
-- [ ] The create-diff preview boundary and benchmark evaluator/scoring boundary are preserved.
-- [ ] Temporary output roots are available for each generator family.
+- [x] Each of the seven packet output contracts has a concrete representative input and target.
+- [x] Exact-name exemptions and user-provided target-path behavior are recorded before edits.
+- [x] The create-diff preview boundary and benchmark evaluator/scoring boundary are preserved.
+- [x] Temporary output roots are available for each generator family.
 
 ### Definition of Done
-- [ ] All seven families emit only compliant non-exempt path segments and filenames.
-- [ ] Packet guidance/templates match the emitted paths and contain no stale non-exempt output examples.
-- [ ] Family-specific output listings, path/link checks, and focused tests are green.
+- [x] All seven families emit only compliant non-exempt path segments and filenames.
+- [x] Packet guidance/templates match the emitted paths and contain no stale non-exempt output examples.
+- [x] Family-specific output listings, path/link checks, and focused tests are green.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -68,20 +68,20 @@ First inventory each workflow's output path inputs, derived slug rules, exact-na
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory `SKILL.md`, README, reference, asset, and output-path rules for all seven packets.
-- [ ] Define representative inputs, expected output trees, exact-name exemptions, and invalid-name cases.
-- [ ] Confirm existing source-template filenames and current benchmark/scoring files will not be renamed here.
+- [x] Inventory `SKILL.md`, README, reference, asset, and output-path rules for all seven packets.
+- [x] Define representative inputs, expected output trees, exact-name exemptions, and invalid-name cases.
+- [x] Confirm existing source-template filenames and current benchmark/scoring files will not be renamed here.
 
 ### Phase 2: Implementation
-- [ ] Update README/install-guide, agent, and command output naming rules.
-- [ ] Update changelog, flowchart, and diff target-path rules without changing version or preview contracts.
-- [ ] Update benchmark family output rules and packet-local examples without changing scoring/evaluator ownership.
-- [ ] Replace stale non-exempt output examples and add semantic invalid-input diagnostics where the workflow validates names.
+- [x] Update README/install-guide, agent, and command output naming rules.
+- [x] Update changelog, flowchart, and diff target-path rules without changing version or preview contracts.
+- [x] Update benchmark family output rules and packet-local examples without changing scoring/evaluator ownership.
+- [x] Replace stale non-exempt output examples and add semantic invalid-input diagnostics where the workflow validates names.
 
 ### Phase 3: Verification
-- [ ] Run a representative temporary output for every family and list all emitted paths.
-- [ ] Resolve generated links/references and compare names against the exemption-aware policy.
-- [ ] Run focused packet tests/validators and record commands, exit codes, and output counts.
+- [x] Run a representative temporary output for every family and list all emitted paths.
+- [x] Resolve generated links/references and compare names against the exemption-aware policy.
+- [x] Run focused packet tests/validators and record commands, exit codes, and output counts.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -101,7 +101,7 @@ First inventory each workflow's output path inputs, derived slug rules, exact-na
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase uses the 032 policy/exemption set and the existing packet-local templates. Child 004 must later project the same output contract into command auto/confirm assets, while children 001/002 own skill/catalog/playbook-specific contracts. No existing on-disk rename or create-diff engine implementation is required here.
+The phase uses the 020 policy/exemption set and the existing packet-local templates. Child 004 must later project the same output contract into command auto/confirm assets, while children 001/002 own skill/catalog/playbook-specific contracts. No existing on-disk rename or create-diff engine implementation is required here.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback",
   "description": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
   "keywords": [
     "today",
@@ -15,11 +15,11 @@
     "sk-prompt",
     "clipromptqualitycard"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.084Z",
+  "lastUpdated": "2026-07-18T03:48:55.225Z",
   "specId": "005",
   "folderSlug": "model-profiles-and-fallback",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive",
     "004-sk-prompt-small-model-optimization"
   ],

@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/004-cli-copilot-creation",
+  "specFolder": "cli-external-orchestration/z_archive/004-cli-copilot-creation",
   "description": "No skill exists for AI assistants to delegate tasks to GitHub's Copilot CLI (`copilot`)",
   "keywords": [
     "skill",
@@ -11,11 +11,12 @@
     "copilot",
     "cli"
   ],
-  "lastUpdated": "2026-07-14T19:14:38.816Z",
+  "lastUpdated": "2026-07-18T03:48:54.289Z",
   "specId": "004",
   "folderSlug": "cli-copilot-creation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

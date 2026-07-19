@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+  "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
   "description": "The remaining phases need a single, ratified design to implement against: where per-model prompt-craft prose lives, the exact shape of the",
   "keywords": [
     "remaining",
@@ -18,11 +18,12 @@
     "exact",
     "shape"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.660Z",
+  "lastUpdated": "2026-07-18T03:48:55.240Z",
   "specId": "001",
   "folderSlug": "design-architecture-and-data-contract",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "005-sk-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

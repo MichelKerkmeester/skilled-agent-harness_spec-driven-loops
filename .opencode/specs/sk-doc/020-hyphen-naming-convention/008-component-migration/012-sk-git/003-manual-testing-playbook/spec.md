@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git manual testing playbook (032 phase 008/012/003)"
+title: "Feature Specification: sk-git manual testing playbook (020 phase 008/012/003)"
 description: "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map)."
 trigger_phrases:
   - "sk-git manual testing kebab-case"
-  - "032 manual playbook rename"
+  - "020 manual playbook rename"
   - "manual scenario path closure"
 importance_tier: "important"
 contextType: "planning"
@@ -27,7 +27,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git manual testing playbook
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 003 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 003 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -81,7 +81,7 @@ The 41 source basenames observed in the sk-git history are grouped by their sour
 - Feature-catalog paths, references, assets, benchmark profiles/artifacts, changelog files, scripts, code, Python names, Python package directories, and tool-mandated names.
 - Changing scenario IDs, scenario semantics, frontmatter fields, JSON/YAML/TOML keys, commands, or non-path prose.
 - Executing manual scenarios as a behavior change; this phase proves path and discovery integrity only.
-- Any migration outside the sk-git skill or any sibling 032 component phase.
+- Any migration outside the sk-git skill or any sibling 020 component phase.
 
 ### Files to Change
 
@@ -102,7 +102,7 @@ The 41 source basenames observed in the sk-git history are grouped by their sour
 | REQ-002 | All manual-playbook path consumers use kebab-case. | The root index, category links, scenario links, package-artifact list, SKILL.md, README.md, and in-tree references resolve with zero broken links and zero active source pointers. |
 | REQ-003 | Scenario discoverability and identity are preserved. | The index still enumerates exactly GIT-001 through GIT-041 once each; category membership and scenario frontmatter remain unchanged apart from path values. |
 | REQ-004 | The phase does not alter the content contract. | Scenario bodies, IDs, commands, keys, frontmatter fields, and non-path values are byte- or field-parity equivalent before and after. |
-| REQ-005 | The phase honors the 032 exemption boundary and stays within sk-git. | No Python/tool-mandated name, code identifier, feature-catalog path, sibling surface, or frozen content is in the candidate diff. |
+| REQ-005 | The phase honors the 020 exemption boundary and stays within sk-git. | No Python/tool-mandated name, code identifier, feature-catalog path, sibling surface, or frozen content is in the candidate diff. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -116,7 +116,7 @@ The 41 source basenames observed in the sk-git history are grouped by their sour
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase depends on the frozen 032 map and the reference checker from phase 005. The highest risks are renaming a category without its nested scenario closure, changing an ID while repairing a path, and leaving stale underscore paths in the root index or package-artifact list. The checklist therefore checks the 49-entry map, 41-ID parity, zero broken links, and a path-scoped diff.
+The phase depends on the frozen 020 map and the reference checker from phase 005. The highest risks are renaming a category without its nested scenario closure, changing an ID while repairing a path, and leaving stale underscore paths in the root index or package-artifact list. The checklist therefore checks the 49-entry map, 41-ID parity, zero broken links, and a path-scoped diff.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

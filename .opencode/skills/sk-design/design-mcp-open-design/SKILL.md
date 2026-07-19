@@ -91,7 +91,7 @@ TASK CONTEXT
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill-smart-router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
 
 The full implementation — keyword-weighted `classify_intents()`, the `RESOURCE_MAP` per direction, the existence-guarded `discover_markdown_resources()`/`_guard_in_skill()` loader (falling back to the `UNKNOWN_FALLBACK_CHECKLIST` when intent is unclear), and the `design_gate()` hard-coupling check that blocks any RUN or design-feeding READ without a classified `openDesignPurpose` (`openDesignExemption` or `skDesignGate`) — lives in [`references/smart-router-pseudocode.md`](references/smart-router-pseudocode.md). Read it before implementing or modifying routing logic; this section is the contract, that file is the code.
 

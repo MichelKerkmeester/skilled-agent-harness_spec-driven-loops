@@ -7,14 +7,14 @@ import {
   WARM_START_BUNDLE_TOGGLE,
   WARM_START_VARIANTS,
   type WarmStartScenario,
-} from '../../mcp_server/lib/eval/warm-start-variant-runner.js';
+} from '../../mcp-server/lib/eval/warm-start-variant-runner.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 const ENV_REFERENCE_PATH = resolve(
   moduleDir,
-  '../../mcp_server/ENV_REFERENCE.md',
+  '../../mcp-server/ENV-REFERENCE.md',
 );
 
 const frozenCorpus: readonly WarmStartScenario[] = [

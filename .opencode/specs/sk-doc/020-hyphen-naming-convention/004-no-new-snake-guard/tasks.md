@@ -1,6 +1,6 @@
 ---
-title: "Tasks: no-new-snake_case guard (032 phase 004)"
-description: "Tasks for phase 004 of the 032 kebab-case filesystem-naming program: no-new-snake_case guard."
+title: "Tasks: no-new-snake_case guard (020 phase 004)"
+description: "Tasks for phase 004 of the 020 kebab-case filesystem-naming program: no-new-snake_case guard."
 trigger_phrases:
   - "no-new-snake_case guard tasks"
   - "hyphen naming phase 004 tasks"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Tasks authored for the 032 phased tree"
+    recent_action: "Tasks authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []

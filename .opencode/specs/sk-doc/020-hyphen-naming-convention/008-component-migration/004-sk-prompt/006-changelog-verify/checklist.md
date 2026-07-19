@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-prompt changelog and version verification (032 phase 004.006)"
+title: "Checklist: sk-prompt changelog and version verification (020 phase 004.006)"
 description: "Blocking SOL verifier contract for phase 006 of the sk-prompt kebab-case program: release-entry existence, rename-set coverage, version coherence, and frozen-history protection."
 trigger_phrases:
   - "sk-prompt changelog verification checklist"

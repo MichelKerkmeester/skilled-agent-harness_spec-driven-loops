@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect",
+  "specFolder": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect",
   "description": "The first skill-advisor reconnect implementation added owner-lease and bridge happy paths, but it dropped the bridge module's `{ action: \"respawn\" }`",
   "keywords": [
     "first",
@@ -16,11 +16,12 @@
     "action",
     "respawn"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.322Z",
+  "lastUpdated": "2026-07-18T03:48:57.283Z",
   "specId": "001",
   "folderSlug": "skill-advisor-cross-session-reconnect",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "013-advisor-and-codegraph-migrated-items"
   ],
   "memorySequence": 0,

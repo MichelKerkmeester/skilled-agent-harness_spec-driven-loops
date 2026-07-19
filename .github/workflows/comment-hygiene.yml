@@ -34,7 +34,7 @@ jobs:
           if [ "$VIOLATIONS" -gt 0 ]; then
             echo ""
             echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
-            echo "See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4"
+            echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
             echo "Fix: replace the pointer with the durable WHY."
             exit 1
           fi

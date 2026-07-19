@@ -1,6 +1,6 @@
 ---
-title: "Tasks: inventory and frozen rename map (032 phase 006)"
-description: "Tasks for phase 006 of the 032 kebab-case filesystem-naming program: inventory and frozen rename map."
+title: "Tasks: inventory and frozen rename map (020 phase 006)"
+description: "Tasks for phase 006 of the 020 kebab-case filesystem-naming program: inventory and frozen rename map."
 trigger_phrases:
   - "inventory and frozen rename map tasks"
   - "hyphen naming phase 006 tasks"

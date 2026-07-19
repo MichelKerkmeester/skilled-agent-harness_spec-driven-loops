@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The code-quality mode still stores its reusable checklist under assets/codequalitychecklist/, its playbook under manualtestingplaybook/qualitygate/, and its benchmark runs under livemodeb/ and routermodea/",
     "created_at": "2026-07-14T15:17:08Z",
-    "last_save_at": "2026-07-17T14:30:07.155Z",
+    "last_save_at": "2026-07-17T20:26:02.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a536189701dbf49f8d3af19cb015d8a0dec8789c01ed015d5260cc3f7327fb2f",
+    "source_fingerprint": "sha256:7c800dcd56ba923a8950fd7579d1f96b5dc41e8dd9480dde36be1676bca5c32a",
     "source_doc_hashes": {
-      "spec.md": "b948221636f8bf4d39c1837326d7f7e27f3fbc1183829a0147f87212e5a8e7da",
-      "plan.md": "44fdd4c3cef6817697df013ad9e07aea0b65344d4ebed5d2d05de2dbaa5e0b38",
-      "tasks.md": "e9935d88de9ccaf0747cb76f6792da09805eecb328a2557431ed8093beb2971f",
-      "checklist.md": "25b8e7ed4337e77fe9c3430716ef837301185a3aa07a2b95367d499fdc3a375f"
+      "spec.md": "f632bee0d335e11b662cf10f3c933e76eea98bb9f2414d2d357fc58ebe27f20d",
+      "plan.md": "d2473c25e0dfba8ea7227d2de2b606679c96b614625a651067a99287dc13e1e1",
+      "tasks.md": "3509ef444babd44917d42f495234e249cf5c8c61387177fd00e01bebd4ad8659",
+      "checklist.md": "cfdb150d6c6b79ad2012ca9dd32ea8b3b486e1f83c69b3c9a4dd479cfa9cdd19"
     },
     "last_active_child_id": null,
     "last_active_at": null

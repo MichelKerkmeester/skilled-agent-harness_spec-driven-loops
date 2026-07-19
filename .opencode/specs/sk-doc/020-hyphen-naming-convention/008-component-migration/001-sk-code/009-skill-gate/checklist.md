@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-code subtree rollup gate (032 phase 008/009)"
+title: "Checklist: sk-code subtree rollup gate (020 phase 008/009)"
 description: "Blocking SOL verification contract for sibling completion, phase 008 release evidence, the scope-aware sk-code naming census, active-reference closure, and the non-mutating final handoff."
 trigger_phrases:
   - "sk-code rollup gate checklist"
@@ -43,7 +43,7 @@ codes, and fails on any incomplete sibling, unknown in-scope name, stale active 
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Phases 001-008 have completed evidence and their blocking checklist contracts are available, including the phase 008 release handoff.
-- [ ] CHK-002 [P1] Candidate SHA, BASE SHA, sibling map hashes, final census/reference commands, and the 032 exemption boundary are recorded before the gate runs.
+- [ ] CHK-002 [P1] Candidate SHA, BASE SHA, sibling map hashes, final census/reference commands, and the 020 exemption boundary are recorded before the gate runs.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->

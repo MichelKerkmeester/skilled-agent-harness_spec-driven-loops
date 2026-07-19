@@ -16,7 +16,7 @@
   "files": [],
   "references": [
     { "path": "./shared" },
-    { "path": "./mcp_server" },
+    { "path": "./mcp-server" },
     { "path": "./scripts" }
   ],
   "exclude": ["node_modules"]

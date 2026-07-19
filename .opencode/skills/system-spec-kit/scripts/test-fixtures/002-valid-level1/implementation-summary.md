@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Tiny Notes Export [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Tiny Notes Export [template:level-1/implementation-summary.md]"
 description: "A tiny fixture feature that exports one note to a text file for validation baseline checks."
 trigger_phrases:
   - "tiny notes export"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -128,5 +128,5 @@ The fixture is verified by running the strict validator and the fixture-consumin
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->

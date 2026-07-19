@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: create command namespace naming (032 phase 008/013/001)"
+title: "Implementation Plan: create command namespace naming (020 phase 008/013/001)"
 description: "Plan for renaming the maintained create command asset files through the frozen semantic map, repairing mode and presentation pointers, and proving the command behavior remains equivalent."
 trigger_phrases:
   - "create namespace naming plan"
@@ -109,8 +109,8 @@ Use the phase 005 rename/reference tooling and phase 006 map to rename the 30 cr
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Manual renames would violate the semantic-map contract. |
-| 032 phase 006 frozen map | Internal | Required before execution | Source and target ownership cannot be proven. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Manual renames would violate the semantic-map contract. |
+| 020 phase 006 frozen map | Internal | Required before execution | Source and target ownership cannot be proven. |
 | 000 baseline manifest | Internal | Required before verification | Mode, link, and metadata parity lack a pinned reference. |
 | Commands parent handoff | Internal | Required before execution | Sibling ownership and shared asset closure may overlap. |
 <!-- /ANCHOR:dependencies -->

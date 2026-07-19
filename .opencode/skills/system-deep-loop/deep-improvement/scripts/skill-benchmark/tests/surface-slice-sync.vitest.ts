@@ -41,7 +41,7 @@ describe('sk-code surface-slice sync — router-replay slices to code-<surface>/
   });
 
   it('slices an OPENCODE task to code-opencode and never leaks code-webflow', () => {
-    const r = routed('refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp_server/mod.ts');
+    const r = routed('refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/mod.ts');
     expect(startsWithAny(r, 'code-opencode/')).toBe(true);
     expect(startsWithAny(r, 'code-webflow/')).toBe(false);
   });
@@ -89,34 +89,34 @@ const langFolders = (paths: string[]): Set<string> => {
 // The rust reference trio was split into topic-cohesive parts, so the router now
 // returns each part; the slice assertion checks that whole part set loads.
 const RUST_TRIO = [
-  'code-opencode/references/rust/style_guide/overview-and-file-header.md',
-  'code-opencode/references/rust/style_guide/toolchain-and-project-structure.md',
-  'code-opencode/references/rust/style_guide/naming-conventions.md',
-  'code-opencode/references/rust/style_guide/formatting-and-imports.md',
-  'code-opencode/references/rust/style_guide/commenting-and-rustdoc.md',
-  'code-opencode/references/rust/style_guide/interop-model.md',
-  'code-opencode/references/rust/style_guide/interop-errors-and-parity.md',
-  'code-opencode/references/rust/quality_standards/overview-and-data-ownership.md',
-  'code-opencode/references/rust/quality_standards/modeling-collections-and-api.md',
-  'code-opencode/references/rust/quality_standards/docs-errors-and-async.md',
-  'code-opencode/references/rust/quality_standards/build-and-organization.md',
-  'code-opencode/references/rust/quality_standards/determinism-and-parity.md',
-  'code-opencode/references/rust/quick_reference/overview-and-boundary-template.md',
-  'code-opencode/references/rust/quick_reference/naming-ordering-and-signatures.md',
-  'code-opencode/references/rust/quick_reference/collections-imports-and-errors.md',
-  'code-opencode/references/rust/quick_reference/rustdoc-and-cargo.md',
-  'code-opencode/references/rust/quick_reference/determinism-parity-and-related.md',
+  'code-opencode/references/rust/style-guide/overview-and-file-header.md',
+  'code-opencode/references/rust/style-guide/toolchain-and-project-structure.md',
+  'code-opencode/references/rust/style-guide/naming-conventions.md',
+  'code-opencode/references/rust/style-guide/formatting-and-imports.md',
+  'code-opencode/references/rust/style-guide/commenting-and-rustdoc.md',
+  'code-opencode/references/rust/style-guide/interop-model.md',
+  'code-opencode/references/rust/style-guide/interop-errors-and-parity.md',
+  'code-opencode/references/rust/quality-standards/overview-and-data-ownership.md',
+  'code-opencode/references/rust/quality-standards/modeling-collections-and-api.md',
+  'code-opencode/references/rust/quality-standards/docs-errors-and-async.md',
+  'code-opencode/references/rust/quality-standards/build-and-organization.md',
+  'code-opencode/references/rust/quality-standards/determinism-and-parity.md',
+  'code-opencode/references/rust/quick-reference/overview-and-boundary-template.md',
+  'code-opencode/references/rust/quick-reference/naming-ordering-and-signatures.md',
+  'code-opencode/references/rust/quick-reference/collections-imports-and-errors.md',
+  'code-opencode/references/rust/quick-reference/rustdoc-and-cargo.md',
+  'code-opencode/references/rust/quick-reference/determinism-parity-and-related.md',
 ];
 // The typescript trio was split into topic-cohesive parts, so the router now
 // returns each part; the slice assertion checks that whole part set loads.
 const TS_TRIO = [
-  'code-opencode/references/typescript/style_guide/overview-strict-and-naming.md',
-  'code-opencode/references/typescript/style_guide/formatting-imports-and-coexistence.md',
-  'code-opencode/references/typescript/quality_standards/overview-and-type-system.md',
-  'code-opencode/references/typescript/quality_standards/tsdoc-errors-and-async.md',
-  'code-opencode/references/typescript/quality_standards/tsconfig-and-modules.md',
-  'code-opencode/references/typescript/quick_reference/template-naming-and-types.md',
-  'code-opencode/references/typescript/quick_reference/imports-errors-and-tsconfig.md',
+  'code-opencode/references/typescript/style-guide/overview-strict-and-naming.md',
+  'code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md',
+  'code-opencode/references/typescript/quality-standards/overview-and-type-system.md',
+  'code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md',
+  'code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md',
+  'code-opencode/references/typescript/quick-reference/template-naming-and-types.md',
+  'code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md',
 ];
 
 describe('sk-code rust language-slice sync — touched-language set loads the right trios', () => {
@@ -151,7 +151,7 @@ describe('sk-code rust language-slice sync — touched-language set loads the ri
       'review the .opencode/native/src/lib.rs sidecar for clippy lints and unsafe-block SAFETY invariants',
     );
     expect(langFolders(r)).toEqual(new Set(['rust']));
-    expect(r).toContain('code-opencode/references/rust/quality_standards/overview-and-data-ownership.md');
+    expect(r).toContain('code-opencode/references/rust/quality-standards/overview-and-data-ownership.md');
   });
 
   it('never loads the rust trio for a non-Rust OpenCode task — the touched-set does not over-route', () => {

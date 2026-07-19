@@ -1,0 +1,450 @@
+{
+  "schemaVersion": "1.0.0",
+  "benchmarkId": "command-surface",
+  "oracleProvenance": {
+    "oracleId": "command-surface-independent-reference-oracle",
+    "implementationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs",
+    "versionOrCommit": "sha256:dfbe80622958f3f33a3aca5add40ece89759d75183d3edea9510993d10515aab",
+    "verificationCommand": "node .opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/fixtures/fixture-manifest.json",
+    "verifiedAt": "2026-07-16T13:29:35.048Z",
+    "evidencePath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/index.json"
+  },
+  "productionAdapterImportProhibited": true,
+  "cleanControlFixtureId": "clean-control",
+  "fixtureRoot": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus",
+  "fixtureRootHash": {
+    "algorithm": "sha256",
+    "value": "4b5d7b35bc0bced4273f51de1485658ab35a6324decac8b3bff1247a4bfa6923"
+  },
+  "fixtures": [
+    {
+      "id": "clean-control",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "d8aff46b9fd24c6046ab7a35690888b2ea4320afa53659f8a752a528ae966726"
+      },
+      "mutations": [],
+      "expectedFindings": []
+    },
+    {
+      "id": "public-mirror-drift",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-mirror-drift",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "13214447c237b81aa6c4fa272f609eb7626fc8173348473c02372b3f26ff1606"
+      },
+      "mutations": [
+        {
+          "id": "change-mirror-entry-name",
+          "operation": "replaceText",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Change the generated entry heading while retaining the canonical source pointer."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S1-MIRROR-DRIFT",
+          "severity": "P1",
+          "dimension": "S1",
+          "locations": [
+            ".codex/prompts/doctor-mcp.md:2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-missing-mirror",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-mirror",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "3b4de4f5db2b8d3914de4cff3d63ec891a6126915e0cfd3adbb45515dd82dcfb"
+      },
+      "mutations": [
+        {
+          "id": "remove-generated-mirror",
+          "operation": "removeFile",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Remove the generated mirror for a live canonical command."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S1-MIRROR-MISSING",
+          "severity": "P0",
+          "dimension": "S1",
+          "locations": [
+            ".codex/prompts/doctor-mcp.md:1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-missing-workflow-target",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-workflow-target",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "8503ad1e6393e812d6ce247046be9a330ce1d18b53ff5d9cf3b6b28145df7ee4"
+      },
+      "mutations": [
+        {
+          "id": "remove-debug-workflow",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+          "description": "Remove one declared workflow asset while leaving its route intact."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+          "severity": "P0",
+          "dimension": "S2",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-missing-presentation-target",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-presentation-target",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "e908842ce7cecd7df094f241f53f5fc9c944155b58b1ef9f3d255611c3c0b965"
+      },
+      "mutations": [
+        {
+          "id": "remove-presentation-contract",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
+          "description": "Remove the router-owned presentation contract while retaining its declaration."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S2-PRESENTATION-TARGET-MISSING",
+          "severity": "P1",
+          "dimension": "S2",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:21"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-route-cycle",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-route-cycle",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "3d9b45ce1aa04b53e866f35425808b964976b440ed997a8798c81cb5183fcb6a"
+      },
+      "mutations": [
+        {
+          "id": "add-workflow-back-edge",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+          "description": "Add a workflow edge back to the command that owns the workflow."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-ROUTE-CYCLE",
+          "severity": "P0",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/doctor/assets/doctor-mcp-install.yaml:10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-capability-mismatch",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-capability-mismatch",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bc53def6bd35d7ea5c226970fcbf2a7544dfb87a6d286e37b6efe7018b45f953"
+      },
+      "mutations": [
+        {
+          "id": "require-undeclared-write-tool",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+          "description": "Require a write capability that the command frontmatter does not allow."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S4-CAPABILITY-UNDECLARED",
+          "severity": "P1",
+          "dimension": "S4",
+          "locations": [
+            ".opencode/commands/doctor/assets/doctor-mcp-install.yaml:4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-destructive-without-confirmation",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-destructive-without-confirmation",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "319f68b5425a4453530f1a6f929dc421d7613aa90e2459e3fc0c0f549c791ece"
+      },
+      "mutations": [
+        {
+          "id": "raise-install-mutation-class",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+          "description": "Raise the workflow to destructive mutation semantics."
+        },
+        {
+          "id": "remove-install-confirmation",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+          "description": "Disable confirmation for the destructive workflow."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+          "severity": "P0",
+          "dimension": "S4",
+          "locations": [
+            ".opencode/commands/doctor/assets/doctor-mcp-install.yaml:6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-duplicated-presentation-owner",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-duplicated-presentation-owner",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bc4a3af51dca84c033b8885773de498c43863554bfd80607eef138b8caf4ad9d"
+      },
+      "mutations": [
+        {
+          "id": "duplicate-final-report-marker",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Duplicate a presentation marker in the router and presentation asset."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+          "severity": "P2",
+          "dimension": "S5",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:37"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-gate-obligation-unmet",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-gate-obligation-unmet",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "8edda795246537a8d1fb9fa80a03436363025c99e665b51fd1c1b7936a6b420d"
+      },
+      "mutations": [
+        {
+          "id": "remove-doctor-argument-hint",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Remove the argument-hint gate from a required-input subaction router."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-GATE-OBLIGATION-UNMET",
+          "severity": "P0",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-mode-incomplete",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-mode-incomplete",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "b0ad96cf6e1c10967ddb1dc4419def6176a3d7266231e4d5d9e33d08ed0e77ea"
+      },
+      "mutations": [
+        {
+          "id": "remove-confirm-workflow-reference",
+          "operation": "replaceText",
+          "target": ".opencode/commands/deep/alignment.md",
+          "description": "Remove the confirm-mode workflow asset reference from a mode-pair router."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-MODE-INCOMPLETE",
+          "severity": "P1",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/deep/alignment.md:1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-out-orphan-mirror",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-orphan-mirror",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "c66ef28cd433470d5c6e61dd90b12dc0510916d404d7900d2ea4614da6d1c332"
+      },
+      "mutations": [
+        {
+          "id": "add-orphan-mirror",
+          "operation": "addFile",
+          "target": ".codex/prompts/orphan-command.md",
+          "description": "Add a generated mirror whose canonical command does not exist."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S1-ORPHAN-MIRROR",
+          "severity": "P1",
+          "dimension": "S1",
+          "locations": [
+            ".codex/prompts/orphan-command.md:6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-out-wrong-subaction-mapping",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-wrong-subaction-mapping",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "751a17dd3222625a25c4979f7e35b495aa5617a86f5d3bad0e399fc73f500055"
+      },
+      "mutations": [
+        {
+          "id": "route-install-to-debug",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Route the install subaction to the debug workflow asset."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-SUBACTION-TARGET-MISMATCH",
+          "severity": "P1",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:26"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-out-destructive-boundary-contradiction",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-destructive-boundary-contradiction",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "1e6c6265da9b92bdab0922dcee522fefb2de6e602982b46a312c71ba086198db"
+      },
+      "mutations": [
+        {
+          "id": "raise-debug-mutation-class",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+          "description": "Raise the debug route to destructive mutation semantics."
+        },
+        {
+          "id": "remove-debug-confirmation",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+          "description": "Disable confirmation for the destructive debug route."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+          "severity": "P0",
+          "dimension": "S4",
+          "locations": [
+            ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml:6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-out-compound-multi-defect",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-compound-multi-defect",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bf6368e9a7bef4c29251b8ae03ed2cc74714e9396e9d4e2c317ca67401a1e13b"
+      },
+      "mutations": [
+        {
+          "id": "drift-compound-mirror-heading",
+          "operation": "replaceText",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Drift the generated mirror heading."
+        },
+        {
+          "id": "remove-compound-install-workflow",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+          "description": "Remove the install workflow while retaining its route."
+        },
+        {
+          "id": "duplicate-compound-startup-marker",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Duplicate the startup presentation marker in the router."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S1-MIRROR-DRIFT",
+          "severity": "P1",
+          "dimension": "S1",
+          "locations": [
+            ".codex/prompts/doctor-mcp.md:2"
+          ]
+        },
+        {
+          "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+          "severity": "P0",
+          "dimension": "S2",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:22"
+          ]
+        },
+        {
+          "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+          "severity": "P2",
+          "dimension": "S5",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:37"
+          ]
+        }
+      ]
+    }
+  ]
+}

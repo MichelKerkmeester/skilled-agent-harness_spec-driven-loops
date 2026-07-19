@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "sk-doc changelog verification",
       "sk-doc version bump check",
-      "032 changelog verify phase",
+      "020 changelog verify phase",
       "sk-doc changelog verification plan",
       "sk-doc version bump verification",
       "sk-doc changelog verification tasks",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The sk-doc component migration needs a changelog entry that names the completed rename set and records the corresponding four-part version bump. This verification phase performs no filesystem renames; it checks the released changelog evidence against the sibling phase manifests and the current skill version contract.",
     "created_at": "2026-07-14T15:17:28Z",
-    "last_save_at": "2026-07-17T14:30:17.549Z",
+    "last_save_at": "2026-07-17T20:26:06.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:9f1b515b65fac8693c3bcc1a360004db0f786b3bb5e995c0376d81fd6cca2fe7",
+    "source_fingerprint": "sha256:2d047246b86828aface566a778487b59823eb2bed589d4b90436ab4ba535dde9",
     "source_doc_hashes": {
-      "spec.md": "27f07e977983d13e69556d22ac9a72e8f14e45bec0ff1a5b6e8d441fecfa3b85",
+      "spec.md": "5ed3cd6523123cdd9ec6ec03c2b68e530ce1f9971c52e2e7bf441e928b456a2d",
       "plan.md": "9b4e5ad14a790c6ed495b6cac0ce6c073e410a33c2937375b79468f102103db2",
       "tasks.md": "5b0088f6141bd3c6faa83455ef5ae27a55d964211190ae4c4db4626b9d55325b",
       "checklist.md": "e5d35cadac68cfcb98a04a05b003d44803f5d942eddec4e09ac1fab752a03027"

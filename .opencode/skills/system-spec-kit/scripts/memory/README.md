@@ -227,6 +227,6 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.j
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../mcp_server/scripts/README.md`](../../mcp_server/scripts/README.md)
-- [`../../mcp_server/database/README.md`](../../mcp_server/database/README.md)
+- [`../../mcp-server/scripts/README.md`](../../mcp-server/scripts/README.md)
+- [`../../mcp-server/database/README.md`](../../mcp-server/database/README.md)
 - [`../core/README.md`](../core/README.md)

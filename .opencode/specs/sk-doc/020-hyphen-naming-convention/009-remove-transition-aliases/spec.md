@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: remove transition aliases (032 phase 009)"
+title: "Feature Specification: remove transition aliases (020 phase 009)"
 description: "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification."
 trigger_phrases:
   - "remove transition aliases"
@@ -30,11 +30,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Remove transition aliases
 
-> Phase adjacency under the 032 parent: prerequisite `002-root-name-consumer-migration` with its coexistence window closed and the physical catalog/playbook migration complete; successor `010-whole-repo-gate`.
+> Phase adjacency under the 020 parent: prerequisite `002-root-name-consumer-migration` with its coexistence window closed and the physical catalog/playbook migration complete; successor `010-whole-repo-gate`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 009 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 009 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -109,7 +109,7 @@ This phase removes the transition aliases from every reviewed consumer, keeps th
 
 The hard dependency is evidence that phase 002's bounded coexistence window is closed and that the physical roots have already been migrated. Removing aliases early would strand still-unmigrated consumers; removing only some branches would leave inconsistent behavior across skills. The main mitigation is a manifest-driven consumer sweep followed by canonical, legacy, conflict, and near-match fixtures for every consumer family.
 
-The phase inherits the 032 policy risks around classifier downgrade, exemption leakage, and scope drift. It does not authorize a broad repository rename or edits to frozen history.
+The phase inherits the 020 policy risks around classifier downgrade, exemption leakage, and scope drift. It does not authorize a broad repository rename or edits to frozen history.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

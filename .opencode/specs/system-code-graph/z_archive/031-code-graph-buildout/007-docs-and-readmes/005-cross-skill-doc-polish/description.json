@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/005-cross-skill-doc-polish",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/007-docs-and-readmes/005-cross-skill-doc-polish",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
@@ -12,11 +12,12 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.825Z",
+  "lastUpdated": "2026-07-18T03:48:55.531Z",
   "specId": "005",
   "folderSlug": "cross-skill-doc-polish",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "007-docs-and-readmes"
   ],

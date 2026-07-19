@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/025-code-graph-core/002-edge-staleness-correctness",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core/002-edge-staleness-correctness",
   "description": "The code-graph incremental scan silently loses cross-file edges when a file's dependency is refactored",
   "keywords": [
     "code-graph",
@@ -14,11 +14,12 @@
     "dependency",
     "refactored"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.740Z",
+  "lastUpdated": "2026-07-18T03:48:55.342Z",
   "specId": "002",
   "folderSlug": "edge-staleness-correctness",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "025-code-graph-core"
   ],
   "memorySequence": 0,

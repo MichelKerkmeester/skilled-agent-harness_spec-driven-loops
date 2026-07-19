@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop subtree skill gate (032 phase 007/011)"
+title: "Tasks: system-deep-loop subtree skill gate (020 phase 007/011)"
 description: "Rollup tasks for aggregating phases 001-010 and proving whole-surface kebab-case naming, reference integrity, and behavior parity without performing new migration work."
 trigger_phrases:
   - "system-deep-loop skill gate tasks"

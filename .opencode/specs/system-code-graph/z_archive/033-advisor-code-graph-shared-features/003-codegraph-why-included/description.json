@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/033-advisor-code-graph-shared-features/003-codegraph-why-included",
+  "specFolder": "system-code-graph/z_archive/033-advisor-code-graph-shared-features/003-codegraph-why-included",
   "description": "Code graph already returns depth groups and risk for `blastradius` and `codegraphcontext`, but not the concrete edge chain per file - so a consumer",
   "keywords": [
     "code",
@@ -19,11 +19,12 @@
     "file",
     "consumer"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.873Z",
+  "lastUpdated": "2026-07-18T03:48:55.618Z",
   "specId": "003",
   "folderSlug": "codegraph-why-included",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "033-advisor-code-graph-shared-features"
   ],
   "memorySequence": 0,

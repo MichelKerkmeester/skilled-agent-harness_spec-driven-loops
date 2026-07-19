@@ -20,9 +20,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit_plan_presentation.txt` |
-| Auto workflow | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
-| Confirm workflow | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/speckit/assets/speckit-plan-presentation.txt` |
+| Auto workflow | `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` |
+| Confirm workflow | `.opencode/commands/speckit/assets/speckit-plan-confirm.yaml` |
 
 ---
 
@@ -41,9 +41,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
-| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` with unattended task metadata required |
-| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` |
+| `:auto` | `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` |
+| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-plan-auto.yaml` with unattended task metadata required |
+| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-plan-confirm.yaml` |
 
 ### UNATTENDED TASK METADATA
 
@@ -67,7 +67,7 @@ If the planner cannot assign one of these fields with at least medium confidence
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit_plan_presentation.txt`:
+The following content lives only in `.opencode/commands/speckit/assets/speckit-plan-presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

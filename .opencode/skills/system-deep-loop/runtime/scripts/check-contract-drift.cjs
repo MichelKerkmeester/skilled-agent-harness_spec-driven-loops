@@ -36,7 +36,7 @@ const DRIFT_CLASSES = Object.freeze({
 });
 
 const SHARED_AUTHORITY_SOURCES = [
-  '.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md',
+  '.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md',
   '.opencode/skills/system-deep-loop/mode-registry.json',
   '.opencode/skills/system-deep-loop/SKILL.md',
   '.opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs',
@@ -95,13 +95,23 @@ function isChangelogOrReadme(sourcePath) {
   return /(^|\/)changelog\//i.test(sourcePath) || /(^|\/)README\.md$/i.test(sourcePath);
 }
 
+function canonicalNonAuthorityPackageRoot(sourcePath) {
+  const roots = new Map([
+    ['feature-catalog', 'feature-catalog'],
+    ['manual-testing-playbook', 'manual-testing-playbook'],
+  ]);
+  for (const segment of String(sourcePath).replace(/\\/g, '/').split('/')) {
+    if (roots.has(segment)) return roots.get(segment);
+  }
+  return null;
+}
+
 function isNonAuthoritySource(sourcePath) {
   if (isChangelogOrReadme(sourcePath)) return true;
   if (/(^|\/)node_modules\//.test(sourcePath)) return true;
   if (/(^|\/)tests\//.test(sourcePath)) return true;
   if (/(^|\/)behavior_benchmark\//.test(sourcePath)) return true;
-  if (/(^|\/)feature_catalog\//.test(sourcePath)) return true;
-  if (/(^|\/)manual_testing_playbook\//.test(sourcePath)) return true;
+  if (canonicalNonAuthorityPackageRoot(sourcePath)) return true;
   if (/\/assets\/.*_(?:strategy|dashboard)\.md$/.test(sourcePath)) return true;
   return false;
 }
@@ -596,6 +606,7 @@ module.exports = {
   checkCommand,
   checkContracts,
   deriveAuthoritySources,
+  canonicalNonAuthorityPackageRoot,
   findToolAllowlistOverflow,
   findUnresolvedMarkers,
   main,

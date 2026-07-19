@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: mcp-tooling hub root and shared naming closure (032 phase 001)"
-description: "This plan classifies the mcp-tooling root and any real shared support paths, applies the 032 exemption boundary, and updates hub navigation path values without changing routing keys or tool-mandated filenames."
+title: "Implementation Plan: mcp-tooling hub root and shared naming closure (020 phase 001)"
+description: "This plan classifies the mcp-tooling root and any real shared support paths, applies the 020 exemption boundary, and updates hub navigation path values without changing routing keys or tool-mandated filenames."
 trigger_phrases:
   - "mcp-tooling hub root implementation plan"
   - "mcp-tooling shared path closure"
@@ -34,7 +34,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling root and any physical shared/ support tree |
 | **Change class** | Filesystem rename plus path-value reference repair |
-| **Execution** | Frozen 032 rename map in the isolated migration worktree |
+| **Execution** | Frozen 020 rename map in the isolated migration worktree |
 
 ### Overview
 The root hub owns routing and navigation, but the current baseline has no shared/ directory. The implementation first proves the physical boundary, then applies only the root/shared map and repairs path values in the hub documents and router metadata. The manual-testing-playbook, benchmark, and component trees remain with their assigned child phases.
@@ -44,7 +44,7 @@ The root hub owns routing and navigation, but the current baseline has no shared
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] BASE SHA and the 032 rename-map hash are recorded
+- [ ] BASE SHA and the 020 rename-map hash are recorded
 - [ ] Root/shared census is complete and the absent shared/ directory is recorded
 - [ ] Path owners for manual-testing-playbook, benchmark, and all three components are excluded
 - [ ] Tool-mandated filenames and JSON field/key boundaries are listed
@@ -99,8 +99,8 @@ The root hub owns routing and navigation, but the current baseline has no shared
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 frozen rename map | Internal | Required | No safe source-to-target operation |
-| 032 exemption policy | Internal | Required | Risk of renaming tool contracts or identifiers |
+| 020 frozen rename map | Internal | Required | No safe source-to-target operation |
+| 020 exemption policy | Internal | Required | Risk of renaming tool contracts or identifiers |
 | Phases 002-006 ownership boundaries | Internal | Required | Root phase can move another phase's files |
 | parent-skill-check.cjs | Internal verifier | Required | Hub routing cannot be proven |
 <!-- /ANCHOR:dependencies -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt benchmark artifact names (032 phase 004.005)"
+title: "Tasks: sk-prompt benchmark artifact names (020 phase 004.005)"
 description: "Tasks for phase 005 of the sk-prompt kebab-case program: build the benchmark path ledger, rename authored artifacts, preserve generated output, and verify benchmark content contracts."
 trigger_phrases:
   - "sk-prompt benchmark tasks"

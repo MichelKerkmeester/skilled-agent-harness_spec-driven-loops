@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop benchmark storage names (032 phase 007/009)"
+title: "Implementation Plan: system-deep-loop benchmark storage names (020 phase 007/009)"
 description: "Plan for renaming the three root benchmark storage labels, repairing report/index path values, and proving fixture/profile and generated-output ownership without changing report filenames, payloads, or scores."
 trigger_phrases:
   - "system-deep-loop benchmark implementation plan"

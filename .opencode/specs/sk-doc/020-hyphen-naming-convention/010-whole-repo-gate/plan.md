@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: whole-repo verification gate (032 phase 010)"
-description: "Implementation Plan for phase 010 of the 032 kebab-case filesystem-naming program: evaluate the completed migration against the scope-aware naming, reference, Git-history, and full-suite gate contract."
+title: "Implementation Plan: whole-repo verification gate (020 phase 010)"
+description: "Implementation Plan for phase 010 of the 020 kebab-case filesystem-naming program: evaluate the completed migration against the scope-aware naming, reference, Git-history, and full-suite gate contract."
 trigger_phrases:
   - "whole-repo verification gate implementation plan"
   - "hyphen naming phase 010 implementation plan"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: command asset and reference closure (032 phase 008/013/009)"
+title: "Feature Specification: command asset and reference closure (020 phase 008/013/009)"
 description: "Reconcile residual command-surface asset, reference, and template files after namespace ownership is frozen; rename only unassigned snake_case files and update every proven pointer without duplicating sibling work."
 trigger_phrases:
   - "command asset reference closure"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: command asset and reference closure
 
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 009 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 009 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

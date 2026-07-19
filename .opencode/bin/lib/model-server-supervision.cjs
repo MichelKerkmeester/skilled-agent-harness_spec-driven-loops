@@ -474,7 +474,7 @@ function resolveModelServerSocketPath(env = process.env, options = {}) {
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const socketDir = env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'));
+    : path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'));
   return path.join(socketDir, HF_MODEL_SERVER_SOCKET_FILE_NAME);
 }
 
@@ -531,7 +531,7 @@ function assertSocketDirOwnership(socketPath, options = {}) {
 function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(), options = {}) {
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const lockDirPath = socketPath.startsWith('tcp://')
-    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'))
+    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'))
     : path.dirname(socketPath);
   return path.join(lockDirPath, HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME);
 }
@@ -539,7 +539,7 @@ function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(),
 function modelServerGiveUpPath(socketPath = resolveModelServerSocketPath(), options = {}) {
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const giveUpDirPath = socketPath.startsWith('tcp://')
-    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'))
+    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'))
     : path.dirname(socketPath);
   return path.join(giveUpDirPath, HF_MODEL_SERVER_GIVEUP_FILE_NAME);
 }
@@ -1019,7 +1019,7 @@ function createModelServerControl(deps = {}) {
   const env = deps.env || process.env;
   const rootDir = deps.rootDir || defaultRoot;
   const opencodeDir = deps.opencodeDir || path.join(rootDir, '.opencode');
-  const dbDir = deps.dbDir || (() => path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'));
+  const dbDir = deps.dbDir || (() => path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'));
   const modelServerPath = deps.modelServerPath || path.join(opencodeDir, 'bin', 'hf-model-server.cjs');
   const signal = deps.signal || signalProcess;
   const processRowsRunner = deps.processRowsRunner || defaultProcessRowsRunner;

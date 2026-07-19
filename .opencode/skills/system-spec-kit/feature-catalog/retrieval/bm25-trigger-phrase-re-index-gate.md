@@ -1,0 +1,59 @@
+---
+title: "BM25 trigger phrase re-index gate"
+description: "Tracks the fix that expands the BM25 re-index condition to include trigger phrase changes alongside title changes."
+trigger_phrases:
+  - "BM25 trigger phrase re-index"
+  - "BM25 re-index gate"
+  - "trigger phrase index update"
+  - "BM25 index invalidation"
+version: 3.6.0.14
+---
+
+# BM25 trigger phrase re-index gate
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Tracks the fix that expands the BM25 re-index condition to include trigger phrase changes alongside title changes.
+
+When you change the keywords associated with a spec-doc record, the search index now updates itself to reflect those changes. Previously it only refreshed when you changed the title, so updated keywords were invisible to searches until a full rebuild. This fix makes sure the system stays in sync with your edits.
+
+---
+
+## 2. HOW IT WORKS
+
+The BM25 re-index condition in `memory-crud-update.ts` was expanded from title-only to title OR trigger phrases: `if ((updateParams.title !== undefined || updateParams.triggerPhrases !== undefined) && bm25Index.isBm25Enabled())`. The BM25 corpus includes trigger phrases, so changes to either field must trigger re-indexing.
+
+T312 changed the runtime posture of this path: the in-memory BM25 engine is now opt-in behind `ENABLE_BM25`, while SQLite FTS5 remains the default lexical engine when the flag is unset. That means this re-index gate is conditional by design and only runs when operators explicitly enable BM25. Startup maintenance also moved away from synchronous full rebuilds toward incremental batched refresh through `syncChangedRows()`, so trigger/title edits update the in-memory corpus without requiring a blocking rebuild cycle.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp-server/lib/parsing/content-normalizer.ts` | Lib | Content normalization |
+| `mcp-server/lib/search/bm25-index.ts` | Lib | Opt-in BM25 enablement, incremental row sync, and in-memory index management |
+| `mcp-server/lib/search/sqlite-fts.ts` | Lib | SQLite FTS5 interface |
+| `mcp-server/handlers/memory-crud-update.ts` | Handler | Update handler with BM25 re-index gate |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/bm25-index.vitest.ts` | Automated test | BM25 index operations |
+| `mcp-server/tests/content-normalizer.vitest.ts` | Automated test | Content normalization tests |
+| `mcp-server/tests/sqlite-fts.vitest.ts` | Automated test | SQLite FTS5 operations |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Retrieval
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `retrieval/bm25-trigger-phrase-re-index-gate.md`
+Related references:
+- [4-stage-pipeline-architecture.md](../../feature-catalog/retrieval/4-stage-pipeline-architecture.md) — 4-stage pipeline architecture
+- [ast-level-section-retrieval-tool.md](../../feature-catalog/retrieval/ast-level-section-retrieval-tool.md) — AST-level section retrieval tool

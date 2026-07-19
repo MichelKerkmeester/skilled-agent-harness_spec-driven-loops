@@ -4,7 +4,7 @@ description: "Lean phase parent for the kebab-case filesystem-name work across t
 trigger_phrases:
   - "system-spec-kit naming phases"
   - "system-spec-kit kebab-case migration"
-  - "032 system-spec-kit component migration"
+  - "020 system-spec-kit component migration"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The system-spec-kit surface spans an MCP package boundary, scripts, templates and examples, reference/assets, shared/runtime support, feature-catalog content, manual-testing scenarios, and adjacent verification surfaces. Its in-scope filesystem names must follow the 032 kebab-case convention while Python targets, tool-mandated names, generated artifacts, data identifiers, and frozen history remain protected.
+The system-spec-kit surface spans an MCP package boundary, scripts, templates and examples, reference/assets, shared/runtime support, feature-catalog content, manual-testing scenarios, and adjacent verification surfaces. Its in-scope filesystem names must follow the 020 kebab-case convention while Python targets, tool-mandated names, generated artifacts, data identifiers, and frozen history remain protected.
 
 This parent organizes twelve bounded child phases so each path family can inventory its actual baseline names, update its own references, and provide evidence to the final subtree gate. The child documents own all implementation detail.
 <!-- /ANCHOR:problem -->
@@ -73,7 +73,7 @@ This parent organizes twelve bounded child phases so each path family can invent
 ### Out of Scope
 - Migration execution during this documentation-authoring pass.
 - Python `.py` files and Python import-package directories; `SKILL.md`, `mode-registry.json`, package manifests, and other tool-mandated names.
-- Code identifiers, JSON/YAML/TOML keys, frontmatter fields, database values, generated/lockfile/vector/checkpoint artifacts, test magic, frozen history, and other 032 exemptions.
+- Code identifiers, JSON/YAML/TOML keys, frontmatter fields, database values, generated/lockfile/vector/checkpoint artifacts, test magic, frozen history, and other 020 exemptions.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:phase-map -->

@@ -9,12 +9,12 @@ import {
   CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
   evaluateCachedSessionSummaryCandidate,
   type CachedSessionSummaryCandidate,
-} from '../../mcp_server/handlers/session-resume.js';
+} from '../../mcp-server/handlers/session-resume.js';
 import {
   ensureStateDir,
   saveState,
   type HookState,
-} from '../../mcp_server/hooks/claude/hook-state.js';
+} from '../../mcp-server/hooks/claude/hook-state.js';
 
 const NOW_MS = Date.parse('2026-04-08T12:00:00.000Z');
 const VALID_SPEC_FOLDER = 'specs/system-spec-kit/026-graph-and-context-optimization/012-cached-sessionstart-consumer-gated';
@@ -278,7 +278,7 @@ describe('cached SessionStart consumer corpus', () => {
   });
 
   it('exercises session_resume, session_bootstrap, and session-prime against the frozen corpus via hook state', async () => {
-    vi.doMock('../../mcp_server/handlers/memory-context.js', () => ({
+    vi.doMock('../../mcp-server/handlers/memory-context.js', () => ({
       handleMemoryContext: vi.fn(async () => ({
         content: [{
           type: 'text',
@@ -287,7 +287,7 @@ describe('cached SessionStart consumer corpus', () => {
       })),
     }));
 
-    vi.doMock('../../mcp_server/code_graph/lib/code-graph-db.js', () => ({
+    vi.doMock('../../mcp-server/code_graph/lib/code-graph-db.js', () => ({
       getStats: vi.fn(() => ({
         lastScanTimestamp: '2026-04-08T12:00:00.000Z',
         totalNodes: 42,
@@ -296,13 +296,13 @@ describe('cached SessionStart consumer corpus', () => {
       })),
     }));
 
-    vi.doMock('../../mcp_server/lib/session/context-metrics.js', () => ({
+    vi.doMock('../../mcp-server/lib/session/context-metrics.js', () => ({
       recordBootstrapEvent: vi.fn(),
       recordMetricEvent: vi.fn(),
       computeQualityScore: vi.fn(() => ({ level: 'healthy' })),
     }));
 
-    vi.doMock('../../mcp_server/lib/session/session-snapshot.js', () => ({
+    vi.doMock('../../mcp-server/lib/session/session-snapshot.js', () => ({
       buildStructuralBootstrapContract: vi.fn(() => ({
         status: 'ready',
         summary: 'Structural context ready',
@@ -312,7 +312,7 @@ describe('cached SessionStart consumer corpus', () => {
       })),
     }));
 
-    vi.doMock('../../mcp_server/handlers/session-health.js', () => ({
+    vi.doMock('../../mcp-server/handlers/session-health.js', () => ({
       handleSessionHealth: vi.fn(async () => ({
         content: [{
           type: 'text',
@@ -321,7 +321,7 @@ describe('cached SessionStart consumer corpus', () => {
       })),
     }));
 
-    vi.doMock('../../mcp_server/code_graph/lib/startup-brief.js', () => ({
+    vi.doMock('../../mcp-server/code_graph/lib/startup-brief.js', () => ({
       buildStartupBrief: vi.fn(() => ({
         graphOutline: null,
         sessionContinuity: null,
@@ -338,9 +338,9 @@ describe('cached SessionStart consumer corpus', () => {
       })),
     }));
 
-    const { handleSessionResume } = await import('../../mcp_server/handlers/session-resume.js');
-    const { handleSessionBootstrap } = await import('../../mcp_server/handlers/session-bootstrap.js');
-    const { handleStartup } = await import('../../mcp_server/hooks/claude/session-prime.js');
+    const { handleSessionResume } = await import('../../mcp-server/handlers/session-resume.js');
+    const { handleSessionBootstrap } = await import('../../mcp-server/handlers/session-bootstrap.js');
+    const { handleStartup } = await import('../../mcp-server/hooks/claude/session-prime.js');
 
     const scenarios: readonly IntegrationScenario[] = [
       {

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: root-name consumer migration (032 phase 002)"
-description: "Implementation Plan for phase 002 of the 032 kebab-case filesystem-naming program: root-name consumer migration."
+title: "Implementation Plan: root-name consumer migration (020 phase 002)"
+description: "Implementation Plan for phase 002 of the 020 kebab-case filesystem-naming program: root-name consumer migration."
 trigger_phrases:
   - "root-name consumer migration implementation plan"
   - "hyphen naming phase 002 implementation plan"
@@ -107,7 +107,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
+Inherits the 020 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
 (rebuilt in the worktree), and sk-git for the worktree lifecycle. Phase-specific dependencies are the predecessor
 phases named in this phase's spec adjacency.
 <!-- /ANCHOR:dependencies -->

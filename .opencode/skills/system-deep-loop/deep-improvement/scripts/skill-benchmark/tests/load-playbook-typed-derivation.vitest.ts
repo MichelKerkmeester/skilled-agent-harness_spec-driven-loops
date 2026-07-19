@@ -9,47 +9,47 @@ const loader = require('../load-playbook-scenarios.cjs');
 // dominant surface mode so the typed-gold oracle stays inside its mode cap.
 const byMode = new Map([
   ['code-webflow', new Set([
-    'references/performance/cwv_remediation.md',
-    'references/css/style_guide.md',
-    'references/animation/quick_start.md',
+    'references/performance/cwv-remediation.md',
+    'references/css/style-guide.md',
+    'references/animation/quick-start.md',
   ])],
   ['code-opencode', new Set([
-    'references/typescript/style_guide.md',
+    'references/typescript/style-guide.md',
   ])],
 ]);
 
 describe('deriveTypedGoldFromBodyGold', () => {
   it('types packet-qualified body gold into (mode, leaf) pairs', () => {
     const gold = loader.deriveTypedGoldFromBodyGold([
-      'code-webflow/references/performance/cwv_remediation.md',
-      'code-webflow/references/css/style_guide.md',
+      'code-webflow/references/performance/cwv-remediation.md',
+      'code-webflow/references/css/style-guide.md',
     ], byMode);
     expect(gold).not.toBeNull();
     expect(gold.workflowMode).toBe('code-webflow');
     expect(gold.pairs).toEqual([
-      { workflowMode: 'code-webflow', leafResourceId: 'references/performance/cwv_remediation.md' },
-      { workflowMode: 'code-webflow', leafResourceId: 'references/css/style_guide.md' },
+      { workflowMode: 'code-webflow', leafResourceId: 'references/performance/cwv-remediation.md' },
+      { workflowMode: 'code-webflow', leafResourceId: 'references/css/style-guide.md' },
     ]);
   });
 
   it('drops flat preamble/shared paths absent from the manifest', () => {
     const gold = loader.deriveTypedGoldFromBodyGold([
-      'references/stack_detection.md',
-      'references/universal/code_quality_standards.md',
+      'references/stack-detection.md',
+      'references/universal/code-quality-standards.md',
       'shared/assets/patterns/README.md',
-      'code-webflow/references/animation/quick_start.md',
+      'code-webflow/references/animation/quick-start.md',
     ], byMode);
     // Only the one manifest-resolvable packet-qualified leaf survives.
     expect(gold.pairs).toEqual([
-      { workflowMode: 'code-webflow', leafResourceId: 'references/animation/quick_start.md' },
+      { workflowMode: 'code-webflow', leafResourceId: 'references/animation/quick-start.md' },
     ]);
   });
 
   it('narrows a mixed-mode set to the dominant (most-contributing) mode', () => {
     const gold = loader.deriveTypedGoldFromBodyGold([
-      'code-webflow/references/performance/cwv_remediation.md',
-      'code-webflow/references/css/style_guide.md',
-      'code-opencode/references/typescript/style_guide.md',
+      'code-webflow/references/performance/cwv-remediation.md',
+      'code-webflow/references/css/style-guide.md',
+      'code-opencode/references/typescript/style-guide.md',
     ], byMode);
     expect(gold.workflowMode).toBe('code-webflow');
     // The lone code-opencode pair is dropped so the gold declares one mode.
@@ -59,7 +59,7 @@ describe('deriveTypedGoldFromBodyGold', () => {
 
   it('returns null when nothing resolves to a manifest leaf', () => {
     expect(loader.deriveTypedGoldFromBodyGold([
-      'references/stack_detection.md',
+      'references/stack-detection.md',
       'code-webflow/references/does_not_exist.md',
     ], byMode)).toBeNull();
     expect(loader.deriveTypedGoldFromBodyGold([], byMode)).toBeNull();

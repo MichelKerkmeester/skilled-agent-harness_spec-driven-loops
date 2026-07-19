@@ -1,0 +1,3 @@
+# Intentionally empty. The target-profile catalog is empty under dynamic-only profiling.
+# Referenced by assets/target-manifest.jsonc (profileCatalog) and assets/improvement-config.json
+# (targetProfiles) for path consistency. Benchmark profiles live in ../benchmark-profiles/.

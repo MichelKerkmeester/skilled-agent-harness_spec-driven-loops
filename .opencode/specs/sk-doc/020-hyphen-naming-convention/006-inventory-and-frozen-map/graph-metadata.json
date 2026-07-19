@@ -19,7 +19,10 @@
       "inventory and frozen rename map tasks",
       "hyphen naming phase 006 tasks",
       "inventory and frozen rename map checklist",
-      "hyphen naming phase 006 checklist"
+      "hyphen naming phase 006 checklist",
+      "inventory and frozen rename map summary",
+      "hyphen naming phase 006 implementation",
+      "frozen rename map executable"
     ],
     "key_topics": [
       "inventory",
@@ -38,13 +41,42 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "frozen-map/frozen-rename-map.json",
+      "frozen-map/verify-frozen-map.mjs",
+      "frozen-map/build_frozen_map.py",
+      "frozen-map/verification-report.txt",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "frozen-rename-map.json",
+        "kind": "config",
+        "path": "frozen-map/frozen-rename-map.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-frozen-map.mjs",
+        "kind": "file",
+        "path": "frozen-map/verify-frozen-map.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build_frozen_map.py",
+        "kind": "file",
+        "path": "frozen-map/build_frozen_map.py",
+        "source": "derived"
+      },
+      {
+        "name": "verification-report.txt",
+        "kind": "file",
+        "path": "frozen-map/verification-report.txt",
+        "source": "derived"
+      },
       {
         "name": "sync-prompts.cjs",
         "kind": "file",
@@ -61,6 +93,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -158,55 +196,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated.",
     "created_at": "2026-07-13T14:34:05.529Z",
-    "last_save_at": "2026-07-17T14:30:04.301Z",
+    "last_save_at": "2026-07-18T12:22:55.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:941b19573a4d86ec803dab35bbfd01661ee84ab298e827561463d00bc1a2db7f",
+    "source_fingerprint": "sha256:faa275b0723011d430f8764cb4bf429bca08ce0cdb5e505322d942490276249c",
     "source_doc_hashes": {
-      "spec.md": "3829864d2c1e283fd660e6e63accdb2a06348522e8b313ca1d68051d0f33d21b",
-      "plan.md": "c769c649f02c2b39937985db6156b2e6ddfcd28ab86b1b95f20b895cbc9815d9",
-      "tasks.md": "becca6d7a4d0b2ebc8684a5f3ba1e74c77ea926dc5a383bbb6fc714f178a615a",
-      "checklist.md": "efa30e921aaee3b118030697b8d9be1345af0561aa80dc17abc3cb8229dacdbe"
+      "spec.md": "1959c064da04f41bce0e8eb0a7fa6d886228f6f32c458df35560d22e9b8fdcbb",
+      "plan.md": "e2f808f91c80c88c4283970732853c932ca62347d7a8efc68d0f91734e20d37b",
+      "tasks.md": "d147f0eca8807ab1a441d77b0dc4c0b865a15b08e4d207c92fb97865f9eb55ee",
+      "checklist.md": "050e7284ecd9d0047b2303fc8b58374bbf78d6d271cc5a25812272fe2748dfd2",
+      "implementation-summary.md": "f7cd3c1ee06ad01b38a0934724d6a7d3dc80302a7514a7721ed1f7b71786446a"
     },
     "last_active_child_id": null,
     "last_active_at": null

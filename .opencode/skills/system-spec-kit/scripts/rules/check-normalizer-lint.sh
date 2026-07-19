@@ -6,7 +6,7 @@ run_check() {
     local _level="$2"
     local script_dir
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local default_target="$script_dir/../../mcp_server"
+    local default_target="$script_dir/../../mcp-server"
     local target_dir="${SPECKIT_NORMALIZER_LINT_TARGET:-$default_target}"
     local -a violations=()
 

@@ -54,7 +54,7 @@ function validateStopPolicy(matrix, resolvedPath) {
  * @param {Object} options
  * @param {string} options.label - Skill label used in the not-found error message
  *   (e.g. "deep-research"). Keeps error strings per-skill identical to pre-merge.
- * @param {string} options.defaultCapabilityPath - Default path to runtime_capabilities.json
+ * @param {string} options.defaultCapabilityPath - Default path to runtime-capabilities.json
  *   (the caller computes this from its own __dirname so the resolved path is unchanged).
  * @returns {{
  *   DEFAULT_CAPABILITY_PATH: string,
@@ -77,7 +77,7 @@ function createRuntimeCapabilities(options = {}) {
   /**
    * Load and validate the runtime capability matrix from disk.
    *
-   * @param {string} [capabilityPath] - Path to runtime_capabilities.json
+   * @param {string} [capabilityPath] - Path to runtime-capabilities.json
    * @returns {{ capabilityPath: string, matrix: Object }} Resolved path and parsed matrix
    * @throws {Error} If the matrix file is missing or malformed
    */
@@ -100,7 +100,7 @@ function createRuntimeCapabilities(options = {}) {
   /**
    * List all known runtime IDs from the capability matrix.
    *
-   * @param {string} [capabilityPath] - Path to runtime_capabilities.json
+   * @param {string} [capabilityPath] - Path to runtime-capabilities.json
    * @returns {string[]} Array of runtime identifier strings
    */
   function listRuntimeCapabilityIds(capabilityPath = DEFAULT_CAPABILITY_PATH) {
@@ -112,7 +112,7 @@ function createRuntimeCapabilities(options = {}) {
    * Resolve a single runtime's capability record by ID.
    *
    * @param {string} runtimeId - Runtime identifier to look up
-   * @param {string} [capabilityPath] - Path to runtime_capabilities.json
+   * @param {string} [capabilityPath] - Path to runtime-capabilities.json
    * @returns {{ capabilityPath: string, runtime: Object }} Resolved path and runtime record
    * @throws {Error} If the runtime ID is not found in the matrix
    */

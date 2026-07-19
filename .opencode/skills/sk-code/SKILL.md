@@ -34,7 +34,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | **code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify — plus the Motion.dev animation overlay. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Webflow surface; the acting agent applies it. | `sk-code/code-webflow/` |
 | **code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface; the acting agent applies it. | `sk-code/code-opencode/` |
 
-The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow_implement.md`, `workflow_debug.md`, and `workflow_verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine; the acting agent applies it.
+The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine; the acting agent applies it.
 
 ### When NOT to Use
 - Documentation-only changes with no code-work contract - use `sk-doc`.
@@ -47,7 +47,7 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. This hub is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent here, and resource slicing lives inside the nested packets plus `shared/references/smart_routing.md`.
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. This hub is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent here, and resource slicing lives inside the nested packets plus `shared/references/smart-routing.md`.
 
 ### The discriminator
 - **`workflowMode`** - the public mode/packet key: `quality`, `code-review` (workflow) or `code-webflow`, `code-opencode` (surface).
@@ -174,8 +174,8 @@ The `surface-router` backend is the shared surface-detection router under `share
 
 - Workflow mode packets: `code-quality/SKILL.md`, `code-review/SKILL.md`.
 - Surface evidence packets: `code-webflow/SKILL.md`, `code-opencode/SKILL.md`.
-- Shared workflow doctrine: `shared/references/workflow_implement.md`, `shared/references/workflow_debug.md`, `shared/references/workflow_verify.md` (symlinked into each surface).
+- Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.
-- Parent-skill pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`.
+- Parent-skill pattern: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - Sibling example: `.opencode/skills/sk-design/`.

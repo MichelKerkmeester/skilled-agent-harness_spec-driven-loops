@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/017-rust-backend-rewrite-research/001-research",
+  "specFolder": "system-skill-advisor/017-rust-backend-rewrite/001-research",
   "description": "The scorer is the backend's strongest pure-compute rewrite candidate, but even this path crosses native boundaries",
   "keywords": [
     "scorer",
@@ -14,12 +14,12 @@
     "native",
     "boundaries"
   ],
-  "lastUpdated": "2026-07-11T06:37:00.081Z",
+  "lastUpdated": "2026-07-18T03:48:57.055Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
     "system-skill-advisor",
-    "017-rust-backend-rewrite-research"
+    "017-rust-backend-rewrite"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -70,7 +70,7 @@ if [ "$CHANGED" -lt "$THRESHOLD" ]; then
   exit 0
 fi
 
-CANONICAL_DB_DIR="$REPO_ROOT/.opencode/skills/system-code-graph/mcp_server/database"
+CANONICAL_DB_DIR="$REPO_ROOT/.opencode/skills/system-code-graph/mcp-server/database"
 LEGACY_DB_DIR="$REPO_ROOT/.opencode/.spec-kit/code-graph/database"
 if [ -n "${SPECKIT_CODE_GRAPH_DB_DIR:-}" ]; then
   DB_DIR="$SPECKIT_CODE_GRAPH_DB_DIR"

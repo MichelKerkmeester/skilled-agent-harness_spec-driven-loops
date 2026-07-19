@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
+  "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
   "description": "Packet 005 (`a1a1ca9d3`) refined the 3 system- skill READMEs",
   "keywords": [
     "packet",
@@ -10,11 +10,12 @@
     "skill",
     "readmes"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.111Z",
+  "lastUpdated": "2026-07-18T03:48:57.247Z",
   "specId": "006",
   "folderSlug": "skill-readme-refinement-survey",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "008-skill-advisor-documentation"
   ],
   "memorySequence": 0,

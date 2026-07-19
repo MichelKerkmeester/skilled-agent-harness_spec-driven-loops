@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization",
   "description": "cli-opencode supports three provider families (`opencode-go` default, `deepseek` direct-API, and MiniMax via the Token Plan `minimax-coding-plan` /",
   "keywords": [
     "cli-opencode",
@@ -18,11 +18,12 @@
     "plan",
     "minimax-coding-plan"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.691Z",
+  "lastUpdated": "2026-07-18T03:48:54.333Z",
   "specId": "020",
   "folderSlug": "cli-opencode-mimo-pro-optimization",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

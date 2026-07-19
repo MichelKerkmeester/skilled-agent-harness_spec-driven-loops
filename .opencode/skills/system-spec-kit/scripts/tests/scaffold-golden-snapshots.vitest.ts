@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { resolveLevelContract } from '../../mcp_server/lib/templates/level-contract-resolver';
+import { resolveLevelContract } from '../../mcp-server/lib/templates/level-contract-resolver';
 import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
 
 const SKILL_ROOT = path.resolve(__dirname, '../..');

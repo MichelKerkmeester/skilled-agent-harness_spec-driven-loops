@@ -830,8 +830,8 @@ Before reporting issues, try these:
 ## 15. RELATED RESOURCES
 
 ### Reference Files
-- [session_management.md](./session_management.md) - Session lifecycle patterns for robust automation
-- [cdp_patterns.md](./cdp_patterns.md) - CDP command examples and domain-specific patterns
+- [session-management.md](./session-management.md) - Session lifecycle patterns for robust automation
+- [cdp-patterns.md](./cdp-patterns.md) - CDP command examples and domain-specific patterns
 
 ### Related Skills
 - `mcp-chrome-devtools` - Main skill orchestrator for bdg CLI workflows

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/032-code-graph-scatter/006-code-graph-watcher-claim-retraction",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/006-code-graph-watcher-claim-retraction",
   "description": "013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only",
   "keywords": [
     "validated",
@@ -17,11 +17,12 @@
     "found",
     "only"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.864Z",
+  "lastUpdated": "2026-07-18T03:48:55.603Z",
   "specId": "006",
   "folderSlug": "code-graph-watcher-claim-retraction",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 2,

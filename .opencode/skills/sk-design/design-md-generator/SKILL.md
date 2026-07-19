@@ -123,7 +123,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
 
 ```python
 from pathlib import Path

@@ -28,7 +28,7 @@ import {
   initEvalDb, generateQueryEmbedding,
   initHybridSearch, hybridSearchEnhanced, vectorIndex,
   type AblationChannel, type AblationSearchFn, type AblationReport,
-} from '../../mcp_server/api/index.js';
+} from '../../mcp-server/api/index.js';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
@@ -47,7 +47,7 @@ function resolveScriptsWorkspaceRoot(): string {
 }
 
 const SCRIPTS_ROOT = resolveScriptsWorkspaceRoot();
-const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp_server/database');
+const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp-server/database');
 const PROD_DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);
 const OUTPUT_PATH = '/tmp/ablation-result.json';
 

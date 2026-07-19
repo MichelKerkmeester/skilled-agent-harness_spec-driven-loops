@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode scripts (032 component 011 phase 002)"
+title: "Checklist: mcp-code-mode scripts (020 component 011 phase 002)"
 description: "Blocking SOL verifier contract for the script filename census, Python exemption, and conditional reference closure."
 trigger_phrases:
   - "mcp-code-mode scripts checklist"

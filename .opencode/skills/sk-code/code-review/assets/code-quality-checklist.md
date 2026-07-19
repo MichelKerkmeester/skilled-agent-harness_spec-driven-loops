@@ -1,0 +1,165 @@
+---
+title: Code Quality Checklist
+description: Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+trigger_phrases:
+  - "code quality review checklist"
+  - "silent failure data corruption risks"
+  - "boundary condition review pass"
+  - "kiss dry enforcement checks"
+  - "error handling review defects"
+importance_tier: normal
+contextType: implementation
+version: 1.5.0.11
+---
+
+# Code Quality Checklist
+
+Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide a systematic pass for non-security defects that still cause outages, regressions, or high maintenance cost.
+
+### Usage
+
+Run this pass on every findings-first review; walk each section against the changed diff and cite file:line for anything flagged.
+
+### Core Principle
+
+Prioritize silent-failure and data-corruption risks above stylistic concerns.
+
+---
+
+## 2. ERROR HANDLING
+
+Flag:
+- Swallowed exceptions (`catch {}` or log-only catches).
+- Overly broad exception handling hiding root causes.
+- Missing async error propagation.
+- User-facing leakage of internal stack traces.
+- Missing fallback behavior for recoverable failures.
+
+Review prompts:
+- "Will callers know this failed?"
+- "Is there enough context to debug without exposing internals?"
+
+---
+
+## 3. PERFORMANCE AND SCALING
+
+Flag:
+- N+1 query patterns.
+- Per-item network/database calls that should be batched.
+- Expensive work in hot loops without memoization/cache.
+- Synchronous blocking work in request paths.
+- Unbounded collections and memory growth risks.
+
+Review prompts:
+- "How does this behave with 10x data volume?"
+- "Can this call path be batched or cached safely?"
+
+---
+
+## 4. BOUNDARY CONDITIONS
+
+Check:
+- Null/undefined handling and optional chaining misuse.
+- Empty collection behavior for first/last/indexed access.
+- Numeric boundaries (division by zero, overflow, negative values).
+- String boundaries (empty, whitespace-only, very long input, unicode).
+- Off-by-one errors in loops, pagination, and slicing.
+
+Common risky patterns:
+
+```javascript
+const first = items[0]              // no empty check
+const avg = total / count           // count may be zero
+if (value) { /* skips valid 0 */ }  // truthy trap
+```
+
+---
+
+## 5. DATA FLOW AND CONTRACT SAFETY
+
+Flag:
+- Function or method signature changes that break existing callers (added required parameters, removed parameters, changed return types).
+- New null or undefined return paths introduced where callers expect a value.
+- Data transformation functions that silently drop fields, truncate values, or lose type precision.
+- Default parameter value changes that alter behavior for existing callers without updating call sites.
+- Implicit behavioral contract changes (sort order, iteration order, timing guarantees) not documented in the diff.
+- Public API response shape changes without versioning or migration path.
+
+Review prompts:
+- "If an existing caller is not updated, will it still work correctly after this change?"
+- "Does any data transformation lose information that downstream consumers need?"
+- "Are implicit behavioral guarantees (ordering, timing, idempotency) preserved?"
+
+Severity guidance:
+- P0 for breaking changes to public APIs or shared interfaces with no migration path.
+- P1 for new null returns or type changes that existing callers do not handle.
+- P2 for implicit contract changes with low blast radius.
+
+---
+
+## 6. MAINTAINABILITY SIGNALS
+
+Watch for:
+- Repeated logic with inconsistent behavior.
+- Magic literals where domain constants are expected.
+- Overly nested control flow reducing readability.
+- Hidden coupling through global/shared mutable state.
+- Tests missing for newly introduced edge cases.
+- Functions exceeding 20 lines or 4+ nesting levels without structural justification.
+- Deep method chaining across more than two object boundaries (Law of Demeter: a.b().c().d()).
+- Functions that produce side effects not implied by their name or signature (Principle of Least Astonishment).
+- Error messages that lack actionable context for debugging (missing what failed and what to try).
+- TODO, FIXME, or HACK comments in production code paths without an associated tracking reference (issue link or ticket number).
+- Hardcoded environment-specific values (URLs, ports, timeout thresholds) that should be externalized for deployment flexibility.
+- Hand-rolled standard-library behavior where the language or runtime already provides a clear, readable primitive — prefer the standard API when behavior and edge cases match.
+- Custom code or a dependency duplicating a native platform/runtime capability without a current requirement the native feature cannot satisfy.
+
+Decision cue: if reviewers cannot explain intent quickly, maintenance risk is likely at least P2.
+
+---
+
+## 7. KISS / DRY ENFORCEMENT
+
+### KISS Checks
+
+Flag:
+- New abstraction layers without a current behavior need.
+- Generic helpers used in only one place.
+- Workflow complexity introduced "for future flexibility" without evidence.
+- Features, parameters, or configuration options added for speculative future use without a current requirement (YAGNI).
+- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for) — recommend removal (see removal-plan.md), not just simplification. Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate. P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
+
+### DRY Checks
+
+Flag:
+- Duplicated constants/rules across modules.
+- Copy-paste branches with minor name changes.
+- Repeated validation/parsing blocks that can share one source.
+- Abstractions extracted from only two instances without evidence of a shared concept. Apply the Rule of Three before consolidating to avoid premature generalization (AHA).
+
+Severity guidance:
+- P2 default for stylistic duplication/complexity.
+- Escalate to P1 if duplication or complexity introduces behavior/regression risk.
+
+Intentional-simplification evidence:
+- A concrete `ceiling:` comment (naming the shortcut, its ceiling, and the upgrade path) is evidence that a "too simple" or "missing feature" KISS/YAGNI finding is deliberate — downgrade or suppress that P2 finding. This NEVER applies to security, auth, persistence, sandboxing, public-contract, or correctness findings; those are judged on their own contract regardless of any comment.
+
+---
+
+## 8. RELATED RESOURCES
+
+- [quick-reference.md](../references/quick-reference.md) - Baseline review flow and severity output contract.
+- [security-checklist.md](./security-checklist.md) - Security, authz, abuse, and privacy risk checks.
+- [solid-checklist.md](./solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
+- [removal-plan.md](./removal-plan.md) - Removal candidate classification and migration planning.
+- [test-quality-checklist.md](./test-quality-checklist.md) - Test quality, coverage, and anti-pattern checks.
+
+Surface portability: pair this baseline with surface-specific quality guidance from `sk-code`.

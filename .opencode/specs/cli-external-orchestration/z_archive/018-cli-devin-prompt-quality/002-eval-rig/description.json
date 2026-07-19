@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig",
+  "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/002-eval-rig",
   "description": "The eval loop in 003 needs (a) a fixture set grounded in real failure modes (not synthetic), (b) a grader harness that produces reproducible scores,",
   "keywords": [
     "eval",
@@ -19,11 +19,12 @@
     "reproducible",
     "scores"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.743Z",
+  "lastUpdated": "2026-07-18T03:48:54.307Z",
   "specId": "002",
   "folderSlug": "eval-rig",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "018-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

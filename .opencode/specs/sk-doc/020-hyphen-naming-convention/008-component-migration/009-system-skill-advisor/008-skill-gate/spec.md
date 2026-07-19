@@ -71,7 +71,7 @@ filesystem name or stale path reference remains outside the approved exemption s
   compatibility/build evidence, and release evidence.
 
 ### Out of Scope
-- New renames, source-code redesign, root-consumer policy changes, changelog authoring, or edits in other 032
+- New renames, source-code redesign, root-consumer policy changes, changelog authoring, or edits in other 020
   component subtrees.
 - Changing Python filenames/package directories, tool-mandated/generated/lockfile names, identifiers/keys, frozen
   history, or intentional explanatory mentions.

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/001-smallcode-deep-research",
   "description": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate,",
   "keywords": [
     "arc",
@@ -16,11 +16,11 @@
     "standard",
     "bundle-gate"
   ],
-  "lastUpdated": "2026-07-09T10:02:45.950Z",
+  "lastUpdated": "2026-07-18T03:48:55.222Z",
   "specId": "001",
   "folderSlug": "smallcode-deep-research",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive",
     "004-sk-prompt-small-model-optimization"
   ],

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-opencode component naming (032 phase 005.002)"
+title: "Tasks: cli-opencode component naming (020 phase 005.002)"
 description: "Tasks for the cli-opencode component rename: map eight reference files and six assets, update path-valued consumers, preserve schema and dispatch semantics, and verify delegated ownership."
 trigger_phrases:
   - "cli-opencode naming tasks"

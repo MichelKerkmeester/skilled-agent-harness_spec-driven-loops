@@ -6,9 +6,9 @@
 #
 # TEMPLATE ARCHITECTURE (v2.0 - CORE + ADDENDUM):
 #   Templates/
-#   ├── level_1/        # Core only (~270 LOC total)
-#   ├── level_2/        # Core + Verification (~390 LOC)
-#   ├── level_3/        # Core + Verification + Architecture (~540 LOC)
+#   ├── level-1/        # Core only (~270 LOC total)
+#   ├── level-2/        # Core + Verification (~390 LOC)
+#   ├── level-3/        # Core + Verification + Architecture (~540 LOC)
 #   └── level_3+/       # All addendums (~640 LOC)
 #
 # LEVEL SCALING (Value-based, not just length):
@@ -534,10 +534,10 @@ finalize_scaffold_templates() {
             s/\[###-feature-name\]/$ENV{PACKET_POINTER}/g;
             s/000-feature-name/$ENV{PACKET_POINTER}/g;
             s/packet_pointer: "[^"]+"/packet_pointer: "$ENV{PACKET_POINTER}"/g;
-            s/system-spec-kit\/templates\/level_1/$ENV{PACKET_POINTER}/g;
-            s/system-spec-kit\/templates\/level_2/$ENV{PACKET_POINTER}/g;
-            s/system-spec-kit\/templates\/level_3\+/$ENV{PACKET_POINTER}/g;
-            s/system-spec-kit\/templates\/level_3/$ENV{PACKET_POINTER}/g;
+            s/system-spec-kit\/templates\/level-1/$ENV{PACKET_POINTER}/g;
+            s/system-spec-kit\/templates\/level-2/$ENV{PACKET_POINTER}/g;
+            s/system-spec-kit\/templates\/level-3\+/$ENV{PACKET_POINTER}/g;
+            s/system-spec-kit\/templates\/level-3/$ENV{PACKET_POINTER}/g;
             s/\| \*\*Spec Folder\*\* \| scaffold\/([^|]+) \|/| **Spec Folder** | $ENV{RAW_PACKET_POINTER} |/g;
             s/\| \*\*Level\*\* \| \[1\/2\/3\/3\+\] \|/| **Level** | $ENV{DOC_LEVEL} |/g;
             s/\[YYYY-MM-DD\]/$ENV{TODAY}/g;

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: scripts command namespace naming (032 phase 008/013/006)"
+title: "Checklist: scripts command namespace naming (020 phase 008/013/006)"
 description: "Blocking SOL verification contract for the scripts namespace audit, negative fixture preservation, and no-rename disposition."
 trigger_phrases:
   - "scripts namespace naming checklist"

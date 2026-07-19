@@ -89,7 +89,6 @@ function walkLeafFiles(packetRoot, rootName) {
 // skill routes its feature-catalog/playbook docs as leaves, but the index doc
 // itself is navigation, not a routable leaf, so it is excluded from the walk.
 const INDEX_BASENAMES = new Set([
-  'feature_catalog.md', 'manual_testing_playbook.md',
   'feature-catalog.md', 'manual-testing-playbook.md',
 ]);
 
@@ -109,6 +108,16 @@ function readStandaloneConfig(skillDir) {
     throw new contract.ContractError('MALFORMED_STANDALONE_CONFIG', `${cfgPath} must declare a non-empty "workflowMode"`);
   }
   const leafRoots = Array.isArray(cfg.leafRoots) && cfg.leafRoots.length ? cfg.leafRoots : ['references', 'assets'];
+  const allowedRoots = new Set(['references', 'assets']);
+  for (const root of leafRoots) {
+    if (!allowedRoots.has(root) && !contract.canonicalPackageRoot(root)) {
+      throw new contract.ContractError('UNSUPPORTED_LEAF_ROOT', `unsupported standalone leaf root: ${root}`);
+    }
+  }
+  const canonicalPackageRoots = leafRoots.map((root) => contract.canonicalPackageRoot(root)).filter(Boolean);
+  if (new Set(canonicalPackageRoots).size !== canonicalPackageRoots.length) {
+    throw new contract.ContractError('COEXISTING_LEAF_ROOTS', 'standalone config declares both legacy and canonical forms of one package root');
+  }
   return {
     workflowMode: cfg.workflowMode,
     packet: typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : '.',
@@ -120,7 +129,7 @@ function readStandaloneConfig(skillDir) {
 
 // Walk every declared leaf root for a standalone skill and collect its leaves,
 // dropping only the package-index doc that names its own root directory
-// (feature_catalog/feature_catalog.md, manual_testing_playbook/…). No alias
+// (feature-catalog/feature-catalog.md, manual-testing-playbook/…). No alias
 // merge happens here: a standalone manifest is a pure function of its on-disk
 // corpus, and any resolver aliases live in their own file for router replay.
 function collectStandaloneLeaves(skillDir, cfg) {

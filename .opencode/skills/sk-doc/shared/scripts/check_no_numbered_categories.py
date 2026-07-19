@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Guard: reject numbered category folders under feature_catalog/ and manual_testing_playbook/.
+"""Guard: reject numbered category folders under feature-catalog/ and manual-testing-playbook/.
 
 Category folders are named by meaning (e.g. `mcp-tool-surface`), not by a two-digit
 ordinal prefix (`06--mcp-tool-surface`). Ordinal prefixes forced a renumber-and-relink
@@ -20,7 +20,15 @@ from pathlib import Path
 
 # Two-digit ordinal prefix on a category folder, e.g. `06--mcp-tool-surface`.
 NUMBERED_DIR = re.compile(r'^\d{2}--')
-CATEGORY_ROOTS = ('feature_catalog', 'manual_testing_playbook')
+
+# Scan both the hyphen and underscore root forms while the naming migration is in
+# flight, sourced from the shared resolver so this guard and the classifier agree on
+# which roots exist. Fall back to local names if the sibling cannot be imported.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from naming_root_resolver import (  # type: ignore
+    ALL_ROOT_NAMES as CATEGORY_ROOTS,
+    find_unsupported_root_dirs,
+)
 
 
 def find_numbered_category_dirs(root: Path):
@@ -42,6 +50,11 @@ def main(argv) -> int:
     root = Path(args[0]) if args else Path('.opencode/skills')
     if not root.exists():
         print(f'ERROR: root not found: {root}', file=sys.stderr)
+        return 2
+
+    unsupported = find_unsupported_root_dirs(root)
+    if unsupported:
+        print(f'ERROR: unsupported catalog/playbook root: {unsupported[0]}', file=sys.stderr)
         return 2
 
     offenders = find_numbered_category_dirs(root)

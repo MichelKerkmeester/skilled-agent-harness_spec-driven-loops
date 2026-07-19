@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code benchmark artifacts (032 phase 008/007)"
+title: "Feature Specification: sk-code benchmark artifacts (020 phase 008/007)"
 description: "Tracked sk-code benchmark storage uses snake_case labels such as d4r_live, live_mode_b, live_final, live_remediated, router_baseline, router_final, and fixtures/sk_code. This phase renames the in-scope fixture/profile/storage paths and updates benchmark navigation while preserving generated report content and the benchmark corpus."
 trigger_phrases:
   - "sk-code benchmark naming"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-code benchmark artifacts
 
@@ -53,7 +53,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 007 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 007 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -118,7 +118,7 @@ Rename the in-scope benchmark fixture/profile/storage directories to kebab-case,
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Benchmark output directories can look like ordinary tracked folders even when their contents are generated. Renaming the wrong generated surface or editing report JSON would make the baseline incomparable. The mitigation is a frozen-map classification for each directory/file, a byte/content comparison for generated artifacts, and a non-zero discovery check through the existing harness. The phase depends on the 006 corpus-path handoff and the 032 map.
+Benchmark output directories can look like ordinary tracked folders even when their contents are generated. Renaming the wrong generated surface or editing report JSON would make the baseline incomparable. The mitigation is a frozen-map classification for each directory/file, a byte/content comparison for generated artifacts, and a non-zero discovery check through the existing harness. The phase depends on the 006 corpus-path handoff and the 020 map.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

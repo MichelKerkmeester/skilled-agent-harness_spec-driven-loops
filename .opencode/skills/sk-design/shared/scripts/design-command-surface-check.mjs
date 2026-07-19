@@ -2627,7 +2627,7 @@ function assetPathsForCommand(command) {
   const assetsRootUrl = new URL("assets/", commandsRootUrl);
 
   const asset = (suffix, extension) => {
-    const fileName = `design_${name}_${suffix}.${extension}`;
+    const fileName = `design-${name}-${suffix}.${extension}`;
     return {
       relativePath: `.opencode/commands/design/assets/${fileName}`,
       url: new URL(fileName, assetsRootUrl)

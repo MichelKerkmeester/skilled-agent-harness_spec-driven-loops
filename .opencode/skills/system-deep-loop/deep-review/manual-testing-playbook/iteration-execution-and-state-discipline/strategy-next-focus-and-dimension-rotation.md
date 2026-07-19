@@ -1,0 +1,87 @@
+---
+title: "DRV-010 -- Strategy next focus and dimension rotation"
+description: "Verify that the strategy rotates through dimensions and respects exhausted approaches."
+version: 1.11.0.15
+---
+
+# DRV-010 -- Strategy next focus and dimension rotation
+
+This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DRV-010`.
+
+---
+
+## 1. OVERVIEW
+
+This scenario validates strategy next focus and dimension rotation for `DRV-010`. The objective is to verify that the strategy rotates through dimensions and respects exhausted approaches.
+
+### WHY THIS MATTERS
+
+If the loop manager does not rotate dimensions, the review gets stuck on a single dimension while others remain uncovered. Dimension coverage is a weighted convergence signal (0.45), so failure to rotate blocks convergence and wastes iterations.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
+
+- Objective: Verify that the strategy rotates through dimensions and respects exhausted approaches.
+- Real user request: How does the review know which dimension to focus on next? Does it cycle through all of them?
+- Prompt: `Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.`
+- Expected execution process: Inspect the YAML read-state step for dimension extraction, then the dispatch step for next_dimension injection, then the strategy template for the "Next Focus" section, then the convergence docs for dimension coverage requirements.
+- Desired user-facing outcome: The user is told that the review automatically cycles through dimensions in priority order and skips dimensions that are already fully covered.
+- Expected signals: The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. The convergence docs require all dimensions to be covered.
+- Pass/fail posture: PASS if dimension rotation is explicit in the loop and the strategy tracks coverage. FAIL if the next dimension is not derived from state or if exhausted dimensions are re-checked unnecessarily.
+
+---
+
+## 3. TEST EXECUTION
+
+### RECOMMENDED ORCHESTRATION PROCESS
+
+1. Restate the user request in plain language before inspecting implementation details.
+2. Follow the listed command sequence in order so higher-level docs are checked before lower-level workflow contracts.
+3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
+4. Return a short user-facing explanation, not just raw implementation notes.
+### Prompt
+Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.
+### Commands
+1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .opencode/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+### Expected
+The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. Convergence requires all dimensions covered.
+### Evidence
+Capture the next_dimension extraction logic, the dispatch focus injection, and the convergence dimension coverage signal.
+### Pass/Fail
+PASS if dimension rotation is explicit in the loop and the strategy tracks coverage. FAIL if the next dimension is not derived from state or if exhausted dimensions are re-checked unnecessarily.
+### Failure Triage
+Check the strategy template for explicit dimension tracking sections and verify the convergence algorithm includes dimension coverage as a weighted signal.
+---
+
+## 4. SOURCE FILES
+
+### PLAYBOOK SOURCES
+
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page, integrated review protocol, and scenario summary |
+| `feature-catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
+
+### IMPLEMENTATION AND RUNTIME ANCHORS
+
+| File | Role |
+|---|---|
+| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
+| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: ITERATION EXECUTION AND STATE DISCIPLINE
+- Playbook ID: DRV-010
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md`
+- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

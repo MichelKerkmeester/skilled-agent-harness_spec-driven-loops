@@ -1,0 +1,266 @@
+---
+title: "Deferred Decisions (Tier D)"
+description: "Rationale plus recommendations for deferred findings that require explicit human decision before runtime or structural changes."
+trigger_phrases:
+  - "deferred decisions skill-advisor"
+  - "tier d decisions"
+  - "skill-advisor architectural deferrals"
+importance_tier: "normal"
+contextType: "general"
+version: 0.8.0.11
+---
+
+# Deferred Decisions (Tier D)
+
+Rationale plus recommendations for deferred findings that require explicit human decision before runtime or structural changes.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Preserves deferred Tier D advisor decisions whose rationale still matters for operators reading hook and documentation history.
+
+### When to Use
+
+- Explaining why a hook migration or documentation exception was deferred.
+- Checking whether old review findings still require human decision.
+- Auditing historical context before deleting compatibility paths.
+
+### Core Principle
+
+Deferred decisions stay visible until they are explicitly resolved, superseded or retired by a later packet.
+
+### Key Sources
+
+- Packet `008-tier-d-execution` notes referenced in this document.
+- Active hook and playbook docs that cite these deferrals.
+
+---
+
+## 2. F4: `.devin/hooks.v1.json` migration
+
+> **CLOSED — SUPERSEDED by the cli-devin deprecation (packet `142-cli-devin-deprecation`, 2026-06-08).** Devin was fully removed from the framework: `.devin/hooks.v1.json`, the skill-advisor and spec-kit `hooks/devin/` sources + dist, and the `'devin'` runtime enum were all deleted. The migration described below is moot — no Devin hook is wired anymore. The text is retained as a historical record of the decision; do not act on its migration steps.
+
+### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
+
+UserPromptSubmit now points to `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js`. SessionStart now points to `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp-server/hooks/devin/session-start.js`. Pivot from original plan: SessionStart was migrated to system-code-graph (its actual conceptual owner) rather than system-skill-advisor, because the hook source carries the `// MODULE: Devin SessionStart Hook — Code Graph Startup Context` comment plus imports `code-graph-boundary.js`. The system-code-graph dist already contained a compiled artifact at the target path.
+
+> **Correction (2026-05-27, packet 029 phase 007).** The claim above is inaccurate. The `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp-server/hooks/devin/session-start.js` artifact was never built and does not exist; the only compiled SessionStart artifact is the flat `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-start.js`. Packet 029 validation (finding F-025-1) found `.devin/hooks.v1.json` pointing at the non-existent path — so the hook never fired in a real Devin session — and repointed it to the real artifact (phase 004). The SessionStart migration to system-code-graph was never realized: the hook source (`system-spec-kit/mcp-server/hooks/devin/session-start.ts`) and its compiled artifact both remain under `system-spec-kit`.
+
+### Original-current state (preserved for history)
+
+`.devin/hooks.v1.json` registers two hooks:
+
+1. `UserPromptSubmit` pointing to `.opencode/skills/system-spec-kit/mcp-server/dist/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.js`
+2. `SessionStart` pointing to `.opencode/skills/system-spec-kit/mcp-server/dist/system-spec-kit/mcp-server/hooks/devin/session-start.js`
+
+Both paths point to the OLD `system-spec-kit` location. The NEW location at `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
+
+### Blocker
+
+A complete migration of both hooks requires building `session-start.js` at the NEW location. The source TypeScript may not exist yet in the NEW package, OR the build script does not yet compile it. Verification needed before migration.
+
+### Recommended actions (in priority order)
+
+**Option A (preferred)**: Build the missing `session-start.js` at the NEW location, then migrate both hook entries in one commit:
+
+1. Verify `.opencode/skills/system-skill-advisor/hooks/devin/session-start.ts` exists. If not, copy from system-spec-kit OLD location plus update import paths.
+2. Add it to the package build (typically `tsc -p tsconfig.build.json` will pick it up if it is in `include[]`).
+3. Run `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build`.
+4. Verify `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/session-start.js` exists.
+5. Edit `.devin/hooks.v1.json` to point both hooks to the NEW paths in one atomic edit.
+6. Restart Devin or have the operator restart their Devin session to pick up the new config.
+
+**Option B**: Partial migration. Update only the `UserPromptSubmit` entry, leave `SessionStart` on OLD with a documented exception. Adds risk that maintainers later forget the OLD location still has live consumers.
+
+**Option C**: Status quo. Leave both hooks on OLD. Acceptable if the OLD location is not deprecated yet (see F6 below). No action.
+
+### Risks
+
+- `.devin/hooks.v1.json` is runtime config consumed by Devin. A wrong path produces silent hook failure plus the operator may not notice until skill-advisor surface stops appearing in Devin output.
+- The disable-flag interaction (per `INSTALL-GUIDE.md` §8): Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
+
+---
+
+## 3. F6: dual hook location resolution
+
+### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
+
+> **Update (2026-06-08).** The Devin runtime was subsequently removed from the framework entirely (see the F4 supersession note above): the `hooks/devin/` sources + dist and `.devin/hooks.v1.json` no longer exist. All Devin rows and steps below are retained as historical record only; the remaining F6 removal scope concerns the claude/opencode entries.
+
+All 4 OLD hook READMEs (`system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/README.md`) now carry the 2026-05-16 deprecation banner with a 2026-08-16 removal target (90-day window). `devin/README.md` was created (it was missing). Operators have a clear migration deadline. Actual OLD-location removal stays out of scope: it requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths.
+
+### F6 audit progress (2026-05-18)
+
+Mid-window audit while preparing for the 2026-08-16 removal:
+
+**Runtime configs — ALL migrated to NEW:**
+- `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
+- `opencode.json` — no hook entries.
+- `.devin/hooks.v1.json` — `UserPromptSubmit` points at `system-skill-advisor/mcp-server/dist/...`; `SessionStart` points at `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-start.js` (corrected 2026-05-27 — see §2 Correction; the previously-recorded `system-code-graph/dist/system-spec-kit/...` path never existed and the hook did not fire until packet 029 phase 004 repointed it).
+- OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
+- Cross-runtime grep for `system-spec-kit/mcp-server/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
+
+**Compiled NEW dist is self-contained:**
+- Imports in `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../mcp-server/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/mcp-server/hooks/` in the compiled output.
+- `grep -rE "system-spec-kit/mcp-server/hooks" .opencode/skills/system-skill-advisor/mcp-server/dist` returns zero hits.
+
+**OLD location contents that DO have non-hook consumers — must not be removed naively:**
+
+| OLD path | Still in use by | Disposition for 2026-08-16 |
+|---|---|---|
+| `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` | Nothing at runtime (NEW dist is self-contained) | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/README.md` | Operators migrating away | Safe to delete after 2026-08-16 |
+| `system-spec-kit/mcp-server/hooks/claude/hook-state.ts` | Documented in `DEPLOYMENT.md` L7 as the project-hash source. | Keep until separate migration packet. |
+| `system-spec-kit/mcp-server/hooks/opencode/lib/freshness-smoke-check.ts` | Documented in `README.md` L769 as the canonical helper. | Keep until separate migration packet. |
+| `system-spec-kit/mcp-server/hooks/devin/session-prime.ts` + `session-start.ts` | Code-graph SKILL.md §8.2 explicitly documents these as still-in-use under spec-kit (ADR-001 hook ownership asymmetry). | Keep — not in scope for the F6 90-day removal. |
+| `system-spec-kit/mcp-server/hooks/{shared,session-stop,claude-transcript,compact-inject}.ts` | Unverified consumers. | Audit case-by-case in the removal packet. |
+
+**Revised F6 removal scope (after 2026-08-16):**
+
+The removal at 2026-08-16 should be limited to:
+- The 4 per-runtime entry-point files `system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/user-prompt-submit.ts` + each runtime's `README.md`.
+
+NOT included in the F6 removal:
+- `hook-state.ts` (per DEPLOYMENT.md consumer)
+- `freshness-smoke-check.ts` (per README.md consumer)
+- `session-prime.ts` / `session-start.ts` (per code-graph SKILL.md ADR-001)
+- `shared.ts` / `session-stop.ts` / `claude-transcript.ts` / `compact-inject.ts` (unverified consumers)
+
+A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) should migrate the helpers to NEW before they can be removed from OLD. That packet is separate from F6 and is NOT bounded by the 2026-08-16 date.
+
+### Original-current state (preserved for history)
+
+Hooks exist at TWO locations:
+
+- OLD: `.opencode/skills/system-spec-kit/mcp-server/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
+- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
+
+No README or doc explains which location is canonical or when OLD will deprecate.
+
+### Recommended action
+
+Mark OLD as deprecated with a 90-day migration window. Concrete steps:
+
+1. Add a top-banner deprecation note to every README under `.opencode/skills/system-spec-kit/mcp-server/hooks/*/README.md`:
+
+   ```markdown
+   > **DEPRECATED 2026-05-16.** This hook location is being migrated to `.opencode/skills/system-skill-advisor/hooks/`. Update any runtime config (e.g. `.devin/hooks.v1.json`) before 2026-08-16. After that date this location may be removed without further notice.
+   ```
+
+2. Track migration completeness per runtime in a tracker doc or this doc's appendix:
+
+   | Runtime | OLD path used by | NEW path ready | Action |
+   |---|---|---|---|
+   | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
+   | OpenCode | `opencode.json` hooks section | yes | Update OpenCode config |
+   | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
+   | OpenCode plugin | `.opencode/plugins/mk-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
+
+3. After all runtime configs are migrated plus the 90-day window passes, delete the OLD location in a separate cleanup packet.
+
+### Risks
+
+- Premature deletion of OLD breaks Devin hook (until F4 resolves).
+- Forgetting to update one runtime's config leaves it silently using the OLD location.
+- The OLD `system-spec-kit/mcp-server/hooks/` directory may have other consumers (test harnesses, internal scripts) beyond the visible runtime configs. Verify before delete.
+
+---
+
+## 4. F34: playbook TEST EXECUTION structure deviation
+
+### Current state
+
+20 scenario files under `manual-testing-playbook/0[5-8]--*/` use a deviating §3 TEST EXECUTION structure (numbered command steps plus `### Expected Signals` plus `### Failure Modes`) instead of the canonical sk-doc subsections (`### Prompt`, `### Commands`, `### Expected`, `### Evidence`, `### Pass / Fail`, `### Failure Triage`).
+
+### Action taken
+
+Each of the 20 files received a documentation note at the top of §3 TEST EXECUTION explaining the deviation is intentional and pointing here for rationale.
+
+### Rationale
+
+The current structure ties scenario semantics directly to runtime output checks (Expected Signals → tool response fields, Failure Modes → triage table). Restructuring to the canonical template would either:
+
+- Duplicate the information across the new subsections, increasing maintenance cost without adding value.
+- Force the runtime checks into a more abstract form, losing the directness that makes operator validation reliable.
+
+The deviation is intentional and shipped with the documentation note.
+
+### Recommended action
+
+None. Status quo. If a future sk-doc template revision broadens the canonical structure to include the current shape, the deviation notes can be removed in a single sweep.
+
+---
+
+## 5. F35: catalog TOC numbering mismatch
+
+### Current state
+
+`feature-catalog/feature-catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `scorer-fusion`, section 6 (MCP SURFACE) maps to `mcp-surface`, creating a mismatch.
+
+### Action already taken
+
+Gap-05 explanatory note added to feature-catalog.md §1 documenting the intentional reservation. The note states the gap is preserved for spec-folder cross-reference stability.
+
+### Recommended action
+
+None. Status quo. Renumbering would either:
+
+- Force a global rename of `scorer-fusion` → `05--scorer-fusion` plus `06-08` shift up, breaking spec-folder cross-references in packets 058, 098, 100, plus others.
+- Or renumber the TOC to match directory numbers (gap-05 in TOC too), making the TOC look broken.
+
+Both options are worse than the current explanatory-note approach. Leave as-is.
+
+---
+
+## 6. F36: hooks-and-plugin file numbering gap
+
+### Current state
+
+Directory `feature-catalog/hooks-and-plugin/` contains files 01, 03, 04, 05 (missing 02).
+
+### Recommended action
+
+Low-impact. Two options:
+
+**Option A (recommended)**: Accept and move on. The gap is invisible from the root catalog (the TOC simply lists 4 features). No operator action would discover the gap unless they `ls` the directory directly.
+
+**Option B**: Rename `03-` → `02-`, `04-` → `03-`, `05-` → `04-` to make the directory sequential. Risk: breaks any deep links to those files in other packets or in code.
+
+Pick A unless a maintainer reports operator confusion from the gap.
+
+---
+
+## 7. F37: catalog/playbook coverage asymmetry
+
+### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
+
+Playbook root `manual-testing-playbook.md` now carries §17.5 "Catalog group ↔ playbook category mapping" with all 7 catalog groups mapped plus the 2 playbook-only categories (`compat-and-disable`, `operator-h5`) called out explicitly. Mapping is documented as intentionally asymmetric, with rationale ("catalog models feature ownership; playbook models operator workflow"). Renumbering decision deferred indefinitely because it would break checked-in inventory tests.
+
+### Original-current state (preserved for history)
+
+`manual-testing-playbook/` has 9 categories. `feature-catalog/` has 7 groups. Mapping is not 1:1:
+
+- Playbook `compat-and-disable` plus `operator-h5` have NO corresponding feature_catalog groups.
+- Catalog `daemon-and-freshness` has NO dedicated playbook category (split across `auto-update-daemon` plus `operator-h5`).
+- Catalog `mcp-surface` has NO dedicated playbook category (split across `native-mcp-tools` plus `cli-hooks-and-plugin`).
+
+### Recommended action
+
+Document the asymmetry as intentional with a cross-reference table in the playbook root. NOT renumber. Renumbering risks breaking checked-in inventory tests (`tests/manual-testing-playbook.vitest.ts` per research finding from iter 014).
+
+Concrete: add a §17.5 cross-reference table to `manual-testing-playbook.md` showing the catalog group → playbook category mapping (1-to-many and many-to-1 entries explicit). Operators reading the playbook then see exactly where each catalog group's scenarios live.
+
+Status: documentation update planned for a future packet. Low urgency.
+
+---
+
+## 8. RELATED
+
+- `001-audit-and-research/research/research.md` §4 Open Questions, original Tier D items
+- `002-bug-fixes/implementation-summary.md` Known Limitations, F4/F6 first surfaced
+- `004-sk-doc-1to1-alignment/implementation-summary.md` Known Limitations, F35/F36/F37 first deferred
+- `006-deferred-cleanup/implementation-summary.md` Known Limitations, full deferred catalog as of pre-007 state
+- `007-deferred-final/implementation-summary.md`, what 007 actually shipped plus what stays here

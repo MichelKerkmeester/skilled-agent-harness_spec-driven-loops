@@ -244,7 +244,7 @@ function resolveSpecKitPackageRoot(): string | null {
   let currentDir = path.dirname(fileURLToPath(import.meta.url));
   while (currentDir !== path.dirname(currentDir)) {
     if (
-      existsSync(path.join(currentDir, 'mcp_server', 'database'))
+      existsSync(path.join(currentDir, 'mcp-server', 'database'))
       && existsSync(path.join(currentDir, 'scripts'))
       && existsSync(path.join(currentDir, 'shared'))
     ) {
@@ -397,7 +397,7 @@ function resolveConfiguredDatabaseCandidates(): string[] {
   const packageRoot = resolveSpecKitPackageRoot();
   const databaseDirs = [
     configuredDir ? path.resolve(process.cwd(), configuredDir) : null,
-    !configuredDir && packageRoot ? path.join(packageRoot, 'mcp_server', 'database') : null,
+    !configuredDir && packageRoot ? path.join(packageRoot, 'mcp-server', 'database') : null,
   ].filter((value): value is string => typeof value === 'string' && value.length > 0);
 
   for (const databaseDir of databaseDirs) {

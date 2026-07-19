@@ -42,7 +42,7 @@ npm install
 
 ```bash
 # Test Spec Kit Memory MCP server
-node .opencode/skills/system-spec-kit/mcp_server/context-server.js
+node .opencode/skills/system-spec-kit/mcp-server/context-server.js
 
 # Test embedding providers
 node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js

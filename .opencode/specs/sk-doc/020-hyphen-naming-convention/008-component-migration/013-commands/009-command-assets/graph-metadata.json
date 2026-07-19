@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-07-17T14:30:46.017Z",
+    "last_save_at": "2026-07-17T20:26:20.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:2f6720a25854b11c21ad48f9604454b61c96cf8076c830d7fcebef8209b0a9b1",
+    "source_fingerprint": "sha256:098e460a6498b9d97c885371bf9227faa55036bd7bb20500de42706ec35e1f6f",
     "source_doc_hashes": {
-      "spec.md": "c64e5349367c6fcf9798a99b4eced0bfff4db5fcec40f61bb26a2c821e745116",
-      "plan.md": "b4a4434a9f3cc077207acf2df3a6596e16f47d2071d7c7d6d365adceb97b4c5c",
-      "tasks.md": "ff5389e3939764bb9040ff59d548a7575e031468dbbdfd4ea3ad8d8854672658",
-      "checklist.md": "6b5ca27088de36a6f362388ed65b776cc5bb2d3a87fd8fea363a0c4beb3a0c73",
-      "decision-record.md": "61b2e020b6b5fc3b6862310481208c82282a0fc74f790257784428b9c4637d45"
+      "spec.md": "8dfe5d5eac851988154507e49dc33ce74af87561868cf3dcb003c6e853778da1",
+      "plan.md": "e737b50f5d4962a6825178195fefefc9db1c551bf42ffd8790e64df089f878b4",
+      "tasks.md": "4b6f5e93f476a68eb6ce97f745765489b3e7fb7c7e8d2b8ba83dcef8a4fdb423",
+      "checklist.md": "6bcd058bf0acc19c2bf56e13d34f8ba011bc184d94a66d4dc20b6f41504ac34a",
+      "decision-record.md": "9fe642ee2e8008ea361ea1bc04496bead1788ce61e6e2bcb31c0a628cfc4c1d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

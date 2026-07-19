@@ -30,7 +30,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` |
+| Presentation | `.opencode/commands/memory/assets/save-presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the memory MCP tools and the `generate-context.js` script and owns no workflow YAML by design.
 
@@ -67,7 +67,7 @@ Tool map:
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/memory/assets/save_presentation.txt`:
+The following content lives only in `.opencode/commands/memory/assets/save-presentation.txt`:
 
 - Startup questions and active spec-folder resolution prompts.
 - Save plan, dashboard, approval, result-envelope, and error displays.

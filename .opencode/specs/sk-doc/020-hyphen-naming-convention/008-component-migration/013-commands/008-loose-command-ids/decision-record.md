@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: loose command ID boundary (032 phase 008/013/008)"
+title: "Decision Record: loose command ID boundary (020 phase 008/013/008)"
 description: "Design decisions for distinguishing root command filesystem basenames from public slash-command IDs and tool-owned paths."
 trigger_phrases:
   - "loose command ID decision"

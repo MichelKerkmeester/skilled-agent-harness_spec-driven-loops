@@ -55,7 +55,7 @@ describe('process sweep', () => {
       {
         pid: 5678,
         ppid: 1,
-        command: 'node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js',
+        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
       },
     ]);
 
@@ -72,7 +72,7 @@ describe('process sweep', () => {
       {
         pid: 1234,
         ppid: 1,
-        command: 'node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js',
+        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
       },
       { pid: 4321, ppid: 1234, command: 'zsh' },
       { pid: 5678, ppid: 4321, command: 'node scripts/ops/process-sweep.js plan' },
@@ -187,12 +187,12 @@ describe('process sweep', () => {
       {
         pid: 9000,
         ppid: 1,
-        command: 'node .opencode/skills/system-code-graph/mcp_server/dist/index.js',
+        command: 'node .opencode/skills/system-code-graph/mcp-server/dist/index.js',
       },
       {
         pid: 9001,
         ppid: 1,
-        command: 'node system-code-graph/mcp_server/dist/index.js',
+        command: 'node system-code-graph/mcp-server/dist/index.js',
       },
     ]);
 

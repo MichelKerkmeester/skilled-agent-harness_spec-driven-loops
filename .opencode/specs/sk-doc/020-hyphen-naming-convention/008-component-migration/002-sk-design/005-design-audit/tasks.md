@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Design-audit (032 phase 005)"
-description: "Task breakdown for Design-audit in the 032 sk-design naming subtree."
+title: "Tasks: Design-audit (020 phase 005)"
+description: "Task breakdown for Design-audit in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-audit tasks"
   - "sk-design design-audit execution"
-  - "032 design-audit checklist"
+  - "020 design-audit checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Design-audit (032 phase 005)
+# Tasks: Design-audit (020 phase 005)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

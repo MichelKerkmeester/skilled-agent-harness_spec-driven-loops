@@ -13,7 +13,7 @@ version: 1.8.0.17
 
 # Optimization Procedure - AI-Friendly Docs
 
-The procedure for converting reference-style documentation into question-answering format. `SKILL.md` §3 owns the executable optimization steps; this file is the overflow detail — the quality heuristics, the analysis workflow, the README priority strategy, the snippet checklist, and the iteration loop. The 16 transformation patterns each have a worked before/after example in the [transformation pattern catalog](./transformation_patterns.md).
+The procedure for converting reference-style documentation into question-answering format. `SKILL.md` §3 owns the executable optimization steps; this file is the overflow detail — the quality heuristics, the analysis workflow, the README priority strategy, the snippet checklist, and the iteration loop. The 16 transformation patterns each have a worked before/after example in the [transformation pattern catalog](./transformation-patterns.md).
 
 ---
 
@@ -80,13 +80,13 @@ These heuristics describe what “good” looks like. This skill does not comput
 - Which snippets don't answer important questions?
 
 **Step 4: Apply Transformation Patterns**
-- Pick the patterns that close the observed gaps and apply the before/after transform from the [pattern catalog](./transformation_patterns.md).
+- Pick the patterns that close the observed gaps and apply the before/after transform from the [pattern catalog](./transformation-patterns.md).
 
 ---
 
 ## 4. TRANSFORMATION PATTERNS
 
-The 16 patterns, with a worked before/after example for each, live in the [transformation pattern catalog](./transformation_patterns.md). `SKILL.md` §3 Step 3 lists all 16 by name and impact/effort so you can choose without opening the catalog; open the catalog when you need the exact transform shape.
+The 16 patterns, with a worked before/after example for each, live in the [transformation pattern catalog](./transformation-patterns.md). `SKILL.md` §3 Step 3 lists all 16 by name and impact/effort so you can choose without opening the catalog; open the catalog when you need the exact transform shape.
 
 Pattern quick-index (see catalog for code):
 
@@ -165,7 +165,7 @@ Before finalizing, verify each snippet:
 
 1. Extract structure JSON (scripts)
 2. Identify missing questions / weak sections (AI judgment)
-3. Apply targeted patterns (from the [catalog](./transformation_patterns.md))
+3. Apply targeted patterns (from the [catalog](./transformation-patterns.md))
 4. Re-extract JSON and re-evaluate
 5. Repeat until docs are complete and usable
 
@@ -181,20 +181,20 @@ Before finalizing, verify each snippet:
 ## 8. RELATED RESOURCES
 
 ### Reference Files
-- [transformation_patterns.md](./transformation_patterns.md) - The 16 patterns with worked before/after examples
+- [transformation-patterns.md](./transformation-patterns.md) - The 16 patterns with worked before/after examples
 - [workflows.md](./workflows.md) - Execution modes for the create-quality-control workflow
 - [README.md](./README.md) - create-quality-control reference route map
-- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/quick_reference.md) - Quick command reference
-- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
+- [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference
+- [skill-creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [create-readme references](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
-- [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../../create-skill/assets/skill/skill_asset_template.md) - Bundled asset structure
-- [readme_template.md](../../create-readme/assets/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../create-command/assets/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../../create-readme/assets/install_guide_template.md) - Install guide template (14 sections)
-- [llmstxt_templates.md](../../shared/assets/llmstxt_templates.md) - llms.txt with decision framework
-- [frontmatter_templates.md](../../shared/assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)
+- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-asset-template.md](../../create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
+- [readme-template.md](../../create-readme/assets/readme-template.md) - Comprehensive README guide (13 sections)
+- [command-template.md](../../create-command/assets/command-template.md) - Command creation guide (19 sections)
+- [install-guide-template.md](../../create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
+- [llmstxt-templates.md](../../shared/assets/llmstxt-templates.md) - llms.txt with decision framework
+- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)

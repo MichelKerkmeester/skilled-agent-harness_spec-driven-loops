@@ -38,7 +38,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
 
 #### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
+Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design-generation-patterns.md](./references/design-generation-patterns.md). This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
 
 ### When NOT to Use
 
@@ -81,12 +81,12 @@ This skill uses a **simple intent router**, not a keyed resource-subdirectory ro
 - `assets/` for format-specific deep-dives (Markdown, JSON, YAML).
 
 ```text
-references/depth_framework.md            - DEPTH methodology, RICCE integration
-references/patterns_evaluation.md        - 7 frameworks, CLEAR scoring
-references/design_generation_patterns.md - Design-generation briefs (open-design start_run), seed-of-thought, discovery-form pre-answer
-assets/format_guide_markdown.md          - Markdown format deep-dive
-assets/format_guide_json.md              - JSON format deep-dive
-assets/format_guide_yaml.md              - YAML format deep-dive
+references/depth-framework.md            - DEPTH methodology, RICCE integration
+references/patterns-evaluation.md        - 7 frameworks, CLEAR scoring
+references/design-generation-patterns.md - Design-generation briefs (open-design start_run), seed-of-thought, discovery-form pre-answer
+assets/format-guide-markdown.md          - Markdown format deep-dive
+assets/format-guide-json.md              - JSON format deep-dive
+assets/format-guide-yaml.md              - YAML format deep-dive
 ```
 
 ### Resource Loading Levels
@@ -94,9 +94,9 @@ assets/format_guide_yaml.md              - YAML format deep-dive
 | Level       | When to Load             | Resources                                                                  |
 | ----------- | ------------------------ | -------------------------------------------------------------------------- |
 | ALWAYS      | Every skill invocation   | SKILL.md (this file)                                                       |
-| CONDITIONAL | If intent signals match  | references/depth_framework.md, references/patterns_evaluation.md           |
-| CONDITIONAL | If design-generation signals match | references/design_generation_patterns.md                         |
-| ON_DEMAND   | Only on explicit request | assets/format_guide_markdown.md, assets/format_guide_json.md, assets/format_guide_yaml.md |
+| CONDITIONAL | If intent signals match  | references/depth-framework.md, references/patterns-evaluation.md           |
+| CONDITIONAL | If design-generation signals match | references/design-generation-patterns.md                         |
+| ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |
 
 ### Smart Router Pseudocode
 
@@ -105,8 +105,8 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/depth_framework.md"
-PATTERNS_RESOURCE = "references/patterns_evaluation.md"
+DEFAULT_RESOURCE = "references/depth-framework.md"
+PATTERNS_RESOURCE = "references/patterns-evaluation.md"
 
 COMMAND_INTENTS = {
     "$text": "TEXT_ENHANCE",
@@ -128,12 +128,12 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "TEXT_ENHANCE": ["references/depth_framework.md", "references/patterns_evaluation.md"],
-    "FRAMEWORK": ["references/patterns_evaluation.md"],
-    "DESIGN_GEN": ["references/design_generation_patterns.md", "references/patterns_evaluation.md"],
-    "FORMAT_MARKDOWN": ["assets/format_guide_markdown.md", "references/patterns_evaluation.md"],
-    "FORMAT_JSON": ["assets/format_guide_json.md", "references/patterns_evaluation.md"],
-    "FORMAT_YAML": ["assets/format_guide_yaml.md", "references/patterns_evaluation.md"],
+    "TEXT_ENHANCE": ["references/depth-framework.md", "references/patterns-evaluation.md"],
+    "FRAMEWORK": ["references/patterns-evaluation.md"],
+    "DESIGN_GEN": ["references/design-generation-patterns.md", "references/patterns-evaluation.md"],
+    "FORMAT_MARKDOWN": ["assets/format-guide-markdown.md", "references/patterns-evaluation.md"],
+    "FORMAT_JSON": ["assets/format-guide-json.md", "references/patterns-evaluation.md"],
+    "FORMAT_YAML": ["assets/format-guide-yaml.md", "references/patterns-evaluation.md"],
     "RAW": [],
 }
 
@@ -307,8 +307,8 @@ See the Smart Routing pseudocode (Section 2) for the complete routing logic.
 | 5-7 | Creativity | CRISPE | 87% |
 | 6-8 | Precision | TIDD-EC | 93% |
 | 7-10 | Comprehensive | CRAFT | 91% |
-See [patterns_evaluation.md](./references/patterns_evaluation.md) for complete framework details.
-See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodology.
+See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete framework details.
+See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.
 
 ### Scoring Systems
 
@@ -374,15 +374,15 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 
 ### Core References
 
-- [depth_framework.md](./references/depth_framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
-- [patterns_evaluation.md](./references/patterns_evaluation.md) - 7 framework definitions, CLEAR scoring
-- [design_generation_patterns.md](./references/design_generation_patterns.md) - Design-generation prompt patterns for open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
+- [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
+- [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
+- [design-generation-patterns.md](./references/design-generation-patterns.md) - Design-generation prompt patterns for open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
 
 ### Asset Files
 
-- [format_guide_markdown.md](./assets/format_guide_markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format_guide_json.md](./assets/format_guide_json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format_guide_yaml.md](./assets/format_guide_yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
+- [format-guide-markdown.md](./assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-json.md](./assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-yaml.md](./assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
 
 ### Reference Loading Notes
 
@@ -426,8 +426,8 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 
 ### Deterministic Agent Rules
 
-- Use `references/patterns_evaluation.md` as the framework-selection source of truth.
-- Use `references/depth_framework.md` for DEPTH flow and CLEAR dimension floors.
+- Use `references/patterns-evaluation.md` as the framework-selection source of truth.
+- Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
 - Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
 - Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
 - If the first pass scores below threshold, iterate once and then return the best validated prompt with explicit escalation notes.
@@ -473,10 +473,10 @@ Key integrations:
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth_framework.md`, `references/patterns_evaluation.md`, `references/design_generation_patterns.md`, `assets/format_guide_json.md`, `assets/format_guide_markdown.md`, `assets/format_guide_yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `references/design-generation-patterns.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ## RELATED PLAYBOOK
 
-Manual validation lives at `manual_testing_playbook/manual_testing_playbook.md`.
+Manual validation lives at `manual-testing-playbook/manual-testing-playbook.md`.
 
 Related skills: `sk-doc` for documentation outputs, `sk-code` for code-generation prompt context, and the `cli-*` skills that use the prompt quality card before dispatch.

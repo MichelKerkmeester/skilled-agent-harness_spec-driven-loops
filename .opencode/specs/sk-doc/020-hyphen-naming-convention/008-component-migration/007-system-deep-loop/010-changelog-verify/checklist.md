@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop changelog verification (032 phase 007/010)"
+title: "Checklist: system-deep-loop changelog verification (020 phase 007/010)"
 description: "Blocking SOL verification contract for confirming the system-deep-loop changelog entry and version bump for the completed rename set."
 trigger_phrases:
   - "system-deep-loop changelog verification"

@@ -2,7 +2,7 @@
 // MODULE: Check Architecture Boundaries
 // ───────────────────────────────────────────────────────────────────
 
-// NOTE: This script enforces shared/ neutrality and mcp_server/scripts/ wrapper-only rules.
+// NOTE: This script enforces shared/ neutrality and mcp-server/scripts/ wrapper-only rules.
 // The companion check for Scripts -> MCP-internals import policy lives in:
 //   check-no-mcp-lib-imports-ast.ts (AST-based, with allowlist governance)
 // Both checks should be run together for full boundary compliance.
@@ -12,8 +12,8 @@
 // ───────────────────────────────────────────────────────────────
 // Enforces two rules from ARCHITECTURE.md that were
 // Previously documentation-only:
-//   GAP A — shared/ must not import from mcp_server/ or scripts/
-//   GAP B — mcp_server/scripts/ files must be thin wrappers only
+//   GAP A — shared/ must not import from mcp-server/ or scripts/
+//   GAP B — mcp-server/scripts/ files must be thin wrappers only
 
 // ───────────────────────────────────────────────────────────────
 // 2. IMPORTS
@@ -50,7 +50,7 @@ interface WrapperSignals {
 // ───────────────────────────────────────────────────────────────
 // 4. CONSTANTS
 // ───────────────────────────────────────────────────────────────
-const REQUIRED_ROOT_DIRS = ['shared', 'mcp_server', 'scripts'] as const;
+const REQUIRED_ROOT_DIRS = ['shared', 'mcp-server', 'scripts'] as const;
 
 // Absolute prohibition — shared/ must remain neutral (no allowlist)
 const SHARED_PROHIBITED_PACKAGE_PREFIXES = ['@spec-kit/mcp-server', '@spec-kit/scripts'];
@@ -150,7 +150,7 @@ function isProhibitedForShared(importPath: string, sourceFilePath: string, packa
   if (path.isAbsolute(importPath)) {
     const resolvedAbsolutePath = path.resolve(importPath);
     return (
-      isWithinDirectory(resolvedAbsolutePath, path.join(packageRoot, 'mcp_server')) ||
+      isWithinDirectory(resolvedAbsolutePath, path.join(packageRoot, 'mcp-server')) ||
       isWithinDirectory(resolvedAbsolutePath, path.join(packageRoot, 'scripts'))
     );
   }
@@ -159,7 +159,7 @@ function isProhibitedForShared(importPath: string, sourceFilePath: string, packa
 
   const resolvedImportPath = path.resolve(path.dirname(sourceFilePath), normalizedImportPath);
   return (
-    isWithinDirectory(resolvedImportPath, path.join(packageRoot, 'mcp_server')) ||
+    isWithinDirectory(resolvedImportPath, path.join(packageRoot, 'mcp-server')) ||
     isWithinDirectory(resolvedImportPath, path.join(packageRoot, 'scripts'))
   );
 }
@@ -401,7 +401,7 @@ function checkSharedNeutrality(packageRoot = PACKAGE_ROOT): GapAViolation[] {
 
 function checkWrapperOnly(packageRoot = PACKAGE_ROOT): GapBViolation[] {
   const resolvedRoot = resolveCheckRoot(packageRoot);
-  const wrappersDir = path.join(resolvedRoot, 'mcp_server', 'scripts');
+  const wrappersDir = path.join(resolvedRoot, 'mcp-server', 'scripts');
   const violations: GapBViolation[] = [];
 
   if (!fs.existsSync(wrappersDir)) return violations;
@@ -467,24 +467,24 @@ function main(): void {
       const relPath = path.relative(resolvedRoot, v.file);
       console.error(`  ${relPath}:${v.line} → ${v.importPath}`);
     }
-    console.error('\nFix: shared/ must not import from mcp_server/ or scripts/. Use only external packages or peer shared/ modules.\n');
+    console.error('\nFix: shared/ must not import from mcp-server/ or scripts/. Use only external packages or peer shared/ modules.\n');
   }
 
   if (gapBViolations.length > 0) {
     failed = true;
-    console.error(`GAP B FAILED: mcp_server/scripts/ wrapper-only — ${gapBViolations.length} violation(s):\n`);
+    console.error(`GAP B FAILED: mcp-server/scripts/ wrapper-only — ${gapBViolations.length} violation(s):\n`);
     for (const v of gapBViolations) {
       const relPath = path.relative(resolvedRoot, v.file);
       console.error(`  ${relPath}: ${v.reasons.join('; ')}`);
     }
-    console.error('\nFix: mcp_server/scripts/ files must be thin wrappers (≤50 lines, child_process import, scripts/dist/ reference).\n');
+    console.error('\nFix: mcp-server/scripts/ files must be thin wrappers (≤50 lines, child_process import, scripts/dist/ reference).\n');
   }
 
   if (failed) {
     process.exit(1);
   }
 
-  console.log('Architecture boundary check passed: shared/ neutrality OK, mcp_server/scripts/ wrappers OK.');
+  console.log('Architecture boundary check passed: shared/ neutrality OK, mcp-server/scripts/ wrappers OK.');
   process.exit(0);
 }
 

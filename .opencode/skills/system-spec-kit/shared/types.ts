@@ -4,7 +4,7 @@
 
 import type { HfLocalDtype } from './embeddings/providers/hf-local.js';
 // Single source of truth for cross-workspace types.
-// Used across shared/, mcp_server/, and scripts/.
+// Used across shared/, mcp-server/, and scripts/.
 //
 // DB normalization types (MemoryDbRow, Memory, conversion fns)
 // live in ./normalization.ts — import from there for DB ↔ App

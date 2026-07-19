@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop deep-alignment names (032 phase 007/007)"
+title: "Checklist: system-deep-loop deep-alignment names (020 phase 007/007)"
 description: "Blocking SOL verification contract for the deep-alignment path rename set, embedded-key protections, adapter/catalog/playbook closure, and read-only boundary."
 trigger_phrases:
   - "system-deep-loop deep alignment checklist"

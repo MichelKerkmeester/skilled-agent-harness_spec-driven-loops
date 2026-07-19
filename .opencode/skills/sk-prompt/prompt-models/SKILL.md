@@ -37,11 +37,11 @@ The exact provider, quota pool, and dispatch flags for each path live in the §3
 
 #### Prompt-Craft Profile Lookup
 
-Before dispatching a small model, read `references/models/<id>.md` for that model's prompt framework (primary + fallback), pre-planning density, scaffold shape, and known gotchas. The profile mirrors `model_profiles.json` `recommended_frameworks` (DATA) and cites it; the WEIGHT of this skill lives in those on-demand profiles, not in this entry surface.
+Before dispatching a small model, read `references/models/<id>.md` for that model's prompt framework (primary + fallback), pre-planning density, scaffold shape, and known gotchas. The profile mirrors `model-profiles.json` `recommended_frameworks` (DATA) and cites it; the WEIGHT of this skill lives in those on-demand profiles, not in this entry surface.
 
 #### Co-Surfaced Knowledge Hub
 
-The advisor reaches this skill through `enhances` edges from both CLI skills, providing one obvious knowledge entry point regardless of which executor is in use. Use `references/models/_index.md` to pick the right profile; use `references/pattern_index.md` to find executor-owned MECHANICS.
+The advisor reaches this skill through `enhances` edges from both CLI skills, providing one obvious knowledge entry point regardless of which executor is in use. Use `references/models/_index.md` to pick the right profile; use `references/pattern-index.md` to find executor-owned MECHANICS.
 
 ### When NOT to Use
 
@@ -79,7 +79,7 @@ TASK CONTEXT
     +- STEP 0: Resolve the target model id (alias map) — the routing key
     +- Phase 1: Load references/models/_index.md, pick the model
     +- Phase 2: Load references/models/<id>.md for framework + scaffold + gotchas
-    +- Phase 3: Follow references/pattern_index.md to executor MECHANICS in the cli-X
+    +- Phase 3: Follow references/pattern-index.md to executor MECHANICS in the cli-X
 ```
 
 ### Resource Domains
@@ -89,10 +89,10 @@ references/
     models/
         _index.md         # Thin per-model index: id -> framework primary; status (ALWAYS)
         <id>.md           # One prompt-craft profile per active model (the hub WEIGHT)
-    pattern_index.md      # Locates executor-owned MECHANICS + ship status
+    pattern-index.md      # Locates executor-owned MECHANICS + ship status
 assets/
-    model_profiles.json   # The registry DATA each profile mirrors
-    cli_prompt_quality_card.md  # Canonical cross-CLI quality card
+    model-profiles.json   # The registry DATA each profile mirrors
+    cli-prompt-quality-card.md  # Canonical cross-CLI quality card
 ```
 
 Executor MECHANICS and runtime code live elsewhere — a profile points at them, never restates them:
@@ -106,12 +106,12 @@ Executor MECHANICS and runtime code live elsewhere — a profile points at them,
 | ----------- | ----------------------------- | ------------------------------------------------- |
 | ALWAYS      | Every skill invocation        | `references/models/_index.md`                     |
 | CONDITIONAL | Dispatching a specific model  | `references/models/<id>.md` (its prompt-craft profile) |
-| CONDITIONAL | Needing executor MECHANICS    | Follow `references/pattern_index.md` to `cli-opencode` |
+| CONDITIONAL | Needing executor MECHANICS    | Follow `references/pattern-index.md` to `cli-opencode` |
 | ON_DEMAND   | Adopting Haiku/Flash          | Add a profile + index row + executor metadata (see README) |
 
 ### Smart Router Pseudocode
 
-> Pattern: see [`../../sk-doc/create-skill/assets/skill/skill_smart_router.md`](../../sk-doc/create-skill/assets/skill/skill_smart_router.md)
+> Pattern: see [`../../sk-doc/create-skill/assets/skill/skill-smart-router.md`](../../sk-doc/create-skill/assets/skill/skill-smart-router.md)
 > for the canonical runtime-discovery, guarded-load, routing-key, and fallback reference. This hub
 > routes by MODEL: `routing_key` = the canonical model id, resource = `references/models/<id>.md`.
 > There are no per-model `assets/<id>/` folders; assets are shared registry/checklist data and are
@@ -123,7 +123,7 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/models/_index.md"
-PATTERN_INDEX_RESOURCE = "references/pattern_index.md"
+PATTERN_INDEX_RESOURCE = "references/pattern-index.md"
 MODEL_PROFILE_PREFIX = "references/models/"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -195,8 +195,8 @@ the router above is how the resolved invocation loads the right profile once the
 ### Hub Workflow
 
 1. **Discover** — The advisor surfaces `prompt-models` alongside the relevant CLI skill when an operator names a small model or pattern.
-2. **Read the profile** — Open `references/models/<id>.md` for that model's prompt-craft: framework (primary + fallback), pre-planning density, scaffold shape, gotchas — mirrored from `model_profiles.json`.
-3. **Apply MECHANICS + dispatch** — Follow `references/pattern_index.md` to the owning `cli-X` for flags/wrappers/budgets/permissions; the prompt-craft (here) and mechanics (`cli-X`) combine in the executor's prompt-pack.
+2. **Read the profile** — Open `references/models/<id>.md` for that model's prompt-craft: framework (primary + fallback), pre-planning density, scaffold shape, gotchas — mirrored from `model-profiles.json`.
+3. **Apply MECHANICS + dispatch** — Follow `references/pattern-index.md` to the owning `cli-X` for flags/wrappers/budgets/permissions; the prompt-craft (here) and mechanics (`cli-X`) combine in the executor's prompt-pack.
 
 ### Dispatch Matrix
 
@@ -209,15 +209,15 @@ the router above is how the resolved invocation loads the right profile once the
 | GLM-5.2 | `cli-opencode` → zai-coding-plan (zai-coding-plan) | active (single path; Z.AI GLM Coding Plan) |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 
-Canonical source: `prompt-models/assets/model_profiles.json` (each entry's `executors` array enumerates the paths above).
+Canonical source: `prompt-models/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
 
 ### Ownership Boundary
 
-This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`) and the model registry DATA (`assets/model_profiles.json`); `cli-opencode` owns executor MECHANICS (flags, wrappers, budgets, permissions); `sk-prompt` owns generic framework definitions; `system-spec-kit` owns runtime helpers. See the Skill Boundary Map in §5.
+This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`) and the model registry DATA (`assets/model-profiles.json`); `cli-opencode` owns executor MECHANICS (flags, wrappers, budgets, permissions); `sk-prompt` owns generic framework definitions; `system-spec-kit` owns runtime helpers. See the Skill Boundary Map in §5.
 
 ### Adopting a New Provider (Haiku, others)
 
-Follow the single canonical checklist in [`references/pattern_index.md`](./references/pattern_index.md) §4 "Adopting a New Provider" — it is the one source for the adoption steps (registry entry → author the profile → `_index.md` row → this §3 dispatch-matrix row → the dispatching executor's trigger phrase → re-index + verify). Do not maintain a second copy of the steps here. No executor-MECHANICS or code edits are needed when the quota pool is already represented.
+Follow the single canonical checklist in [`references/pattern-index.md`](./references/pattern-index.md) §4 "Adopting a New Provider" — it is the one source for the adoption steps (registry entry → author the profile → `_index.md` row → this §3 dispatch-matrix row → the dispatching executor's trigger phrase → re-index + verify). Do not maintain a second copy of the steps here. No executor-MECHANICS or code edits are needed when the quota pool is already represented.
 
 ---
 
@@ -225,15 +225,15 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 
 ### ✅ ALWAYS
 
-1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 300 LOC (the §2 smart-router pseudocode is the bulk; everything else stays terse), `references/models/_index.md` ≤ 100 LOC, and `pattern_index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
-2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `prompt-models/assets/model_profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
+1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 300 LOC (the §2 smart-router pseudocode is the bulk; everything else stays terse), `references/models/_index.md` ≤ 100 LOC, and `pattern-index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
+2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `prompt-models/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
-4. **Update the index when models ship or move.** `_index.md` and `pattern_index.md` are contracts; broken links and missing rows erode trust.
+4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
 5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2 active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### ⛔ NEVER
 
-1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-opencode`. A profile points at them via `pattern_index.md`; it does not restate them.
+1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-opencode`. A profile points at them via `pattern-index.md`; it does not restate them.
 2. **Never copy generic framework definitions here** — the closed 7-framework set (RCAF / COSTAR / RACE / CIDI / TIDD-EC / CRISPE / CRAFT) is defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale.
 3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3's TIDD-EC contract from benchmark 003, originally run on M2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
 4. **Never add runtime logic here** — no shell commands, no scripts, no agent-config recipes.
@@ -242,7 +242,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 
 1. A model becomes dispatchable from a NEW executor with conflicting MECHANICS (different flags/wrappers than the existing path). Resolve the mechanics in the owning `cli-X` first; the profile only records prompt-craft, so it must not arbitrate flag conflicts.
 2. A profile would need to RESTATE executor flags to be usable. That belongs in `cli-X` — escalate to add/extend the executor reference, then link to it.
-3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `prompt-models/assets/model_profiles.json` first, then add the profile + index row.
+3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `prompt-models/assets/model-profiles.json` first, then add the profile + index row.
 
 ---
 
@@ -251,32 +251,32 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 ### Core References
 
 - [`references/models/`](./references/models/) — Per-model prompt-craft profiles (the hub WEIGHT); one `<id>.md` per active model, indexed by [`references/models/_index.md`](./references/models/_index.md)
-- [`references/pattern_index.md`](./references/pattern_index.md) — Index locating executor-owned MECHANICS + ship status
+- [`references/pattern-index.md`](./references/pattern-index.md) — Index locating executor-owned MECHANICS + ship status
 
 ### Related Resources (executor MECHANICS + DATA)
 
-- [`references/context_budget.md`](references/context_budget.md) — Canonical budget engine doc
-- [`references/output_verification.md`](references/output_verification.md) — Verification pipeline reference (re-homed from cli-devin)
-- [`references/quota_fallback.md`](references/quota_fallback.md) — Pool-aware fallback decision matrix (re-homed from cli-devin)
-- [`assets/per_model_budgets.json`](assets/per_model_budgets.json) — Per-model token budget defaults
-- [`assets/confidence_scoring_rubric.md`](assets/confidence_scoring_rubric.md) — Verification confidence formula (re-homed from cli-devin)
-- [`cli-opencode/references/context_budget.md`](../../cli-external-orchestration/cli-opencode/references/context_budget.md) — cli-opencode budget mirror
-- [`cli-opencode/references/permissions_matrix.md`](../../cli-external-orchestration/cli-opencode/references/permissions_matrix.md) — Structured permissions schema
-- [`cli-opencode/assets/permissions_matrix.schema.json`](../../cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json) — JSON Schema for permission rules
-- [`cli-opencode/assets/prompt_templates.md`](../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
-- [`prompt-models/assets/model_profiles.json`](./assets/model_profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
-- [`assets/cli_prompt_quality_card.md`](./assets/cli_prompt_quality_card.md) — Canonical cross-CLI prompt quality card (owned by this hub); generic framework definitions live in `sk-prompt`
+- [`references/context-budget.md`](references/context-budget.md) — Canonical budget engine doc
+- [`references/output-verification.md`](references/output-verification.md) — Verification pipeline reference (re-homed from cli-devin)
+- [`references/quota-fallback.md`](references/quota-fallback.md) — Pool-aware fallback decision matrix (re-homed from cli-devin)
+- [`assets/per-model-budgets.json`](assets/per-model-budgets.json) — Per-model token budget defaults
+- [`assets/confidence-scoring-rubric.md`](assets/confidence-scoring-rubric.md) — Verification confidence formula (re-homed from cli-devin)
+- [`cli-opencode/references/context-budget.md`](../../cli-external-orchestration/cli-opencode/references/context-budget.md) — cli-opencode budget mirror
+- [`cli-opencode/references/permissions-matrix.md`](../../cli-external-orchestration/cli-opencode/references/permissions-matrix.md) — Structured permissions schema
+- [`cli-opencode/assets/permissions-matrix.schema.json`](../../cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json) — JSON Schema for permission rules
+- [`cli-opencode/assets/prompt-templates.md`](../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
+- [`prompt-models/assets/model-profiles.json`](./assets/model-profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
+- [`assets/cli-prompt-quality-card.md`](./assets/cli-prompt-quality-card.md) — Canonical cross-CLI prompt quality card (owned by this hub); generic framework definitions live in `sk-prompt`
 
 ### Reference Loading Notes
 
 - Load `references/models/_index.md` on every invocation, then the specific `references/models/<id>.md` for the model being dispatched; these are small and carry the prompt-craft.
-- Do NOT load executor-owned MECHANICS references through this skill — follow the `pattern_index.md` link and let the operator's existing `cli-opencode` context handle loading.
+- Do NOT load executor-owned MECHANICS references through this skill — follow the `pattern-index.md` link and let the operator's existing `cli-opencode` context handle loading.
 - The `enhances` edge in the hub's `../../graph-metadata.json` co-surfaces `cli-opencode` automatically; its references load through their own routing.
 
 ### Skill Boundary Map
 
 ```text
-prompt-models (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model_profiles.json)
+prompt-models (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model-profiles.json)
     |
     +-- cli-opencode                ← owns MECHANICS: DeepSeek/Kimi/MiniMax/MiMo flags + permissions
     +-- sk-prompt                   ← owns generic framework definitions

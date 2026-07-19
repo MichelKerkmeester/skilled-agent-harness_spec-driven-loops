@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: sk-code subtree rollup gate (032 phase 008/009)"
-description: "Final verification-only gate for the sk-code subtree: confirm phases 001-008 are complete, the full sk-code naming surface is kebab-clean within the 032 exemption boundary, and no new migration work is introduced."
+title: "Feature Specification: sk-code subtree rollup gate (020 phase 008/009)"
+description: "Final verification-only gate for the sk-code subtree: confirm phases 001-008 are complete, the full sk-code naming surface is kebab-clean within the 020 exemption boundary, and no new migration work is introduced."
 trigger_phrases:
   - "sk-code subtree rollup gate"
   - "sk-code kebab-clean verification"
@@ -27,13 +27,13 @@ _memory:
     open_questions: []
     answered_questions:
       - "This gate aggregates phases 001-008 and introduces no new migration map or rename work."
-      - "The final census must classify every retained non-kebab name against the 032 exemption and phase evidence."
+      - "The final census must classify every retained non-kebab name against the 020 exemption and phase evidence."
       - "Any incomplete sibling, stale reference, or unknown in-scope name blocks the sk-code rollup."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-code subtree rollup gate
 
@@ -50,7 +50,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Final rollup gate for the sk-code component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Final rollup gate for the sk-code component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

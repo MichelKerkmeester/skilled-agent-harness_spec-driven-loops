@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: catalog and playbook generators (032 phase 003 child 002)"
+title: "Feature Specification: catalog and playbook generators (020 phase 003 child 002)"
 description: "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade."
 trigger_phrases:
   - "catalog and playbook generator naming"
@@ -11,20 +11,24 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:46:43Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 contract for catalog and playbook generator output names"
-    next_safe_action: "Confirm phase 002 consumer fixtures before changing generator output guidance"
+    recent_action: "Completed and verified catalog and playbook generator output naming"
+    next_safe_action: "No child work remains"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md"
+      - ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md"
+      - ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
+      - ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Catalog and Playbook Generators
 
@@ -38,10 +42,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child 002 of phase 003 in the 032 kebab-case filesystem-naming program |
+| **Origin** | Child 002 of phase 003 in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

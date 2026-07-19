@@ -70,4 +70,4 @@ Run the consumer script or test that reads any changed setting before claiming b
 
 - [`../scripts/core/config.ts`](../scripts/core/config.ts) - Main config loader.
 - [`../scripts/lib/content-filter.ts`](../scripts/lib/content-filter.ts) - Filter config consumer.
-- [`../references/memory/memory_system.md`](../references/memory/memory_system.md) - Memory behavior reference.
+- [`../references/memory/memory-system.md`](../references/memory/memory-system.md) - Memory behavior reference.

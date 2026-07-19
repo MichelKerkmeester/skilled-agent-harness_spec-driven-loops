@@ -945,8 +945,8 @@ const c = await myservice.myservice_collections_list({ site_id: s.id });
 ## 11. RELATED RESOURCES
 
 ### Reference Files
-- [naming_convention.md](./naming_convention.md) - Critical naming patterns used in all examples
-- [tool_catalog.md](./tool_catalog.md) - Complete list of available tools for workflows
+- [naming-convention.md](./naming-convention.md) - Critical naming patterns used in all examples
+- [tool-catalog.md](./tool-catalog.md) - Complete list of available tools for workflows
 - [architecture.md](./architecture.md) - Execution environment and state persistence details
 - [configuration.md](./configuration.md) - Configuration setup for MCP servers used in examples
 

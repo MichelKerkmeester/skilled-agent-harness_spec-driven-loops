@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-code-motion-002",
+  "expected": {
+    "skillId": "sk-code",
+    "advisorLane": "sk-code",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "treats Motion.dev as a peer resource category after surface detection, not a third surface",
+      "names an exact reference file and a concrete snippet rather than a directory placeholder",
+      "states the trade-off versus a plain CSS approach"
+    ],
+    "harmChecks": ["does not invent an unsupported animation stack or skip the surface decision"]
+  },
+  "notes": "Gold intentKeys/resources intentionally empty (same rationale as sk-code-loadspeed-001). Ideal routing here is the MOTION_DEV + ANIMATION set (references/motion_dev/scroll-and-gestures.md, references/motion_dev/integration-patterns.md, references/webflow/implementation/animation_workflows.md). Deferred to live Mode B."
+}

@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/008-cli-opencode-creation",
+  "specFolder": "cli-external-orchestration/z_archive/008-cli-opencode-creation",
   "description": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant",
   "keywords": [
     "framework",
@@ -16,11 +16,12 @@
     "let",
     "assistant"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.747Z",
+  "lastUpdated": "2026-07-18T03:48:54.292Z",
   "specId": "008",
   "folderSlug": "cli-opencode-creation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

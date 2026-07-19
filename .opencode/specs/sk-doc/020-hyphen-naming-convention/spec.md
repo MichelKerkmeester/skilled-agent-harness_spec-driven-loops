@@ -25,7 +25,7 @@ _memory:
       - "Scope = filesystem names only (folders/files/script filenames); code identifiers + JSON/YAML/TOML keys + frontmatter fields keep idiomatic case"
       - "Exemptions = .py files, Python import-package dirs, vendored/third-party, lockfiles/generated output, tool-mandated filenames, frozen surfaces"
       - "Fully reverses 027, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook"
-      - "Placement = top-level phase parent under sk-doc; packet number 032 (concurrent 032-smart-routing folds into 016); migration on a worktree"
+      - "Placement = top-level phase parent under sk-doc; packet number 020 (concurrent 032-smart-routing folds into 016); migration on a worktree"
       - "Catalog-root transition = bounded dual-name tolerance + an explicit alias-removal phase"
       - "Rename batching = dependency-closure (reference-graph SCCs), not per-extension"
       - "node tooling in the worktree = fresh deterministic install, never a symlink to the main tree"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, decisions in 001's decision-record.md. -->
 
 # Feature Specification: Repo-Wide Kebab-Case Filesystem Naming
@@ -166,7 +166,7 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
    renamed; no code identifier / JSON-YAML-TOML key / frontmatter field was altered; frozen history is unchanged except
    an approved append-only 027-supersession note.
 7. Packet 027 is formally superseded; the convention doc is the single canonical source; the program is merged via a
-   clean integration after the full 014 gate reran on the exact final commit.
+   clean integration after the full 010 gate reran on the exact final commit.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -174,7 +174,7 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
 
 - **Broken imports/requires (highest risk)** — renaming script files breaks `import`/`require`/`source`/registry paths,
   including dynamic `require(path.join(...))` sites a static sweep misses. Mitigation: 005 reference checker with a
-  dynamic-site disposition ledger; 011 does rename + reference-rewrite in one dependency-closed pass; 014 resolves
+  dynamic-site disposition ledger; 007/008 do rename + reference-rewrite in dependency-closed passes; 010 resolves
   whole-repo imports to zero.
 - **Validator silent-downgrade** — the classifier + a network of consumers key on the catalog root names; renaming
   before all of them accept hyphens downgrades every catalog leaf to `readme`. Mitigation: 002 migrates ALL consumers
@@ -192,8 +192,8 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
   execute on an isolated worktree, one writer at a time (or satellite worktrees merged serially), path-scoped commits,
   final integration in a clean worktree.
 - **Reverses just-shipped 027** — this program undoes 027's underscore migration. Mitigation: 001 supersedes the 027
-  ADR explicitly; 007 is framed as the deliberate reversal; 015 reconciles 027's docs append-only.
-- **Dependency:** the Lane C harness (unchanged) for the 014 regression check; the spec-kit validator (rebuilt in the
+  ADR explicitly; 007 is framed as the deliberate reversal; 011 reconciles 027's docs append-only.
+- **Dependency:** the Lane C harness (unchanged) for the 010 regression check; the spec-kit validator (rebuilt in the
   worktree); sk-git for the worktree lifecycle (`references/worktree_workflows.md`).
 <!-- /ANCHOR:risks -->
 
@@ -204,7 +204,7 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
   satellite worktrees per dependency-closed batch merged serially into the coordinator branch. To be decided in 006
   once the batch graph is known; default is serial-single-writer.
 - **Rebase cadence**: frequent fetch/overlap audits with one controlled final integration (default) vs a single final
-  rebase of the whole rename set. To be decided in 015 against the observed origin drift.
+  rebase of the whole rename set. To be decided in 011 against the observed origin drift.
 <!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:phase-map -->

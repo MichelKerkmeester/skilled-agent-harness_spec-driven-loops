@@ -515,8 +515,8 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ### Reference Files
 - [configuration.md](./configuration.md) - Complete configuration guide for .utcp_config.json
-- [naming_convention.md](./naming_convention.md) - Critical naming patterns for tool calls
-- [tool_catalog.md](./tool_catalog.md) - Complete list of 200+ available MCP tools
+- [naming-convention.md](./naming-convention.md) - Critical naming patterns for tool calls
+- [tool-catalog.md](./tool-catalog.md) - Complete list of 200+ available MCP tools
 - [workflows.md](./workflows.md) - Complex multi-tool workflow examples
 
 ### Related Skills

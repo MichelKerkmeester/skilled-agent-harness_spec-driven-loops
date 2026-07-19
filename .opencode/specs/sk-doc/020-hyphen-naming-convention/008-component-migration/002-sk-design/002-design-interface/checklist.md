@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Design-interface (032 phase 002)"
-description: "Blocking SOL verification contract for Design-interface in the 032 sk-design naming subtree."
+title: "Checklist: Design-interface (020 phase 002)"
+description: "Blocking SOL verification contract for Design-interface in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-interface verification"
   - "sk-design design-interface checklist"
-  - "032 design-interface gate"
+  - "020 design-interface gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Design-interface (032 phase 002)
+# Checklist: Design-interface (020 phase 002)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

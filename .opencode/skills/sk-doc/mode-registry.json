@@ -108,7 +108,7 @@
       "packetSkillName": "create-benchmark",
       "grandfatheredFolderMismatch": false,
       "command": "/create:benchmark",
-      "aliases": ["benchmark_report.md", "SOURCE.md", "mcp_server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior_benchmark.md", "scenario contract", "claude-baseline", "conformance benchmark", "conformance_benchmark", "peer adapter benchmark", "deep-alignment benchmark", "lane-config benchmark", "sk-doc-command", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent-improvement", "Lane A agent-improvement", "agent_improvement_authoring_guide", "agent quality dimensions"],
+      "aliases": ["benchmark-report.md", "SOURCE.md", "mcp-server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior-benchmark.md", "scenario contract", "claude-baseline", "conformance benchmark", "conformance_benchmark", "peer adapter benchmark", "deep-alignment benchmark", "lane-config benchmark", "sk-doc-command", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent-improvement", "Lane A agent-improvement", "agent_improvement_authoring_guide", "agent quality dimensions"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-benchmark" }
     },
     {

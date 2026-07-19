@@ -289,6 +289,60 @@ class ReportConformance(unittest.TestCase):
                     count += 1
             self.assertEqual(count, 4)
 
+    def test_default_report_name_is_derived_as_kebab_case(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            before = _write(base, "before.md", "old\n")
+            after = _write(base, "Release_Notes.md", "new\n")
+            previous = Path.cwd()
+            os.chdir(base)
+            try:
+                rc, _ = _run_cli("compare-pair", "--before", str(before), "--after", str(after))
+            finally:
+                os.chdir(previous)
+            report = base / "release-notes.diff.html"
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertTrue(report.exists())
+            self.assertEqual(vr.validate(report), [])
+
+    def test_explicit_report_name_rejects_underscore(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            before = _write(base, "before.md", "old\n")
+            after = _write(base, "after.md", "new\n")
+            rc, output = _run_cli(
+                "compare-pair", "--before", str(before), "--after", str(after),
+                "--report", str(base / "review_report.html"),
+            )
+        self.assertEqual(rc, cd.EXIT_UNSUPPORTED)
+        self.assertIn("lowercase kebab-case", output)
+
+    def test_explicit_report_name_rejects_non_suffix_dot(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            before = _write(base, "before.md", "old\n")
+            after = _write(base, "after.md", "new\n")
+            rc, output = _run_cli(
+                "compare-pair", "--before", str(before), "--after", str(after),
+                "--report", str(base / "review.report.html"),
+            )
+        self.assertEqual(rc, cd.EXIT_UNSUPPORTED)
+        self.assertIn("lowercase kebab-case", output)
+
+    def test_existing_report_is_not_overwritten(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            before = _write(base, "before.md", "old\n")
+            after = _write(base, "after.md", "new\n")
+            report = _write(base, "review.html", "keep\n")
+            rc, output = _run_cli(
+                "compare-pair", "--before", str(before), "--after", str(after),
+                "--report", str(report),
+            )
+            self.assertEqual(report.read_text(encoding="utf-8"), "keep\n")
+        self.assertEqual(rc, cd.EXIT_UNSUPPORTED)
+        self.assertIn("Refusing to overwrite", output)
+
 
 class ReportInvariants(unittest.TestCase):
     def test_zero_js_and_exact_csp(self):

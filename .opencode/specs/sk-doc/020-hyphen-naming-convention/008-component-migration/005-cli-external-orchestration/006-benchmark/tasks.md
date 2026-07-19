@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration benchmark naming (032 phase 005.006)"
+title: "Tasks: cli-external-orchestration benchmark naming (020 phase 005.006)"
 description: "Tasks for the cli-external-orchestration benchmark boundary: capture the .gitkeep-only baseline, classify any authored/generated additions, update active paths, and verify benchmark semantics."
 trigger_phrases:
   - "cli-external benchmark tasks"

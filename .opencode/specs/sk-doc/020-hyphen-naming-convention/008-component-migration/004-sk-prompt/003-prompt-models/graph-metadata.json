@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by active Markdown and skill references. This phase renames those packet-owned paths to kebab-case, updates path-valued consumers, and preserves model IDs, JSON keys, Python/package exemptions, and generated benchmark output.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-07-17T14:30:18.956Z",
+    "last_save_at": "2026-07-17T20:26:07.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:4204d7c1b1f2584a9e5961c7e9f8eafa99c99d2d458eabf7c316554ab0b7ba55",
+    "source_fingerprint": "sha256:7e4d34fb1f0facca93075debfb32778c426f554db62b73c175ba0a28101b91f3",
     "source_doc_hashes": {
-      "spec.md": "3b1ea45671320182601cacd53e2f8daa0abe66dcd6176baeb5a1b78c258d89ef",
-      "plan.md": "1fcde66f921644790ef3088796d067573f4c7863bbebc4dd6273715eaa8fbfc3",
-      "tasks.md": "c04777788c980a2d0b10676fd92964cf77e2cce844a53340b38f60c74209d248",
-      "checklist.md": "36ec9a24222d4347b7b48b3344ff6b219bb4c52915f5f3a2a2ead70bf07261c6"
+      "spec.md": "8ebd8c559c7a06d0fd5bb234ceec400d86e3c0a567dc2a600473114cced79e92",
+      "plan.md": "60bfd60e08a3a108e113eec2084c593c0a57be9b06cecef2c18376403e72b198",
+      "tasks.md": "1244523ab1723412b9fbbec300e474a395e70a5496f1ae8edf298724d567db57",
+      "checklist.md": "3c9a4b2514528fd4c746086327506863674bcc126b916950617df1e58d75c651"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,7 +17,7 @@ const PS_FIXTURE = `  PID  PPID STAT    RSS COMMAND
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp_server/dist/index.js
+ 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp-server/dist/index.js
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;

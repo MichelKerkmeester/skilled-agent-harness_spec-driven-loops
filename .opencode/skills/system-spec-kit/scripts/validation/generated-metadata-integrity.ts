@@ -11,11 +11,11 @@
 import {
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
-} from '../../mcp_server/lib/validation/generated-metadata-integrity.js';
+} from '../../mcp-server/lib/validation/generated-metadata-integrity.js';
 import {
   isGeneratedMetadataGrandfatherEnabled,
   isStatusCompletionConsistencyGateEnabled,
-} from '../../mcp_server/lib/config/capability-flags.js';
+} from '../../mcp-server/lib/config/capability-flags.js';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface CliOptions {

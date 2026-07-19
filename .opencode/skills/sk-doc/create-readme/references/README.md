@@ -1,6 +1,6 @@
 ---
 title: create-readme Reference Map
-description: Overflow-only route map for README and install-guide authoring, grouped into readme/ and install_guide/ single-concern references.
+description: Overflow-only route map for README and install-guide authoring, grouped into readme/ and install-guide/ single-concern references.
 trigger_phrases:
   - "readme reference map"
   - "install guide reference map"
@@ -25,7 +25,7 @@ Overflow route map for the `create-readme` packet. The complete authoring workfl
 The overflow is grouped by sub-workflow:
 
 - `readme/` holds README type, voice, writing-pattern and quality detail.
-- `install_guide/` holds install-guide section examples, platform config and quality standards.
+- `install-guide/` holds install-guide section examples, platform config and quality standards.
 
 ---
 
@@ -35,33 +35,33 @@ Load the file that matches the current task.
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **README types and voice** — the five README types, progressive-disclosure stages and two-tier voice with worked examples | [readme/types_and_voice.md](readme/types_and_voice.md) | Deciding which README type to write, or how narrative and reference voice should split inside one file |
-| **README writing patterns** — per-section writing tips, heading hierarchy, analogy patterns, recommended table patterns, code-block and placeholder conventions | [readme/writing_patterns.md](readme/writing_patterns.md) | Drafting individual README sections, or reaching for a proven table or formatting pattern |
-| **README quality and checklist** — DQI weighting, per-section quality checks and the full pre-publish checklist | [readme/quality_and_checklist.md](readme/quality_and_checklist.md) | Reviewing a drafted README before delivery |
-| **Install-guide section examples** — Section 0/1/2 worked examples plus multi-platform and tool-specific configuration patterns | [install_guide/section_examples.md](install_guide/section_examples.md) | Writing the AI-First prompt, Overview, Prerequisites or platform configuration of an install guide |
-| **Install-guide quality and standards** — troubleshooting standards, DQI weighting, minimum requirements, common issues and the pre-publish checklist | [install_guide/quality_and_standards.md](install_guide/quality_and_standards.md) | Writing the troubleshooting section, or reviewing an install guide before delivery |
+| **README types and voice** — the five README types, progressive-disclosure stages and two-tier voice with worked examples | [readme/types-and-voice.md](readme/types-and-voice.md) | Deciding which README type to write, or how narrative and reference voice should split inside one file |
+| **README writing patterns** — per-section writing tips, heading hierarchy, analogy patterns, recommended table patterns, code-block and placeholder conventions | [readme/writing-patterns.md](readme/writing-patterns.md) | Drafting individual README sections, or reaching for a proven table or formatting pattern |
+| **README quality and checklist** — DQI weighting, per-section quality checks and the full pre-publish checklist | [readme/quality-and-checklist.md](readme/quality-and-checklist.md) | Reviewing a drafted README before delivery |
+| **Install-guide section examples** — Section 0/1/2 worked examples plus multi-platform and tool-specific configuration patterns | [install-guide/section-examples.md](install-guide/section-examples.md) | Writing the AI-First prompt, Overview, Prerequisites or platform configuration of an install guide |
+| **Install-guide quality and standards** — troubleshooting standards, DQI weighting, minimum requirements, common issues and the pre-publish checklist | [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) | Writing the troubleshooting section, or reviewing an install guide before delivery |
 
 ---
 
 ## 3. RELATED RESOURCES
 
 ### Overflow Subfolders
-- [readme/types_and_voice.md](readme/types_and_voice.md) - README types, progressive disclosure and two-tier voice
-- [readme/writing_patterns.md](readme/writing_patterns.md) - Section writing tips and formatting patterns
-- [readme/quality_and_checklist.md](readme/quality_and_checklist.md) - README quality criteria and pre-publish checklist
-- [install_guide/section_examples.md](install_guide/section_examples.md) - Install-guide section and configuration examples
-- [install_guide/quality_and_standards.md](install_guide/quality_and_standards.md) - Install-guide troubleshooting, quality and checklist
+- [readme/types-and-voice.md](readme/types-and-voice.md) - README types, progressive disclosure and two-tier voice
+- [readme/writing-patterns.md](readme/writing-patterns.md) - Section writing tips and formatting patterns
+- [readme/quality-and-checklist.md](readme/quality-and-checklist.md) - README quality criteria and pre-publish checklist
+- [install-guide/section-examples.md](install-guide/section-examples.md) - Install-guide section and configuration examples
+- [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) - Install-guide troubleshooting, quality and checklist
 
 ### Templates
-- [readme_template.md](../assets/readme/readme_template.md) - Fillable scaffold for project, skill, feature and component READMEs
-- [readme_code_template.md](../assets/readme/readme_code_template.md) - Code-folder README scaffold with diagram examples
-- [install_guide_template.md](../assets/readme/install_guide_template.md) - Full install-guide scaffold and platform config patterns
+- [readme-template.md](../assets/readme/readme-template.md) - Fillable scaffold for project, skill, feature and component READMEs
+- [readme-code-template.md](../assets/readme/readme-code-template.md) - Code-folder README scaffold with diagram examples
+- [install-guide-template.md](../assets/readme/install-guide-template.md) - Full install-guide scaffold and platform config patterns
 
 ### Shared Standards
-- [core_standards.md](../../shared/references/core_standards.md) - Document formatting rules
-- [hvr_rules.md](../../shared/references/hvr_rules.md) - Human Voice Rules
+- [core-standards.md](../../shared/references/core-standards.md) - Document formatting rules
+- [hvr-rules.md](../../shared/references/hvr-rules.md) - Human Voice Rules
 - [validation.md](../../shared/references/validation.md) - Quality scoring (DQI)
 
 ---
 
-*End of create-readme reference map — depth lives in the `readme/` and `install_guide/` groups.*
+*End of create-readme reference map — depth lives in the `readme/` and `install-guide/` groups.*

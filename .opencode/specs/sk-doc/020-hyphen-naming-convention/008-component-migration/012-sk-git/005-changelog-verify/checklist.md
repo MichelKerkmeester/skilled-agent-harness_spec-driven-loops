@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git changelog verification (032 phase 008/012/005)"
+title: "Checklist: sk-git changelog verification (020 phase 008/012/005)"
 description: "Blocking SOL verification contract for the read-only sk-git migration changelog and version-bump phase."
 trigger_phrases:
   - "sk-git changelog checklist"
-  - "032 version bump verification"
+  - "020 version bump verification"
   - "migration release evidence acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -76,7 +76,7 @@ This checklist is the blocking SOL verifier contract for phase 005. The verifier
 ## Documentation
 
 - [ ] CHK-013 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree that this phase is read-only.
-- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

@@ -98,7 +98,7 @@ Three paths reach a skill.
 **Route with Gate 2.** The advisor picks the match. You do not need to know which skill to open.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "commit my changes" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 # Output: [{"skill":"sk-git","confidence":0.92,"uncertainty":0.08,...}]
 ```
 
@@ -173,7 +173,7 @@ Yes. The advisor returns a ranked list. A review task might load `sk-code`'s cod
 
 **Q: What is the difference between skill-local scripts and the shared advisor scripts?**
 
-Skill-local scripts live in a skill's own `scripts/` directory and handle domain-specific automation. The shared advisor scripts live under `system-skill-advisor/mcp_server/scripts/` and handle routing, graph compilation, benchmarking and regression.
+Skill-local scripts live in a skill's own `scripts/` directory and handle domain-specific automation. The shared advisor scripts live under `system-skill-advisor/mcp-server/scripts/` and handle routing, graph compilation, benchmarking and regression.
 
 **Q: Why does the advisor cap confidence at 0.95?**
 

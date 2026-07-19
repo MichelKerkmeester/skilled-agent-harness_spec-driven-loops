@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: prompt-improve asset and reference names (032 phase 004.002)"
+title: "Implementation Plan: prompt-improve asset and reference names (020 phase 004.002)"
 description: "Implementation plan for phase 002 of the sk-prompt kebab-case program: rename six prompt-improve asset/reference files, update active consumers, and prove the packet resource map remains resolvable."
 trigger_phrases:
   - "prompt-improve asset and reference implementation plan"
@@ -107,7 +107,7 @@ Six-entry map → filesystem rename → active reference rewrite → resource-ma
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase inherits the 032 naming convention and depends on `001-hub-root-and-shared` for ownership boundaries. It must leave `004-manual-testing-playbook`, `005-benchmark`, and `006-changelog-verify` their documented inputs and does not require a package install because the change is Markdown path metadata.
+The phase inherits the 020 naming convention and depends on `001-hub-root-and-shared` for ownership boundaries. It must leave `004-manual-testing-playbook`, `005-benchmark`, and `006-changelog-verify` their documented inputs and does not require a package install because the change is Markdown path metadata.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

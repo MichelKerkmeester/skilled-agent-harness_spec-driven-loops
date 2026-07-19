@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: speckit command namespace naming (032 phase 008/013/007)"
+title: "Implementation Plan: speckit command namespace naming (020 phase 008/013/007)"
 description: "Plan for renaming the twelve maintained speckit workflow and presentation assets through the frozen map and repairing command/README paths while preserving /speckit:* behavior."
 trigger_phrases:
   - "speckit namespace naming plan"
@@ -109,8 +109,8 @@ Rename the 12 `speckit_*` asset files individually, update command and README pa
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter IDs/keys or miss consumers. |
-| 032 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Manual replacement can alter IDs/keys or miss consumers. |
+| 020 phase 006 frozen map | Internal | Required before execution | Targets and ownership are not fixed. |
 | 000 baseline speckit-flow evidence | Internal | Required before verification | Mode and command-ID parity lack a pinned comparison. |
 | Commands parent handoff | Internal | Required before execution | Shared asset ownership may be duplicated. |
 <!-- /ANCHOR:dependencies -->

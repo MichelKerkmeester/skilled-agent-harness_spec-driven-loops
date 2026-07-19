@@ -191,7 +191,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skills/sk-code/code-review/references/review_core.md` before assigning severity.
+- Load `.opencode/skills/sk-code/code-review/references/review-core.md` before assigning severity.
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -277,7 +277,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Cod
 
 | Skill | Purpose |
 |-------|---------|
-| `sk-code` (code-review mode) | Shared review doctrine via `code-review/references/review_core.md` |
+| `sk-code` (code-review mode) | Shared review doctrine via `code-review/references/review-core.md` |
 | `sk-code` | Router-selected standards evidence |
 
 ### Caller + Command Integrations
@@ -285,8 +285,8 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Cod
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
 | Dispatcher command | `.opencode/commands/deep/review.md` (`/deep:review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Auto workflow | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -301,7 +301,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.opencode/skills/sk-code/code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from `.opencode/skills/sk-code/code-review/references/review-core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -346,7 +346,7 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)`.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 

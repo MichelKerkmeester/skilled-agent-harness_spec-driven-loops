@@ -52,5 +52,5 @@ This scenario validates direct execution for motion when subagents are unavailab
 
 - Group: Procedure Card Contract
 - Playbook ID: MOTION-PROCCARD-003
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/direct-fallback-without-subagents.md`

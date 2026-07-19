@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-server directory and manifest closure (032 component 011 phase 001)"
+title: "Implementation Plan: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "Rename the embedded mcp_server directory to mcp-server through a semantic, dependency-closed path map. Update installer, doctor, guide, metadata, and entrypoint references together while leaving Python, lockfile, tool-mandated, and package identifier contracts intact."
 trigger_phrases:
   - "mcp-server closure implementation plan"
@@ -95,7 +95,7 @@ The package directory is the only eligible snake_case filesystem name in the cur
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase depends on the 032 immutable baseline, exemption policy in 001-convention-policy-and-scope, the semantic rename/reference tooling, and a real Node environment for package-path checks. Phase 002 starts only after this package closure is internally consistent.
+This phase depends on the 020 immutable baseline, exemption policy in 001-convention-policy-and-scope, the semantic rename/reference tooling, and a real Node environment for package-path checks. Phase 002 starts only after this package closure is internally consistent.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

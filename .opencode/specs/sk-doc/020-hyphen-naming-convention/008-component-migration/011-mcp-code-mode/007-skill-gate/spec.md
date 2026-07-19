@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode subtree skill gate (032 component 011 phase 007)"
+title: "Feature Specification: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
 description: "The mcp-code-mode subtree needs one blocking rollup gate after its five closure phases and changelog verification. This phase aggregates sibling evidence and proves that no in-scope snake_case filesystem name or stale active path remains outside the Python, tool-mandated, generated, lockfile, and frozen-history exemptions."
 trigger_phrases:
   - "mcp-code-mode subtree skill gate"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode subtree skill gate
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 007 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 007 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,7 +55,7 @@ This phase performs no new migration work. It aggregates sibling evidence, rerun
 
 ### In Scope
 - Completion evidence from phases 001 through 006.
-- A recursive filesystem census of .opencode/skills/mcp-code-mode with the 032 exemption set.
+- A recursive filesystem census of .opencode/skills/mcp-code-mode with the 020 exemption set.
 - Whole-surface stale-path, active-link, syntax, and required skill-gate evidence.
 - Final classification of Python names, tool-mandated names, generated/lockfile content, frozen changelog history, and non-filesystem identifiers.
 

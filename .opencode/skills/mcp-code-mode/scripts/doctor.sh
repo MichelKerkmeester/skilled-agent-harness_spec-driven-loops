@@ -18,7 +18,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
-MCP_DIR="$SKILL_DIR/mcp_server"
+MCP_DIR="$SKILL_DIR/mcp-server"
 
 STRICT_MODE=false
 while [[ $# -gt 0 ]]; do
@@ -51,7 +51,7 @@ fi
 log_pass "Node interpreter: $NODE_BIN"
 
 # Critical runtime imports for code-mode MCP. The skill IS the @utcp/code-mode-mcp
-# package itself (mcp_server/package.json `name`); test the SDK + the @utcp helper
+# package itself (mcp-server/package.json `name`); test the SDK + the @utcp helper
 # packages it bundles, plus verify dist/index.js loads without ImportError.
 DEP_CHECK_MODULES="@modelcontextprotocol/sdk/server/index.js @utcp/code-mode @utcp/cli"
 DEP_CHECK_MISSING=()

@@ -88,6 +88,6 @@ Run a negative-control prompt where the brief pins the palette and type, or wher
 
 - Group: Real-UI Loop
 - Playbook ID: ID-017
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `real-ui-loop/native-image-visual-direction-branch.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

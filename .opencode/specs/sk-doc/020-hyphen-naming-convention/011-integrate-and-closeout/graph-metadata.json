@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup.",
     "created_at": "2026-07-14T15:22:43Z",
-    "last_save_at": "2026-07-17T14:30:51.331Z",
+    "last_save_at": "2026-07-17T20:26:23.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:29dcd7a3417c05d77033bfef14f8426f31ad09550cb85dfd48fb608017fb9541",
+    "source_fingerprint": "sha256:bfc96aab3c38970a3d820646b54466d7439d5436b7423719e2402d51154bb236",
     "source_doc_hashes": {
-      "spec.md": "39c08851a081b9afc02d74a72c8994e8ad836983a3d505e6cdab05b9f74636d2",
-      "plan.md": "f481773a651873a7ff2c3cef5f6ca3921b9c7725c1d18277d4de3dee8d0171a3",
-      "tasks.md": "0e44937cd061f3cff8c5e67ac21d2403b53a76e298f6fd9f8a178dc4a152598f",
-      "checklist.md": "013f473a8a5f0e1c5dd1a529a4e5e00df83cfc15c2baf7c6352eec274ae65554"
+      "spec.md": "1745399b0cfc0b224a3e7992e9196daf039ccae242e53075eacc70f0be571a60",
+      "plan.md": "d02ce14fe475b65d8f8b108b7948c9b67508170664aa8646328e23397caa9177",
+      "tasks.md": "22df4d30bf43f4b13aa3ffbad212b6ac6dcea5d05b59b988dbfc466e52e498cc",
+      "checklist.md": "e030035628081bbcb4860782d8f0a2c2e3c0e82a34621acd510fb8cf8a41d237"
     },
     "last_active_child_id": null,
     "last_active_at": null

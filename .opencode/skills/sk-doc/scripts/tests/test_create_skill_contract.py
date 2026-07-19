@@ -3,6 +3,8 @@
 
 import importlib.util
 import json
+import subprocess
+import sys
 import zipfile
 from pathlib import Path
 
@@ -11,6 +13,15 @@ def _load_module():
     scripts_dir = Path(__file__).resolve().parents[1]
     module_path = scripts_dir / "package_skill.py"
     spec = importlib.util.spec_from_file_location("package_skill", module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _load_init_module():
+    scripts_dir = Path(__file__).resolve().parents[1]
+    module_path = scripts_dir / "init_skill.py"
+    spec = importlib.util.spec_from_file_location("init_skill", module_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -62,6 +73,45 @@ def test_valid_standalone_passes_check(tmp_path):
 
     assert valid is True, message
     assert warnings == []
+
+
+def test_standalone_scaffold_emits_kebab_root_and_rejects_underscore(tmp_path):
+    module = _load_init_module()
+
+    skill_path = module.init_skill("demo-skill", str(tmp_path))
+    invalid_path = module.init_skill("demo_skill", str(tmp_path))
+
+    assert skill_path == tmp_path / "demo-skill"
+    assert (skill_path / "SKILL.md").is_file()
+    assert invalid_path is None
+    assert not (tmp_path / "demo_skill").exists()
+
+
+def test_parent_scaffold_emits_kebab_storage_and_exact_tool_names(tmp_path):
+    module = _load_init_module()
+
+    skill_path = module.init_parent_skill("demo-hub", str(tmp_path))
+
+    assert skill_path == tmp_path / "demo-hub"
+    expected_paths = {
+        "SKILL.md",
+        "README.md",
+        "mode-registry.json",
+        "hub-router.json",
+        "description.json",
+        "graph-metadata.json",
+        "manual-testing-playbook",
+        "benchmark",
+        "changelog",
+        "demo-hub-primary/SKILL.md",
+        "demo-hub-primary/README.md",
+    }
+    emitted_paths = {
+        path.relative_to(skill_path).as_posix()
+        for path in skill_path.rglob("*")
+    }
+    assert expected_paths <= emitted_paths
+    assert "manual_testing_playbook" not in emitted_paths
 
 
 def test_scalar_allowed_tools_is_invalid(tmp_path):
@@ -146,6 +196,86 @@ def test_zip_does_not_include_itself(tmp_path):
         assert self_member not in archive.namelist()
 
 
+def test_package_uses_kebab_archive_root_and_members(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    references = skill_path / "references"
+    references.mkdir()
+    (references / "quick-guide.md").write_text(
+        "---\n"
+        "title: Quick Guide\n"
+        "description: Canonical package path fixture.\n"
+        "trigger_phrases:\n"
+        "  - \"quick guide\"\n"
+        "importance_tier: normal\n"
+        "contextType: general\n"
+        "version: 1.0.0.0\n"
+        "---\n\n# Quick Guide\n",
+        encoding="utf-8",
+    )
+
+    zip_path = module.package_skill(str(skill_path), str(tmp_path / "packages"))
+
+    assert zip_path is not None
+    assert zip_path.name == "demo-skill.zip"
+    with zipfile.ZipFile(zip_path) as archive:
+        names = archive.namelist()
+    assert "demo-skill/SKILL.md" in names
+    assert "demo-skill/references/quick-guide.md" in names
+    assert all("_" not in part for name in names for part in Path(name).parts)
+
+
+def test_packaging_rejects_noncanonical_generated_resource_path(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    references = skill_path / "references"
+    references.mkdir()
+    (references / "bad_name.md").write_text("# Invalid name\n", encoding="utf-8")
+
+    zip_path = module.package_skill(str(skill_path), str(tmp_path / "packages"))
+
+    assert zip_path is None
+    strict_valid, strict_message, _warnings = module.validate_skill(
+        skill_path,
+        strict=True,
+    )
+    assert strict_valid is False
+    assert "must use kebab-case" in strict_message
+
+
+def test_generated_path_check_preserves_python_and_tool_exemptions(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    package_dir = skill_path / "scripts" / "python_package"
+    package_dir.mkdir(parents=True)
+    (package_dir / "__init__.py").write_text("", encoding="utf-8")
+    (package_dir / "helper_module.py").write_text("", encoding="utf-8")
+    (skill_path / "action.yml").write_text("name: demo\n", encoding="utf-8")
+
+    _valid, _message, warnings = module.validate_generated_paths(skill_path)
+
+    assert warnings == []
+
+
+def test_completion_wrapper_strictly_rejects_underscore_resource_path(tmp_path):
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    references = skill_path / "references"
+    references.mkdir()
+    (references / "bad_name.md").write_text("# Invalid name\n", encoding="utf-8")
+    validator = Path(__file__).resolve().parents[1] / "validate_skill_package.py"
+
+    result = subprocess.run(
+        [sys.executable, str(validator), str(skill_path), "--strict"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 1
+    assert "package_skill.py --check --strict: FAIL" in result.stdout
+    assert "must use kebab-case" in result.stdout
+
+
 def test_skill_template_asset_exempt_from_resource_frontmatter(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "with-template-asset")
@@ -153,7 +283,7 @@ def test_skill_template_asset_exempt_from_resource_frontmatter(tmp_path):
     asset_dir.mkdir(parents=True)
     # A scaffold template renders into a new skill's SKILL.md, so it carries
     # skill frontmatter (name + allowed-tools), not the resource-doc block.
-    (asset_dir / "scaffold_template.md").write_text(
+    (asset_dir / "scaffold-template.md").write_text(
         "---\n"
         "name: {{SKILL_NAME}}\n"
         "description: TODO one-line description of the scaffolded skill.\n"
@@ -163,15 +293,15 @@ def test_skill_template_asset_exempt_from_resource_frontmatter(tmp_path):
         encoding="utf-8",
     )
     # Control: a real resource doc missing the 5-field block still warns.
-    (asset_dir / "real_reference.md").write_text(
+    (asset_dir / "real-reference.md").write_text(
         "---\ntitle: Real Doc\n---\n\nbody\n",
         encoding="utf-8",
     )
 
     _valid, _message, warnings = module.validate_resource_frontmatter(skill_path)
 
-    assert not any("scaffold_template.md" in w for w in warnings)
+    assert not any("scaffold-template.md" in w for w in warnings)
     assert any(
-        "real_reference.md" in w and "missing frontmatter field" in w
+        "real-reference.md" in w and "missing frontmatter field" in w
         for w in warnings
     )

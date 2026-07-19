@@ -96,7 +96,7 @@ sk-prompt/
   hub-router.json        # base 3 outcomes, defaultMode: prompt-improve
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  changelog/  manual_testing_playbook/  benchmark/
+  changelog/  manual-testing-playbook/  benchmark/
   prompt-improve/         # workflow packet — 7-framework/DEPTH/CLEAR prompt engine
   prompt-models/          # workflow packet — read-only small-model prompt-craft profiles
 ```
@@ -133,4 +133,4 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `prompt-improve/`, `prompt-models/`.
-- Parent-skill pattern: `sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`.
+- Parent-skill pattern: `sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`.

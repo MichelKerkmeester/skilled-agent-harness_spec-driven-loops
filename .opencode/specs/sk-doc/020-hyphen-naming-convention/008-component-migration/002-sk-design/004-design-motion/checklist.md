@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Design-motion (032 phase 004)"
-description: "Blocking SOL verification contract for Design-motion in the 032 sk-design naming subtree."
+title: "Checklist: Design-motion (020 phase 004)"
+description: "Blocking SOL verification contract for Design-motion in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-motion verification"
   - "sk-design design-motion checklist"
-  - "032 design-motion gate"
+  - "020 design-motion gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Design-motion (032 phase 004)
+# Checklist: Design-motion (020 phase 004)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

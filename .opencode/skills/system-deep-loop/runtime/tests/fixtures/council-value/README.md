@@ -63,7 +63,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/integration/council-graph-value-scenarios.vitest.ts
+cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/integration/council-graph-value-scenarios.vitest.ts
 ```
 
 Expected result: exit code 0, all 6 tests pass.
@@ -72,7 +72,7 @@ To refresh the tracked metrics report intentionally:
 
 ```bash
 COUNCIL_VALUE_REPORT_PATH=.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json \
-  npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council
+  npm run --prefix .opencode/skills/system-spec-kit/mcp-server test:council
 ```
 
 ---

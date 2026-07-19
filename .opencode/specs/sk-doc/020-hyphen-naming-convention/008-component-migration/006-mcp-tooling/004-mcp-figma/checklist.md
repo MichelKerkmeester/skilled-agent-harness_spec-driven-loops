@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-figma naming closure (032 phase 004)"
+title: "Checklist: mcp-figma naming closure (020 phase 004)"
 description: "Blocking SOL verifier contract for the Figma component naming phase."
 trigger_phrases:
   - "mcp-figma naming checklist"

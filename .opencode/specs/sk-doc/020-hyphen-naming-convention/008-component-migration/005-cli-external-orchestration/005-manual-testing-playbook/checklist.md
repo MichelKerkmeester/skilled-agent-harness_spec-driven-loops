@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-external-orchestration manual-testing-playbook naming (032 phase 005.005)"
+title: "Checklist: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "Blocking SOL verifier contract for the four cli-external-orchestration playbook trees: complete path map, recursive reference closure, scenario parity, and ownership protection."
 trigger_phrases:
   - "cli-external manual playbook checklist"

@@ -33,7 +33,7 @@
     },
     {
       "file": "scripts/memory/rebuild-auto-entities.ts",
-      "import": "../../mcp_server/lib/extraction/entity-extractor",
+      "import": "../../mcp-server/lib/extraction/entity-extractor",
       "owner": "spec-kit-maintainers",
       "reason": "CLI script needs direct access to entity extraction internals for rebuild operations",
       "removeWhen": "rebuildAutoEntities exposed via api/",

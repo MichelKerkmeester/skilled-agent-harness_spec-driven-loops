@@ -1,7 +1,7 @@
 {
   "level": 2,
   "name": "Real-World Usefulness Test",
-  "specFolder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/008-real-world-usefulness-test-planning",
   "description": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces",
   "keywords": [
     "earlier",
@@ -16,11 +16,12 @@
     "integration",
     "surfaces"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.839Z",
+  "lastUpdated": "2026-07-18T03:48:55.558Z",
   "specId": "008",
   "folderSlug": "real-world-usefulness-test-planning",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 0,

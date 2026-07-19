@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration manual-testing-playbook naming (032 phase 005.005)"
+title: "Feature Specification: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning."
 trigger_phrases:
   - "cli-external manual playbook kebab-case"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-external-orchestration manual-testing-playbook naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration |
-| **Origin** | Phase 005 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -108,7 +108,7 @@ This phase applies a complete four-tree filesystem map to kebab-case, rewrites p
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The primary risk is a partial tree rename that breaks relative links or silently drops a scenario. The phase depends on the component handoffs and 032 path-vs-content boundary; a complete four-tree ledger, scenario-ID parity check, and recursive link resolution provide the guardrail.
+The primary risk is a partial tree rename that breaks relative links or silently drops a scenario. The phase depends on the component handoffs and 020 path-vs-content boundary; a complete four-tree ledger, scenario-ID parity check, and recursive link resolution provide the guardrail.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

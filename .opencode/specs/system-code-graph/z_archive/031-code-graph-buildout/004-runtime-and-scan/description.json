@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/004-runtime-and-scan",
   "description": "The code-graph runtime and scan-correctness track: runtime upgrades, scan scope and correctness, resolver and hook improvements, and exclude tuning",
   "keywords": [
     "code-graph",
@@ -16,11 +16,12 @@
     "exclude",
     "tuning"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.802Z",
+  "lastUpdated": "2026-07-18T03:48:55.479Z",
   "specId": "004",
   "folderSlug": "runtime-and-scan",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 0,

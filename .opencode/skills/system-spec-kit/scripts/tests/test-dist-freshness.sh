@@ -11,10 +11,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
 VALIDATOR="$SCRIPT_DIR/../spec/validate.sh"
 FIXTURE="$SCRIPT_DIR/../test-fixtures/053-template-compliant-level2"
-SOURCE="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts"
-DIST="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/orchestrator.js"
-REBUILD_COMMAND="cd .opencode/skills/system-spec-kit/mcp_server && npm run build"
-CACHE_GLOB="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-"*.json
+SOURCE="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts"
+DIST="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/dist/lib/validation/orchestrator.js"
+REBUILD_COMMAND="cd .opencode/skills/system-spec-kit/mcp-server && npm run build"
+CACHE_GLOB="$REPO_ROOT/.opencode/skills/system-spec-kit/mcp-server/dist/lib/validation/.dist-freshness-system-spec-kit-mcp_server-"*.json
 
 PASSED=0
 FAILED=0

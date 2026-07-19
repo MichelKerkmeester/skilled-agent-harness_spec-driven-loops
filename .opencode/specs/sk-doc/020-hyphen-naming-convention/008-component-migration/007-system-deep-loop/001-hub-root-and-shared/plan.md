@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop hub root and shared names (032 phase 007/001)"
+title: "Implementation Plan: system-deep-loop hub root and shared names (020 phase 007/001)"
 description: "Plan for classifying the hub/shared boundary, preserving exact routing and metadata names, and applying only any frozen-map candidate with its direct reference closure. The current inventory is expected to be a verified no-op."
 trigger_phrases:
   - "system-deep-loop hub shared implementation plan"

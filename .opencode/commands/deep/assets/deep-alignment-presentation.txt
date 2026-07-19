@@ -1,0 +1,323 @@
+# Deep Start Alignment Loop Presentation Contract
+
+Presentation source of truth for `/deep:alignment`. The command router owns only mode selection, safety gates, lane resolution, and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard/checkpoint layout, result displays, examples, and next-step suggestions.
+
+## 1. Startup Presentation
+
+This workflow gathers all setup inputs in one prompt. Confirm mode still includes an init approval gate after setup; only the setup round-trip is consolidated here.
+
+For `:confirm` or no suffix, the consolidated setup prompt MUST be the first visible response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound. Lanes are the one input that can never be guessed: `:auto` resolves them from `--lane-config <file.json>` non-interactively, and only when that flag is absent does it emit the single structured scoping question below before loading YAML.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + the `PRE-BOUND SETUP ANSWERS:` block (below) + the Default Resolution Table (below). Resolve lanes from `--lane-config` when present. When every required field is resolved, resolve `{artifact_dir}` from `spec_folder` and persist `{artifact_dir}/deep-alignment-config.json` (shape: `alignmentTarget`, `lanes`, `specFolder`, `maxIterations`, `convergence.coverageThreshold`, `convergence.stabilityWindow`, `convergence.combination: "AND"`, `executionMode: "auto"`, `lineageMode`, `executor` native-fixed, `batchSize`, `status`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-alignment-auto.yaml`. End setup.
+
+2. **Tier 2 — Resolve lanes** (the one input that is never guessed): when `--lane-config` is absent, emit ONLY the structured three-axis scoping question (`authority` x `artifactClass` x `scope`) from `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`, bind the resolved lanes, then return to Tier 1. `spec_folder` may also be asked here when it is genuinely ambiguous and no default resolves it. Never guess a scope — SKILL.md ALWAYS #1.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:alignment:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  alignment_target: <human-readable label for what this run audits>
+  lane_config: <path to a --lane-config JSON file>  # the only non-interactive lane source
+  spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  lineage_mode: auto  # one of: auto | resume | restart
+  max_iterations: 10
+  coverage_threshold: 1.0
+  stability_window: 2
+  batch_size: 5
+  executor_timeout: 900  # optional; the only executor knob this mode reads
+```
+
+Rules:
+
+- Any unspecified field falls back to its documented default.
+- Marker fields take precedence over `$ARGUMENTS` flags because the caller explicitly bound setup in the prompt body.
+- Unknown fields are warnings, not errors.
+- Malformed lines, including a missing `:`, emit a parse error naming the offending line. Known fields parsed before the error may still be used, and unresolved fields continue to Tier 2 or Tier 3.
+- Empty strings count as unresolved for required fields.
+- This mode dispatches the native `@deep-alignment` agent on a fixed model. It resolves no external executor and honors only `executor_timeout`. Do NOT accept or advertise `executor_model`, `executor_reasoning`, `executor_service_tier`, or `sandbox_mode` as configurable — the workflow never reads them, and the contract must match the dispatch.
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `alignment_target` | Y | `$ARGUMENTS` first positional target, or marker `alignment_target` | none | N |
+| `lanes` | Y | flag `--lane-config <file.json>`, or the structured three-axis scoping question | none (never guessed) | Y, when `--lane-config` is absent |
+| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or a target/scope path that resolves to an existing spec folder | none | Y, when the target is not a spec folder |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
+| `max_iterations` | Y | flag `--max-iterations`, marker `max_iterations`, or default | `10` | N |
+| `coverage_threshold` | Y | flag `--coverage-threshold`, marker `coverage_threshold`, or default | `1.0` | N |
+| `stability_window` | Y | flag `--stability-window`, marker `stability_window`, or default | `2` | N |
+| `batch_size` | N | marker `batch_size`, or default | `5` | N |
+| `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
+
+**Lane policy:** `--lane-config <file.json>` is the ONLY non-interactive lane-resolution path (ADR-011 LOCKED). The file is a JSON array of `{authority, artifactClass, scope}` objects; see `.opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md`. There is no inline per-flag lane syntax. An empty resolved lane set is a fail-fast, never a guessed scope.
+
+**Convergence policy:** `--coverage-threshold <F>` (default `1.0`) and `--stability-window <N>` (default `2`) tune a two-signal AND-gate. Both must hold together before STOP is legal, and `--max-iterations` remains an independent hard stop regardless. Do NOT transfer `deep-review`'s single `convergenceThreshold` ratio semantics onto these two flags — they are not equivalent.
+
+**Lifecycle policy:** `lineage_mode=auto` preserves the classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write or phase init. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `alignment/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
+
+### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode
+
+Use this block only when `execution_mode = "INTERACTIVE"` or when no suffix was supplied and Q-Mode must ask for the execution mode.
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+
+1. CHECK for mode suffix:
+   |-- ":auto"    -> execution_mode = "AUTONOMOUS"
+   |-- ":confirm" -> execution_mode = "INTERACTIVE"
+   +-- No suffix  -> execution_mode = "ASK" (include Q-Mode)
+
+2. CHECK $ARGUMENTS for target (alignment_target):
+   |-- Has content (ignoring suffixes and flags):
+   |     -> alignment_target = $ARGUMENTS, omit Q-Target
+   +-- Empty -> include Q-Target
+
+3. PARSE optional flags from $ARGUMENTS:
+   |-- --lane-config=PATH -> lane_config_path = PATH (the only non-interactive lane source; omit Q-Lanes)
+   |-- --max-iterations=N -> max_iterations = N
+   |-- --coverage-threshold=F -> coverage_threshold = F
+   |-- --stability-window=N -> stability_window = N
+   |-- --spec-folder=PATH -> spec_path = PATH, omit Q-Spec
+   |-- --restart -> lineage_mode = restart
+   |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --executor-timeout=SECONDS -> executor_timeout = SECONDS (positive integer, default 900)
+   |
+   +-- Defaults: max_iterations=10, coverage_threshold=1.0, stability_window=2, batch_size=5,
+       lineage_mode=auto, executor=native (fixed), executor_timeout=900
+
+   This mode resolves NO external executor. It never asks for or accepts an executor model,
+   reasoning effort, or service tier; those are reserved placeholders the workflow never reads.
+
+4. Search for related spec folders across alias roots:
+   $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
+
+5. Search for prior work (background):
+   - memory_context({ input: alignment_target OR "deep-alignment", mode: "focused", includeContent: true })
+   - Store: prior_work_found = yes/no
+
+6. ASK with SINGLE prompt (include only applicable questions):
+
+   Q-Target. Alignment Target (if not in command): a human-readable label for what this run audits
+     Examples: a skill hub name, a docs tree, an agent family
+
+   Q-Lanes. Lanes (required unless --lane-config was supplied): resolve one or more lanes over the
+     three axes authority x artifactClass x scope, per
+     `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`.
+       authority   -- one of: sk-doc | sk-git | sk-design | sk-design-live-render | sk-code
+       artifactClass -- the class of artifact this lane audits (per the authority's adapter)
+       scope       -- paths / globs, or a branch range for sk-git
+     A lane is never guessed. Supply `--lane-config <file.json>` to resolve lanes non-interactively.
+
+   Q-Spec. Spec Folder (required):
+     A) Use existing (suggest if found)
+     B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when in use)
+     C) Update related (if match found)
+     D) Phase folder (e.g. `specs/NN-track/NNN-name/001-phase/`, or matching `.opencode/specs/` alias)
+
+   Q-Mode. Execution Mode (if no suffix):
+     A) Autonomous -- all iterations without approval
+     B) Interactive -- pause at the init gate for approval
+
+   Q-Iters. Max Iterations (if not set via flag):
+     Default is 10. Change? (enter a number, or press enter for the default)
+
+   Q-Converge. Convergence (optional, press enter for defaults):
+     Coverage threshold (default 1.0 = every discovered artifact checked at least once) AND
+     stability window (default 2 consecutive zero-new-findings iterations). Both must hold to STOP.
+
+7. WAIT for user response (DO NOT PROCEED)
+
+8. Parse response and store ALL results:
+   - alignment_target = from Q-Target or $ARGUMENTS
+   - lanes = from Q-Lanes structured answer, or from --lane-config
+   - lane_config_path = from --lane-config when supplied, else null
+   - spec_choice = A/B/C/D from Q-Spec
+   - spec_path = derived path
+   - execution_mode = AUTONOMOUS/INTERACTIVE
+   - lineage_mode = auto/resume/restart from flag, marker, or default auto
+   - max_iterations = from Q-Iters or flag or default 10
+   - coverage_threshold = from Q-Converge or flag or default 1.0
+   - stability_window = from Q-Converge or flag or default 2
+   - batch_size = from marker or default 5
+   - executor = native (fixed); executor_timeout from flag or default 900
+
+9. SET STATUS: PASSED
+
+STOP HERE - Wait for user answers before continuing.
+
+DO NOT proceed until the user explicitly answers
+NEVER auto-create spec folders without confirmation
+NEVER guess a lane scope; resolve lanes explicitly or via --lane-config
+NEVER split questions into multiple prompts
+```
+
+**Phase Output:**
+
+- `alignment_target` | `lanes` | `lane_config_path`
+- `spec_choice` | `spec_path` | `execution_mode` | `max_iterations` | `coverage_threshold` | `stability_window` | `batch_size`
+- `lineage_mode` | `executor_timeout`
+
+## 2. Dashboard / Checkpoint Layout
+
+### Deep Alignment
+
+Conduct a structured conformance audit against named standard authorities across resolved lanes. Each iteration dispatches a fresh LEAF agent (`@deep-alignment`) that reads externalized state, checks one lane-slice's artifacts against that authority's own standard source, and writes findings to files via Bash only. The audited artifacts are READ-ONLY.
+
+### Convergence Semantics
+
+**Two-signal AND-gate — NOT a ratio.**
+
+Convergence requires BOTH signals to hold together:
+- **Coverage** (default `1.0`): every discovered artifact in every lane checked at least once.
+- **Stability** (default window `2`): a run of consecutive zero-new-findings iterations of that width.
+
+`--max-iterations` (default `10`) is an independent hard stop regardless of coverage or stability.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses a single `convergenceThreshold` ratio (0.10 default) on severity-weighted new findings.
+- `deep-research` uses 0.05 on `newInfoRatio`.
+- `deep-ai-council` uses adjudicator-verdict stability.
+
+Carrying a sibling's single-ratio expectation onto alignment's coverage-AND-stability gate will produce unexpected iteration counts. The convergence evaluator is `deep-alignment/scripts/check-convergence.cjs`, never `runtime/scripts/convergence.cjs`.
+
+```yaml
+role: Deep Alignment Loop Manager
+purpose: Run a structured conformance audit across resolved lanes until the coverage-AND-stability gate holds or max iterations
+action: Execute the YAML workflow managing init, loop, and synthesis phases
+operating_mode:
+  workflow: iterative_loop
+  compliance: MANDATORY
+  execution: autonomous_or_interactive
+  validation: convergence_detection
+```
+
+### Purpose
+
+Run an iterative loop for conformance auditing: initialize the `alignment/` packet under `{artifact_dir}` (resolved via `resolveArtifactRoot()` — root specs use `{spec_folder}/alignment/`; child phases use a local packet dir inside that target's `alignment/` folder), resolve one or more lanes (`authority` x `artifactClass` x `scope`), discover each lane's corpus through its adapter, dispatch a fresh `@deep-alignment` LEAF agent per lane-slice iteration, evaluate the coverage-AND-stability gate, and synthesize per-lane findings into one `alignment-report.md`. The loop is READ-ONLY by default; remediation is a separate, operator-gated follow-up run.
+
+### Contract
+
+**Inputs:** `$ARGUMENTS` — alignment target with optional flags and mode suffix; lanes via `--lane-config` or the structured scoping question.
+**Outputs:** Spec folder with `{artifact_dir}/` packet (`{spec_folder}/alignment/`), `alignment-report.md`, `deep-alignment-findings-registry.json`, state files, and `STATUS=<OK|FAIL|CANCELLED>`.
+
+### Workflow Overview
+
+| Phase | Name | Purpose | Outputs |
+|-------|------|---------|---------|
+| Init | Initialize | Resolve lanes, discover each lane's corpus, seed coverage graph + registry, create config/state | `alignment/` packet, corpus, registry seeded |
+| Loop | Iterate | Partition the corpus, dispatch `@deep-alignment` per lane-slice, evaluate the coverage-AND-stability gate | `alignment/iterations/iteration-NNN.md`, `deep-alignment-state.jsonl`, `alignment/deltas/iter-NNN.jsonl` |
+| Synth | Synthesize | Reduce JSONL + deltas into the findings registry and per-lane report, release the lock | `alignment/alignment-report.md`, `deep-alignment-findings-registry.json` |
+
+### Execution Modes
+
+| Mode | Invocation | Behavior |
+|------|-----------|----------|
+| `:auto` | `/deep:alignment:auto "target"` | All iterations without approval (lanes still resolved explicitly or via `--lane-config`) |
+| `:confirm` | `/deep:alignment:confirm "target"` | Init approval gate before the loop; final rollup gate at synthesis |
+| (default) | `/deep:alignment "target"` | Ask the user to choose the execution mode during setup |
+
+### Memory Integration
+
+#### Before Starting
+- `memory_context({ input: alignment_target, intent: "understand" })` — load prior alignment context for the target and buffer it until config exists.
+
+#### After Completing
+- Continuity is refreshed in the canonical spec docs at synthesis; the audited artifacts are never written.
+
+## 3. Results Display
+
+### Instructions
+
+After setup passes, load and execute the appropriate YAML based on execution_mode:
+
+- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep-alignment-auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/deep/assets/deep-alignment-confirm.yaml`
+
+The YAML contains the full loop workflow: initialization, lane discovery, iteration dispatch, convergence detection, and synthesis.
+
+### Alignment Success
+
+```
+Deep alignment complete.
+Target: <alignment_target>
+Lanes: <N> | Stop reason: <converged|max_iterations|nothing_to_converge>
+Overall verdict: <PASS|CONDITIONAL|FAIL>  (worst-lane rollup, never averaged)
+Findings: P0=<N> P1=<N> P2=<N>
+Artifacts: alignment/alignment-report.md, deep-alignment-findings-registry.json, <N> iteration files in alignment/
+STATUS=OK PATH=<spec-folder-path>
+```
+
+### Failure
+
+```
+Error: <error description>  Phase: <phase name>
+STATUS=FAIL ERROR="<message>"
+```
+
+### Error Handling
+
+| Error | Action |
+|-------|--------|
+| Agent dispatch timeout | Retry once with reduced slice, then mark timeout |
+| State file missing | Reconstruct from iteration files and the reducer registry |
+| 3+ consecutive failures | Halt loop, enter synthesis with partial findings |
+| Invalid or contradictory state | Halt; repair or archive the alignment packet before continuing |
+
+### Key Features
+
+#### Lanes and Authorities
+- Each lane audits one artifact class against one named authority (`sk-doc`, `sk-git`, `sk-design`, `sk-design-live-render`, `sk-code`) over a resolved scope.
+- Every adapter returns the same `{artifacts, nodes}` discover shape; the loop never branches on which authority produced it.
+- A lane that discovers zero artifacts is NOT_APPLICABLE, not an error.
+
+#### Severity and Verdicts
+- Three severity levels: P0 (Blocker), P1 (Required), P2 (Suggestion).
+- Three verdicts: PASS, CONDITIONAL, FAIL — a worst-lane rollup, never averaged.
+
+#### Alignment Contract
+- Verify-first: every live-drift claim is re-probed against live ground truth before it is asserted.
+- Known-deviation suppression: findings matching an authority's known-deviation list are suppressed, so output is proven drift, not intentional convention.
+- Read-only default: the audited artifacts are never modified; the LEAF has no Write or Edit tool and writes state via Bash only.
+- Gated remediation: REMEDIATE is never auto-invoked; it is a separate, explicitly opted-in follow-up run.
+
+#### Agent Model
+- Dispatches the `@deep-alignment` LEAF agent per iteration (fresh context each time) on a fixed native model.
+- Externalized state via JSONL + delta files (no context degradation).
+
+## 4. Next-Step Suggestions
+
+### Examples
+
+```
+/deep:alignment "skill:sk-doc hub docs"
+/deep:alignment:auto "sk-code surface docs" --lane-config=specs/.../lanes.json
+/deep:alignment:confirm "the deep-alignment packet" --max-iterations=6 --coverage-threshold=1.0 --stability-window=2
+```
+
+### Next Steps
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Any lane FAIL/CONDITIONAL | `/speckit:plan [remediation]` | Plan remediation from the alignment findings |
+| Every lane PASS | `/create:changelog` | Generate a changelog entry |
+| Need to fix specific findings | `/speckit:implement [spec-folder]` | Implement fixes from the remediation plan |
+| Want to refresh search support | `/memory:save [spec-folder]` | Refresh the indexed canonical spec document |

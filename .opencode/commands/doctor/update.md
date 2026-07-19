@@ -19,8 +19,8 @@ Load the presentation contract before showing startup questions, mid-run prompts
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor_update_presentation.txt` |
-| Update workflow | `.opencode/commands/doctor/assets/doctor_update.yaml` |
+| Presentation source of truth | `.opencode/commands/doctor/assets/doctor-update-presentation.txt` |
+| Update workflow | `.opencode/commands/doctor/assets/doctor-update.yaml` |
 
 ## 3. MODE ROUTING
 
@@ -36,18 +36,18 @@ Load the presentation contract before showing startup questions, mid-run prompts
 
 ## 4. EXECUTION TARGETS
 
-1. Read `.opencode/commands/doctor/assets/doctor_update_presentation.txt`.
+1. Read `.opencode/commands/doctor/assets/doctor-update-presentation.txt`.
 2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
 3. Bind setup values: `execution_mode`, `intent`, `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and internal `skip_status_check` (fixed `false`; no user flag).
 4. If `--force` is absent, ask the presentation contract's initial confirmation prompt and wait.
 5. If `--force` is present, auto-answer the initial confirmation as proceed; the active-MCP-client prompt still fires when the workflow detects active clients.
-6. Load `.opencode/commands/doctor/assets/doctor_update.yaml` only after every setup value is bound.
+6. Load `.opencode/commands/doctor/assets/doctor-update.yaml` only after every setup value is bound.
 7. Execute the YAML phase by phase.
 8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, restart-required display, and next-step text.
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor_update_presentation.txt`:
+The following content lives only in `.opencode/commands/doctor/assets/doctor-update-presentation.txt`:
 
 - Initial confirmation and mid-run prompt catalog.
 - Cross-subsystem health dashboard layout.
@@ -56,6 +56,6 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor_upd
 
 ## 6. WORKFLOW SUMMARY
 
-The `doctor_update.yaml` workflow rebuilds the spec-kit runtime databases in dependency-safe order under interactive confirmation, snapshotting each SQLite database before mutation unless `--no-snapshot` is passed, and writing an update state log on every terminal path. A layout- or artifact-changing bootstrap ends with `STATUS=RESTART_REQUIRED` so a fresh process reruns with `--resume-bootstrap`. All visible wording is owned by the presentation contract.
+The `doctor-update.yaml` workflow rebuilds the spec-kit runtime databases in dependency-safe order under interactive confirmation, snapshotting each SQLite database before mutation unless `--no-snapshot` is passed, and writing an update state log on every terminal path. A layout- or artifact-changing bootstrap ends with `STATUS=RESTART_REQUIRED` so a fresh process reruns with `--resume-bootstrap`. All visible wording is owned by the presentation contract.
 
 User request: $ARGUMENTS

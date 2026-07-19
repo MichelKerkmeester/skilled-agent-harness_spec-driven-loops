@@ -1,0 +1,71 @@
+---
+title: "CU-025 -- Complete Task with Note"
+description: "This scenario validates Complete Task with Note for `CU-025`. Objective: Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in o."
+version: 1.0.0.6
+---
+
+# CU-025 -- Complete Task with Note
+
+---
+
+## 1. OVERVIEW
+
+Validates that **Complete Task with Note** behaves as defined in the feature catalog.
+
+### Why This Matters
+
+Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in one call is required for correct agent operation. Failure here means task not closed or note missing from comments.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- **Objective:** Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in one call
+- **Real user request:** `Mark test task complete with a note.`
+- **Prompt:** `Complete task TASK_ID and add the note 'Processed by agent test'.`
+- **Expected signals:** Step 3: confirmation message and exit 0. Step 4: note with 'Processed by agent test' appears in output.
+- **Desired user-visible outcome:** Agent reports: task closed as 'done'. Comment 'Processed by agent test' added.
+- **Pass/fail:** PASS if task status is closed in ClickUp AND note appears in task comments; FAIL if task not closed OR note missing from comments
+
+---
+
+## 3. TEST EXECUTION
+
+### Recommended Orchestration Process
+
+PRE: Use a throwaway test task only.
+1. `cupt statuses TASK_ID`  # → discover closed status
+2. `cupt done TASK_ID --dry-run`  # → verify dry-run works
+3. `cupt done TASK_ID --note 'Processed by agent test'`  # → mark complete
+4. `cupt notes TASK_ID`  # → verify note appears
+
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-025 | Complete Task with Note | Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in one call | `Complete task TASK_ID and add the note 'Processed by agent test'.` | 1. `cupt statuses TASK_ID`  # → discover closed status 2. `cupt done TASK_ID --dry-run`  # → verify dry-run works 3. `cupt done TASK_ID --note 'Processed by agent test'`  # → mark complete 4. `cupt notes TASK_ID`  # → verify note appears | Step 3: confirmation message and exit 0. Step 4: note with 'Processed by agent test' appears in output. | Terminal output of the command sequence above | PASS if task status is closed in ClickUp AND note appears in task comments; FAIL if task not closed OR note missing from comments | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| [`manual-testing-playbook.md`](../../manual-testing-playbook/manual-testing-playbook.md) | Root directory and scenario summary |
+| [`../../feature-catalog/cupt-task-completion/complete-with-note.md`](../../feature-catalog/cupt-task-completion/complete-with-note.md) | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Task Completion
+- Playbook ID: CU-025
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `task-operations/done-with-note.md`

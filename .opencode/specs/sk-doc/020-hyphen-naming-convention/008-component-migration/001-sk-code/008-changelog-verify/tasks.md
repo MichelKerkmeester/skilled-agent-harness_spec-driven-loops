@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code changelog and version verification (032 phase 008/008)"
+title: "Tasks: sk-code changelog and version verification (020 phase 008/008)"
 description: "Execution tasks for checking the sk-code release entry, version coherence, exemption boundary, and handoff to the final subtree gate without performing migration work."
 trigger_phrases:
   - "sk-code changelog verification tasks"
@@ -45,7 +45,7 @@ _memory:
 
 - [ ] T001 Load the 001-007 checklists, maps, handoffs, pinned BASE SHA, and candidate release evidence.
 - [ ] T002 [P] Inventory the new changelog entry, historical entries, active version surfaces, dates, and public summaries.
-- [ ] T003 Classify each 001-007 surface and every retained non-kebab name against the 032 exemption/frozen boundary.
+- [ ] T003 Classify each 001-007 surface and every retained non-kebab name against the 020 exemption/frozen boundary.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

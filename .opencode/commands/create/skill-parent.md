@@ -26,16 +26,16 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create_skill_parent_presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` |
+| Presentation contract | `.opencode/commands/create/assets/create-skill-parent-presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create-skill-parent-auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create-skill-parent-confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create_skill_parent_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create-skill-parent-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Resolve operation from setup: `create` or `update`.
@@ -47,12 +47,12 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` |
+| `:auto` | `.opencode/commands/create/assets/create-skill-parent-auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-skill-parent-confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create_skill_parent_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create-skill-parent-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
@@ -60,11 +60,11 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create_skill_parent_auto.yaml` for `:auto`, `create_skill_parent_confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-skill-parent-auto.yaml` for `:auto`, `create-skill-parent-confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
 **What This Scaffolds:**
 
-This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md`. The templates are `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json` under `.opencode/skills/sk-doc/create-skill/assets/skill/`.
+This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md`. The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.opencode/skills/sk-doc/create-skill/assets/skill/`.
 
 The generated package is:
 
@@ -74,7 +74,7 @@ The generated package is:
 - Exactly one hub `graph-metadata.json` — the one hard invariant.
 - N workflow mode packets, each self-contained with its own `SKILL.md`, `README.md`, and `changelog/`, where `folder == packetSkillName == [hub-prefix]-<mode>`, and with NO per-packet `graph-metadata.json`.
 - Optional read-only `surface` packets (bare-noun folders, `packetKind: surface`, `backendKind: evidence-base`, read-only `toolSurface`, advisor-invisible `metadata` routing) carrying domain evidence rather than process.
-- A hub `changelog/` and `manual_testing_playbook/` (changelog entries are real files, never symlinks).
+- A hub `changelog/` and `manual-testing-playbook/` (changelog entries are real files, never symlinks).
 - A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
 
 User request: $ARGUMENTS

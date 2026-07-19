@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: sk-doc subtree rollup gate"
-description: "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 032 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census."
+description: "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census."
 trigger_phrases:
   - "sk-doc skill gate"
   - "sk-doc naming rollup"
-  - "032 sk-doc subtree gate"
+  - "020 sk-doc subtree gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"

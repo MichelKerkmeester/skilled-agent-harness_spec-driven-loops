@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Design-mcp-open-design (032 phase 007)"
-description: "Task breakdown for Design-mcp-open-design in the 032 sk-design naming subtree."
+title: "Tasks: Design-mcp-open-design (020 phase 007)"
+description: "Task breakdown for Design-mcp-open-design in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-mcp-open-design tasks"
   - "sk-design design-mcp-open-design execution"
-  - "032 design-mcp-open-design checklist"
+  - "020 design-mcp-open-design checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Design-mcp-open-design (032 phase 007)
+# Tasks: Design-mcp-open-design (020 phase 007)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

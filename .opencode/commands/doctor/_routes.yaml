@@ -25,7 +25,7 @@
 #                              currently harvested by advisor (see "Consumed by" above)
 #
 # Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
-# stable code_graph/detect_changes MCP tools are registered through mk-code-index.
+# stable code_graph/detect-changes MCP tools are registered through mk-code-index.
 # Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
@@ -33,7 +33,7 @@
 schema_version: 1
 routes:
   - target: memory
-    yaml: doctor_memory.yaml
+    yaml: doctor-memory.yaml
     setup_vars: [execution_mode, intent, incremental]
     allowed_flags: ["--incremental=true|false"]
     mutating: add-only
@@ -52,7 +52,7 @@ routes:
       - "voyage embedding rebuild"
 
   - target: embeddings
-    yaml: doctor_embeddings.yaml
+    yaml: doctor-embeddings.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -65,7 +65,7 @@ routes:
       - "embedder_status diagnostics"
 
   - target: causal-graph
-    yaml: doctor_causal-graph.yaml
+    yaml: doctor-causal-graph.yaml
     setup_vars: [execution_mode, intent, confidence_threshold]
     allowed_flags: ["--confidence-threshold=N"]
     mutating: add-only
@@ -81,7 +81,7 @@ routes:
       - "memory_causal_stats"
 
   - target: code-graph
-    yaml: doctor_code-graph.yaml
+    yaml: doctor-code-graph.yaml
     setup_vars: [execution_mode, scope]
     allowed_flags:
       # apply-mode flags (--operation, --confirm) return when the confirm workflow is promoted (phase_b)
@@ -105,7 +105,7 @@ routes:
       - "code-graph corruption recover"
 
   - target: deep-loop
-    yaml: doctor_deep-loop.yaml
+    yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode, intent, scope]
     allowed_flags: ["--scope=research|review|council|both|all"]
     mutating: add-only
@@ -122,7 +122,7 @@ routes:
       - "deep-review iteration graph"
 
   - target: skill-advisor
-    yaml: doctor_skill-advisor.yaml
+    yaml: doctor-skill-advisor.yaml
     setup_vars: [execution_mode, scope, skip_tests, dry_run]
     allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
     mutating: mutates
@@ -146,7 +146,7 @@ routes:
       - "skill_graph scan"
 
   - target: skill-budget
-    yaml: doctor_skill-budget.yaml
+    yaml: doctor-skill-budget.yaml
     setup_vars: [execution_mode, json_output, top_n, fail_over, project_ceiling]
     allowed_flags: ["--json", "--top-n=N", "--fail-over=N", "--project-ceiling=N"]
     mutating: read-only
@@ -161,7 +161,7 @@ routes:
       - "frontmatter description trim"
 
   - target: parent-skill
-    yaml: doctor_parent-skill.yaml
+    yaml: doctor-parent-skill.yaml
     setup_vars: [execution_mode, parent_skill_dir]
     allowed_flags: ["--dir=<path>"]
     mutating: read-only
@@ -176,7 +176,7 @@ routes:
       - "single graph-metadata identity"
 
   - target: skill-graph-freshness
-    yaml: doctor_skill-graph-freshness.yaml
+    yaml: doctor-skill-graph-freshness.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -191,7 +191,7 @@ routes:
       - "reindex staleness check"
 
   - target: fable-mode
-    yaml: doctor_fable-mode.yaml
+    yaml: doctor-fable-mode.yaml
     setup_vars: [execution_mode, target_dir]
     allowed_flags: ["--dir=<path>", "--baseline=<path>"]
     mutating: read-only
@@ -214,7 +214,7 @@ routes:
 # ─────────────────────────────────────────────────────────────────
 mcp_subroutes:
   - sub_action: install
-    yaml: doctor_mcp_install.yaml
+    yaml: doctor-mcp-install.yaml
     allowed_flags: ["--server <name>", "--runtime <name>"]
     mutating: mutates
     gate3_location: "MCP server install dirs + runtime config (.opencode.json / .claude/settings.json / )"
@@ -224,7 +224,7 @@ mcp_subroutes:
       - "reinstall MCP"
 
   - sub_action: debug
-    yaml: doctor_mcp_debug.yaml
+    yaml: doctor-mcp-debug.yaml
     allowed_flags: ["--fix", "--server <name>"]
     mutating: mutates
     gate3_location: "MCP server logs + runtime config repair"
@@ -243,7 +243,7 @@ mcp_subroutes:
 standalone:
   - command: /doctor:update
     file: .opencode/commands/doctor/update.md
-    yaml: doctor_update.yaml
+    yaml: doctor-update.yaml
     mutating: mutates
     trigger_phrases:
       - "spec-kit version migration"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-tooling benchmark naming closure (032 phase 006)"
+title: "Tasks: mcp-tooling benchmark naming closure (020 phase 006)"
 description: "Tasks for phase 006 of the mcp-tooling component naming migration: census benchmark artifacts, preserve .gitkeep, and rename only real candidates."
 trigger_phrases:
   - "mcp-tooling benchmark tasks"

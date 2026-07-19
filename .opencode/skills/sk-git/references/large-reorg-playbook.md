@@ -51,12 +51,12 @@ parents, ~9000 renames) hit avoidable failure modes this runbook closes.
 ### Step 0: Snapshot the gitignored DBs (BEFORE touching anything)
 
 `git revert` / `git reset` cannot restore gitignored files. The memory + vector DBs under
-`.opencode/skills/system-spec-kit/mcp_server/database/` are gitignored and are a SINGLE
+`.opencode/skills/system-spec-kit/mcp-server/database/` are gitignored and are a SINGLE
 global instance — if a botched reindex corrupts them, git cannot roll them back.
 
 ```bash
 ts=$(date +%Y%m%d-%H%M%S)
-db=.opencode/skills/system-spec-kit/mcp_server/database
+db=.opencode/skills/system-spec-kit/mcp-server/database
 cp -a "$db" "${db}.bak-${ts}"
 echo "Snapshot: ${db}.bak-${ts}"
 ```

@@ -41,4 +41,4 @@ Spec the upload flow for a file importer with pending, success, error, retry, ca
 - Lists events and transition paths so every event resolves from a source state to a target state.
 - Defines guards, impossible states, entry actions, and exit actions, including control disabling, announcements, focus movement, timer cleanup, input preservation, and loop shutdown where relevant.
 - Specifies visible UI per state: copy, control state, affordance, and feedback location.
-- Cites timing and easing from `motion_strategy.md`, defines the reduced-motion equivalent, and leaves no blank cell.
+- Cites timing and easing from `motion-strategy.md`, defines the reduced-motion equivalent, and leaves no blank cell.

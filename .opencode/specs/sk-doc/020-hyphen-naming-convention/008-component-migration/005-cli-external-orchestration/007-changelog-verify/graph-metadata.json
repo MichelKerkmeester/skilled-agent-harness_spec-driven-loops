@@ -195,7 +195,7 @@
     ],
     "causal_summary": "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-07-17T14:30:22.433Z",
+    "last_save_at": "2026-07-17T20:26:09.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a2fd069def705b95801eca14f3849008dd11aa35ff02d323ed115af64b2b1094",
+    "source_fingerprint": "sha256:6b0a9fd2cc0219927d55a904885a74603c4b2a72795fe911eeab6b0e9f697efe",
     "source_doc_hashes": {
-      "spec.md": "74eb2a185946b4e510c42f4bfb106f6c77498362d0686f366396d612655b5407",
-      "plan.md": "b8180a1dbb2b754bc39d28aefd6be2559198bf1f0b187811bf46c1b22613c1c6",
-      "tasks.md": "864124474a52d24a796c769cc609976573e5c5f08a27ca30e09978916b8b757b",
-      "checklist.md": "bbb73aa0eb47a894edf5bbfb8804bf5829d918ded0740f2ec4bf9ba87c764eaa"
+      "spec.md": "7bc58f72d8d462ae61708e6427509fb49c6b66a628b757b6762828eefbb03be4",
+      "plan.md": "53043b80a90d4d2f76a11d52d9372419f62c049f3a849c6dc0a4e00dd44e9136",
+      "tasks.md": "10153dac7ada9f5e10bfaabdd490ebc0cb196a9adef48f8f7b00db0eb7b4aaea",
+      "checklist.md": "4921941533a482c8ecfaafcd0e7765551c5606f166336a42bb96779afbdd869a"
     },
     "last_active_child_id": null,
     "last_active_at": null

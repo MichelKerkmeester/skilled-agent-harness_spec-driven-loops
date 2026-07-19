@@ -1,0 +1,40 @@
+{
+  "profileId": "model-vs-model",
+  "id": "model-vs-model",
+  "version": "1.0",
+  "family": "deep-improvement",
+  "mode": "model-vs-model",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
+  "fixtures": ["t3-lower-bound", "t3-compare-versions"],
+  "fixtureSelection": {
+    "include": ["t3-lower-bound", "t3-compare-versions"],
+    "filters": { "tier": ["T3"] }
+  },
+  "frameworks": ["rcaf"],
+  "models": [
+    { "executor": "cli-opencode", "provider": "minimax-coding-plan", "model_slug": "MiniMax-M2.7", "variant": "default" },
+    { "executor": "cli-opencode", "provider": "openai", "model_slug": "gpt-5.5", "variant": "high" },
+    { "executor": "cli-claude-code", "provider": "anthropic", "model_slug": "claude-opus", "variant": "high" }
+  ],
+  "scoring": {
+    "scorer": "5dim",
+    "correctnessGate": { "threshold": 1.0 },
+    "dimensions": [
+      { "id": "D1", "weight": 0.25 },
+      { "id": "D2", "weight": 0.3 },
+      { "id": "D3", "weight": 0.2 },
+      { "id": "D4", "weight": 0.15 },
+      { "id": "D5", "weight": 0.1 }
+    ]
+  },
+  "sampling": { "samplesPerCell": 3, "seed": 1729 },
+  "reporting": { "groupBy": "model", "leaderboard": true, "history": true },
+  "outputsDir": "{spec_folder}/improvement/benchmark-outputs",
+  "metrics": ["score", "delta", "pass_rate"],
+  "thresholdDelta": 0.05,
+  "benchmark": {
+    "requiredAggregateScore": 80,
+    "minimumFixtureScore": 70,
+    "repeatabilityTolerance": 0
+  }
+}

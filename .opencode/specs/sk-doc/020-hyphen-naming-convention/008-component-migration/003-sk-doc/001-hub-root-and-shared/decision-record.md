@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: sk-doc hub root and shared backbone"
-description: "Design decisions for applying the 032 kebab-case filesystem rule to the sk-doc shared backbone while preserving Python exemptions, mandated names, and root facade symlinks."
+description: "Design decisions for applying the 020 kebab-case filesystem rule to the sk-doc shared backbone while preserving Python exemptions, mandated names, and root facade symlinks."
 trigger_phrases:
   - "sk-doc shared naming decisions"
   - "hub facade symlink decision"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:context -->
 ## Context
 
-The shared backbone is a live dependency of every sk-doc workflow packet, and the root `scripts/` directory exposes several shared or packet-owned targets through relative symlinks. The baseline contains eleven non-Python snake_case names in shared resources, alongside Python files, metadata, registry names, and keys that the 032 program explicitly exempts. The phase needs a path-level decision that keeps the shared contract stable while making the in-scope filesystem names canonical.
+The shared backbone is a live dependency of every sk-doc workflow packet, and the root `scripts/` directory exposes several shared or packet-owned targets through relative symlinks. The baseline contains eleven non-Python snake_case names in shared resources, alongside Python files, metadata, registry names, and keys that the 020 program explicitly exempts. The phase needs a path-level decision that keeps the shared contract stable while making the in-scope filesystem names canonical.
 <!-- /ANCHOR:context -->
 
 <!-- ANCHOR:decisions -->
@@ -60,7 +60,7 @@ Only links, imports, source paths, registry path values, and other filesystem re
 <!-- ANCHOR:references -->
 ## References
 
-- 032 convention policy and scope: `../../../001-convention-policy-and-scope/decision-record.md`.
+- 020 convention policy and scope: `../../../001-convention-policy-and-scope/decision-record.md`.
 - Shared surface: `.opencode/skills/sk-doc/shared/`.
 - Root facade: `.opencode/skills/sk-doc/scripts/`.
 - Parent phase map: `../spec.md`.

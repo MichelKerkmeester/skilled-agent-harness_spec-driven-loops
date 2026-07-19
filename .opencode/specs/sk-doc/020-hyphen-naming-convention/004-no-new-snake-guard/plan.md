@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: no-new-snake_case guard (032 phase 004)"
-description: "Implementation Plan for phase 004 of the 032 kebab-case filesystem-naming program: no-new-snake_case guard."
+title: "Implementation Plan: no-new-snake_case guard (020 phase 004)"
+description: "Implementation Plan for phase 004 of the 020 kebab-case filesystem-naming program: no-new-snake_case guard."
 trigger_phrases:
   - "no-new-snake_case guard implementation plan"
   - "hyphen naming phase 004 implementation plan"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored for the 032 phased tree"
+    recent_action: "Plan authored for the 020 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -97,7 +97,7 @@ Nothing prevents snake_case from re-entering in-scope filesystem names. Detailed
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
+Inherits the 020 program dependencies: the Lane C benchmark harness (regression check), the spec-kit validator
 (rebuilt in the worktree), and sk-git for the worktree lifecycle. Phase-specific dependencies are the predecessor
 phases named in this phase's spec adjacency.
 <!-- /ANCHOR:dependencies -->

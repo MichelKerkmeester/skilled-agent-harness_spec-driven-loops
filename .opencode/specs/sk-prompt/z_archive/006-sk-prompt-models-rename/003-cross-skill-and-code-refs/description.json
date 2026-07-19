@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/003-cross-skill-and-code-refs",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/003-cross-skill-and-code-refs",
   "description": "The card-sync guard hardcodes `H = f\"{ROOT}/.opencode/skills/sk-prompt-small-model\"` — after the folder moves, that gate fails immediately",
   "keywords": [
     "card-sync",
@@ -16,11 +16,12 @@
     "fails",
     "immediately"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.275Z",
+  "lastUpdated": "2026-07-18T03:48:55.267Z",
   "specId": "003",
   "folderSlug": "cross-skill-and-code-refs",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

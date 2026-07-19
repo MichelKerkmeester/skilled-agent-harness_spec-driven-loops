@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-tooling component naming migration (032 component parent)"
+title: "Feature Specification: mcp-tooling component naming migration (020 component parent)"
 description: "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior."
 trigger_phrases:
   - "mcp-tooling kebab-case migration"
   - "mcp tooling component naming"
-  - "032 mcp-tooling phase map"
+  - "020 mcp-tooling phase map"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
@@ -72,7 +72,7 @@ This phased packet divides the mcp-tooling naming work into one hub/shared phase
 - Python .py files and Python import-package directories, which keep their required snake_case form.
 - SKILL.md, mode-registry.json, package manifests, and other tool-mandated names.
 - Code identifiers, JSON/YAML/TOML keys, and frontmatter field names.
-- Any other 032 component-migration subtree or the execution of the migration during this authoring pass.
+- Any other 020 component-migration subtree or the execution of the migration during this authoring pass.
 
 ### Files to Change
 
@@ -125,5 +125,5 @@ This phased packet divides the mcp-tooling naming work into one hub/shared phase
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-None blocking. The child scopes, exemption boundary, and current benchmark zero-candidate condition are fixed by the surface census and the 032 program decisions.
+None blocking. The child scopes, exemption boundary, and current benchmark zero-candidate condition are fixed by the surface census and the 020 program decisions.
 <!-- /ANCHOR:questions -->

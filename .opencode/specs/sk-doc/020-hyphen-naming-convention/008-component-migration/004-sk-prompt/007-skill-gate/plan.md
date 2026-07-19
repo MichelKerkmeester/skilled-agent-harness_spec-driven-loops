@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt subtree rollup gate (032 phase 004.007)"
+title: "Implementation Plan: sk-prompt subtree rollup gate (020 phase 004.007)"
 description: "Rollup verification plan for phase 007 of the sk-prompt kebab-case program: aggregate phases 001–006, run the final scope-aware census, and issue a reproducible pass/block result without new migration work."
 trigger_phrases:
   - "sk-prompt rollup gate plan"
@@ -51,7 +51,7 @@ it does not rename or repair anything discovered by the scan.
 ### Definition of Ready
 - [ ] Phases 001–006 have candidate evidence and checklist verdicts available.
 - [ ] The final candidate SHA and BASE SHA are pinned.
-- [ ] The 032 exemption record and each sibling disposition map are available.
+- [ ] The 020 exemption record and each sibling disposition map are available.
 
 ### Definition of Done
 - [ ] Every sibling phase is green with no contradictory ownership or release evidence.
@@ -102,7 +102,7 @@ Sibling evidence → map reconciliation → final filesystem census → active r
 | REQ-001 | Read every sibling checklist and reconcile its P0/P1 verdicts and evidence paths |
 | REQ-002 | Scan the complete skill tree and classify every retained non-kebab filesystem name; fail on unknown |
 | REQ-003 | Resolve final path maps and search active consumers for stale sources |
-| REQ-004 | Compare retained names with the 032 exemption record and each owning child disposition |
+| REQ-004 | Compare retained names with the 020 exemption record and each owning child disposition |
 | REQ-005 | Record SHAs, commands, exit codes, census/map hashes, verdicts, and unresolved findings |
 <!-- /ANCHOR:testing -->
 

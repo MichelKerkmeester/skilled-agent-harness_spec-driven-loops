@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-quality filesystem names (032 phase 008/003)"
+title: "Implementation Plan: code-quality filesystem names (020 phase 008/003)"
 description: "Plan for renaming code-quality checklist, playbook, and benchmark names through the frozen map, then proving that quality-mode routing and resource loading remain equivalent."
 trigger_phrases:
   - "code-quality naming implementation plan"
@@ -113,7 +113,7 @@ Rename the quality checklist tree, manual-testing-playbook tree, and nested benc
 |------------|------|--------|-------------------|
 | 001 shared hub closure | Internal | Required | Shared standards and workflow paths may remain stale. |
 | 002 OpenCode closure | Internal | Required | Cross-surface path consumers may be unresolved. |
-| 032 frozen rename map | Internal | Required | Generated benchmark output could be misclassified. |
+| 020 frozen rename map | Internal | Required | Generated benchmark output could be misclassified. |
 | 000 baseline evidence | Internal | Required | Quality resource and behavior parity cannot be measured. |
 <!-- /ANCHOR:dependencies -->
 

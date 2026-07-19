@@ -56,20 +56,20 @@
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/phase_detection.md",
-      "detail": "references/phase_detection.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/phase-detection.md",
+      "detail": "references/phase-detection.md is not reachable from any RESOURCE_MAP intent"
     },
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/smart_routing.md",
-      "detail": "references/smart_routing.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/smart-routing.md",
+      "detail": "references/smart-routing.md is not reachable from any RESOURCE_MAP intent"
     },
     {
       "class": "orphan_reference",
       "severity": "P2",
-      "locus": "references/stack_detection.md",
-      "detail": "references/stack_detection.md is not reachable from any RESOURCE_MAP intent"
+      "locus": "references/stack-detection.md",
+      "detail": "references/stack-detection.md is not reachable from any RESOURCE_MAP intent"
     }
   ],
   "coverage": {
@@ -141,8 +141,8 @@
           "glob"
         ],
         "observedReads": [
-          "references/smart_routing.md",
-          "references/stack_detection.md",
+          "references/smart-routing.md",
+          "references/stack-detection.md",
           "references/webflow/**/*.md",
           "assets/webflow/**/*.md",
           "references/webflow",
@@ -154,7 +154,7 @@
           "assets/universal/**/*.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/stack_detection.md\",\n    \"references/smart_routing.md\",\n    \"references/phase_detection.md\",\n    \"references/universal/code_quality_standards.md\",\n    \"references/universal/error_recovery.md\",\n    \"references"
+        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/stack-detection.md\",\n    \"references/smart-routing.md\",\n    \"references/phase-detection.md\",\n    \"references/universal/code-quality-standards.md\",\n    \"references/universal/error-recovery.md\",\n    \"references"
       }
     },
     {
@@ -204,7 +204,7 @@
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"none\",\"resources\":[\"references/stack-detection.md\",\"references/smart-routing.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
       }
     },
     {
@@ -273,7 +273,7 @@
           "assets/webflow/integrations/*"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"references/webflow/implementation/animation_workflows.md\",\"references/webflow/implementation/observer_patterns.md\",\"references/webflow/implementation/third_party_integrations"
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"none\",\"resources\":[\"references/stack-detection.md\",\"references/smart-routing.md\",\"references/webflow/implementation/animation_workflows.md\",\"references/webflow/implementation/observer_patterns.md\",\"references/webflow/implementation/third-party-integrations"
       }
     }
   ],

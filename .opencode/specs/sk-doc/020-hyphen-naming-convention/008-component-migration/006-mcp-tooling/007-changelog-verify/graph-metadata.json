@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-tooling changelog verify",
       "mcp tooling naming version bump",
-      "032 mcp tooling phase 007",
+      "020 mcp tooling phase 007",
       "mcp-tooling changelog verification plan",
       "mcp tooling version bump check",
       "mcp-tooling changelog tasks",
@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mcp-tooling changelog history predates the 032 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename.",
+    "causal_summary": "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename.",
     "created_at": "2026-07-14T15:17:46Z",
-    "last_save_at": "2026-07-17T14:30:25.213Z",
+    "last_save_at": "2026-07-17T20:26:11.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:12454327cd4f57611e3e659f586d0dc08f36e2edd3308e3e0c731e022b513ada",
+    "source_fingerprint": "sha256:8670bceb91bf86a800d3435e5eaa80334007d5d8dc52e2719aaf60090b776eda",
     "source_doc_hashes": {
-      "spec.md": "8ba23fe545e64165532b1707c6fbbe218f8caf2fd4cb71f0cfeff6f3554c3f69",
-      "plan.md": "1b922da8b918fe4f60c0569dc0b5eff9263207d157a0135ab26255f833af69eb",
-      "tasks.md": "89ec3c4b3c9b89253c727032b8b6aabdc19bbb926733b5e923d126c5eb8f8071",
-      "checklist.md": "ffa6be067afe8b73d032cdbfa295cfcdb1cf4f559f7011f944b57f63e09f713d"
+      "spec.md": "3a0f8bf7ae38fc2bc5e8094df11c5884222283cf3c3e9ba4a6f80991f6737f95",
+      "plan.md": "b6444cb891ddd52225c2a227a50bb47f254ecb9f3a2732c34c2fe5c3bebc0c8f",
+      "tasks.md": "f5217a5224578834f3bb155e78588a7d0afae5289da5289b5b71ce5687116f46",
+      "checklist.md": "df10d7f5086219d79fa264222adb737cf878d168feea1ca8fb0a8288ecb94488"
     },
     "last_active_child_id": null,
     "last_active_at": null

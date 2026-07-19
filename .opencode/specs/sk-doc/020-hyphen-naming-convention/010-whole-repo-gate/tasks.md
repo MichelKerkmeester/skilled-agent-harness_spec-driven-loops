@@ -1,6 +1,6 @@
 ---
-title: "Tasks: whole-repo verification gate (032 phase 010)"
-description: "Tasks for phase 010 of the 032 kebab-case filesystem-naming program: measure the final migration candidate against the complete, evidence-pinned whole-repo gate."
+title: "Tasks: whole-repo verification gate (020 phase 010)"
+description: "Tasks for phase 010 of the 020 kebab-case filesystem-naming program: measure the final migration candidate against the complete, evidence-pinned whole-repo gate."
 trigger_phrases:
   - "whole-repo verification gate tasks"
   - "hyphen naming phase 010 tasks"

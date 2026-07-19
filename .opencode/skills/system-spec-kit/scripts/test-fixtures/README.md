@@ -36,7 +36,7 @@ Allowed fixture content:
 
 Not owned here:
 
-- MCP server JSON fixtures live under `mcp_server/tests/fixtures/`.
+- MCP server JSON fixtures live under `mcp-server/tests/fixtures/`.
 - Runtime test orchestration lives under `../tests/`.
 - Production templates live under `../../templates/`.
 
@@ -115,4 +115,4 @@ validation.
 - [`../README.md`](../README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../tests/README.md`](../tests/README.md)
-- [`../../references/validation/validation_rules.md`](../../references/validation/validation_rules.md)
+- [`../../references/validation/validation-rules.md`](../../references/validation/validation-rules.md)

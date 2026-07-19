@@ -1,5 +1,5 @@
 ---
-title: "Checklist: commands subtree rollup gate (032 phase 008/013/010)"
+title: "Checklist: commands subtree rollup gate (020 phase 008/013/010)"
 description: "Blocking SOL verification contract for all commands child phases, whole-tree kebab-case cleanliness, exemption evidence, and active reference closure."
 trigger_phrases:
   - "commands rollup checklist"

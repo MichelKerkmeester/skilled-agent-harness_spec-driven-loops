@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify debug agent naming (032 phase 004)"
-description: "Checklist for phase 004 of the 032 agents component migration: verify the debug filename candidate set."
+title: "Checklist: verify debug agent naming (020 phase 004)"
+description: "Checklist for phase 004 of the 020 agents component migration: verify the debug filename candidate set."
 trigger_phrases:
   - "debug agent naming checklist"
   - "agents phase 004 checklist"

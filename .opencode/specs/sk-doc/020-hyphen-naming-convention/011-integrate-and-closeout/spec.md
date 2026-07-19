@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: integrate and close out (032 phase 011)"
+title: "Feature Specification: integrate and close out (020 phase 011)"
 description: "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup."
 trigger_phrases:
   - "integrate and close out migration"
@@ -30,11 +30,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Integrate and close out
 
-> Phase adjacency under the 032 parent: predecessor `010-whole-repo-gate`; no successor. Integration and closeout are allowed only after the post-rebase gate passes.
+> Phase adjacency under the 020 parent: predecessor `010-whole-repo-gate`; no successor. Integration and closeout are allowed only after the post-rebase gate passes.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 011 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 011 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -62,7 +62,7 @@ This phase rebases the migration branch onto the latest base, reruns the unchang
 ## 3. SCOPE
 
 ### In Scope
-- Fetch and record the latest integration base, then rebase the migration branch onto it with conflicts resolved against the approved 032 policy and frozen rename map.
+- Fetch and record the latest integration base, then rebase the migration branch onto it with conflicts resolved against the approved 020 policy and frozen rename map.
 - Rerun the complete phase 010 gate on the rebased candidate without substituting a smaller suite or a different baseline.
 - Fast-forward the integration target only after the post-rebase gate is green and the worktree is clean.
 - Reconcile phase summaries, checklists, handoff evidence, parent phase status, and the final closeout/rollup so no document claims a conflicting state.
@@ -90,7 +90,7 @@ This phase rebases the migration branch onto the latest base, reruns the unchang
 
 - **SC-001**: The final integrated commit is the exact candidate that passed the complete phase 010 gate after rebasing onto the latest base.
 - **SC-002**: Integration is fast-forward-only and leaves no unresolved conflict or unexpected tracked mutation.
-- **SC-003**: The 032 parent rollup and closeout documents describe one consistent final state.
+- **SC-003**: The 020 parent rollup and closeout documents describe one consistent final state.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -98,7 +98,7 @@ This phase rebases the migration branch onto the latest base, reruns the unchang
 
 Base drift can reintroduce path references, change test discovery, or alter rename similarity after phase 010. The mitigation is to treat the pre-rebase report as historical evidence and require a complete rerun on the post-rebase candidate. Conflict resolution is high risk around renamed paths; the frozen map, policy, and phase checklists are the source of truth, and unresolved ambiguity stops integration. A failed fast-forward or dirty worktree leaves the target unchanged and returns the branch for repair.
 
-This phase depends on a green phase 010 report, access to the latest base, the isolated integration worktree, and the parent packet's closeout metadata. It does not authorize any change outside the 032 packet's integration and documentation scope.
+This phase depends on a green phase 010 report, access to the latest base, the isolated integration worktree, and the parent packet's closeout metadata. It does not authorize any change outside the 020 packet's integration and documentation scope.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

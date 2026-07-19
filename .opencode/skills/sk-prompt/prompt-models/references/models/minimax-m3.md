@@ -14,7 +14,7 @@ version: 0.8.0.12
 
 # MiniMax-M3 Prompt-Craft Profile
 
-Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror `model_profiles.json` (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode`.
+Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror `model-profiles.json` (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers) live in `cli-opencode`.
 
 ---
 
@@ -22,7 +22,7 @@ Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror 
 
 ### Purpose
 
-The single source for how to prompt `minimax-m3` when dispatching it through `cli-opencode`, mirroring its `model_profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+The single source for how to prompt `minimax-m3` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
 
 ### When to Use
 
@@ -58,7 +58,7 @@ MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more s
 **Avoid:** nothing explicitly blocked, but lean/medium pre-planning and bare RCAF underperform (see §4)
 **Pre-planning density:** DENSE — 4–5 ordered steps, each with an explicit input, output, acceptance criterion, and verification command
 
-This mirrors `model_profiles.json` `recommended_frameworks` for `minimax-m3`:
+This mirrors `model-profiles.json` `recommended_frameworks` for `minimax-m3`:
 `primary: "tidd-ec"`, `fallback: "rcaf"`, `preplanning_density: "dense"`.
 
 **Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For other models in the rotation that follow the cross-model default (e.g. DeepSeek), RCAF + medium applies; MiniMax is the explicit exception.
@@ -86,7 +86,7 @@ This mirrors `model_profiles.json` `recommended_frameworks` for `minimax-m3`:
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-For the **generic TIDD-EC framework definition** (component meanings, scoring rubric, usage guidance), see [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md). The scaffold below is the MiniMax-M3-specific fill — copy-paste-ready, executor-agnostic (no invocation wrapper).
+For the **generic TIDD-EC framework definition** (component meanings, scoring rubric, usage guidance), see [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md). The scaffold below is the MiniMax-M3-specific fill — copy-paste-ready, executor-agnostic (no invocation wrapper).
 
 ```markdown
 ## Task
@@ -196,7 +196,7 @@ Output shape: a `<pre-plan>` block, then the Design Manifest, then the Context L
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for capability fields: [`../../assets/model_profiles.json`](../../assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
+Source of truth for capability fields: [`../../assets/model-profiles.json`](../../assets/model-profiles.json) → `models[id="minimax-m3"].capability`.
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
@@ -208,7 +208,7 @@ Source of truth for capability fields: [`../../assets/model_profiles.json`](../.
 | `quota_pool` (Token Plan) | `minimax-token-plan` | Subscription; resets on a 5-hour rolling window |
 | `quota_pool` (Direct API) | `minimax-api` | Pay-per-token; large-context runs can be expensive |
 
-**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
+**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md); compose from there, not from this profile.
 
 **Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02; re-verified on opencode 1.16.2 on 2026-06-06). There is **no `MiniMax-M3-highspeed`** on opencode 1.16.2. Dispatch the plain `MiniMax-M3` slug.
 
@@ -216,8 +216,8 @@ Source of truth for capability fields: [`../../assets/model_profiles.json`](../.
 
 ## 7. SEE ALSO
 
-- [`../../assets/model_profiles.json#minimax-m3`](../../assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
-- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
-- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
-- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
+- [`../../assets/model-profiles.json#minimax-m3`](../../assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
+- [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow, dispatch matrix, escalation rules

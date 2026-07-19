@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: semantic rename engine (032 phase 005.001)"
+title: "Feature Specification: semantic rename engine (020 phase 005.001)"
 description: "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring."
 trigger_phrases:
   - "semantic rename engine"
@@ -12,13 +12,13 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T07:35:59Z"
     last_updated_by: "codex"
-    recent_action: "Authored the semantic rename engine phase contract"
-    next_safe_action: "Implement the engine against the frozen map input contract"
+    recent_action: "Built and verified the semantic rename engine"
+    next_safe_action: "Hand the plan and operation report contract to the reference checker"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The engine consumes an explicit semantic source-to-target map; it never derives names by replacing every underscore."
@@ -28,11 +28,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Semantic Rename Engine
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -42,10 +42,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child phase 001 of the 032 rename-and-reference-tooling program |
+| **Origin** | Child phase 001 of the 020 rename-and-reference-tooling program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -89,6 +89,8 @@ and can reverse its own applied operations.
 | REQ-004 | The engine detects and skips all policy exemptions with an auditable reason. | Python `.py` files, Python import-package directories, vendored/third-party trees, generated or lockfile output, tool-mandated names, test-runner magic, and frozen surfaces are never ordinary rename targets. |
 | REQ-005 | The engine is idempotent and preserves filesystem semantics. | A second run after an apply reports no pending operations; symlink mode `120000` and executable bits match the pre-rename manifest. |
 | REQ-006 | The engine provides a rollback contract for its own applied operations. | An inverse journal can restore a completed batch, and a failed apply cannot leave an unreported partial operation. |
+| REQ-007 | The engine binds every apply to the reviewed repository and map snapshot with an atomic pre-write revalidation. | The plan carries an immutable identity (pinned BASE SHA + map hash); immediately before the first write the engine re-checks HEAD == BASE, the map hash, a clean worktree, and the exact source/target set and operation order, and aborts before any write on a mismatch. A stale-plan fixture and a dirty-tree fixture each abort with a cited reason. |
+| REQ-008 | The engine gives option-like (leading-hyphen) path operands an executable reject-or-safe-argv contract. | A source or target path beginning with `-` is either rejected with a cited reason or executed through option-terminated argv (`git mv -- <src> <dst>`); leading-hyphen source and target fixtures prove the chosen behavior and no operand is ever parsed as a flag. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -97,12 +99,13 @@ and can reverse its own applied operations.
 - **SC-001**: The engine produces a deterministic, reviewable plan from a semantic map and never performs a character-wide substitution.
 - **SC-002**: Collision and exemption preflights fail or skip before writes, with reasons recorded for every map entry.
 - **SC-003**: Apply, rerun, and rollback behavior is proven in a disposable Git repository without touching the real migration tree.
+- **SC-004**: A stale-plan or dirty-tree apply aborts before any write, and a leading-hyphen path operand is rejected or executed through option-terminated argv — both proven by fixtures.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase inherits the 032 program risks: over-broad renames, exemption leakage, broken references, concurrent worktrees,
+The phase inherits the 020 program risks: over-broad renames, exemption leakage, broken references, concurrent worktrees,
 and non-reproducible execution. Its specific risks are an incomplete dependency graph, a collision discovered after writes,
 loss of executable or symlink mode, and a rollback that cannot distinguish its own operations from pre-existing changes.
 

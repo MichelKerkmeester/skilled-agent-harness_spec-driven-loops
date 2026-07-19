@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP-server directory and manifest closure (032 subtree 008 phase 001)"
+title: "Feature Specification: MCP-server directory and manifest closure (020 subtree 008 phase 001)"
 description: "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt."
 trigger_phrases:
   - "mcp-server directory closure"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: MCP-server directory and manifest closure
 
@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 001 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 001 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

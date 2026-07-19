@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt hub root and shared boundary (032 phase 004.001)"
+title: "Feature Specification: sk-prompt hub root and shared boundary (020 phase 004.001)"
 description: "The sk-prompt hub root owns routing and packet-entry files, while delegated playbook and benchmark trees have their own phases. This phase inventories the root/shared boundary, renames only owned snake_case paths if present, and protects tool-mandated hub names and routing semantics."
 trigger_phrases:
   - "sk-prompt hub root kebab-case"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-prompt hub root and shared boundary
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Phase 001 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,7 +105,7 @@ The sk-prompt root combines exact routing files with child trees whose ownership
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is a broad root rename that captures paths owned by phases 004 or 005, or changes a tool-mandated hub filename. The phase depends on the 032 exemption set and hands its root boundary evidence to every child phase that updates root-owned references.
+The main risk is a broad root rename that captures paths owned by phases 004 or 005, or changes a tool-mandated hub filename. The phase depends on the 020 exemption set and hands its root boundary evidence to every child phase that updates root-owned references.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

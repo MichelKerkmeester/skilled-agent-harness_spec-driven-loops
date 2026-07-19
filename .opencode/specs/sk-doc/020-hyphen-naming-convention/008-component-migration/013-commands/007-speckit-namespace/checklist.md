@@ -1,5 +1,5 @@
 ---
-title: "Checklist: speckit command namespace naming (032 phase 008/013/007)"
+title: "Checklist: speckit command namespace naming (020 phase 008/013/007)"
 description: "Blocking SOL verification contract for the speckit workflow and presentation asset rename and reference closure."
 trigger_phrases:
   - "speckit namespace naming checklist"

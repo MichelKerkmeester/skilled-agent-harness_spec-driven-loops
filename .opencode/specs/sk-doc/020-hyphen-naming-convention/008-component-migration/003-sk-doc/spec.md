@@ -4,7 +4,7 @@ description: "The sk-doc skill surface contains in-scope snake_case directories 
 trigger_phrases:
   - "sk-doc component migration"
   - "sk-doc kebab-case phases"
-  - "032 sk-doc surface"
+  - "020 sk-doc surface"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
@@ -48,7 +48,7 @@ _memory:
 
 ### Problem Statement
 
-The sk-doc surface uses snake_case in several directory and filename families, while the 032 program defines kebab-case as the sole canonical form for in-scope filesystem names. The surface also contains Python scripts, Python package directories, tool-mandated names, and historical content that must remain unchanged under the program exemption boundary.
+The sk-doc surface uses snake_case in several directory and filename families, while the 020 program defines kebab-case as the sole canonical form for in-scope filesystem names. The surface also contains Python scripts, Python package directories, tool-mandated names, and historical content that must remain unchanged under the program exemption boundary.
 
 ### Purpose
 

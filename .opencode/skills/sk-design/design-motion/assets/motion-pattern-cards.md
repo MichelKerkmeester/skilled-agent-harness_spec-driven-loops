@@ -34,7 +34,7 @@ Every card carries these. They are repeated in each table so a single card can t
 - **Owner.** The component or surface that owns this interaction.
 - **Purpose.** One of feedback, orientation, focus, continuity, perceived performance or earned delight. Exactly one.
 - **States.** The state path the motion crosses, for example `default -> hover -> active`.
-- **Timing and easing.** Pulled from `motion_strategy.md`, not invented here.
+- **Timing and easing.** Pulled from `motion-strategy.md`, not invented here.
 - **Properties.** The animated properties, transform and opacity by default.
 - **Reduced motion.** The equivalent state change with movement removed.
 

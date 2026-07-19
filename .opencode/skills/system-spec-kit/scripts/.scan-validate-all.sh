@@ -8,7 +8,7 @@ VALIDATE="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.ope
 # Find all spec folders that contain at least a spec.md
 mapfile -t FOLDERS < <(find "$ROOT" -type f -name spec.md \
   -not -path '*/z_archive/*' \
-  -not -path '*/z_future/*' \
+  -not -path '*/z-future/*' \
   -not -path '*/research/iterations/*' \
   -not -path '*/review/iterations/*' \
   -not -path '*/.tmp/*' \

@@ -1,0 +1,3 @@
+# Empty directory placeholder for Phase 002 scaffold.
+# Phase 003 populates code_graph/{lib,handlers,tools,tests} from system-spec-kit/mcp-server/code_graph/.
+# Phase 005 populates feature-catalog/, manual-testing-playbook/, references/ from system-spec-kit category-22 docs.

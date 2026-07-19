@@ -1,7 +1,7 @@
 {
   "workflowMode": "system-code-graph",
   "packet": ".",
-  "leafRoots": ["references", "assets", "feature_catalog", "manual_testing_playbook"],
+  "leafRoots": ["references", "assets", "feature-catalog", "manual-testing-playbook"],
   "excludeIndexFiles": true,
   "resourceContractVersion": 1,
   "_note": "Standalone single-mode manifest config. system-code-graph is not a parent hub (no mode-registry.json); its references/feature-catalog/playbook docs are the routed leaves. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json. Regenerate leaf-manifest.json AND leaf-aliases.json together whenever the corpus changes."

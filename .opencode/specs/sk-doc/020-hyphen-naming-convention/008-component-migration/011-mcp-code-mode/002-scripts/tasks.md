@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-code-mode scripts (032 component 011 phase 002)"
+title: "Tasks: mcp-code-mode scripts (020 component 011 phase 002)"
 description: "Tasks for the language-aware script filename audit, Python exemption proof, and conditional non-Python reference closure."
 trigger_phrases:
   - "mcp-code-mode scripts tasks"

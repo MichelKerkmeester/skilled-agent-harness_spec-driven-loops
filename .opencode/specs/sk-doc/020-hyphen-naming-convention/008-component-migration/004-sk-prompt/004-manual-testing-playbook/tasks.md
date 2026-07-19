@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt manual-testing-playbook trees (032 phase 004.004)"
+title: "Tasks: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
 description: "Tasks for phase 004 of the sk-prompt kebab-case program: rename both playbook trees, update active links, and verify scenario coverage."
 trigger_phrases:
   - "sk-prompt manual testing playbook tasks"

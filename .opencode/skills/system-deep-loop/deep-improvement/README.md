@@ -177,39 +177,39 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature_catalog/` covers every capability across five categories: evaluation-loop, integration-scanning, scoring-system, model-benchmark-mode and skill-benchmark. Each category documents inputs, outputs, the owning resource and acceptance criteria with live source anchors.
+The `feature-catalog/` covers every capability across five categories: evaluation-loop, integration-scanning, scoring-system, model-benchmark-mode and skill-benchmark. Each category documents inputs, outputs, the owning resource and acceptance criteria with live source anchors.
 
 ### Manual Testing Playbook
 
-`manual_testing_playbook/` carries deterministic scenarios across all feature categories. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and source anchors.
+`manual-testing-playbook/` carries deterministic scenarios across all feature categories. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and source anchors.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-improvement/README.md --type readme` reports zero issues |
-| Behavior | Run the playbook scenarios under `manual_testing_playbook/` in a live session |
+| Behavior | Run the playbook scenarios under `manual-testing-playbook/` in a live session |
 
 ---
 
 ### Behavior Benchmark
 
-`behavior_benchmark/` (IMB scenarios) measures what an executor model actually does at the `/deep:agent-improvement` command surface under realistic vague/concise prompts: whether it runs the evaluator-first loop (scored on a **packet-local candidate + evaluator score**), how it presents, whether it halts or stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
+`behavior-benchmark/` (IMB scenarios) measures what an executor model actually does at the `/deep:agent-improvement` command surface under realistic vague/concise prompts: whether it runs the evaluator-first loop (scored on a **packet-local candidate + evaluator score**), how it presents, whether it halts or stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
 
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract for all three lanes |
-| [`references/shared/quick_reference.md`](./references/shared/quick_reference.md) | One-page operator cheat sheet with commands, dimension weights and the runtime layout |
-| [`references/shared/loop_protocol.md`](./references/shared/loop_protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
-| [`references/shared/promotion_rules.md`](./references/shared/promotion_rules.md) | Keep, reject and promote decision rules |
-| [`references/shared/rollback_runbook.md`](./references/shared/rollback_runbook.md) | The promotion rollback procedure |
-| [`references/agent_improvement/integration_scanning.md`](./references/agent_improvement/integration_scanning.md) | Integration scanner documentation and surface inventory |
-| [`references/agent_improvement/score_dimensions.md`](./references/agent_improvement/score_dimensions.md) | Per-dimension checker detail |
-| [`references/model_benchmark/benchmark_operator_guide.md`](./references/model_benchmark/benchmark_operator_guide.md) | Fixture benchmark execution |
-| [`references/skill_benchmark/operator_guide.md`](./references/skill_benchmark/operator_guide.md) | Skill-benchmark operator workflow |
-| [`references/skill_benchmark/scoring_contract.md`](./references/skill_benchmark/scoring_contract.md) | Skill-benchmark scoring and funnel contract |
+| [`references/shared/quick-reference.md`](./references/shared/quick-reference.md) | One-page operator cheat sheet with commands, dimension weights and the runtime layout |
+| [`references/shared/loop-protocol.md`](./references/shared/loop-protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
+| [`references/shared/promotion-rules.md`](./references/shared/promotion-rules.md) | Keep, reject and promote decision rules |
+| [`references/shared/rollback-runbook.md`](./references/shared/rollback-runbook.md) | The promotion rollback procedure |
+| [`references/agent-improvement/integration-scanning.md`](./references/agent-improvement/integration-scanning.md) | Integration scanner documentation and surface inventory |
+| [`references/agent-improvement/score-dimensions.md`](./references/agent-improvement/score-dimensions.md) | Per-dimension checker detail |
+| [`references/model-benchmark/benchmark-operator-guide.md`](./references/model-benchmark/benchmark-operator-guide.md) | Fixture benchmark execution |
+| [`references/skill-benchmark/operator-guide.md`](./references/skill-benchmark/operator-guide.md) | Skill-benchmark operator workflow |
+| [`references/skill-benchmark/scoring-contract.md`](./references/skill-benchmark/scoring-contract.md) | Skill-benchmark scoring and funnel contract |
 | [`scripts/shared/loop-host.cjs`](./scripts/shared/loop-host.cjs) | Shared loop host entry point for Lanes B and C |
 | [`scripts/agent-improvement/score-candidate.cjs`](./scripts/agent-improvement/score-candidate.cjs) | The five-dimension candidate scorer |
 | [`scripts/shared/promote-candidate.cjs`](./scripts/shared/promote-candidate.cjs) | Guarded canonical promotion |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Feature inventory with source anchors |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Deterministic scenarios with preconditions and expected signals |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Feature inventory with source anchors |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Deterministic scenarios with preconditions and expected signals |

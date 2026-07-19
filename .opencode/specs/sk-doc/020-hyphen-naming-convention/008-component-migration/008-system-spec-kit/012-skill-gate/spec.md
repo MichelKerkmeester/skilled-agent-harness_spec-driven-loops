@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: System-spec-kit skill gate (032 subtree 008 phase 012)"
+title: "Feature Specification: System-spec-kit skill gate (020 subtree 008 phase 012)"
 description: "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption set. It adds no migration work: acceptance depends on sibling evidence, a scope-aware whole-tree scan, reference closure, and coherent release evidence."
 trigger_phrases:
   - "system-spec-kit skill gate"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-spec-kit skill gate
 

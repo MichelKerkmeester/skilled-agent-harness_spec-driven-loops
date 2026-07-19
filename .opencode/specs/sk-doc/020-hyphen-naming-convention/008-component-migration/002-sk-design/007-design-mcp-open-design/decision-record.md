@@ -1,10 +1,10 @@
 ---
-title: "Decision Record: design-mcp-open-design path targets (032 phase 007)"
+title: "Decision Record: design-mcp-open-design path targets (020 phase 007)"
 description: "Phase decision record for the design-mcp-open-design filesystem map, including the valid target for the private _common.sh helper and the preserved shell-source contract."
 trigger_phrases:
   - "design-mcp-open-design naming decision"
   - "common.sh helper target"
-  - "032 phase 007 decision record"
+  - "020 phase 007 decision record"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"

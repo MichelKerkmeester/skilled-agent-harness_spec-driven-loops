@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/002-code-graph-resilience-research",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/002-code-graph-resilience-research",
   "description": "The code graph index has three observable failure modes today:",
   "keywords": [
     "code",
@@ -11,11 +11,12 @@
     "modes",
     "today"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.812Z",
+  "lastUpdated": "2026-07-18T03:48:55.500Z",
   "specId": "002",
   "folderSlug": "code-graph-resilience-research",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "005-resilience-and-advisor"
   ],

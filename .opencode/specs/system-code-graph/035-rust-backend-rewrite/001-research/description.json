@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/035-rust-backend-rewrite-research/001-research",
+  "specFolder": "system-code-graph/035-rust-backend-rewrite/001-research",
   "description": "The ingestion path mixes three very different cost classes",
   "keywords": [
     "ingestion",
@@ -11,12 +11,12 @@
     "cost",
     "classes"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.895Z",
+  "lastUpdated": "2026-07-18T03:48:55.275Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
     "system-code-graph",
-    "035-rust-backend-rewrite-research"
+    "035-rust-backend-rewrite"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

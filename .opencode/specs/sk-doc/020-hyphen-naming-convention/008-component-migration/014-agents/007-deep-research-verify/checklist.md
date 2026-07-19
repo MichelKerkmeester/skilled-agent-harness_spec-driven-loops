@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify deep-research agent naming (032 phase 007)"
-description: "Checklist for phase 007 of the 032 agents component migration: verify the deep-research filename candidate set."
+title: "Checklist: verify deep-research agent naming (020 phase 007)"
+description: "Checklist for phase 007 of the 020 agents component migration: verify the deep-research filename candidate set."
 trigger_phrases:
   - "deep-research agent naming checklist"
   - "agents phase 007 checklist"

@@ -17,7 +17,7 @@ const path = require('path');
 // ───────────────────────────────────────────────────────────────
 // 1. PATHS
 // ───────────────────────────────────────────────────────────────
-const MCP_ROOT = path.resolve(__dirname, '../../mcp_server');
+const MCP_ROOT = path.resolve(__dirname, '../../mcp-server');
 const SCRIPTS_ROOT = path.resolve(__dirname, '..');
 const HANDLERS_DIR = path.join(MCP_ROOT, 'handlers');
 const BASE_ROOT = path.resolve(MCP_ROOT, '..');

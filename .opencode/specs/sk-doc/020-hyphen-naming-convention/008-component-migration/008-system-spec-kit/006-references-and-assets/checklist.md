@@ -1,5 +1,5 @@
 ---
-title: "Checklist: References and assets (032 subtree 008 phase 006)"
+title: "Checklist: References and assets (020 subtree 008 phase 006)"
 description: "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions."
 trigger_phrases:
   - "system-spec-kit references and assets"

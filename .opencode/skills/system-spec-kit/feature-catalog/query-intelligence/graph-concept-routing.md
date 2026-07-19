@@ -1,0 +1,58 @@
+---
+title: "Graph concept routing"
+description: "Graph concept routing extracts noun phrases from a query and matches them against a concept alias table, recording matched concepts as Stage 1 trace metadata when SPECKIT_GRAPH_CONCEPT_ROUTING is enabled."
+trigger_phrases:
+  - "graph concept routing"
+  - "SPECKIT_GRAPH_CONCEPT_ROUTING"
+  - "noun phrase concept extraction"
+  - "concept alias table matching"
+  - "stage 1 trace metadata"
+version: 3.6.0.9
+---
+
+# Graph concept routing
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Graph concept routing extracts noun phrases from a query and matches them against a concept alias table, recording matched concepts as Stage 1 trace metadata when `SPECKIT_GRAPH_CONCEPT_ROUTING` is enabled.
+
+Normally, the graph retrieval channel only activates when a query explicitly references known entities. This feature adds a lightweight concept-routing pass over natural-language queries: it extracts noun phrases, matches them against canonical concept names and aliases, and records the resulting concepts in retrieval trace metadata. Today that gives downstream observability into which concepts were recognized, but it does not directly switch Stage 1 into a graph retrieval branch.
+
+---
+
+## 2. HOW IT WORKS
+
+Enabled by default (graduated). Set `SPECKIT_GRAPH_CONCEPT_ROUTING=false` to disable.
+
+The `isGraphConceptRoutingEnabled()` function in `search-flags.ts` checks the flag. The entity linker module (`entity-linker.ts`) provides query-time concept routing alongside its cross-document entity linking role. It extracts noun phrases from the query, matches them against the concept alias table in SQLite, and returns canonical concept names plus a `graphActivated` boolean. `stage1-candidate-gen.ts` currently uses that output only to append a `d2-concept-routing` trace entry with `matchedConcepts` and `graphActivated: true`; that trace field mirrors the routing result for observability, but it does not switch the Stage 1 search path or directly activate a graph retrieval channel. Note that the inline comment on `isGraphConceptRoutingEnabled()` in `search-flags.ts` overstates this behavior by saying it is "activating the graph channel"; current runtime behavior is trace-only at this stage.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp-server/lib/search/entity-linker.ts` | Lib | Query-time concept routing, noun phrase extraction, alias table matching |
+| `mcp-server/lib/search/pipeline/stage1-candidate-gen.ts` | Lib | Stage-1 orchestration, records concept-routing results into retrieval trace metadata |
+| `mcp-server/lib/search/search-flags.ts` | Lib | `isGraphConceptRoutingEnabled()` flag accessor |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/concept-routing.vitest.ts` | Automated test | Concept routing logic and alias matching |
+| `mcp-server/tests/memory-search-ux-hooks.vitest.ts` | Automated test | Live search integration coverage for graduated routing-adjacent UX hooks |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Query Intelligence
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `query-intelligence/graph-concept-routing.md`
+Related references:
+- [query-decomposition.md](../../feature-catalog/query-intelligence/query-decomposition.md) — Query decomposition
+- [graph-channel-preservation.md](../../feature-catalog/query-intelligence/graph-channel-preservation.md) — Graph channel preservation

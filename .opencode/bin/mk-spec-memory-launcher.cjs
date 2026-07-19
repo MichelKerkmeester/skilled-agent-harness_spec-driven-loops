@@ -93,12 +93,12 @@ function isStrictModeDisabled(value) {
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-spec-kit');
-let dbDir = path.join(kitDir, 'mcp_server', 'database');
+let dbDir = path.join(kitDir, 'mcp-server', 'database');
 let lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
 const PID_FILE_NAME = '.mk-spec-memory-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.spec-memory-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
-let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_server', 'database');
+let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp-server', 'database');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -334,10 +334,10 @@ function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-spec-kit');
-  dbDir = path.join(kitDir, 'mcp_server', 'database');
+  dbDir = path.join(kitDir, 'mcp-server', 'database');
   lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
-  canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_server', 'database');
+  canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp-server', 'database');
 }
 
 function exists(p) {
@@ -373,7 +373,7 @@ function ownerLeasePath() {
 
 function legacyLeasePaths() {
   return [
-    path.join(opencodeDir, 'skill', 'system-spec-kit', 'mcp_server', 'database', PID_FILE_NAME),
+    path.join(opencodeDir, 'skill', 'system-spec-kit', 'mcp-server', 'database', PID_FILE_NAME),
   ].map(canonicalizePath);
 }
 
@@ -1165,7 +1165,7 @@ function ensureLayout(actions) {
 
 function requiredArtifacts() {
   return [
-    path.join(kitDir, 'mcp_server', 'dist', 'context-server.js'),
+    path.join(kitDir, 'mcp-server', 'dist', 'context-server.js'),
     path.join(kitDir, 'scripts', 'dist', 'graph', 'backfill-graph-metadata.js'),
     path.join(kitDir, 'scripts', 'dist', 'spec-folder', 'generate-description.js'),
   ];
@@ -1476,7 +1476,7 @@ function launchServer() {
     clearTimeout(supervisorRelaunchTimer);
     supervisorRelaunchTimer = null;
   }
-  const server = path.join(kitDir, 'mcp_server', 'dist', 'context-server.js');
+  const server = path.join(kitDir, 'mcp-server', 'dist', 'context-server.js');
   const nodeArgs = getContextServerNodeArgs();
   const reelectionEnabled = daemonReelectionEnabled();
   const spawnIo = contextServerSpawnIo(reelectionEnabled);
@@ -1851,7 +1851,7 @@ async function main() {
         end: now(),
         status: 'ready',
         actions,
-        server: rel(path.join(kitDir, 'mcp_server', 'dist', 'context-server.js')),
+        server: rel(path.join(kitDir, 'mcp-server', 'dist', 'context-server.js')),
       });
       fs.rmSync(lockDir, { recursive: true, force: true });
       lockHeld = false;

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: loose command ID naming (032 phase 008/013/008)"
+title: "Tasks: loose command ID naming (020 phase 008/013/008)"
 description: "Bounded tasks for classifying root command files, preserving public IDs, and closing approved path references."
 trigger_phrases:
   - "loose command naming tasks"

@@ -13,7 +13,7 @@ version: 1.0.0.1
 
 # code-quality
 
-> Runs the author-side gate after files are changed and before verification: load the right checklist, check comment hygiene, fix gate failures in place, then hand clean evidence to the surface's verification workflow (`workflow_verify.md`).
+> Runs the author-side gate after files are changed and before verification: load the right checklist, check comment hygiene, fix gate failures in place, then hand clean evidence to the surface's verification workflow (`workflow-verify.md`).
 
 ---
 
@@ -42,13 +42,13 @@ Implementation can produce code that is behaviorally close but still not shippab
 
 ## 3. QUICK START
 
-**Step 1: Route after implementation.** Use this mode after the surface skill (`code-webflow` / `code-opencode`) has changed files and before the surface's verification workflow (`workflow_verify.md`) collects final evidence.
+**Step 1: Route after implementation.** Use this mode after the surface skill (`code-webflow` / `code-opencode`) has changed files and before the surface's verification workflow (`workflow-verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview_header_and_comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../code-opencode/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist.md`](assets/code-quality-checklist/overview-header-and-comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../code-opencode/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.** Use [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) for every modified file that can contain comments.
 
-**Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Hand broader implementation to the surface skill (`code-webflow` / `code-opencode`), root-cause failures to the surface's debugging workflow (`workflow_debug.md`), and final evidence to the surface's verification workflow (`workflow_verify.md`).
+**Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Hand broader implementation to the surface skill (`code-webflow` / `code-opencode`), root-cause failures to the surface's debugging workflow (`workflow-debug.md`), and final evidence to the surface's verification workflow (`workflow-verify.md`).
 
 ---
 
@@ -89,7 +89,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Comment hygiene | `bash .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <modified-file>` |
 | Distribution drift | `bash .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh` when generated artifacts are involved |
 | Skill structure | Validate changed skill docs with the project documentation validator when applicable |
-| Final claim | Hand to the surface's verification workflow (`workflow_verify.md`); this mode does not make done or works claims |
+| Final claim | Hand to the surface's verification workflow (`workflow-verify.md`); this mode does not make done or works claims |
 
 ---
 
@@ -98,10 +98,10 @@ Use it when a change is already written and needs standards enforcement before f
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
-| [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview_header_and_comments.md) | Required quality checklist before implementation completion claims |
+| [`assets/code-quality-checklist.md`](assets/code-quality-checklist/overview-header-and-comments.md) | Required quality checklist before implementation completion claims |
 | [`assets/checklists/`](../code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |
-| [`../shared/references/stack_detection.md`](../shared/references/stack_detection.md) | Shared surface detection |
-| [`../shared/references/phase_detection.md`](../shared/references/phase_detection.md) | Lifecycle placement for the quality gate |
-| [`../shared/references/universal/code_quality_standards.md`](../shared/references/universal/code_quality_standards.md) | Universal quality standards |
+| [`../shared/references/stack-detection.md`](../shared/references/stack-detection.md) | Shared surface detection |
+| [`../shared/references/phase-detection.md`](../shared/references/phase-detection.md) | Lifecycle placement for the quality gate |
+| [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) | Universal quality standards |

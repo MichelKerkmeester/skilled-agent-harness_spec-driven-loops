@@ -23,7 +23,7 @@ import {
   resolveGeneratedMetadataDrift,
   serializeGraphMetadata,
   SYNOPSIS_FIELD_LIMITS,
-} from '../../mcp_server/api';
+} from '../../mcp-server/api';
 
 const DRIFT_GATE_FLAG = 'SPECKIT_GENERATED_METADATA_DRIFT_GATE';
 

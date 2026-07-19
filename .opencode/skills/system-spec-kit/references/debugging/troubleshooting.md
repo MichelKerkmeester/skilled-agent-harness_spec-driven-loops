@@ -490,8 +490,8 @@ memory_delete({ id: <memory_id> })
 
 ### Reference Files
 - [SKILL.md](../../SKILL.md) - MCP tools, hybrid search, and importance tier system
-- [execution_methods.md](../workflows/execution_methods.md) - Continuity artifact detection and execution trigger patterns
-- [folder_routing.md](../structure/folder_routing.md) - Routing logic and alignment scoring
+- [execution-methods.md](../workflows/execution-methods.md) - Continuity artifact detection and execution trigger patterns
+- [folder-routing.md](../structure/folder-routing.md) - Routing logic and alignment scoring
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management

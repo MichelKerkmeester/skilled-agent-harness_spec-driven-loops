@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop hub root and shared names (032 phase 007/001)"
+title: "Decision Record: system-deep-loop hub root and shared names (020 phase 007/001)"
 description: "L2 design decisions for the system-deep-loop hub/shared naming phase, including exact-name protections, the current no-candidate result, and dependency-closed verification."
 trigger_phrases:
   - "system-deep-loop hub shared decisions"

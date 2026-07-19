@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-click-up naming closure (032 phase 003)"
+title: "Feature Specification: mcp-click-up naming closure (020 phase 003)"
 description: "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys."
 trigger_phrases:
   - "mcp-click-up kebab-case"
   - "clickup catalog playbook rename"
-  - "032 mcp tooling phase 003"
+  - "020 mcp tooling phase 003"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-click-up Naming Closure
 
@@ -90,7 +90,7 @@ This phase moves the full component-local catalog and playbook closure to kebab-
 | REQ-001 | Rename the complete ClickUp catalog closure | The two catalog roots, all 26 underscored directories, FEATURE_CATALOG.md, and all 137 underscored files have explicit semantic targets |
 | REQ-002 | Repair catalog/playbook references | Every catalog link, playbook link, index table, reference link, and path-derived category value resolves after the move |
 | REQ-003 | Preserve tool contracts and data semantics | SKILL.md, package manifests, cupt/MCP identifiers, JSON/YAML/TOML keys, and frontmatter field names remain unchanged |
-| REQ-004 | Honor the 032 exemption boundary | No Python path, generated/lockfile output, changelog history, or tool-mandated name is renamed |
+| REQ-004 | Honor the 020 exemption boundary | No Python path, generated/lockfile output, changelog history, or tool-mandated name is renamed |
 | REQ-005 | Prove catalog and playbook completeness | Catalog and manual scenario discovery each return non-zero counts matching the pre-rename inventory |
 <!-- /ANCHOR:requirements -->
 

@@ -70,7 +70,7 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
   const benchmarkReport = path.join(work, 'benchmark-outputs/report.json');
   const repeatability = path.join(work, 'benchmark-outputs/repeatability.json');
   const config = path.join(work, 'model-benchmark-config.json');
-  const manifest = path.join(work, 'target_manifest.jsonc');
+  const manifest = path.join(work, 'target-manifest.jsonc');
   const archiveDir = path.join(work, 'archive');
 
   // Canonical target = the opencode mirror (current in-sync body).
@@ -106,7 +106,7 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
   });
 
   writeFile(
-    'target_manifest.jsonc',
+    'target-manifest.jsonc',
     `// agent target manifest\n${JSON.stringify({ targets: [{ path: target, classification: 'canonical' }] }, null, 2)}\n`,
   );
 

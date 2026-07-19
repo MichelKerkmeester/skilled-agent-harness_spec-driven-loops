@@ -19,7 +19,7 @@ const { spawnSync } = require('child_process');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const opencodeDir = path.resolve(__dirname, '..');
-const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server');
+const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp-server');
 const cliDist = path.join(mcpServerDir, 'dist', 'spec-memory-cli.js');
 const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
 const defaultSocketDir = '/tmp/mk-spec-memory';
@@ -116,7 +116,7 @@ function handleShimMetaArgv(argv) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function ensureFreshDist() {
-  const result = checkPackageFreshness('system-spec-kit/mcp_server', {
+  const result = checkPackageFreshness('system-spec-kit/mcp-server', {
     workspaceRoot: path.dirname(opencodeDir),
     entry: 'spec-memory-cli',
     allowStale,

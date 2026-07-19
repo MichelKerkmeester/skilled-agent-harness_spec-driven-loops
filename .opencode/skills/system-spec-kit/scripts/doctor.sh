@@ -19,7 +19,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
-MCP_DIR="$SKILL_DIR/mcp_server"
+MCP_DIR="$SKILL_DIR/mcp-server"
 
 STRICT_MODE=false
 while [[ $# -gt 0 ]]; do

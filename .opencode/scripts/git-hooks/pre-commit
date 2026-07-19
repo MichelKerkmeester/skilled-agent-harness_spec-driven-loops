@@ -46,7 +46,7 @@ fi
 # --- Comment hygiene gate (blocking) ---
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
-# See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4
+# See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
   HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/pre-commit"
   if [[ -x "$HYGIENE_HOOK" ]]; then
@@ -61,14 +61,14 @@ fi
 # regress across sk-prompt / sk-prompt-models / cli-*.
 # Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ...
 if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
-  CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+  CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"
   if [[ -f "$CARD_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.opencode/skills/(cli-[a-z-]+/(SKILL\.md|assets/prompt_quality_card\.md|graph-metadata\.json)|sk-prompt/assets/cli_prompt_quality_card\.md|sk-prompt-models/)'; then
     if ! bash "$CARD_GUARD" "$REPO_ROOT"; then
       echo "" >&2
       echo "BLOCKED: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
       echo "Fix: keep each fact in its one canonical home and point to it; see" >&2
-      echo "     .opencode/skills/sk-prompt-models/references/pattern_index.md." >&2
+      echo "     .opencode/skills/sk-prompt-models/references/pattern-index.md." >&2
       echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
       exit 1
     fi
@@ -85,12 +85,12 @@ fi
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
   if [[ -f "$MUTCLASS_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
-       | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor_mcp_install\.yaml)$'; then
+       | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
     if ! bash "$MUTCLASS_GUARD" "$REPO_ROOT"; then
       echo "" >&2
       echo "BLOCKED: MCP mutation-class contract failed (see FAIL lines above)." >&2
       echo "Fix: a read-only doctor must not run mutations or unbounded network calls;" >&2
-      echo "     declare each script's mutation_class in doctor_mcp_install.yaml." >&2
+      echo "     declare each script's mutation_class in doctor-mcp-install.yaml." >&2
       echo "Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ..." >&2
       exit 1
     fi
@@ -101,7 +101,7 @@ fi
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ...
 if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
-  OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/tests/tool-ownership-lint-runner.mjs"
+  OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp-server/tests/tool-ownership-lint-runner.mjs"
   if [[ ! -f "$OWNERSHIP_LINT" ]]; then
     echo "BLOCKED: tool-ownership lint runner missing." >&2
     exit 1
@@ -109,7 +109,7 @@ if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
   if ! node "$OWNERSHIP_LINT" >/dev/null; then
     echo "" >&2
     echo "BLOCKED: tool-ownership drift detected." >&2
-    echo "Fix: regenerate mcp_server/tests/fixtures/tool-ownership-map.json from TOOL_DEFINITIONS." >&2
+    echo "Fix: regenerate mcp-server/tests/fixtures/tool-ownership-map.json from TOOL_DEFINITIONS." >&2
     echo "Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ..." >&2
     exit 1
   fi

@@ -30,7 +30,7 @@ ROOT_DIR="$(cd "$COMMANDS_DIR/../.." && pwd)"
 ROUTES_FILE="${ROUTES_FILE:-$DOCTOR_DIR/_routes.yaml}"
 ROUTER_FILE="${ROUTER_FILE:-$DOCTOR_DIR/speckit.md}"
 ASSETS_DIR="${ASSETS_DIR:-$DOCTOR_DIR/assets}"
-PRESENTATION_FILE="${PRESENTATION_FILE:-$ASSETS_DIR/doctor_speckit_presentation.txt}"
+PRESENTATION_FILE="${PRESENTATION_FILE:-$ASSETS_DIR/doctor-speckit-presentation.txt}"
 
 # Dependency check
 if ! python3 -c 'import yaml' 2>/dev/null; then
@@ -51,7 +51,7 @@ if [ "${1:-}" = "--self-test" ]; then
 schema_version: 1
 routes:
   - target: memory
-    yaml: doctor_memory.yaml
+    yaml: doctor-memory.yaml
     # missing: setup_vars, allowed_flags, mutating, gate3_location, mcp_tools, trigger_phrases
 EOF
 
@@ -74,7 +74,7 @@ EOF
 schema_version: 1
 routes:
   - target: memory
-    yaml: doctor_memory.yaml
+    yaml: doctor-memory.yaml
     setup_vars: [execution_mode]
     allowed_flags: ["--dry-run"]
     mutating: mutates
@@ -82,7 +82,7 @@ routes:
     mcp_tools: []
     trigger_phrases: ["one"]
   - target: memory
-    yaml: doctor_memory.yaml
+    yaml: doctor-memory.yaml
     setup_vars: [execution_mode]
     allowed_flags: ["--dry-run"]
     mutating: mutates
@@ -96,7 +96,7 @@ EOF
 schema_version: 1
 routes:
   - target: embeddings
-    yaml: doctor_embeddings.yaml
+    yaml: doctor-embeddings.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -112,7 +112,7 @@ EOF
 schema_version: 1
 routes:
   - target: totally-different-target
-    yaml: doctor_embeddings.yaml
+    yaml: doctor-embeddings.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -126,7 +126,7 @@ EOF
 schema_version: 1
 routes:
   - target: memory
-    yaml: doctor_memory.yaml
+    yaml: doctor-memory.yaml
     setup_vars: [execution_mode, intent, incremental]
     allowed_flags: ["--incremental=true|false"]
     mutating: read-only

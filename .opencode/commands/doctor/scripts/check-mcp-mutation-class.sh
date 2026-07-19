@@ -11,7 +11,7 @@
 # network or mutation call fails before it merges.
 #
 # Manifest (source of truth for declared class):
-#   .opencode/commands/doctor/assets/doctor_mcp_install.yaml
+#   .opencode/commands/doctor/assets/doctor-mcp-install.yaml
 #     servers[*].install_script + .install_script_mutation_class
 #     cli_skill_diagnostics[*].install_script / .doctor_script
 #       + their *_mutation_class fields
@@ -41,7 +41,7 @@
 set -euo pipefail
 
 ROOT="${1:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
-MANIFEST="$ROOT/.opencode/commands/doctor/assets/doctor_mcp_install.yaml"
+MANIFEST="$ROOT/.opencode/commands/doctor/assets/doctor-mcp-install.yaml"
 
 command -v python3 >/dev/null 2>&1 || { echo "ERROR: python3 required" >&2; exit 2; }
 [ -f "$MANIFEST" ] || { echo "ERROR: manifest not found: $MANIFEST" >&2; exit 2; }

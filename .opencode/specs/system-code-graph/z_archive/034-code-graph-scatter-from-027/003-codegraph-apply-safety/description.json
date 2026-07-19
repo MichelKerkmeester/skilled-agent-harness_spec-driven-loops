@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/034-code-graph-scatter-from-027/003-codegraph-apply-safety",
+  "specFolder": "system-code-graph/z_archive/034-code-graph-scatter-from-027/003-codegraph-apply-safety",
   "description": "Spec wrapper for the code-graph apply-safety disposition packet moved under system-code-graph.",
   "keywords": [
     "spec",
@@ -11,11 +11,12 @@
     "moved",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.894Z",
+  "lastUpdated": "2026-07-18T03:48:55.642Z",
   "specId": "003",
   "folderSlug": "codegraph-apply-safety",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "034-code-graph-scatter-from-027"
   ],
   "memorySequence": 0,

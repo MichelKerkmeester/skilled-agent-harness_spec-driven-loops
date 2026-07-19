@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: commands subtree rollup gate (032 phase 008/013/010)"
+title: "Implementation Plan: commands subtree rollup gate (020 phase 008/013/010)"
 description: "Aggregate child checklists, scan the complete commands tree, and issue a blocking naming and reference closure verdict without performing migration work."
 trigger_phrases:
   - "commands rollup gate plan"

@@ -96,15 +96,15 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-07-17T14:29:59.990Z",
+    "last_save_at": "2026-07-17T20:25:58.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8d8c5bd1c227c0d641014f14c15e2f7bcb5286e091dc8f76edca09992732314d",
+    "source_fingerprint": "sha256:5aed88df1419a8cb1a9787099ae154bd2a3518792f58ebf0dbecd07d5cc40e80",
     "source_doc_hashes": {
-      "spec.md": "d8301ff1dce1e4cf8497093d9e6c280e8c845190fe92246c1eb69b9f216dccd0"
+      "spec.md": "e106b10be440baf0d40b9cb291db9c53cc18619ed2b01e504d0a27c73fa2da33"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -56,7 +56,7 @@ Use this skill for:
 
 ## 2. SMART ROUTING
 
-This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and structural tool coordination. The live tool schemas stay in `mcp_server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
+This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and structural tool coordination. The live tool schemas stay in `mcp-server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
 
 Routing model:
 
@@ -81,9 +81,9 @@ Resource domains:
 - `references/runtime/` documents the tool surface, naming conventions, ownership boundary, and launcher lease.
 - `references/readiness/` documents `ensureCodeGraphReady()`, readiness states, trust state, and scope fingerprints.
 - `references/config/` documents database path and workspace containment policy.
-- `feature_catalog/` documents current tool features and source-of-truth behavior slices.
-- `manual_testing_playbook/` documents deterministic operator scenarios for status, scan, verify, query, context, change detection, structural, doctor, and launcher flows.
-- `mcp_server/` owns handlers, schemas, tool registration, tests, parser, storage, readiness logic, and the SQLite-backed runtime.
+- `feature-catalog/` documents current tool features and source-of-truth behavior slices.
+- `manual-testing-playbook/` documents deterministic operator scenarios for status, scan, verify, query, context, change detection, structural, doctor, and launcher flows.
+- `mcp-server/` owns handlers, schemas, tool registration, tests, parser, storage, readiness logic, and the SQLite-backed runtime.
 
 ### Resource Loading Levels
 
@@ -119,8 +119,8 @@ WORKFLOW_MODE = "system-code-graph"
 # suggestion surfaced with the disambiguation checklist, never unioned into a
 # scored route's typed leaves, so selected-leaf precision is not diluted.
 DEFAULT_RESOURCES = [
-    "references/runtime/tool_surface.md",
-    "references/readiness/code_graph_readiness_check.md",
+    "references/runtime/tool-surface.md",
+    "references/readiness/code-graph-readiness-check.md",
 ]
 DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 
@@ -128,8 +128,8 @@ DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 # leaves and from leaf-manifest.json. A broad "list the features / playbook"
 # request loads these; they never become a (mode, leaf) pair.
 PACKAGE_INDEXES = {
-    "FEATURES": "feature_catalog/feature_catalog.md",
-    "PLAYBOOK": "manual_testing_playbook/manual_testing_playbook.md",
+    "FEATURES": "feature-catalog/feature-catalog.md",
+    "PLAYBOOK": "manual-testing-playbook/manual-testing-playbook.md",
 }
 
 # Intent -> weighted keyword signals. Generic documentation keys score at
@@ -184,43 +184,43 @@ INTENT_SIGNALS = {
 # 5 non-routing scenarios) stay intentionally unmapped and reachable only via
 # PACKAGE_INDEXES or a full-inventory browse.
 RESOURCE_MAP = {
-    "TOOL_SURFACE": ["references/runtime/tool_surface.md"],
-    "READINESS": ["references/readiness/code_graph_readiness_check.md"],
-    "READINESS_SCOPE": ["references/readiness/readiness_and_scope_fingerprint.md"],
-    "QUERY": ["references/runtime/tool_surface.md"],
-    "SCAN_VERIFY": ["references/readiness/readiness_and_scope_fingerprint.md"],
-    "CHANGE_DETECTION": ["feature_catalog/detect_changes/detect_changes_preflight.md"],
-    "CONFIG": ["references/config/database_path_policy.md"],
-    "NAMING": ["references/runtime/naming_conventions.md"],
-    "OWNERSHIP": ["references/runtime/ownership_boundary.md"],
-    "LAUNCHER": ["references/runtime/launcher_lease.md"],
-    "CODE_INDEX_CLI": ["feature_catalog/mcp_tool_surface/code_index_cli.md"],
-    "TOOL_REGISTRATIONS": ["feature_catalog/mcp_tool_surface/tool_registrations.md"],
-    "QUERY_SELF_HEAL": ["feature_catalog/read_path_freshness/query_self_heal.md"],
-    "CODE_GRAPH_CONTEXT": ["feature_catalog/context_retrieval/code_graph_context.md"],
-    "ENSURE_READY_SELECTIVE_REINDEX": ["manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md"],
-    "QUERY_SELF_HEAL_STALE_FILE": ["manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md"],
-    "SCAN_INCREMENTAL": ["manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md"],
-    "SCAN_FULL": ["manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md"],
-    "VERIFY_BLOCKED_ON_STALE": ["manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md"],
-    "STATUS_READONLY": ["manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md"],
-    "DETECT_CHANGES_NO_INLINE_INDEX": ["manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md"],
-    "CONTEXT_READINESS_BLOCK": ["manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md"],
-    "DEEP_LOOP_GRAPH_CONVERGENCE": ["manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md"],
-    "DEEP_LOOP_GRAPH_UPSERT": ["manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md"],
-    "TOOL_CALL_SHAPE_VALIDATION": ["manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md"],
-    "DOCTOR_APPLY_MODE_POLICY": ["manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md"],
-    "MCP_MANIFEST_POST_RENAME": ["manual_testing_playbook/mcp_tool_surface/mcp_tool_manifest_post_rename.md"],
-    "LAUNCHER_STARTUP_PREFIX": ["manual_testing_playbook/post_rename_infrastructure/launcher_startup_prefix.md"],
-    "MCP_SERVER_KEY_RENAME": ["manual_testing_playbook/post_rename_infrastructure/mcp_json_server_key_rename.md"],
-    "DATABASE_PATH_VERIFICATION": ["manual_testing_playbook/post_rename_infrastructure/database_path_verification.md"],
-    "TYPESCRIPT_ENTRY_POINT": ["manual_testing_playbook/post_rename_infrastructure/typescript_build_and_entry_point.md"],
-    "UNICODE_DIST_CLEANUP": ["manual_testing_playbook/post_rename_infrastructure/unicode_normalization_fix_from_009.md"],
-    "CLI_FALLBACK_SURFACE": ["manual_testing_playbook/mcp_tool_surface/code_index_cli_fallback_surface.md"],
-    "QUERY_ASOF_TIME_TRAVEL": ["manual_testing_playbook/mcp_tool_surface/code_graph_query_asof_time_travel.md"],
-    "QUERY_BM25_RESOLVER": ["manual_testing_playbook/mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md"],
-    "CONTEXT_EDGE_CONFIDENCE": ["manual_testing_playbook/context_retrieval/code_graph_context_edge_confidence_differentiation.md"],
-    "CONTEXT_SEEDED_PPR": ["manual_testing_playbook/context_retrieval/code_graph_context_seeded_ppr_ranking.md"],
+    "TOOL_SURFACE": ["references/runtime/tool-surface.md"],
+    "READINESS": ["references/readiness/code-graph-readiness-check.md"],
+    "READINESS_SCOPE": ["references/readiness/readiness-and-scope-fingerprint.md"],
+    "QUERY": ["references/runtime/tool-surface.md"],
+    "SCAN_VERIFY": ["references/readiness/readiness-and-scope-fingerprint.md"],
+    "CHANGE_DETECTION": ["feature-catalog/detect-changes/detect-changes-preflight.md"],
+    "CONFIG": ["references/config/database-path-policy.md"],
+    "NAMING": ["references/runtime/naming-conventions.md"],
+    "OWNERSHIP": ["references/runtime/ownership-boundary.md"],
+    "LAUNCHER": ["references/runtime/launcher-lease.md"],
+    "CODE_INDEX_CLI": ["feature-catalog/mcp-tool-surface/code-index-cli.md"],
+    "TOOL_REGISTRATIONS": ["feature-catalog/mcp-tool-surface/tool-registrations.md"],
+    "QUERY_SELF_HEAL": ["feature-catalog/read-path-freshness/query-self-heal.md"],
+    "CODE_GRAPH_CONTEXT": ["feature-catalog/context-retrieval/code-graph-context.md"],
+    "ENSURE_READY_SELECTIVE_REINDEX": ["manual-testing-playbook/read-path-freshness/ensure-ready-selective-reindex.md"],
+    "QUERY_SELF_HEAL_STALE_FILE": ["manual-testing-playbook/read-path-freshness/query-self-heal-stale-file.md"],
+    "SCAN_INCREMENTAL": ["manual-testing-playbook/manual-scan-verify-status/code-graph-scan-incremental.md"],
+    "SCAN_FULL": ["manual-testing-playbook/manual-scan-verify-status/code-graph-scan-full.md"],
+    "VERIFY_BLOCKED_ON_STALE": ["manual-testing-playbook/manual-scan-verify-status/code-graph-verify-blocked-on-stale.md"],
+    "STATUS_READONLY": ["manual-testing-playbook/manual-scan-verify-status/code-graph-status-readonly.md"],
+    "DETECT_CHANGES_NO_INLINE_INDEX": ["manual-testing-playbook/detect-changes/detect-changes-no-inline-index.md"],
+    "CONTEXT_READINESS_BLOCK": ["manual-testing-playbook/context-retrieval/code-graph-context-readiness-block.md"],
+    "DEEP_LOOP_GRAPH_CONVERGENCE": ["manual-testing-playbook/coverage-graph/deep-loop-graph-convergence-yaml-fire.md"],
+    "DEEP_LOOP_GRAPH_UPSERT": ["manual-testing-playbook/coverage-graph/deep-loop-graph-upsert-conditional.md"],
+    "TOOL_CALL_SHAPE_VALIDATION": ["manual-testing-playbook/mcp-tool-surface/tool-call-shape-validation.md"],
+    "DOCTOR_APPLY_MODE_POLICY": ["manual-testing-playbook/doctor-code-graph/doctor-apply-mode-policy.md"],
+    "MCP_MANIFEST_POST_RENAME": ["manual-testing-playbook/mcp-tool-surface/mcp-tool-manifest-post-rename.md"],
+    "LAUNCHER_STARTUP_PREFIX": ["manual-testing-playbook/post-rename-infrastructure/launcher-startup-prefix.md"],
+    "MCP_SERVER_KEY_RENAME": ["manual-testing-playbook/post-rename-infrastructure/mcp-json-server-key-rename.md"],
+    "DATABASE_PATH_VERIFICATION": ["manual-testing-playbook/post-rename-infrastructure/database-path-verification.md"],
+    "TYPESCRIPT_ENTRY_POINT": ["manual-testing-playbook/post-rename-infrastructure/typescript-build-and-entry-point.md"],
+    "UNICODE_DIST_CLEANUP": ["manual-testing-playbook/post-rename-infrastructure/unicode-normalization-fix-from-009.md"],
+    "CLI_FALLBACK_SURFACE": ["manual-testing-playbook/mcp-tool-surface/code-index-cli-fallback-surface.md"],
+    "QUERY_ASOF_TIME_TRAVEL": ["manual-testing-playbook/mcp-tool-surface/code-graph-query-asof-time-travel.md"],
+    "QUERY_BM25_RESOLVER": ["manual-testing-playbook/mcp-tool-surface/code-graph-query-bm25-symbol-resolver.md"],
+    "CONTEXT_EDGE_CONFIDENCE": ["manual-testing-playbook/context-retrieval/code-graph-context-edge-confidence-differentiation.md"],
+    "CONTEXT_SEEDED_PPR": ["manual-testing-playbook/context-retrieval/code-graph-context-seeded-ppr-ranking.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -326,23 +326,23 @@ return {
 
 ### Tool Dispatch Contract
 
-The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` is the source of truth for the schemas themselves.
+The router selects from these tool intents. `mcp-server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` is the source of truth for the schemas themselves.
 
 | Intent | Primary Surface | Reference |
 |--------|-----------------|-----------|
-| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature_catalog/manual_scan_verify_status/code_graph_scan.md` |
-| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature_catalog/read_path_freshness/query_self_heal.md` |
-| Classify natural-language queries into structural/semantic/hybrid intent | `mcp__mk_code_index__code_graph_classify_query_intent` | `mcp_server/lib/query-intent-classifier.ts` |
-| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature_catalog/context_retrieval/code_graph_context.md` |
-| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature_catalog/manual_scan_verify_status/code_graph_status.md` |
-| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/manual_scan_verify_status/code_graph_verify.md` |
-| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/detect_changes/detect_changes_preflight.md` |
-| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/doctor_code_graph/doctor_apply_mode.md` |
-| Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/doctor_code_graph/doctor_apply_mode.md` |
+| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature-catalog/manual-scan-verify-status/code-graph-scan.md` |
+| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature-catalog/read-path-freshness/query-self-heal.md` |
+| Classify natural-language queries into structural/semantic/hybrid intent | `mcp__mk_code_index__code_graph_classify_query_intent` | `mcp-server/lib/query-intent-classifier.ts` |
+| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature-catalog/context-retrieval/code-graph-context.md` |
+| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature-catalog/manual-scan-verify-status/code-graph-status.md` |
+| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature-catalog/manual-scan-verify-status/code-graph-verify.md` |
+| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature-catalog/detect-changes/detect-changes-preflight.md` |
+| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature-catalog/doctor-code-graph/doctor-apply-mode.md` |
+| Review doctor code-graph apply policy | `/doctor code-graph` | `feature-catalog/doctor-code-graph/doctor-apply-mode.md` |
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*` and `detect_changes`.
 
-The surface is dual-stack: every tool above is also callable through the full-parity daemon-backed CLI `node .opencode/bin/code-index.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon (MCP registration unchanged). MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3000 --warm-only`. Flag values are coerced against the tool's input schema. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema (including `detect_changes` `parse_error` on a malformed diff), `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Blocked-read rendering is preserved: a `status:"blocked"` readiness refusal exits `0` with the `requiredAction` surfaced — an actionable answer, not a failure. Prompt-time callers must pass `--warm-only` (probe-only; exit `75` on a cold daemon); other contexts auto-spawn via `mk-code-index-launcher.cjs`. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`../system-spec-kit/references/cli/daemon_cli_reference.md`](../system-spec-kit/references/cli/daemon_cli_reference.md).
+The surface is dual-stack: every tool above is also callable through the full-parity daemon-backed CLI `node .opencode/bin/code-index.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon (MCP registration unchanged). MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3000 --warm-only`. Flag values are coerced against the tool's input schema. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema (including `detect_changes` `parse_error` on a malformed diff), `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Blocked-read rendering is preserved: a `status:"blocked"` readiness refusal exits `0` with the `requiredAction` surfaced — an actionable answer, not a failure. Prompt-time callers must pass `--warm-only` (probe-only; exit `75` on a cold daemon); other contexts auto-spawn via `mk-code-index-launcher.cjs`. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`../system-spec-kit/references/cli/daemon-cli-reference.md`](../system-spec-kit/references/cli/daemon-cli-reference.md).
 
 ### Fallback Contract
 
@@ -360,7 +360,7 @@ The surface is dual-stack: every tool above is also callable through the full-pa
 - Loading root compatibility stubs when canonical subfolder references exist.
 - Compatibility stubs without `deprecated_at` and `remove_after` frontmatter, or any router target that points at a stub before the removal-window grep passes.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
-- Hardcoded tool lists in router code. Consult `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the source of truth.
+- Hardcoded tool lists in router code. Consult `mcp-server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the source of truth.
 - Using `code_graph_query` for unclassified queries. Classify intent first so the right tool runs.
 - Treating `detect_changes` as a general query tool. It is diff-driven impact analysis with a fixed schema, not a query surface.
 
@@ -368,7 +368,7 @@ The surface is dual-stack: every tool above is also callable through the full-pa
 
 ## 3. HOW IT WORKS
 
-Runtime source lives under `mcp_server/{lib,handlers,tools,tests}/`. The package docs live under `feature_catalog/` and `manual_testing_playbook/`.
+Runtime source lives under `mcp-server/{lib,handlers,tools,tests}/`. The package docs live under `feature-catalog/` and `manual-testing-playbook/`.
 
 Read paths call `ensureCodeGraphReady()` before answering any structural query. The check enforces the false-safe contract: stale, empty, or scope-mismatched graphs return `blocked` with an explicit `requiredAction` rather than empty results. Manual maintenance tools run explicit scans, verification, status checks, and structural tool operations against the same readiness gate.
 
@@ -381,9 +381,9 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 ### ✅ ALWAYS
 
 1. **ALWAYS register MCP tools under the standalone `mk-code-index` server.** Tool IDs (`code_graph_*`, `detect_changes`) are the stable surface contract.
-2. **ALWAYS use the `mcp__mk_code_index__*` namespace** for MCP-side tool calls. Direct library consumers in `system-spec-kit` handlers and hooks use in-process imports through `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`.
+2. **ALWAYS use the `mcp__mk_code_index__*` namespace** for MCP-side tool calls. Direct library consumers in `system-spec-kit` handlers and hooks use in-process imports through `system-spec-kit/mcp-server/lib/code-graph-boundary.ts`.
 3. **ALWAYS check readiness before answering structural questions.** `code_graph_status` first; if `readiness !== "fresh"`, return the `blocked` payload from the tool rather than a stale result.
-4. **ALWAYS treat `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the authoritative tool list.** Docs are documentation; the schema array is canonical.
+4. **ALWAYS treat `mcp-server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the authoritative tool list.** Docs are documentation; the schema array is canonical.
 
 ### ⛔ NEVER
 
@@ -402,10 +402,10 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 
 ## 5. REFERENCES
 
-- `feature_catalog/feature_catalog.md` is the current runtime feature inventory.
-- `manual_testing_playbook/manual_testing_playbook.md` is the operator validation package.
-- `mcp_server/tool-schemas.ts` defines the `mk-code-index` code graph, detect-changes and structural schemas.
-- `mcp_server/tools/code-graph-tools.ts` registers and dispatches the standalone tool IDs.
+- `feature-catalog/feature-catalog.md` is the current runtime feature inventory.
+- `manual-testing-playbook/manual-testing-playbook.md` is the operator validation package.
+- `mcp-server/tool-schemas.ts` defines the `mk-code-index` code graph, detect-changes and structural schemas.
+- `mcp-server/tools/code-graph-tools.ts` registers and dispatches the standalone tool IDs.
 
 ---
 
@@ -424,13 +424,13 @@ Cross-subsystem consumers use two intentional paths:
 
 | Consumer Type | Integration |
 |---------------|-------------|
-| `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
+| `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp-server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp-server/lib/code-graph-boundary.ts`. |
 | MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*` and `mcp__mk_code_index__detect_changes`. |
-| CLI callers (hooks, scripts, CI, transport-down recovery) | Daemon-backed `node .opencode/bin/code-index.cjs <tool>` over the same daemon. The Claude/OpenCode hook adapters fall back through `system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts` (warm-only), and the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`) routes through the CLI with `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME=1`. |
+| CLI callers (hooks, scripts, CI, transport-down recovery) | Daemon-backed `node .opencode/bin/code-index.cjs <tool>` over the same daemon. The Claude/OpenCode hook adapters fall back through `system-spec-kit/mcp-server/hooks/code-index-cli-fallback.ts` (warm-only), and the OpenCode plugin bridge (`mcp-server/plugin-bridges/mk-code-graph-bridge.mjs`) routes through the CLI with `SPECKIT_CODE_INDEX_CLI_PROMPT_TIME=1`. |
 
-The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
+The shared SQLite file at `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 
-**Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
+**Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/runtime/naming-conventions.md`](references/runtime/naming-conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp-server/hooks/`).
 
 ---
 
@@ -438,16 +438,16 @@ The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/databas
 
 ### Core references (this skill)
 
-- [`references/runtime/tool_surface.md`](references/runtime/tool_surface.md) — 8 MCP tools mapped to handler files, primary purpose, and preconditions.
-- [`references/readiness/readiness_and_scope_fingerprint.md`](references/readiness/readiness_and_scope_fingerprint.md) — readiness state machine (`fresh`/`stale`/`empty`/`error` freshness, plus the `blocked` read decision and `absent` trust projection) and the scan-scope fingerprint contract.
-- [`references/readiness/code_graph_readiness_check.md`](references/readiness/code_graph_readiness_check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
-- [`references/config/database_path_policy.md`](references/config/database_path_policy.md) — canonical database path policy and override rules.
-- [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
-- [`references/runtime/ownership_boundary.md`](references/runtime/ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
-- [`references/runtime/launcher_lease.md`](references/runtime/launcher_lease.md) — PID-file lease contract for the launcher single-writer path.
+- [`references/runtime/tool-surface.md`](references/runtime/tool-surface.md) — 8 MCP tools mapped to handler files, primary purpose, and preconditions.
+- [`references/readiness/readiness-and-scope-fingerprint.md`](references/readiness/readiness-and-scope-fingerprint.md) — readiness state machine (`fresh`/`stale`/`empty`/`error` freshness, plus the `blocked` read decision and `absent` trust projection) and the scan-scope fingerprint contract.
+- [`references/readiness/code-graph-readiness-check.md`](references/readiness/code-graph-readiness-check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
+- [`references/config/database-path-policy.md`](references/config/database-path-policy.md) — canonical database path policy and override rules.
+- [`references/runtime/naming-conventions.md`](references/runtime/naming-conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
+- [`references/runtime/ownership-boundary.md`](references/runtime/ownership-boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+- [`references/runtime/launcher-lease.md`](references/runtime/launcher-lease.md) — PID-file lease contract for the launcher single-writer path.
 
 ### Cross-skill references
 
-- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/context_preservation/`
+- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature-catalog/context-preservation/`
 - Extraction history: internal migration notes
 - Latest uplift context: internal implementation notes

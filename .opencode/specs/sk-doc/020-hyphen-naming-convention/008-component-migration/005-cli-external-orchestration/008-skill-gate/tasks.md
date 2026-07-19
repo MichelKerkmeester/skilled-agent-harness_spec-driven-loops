@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration subtree rollup gate (032 phase 005.008)"
+title: "Tasks: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
 description: "Tasks for the final cli-external-orchestration gate: aggregate sibling evidence, reconcile path classifications, run the final scope-aware census, and publish a pass/block result without new migration work."
 trigger_phrases:
   - "cli-external subtree rollup gate tasks"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Reconcile every retained non-kebab name with 032 exemptions or an owning sibling disposition (`phase evidence`)
+- [ ] T005 Reconcile every retained non-kebab name with 020 exemptions or an owning sibling disposition (`phase evidence`)
 - [ ] T006 [P] Resolve active references against the final child source-target maps (`cli-external-orchestration/`)
 - [ ] T007 [P] Check phase 007 release evidence against all six path/census phase results (`007-changelog-verify/`)
 - [ ] T008 Record unknown, stale, conflicting, or incomplete results as blocking findings routed to their owners (`phase evidence`)

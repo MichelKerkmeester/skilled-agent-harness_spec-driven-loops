@@ -1,0 +1,76 @@
+---
+title: "144 -- Advisory ingest lifecycle forecast"
+description: "This scenario validates Advisory ingest lifecycle forecast for `144`. It focuses on Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress."
+version: 3.6.0.17
+id: lifecycle-advisory-ingest-lifecycle-forecast
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+---
+
+# 144 -- Advisory ingest lifecycle forecast
+
+## 1. OVERVIEW
+
+This scenario validates Advisory ingest lifecycle forecast for `144`. It focuses on Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress.
+- Real user request: `` Please validate Advisory ingest lifecycle forecast against memory_ingest_start({ paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"] }) and tell me whether the expected signals are present: Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive. ``
+- Prompt: `Validate advisory ingest lifecycle forecasts, including forecast fields, sparse-progress degradation, ETA/risk updates, and additive telemetry.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if forecast fields are always present, sparse states degrade safely, and progressing jobs update the advisory values without handler failure
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate advisory ingest lifecycle forecasts, including forecast fields, sparse-progress degradation, ETA/risk updates, and additive telemetry.
+```
+
+### Commands
+
+1. `memory_ingest_start({ paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"] })` and capture `jobId`
+2. Immediately call `memory_ingest_status({ jobId:"<job-id>" })` and verify `forecast` contains `etaSeconds`, `etaConfidence`, `failureRisk`, `riskSignals`, and `caveat`
+3. Confirm early or queued states return a low-confidence caveat instead of throwing
+4. Poll until indexing progresses and verify forecast values update while staying advisory
+5. If extended telemetry is enabled, confirm lifecycle forecast diagnostics are attached without changing the status contract
+
+### Expected
+
+Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive
+
+### Evidence
+
+Start/status transcript across early and progressing states + optional telemetry snapshot when enabled
+
+### Pass / Fail
+
+- **Pass**: forecast fields are always present, sparse states degrade safely, and progressing jobs update the advisory values without handler failure
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect `handlers/memory-ingest.ts`, `lib/ops/job-queue.ts`, and `lib/telemetry/retrieval-telemetry.ts` if forecast fields disappear or throw
+
+## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Feature catalog: [lifecycle/async-ingestion-job-lifecycle.md](../../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Lifecycle
+- Playbook ID: 144
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `lifecycle/advisory-ingest-lifecycle-forecast.md`
+- audited_post_018: true

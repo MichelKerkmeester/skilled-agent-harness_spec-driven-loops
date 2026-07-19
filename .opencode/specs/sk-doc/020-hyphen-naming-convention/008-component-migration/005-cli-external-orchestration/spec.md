@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration component migration (032 phase 005)"
+title: "Feature Specification: cli-external-orchestration component migration (020 phase 005)"
 description: "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent."
 trigger_phrases:
   - "cli-external-orchestration kebab-case migration"
@@ -52,7 +52,7 @@ _memory:
 
 The cli-external-orchestration surface contains authored snake_case names in component references/assets and across four manual-testing-playbook trees. Its hub also carries exact routing files and a currently empty benchmark boundary, so a broad filesystem sweep would risk changing tool contracts or claiming paths owned by another child phase.
 
-This parent defines eight independently reviewable phases that migrate only in-scope filesystem names to kebab-case, preserve the 032 exemption boundary, verify release evidence, and close with a read-only subtree gate.
+This parent defines eight independently reviewable phases that migrate only in-scope filesystem names to kebab-case, preserve the 020 exemption boundary, verify release evidence, and close with a read-only subtree gate.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

@@ -176,11 +176,11 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature_catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and review output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
+The `feature-catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and review output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
 
 ### Manual Testing Playbook
 
-Deterministic scenarios under `manual_testing_playbook/` cover loop lifecycle, state management, convergence and recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
+Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence and recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-review/README.md --type readme
@@ -195,24 +195,24 @@ Expected output: zero issues reported.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract |
-| [`references/protocol/quick_reference.md`](./references/protocol/quick_reference.md) | One-page operator cheat sheet with commands, defaults, dimensions, verdicts and convergence rules |
-| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | Four-phase lifecycle, dispatch contract and executor invariants |
-| [`references/protocol/loop_state_and_gates.md`](./references/protocol/loop_state_and_gates.md) | State transitions, error handling and binary quality gates |
+| [`references/protocol/quick-reference.md`](./references/protocol/quick-reference.md) | One-page operator cheat sheet with commands, defaults, dimensions, verdicts and convergence rules |
+| [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Four-phase lifecycle, dispatch contract and executor invariants |
+| [`references/protocol/loop-state-and-gates.md`](./references/protocol/loop-state-and-gates.md) | State transitions, error handling and binary quality gates |
 | [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop condition algorithms, legal-stop gates and recovery strategies |
-| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | Three-signal weighted vote, severity-weighted ratio and signal math |
-| [`references/convergence/convergence_recovery.md`](./references/convergence/convergence_recovery.md) | Stuck recovery, recovery strategy selection and escalation |
-| [`references/state/state_format.md`](./references/state/state_format.md) | Packet file hub with owners, mutability rules and navigation |
-| [`references/state/state_jsonl.md`](./references/state/state_jsonl.md) | Config, iteration, event and blocked-stop JSONL record types |
-| [`references/state/state_outputs.md`](./references/state/state_outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
-| [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, findings registry, validation and reconstruction |
-| [`assets/review_mode_contract.yaml`](./assets/review_mode_contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
+| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | Three-signal weighted vote, severity-weighted ratio and signal math |
+| [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection and escalation |
+| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file hub with owners, mutability rules and navigation |
+| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop JSONL record types |
+| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
+| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation and reconstruction |
+| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep_review_config.json`](./assets/deep_review_config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
-| [`assets/deep_review_strategy.md`](./assets/deep_review_strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
-| [`assets/deep_review_dashboard.md`](./assets/deep_review_dashboard.md) | Dashboard template with convergence trend and iteration summary |
-| [`assets/prompt_pack_iteration.md.tmpl`](./assets/prompt_pack_iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
-| [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
-| [`feature_catalog/`](./feature_catalog/) | Feature inventory across loop lifecycle, state management, convergence and review output |
-| [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark (RVB): what the model does at `/deep:review` under realistic prompts — dispatch evidence, presentation, latency vs Claude |
+| [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
+| [`assets/deep-review-strategy.md`](./assets/deep-review-strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
+| [`assets/deep-review-dashboard.md`](./assets/deep-review-dashboard.md) | Dashboard template with convergence trend and iteration summary |
+| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
+| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
+| [`feature-catalog/`](./feature-catalog/) | Feature inventory across loop lifecycle, state management, convergence and review output |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
+| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark (RVB): what the model does at `/deep:review` under realistic prompts — dispatch evidence, presentation, latency vs Claude |

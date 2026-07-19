@@ -87,6 +87,6 @@ If the primary run passes, repeat with a borderline request that mentions a UI i
 
 - Group: Abstention And Routing
 - Playbook ID: ID-005
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `abstention-and-routing/pure-logic-routes-to-sk-code.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

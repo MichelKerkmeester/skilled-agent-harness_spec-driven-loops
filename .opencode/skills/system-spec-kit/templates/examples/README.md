@@ -65,9 +65,9 @@ authors compare scope, depth and evidence before editing their own spec docs
 ```text
 examples/
 +-- README.md
-+-- level_1/      # Minimal scope and lightweight planning example
-+-- level_2/      # Verification-focused example
-+-- level_3/      # Architecture and decision-record example
++-- level-1/      # Minimal scope and lightweight planning example
++-- level-2/      # Verification-focused example
++-- level-3/      # Architecture and decision-record example
 `-- level_3+/     # Governance and coordination example
 ```
 
@@ -83,14 +83,14 @@ Example folders mirror level contracts, but they are not source templates. Sourc
 ```text
 examples/
 +-- README.md
-+-- level_1/
++-- level-1/
 |   +-- spec.md
 |   +-- plan.md
 |   +-- tasks.md
 |   `-- implementation-summary.md
-+-- level_2/
++-- level-2/
 |   `-- level docs with checklist.md
-+-- level_3/
++-- level-3/
 |   `-- level docs with decision-record.md
 `-- level_3+/
     `-- level docs with governance depth
@@ -105,9 +105,9 @@ examples/
 
 | Path | Responsibility |
 |---|---|
-| `level_1/` | Shows the smallest complete spec packet shape. |
-| `level_2/` | Shows checklist-backed validation depth. |
-| `level_3/` | Shows decision records and architecture-level planning. |
+| `level-1/` | Shows the smallest complete spec packet shape. |
+| `level-2/` | Shows checklist-backed validation depth. |
+| `level-3/` | Shows decision records and architecture-level planning. |
 | `level_3+/` | Shows expanded coordination and governance depth. |
 
 <!-- /ANCHOR:key-files -->

@@ -133,12 +133,43 @@ function walkFixtureFiles(playbookDir) {
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) { stack.push(full); continue; }
       if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
-      if (entry.name === 'manual_testing_playbook.md' || entry.name === 'feature_catalog.md'
-          || entry.name === 'manual-testing-playbook.md' || entry.name === 'feature-catalog.md') continue;
+      if (entry.name === 'manual-testing-playbook.md' || entry.name === 'feature-catalog.md') continue;
       out.push(full);
     }
   }
   return out.sort();
+}
+
+function assertPlaybookBoundary(playbookDir) {
+  const basename = path.basename(playbookDir);
+  const normalized = basename.toLowerCase().replace(/-/g, '_');
+  if (normalized.startsWith('manual_testing_playbook')
+      && contract.canonicalPackageRoot(basename) !== 'manual-testing-playbook') {
+    throw new contract.ContractError('UNSUPPORTED_PLAYBOOK_ROOT', `unsupported playbook root: ${playbookDir}`);
+  }
+}
+
+function resolvePlaybookBoundary(skillDir, explicitDir) {
+  if (explicitDir) {
+    const resolved = path.resolve(explicitDir);
+    assertPlaybookBoundary(resolved);
+    return resolved;
+  }
+  // Fail closed: a legacy underscore playbook dir must be migrated, never silently ignored in
+  // favor of a canonical sibling. Mirrors assertPlaybookBoundary's near-match detection.
+  const unsupported = fs.existsSync(skillDir)
+    ? fs.readdirSync(skillDir, { withFileTypes: true }).find((entry) => entry.isDirectory()
+        && entry.name.toLowerCase().replace(/-/g, '_').startsWith('manual_testing_playbook')
+        && contract.canonicalPackageRoot(entry.name) !== 'manual-testing-playbook')
+    : null;
+  if (unsupported) {
+    throw new contract.ContractError('UNSUPPORTED_PLAYBOOK_ROOT', `unsupported playbook root: ${path.join(skillDir, unsupported.name)}`);
+  }
+  const roots = ['manual-testing-playbook']
+    .map((name) => path.join(skillDir, name))
+    .filter((candidate) => fs.existsSync(candidate));
+  if (roots.length === 1) return roots[0];
+  throw new contract.ContractError('MISSING_PLAYBOOK_ROOT', `no supported playbook root under ${skillDir}`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -255,6 +286,7 @@ function classifyFixture(fixture, leavesByMode) {
  * @returns {{results: Array, validCount: number, blockedCount: number}} Report.
  */
 function runValidation({ playbookDir, skillDir }) {
+  assertPlaybookBoundary(playbookDir);
   const leavesByMode = loadManifestLeaves(skillDir);
   const files = walkFixtureFiles(playbookDir);
   const results = [];
@@ -333,6 +365,8 @@ module.exports = {
   parseFixture,
   walkFixtureFiles,
   loadManifestLeaves,
+  assertPlaybookBoundary,
+  resolvePlaybookBoundary,
   classifyFixture,
   runValidation,
   formatReport,
@@ -341,16 +375,9 @@ module.exports = {
 if (require.main === module) {
   const args = parseArgs(process.argv.slice(2));
   const skillDir = path.resolve(args.skillDir || path.resolve(__dirname, '..', '..'));
-  // Accept either the snake_case (repo standard) or kebab-case playbook dir name.
-  const playbookDir = path.resolve(
-    args.dir
-    || ['manual_testing_playbook', 'manual-testing-playbook']
-        .map((n) => path.join(skillDir, n))
-        .find((p) => fs.existsSync(p))
-    || path.join(skillDir, 'manual_testing_playbook'),
-  );
 
   try {
+    const playbookDir = resolvePlaybookBoundary(skillDir, args.dir);
     const report = runValidation({ playbookDir, skillDir });
     if (args.format === 'json') {
       process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

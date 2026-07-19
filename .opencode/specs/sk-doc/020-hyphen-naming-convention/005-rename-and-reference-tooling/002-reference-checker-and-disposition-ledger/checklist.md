@@ -1,5 +1,5 @@
 ---
-title: "Checklist: reference checker and disposition ledger (032 phase 005.002)"
+title: "Checklist: reference checker and disposition ledger (020 phase 005.002)"
 description: "Blocking SOL verifier contract for whole-repository reference coverage, path resolution, dynamic-site disposition, ledger completeness, zero-scan failure, and read-only behavior."
 trigger_phrases:
   - "reference checker checklist"
@@ -38,52 +38,52 @@ mutation. The checker is read-only; it must not execute the migration.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 001's semantic map fields and operation states are available; the report pins the map identity consumed by the checker.
-- [ ] CHK-002 [P1] The scan manifest covers tracked regular files, symlink entries, and every supported reference class; record counts that are greater than zero.
+- [x] CHK-001 [P0] `test_map_hash_is_bound_to_exact_map_bytes` proves the ledger pins BASE and the engine map's exact byte hash.
+- [x] CHK-002 [P1] `test_complete_matrix_emits_cas_ready_read_only_ledger` records 18 tracked files, 17 regular files and 1 symlink.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-003 [P0] The checker distinguishes filesystem path values from code identifiers, JSON/YAML/TOML keys, and frontmatter fields; boundary fixtures prove no false path finding.
-- [ ] CHK-004 [P1] Python files and package directories, vendored/third-party trees, generated or lockfile output, tool-mandated names, test-runner magic, and frozen surfaces receive explicit skip or preserve rationale.
-- [ ] CHK-005 [P1] The checker is read-only and does not execute repository code, follow symlinked directories, rewrite references, or mutate the Git index.
+- [x] CHK-003 [P0] `test_complete_matrix_emits_cas_ready_read_only_ledger` excludes `old_config` and `snake_case_identifier` while resolving frontmatter path values.
+- [x] CHK-004 [P1] `m-python`, `m-tool`, `m-generated` and `m-frozen` finish with evidence-bearing preserve rows.
+- [x] CHK-005 [P1] `git_snapshot` matches before and after the full fixture scan; production code contains no filesystem write path.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-006 [P0] JS/TS module references resolve relative, extension, and index cases; missing and ambiguous modules fail non-zero with source locations.
-- [ ] CHK-007 [P0] Markdown links, JSON/YAML/TOML path values, shell sourcing/executable paths, registry paths, and symlink targets are found and reconciled against the map.
-- [ ] CHK-008 [P0] Every rename-map entry appears exactly once in the ledger with decision, rationale, status, and evidence; no map row is silently dropped.
-- [ ] CHK-009 [P0] Every dynamic `require`, `source`, and glob site appears in the ledger with a terminal disposition; an undispositioned site fails non-zero.
-- [ ] CHK-010 [P0] A zero-file or wrong-root scan fails non-zero and identifies the scan configuration error instead of passing vacuously.
+- [x] CHK-006 [P0] `test_ambiguous_extension_and_index_resolution_fails` and `test_missing_mapped_source_fails_with_map_location` prove non-zero failures with site or map evidence.
+- [x] CHK-007 [P0] `test_complete_matrix_emits_cas_ready_read_only_ledger` covers all 7 resolver kinds plus JSON, YAML, TOML and frontmatter values.
+- [x] CHK-008 [P0] The full fixture reconciles 13/13 engine map entries in original order with rationale, status and evidence.
+- [x] CHK-009 [P0] `test_dynamic_sites_require_disposition` proves the full fixture dispositions dynamic require, source and glob rows; its first undispositioned run exits 2.
+- [x] CHK-010 [P0] `test_zero_tracked_files_is_a_hard_failure` exits 2 with the `zero files` diagnostic.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-011 [P1] Pre-rename and post-rename checks distinguish an allowed source path, an expected target path, a preserved exemption, and an unresolved stale reference.
-- [ ] CHK-012 [P1] Ledger statuses are validated against the schema; unresolved, ambiguous, stale, and pending rows block acceptance.
+- [x] CHK-011 [P1] `test_post_state_rejects_stale_source_reference` and the accepted pre-state fixture distinguish source, target, preserve and stale outcomes.
+- [x] CHK-012 [P1] `validate_ledger` blocks `unresolved`, `ambiguous`, `stale`, `pending` and `invalid`; 5 failure-gate tests exercise those paths.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-013 [P1] Symlink targets are inspected as data without traversing arbitrary directories or executing sourced modules/scripts.
-- [ ] CHK-014 [P2] No executable behavior, allowlist, sandbox boundary, or naming exemption changes outside the checker contract.
+- [x] CHK-013 [P1] `test_complete_matrix_emits_cas_ready_read_only_ledger` proves the mode-120000 fixture hashes the stored link text and keeps the repository snapshot unchanged.
+- [x] CHK-014 [P2] `git status --short` shows no checker change outside the shared script, shared test and child packet paths.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-015 [P2] The ledger schema, resolver matrix, dynamic-site rule, zero-scan failure, and exemption boundary agree across `spec.md`, `plan.md`, `tasks.md`, and `decision-record.md`.
+- [x] CHK-015 [P2] `LEDGER_SCHEMA_VERSION = 1`, `DYNAMIC_DISPOSITIONS` and the resolver fixtures match the four child contract documents.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-016 [P1] Checker, ledger, and fixture changes are path-scoped to phase 005.002; no rename or reference rewrite is mixed into the phase commit.
+- [x] CHK-016 [P1] `reference_checker*.py` and `test_reference_checker.py` add read-only checker behavior only; no real rename or rewrite command ran.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

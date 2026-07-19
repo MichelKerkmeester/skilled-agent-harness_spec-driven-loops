@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop manual-testing-playbook names (032 phase 007/008)"
+title: "Feature Specification: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
 description: "The root system-deep-loop manual-testing-playbook tree has five underscore-bearing category directories and 20 underscore-bearing Markdown files, including its index. This phase renames the authored categories and scenarios to kebab-case and repairs playbook, benchmark, and router references while preserving scenario IDs and prompt content."
 trigger_phrases:
   - "system-deep-loop manual playbook naming"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop manual-testing-playbook names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 008 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 008 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake",
-  "description": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`07--fallback-and-resilience/`)",
+  "description": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`fallback-and-resilience/`) or",
   "keywords": [
     "sk-design",
     "manualtestingplaybook",
@@ -9,10 +9,9 @@
     "real-orchestrator",
     "scenarios",
     "none",
-    "fallback-and-resilience",
-    "07-fallback-and-resilience"
+    "fallback-and-resilience"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.285Z",
+  "lastUpdated": "2026-07-18T03:48:54.594Z",
   "specId": "009",
   "folderSlug": "fallback-and-hub-intake",
   "parentChain": [

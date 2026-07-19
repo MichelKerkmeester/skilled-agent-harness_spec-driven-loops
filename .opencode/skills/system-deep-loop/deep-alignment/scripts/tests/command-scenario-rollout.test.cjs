@@ -14,9 +14,9 @@ const test = require('node:test');
 const runner = require('../../../shared/behavior-benchmark/behavior-bench-run.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../../..');
-const PACKAGE_ROOT = path.resolve(__dirname, '../../behavior_benchmark');
+const PACKAGE_ROOT = path.resolve(__dirname, '../../behavior-benchmark');
 const SCENARIO_ROOT = path.join(PACKAGE_ROOT, 'scenarios');
-const INDEX_PATH = path.join(PACKAGE_ROOT, 'behavior_benchmark.md');
+const INDEX_PATH = path.join(PACKAGE_ROOT, 'behavior-benchmark.md');
 const BASELINE_PATH = path.join(PACKAGE_ROOT, 'baselines/claude-baseline.md');
 const GOLDEN_PATH = path.join(
   REPO_ROOT,
@@ -26,8 +26,8 @@ const RUNNER_PATH = path.join(
   REPO_ROOT,
   '.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs',
 );
-const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures';
-const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures';
+const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures';
+const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures';
 const PENDING = 'pending (deferred live capture)';
 const EXPECTED_RUNNER_SHA256 = 'f568f79f98c1ccb72924bbee6cb0d742f82bdf34fc65318aff4471148882595b';
 const ALLOWED_PROBES = new Set([

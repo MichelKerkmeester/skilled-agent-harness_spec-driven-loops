@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/009-cli-testing-playbooks",
+  "specFolder": "cli-external-orchestration/z_archive/009-cli-testing-playbooks",
   "description": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
   "keywords": [
     "five",
@@ -16,11 +16,12 @@
     "testing",
     "playbooks"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.750Z",
+  "lastUpdated": "2026-07-18T03:48:54.294Z",
   "specId": "009",
   "folderSlug": "cli-testing-playbooks",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

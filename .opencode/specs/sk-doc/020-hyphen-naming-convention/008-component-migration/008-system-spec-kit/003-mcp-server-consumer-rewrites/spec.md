@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP-server consumer rewrites (032 subtree 008 phase 003)"
+title: "Feature Specification: MCP-server consumer rewrites (020 subtree 008 phase 003)"
 description: "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity."
 trigger_phrases:
   - "mcp-server consumer rewrites"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: MCP-server consumer rewrites
 
@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-spec-kit |
-| **Origin** | Phase 003 of the 008 system-spec-kit component migration under the 032 kebab-case program |
+| **Origin** | Phase 003 of the 008 system-spec-kit component migration under the 020 kebab-case program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

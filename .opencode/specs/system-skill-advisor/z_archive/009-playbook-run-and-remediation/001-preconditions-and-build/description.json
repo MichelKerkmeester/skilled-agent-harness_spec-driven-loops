@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build",
+  "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
   "description": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces",
   "keywords": [
     "playbook",
@@ -15,11 +15,12 @@
     "evidence",
     "workspaces"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.126Z",
+  "lastUpdated": "2026-07-18T03:48:57.249Z",
   "specId": "001",
   "folderSlug": "preconditions-and-build",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "009-playbook-run-and-remediation"
   ],
   "memorySequence": 1,

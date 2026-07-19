@@ -37,9 +37,9 @@ Mixing that prompt-craft with executor mechanics (binary flags, invocation wrapp
 
 ### What It Does
 
-`prompt-models` is the per-model prompt-craft hub for small-model dispatch. It owns one prompt-craft profile per active model in `references/models/`, indexed by `references/models/_index.md`. Each profile records the model's primary and fallback framework, its pre-planning density, a tuned scaffold and a gotchas table. The profiles mirror `assets/model_profiles.json`, the registry that is the source of truth for context length, executors, quota pools and recommended frameworks.
+`prompt-models` is the per-model prompt-craft hub for small-model dispatch. It owns one prompt-craft profile per active model in `references/models/`, indexed by `references/models/_index.md`. Each profile records the model's primary and fallback framework, its pre-planning density, a tuned scaffold and a gotchas table. The profiles mirror `assets/model-profiles.json`, the registry that is the source of truth for context length, executors, quota pools and recommended frameworks.
 
-The hub carries no tools and no runtime code. It is reached when the skill advisor co-surfaces it alongside `cli-opencode`. You read the profile here for the prompt-craft, then follow `references/pattern_index.md` to the executor mechanics in `cli-opencode`.
+The hub carries no tools and no runtime code. It is reached when the skill advisor co-surfaces it alongside `cli-opencode`. You read the profile here for the prompt-craft, then follow `references/pattern-index.md` to the executor mechanics in `cli-opencode`.
 
 ---
 
@@ -49,7 +49,7 @@ The hub carries no tools and no runtime code. It is reached when the skill advis
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "dispatch mimo-v2.5-pro through cli-opencode" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "dispatch mimo-v2.5-pro through cli-opencode" --threshold 0.8
 
 # Or read the runtime instructions
 Read(".opencode/skills/sk-prompt/prompt-models/SKILL.md")
@@ -59,7 +59,7 @@ Read(".opencode/skills/sk-prompt/prompt-models/SKILL.md")
 
 **Step 3: Read the profile.** Load `references/models/<id>.md`. It gives you the framework (primary and fallback), the pre-planning density, the scaffold shape and the gotchas table. Apply those when you build the prompt.
 
-**Step 4: Cross to the executor.** Open `references/pattern_index.md`. It locates each mechanic (context budget, output verification, quota fallback, permissions schema) by path in `prompt-models` or `cli-opencode`. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
+**Step 4: Cross to the executor.** Open `references/pattern-index.md`. It locates each mechanic (context budget, output verification, quota fallback, permissions schema) by path in `prompt-models` or `cli-opencode`. Load the mechanic your dispatch needs and combine it with the prompt-craft from step 3.
 
 ---
 
@@ -67,7 +67,7 @@ Read(".opencode/skills/sk-prompt/prompt-models/SKILL.md")
 
 ### The Navigation Chain
 
-Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for the prompt-craft: the framework, density, scaffold and gotchas. Finally follow `references/pattern_index.md` to the executor mechanics in `cli-opencode`. The prompt-craft from here and the mechanics from `cli-opencode` combine in the executor's prompt-pack.
+Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for the prompt-craft: the framework, density, scaffold and gotchas. Finally follow `references/pattern-index.md` to the executor mechanics in `cli-opencode`. The prompt-craft from here and the mechanics from `cli-opencode` combine in the executor's prompt-pack.
 
 ### The Per-Model Profiles
 
@@ -97,7 +97,7 @@ RCAF is the default only for DeepSeek's default-unverified profile. TIDD-EC is t
 
 ### The Registry
 
-`assets/model_profiles.json` is the source of truth. Each profile in `references/models/<id>.md` mirrors one row of that registry: the `recommended_frameworks` block (primary, fallback, avoid and density), the context length, the executors array and the quota pools. When the registry changes, the profile follows. When you need to know a model's dispatch paths or pool limits without reading the prose, open the registry.
+`assets/model-profiles.json` is the source of truth. Each profile in `references/models/<id>.md` mirrors one row of that registry: the `recommended_frameworks` block (primary, fallback, avoid and density), the context length, the executors array and the quota pools. When the registry changes, the profile follows. When you need to know a model's dispatch paths or pool limits without reading the prose, open the registry.
 
 ### Craft Versus Mechanics
 
@@ -105,7 +105,7 @@ This hub owns prompt-craft and the model registry. The executor skills own mecha
 
 What prompt-craft means: which framework to use, how dense the plan should be, what the scaffold looks like and what traps to watch for. All of it is prose in `references/models/<id>.md`.
 
-What mechanics means: the binary flags for the executor CLI, the invocation wrapper, the context budget, the output-verification pipeline and the quota-fallback decision matrix. All of it lives in `cli-opencode`, reachable through `references/pattern_index.md`.
+What mechanics means: the binary flags for the executor CLI, the invocation wrapper, the context budget, the output-verification pipeline and the quota-fallback decision matrix. All of it lives in `cli-opencode`, reachable through `references/pattern-index.md`.
 
 This split keeps each side clean. Change a framework assignment in the profile and the executor flags do not drift. Add a new CLI flag in the executor and the profiles do not need a rewrite.
 
@@ -138,12 +138,12 @@ Four skills own the small-model dispatch workflow. Each owns one layer and none 
 
 | What you see | Why | Fix |
 |---|---|---|
-| No profile for the model you named | The id resolves but no `<id>.md` exists in `references/models/` | Open `references/models/_index.md` to confirm the model is listed. If it is, author the profile following the checklist in `references/pattern_index.md` |
+| No profile for the model you named | The id resolves but no `<id>.md` exists in `references/models/` | Open `references/models/_index.md` to confirm the model is listed. If it is, author the profile following the checklist in `references/pattern-index.md` |
 | The framework feels wrong for the task | The profile records the empirical best, but a task might be an outlier | Check the fallback framework. If both fail, open a benchmark run to test a third choice |
-| Profile and registry disagree | The registry (`model_profiles.json`) was updated but the profile was not re-mirrored | Re-mirror the profile from its `model_profiles.json` row |
-| Looking for flags or budgets here | Those are executor mechanics, not prompt-craft | Follow `references/pattern_index.md` to the cli-X for the flags and budget files |
+| Profile and registry disagree | The registry (`model-profiles.json`) was updated but the profile was not re-mirrored | Re-mirror the profile from its `model-profiles.json` row |
+| Looking for flags or budgets here | Those are executor mechanics, not prompt-craft | Follow `references/pattern-index.md` to the cli-X for the flags and budget files |
 | Hub does not surface in the advisor | The model name is missing from the executor's trigger phrases, or the advisor index is stale | Check `SKILL.md` trigger phrases in `cli-opencode`. Run `skill_graph_scan` to re-index |
-| A model changed executors | The dispatch matrix row in `SKILL.md` §3 is out of date | Update the dispatch matrix row and the `executors` array in `model_profiles.json` |
+| A model changed executors | The dispatch matrix row in `SKILL.md` §3 is out of date | Update the dispatch matrix row and the `executors` array in `model-profiles.json` |
 
 ---
 
@@ -159,11 +159,11 @@ A: `sk-prompt` owns the generic framework definitions (what RCAF is, what TIDD-E
 
 **Q: How is this different from `cli-opencode`?**
 
-A: `cli-opencode` owns how you invoke a model: the binary, the flags, the budget and the fallback engine. This hub owns what prompt shape you send once the model is invoked. You read the profile here for the craft, then follow `pattern_index.md` to `cli-opencode` for the mechanics.
+A: `cli-opencode` owns how you invoke a model: the binary, the flags, the budget and the fallback engine. This hub owns what prompt shape you send once the model is invoked. You read the profile here for the craft, then follow `pattern-index.md` to `cli-opencode` for the mechanics.
 
 **Q: How do I add a new small model?**
 
-A: Follow the adoption checklist in `references/pattern_index.md` §4. The steps are: add a row to `assets/model_profiles.json`, add a row to `references/models/_index.md`, author the profile at `references/models/<id>.md`, add the dispatch matrix row in `SKILL.md` §3 and re-index the advisor. No code changes unless the model needs a new executor path in `cli-opencode`.
+A: Follow the adoption checklist in `references/pattern-index.md` §4. The steps are: add a row to `assets/model-profiles.json`, add a row to `references/models/_index.md`, author the profile at `references/models/<id>.md`, add the dispatch matrix row in `SKILL.md` §3 and re-index the advisor. No code changes unless the model needs a new executor path in `cli-opencode`.
 
 **Q: The hub says RCAF is the default for most models. Should I ever use something else?**
 
@@ -179,8 +179,8 @@ The model index and registry record benchmark-backed framework assignments for M
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt-models/README.md --type readme` reports zero issues |
 | SKILL.md structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt-models/SKILL.md --type skill` reports zero issues |
-| Profile mirror check | Diff each profile's framework block against its `model_profiles.json` row |
-| Benchmarks | Review the MiniMax benchmark 003, MiMo benchmark 004 and Kimi benchmark 007 evidence cited by `references/models/_index.md` and `assets/model_profiles.json` |
+| Profile mirror check | Diff each profile's framework block against its `model-profiles.json` row |
+| Benchmarks | Review the MiniMax benchmark 003, MiMo benchmark 004 and Kimi benchmark 007 evidence cited by `references/models/_index.md` and `assets/model-profiles.json` |
 
 ---
 
@@ -191,7 +191,7 @@ The model index and registry record benchmark-backed framework assignments for M
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the dispatch matrix and the ownership rules |
 | [`references/models/_index.md`](./references/models/_index.md) | Thin per-model index: id, framework, fallback, density and status |
 | [`references/models/<id>.md`](./references/models/) | One prompt-craft profile per active model (the hub's weight) |
-| [`references/pattern_index.md`](./references/pattern_index.md) | Locates each executor-owned mechanic and its ship status |
-| [`assets/model_profiles.json`](./assets/model_profiles.json) | The model registry data each profile mirrors |
-| [`assets/cli_prompt_quality_card.md`](./assets/cli_prompt_quality_card.md) | Canonical cross-CLI prompt quality card (framework selection, CLEAR, tiers) |
+| [`references/pattern-index.md`](./references/pattern-index.md) | Locates each executor-owned mechanic and its ship status |
+| [`assets/model-profiles.json`](./assets/model-profiles.json) | The model registry data each profile mirrors |
+| [`assets/cli-prompt-quality-card.md`](./assets/cli-prompt-quality-card.md) | Canonical cross-CLI prompt quality card (framework selection, CLEAR, tiers) |
 | [`benchmarks/`](./benchmarks/) | Framework bake-off run data and synthesis for MiniMax and MiMo |

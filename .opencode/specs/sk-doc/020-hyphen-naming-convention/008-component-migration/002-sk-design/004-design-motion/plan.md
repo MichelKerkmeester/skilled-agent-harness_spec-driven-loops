@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Design-motion (032 phase 004)"
-description: "Execution plan for Design-motion in the 032 sk-design naming subtree."
+title: "Implementation Plan: Design-motion (020 phase 004)"
+description: "Execution plan for Design-motion in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-motion implementation plan"
   - "sk-design design-motion plan"
-  - "032 design-motion tasks"
+  - "020 design-motion tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Design-motion (032 phase 004)
+# Implementation Plan: Design-motion (020 phase 004)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

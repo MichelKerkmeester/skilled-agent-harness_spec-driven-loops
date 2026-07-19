@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-server directory and manifest closure (032 component 011 phase 001)"
+title: "Feature Specification: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint."
 trigger_phrases:
   - "mcp-server directory closure"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-server directory and manifest closure
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 001 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 001 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -88,7 +88,7 @@ This phase performs the single permitted directory rename to mcp-server and upda
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The primary risk is a split closure: install.sh and doctor.sh can pass different directory strings from the configured MCP command. The phase depends on the 032 baseline, semantic rename map, and reference checker; phase 002 must consume the resulting path state without changing this package closure.
+The primary risk is a split closure: install.sh and doctor.sh can pass different directory strings from the configured MCP command. The phase depends on the 020 baseline, semantic rename map, and reference checker; phase 002 must consume the resulting path state without changing this package closure.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

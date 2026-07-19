@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite",
+  "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite",
   "description": "The current `system-skill-advisor/README.md` reads as a structural reference (PASS on sk-doc `skillreadme` template) but lacks marketing voice",
   "keywords": [
     "current",
@@ -16,11 +16,12 @@
     "marketing",
     "voice"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.894Z",
+  "lastUpdated": "2026-07-18T03:48:57.237Z",
   "specId": "003",
   "folderSlug": "readme-problem-first-rewrite",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "008-skill-advisor-documentation",
     "004-documentation-quality-refactor"
   ],

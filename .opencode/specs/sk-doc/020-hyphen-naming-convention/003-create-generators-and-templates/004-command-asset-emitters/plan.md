@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: command asset emitters (032 phase 003 child 004)"
+title: "Implementation Plan: command asset emitters (020 phase 003 child 004)"
 description: "Inventory every `/create:*` asset emitter, update only its generated path and filename rules, and verify representative auto/confirm routes against the sibling generator and phase 002 consumer contracts."
 trigger_phrases:
   - "create command asset emitter implementation plan"
@@ -11,13 +11,13 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:38:11Z"
     last_updated_by: "codex"
-    recent_action: "Authored the implementation plan for command asset output naming"
-    next_safe_action: "Build the command asset inventory and classify source paths, keys, and emitted values"
+    recent_action: "Completed the command asset emitter migration and verification plan"
+    next_safe_action: "Integrate this child with the phase 003 parent after central review"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,15 +43,15 @@ Treat each command asset as a producer contract. Inventory the source asset path
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] All current create auto/confirm/presentation assets are enumerated by command family.
-- [ ] Every output path, filename pattern, name question, and completion path is classified as source path, schema key, or emitted filesystem value.
-- [ ] Child 001-003 output contracts and phase 002's catalog/playbook consumer matrix are available.
-- [ ] Temporary command targets and representative route inputs are defined.
+- [x] All current create auto/confirm/presentation assets are enumerated by command family.
+- [x] Every output path, filename pattern, name question, and completion path is classified as source path, schema key, or emitted filesystem value.
+- [x] Child 001-003 output contracts and phase 002's catalog/playbook consumer matrix are available.
+- [x] Temporary command targets and representative route inputs are defined.
 
 ### Definition of Done
-- [ ] All command asset emitter values and messages agree with kebab-case output contracts.
-- [ ] Representative auto/confirm routes produce only compliant temporary output names.
-- [ ] Source asset filenames, mapping keys, and out-of-scope repository names are unchanged.
+- [x] All command asset emitter values and messages agree with kebab-case output contracts.
+- [x] Representative auto/confirm routes produce only compliant temporary output names.
+- [x] Source asset filenames, mapping keys, and out-of-scope repository names are unchanged.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -67,20 +67,20 @@ Treat each command asset as a producer contract. Inventory the source asset path
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Enumerate every create asset triple and record source paths, keys, output values, and expected names.
-- [ ] Build a command-family matrix covering skill/parent, catalog/playbook, README, agent, command, changelog, flowchart, and benchmark routes.
-- [ ] Prepare temporary target roots and phase 002 conflict fixtures.
+- [x] Enumerate every create asset triple and record source paths, keys, output values, and expected names.
+- [x] Build a command-family matrix covering skill/parent, catalog/playbook, README, agent, command, changelog, flowchart, and benchmark routes.
+- [x] Prepare temporary target roots and phase 002 conflict fixtures.
 
 ### Phase 2: Implementation
-- [ ] Update skill and parent-skill emitted path rules to match child 001.
-- [ ] Update catalog/playbook roots, category/leaf patterns, and compatibility assertions to match child 002 and phase 002.
-- [ ] Update remaining command-family output patterns, validation messages, displayed paths, and completion summaries to match child 003.
-- [ ] Preserve source asset filenames, mapping keys, field names, and exact-name contracts.
+- [x] Update skill and parent-skill emitted path rules to match child 001.
+- [x] Update catalog/playbook roots, category/leaf patterns, and compatibility assertions to match child 002 and phase 002.
+- [x] Update remaining command-family output patterns, validation messages, displayed paths, and completion summaries to match child 003.
+- [x] Preserve source asset filenames, mapping keys, field names, and exact-name contracts.
 
 ### Phase 3: Verification
-- [ ] Run representative auto and confirm routes for every command family into temporary roots.
-- [ ] Inspect output trees, status paths, and validation diagnostics for non-exempt underscore names.
-- [ ] Run catalog/playbook old-only/new-only/both/missing consumer checks and record all exit codes.
+- [x] Run representative auto and confirm routes for every command family into temporary roots.
+- [x] Inspect output trees, status paths, and validation diagnostics for non-exempt underscore names.
+- [x] Run catalog/playbook old-only/new-only/both/missing consumer checks and record all exit codes.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

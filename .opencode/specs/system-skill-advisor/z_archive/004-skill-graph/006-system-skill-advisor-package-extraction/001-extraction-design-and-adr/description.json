@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
   "description": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`",
   "keywords": [
     "skill",
@@ -14,11 +14,12 @@
     "inside",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.629Z",
+  "lastUpdated": "2026-07-18T03:48:57.100Z",
   "specId": "001",
   "folderSlug": "extraction-design-and-adr",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

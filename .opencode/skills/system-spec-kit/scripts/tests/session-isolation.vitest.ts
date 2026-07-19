@@ -15,10 +15,10 @@ import {
   upsertNode,
   type CoverageEdge,
   type CoverageNode,
-} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
-import { handleCoverageGraphQuery } from '../../mcp_server/handlers/coverage-graph/query.js';
-import { handleCoverageGraphStatus } from '../../mcp_server/handlers/coverage-graph/status.js';
-import { handleCoverageGraphConvergence } from '../../mcp_server/handlers/coverage-graph/convergence.js';
+} from '../../mcp-server/lib/coverage-graph/coverage-graph-db.js';
+import { handleCoverageGraphQuery } from '../../mcp-server/handlers/coverage-graph/query.js';
+import { handleCoverageGraphStatus } from '../../mcp-server/handlers/coverage-graph/status.js';
+import { handleCoverageGraphConvergence } from '../../mcp-server/handlers/coverage-graph/convergence.js';
 
 const SPEC_FOLDER = 'specs/042-session-scope';
 const LOOP_TYPE = 'research';

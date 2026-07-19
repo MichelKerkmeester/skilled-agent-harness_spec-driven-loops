@@ -271,9 +271,9 @@ describe('mcp-tooling packet fallback parity (replay vs documented runtime)', ()
   const ZERO_SIGNAL = 'Summarise this quarterly sales report into three bullet points.';
   const SCORED: Record<string, { prompt: string; intent: string; resources: string[] }> = {
     'mcp-chrome-devtools': { prompt: 'getting started, command not found', intent: 'INSTALL', resources: ['references/troubleshooting.md'] },
-    'mcp-click-up': { prompt: 'Manage quarterly goals and key results', intent: 'MCP_ADVANCED', resources: ['references/mcp_tools.md'] },
+    'mcp-click-up': { prompt: 'Manage quarterly goals and key results', intent: 'MCP_ADVANCED', resources: ['references/mcp-tools.md'] },
     'mcp-aside-devtools': { prompt: 'install this, it is not installed', intent: 'INSTALL', resources: ['references/troubleshooting.md'] },
-    'mcp-figma': { prompt: 'export a screenshot for the a11y audit', intent: 'INSPECT_EXPORT', resources: ['references/figma_cli_reference.md', 'references/tool_surface.md'] },
+    'mcp-figma': { prompt: 'export a screenshot for the a11y audit', intent: 'INSPECT_EXPORT', resources: ['references/figma-cli-reference.md', 'references/tool-surface.md'] },
     'mcp-refero': { prompt: 'Show similar screens for this ui pattern', intent: 'SCREENS', resources: ['references/tool-surface.md'] },
     'mcp-mobbin': { prompt: 'Show the checkout ux flow journey', intent: 'FLOWS', resources: ['references/tool-surface.md'] },
   };
@@ -303,8 +303,8 @@ describe('mcp-tooling packet fallback parity (replay vs documented runtime)', ()
 
   it('the ClickUp fallback branches no longer hard-load the fallback resource', () => {
     const text = readFileSync(join(MCP_TOOLING, 'mcp-click-up', 'SKILL.md'), 'utf8');
-    expect(text).not.toContain('load_if_available("references/cupt_commands.md"');
-    expect(text).toContain('DEFAULT_RESOURCE = "references/cupt_commands.md"');
+    expect(text).not.toContain('load_if_available("references/cupt-commands.md"');
+    expect(text).toContain('DEFAULT_RESOURCE = "references/cupt-commands.md"');
   });
 
   it('the hub router declares the same fallback-only contract and defers with an empty assembly', () => {
@@ -343,7 +343,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
     const scratch = tempDir('rg-e2e-');
     const corpus = join(scratch, 'playbook');
     cpSync(join(MCP_TOOLING, 'manual_testing_playbook'), corpus, { recursive: true });
-    const victim = join(corpus, 'hub_routing', 'chrome_devtools_browser_debug.md');
+    const victim = join(corpus, 'hub_routing', 'chrome-devtools-browser-debug.md');
     writeFileSync(victim, readFileSync(victim, 'utf8')
       .replace('expected_intent: mcp-chrome-devtools', 'expected_intent: mcp-figma'));
 
@@ -367,7 +367,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
     const scratch = tempDir('rg-parse-');
     const corpus = join(scratch, 'playbook');
     cpSync(join(MCP_TOOLING, 'manual_testing_playbook'), corpus, { recursive: true });
-    const victim = join(corpus, 'hub_routing', 'clickup_task_management.md');
+    const victim = join(corpus, 'hub_routing', 'clickup-task-management.md');
     writeFileSync(victim, readFileSync(victim, 'utf8')
       .replace('expected_intent: mcp-click-up', 'expected_intent: !!!'));
 

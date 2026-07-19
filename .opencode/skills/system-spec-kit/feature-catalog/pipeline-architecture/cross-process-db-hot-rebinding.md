@@ -1,0 +1,55 @@
+---
+title: "Cross-process DB hot rebinding"
+description: "Cross-process DB hot rebinding detects external database mutations via a marker file and reinitializes the DB connection with module rebinding."
+trigger_phrases:
+  - "cross-process db hot rebinding"
+  - "db hot rebinding"
+  - "marker file database detection"
+  - "module rebinding on external mutation"
+  - "reinitialize db connection"
+version: 3.6.0.11
+---
+
+# Cross-process DB hot rebinding
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Cross-process DB hot rebinding detects external database mutations via a marker file and reinitializes the DB connection with module rebinding.
+
+When another process changes the database while the server is running, the server needs to notice and reconnect. This feature watches for a signal file that says "the database changed" and automatically refreshes the connection. Without it, the server would keep using stale data until someone manually restarted it.
+
+---
+
+## 2. HOW IT WORKS
+
+Process-lifetime DB connection manager via marker file (`DB_UPDATED_FILE`). When an external process mutates the database, it writes a timestamp to the marker file. On next `checkDatabaseUpdated()` call, if timestamp > lastDbCheck, triggers `reinitializeDatabase()`: closes the old DB handle, calls `vectorIndex.initializeDb()`, and rebinds 6 modules (vectorIndex, checkpoints, accessTracker, hybridSearch, sessionManager, incrementalIndex). Concurrency-safe via mutex with race-condition fix (P4-13). Also manages embedding model readiness (polling with timeout) and constitutional cache lifecycle.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp-server/core/db-state.ts` | Core | Database state management and hot rebinding |
+| `mcp-server/core/config.ts` | Core | Server configuration including DB_UPDATED_FILE |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/db-state-graph-reinit.vitest.ts` | Automated test | DB state graph reinit |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Pipeline Architecture
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `pipeline-architecture/cross-process-db-hot-rebinding.md`
+- Playbook reference: 112
+Related references:
+- [backend-storage-adapter-abstraction.md](../../feature-catalog/pipeline-architecture/backend-storage-adapter-abstraction.md) — Backend storage adapter abstraction
+- [atomic-write-then-index-api.md](../../feature-catalog/pipeline-architecture/atomic-write-then-index-api.md) — Atomic write-then-index API

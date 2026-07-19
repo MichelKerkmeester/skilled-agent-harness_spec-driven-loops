@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-code-mode manual-testing playbook (032 component 011 phase 005)"
+title: "Tasks: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
 description: "Tasks for the manual-testing root, eight category directories, index, 27 scenario files, and their active link closure."
 trigger_phrases:
   - "mcp-code-mode manual playbook tasks"

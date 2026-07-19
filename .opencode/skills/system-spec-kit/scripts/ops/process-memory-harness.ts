@@ -94,7 +94,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   },
   {
     id: 'code-graph-server',
-    pattern: /system-code-graph\/mcp_server\/dist\/index\.js/,
+    pattern: /system-code-graph\/mcp-server\/dist\/index\.js/,
     role: 'project-daemon',
     reason: 'Code Graph MCP server process',
   },
@@ -106,7 +106,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   },
   {
     id: 'spec-memory-server',
-    pattern: /system-spec-kit\/mcp_server\/dist\/context-server\.js/,
+    pattern: /system-spec-kit\/mcp-server\/dist\/context-server\.js/,
     role: 'project-daemon',
     reason: 'Spec Kit Memory MCP server process',
   },
@@ -486,7 +486,7 @@ export function syntheticFixtureSnapshot(): HarnessSnapshot {
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp_server/dist/index.js
+ 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp-server/dist/index.js
  2003     1 S    12000 /opt/homebrew/bin/node .opencode/bin/mk-spec-memory-launcher.cjs
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>

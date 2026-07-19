@@ -1,0 +1,59 @@
+---
+title: "Content-aware memory filename generation"
+description: "Content-aware memory filename generation derives slugs from task context and session data instead of using the spec folder name alone."
+trigger_phrases:
+  - "content-aware memory filename generation"
+  - "memory filename slug"
+  - "derive slug from task context"
+  - "generateContentSlug"
+  - "session-derived filename"
+version: 3.6.0.22
+---
+
+# Content-aware memory filename generation
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Content-aware memory filename generation derives slugs from task context and session data instead of using the spec folder name alone.
+
+Previously, every saved memory in the same folder got nearly the same filename, making it impossible to tell them apart at a glance. This feature names each file based on what the spec-doc record is actually about, like labeling your photo albums by vacation instead of just numbering them. You can now scan a folder and instantly see what each file contains.
+
+---
+
+## 2. HOW IT WORKS
+
+Memory filenames were previously derived solely from the spec folder name, producing identical slugs like `hybrid-rag-fusion-refinement.md` for every save in the same folder. The workflow now builds a `preferredMemoryTask` and uses it for slug/title generation in `generateContentSlug()`, with candidate precedence `task -> specTitle -> sessionCandidates (QUICK_SUMMARY/TITLE/SUMMARY) -> folderBase`. Candidate precedence prefers stronger session-derived names before folder fallback. Generic detection used by selection/enrichment includes `implementation-and-updates`, and slug fallback still uses the generic terms list (`development-session`, `session-summary`, `session-context`, `session`, `context`, `implementation`, `work-session`).
+
+The slug is lowercased, non-alphanumeric characters replaced with hyphens, collapsed and truncated at a word boundary (hyphen) to a maximum of 50 characters. A minimum length of 8 characters ensures slugs are meaningful. This produces filenames like `04-03-26_17-25__sprint-019-impl-3-phases-81-files.md` instead of `04-03-26_17-25__hybrid-rag-fusion-refinement.md`. Batch type inference also now assigns synthetic fallback keys like `__pathless_0`, `__pathless_1`, and so on for inputs without a file path, so multiple pathless memories in the same batch no longer collapse onto the same Map entry before slug/title decisions are made. Always active with no feature flag. The same content slug is also used to derive the H1 body heading via `slugToTitle()`, ensuring filename and heading always match.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `scripts/utils/slug-utils.ts` | Script | Content-aware slug generation (`generateContentSlug()`) |
+| `scripts/core/title-builder.ts` | Script | `slugToTitle()` derives H1 body heading from content slug |
+| `scripts/utils/task-enrichment.ts` | Script | Enriches generic task names from `spec.md` titles during slug generation |
+| `scripts/core/workflow.ts` | Script | Applies spec-title fallback and `preferredMemoryTask` selection before filename generation |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/slug-utils-boundary.vitest.ts` | Automated test | Slug generation boundary tests |
+| `scripts/tests/task-enrichment.vitest.ts` | Automated test | Task enrichment, slug precedence, and workflow seam coverage |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Memory Quality And Indexing
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `memory-quality-and-indexing/content-aware-memory-filename-generation.md`
+Related references:
+- [auto-entity-extraction.md](../../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md) — Auto entity extraction
+- [entity-normalization-consolidation.md](../../feature-catalog/memory-quality-and-indexing/entity-normalization-consolidation.md) — Entity normalization consolidation

@@ -24,7 +24,7 @@ function hasPackageJson(dir: string): boolean {
 
 function hasWorkspaceDirectories(dir: string): boolean {
   return (
-    fs.existsSync(path.join(dir, 'mcp_server')) &&
+    fs.existsSync(path.join(dir, 'mcp-server')) &&
     fs.existsSync(path.join(dir, 'shared'))
   );
 }
@@ -55,7 +55,7 @@ function resolveImportMetaRelativePackageRoot(): string {
 function fallbackResolvedPath(label: 'package root' | 'database dir'): string {
   return label === 'package root'
     ? resolveImportMetaRelativePackageRoot()
-    : path.join(resolveImportMetaRelativePackageRoot(), 'mcp_server', 'database');
+    : path.join(resolveImportMetaRelativePackageRoot(), 'mcp-server', 'database');
 }
 
 function validateResolvedPath(label: 'package root' | 'database dir', resolvedPath: string): string {
@@ -95,7 +95,7 @@ export function resolveDatabaseDir(): string {
   if (configuredDir) {
     return validateResolvedPath('database dir', path.resolve(process.cwd(), configuredDir));
   }
-  return validateResolvedPath('database dir', path.join(resolvePackageRoot(), 'mcp_server', 'database'));
+  return validateResolvedPath('database dir', path.join(resolvePackageRoot(), 'mcp-server', 'database'));
 }
 
 function resolveDerivedDbPath(databaseDir = resolveDatabaseDir()): string {

@@ -1,18 +1,19 @@
 {
   "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
-  "description": "The sk-design manual-testing-playbook category `03--transform-verb-framing` has three scenario files (`should-it-be-audit.md`,",
+  "description": "The sk-design manual-testing-playbook category `transform-verb-framing` has three scenario files (`should-it-be-audit.md`, `clarify-alias-only.md`,",
   "keywords": [
     "sk-design",
     "manual-testing-playbook",
     "category",
-    "03-transform-verb-framing",
+    "transform-verb-framing",
     "three",
     "scenario",
     "files",
-    "should-it-be-audit"
+    "should-it-be-audit",
+    "clarify-alias-only"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.270Z",
+  "lastUpdated": "2026-07-18T03:48:54.592Z",
   "specId": "005",
   "folderSlug": "transform-verb-should-it-be",
   "parentChain": [

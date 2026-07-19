@@ -62,7 +62,7 @@ Expected result: `list_tools()` includes the `figma` manual, and `tool_info()` r
 | Document | Purpose |
 |---|---|
 | [`../figma-cli/README.md`](../figma-cli/README.md) | The primary CLI transport this MCP is an optional alternative to |
-| [`../../references/mcp_wiring.md`](../../references/mcp_wiring.md) | Full wiring: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |
+| [`../../references/mcp-wiring.md`](../../references/mcp-wiring.md) | Full wiring: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |
 | [`../../SKILL.md`](../../SKILL.md) | Runtime contract for the mcp-figma skill |
 
 ### Source

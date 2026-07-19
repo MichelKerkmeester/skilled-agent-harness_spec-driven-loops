@@ -22,7 +22,7 @@ const { createRuntimeCapabilities } = require('../../runtime/lib/deep-loop/runti
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** @type {string} Default path to the machine-readable runtime capability matrix. */
-const DEFAULT_CAPABILITY_PATH = path.join(__dirname, '..', 'assets', 'runtime_capabilities.json');
+const DEFAULT_CAPABILITY_PATH = path.join(__dirname, '..', 'assets', 'runtime-capabilities.json');
 
 const capabilities = createRuntimeCapabilities({
   label: 'deep-research',

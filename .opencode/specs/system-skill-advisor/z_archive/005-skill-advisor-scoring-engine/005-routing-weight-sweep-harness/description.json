@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
+  "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
   "description": "Phase 015/002 promoted the cosine lane to a live weight of 0.05 by following a single conservative weight vector",
   "keywords": [
     "phase",
@@ -14,11 +14,12 @@
     "conservative",
     "vector"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.834Z",
+  "lastUpdated": "2026-07-18T03:48:57.146Z",
   "specId": "005",
   "folderSlug": "routing-weight-sweep-harness",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

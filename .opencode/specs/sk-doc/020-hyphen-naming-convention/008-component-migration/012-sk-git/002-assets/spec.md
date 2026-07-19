@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: sk-git assets (032 phase 008/012/002)"
+title: "Feature Specification: sk-git assets (020 phase 008/012/002)"
 description: "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact."
 trigger_phrases:
   - "sk-git assets kebab-case"
-  - "032 sk-git asset rename"
+  - "020 sk-git asset rename"
   - "asset template pointer closure"
 importance_tier: "important"
 contextType: "planning"
@@ -27,7 +27,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-git assets
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-git |
-| **Origin** | Phase 002 of the sk-git component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the sk-git component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -92,7 +92,7 @@ The purpose is to prove every in-scope sk-git asset is addressable through kebab
 | REQ-002 | Active asset consumers use kebab-case paths. | The rename/reference checker finds zero active pointers to assets/commit_message_template.md, assets/pr_template.md, or assets/worktree_checklist.md; every target resolves. |
 | REQ-003 | Asset content contracts remain unchanged apart from path-valued references. | Template structure, frontmatter fields, keys, examples, modes, and symlink targets are parity-checked before and after. |
 | REQ-004 | The phase stays inside the asset boundary. | The diff contains no reference, manual-playbook, benchmark, changelog, code, or sibling-surface rename. |
-| REQ-005 | The 032 exemptions are honored. | Tool-mandated names, Python names, keys, fields, and frozen content are absent from the rename map. |
+| REQ-005 | The 020 exemptions are honored. | Tool-mandated names, Python names, keys, fields, and frozen content are absent from the rename map. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -106,7 +106,7 @@ The purpose is to prove every in-scope sk-git asset is addressable through kebab
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase depends on the frozen 032 map and on phase 001's reference targets because worktree-checklist.md links into references/. The main risks are stale asset names in the router tables, accidental edits to template content, and a false collision when a target was pre-adopted. The checklist requires source-map, content-parity, and pointer-closure evidence.
+The phase depends on the frozen 020 map and on phase 001's reference targets because worktree-checklist.md links into references/. The main risks are stale asset names in the router tables, accidental edits to template content, and a false collision when a target was pre-adopted. The checklist requires source-map, content-parity, and pointer-closure evidence.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

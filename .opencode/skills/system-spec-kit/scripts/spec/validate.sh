@@ -20,8 +20,8 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly RULES_DIR="$SCRIPT_DIR/../rules"
 readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
-readonly SPEC_DOC_STRUCTURE_TS="$SCRIPT_DIR/../../mcp_server/lib/validation/spec-doc-structure.ts"
-readonly SPEC_DOC_STRUCTURE_JS="$SCRIPT_DIR/../../mcp_server/dist/lib/validation/spec-doc-structure.js"
+readonly SPEC_DOC_STRUCTURE_TS="$SCRIPT_DIR/../../mcp-server/lib/validation/spec-doc-structure.ts"
+readonly SPEC_DOC_STRUCTURE_JS="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/spec-doc-structure.js"
 readonly CONTINUITY_FRESHNESS_TS="$SCRIPT_DIR/../validation/continuity-freshness.ts"
 readonly CONTINUITY_FRESHNESS_JS="$SCRIPT_DIR/../dist/validation/continuity-freshness.js"
 readonly EVIDENCE_MARKER_LINT_TS="$SCRIPT_DIR/../validation/evidence-marker-lint.ts"
@@ -850,7 +850,7 @@ run_generated_metadata_integrity_check() {
     local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
 
     # Prefer the TS source through tsx: the bridge imports the shared check across the
-    # scripts/mcp_server tree boundary, which only resolves from the source location.
+    # scripts/mcp-server tree boundary, which only resolves from the source location.
     if [[ -f "$GENERATED_METADATA_INTEGRITY_TS" ]]; then
         if [[ ! -x "$tsx_bin" ]]; then
             log_error "$rule_name" "tsx runtime missing: $tsx_bin"
@@ -908,7 +908,7 @@ run_generated_metadata_drift_check() {
     local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
 
     # Prefer the TS source through tsx: the bridge imports the shared check across the
-    # scripts/mcp_server tree boundary, which only resolves from the source location.
+    # scripts/mcp-server tree boundary, which only resolves from the source location.
     if [[ -f "$GENERATED_METADATA_DRIFT_TS" ]]; then
         if [[ ! -x "$tsx_bin" ]]; then
             log_error "$rule_name" "tsx runtime missing: $tsx_bin"
@@ -988,8 +988,8 @@ run_node_orchestrator() {
     # registered standalone rules are available before the Node orchestrator mirrors them.
     [[ -n "${SPECKIT_RULES:-}" ]] && return 1
 
-    local orchestrator_js="$SCRIPT_DIR/../../mcp_server/dist/lib/validation/orchestrator.js"
-    local orchestrator_ts="$SCRIPT_DIR/../../mcp_server/lib/validation/orchestrator.ts"
+    local orchestrator_js="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/orchestrator.js"
+    local orchestrator_ts="$SCRIPT_DIR/../../mcp-server/lib/validation/orchestrator.ts"
     local freshness_checker="$SCRIPT_DIR/../lib/dist-freshness.cjs"
     # Resolve the orchestrator invocation base once (compiled JS preferred, tsx
     # fallback for source-only checkouts). Return 1 when neither is available so
@@ -999,11 +999,11 @@ run_node_orchestrator() {
         if [[ -f "$freshness_checker" ]]; then
             local freshness_output=""
             local freshness_rc=0
-            freshness_output=$(node "$freshness_checker" check --package system-spec-kit/mcp_server --entry validation-orchestrator 2>&1) || freshness_rc=$?
+            freshness_output=$(node "$freshness_checker" check --package system-spec-kit/mcp-server --entry validation-orchestrator 2>&1) || freshness_rc=$?
             if [[ "$freshness_rc" -eq 69 ]]; then
                 echo "ERROR: validate.sh compiled validation orchestrator is stale." >&2
                 [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
-                echo "Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build" >&2
+                echo "Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build" >&2
                 exit 3
             elif [[ "$freshness_rc" -ne 0 ]]; then
                 echo "WARNING: dist freshness check could not run (exit $freshness_rc): $freshness_output" >&2

@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-The [`mk-completion-sentinel.js`](../../plugins/mk-completion-sentinel.js) plugin adapts OpenCode lifecycle events to the shared [`completion-evidence-sentinel.cjs`](../system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs) core. The plugin does not define this folder directly. It imports the core, which owns the state path, completion-evidence policy, deduplication and cleanup behavior.
+The [`mk-completion-sentinel.js`](../../plugins/mk-completion-sentinel.js) plugin adapts OpenCode lifecycle events to the shared [`completion-evidence-sentinel.cjs`](../system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs) core. The plugin does not define this folder directly. It imports the core, which owns the state path, completion-evidence policy, deduplication and cleanup behavior.
 
 This state supports the `system-spec-kit` completion verification workflow. That workflow requires strict spec-folder validation before a completion claim. The sentinel provides a separate advisory safeguard at turn end. It inspects recorded completion artifacts after an assistant claims work is complete, but it does not replace the workflow's required validation, execute tests or run `validate.sh`.
 
@@ -78,7 +78,7 @@ The core then evaluates recorded evidence for that folder:
 
 The core returns only `ok` or `advise`. It fails open when claim detection, folder resolution, evidence evaluation or internal processing fails. The OpenCode plugin also catches errors and never throws to enforce completion. When the result is `advise`, the plugin appends the detail to the bounded advisory log instead of writing to stdout or stderr.
 
-The shared core also serves the [`completion-evidence-stop.cjs`](../system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs) Claude Code Stop hook. That adapter reads the last assistant message from its Stop payload and obtains the active spec folder from Claude hook state. It writes a warning to stderr and appends the same detail to the shared log, but it always exits successfully and never returns a block decision.
+The shared core also serves the [`completion-evidence-stop.cjs`](../system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs) Claude Code Stop hook. That adapter reads the last assistant message from its Stop payload and obtains the active spec folder from Claude hook state. It writes a warning to stderr and appends the same detail to the shared log, but it always exits successfully and never returns a block decision.
 
 This design keeps completion policy independent from either runtime transport. It does not call the Spec Kit Memory MCP daemon or persist state in an MCP database. The adapters invoke one local core and share this JSON store directly.
 
@@ -127,7 +127,7 @@ Operators can delete `advisory-dedup.json` to reset advisory suppression. The se
 | Resource | Purpose |
 |---|---|
 | [`mk-completion-sentinel.js`](../../plugins/mk-completion-sentinel.js) | Adapts OpenCode session events to the shared sentinel core. |
-| [`completion-evidence-sentinel.cjs`](../system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs) | Owns completion checks, dedup persistence and stale-state cleanup. |
-| [`completion-evidence-stop.cjs`](../system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs) | Adapts Claude Code Stop payloads and hook state to the shared core. |
+| [`completion-evidence-sentinel.cjs`](../system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs) | Owns completion checks, dedup persistence and stale-state cleanup. |
+| [`completion-evidence-stop.cjs`](../system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs) | Adapts Claude Code Stop payloads and hook state to the shared core. |
 | [`system-spec-kit/SKILL.md`](../system-spec-kit/SKILL.md) | Defines the broader validation-before-completion workflow that the sentinel observes. |
 | [`completion-sentinel-advisories.log`](../../logs/completion-sentinel-advisories.log) | Stores bounded advisory messages separately from deduplication state when the log exists. |

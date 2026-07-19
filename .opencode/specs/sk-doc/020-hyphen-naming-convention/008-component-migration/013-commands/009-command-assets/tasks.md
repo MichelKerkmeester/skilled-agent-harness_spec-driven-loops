@@ -1,5 +1,5 @@
 ---
-title: "Tasks: command asset and reference closure (032 phase 008/013/009)"
+title: "Tasks: command asset and reference closure (020 phase 008/013/009)"
 description: "Bounded residual tasks for command asset ownership, kebab-case targets, and complete active path closure."
 trigger_phrases:
   - "command asset closure tasks"

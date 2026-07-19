@@ -100,10 +100,10 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [embeddings/README.md](../README.md) | Parent embeddings package overview |
 | [embeddings/factory.ts](../factory.ts) | Provider selection and auto-detection logic |
 | [embeddings/profile.ts](../profile.ts) | Per-profile database path generation |
-| [embedder_architecture.md](../../../references/memory/embedder_architecture.md) | Dual registry/factory architecture, active pointer, and operator runbook |
+| [embedder-architecture.md](../../../references/memory/embedder-architecture.md) | Dual registry/factory architecture, active pointer, and operator runbook |
 | [shared/types.ts](../../types.ts) | `IEmbeddingProvider` and shared retrieval types |
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
-| [mcp_server/README.md](../../../mcp_server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
+| [mcp-server/README.md](../../../mcp-server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
 | packet 018 | hf-local to ollama auto-migration spec |
 
 ---

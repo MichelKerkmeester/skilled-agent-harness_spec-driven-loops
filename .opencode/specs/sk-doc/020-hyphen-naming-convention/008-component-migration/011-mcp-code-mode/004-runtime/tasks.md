@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-code-mode runtime (032 component 011 phase 004)"
+title: "Tasks: mcp-code-mode runtime (020 component 011 phase 004)"
 description: "Tasks for the runtime filename census, no-op proof, conditional rename closure, and executable path verification."
 trigger_phrases:
   - "mcp-code-mode runtime tasks"

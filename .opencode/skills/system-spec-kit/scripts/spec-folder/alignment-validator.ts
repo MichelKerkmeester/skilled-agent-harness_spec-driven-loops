@@ -253,8 +253,8 @@ async function resolveTelemetrySchemaDocsPaths(): Promise<{ schemaPath: string; 
   ];
 
   for (const rootDir of rootCandidates) {
-    const schemaPath = path.join(rootDir, 'mcp_server', 'lib', 'telemetry', 'retrieval-telemetry.ts');
-    const docsPath = path.join(rootDir, 'mcp_server', 'lib', 'telemetry', 'README.md');
+    const schemaPath = path.join(rootDir, 'mcp-server', 'lib', 'telemetry', 'retrieval-telemetry.ts');
+    const docsPath = path.join(rootDir, 'mcp-server', 'lib', 'telemetry', 'README.md');
 
     if (await fileExists(schemaPath) && await fileExists(docsPath)) {
       return { schemaPath, docsPath };
@@ -262,7 +262,7 @@ async function resolveTelemetrySchemaDocsPaths(): Promise<{ schemaPath: string; 
   }
 
   throw new Error(
-    'Unable to locate telemetry schema/docs files for drift validation: expected mcp_server/lib/telemetry/retrieval-telemetry.ts and README.md'
+    'Unable to locate telemetry schema/docs files for drift validation: expected mcp-server/lib/telemetry/retrieval-telemetry.ts and README.md'
   );
 }
 

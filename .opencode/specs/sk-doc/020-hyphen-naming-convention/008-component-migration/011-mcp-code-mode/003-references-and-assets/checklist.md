@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-code-mode references and assets (032 component 011 phase 003)"
+title: "Checklist: mcp-code-mode references and assets (020 component 011 phase 003)"
 description: "Blocking SOL verifier contract for the four reference/asset renames and active link closure."
 trigger_phrases:
   - "mcp-code-mode references assets checklist"

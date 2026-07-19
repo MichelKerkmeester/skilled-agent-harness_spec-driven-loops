@@ -1,0 +1,63 @@
+---
+title: "clickup_create_task"
+description: "Create a single ClickUp task with name, description, priority, assignees, tags, and due date."
+trigger_phrases:
+  - "create task"
+  - "clickup_create_task"
+  - "new clickup task"
+  - "task creation mcp"
+  - "add task to list"
+version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
+---
+
+# clickup_create_task
+
+Create a single ClickUp task with name, description, priority, assignees, tags, and due date.
+
+> **Callable name unconfirmed.** A live `tool_info()` lookup found no match for `clickup.clickup_create_task` or common naming variants — the manual is not currently registered (no `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` in this environment), so no callable name can be live-verified. The capability itself is standard for ClickUp MCP servers and is not believed absent; confirm the exact registered name via `list_tools()`/`tool_info()` before first use.
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+---
+
+## 1. OVERVIEW
+
+Creates a new task in the specified list. Required field: `list_id`, `name`. Optional: `description` (plain text ONLY), `markdown_description` (markdown content), `priority` (1=urgent, 2=high, 3=normal, 4=low), `assignees` (array of user IDs), `tags` (array of tag names), `due_date` (Unix ms timestamp), `status`.
+
+---
+
+## 2. HOW IT WORKS
+
+Returns the created task object including the generated `task_id`. Priority values are integers 1-4. The task is immediately visible in ClickUp. Use `clickup_create_bulk_tasks` for 5+ tasks.
+
+### Markdown Transport (REQUIRED for markdown content)
+
+The plain `description` field stores text literally: markdown submitted there shows up in ClickUp as raw `### Heading`, `**bold**`, and `- [ ]` strings. Any description containing markdown syntax MUST go through `markdown_description`, which ClickUp converts to rendered rich text (headings, bold, checkboxes). Read the markdown form back with `include_markdown_description=true` on the get call. Live-verified against the ClickUp v2 REST API on 2026-07-15 (`POST /list/{list_id}/task` with `markdown_description`). Confirm the registered MCP parameter name via `tool_info()` on first use; the native claude.ai ClickUp connector exposes the same `markdown_description` parameter.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+
+### Validation And Tests
+
+| File | Type | Role |
+|------|------|------|
+| `manual-testing-playbook/` | Manual | Per-scenario playbook files for this feature |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: MCP HIGH Priority
+- Canonical catalog source: `FEATURE-CATALOG.md`
+- Feature file path: `mcp-high-priority/create-task.md`
+Related references:
+- [get-task.md](../../feature-catalog/mcp-high-priority/get-task.md) — clickup_get_task

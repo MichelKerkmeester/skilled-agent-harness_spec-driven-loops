@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git manual testing playbook (032 phase 008/012/003)"
+title: "Implementation Plan: sk-git manual testing playbook (020 phase 008/012/003)"
 description: "Implementation plan for the sk-git manual-playbook tree rename. The executor will move the root index, seven category directories, and 41 scenarios through one semantic map, then prove link and scenario-discovery parity."
 trigger_phrases:
   - "sk-git manual playbook implementation plan"
-  - "032 manual scenario rename plan"
+  - "020 manual scenario rename plan"
   - "playbook path closure plan"
 importance_tier: "important"
 contextType: "planning"
@@ -65,7 +65,7 @@ The executor will apply a 49-entry map: one root index, seven category directori
 - **Category closure**: renames each category directory with all nested scenarios as one dependency-closed unit.
 - **Scenario map**: maps each underscore scenario basename to one hyphenated basename while preserving its GIT ID and contract.
 - **Discovery parity**: compares the pre- and post-change scenario ID set, category counts, link targets, and package-artifact entries.
-- **Exemption filter**: excludes code identifiers, keys, fields, Python/tool-mandated names, and other 032 exclusions.
+- **Exemption filter**: excludes code identifiers, keys, fields, Python/tool-mandated names, and other 020 exclusions.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -105,7 +105,7 @@ The executor will apply a 49-entry map: one root index, seven category directori
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 frozen map and BASE | Internal | Required | No safe path classification or parity baseline. |
+| 020 frozen map and BASE | Internal | Required | No safe path classification or parity baseline. |
 | Phase 005 reference checker | Internal | Required | Link closure cannot be evidenced consistently. |
 | sk-git manual playbook validator | Internal | Required | Scenario structure and ID parity lack the canonical check. |
 | Phase 002 asset targets | Sibling | Sequenced | Cross-links from the worktree checklist must point at the asset phase's target state. |

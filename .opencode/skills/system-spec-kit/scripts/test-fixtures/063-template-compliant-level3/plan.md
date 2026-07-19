@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Template Compliant Level 3 Fixture [template:examples/level_3/plan.md]"
+title: "Implementation Plan: Template Compliant Level 3 Fixture [template:examples/level-3/plan.md]"
 description: "Current-template Level 3 implementation plan fixture."
 trigger_phrases:
   - "fixture"
@@ -77,7 +77,7 @@ The validator reads the fixture folder, detects Level 3, compares markdown struc
 
 ### Component Diagram
 ```
-templates/examples/level_3 -> fixture 063 markdown -> validate.sh --strict -> consuming tests
+templates/examples/level-3 -> fixture 063 markdown -> validate.sh --strict -> consuming tests
 ```
 
 <!-- /ANCHOR:architecture -->

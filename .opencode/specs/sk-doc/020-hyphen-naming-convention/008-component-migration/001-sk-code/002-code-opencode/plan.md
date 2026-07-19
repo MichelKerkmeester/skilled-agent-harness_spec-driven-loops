@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-opencode filesystem names (032 phase 008/002)"
+title: "Implementation Plan: code-opencode filesystem names (020 phase 008/002)"
 description: "Plan for renaming code-opencode assets, playbook resources, references, and benchmark labels through a semantic map, then repairing OpenCode resource paths and validating language-specific discovery."
 trigger_phrases:
   - "code-opencode naming implementation plan"
@@ -112,7 +112,7 @@ Process the packet by ownership boundary: assets and playbook resources, languag
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 001 hub/shared closure | Internal | Required | Shared workflow links and common references may be stale. |
-| 032 frozen rename map | Internal | Required | The component cannot distinguish rename from Python/package exemption. |
+| 020 frozen rename map | Internal | Required | The component cannot distinguish rename from Python/package exemption. |
 | 000 baseline evidence | Internal | Required | Resource-load and discovery parity cannot be measured. |
 | 005 rename/reference tooling | Internal | Required | A manual path sweep could miss dynamic or symlink references. |
 <!-- /ANCHOR:dependencies -->

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
   "description": "15 of the 22 code-graph playbook scenarios require the live `mk-code-index` MCP runtime (scan, query, verify, status, context, detectchanges), the",
   "keywords": [
     "code-graph",
@@ -17,11 +17,12 @@
     "context",
     "detectchanges"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.847Z",
+  "lastUpdated": "2026-07-18T03:48:55.575Z",
   "specId": "001",
   "folderSlug": "opencode-runtime-scenarios",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],

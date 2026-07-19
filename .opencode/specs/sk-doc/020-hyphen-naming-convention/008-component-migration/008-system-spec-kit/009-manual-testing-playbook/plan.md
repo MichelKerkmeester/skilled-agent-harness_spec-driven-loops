@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Manual testing playbook (032 subtree 008 phase 009)"
+title: "Implementation Plan: Manual testing playbook (020 subtree 008 phase 009)"
 description: "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary."
 trigger_phrases:
   - "system-spec-kit manual testing playbook"

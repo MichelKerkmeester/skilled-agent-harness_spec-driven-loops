@@ -1,13 +1,13 @@
 [
   {
     "workflowMode": "create-changelog",
-    "leafResourceId": "assets/changelog_template.md",
-    "diskPath": "shared/assets/changelog_template.md"
+    "leafResourceId": "assets/changelog-template.md",
+    "diskPath": "shared/assets/changelog-template.md"
   },
   {
     "workflowMode": "create-quality-control",
-    "leafResourceId": "assets/llmstxt_templates.md",
-    "diskPath": "shared/assets/llmstxt_templates.md"
+    "leafResourceId": "assets/llmstxt-templates.md",
+    "diskPath": "shared/assets/llmstxt-templates.md"
   },
   {
     "workflowMode": "create-quality-control",
@@ -16,17 +16,17 @@
   },
   {
     "workflowMode": "create-quality-control",
-    "leafResourceId": "references/core_standards.md",
-    "diskPath": "shared/references/core_standards.md"
+    "leafResourceId": "references/core-standards.md",
+    "diskPath": "shared/references/core-standards.md"
   },
   {
     "workflowMode": "create-quality-control",
-    "leafResourceId": "references/hvr_rules.md",
-    "diskPath": "shared/references/hvr_rules.md"
+    "leafResourceId": "references/hvr-rules.md",
+    "diskPath": "shared/references/hvr-rules.md"
   },
   {
     "workflowMode": "create-quality-control",
-    "leafResourceId": "references/evergreen_packet_id_rule.md",
-    "diskPath": "shared/references/evergreen_packet_id_rule.md"
+    "leafResourceId": "references/evergreen-packet-id-rule.md",
+    "diskPath": "shared/references/evergreen-packet-id-rule.md"
   }
 ]

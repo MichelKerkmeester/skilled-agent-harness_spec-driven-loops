@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: whole-repo verification gate (032 phase 010)"
+title: "Feature Specification: whole-repo verification gate (020 phase 010)"
 description: "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration."
 trigger_phrases:
   - "whole-repo verification gate"
@@ -30,11 +30,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Whole-repo verification gate
 
-> Phase adjacency under the 032 parent: prerequisite `009-remove-transition-aliases`; successor `011-integrate-and-closeout`.
+> Phase adjacency under the 020 parent: prerequisite `009-remove-transition-aliases`; successor `011-integrate-and-closeout`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 010 of the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 010 of the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

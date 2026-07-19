@@ -81,13 +81,13 @@ for (const fname of ['.env.local', '.env']) {
 
 let skillsDir = path.join(opencodeDir, 'skills');
 let kitDir = path.join(skillsDir, 'system-skill-advisor');
-let mcpDir = path.join(kitDir, 'mcp_server');
+let mcpDir = path.join(kitDir, 'mcp-server');
 let dbDir = path.join(mcpDir, 'database');
 let lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.mk-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
-let systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
+let systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -288,11 +288,11 @@ function createChildEnv(sourceEnv = process.env) {
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   kitDir = path.join(skillsDir, 'system-skill-advisor');
-  mcpDir = path.join(kitDir, 'mcp_server');
+  mcpDir = path.join(kitDir, 'mcp-server');
   dbDir = path.join(mcpDir, 'database');
   lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
-  systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
+  systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
 }
 
 function exists(p) {
@@ -859,7 +859,7 @@ async function checkStrictSingleWriter() {
   }
 
   try {
-    const daemonLeasePath = path.join(mcpDir, 'dist', 'mcp_server', 'lib', 'daemon', 'lease.js');
+    const daemonLeasePath = path.join(mcpDir, 'dist', 'mcp-server', 'lib', 'daemon', 'lease.js');
     const leaseModule = require(daemonLeasePath);
     const leaseResult = leaseModule.isLeaseHeld(root);
     const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
@@ -1101,7 +1101,7 @@ function run(command, args, options = {}) {
 }
 
 function serverEntrypoint() {
-  return path.join(mcpDir, 'dist', 'mcp_server', 'advisor-server.js');
+  return path.join(mcpDir, 'dist', 'mcp-server', 'advisor-server.js');
 }
 
 function requiredArtifacts() {
@@ -1444,7 +1444,7 @@ function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
   if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
   if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
-  systemSpecKitDbDir = nextPaths.systemSpecKitDbDir || path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
+  systemSpecKitDbDir = nextPaths.systemSpecKitDbDir || path.join(skillsDir, 'system-spec-kit', 'mcp-server', 'database');
 }
 
 if (require.main === module) {

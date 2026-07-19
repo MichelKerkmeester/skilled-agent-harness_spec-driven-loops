@@ -1,0 +1,87 @@
+# ─────────────────────────────────────────────────────────────────
+# DESIGN MOTION WORKFLOW (INTERACTIVE MODE)
+# ─────────────────────────────────────────────────────────────────
+role: sk-design motion mode, interactive execution
+purpose: Design purposeful animation, transitions, or reduced-motion behavior for a component or state
+action: Show the consolidated setup prompt once, then apply the motion mode to $ARGUMENTS
+
+operating_mode:
+  workflow: single_pass
+  approvals: consolidated_prompt_once
+  validation: self_validated
+
+user_inputs:
+  component_state: "Component or state transition to animate. REQUIRED."
+  library: "Optional animation library."
+  register: "[brand|product] - design posture. Default: auto-resolved from declared register field, task cue, or surface in focus."
+
+checkpoint:
+  type: consolidated_setup_prompt
+  source: ".opencode/commands/design/assets/design-motion-presentation.txt Consolidated Prompt Template"
+  shown: "Always, even when $ARGUMENTS is fully specified."
+  wait_for: user_reply
+
+task_projections:
+  note: "No transform-verb projections own this mode. Transform verbs route to their owning mode, never to a new command."
+  negative_corpus: "None of the design transform verbs is a /design:<verb> command."
+
+workflow:
+  step_0_show_prompt:
+    purpose: Show the consolidated setup prompt and wait for the user's reply
+    action: "Render the Consolidated Prompt Template from the presentation asset; wait for the reply before proceeding"
+    output: resolved_inputs
+
+  step_1_load_hub:
+    purpose: Load the sk-design parent hub routing table and shared references
+    action: "Read .opencode/skills/sk-design/SKILL.md"
+    output: hub_context
+
+  step_2_load_mode:
+    purpose: Load the motion mode contract
+    action: "Read .opencode/skills/sk-design/design-motion/SKILL.md, then its references/ and assets as the work requires"
+    output: mode_context
+
+  step_3_set_register:
+    purpose: Set the Brand-vs-Product register before any motion choice
+    action: "Read ../shared/register.md; the posture gates the motion budget"
+    output: register
+
+  step_4_select_procedure_card:
+    purpose: Select a private procedure card only when its trigger matches, or state the no-procedure fallback
+    action: "Match the resolved inputs against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
+    trigger_table:
+      - request_shape: "Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback"
+        card: "procedures/interaction-states-pass.md"
+      - request_shape: "Final polish spanning accessibility, slop, rhythm, and interaction states"
+        card: "../shared/procedures/polish-gate-orchestration.md"
+      - request_shape: "No trigger matches"
+        card: "none - state 'Procedure applied: none - baseline motion workflow' and continue"
+    output: selected_procedure_card
+
+  step_5_run_motion_design_workflow:
+    purpose: Run the motion mode's own core workflow against componentState/library/register and the selected procedure card's output
+    action: "Run the restraint gate first -> name the purpose -> decide the motion budget -> choose timing and easing -> choose the material -> define reduced-motion behavior -> spec the pattern with the matching motion pattern card, per design-motion's Motion Design Workflow"
+    output: motion_design_spec
+
+  step_6_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk-code-handoff.md"
+    condition: "Only when the user accepts the design output for build"
+    output: handoff_manifest
+
+deliverable:
+  name: "Motion Design Spec"
+  required_fields: [componentState, motionPurpose, timingModel, reducedMotionPath]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Motion Design Spec" NEXT=/design:interface,/design:foundations,/design:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath'
+  missing_input: "STATUS=ASK MISSING=<input>, plus the Ask-first question from the presentation asset"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "behavior - specifies temporal behavior after direction or foundations and before audit or build"
+  accepts_from: ["/design:audit", "/design:foundations", "/design:interface"]
+  hands_to_next: ["/design:interface", "/design:foundations", "/design:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only when accepted motion behavior moves to implementation"

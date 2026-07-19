@@ -30,7 +30,7 @@ For each interface request shape, state the public mode, selected private proced
 
 ## 1. OVERVIEW
 
-This scenario validates `design-interface/SKILL.md` section `Procedure Card Selection`. It covers all six interface-owned cards: `discovery_question_round.md`, `aesthetic_direction.md`, `wireframe_exploration.md`, `variation_set.md`, `prototype_flow_spec.md`, and `deck_direction_spec.md`. It also confirms the shared `polish_gate_orchestration.md` is cited only for final polish, not duplicated as an interface-owned card.
+This scenario validates `design-interface/SKILL.md` section `Procedure Card Selection`. It covers all six interface-owned cards: `discovery-question-round.md`, `aesthetic-direction.md`, `wireframe-exploration.md`, `variation-set.md`, `prototype-flow-spec.md`, and `deck-direction-spec.md`. It also confirms the shared `polish-gate-orchestration.md` is cited only for final polish, not duplicated as an interface-owned card.
 
 ### Why This Matters
 
@@ -86,5 +86,5 @@ The public mode remains `interface`; private cards only structure the work after
 
 - Group: Procedure Card Contract
 - Playbook ID: ID-018
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/card-selection-proof.md`

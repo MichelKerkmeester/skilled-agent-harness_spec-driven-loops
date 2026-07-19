@@ -1,0 +1,19 @@
+{
+  "extends": "../../system-spec-kit/mcp-server/tsconfig.json",
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "typeRoots": [
+      "../../system-spec-kit/node_modules/@types",
+      "../../system-spec-kit/mcp-server/node_modules/@types"
+    ],
+    "paths": {
+      "better-sqlite3": ["../../system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts"],
+      "chokidar": ["../../system-spec-kit/mcp-server/node_modules/chokidar/index.d.ts"],
+      "vitest/config": ["../../system-spec-kit/mcp-server/node_modules/vitest/config.d.ts"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests", "bench", "**/__tests__"]
+}

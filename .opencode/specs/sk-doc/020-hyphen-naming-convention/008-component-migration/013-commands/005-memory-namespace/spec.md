@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: memory command namespace naming (032 phase 008/013/005)"
+title: "Feature Specification: memory command namespace naming (020 phase 008/013/005)"
 description: "The memory command namespace has compliant command markdown files but four snake_case presentation asset filenames. This phase renames those maintained assets, updates command and README pointers, and preserves memory command IDs, tool names, and data keys."
 trigger_phrases:
   - "memory command namespace naming"
@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Memory command namespace naming
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 005 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

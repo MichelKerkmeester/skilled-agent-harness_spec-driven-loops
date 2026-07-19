@@ -19,7 +19,7 @@ triggerPhrases:
 
 ## Rule
 
-Spec folders use `NNN-short-descriptive-name`. Canonical source: `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` §2.
+Spec folders use `NNN-short-descriptive-name`. Canonical source: `.opencode/skills/system-spec-kit/references/structure/folder-structure.md` §2.
 
 ## Name format
 
@@ -30,7 +30,7 @@ Spec folders use `NNN-short-descriptive-name`. Canonical source: `.opencode/skil
 - Child/sub-folders use the same `NNN-topic-name` form, numbered sequentially per parent. Next child = highest existing child number + 1 (gaps are NOT auto-backfilled).
 - Slug rule: lowercase; every non-`[a-z0-9]` → `-`; collapse repeats; trim leading/trailing `-`.
 
-## Renaming or moving (per `references/workflows/rename_pattern.md`)
+## Renaming or moving (per `references/workflows/rename-pattern.md`)
 
 1. `git mv` the folder (preserves `git log --follow`). NEVER delete + recreate.
 2. Update LIVE cross-references (parent `graph-metadata.json`, `description.json`, command files, sibling links) by literal substitution. PRESERVE historical narrative verbatim.

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/007-skill-advisor-production-hardening/002-advisor-plugin-hardening",
+  "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/002-advisor-plugin-hardening",
   "description": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
   "keywords": [
     "three",
@@ -9,11 +9,12 @@
     "deferred",
     "phase"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.950Z",
+  "lastUpdated": "2026-07-18T03:48:57.213Z",
   "specId": "002",
   "folderSlug": "advisor-plugin-hardening",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "007-skill-advisor-production-hardening"
   ],
   "memorySequence": 0,

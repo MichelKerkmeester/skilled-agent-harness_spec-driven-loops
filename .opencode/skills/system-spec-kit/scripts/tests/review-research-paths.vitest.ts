@@ -92,7 +92,7 @@ describe('review-research path resolution', () => {
     expect(resolved.rootDir).toBe(path.join(childSpec, 'review'));
     expect(resolved.subfolder).toBeNull();
     expect(resolved.artifactDir).toBe(path.join(childSpec, 'review'));
-    expect(resolved.artifactArchiveRoot).toBe(path.join(childSpec, 'review_archive'));
+    expect(resolved.artifactArchiveRoot).toBe(path.join(childSpec, 'review-archive'));
   });
 
   it('returns flat for nested first run when rootDir is empty', () => {

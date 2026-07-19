@@ -32,10 +32,10 @@ Workflows define the execution patterns and operational modes for the markdown d
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../create-skill/references/shared/overview.md#3-skill-structure-system).
 
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
-- Mode 2 (Skill Creation): [skill_creation.md](../../create-skill/references/README.md)
+- Mode 2 (Skill Creation): [skill-creation.md](../../create-skill/references/README.md)
 - Mode 3 (Flowcharts): [create-flowchart/assets/](../../create-flowchart/assets/)
 - Mode 4 (Install Guides): [create-readme references](../../create-readme/references/README.md)
-- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_snippet_template.md)
+- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md), and [manual-testing-playbook-snippet-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md)
 - Companion catalog workflow: [create-feature-catalog references](../../create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
@@ -69,9 +69,9 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 
 | Need | Reference |
 | --- | --- |
-| Validation touchpoints, enforcement approval prompts, phase interactions, troubleshooting | [validation_and_enforcement.md](./validation_and_enforcement.md) |
-| Worked command examples and batch/multi-file processing | [workflow_examples.md](./workflow_examples.md) |
-| Content transformation procedure and the 16-pattern catalog | [optimization.md](./optimization.md) / [transformation_patterns.md](./transformation_patterns.md) |
+| Validation touchpoints, enforcement approval prompts, phase interactions, troubleshooting | [validation-and-enforcement.md](./validation-and-enforcement.md) |
+| Worked command examples and batch/multi-file processing | [workflow-examples.md](./workflow-examples.md) |
+| Content transformation procedure and the 16-pattern catalog | [optimization.md](./optimization.md) / [transformation-patterns.md](./transformation-patterns.md) |
 
 ---
 
@@ -79,15 +79,15 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 
 ### Reference Files
 - [README.md](./README.md) - create-quality-control reference route map
-- [validation_and_enforcement.md](./validation_and_enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
-- [workflow_examples.md](./workflow_examples.md) - Worked command examples and batch processing
+- [validation-and-enforcement.md](./validation-and-enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
+- [workflow-examples.md](./workflow-examples.md) - Worked command examples and batch processing
 - [optimization.md](./optimization.md) - Content transformation procedure
-- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/quick_reference.md) - Quick command reference
-- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
+- [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference
+- [skill-creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [create-readme references](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
-- [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../create-command/assets/command_template.md) - Command file templates
+- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [command-template.md](../../create-command/assets/command-template.md) - Command file templates

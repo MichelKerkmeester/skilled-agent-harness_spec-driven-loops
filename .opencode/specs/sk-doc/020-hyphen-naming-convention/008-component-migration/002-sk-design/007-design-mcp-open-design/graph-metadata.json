@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "design-mcp-open-design naming phase",
       "sk-design design-mcp-open-design phase",
-      "032 design-mcp-open-design",
+      "020 design-mcp-open-design",
       "design-mcp-open-design implementation plan",
       "sk-design design-mcp-open-design plan",
-      "032 design-mcp-open-design tasks",
+      "020 design-mcp-open-design tasks",
       "design-mcp-open-design tasks",
       "sk-design design-mcp-open-design execution",
-      "032 design-mcp-open-design checklist",
+      "020 design-mcp-open-design checklist",
       "design-mcp-open-design verification",
       "sk-design design-mcp-open-design checklist",
-      "032 design-mcp-open-design gate"
+      "020 design-mcp-open-design gate"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-07-17T14:30:10.837Z",
+    "last_save_at": "2026-07-17T20:26:04.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f293565c75bd50874b99c083016f27b7f3a5d264d8c840222e52edeca1947857",
+    "source_fingerprint": "sha256:d741cb7b9b75e5753e1671acdf94f894d2717379daa833e4db38fed169e987e0",
     "source_doc_hashes": {
-      "spec.md": "6e0de43c3e8c397cd5d172e230e9e5f4075b1b4c2daf325f4f873b38e8a25b87",
-      "plan.md": "6433593414a53d4d0679db879ded838f1787b7d899f0fd11f88630832a09f67c",
-      "tasks.md": "2587ed83ad7eed621ed719f1b93987faef549fa1ae48e243f3cd4c991315c660",
-      "checklist.md": "2f8e3c104946927da2d68593064e3299c9450ce139b72809c2bb2f32b66249a2",
-      "decision-record.md": "ba894835628ed7ad9e1bafa27cbf1cceb216505c2a60f05994c10126297ed0e2"
+      "spec.md": "ece24f1db87e92a9f5d34a7f57a0fdfc1f52097fb01a109f380d615b586e6123",
+      "plan.md": "ff6f5ac2cf812b0c7d82060b3d4c175498159f55ba4042b7386cf68edf0c2a22",
+      "tasks.md": "ab4832c05eb32bb07f9232f7e6350aabe135f4c117b6e1cdddc238d08b7a531f",
+      "checklist.md": "2c370f6bf1623c15a5bd51e0ca77cd51c92b122aa884b61bc7389471fa8901c0",
+      "decision-record.md": "273e7699463d24eac4d78af4c1f38d943a93e2c8ce1eddf1e59ed4fad5066a2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: MCP-server inner directories (032 subtree 008 phase 002)"
+title: "Decision Record: MCP-server inner directories (020 subtree 008 phase 002)"
 description: "Design decisions for semantic inner-directory targets and test-support discovery preservation."
 trigger_phrases:
   - "mcp-server inner-directory decisions"

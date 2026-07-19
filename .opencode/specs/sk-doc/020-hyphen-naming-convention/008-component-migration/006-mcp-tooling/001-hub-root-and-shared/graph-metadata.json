@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-tooling hub root naming",
       "mcp-tooling shared assets kebab-case",
-      "032 mcp-tooling phase 001",
+      "020 mcp-tooling phase 001",
       "mcp-tooling hub root implementation plan",
       "mcp-tooling shared path closure",
       "mcp-tooling hub root tasks",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The mcp-tooling hub owns routing metadata and shared navigation for three independent packets, but its root-level path ownership is not explicitly separated from the component and playbook phases. This phase classifies root/shared filesystem names, preserves exact tool contracts, and closes the hub's path references.",
     "created_at": "2026-07-14T15:17:41Z",
-    "last_save_at": "2026-07-17T14:30:23.470Z",
+    "last_save_at": "2026-07-17T20:26:10.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:99e96bc0c7a40d31928b4fbe8e0e495ac599f692a1b3286c984828c000e51745",
+    "source_fingerprint": "sha256:a3a1906037d0be8e493a010eaa22c00e9ce74587e9819ef69bd68967b04849ed",
     "source_doc_hashes": {
-      "spec.md": "f26534af241d15bbb900a54db0b91e5ee87619de8b78d6d56ba0c3120724b197",
-      "plan.md": "16c17ba98db08b6a72a243f8c132971ac32841c999dfc2834e50239a855c7b1f",
-      "tasks.md": "ca078a672ec295a142c8092a7e837bf6254a12d41797c5714054e8bf42f67c7f",
-      "checklist.md": "b88317316b37dd90ebc87d1fbe92246407cd6777400e11c1a8c3dcbb2771bd74",
-      "decision-record.md": "4cb45ce03f516a88ef2dba0b5ccfed2f54d4977cc308f8bb7945cad1e388687a"
+      "spec.md": "335eb7106810a9a27a4382c48bd0e1d8e1813e1a1798aff3cf2e356f8df142f4",
+      "plan.md": "a001874d23683bb43c1764f26879fbb3bda571fb1c286fc6a4c09856f2829297",
+      "tasks.md": "571524691c2d3e8e3b7a1da304b9fe98ef9537cee0cbb318aea3a209643ccc8e",
+      "checklist.md": "641e8e7d7d4c42bdf6aaed919e0c29da79ca39ee39cfe994dcfb0c420104b350",
+      "decision-record.md": "dc6ba108fbbb68e1b3bfa645752dda9bdfdf1e2d514ee2b5a02a3761ecf05212"
     },
     "last_active_child_id": null,
     "last_active_at": null

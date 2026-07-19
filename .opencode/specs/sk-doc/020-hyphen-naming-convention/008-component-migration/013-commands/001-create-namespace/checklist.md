@@ -1,5 +1,5 @@
 ---
-title: "Checklist: create command namespace naming (032 phase 008/013/001)"
+title: "Checklist: create command namespace naming (020 phase 008/013/001)"
 description: "Blocking SOL verification contract for the create command asset rename and reference closure."
 trigger_phrases:
   - "create namespace naming checklist"

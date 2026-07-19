@@ -99,13 +99,13 @@ if detect_self_invocation():
 
 | Level       | When to Load            | Resources                      |
 | ----------- | ----------------------- | ------------------------------ |
-| ALWAYS      | Every skill invocation  | `references/cli_reference.md`, `assets/prompt_quality_card.md` |
+| ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
 | CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
 | ON_DEMAND   | Only on explicit request| Extended templates and patterns |
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -124,20 +124,20 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "GENERATION":        ["references/cli_reference.md", "assets/prompt_templates.md"],
-    "REVIEW":            ["references/integration_patterns.md", "references/agent_delegation.md"],
-    "RESEARCH":          ["references/codex_tools.md", "assets/prompt_templates.md"],
-    "ARCHITECTURE":      ["references/codex_tools.md", "references/agent_delegation.md"],
-    "AGENT_DELEGATION":  ["references/agent_delegation.md", "references/integration_patterns.md"],
-    "TEMPLATES":         ["assets/prompt_templates.md", "references/cli_reference.md"],
-    "PATTERNS":          ["references/integration_patterns.md", "references/cli_reference.md"],
-    "HOOKS":             ["references/hook_contract.md", "references/cli_reference.md"],
+    "GENERATION":        ["references/cli-reference.md", "assets/prompt-templates.md"],
+    "REVIEW":            ["references/integration-patterns.md", "references/agent-delegation.md"],
+    "RESEARCH":          ["references/codex-tools.md", "assets/prompt-templates.md"],
+    "ARCHITECTURE":      ["references/codex-tools.md", "references/agent-delegation.md"],
+    "AGENT_DELEGATION":  ["references/agent-delegation.md", "references/integration-patterns.md"],
+    "TEMPLATES":         ["assets/prompt-templates.md", "references/cli-reference.md"],
+    "PATTERNS":          ["references/integration-patterns.md", "references/cli-reference.md"],
+    "HOOKS":             ["references/hook-contract.md", "references/cli-reference.md"],
 }
 
 LOADING_LEVELS = {
-    "ALWAYS": ["references/cli_reference.md", "assets/prompt_quality_card.md"],
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
     "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "codex agent", "codex prompt", "web research", "review command", "fork session", "hook contract"],
-    "ON_DEMAND": ["references/codex_tools.md", "assets/prompt_templates.md"],
+    "ON_DEMAND": ["references/codex-tools.md", "assets/prompt-templates.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -148,7 +148,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 ```
 
-**Call sequence** (using shared helpers from `shared_smart_router.md`):
+**Call sequence** (using shared helpers from `shared-smart-router.md`):
 
 1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
 2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
@@ -157,7 +157,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_codex_resources(task)` function body lives in [`shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md) — substitute `<PROVIDER>` = `codex`.
+The `route_codex_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `codex`.
 
 ---
 
@@ -165,7 +165,7 @@ The `route_codex_resources(task)` function body lives in [`shared_smart_router.m
 
 ### Prerequisites
 
-Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-codex authenticates through **ChatGPT OAuth only** — run `codex login` and complete the browser flow (requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account). It does not use an OpenAI API key. Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-codex authenticates through **ChatGPT OAuth only** — run `codex login` and complete the browser flow (requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account). It does not use an OpenAI API key. Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
@@ -241,11 +241,11 @@ Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service 
 
 **Reasoning-effort scale** (ascending): `none` · `minimal` · `low` · `medium` (5.5 default) · `high` · `xhigh` · `max` · `ultra`. Ceilings per model: `gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`. Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
 
-**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate to a GPT-5.6 model when the task wants reasoning past `xhigh` — `gpt-5.6-luna max` for implementation, `gpt-5.6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli_reference.md](./references/cli_reference.md) §5.
+**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate to a GPT-5.6 model when the task wants reasoning past `xhigh` — `gpt-5.6-luna max` for implementation, `gpt-5.6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Codex Agent Delegation
 
-The calling AI is the conductor; Codex profiles in `.codex/config.toml` `[profiles.<name>]` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent_delegation.md](./references/agent_delegation.md).
+The calling AI is the conductor; Codex profiles in `.codex/config.toml` `[profiles.<name>]` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
 
 | Task Type | Profile |
 |-----------|---------|
@@ -260,7 +260,7 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
 
 - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write` (or `--full-auto`) whenever the task requires edits.
 - **`--search` is a top-level flag, not an `exec` flag** — enable live web search as `codex --search exec …` (it precedes the subcommand). On codex ≥ 0.144 `codex exec --search` hard-fails with `unexpected argument '--search'` (older 0.125 builds accepted it), so treat any `exec … --search` example as stale. Without it, `codex exec` has no web access and answers from training data only — every dispatch needing live data (latest versions, repo facts, advisories) MUST use `codex --search exec …`.
@@ -278,14 +278,14 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` (or `--full-auto`) for code generation/file modification — `codex exec` defaults to `read-only`, so omitting causes silent no-op on edit tasks.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
-6. **Redirect codex stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded codex process inherits the loop's stdin (the file after `done < input.jsonl`) and silently consumes the remaining lines — the loop exits after 3-6 iterations with no error. See `references/integration_patterns.md#background-execution` → "Silent Stdin Consumption".
+6. **Redirect codex stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded codex process inherits the loop's stdin (the file after `done < input.jsonl`) and silently consumes the remaining lines — the loop exits after 3-6 iterations with no error. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
 7. **Specify model + effort + service tier explicitly** — never rely on caller environment. Default: `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Honor user overrides verbatim. Use `high`/`xhigh` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate `-p <profile>` when the task matches a specialization (see Section 3 routing table); use `codex exec review` (built-in subcommand) for git diff reviews.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in `--full-auto` or non-interactive mode.
-10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md`:
-   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
-   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** packet owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model_profiles.json` `recommended_frameworks`); consult it before composing for any small model.
-   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
+10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`:
+   1. **Fast path (default).** Build from the local `assets/prompt-quality-card.md`, which delegates the framework table + CLEAR check to the canonical card.
+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** packet owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
+   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
 11. **Never inject user-level voice/personalization content into AI-orchestrated Codex delegations.** Codex CLI reads user-level voice from `~/.codex/AGENTS.md` (the human's global settings, loaded automatically). When an AI delegates via `codex exec`, the calling AI's own voice rules govern the response — do NOT read `~/.codex/AGENTS.md` and paste into delegation prompts. Keep delegations focused on task/model/sandbox/effort/(spec-folder pre-approval). If the user asks how to make Codex sound more like Claude in *their own* sessions, point to `~/.codex/AGENTS.md` — not any repo asset.
 12. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 13. **Design Standards Loading (surface-aware contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design` (the hub); (2) let the hub resolve a `workflowMode` through `mode-registry.json` (interface / foundations / motion / audit / md-generator); (3) load the selected mode packet, set the design register, and run that mode's design verification; (4) if the work feeds Open Design, carry the `design-mcp-open-design` pairing — the transport never decides taste. Fallback: if the design mode cannot be determined confidently, ask for the surface and design intent. NEVER treat `mcp-figma` or `design-mcp-open-design` as the taste authority, or hardcode obsolete flat design skills in dispatch prompts.
@@ -310,7 +310,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Codex CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory_handback.md`](../../system-spec-kit/references/cli/memory_handback.md). Codex-specific Memory Epilogue template: [assets/prompt_templates.md](./assets/prompt_templates.md) §13.
+When the calling AI needs to preserve session context from a Codex CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Codex-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
 
 ```bash
 printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]
@@ -322,21 +322,21 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 ### Core References
 
-- [cli_reference.md](./references/cli_reference.md) - Complete CLI subcommands, flags, sandbox modes, and config reference
-- [integration_patterns.md](./references/integration_patterns.md) - Cross-AI orchestration patterns and workflows
-- [codex_tools.md](./references/codex_tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
-- [hook_contract.md](./references/hook_contract.md) - Native hook contract and Spec Kit Memory startup/advisor wiring
-- [agent_delegation.md](./references/agent_delegation.md) - Codex agent roster, routing table, and invocation patterns
+- [cli-reference.md](./references/cli-reference.md) - Complete CLI subcommands, flags, sandbox modes, and config reference
+- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
+- [codex-tools.md](./references/codex-tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
+- [hook-contract.md](./references/hook-contract.md) - Native hook contract and Spec Kit Memory startup/advisor wiring
+- [agent-delegation.md](./references/agent-delegation.md) - Codex agent roster, routing table, and invocation patterns
 
 ### Templates and Assets
 
-- [prompt_templates.md](./assets/prompt_templates.md) - Copy-paste ready prompt templates for common tasks
-- [prompt_quality_card.md](./assets/prompt_quality_card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
+- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
 
 ### Shared (cli-* family)
 
-- [shared_smart_router.md](../../system-spec-kit/references/cli/shared_smart_router.md) - Helper-function bodies for the smart router.
-- [memory_handback.md](../../system-spec-kit/references/cli/memory_handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 
@@ -346,7 +346,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 ### Reference Loading Notes
 
 - Load only references needed for current intent; Smart Routing (Section 2) is the single routing authority.
-- `cli_reference.md` is ALWAYS loaded as baseline.
+- `cli-reference.md` is ALWAYS loaded as baseline.
 
 ---
 
@@ -386,6 +386,6 @@ Key integrations:
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically (Section 5 is the authored index). Start with the ALWAYS-loaded `references/cli_reference.md` and `assets/prompt_quality_card.md`, then load task-specific resources per Smart Routing.
+The router discovers reference, asset, and script docs dynamically (Section 5 is the authored index). Start with the ALWAYS-loaded `references/cli-reference.md` and `assets/prompt-quality-card.md`, then load task-specific resources per Smart Routing.
 
 Related skills: `cli-claude-code` for extended reasoning, `cli-opencode` for full OpenCode runtime dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.

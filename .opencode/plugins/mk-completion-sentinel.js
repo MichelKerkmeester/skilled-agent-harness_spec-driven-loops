@@ -24,7 +24,7 @@
 // thin, default-export-only OpenCode plugin while the Claude Stop hook
 // consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like mk-deep-loop-guard.js.
-import sentinelCore from '../skills/system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs';
+import sentinelCore from '../skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

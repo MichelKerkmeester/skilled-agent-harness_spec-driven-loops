@@ -22,7 +22,7 @@ Single source of truth for **how to prompt** MiMo-V2.5-Pro. Framework rationale,
 
 ### Purpose
 
-The single source for how to prompt `mimo-v2.5-pro` when dispatching it through `cli-opencode`, mirroring its `model_profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+The single source for how to prompt `mimo-v2.5-pro` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
 
 ### When to Use
 
@@ -61,7 +61,7 @@ MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and t
 
 **Pre-planning density:** lean (2–3 ordered steps with acceptance criteria)
 
-These choices mirror `recommended_frameworks` in `model_profiles.json#mimo-v2.5-pro`: `primary: "costar"`, `fallback: "race"`, `avoid: ["tidd-ec", "cidi"]`, `preplanning_density: "lean"`, `status: "empirical"`.
+These choices mirror `recommended_frameworks` in `model-profiles.json#mimo-v2.5-pro`: `primary: "costar"`, `fallback: "race"`, `avoid: ["tidd-ec", "cidi"]`, `preplanning_density: "lean"`, `status: "empirical"`.
 
 ### Why COSTAR wins for MiMo
 
@@ -103,7 +103,7 @@ All five benchmarked frameworks produced 100% correct assertions, per benchmark 
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-For the generic COSTAR framework definition and field semantics, see [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md).
+For the generic COSTAR framework definition and field semantics, see [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md).
 
 The scaffold below is the **MiMo-specific fill** — copy-paste ready, executor-agnostic (no `opencode run` wrapper here; invocation mechanics live in `cli-opencode`).
 
@@ -151,7 +151,7 @@ Expectation: <exact output shape; append "no preamble, no prose wrapping">
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-pro.capability`.
+Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-pro.capability`.
 
 | Capability field | Value | Implication |
 | ---------------- | ----- | ----------- |
@@ -164,7 +164,7 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 | `quota_pool` | `xiaomi-token-plan` | Independent pool — does not draw from `cognition-pro` or `minimax-token-plan` |
 | `fallback_target` | `null` | No automatic gateway fallback; use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) when manually rerouting from the token-plan pool |
 
-**Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
+**Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md); compose from there, not from this profile.
 
 **Fallback target:** no automatic gateway fallback is defined. For manual reroutes, use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) and verify live model ids with `opencode models xiaomi` before relying on that path.
 
@@ -180,15 +180,15 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 
 **Implication:** for restraint-sensitive / reserved-accent visual work, give MiMo an **explicit per-card accent cap** (e.g. "orange on ≤1 card; gold rare") AND run a post-dispatch palette/accent check — or prefer kimi-k2.7-code (strongest restraint).
 
-**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#mimo-v2.5-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `prompt-models/benchmarks/<label>/`).
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model-profiles.json#mimo-v2.5-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `prompt-models/benchmarks/<label>/`).
 
 ---
 
 ## 8. SEE ALSO
 
-- [`model_profiles.json#mimo-v2.5-pro`](../../assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
-- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
-- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
-- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
+- [`model-profiles.json#mimo-v2.5-pro`](../../assets/model-profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
+- [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md` §TEMPLATE 15](../../../../cli-external-orchestration/cli-opencode/assets/prompt-templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md` §Per-model override — MiMo](../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
 - Sibling profiles (same hub): [`minimax-m3.md`](./minimax-m3.md) — The MiniMax profile is the counter-example: TIDD-EC + dense wins there, the opposite of MiMo.
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow and dispatch matrix.

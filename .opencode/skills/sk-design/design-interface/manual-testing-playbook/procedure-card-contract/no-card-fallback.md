@@ -68,5 +68,5 @@ The fallback prevents over-loading every card for narrow advice while still requ
 
 - Group: Procedure Card Contract
 - Playbook ID: ID-019
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `procedure-card-contract/no-card-fallback.md`

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-claude-code component naming (032 phase 005.003)"
+title: "Feature Specification: cli-claude-code component naming (020 phase 005.003)"
 description: "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Claude dispatch contracts and the delegated playbook tree."
 trigger_phrases:
   - "cli-claude-code kebab-case migration"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-claude-code component naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration / cli-claude-code |
-| **Origin** | Phase 003 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 003 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -104,7 +104,7 @@ This phase renames the six local authored candidates to kebab-case, updates only
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is treating provider flags, tool names, structured-output keys, or external skill paths as filenames. The phase depends on the 032 path-vs-key boundary and phase 005's playbook ownership; a six-entry map plus reference and contract comparisons keeps the rename narrow.
+The main risk is treating provider flags, tool names, structured-output keys, or external skill paths as filenames. The phase depends on the 020 path-vs-key boundary and phase 005's playbook ownership; a six-entry map plus reference and contract comparisons keeps the rename narrow.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

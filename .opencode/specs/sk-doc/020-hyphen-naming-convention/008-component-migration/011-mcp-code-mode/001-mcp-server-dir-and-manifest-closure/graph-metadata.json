@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint.",
     "created_at": "2026-07-14T15:18:20Z",
-    "last_save_at": "2026-07-17T14:30:38.926Z",
+    "last_save_at": "2026-07-17T20:26:16.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a81d2c69fe685931371be07c4618f332d053f5b3c1558e5edbad91cf665226da",
+    "source_fingerprint": "sha256:7d37f56886cd61346d77107dc63c6f81b0622246aa09a52b3701c5114ed73e9b",
     "source_doc_hashes": {
-      "spec.md": "9e0e7ed996978af3d9045e3cf3c37e872e585e7f7d047329e650fcc2ed59ddca",
-      "plan.md": "3bfefa0216db0e79e54e6b6f529faf040416ba81330c1f2c59d3db6c28a7841f",
-      "tasks.md": "01e82f2d07e12a41c6cb78955fb5f57c02047f805b0f04e57171bba85f7a83f0",
-      "checklist.md": "6b2f6e32d3d774e017ec3683c0615fd0dbe377a48a0f70ddd184a89077b811ab",
-      "decision-record.md": "bba68e4f9227a439247db0428113ad5bf81fdaf3464ced5d991f72410fd86028"
+      "spec.md": "50c444c7d9c49304b5739f8207d2f3ae208df2d6b030a697a45c7fc6ce29f14b",
+      "plan.md": "2d0d957f168b73f1471a809f374df49403169841a171fc0d71d45d5f10761d3b",
+      "tasks.md": "1e9d22b7afa81e771f5c5d88941085f0476b7af3b097eebb0cd65ac4d63abdd1",
+      "checklist.md": "fcc82ae0ba89b443ad9f6a19cae6001fa18f0344c4439270342dbb9721ca88b8",
+      "decision-record.md": "cae8ed212fd8bfd37542a003bc83d35c070b7df57919b2dfd46ab51eeb4b324a"
     },
     "last_active_child_id": null,
     "last_active_at": null

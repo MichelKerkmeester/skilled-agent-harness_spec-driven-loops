@@ -37,7 +37,7 @@ This is **Phase 3** of the Complex Feature specification.
 - [To be defined during planning]
 
 ---
-title: "Feature Specification: [NAME] [template:level_1/spec.md]"
+title: "Feature Specification: [NAME] [template:level-1/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

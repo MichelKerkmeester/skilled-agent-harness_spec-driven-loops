@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-tooling hub manual-testing-playbook naming closure (032 phase 005)"
+title: "Implementation Plan: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
 description: "This plan renames the hub-level manual-testing-playbook root, hub-routing category, index, and seven scenario files, then repairs hub navigation while keeping component-local playbooks out of scope."
 trigger_phrases:
   - "mcp-tooling hub playbook implementation plan"
@@ -34,7 +34,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling/manual_testing_playbook |
 | **Change class** | Small documentation-tree rename plus link repair |
-| **Execution** | One hub-level dependency closure from the frozen 032 map |
+| **Execution** | One hub-level dependency closure from the frozen 020 map |
 
 ### Overview
 The hub playbook census contains 2 underscored directories and 7 underscored files. The implementation renames the root, category, index, and scenario paths together, then updates the hub SKILL.md and playbook links. Component-local playbooks remain separate dependency closures.
@@ -100,7 +100,7 @@ The hub playbook census contains 2 underscored directories and 7 underscored fil
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 001 hub boundary | Internal | Required | Root navigation may be stale |
-| Frozen 032 rename map | Internal | Required | No safe targets |
+| Frozen 020 rename map | Internal | Required | No safe targets |
 | Component phase ownership | Internal | Required | Hub move could rewrite another phase |
 | Markdown-link resolver | Internal verifier | Required | Dead scenario links could pass unnoticed |
 <!-- /ANCHOR:dependencies -->

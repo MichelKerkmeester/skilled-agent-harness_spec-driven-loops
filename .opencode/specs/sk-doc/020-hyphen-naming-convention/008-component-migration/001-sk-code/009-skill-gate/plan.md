@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code subtree rollup gate (032 phase 008/009)"
+title: "Implementation Plan: sk-code subtree rollup gate (020 phase 008/009)"
 description: "Plan for reconciling phases 001-008, running the final scope-aware sk-code naming census and active-reference checks, and issuing a non-mutating pass/block handoff."
 trigger_phrases:
   - "sk-code skill gate plan"
@@ -43,7 +43,7 @@ _memory:
 
 ### Overview
 
-Reconcile every child checklist and handoff, then inspect the complete sk-code filesystem surface against the 032
+Reconcile every child checklist and handoff, then inspect the complete sk-code filesystem surface against the 020
 exemption boundary and completed maps. Resolve active references and produce a reproducible pass/block result; route
 unknown names or stale paths back to their owning phase instead of implementing fixes in the gate.
 <!-- /ANCHOR:summary -->
@@ -55,7 +55,7 @@ unknown names or stale paths back to their owning phase instead of implementing 
 
 - [ ] Phases 001-008 have checklists, maps, handoffs, and release evidence available.
 - [ ] Candidate SHA, BASE SHA, sibling map hashes, and the final census/reference commands are recorded.
-- [ ] The 032 exemption boundary and frozen/generated/tool-mandated surfaces are fixed before scanning.
+- [ ] The 020 exemption boundary and frozen/generated/tool-mandated surfaces are fixed before scanning.
 
 ### Definition of Done
 
@@ -69,7 +69,7 @@ unknown names or stale paths back to their owning phase instead of implementing 
 
 - **Sibling verdict matrix**: record each phase 001-008 checklist result, map/hash, handoff, owner, and unresolved finding.
 - **Naming census**: enumerate every filesystem name under `.opencode/skills/sk-code/`, then classify candidates as
-  rename-complete, exempt, generated, tool-mandated, frozen, or blocking unknown under the 032 policy.
+  rename-complete, exempt, generated, tool-mandated, frozen, or blocking unknown under the 020 policy.
 - **Reference closure**: resolve active markdown links, imports, registries, shell/path values, and metadata references
   against the child maps without changing them.
 - **Release handoff**: include phase 008 changelog/version evidence and distinguish it from final census evidence.
@@ -88,7 +88,7 @@ unknown names or stale paths back to their owning phase instead of implementing 
 ### Phase 2: Core Implementation
 
 - [ ] Build the sibling verdict matrix and check ownership, scope, and handoff consistency.
-- [ ] Run the scope-aware filesystem census and classify every retained non-kebab name against the 032 boundary.
+- [ ] Run the scope-aware filesystem census and classify every retained non-kebab name against the 020 boundary.
 - [ ] Resolve active references and verify that the phase 008 release/version evidence closes its handoff.
 - [ ] Record findings only; do not rename, rewrite, repair metadata, or alter changelog/history content.
 
@@ -105,7 +105,7 @@ unknown names or stale paths back to their owning phase instead of implementing 
 | Requirement | Verification |
 |-------------|--------------|
 | Sibling completion | Read each 001-008 checklist and handoff; compare P0 verdicts, map hashes, ownership, and blockers. |
-| Naming cleanliness | Enumerate all filesystem names under sk-code and classify every non-kebab result using the 032 exemptions. |
+| Naming cleanliness | Enumerate all filesystem names under sk-code and classify every non-kebab result using the 020 exemptions. |
 | Reference closure | Resolve active links, imports, registries, shell/path values, and metadata paths against completed child maps. |
 | Release coherence | Recheck phase 008 changelog coverage and version agreement above BASE `4.1.0.0`. |
 | Scope safety | Confirm the gate changed no code, migration path, changelog/history, metadata, or assigned packet outside evidence. |

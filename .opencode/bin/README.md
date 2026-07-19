@@ -23,7 +23,7 @@ Current state:
 - The freshness check itself is a shared module, not per-shim logic: all three shims call `checkPackageFreshness()` from [`system-spec-kit/scripts/lib/dist-freshness.cjs`](../skills/system-spec-kit/scripts/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `mk-dist-freshness-guard` OpenCode plugin — one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
-- Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and default-on daemon re-election for mk-spec-memory — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+- Launcher reliability knobs — persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and default-on daemon re-election for mk-spec-memory — are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`; see the MCP server's [`ENV-REFERENCE.md`](../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md).
 
 ---
 
@@ -86,9 +86,9 @@ bin/
 | `mk-spec-memory-launcher.cjs` | Boots the mk-spec-memory MCP child. Manages the shared hf-model-server lease, respawn locks, and reaping a dead lease child before respawn. |
 | `mk-skill-advisor-launcher.cjs` | Boots the mk-skill-advisor MCP child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
 | `mk-code-index-launcher.cjs` | Boots the mk-code-index MCP child. Applies the maintainer-mode `INDEX_*` override, migrates the code-graph database back to the skill-local path, and sets `SPECKIT_CODE_GRAPH_DB_DIR` for the child. |
-| `spec-memory.cjs` | CLI shim for mk-spec-memory. Checks dist freshness (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` to override), ensures the socket dir, then runs `mcp_server/dist/spec-memory-cli.js` with inherited stdio. |
-| `code-index.cjs` | CLI shim for mk-code-index. Same guard pattern (`SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1` override), runs `mcp_server/dist/code-index-cli.js`. Blocked-read payloads render as actionable answers (exit `0`); `detect_changes` `parse_error` exits `64`. |
-| `skill-advisor.cjs` | CLI shim for mk-skill-advisor. Same guard pattern (`MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp_server/dist/mcp_server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`; calls are sent untrusted by default. |
+| `spec-memory.cjs` | CLI shim for mk-spec-memory. Checks dist freshness (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` to override), ensures the socket dir, then runs `mcp-server/dist/spec-memory-cli.js` with inherited stdio. |
+| `code-index.cjs` | CLI shim for mk-code-index. Same guard pattern (`SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/code-index-cli.js`. Blocked-read payloads render as actionable answers (exit `0`); `detect_changes` `parse_error` exits `64`. |
+| `skill-advisor.cjs` | CLI shim for mk-skill-advisor. Same guard pattern (`MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/mcp-server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`; calls are sent untrusted by default. |
 | `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
 
 Lifecycle parity note: `mk-spec-memory-launcher.cjs` is the hardened reference for persistent launcher logging, detached daemon re-election/adoption, and owner-release-on-shutdown. `mk-code-index-launcher.cjs` and `mk-skill-advisor-launcher.cjs` currently stop with their child and rely on fresh-session reload plus bridge/respawn paths instead.
@@ -166,11 +166,11 @@ The three CLI shims are the dual-stack front door shipped by the MCP-to-CLI tran
 
 **Dist freshness.** Each shim calls the shared `checkPackageFreshness()` (`system-spec-kit/scripts/lib/dist-freshness.cjs`) to compare its package's watched source files against the built dist entrypoint, exiting `69` with a rebuild instruction when stale. Dev overrides: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
-The same shared module tracks 7 dist-producing packages total (the 3 CLI shims' own `mcp_server`s plus `system-spec-kit/{shared,scripts}`, `mcp-code-mode/mcp_server`, and `sk-design/design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale; the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree; and the `mk-dist-freshness-guard` OpenCode plugin (`.opencode/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.opencode/logs/dist-freshness-guard.log` — never stdout/stderr, which the TUI would paint over the chat input — refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
+The same shared module tracks 7 dist-producing packages total (the 3 CLI shims' own `mcp_server`s plus `system-spec-kit/{shared,scripts}`, `mcp-code-mode/mcp-server`, and `sk-design/design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale; the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree; and the `mk-dist-freshness-guard` OpenCode plugin (`.opencode/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.opencode/logs/dist-freshness-guard.log` — never stdout/stderr, which the TUI would paint over the chat input — refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
 
 **Trust (skill-advisor only).** `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`; everything else is sent untrusted by default. The daemon-side gate fails closed when transport `_meta` is absent — see the skill-advisor server docs.
 
-Full env-var detail lives in the MCP server's [`ENV_REFERENCE.md`](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+Full env-var detail lives in the MCP server's [`ENV-REFERENCE.md`](../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md).
 
 ### Worktree session isolation
 
@@ -210,6 +210,6 @@ Expected result: each `.cjs` module loads without throwing; each CLI shim lists 
 ## 8. RELATED
 
 - [`lib/`](lib/README.md)
-- [`system-spec-kit MCP server`](../skills/system-spec-kit/mcp_server/)
-- [`system-skill-advisor MCP server`](../skills/system-skill-advisor/mcp_server/)
+- [`system-spec-kit MCP server`](../skills/system-spec-kit/mcp-server/)
+- [`system-skill-advisor MCP server`](../skills/system-skill-advisor/mcp-server/)
 - [`system-code-graph skill`](../skills/system-code-graph/)

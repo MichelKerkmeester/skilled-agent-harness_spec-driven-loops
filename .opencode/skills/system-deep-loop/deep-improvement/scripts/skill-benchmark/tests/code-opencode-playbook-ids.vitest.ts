@@ -24,7 +24,7 @@ function countFeatureFiles(dir: string): number {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     if (e.isDirectory()) n += countFeatureFiles(join(dir, e.name));
     else if (e.isFile() && e.name.endsWith('.md')
-      && e.name !== 'manual_testing_playbook.md' && e.name !== 'feature_catalog.md') {
+      && e.name !== 'manual-testing-playbook.md' && e.name !== 'feature-catalog.md') {
       const fm = /^---\n([\s\S]*?)\n---/.exec(readFileSync(join(dir, e.name), 'utf8'));
       if (fm && /(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(fm[1])) n += 1;
     }

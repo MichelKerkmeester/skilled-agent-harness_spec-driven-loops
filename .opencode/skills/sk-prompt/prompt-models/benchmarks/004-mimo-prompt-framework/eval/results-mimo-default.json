@@ -47,7 +47,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/rcaf__chunk.json"
+      "raw": "runs/rcaf--chunk.json"
     },
     {
       "tag": "rcaf__parseRange",
@@ -89,7 +89,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/rcaf__parseRange.json"
+      "raw": "runs/rcaf--parseRange.json"
     },
     {
       "tag": "race__chunk",
@@ -131,7 +131,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/race__chunk.json"
+      "raw": "runs/race--chunk.json"
     },
     {
       "tag": "race__parseRange",
@@ -173,7 +173,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/race__parseRange.json"
+      "raw": "runs/race--parseRange.json"
     },
     {
       "tag": "cidi__chunk",
@@ -215,7 +215,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/cidi__chunk.json",
+      "raw": "runs/cidi--chunk.json",
       "retried": true,
       "flake_note": "First dispatch in the primary run returned empty inline text (MiMo took a tool-only write-to-file turn). Empirical inline-return reliability across 9 observed dispatches: 7/9 returned correct code (100% pass), 2/9 emitted no text part (~22% empty-inline / tool-divergence). This recorded entry is the first successful retry."
     },
@@ -259,7 +259,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/cidi__parseRange.json"
+      "raw": "runs/cidi--parseRange.json"
     },
     {
       "tag": "tidd-ec__chunk",
@@ -301,7 +301,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/tidd-ec__chunk.json"
+      "raw": "runs/tidd-ec--chunk.json"
     },
     {
       "tag": "tidd-ec__parseRange",
@@ -343,7 +343,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/tidd-ec__parseRange.json"
+      "raw": "runs/tidd-ec--parseRange.json"
     },
     {
       "tag": "costar__chunk",
@@ -385,7 +385,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/costar__chunk.json"
+      "raw": "runs/costar--chunk.json"
     },
     {
       "tag": "costar__parseRange",
@@ -427,7 +427,7 @@
           "ok": true
         }
       ],
-      "raw": "runs/costar__parseRange.json"
+      "raw": "runs/costar--parseRange.json"
     }
   ],
   "cidi_chunk_flake": {

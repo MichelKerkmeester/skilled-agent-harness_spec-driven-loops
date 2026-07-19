@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
+  "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
   "description": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
   "keywords": [
     "figma",
@@ -14,11 +14,12 @@
     "public",
     "repo"
   ],
-  "lastUpdated": "2026-07-15T07:46:45.475Z",
+  "lastUpdated": "2026-07-18T03:48:54.417Z",
   "specId": "001",
   "folderSlug": "barter-figma-agent",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "003-mcp-figma-transfer"
   ],
   "memorySequence": 0,

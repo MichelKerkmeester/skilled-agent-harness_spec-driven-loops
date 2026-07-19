@@ -1,1 +1,0 @@
-../create-flowchart/scripts/validate_flowchart.sh

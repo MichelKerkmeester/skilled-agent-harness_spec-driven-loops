@@ -75,7 +75,7 @@ phases, each with its own evidence-pinned acceptance contract.
 - Python .py filenames and Python import-package directories.
 - Code identifiers, MCP tool IDs, JSON/YAML/TOML keys, frontmatter fields, generated output, lockfile filenames,
   and tool-mandated names.
-- Migration work in other 032 component subtrees.
+- Migration work in other 020 component subtrees.
 
 <!-- /ANCHOR:scope -->
 

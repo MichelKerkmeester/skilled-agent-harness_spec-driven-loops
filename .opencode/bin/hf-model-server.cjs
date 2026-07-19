@@ -72,7 +72,7 @@ function systemSpecKitRoot() {
 }
 
 function defaultDbDir() {
-  return path.join(systemSpecKitRoot(), 'mcp_server', 'database');
+  return path.join(systemSpecKitRoot(), 'mcp-server', 'database');
 }
 
 function normalizeProfileDtype(value) {

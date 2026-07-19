@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code manual-testing-playbook tree (032 phase 008/006)"
+title: "Feature Specification: sk-code manual-testing-playbook tree (020 phase 008/006)"
 description: "The hub-level sk-code manual-testing-playbook tree uses snake_case for its root directory, ten category directories, the root index, and scenario filenames. This phase renames that playbook tree to kebab-case and repairs every scenario, benchmark, asset, and cross-surface reference without changing scenario IDs or manual-test semantics."
 trigger_phrases:
   - "sk-code manual testing playbook naming"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-code manual-testing-playbook tree
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 006 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 006 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

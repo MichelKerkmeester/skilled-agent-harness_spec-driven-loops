@@ -1,5 +1,5 @@
 ---
-title: "Checklist: fixture corpus and dry-run harness (032 phase 005.003)"
+title: "Checklist: fixture corpus and dry-run harness (020 phase 005.003)"
 description: "Blocking SOL verifier contract for deterministic disposable fixtures, engine/checker dry runs, exemption and collision coverage, reference ledger completeness, idempotency, rollback, and real-worktree safety."
 trigger_phrases:
   - "fixture corpus checklist"
@@ -11,13 +11,17 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-18T08:32:34Z"
     last_updated_by: "codex"
-    recent_action: "Authored the fixture corpus and dry-run harness SOL verifier contract"
-    next_safe_action: "Run the complete scenario matrix after engine and checker implementation"
+    recent_action: "Verified and signed off the fixture corpus"
+    next_safe_action: "Use the evidence hash before freezing the repository map"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,53 +42,53 @@ temporary repository, non-deterministic evidence, or a harness apply against the
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 001 and 002 contracts are pinned: map fields, operation states, resolver classes, ledger rows, and failure semantics are recorded with the scenario corpus.
-- [ ] CHK-002 [P1] The corpus contains positive and negative scenarios for every engine/checker reference class and every policy exemption; record the non-zero scenario count.
+- [x] CHK-001 [P0] `semantic-rename-tooling-fixtures-v1` pins BASE `1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe`, explicit map rows, plan identity, ledger evidence and failure states.
+- [x] CHK-002 [P1] `test_corpus_declares_a_non_zero_explicit_scenario_matrix` passes with 10/10 declared scenarios and the complete coverage contract.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-003 [P0] Each scenario declares its expected map, closure, exemption, reference, dynamic-site, and outcome state; no expected result is inferred from a broad substring search.
-- [ ] CHK-004 [P1] The harness creates and removes only disposable repositories and evidence; the real migration worktree is not an apply, rollback, or cleanup target.
-- [ ] CHK-005 [P1] Fixtures preserve the policy boundary: Python files and package directories, vendored/third-party trees, generated or lockfile output, tool-mandated names, test-runner magic, frozen surfaces, identifiers, and keys are not treated as ordinary rename targets.
+- [x] CHK-003 [P0] `corpus.json` declares map rows, SCC members, exemptions, reference sites, dynamic sites and expected outcomes for every scenario.
+- [x] CHK-004 [P1] `test_explicit_apply_and_rollback_remain_inside_disposable_repositories` and `test_boundary_and_flag_guards_fail_before_fixture_mutation` pass.
+- [x] CHK-005 [P1] The `m-python`, `m-python-package`, `m-vendor`, `m-generated`, `m-lockfile`, `m-tool`, `m-test-magic` and `m-frozen` rows remain non-rename classifications.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-006 [P0] The corpus covers explicit semantic targets, leading/double underscores, exact/case-fold/NFC collisions, dependency-closure batches, symlink mode `120000`, and executable bits.
-- [ ] CHK-007 [P0] Dry-run leaves fixture content, path names, Git index, symlink modes, executable bits, and the real worktree unchanged.
-- [ ] CHK-008 [P0] Explicit apply changes only mapped fixture paths; rerun is idempotent; rollback restores the complete fixture baseline.
-- [ ] CHK-009 [P0] JS/TS, Markdown, JSON/YAML/TOML path values, shell, registry, symlink, and dynamic `require`, `source`, and glob scenarios produce the expected checker and ledger evidence.
-- [ ] CHK-010 [P0] Collision, missing-target, ambiguous-reference, undispositioned dynamic-site, and zero-scan scenarios fail non-zero for the intended reason.
-- [ ] CHK-011 [P1] Two runs from the same seed produce identical plans, ledger statuses, scan counts, mode manifests, and exit codes.
+- [x] CHK-006 [P0] `test_explicit_apply_and_rollback_remain_inside_disposable_repositories` preserves `120000` and `100755`; the 10/10 corpus includes exact, casefold, NFC and mixed-extension SCC cases.
+- [x] CHK-007 [P0] `test_default_cli_is_dry_run_deterministic_and_non_mutating` passes and the final report records `protected_unchanged=true`.
+- [x] CHK-008 [P0] `test_explicit_apply_and_rollback_remain_inside_disposable_repositories` applies and rolls back both rename and rewrite plans, records an idempotent rerun and restores the baseline.
+- [x] CHK-009 [P0] The final ledger records 7/7 static reference kinds plus three dispositioned dynamic sites.
+- [x] CHK-010 [P0] The 10/10 scenario run includes exact, casefold and NFC collision failures, missing source, ambiguous reference, undispositioned dynamic site and zero-file scan failures.
+- [x] CHK-011 [P1] The final repeat produced 2/2 identical hashes: `9284358d8df93d56f152c0f3b000ddfd32320e263755fa8b8364b6cd6f161b7a`.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-012 [P1] The harness reports scenario-level evidence that phase 006 can use before freezing the repository rename map.
-- [ ] CHK-013 [P1] No scenario passes solely because the engine or checker scanned zero files or skipped an unrecognized reference class.
+- [x] CHK-012 [P1] The report records `plan_id`, `rewrite_plan_id`, `map_hash`, `ledger_hash`, scenario results, scan counts and mode states for phase 006.
+- [x] CHK-013 [P1] The final lifecycle scan records 29 tracked files, 28 regular files, one symlink and 7/7 static reference kinds.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-014 [P1] The harness rejects an apply target outside its temporary repository and never executes fixture shell/module code to discover references.
-- [ ] CHK-015 [P2] No executable behavior, allowlist, sandbox boundary, or tool-mandated filename exemption changes outside this phase's harness contract.
+- [x] CHK-014 [P1] `test_boundary_and_flag_guards_fail_before_fixture_mutation` rejects protected, outside-root and rollback-only requests without executing fixture content.
+- [x] CHK-015 [P2] Executable changes are limited to `rename_tooling_fixture_core.py`, `rename_tooling_fixture_harness.py`, their test and declarative corpus.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-016 [P2] The scenario matrix, seed/determinism rule, fixture boundary, and no-real-migration rule agree across `spec.md`, `plan.md`, and `tasks.md`.
+- [x] CHK-016 [P2] `spec.md`, `plan.md` and `tasks.md` use the same explicit-map, fixed-seed, disposable-repository and no-real-migration contract.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-017 [P1] Fixture and harness changes are path-scoped to phase 005.003; no production migration rename or reference rewrite is mixed into the phase commit.
+- [x] CHK-017 [P1] `rename_tooling_fixture_*.py`, `test_rename_tooling_fixture_harness.py`, `fixtures/rename-tooling/corpus.json` and this child packet are the only authored scope. No real rename or rewrite ran.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

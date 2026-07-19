@@ -24,7 +24,7 @@ Current state:
 - `pre-commit` runs an advisory doc-model-reference drift check, then four independently-bypassable blocking sub-gates (comment hygiene, prompt-card sync, MCP mutation-class, tool-ownership lint).
 - `post-commit` invalidates the code-graph SQLite after a large commit and marks memory-index drift for any spec-doc rename/delete in the commit.
 - `post-merge` and `post-rewrite` mark memory-index drift after a merge or an amend/rebase, diffing the appropriate commit range (`ORIG_HEAD`→`HEAD`, or each rewritten commit pair).
-- `lib/memory-drift-marker.sh` is the one shared helper `post-commit`, `post-merge`, and `post-rewrite` all source. Its `mark_memory_drift_from_diff()` function writes rename/delete entries for `.opencode/specs` paths to `.memory-drift-dirty-paths.json`, which `mcp_server/startup-checks.ts` consumes on the next MCP server boot to seed drift-suspect confirmation.
+- `lib/memory-drift-marker.sh` is the one shared helper `post-commit`, `post-merge`, and `post-rewrite` all source. Its `mark_memory_drift_from_diff()` function writes rename/delete entries for `.opencode/specs` paths to `.memory-drift-dirty-paths.json`, which `mcp-server/startup-checks.ts` consumes on the next MCP server boot to seed drift-suspect confirmation.
 - `pre-push` blocks creation of a *new* remote branch (remote sha all-zero) whose name breaks the owner-first naming grammar (`<owner>/NNNN-slug`, `skilled/vA.B.C.D` release, or `main`); wrapper refs (`work/<runtime>/<slug>`) are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed — migration tolerance, with only an advisory notice for a non-conformant name. The naming check is **tri-state**: a genuine invalid name blocks, but an internal validator error (for example a failed owner-discovery scan) fails **open** so a tooling fault never blocks a legal push, and the authorized-owner set is read only from version-controlled `SKILL.md` files (an untracked skill cannot authorize a remote owner).
 
 ---
@@ -116,7 +116,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 |---|---|
 | Blocking vs advisory | `pre-commit`'s four named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the marker call). |
 | Marker ownership | Only `lib/memory-drift-marker.sh` writes `.memory-drift-dirty-paths.json`. Hooks source it rather than duplicating the diff-and-append logic. |
-| Marker consumption | The marker is read once, on the next MCP server boot, by `mcp_server/startup-checks.ts`. Hooks never read it back. |
+| Marker consumption | The marker is read once, on the next MCP server boot, by `mcp-server/startup-checks.ts`. Hooks never read it back. |
 | Installation | Hooks are plain files here; `install-git-hooks.sh` is what makes them live, by symlinking each into `.git/hooks/`. Editing a hook here takes effect immediately for anyone whose `.git/hooks/<name>` is still the symlink. |
 
 Drift-marker flow:
@@ -176,6 +176,6 @@ Expected result: syntax checks pass, and the smoke commit runs silently unless a
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](../../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md)
-- [`../../skills/system-spec-kit/mcp_server/lib/storage/README.md`](../../skills/system-spec-kit/mcp_server/lib/storage/README.md)
+- [`../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md`](../../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md)
+- [`../../skills/system-spec-kit/mcp-server/lib/storage/README.md`](../../skills/system-spec-kit/mcp-server/lib/storage/README.md)
 - [`../../skills/sk-git/scripts/worktree-naming.sh`](../../skills/sk-git/scripts/worktree-naming.sh)

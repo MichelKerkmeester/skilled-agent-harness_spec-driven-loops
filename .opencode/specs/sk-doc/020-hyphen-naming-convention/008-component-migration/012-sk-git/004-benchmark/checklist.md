@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git benchmark (032 phase 008/012/004)"
+title: "Checklist: sk-git benchmark (020 phase 008/012/004)"
 description: "Blocking SOL verification contract for the sk-git benchmark profile-directory and artifact path phase."
 trigger_phrases:
   - "sk-git benchmark checklist"
-  - "032 benchmark profile verification"
+  - "020 benchmark profile verification"
   - "benchmark evidence parity acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -77,7 +77,7 @@ This checklist is the blocking SOL verifier contract for phase 004. The verifier
 ## Documentation
 
 - [ ] CHK-014 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree on the profile/report map and evidence-parity rules.
-- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-015 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

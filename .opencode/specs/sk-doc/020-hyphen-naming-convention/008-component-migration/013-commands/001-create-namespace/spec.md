@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create command namespace naming (032 phase 008/013/001)"
+title: "Feature Specification: create command namespace naming (020 phase 008/013/001)"
 description: "The create command namespace keeps its workflow and presentation assets in snake_case filenames even though its command markdown files already use kebab-case. This phase renames the maintained create assets, repairs every path pointer, and preserves command IDs, data keys, and tool-mandated names."
 trigger_phrases:
   - "create command namespace naming"
@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Create command namespace naming
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 001 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -100,7 +100,7 @@ Rename the 30 maintained create asset files to their exact kebab-case targets an
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The create markdown files repeat asset paths in tables, instructions, and presentation-boundary sections, while the YAML assets can carry path-valued strings of their own. A partial replacement can leave a mode working only in one branch. The phase depends on the 032 frozen map, the 005 rename/reference tooling, the 006 map handoff, and the 000 baseline; the executor must scan both command-local and repository-wide consumers before accepting the batch.
+The create markdown files repeat asset paths in tables, instructions, and presentation-boundary sections, while the YAML assets can carry path-valued strings of their own. A partial replacement can leave a mode working only in one branch. The phase depends on the 020 frozen map, the 005 rename/reference tooling, the 006 map handoff, and the 000 baseline; the executor must scan both command-local and repository-wide consumers before accepting the batch.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

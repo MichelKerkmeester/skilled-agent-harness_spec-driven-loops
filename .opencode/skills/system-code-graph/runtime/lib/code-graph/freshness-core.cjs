@@ -39,8 +39,8 @@ const { extname, join } = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STATE_DIR_RELATIVE_PATH = '.opencode/skills/.code-graph-freshness-state';
-const READINESS_RELATIVE_PATH = '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-readiness.json';
-const OWNER_RELATIVE_PATH = '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-owner.json';
+const READINESS_RELATIVE_PATH = '.opencode/skills/system-code-graph/mcp-server/database/.code-graph-readiness.json';
+const OWNER_RELATIVE_PATH = '.opencode/skills/system-code-graph/mcp-server/database/.code-graph-owner.json';
 const CLI_BIN_RELATIVE_PATH = '.opencode/bin/code-index.cjs';
 const FRESHNESS_LOG_FILENAME = 'freshness.log';
 const LOG_BACKUP_SUFFIX = '.1';
@@ -78,7 +78,7 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const MAX_LOG_DETAIL_CHARS = 800;
 
 // Same 5 opt-in env flags the code-index scan itself reads
-// (mcp_server/lib/index-scope-policy.ts). Kept as a small local mirror rather
+// (mcp-server/lib/index-scope-policy.ts). Kept as a small local mirror rather
 // than an import so this core stays a dependency-free .cjs both a short-lived
 // Claude hook and a long-lived OpenCode plugin can require directly.
 const INDEX_SKILLS_ENV = 'SPECKIT_CODE_GRAPH_INDEX_SKILLS';

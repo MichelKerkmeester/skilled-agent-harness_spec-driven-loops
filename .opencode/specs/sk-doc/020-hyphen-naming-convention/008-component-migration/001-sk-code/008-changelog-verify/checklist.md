@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-code changelog and version verification (032 phase 008/008)"
+title: "Checklist: sk-code changelog and version verification (020 phase 008/008)"
 description: "Blocking SOL verification contract for the sk-code changelog entry, rename-set coverage, version coherence, exemption boundary, and non-mutating handoff to phase 009."
 trigger_phrases:
   - "sk-code changelog verification checklist"
@@ -50,7 +50,7 @@ coverage, stale claims, version drift, historical mutation, or any filesystem re
 ## Code Quality
 
 - [ ] CHK-003 [P0] A new append-only changelog entry exists; an old historical entry is not misidentified as the migration release.
-- [ ] CHK-004 [P0] The entry covers the actual 001-007 rename surfaces, path/reference repair, and the 032 Python/package, tool-mandated, generated/lockfile, key/frontmatter, and frozen exemptions.
+- [ ] CHK-004 [P0] The entry covers the actual 001-007 rename surfaces, path/reference repair, and the 020 Python/package, tool-mandated, generated/lockfile, key/frontmatter, and frozen exemptions.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->

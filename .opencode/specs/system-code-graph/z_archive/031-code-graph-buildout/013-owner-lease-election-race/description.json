@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/013-owner-lease-election-race",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/013-owner-lease-election-race",
   "description": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic:",
   "keywords": [
     "launcher",
@@ -17,11 +17,12 @@
     "them",
     "non-atomic"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.858Z",
+  "lastUpdated": "2026-07-18T03:48:55.594Z",
   "specId": "013",
   "folderSlug": "owner-lease-election-race",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 0,

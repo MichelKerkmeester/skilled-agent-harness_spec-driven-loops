@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Skill gate (032 phase 012)"
-description: "Task breakdown for Skill gate in the 032 sk-design naming subtree."
+title: "Tasks: Skill gate (020 phase 012)"
+description: "Task breakdown for Skill gate in the 020 sk-design naming subtree."
 trigger_phrases:
   - "skill-gate tasks"
   - "sk-design skill gate execution"
-  - "032 skill-gate checklist"
+  - "020 skill-gate checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Skill gate (032 phase 012)
+# Tasks: Skill gate (020 phase 012)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

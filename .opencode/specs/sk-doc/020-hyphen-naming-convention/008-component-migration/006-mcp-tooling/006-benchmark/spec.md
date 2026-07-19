@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-tooling benchmark naming closure (032 phase 006)"
+title: "Feature Specification: mcp-tooling benchmark naming closure (020 phase 006)"
 description: "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files."
 trigger_phrases:
   - "mcp-tooling benchmark naming"
   - "benchmark fixture profile kebab-case"
-  - "032 mcp tooling phase 006"
+  - "020 mcp tooling phase 006"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-tooling Benchmark Naming Closure
 

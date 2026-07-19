@@ -13,16 +13,16 @@ import {
   type AdvisorHookResult,
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
-} from '../../mcp_server/lib/skill-advisor-brief.js';
+} from '../../mcp-server/lib/skill-advisor-brief.js';
 import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
-} from '../../mcp_server/lib/render.js';
+} from '../../mcp-server/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
-} from '../../mcp_server/lib/metrics.js';
+} from '../../mcp-server/lib/metrics.js';
 import {
   buildSkillAdvisorBriefFromCli,
   shouldTrySkillAdvisorCliFallback,

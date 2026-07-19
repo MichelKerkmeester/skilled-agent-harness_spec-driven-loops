@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-code-mode subtree skill gate (032 component 011 phase 007)"
+title: "Tasks: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
 description: "Tasks for aggregating sibling evidence and running the read-only whole-surface naming, reference, executable, parity, and changelog gate."
 trigger_phrases:
   - "mcp-code-mode subtree gate tasks"

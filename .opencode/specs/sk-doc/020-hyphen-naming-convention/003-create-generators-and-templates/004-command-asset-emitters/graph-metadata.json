@@ -39,14 +39,36 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
+      ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "test_emitted_name_contract.py",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
+        "source": "derived"
+      },
+      {
+        "name": "emitted-name-contract.json",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,7 +118,7 @@
         "source": "derived"
       },
       {
-        "name": "sibling",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -132,12 +154,6 @@
         "source": "derived"
       },
       {
-        "name": "both-root",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -146,12 +162,6 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "only",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -188,21 +198,23 @@
     ],
     "causal_summary": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-07-17T14:30:02.338Z",
+    "last_save_at": "2026-07-18T06:39:31.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68e5aa4ca53e2602889d5503531b25cb6cd46d1d3a3fc1fd94cbfa6b68378ba7",
+    "source_fingerprint": "sha256:900892b99ea49524bb17838c5267ef87305a252e6bc307a06359464ca52808df",
     "source_doc_hashes": {
-      "spec.md": "c1b56366a5741deb81468beefd6df20641e6b45327440b2246612aeab17736fc",
-      "plan.md": "3d75cc6b668e7fad4aab8bf05cbc1c9824471c6424c92eb445494700abf39fc9",
-      "tasks.md": "69ffe29d5d9cefbe396bdba6c6995667837e19bffb6d4d18c9d315d41765bc5b",
-      "checklist.md": "07e44c3ae7b79d2685e6628694ed83113c982bd6b5da962ff043cd08dc8e1e39"
+      "spec.md": "22fc543ce34f4a6a0608b58c71aec9277d90d43b4ca348a4c9a6b5c16798a2f5",
+      "plan.md": "39cab5562f6d4fa486c1a1ecb215ebb7eae3f9c02603cd93666c63e82285589f",
+      "tasks.md": "cd8a7cfd7c20985071739536653971b4ce176c7308be7262969ad2009f10ac8b",
+      "checklist.md": "e180215a3369f743796c0f68a01ed7a089760374ebe61a063237afcd726211f3",
+      "implementation-summary.md": "7403b581a5d6775fcd74a0ae6c157e57d0e0ea50faabb9e7bac1c54966c04157"
     },
     "last_active_child_id": null,
     "last_active_at": null

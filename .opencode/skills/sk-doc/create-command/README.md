@@ -20,15 +20,15 @@ Do not use it for skill scaffolding, agent scaffolding, prose-only documentation
 ## 3. WHAT'S INSIDE
 
 - `SKILL.md`: authoritative packet contract, workflow, rules, validation expectations, and escalation conditions.
-- `references/`: overflow route map (`README.md`) plus single-concern files — `worked_example.md`, `router_presentation_split.md`, `argument_hints_and_modes.md`, and `common_pitfalls.md`.
-- `assets/command/command_template.md`: main command-authoring template covering frontmatter, command types, gates, structure, and examples.
-- `assets/command/command_presentation_template.md`: template for `_presentation.txt` assets used by thin router commands.
+- `references/`: overflow route map (`README.md`) plus single-concern files — `worked-example.md`, `router-presentation-split.md`, `argument-hints-and-modes.md`, and `common-pitfalls.md`.
+- `assets/command/command-template.md`: main command-authoring template covering frontmatter, command types, gates, structure, and examples.
+- `assets/command/command-presentation-template.md`: template for `_presentation.txt` assets used by thin router commands.
 - `changelog/`: packet-local changelog entries.
 - No packet-local `graph-metadata.json` or `scripts/` directories are present.
 
 Shared validation and create-quality-control resources live outside this packet:
 
-- `../shared/references/core_standards.md`
+- `../shared/references/core-standards.md`
 - `../shared/references/validation.md`
 - `../shared/scripts/validate_document.py`
 - `../shared/scripts/extract_structure.py`
@@ -38,12 +38,12 @@ Shared validation and create-quality-control resources live outside this packet:
 
 1. Confirm the command path, invocation name, namespace, and expected arguments.
 2. Read any existing command file before editing it.
-3. Load `assets/command/command_template.md`.
+3. Load `assets/command/command-template.md`.
 4. Draft concise frontmatter with accurate `argument-hint` and minimal `allowed-tools`.
 5. Add a required-input gate when arguments are mandatory.
 6. Keep the command body executable and workflow-oriented, not reference-heavy.
 7. For mode-based commands, keep the `.md` file as a thin router.
-8. If visible prompts, dashboards, or result templates are needed, create a presentation asset from `assets/command/command_presentation_template.md`.
+8. If visible prompts, dashboards, or result templates are needed, create a presentation asset from `assets/command/command-presentation-template.md`.
 9. Validate before claiming the command is structurally valid:
 
 ```bash

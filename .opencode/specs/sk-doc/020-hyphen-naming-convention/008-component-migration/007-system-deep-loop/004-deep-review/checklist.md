@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop deep-review names (032 phase 007/004)"
+title: "Checklist: system-deep-loop deep-review names (020 phase 007/004)"
 description: "Blocking SOL verification contract for the deep-review filesystem rename set, reference closure, report paths, and review-state parity."
 trigger_phrases:
   - "system-deep-loop deep review checklist"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-ai-council filesystem names (032 phase 007/005)"
+title: "Implementation Plan: deep-ai-council filesystem names (020 phase 007/005)"
 description: "Plan for renaming the deep-ai-council paired catalog/playbook trees, assets, and references through one semantic map, then repairing artifact, graph, script, and test path consumers without changing council contracts."
 trigger_phrases:
   - "deep-ai-council implementation plan"

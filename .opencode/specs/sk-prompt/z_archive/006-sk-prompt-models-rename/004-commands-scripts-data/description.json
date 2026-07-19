@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/004-commands-scripts-data",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/004-commands-scripts-data",
   "description": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes",
   "keywords": [
     "deep",
@@ -16,11 +16,12 @@
     "workflow",
     "writes"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.297Z",
+  "lastUpdated": "2026-07-18T03:48:55.267Z",
   "specId": "004",
   "folderSlug": "commands-scripts-data",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

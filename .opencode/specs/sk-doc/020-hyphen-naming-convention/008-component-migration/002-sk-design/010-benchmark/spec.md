@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Benchmark (032 phase 010)"
+title: "Feature Specification: Benchmark (020 phase 010)"
 description: "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts."
 trigger_phrases:
   - "benchmark naming phase"
   - "sk-design benchmark phase"
-  - "032 benchmark"
+  - "020 benchmark"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Benchmark (032 phase 010)
+# Feature Specification: Benchmark (020 phase 010)
 
 > Phase 010 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 10 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 10 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

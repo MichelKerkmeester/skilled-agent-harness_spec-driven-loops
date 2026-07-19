@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-research filesystem names (032 phase 007/003)"
+title: "Implementation Plan: deep-research filesystem names (020 phase 007/003)"
 description: "Plan for renaming deep-research assets, catalog/playbook paths, references, and state documentation through the frozen semantic map, then repairing every static and dynamic path consumer without changing research contracts."
 trigger_phrases:
   - "deep-research implementation plan"

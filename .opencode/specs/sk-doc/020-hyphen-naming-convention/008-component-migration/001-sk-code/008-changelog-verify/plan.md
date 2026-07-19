@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code changelog and version verification (032 phase 008/008)"
+title: "Implementation Plan: sk-code changelog and version verification (020 phase 008/008)"
 description: "Plan for comparing the sk-code append-only release entry and active version surfaces with the completed 001-007 rename evidence, while keeping verification non-mutating and failing closed on discrepancies."
 trigger_phrases:
   - "sk-code changelog verification plan"
@@ -56,7 +56,7 @@ handoffs. Compare the claims with the actual kebab-case scope and exemption boun
 
 - [ ] Phases 001-007 have completed checklist evidence and handoffs available.
 - [ ] BASE version `4.1.0.0`, candidate SHA, candidate release date, and candidate version surfaces are recorded.
-- [ ] The append-only changelog boundary and the 032 exemption set are explicit before comparison begins.
+- [ ] The append-only changelog boundary and the 020 exemption set are explicit before comparison begins.
 
 ### Definition of Done
 

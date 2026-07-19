@@ -23,8 +23,8 @@ const os = require('os');
 const SCRIPTS_DIR = path.join(__dirname, '..', 'dist');
 const SKILL_ROOT = path.join(__dirname, '..', '..'); // .opencode/skills/system-spec-kit
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..'); // actual project root
-const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'mcp_server/node_modules/better-sqlite3');
-const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite');
+const BETTER_SQLITE3_PATH = path.join(SKILL_ROOT, 'mcp-server/node_modules/better-sqlite3');
+const REAL_DB_PATH = path.join(SKILL_ROOT, 'mcp-server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite');
 const RECENT_SESSION_LOOKUP_SQL =
   `SELECT spec_folder FROM session_learning WHERE created_at > datetime('now', '-24 hours') ORDER BY created_at DESC LIMIT 1`;
 const DETECT_SPEC_FUNCTION_MARKER = 'async function detectSpecFolder';
@@ -944,7 +944,7 @@ async function testConfigProjectRootAlignment() {
     // Test 2: DB path from PROJECT_ROOT matches expected location
     const constructedDbPath = path.join(
       CONFIG.PROJECT_ROOT,
-      '.opencode/skills/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite'
+      '.opencode/skills/system-spec-kit/mcp-server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite'
     );
     if (constructedDbPath === REAL_DB_PATH || path.resolve(constructedDbPath) === path.resolve(REAL_DB_PATH)) {
       pass('T-FD08b: Constructed DB path matches expected', path.basename(constructedDbPath));
@@ -956,7 +956,7 @@ async function testConfigProjectRootAlignment() {
     // Test 3: better-sqlite3 path from PROJECT_ROOT resolves
     const constructedSqlitePath = path.join(
       CONFIG.PROJECT_ROOT,
-      '.opencode/skills/system-spec-kit/mcp_server/node_modules/better-sqlite3'
+      '.opencode/skills/system-spec-kit/mcp-server/node_modules/better-sqlite3'
     );
     try {
       require.resolve(constructedSqlitePath);

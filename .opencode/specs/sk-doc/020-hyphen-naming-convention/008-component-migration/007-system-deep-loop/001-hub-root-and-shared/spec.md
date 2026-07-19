@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop hub root and shared names (032 phase 007/001)"
+title: "Feature Specification: system-deep-loop hub root and shared names (020 phase 007/001)"
 description: "The system-deep-loop hub root and shared boundary contain exact routing and metadata contracts that a broad rename could damage. The current inventory is already kebab-clean in this boundary, so this child verifies the no-op candidate set, renames any baseline drift only if present, and proves hub/shared references remain intact."
 trigger_phrases:
   - "system-deep-loop hub shared naming"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop hub root and shared names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 001 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -88,6 +88,6 @@ If the primary run passes, repeat with a brief that pins only one axis (for exam
 
 - Group: Brief Pinning And Precedence
 - Playbook ID: ID-002
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `brief-pinning-and-precedence/pinned-brief-followed-verbatim.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode references and assets (032 component 011 phase 003)"
+title: "Feature Specification: mcp-code-mode references and assets (020 component 011 phase 003)"
 description: "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact."
 trigger_phrases:
   - "mcp-code-mode references and assets"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode references and assets
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 003 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 003 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

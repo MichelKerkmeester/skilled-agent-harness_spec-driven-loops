@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
+  "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
   "description": "The existing `check-prompt-quality-card-sync.sh` script compared file hashes across only 3 mirrors, missing two cli- cards (`cli-devin`,",
   "keywords": [
     "existing",
@@ -18,11 +18,12 @@
     "cards",
     "cli-devin"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.717Z",
+  "lastUpdated": "2026-07-18T03:48:55.241Z",
   "specId": "002",
   "folderSlug": "repair-and-extend-sync-substrate",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "005-sk-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

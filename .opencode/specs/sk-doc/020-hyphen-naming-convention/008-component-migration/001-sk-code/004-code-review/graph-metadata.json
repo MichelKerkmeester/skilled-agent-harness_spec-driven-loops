@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark labels, and review reference documents",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-07-17T14:30:07.427Z",
+    "last_save_at": "2026-07-17T20:26:02.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d90d8f38624d29a3dc0d0251fc7111445c4ecb850fa8e2d93bbc4925994e344b",
+    "source_fingerprint": "sha256:8fa5dd18d7bc93ff4e279f8dfddb5650e26a866c731baaba5aa03072af5218d5",
     "source_doc_hashes": {
-      "spec.md": "473adfc35801e36350fa6878da87a6a106ba728cff780e478b024ba8afdf254e",
-      "plan.md": "1dd8ef4eadb37eb37ac149f01b0139241674cd3ff64e8bf83806c39232e7df4c",
-      "tasks.md": "cf5624212111dd18def7311203755de89986ad0b51df8cf013584f461d2bfebf",
-      "checklist.md": "db77e81d8b6c9fadeeeba3fafbfb42b66ba7bb4e0d2f261e8a7179d5d9f9e963"
+      "spec.md": "07dffa9939d094873eeadc25859fa496c49ef6009fa072b4a74e847e15092df5",
+      "plan.md": "374e33b01fa3f2cd4dc214a9e53a9a88399c1e3105598e4b25955d95ce71eaca",
+      "tasks.md": "dbc859620da15bb3f036e1b083dfd8cbcd1b251fd70660be8193caaa3e34c35e",
+      "checklist.md": "174a225daae952bc6353f8cf132c30831071bcaccaf2d86a401c4b9648b7d9d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

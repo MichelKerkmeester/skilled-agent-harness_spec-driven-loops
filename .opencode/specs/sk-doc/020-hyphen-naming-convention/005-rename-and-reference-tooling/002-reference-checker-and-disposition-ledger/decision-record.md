@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: reference checker and disposition ledger (032 phase 005.002)"
+title: "Decision Record: reference checker and disposition ledger (020 phase 005.002)"
 description: "Design decisions for complete reference verification: a manifest-driven resolver matrix, a ledger schema that covers map entries and dynamic sites, path-value boundaries, read-only scanning, and fail-closed completeness semantics."
 trigger_phrases:
   - "reference checker decisions"
@@ -75,7 +75,7 @@ frontmatter field names, code identifiers, and database columns outside the path
 directories, generated/lockfile output, tool-mandated names, test-runner magic, and frozen surfaces are reported with their
 policy disposition rather than treated as ordinary rename targets.
 
-**Alternative rejected:** normalize every matching token. That would alter data/API contracts and violate the 032 exemption
+**Alternative rejected:** normalize every matching token. That would alter data/API contracts and violate the 020 exemption
 boundary.
 
 ### DR-004 — Keep the checker read-only and do not execute dynamic code

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: remove transition aliases (032 phase 009)"
-description: "Implementation Plan for phase 009 of the 032 kebab-case filesystem-naming program: remove the bounded coexistence aliases after the physical migration is complete and make unsupported legacy names fail closed."
+title: "Implementation Plan: remove transition aliases (020 phase 009)"
+description: "Implementation Plan for phase 009 of the 020 kebab-case filesystem-naming program: remove the bounded coexistence aliases after the physical migration is complete and make unsupported legacy names fail closed."
 trigger_phrases:
   - "remove transition aliases implementation plan"
   - "hyphen naming phase 009 implementation plan"
@@ -100,7 +100,7 @@ Phase 002's bounded dual-name resolver keeps the repository bisectable while phy
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 032 program dependencies: the phase 000 immutable baseline and worktree, the phase 001 convention and exemption policy, the phase 002 consumer manifest and coexistence evidence, and the completed physical migration. Phase 010 consumes this phase's evidence; it is not a substitute for the alias-removal checks.
+Inherits the 020 program dependencies: the phase 000 immutable baseline and worktree, the phase 001 convention and exemption policy, the phase 002 consumer manifest and coexistence evidence, and the completed physical migration. Phase 010 consumes this phase's evidence; it is not a substitute for the alias-removal checks.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

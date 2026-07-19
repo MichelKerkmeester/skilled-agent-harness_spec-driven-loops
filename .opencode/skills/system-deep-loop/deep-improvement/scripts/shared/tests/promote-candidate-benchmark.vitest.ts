@@ -47,7 +47,7 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
   const benchmarkReport = path.join(work, 'benchmark-outputs/report.json');
   const repeatability = path.join(work, 'benchmark-outputs/repeatability.json');
   const config = path.join(work, 'model-benchmark-config.json');
-  const manifest = path.join(work, 'target_manifest.jsonc');
+  const manifest = path.join(work, 'target-manifest.jsonc');
   const archiveDir = path.join(work, 'archive');
   const eventLog = path.join(work, 'promotion-events.jsonl');
 

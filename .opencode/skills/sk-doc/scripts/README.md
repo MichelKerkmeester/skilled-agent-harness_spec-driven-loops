@@ -75,7 +75,7 @@ Run individual scripts from the repository root with the documented arguments.
 | `quick_validate.py` | Fast naming and frontmatter checks for pre-commit speed. |
 | `validate-doc-model-refs.js` | Detect docs that cite a non-canonical model name as default. |
 | `validate_document.py` | Validate a markdown doc against its type's required sections and frontmatter. |
-| `validate_flowchart.sh` | Validate ASCII flowchart box alignment and decision-branch labels. |
+| `validate-flowchart.sh` | Validate ASCII flowchart box alignment and decision-branch labels. |
 | `tests/` | Test suite and fixtures for these scripts (see `tests/README.md`). |
 
 ---
@@ -116,4 +116,4 @@ Expected output: Findings list current README template alignment and freshness d
 |---|---|
 | [`sk-doc/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

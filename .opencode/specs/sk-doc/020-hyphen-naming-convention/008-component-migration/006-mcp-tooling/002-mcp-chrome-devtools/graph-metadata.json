@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "mcp-chrome-devtools kebab-case",
       "chrome devtools playbook rename",
-      "032 mcp tooling phase 002",
+      "020 mcp tooling phase 002",
       "mcp-chrome-devtools naming implementation plan",
       "chrome devtools playbook path repair",
       "mcp-chrome-devtools naming tasks",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:42Z",
-    "last_save_at": "2026-07-17T14:30:23.773Z",
+    "last_save_at": "2026-07-17T20:26:10.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:23ab81c832159a18b5517836f43fcecf348eb8346c0d6960dec2070dfa771d14",
+    "source_fingerprint": "sha256:3736c121809484ade407633801c770c18227b214dcf261b1b6ae192a54cf334f",
     "source_doc_hashes": {
-      "spec.md": "2db5097cea14c991fe2e5d9e43d180ed888dcc9d64dcaa88d5aa5319e9610e56",
-      "plan.md": "6b46b49fbca8f9ae44c6949294051c9729abd06bfb8c670ba665f3a207e72a36",
-      "tasks.md": "392d53ea8bc38d99722bda424f1ea2ac80e8908d520daeac2d122195685a1c45",
-      "checklist.md": "ddf41048172ae8f8ce57cc660571b325b7d32006a44184ca622c0f146cfa9954"
+      "spec.md": "0667a05f9d2b7230f94682982568414ae2863de8c4cb5242a6d9c9a8a40dbb76",
+      "plan.md": "9e10ab63d29de1dbe827a980d63b8d2ffea3e89231cb7394e7f2da8bf080ad08",
+      "tasks.md": "38dcdacda8b7ee39ad2bc962386e3c50a8467648db93220dffcfaa5119dacd84",
+      "checklist.md": "81cd75e137e87dbfa1b0b519ae159d7b04bd3d1bea2e477d269883d4569d8270"
     },
     "last_active_child_id": null,
     "last_active_at": null

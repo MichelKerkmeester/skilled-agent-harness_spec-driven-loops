@@ -257,7 +257,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 
 **Cause:** The account associated with the configured API key has insufficient permissions for the operation
 
-**Diagnosis:** Check the specific tool in references/mcp_tools.md, and confirm it actually exists on the real server with `tool_info()` before assuming it's a permissions issue
+**Diagnosis:** Check the specific tool in references/mcp-tools.md, and confirm it actually exists on the real server with `tool_info()` before assuming it's a permissions issue
 
 **Fix:** Configure an API key whose account has appropriate workspace permissions, or use cupt for equivalent daily ops
 
@@ -265,7 +265,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 
 ### MCP `tool not found` error
 
-**Cause:** Wrong tool name, or the tool doesn't exist on the real official server (see the verification note at the top of `references/mcp_tools.md`)
+**Cause:** Wrong tool name, or the tool doesn't exist on the real official server (see the verification note at the top of `references/mcp-tools.md`)
 
 **Fix:** Run `tool_info("clickup_official.clickup_official_clickup_{tool_name}")` first to confirm the exact name, the callable form doubles the `clickup_` prefix because the underlying tool names already start with it (e.g. `clickup_official.clickup_official_clickup_create_task`, NOT `clickup_official.clickup_official_create_task`)
 

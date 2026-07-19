@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Design Phase [template:examples/level_1/plan.md]"
+title: "Implementation Plan: Design Phase [template:examples/level-1/plan.md]"
 description: "Current-template Level 1 plan for the design phase validation child."
 trigger_phrases:
   - "phase"

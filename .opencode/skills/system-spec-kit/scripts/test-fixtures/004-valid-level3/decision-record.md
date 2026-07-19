@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Tiny Catalog Sync [template:level_3/decision-record.md]"
+title: "Decision Record: Tiny Catalog Sync [template:level-3/decision-record.md]"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
 trigger_phrases:
   - "tiny catalog sync"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -135,5 +135,5 @@ The Tiny Catalog Sync fixture must pass strict validation while representing the
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->

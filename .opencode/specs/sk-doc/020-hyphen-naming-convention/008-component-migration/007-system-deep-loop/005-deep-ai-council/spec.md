@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-ai-council filesystem names (032 phase 007/005)"
+title: "Feature Specification: deep-ai-council filesystem names (020 phase 007/005)"
 description: "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and manual-playbook trees, council graph material, and assets. This phase renames those in-scope paths to kebab-case and repairs their references while preserving council artifacts, state contracts, and tool-mandated names."
 trigger_phrases:
   - "deep-ai-council kebab-case migration"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Deep-ai-council filesystem names
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | deep-ai-council |
-| **Origin** | Phase 005 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 005 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

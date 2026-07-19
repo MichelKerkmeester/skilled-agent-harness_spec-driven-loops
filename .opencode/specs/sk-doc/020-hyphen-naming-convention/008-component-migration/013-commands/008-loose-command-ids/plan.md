@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: loose command ID naming (032 phase 008/013/008)"
+title: "Implementation Plan: loose command ID naming (020 phase 008/013/008)"
 description: "Resolve the loader contract, classify root command filenames, and close path references without changing public command IDs or tool contracts."
 trigger_phrases:
   - "loose command naming plan"

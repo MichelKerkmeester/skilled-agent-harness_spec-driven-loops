@@ -36,7 +36,7 @@ The command name `/goal` originally collided: the OpenCode plugin's router lived
 impossible to reach Claude Code's own native `/goal` in this repo — invoking "goal" from
 Claude Code always resolved to the OpenCode markdown and instructed a call to `mk_goal()`,
 a tool that does not exist in Claude Code (confirmed dead end 2026-07-01, `ToolSearch`
-found no matching tool; no `plugin_bridges/*.mjs` exists for `mk-goal`, unlike
+found no matching tool; no `plugin-bridges/*.mjs` exists for `mk-goal`, unlike
 `mk-spec-memory`/`mk-skill-advisor`/`mk-code-graph`). The file's real committed history
 (trace with `git log --follow -- .opencode/commands/goal-opencode.md`), corrected
 2026-07-02 after a diagnostic review found an earlier draft of this note wrongly claimed

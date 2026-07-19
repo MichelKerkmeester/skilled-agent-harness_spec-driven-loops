@@ -87,6 +87,6 @@ If the primary run passes, repeat with a second subject from a different domain 
 
 - Group: Direction Freedom And Deviation
 - Playbook ID: ID-001
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `direction-freedom-and-deviation/free-axis-brainstorm-and-deviation.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

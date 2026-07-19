@@ -1,5 +1,5 @@
 ---
-title: "Checklist: MCP-server consumer rewrites (032 subtree 008 phase 003)"
+title: "Checklist: MCP-server consumer rewrites (020 subtree 008 phase 003)"
 description: "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity."
 trigger_phrases:
   - "mcp-server consumer rewrites"

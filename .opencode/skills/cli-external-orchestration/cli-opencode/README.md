@@ -123,7 +123,7 @@ Before the first dispatch in a session the skill runs `opencode providers list`.
 
 ### Agent Delegation
 
-OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, but the live dispatch contract is narrower than file presence alone: `context`, `review` and `debug` are subagents and should not be presented as direct specialist `opencode run --agent` slugs. Use `orchestrate` for generic subagent routing when help-verified, omit `--agent` for the default/general path and never pass `--agent general`. Some small-model paths documented in `SKILL.md` still carry narrower omit-agent caveats. The full roster lives in `references/agent_delegation.md`.
+OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, but the live dispatch contract is narrower than file presence alone: `context`, `review` and `debug` are subagents and should not be presented as direct specialist `opencode run --agent` slugs. Use `orchestrate` for generic subagent routing when help-verified, omit `--agent` for the default/general path and never pass `--agent general`. Some small-model paths documented in `SKILL.md` still carry narrower omit-agent caveats. The full roster lives in `references/agent-delegation.md`.
 
 ---
 
@@ -201,7 +201,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
 | Default dispatch | `opencode run --model deepseek/deepseek-v4-pro --variant high --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message |
 
 ---
@@ -211,10 +211,10 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/cli_reference.md`](./references/cli_reference.md) | Complete CLI subcommands, flags, models, auth and version drift handling |
-| [`references/integration_patterns.md`](./references/integration_patterns.md) | The three use cases, the self-invocation guard and the silent-stdin trap |
-| [`references/opencode_tools.md`](./references/opencode_tools.md) | Unique value versus sibling cli-* skills |
-| [`references/agent_delegation.md`](./references/agent_delegation.md) | Agent roster, primary versus subagent routing and leaf-agent constraints |
-| [`references/destructive_scope_violations.md`](./references/destructive_scope_violations.md) | The RM-8 incident and the four-layer prevention playbook |
-| [`assets/prompt_quality_card.md`](./assets/prompt_quality_card.md) | Executor-specific model overrides and the CLEAR check |
-| [`assets/prompt_templates.md`](./assets/prompt_templates.md) | Copy-paste prompt templates for each use case and agent |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, models, auth and version drift handling |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The three use cases, the self-invocation guard and the silent-stdin trap |
+| [`references/opencode-tools.md`](./references/opencode-tools.md) | Unique value versus sibling cli-* skills |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster, primary versus subagent routing and leaf-agent constraints |
+| [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md) | The RM-8 incident and the four-layer prevention playbook |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Executor-specific model overrides and the CLEAR check |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for each use case and agent |

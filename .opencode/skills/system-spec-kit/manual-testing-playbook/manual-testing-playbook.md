@@ -1,0 +1,3883 @@
+---
+title: "Spec Kit Memory: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the Spec Kit Memory MCP server."
+last_updated: "2026-06-11"
+version: 3.6.0.99
+---
+
+# Spec Kit Memory: Manual Testing Playbook
+
+> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked and not stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. Valid scenario classifications are `PASS`, `FAIL`, `SKIP` (with a specific sandbox or runtime blocker documented), or `UNAUTOMATABLE` (with the concrete reason the scenario cannot be truthfully executed through the direct-handler runner). Packet-level summaries may additionally use `PARTIAL` when core behavior was observed but supporting evidence remained incomplete.
+
+This document combines the full manual-validation contract for the Spec Kit Memory MCP server into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded, and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors, and validation criteria.
+
+---
+
+This playbook package adopts the Feature Catalog split-document pattern for canonical Spec Kit operator validation. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail now lives in the category folders at the playbook root.
+
+Canonical source artifacts:
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/mutation/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/discovery/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/maintenance/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/lifecycle/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/analysis/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/evaluation/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/bug-fixes-and-data-integrity/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/evaluation-and-measurement/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/graph-signal-activation/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/scoring-and-calibration/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/query-intelligence/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/governance/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/remediation-revalidation/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/implement-and-remove-deprecated-features/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/`
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/` — live-validation scenarios for the system-spec-kit-owned plugins/hooks (completion sentinel, spec mutation gate, speckit completion exposer, spec-memory, dist freshness, session cleanup). Scenarios for plugins whose core lives elsewhere are hosted by their owning skill: cli-external-orchestration (dispatch audit), system-code-graph (freshness guard, code-graph plugin), sk-code (post-edit quality), mcp-code-mode (MCP route guard)
+
+---
+
+## 1. OVERVIEW
+
+This playbook is the operator-facing manual validation directory for canonical Spec Kit features. It preserves the existing EX/PHASE/M scenario IDs and numbered feature entries, keeps root-level summaries readable, and links each scenario to a dedicated feature file with the full execution contract. Those per-feature files should mirror the feature-catalog snippet style: prose-first explanation, current reality, structured source references, and concise metadata.
+
+Coverage note (2026-03-18): runtime-labeled scenarios in this playbook primarily prove shared-backend behavior plus multi-runtime capture/save-path handling. Unless a scenario explicitly drives a Hydra feature through a given CLI, treat runtime labels as repo-backed coverage only and not as full end-to-end Hydra parity proof for that CLI.
+
+### Realistic Test Model
+
+These manual tests should mimic real user behavior, not just isolated command execution. The preferred execution shape is:
+
+1. A realistic user request is given to an orchestrator.
+2. The orchestrator decides whether to work locally, delegate to sub-agents, or invoke another CLI/runtime.
+3. The operator captures both the execution process and the user-visible outcome.
+4. The scenario passes only when the workflow is sound and the returned result would satisfy a real user.
+
+### What The Feature Files Should Explain
+
+- The realistic user request that should trigger the behavior
+- The orchestrator brief or agent-facing prompt that should drive the test
+- The expected execution process, including delegation or external CLI use when relevant
+- The desired user-visible outcome, not just the internal tool output
+
+---
+
+## 2. GLOBAL PRECONDITIONS
+1. Working directory is project root.
+2. Feature summary files are accessible.
+3. Spec/memory commands are available in the runtime.
+4. Manual execution logging is enabled (terminal transcript capture).
+5. Destructive scenarios (`EX-008`, `EX-009`, `EX-018`, `EX-021`) MUST run only in a disposable sandbox spec folder (for example `specs/test-sandbox`), never in active project folders.
+6. Before each destructive scenario, create and record a named checkpoint for rollback evidence.
+
+---
+
+## 3. GLOBAL EVIDENCE REQUIREMENTS
+- Command transcript
+- User request used
+- Orchestrator or agent-facing prompt used
+- Delegation or runtime-routing notes when applicable
+- Output snippets
+- Final user-facing response or outcome summary
+- Artifact path or output reference
+- Scenario verdict with rationale
+
+---
+
+## 4. DETERMINISTIC COMMAND NOTATION
+- Replace placeholders before execution: `<target-spec>`, `<sandbox-spec>`, `<memory-id>`, `<checkpoint-name>`.
+- Do not execute literal ellipsis (`...`) or omitted-argument forms; transcripts must contain fully resolved commands.
+- For shorthand tool syntax, execute with explicit argument keys in runtime calls.
+- When a scenario is orchestrator-led, capture both the realistic user request and the explicit orchestrator prompt before executing the deterministic steps.
+
+---
+
+## 5. REVIEW PROTOCOL AND RELEASE READINESS
+
+### Inputs Required
+
+1. `manual-testing-playbook.md`
+2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
+3. Scenario execution evidence (logs, tool outputs, artifacts)
+4. Feature-to-scenario coverage map
+5. Triage notes for all non-pass outcomes
+
+### Scenario Acceptance Rules
+
+For each executed scenario, check:
+
+1. Preconditions were satisfied.
+2. Prompt and command sequence were executed as written.
+3. Expected signals are present.
+4. Evidence is complete and readable.
+5. Outcome rationale is explicit.
+
+Scenario verdict:
+- `PASS`: all acceptance checks true
+- `FAIL`: expected behavior missing, contradictory output, or critical check failed
+- `SKIP`: a specific sandbox or runtime blocker prevented execution (document the blocker)
+- `UNAUTOMATABLE`: the scenario cannot be truthfully executed through the direct-handler runner (document why)
+
+`PARTIAL` is a packet-level summary classification only (core behavior observed, supporting evidence incomplete); it is not a valid per-scenario verdict.
+
+### Feature Verdict Rules
+
+`PARTIAL` is an aggregate evidence state, never inherited from a per-scenario `PARTIAL` (which is not a valid scenario verdict — see above):
+
+- `PASS`: all mapped scenarios for the feature are `PASS`
+- `PARTIAL`: no mapped scenario is `FAIL`, but core behavior is only partially evidenced — i.e. some mapped scenarios are `SKIP`/`UNAUTOMATABLE`, or supporting evidence for one or more `PASS` scenarios is incomplete
+- `FAIL`: any mapped scenario is `FAIL`
+
+Hard rule:
+- Any critical-path scenario `FAIL` forces feature verdict to `FAIL`.
+
+### Release Readiness Rule
+
+Release is `READY` only when:
+
+1. No feature verdict is `FAIL`.
+2. All critical scenarios are `PASS`.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 421 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 348 feature files.
+5. No unresolved blocking triage item remains.
+6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
+
+Otherwise release is `NOT READY`.
+
+Deterministic coverage check (run from repository root):
+
+```bash
+python3 - <<'PY'
+import re
+import sys
+from pathlib import Path
+
+root = Path('.opencode/skills/system-spec-kit/manual-testing-playbook')
+index = root / 'manual-testing-playbook.md'
+
+scenario_files = {
+    path.relative_to(root).as_posix()
+    for pattern in ('[0-9][0-9]--*/*.md', '[0-9][0-9]--*/_deprecated/*.md')
+    for path in root.glob(pattern)
+    if path.is_file() and path.name != 'README.md'  # category README/package-map files are not executable scenarios
+}
+
+linked = {
+    re.sub(r'^\./', '', target)
+    for target in re.findall(r'\]\(((?:\./)?[0-9][0-9]--[^)#]+\.md)', index.read_text())
+}
+
+failures = []
+if len(scenario_files) != 421:
+    failures.append(f'expected 421 scenario files, found {len(scenario_files)}')
+broken = sorted(linked - scenario_files)
+if broken:
+    failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
+ORPHAN_RATCHET_BASELINE = 82
+orphans = sorted(f for f in scenario_files - linked if '/_deprecated/' not in f)
+if len(orphans) > ORPHAN_RATCHET_BASELINE:
+    failures.append(f'{len(orphans)} orphan scenario file(s) exceed the recorded baseline of {ORPHAN_RATCHET_BASELINE}: {orphans[:5]}')
+
+if failures:
+    print('\n'.join(failures), file=sys.stderr)
+    sys.exit(1)
+print(f'OK: {len(scenario_files)} files, {len(linked)} index links, 0 broken, {len(orphans)} orphans (baseline {ORPHAN_RATCHET_BASELINE})')
+PY
+```
+
+Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
+As of 2026-07-17, the deterministic executable-scenario file count is 421 (category README/package-map files excluded). Scenarios 450-456 are the current high-water entries: graceful embedder-degrade to lexical (450), the constitutional self-edit and compare-and-swap guard (451), background enrichment pending/failed gauges (452), the Speckit autopilot lifecycle (453), goal OpenCode plugin active-goal injection and status (454), validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) (455), and canonical-first spec-root resolution (456). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+
+### Destructive Scenario Rules
+
+- `EX-008`, `EX-009`, `EX-018`, and `EX-021` MUST run on non-production data only.
+- Before executing, verify the affected resource can be rebuilt from scratch.
+- Never run destructive scenarios in parallel with other scenarios that depend on the same resource.
+
+### Memory/Spec-Kit Mandatory Flows
+
+Treat the root playbook plus referenced per-feature files as the canonical source of truth:
+- `M-001 Context Recovery and Continuation`
+- `M-002 Targeted Memory Lookup`
+- `M-003 Context Save + Index Update`
+- `M-004 Main-Agent Review and Verdict Handoff`
+- `M-005 Outsourced Agent Memory Capture Round-Trip`
+- `M-006 Stateless Enrichment and Alignment Guardrails`
+
+Rule: keep global verdict logic in the root playbook. Put feature-specific acceptance caveats in the relevant per-feature file instead of in a separate sidecar document.
+
+---
+
+## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
+
+This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for OpenCode or any other CLI.
+
+The wave plans here apply to the split playbook package: the root `manual-testing-playbook.md` acts as the directory, review surface, and orchestration guide, while the detailed scenario contracts live in the category folders at the playbook root.
+
+### Run A: OpenCode 5.3 xhigh (Observed)
+
+Observed orchestration:
+- Hard cap detected: 6 total sub-agent threads
+- Effective model: 1 coordinator + 5 workers
+- Saturation strategy: full worker saturation in waves
+
+| Runtime | Reported/Observed Capacity | Workers Used | Coordinator | Wave Count | Saturation |
+|---|---:|---:|---:|---:|---:|
+| OpenCode 5.3 xhigh | 6 total | 5 | 1 | 2 | 100% while active |
+
+### Merged Operational Rule
+
+1. Probe runtime capacity at start.
+2. Reserve one coordinator.
+3. Saturate remaining worker slots.
+4. Pre-assign explicit scenario IDs, per-feature files, and ranges to each wave before execution.
+5. Run destructive scenarios (`EX-008`, `EX-009`, `EX-018`, `EX-021`) in dedicated sandbox-only waves.
+6. After each wave, execute playbook `M-003` (save + index), then begin the next wave via `M-001` continuation.
+7. Record utilization table and evidence paths in the final report.
+
+### What Belongs In Per-Feature Files
+
+Use the per-feature files for feature-specific:
+- Real user requests
+- Orchestrator prompts
+- Expected delegation or alternate-CLI routing
+- Desired user-visible outcomes
+- Isolation constraints or acceptance caveats that do not apply globally
+
+---
+
+## 7. EXISTING FEATURES
+
+### EX-001 | Unified context retrieval (memory_context)
+
+#### Description
+Intent-aware context pull.
+
+#### Scenario Contract
+Prompt: `Validate memory_context recovery via /speckit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
+
+Relevant bounded context returned; auto-resume context stays within budget
+
+#### Test Execution
+> **Feature File:** [EX-001](../manual-testing-playbook/retrieval/unified-context-retrieval-memory-context.md)
+> **Catalog:** [retrieval/unified-context-retrieval-memorycontext.md](../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md)
+
+### EX-002 | Semantic and lexical search (memory_search)
+
+#### Description
+Hybrid precision check.
+
+#### Scenario Contract
+Prompt: `Validate memory_search hybrid retrieval for checkpoint rollback and confirm ranked results include relevant hybrid signals.`
+
+Relevant ranked results with hybrid signals
+
+Additional audit scenario: `Run memory_search against a fixture set that contains one expired memory, one live memory, and enough constitutional rows to overflow a tiny limit. Capture the evidence needed to prove multi-concept search excludes the expired row, constitutional injection never returns more than the requested limit, and malformed embeddings fail with a clear validation-style error instead of a raw sqlite-vec exception. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Expired rows excluded from multi-concept search; constitutional injection respects caller limit; malformed embeddings fail with clear validation errors
+
+#### Test Execution
+> **Feature File:** [EX-002](../manual-testing-playbook/retrieval/semantic-and-lexical-search-memory-search.md)
+> **Catalog:** [retrieval/semantic-and-lexical-search-memorysearch.md](../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md)
+
+### EX-003 | Trigger phrase matching (memory_match_triggers)
+
+#### Description
+Fast recall path.
+
+#### Scenario Contract
+Prompt: `Validate memory_match_triggers with cognitive enrichment and confirm trigger hits, cache reload, and prepared-statement reuse.`
+
+Fast in-scope trigger hits + cognitive enrichment; out-of-scope matches filtered
+
+#### Test Execution
+> **Feature File:** [EX-003](../manual-testing-playbook/retrieval/trigger-phrase-matching-memory-match-triggers.md)
+> **Catalog:** [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md)
+
+### EX-004 | Hybrid search pipeline
+
+#### Description
+Confirm multi-channel fusion stays coherent when routing and fallback interact.
+
+#### Scenario Contract
+Prompt: `Validate hybrid search trace behavior and confirm fusion, score aliases, graph suppression, and lexical fallback stay coherent.`
+
+Non-empty result set with trace evidence of multi-channel contribution; aligned boosted scores across the exposed score aliases; `useGraph:false` suppresses both graph and degree contributions even during fallback; lexical fallback only uses still-allowed lexical channels
+
+#### Test Execution
+> **Feature File:** [EX-004](../manual-testing-playbook/retrieval/hybrid-search-pipeline.md)
+> **Catalog:** [retrieval/hybrid-search-pipeline.md](../feature-catalog/retrieval/hybrid-search-pipeline.md)
+
+### EX-005 | 4-stage pipeline architecture
+
+#### Description
+Stage invariant verification.
+
+#### Scenario Contract
+Prompt: `Validate the 4-stage memory_search pipeline and confirm invariant-free execution with stable final scoring.`
+
+Deep-mode reformulation and HyDE candidates pass the same scope, tier, contextType and qualityThreshold filters before merge; constitutional injection obeys shouldApplyScopeFiltering; chunk reassembly accepts both snake_case and camelCase chunk metadata
+
+#### Test Execution
+> **Feature File:** [EX-005](../manual-testing-playbook/retrieval/4-stage-pipeline-architecture.md)
+> **Catalog:** [retrieval/4-stage-pipeline-architecture.md](../feature-catalog/retrieval/4-stage-pipeline-architecture.md)
+
+### EX-006 | Memory indexing (memory_save)
+
+#### Description
+8-category canonical continuity save routing.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Memory indexing (memory_save) against memory_save(filePath). Verify the 8-category content router chooses the correct target or safe refusal; spec-doc continuity updates when the route merges; description.json and graph-metadata.json refresh on every successful canonical save; searchable result appears for merged saves; and no template-contract or insufficiency rejection appears. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Correct route or safe refusal reported; spec-doc continuity updated for merged saves; searchable result appears; no template-contract or insufficiency rejection
+
+#### Test Execution
+> **Feature File:** [EX-006](../manual-testing-playbook/mutation/memory-indexing-memory-save.md)
+> **Catalog:** [mutation/memory-indexing-memorysave.md](../feature-catalog/mutation/memory-indexing-memorysave.md)
+
+### EX-007 | Memory metadata update (memory_update)
+
+#### Description
+Metadata + re-embed update.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Memory metadata update (memory_update) against memory_update(id,title,triggers). Verify updated metadata reflected in retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Updated metadata reflected in retrieval
+
+Additional audit scenario: `Update a spec-doc record with new title, trigger phrases and a replacement embedding while forcing one failed vec write before a successful retry. Capture the evidence needed to prove the row stays pending until the vector write completes, never reports false success on the failed attempt, and cached searches reflect the successful metadata update immediately afterward. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Pending-until-written embedding status; no false-success state; post-update cached search refreshes immediately
+
+#### Test Execution
+> **Feature File:** [EX-007](../manual-testing-playbook/mutation/memory-metadata-update-memory-update.md)
+> **Catalog:** [mutation/memory-metadata-update-memoryupdate.md](../feature-catalog/mutation/memory-metadata-update-memoryupdate.md)
+
+### EX-008 | Single and folder delete (memory_delete)
+
+#### Description
+Atomic single delete.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Single and folder delete (memory_delete) against checkpoint_create(name:"pre-ex008-delete",specFolder:"<sandbox-spec>"). Verify deleted item absent from retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Deleted item absent from retrieval
+
+#### Test Execution
+> **Feature File:** [EX-008](../manual-testing-playbook/mutation/single-and-folder-delete-memory-delete.md)
+> **Catalog:** [mutation/single-and-folder-delete-memorydelete.md](../feature-catalog/mutation/single-and-folder-delete-memorydelete.md)
+
+### EX-009 | Tier-based bulk deletion (memory_bulk_delete)
+
+#### Description
+Tier cleanup with safety.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Tier-based bulk deletion (memory_bulk_delete) against checkpoint_create(name:"pre-ex009-bulk-delete",specFolder:"<sandbox-spec>"). Verify scoped deletion count + checkpoint created. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Scoped deletion count + checkpoint created
+
+#### Test Execution
+> **Feature File:** [EX-009](../manual-testing-playbook/mutation/tier-based-bulk-deletion-memory-bulk-delete.md)
+> **Catalog:** [mutation/tier-based-bulk-deletion-memorybulkdelete.md](../feature-catalog/mutation/tier-based-bulk-deletion-memorybulkdelete.md)
+
+### EX-010 | Validation feedback (memory_validate)
+
+#### Description
+Feedback learning loop.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Validation feedback (memory_validate) against memory_validate(memoryId,helpful:true,queryId). Verify confidence/promotion metadata updates. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Confidence/promotion metadata updates
+
+#### Test Execution
+> **Feature File:** [EX-010](../manual-testing-playbook/mutation/validation-feedback-memory-validate.md)
+> **Catalog:** [mutation/validation-feedback-memoryvalidate.md](../feature-catalog/mutation/validation-feedback-memoryvalidate.md)
+
+### EX-011 | Memory browser (memory_list)
+
+#### Description
+Folder inventory audit.
+
+#### Scenario Contract
+Prompt: `Validate memory_list folder inventory and confirm paginated results and totals are present with cited pass/fail evidence.`
+
+Paginated list and totals
+
+#### Test Execution
+> **Feature File:** [EX-011](../manual-testing-playbook/discovery/memory-browser-memory-list.md)
+> **Catalog:** [discovery/memory-browser-memorylist.md](../feature-catalog/discovery/memory-browser-memorylist.md)
+
+### EX-012 | System statistics (memory_stats)
+
+#### Description
+System baseline snapshot.
+
+#### Scenario Contract
+Prompt: `Validate memory_stats with composite folder ranking and scores, confirming counts, tiers, folder ranking, and partial-bucket totals.`
+
+Counts, tiers, folder ranking present
+
+Additional audit scenario: `Return memory_stats from a fixture set that includes at least one partial embedding_status row. Capture the evidence needed to prove the response exposes a partial bucket and that total equals pending + success + failed + retry + partial. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Partial bucket present and included in totals
+
+#### Test Execution
+> **Feature File:** [EX-012](../manual-testing-playbook/discovery/system-statistics-memory-stats.md)
+> **Catalog:** [discovery/system-statistics-memorystats.md](../feature-catalog/discovery/system-statistics-memorystats.md)
+
+### EX-013 | Health diagnostics (memory_health)
+
+#### Description
+Index/FTS integrity check.
+
+#### Scenario Contract
+Prompt: `Validate memory_health full diagnostics and confirm healthy/degraded status with actionable pass/fail evidence.`
+
+healthy/degraded status and diagnostics
+
+Additional contract (026 index block): `Run memory_health and confirm the response includes an index block with a summary enum value drawn from: healthy_fresh, healthy_lagging_vectors, stale_needs_scan, degraded_needs_repair, or unavailable. Verify the index block also exposes indexed, pending, and failed counts. Return a concise pass/fail verdict with the main reason and cited field names.`
+
+index.summary is one of the documented enum values; index.indexed, index.pending and index.failed are all present as numeric fields
+
+#### Test Execution
+> **Feature File:** [EX-013](../manual-testing-playbook/discovery/health-diagnostics-memory-health.md)
+> **Catalog:** [discovery/health-diagnostics-memoryhealth.md](../feature-catalog/discovery/health-diagnostics-memoryhealth.md)
+
+### EX-014 | Workspace scanning and indexing (memory_index_scan)
+
+#### Description
+Incremental sync run.
+
+#### Scenario Contract
+Prompt: `Validate memory_index_scan incremental sync, spec-doc warn-only indexing, and atomic lease acquisition, rejection, expiry, and completion.`
+
+Scan summary, updated index state, and spec-doc warn-only indexing behavior
+
+Additional contract (026 self-maintaining behavior): `Run two overlapping memory_index_scan calls and confirm the second returns a success envelope with coalesced:true rather than a raw E429. Then run a scan after saving a document whose spec folder has been renamed and confirm the handler heals the move by packet identity without re-embedding the content. Capture evidence that a completed scan result can carry status complete_with_pending_vectors with a non-zero pendingVectors count when vectors are still draining. Return a concise pass/fail verdict with cited field names.`
+
+Overlapping scan returns coalesced:true success envelope instead of E429; renamed spec folder healed by packet identity without re-embedding; complete_with_pending_vectors status present with non-zero pendingVectors when vectors are still draining; BM25/FTS rows are searchable while vectors drain (lexical-first commit confirmed)
+
+#### Test Execution
+> **Feature File:** [EX-014](../manual-testing-playbook/maintenance/workspace-scanning-and-indexing-memory-index-scan.md)
+> **Catalog:** [maintenance/workspace-scanning-and-indexing-memoryindexscan.md](../feature-catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md)
+
+### EX-015 | Checkpoint creation (checkpoint_create)
+
+#### Description
+Pre-destructive backup.
+
+#### Scenario Contract
+Prompt: `Validate Checkpoint creation with checkpoint_create(name,specFolder), verify the new checkpoint is listed, and return a concise verdict with evidence.`
+
+New checkpoint listed
+
+#### Test Execution
+> **Feature File:** [EX-015](../manual-testing-playbook/lifecycle/checkpoint-creation-checkpoint-create.md)
+> **Catalog:** [lifecycle/checkpoint-creation-checkpointcreate.md](../feature-catalog/lifecycle/checkpoint-creation-checkpointcreate.md)
+
+### EX-016 | Checkpoint listing (checkpoint_list)
+
+#### Description
+Recovery asset discovery.
+
+#### Scenario Contract
+Prompt: `Validate Checkpoint listing with checkpoint_list(specFolder,limit), verify available restore points are displayed, and return a concise verdict with evidence.`
+
+Available restore points displayed
+
+#### Test Execution
+> **Feature File:** [EX-016](../manual-testing-playbook/lifecycle/checkpoint-listing-checkpoint-list.md)
+> **Catalog:** [lifecycle/checkpoint-listing-checkpointlist.md](../feature-catalog/lifecycle/checkpoint-listing-checkpointlist.md)
+
+### EX-017 | Checkpoint restore (checkpoint_restore)
+
+#### Description
+Rollback restore drill.
+
+#### Scenario Contract
+Prompt: `Validate Checkpoint restore with checkpoint_restore(name,clearExisting:false), verify restored data and healthy state, and return a concise verdict with evidence.`
+
+Restored data + healthy state
+
+#### Test Execution
+> **Feature File:** [EX-017](../manual-testing-playbook/lifecycle/checkpoint-restore-checkpoint-restore.md)
+> **Catalog:** [lifecycle/checkpoint-restore-checkpointrestore.md](../feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md)
+
+### EX-018 | Checkpoint deletion (checkpoint_delete)
+
+#### Description
+Old snapshot cleanup.
+
+#### Scenario Contract
+Prompt: `Validate Checkpoint deletion in the sandbox list, verify the removed checkpoint is absent, and return a concise verdict with evidence.`
+
+Removed checkpoint absent from list
+
+#### Test Execution
+> **Feature File:** [EX-018](../manual-testing-playbook/lifecycle/checkpoint-deletion-checkpoint-delete.md)
+> **Catalog:** [lifecycle/checkpoint-deletion-checkpointdelete.md](../feature-catalog/lifecycle/checkpoint-deletion-checkpointdelete.md)
+
+### EX-019 | Causal edge creation (memory_causal_link)
+
+#### Description
+Causal provenance linking.
+
+#### Scenario Contract
+Prompt: `Validate memory_causal_link causal provenance and exact-first batch reference resolution; return pass/fail with cited evidence.`
+
+Edge appears in chain trace
+
+#### Test Execution
+> **Feature File:** [EX-019](../manual-testing-playbook/analysis/causal-edge-creation-memory-causal-link.md)
+> **Catalog:** [analysis/causal-edge-creation-memorycausallink.md](../feature-catalog/analysis/causal-edge-creation-memorycausallink.md)
+
+### EX-020 | Causal graph statistics (memory_causal_stats)
+
+#### Description
+Graph coverage review.
+
+#### Scenario Contract
+Prompt: `Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.`
+
+Coverage and edge metrics present
+
+#### Test Execution
+> **Feature File:** [EX-020](../manual-testing-playbook/analysis/causal-graph-statistics-memory-causal-stats.md)
+> **Catalog:** [analysis/causal-graph-statistics-memorycausalstats.md](../feature-catalog/analysis/causal-graph-statistics-memorycausalstats.md)
+
+### EX-021 | Causal edge deletion (memory_causal_unlink)
+
+#### Description
+Edge correction.
+
+#### Scenario Contract
+Prompt: `Validate memory_causal_unlink removes the target edge after checkpoint creation; return pass/fail with cited evidence.`
+
+Removed edge absent in trace
+
+#### Test Execution
+> **Feature File:** [EX-021](../manual-testing-playbook/analysis/causal-edge-deletion-memory-causal-unlink.md)
+> **Catalog:** [analysis/causal-edge-deletion-memorycausalunlink.md](../feature-catalog/analysis/causal-edge-deletion-memorycausalunlink.md)
+
+### EX-022 | Causal chain tracing (memory_drift_why)
+
+#### Description
+Decision why-trace.
+
+#### Scenario Contract
+Prompt: `Validate memory_drift_why returns the expected causal chain relations; return pass/fail with cited evidence.`
+
+Chain includes expected relations
+
+#### Test Execution
+> **Feature File:** [EX-022](../manual-testing-playbook/analysis/causal-chain-tracing-memory-drift-why.md)
+> **Catalog:** [analysis/causal-chain-tracing-memorydriftwhy.md](../feature-catalog/analysis/causal-chain-tracing-memorydriftwhy.md)
+
+### EX-023 | Epistemic baseline capture (task_preflight)
+
+#### Description
+Pre-task baseline logging.
+
+#### Scenario Contract
+Prompt: `Validate task_preflight persists the epistemic baseline record; return pass/fail with cited evidence.`
+
+Baseline record created
+
+#### Test Execution
+> **Feature File:** [EX-023](../manual-testing-playbook/analysis/epistemic-baseline-capture-task-preflight.md)
+> **Catalog:** [analysis/epistemic-baseline-capture-taskpreflight.md](../feature-catalog/analysis/epistemic-baseline-capture-taskpreflight.md)
+
+### EX-024 | Post-task learning measurement (task_postflight)
+
+#### Description
+Learning closeout.
+
+#### Scenario Contract
+Prompt: `Validate task_postflight saves the learning delta record; return pass/fail with cited evidence.`
+
+Delta/learning record saved
+
+#### Test Execution
+> **Feature File:** [EX-024](../manual-testing-playbook/analysis/post-task-learning-measurement-task-postflight.md)
+> **Catalog:** [analysis/post-task-learning-measurement-taskpostflight.md](../feature-catalog/analysis/post-task-learning-measurement-taskpostflight.md)
+
+### EX-025 | Learning history (memory_get_learning_history)
+
+#### Description
+Trend review.
+
+#### Scenario Contract
+Prompt: `Validate memory_get_learning_history returns completed learning cycles for the spec folder; return pass/fail with cited evidence.`
+
+Historical entries returned; fresh DB init succeeds; NaN rejected
+
+#### Test Execution
+> **Feature File:** [EX-025](../manual-testing-playbook/analysis/learning-history-memory-get-learning-history.md)
+> **Catalog:** [analysis/learning-history-memorygetlearninghistory.md](../feature-catalog/analysis/learning-history-memorygetlearninghistory.md)
+
+### EX-026 | Ablation studies (eval_run_ablation)
+
+#### Description
+Channel impact experiment.
+
+#### Scenario Contract
+Prompt: `Validate eval_run_ablation ablation reporting, including baseline recall, channel deltas, fts5 verdict, query-ID status, and provenance/truncation evidence.`
+
+Baseline recall, per-channel deltas, focused fts5 verdict, and provenance/truncation status are all explicit
+
+#### Test Execution
+> **Feature File:** [EX-026](../manual-testing-playbook/evaluation/ablation-studies-eval-run-ablation.md)
+> **Catalog:** [evaluation/ablation-studies-evalrunablation.md](../feature-catalog/evaluation/ablation-studies-evalrunablation.md)
+
+### EX-027 | Reporting dashboard (eval_reporting_dashboard)
+
+#### Description
+Eval reporting pass.
+
+#### Scenario Contract
+Prompt: `Validate eval_reporting_dashboard text and JSON reporting, including sprint limits, chronological ordering, active DB selection, and parent-memory aggregation.`
+
+Trend/channel/summary data present in supported runtime formats; active eval DB remains selected; request limit trims sprint groups rather than raw runs; chunk-backed rows aggregate to parent memory IDs
+
+#### Test Execution
+> **Feature File:** [EX-027](../manual-testing-playbook/evaluation/reporting-dashboard-eval-reporting-dashboard.md)
+> **Catalog:** [evaluation/reporting-dashboard-evalreportingdashboard.md](../feature-catalog/evaluation/reporting-dashboard-evalreportingdashboard.md)
+
+### EX-028 | 1. Search Pipeline Features (SPECKIT_*)
+
+#### Description
+Flag catalog verification with inert and retired surface cleanup.
+
+#### Scenario Contract
+Prompt: `Validate 1. Search Pipeline Features (SPECKIT_*) against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }).`
+
+Accurate active/inert/retired classification; retired topics absent from active manual-test guidance
+
+#### Test Execution
+> **Feature File:** [EX-028](../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+> **Catalog:** [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
+
+### EX-029 | 2. Session and Cache
+
+#### Description
+Session policy audit.
+
+#### Scenario Contract
+Prompt: `Validate 2. Session and Cache against memory_search({ query:"DISABLE_SESSION_DEDUP session cache policy settings", limit:20 }).`
+
+Session/cache controls found
+
+#### Test Execution
+> **Feature File:** [EX-029](../manual-testing-playbook/feature-flag-reference/2-session-and-cache.md)
+> **Catalog:** [feature-flag-reference/2-session-and-cache.md](../feature-catalog/feature-flag-reference/2-session-and-cache.md)
+
+### EX-030 | 3. MCP Configuration
+
+#### Description
+MCP limits audit.
+
+#### Scenario Contract
+Prompt: `Validate 3. MCP Configuration against memory_search({ query:"MCP_MAX_MEMORY_TOKENS validation settings defaults", limit:20 }).`
+
+MCP guardrails returned
+
+#### Test Execution
+> **Feature File:** [EX-030](../manual-testing-playbook/feature-flag-reference/3-mcp-configuration.md)
+> **Catalog:** [feature-flag-reference/3-mcp-configuration.md](../feature-catalog/feature-flag-reference/3-mcp-configuration.md)
+
+### EX-031 | 4. Memory and Storage
+
+#### Description
+Storage precedence check.
+
+#### Scenario Contract
+Prompt: `Validate 4. Memory and Storage against memory_search({ query: "SPEC_KIT_DB_DIR SPECKIT_DB_DIR MEMORY_DB_PATH database path precedence", limit: 20 }).`
+
+Precedence chain identified
+
+#### Test Execution
+> **Feature File:** [EX-031](../manual-testing-playbook/feature-flag-reference/4-memory-and-storage.md)
+> **Catalog:** [feature-flag-reference/4-memory-and-storage.md](../feature-catalog/feature-flag-reference/4-memory-and-storage.md)
+
+### EX-032 | 5. Embedding and API
+
+#### Description
+Provider selection audit.
+
+#### Scenario Contract
+Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).`
+
+Provider rules show explicit provider override, local-first auto mode (`ollama` before `hf-local`), cloud providers selected only by explicit `EMBEDDINGS_PROVIDER` or later fallback, and current `nomic-embed-text-v1.5` local default/fallback model IDs.
+
+#### Test Execution
+> **Feature File:** [EX-032](../manual-testing-playbook/feature-flag-reference/5-embedding-and-api.md)
+> **Catalog:** [feature-flag-reference/5-embedding-and-api.md](../feature-catalog/feature-flag-reference/5-embedding-and-api.md)
+
+### EX-033 | 6. Debug and Telemetry
+
+#### Description
+Observability toggle check.
+
+#### Scenario Contract
+Prompt: `Validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }).`
+
+Debug/telemetry controls identified
+
+#### Test Execution
+> **Feature File:** [EX-033](../manual-testing-playbook/feature-flag-reference/6-debug-and-telemetry.md)
+> **Catalog:** [feature-flag-reference/6-debug-and-telemetry.md](../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md)
+
+### EX-034 | 7. CI and Build (informational)
+
+#### Description
+Branch metadata source audit.
+
+#### Scenario Contract
+Prompt: `Validate 7. CI and Build (informational) against memory_search({ query:"GIT_BRANCH BRANCH_NAME checkpoint metadata", limit:20 }).`
+
+Branch source vars surfaced
+
+#### Test Execution
+> **Feature File:** [EX-034](../manual-testing-playbook/feature-flag-reference/7-ci-and-build-informational.md)
+> **Catalog:** [feature-flag-reference/7-ci-and-build-informational.md](../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md)
+
+### EX-035 | Startup runtime compatibility guards
+
+#### Description
+Startup diagnostics verification.
+
+#### Scenario Contract
+Prompt: `Validate startup runtime compatibility guards and confirm the targeted diagnostics suite covers runtime mismatch, marker creation, and SQLite diagnostics.`
+
+Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics coverage are visible in the transcript
+
+#### Test Execution
+> **Feature File:** [EX-035](../manual-testing-playbook/maintenance/startup-runtime-compatibility-guards.md)
+> **Catalog:** [maintenance/startup-runtime-compatibility-guards.md](../feature-catalog/maintenance/startup-runtime-compatibility-guards.md)
+
+
+### EX-037 | Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)
+
+#### Description
+Full-DB v2 rollback net: `VACUUM INTO` create then restore round-trip. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the v2 full-DB checkpoint path: create an unscoped checkpoint with includeEmbeddings, confirm snapshot_format='v2' and a snapshot_path directory, then restore it into an isolated scratch copy and confirm memory_health consistency. Return a concise pass/fail verdict with cited field names.`
+
+snapshot_format='v2' with a populated snapshot_path and manifest.json; restore round-trip restores main plus the active_vec shard; memory_health reports rowsTotal == ftsRowsTotal == vecRowsTotal; restore-journal (swap-pending -> swap-done) gives crash-safe recovery
+
+#### Test Execution
+> **Feature File:** [EX-037](../manual-testing-playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md)
+
+### EX-038 | Post-insert enrichment lifecycle (schema v30)
+
+#### Description
+post_insert_enrichment_status lifecycle after memory_save, with repair-on-replay and scan-lease backfill.
+
+#### Scenario Contract
+Prompt: `Validate the schema v30 post-insert enrichment lifecycle: after memory_save, confirm post_insert_enrichment_status transitions toward complete; then confirm an incomplete (pending/partial/failed) marker is repaired on replay and backfilled during a leased memory_index_scan. Return a concise pass/fail verdict with cited field names.`
+
+post_insert_enrichment_status converges to complete for a healthy save; incomplete (pending/partial/failed) markers are re-run by repairEnrichmentOnReplay; repairIncompleteMarkers backfills incomplete markers during a leased scan and reports a repaired count; complete/deferred markers are left untouched
+
+#### Test Execution
+> **Feature File:** [EX-038](../manual-testing-playbook/maintenance/post-insert-enrichment-lifecycle-v30.md)
+
+### EX-039 | index_scan phased-async refinements (move reconciliation, active-row uniqueness, repair counts)
+
+#### Description
+walk -> commit-lexical -> async vector drain, packet_id move reconciliation, migration-28 active-row uniqueness, response repair counts.
+
+#### Scenario Contract
+Prompt: `Validate the index_scan phased-async refinements: confirm lexical rows are searchable before vectors drain (complete_with_pending_vectors with pendingVectors), a moved file is reconciled in place by packet identity (moveReconciled), the migration-28 active-row uniqueness guard holds, and the response surfaces repair counts. Return a concise pass/fail verdict with cited field names.`
+
+status complete_with_pending_vectors with non-zero pendingVectors while vectors drain; BM25/FTS rows searchable before vectors finish; moveReconciled > 0 when a tracked file moved; no duplicate active logical-key rows (mig 28); response carries moveReconciled, staleDeleted, orphan-sweep, and checkpointRepair counts
+
+#### Test Execution
+> **Feature File:** [EX-039](../manual-testing-playbook/maintenance/index-scan-phased-async-refinements.md)
+
+### EX-040 | MCP front-proxy reconnect, SPECKIT_BACKEND_ONLY, and -32002 vs -32001
+
+#### Description
+Transparent backend RSS-recycle (-32001 retryable-recycle), backend-only mode, and -32002 fail-closed protocol mismatch. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the front-proxy reconnect contract: confirm a backend recycle is transparent via -32001 retryable-recycle, SPECKIT_BACKEND_ONLY=1 puts the server in backend mode behind the proxy, and a protocol-version mismatch fails closed with -32002 (terminal CLOSED, non-retryable). Return a concise pass/fail verdict with cited error codes.`
+
+a backend recycle reattaches transparently (-32001 RETRYABLE_RECYCLE_ERROR, retryable:true; LIVE, not removed); SPECKIT_BACKEND_ONLY=1 makes the server skip its own stdio transport; a protocol-version mismatch surfaces -32002 PROTOCOL_MISMATCH_ERROR (retryable:false) and the proxy goes terminal CLOSED
+
+#### Test Execution
+> **Feature File:** [EX-040](../manual-testing-playbook/pipeline-architecture/front-proxy-reconnect-and-backend-only.md)
+
+### EX-041 | sk-git worktree convention (wt/{NNNN}-{name} under .worktrees/)
+
+#### Description
+Numbered-worktree convention validation: branch wt/{NNNN}-{name}, directory .worktrees/{NNNN}-{name}, 4-digit global max+1 counter. No git writes beyond the worktree add.
+
+#### Scenario Contract
+Prompt: `Validate the sk-git worktree convention: create a wt/{NNNN}-{name} worktree using the 4-digit global max+1 counter, confirm the matching .worktrees/{NNNN}-{name} directory exists, and confirm the number is one greater than the existing maximum (or 0001 if none). Return a concise pass/fail verdict with cited paths.`
+
+new branch named wt/{NNNN}-{name}; worktree directory .worktrees/{NNNN}-{name}; {NNNN} equals max(existing NNNN under .worktrees/) + 1 (or 0001 when none), 4-digit zero-padded; no commit/push/merge performed
+
+#### Test Execution
+> **Feature File:** [EX-041](../manual-testing-playbook/tooling-and-scripts/sk-git-worktree-convention.md)
+
+### EX-042 | Checkpoint v2 .needs-rebuild self-heal (boot / scan-lease)
+
+#### Description
+Post-restore .needs-rebuild sentinel repaired at daemon boot and during a leased memory_index_scan. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the .needs-rebuild self-heal: confirm the sentinel is repaired at daemon boot and during a memory_index_scan after the scan lease is acquired, and that a successful repair clears the sentinel. Return a concise pass/fail verdict with cited field names.`
+
+repairNeedsRebuildSentinel reports sentinelPresent, attempted, completed, failed, skipped, cleared; the sentinel is repaired and cleared at boot (runCheckpointNeedsRebuildRepair) and during a leased scan (runCheckpointNeedsRebuildRepairForScan, after acquireIndexScanLease); the scan response surfaces the repair counts
+
+#### Test Execution
+> **Feature File:** [EX-042](../manual-testing-playbook/lifecycle/checkpoint-v2-needs-rebuild-self-heal.md)
+
+---
+
+## 8. FEATURES
+
+Note: 042, 119, 131, and 132 all map to the same catalog entry for spec folder description discovery.
+
+### 001 | Graph channel ID fix (G1)
+
+#### Description
+Confirm graph hits are non-zero when edges exist.
+
+#### Scenario Contract
+Prompt: `Validate Graph channel ID fix (G1) and confirm graph hits are non-zero when causal edges exist.`
+
+Graph channel returns >0 hits when causal edges exist
+
+#### Test Execution
+> **Feature File:** [001](../manual-testing-playbook/bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md)
+> **Catalog:** [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../feature-catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md)
+
+### 002 | Chunk collapse deduplication (G3)
+
+#### Description
+Confirm dedup in default mode.
+
+#### Scenario Contract
+Prompt: `Validate chunk collapse deduplication (G3) for memory_search(includeContent:false) and confirm collapsed chunks return unique parent IDs.`
+
+No duplicate memory IDs in results; collapsed chunks yield unique parents only
+
+#### Test Execution
+> **Feature File:** [002](../manual-testing-playbook/bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md)
+> **Catalog:** [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../feature-catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md)
+
+### 003 | Co-activation fan-effect divisor (R17)
+
+#### Description
+Confirm hub dampening.
+
+#### Scenario Contract
+Prompt: `Validate co-activation fan-effect divisor (R17) and confirm hub scores dampen by fan-out without changing non-hub scores.`
+
+Hub node score dampened proportionally to fan-out degree; non-hub scores unaffected
+
+#### Test Execution
+> **Feature File:** [003](../manual-testing-playbook/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md)
+> **Catalog:** [bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../feature-catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md)
+
+### 004 | SHA-256 content-hash deduplication (TM-02)
+
+#### Description
+Confirm identical re-save skips embedding.
+
+#### Scenario Contract
+Prompt: `Validate SHA-256 content-hash deduplication (TM-02) and confirm identical re-saves skip embeddings with exact-match SQL probes.`
+
+Second save returns skip/no-op status; no new embedding row created; content hash matches
+
+#### Test Execution
+> **Feature File:** [004](../manual-testing-playbook/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md)
+> **Catalog:** [bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../feature-catalog/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md)
+
+### 005 | Evaluation database and schema (R13-S1)
+
+#### Description
+Confirm eval data isolation.
+
+#### Scenario Contract
+Prompt: `Validate evaluation database isolation and cite whether eval tables stay separate while retrieval logging leaves the main memory DB untouched.`
+
+Eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB
+
+#### Test Execution
+> **Feature File:** [005](../manual-testing-playbook/evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md)
+> **Catalog:** [evaluation-and-measurement/evaluation-database-and-schema.md](../feature-catalog/evaluation-and-measurement/evaluation-database-and-schema.md)
+
+### 006 | Core metric computation (R13-S1)
+
+#### Description
+Confirm metric battery outputs.
+
+#### Scenario Contract
+Prompt: `Validate core metric computation and cite whether precision, recall, MRR, and NDCG are present and within valid ranges.`
+
+Metric battery returns precision, recall, MRR, NDCG, and MAP values; contiguous top-K positions drive rank-based metrics; all outputs stay within valid ranges
+
+#### Test Execution
+> **Feature File:** [006](../manual-testing-playbook/evaluation-and-measurement/core-metric-computation-r13-s1.md)
+> **Catalog:** [evaluation-and-measurement/core-metric-computation.md](../feature-catalog/evaluation-and-measurement/core-metric-computation.md)
+
+### 007 | Observer effect mitigation (D4)
+
+#### Description
+Confirm non-blocking logging failures.
+
+#### Scenario Contract
+Prompt: `Validate observer-effect mitigation and cite whether search still works when eval logging fails without adding latency.`
+
+Search returns normal results even when eval logging throws; no latency spike from logging failure
+
+#### Test Execution
+> **Feature File:** [007](../manual-testing-playbook/evaluation-and-measurement/observer-effect-mitigation-d4.md)
+> **Catalog:** [evaluation-and-measurement/observer-effect-mitigation.md](../feature-catalog/evaluation-and-measurement/observer-effect-mitigation.md)
+
+### 009 | Quality proxy formula (B7)
+
+#### Description
+Confirm proxy formula correctness.
+
+#### Scenario Contract
+Prompt: `Validate the quality proxy formula and cite whether the stored value matches manual calculation with all components present.`
+
+Computed proxy value matches manual formula calculation within tolerance; formula components are all present
+
+#### Test Execution
+> **Feature File:** [009](../manual-testing-playbook/evaluation-and-measurement/quality-proxy-formula-b7.md)
+> **Catalog:** [evaluation-and-measurement/quality-proxy-formula.md](../feature-catalog/evaluation-and-measurement/quality-proxy-formula.md)
+
+### 010 | Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)
+
+#### Description
+Confirm corpus coverage and hard negatives.
+
+#### Scenario Contract
+Prompt: `Validate the synthetic ground-truth corpus and cite coverage for intents, hard negatives, non-trigger prompts, and tier balance.`
+
+Corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced
+
+#### Test Execution
+> **Feature File:** [010](../manual-testing-playbook/evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md)
+> **Catalog:** [evaluation-and-measurement/synthetic-ground-truth-corpus.md](../feature-catalog/evaluation-and-measurement/synthetic-ground-truth-corpus.md)
+
+### 011 | BM25-only baseline (G-NEW-1)
+
+#### Description
+Confirm baseline reproducibility.
+
+#### Scenario Contract
+Prompt: `Validate the BM25-only baseline and cite whether ENABLE_BM25 produces reproducible MRR@5 with no non-BM25 trace contributions.`
+
+BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace
+
+#### Test Execution
+> **Feature File:** [011](../manual-testing-playbook/evaluation-and-measurement/bm25-only-baseline-g-new-1.md)
+> **Catalog:** [evaluation-and-measurement/bm25-only-baseline.md](../feature-catalog/evaluation-and-measurement/bm25-only-baseline.md)
+
+### 012 | Agent consumption instrumentation (G-NEW-2)
+
+#### Description
+Confirm wiring with inert runtime.
+
+#### Scenario Contract
+Prompt: `Validate agent consumption instrumentation and cite whether the logger gate stays inert while telemetry handlers remain error-free.`
+
+Logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors
+
+#### Test Execution
+> **Feature File:** [012](../manual-testing-playbook/evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md)
+> **Catalog:** [evaluation-and-measurement/agent-consumption-instrumentation.md](../feature-catalog/evaluation-and-measurement/agent-consumption-instrumentation.md)
+
+### 013 | Scoring observability (T010)
+
+#### Description
+Confirm sample logging + fail-safe.
+
+#### Scenario Contract
+Prompt: `Validate scoring observability and cite whether sampled rows are logged, sample rate is respected, and write failures do not crash search.`
+
+Sampled scoring rows appear in observability log; write error does not crash search; sample rate respected
+
+#### Test Execution
+> **Feature File:** [013](../manual-testing-playbook/evaluation-and-measurement/scoring-observability-t010.md)
+> **Catalog:** [evaluation-and-measurement/scoring-observability.md](../feature-catalog/evaluation-and-measurement/scoring-observability.md)
+
+### 014 | Full reporting and ablation study framework (R13-S3)
+
+#### Description
+Confirm ablation+report workflow.
+
+#### Scenario Contract
+Prompt: `Validate reporting and ablation output and cite whether each channel has deltas, dashboard trends, and no empty reports.`
+
+Ablation run produces per-channel delta snapshots without synthetic zero-only token usage; dashboard renders with trend data from the active eval DB; sprint-group limit behavior is correct
+
+#### Test Execution
+> **Feature File:** [014](../manual-testing-playbook/evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md)
+> **Catalog:** [evaluation-and-measurement/full-reporting-and-ablation-study-framework.md](../feature-catalog/evaluation-and-measurement/full-reporting-and-ablation-study-framework.md)
+
+### 016 | Typed-weighted degree channel (R4)
+
+#### Description
+Confirm bounded typed-degree boost.
+
+#### Scenario Contract
+Prompt: `Validate typed-weighted degree scoring and cite caps, batched cold-cache queries, cache reuse, fallback, and varied type scoring.`
+
+Typed-degree boost bounded within configured cap; per-database cache isolation and explicit invalidation work; fallback activates when edge types missing; varied types produce different scores
+
+#### Test Execution
+> **Feature File:** [016](../manual-testing-playbook/graph-signal-activation/typed-weighted-degree-channel-r4.md)
+> **Catalog:** [graph-signal-activation/typed-weighted-degree-channel.md](../feature-catalog/graph-signal-activation/typed-weighted-degree-channel.md)
+
+### 017 | Co-activation boost strength increase (A7)
+
+#### Description
+Confirm multiplier impact.
+
+#### Scenario Contract
+Prompt: `Validate co-activation boost strength and cite contribution delta, batched hydration, causal-neighbor query shape, and one precompute per batch.`
+
+Increased co-activation strength produces measurably higher contribution delta vs baseline
+
+#### Test Execution
+> **Feature File:** [017](../manual-testing-playbook/graph-signal-activation/co-activation-boost-strength-increase-a7.md)
+> **Catalog:** [graph-signal-activation/co-activation-boost-strength-increase.md](../feature-catalog/graph-signal-activation/co-activation-boost-strength-increase.md)
+
+### 018 | Edge density measurement
+
+#### Description
+Confirm edges-per-node thresholding.
+
+#### Scenario Contract
+Prompt: `Validate edge density measurement and cite whether edges/nodes ratio and threshold gate behavior are correct.`
+
+Edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary
+
+#### Test Execution
+> **Feature File:** [018](../manual-testing-playbook/graph-signal-activation/edge-density-measurement.md)
+> **Catalog:** [graph-signal-activation/edge-density-measurement.md](../feature-catalog/graph-signal-activation/edge-density-measurement.md)
+
+### 019 | Weight history audit tracking
+
+#### Description
+Confirm edge change logging + rollback.
+
+#### Scenario Contract
+Prompt: `Validate weight history audit tracking and cite audit rows, rollback restoration, and append-only history evidence.`
+
+Audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only
+
+#### Test Execution
+> **Feature File:** [019](../manual-testing-playbook/graph-signal-activation/weight-history-audit-tracking.md)
+> **Catalog:** [graph-signal-activation/weight-history-audit-tracking.md](../feature-catalog/graph-signal-activation/weight-history-audit-tracking.md)
+
+### 020 | Graph momentum scoring (N2a)
+
+#### Description
+Confirm 7-day delta bonus.
+
+#### Scenario Contract
+Prompt: `Validate graph momentum scoring and cite capped 7-day momentum bonus plus zero bonus for nodes without history.`
+
+7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced
+
+#### Test Execution
+> **Feature File:** [020](../manual-testing-playbook/graph-signal-activation/graph-momentum-scoring-n2a.md)
+> **Catalog:** [graph-signal-activation/graph-momentum-scoring.md](../feature-catalog/graph-signal-activation/graph-momentum-scoring.md)
+
+### 021 | Causal depth signal (N2b)
+
+#### Description
+Confirm normalized depth scoring.
+
+#### Scenario Contract
+Prompt: `Validate causal depth scoring and cite normalization, longer-chain ranking, shortcut behavior, and cycle depth bounding.`
+
+Depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer
+
+#### Test Execution
+> **Feature File:** [021](../manual-testing-playbook/graph-signal-activation/causal-depth-signal-n2b.md)
+> **Catalog:** [graph-signal-activation/causal-depth-signal.md](../feature-catalog/graph-signal-activation/causal-depth-signal.md)
+
+### 022 | Community detection (N2c)
+
+#### Description
+Confirm community boost injection.
+
+#### Scenario Contract
+Prompt: `Validate community detection and cite cluster assignment, co-member boost injection, and configured boost cap enforcement.`
+
+Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum
+
+#### Test Execution
+> **Feature File:** [022](../manual-testing-playbook/graph-signal-activation/community-detection-n2c.md)
+> **Catalog:** [graph-signal-activation/community-detection.md](../feature-catalog/graph-signal-activation/community-detection.md)
+
+### 023 | Score normalization
+
+#### Description
+Confirm batch min-max behavior.
+
+#### Scenario Contract
+Prompt: `Validate Score normalization with range, min-max, equal-score, and single-result evidence.`
+
+Normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled
+
+#### Test Execution
+> **Feature File:** [023](../manual-testing-playbook/scoring-and-calibration/score-normalization.md)
+> **Catalog:** [scoring-and-calibration/score-normalization.md](../feature-catalog/scoring-and-calibration/score-normalization.md)
+
+
+### 025 | Interference scoring (TM-01)
+
+#### Description
+Confirm cluster penalty.
+
+#### Scenario Contract
+Prompt: `Validate interference scoring penalties for near duplicates, non-duplicates, and inactive or deprecated siblings.`
+
+Near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected
+
+#### Test Execution
+> **Feature File:** [025](../manual-testing-playbook/scoring-and-calibration/interference-scoring-tm-01.md)
+> **Catalog:** [scoring-and-calibration/interference-scoring.md](../feature-catalog/scoring-and-calibration/interference-scoring.md)
+
+### 026 | Classification-based decay (TM-03)
+
+#### Description
+Confirm class+tier decay matrix.
+
+#### Scenario Contract
+Prompt: `Validate classification-based decay, including tier multipliers and rejection of zero half-life config.`
+
+Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error
+
+#### Test Execution
+> **Feature File:** [026](../manual-testing-playbook/scoring-and-calibration/classification-based-decay-tm-03.md)
+> **Catalog:** [scoring-and-calibration/classification-based-decay.md](../feature-catalog/scoring-and-calibration/classification-based-decay.md)
+
+### 027 | Folder-level relevance scoring (PI-A1)
+
+#### Description
+Confirm folder-first retrieval.
+
+#### Scenario Contract
+Prompt: `Validate folder-level relevance scoring and confirm folder results rank before individual memory results.`
+
+Folder pre-ranking scores computed; folder-level results appear before individual spec-doc results in ranking
+
+#### Test Execution
+> **Feature File:** [027](../manual-testing-playbook/scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md)
+> **Catalog:** [scoring-and-calibration/folder-level-relevance-scoring.md](../feature-catalog/scoring-and-calibration/folder-level-relevance-scoring.md)
+
+### 028 | Embedding cache (R18)
+
+#### Description
+Confirm cache hit/miss behavior.
+
+#### Scenario Contract
+Prompt: `Validate embedding cache hits, misses, and hit timestamp updates.`
+
+Cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit
+
+#### Test Execution
+> **Feature File:** [028](../manual-testing-playbook/scoring-and-calibration/embedding-cache-r18.md)
+> **Catalog:** [scoring-and-calibration/embedding-cache.md](../feature-catalog/scoring-and-calibration/embedding-cache.md)
+
+### 029 | Double intent weighting investigation (G2)
+
+#### Description
+Confirm no hybrid double-weight.
+
+#### Scenario Contract
+Prompt: `Validate double intent weighting handling for hybrid and non-hybrid queries.`
+
+Stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally
+
+#### Test Execution
+> **Feature File:** [029](../manual-testing-playbook/scoring-and-calibration/double-intent-weighting-investigation-g2.md)
+> **Catalog:** [scoring-and-calibration/double-intent-weighting-investigation.md](../feature-catalog/scoring-and-calibration/double-intent-weighting-investigation.md)
+
+### 030 | RRF K-value sensitivity analysis (FUT-5)
+
+#### Description
+Confirm K sensitivity measurements.
+
+#### Scenario Contract
+Prompt: `Validate RRF K-value sensitivity analysis and identify the optimal K with evidence.`
+
+K-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns
+
+#### Test Execution
+> **Feature File:** [030](../manual-testing-playbook/scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md)
+> **Catalog:** [scoring-and-calibration/rrf-k-value-sensitivity-analysis.md](../feature-catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md)
+
+### 031 | Negative feedback confidence signal (A4)
+
+#### Description
+Confirm demotion floor+recovery.
+
+#### Scenario Contract
+Prompt: `Validate the negative feedback confidence signal, including floor enforcement and half-life recovery.`
+
+Negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time
+
+#### Test Execution
+> **Feature File:** [031](../manual-testing-playbook/scoring-and-calibration/negative-feedback-confidence-signal-a4.md)
+> **Catalog:** [scoring-and-calibration/negative-feedback-confidence-signal.md](../feature-catalog/scoring-and-calibration/negative-feedback-confidence-signal.md)
+
+### 032 | Auto-promotion on validation (T002a)
+
+#### Description
+Confirm promotion thresholds/throttle.
+
+#### Scenario Contract
+Prompt: `Validate auto-promotion on validation, including threshold promotion, throttle behavior, and audit logging.`
+
+Positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged
+
+#### Test Execution
+> **Feature File:** [032](../manual-testing-playbook/scoring-and-calibration/auto-promotion-on-validation-t002a.md)
+> **Catalog:** [scoring-and-calibration/auto-promotion-on-validation.md](../feature-catalog/scoring-and-calibration/auto-promotion-on-validation.md)
+
+### 033 | Query complexity router (R15)
+
+#### Description
+Confirm query-class routing.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Query complexity router (R15) against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing
+
+#### Test Execution
+> **Feature File:** [033](../manual-testing-playbook/query-intelligence/query-complexity-router-r15.md)
+> **Catalog:** [query-intelligence/query-complexity-router.md](../feature-catalog/query-intelligence/query-complexity-router.md)
+
+
+### 035 | Channel min-representation (R2)
+
+#### Description
+Confirm top-k channel diversity rule.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Channel min-representation (R2) against the documented validation surface. Verify each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection
+
+#### Test Execution
+> **Feature File:** [035](../manual-testing-playbook/query-intelligence/channel-min-representation-r2.md)
+> **Catalog:** [query-intelligence/channel-min-representation.md](../feature-catalog/query-intelligence/channel-min-representation.md)
+
+### 036 | Confidence-based result truncation (R15-ext)
+
+#### Description
+Confirm relevance-cliff cutoff.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace
+
+#### Test Execution
+> **Feature File:** [036](../manual-testing-playbook/query-intelligence/confidence-based-result-truncation-r15-ext.md)
+> **Catalog:** [query-intelligence/confidence-based-result-truncation.md](../feature-catalog/query-intelligence/confidence-based-result-truncation.md)
+
+### 037 | Dynamic token budget allocation (FUT-7)
+
+#### Description
+Confirm complexity-tier budgets.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget
+
+#### Test Execution
+> **Feature File:** [037](../manual-testing-playbook/query-intelligence/dynamic-token-budget-allocation-fut-7.md)
+> **Catalog:** [query-intelligence/dynamic-token-budget-allocation.md](../feature-catalog/query-intelligence/dynamic-token-budget-allocation.md)
+
+### 038 | Query expansion (R12)
+
+#### Description
+Confirm parallel expansion + dedup.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion
+
+#### Test Execution
+> **Feature File:** [038](../manual-testing-playbook/query-intelligence/query-expansion-r12.md)
+> **Catalog:** [query-intelligence/query-expansion.md](../feature-catalog/query-intelligence/query-expansion.md)
+
+### 039 | Verify-fix-verify memory quality loop (PI-A5)
+
+#### Description
+Confirm retry then reject path.
+
+#### Scenario Contract
+Prompt: `Validate the verify-fix-verify memory quality loop.`
+
+Low-quality memory triggers retry cycle; final reject after max retries; rejection reason logged
+
+#### Test Execution
+> **Feature File:** [039](../manual-testing-playbook/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md)
+> **Catalog:** [memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../feature-catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md)
+
+### 040 | Signal vocabulary expansion (TM-08)
+
+#### Description
+Confirm signal category detection.
+
+#### Scenario Contract
+Prompt: `Validate signal vocabulary expansion for correction, preference, and reinforcement signals.`
+
+Signal categories (correction, preference, reinforcement) detected from prompt analysis; trigger matching reflects expanded vocabulary
+
+#### Test Execution
+> **Feature File:** [040](../manual-testing-playbook/memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md)
+> **Catalog:** [memory-quality-and-indexing/signal-vocabulary-expansion.md](../feature-catalog/memory-quality-and-indexing/signal-vocabulary-expansion.md)
+
+### 041 | Pre-flight token budget validation (PI-A3)
+
+#### Description
+Confirm save-time preflight warn/fail behavior.
+
+#### Scenario Contract
+Prompt: `Validate pre-flight token budget handling in memory_save dry-run.`
+
+Token estimate is computed before embedding/database writes; near-limit input emits `PF021` warning; over-limit input emits `PF020` failure; behavior follows `MCP_CHARS_PER_TOKEN`, `MCP_MAX_MEMORY_TOKENS`, and `MCP_TOKEN_WARNING_THRESHOLD`
+
+#### Test Execution
+> **Feature File:** [041](../manual-testing-playbook/memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md)
+> **Catalog:** [memory-quality-and-indexing/pre-flight-token-budget-validation.md](../feature-catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md)
+
+### 042 | Spec folder description discovery (PI-B3)
+
+#### Description
+Confirm per-folder + aggregated routing.
+
+#### Scenario Contract
+Prompt: `Validate spec folder description discovery and description.json fallback behavior.`
+
+description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; memory_context uses folder routing; regeneration leaves valid JSON on disk with no leftover temp files
+
+#### Test Execution
+> **Feature File:** [042](../manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md)
+> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+
+### 043 | Pre-storage quality gate (TM-04)
+
+#### Description
+Confirm 3-layer gate behavior.
+
+#### Scenario Contract
+Prompt: `Validate the pre-storage quality gate for structural, semantic, and duplication checks.`
+
+3-layer gate: structural check, semantic check, duplication check; each layer can warn or reject; decision log captures all gate evaluations
+
+#### Test Execution
+> **Feature File:** [043](../manual-testing-playbook/memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md)
+> **Catalog:** [memory-quality-and-indexing/pre-storage-quality-gate.md](../feature-catalog/memory-quality-and-indexing/pre-storage-quality-gate.md)
+
+### 044 | Reconsolidation-on-save (TM-06)
+
+#### Description
+Confirm merge/deprecate thresholds.
+
+#### Scenario Contract
+Prompt: `Validate reconsolidation-on-save thresholds and repair debt.`
+
+Similarity >=0.88 triggers merge; 0.75-0.88 triggers supersede/deprecate; below 0.75 saves independently; thresholds documented in output
+
+#### Test Execution
+> **Feature File:** [044](../manual-testing-playbook/memory-quality-and-indexing/reconsolidation-on-save-tm-06.md)
+> **Catalog:** [memory-quality-and-indexing/reconsolidation-on-save.md](../feature-catalog/memory-quality-and-indexing/reconsolidation-on-save.md)
+
+### 045 | Smarter memory content generation (S1)
+
+#### Description
+Confirm quality/structure output.
+
+#### Scenario Contract
+Prompt: `Validate smarter memory content generation preserves structure and coherence.`
+
+Generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results
+
+#### Test Execution
+> **Feature File:** [045](../manual-testing-playbook/memory-quality-and-indexing/smarter-memory-content-generation-s1.md)
+> **Catalog:** [memory-quality-and-indexing/smarter-memory-content-generation.md](../feature-catalog/memory-quality-and-indexing/smarter-memory-content-generation.md)
+
+### 046 | Anchor-aware chunk thinning (R7)
+
+#### Description
+Confirm anchor-priority thinning.
+
+#### Scenario Contract
+Prompt: `Validate anchor-aware chunk thinning preserves anchor chunks.`
+
+Anchor chunks retained; filler chunks thinned; retained set is non-empty; anchor priority respected in thinning order
+
+#### Test Execution
+> **Feature File:** [046](../manual-testing-playbook/memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md)
+> **Catalog:** [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../feature-catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md)
+
+### 047 | Encoding-intent capture at index time (R16)
+
+#### Description
+Confirm persisted intent labels.
+
+#### Scenario Contract
+Prompt: `Validate encoding-intent capture at index time.`
+
+Intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels
+
+#### Test Execution
+> **Feature File:** [047](../manual-testing-playbook/memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md)
+> **Catalog:** [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../feature-catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md)
+
+### 048 | Auto entity extraction (R10)
+
+#### Description
+Confirm entity pipeline persistence.
+
+#### Scenario Contract
+Prompt: `Validate auto entity extraction persistence, normalization, and denylist behavior.`
+
+Entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded
+
+#### Test Execution
+> **Feature File:** [048](../manual-testing-playbook/memory-quality-and-indexing/auto-entity-extraction-r10.md)
+> **Catalog:** [memory-quality-and-indexing/auto-entity-extraction.md](../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md)
+
+### 049 | 4-stage pipeline refactor (R6)
+
+#### Description
+Confirm stage flow and invariant.
+
+#### Scenario Contract
+Prompt: `Validate 4-stage pipeline refactor (R6) against the documented validation surface and return pass/fail with cited evidence.`
+
+Query traverses all 4 stages in order; stage transitions visible in verbose metadata; stage-4 scores immutable after final stage
+
+#### Test Execution
+> **Feature File:** [049](../manual-testing-playbook/pipeline-architecture/4-stage-pipeline-refactor-r6.md)
+> **Catalog:** [pipeline-architecture/4-stage-pipeline-refactor.md](../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md)
+
+### 050 | MPAB chunk-to-memory aggregation (R1)
+
+#### Description
+Confirm MPAB formula.
+
+#### Scenario Contract
+Prompt: `Validate MPAB chunk-to-memory aggregation (R1) against the documented validation surface and return pass/fail with cited evidence.`
+
+MPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value
+
+#### Test Execution
+> **Feature File:** [050](../manual-testing-playbook/pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md)
+> **Catalog:** [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../feature-catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md)
+
+### 051 | Chunk ordering preservation (B2)
+
+#### Description
+Confirm ordered reassembly.
+
+#### Scenario Contract
+Prompt: `Validate chunk ordering preservation (B2) against the documented validation surface and return pass/fail with cited evidence.`
+
+Collapsed chunks reassemble in original document order; marker sequence preserved; snake_case and camelCase chunk metadata trigger the same collapse path; no reordering or silent passthrough artifacts remain
+
+#### Test Execution
+> **Feature File:** [051](../manual-testing-playbook/pipeline-architecture/chunk-ordering-preservation-b2.md)
+> **Catalog:** [pipeline-architecture/chunk-ordering-preservation.md](../feature-catalog/pipeline-architecture/chunk-ordering-preservation.md)
+
+### 052 | Template anchor optimization (S2)
+
+#### Description
+Confirm anchor metadata enrichment.
+
+#### Scenario Contract
+Prompt: `Validate template anchor optimization (S2) against the documented validation surface and return pass/fail with cited evidence.`
+
+Anchor metadata enriched in pipeline; anchor tags visible in query metadata; no score mutation from anchor presence
+
+#### Test Execution
+> **Feature File:** [052](../manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md)
+> **Catalog:** [pipeline-architecture/template-anchor-optimization.md](../feature-catalog/pipeline-architecture/template-anchor-optimization.md)
+
+### 053 | Validation signals as retrieval metadata (S3)
+
+#### Description
+Confirm bounded multiplier.
+
+#### Scenario Contract
+Prompt: `Validate validation signals as retrieval metadata (S3) against the documented validation surface and return pass/fail with cited evidence.`
+
+Validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier
+
+#### Test Execution
+> **Feature File:** [053](../manual-testing-playbook/pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md)
+> **Catalog:** [pipeline-architecture/validation-signals-as-retrieval-metadata.md](../feature-catalog/pipeline-architecture/validation-signals-as-retrieval-metadata.md)
+
+### 054 | Learned relevance feedback (R11)
+
+#### Description
+Confirm learned trigger safeguards.
+
+#### Scenario Contract
+Prompt: `Validate learned relevance feedback (R11) against the documented validation surface and return pass/fail with cited evidence.`
+
+Learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning
+
+#### Test Execution
+> **Feature File:** [054](../manual-testing-playbook/pipeline-architecture/learned-relevance-feedback-r11.md)
+> **Catalog:** [pipeline-architecture/learned-relevance-feedback.md](../feature-catalog/pipeline-architecture/learned-relevance-feedback.md)
+
+### 055 | Dual-scope memory auto-surface (TM-05)
+
+#### Description
+Confirm auto-surface hooks.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Dual-scope memory auto-surface (TM-05) against the documented validation surface. Verify non-memory-aware tool path triggers auto-surface hook; compaction event surfaces relevant memories; surfaced memories match current context. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Non-memory-aware tool path triggers auto-surface hook; compaction event surfaces relevant spec-doc records; surfaced spec-doc records match current context
+
+#### Test Execution
+> **Feature File:** [055](../manual-testing-playbook/retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md)
+> **Catalog:** [retrieval-enhancements/dual-scope-memory-auto-surface.md](../feature-catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md)
+
+### 056 | Constitutional memory as expert knowledge injection (PI-A4)
+
+#### Description
+Confirm directive enrichment.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Constitutional memory as expert knowledge injection (PI-A4) against the documented validation surface. Verify directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated; injected constitutional rows obey shouldApplyScopeFiltering and stay inside enforced scope boundaries
+
+#### Test Execution
+> **Feature File:** [056](../manual-testing-playbook/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md)
+> **Catalog:** [retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md](../feature-catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md)
+
+### 057 | Spec folder hierarchy as retrieval structure (S4)
+
+#### Description
+Confirm hierarchy-aware retrieval.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Spec folder hierarchy as retrieval structure (S4) against the documented validation surface. Verify self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking
+
+#### Test Execution
+> **Feature File:** [057](../manual-testing-playbook/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md)
+> **Catalog:** [retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md](../feature-catalog/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md)
+
+### 058 | Lightweight consolidation (N3-lite)
+
+#### Description
+Confirm maintenance cycle behavior.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Lightweight consolidation (N3-lite) against the documented validation surface. Verify consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs
+
+#### Test Execution
+> **Feature File:** [058](../manual-testing-playbook/retrieval-enhancements/lightweight-consolidation-n3-lite.md)
+> **Catalog:** [retrieval-enhancements/lightweight-consolidation.md](../feature-catalog/retrieval-enhancements/lightweight-consolidation.md)
+
+### 059 | Memory summary search channel (R8)
+
+#### Description
+Confirm scale-gated summary channel.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Memory summary search channel (R8) against the documented validation surface. Verify summary channel activates only above corpus size threshold; channel contributes to fusion when active; channel is inert below threshold. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Summary channel activates only above corpus size threshold; channel contributes to fusion when active; channel is inert below threshold
+
+#### Test Execution
+> **Feature File:** [059](../manual-testing-playbook/retrieval-enhancements/memory-summary-search-channel-r8.md)
+> **Catalog:** [retrieval-enhancements/memory-summary-search-channel.md](../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md)
+
+### 060 | Cross-document entity linking (S5)
+
+#### Description
+Confirm guarded supports-edge linking.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Cross-document entity linking (S5) against the documented validation surface. Verify supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied
+
+#### Test Execution
+> **Feature File:** [060](../manual-testing-playbook/retrieval-enhancements/cross-document-entity-linking-s5.md)
+> **Catalog:** [retrieval-enhancements/cross-document-entity-linking.md](../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md)
+
+### 061 | Tree thinning for spec folder consolidation (PI-B1)
+
+#### Description
+Confirm small-file merge thinning.
+
+#### Scenario Contract
+Prompt: `Validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface and report cited pass/fail evidence.`
+
+Files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity
+
+#### Test Execution
+> **Feature File:** [061](../manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md)
+> **Catalog:** [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md)
+
+### 062 | Progressive validation for spec documents (PI-B2)
+
+#### Description
+Confirm level 1-4 behavior.
+
+#### Scenario Contract
+Prompt: `Validate Progressive validation for spec documents (PI-B2) against the documented validation surface and report cited pass/fail evidence.`
+
+Each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels
+
+#### Test Execution
+> **Feature File:** [062](../manual-testing-playbook/tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md)
+> **Catalog:** [tooling-and-scripts/progressive-validation-for-spec-documents.md](../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
+
+### 063 | Feature flag governance
+
+#### Description
+Confirm governance policy conformance.
+
+#### Scenario Contract
+Prompt: `Validate Feature flag governance against the documented validation surface and report whether all expected governance signals are present.`
+
+All flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found
+
+#### Test Execution
+> **Feature File:** [063](../manual-testing-playbook/governance/feature-flag-governance.md)
+> **Catalog:** [governance/feature-flag-governance.md](../feature-catalog/governance/feature-flag-governance.md)
+
+### 064 | Feature flag sunset audit
+
+#### Description
+Confirm sunset dispositions for active, inert, and retired surfaces.
+
+#### Scenario Contract
+Prompt: `Verify feature flag sunset audit outcomes. Capture the evidence needed to prove documented dispositions match code state; inert compatibility flags such as SPECKIT_RSF_FUSION and SPECKIT_SHADOW_SCORING stay no-op; retired topics such as full-context ceiling eval, index refresh, context budget, PageRank, and entity scope are not treated as live runtime checks. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Documented dispositions match code state; inert compatibility flags remain no-op; retired topics are not treated as live runtime checks
+
+#### Test Execution
+> **Feature File:** retired feature-flag sunset audit manual record
+> **Catalog:** retired feature-flag sunset audit record
+
+### 065 | Database and schema safety
+
+#### Description
+Confirm Sprint 8 DB safety bundle.
+
+#### Scenario Contract
+Prompt: `Validate database and schema safety and confirm mutations are atomic, constraints hold, and failures roll back cleanly.`
+
+Mutations complete atomically; no partial SQL corruption; schema constraints enforced; rollback on failure
+
+Additional audit scenario: `Open the default vector store, then initialize a second store with a custom DB path. Capture the evidence needed to prove each path keeps an independent connection, close_db() closes every tracked handle, and constitutional-memory cache results differ correctly between includeArchived=false and includeArchived=true requests. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Per-path DB isolation holds; close_db cleans up all handles; archived cache scoping does not leak across options
+
+#### Test Execution
+> **Feature File:** [065](../manual-testing-playbook/bug-fixes-and-data-integrity/database-and-schema-safety.md)
+> **Catalog:** [bug-fixes-and-data-integrity/database-and-schema-safety.md](../feature-catalog/bug-fixes-and-data-integrity/database-and-schema-safety.md)
+
+### 066 | Scoring and ranking corrections
+
+#### Description
+Confirm Sprint 8 scoring fixes.
+
+#### Scenario Contract
+Prompt: `Validate scoring and ranking corrections for score ranges, relevance order, inversions, and NaN values.`
+
+Score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values; ablation token_usage metrics omit synthetic zero-only samples
+
+#### Test Execution
+> **Feature File:** [066](../manual-testing-playbook/scoring-and-calibration/scoring-and-ranking-corrections.md)
+> **Catalog:** [scoring-and-calibration/scoring-and-ranking-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-ranking-corrections.md)
+
+### 067 | Search pipeline safety
+
+#### Description
+Confirm Sprint 8 pipeline safety fixes.
+
+#### Scenario Contract
+Prompt: `Validate search pipeline safety against the documented validation surface and return pass/fail with cited evidence.`
+
+Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions
+
+#### Test Execution
+> **Feature File:** [067](../manual-testing-playbook/pipeline-architecture/search-pipeline-safety.md)
+> **Catalog:** [pipeline-architecture/search-pipeline-safety.md](../feature-catalog/pipeline-architecture/search-pipeline-safety.md)
+
+### 068 | Guards and edge cases
+
+#### Description
+Confirm edge-case guard fixes.
+
+#### Scenario Contract
+Prompt: `Validate guards and edge cases and confirm aggregation, fallback paths, and invalid-state guards behave correctly.`
+
+No double-counting in aggregation; fallback paths trigger correctly; guard conditions prevent invalid state
+
+Additional audit scenario: `Validate retrieval guard fixes with a sandbox corpus that includes one expired memory, one partial-status memory, and enough constitutional rows to overflow a tiny limit. Capture the evidence needed to prove expired rows do not survive multi-concept search, vector_search never returns more than the requested limit, malformed embeddings fail with a validation error, and stats still count the partial row. Return a concise user-facing pass/fail verdict with the main reason.`
+
+Expired rows excluded; result limits respected; invalid embeddings rejected cleanly; partial state counted
+
+#### Test Execution
+> **Feature File:** [068](../manual-testing-playbook/bug-fixes-and-data-integrity/guards-and-edge-cases.md)
+> **Catalog:** [bug-fixes-and-data-integrity/guards-and-edge-cases.md](../feature-catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md)
+
+### 069 | Entity normalization consolidation
+
+#### Description
+Confirm shared normalization path.
+
+#### Scenario Contract
+Prompt: `Validate entity normalization consolidation across extraction and linking.`
+
+Extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence
+
+#### Test Execution
+> **Feature File:** [069](../manual-testing-playbook/memory-quality-and-indexing/entity-normalization-consolidation.md)
+> **Catalog:** [memory-quality-and-indexing/entity-normalization-consolidation.md](../feature-catalog/memory-quality-and-indexing/entity-normalization-consolidation.md)
+
+### 070 | Dead code removal
+
+#### Description
+Confirm documented removals remain absent.
+
+#### Scenario Contract
+Prompt: `Validate Dead code removal against isShadowScoringEnabled and report cited pass/fail evidence.`
+
+Removed hybrid-search branches absent; retired helpers absent; dead module state and exports absent; representative flows execute without missing-reference errors
+
+#### Test Execution
+> **Feature File:** [070](../manual-testing-playbook/tooling-and-scripts/dead-code-removal.md)
+> **Catalog:** [tooling-and-scripts/dead-code-removal.md](../feature-catalog/tooling-and-scripts/dead-code-removal.md)
+
+### 071 | Performance improvements
+
+#### Description
+Confirm key perf remediations active.
+
+#### Scenario Contract
+Prompt: `Validate performance improvements against hybrid-search.ts and return pass/fail with cited evidence.`
+
+Optimized code paths are active (not bypassed); heavy queries complete within acceptable time; no performance regressions
+
+#### Test Execution
+> **Feature File:** [071](../manual-testing-playbook/pipeline-architecture/performance-improvements.md)
+> **Catalog:** [pipeline-architecture/performance-improvements.md](../feature-catalog/pipeline-architecture/performance-improvements.md)
+
+### 072 | Test quality improvements
+
+#### Description
+Confirm test quality remediations.
+
+#### Scenario Contract
+Prompt: `Validate the test quality improvements and cite teardown, assertion specificity, timing stability, and isolation evidence.`
+
+Tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained
+
+#### Test Execution
+> **Feature File:** [072](../manual-testing-playbook/evaluation-and-measurement/test-quality-improvements.md)
+> **Catalog:** [evaluation-and-measurement/test-quality-improvements.md](../feature-catalog/evaluation-and-measurement/test-quality-improvements.md)
+
+### 073 | Quality gate timer persistence
+
+#### Description
+Confirm restart persistence.
+
+#### Scenario Contract
+Prompt: `Validate quality gate timer persistence across service restart.`
+
+Activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart
+
+#### Test Execution
+> **Feature File:** [073](../manual-testing-playbook/memory-quality-and-indexing/quality-gate-timer-persistence.md)
+> **Catalog:** [memory-quality-and-indexing/quality-gate-timer-persistence.md](../feature-catalog/memory-quality-and-indexing/quality-gate-timer-persistence.md)
+
+### 074 | Stage 3 effectiveScore fallback chain
+
+#### Description
+Confirm fallback order correctness.
+
+#### Scenario Contract
+Prompt: `Validate the Stage 3 effectiveScore fallback chain and confirm each fallback produces a valid score.`
+
+Fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score
+
+#### Test Execution
+> **Feature File:** [074](../manual-testing-playbook/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)
+> **Catalog:** [scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../feature-catalog/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)
+
+### 075 | Canonical ID dedup hardening
+
+#### Description
+Confirm mixed-format ID dedup.
+
+#### Scenario Contract
+Prompt: `Validate canonical ID dedup hardening and confirm mixed-format IDs dedup with parent-only index coverage.`
+
+Mixed-format IDs (numeric, string, prefixed) resolve to single canonical form; dedup produces exactly one result per logical entity
+
+#### Test Execution
+> **Feature File:** [075](../manual-testing-playbook/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
+> **Catalog:** [bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature-catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
+
+
+### 077 | Tier-2 fallback channel forcing
+
+#### Description
+Confirm force-all-channels in tier-2.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Tier-2 fallback channel forcing against the documented validation surface. Verify tier-2 fallback activates all search channels; channel options show forceAllChannels=true; results include contributions from all channels. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Tier-2 fallback activates all search channels; channel options show forceAllChannels=true; results include contributions from all channels
+
+#### Test Execution
+> **Feature File:** [077](../manual-testing-playbook/retrieval-enhancements/tier-2-fallback-channel-forcing.md)
+> **Catalog:** [retrieval-enhancements/tier-2-fallback-channel-forcing.md](../feature-catalog/retrieval-enhancements/tier-2-fallback-channel-forcing.md)
+
+### 078 | Legacy V1 pipeline removal
+
+#### Description
+Confirm V2-only runtime.
+
+#### Scenario Contract
+Prompt: `Validate legacy V1 pipeline removal against the documented validation surface and return pass/fail with cited evidence.`
+
+V1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain
+
+#### Test Execution
+> **Feature File:** [078](../manual-testing-playbook/pipeline-architecture/legacy-v1-pipeline-removal.md)
+> **Catalog:** [pipeline-architecture/legacy-v1-pipeline-removal.md](../feature-catalog/pipeline-architecture/legacy-v1-pipeline-removal.md)
+
+### 079 | Scoring and fusion corrections
+
+#### Description
+Confirm phase-017 correction bundle.
+
+#### Scenario Contract
+Prompt: `Validate the scoring and fusion correction bundle with executable sources and regression evidence.`
+
+Scoring math produces correct values; normalization stays within bounds; fusion formula applies corrected weights
+
+#### Test Execution
+> **Feature File:** [079](../manual-testing-playbook/scoring-and-calibration/scoring-and-fusion-corrections.md)
+> **Catalog:** [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)
+
+### 080 | Pipeline and mutation hardening
+
+#### Description
+Confirm mutation hardening bundle.
+
+#### Scenario Contract
+Prompt: `Validate pipeline and mutation hardening against the documented validation surface and return pass/fail with cited evidence.`
+
+CRUD mutations are atomic (all-or-nothing); error handling cleans up partial state; no orphaned records on failure; deep-mode reformulation and HyDE candidates re-enter scope/context/quality filtering before merge; constitutional injection obeys global scope enforcement; chunk reassembly accepts camelCase metadata aliases
+
+#### Test Execution
+> **Feature File:** [080](../manual-testing-playbook/pipeline-architecture/pipeline-and-mutation-hardening.md)
+> **Catalog:** [pipeline-architecture/pipeline-and-mutation-hardening.md](../feature-catalog/pipeline-architecture/pipeline-and-mutation-hardening.md)
+
+### 081 | Graph and cognitive memory fixes
+
+#### Description
+Confirm graph/cognitive fix bundle.
+
+#### Scenario Contract
+Prompt: `Validate graph and cognitive memory fixes and cite self-loop prevention, depth clamps, mutation invalidation, and stale-data protection.`
+
+Self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned
+
+#### Test Execution
+> **Feature File:** [081](../manual-testing-playbook/graph-signal-activation/graph-and-cognitive-memory-fixes.md)
+> **Catalog:** [graph-signal-activation/graph-and-cognitive-memory-fixes.md](../feature-catalog/graph-signal-activation/graph-and-cognitive-memory-fixes.md)
+
+### 082 | Evaluation and housekeeping fixes
+
+#### Description
+Confirm eval/housekeeping reliability.
+
+#### Scenario Contract
+Prompt: `Validate evaluation housekeeping and cite unique run IDs, idempotent upserts, boundary guards, and clean housekeeping evidence.`
+
+Run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly
+
+#### Test Execution
+> **Feature File:** [082](../manual-testing-playbook/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)
+> **Catalog:** [evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../feature-catalog/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)
+
+### 083 | Math.max/min stack overflow elimination
+
+#### Description
+Confirm large-array safety.
+
+#### Scenario Contract
+Prompt: `Validate Math.max/min stack overflow elimination and confirm large arrays process without RangeError.`
+
+Large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path
+
+#### Test Execution
+> **Feature File:** [083](../manual-testing-playbook/bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md)
+> **Catalog:** [bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md](../feature-catalog/bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md)
+
+### 084 | Session-manager transaction gap fixes
+
+#### Description
+Confirm transactional limit enforcement.
+
+#### Scenario Contract
+Prompt: `Validate session-manager transaction gap fixes and confirm concurrent writes serialize without data corruption.`
+
+Concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access
+
+#### Test Execution
+> **Feature File:** [084](../manual-testing-playbook/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md)
+> **Catalog:** [bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md](../feature-catalog/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md)
+
+### 085 | Transaction wrappers on mutation handlers
+
+#### Description
+Confirm atomic wrapper behavior.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Transaction wrappers on mutation handlers against the documented validation surface. Verify mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist
+
+#### Test Execution
+> **Feature File:** [085](../manual-testing-playbook/mutation/transaction-wrappers-on-mutation-handlers.md)
+> **Catalog:** [mutation/transaction-wrappers-on-mutation-handlers.md](../feature-catalog/mutation/transaction-wrappers-on-mutation-handlers.md)
+
+### 086 | BM25 trigger phrase re-index gate
+
+#### Description
+Confirm trigger edit causes re-index.
+
+#### Scenario Contract
+Prompt: `Validate the BM25 trigger phrase re-index gate and confirm edited triggers become searchable when BM25 is enabled.`
+
+Trigger phrase edit triggers BM25 re-index; new trigger is searchable after re-index; old trigger phrase still works if not removed
+
+#### Test Execution
+> **Feature File:** [086](../manual-testing-playbook/retrieval/bm25-trigger-phrase-re-index-gate.md)
+> **Catalog:** [retrieval/bm25-trigger-phrase-re-index-gate.md](../feature-catalog/retrieval/bm25-trigger-phrase-re-index-gate.md)
+
+### 087 | DB_PATH extraction and import standardization
+
+#### Description
+Confirm shared DB path resolution.
+
+#### Scenario Contract
+Prompt: `Validate DB_PATH extraction and import standardization against the documented validation surface and return pass/fail with cited evidence.`
+
+All scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge
+
+#### Test Execution
+> **Feature File:** [087](../manual-testing-playbook/pipeline-architecture/db-path-extraction-and-import-standardization.md)
+> **Catalog:** [pipeline-architecture/dbpath-extraction-and-import-standardization.md](../feature-catalog/pipeline-architecture/dbpath-extraction-and-import-standardization.md)
+
+### 088 | Cross-AI validation fixes (Tier 4)
+
+#### Description
+Confirm tier-4 fix pack behavior.
+
+#### Scenario Contract
+Prompt: `Validate the Tier 4 cross-AI fixes and cite corrected behavior, representative flow outputs, and regression evidence.`
+
+Each tier-4 fix location shows corrected behavior; representative flows produce expected outputs; no regressions in adjacent functionality
+
+#### Test Execution
+> **Feature File:** [088](../manual-testing-playbook/evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md)
+> **Catalog:** [evaluation-and-measurement/cross-ai-validation-fixes.md](../feature-catalog/evaluation-and-measurement/cross-ai-validation-fixes.md)
+
+### 089 | Code standards alignment
+
+#### Description
+Confirm standards conformance.
+
+#### Scenario Contract
+Prompt: `Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.`
+
+Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found
+
+#### Test Execution
+> **Feature File:** [089](../manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md)
+> **Catalog:** [tooling-and-scripts/code-standards-alignment.md](../feature-catalog/tooling-and-scripts/code-standards-alignment.md)
+
+### 090 | INT8 quantization evaluation (R5)
+
+#### Description
+Confirm no-go decision remains valid.
+
+#### Scenario Contract
+Prompt: `Validate the INT8 quantization no-go decision and cite current degradation metrics, criteria, and rationale evidence.`
+
+Quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data
+
+#### Test Execution
+> **Feature File:** [090](../manual-testing-playbook/evaluation-and-measurement/int8-quantization-evaluation-r5.md)
+> **Catalog:** [evaluation-and-measurement/int8-quantization-evaluation.md](../feature-catalog/evaluation-and-measurement/int8-quantization-evaluation.md)
+
+### 091 | Implemented: graph centrality and community detection (N2)
+
+#### Description
+Confirm deferred->implemented status.
+
+#### Scenario Contract
+Prompt: `Validate graph centrality and community detection and cite N2 tables, active flags, and score contribution evidence.`
+
+N2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores
+
+#### Test Execution
+> **Feature File:** [091](../manual-testing-playbook/graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md)
+> **Catalog:** [graph-signal-activation/community-detection.md](../feature-catalog/graph-signal-activation/community-detection.md)
+
+### 092 | Implemented: auto entity extraction (R10)
+
+#### Description
+Confirm deferred->implemented status.
+
+#### Scenario Contract
+Prompt: `Validate implemented auto entity extraction defaults and output types.`
+
+Entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied
+
+#### Test Execution
+> **Feature File:** [092](../manual-testing-playbook/memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md)
+> **Catalog:** [memory-quality-and-indexing/auto-entity-extraction.md](../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md)
+
+### 093 | Implemented: memory summary generation (R8)
+
+#### Description
+Confirm deferred->implemented status.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Implemented: memory summary generation (R8) against the documented validation surface. Verify summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold
+
+#### Test Execution
+> **Feature File:** [093](../manual-testing-playbook/retrieval-enhancements/implemented-memory-summary-generation-r8.md)
+> **Catalog:** [retrieval-enhancements/memory-summary-search-channel.md](../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md)
+
+### 094 | Implemented: cross-document entity linking (S5)
+
+#### Description
+Confirm deferred->implemented status.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Implemented: cross-document entity linking (S5) against the documented validation surface. Verify entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified
+
+#### Test Execution
+> **Feature File:** [094](../manual-testing-playbook/retrieval-enhancements/implemented-cross-document-entity-linking-s5.md)
+> **Catalog:** [retrieval-enhancements/cross-document-entity-linking.md](../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md)
+
+### 095 | Strict Zod schema validation (P0-1)
+
+#### Description
+Confirm schema enforcement rejects hallucinated params.
+
+#### Scenario Contract
+Prompt: `Validate strict Zod schema validation (P0-1) against memory_search({query:"test", bogus:1}) and return pass/fail with cited evidence.`
+
+Zod strict error returned for unknown params in strict mode; extra params pass through in permissive mode; validation occurs per-tool in handler layer
+
+#### Test Execution
+> **Feature File:** [095](../manual-testing-playbook/pipeline-architecture/strict-zod-schema-validation-p0-1.md)
+> **Catalog:** [pipeline-architecture/strict-zod-schema-validation.md](../feature-catalog/pipeline-architecture/strict-zod-schema-validation.md)
+
+### 096 | Provenance-rich response envelopes (P0-2)
+
+#### Description
+Confirm includeTrace opt-in exposes scores/source/trace.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Provenance-rich response envelopes (P0-2) against SPECKIT_RESPONSE_TRACE. Verify trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields
+
+#### Test Execution
+> **Feature File:** [096](../manual-testing-playbook/retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md)
+> **Catalog:** [retrieval-enhancements/provenance-rich-response-envelopes.md](../feature-catalog/retrieval-enhancements/provenance-rich-response-envelopes.md)
+
+### 097 | Async ingestion job lifecycle (P0-3)
+
+#### Description
+Confirm job state machine and crash recovery.
+
+#### Scenario Contract
+Prompt: `Validate async ingestion job lifecycle, including state order, duplicate-path dedup, cancel behavior, nanoid job IDs, and restart re-enqueue evidence.`
+
+Job state transitions through queued→parsing→embedding→indexing→complete in order; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart
+
+#### Test Execution
+> **Feature File:** [097](../manual-testing-playbook/lifecycle/async-ingestion-job-lifecycle-p0-3.md)
+> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)
+
+### 099 | Real-time filesystem watching 
+
+#### Description
+Confirm file watcher debounce, hash seeding, and ENOENT grace.
+
+#### Scenario Contract
+Prompt: `Validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATCHER=true and report cited pass/fail evidence.`
+
+File add seeds hash cache; modifications trigger reindex after 2s debounce; identical-content modifications produce no reindex; rapid create-delete produces no ENOENT crash
+
+#### Test Execution
+> **Feature File:** [099](../manual-testing-playbook/tooling-and-scripts/real-time-filesystem-watching-p1-7.md)
+> **Catalog:** [tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature-catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md)
+
+
+### 101 | memory_delete confirm schema tightening
+
+#### Description
+Confirm confirm field accepts only literal true.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate memory_delete confirm schema tightening against memory_delete({id:1, confirm:true}). Verify confirm:true accepted; confirm:false rejected with Zod literal error; bulk delete requires confirm:true; missing confirm field rejected for bulk path. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+confirm:true accepted; confirm:false rejected with Zod literal error; bulk delete requires confirm:true; missing confirm field rejected for bulk path
+
+#### Test Execution
+> **Feature File:** [101](../manual-testing-playbook/mutation/memory-delete-confirm-schema-tightening.md)
+> **Catalog:** *(memory_delete confirm schema — covered by `mutation/03`)*
+
+### 102 | Ollama runtime optionalDependencies
+
+#### Description
+Confirm install succeeds without native build tools.
+
+#### Scenario Contract
+Prompt: `Validate Ollama runtime optionalDependencies and graceful dynamic-import fallback behavior.`
+
+Ollama runtime listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
+
+#### Test Execution
+> **Feature File:** *(102 consolidated — no standalone file; coverage lives in the scoring-and-calibration category)*
+> **Catalog:** *(Ollama runtime optionalDependencies — covered by `scoring-and-calibration/14`)*
+
+### 103 | UX hook module coverage (`mutation-feedback`, `response-hints`)
+
+#### Description
+Confirm new hook modules return the finalized metadata and hint shape.
+
+#### Scenario Contract
+Prompt: `Validate UX hook module coverage for mutation-feedback and response-hints against tests/hooks-ux-feedback.vitest.ts.`
+
+Test output shows suite pass, including latency/cache-clear booleans and finalized hint payload assertions
+
+#### Test Execution
+> **Feature File:** [103](../manual-testing-playbook/ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md)
+> **Catalog:** [ux-hooks/dedicated-ux-hook-modules.md](../feature-catalog/ux-hooks/dedicated-ux-hook-modules.md)
+
+### 104 | Mutation save-path UX parity and no-op hardening
+
+#### Description
+Confirm duplicate-save no-op behavior and atomic-save parity/hints.
+
+#### Scenario Contract
+Prompt: `Validate mutation save-path UX parity and no-op hardening against tests/memory-save-ux-regressions.vitest.ts.`
+
+Suite passes and assertions show no false `postMutationHooks` on no-op saves, cache-left-unchanged messaging, and parity between standard and atomic save responses
+
+#### Test Execution
+> **Feature File:** [104](../manual-testing-playbook/ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md)
+> **Catalog:** [ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature-catalog/ux-hooks/duplicate-save-no-op-feedback-hardening.md)
+
+### 105 | Context-server success-envelope finalization
+
+#### Description
+Confirm `appendAutoSurfaceHints()` runs before budget enforcement and preserves the finalized envelope contract.
+
+#### Scenario Contract
+Prompt: `Validate context-server success-envelope finalization against tests/context-server.vitest.ts.`
+
+Context-server suite passes with end-to-end assertions for appended hints, preserved `autoSurfacedContext`, and finalized token metadata
+
+#### Test Execution
+> **Feature File:** [105](../manual-testing-playbook/ux-hooks/context-server-success-envelope-finalization.md)
+> **Catalog:** [ux-hooks/context-server-success-hint-append.md](../feature-catalog/ux-hooks/context-server-success-hint-append.md)
+
+### 106 | Hooks barrel + README synchronization
+
+#### Description
+Confirm hooks index exports and docs cover the finalized modules and contract fields.
+
+#### Scenario Contract
+Prompt: `Validate hooks barrel and README synchronization for mutation-feedback, response-hints, MutationHookResult, and postMutationHooks.`
+
+Expected signals: Both barrel (`hooks/index.ts`) and README (`hooks/README.md`) reference `mutation-feedback`, `response-hints`, `MutationHookResult`, and `postMutationHooks`
+Pass/fail: PASS if both files reference the new modules and contract fields
+
+#### Test Execution
+> **Feature File:** [106](../manual-testing-playbook/ux-hooks/hooks-barrel-readme-synchronization.md)
+> **Catalog:** [ux-hooks/hooks-readme-and-export-alignment.md](../feature-catalog/ux-hooks/hooks-readme-and-export-alignment.md)
+
+### 107 | Checkpoint confirmName and schema enforcement
+
+#### Description
+Confirm delete safety is required across handler and validation layers.
+
+#### Scenario Contract
+Prompt: `Validate checkpoint confirmName and schema enforcement across handler, schema, input-validation, and context-server tests.`
+
+Validation and handler suites pass with missing-`confirmName` rejection plus successful delete confirmation reporting
+
+#### Test Execution
+> **Feature File:** [107](../manual-testing-playbook/ux-hooks/checkpoint-confirmname-and-schema-enforcement.md)
+> **Catalog:** [ux-hooks/checkpoint-delete-confirmname-safety.md](../feature-catalog/ux-hooks/checkpoint-delete-confirmname-safety.md)
+
+### 108 | Spec 007 finalized verification command suite evidence
+
+#### Description
+Confirm the recorded verification set matches the current Spec 007 evidence.
+
+#### Scenario Contract
+Prompt: `Validate Spec 007 finalized verification command suite evidence against npx tsc -b and report cited pass/fail evidence.`
+
+`npx tsc -b` PASS, `npm run lint` PASS, UX suite PASS with 7 files / 510 tests, stdio plus embeddings suite PASS with 2 files / 15 tests, and MCP SDK stdio smoke PASS with 28 tools listed
+
+#### Test Execution
+> **Feature File:** [108](../manual-testing-playbook/tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md)
+> **Catalog:** *(Spec 007 verification suite — no dedicated catalog entry)*
+
+### 109 | Quality-aware 3-tier search fallback
+
+#### Description
+Confirm 3-tier degradation chain triggers correctly.
+
+#### Scenario Contract
+Prompt: `Validate quality-aware 3-tier search fallback and confirm degradation, tier widening, and final enrichment behave correctly.`
+
+Tier 1 low-quality results trigger Tier 2; Tier 2 forces all channels with minSimilarity=0.1; Tier 3 SQL fallback fires when Tier 2 also fails; _degradation property reflects active tier; SPECKIT_SEARCH_FALLBACK=false disables tiered degradation
+
+#### Test Execution
+> **Feature File:** [109](../manual-testing-playbook/retrieval/quality-aware-3-tier-search-fallback.md)
+> **Catalog:** [retrieval/quality-aware-3-tier-search-fallback.md](../feature-catalog/retrieval/quality-aware-3-tier-search-fallback.md)
+
+### 110 | Prediction-error save arbitration
+
+#### Description
+Confirm 5-action PE decision engine during save.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Prediction-error save arbitration against memory_conflicts. Verify each similarity band triggers the correct action (CREATE/REINFORCE/UPDATE/SUPERSEDE/CREATE_LINKED); memory_conflicts table records action/similarity/contradiction; force:true bypasses PE arbitration. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Each similarity band triggers the correct action; memory_conflicts rows are recorded; force:true bypasses arbitration; cross-session PE bleed is blocked
+
+#### Test Execution
+> **Feature File:** [110](../manual-testing-playbook/mutation/prediction-error-save-arbitration.md)
+> **Catalog:** [mutation/prediction-error-save-arbitration.md](../feature-catalog/mutation/prediction-error-save-arbitration.md)
+
+### 111 | Deferred lexical-only indexing
+
+#### Description
+Confirm embedding-failure fallback and BM25 searchability.
+
+#### Scenario Contract
+Prompt: `Validate deferred lexical-only indexing after embedding failure.`
+
+Record saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the record; reindex transitions status to 'success'; vector search works after reindex
+
+#### Test Execution
+> **Feature File:** [111](../manual-testing-playbook/memory-quality-and-indexing/deferred-lexical-only-indexing.md)
+> **Catalog:** [memory-quality-and-indexing/deferred-lexical-only-indexing.md](../feature-catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md)
+
+### 112 | Cross-process DB hot rebinding
+
+#### Description
+Confirm marker-file triggers DB reinitialization.
+
+#### Scenario Contract
+Prompt: `Validate cross-process DB hot rebinding against memory_save(filePath) and return pass/fail with cited evidence.`
+
+Server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind
+
+#### Test Execution
+> **Feature File:** [112](../manual-testing-playbook/pipeline-architecture/cross-process-db-hot-rebinding.md)
+> **Catalog:** [pipeline-architecture/cross-process-db-hot-rebinding.md](../feature-catalog/pipeline-architecture/cross-process-db-hot-rebinding.md)
+
+
+### 114 | Path traversal validation (P0-4)
+
+#### Description
+Verify memory_ingest_start rejects paths outside allowed base directories and paths containing traversal segments.
+
+#### Scenario Contract
+Prompt: `Validate memory_ingest_start path traversal checks, including traversal rejection, out-of-base rejection, and valid in-base path acceptance.`
+
+Traversal paths (../) rejected with E_VALIDATION error; absolute paths outside allowed base rejected; valid paths within allowed directories accepted and job created
+
+#### Test Execution
+> **Feature File:** [114](../manual-testing-playbook/lifecycle/path-traversal-validation-p0-4.md)
+> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)
+
+### 115 | Transaction atomicity on rename failure (P0-5)
+
+#### Description
+Verify that pending file is preserved (not deleted) when rename fails after DB commit, enabling recovery on next startup.
+
+#### Scenario Contract
+Prompt: `Validate transaction atomicity on rename failure (P0-5) against executeAtomicSave() and return pass/fail with cited evidence.`
+
+Rename failure returns {success:false, dbCommitted:true}; pending file preserved on disk after failure; recoverAllPendingFiles discovers and recovers the pending file
+
+#### Test Execution
+> **Feature File:** [115](../manual-testing-playbook/pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md)
+> **Catalog:** [pipeline-architecture/atomic-pending-file-recovery.md](../feature-catalog/pipeline-architecture/atomic-pending-file-recovery.md)
+
+### 116 | Chunking safe swap atomicity (P0-6)
+
+#### Description
+Verify re-chunking indexes new chunks before deleting old ones, and old chunks survive if new indexing fails.
+
+#### Scenario Contract
+Prompt: `Validate chunking safe swap atomicity (P0-6) and confirm staged re-chunking preserves old data on failures.`
+
+New chunks indexed in staged state before old deletion; old chunks deleted only after successful new indexing; embedding failure preserves old children; handler returns error status on failure
+
+#### Test Execution
+> **Feature File:** [116](../manual-testing-playbook/bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md)
+> **Catalog:** [bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../feature-catalog/bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md)
+
+### 117 | SQLite datetime session cleanup (P0-7)
+
+#### Description
+Verify cleanupOldSessions() correctly identifies expired sessions using SQLite-native datetime comparison regardless of timestamp format.
+
+#### Scenario Contract
+Prompt: `Validate SQLite datetime session cleanup (P0-7) and confirm expired sessions are deleted across timestamp formats.`
+
+Expired session (45min old) deleted; active session (5min old) preserved; cleanup works with both YYYY-MM-DD HH:MM:SS and ISO timestamp formats
+
+#### Test Execution
+> **Feature File:** [117](../manual-testing-playbook/bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md)
+> **Catalog:** [bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../feature-catalog/bug-fixes-and-data-integrity/working-memory-timestamp-fix.md)
+
+### 118 | Stage-2 score field synchronization (P0-8)
+
+#### Description
+Verify intentAdjustedScore reflects all downstream signal modifications after non-hybrid intent weighting.
+
+#### Scenario Contract
+Prompt: `Validate Stage-2 score field synchronization with includeTrace evidence for non-hybrid intent weighting.`
+
+intentAdjustedScore set at Step 4 in trace; downstream signals modify score field; final intentAdjustedScore >= score (Math.max sync); resolveEffectiveScore returns synchronized value
+
+#### Test Execution
+> **Feature File:** [118](../manual-testing-playbook/scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md)
+> **Catalog:** [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)
+
+### 119 | Memory filename uniqueness (ensureUniqueMemoryFilename)
+
+#### Description
+Confirm collision resolution.
+
+#### Scenario Contract
+Prompt: `Validate memory filename uniqueness and collision fallback behavior.`
+
+Second save produces filename with `-1` suffix; both files exist with distinct names; exhausting `-1` through `-100` collisions triggers a random 12-hex fallback suffix from `crypto.randomBytes(6).toString('hex')`, not SHA1; repeated fallback saves still reserve distinct filenames; `memorySequence` increments through the hardened `Number(existing.memorySequence) | 0` coercion; and `memoryNameHistory` is updated.
+
+#### Test Execution
+> **Feature File:** [119](../manual-testing-playbook/memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md)
+> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+
+### 120 | Unified graph rollback and explainability (Phase 3)
+
+#### Description
+Confirm graph kill switch removes graph-side effects while traces still explain enabled runs.
+
+#### Scenario Contract
+Prompt: `Validate graph rollback and explainability and cite kill-switch behavior, trace explanations, CTE dedup, and deterministic ordering.`
+
+When enabled, trace includes graph contribution summary and repeated identical inputs return identical order; when disabled, graph-side effects are absent and baseline ordering remains deterministic
+
+#### Test Execution
+> **Feature File:** [120](../manual-testing-playbook/graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md)
+> **Catalog:** [graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../feature-catalog/graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md)
+
+### 121 | Adaptive shadow proposal and rollback (Phase 4)
+
+#### Description
+Confirm adaptive scoring runs in shadow mode only, captures bounded proposals, and can be disabled cleanly.
+
+#### Scenario Contract
+Prompt: `Validate adaptive shadow proposal and rollback with SPECKIT_MEMORY_ADAPTIVE_RANKING enabled.`
+
+Adaptive proposal is present in shadow mode, proposal deltas are bounded, production ordering is unchanged by the shadow run, and disabling the flag removes adaptive proposal output
+
+#### Test Execution
+> **Feature File:** [121](../manual-testing-playbook/scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md)
+> **Catalog:** [scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../feature-catalog/scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md)
+
+### 122 | Governed ingest and scope isolation (Phase 5)
+
+#### Description
+Confirm governed saves require provenance and scope markers and scoped retrieval blocks cross-actor leakage.
+
+#### Scenario Contract
+Prompt: `Validate governed ingest and scope isolation against memory_save(), including provenance rejection, scoped retrieval, leakage blocking, and audit rows.`
+
+Governed save requires provenance; ephemeral save requires deleteAfter; scope mismatches are filtered; governance audit recorded; no orphaned ungoverned row remains after failure
+
+#### Test Execution
+> **Feature File:** [122](../manual-testing-playbook/governance/governed-ingest-and-scope-isolation-phase-5.md)
+> **Catalog:** [governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../feature-catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md)
+
+### 125 | Memory roadmap flags
+
+#### Description
+Verify runtime roadmap resolvers stay distinct from live runtime flags while keeping adaptive ranking default-off until explicitly enabled.
+
+#### Scenario Contract
+Prompt: `Validate memory roadmap flag resolution without changing live graph-channel defaults. Work locally in the system-spec-kit mcp_server package, capture the exact commands and outputs, and summarize the result in user language. Capture the evidence needed to prove the first snapshot keeps scope-governance phase with graph-unified metadata on and adaptive ranking off even when SPECKIT_GRAPH_UNIFIED=false is set; the second snapshot uses SPECKIT_MEMORY_ROADMAP_PHASE=graph and SPECKIT_MEMORY_GRAPH_UNIFIED=false to report graph phase with graph-unified metadata off; the third snapshot uses SPECKIT_MEMORY_ADAPTIVE_RANKING=true and reports adaptive ranking on; the fourth snapshot sets SPECKIT_MEMORY_ADAPTIVE_RANKING=false and reports adaptive ranking off again. Return a concise user-facing pass/fail verdict with the main reason.`
+
+First snapshot keeps `scope-governance` phase with graph-unified metadata on and adaptive ranking off; second snapshot reports `graph` phase with graph-unified metadata off; third snapshot reports adaptive ranking on; fourth snapshot confirms explicit canonical opt-out by returning adaptive ranking off again
+
+Adaptive-ranking roadmap metadata now stays default-off until explicitly enabled. This keeps roadmap snapshots aligned with the live runtime gate while preserving explicit opt-in and opt-out behavior.
+
+#### Test Execution
+> **Feature File:** 125 memory roadmap flags
+> **Catalog:** [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
+
+### 126 | Memory roadmap baseline snapshot
+
+#### Description
+Verify Phase 1 readiness baselines capture/persist metrics and handle missing context DBs without throwing.
+
+#### Scenario Contract
+Prompt: `Validate the memory roadmap baseline snapshot and cite persisted metrics plus missing-context DB fallback coverage.`
+
+Targeted suite passes; transcript shows persisted snapshot rows, missing-context DB zero fallback coverage, and prior eval DB handle restoration after forced init failure
+
+#### Test Execution
+> **Feature File:** [126](../manual-testing-playbook/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md)
+> **Catalog:** [evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../feature-catalog/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md)
+
+### 127 | Migration checkpoint scripts
+
+#### Description
+Verify raw SQLite migration checkpoint create/restore helpers produce sidecar metadata and safe restore backups.
+
+#### Scenario Contract
+Prompt: `Validate Migration checkpoint scripts against cd .opencode/skills/system-spec-kit/mcp-server and report cited pass/fail evidence.`
+
+Targeted suite passes; transcript shows checkpoint sidecar creation, restore success, and pre-restore backup coverage
+
+#### Test Execution
+> **Feature File:** [127](../manual-testing-playbook/tooling-and-scripts/migration-checkpoint-scripts.md)
+> **Catalog:** [tooling-and-scripts/migration-checkpoint-scripts.md](../feature-catalog/tooling-and-scripts/migration-checkpoint-scripts.md)
+
+### 128 | Schema compatibility validation
+
+#### Description
+Verify backward-compatibility validation flags required schema gaps without throwing on partial databases.
+
+#### Scenario Contract
+Prompt: `Validate Schema compatibility validation against cd .opencode/skills/system-spec-kit/mcp-server and report cited pass/fail evidence.`
+
+Targeted suite passes; transcript shows missing-table reporting and minimal-compatible schema success coverage
+
+#### Test Execution
+> **Feature File:** [128](../manual-testing-playbook/tooling-and-scripts/schema-compatibility-validation.md)
+> **Catalog:** [tooling-and-scripts/schema-compatibility-validation.md](../feature-catalog/tooling-and-scripts/schema-compatibility-validation.md)
+
+### 129 | Lineage state active projection and asOf resolution
+
+#### Description
+Verify append-first lineage projection and deterministic `asOf` resolution.
+
+#### Scenario Contract
+Prompt: `Validate lineage state active projection and asOf resolution in the MCP server and return pass/fail with cited evidence.`
+
+Targeted suite passes; transcript shows active projection selection, deterministic `asOf` resolution, malformed-chain detection, and timestamp-order coverage for non-ISO or timezone variants
+
+#### Test Execution
+> **Feature File:** [129](../manual-testing-playbook/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
+> **Catalog:** [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
+
+### 130 | Lineage backfill rollback drill
+
+#### Description
+Verify dry-run planning, idempotent backfill, and checkpoint-backed rollback for Phase 2 lineage rollout.
+
+#### Scenario Contract
+Prompt: `Validate the lineage backfill rollback drill in the MCP server and return pass/fail with cited evidence.`
+
+Targeted suite passes; transcript shows dry-run plan counts, successful backfill application, idempotent rerun, and checkpoint restore rollback
+
+#### Test Execution
+> **Feature File:** [130](../manual-testing-playbook/pipeline-architecture/lineage-backfill-rollback-drill.md)
+> **Catalog:** [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
+
+### 131 | Description.json batch backfill validation (PI-B3)
+
+#### Description
+Confirm batch-generated folder descriptions exist and conform to schema.
+
+#### Scenario Contract
+Prompt: `Validate description.json batch backfill schema coverage.`
+
+Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback
+
+#### Test Execution
+> **Feature File:** [131](../manual-testing-playbook/memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md)
+> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+
+### 132 | description.json schema field validation
+
+#### Description
+Confirm per-folder description metadata matches schema contract.
+
+#### Scenario Contract
+Prompt: `Validate description.json schema field validation and repair behavior.`
+
+description.json generated on folder creation with all 9 required fields; field types match contract with strings for `specId`, `folderSlug`, `specFolder`, `description`, and `lastUpdated`, arrays of strings for `parentChain`, `memoryNameHistory`, and `keywords`, and number for `memorySequence`; `memorySequence` and `memoryNameHistory` update on save; corrupted fields repaired on regeneration
+
+#### Test Execution
+> **Feature File:** [132](../manual-testing-playbook/memory-quality-and-indexing/description-json-schema-field-validation.md)
+> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+
+### 133 | Dry-run preflight for memory_save
+
+#### Description
+Confirm dry-run previews preflight plus semantic insufficiency without indexing side effects.
+
+#### Scenario Contract
+Prompt: `Validate dry-run preflight for memory_save without indexing side effects.`
+
+Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memories report `INSUFFICIENT_CONTEXT_ABORT` without indexing/database mutation; `force:true` does not bypass insufficiency; rich non-dry-run save indexes the same file
+
+#### Test Execution
+> **Feature File:** [133](../manual-testing-playbook/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
+> **Catalog:** [memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature-catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
+
+
+### 135 | Grep traceability for feature catalog code references
+
+#### Description
+Verify feature-source traceability through feature catalog docs and the catalog code-reference index, without requiring in-code catalog comments.
+
+#### Scenario Contract
+Prompt: `Validate feature-source traceability for feature catalog code references through the feature catalog docs and catalog code-reference index, then report cited pass/fail evidence without requiring // Feature catalog: comments in code.`
+
+Feature catalog docs and the catalog code-reference index identify the expected handler and lib source anchors; all referenced files exist
+
+#### Test Execution
+> **Feature File:** [135](../manual-testing-playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md)
+> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)
+
+### 136 | Feature catalog annotation name validity
+
+#### Description
+Verify all annotation names cross-reference against catalog H3 headings with 0 invalid.
+
+#### Scenario Contract
+Prompt: `Validate Feature catalog annotation name validity against the documented validation surface and report cited pass/fail evidence.`
+
+Expected signals: verify_alignment_drift.py or grep output shows 0 annotation names that fail to match an H3 heading in feature_catalog.md.
+
+#### Test Execution
+> **Feature File:** [136](../manual-testing-playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md)
+> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)
+
+### 137 | Multi-feature annotation coverage
+
+#### Description
+Verify known multi-feature files have annotation count >= 2.
+
+#### Scenario Contract
+Prompt: `Validate Multi-feature annotation coverage against handlers/memory-save.ts and report cited pass/fail evidence.`
+
+All known multi-feature files carry >= 2 annotations; annotations are semantically appropriate
+
+#### Test Execution
+> **Feature File:** [137](../manual-testing-playbook/tooling-and-scripts/multi-feature-annotation-coverage.md)
+> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)
+
+### 138 | MODULE: header compliance via verify_alignment_drift.py
+
+#### Description
+Verify `verify_alignment_drift.py` returns 0 TS-MODULE-HEADER findings.
+
+#### Scenario Contract
+Prompt: `Validate MODULE: header compliance via verify_alignment_drift.py against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+
+verify_alignment_drift.py reports PASS with 0 TS-MODULE-HEADER findings
+
+#### Test Execution
+> **Feature File:** [138](../manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md)
+> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)
+
+### 139 | Session capturing pipeline quality
+
+#### Description
+Canonical coverage sourced from M-007 session-capturing closure verification.
+
+#### Scenario Contract
+Prompt: `Validate Session capturing pipeline quality against the documented validation surface and report cited pass/fail evidence.`
+
+Coverage is sourced from the M-007 closure suite, including JSON authority, shipped structured-summary fields (`toolCalls`, `exchanges`), file-backed JSON authority, output-quality hardening, insufficiency rejection, and indexing readiness.
+
+Current claim boundary:
+- Automated parity proves the shared runtime contract.
+- Retained live artifacts are still required before claiming flawless current coverage across every supported CLI and save mode.
+
+#### Test Execution
+> **Feature File:** [139](../manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md)
+> **Catalog:** [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
+
+### 142 | Session transition trace contract
+
+#### Description
+Verify `memory_context` emits trace-only session transitions with no non-trace leakage.
+
+#### Scenario Contract
+Prompt: `Validate session transition tracing and confirm trace-only sessionTransition output appears without non-trace metadata leakage.`
+
+Trace-enabled responses include spec-shaped `sessionTransition`; non-trace responses omit it entirely; no top-level metadata leak appears when trace is disabled
+
+#### Test Execution
+> **Feature File:** [142](../manual-testing-playbook/retrieval/session-transition-trace-contract.md)
+> **Catalog:** [retrieval/unified-context-retrieval-memorycontext.md](../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md)
+
+### 143 | Bounded graph-walk rollout and diagnostics
+
+#### Description
+Verify `SPECKIT_GRAPH_WALK_ROLLOUT` changes diagnostics and bounded bonus behavior without destabilizing ordering.
+
+#### Scenario Contract
+Prompt: `Validate bounded graph diagnostics and confirm live trace fields and deterministic ordering remain stable.`
+
+Rollout states switch cleanly between `trace_only`, `bounded_runtime`, and `off`; trace diagnostics expose raw/normalized metrics; bounded runtime never exceeds the Stage 2 cap; `off` disables only the graph-walk bonus ladder, not the broader graph-signal feature flag; repeated identical runs preserve deterministic ordering
+
+#### Test Execution
+> **Feature File:** [143](../manual-testing-playbook/retrieval/bounded-graph-walk-rollout-and-diagnostics.md)
+> **Catalog:** [retrieval/semantic-and-lexical-search-memorysearch.md](../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md)
+
+### 144 | Advisory ingest lifecycle forecast
+
+#### Description
+Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress.
+
+#### Scenario Contract
+Prompt: `Validate advisory ingest lifecycle forecasts, including forecast fields, sparse-progress degradation, ETA/risk updates, and additive telemetry.`
+
+Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive
+
+#### Test Execution
+> **Feature File:** [144](../manual-testing-playbook/lifecycle/advisory-ingest-lifecycle-forecast.md)
+> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)
+
+### 145 | Contextual tree injection 
+
+#### Description
+Verify hierarchical spec-folder headers are injected into search results when `SPECKIT_CONTEXT_HEADERS=true` and suppressed when disabled.
+
+#### Scenario Contract
+Prompt: `As a retrieval-enhancement validation operator, validate Contextual tree injection (P1-4) against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }). Verify hierarchical spec-folder headers are injected into search results when SPECKIT_CONTEXT_HEADERS=true and suppressed when disabled. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Enabled: results with spec-folder paths have `[parent > child — description]` headers prepended, truncated at 100 chars; Disabled: no headers injected, content unchanged
+
+#### Test Execution
+> **Feature File:** [145](../manual-testing-playbook/retrieval-enhancements/contextual-tree-injection-p1-4.md)
+> **Catalog:** [retrieval-enhancements/contextual-tree-injection.md](../feature-catalog/retrieval-enhancements/contextual-tree-injection.md)
+
+### 146 | Dynamic server instructions 
+
+#### Description
+Verify `setInstructions()` is called at MCP startup with memory count, spec folder count, channel list, and stale warning.
+
+#### Scenario Contract
+Prompt: `Validate dynamic server instructions (P1-6) against setInstructions() and return pass/fail with cited evidence.`
+
+Startup instructions include memory system overview with counts and channels; stale warning appears only above threshold; disabled flag yields empty instructions
+
+#### Test Execution
+> **Feature File:** [146](../manual-testing-playbook/pipeline-architecture/dynamic-server-instructions-p1-6.md)
+> **Catalog:** [pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md](../feature-catalog/pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md)
+
+### 147 | Constitutional memory manager command
+
+#### Description
+Verify `/memory:learn` flows and active docs all reflect the constitutional-only workflow.
+
+#### Scenario Contract
+Prompt: `Validate Constitutional memory manager command against /memory:learn and report cited pass/fail evidence.`
+
+Constitutional memory manager
+
+#### Test Execution
+> **Feature File:** [147](../manual-testing-playbook/tooling-and-scripts/constitutional-memory-manager-command.md)
+> **Catalog:** [tooling-and-scripts/constitutional-memory-manager-command.md](../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md)
+
+### 149 | Rendered spec-doc record template contract
+
+#### Description
+Confirm malformed rendered spec-doc records fail before write/index and valid rendered output remains validator-clean.
+
+#### Scenario Contract
+Prompt: `Validate Rendered spec-doc record template contract against memory_save({ filePath:"<sandbox-file>", dryRun:true }) and report cited pass/fail evidence.`
+
+Dry-run surfaces template-contract violations; non-dry-run rejects malformed files before index side effects; valid rendered output remains validator-clean
+
+#### Test Execution
+> **Feature File:** [149](../manual-testing-playbook/tooling-and-scripts/rendered-memory-template-contract.md)
+> **Catalog:** [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
+
+### 150 | Source-dist alignment validation
+
+#### Description
+Validate the check-source-dist-alignment.ts script detects no orphaned dist files. Verify every dist/lib/*.js maps to a source .ts file.
+
+#### Scenario Contract
+Prompt: `Validate Source-dist alignment validation against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+
+0 violations, all dist files aligned, exit code 0
+
+#### Test Execution
+> **Feature File:** [150](../manual-testing-playbook/tooling-and-scripts/source-dist-alignment-validation.md)
+> **Catalog:** [tooling-and-scripts/source-dist-alignment-enforcement.md](../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)
+
+### 151 | MODULE-MAP.md accuracy validation
+
+#### Description
+Validate MODULE-MAP.md content accuracy by spot-checking module entries against actual code structure. Verify listed files exist and consumers are correct.
+
+#### Scenario Contract
+Prompt: `Validate MODULE-MAP.md accuracy validation against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+
+All 5 sampled modules have accurate file lists and consumer mappings
+
+#### Test Execution
+> **Feature File:** [151](../manual-testing-playbook/tooling-and-scripts/module-map-accuracy.md)
+> **Catalog:** [tooling-and-scripts/module-boundary-map.md](../feature-catalog/tooling-and-scripts/module-boundary-map.md)
+
+### 152 | No symlinks in lib/ tree
+
+#### Description
+Validate the no-symlinks policy by confirming zero symlinks exist under mcp-server/lib/. Enforces the ARCHITECTURE.md "No Symlinks in lib/ Tree" policy.
+
+#### Scenario Contract
+Prompt: `Validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+
+Zero symlinks found
+
+#### Test Execution
+> **Feature File:** [152](../manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md)
+> **Catalog:** [tooling-and-scripts/module-boundary-map.md](../feature-catalog/tooling-and-scripts/module-boundary-map.md)
+
+### 153 | JSON mode structured summary hardening
+
+#### Description
+Verify the structured JSON summary contract for `generate-context.js`, including `toolCalls`/`exchanges` fields, file-backed JSON authority, and Wave 2 hardening.
+
+#### Scenario Contract
+Prompt: `Validate JSON mode structured summary hardening against toolCalls and report cited pass/fail evidence.`
+
+Structured fields preserved in rendered output, counts match explicit input, file-backed JSON stays on the structured path
+
+#### Test Execution
+> **Feature File:** [153](../manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md)
+> **Catalog:** [tooling-and-scripts/json-mode-hybrid-enrichment.md](../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md)
+
+### 154 | JSON-primary deprecation posture
+
+#### Description
+Verify the JSON-only save contract: `--json` succeeds, direct positional rejects.
+
+#### Scenario Contract
+Prompt: `Validate JSON-primary deprecation posture against the documented validation surface and report cited pass/fail evidence.`
+
+Path 1 exits 0, Path 2 exits non-zero with guidance text
+
+#### Test Execution
+> **Feature File:** [154](../manual-testing-playbook/tooling-and-scripts/json-primary-deprecation-posture.md)
+> **Catalog:** [tooling-and-scripts/json-primary-deprecation-posture.md](../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md)
+
+### 155 | Post-save quality review
+
+#### Description
+Confirm the POST-SAVE QUALITY REVIEW hook fires after JSON mode saves, surfaces field-propagation failures with severity-graded instructions, and guides AI remediation.
+
+#### Scenario Contract
+Prompt: `Validate post-save quality review issue detection and remediation guidance.`
+
+REVIEW block present in stdout; issue count and severity match the scenario; fix instructions are actionable
+
+#### Test Execution
+> **Feature File:** [155](../manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md)
+> **Catalog:** [memory-quality-and-indexing/post-save-quality-review.md](../feature-catalog/memory-quality-and-indexing/post-save-quality-review.md)
+
+### 156 | Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE)
+
+#### Description
+Verify dirty-node tracking fires in write_local mode when saving a spec-doc record with entity edges.
+
+#### Scenario Contract
+Prompt: `Validate graph refresh write-local mode and cite dirty-node tracking, local recompute, component size estimation, and cleanup.`
+
+markDirty() populates dirty-node set; onWrite() returns localRecomputed=true and skipped=false; component size estimation runs; dirty nodes cleared after local recompute
+
+#### Test Execution
+> **Feature File:** [156](../manual-testing-playbook/graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md)
+> **Catalog:** [graph-signal-activation/graph-lifecycle-refresh.md](../feature-catalog/graph-signal-activation/graph-lifecycle-refresh.md)
+
+### 157 | LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL)
+
+#### Description
+Verify backfill hook registration and scheduling for high-value documents when the flag is enabled.
+
+#### Scenario Contract
+Prompt: `Validate LLM graph backfill and cite hook registration, high-value scheduling, async callback, and low-value suppression.`
+
+onIndex() returns llmBackfillScheduled=true when qualityScore >= threshold; backfill callback is invoked via setImmediate; low-value docs (qualityScore < 0.7) do not trigger backfill
+
+#### Test Execution
+> **Feature File:** [157](../manual-testing-playbook/graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md)
+> **Catalog:** [graph-signal-activation/llm-graph-backfill.md](../feature-catalog/graph-signal-activation/llm-graph-backfill.md)
+
+### 158 | Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE)
+
+#### Description
+Verify graph weight cap enforcement at 0.05 and community score capping at 0.03 when graph calibration profile is enabled.
+
+#### Scenario Contract
+Prompt: `Validate graph calibration profile and cite graph weight caps, community score caps, Louvain thresholds, and N2 cap enforcement.`
+
+applyGraphWeightCap() clamps values to [0, 0.05]; applyCommunityScoring() caps boost at 0.03; shouldActivateLouvain() returns activate=false when density or size below thresholds; calibrateGraphWeight() enforces N2a/N2b caps
+
+#### Test Execution
+> **Feature File:** [158](../manual-testing-playbook/graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md)
+> **Catalog:** [graph-signal-activation/graph-calibration-profiles.md](../feature-catalog/graph-signal-activation/graph-calibration-profiles.md)
+
+### 159 | Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER)
+
+#### Description
+Verify shadow scoring produces learned vs manual comparison output without affecting live ranking.
+
+#### Scenario Contract
+Prompt: `Validate Learned Stage 2 combiner shadow comparisons with SPECKIT_LEARNED_STAGE2_COMBINER enabled.`
+
+shadowScore() returns ShadowResult with learnedScore in [0,1], manualScore matching input, and delta = |learned - manual|; trainRegularizedLinearRanker() produces valid weights; predict() clamps output to [0,1]; flag OFF returns null (no overhead)
+
+#### Test Execution
+> **Feature File:** [159](../manual-testing-playbook/scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md)
+> **Catalog:** [scoring-and-calibration/learned-stage2-weight-combiner.md](../feature-catalog/scoring-and-calibration/learned-stage2-weight-combiner.md)
+
+### 160 | Shadow feedback (SPECKIT_SHADOW_FEEDBACK)
+
+#### Description
+Verify shadow scoring log entries are created and holdout evaluation runs without mutating live rankings.
+
+#### Scenario Contract
+Prompt: `Validate Shadow feedback logging and holdout evaluation with SPECKIT_SHADOW_FEEDBACK enabled.`
+
+shadow_scoring_log table has rows with query_id, result_id, live_rank, shadow_rank, delta, direction; compareRanks() produces RankComparisonResult with kendallTau and ndcgDelta; evaluatePromotionGate() returns ready/wait/rollback; no live ranking columns mutated
+
+#### Test Execution
+> **Feature File:** [160](../manual-testing-playbook/scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md)
+> **Catalog:** [scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../feature-catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md)
+
+### 161 | LLM reformulation (SPECKIT_LLM_REFORMULATION)
+
+#### Description
+Verify reformulation pipeline runs in deep mode with corpus-grounded seeds, producing a step-back abstract and variants.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify reformulation pipeline runs in deep mode with corpus-grounded seeds. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult contains abstract (>= 5 chars) and variants array (max 2 entries); LLM cache hit on repeated query; reformulated hits respect scope, contextType and qualityThreshold before merge; pipeline is no-op when mode != deep
+
+#### Test Execution
+> **Feature File:** [161](../manual-testing-playbook/query-intelligence/llm-reformulation-speckit-llm-reformulation.md)
+> **Catalog:** [query-intelligence/llm-query-reformulation.md](../feature-catalog/query-intelligence/llm-query-reformulation.md)
+
+### 162 | HyDE (SPECKIT_HYDE)
+
+#### Description
+Verify HyDE pseudo-document generation for low-confidence deep queries with default-active behavior and optional shadow mode.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence detection uses the max score across the full baseline set; LLM cache shared with reformulation; HyDE hits respect scope, contextType and qualityThreshold before merge; setting `SPECKIT_HYDE_ACTIVE=false` switches to shadow-only logging without merge
+
+#### Test Execution
+> **Feature File:** [162](../manual-testing-playbook/query-intelligence/hyde-speckit-hyde.md)
+> **Catalog:** [query-intelligence/hyde-hypothetical-document-embeddings.md](../feature-catalog/query-intelligence/hyde-hypothetical-document-embeddings.md)
+
+### 163 | Query surrogates (SPECKIT_QUERY_SURROGATES)
+
+#### Description
+Verify surrogate metadata generated at index time and matched at query time with boost scores.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true. Verify surrogate metadata generated at index time and matched at query time. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+SurrogateMetadata contains aliases (from parenthetical abbreviations), headings, summary (max 200 chars), and surrogateQuestions (2-5 entries); query-time matching produces SurrogateMatchResult with score in [0,1] and matchedSurrogates list; no LLM calls on the default path
+
+#### Test Execution
+> **Feature File:** [163](../manual-testing-playbook/query-intelligence/query-surrogates-speckit-query-surrogates.md)
+> **Catalog:** [query-intelligence/index-time-query-surrogates.md](../feature-catalog/query-intelligence/index-time-query-surrogates.md)
+
+
+### 165 | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION)
+
+#### Description
+Verify near-duplicate auto-merge and borderline recommendation behavior with correct similarity tier classification.
+
+#### Scenario Contract
+Prompt: `Validate assistive reconsolidation merge and recommendation behavior.`
+
+similarity >= 0.96 returns 'auto_merge'; 0.88 <= similarity < 0.96 returns 'review' with AssistiveRecommendation logged; similarity < 0.88 returns 'keep_separate'; review tier produces classification (supersede/complement/keep_separate) without destructive action
+
+#### Test Execution
+> **Feature File:** [165](../manual-testing-playbook/memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md)
+> **Catalog:** [memory-quality-and-indexing/assistive-reconsolidation.md](../feature-catalog/memory-quality-and-indexing/assistive-reconsolidation.md)
+
+### 166 | Result explain v1 (SPECKIT_RESULT_EXPLAIN)
+
+#### Description
+Verify two-tier explainability attachment to search results with slim tier (summary + topSignals) and debug tier (channelContribution).
+
+#### Scenario Contract
+Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN enabled and disabled.`
+
+Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF
+
+#### Test Execution
+> **Feature File:** [166](../manual-testing-playbook/ux-hooks/result-explain-v1-speckit-result-explain-v1.md)
+> **Catalog:** [ux-hooks/result-explainability.md](../feature-catalog/ux-hooks/result-explainability.md)
+
+### 167 | Response profile v1 (SPECKIT_RESPONSE_PROFILE)
+
+#### Description
+Verify mode-aware response shape routing for quick, research, and resume profiles with token savings calculation.
+
+#### Scenario Contract
+Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE enabled.`
+
+quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted
+
+#### Test Execution
+> **Feature File:** [167](../manual-testing-playbook/ux-hooks/response-profile-v1-speckit-response-profile-v1.md)
+> **Catalog:** [ux-hooks/mode-aware-response-profiles.md](../feature-catalog/ux-hooks/mode-aware-response-profiles.md)
+
+### 168 | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)
+
+#### Description
+Verify additive disclosure payload and cursor pagination in response while preserving full results.
+
+#### Scenario Contract
+Prompt: `Validate progressive disclosure v1 metadata and cursor pagination for broad memory_search results.`
+
+data.results remains present; data.progressiveDisclosure.summaryLayer with count and digest; data.progressiveDisclosure.results as Snippet[] with snippet (max 100 chars), detailAvailable, resultId; continuation cursor with remainingCount; cursor expiry at DEFAULT_CURSOR_TTL_MS (5 min); page size DEFAULT_PAGE_SIZE (5)
+
+#### Test Execution
+> **Feature File:** [168](../manual-testing-playbook/ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md)
+> **Catalog:** [ux-hooks/progressive-disclosure.md](../feature-catalog/ux-hooks/progressive-disclosure.md)
+
+### 169 | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)
+
+#### Description
+Verify additive session-state metadata and goal refinement are emitted on session-aware searches.
+
+#### Scenario Contract
+Prompt: `Validate session retrieval state metadata and goal refinement for session-aware memory_search.`
+
+data.sessionState includes activeGoal, seenResultIds, openQuestions, preferredAnchors; data.goalRefinement includes activeGoal and applied status; follow-up search in same session can deprioritize seen results (score * 0.3 fallback path); session expires after SESSION_TTL_MS (30 min); LRU eviction at MAX_SESSIONS (100)
+
+#### Test Execution
+> **Feature File:** [169](../manual-testing-playbook/ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md)
+> **Catalog:** [ux-hooks/retrieval-session-state.md](../feature-catalog/ux-hooks/retrieval-session-state.md)
+
+### 171 | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS)
+
+#### Description
+Verify calibrated overlap bonus replaces flat convergence bonus in RRF fusion with correct beta=0.15 scaling and 0.06 cap.
+
+#### Scenario Contract
+Prompt: `Validate calibrated overlap bonus replacement of the flat convergence bonus in RRF fusion.`
+
+Calibrated bonus computed using CALIBRATED_OVERLAP_BETA=0.15 and mean normalized top score; bonus clamped to CALIBRATED_OVERLAP_MAX=0.06; flat CONVERGENCE_BONUS=0.10 not applied when flag ON
+
+#### Test Execution
+> **Feature File:** [171](../manual-testing-playbook/scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md)
+> **Catalog:** [scoring-and-calibration/calibrated-overlap-bonus.md](../feature-catalog/scoring-and-calibration/calibrated-overlap-bonus.md)
+
+### 172 | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)
+
+#### Description
+Verify per-intent K optimization selects best K from sweep grid {10,20,40,60,80,100,120} using NDCG@10.
+
+#### Scenario Contract
+Prompt: `Validate RRF K experimental per-intent optimization across the sweep grid.`
+
+perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; falls back to DEFAULT_K=40 when OFF
+
+#### Test Execution
+> **Feature File:** [172](../manual-testing-playbook/scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md)
+> **Catalog:** [scoring-and-calibration/rrf-k-experimental.md](../feature-catalog/scoring-and-calibration/rrf-k-experimental.md)
+
+### 173 | Query decomposition (SPECKIT_QUERY_DECOMPOSITION)
+
+#### Description
+Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries using rule-based heuristics in deep mode.
+
+#### Scenario Contract
+Prompt: `As a query-intelligence validation operator, validate Query decomposition (SPECKIT_QUERY_DECOMPOSITION) against SPECKIT_QUERY_DECOMPOSITION. Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Conjunction splitting on "and"/"or"/"also"/"plus"/"as well as"/"along with"; multiple wh-question word detection; MAX_FACETS=3 cap enforced; no LLM calls; deep-mode only activation; graceful fallback returns original query on error
+
+#### Test Execution
+> **Feature File:** [173](../manual-testing-playbook/query-intelligence/query-decomposition-speckit-query-decomposition.md)
+> **Catalog:** [query-intelligence/query-decomposition.md](../feature-catalog/query-intelligence/query-decomposition.md)
+
+### 174 | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING)
+
+#### Description
+Verify query-time alias matching activates graph channel for matched concepts via noun phrase extraction.
+
+#### Scenario Contract
+Prompt: `Validate graph concept routing and cite alias matching, canonical concepts, graph channel activation, and default enablement.`
+
+Noun phrases extracted from query; concept alias table matched in SQLite; canonical concept names returned; graph channel activated in stage1-candidate-gen for matched concepts; isGraphConceptRoutingEnabled() returns true by default
+
+#### Test Execution
+> **Feature File:** [174](../manual-testing-playbook/graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md)
+> **Catalog:** [query-intelligence/graph-concept-routing.md](../feature-catalog/query-intelligence/graph-concept-routing.md)
+
+### 175 | Typed traversal (SPECKIT_TYPED_TRAVERSAL)
+
+#### Description
+Verify sparse-first policy constrains to 1-hop in sparse graphs and intent-aware edge traversal applies correct scoring formula.
+
+#### Scenario Contract
+Prompt: `Validate typed traversal and cite sparse-first gating, hop limits, intent edge priorities, scoring formula, and prior tiers.`
+
+SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5
+
+#### Test Execution
+> **Feature File:** [175](../manual-testing-playbook/graph-signal-activation/typed-traversal-speckit-typed-traversal.md)
+> **Catalog:** [graph-signal-activation/typed-traversal.md](../feature-catalog/graph-signal-activation/typed-traversal.md)
+
+
+### 177 | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)
+
+#### Description
+Verify type-aware no-decay FSRS policy assigns Infinity stability to decision/constitutional/critical types while standard FSRS decay applies to others.
+
+#### Scenario Contract
+Prompt: `Validate hybrid decay policy for no-decay memory types.`
+
+classifyHybridDecay() maps decision/constitutional/critical to no_decay class; applyHybridDecayPolicy() returns Infinity stability for no_decay types; standard FSRS v4 power-law decay for all other types; separate from TM-03
+
+#### Test Execution
+> **Feature File:** [177](../manual-testing-playbook/memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md)
+> **Catalog:** [memory-quality-and-indexing/hybrid-decay-policy.md](../feature-catalog/memory-quality-and-indexing/hybrid-decay-policy.md)
+
+### 178 | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS)
+
+#### Description
+Verify short-critical quality gate exception allows decision documents with >=2 structural signals to bypass the 50-char minimum content length check.
+
+#### Scenario Contract
+Prompt: `Validate save quality gate exceptions for short decision documents.`
+
+context_type=decision required; SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 threshold; bypasses MIN_CONTENT_LENGTH=50 in Layer 1; non-decision types still rejected
+
+#### Test Execution
+> **Feature File:** [178](../manual-testing-playbook/memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md)
+> **Catalog:** [memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature-catalog/memory-quality-and-indexing/save-quality-gate-exceptions.md)
+
+### 179 | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)
+
+#### Description
+Verify structured recovery payloads for empty/weak search results across all 3 statuses: no_results, low_confidence, partial.
+
+#### Scenario Contract
+Prompt: `Validate empty result recovery payloads for empty and weak memory_search results.`
+
+3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3
+
+#### Test Execution
+> **Feature File:** [179](../manual-testing-playbook/ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md)
+> **Catalog:** [ux-hooks/empty-result-recovery.md](../feature-catalog/ux-hooks/empty-result-recovery.md)
+
+### 180 | Result confidence (SPECKIT_RESULT_CONFIDENCE)
+
+#### Description
+Verify per-result calibrated confidence scoring with 3-factor weighting: margin (0.35), channel agreement (0.30), anchor density (0.15).
+
+#### Scenario Contract
+Prompt: `Validate result confidence scoring factors, thresholds, labels, drivers, and requestQuality output.`
+
+3 factors: margin 0.35, channel agreement 0.30, anchor density 0.15; HIGH_THRESHOLD=0.7; LOW_THRESHOLD=0.4; labels: high/medium/low; confidence drivers reported per result; heuristic only (no LLM)
+
+#### Test Execution
+> **Feature File:** [180](../manual-testing-playbook/ux-hooks/result-confidence-speckit-result-confidence-v1.md)
+> **Catalog:** [ux-hooks/result-confidence.md](../feature-catalog/ux-hooks/result-confidence.md)
+
+### 181 | Template Compliance Contract Enforcement
+
+#### Description
+Verify the 3-layer template compliance system prevents non-compliant spec documents from being created.
+
+#### Scenario Contract
+Prompt: `Validate Template Compliance Contract Enforcement against bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
+
+All 5 Level 2 files pass `validate.sh --strict` with exit code 0 and require no post-hoc fixes
+
+#### Test Execution
+> **Feature File:** [181](../manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md)
+> **Catalog:** [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md)
+
+---
+
+### 268 | Post-insert retry budget
+
+#### Description
+Verify deferred enrichment retries stop after the documented three-attempt budget and reset after a successful completion.
+
+#### Scenario Contract
+Prompt: `Validate the post-insert retry budget, including three allowed retries, fourth-attempt skip, exhaustion telemetry, and reset after success.`
+
+First three retries allowed; fourth skipped; successful completion clears the budget
+
+#### Test Execution
+> **Feature File:** [268](../manual-testing-playbook/lifecycle/post-insert-retry-budget.md)
+> **Catalog:** [lifecycle/post-insert-retry-budget.md](../feature-catalog/lifecycle/post-insert-retry-budget.md)
+
+### 269 | Scope normalizer canonicalization and lint
+
+#### Description
+Verify the canonical scope normalizer is the live helper and strict validation rejects new duplicate local helpers.
+
+#### Scenario Contract
+Prompt: `Validate scope normalizer canonicalization and lint and confirm canonical imports, parity semantics, and duplicate-helper rejection.`
+
+Canonical imports visible at the documented call sites; parity matrix still passes; synthetic duplicate helper fails the lint rule
+
+#### Test Execution
+> **Feature File:** [269](../manual-testing-playbook/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md)
+> **Catalog:** [bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../feature-catalog/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md)
+
+### 270 | maintainability extracts
+
+#### Description
+Verify the shared helper extracts replaced the old inline variants without changing the live pipeline contracts.
+
+#### Scenario Contract
+Prompt: `Validate Phase 017 maintainability extracts against the documented helper surfaces and return pass/fail with cited evidence.`
+
+Helper-based code paths are active; tests for the extracted helpers pass; routing metadata uses advisoryPreset
+
+#### Test Execution
+> **Feature File:** [270](../manual-testing-playbook/pipeline-architecture/phase-017-maintainability-extracts.md)
+> **Catalog:** [pipeline-architecture/phase-017-maintainability-extracts.md](../feature-catalog/pipeline-architecture/phase-017-maintainability-extracts.md)
+
+### 271 | Research metadata backfill
+
+#### Description
+Verify missing research iteration metadata is created without rewriting already-complete folders.
+
+#### Scenario Contract
+Prompt: `Validate Research metadata backfill against scripts/memory/backfill-research-metadata.ts and report cited pass/fail evidence.`
+
+Missing metadata files created; complete folders unchanged; output identifies only the folders that needed repair
+
+#### Test Execution
+> **Feature File:** [271](../manual-testing-playbook/tooling-and-scripts/research-metadata-backfill.md)
+> **Catalog:** [tooling-and-scripts/research-metadata-backfill.md](../feature-catalog/tooling-and-scripts/research-metadata-backfill.md)
+
+### 272 | Strict validation add-ons: continuity freshness and evidence markers
+
+#### Description
+Verify strict validation now enforces continuity freshness, malformed evidence markers, and duplicate-normalizer rejection.
+
+#### Scenario Contract
+Prompt: `Validate Strict validation add-ons: continuity freshness and evidence markers against validate.sh --strict and report cited pass/fail evidence.`
+
+Strict validation surfaces the continuity, evidence-marker, and duplicate-normalizer failures; the audit script reports marker issues for repair use
+
+#### Test Execution
+> **Feature File:** [272](../manual-testing-playbook/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
+> **Catalog:** [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
+
+### 273 | Session-resume caller binding and Unicode sanitization
+
+#### Description
+Verify strict session-resume caller binding plus the NFKC and zero-width sanitization guardrails.
+
+#### Scenario Contract
+Prompt: `Validate session-resume caller binding and Unicode sanitization against the documented strict, permissive, and confusable-input cases.`
+
+Strict mismatch rejected; permissive mismatch allowed with warning; Unicode confusables normalized in both sanitizers
+
+#### Test Execution
+> **Feature File:** [273](../manual-testing-playbook/governance/session-resume-caller-binding-and-unicode-sanitization.md)
+> **Catalog:** [governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature-catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md)
+
+
+
+### 276 | Reconsolidation conflict transaction helper
+
+#### Description
+Verify both reconsolidation conflict branches still share one atomic transaction envelope.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Reconsolidation conflict transaction helper against executeConflict(). Verify both conflict branches route through the shared transaction helper, stale-predecessor guards still apply, and failures roll back without leaving partial conflict writes behind. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Both conflict branches reuse one atomic transaction envelope and preserve rollback behavior on failure
+
+#### Test Execution
+> **Feature File:** [276](../manual-testing-playbook/mutation/reconsolidation-conflict-transaction-helper.md)
+> **Catalog:** [mutation/reconsolidation-conflict-transaction-helper.md](../feature-catalog/mutation/reconsolidation-conflict-transaction-helper.md)
+
+---
+
+## 9. PHASE SYSTEM FEATURES
+
+### PHASE-001 | Phase detection scoring
+
+#### Description
+Run `recommend-level.sh --recommend-phases --json` on a high-complexity spec and verify scoring output.
+
+#### Scenario Contract
+Prompt: `Validate Phase detection scoring against bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.`
+
+JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low
+
+#### Test Execution
+> **Feature File:** [PHASE-001](../manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md)
+
+### PHASE-002 | Phase folder creation
+
+#### Description
+Run `create.sh "Test" --phase --level 3 --phases 3` and verify parent+children structure.
+
+#### Scenario Contract
+Prompt: `Validate Phase folder creation against bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify" and report cited pass/fail evidence.`
+
+Parent folder with Phase Documentation Map in spec.md; 3 child folders with correct naming; back-references and predecessor/successor links in child spec.md files; Level 3 template files in all folders
+
+#### Test Execution
+> **Feature File:** [PHASE-002](../manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md)
+
+### PHASE-003 | Recursive phase validation
+
+#### Description
+Run `validate.sh --recursive` on a phase parent folder and verify per-phase results.
+
+#### Scenario Contract
+Prompt: `Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.`
+
+Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects worst child; error propagation works
+
+#### Test Execution
+> **Feature File:** [PHASE-003](../manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md)
+
+### PHASE-004 | Phase link validation
+
+#### Description
+Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity.
+
+#### Scenario Contract
+Prompt: `Validate Phase link validation against bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.`
+
+4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
+
+#### Test Execution
+> **Feature File:** [PHASE-004](../manual-testing-playbook/tooling-and-scripts/phase-link-validation.md)
+
+### PHASE-005 | Phase command workflow
+
+#### Description
+Execute `/speckit:plan :with-phases` command in auto mode and verify phase decomposition pre-workflow.
+
+#### Scenario Contract
+Prompt: `Validate Phase command workflow against /speckit:plan :with-phases and report cited pass/fail evidence.`
+
+All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
+
+#### Test Execution
+> **Feature File:** [PHASE-005](../manual-testing-playbook/tooling-and-scripts/phase-command-workflow.md)
+
+### PHASE-006 | Spec-folder literal naming (create.sh fallback)
+
+#### Description
+Run `create.sh --phase --phase-count 3` without `--phase-names` and confirm the placeholder slug and stderr warning behavior shipped in Packet 012.
+
+#### Scenario Contract
+Prompt: `Validate create.sh literal-naming fallback by running create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phase-count 3 --path /tmp/speckit-naming-smoke-$$ 2>/tmp/speckit-stderr-$$.log without --phase-names. Report cited pass/fail evidence.`
+
+3 child folders ending with `-PROVIDE-DESCRIPTIVE-SLUG`; 3 `[speckit] Warning:` lines on stderr; create.sh exit 0 (warn-only, not fail-hard)
+
+#### Test Execution
+> **Feature File:** [PHASE-006](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md)
+
+### PHASE-008 | Spec-folder literal naming (CLI-driven slug proposal)
+
+#### Description
+Route an ambiguous spec task through multiple external CLI agents and confirm each agent proposes phase names with specific subject tokens per the `Generate LITERAL phase names` YAML activity added in Packet 012.
+
+#### Scenario Contract
+Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /speckit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
+
+All 3 proposed slugs contain a specific subject token naming the concrete component or behavior; no slug matches the generic stoplist (phase-1, phase-2, phase-3, cleanup, remediation, fix, refactor, setup); aggregate PASS requires 2 or more CLIs to report PASS
+
+#### Test Execution
+> **Feature File:** [PHASE-008](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md)
+
+### PHASE-009 | Spec-folder literal naming (remediation rule via SKILL.md rule 20)
+
+#### Description
+Route a synthetic deep-review FAIL verdict through multiple external CLI agents and confirm each agent proposes a remediation packet slug that references both the source (deep-review findings) and the specific target component, per SKILL.md ALWAYS rule 20 added in Packet 012.
+
+#### Scenario Contract
+Prompt: `An operator gives a CLI agent a deep-review FAIL verdict and asks for the remediation packet name. Verify the proposed slug references BOTH the source (deep-review findings) AND the target (the specific component being remediated), per system-spec-kit SKILL.md ALWAYS rule 20.`
+
+`proposed_slug` contains both a source token (origin of findings) and a target token (component being fixed); slug does not match the bare stoplist (remediation, cleanup, fix, phase-N, round-N, review-remediation); `rule_20_self_audit` field cites both portions; aggregate PASS requires 2 or more CLIs to report PASS
+
+#### Test Execution
+> **Feature File:** [PHASE-009](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md)
+
+### Catalog Coverage Notes for Phases 001-018
+
+These 30 catalog entries are explicitly documented here even when validation is automated-only or routed through a shared operator scenario.
+
+| Catalog Entry | Coverage Status | Coverage Path / Notes |
+|---|---|---|
+| `retrieval/ast-level-section-retrieval-tool.md` | Deferred | Not yet implemented |
+| `retrieval/tool-result-extraction-to-working-memory.md` | Automated only | Covered by `working-memory.vitest.ts`, `working-memory-event-decay.vitest.ts`, and `checkpoint-working-memory.vitest.ts` |
+| `mutation/07-namespace-management-crud-tools.md` | Deferred | Not yet implemented |
+| `mutation/correction-tracking-with-undo.md` | Automated only | Covered by mutation regression tests; no dedicated operator scenario yet |
+| `mutation/10-per-record-history-log.md` | Manual + automated | Covered by mutation/history suites and dedicated direct manual scenario M-008 |
+| `graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md` | Deprecated archival | Retained only as a historical deprecation record; anchor markers stay metadata-only |
+| `scoring-and-calibration/tool-level-ttl-cache.md` | Automated only | Cache policy behavior is exercised in scoring/cache tests |
+| `scoring-and-calibration/access-driven-popularity-scoring.md` | Automated only | Popularity heuristics are validated by ranking tests |
+| `scoring-and-calibration/temporal-structural-coherence-scoring.md` | Automated only | Temporal/structural scoring logic is covered by scoring suites |
+| `memory-quality-and-indexing/content-aware-memory-filename-generation.md` | Indirect scenario coverage | Covered implicitly via 045 (smarter content generation) |
+| `memory-quality-and-indexing/outsourced-agent-memory-capture.md` | Manual + automated | Dedicated memory workflow coverage exists in M-005 |
+| `pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md` | Automated only | Startup concern; validated implicitly by startup/runtime coverage |
+| `pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md` | Deprecated archival | Retained only as a historical deprecation record; live transport remains stdio |
+| `pipeline-architecture/backend-storage-adapter-abstraction.md` | Automated only | Covered by `interfaces.vitest.ts`, `pipeline-architecture-remediation.vitest.ts`, and `vector-index-impl.vitest.ts`; no operator-facing manual step is required today |
+| `pipeline-architecture/atomic-write-then-index-api.md` | Indirect scenario coverage | Covered by 104 and atomic-save failure-injection tests |
+| `pipeline-architecture/embedding-retry-orchestrator.md` | Automated only | Covered by `retry-manager.vitest.ts` and `index-refresh.vitest.ts` |
+| `pipeline-architecture/7-layer-tool-architecture-metadata.md` | Automated only | Dispatch behavior is covered by context-server and dispatch-matrix tests |
+| `retrieval-enhancements/contextual-tree-injection.md` | Manual + automated | Covered directly by 145 and `hybrid-search-context-headers.vitest.ts` |
+| `tooling-and-scripts/architecture-boundary-enforcement.md` | Build-time only | Enforced by build/test tooling rather than runtime playbook steps |
+| `tooling-and-scripts/watcher-delete-rename-cleanup.md` | Automated only | Covered by `mcp-server/tests/file-watcher.vitest.ts`; no dedicated manual operator scenario yet |
+| Shared post-mutation hook wiring | Indirect scenario coverage | Covered by 085, 103, and 104 |
+| `ux-hooks/memory-health-autorepair-metadata.md` | Automated only | Covered by `handler-memory-health-edge.vitest.ts` and `memory-crud-extended.vitest.ts` (autoRepair, confirmation-only, partialSuccess). EX-013 covers basic health diagnostics only |
+| `ux-hooks/schema-and-type-contract-synchronization.md` | Indirect scenario coverage | Covered by 107 (confirmName enforcement) and hook-contract tests. 095 covers strict-param rejection only |
+| `ux-hooks/mutation-hook-result-contract-expansion.md` | Indirect scenario coverage | Covered by 103 |
+| `ux-hooks/mutation-response-ux-payload-exposure.md` | Indirect scenario coverage | Covered by 104 |
+| `ux-hooks/atomic-save-parity-and-partial-indexing-hints.md` | Indirect scenario coverage | Covered by 104 |
+| `ux-hooks/final-token-metadata-recomputation.md` | Indirect scenario coverage | Covered by 105 |
+| `ux-hooks/end-to-end-success-envelope-verification.md` | Indirect scenario coverage | Covered by 105 |
+| `tooling-and-scripts/session-capturing-pipeline-quality.md` | Manual + automated | Absorbs phases 002 (contamination-detection), 004 (type-consolidation), 005 (confidence-calibration), 007 (phase-classification), 008 (signal-extraction), and 014 (spec-descriptions). Covered by M-007 compound scenario, build/typecheck, and automated extractor/loader suites |
+
+---
+
+## 10. DEDICATED MEMORY/SPEC-KIT SCENARIOS (REQUIRED)
+
+### M-001 | Context Recovery and Continuation
+
+#### Description
+Canonical resume workflow through `/speckit:resume` and the packet recovery ladder.
+
+#### Scenario Contract
+Prompt: `Validate context recovery with /speckit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
+
+Expected signals: Resume-ready state summary and next steps via `/speckit:resume` and the canonical packet ladder.
+
+#### Test Execution
+> **Feature File:** [M-001](../manual-testing-playbook/retrieval/context-recovery-and-continuation.md)
+
+### M-002 | Targeted Memory Lookup
+
+#### Description
+Precise fact-level retrieval through targeted anchored lookup.
+
+#### Scenario Contract
+Prompt: `Validate targeted memory_search lookup for decision rationale and confirm precise fact-level retrieval from the target spec.`
+
+Expected signals: precise fact-level retrieval.
+
+#### Test Execution
+> **Feature File:** [M-002](../manual-testing-playbook/retrieval/targeted-memory-lookup.md)
+
+### M-003 | Context Save + Index Update
+
+#### Description
+Context save plus immediate index visibility.
+
+#### Scenario Contract
+Prompt: `Validate Context Save + Index Update against generate-context.js and memory_index_scan.`
+
+Expected signals: saved context artifacts are discoverable.
+
+#### Test Execution
+> **Feature File:** [M-003](../manual-testing-playbook/memory-quality-and-indexing/context-save-index-update.md)
+
+### M-004 | Main-Agent Review and Verdict Handoff
+
+#### Description
+Severity-ranked findings and deterministic verdict handoff.
+
+#### Scenario Contract
+Prompt: `As a tooling validation operator, validate Main-Agent Review and Verdict Handoff against @review. Verify severity-ranked findings and final verdict. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Expected signals: severity-ranked findings and final verdict.
+
+#### Test Execution
+> **Feature File:** [M-004](../manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md)
+
+### M-005 | Outsourced Agent Memory Capture Round-Trip
+
+#### Description
+Outsourced agent output round-trips into searchable saved context.
+
+#### Scenario Contract
+Prompt: `Validate outsourced agent memory capture round-trip against cli-opencode.`
+
+Expected signals: Agent output contains structured memory section; saved context is discoverable via search.
+
+#### Test Execution
+> **Feature File:** [M-005](../manual-testing-playbook/memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md)
+
+### M-006 | Stateless Enrichment and Alignment Guardrails
+
+#### Description
+Continuity-ladder precedence and alignment guardrails for captured-session saves.
+
+#### Scenario Contract
+Prompt: `Validate session enrichment and alignment guardrails against memory_search.`
+
+Expected signals: the save resolves through `handover.md` first, then `_memory.continuity`, then spec docs; spec-folder and git enrichment remain supporting-only; and it does not raise `ALIGNMENT_BLOCK` when captured files match the spec's files-to-change table.
+
+#### Test Execution
+> **Feature File:** [M-006](../manual-testing-playbook/memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md)
+
+### M-007 | Session Capturing Pipeline Quality
+
+#### Description
+Session-capturing hardening, structured-input authority, and save-quality closure.
+
+#### Scenario Contract
+Prompt: `Validate Session Capturing Pipeline Quality against grep -n 'crypto.randomBytes' .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts and report cited pass/fail evidence.`
+
+Minimum scenario family now required for M-007:
+- structured `--stdin` save with explicit CLI target precedence
+- structured `--json` save with payload-target fallback when no explicit CLI override exists
+- same-minute repeated saves that prove unique filenames and stable `description.json` tracking
+- direct positional save without `--json`/`--stdin` that rejects with migration guidance to structured JSON
+
+Proof rule:
+- Treat automated M-007 parity as the runtime contract baseline.
+- Only claim “flawless across every CLI” when the current verification run captures fresh live artifacts for each supported CLI and each supported save mode covered by the current contract.
+
+#### Test Execution
+> **Feature File:** [M-007](../manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md)
+
+### M-008 | Feature 09 Direct Manual Scenario (Per-memory History Log)
+
+#### Description
+Repeated save/update activity remains visible through direct operator runs.
+
+#### Scenario Contract
+Prompt: `As a mutation validation operator, validate Feature 09 Direct Manual Scenario (Per-memory History Log) against memory_save({ filePath:"<sandbox-spec-doc>", force:true }). Verify repeated save/update activity is observable via retrieval output and packet metadata remains coherent for the same saved document lineage. Return a concise pass/fail verdict with the main reason and cited evidence.`
+
+Expected signals: repeated save/update activity is observable via retrieval output and packet metadata remains coherent for the same saved document lineage.
+
+#### Test Execution
+> **Feature File:** [M-008](../manual-testing-playbook/mutation/feature-09-direct-manual-scenario-per-memory-history-log.md)
+
+---
+
+## 11. AUTOMATED TEST CROSS-REFERENCE
+
+This split playbook keeps automated coverage references in three places:
+- Per-feature catalog links in the root directory and snippet references.
+- The catalog coverage notes section for automated-only, indirect, or deferred coverage.
+- Dedicated memory/spec-kit snippets where shared manual scenarios absorb multiple catalog entries.
+
+---
+
+## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+| Playbook ID | Category | Feature Name | Snippet | Catalog Entry |
+|---|---|---|---|---|
+| EX-001 | Existing Features | Unified context retrieval (memory_context) | [EX-001](../manual-testing-playbook/retrieval/unified-context-retrieval-memory-context.md) | [retrieval/unified-context-retrieval-memorycontext.md](../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md) |
+| EX-002 | Existing Features | Semantic and lexical search (memory_search) | [EX-002](../manual-testing-playbook/retrieval/semantic-and-lexical-search-memory-search.md) | [retrieval/semantic-and-lexical-search-memorysearch.md](../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md) |
+| EX-003 | Existing Features | Trigger phrase matching (memory_match_triggers) | [EX-003](../manual-testing-playbook/retrieval/trigger-phrase-matching-memory-match-triggers.md) | [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md) |
+| EX-004 | Existing Features | Hybrid search pipeline | [EX-004](../manual-testing-playbook/retrieval/hybrid-search-pipeline.md) | [retrieval/hybrid-search-pipeline.md](../feature-catalog/retrieval/hybrid-search-pipeline.md) |
+| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](../manual-testing-playbook/retrieval/4-stage-pipeline-architecture.md) | [retrieval/4-stage-pipeline-architecture.md](../feature-catalog/retrieval/4-stage-pipeline-architecture.md) |
+| EX-006 | Existing Features | Memory indexing (memory_save) | [EX-006](../manual-testing-playbook/mutation/memory-indexing-memory-save.md) | [mutation/memory-indexing-memorysave.md](../feature-catalog/mutation/memory-indexing-memorysave.md) |
+| EX-007 | Existing Features | Memory metadata update (memory_update) | [EX-007](../manual-testing-playbook/mutation/memory-metadata-update-memory-update.md) | [mutation/memory-metadata-update-memoryupdate.md](../feature-catalog/mutation/memory-metadata-update-memoryupdate.md) |
+| EX-008 | Existing Features | Single and folder delete (memory_delete) | [EX-008](../manual-testing-playbook/mutation/single-and-folder-delete-memory-delete.md) | [mutation/single-and-folder-delete-memorydelete.md](../feature-catalog/mutation/single-and-folder-delete-memorydelete.md) |
+| EX-009 | Existing Features | Tier-based bulk deletion (memory_bulk_delete) | [EX-009](../manual-testing-playbook/mutation/tier-based-bulk-deletion-memory-bulk-delete.md) | [mutation/tier-based-bulk-deletion-memorybulkdelete.md](../feature-catalog/mutation/tier-based-bulk-deletion-memorybulkdelete.md) |
+| EX-010 | Existing Features | Validation feedback (memory_validate) | [EX-010](../manual-testing-playbook/mutation/validation-feedback-memory-validate.md) | [mutation/validation-feedback-memoryvalidate.md](../feature-catalog/mutation/validation-feedback-memoryvalidate.md) |
+| EX-011 | Existing Features | Memory browser (memory_list) | [EX-011](../manual-testing-playbook/discovery/memory-browser-memory-list.md) | [discovery/memory-browser-memorylist.md](../feature-catalog/discovery/memory-browser-memorylist.md) |
+| EX-012 | Existing Features | System statistics (memory_stats) | [EX-012](../manual-testing-playbook/discovery/system-statistics-memory-stats.md) | [discovery/system-statistics-memorystats.md](../feature-catalog/discovery/system-statistics-memorystats.md) |
+| EX-013 | Existing Features | Health diagnostics (memory_health) | [EX-013](../manual-testing-playbook/discovery/health-diagnostics-memory-health.md) | [discovery/health-diagnostics-memoryhealth.md](../feature-catalog/discovery/health-diagnostics-memoryhealth.md) |
+| EX-014 | Existing Features | Workspace scanning and indexing (memory_index_scan) | [EX-014](../manual-testing-playbook/maintenance/workspace-scanning-and-indexing-memory-index-scan.md) | [maintenance/workspace-scanning-and-indexing-memoryindexscan.md](../feature-catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md) |
+| EX-015 | Existing Features | Checkpoint creation (checkpoint_create) | [EX-015](../manual-testing-playbook/lifecycle/checkpoint-creation-checkpoint-create.md) | [lifecycle/checkpoint-creation-checkpointcreate.md](../feature-catalog/lifecycle/checkpoint-creation-checkpointcreate.md) |
+| EX-016 | Existing Features | Checkpoint listing (checkpoint_list) | [EX-016](../manual-testing-playbook/lifecycle/checkpoint-listing-checkpoint-list.md) | [lifecycle/checkpoint-listing-checkpointlist.md](../feature-catalog/lifecycle/checkpoint-listing-checkpointlist.md) |
+| EX-017 | Existing Features | Checkpoint restore (checkpoint_restore) | [EX-017](../manual-testing-playbook/lifecycle/checkpoint-restore-checkpoint-restore.md) | [lifecycle/checkpoint-restore-checkpointrestore.md](../feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md) |
+| EX-018 | Existing Features | Checkpoint deletion (checkpoint_delete) | [EX-018](../manual-testing-playbook/lifecycle/checkpoint-deletion-checkpoint-delete.md) | [lifecycle/checkpoint-deletion-checkpointdelete.md](../feature-catalog/lifecycle/checkpoint-deletion-checkpointdelete.md) |
+| EX-019 | Existing Features | Causal edge creation (memory_causal_link) | [EX-019](../manual-testing-playbook/analysis/causal-edge-creation-memory-causal-link.md) | [analysis/causal-edge-creation-memorycausallink.md](../feature-catalog/analysis/causal-edge-creation-memorycausallink.md) |
+| EX-020 | Existing Features | Causal graph statistics (memory_causal_stats) | [EX-020](../manual-testing-playbook/analysis/causal-graph-statistics-memory-causal-stats.md) | [analysis/causal-graph-statistics-memorycausalstats.md](../feature-catalog/analysis/causal-graph-statistics-memorycausalstats.md) |
+| EX-021 | Existing Features | Causal edge deletion (memory_causal_unlink) | [EX-021](../manual-testing-playbook/analysis/causal-edge-deletion-memory-causal-unlink.md) | [analysis/causal-edge-deletion-memorycausalunlink.md](../feature-catalog/analysis/causal-edge-deletion-memorycausalunlink.md) |
+| EX-022 | Existing Features | Causal chain tracing (memory_drift_why) | [EX-022](../manual-testing-playbook/analysis/causal-chain-tracing-memory-drift-why.md) | [analysis/causal-chain-tracing-memorydriftwhy.md](../feature-catalog/analysis/causal-chain-tracing-memorydriftwhy.md) |
+| EX-023 | Existing Features | Epistemic baseline capture (task_preflight) | [EX-023](../manual-testing-playbook/analysis/epistemic-baseline-capture-task-preflight.md) | [analysis/epistemic-baseline-capture-taskpreflight.md](../feature-catalog/analysis/epistemic-baseline-capture-taskpreflight.md) |
+| EX-024 | Existing Features | Post-task learning measurement (task_postflight) | [EX-024](../manual-testing-playbook/analysis/post-task-learning-measurement-task-postflight.md) | [analysis/post-task-learning-measurement-taskpostflight.md](../feature-catalog/analysis/post-task-learning-measurement-taskpostflight.md) |
+| EX-025 | Existing Features | Learning history (memory_get_learning_history) | [EX-025](../manual-testing-playbook/analysis/learning-history-memory-get-learning-history.md) | [analysis/learning-history-memorygetlearninghistory.md](../feature-catalog/analysis/learning-history-memorygetlearninghistory.md) |
+| EX-026 | Existing Features | Ablation studies (eval_run_ablation) | [EX-026](../manual-testing-playbook/evaluation/ablation-studies-eval-run-ablation.md) | [evaluation/ablation-studies-evalrunablation.md](../feature-catalog/evaluation/ablation-studies-evalrunablation.md) |
+| EX-027 | Existing Features | Reporting dashboard (eval_reporting_dashboard) | [EX-027](../manual-testing-playbook/evaluation/reporting-dashboard-eval-reporting-dashboard.md) | [evaluation/reporting-dashboard-evalreportingdashboard.md](../feature-catalog/evaluation/reporting-dashboard-evalreportingdashboard.md) |
+| EX-028 | Existing Features | 1. Search Pipeline Features (SPECKIT_*) | [EX-028](../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md) | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) |
+| EX-029 | Existing Features | 2. Session and Cache | [EX-029](../manual-testing-playbook/feature-flag-reference/2-session-and-cache.md) | [feature-flag-reference/2-session-and-cache.md](../feature-catalog/feature-flag-reference/2-session-and-cache.md) |
+| EX-030 | Existing Features | 3. MCP Configuration | [EX-030](../manual-testing-playbook/feature-flag-reference/3-mcp-configuration.md) | [feature-flag-reference/3-mcp-configuration.md](../feature-catalog/feature-flag-reference/3-mcp-configuration.md) |
+| EX-031 | Existing Features | 4. Memory and Storage | [EX-031](../manual-testing-playbook/feature-flag-reference/4-memory-and-storage.md) | [feature-flag-reference/4-memory-and-storage.md](../feature-catalog/feature-flag-reference/4-memory-and-storage.md) |
+| EX-032 | Existing Features | 5. Embedding and API | [EX-032](../manual-testing-playbook/feature-flag-reference/5-embedding-and-api.md) | [feature-flag-reference/5-embedding-and-api.md](../feature-catalog/feature-flag-reference/5-embedding-and-api.md) |
+| EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](../manual-testing-playbook/feature-flag-reference/6-debug-and-telemetry.md) | [feature-flag-reference/6-debug-and-telemetry.md](../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md) |
+| EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](../manual-testing-playbook/feature-flag-reference/7-ci-and-build-informational.md) | [feature-flag-reference/7-ci-and-build-informational.md](../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md) |
+| EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](../manual-testing-playbook/maintenance/startup-runtime-compatibility-guards.md) | [maintenance/startup-runtime-compatibility-guards.md](../feature-catalog/maintenance/startup-runtime-compatibility-guards.md) |
+| 001 | Features | Graph channel ID fix (G1) | [001](../manual-testing-playbook/bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md) | [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../feature-catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md) |
+| 002 | Features | Chunk collapse deduplication (G3) | [002](../manual-testing-playbook/bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md) | [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../feature-catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md) |
+| 003 | Features | Co-activation fan-effect divisor (R17) | [003](../manual-testing-playbook/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md) | [bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../feature-catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md) |
+| 004 | Features | SHA-256 content-hash deduplication (TM-02) | [004](../manual-testing-playbook/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md) | [bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../feature-catalog/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md) |
+| 005 | Features | Evaluation database and schema (R13-S1) | [005](../manual-testing-playbook/evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md) | [evaluation-and-measurement/evaluation-database-and-schema.md](../feature-catalog/evaluation-and-measurement/evaluation-database-and-schema.md) |
+| 006 | Features | Core metric computation (R13-S1) | [006](../manual-testing-playbook/evaluation-and-measurement/core-metric-computation-r13-s1.md) | [evaluation-and-measurement/core-metric-computation.md](../feature-catalog/evaluation-and-measurement/core-metric-computation.md) |
+| 007 | Features | Observer effect mitigation (D4) | [007](../manual-testing-playbook/evaluation-and-measurement/observer-effect-mitigation-d4.md) | [evaluation-and-measurement/observer-effect-mitigation.md](../feature-catalog/evaluation-and-measurement/observer-effect-mitigation.md) |
+| 009 | Features | Quality proxy formula (B7) | [009](../manual-testing-playbook/evaluation-and-measurement/quality-proxy-formula-b7.md) | [evaluation-and-measurement/quality-proxy-formula.md](../feature-catalog/evaluation-and-measurement/quality-proxy-formula.md) |
+| 010 | Features | Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) | [010](../manual-testing-playbook/evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md) | [evaluation-and-measurement/synthetic-ground-truth-corpus.md](../feature-catalog/evaluation-and-measurement/synthetic-ground-truth-corpus.md) |
+| 011 | Features | BM25-only baseline (G-NEW-1) | [011](../manual-testing-playbook/evaluation-and-measurement/bm25-only-baseline-g-new-1.md) | [evaluation-and-measurement/bm25-only-baseline.md](../feature-catalog/evaluation-and-measurement/bm25-only-baseline.md) |
+| 012 | Features | Agent consumption instrumentation (G-NEW-2) | [012](../manual-testing-playbook/evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md) | [evaluation-and-measurement/agent-consumption-instrumentation.md](../feature-catalog/evaluation-and-measurement/agent-consumption-instrumentation.md) |
+| 013 | Features | Scoring observability (T010) | [013](../manual-testing-playbook/evaluation-and-measurement/scoring-observability-t010.md) | [evaluation-and-measurement/scoring-observability.md](../feature-catalog/evaluation-and-measurement/scoring-observability.md) |
+| 014 | Features | Full reporting and ablation study framework (R13-S3) | [014](../manual-testing-playbook/evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md) | [evaluation-and-measurement/full-reporting-and-ablation-study-framework.md](../feature-catalog/evaluation-and-measurement/full-reporting-and-ablation-study-framework.md) |
+| 016 | Features | Typed-weighted degree channel (R4) | [016](../manual-testing-playbook/graph-signal-activation/typed-weighted-degree-channel-r4.md) | [graph-signal-activation/typed-weighted-degree-channel.md](../feature-catalog/graph-signal-activation/typed-weighted-degree-channel.md) |
+| 017 | Features | Co-activation boost strength increase (A7) | [017](../manual-testing-playbook/graph-signal-activation/co-activation-boost-strength-increase-a7.md) | [graph-signal-activation/co-activation-boost-strength-increase.md](../feature-catalog/graph-signal-activation/co-activation-boost-strength-increase.md) |
+| 018 | Features | Edge density measurement | [018](../manual-testing-playbook/graph-signal-activation/edge-density-measurement.md) | [graph-signal-activation/edge-density-measurement.md](../feature-catalog/graph-signal-activation/edge-density-measurement.md) |
+| 019 | Features | Weight history audit tracking | [019](../manual-testing-playbook/graph-signal-activation/weight-history-audit-tracking.md) | [graph-signal-activation/weight-history-audit-tracking.md](../feature-catalog/graph-signal-activation/weight-history-audit-tracking.md) |
+| 020 | Features | Graph momentum scoring (N2a) | [020](../manual-testing-playbook/graph-signal-activation/graph-momentum-scoring-n2a.md) | [graph-signal-activation/graph-momentum-scoring.md](../feature-catalog/graph-signal-activation/graph-momentum-scoring.md) |
+| 021 | Features | Causal depth signal (N2b) | [021](../manual-testing-playbook/graph-signal-activation/causal-depth-signal-n2b.md) | [graph-signal-activation/causal-depth-signal.md](../feature-catalog/graph-signal-activation/causal-depth-signal.md) |
+| 022 | Features | Community detection (N2c) | [022](../manual-testing-playbook/graph-signal-activation/community-detection-n2c.md) | [graph-signal-activation/community-detection.md](../feature-catalog/graph-signal-activation/community-detection.md) |
+| 023 | Features | Score normalization | [023](../manual-testing-playbook/scoring-and-calibration/score-normalization.md) | [scoring-and-calibration/score-normalization.md](../feature-catalog/scoring-and-calibration/score-normalization.md) |
+| 025 | Features | Interference scoring (TM-01) | [025](../manual-testing-playbook/scoring-and-calibration/interference-scoring-tm-01.md) | [scoring-and-calibration/interference-scoring.md](../feature-catalog/scoring-and-calibration/interference-scoring.md) |
+| 026 | Features | Classification-based decay (TM-03) | [026](../manual-testing-playbook/scoring-and-calibration/classification-based-decay-tm-03.md) | [scoring-and-calibration/classification-based-decay.md](../feature-catalog/scoring-and-calibration/classification-based-decay.md) |
+| 027 | Features | Folder-level relevance scoring (PI-A1) | [027](../manual-testing-playbook/scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md) | [scoring-and-calibration/folder-level-relevance-scoring.md](../feature-catalog/scoring-and-calibration/folder-level-relevance-scoring.md) |
+| 028 | Features | Embedding cache (R18) | [028](../manual-testing-playbook/scoring-and-calibration/embedding-cache-r18.md) | [scoring-and-calibration/embedding-cache.md](../feature-catalog/scoring-and-calibration/embedding-cache.md) |
+| 029 | Features | Double intent weighting investigation (G2) | [029](../manual-testing-playbook/scoring-and-calibration/double-intent-weighting-investigation-g2.md) | [scoring-and-calibration/double-intent-weighting-investigation.md](../feature-catalog/scoring-and-calibration/double-intent-weighting-investigation.md) |
+| 030 | Features | RRF K-value sensitivity analysis (FUT-5) | [030](../manual-testing-playbook/scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md) | [scoring-and-calibration/rrf-k-value-sensitivity-analysis.md](../feature-catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md) |
+| 031 | Features | Negative feedback confidence signal (A4) | [031](../manual-testing-playbook/scoring-and-calibration/negative-feedback-confidence-signal-a4.md) | [scoring-and-calibration/negative-feedback-confidence-signal.md](../feature-catalog/scoring-and-calibration/negative-feedback-confidence-signal.md) |
+| 032 | Features | Auto-promotion on validation (T002a) | [032](../manual-testing-playbook/scoring-and-calibration/auto-promotion-on-validation-t002a.md) | [scoring-and-calibration/auto-promotion-on-validation.md](../feature-catalog/scoring-and-calibration/auto-promotion-on-validation.md) |
+| 033 | Features | Query complexity router (R15) | [033](../manual-testing-playbook/query-intelligence/query-complexity-router-r15.md) | [query-intelligence/query-complexity-router.md](../feature-catalog/query-intelligence/query-complexity-router.md) |
+| 035 | Features | Channel min-representation (R2) | [035](../manual-testing-playbook/query-intelligence/channel-min-representation-r2.md) | [query-intelligence/channel-min-representation.md](../feature-catalog/query-intelligence/channel-min-representation.md) |
+| 036 | Features | Confidence-based result truncation (R15-ext) | [036](../manual-testing-playbook/query-intelligence/confidence-based-result-truncation-r15-ext.md) | [query-intelligence/confidence-based-result-truncation.md](../feature-catalog/query-intelligence/confidence-based-result-truncation.md) |
+| 037 | Features | Dynamic token budget allocation (FUT-7) | [037](../manual-testing-playbook/query-intelligence/dynamic-token-budget-allocation-fut-7.md) | [query-intelligence/dynamic-token-budget-allocation.md](../feature-catalog/query-intelligence/dynamic-token-budget-allocation.md) |
+| 038 | Features | Query expansion (R12) | [038](../manual-testing-playbook/query-intelligence/query-expansion-r12.md) | [query-intelligence/query-expansion.md](../feature-catalog/query-intelligence/query-expansion.md) |
+| 039 | Features | Verify-fix-verify memory quality loop (PI-A5) | [039](../manual-testing-playbook/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md) | [memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../feature-catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md) |
+| 040 | Features | Signal vocabulary expansion (TM-08) | [040](../manual-testing-playbook/memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md) | [memory-quality-and-indexing/signal-vocabulary-expansion.md](../feature-catalog/memory-quality-and-indexing/signal-vocabulary-expansion.md) |
+| 041 | Features | Pre-flight token budget validation (PI-A3) | [041](../manual-testing-playbook/memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md) | [memory-quality-and-indexing/pre-flight-token-budget-validation.md](../feature-catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md) |
+| 042 | Features | Spec folder description discovery (PI-B3) | [042](../manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
+| 043 | Features | Pre-storage quality gate (TM-04) | [043](../manual-testing-playbook/memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md) | [memory-quality-and-indexing/pre-storage-quality-gate.md](../feature-catalog/memory-quality-and-indexing/pre-storage-quality-gate.md) |
+| 044 | Features | Reconsolidation-on-save (TM-06) | [044](../manual-testing-playbook/memory-quality-and-indexing/reconsolidation-on-save-tm-06.md) | [memory-quality-and-indexing/reconsolidation-on-save.md](../feature-catalog/memory-quality-and-indexing/reconsolidation-on-save.md) |
+| 045 | Features | Smarter memory content generation (S1) | [045](../manual-testing-playbook/memory-quality-and-indexing/smarter-memory-content-generation-s1.md) | [memory-quality-and-indexing/smarter-memory-content-generation.md](../feature-catalog/memory-quality-and-indexing/smarter-memory-content-generation.md) |
+| 046 | Features | Anchor-aware chunk thinning (R7) | [046](../manual-testing-playbook/memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md) | [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../feature-catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md) |
+| 047 | Features | Encoding-intent capture at index time (R16) | [047](../manual-testing-playbook/memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md) | [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../feature-catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md) |
+| 048 | Features | Auto entity extraction (R10) | [048](../manual-testing-playbook/memory-quality-and-indexing/auto-entity-extraction-r10.md) | [memory-quality-and-indexing/auto-entity-extraction.md](../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md) |
+| 049 | Features | 4-stage pipeline refactor (R6) | [049](../manual-testing-playbook/pipeline-architecture/4-stage-pipeline-refactor-r6.md) | [pipeline-architecture/4-stage-pipeline-refactor.md](../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md) |
+| 050 | Features | MPAB chunk-to-memory aggregation (R1) | [050](../manual-testing-playbook/pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md) | [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../feature-catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md) |
+| 051 | Features | Chunk ordering preservation (B2) | [051](../manual-testing-playbook/pipeline-architecture/chunk-ordering-preservation-b2.md) | [pipeline-architecture/chunk-ordering-preservation.md](../feature-catalog/pipeline-architecture/chunk-ordering-preservation.md) |
+| 052 | Features | Template anchor optimization (S2) | [052](../manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md) | [pipeline-architecture/template-anchor-optimization.md](../feature-catalog/pipeline-architecture/template-anchor-optimization.md) |
+| 053 | Features | Validation signals as retrieval metadata (S3) | [053](../manual-testing-playbook/pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md) | [pipeline-architecture/validation-signals-as-retrieval-metadata.md](../feature-catalog/pipeline-architecture/validation-signals-as-retrieval-metadata.md) |
+| 054 | Features | Learned relevance feedback (R11) | [054](../manual-testing-playbook/pipeline-architecture/learned-relevance-feedback-r11.md) | [pipeline-architecture/learned-relevance-feedback.md](../feature-catalog/pipeline-architecture/learned-relevance-feedback.md) |
+| 055 | Features | Dual-scope memory auto-surface (TM-05) | [055](../manual-testing-playbook/retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md) | [retrieval-enhancements/dual-scope-memory-auto-surface.md](../feature-catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md) |
+| 056 | Features | Constitutional memory as expert knowledge injection (PI-A4) | [056](../manual-testing-playbook/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md) | [retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md](../feature-catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md) |
+| 057 | Features | Spec folder hierarchy as retrieval structure (S4) | [057](../manual-testing-playbook/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md) | [retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md](../feature-catalog/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md) |
+| 058 | Features | Lightweight consolidation (N3-lite) | [058](../manual-testing-playbook/retrieval-enhancements/lightweight-consolidation-n3-lite.md) | [retrieval-enhancements/lightweight-consolidation.md](../feature-catalog/retrieval-enhancements/lightweight-consolidation.md) |
+| 059 | Features | Memory summary search channel (R8) | [059](../manual-testing-playbook/retrieval-enhancements/memory-summary-search-channel-r8.md) | [retrieval-enhancements/memory-summary-search-channel.md](../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md) |
+| 060 | Features | Cross-document entity linking (S5) | [060](../manual-testing-playbook/retrieval-enhancements/cross-document-entity-linking-s5.md) | [retrieval-enhancements/cross-document-entity-linking.md](../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md) |
+| 061 | Features | Tree thinning for spec folder consolidation (PI-B1) | [061](../manual-testing-playbook/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md) | [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md) |
+| 062 | Features | Progressive validation for spec documents (PI-B2) | [062](../manual-testing-playbook/tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md) | [tooling-and-scripts/progressive-validation-for-spec-documents.md](../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md) |
+| 063 | Features | Feature flag governance | [063](../manual-testing-playbook/governance/feature-flag-governance.md) | [governance/feature-flag-governance.md](../feature-catalog/governance/feature-flag-governance.md) |
+| 064 | Features | Feature flag sunset audit | retired manual record | retired feature-flag sunset audit record |
+| 065 | Features | Database and schema safety | [065](../manual-testing-playbook/bug-fixes-and-data-integrity/database-and-schema-safety.md) | [bug-fixes-and-data-integrity/database-and-schema-safety.md](../feature-catalog/bug-fixes-and-data-integrity/database-and-schema-safety.md) |
+| 066 | Features | Scoring and ranking corrections | [066](../manual-testing-playbook/scoring-and-calibration/scoring-and-ranking-corrections.md) | [scoring-and-calibration/scoring-and-ranking-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-ranking-corrections.md) |
+| 067 | Features | Search pipeline safety | [067](../manual-testing-playbook/pipeline-architecture/search-pipeline-safety.md) | [pipeline-architecture/search-pipeline-safety.md](../feature-catalog/pipeline-architecture/search-pipeline-safety.md) |
+| 068 | Features | Guards and edge cases | [068](../manual-testing-playbook/bug-fixes-and-data-integrity/guards-and-edge-cases.md) | [bug-fixes-and-data-integrity/guards-and-edge-cases.md](../feature-catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md) |
+| 069 | Features | Entity normalization consolidation | [069](../manual-testing-playbook/memory-quality-and-indexing/entity-normalization-consolidation.md) | [memory-quality-and-indexing/entity-normalization-consolidation.md](../feature-catalog/memory-quality-and-indexing/entity-normalization-consolidation.md) |
+| 070 | Features | Dead code removal | [070](../manual-testing-playbook/tooling-and-scripts/dead-code-removal.md) | [tooling-and-scripts/dead-code-removal.md](../feature-catalog/tooling-and-scripts/dead-code-removal.md) |
+| 071 | Features | Performance improvements | [071](../manual-testing-playbook/pipeline-architecture/performance-improvements.md) | [pipeline-architecture/performance-improvements.md](../feature-catalog/pipeline-architecture/performance-improvements.md) |
+| 072 | Features | Test quality improvements | [072](../manual-testing-playbook/evaluation-and-measurement/test-quality-improvements.md) | [evaluation-and-measurement/test-quality-improvements.md](../feature-catalog/evaluation-and-measurement/test-quality-improvements.md) |
+| 073 | Features | Quality gate timer persistence | [073](../manual-testing-playbook/memory-quality-and-indexing/quality-gate-timer-persistence.md) | [memory-quality-and-indexing/quality-gate-timer-persistence.md](../feature-catalog/memory-quality-and-indexing/quality-gate-timer-persistence.md) |
+| 074 | Features | Stage 3 effectiveScore fallback chain | [074](../manual-testing-playbook/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) | [scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../feature-catalog/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) |
+| 075 | Features | Canonical ID dedup hardening | [075](../manual-testing-playbook/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) | [bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature-catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) |
+| 077 | Features | Tier-2 fallback channel forcing | [077](../manual-testing-playbook/retrieval-enhancements/tier-2-fallback-channel-forcing.md) | [retrieval-enhancements/tier-2-fallback-channel-forcing.md](../feature-catalog/retrieval-enhancements/tier-2-fallback-channel-forcing.md) |
+| 078 | Features | Legacy V1 pipeline removal | [078](../manual-testing-playbook/pipeline-architecture/legacy-v1-pipeline-removal.md) | [pipeline-architecture/legacy-v1-pipeline-removal.md](../feature-catalog/pipeline-architecture/legacy-v1-pipeline-removal.md) |
+| 079 | Features | Scoring and fusion corrections | [079](../manual-testing-playbook/scoring-and-calibration/scoring-and-fusion-corrections.md) | [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md) |
+| 080 | Features | Pipeline and mutation hardening | [080](../manual-testing-playbook/pipeline-architecture/pipeline-and-mutation-hardening.md) | [pipeline-architecture/pipeline-and-mutation-hardening.md](../feature-catalog/pipeline-architecture/pipeline-and-mutation-hardening.md) |
+| 081 | Features | Graph and cognitive memory fixes | [081](../manual-testing-playbook/graph-signal-activation/graph-and-cognitive-memory-fixes.md) | [graph-signal-activation/graph-and-cognitive-memory-fixes.md](../feature-catalog/graph-signal-activation/graph-and-cognitive-memory-fixes.md) |
+| 082 | Features | Evaluation and housekeeping fixes | [082](../manual-testing-playbook/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md) | [evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../feature-catalog/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md) |
+| 083 | Features | Math.max/min stack overflow elimination | [083](../manual-testing-playbook/bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md) | [bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md](../feature-catalog/bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md) |
+| 084 | Features | Session-manager transaction gap fixes | [084](../manual-testing-playbook/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md) | [bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md](../feature-catalog/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md) |
+| 085 | Features | Transaction wrappers on mutation handlers | [085](../manual-testing-playbook/mutation/transaction-wrappers-on-mutation-handlers.md) | [mutation/transaction-wrappers-on-mutation-handlers.md](../feature-catalog/mutation/transaction-wrappers-on-mutation-handlers.md) |
+| 086 | Features | BM25 trigger phrase re-index gate | [086](../manual-testing-playbook/retrieval/bm25-trigger-phrase-re-index-gate.md) | [retrieval/bm25-trigger-phrase-re-index-gate.md](../feature-catalog/retrieval/bm25-trigger-phrase-re-index-gate.md) |
+| 087 | Features | DB_PATH extraction and import standardization | [087](../manual-testing-playbook/pipeline-architecture/db-path-extraction-and-import-standardization.md) | [pipeline-architecture/dbpath-extraction-and-import-standardization.md](../feature-catalog/pipeline-architecture/dbpath-extraction-and-import-standardization.md) |
+| 088 | Features | Cross-AI validation fixes (Tier 4) | [088](../manual-testing-playbook/evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md) | [evaluation-and-measurement/cross-ai-validation-fixes.md](../feature-catalog/evaluation-and-measurement/cross-ai-validation-fixes.md) |
+| 089 | Features | Code standards alignment | [089](../manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md) | [tooling-and-scripts/code-standards-alignment.md](../feature-catalog/tooling-and-scripts/code-standards-alignment.md) |
+| 090 | Features | INT8 quantization evaluation (R5) | [090](../manual-testing-playbook/evaluation-and-measurement/int8-quantization-evaluation-r5.md) | [evaluation-and-measurement/int8-quantization-evaluation.md](../feature-catalog/evaluation-and-measurement/int8-quantization-evaluation.md) |
+| 091 | Features | Implemented: graph centrality and community detection (N2) | [091](../manual-testing-playbook/graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md) | [graph-signal-activation/community-detection.md](../feature-catalog/graph-signal-activation/community-detection.md) |
+| 092 | Features | Implemented: auto entity extraction (R10) | [092](../manual-testing-playbook/memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md) | [memory-quality-and-indexing/auto-entity-extraction.md](../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md) |
+| 093 | Features | Implemented: memory summary generation (R8) | [093](../manual-testing-playbook/retrieval-enhancements/implemented-memory-summary-generation-r8.md) | [retrieval-enhancements/memory-summary-search-channel.md](../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md) |
+| 094 | Features | Implemented: cross-document entity linking (S5) | [094](../manual-testing-playbook/retrieval-enhancements/implemented-cross-document-entity-linking-s5.md) | [retrieval-enhancements/cross-document-entity-linking.md](../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md) |
+| 095 | Features | Strict Zod schema validation (P0-1) | [095](../manual-testing-playbook/pipeline-architecture/strict-zod-schema-validation-p0-1.md) | [pipeline-architecture/strict-zod-schema-validation.md](../feature-catalog/pipeline-architecture/strict-zod-schema-validation.md) |
+| 096 | Features | Provenance-rich response envelopes (P0-2) | [096](../manual-testing-playbook/retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md) | [retrieval-enhancements/provenance-rich-response-envelopes.md](../feature-catalog/retrieval-enhancements/provenance-rich-response-envelopes.md) |
+| 097 | Features | Async ingestion job lifecycle (P0-3) | [097](../manual-testing-playbook/lifecycle/async-ingestion-job-lifecycle-p0-3.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md) |
+| 099 | Features | Real-time filesystem watching  | [099](../manual-testing-playbook/tooling-and-scripts/real-time-filesystem-watching-p1-7.md) | [tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature-catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) |
+| 101 | Features | memory_delete confirm schema tightening | [101](../manual-testing-playbook/mutation/memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `mutation/03`)* |
+| 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `scoring-and-calibration`)* |
+| 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](../manual-testing-playbook/ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md) | [ux-hooks/dedicated-ux-hook-modules.md](../feature-catalog/ux-hooks/dedicated-ux-hook-modules.md) |
+| 104 | Features | Mutation save-path UX parity and no-op hardening | [104](../manual-testing-playbook/ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md) | [ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature-catalog/ux-hooks/duplicate-save-no-op-feedback-hardening.md) |
+| 105 | Features | Context-server success-envelope finalization | [105](../manual-testing-playbook/ux-hooks/context-server-success-envelope-finalization.md) | [ux-hooks/context-server-success-hint-append.md](../feature-catalog/ux-hooks/context-server-success-hint-append.md) |
+| 106 | Features | Hooks barrel + README synchronization | [106](../manual-testing-playbook/ux-hooks/hooks-barrel-readme-synchronization.md) | [ux-hooks/hooks-readme-and-export-alignment.md](../feature-catalog/ux-hooks/hooks-readme-and-export-alignment.md) |
+| 107 | Features | Checkpoint confirmName and schema enforcement | [107](../manual-testing-playbook/ux-hooks/checkpoint-confirmname-and-schema-enforcement.md) | [ux-hooks/checkpoint-delete-confirmname-safety.md](../feature-catalog/ux-hooks/checkpoint-delete-confirmname-safety.md) |
+| 108 | Features | Spec 007 finalized verification command suite evidence | [108](../manual-testing-playbook/tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md) | *(Spec 007 verification suite — no dedicated catalog entry)* |
+| 109 | Features | Quality-aware 3-tier search fallback | [109](../manual-testing-playbook/retrieval/quality-aware-3-tier-search-fallback.md) | [retrieval/quality-aware-3-tier-search-fallback.md](../feature-catalog/retrieval/quality-aware-3-tier-search-fallback.md) |
+| 110 | Features | Prediction-error save arbitration | [110](../manual-testing-playbook/mutation/prediction-error-save-arbitration.md) | [mutation/prediction-error-save-arbitration.md](../feature-catalog/mutation/prediction-error-save-arbitration.md) |
+| 111 | Features | Deferred lexical-only indexing | [111](../manual-testing-playbook/memory-quality-and-indexing/deferred-lexical-only-indexing.md) | [memory-quality-and-indexing/deferred-lexical-only-indexing.md](../feature-catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md) |
+| 112 | Features | Cross-process DB hot rebinding | [112](../manual-testing-playbook/pipeline-architecture/cross-process-db-hot-rebinding.md) | [pipeline-architecture/cross-process-db-hot-rebinding.md](../feature-catalog/pipeline-architecture/cross-process-db-hot-rebinding.md) |
+| 114 | Features | Path traversal validation (P0-4) | [114](../manual-testing-playbook/lifecycle/path-traversal-validation-p0-4.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md) |
+| 115 | Features | Transaction atomicity on rename failure (P0-5) | [115](../manual-testing-playbook/pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md) | [pipeline-architecture/atomic-pending-file-recovery.md](../feature-catalog/pipeline-architecture/atomic-pending-file-recovery.md) |
+| 116 | Features | Chunking safe swap atomicity (P0-6) | [116](../manual-testing-playbook/bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md) | [bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../feature-catalog/bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md) |
+| 117 | Features | SQLite datetime session cleanup (P0-7) | [117](../manual-testing-playbook/bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md) | [bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../feature-catalog/bug-fixes-and-data-integrity/working-memory-timestamp-fix.md) |
+| 118 | Features | Stage-2 score field synchronization (P0-8) | [118](../manual-testing-playbook/scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md) | [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md) |
+| 119 | Features | Memory filename uniqueness (ensureUniqueMemoryFilename) | [119](../manual-testing-playbook/memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
+| 120 | Features | Unified graph rollback and explainability (Phase 3) | [120](../manual-testing-playbook/graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md) | [graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../feature-catalog/graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md) |
+| 121 | Features | Adaptive shadow proposal and rollback (Phase 4) | [121](../manual-testing-playbook/scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md) | [scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../feature-catalog/scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md) |
+| 122 | Features | Governed ingest and scope isolation (Phase 5) | [122](../manual-testing-playbook/governance/governed-ingest-and-scope-isolation-phase-5.md) | [governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../feature-catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) |
+| 125 | Features | Memory roadmap flags | 125 memory roadmap flags | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) <br> Cross-cutting roadmap test - maps to umbrella flag reference. |
+| 126 | Features | Memory roadmap baseline snapshot | [126](../manual-testing-playbook/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) | [evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../feature-catalog/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) |
+| 127 | Features | Migration checkpoint scripts | [127](../manual-testing-playbook/tooling-and-scripts/migration-checkpoint-scripts.md) | [tooling-and-scripts/migration-checkpoint-scripts.md](../feature-catalog/tooling-and-scripts/migration-checkpoint-scripts.md) |
+| 128 | Features | Schema compatibility validation | [128](../manual-testing-playbook/tooling-and-scripts/schema-compatibility-validation.md) | [tooling-and-scripts/schema-compatibility-validation.md](../feature-catalog/tooling-and-scripts/schema-compatibility-validation.md) |
+| 129 | Features | Lineage state active projection and asOf resolution | [129](../manual-testing-playbook/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) | [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) |
+| 130 | Features | Lineage backfill rollback drill | [130](../manual-testing-playbook/pipeline-architecture/lineage-backfill-rollback-drill.md) | [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) |
+| 131 | Features | Description.json batch backfill validation (PI-B3) | [131](../manual-testing-playbook/memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
+| 132 | Features | description.json schema field validation | [132](../manual-testing-playbook/memory-quality-and-indexing/description-json-schema-field-validation.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
+| 133 | Features | Dry-run preflight for memory_save | [133](../manual-testing-playbook/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) | [memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature-catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) |
+| 135 | Features | Grep traceability for feature catalog code references | [135](../manual-testing-playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md) |
+| 136 | Features | Feature catalog annotation name validity | [136](../manual-testing-playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md) |
+| 137 | Features | Multi-feature annotation coverage | [137](../manual-testing-playbook/tooling-and-scripts/multi-feature-annotation-coverage.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md) |
+| 138 | Features | MODULE: header compliance via verify_alignment_drift.py | [138](../manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md) |
+| 139 | Features | Session capturing pipeline quality | [139](../manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
+| 142 | Features | Session transition trace contract | [142](../manual-testing-playbook/retrieval/session-transition-trace-contract.md) | [retrieval/unified-context-retrieval-memorycontext.md](../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md) |
+| 143 | Features | Bounded graph-walk rollout and diagnostics | [143](../manual-testing-playbook/retrieval/bounded-graph-walk-rollout-and-diagnostics.md) | [retrieval/semantic-and-lexical-search-memorysearch.md](../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md) |
+| 144 | Features | Advisory ingest lifecycle forecast | [144](../manual-testing-playbook/lifecycle/advisory-ingest-lifecycle-forecast.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md) |
+| 145 | Features | Contextual tree injection  | [145](../manual-testing-playbook/retrieval-enhancements/contextual-tree-injection-p1-4.md) | [retrieval-enhancements/contextual-tree-injection.md](../feature-catalog/retrieval-enhancements/contextual-tree-injection.md) |
+| 146 | Features | Dynamic server instructions  | [146](../manual-testing-playbook/pipeline-architecture/dynamic-server-instructions-p1-6.md) | [pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md](../feature-catalog/pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md) |
+| 147 | Features | Constitutional memory manager command | [147](../manual-testing-playbook/tooling-and-scripts/constitutional-memory-manager-command.md) | [tooling-and-scripts/constitutional-memory-manager-command.md](../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md) |
+| 149 | Features | Rendered spec-doc record template contract | [149](../manual-testing-playbook/tooling-and-scripts/rendered-memory-template-contract.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
+| 150 | Features | Source-dist alignment validation | [150](../manual-testing-playbook/tooling-and-scripts/source-dist-alignment-validation.md) | [tooling-and-scripts/source-dist-alignment-enforcement.md](../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md) |
+| 151 | Features | MODULE-MAP.md accuracy validation | [151](../manual-testing-playbook/tooling-and-scripts/module-map-accuracy.md) | [tooling-and-scripts/module-boundary-map.md](../feature-catalog/tooling-and-scripts/module-boundary-map.md) |
+| 152 | Features | No symlinks in lib/ tree | [152](../manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md) | [tooling-and-scripts/module-boundary-map.md](../feature-catalog/tooling-and-scripts/module-boundary-map.md) |
+| 153 | Features | JSON mode structured summary hardening | [153](../manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md) | [tooling-and-scripts/json-mode-hybrid-enrichment.md](../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) |
+| 154 | Features | JSON-primary deprecation posture | [154](../manual-testing-playbook/tooling-and-scripts/json-primary-deprecation-posture.md) | [tooling-and-scripts/json-primary-deprecation-posture.md](../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) |
+| 181 | Features | Template Compliance Contract Enforcement | [181](../manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md) | [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
+| M-009 | Dedicated Memory/Spec-Kit Scenarios | Runtime Family Count Census | [M-009](../manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md) | *(test-only, no catalog entry)* |
+| M-010 | Dedicated Memory/Spec-Kit Scenarios | Runtime Lineage Naming Parity | [M-010](../manual-testing-playbook/tooling-and-scripts/runtime-lineage-naming-parity.md) | *(test-only, no catalog entry)* |
+| M-011 | Dedicated Memory/Spec-Kit Scenarios | Review packet type marker-gated validation | [M-011](../manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md) | *(test-only, no catalog entry)* |
+| 185 | Features | /memory:search command routing | [185](../manual-testing-playbook/retrieval/memory-search-command-routing.md) | [feature-catalog.md#command-surface-contract](../feature-catalog/feature-catalog.md#command-surface-contract) |
+| 186 | Features | /memory:manage command routing | [186](../manual-testing-playbook/tooling-and-scripts/memory-manage-command-routing.md) | [feature-catalog.md#command-surface-contract](../feature-catalog/feature-catalog.md#command-surface-contract) |
+| 187 | Features | Quick search (memory_quick_search) | [187](../manual-testing-playbook/retrieval/quick-search-memory-quick-search.md) | [retrieval/fast-delegated-search-memory-quick-search.md](../feature-catalog/retrieval/fast-delegated-search-memory-quick-search.md) |
+| 155 | Features | Post-save quality review | [155](../manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md) | [memory-quality-and-indexing/post-save-quality-review.md](../feature-catalog/memory-quality-and-indexing/post-save-quality-review.md) |
+| 156 | Features | Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE) | [156](../manual-testing-playbook/graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md) | [graph-signal-activation/graph-lifecycle-refresh.md](../feature-catalog/graph-signal-activation/graph-lifecycle-refresh.md) |
+| 157 | Features | LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) | [157](../manual-testing-playbook/graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md) | [graph-signal-activation/llm-graph-backfill.md](../feature-catalog/graph-signal-activation/llm-graph-backfill.md) |
+| 158 | Features | Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) | [158](../manual-testing-playbook/graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md) | [graph-signal-activation/graph-calibration-profiles.md](../feature-catalog/graph-signal-activation/graph-calibration-profiles.md) |
+| 159 | Features | Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) | [159](../manual-testing-playbook/scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md) | [scoring-and-calibration/learned-stage2-weight-combiner.md](../feature-catalog/scoring-and-calibration/learned-stage2-weight-combiner.md) |
+| 160 | Features | Shadow feedback (SPECKIT_SHADOW_FEEDBACK) | [160](../manual-testing-playbook/scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md) | [scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../feature-catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md) |
+| 161 | Features | LLM reformulation (SPECKIT_LLM_REFORMULATION) | [161](../manual-testing-playbook/query-intelligence/llm-reformulation-speckit-llm-reformulation.md) | [query-intelligence/llm-query-reformulation.md](../feature-catalog/query-intelligence/llm-query-reformulation.md) |
+| 162 | Features | HyDE (SPECKIT_HYDE) | [162](../manual-testing-playbook/query-intelligence/hyde-speckit-hyde.md) | [query-intelligence/hyde-hypothetical-document-embeddings.md](../feature-catalog/query-intelligence/hyde-hypothetical-document-embeddings.md) |
+| 163 | Features | Query surrogates (SPECKIT_QUERY_SURROGATES) | [163](../manual-testing-playbook/query-intelligence/query-surrogates-speckit-query-surrogates.md) | [query-intelligence/index-time-query-surrogates.md](../feature-catalog/query-intelligence/index-time-query-surrogates.md) |
+| 165 | Features | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) | [165](../manual-testing-playbook/memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md) | [memory-quality-and-indexing/assistive-reconsolidation.md](../feature-catalog/memory-quality-and-indexing/assistive-reconsolidation.md) |
+| 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN) | [166](../manual-testing-playbook/ux-hooks/result-explain-v1-speckit-result-explain-v1.md) | [ux-hooks/result-explainability.md](../feature-catalog/ux-hooks/result-explainability.md) |
+| 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE) | [167](../manual-testing-playbook/ux-hooks/response-profile-v1-speckit-response-profile-v1.md) | [ux-hooks/mode-aware-response-profiles.md](../feature-catalog/ux-hooks/mode-aware-response-profiles.md) |
+| 168 | Features | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) | [168](../manual-testing-playbook/ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md) | [ux-hooks/progressive-disclosure.md](../feature-catalog/ux-hooks/progressive-disclosure.md) |
+| 169 | Features | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) | [169](../manual-testing-playbook/ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md) | [ux-hooks/retrieval-session-state.md](../feature-catalog/ux-hooks/retrieval-session-state.md) |
+| 171 | Features | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | [171](../manual-testing-playbook/scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md) | [scoring-and-calibration/calibrated-overlap-bonus.md](../feature-catalog/scoring-and-calibration/calibrated-overlap-bonus.md) |
+| 172 | Features | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) | [172](../manual-testing-playbook/scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md) | [scoring-and-calibration/rrf-k-experimental.md](../feature-catalog/scoring-and-calibration/rrf-k-experimental.md) |
+| 173 | Features | Query decomposition (SPECKIT_QUERY_DECOMPOSITION) | [173](../manual-testing-playbook/query-intelligence/query-decomposition-speckit-query-decomposition.md) | [query-intelligence/query-decomposition.md](../feature-catalog/query-intelligence/query-decomposition.md) |
+| 174 | Features | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) | [174](../manual-testing-playbook/graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md) | [query-intelligence/graph-concept-routing.md](../feature-catalog/query-intelligence/graph-concept-routing.md) |
+| 175 | Features | Typed traversal (SPECKIT_TYPED_TRAVERSAL) | [175](../manual-testing-playbook/graph-signal-activation/typed-traversal-speckit-typed-traversal.md) | [graph-signal-activation/typed-traversal.md](../feature-catalog/graph-signal-activation/typed-traversal.md) |
+| 177 | Features | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) | [177](../manual-testing-playbook/memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md) | [memory-quality-and-indexing/hybrid-decay-policy.md](../feature-catalog/memory-quality-and-indexing/hybrid-decay-policy.md) |
+| 178 | Features | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) | [178](../manual-testing-playbook/memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md) | [memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature-catalog/memory-quality-and-indexing/save-quality-gate-exceptions.md) |
+| 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) | [179](../manual-testing-playbook/ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md) | [ux-hooks/empty-result-recovery.md](../feature-catalog/ux-hooks/empty-result-recovery.md) |
+| 180 | Features | Result confidence (SPECKIT_RESULT_CONFIDENCE) | [180](../manual-testing-playbook/ux-hooks/result-confidence-speckit-result-confidence-v1.md) | [ux-hooks/result-confidence.md](../feature-catalog/ux-hooks/result-confidence.md) |
+| PHASE-001 | Phase System Features | Phase detection scoring | [PHASE-001](../manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md) | *(test-only, no catalog entry)* |
+| PHASE-002 | Phase System Features | Phase folder creation | [PHASE-002](../manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md) | *(test-only, no catalog entry)* |
+| PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](../manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md) | *(test-only, no catalog entry)* |
+| PHASE-004 | Phase System Features | Phase link validation | [PHASE-004](../manual-testing-playbook/tooling-and-scripts/phase-link-validation.md) | *(test-only, no catalog entry)* |
+| PHASE-005 | Phase System Features | Phase command workflow | [PHASE-005](../manual-testing-playbook/tooling-and-scripts/phase-command-workflow.md) | *(test-only, no catalog entry)* |
+| PHASE-006 | Phase System Features | Spec-folder literal naming (create.sh fallback) | [PHASE-006](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) | *(test-only, no catalog entry)* |
+| PHASE-008 | Phase System Features | Spec-folder literal naming (CLI-driven slug proposal) | [PHASE-008](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md) | *(test-only, no catalog entry)* |
+| PHASE-009 | Phase System Features | Spec-folder literal naming (remediation rule via SKILL.md rule 20) | [PHASE-009](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md) | *(test-only, no catalog entry)* |
+| M-001 | Dedicated Memory/Spec-Kit Scenarios | Context Recovery and Continuation | [M-001](../manual-testing-playbook/retrieval/context-recovery-and-continuation.md) | *(test-only, no catalog entry)* |
+| M-002 | Dedicated Memory/Spec-Kit Scenarios | Targeted Memory Lookup | [M-002](../manual-testing-playbook/retrieval/targeted-memory-lookup.md) | *(test-only, no catalog entry)* |
+| M-003 | Dedicated Memory/Spec-Kit Scenarios | Context Save + Index Update | [M-003](../manual-testing-playbook/memory-quality-and-indexing/context-save-index-update.md) | *(test-only, no catalog entry)* |
+| M-004 | Dedicated Memory/Spec-Kit Scenarios | Main-Agent Review and Verdict Handoff | [M-004](../manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md) | *(test-only, no catalog entry)* |
+| M-005 | Dedicated Memory/Spec-Kit Scenarios | Outsourced Agent Memory Capture Round-Trip | [M-005](../manual-testing-playbook/memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md) | [memory-quality-and-indexing/outsourced-agent-memory-capture.md](../feature-catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md) |
+| M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](../manual-testing-playbook/memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md) | [memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../feature-catalog/memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) |
+| M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](../manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
+| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](../manual-testing-playbook/mutation/feature-09-direct-manual-scenario-per-memory-history-log.md) | [mutation/per-memory-history-log.md](../feature-catalog/mutation/per-memory-history-log.md) |
+| 190 | Features | Session recovery via /speckit:resume | [190](../manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md) | [retrieval/session-recovery-spec-kit-resume.md](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
+| 125-map | Features | Audit phase mapping note (020) | — | [feature-flag-reference/audit-phase-020-mapping-note.md](../feature-catalog/feature-flag-reference/audit-phase-020-mapping-note.md) |
+| 020-stub | Features | Remediation and revalidation (stub) | — | [remediation-revalidation/category-stub.md](../feature-catalog/remediation-revalidation/category-stub.md) |
+| 021-stub | Features | Implement and remove deprecated (stub) | — | [implement-and-remove-deprecated-features/category-stub.md](../feature-catalog/implement-and-remove-deprecated-features/category-stub.md) |
+| 188 | Features | AST-level section retrieval tool | [188](../manual-testing-playbook/retrieval/ast-level-section-retrieval-tool.md) | [retrieval/ast-level-section-retrieval-tool.md](../feature-catalog/retrieval/ast-level-section-retrieval-tool.md) |
+| 189 | Features | Tool-result extraction to working memory | [189](../manual-testing-playbook/retrieval/tool-result-extraction-to-working-memory.md) | [retrieval/tool-result-extraction-to-working-memory.md](../feature-catalog/retrieval/tool-result-extraction-to-working-memory.md) |
+| 192 | Features | Correction tracking with undo | [192](../manual-testing-playbook/mutation/correction-tracking-with-undo.md) | [mutation/correction-tracking-with-undo.md](../feature-catalog/mutation/correction-tracking-with-undo.md) |
+| 194 | Features | Causal neighbor boost and injection | [194](../manual-testing-playbook/graph-signal-activation/causal-neighbor-boost-and-injection.md) | [graph-signal-activation/causal-neighbor-boost-and-injection.md](../feature-catalog/graph-signal-activation/causal-neighbor-boost-and-injection.md) |
+| 195 | Features | Temporal contiguity layer | [195](../manual-testing-playbook/graph-signal-activation/temporal-contiguity-layer.md) | [graph-signal-activation/temporal-contiguity-layer.md](../feature-catalog/graph-signal-activation/temporal-contiguity-layer.md) |
+| 196 | Features | Tool-level TTL cache | [196](../manual-testing-playbook/scoring-and-calibration/tool-level-ttl-cache.md) | [scoring-and-calibration/tool-level-ttl-cache.md](../feature-catalog/scoring-and-calibration/tool-level-ttl-cache.md) |
+| 197 | Features | Access-driven popularity scoring | [197](../manual-testing-playbook/scoring-and-calibration/access-driven-popularity-scoring.md) | [scoring-and-calibration/access-driven-popularity-scoring.md](../feature-catalog/scoring-and-calibration/access-driven-popularity-scoring.md) |
+| 198 | Features | Temporal-structural coherence scoring | [198](../manual-testing-playbook/scoring-and-calibration/temporal-structural-coherence-scoring.md) | [scoring-and-calibration/temporal-structural-coherence-scoring.md](../feature-catalog/scoring-and-calibration/temporal-structural-coherence-scoring.md) |
+| 199 | Features | Content-aware memory filename generation | [199](../manual-testing-playbook/memory-quality-and-indexing/content-aware-memory-filename-generation.md) | [memory-quality-and-indexing/content-aware-memory-filename-generation.md](../feature-catalog/memory-quality-and-indexing/content-aware-memory-filename-generation.md) |
+| 202 | Features | Backend storage adapter abstraction | [202](../manual-testing-playbook/pipeline-architecture/backend-storage-adapter-abstraction.md) | [pipeline-architecture/backend-storage-adapter-abstraction.md](../feature-catalog/pipeline-architecture/backend-storage-adapter-abstraction.md) |
+| 203 | Features | Atomic write-then-index API | [203](../manual-testing-playbook/pipeline-architecture/atomic-write-then-index-api.md) | [pipeline-architecture/atomic-write-then-index-api.md](../feature-catalog/pipeline-architecture/atomic-write-then-index-api.md) |
+| 204 | Features | Embedding retry orchestrator | [204](../manual-testing-playbook/pipeline-architecture/embedding-retry-orchestrator.md) | [pipeline-architecture/embedding-retry-orchestrator.md](../feature-catalog/pipeline-architecture/embedding-retry-orchestrator.md) |
+| 205 | Features | 7-layer tool architecture metadata | [205](../manual-testing-playbook/pipeline-architecture/7-layer-tool-architecture-metadata.md) | [pipeline-architecture/7-layer-tool-architecture-metadata.md](../feature-catalog/pipeline-architecture/7-layer-tool-architecture-metadata.md) |
+| 206 | Features | Architecture boundary enforcement | [206](../manual-testing-playbook/tooling-and-scripts/architecture-boundary-enforcement.md) | [tooling-and-scripts/architecture-boundary-enforcement.md](../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
+| 207 | Features | Watcher delete/rename cleanup | [207](../manual-testing-playbook/tooling-and-scripts/watcher-delete-rename-cleanup.md) | [tooling-and-scripts/watcher-delete-rename-cleanup.md](../feature-catalog/tooling-and-scripts/watcher-delete-rename-cleanup.md) |
+| 208 | Features | Template compliance contract enforcement | [208](../manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md) | [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
+| 209 | Features | Shared post-mutation hook wiring | consolidated manual record | consolidated into successor UX hook records |
+| 210 | Features | Memory health autoRepair metadata | [210](../manual-testing-playbook/ux-hooks/memory-health-autorepair-metadata.md) | [ux-hooks/memory-health-autorepair-metadata.md](../feature-catalog/ux-hooks/memory-health-autorepair-metadata.md) |
+| 211 | Features | Schema and type contract sync | [211](../manual-testing-playbook/ux-hooks/schema-and-type-contract-synchronization.md) | [ux-hooks/schema-and-type-contract-synchronization.md](../feature-catalog/ux-hooks/schema-and-type-contract-synchronization.md) |
+| 212 | Features | Mutation hook result contract expansion | [212](../manual-testing-playbook/ux-hooks/mutation-hook-result-contract-expansion.md) | [ux-hooks/mutation-hook-result-contract-expansion.md](../feature-catalog/ux-hooks/mutation-hook-result-contract-expansion.md) |
+| 213 | Features | Mutation response UX payload exposure | [213](../manual-testing-playbook/ux-hooks/mutation-response-ux-payload-exposure.md) | [ux-hooks/mutation-response-ux-payload-exposure.md](../feature-catalog/ux-hooks/mutation-response-ux-payload-exposure.md) |
+| 214 | Features | Atomic-save parity and indexing hints | [214](../manual-testing-playbook/ux-hooks/atomic-save-parity-and-partial-indexing-hints.md) | [ux-hooks/atomic-save-parity-and-partial-indexing-hints.md](../feature-catalog/ux-hooks/atomic-save-parity-and-partial-indexing-hints.md) |
+| 215 | Features | Final token metadata recomputation | [215](../manual-testing-playbook/ux-hooks/final-token-metadata-recomputation.md) | [ux-hooks/final-token-metadata-recomputation.md](../feature-catalog/ux-hooks/final-token-metadata-recomputation.md) |
+| 216 | Features | End-to-end success-envelope verification | [216](../manual-testing-playbook/ux-hooks/end-to-end-success-envelope-verification.md) | [ux-hooks/end-to-end-success-envelope-verification.md](../feature-catalog/ux-hooks/end-to-end-success-envelope-verification.md) |
+| 248 | Context Preservation | PreCompact hook | [248](../manual-testing-playbook/context-preservation/precompact-hook.md) | [context-preservation/precompact-hook.md](../feature-catalog/context-preservation/precompact-hook.md) |
+| 249 | Context Preservation | SessionStart compact | [249](../manual-testing-playbook/context-preservation/session-start-compact.md) | [context-preservation/session-start-priming.md](../feature-catalog/context-preservation/session-start-priming.md) |
+| 250 | Context Preservation | SessionStart startup | [250](../manual-testing-playbook/context-preservation/session-start-startup.md) | [context-preservation/session-start-priming.md](../feature-catalog/context-preservation/session-start-priming.md) |
+| 251 | Context Preservation | Stop hook saves | [251](../manual-testing-playbook/context-preservation/stop-hook-saves.md) | [context-preservation/stop-token-tracking.md](../feature-catalog/context-preservation/stop-token-tracking.md) |
+| 252 | Context Preservation | Cross-runtime fallback | [252](../manual-testing-playbook/context-preservation/cross-runtime-fallback.md) | [context-preservation/cross-runtime-fallback.md](../feature-catalog/context-preservation/cross-runtime-fallback.md) |
+| 253 | Context Preservation | Runtime detection | [253](../manual-testing-playbook/context-preservation/runtime-detection.md) | [context-preservation/runtime-detection.md](../feature-catalog/context-preservation/runtime-detection.md) |
+| 256 | Context Preservation | Budget allocator | [256](../manual-testing-playbook/context-preservation/budget-allocator.md) | [context-preservation/budget-allocator.md](../feature-catalog/context-preservation/budget-allocator.md) |
+| 257 | Context Preservation | Working-set compaction | [257](../manual-testing-playbook/context-preservation/working-set-compaction.md) | [context-preservation/working-set-tracker.md](../feature-catalog/context-preservation/working-set-tracker.md) |
+| 258 | Context Preservation | 3-source compact merger within budget | [258](../manual-testing-playbook/context-preservation/compact-merger-assembly.md) | [context-preservation/compact-merger.md](../feature-catalog/context-preservation/compact-merger.md) |
+| 261 | Context Preservation | MCP auto-priming Prime Package delivery | [261](../manual-testing-playbook/context-preservation/mcp-auto-priming.md) | [context-preservation/mcp-auto-priming.md](../feature-catalog/context-preservation/mcp-auto-priming.md) |
+| 262 | Context Preservation | Session health ok/warning/stale status | [262](../manual-testing-playbook/context-preservation/session-health.md) | [context-preservation/session-health-tool.md](../feature-catalog/context-preservation/session-health-tool.md) |
+| 263 | Context Preservation | Session resume merged result | [263](../manual-testing-playbook/context-preservation/session-resume.md) | [context-preservation/session-resume-tool.md](../feature-catalog/context-preservation/session-resume-tool.md) |
+| 264 | Context Preservation | Query-intent routing in memory_context | [264](../manual-testing-playbook/context-preservation/query-intent-routing.md) | [context-preservation/query-intent-routing.md](../feature-catalog/context-preservation/query-intent-routing.md) |
+| 266 | Context Preservation | Context preservation metrics quality score | [266](../manual-testing-playbook/context-preservation/context-preservation-metrics.md) | [context-preservation/context-preservation-metrics.md](../feature-catalog/context-preservation/context-preservation-metrics.md) |
+| 267 | Context Preservation | Tool routing enforcement | [267](../manual-testing-playbook/context-preservation/tool-routing-enforcement.md) | [context-preservation/tool-routing-enforcement.md](../feature-catalog/context-preservation/tool-routing-enforcement.md) |
+| 268 | Features | Post-insert retry budget | [268](../manual-testing-playbook/lifecycle/post-insert-retry-budget.md) | [lifecycle/post-insert-retry-budget.md](../feature-catalog/lifecycle/post-insert-retry-budget.md) |
+| 269 | Features | Scope normalizer canonicalization and lint | [269](../manual-testing-playbook/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) | [bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../feature-catalog/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) |
+| 270 | Features | maintainability extracts | [270](../manual-testing-playbook/pipeline-architecture/phase-017-maintainability-extracts.md) | [pipeline-architecture/phase-017-maintainability-extracts.md](../feature-catalog/pipeline-architecture/phase-017-maintainability-extracts.md) |
+| 271 | Features | Research metadata backfill | [271](../manual-testing-playbook/tooling-and-scripts/research-metadata-backfill.md) | [tooling-and-scripts/research-metadata-backfill.md](../feature-catalog/tooling-and-scripts/research-metadata-backfill.md) |
+| 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](../manual-testing-playbook/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
+| 273 | Features | Session-resume caller binding and Unicode sanitization | [273](../manual-testing-playbook/governance/session-resume-caller-binding-and-unicode-sanitization.md) | [governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature-catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md) |
+| 276 | Features | Reconsolidation conflict transaction helper | [276](../manual-testing-playbook/mutation/reconsolidation-conflict-transaction-helper.md) | [mutation/reconsolidation-conflict-transaction-helper.md](../feature-catalog/mutation/reconsolidation-conflict-transaction-helper.md) |
+| 278 | Features | Memory retention sweep basic flow | [278](../manual-testing-playbook/maintenance/memory-retention-sweep-basic-flow.md) | [maintenance/memory-retention-sweep.md](../feature-catalog/maintenance/memory-retention-sweep.md) |
+| 280 | Features | CLI matrix adapter runner smoke | [280](../manual-testing-playbook/tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [tooling-and-scripts/cli-matrix-adapter-runners.md](../feature-catalog/tooling-and-scripts/cli-matrix-adapter-runners.md) |
+
+---
+| 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](../manual-testing-playbook/doctor-commands/doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 324 | Doctor Commands | /doctor memory drift detection on modified spec docs | [324](../manual-testing-playbook/doctor-commands/doctor-memory-drift-detection.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 325 | Doctor Commands | /doctor memory long-pole rebuild with snapshot + ETA prompt | [325](../manual-testing-playbook/doctor-commands/doctor-memory-long-pole-rebuild.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 326 | Doctor Commands | /doctor memory SIGINT mid-rebuild graceful cancel + restore | [326](../manual-testing-playbook/doctor-commands/doctor-memory-sigint-cancellation.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 327 | Doctor Commands | /doctor memory disk-pressure pre-flight refusal | [327](../manual-testing-playbook/doctor-commands/doctor-memory-disk-pressure.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 328 | Doctor Commands | /doctor causal-graph low-coverage drift report (<60%) | [328](../manual-testing-playbook/doctor-commands/doctor-causal-graph-low-coverage.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 329 | Doctor Commands | /doctor causal-graph confidence threshold ≥0.7 enforcement | [329](../manual-testing-playbook/doctor-commands/doctor-causal-graph-confidence-threshold.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 330 | Doctor Commands | /doctor causal-graph add-only mutation boundary | [330](../manual-testing-playbook/doctor-commands/doctor-causal-graph-add-only.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 331 | Doctor Commands | /doctor deep-loop lazy-init from iteration folders | [331](../manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 332 | Doctor Commands | /doctor deep-loop empty graph + no iteration source | [332](../manual-testing-playbook/doctor-commands/doctor-deep-loop-empty-no-source.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 333 | Doctor Commands | /doctor deep-loop convergence gold-battery ≥3 iterations | [333](../manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](../manual-testing-playbook/doctor-commands/doctor-update-G5-confirm-failure-injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](../manual-testing-playbook/doctor-commands/doctor-update-G6-concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](../manual-testing-playbook/doctor-commands/doctor-update-G7-sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](../manual-testing-playbook/doctor-commands/doctor-update-G8-migration-gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](../manual-testing-playbook/doctor-commands/doctor-update-G9-dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 344 | Doctor Commands | /doctor:update tier-aware single interactive flow | [344](../manual-testing-playbook/doctor-commands/doctor-update-tier-aware-default.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](../manual-testing-playbook/doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](../manual-testing-playbook/doctor-commands/version-migration-cleanup-legacy.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 347 | Doctor Commands | Version migration no-op (already-current) | [347](../manual-testing-playbook/doctor-commands/version-migration-no-op.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](../manual-testing-playbook/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) | [memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../feature-catalog/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) |
+| 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](../manual-testing-playbook/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) | [memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md](../feature-catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) |
+| 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](../manual-testing-playbook/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) | [memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md](../feature-catalog/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) |
+| 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](../manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [feature-flag-reference/launcher-idle-timeout.md](../feature-catalog/feature-flag-reference/launcher-idle-timeout.md) |
+| 420 | Tooling And Scripts | Markdown link integrity guard | [420](../manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md) | [tooling-and-scripts/markdown-link-integrity-guard.md](../feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md) |
+| 421 | Pipeline Architecture | MCP launcher owner-disposal relaunch gate | [421](../manual-testing-playbook/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) | [pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md](../feature-catalog/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) |
+| 422 | Pipeline Architecture | MCP launcher persistent log | [422](../manual-testing-playbook/pipeline-architecture/mcp-launcher-persistent-log.md) | [pipeline-architecture/mcp-launcher-persistent-log.md](../feature-catalog/pipeline-architecture/mcp-launcher-persistent-log.md) |
+| 423 | Pipeline Architecture | Lease-probe retry reap hardening | [423](../manual-testing-playbook/pipeline-architecture/lease-probe-retry-reap-hardening.md) | [pipeline-architecture/lease-probe-retry-reap-hardening.md](../feature-catalog/pipeline-architecture/lease-probe-retry-reap-hardening.md) |
+| 424 | Pipeline Architecture | MCP code-index reconnecting proxy | [424](../manual-testing-playbook/pipeline-architecture/mcp-code-index-reconnecting-proxy.md) | [pipeline-architecture/mcp-code-index-reconnecting-proxy.md](../feature-catalog/pipeline-architecture/mcp-code-index-reconnecting-proxy.md) |
+| 425 | Tooling And Scripts | Orphan-sweep Stop-hook activation | [425](../manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [tooling-and-scripts/orphan-sweep-stop-hook-activation.md](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
+| 426 | Pipeline Architecture | Daemon ownership re-election (default-on, reap-before-respawn, live two-session validation) | [426](../manual-testing-playbook/pipeline-architecture/daemon-ownership-reelection.md) | [pipeline-architecture/daemon-ownership-reelection.md](../feature-catalog/pipeline-architecture/daemon-ownership-reelection.md) |
+| 427 | Tooling And Scripts | CLI list-tools parity per system (spec-memory 39 / code-index 8 / skill-advisor 9) | [427](../manual-testing-playbook/tooling-and-scripts/cli-list-tools-parity.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 428 | Tooling And Scripts | CLI warm-only no-spawn behavior (exit 75) | [428](../manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 429 | Tooling And Scripts | CLI dist-freshness guard trip (exit 69, dev overrides) | [429](../manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 430 | Tooling And Scripts | code-index CLI blocked-read rendering (exit 0, requiredAction surfaced) | [430](../manual-testing-playbook/tooling-and-scripts/cli-blocked-read-rendering.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md) |
+| 431 | Tooling And Scripts | skill-advisor CLI trusted-gate refusal (exit 64, fail-closed) | [431](../manual-testing-playbook/tooling-and-scripts/cli-trusted-gate-refusal.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md) |
+| 432 | Pipeline Architecture | Tri-daemon spawn drill invocation (028 program gate, SPECKIT_RUN_TRI_DAEMON_DRILL=1) | [432](../manual-testing-playbook/pipeline-architecture/tri-daemon-spawn-drill.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 433 | UX Hooks | CLI hook transport-down fail-open (warm-only, no prompt-time spawn) | [433](../manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md) | [tooling-and-scripts/cli-runtime-warm-only-fallbacks.md](../feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) |
+| 434 | Tooling And Scripts | 028 CLI stress: concurrent dual-CLI+MCP load | [434](../manual-testing-playbook/tooling-and-scripts/cli-stress-concurrent-dual-client-load.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 435 | Tooling And Scripts | 028 CLI stress: repeated warm-only probes under daemon churn | [435](../manual-testing-playbook/tooling-and-scripts/cli-stress-warm-only-probe-churn.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 436 | Tooling And Scripts | 028 CLI stress: large-payload (>64KB) pipe integrity | [436](../manual-testing-playbook/tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 437 | Tooling And Scripts | 028 CLI stress: numeric-coercion edge args | [437](../manual-testing-playbook/tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md) |
+| 438 | Tooling And Scripts | 028 CLI stress: trust-gate fuzz (untrusted mutations all exit 64) | [438](../manual-testing-playbook/tooling-and-scripts/cli-stress-trust-gate-fuzz.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md) |
+| 439 | Feature Flag Reference | Semantic trigger shadow and union modes | [439](../manual-testing-playbook/feature-flag-reference/semantic-trigger-shadow-and-union.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 440 | Feature Flag Reference | Memory idempotency replay and conflict | [440](../manual-testing-playbook/feature-flag-reference/memory-idempotency-replay-and-conflict.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 441 | Feature Flag Reference | Soft-delete tombstones | [441](../manual-testing-playbook/feature-flag-reference/soft-delete-tombstones.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 442 | Feature Flag Reference | Session-trace causal inference | [442](../manual-testing-playbook/feature-flag-reference/session-trace-causal-inference.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 443 | Feature Flag Reference | Feedback retention learning modes | [443](../manual-testing-playbook/feature-flag-reference/feedback-retention-learning-modes.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 444 | Feature Flag Reference | Authored continuity snapshot | [444](../manual-testing-playbook/feature-flag-reference/authored-continuity-snapshot.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 445 | Feature Flag Reference | Completion freshness validator | [445](../manual-testing-playbook/feature-flag-reference/completion-freshness-validator.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 446 | Retrieval Enhancements | Retrieval observability trace and health | [446](../manual-testing-playbook/retrieval-enhancements/retrieval-observability-trace-and-health.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 447 | Governance | Source kind provenance guard | [447](../manual-testing-playbook/governance/source-kind-provenance-guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](../manual-testing-playbook/governance/stale-exclusion-audit-and-tool-ownership-lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](../manual-testing-playbook/tooling-and-scripts/cli-compact-and-completion.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 450 | Bug Fixes And Data Integrity | Graceful embedder-degrade to lexical | [450](../manual-testing-playbook/bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) | [bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md](../feature-catalog/bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) |
+| 451 | Governance | Constitutional self-edit and compare-and-swap guard | [451](../manual-testing-playbook/governance/constitutional-self-edit-and-cas-guard.md) | [governance/constitutional-self-edit-and-cas-guard.md](../feature-catalog/governance/constitutional-self-edit-and-cas-guard.md) |
+| 452 | Memory Quality And Indexing | Background enrichment pending and failed gauges | [452](../manual-testing-playbook/memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) | [memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md](../feature-catalog/memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) |
+| 453 | Lifecycle | Speckit autopilot lifecycle | [453](../manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md) | [lifecycle/speckit-autopilot-lifecycle.md](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
+| 454 | UX Hooks | Goal OpenCode plugin active-goal injection and status | [454](../manual-testing-playbook/ux-hooks/goal-opencode-plugin.md) | [ux-hooks/goal-opencode-plugin.md](../feature-catalog/ux-hooks/goal-opencode-plugin.md) |
+| 455 | Tooling And Scripts | validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) | [455](../manual-testing-playbook/tooling-and-scripts/validate-sh-dist-freshness-backstop.md) | [tooling-and-scripts/dist-freshness-enforcement.md](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
+| 456 | Tooling And Scripts | Canonical-first spec-root resolution | [456](../manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md) | [tooling-and-scripts/canonical-first-spec-root-resolution.md](../feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md) |

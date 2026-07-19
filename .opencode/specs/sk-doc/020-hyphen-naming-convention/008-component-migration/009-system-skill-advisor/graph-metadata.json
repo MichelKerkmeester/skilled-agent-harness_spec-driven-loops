@@ -90,15 +90,15 @@
     ],
     "causal_summary": "The system-skill-advisor surface contains several independent filesystem-name groups that still use snakecase:",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-07-17T14:30:33.082Z",
+    "last_save_at": "2026-07-17T20:26:15.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a61321617c6d2ffcc57dd561e52a59ed5e152de18de4ab6c781ad076132ca873",
+    "source_fingerprint": "sha256:069555f00a7afd86e4f1ba90ce3a7ef537920d5f077046f33099d9db70f87b07",
     "source_doc_hashes": {
-      "spec.md": "6eafe05e0942e6f4bc44dc9d6f8493aa2d4e43b4ed8923e0e3c6e91f03e19914"
+      "spec.md": "6d1e5835f3550c5fb369a639f11e543b2df9d00953e626742ed738f4d0344ca4"
     },
     "last_active_child_id": null,
     "last_active_at": null

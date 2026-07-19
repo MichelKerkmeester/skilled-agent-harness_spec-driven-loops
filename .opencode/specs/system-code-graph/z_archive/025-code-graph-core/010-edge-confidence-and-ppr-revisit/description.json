@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-code-graph/025-code-graph-core/010-edge-confidence-and-ppr-revisit",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core/010-edge-confidence-and-ppr-revisit",
   "description": "Seeded-PPR ranking was cut because uniform CALLS-edge confidence (all edges: INFERRED, 0.8, 0.8) gave it nothing to differentiate on",
   "keywords": [
     "seeded-ppr",
@@ -16,11 +16,12 @@
     "nothing",
     "differentiate"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.766Z",
+  "lastUpdated": "2026-07-18T03:48:55.364Z",
   "specId": "010",
   "folderSlug": "edge-confidence-and-ppr-revisit",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "025-code-graph-core"
   ],
   "memorySequence": 0,

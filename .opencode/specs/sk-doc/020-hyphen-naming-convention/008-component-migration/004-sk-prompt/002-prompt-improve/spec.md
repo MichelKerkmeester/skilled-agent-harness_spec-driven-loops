@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: prompt-improve asset and reference names (032 phase 004.002)"
+title: "Feature Specification: prompt-improve asset and reference names (020 phase 004.002)"
 description: "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in the packet skill, README, and router resource map. This phase renames only that packet-owned asset/reference set and closes every active path reference while leaving playbook, benchmark, changelog, tool-mandated, and data-key boundaries intact."
 trigger_phrases:
   - "prompt-improve kebab-case migration"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: prompt-improve asset and reference names
 
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Phase 002 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

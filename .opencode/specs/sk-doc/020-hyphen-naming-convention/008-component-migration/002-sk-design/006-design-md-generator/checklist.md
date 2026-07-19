@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Design-md-generator (032 phase 006)"
-description: "Blocking SOL verification contract for Design-md-generator in the 032 sk-design naming subtree."
+title: "Checklist: Design-md-generator (020 phase 006)"
+description: "Blocking SOL verification contract for Design-md-generator in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-md-generator verification"
   - "sk-design design-md-generator checklist"
-  - "032 design-md-generator gate"
+  - "020 design-md-generator gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Design-md-generator (032 phase 006)
+# Checklist: Design-md-generator (020 phase 006)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

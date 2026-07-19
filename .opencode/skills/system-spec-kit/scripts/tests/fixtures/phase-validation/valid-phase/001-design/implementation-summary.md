@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:examples/level_1/implementation-summary.md]"
+title: "Implementation Summary [template:examples/level-1/implementation-summary.md]"
 description: "Current-template Level 1 summary for the design phase validation child."
 trigger_phrases:
   - "phase"

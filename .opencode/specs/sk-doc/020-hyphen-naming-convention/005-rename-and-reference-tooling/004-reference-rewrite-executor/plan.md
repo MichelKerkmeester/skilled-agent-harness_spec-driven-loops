@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: static reference-rewrite executor (032 phase 005.004)"
+title: "Implementation Plan: static reference-rewrite executor (020 phase 005.004)"
 description: "Implementation plan for the CAS-protected static reference-rewrite executor: load the disposition ledger and semantic map, plan per-site rewrites keyed to preimage blob hashes, apply one dependency-closed batch at a time, and regenerate rather than force-apply when a blob drifts."
 trigger_phrases:
   - "reference-rewrite executor implementation plan"
@@ -11,13 +11,16 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the static reference-rewrite executor implementation plan"
-    next_safe_action: "Implement ledger/map loading and preimage-keyed rewrite planning"
+    last_updated_at: "2026-07-18T08:08:15Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified every planned executor phase"
+    next_safe_action: "Use the phase 006 frozen map to generate a reviewed dry-run plan"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The executor is a plan-then-apply operation over one dependency-closed batch, gated by a preimage compare-and-swap."
@@ -33,7 +36,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | Rename tooling in the isolated 032 worktree |
+| **Surface** | Rename tooling in the isolated 020 worktree |
 | **Change class** | Deterministic, compare-and-swap-protected static reference rewriter |
 | **Execution** | Dry-run first; explicit apply only against a validated ledger, map, and matching preimage blobs |
 
@@ -42,24 +45,24 @@ The executor reads the phase 002 disposition ledger and the phase 006 semantic m
 every site carries its preimage blob hash and a stable semantic identifier. It applies one dependency-closed batch at a time. At
 apply, each site's current blob is compared against the recorded preimage; a match rewrites the static reference, a mismatch
 regenerates that batch's plan from the current blob rather than applying a stale patch. Dynamic sites are routed to their producer
-or flagged. The executor emits a rewrite journal, is idempotent, and exposes an inverse path for rollback. The implementation is
-specified here; this authoring pass does not invoke it.
+or flagged. The executor emits a rewrite journal, is idempotent, and exposes an inverse path for rollback. The completed
+implementation was exercised only in disposable Git fixtures and never against this migration tree.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase 002 ledger schema (reference classes, site IDs, dynamic-site dispositions) is available as an input contract.
-- [ ] The phase 006 semantic map and dependency-closed SCC identity are agreed before the executor accepts a batch.
-- [ ] A disposable Git fixture can represent static reference classes, an exempt/generated surface, and a mutated-blob drift case.
-- [ ] Apply, regenerate, and rollback state transitions are defined independently of the eventual CLI surface.
+- [x] The phase 002 ledger schema is consumed through `load_inputs` and its accepted-ledger validator.
+- [x] Fixture semantic maps use the phase 006 schema and checker-owned `reference-graph-scc` batch identity.
+- [x] `test_dry_run_is_deterministic_complete_and_read_only` covers all seven static classes plus exempt and dynamic surfaces.
+- [x] `apply_plan`, `_regenerate_file_sites`, and `rollback_plan` define the state transitions behind the CLI.
 
 ### Definition of Done
-- [ ] Dry-run, explicit apply, compare-and-swap drift regeneration, exemption skip, idempotent rerun, and rollback meet the phase requirements.
-- [ ] A mutated-blob fixture regenerates its batch plan instead of applying a stale patch, and no other batch is touched.
-- [ ] Dynamic sites are routed or flagged with a reason; no dynamic reference is patched to a guessed path.
-- [ ] The rewrite journal is sufficient for a verify agent to reconcile every site's preimage, target, batch, and applied state.
+- [x] `ReferenceRewriteExecutorTests` passes 9/9 for dry-run, apply, CAS regeneration, skips, rerun and rollback.
+- [x] `test_blob_drift_regenerates_only_the_selected_scc` proves stale-patch rejection and cross-batch isolation.
+- [x] The dry-run harness reports `routed-to-producer` and `skipped-with-reason` without a dynamic write.
+- [x] `test_injected_failure_reports_and_replays_inverse_journal` verifies preimage, postimage, batch and per-site state evidence.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -128,10 +131,10 @@ exposes the resulting state to the harness and verifier.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 002 disposition ledger | Internal contract | Upstream contract | The executor has no dispositioned static sites to rewrite |
-| Phase 006 frozen semantic map | Internal contract | Upstream contract | The executor cannot bind a rewrite to a validated target |
-| Phase 001 rename engine | Internal predecessor | Planned predecessor | Path moves and reference rewrites cannot be sequenced into one closure |
-| Phase 003 fixture corpus and harness | Internal peer | Planned peer | The executor lacks a disposable proving ground |
+| Phase 002 disposition ledger | Internal contract | Available and exercised | The executor has no dispositioned static sites to rewrite |
+| Phase 006 frozen semantic map | Internal contract | Fixture schema exercised, real map pending | The executor cannot bind a rewrite to a validated target |
+| Phase 001 rename engine | Internal predecessor | Available and exercised | Path moves and reference rewrites cannot be sequenced into one closure |
+| Disposable fixture harness | Internal evidence | Available and exercised | The executor lacks a disposable proving ground |
 | Git worktree and Git index | Runtime | Required | Compare-and-swap and rollback semantics cannot be verified |
 <!-- /ANCHOR:dependencies -->
 
@@ -141,5 +144,5 @@ exposes the resulting state to the harness and verifier.
 - **Trigger**: Any preimage mismatch that cannot be regenerated, an undispositioned or exempt site reached during apply, or a failed rewrite operation.
 - **Procedure**: In dry-run, stop with the plan and no writes. After an explicit apply failure, persist the partial state and replay the
   journal's inverse rewrites for the completed batch. A cleanly applied batch can be reverted with the same inverse journal or by discarding
-  the disposable worktree. The authoring pass never invokes either path on the real repository.
+  the disposable worktree. Verification never invoked either path on the real repository.
 <!-- /ANCHOR:rollback -->

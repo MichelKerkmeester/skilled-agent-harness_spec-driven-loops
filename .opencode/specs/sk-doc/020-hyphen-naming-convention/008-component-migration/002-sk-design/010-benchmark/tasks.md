@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Benchmark (032 phase 010)"
-description: "Task breakdown for Benchmark in the 032 sk-design naming subtree."
+title: "Tasks: Benchmark (020 phase 010)"
+description: "Task breakdown for Benchmark in the 020 sk-design naming subtree."
 trigger_phrases:
   - "benchmark tasks"
   - "sk-design benchmark execution"
-  - "032 benchmark checklist"
+  - "020 benchmark checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Benchmark (032 phase 010)
+# Tasks: Benchmark (020 phase 010)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

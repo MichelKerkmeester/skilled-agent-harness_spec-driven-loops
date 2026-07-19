@@ -39,14 +39,37 @@
       "manual"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md",
       "spec.md",
       "plan.md",
       "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +92,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,49 +195,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-07-17T14:30:01.725Z",
+    "last_save_at": "2026-07-18T06:49:22.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8cdad12aaf4c3f26d6d2bf1482690c9793a03862536659e9116bde9d4fcb26c",
+    "source_fingerprint": "sha256:ed15ab50e4a08165ae5cb13c6d7098bd266964bf723cf1c8367d8fbbfc615cb1",
     "source_doc_hashes": {
-      "spec.md": "51715cb3e03d958891c64b491349769ab87cabcbd092926b7a57a60d6e44f688",
-      "plan.md": "45be9a6de5f96099b3182966880db31618bf2143b077f6db85b6f5d731f3829c",
-      "tasks.md": "500fc7ce5ec1554cf6a071cd557b0657c1ea1f3536e95256526623f7d594ebec",
-      "checklist.md": "451f487cfe7243af53a182b3c9b27338fc94f97c90f3620aec01bae8e502b3ec"
+      "spec.md": "83755b22144a9167d01e2401d1d47b3807ba7d0227b15d2dfa8c12f5ccaa5e5f",
+      "plan.md": "e3705f8e08a122c75483447429fb5840f9c9ff539fb0d5c4904011cfaa9719f2",
+      "tasks.md": "16a420bc4d934a1c2a0d7a94938b84add4487eef3c7b20a44316355ea26f2ff5",
+      "checklist.md": "c867799fd08d6b06f5893f5b854b796d010e3c429614765fe2916b7049613b67",
+      "implementation-summary.md": "93205c34e58a07cea0fdd9f08b5cff583a9112936b33c8ff8116e06994161673"
     },
     "last_active_child_id": null,
     "last_active_at": null

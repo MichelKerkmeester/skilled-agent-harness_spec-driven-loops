@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode changelog verification (032 component 011 phase 006)"
+title: "Feature Specification: mcp-code-mode changelog verification (020 component 011 phase 006)"
 description: "The mcp-code-mode surface has a changelog through v1.0.8.0 and SKILL.md currently declares version 1.0.8.0, while the embedded npm lock metadata separately records 1.0.9. This verify-only phase checks that the completed rename set has an explicit matching changelog entry and version bump without performing any renames."
 trigger_phrases:
   - "mcp-code-mode changelog verification"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode changelog verification
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 006 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 006 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

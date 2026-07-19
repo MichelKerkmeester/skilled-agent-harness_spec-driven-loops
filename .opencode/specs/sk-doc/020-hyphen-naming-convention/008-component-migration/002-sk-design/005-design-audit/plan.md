@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Design-audit (032 phase 005)"
-description: "Execution plan for Design-audit in the 032 sk-design naming subtree."
+title: "Implementation Plan: Design-audit (020 phase 005)"
+description: "Execution plan for Design-audit in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-audit implementation plan"
   - "sk-design design-audit plan"
-  - "032 design-audit tasks"
+  - "020 design-audit tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Design-audit (032 phase 005)
+# Implementation Plan: Design-audit (020 phase 005)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

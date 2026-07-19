@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/020-content-quality-remediation",
   "description": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review — issues outside 019's",
   "keywords": [
@@ -14,13 +15,12 @@
     "review",
     "outside"
   ],
-  "lastUpdated": "2026-07-13T05:22:53.454Z",
+  "lastUpdated": "2026-07-18T03:48:54.497Z",
   "specId": "020",
   "folderSlug": "content-quality-remediation",
   "parentChain": [
     "sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

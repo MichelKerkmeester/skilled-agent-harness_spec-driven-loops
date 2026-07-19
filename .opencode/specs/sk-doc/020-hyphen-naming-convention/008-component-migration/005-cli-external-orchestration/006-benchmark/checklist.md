@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cli-external-orchestration benchmark naming (032 phase 005.006)"
+title: "Checklist: cli-external-orchestration benchmark naming (020 phase 005.006)"
 description: "Blocking SOL verifier contract for the cli-external-orchestration benchmark boundary: explicit empty baseline, authored/generated classification, active path closure, and semantic protection."
 trigger_phrases:
   - "cli-external benchmark checklist"

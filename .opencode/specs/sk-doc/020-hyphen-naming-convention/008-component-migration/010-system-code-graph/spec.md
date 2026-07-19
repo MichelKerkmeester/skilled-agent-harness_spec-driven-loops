@@ -75,7 +75,7 @@ phases, each with its own evidence-pinned acceptance contract.
 - Python .py filenames and Python import-package directories.
 - Code identifiers, MCP tool IDs, JSON/YAML/TOML keys, frontmatter fields, generated output, lockfile filenames,
   tool-mandated names, test-magic names, and frozen changelog history.
-- Migration work in other 032 component subtrees.
+- Migration work in other 020 component subtrees.
 
 <!-- /ANCHOR:scope -->
 
@@ -99,6 +99,6 @@ phases, each with its own evidence-pinned acceptance contract.
 ## 4. OPEN QUESTIONS
 
 None blocking. The executor must resolve only the pinned candidate inventory and release-version evidence; no child may
-broaden the program's exemption boundary or perform work owned by another 032 component subtree.
+broaden the program's exemption boundary or perform work owned by another 020 component subtree.
 <!-- /ANCHOR:questions -->
 

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
   "description": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
   "keywords": [
     "finding",
@@ -11,11 +11,12 @@
     "includetransitive",
     "flag"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.852Z",
+  "lastUpdated": "2026-07-18T03:48:55.583Z",
   "specId": "008",
   "folderSlug": "blast-radius-transitive-flag",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],

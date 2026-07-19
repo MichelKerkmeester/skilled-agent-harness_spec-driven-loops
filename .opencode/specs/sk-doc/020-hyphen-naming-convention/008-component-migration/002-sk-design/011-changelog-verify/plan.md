@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Changelog verification (032 phase 011)"
-description: "Execution plan for Changelog verification in the 032 sk-design naming subtree."
+title: "Implementation Plan: Changelog verification (020 phase 011)"
+description: "Execution plan for Changelog verification in the 020 sk-design naming subtree."
 trigger_phrases:
   - "changelog-verify implementation plan"
   - "sk-design changelog verification plan"
-  - "032 changelog-verify tasks"
+  - "020 changelog-verify tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Changelog verification (032 phase 011)
+# Implementation Plan: Changelog verification (020 phase 011)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -80,7 +80,7 @@ Changelog history → selected version/scope entry → evidence report → sibli
 - [ ] Freeze the evidence inputs before any execution.
 
 ### Phase 2: Core execution
-- [ ] Inspect the current changelog sequence and identify the release-note entry that claims the 032 sk-design work.
+- [ ] Inspect the current changelog sequence and identify the release-note entry that claims the 020 sk-design work.
 - [ ] Compare the selected entry against the packet phase map, current v1.4.3.0 baseline, and exemption boundary.
 - [ ] Return a pinned read-only verification report; do not create or rename changelog files.
 
@@ -105,7 +105,7 @@ Changelog history → selected version/scope entry → evidence report → sibli
 
 | Dependency | Type | Status | Impact if Blocked |
 |-------|-------|-------|-------|
-| 032 completed sk-design evidence | Internal | Required | Missing or mismatched entry blocks gate |
+| 020 completed sk-design evidence | Internal | Required | Missing or mismatched entry blocks gate |
 | Current release marker v1.4.3.0 | Internal | Present | Version comparison has no anchor |
 <!-- /ANCHOR:dependencies -->
 

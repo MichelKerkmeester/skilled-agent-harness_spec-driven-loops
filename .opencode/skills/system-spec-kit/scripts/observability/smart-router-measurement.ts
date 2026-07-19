@@ -227,8 +227,8 @@ function readTextIfExists(filePath: string): string | null {
 
 async function loadDefaultBuildBrief(): Promise<BuildSkillAdvisorBrief> {
   const candidatePaths = [
-    path.resolve(import.meta.dirname, '../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js'),
-    path.resolve(import.meta.dirname, '../../../../system-skill-advisor/mcp_server/lib/skill-advisor-brief.js'),
+    path.resolve(import.meta.dirname, '../../../system-skill-advisor/mcp-server/lib/skill-advisor-brief.js'),
+    path.resolve(import.meta.dirname, '../../../../system-skill-advisor/mcp-server/lib/skill-advisor-brief.js'),
   ];
 
   let lastError: unknown;

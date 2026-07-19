@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Level 1 Fixture [template:level_1/spec.md]"
+title: "Feature Specification: Level 1 Fixture [template:level-1/spec.md]"
 description: "Fixture for testing Level 1 template compliance validation."
 trigger_phrases:
   - "fixture"

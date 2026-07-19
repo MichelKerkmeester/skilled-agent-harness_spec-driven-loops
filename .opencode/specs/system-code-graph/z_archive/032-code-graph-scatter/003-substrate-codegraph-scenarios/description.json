@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/032-code-graph-scatter/003-substrate-codegraph-scenarios",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/003-substrate-codegraph-scenarios",
   "description": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call",
   "keywords": [
     "deferred",
@@ -16,11 +16,12 @@
     "playbooks",
     "call"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.862Z",
+  "lastUpdated": "2026-07-18T03:48:55.600Z",
   "specId": "003",
   "folderSlug": "substrate-codegraph-scenarios",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 0,

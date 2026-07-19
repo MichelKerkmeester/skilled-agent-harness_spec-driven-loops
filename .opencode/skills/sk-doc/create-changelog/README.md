@@ -17,15 +17,15 @@ Do not use it for authoring prose docs, READMEs, skills, agents, or commands —
 | Path | Purpose |
 | --- | --- |
 | `SKILL.md` | Authoritative packet contract for `/create:changelog`: the inline creation workflow, versioning rules, topology-awareness, and the entry format. |
-| `references/` | Overflow detail, routed by `references/README.md`: `worked_examples.md` (fully worked global and packet-local entries), `version_bump_rules.md` (four-part version choices), and `topology_edge_cases.md` (placement, back-dating, source conflicts, and the GitHub-release flow). |
+| `references/` | Overflow detail, routed by `references/README.md`: `worked-examples.md` (fully worked global and packet-local entries), `version-bump-rules.md` (four-part version choices), and `topology-edge-cases.md` (placement, back-dating, source conflicts, and the GitHub-release flow). |
 | `changelog/.gitkeep` | Placeholder for this packet's own changelog history. |
-| `assets/` | Not present. The changelog template is a shared standard at `../shared/assets/changelog_template.md`. |
+| `assets/` | Not present. The changelog template is a shared standard at `../shared/assets/changelog-template.md`. |
 | `scripts/` | Not present. Use the shared sk-doc validators from `../shared/scripts/`. |
 
 ## 4. QUICK START
 
 1. Read `SKILL.md` for the packet contract and the inline workflow.
-2. Read `../shared/assets/changelog_template.md` for the entry format before writing.
+2. Read `../shared/assets/changelog-template.md` for the entry format before writing.
 3. Decide topology: is this a global/project changelog or a packet-local one? Place the entry accordingly.
 4. Choose the version bump (major / minor / patch / build) from the nature of the change.
 5. Write the entry in the shared format; keep it grounded in what actually changed.
@@ -39,6 +39,6 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <changelog-f
 
 ## 5. RELATED
 
-- Shared format: `../shared/assets/changelog_template.md`
+- Shared format: `../shared/assets/changelog-template.md`
 - Shared standards: `../shared/references/`
 - Command entry point: `/create:changelog`

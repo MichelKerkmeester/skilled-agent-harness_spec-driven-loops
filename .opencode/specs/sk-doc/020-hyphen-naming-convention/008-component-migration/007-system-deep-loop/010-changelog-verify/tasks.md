@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop changelog verification (032 phase 007/010)"
+title: "Tasks: system-deep-loop changelog verification (020 phase 007/010)"
 description: "Verification tasks for comparing the system-deep-loop changelog and version surfaces with phases 001-009 without performing a rename or unrelated history edit."
 trigger_phrases:
   - "system-deep-loop changelog tasks"

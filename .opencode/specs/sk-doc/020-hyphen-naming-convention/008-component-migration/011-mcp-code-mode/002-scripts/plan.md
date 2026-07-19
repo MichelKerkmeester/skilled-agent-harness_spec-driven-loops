@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode scripts (032 component 011 phase 002)"
+title: "Implementation Plan: mcp-code-mode scripts (020 component 011 phase 002)"
 description: "Inventory the mcp-code-mode script filenames, preserve the Python exemption, and apply a semantic non-Python rename map only when the pinned tree contains an eligible candidate. Close shell, import, registry, and documentation references with the same map."
 trigger_phrases:
   - "mcp-code-mode scripts implementation plan"
@@ -94,7 +94,7 @@ At the authoring baseline, doctor.sh, install.sh, update.sh, and check-node.cjs 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase depends on the 032 naming policy, phase 001's mcp-server directory state, the semantic reference checker, and the pinned worktree. Python tooling is used only for the exempt validator path and is not a rename target.
+This phase depends on the 020 naming policy, phase 001's mcp-server directory state, the semantic reference checker, and the pinned worktree. Python tooling is used only for the exempt validator path and is not a rename target.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Design-audit (032 phase 005)"
-description: "Blocking SOL verification contract for Design-audit in the 032 sk-design naming subtree."
+title: "Checklist: Design-audit (020 phase 005)"
+description: "Blocking SOL verification contract for Design-audit in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-audit verification"
   - "sk-design design-audit checklist"
-  - "032 design-audit gate"
+  - "020 design-audit gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Design-audit (032 phase 005)
+# Checklist: Design-audit (020 phase 005)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

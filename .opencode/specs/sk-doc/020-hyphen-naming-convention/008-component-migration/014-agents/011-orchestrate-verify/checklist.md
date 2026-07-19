@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify orchestrate agent naming (032 phase 011)"
-description: "Checklist for phase 011 of the 032 agents component migration: verify the orchestrate filename candidate set."
+title: "Checklist: verify orchestrate agent naming (020 phase 011)"
+description: "Checklist for phase 011 of the 020 agents component migration: verify the orchestrate filename candidate set."
 trigger_phrases:
   - "orchestrate agent naming checklist"
   - "agents phase 011 checklist"

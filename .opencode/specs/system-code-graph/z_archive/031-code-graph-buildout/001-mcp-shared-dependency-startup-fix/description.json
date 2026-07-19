@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix",
   "description": "Codex startup logs show `mkskilladvisor` and `mkcodeindex` failing during MCP initialization with `ERRMODULENOTFOUND: Cannot find package",
   "keywords": [
     "codex",
@@ -17,11 +17,12 @@
     "find",
     "package"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.776Z",
+  "lastUpdated": "2026-07-18T03:48:55.388Z",
   "specId": "001",
   "folderSlug": "mcp-shared-dependency-startup-fix",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 0,

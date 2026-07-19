@@ -17,7 +17,7 @@ import { runtimeRoot } from '../helpers/spawn-cjs';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep_research_auto.yaml');
+const YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS

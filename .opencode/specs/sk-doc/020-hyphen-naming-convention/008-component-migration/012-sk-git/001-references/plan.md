@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git references (032 phase 008/012/001)"
+title: "Implementation Plan: sk-git references (020 phase 008/012/001)"
 description: "Implementation plan for the sk-git reference-file rename and pointer-closure phase. The executor will apply the frozen semantic map, repair path-valued consumers, and prove the diff stays inside the reference boundary."
 trigger_phrases:
   - "sk-git references implementation plan"
-  - "032 sk-git reference phase plan"
+  - "020 sk-git reference phase plan"
   - "reference rename pointer closure plan"
 importance_tier: "important"
 contextType: "planning"
@@ -72,7 +72,7 @@ The executor will apply the nine-entry semantic source-to-target map from the ph
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the parent and 032 frozen map are available; pin BASE and record the map hash.
+- Confirm the parent and 020 frozen map are available; pin BASE and record the map hash.
 - Inventory the nine source paths, nine targets, symlink or mode metadata, and every tracked pointer to them.
 - Abort on exact, casefold, or normalization collisions, duplicate targets, or an unknown candidate.
 
@@ -104,7 +104,7 @@ The executor will apply the nine-entry semantic source-to-target map from the ph
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 frozen rename map and BASE | Internal | Required | The phase cannot classify or compare candidates. |
+| 020 frozen rename map and BASE | Internal | Required | The phase cannot classify or compare candidates. |
 | Phase 005 reference checker | Internal | Required | Active path closure cannot be evidenced consistently. |
 | sk-git worktree workflow | Internal | Required | A shared or dirty checkout would invalidate rename evidence. |
 | Phase 002 asset boundary | Sibling | Sequenced | Asset links may be checked here but asset renames remain in phase 002. |

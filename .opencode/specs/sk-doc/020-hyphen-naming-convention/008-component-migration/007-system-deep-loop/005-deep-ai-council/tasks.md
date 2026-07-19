@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-ai-council filesystem names (032 phase 007/005)"
+title: "Tasks: deep-ai-council filesystem names (020 phase 007/005)"
 description: "Execution tasks for renaming the paired deep-ai-council catalog/playbook surface and repairing council asset, graph, artifact, script, and test paths."
 trigger_phrases:
   - "deep-ai-council tasks"

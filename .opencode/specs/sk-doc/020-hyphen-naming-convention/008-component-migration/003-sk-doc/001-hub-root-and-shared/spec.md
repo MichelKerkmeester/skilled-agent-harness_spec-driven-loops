@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: sk-doc hub root and shared backbone"
-description: "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 032 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries."
+description: "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 020 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries."
 trigger_phrases:
   - "sk-doc hub root shared naming"
   - "sk-doc shared backbone kebab-case"
-  - "032 hub root and shared"
+  - "020 hub root and shared"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"

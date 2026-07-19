@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
   "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a",
   "keywords": [
     "deprecation",
@@ -15,11 +15,12 @@
     "cocoindex",
     "ccc"
   ],
-  "lastUpdated": "2026-07-15T18:35:45.697Z",
+  "lastUpdated": "2026-07-18T03:48:55.430Z",
   "specId": "013",
   "folderSlug": "post-deprecation-deep-review",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "002-deprecate-coco-index"
   ],

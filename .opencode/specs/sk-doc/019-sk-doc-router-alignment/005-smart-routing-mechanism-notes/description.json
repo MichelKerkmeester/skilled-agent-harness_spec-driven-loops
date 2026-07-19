@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
   "description": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note",
   "keywords": [
     "request",
@@ -18,12 +18,12 @@
     "honest",
     "note"
   ],
-  "lastUpdated": "2026-07-13T14:31:59.109Z",
+  "lastUpdated": "2026-07-18T03:48:54.807Z",
   "specId": "005",
   "folderSlug": "smart-routing-mechanism-notes",
   "parentChain": [
     "sk-doc",
-    "018-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

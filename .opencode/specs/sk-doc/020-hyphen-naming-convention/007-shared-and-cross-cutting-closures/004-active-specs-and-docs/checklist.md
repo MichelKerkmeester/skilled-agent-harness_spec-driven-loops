@@ -1,5 +1,5 @@
 ---
-title: "Checklist: active specs and documents (032 phase 007 child 004)"
+title: "Checklist: active specs and documents (020 phase 007 child 004)"
 description: "Blocking SOL verifier contract for active spec/document names: active-versus-generated classification, structural phase-folder protection, link and continuity closure, strict validation, and downstream handoff."
 trigger_phrases:
   - "active spec document closure checklist"

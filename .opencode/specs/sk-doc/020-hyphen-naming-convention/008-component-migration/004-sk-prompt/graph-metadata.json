@@ -96,15 +96,15 @@
     ],
     "causal_summary": "The sk-prompt surface still contains underscore-separated filesystem names across the hub-level playbook, the prompt-improve and prompt-models packets, and benchmark artifacts",
     "created_at": "2026-07-14T15:16:57Z",
-    "last_save_at": "2026-07-17T14:30:18.108Z",
+    "last_save_at": "2026-07-17T20:26:06.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4d5c9e9ae84b55a651dd11e8a41de60f6af5ca95f5824834bfff1866cea6d615",
+    "source_fingerprint": "sha256:fb291b03a4a5eec07c780cbf2747f5c9c3e6cadd7b8860712f933fad0cc88ddf",
     "source_doc_hashes": {
-      "spec.md": "614faf00bd7197259f8e0617e20e7f90442b609e2dd058dbdb1fc6d5fa2907ac"
+      "spec.md": "0ecaf61a7889287b8700e9ef277800741673e514d9714f7bdbac0c5faca9787a"
     },
     "last_active_child_id": null,
     "last_active_at": null

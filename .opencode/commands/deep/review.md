@@ -93,9 +93,9 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep_review_presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep_review_auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_review_confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/deep/assets/deep-review-presentation.txt` |
+| Auto workflow | `.opencode/commands/deep/assets/deep-review-auto.yaml` |
+| Confirm workflow | `.opencode/commands/deep/assets/deep-review-confirm.yaml` |
 
 ---
 
@@ -122,14 +122,14 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep_review_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_review_confirm.yaml` |
+| `:auto` | `.opencode/commands/deep/assets/deep-review-auto.yaml` |
+| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-review-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep_review_presentation.txt`:
+The following content lives only in `.opencode/commands/deep/assets/deep-review-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display behavior.

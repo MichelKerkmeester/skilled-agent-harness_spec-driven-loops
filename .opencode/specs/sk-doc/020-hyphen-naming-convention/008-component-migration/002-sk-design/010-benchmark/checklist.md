@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Benchmark (032 phase 010)"
-description: "Blocking SOL verification contract for Benchmark in the 032 sk-design naming subtree."
+title: "Checklist: Benchmark (020 phase 010)"
+description: "Blocking SOL verification contract for Benchmark in the 020 sk-design naming subtree."
 trigger_phrases:
   - "benchmark verification"
   - "sk-design benchmark checklist"
-  - "032 benchmark gate"
+  - "020 benchmark gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Benchmark (032 phase 010)
+# Checklist: Benchmark (020 phase 010)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -81,10 +81,10 @@ the static grant is a ceiling, not a per-mode license:
 
 ## 2. QUALITY GATES
 
-- **Anti-slop**: apply `shared/anti_slop_principles.md` -- reject templated defaults; every
+- **Anti-slop**: apply `shared/anti-slop-principles.md` -- reject templated defaults; every
   palette, type, layout, and motion choice must be deliberate and justified.
-- **Cognitive laws**: justify hierarchy, grouping, and feedback against `shared/cognitive_laws.md`.
-- **Tokens**: ground color, spacing, and type in `shared/design_token_vocabulary.md`; no magic values.
+- **Cognitive laws**: justify hierarchy, grouping, and feedback against `shared/cognitive-laws.md`.
+- **Tokens**: ground color, spacing, and type in `shared/design-token-vocabulary.md`; no magic values.
 - **Audit before "done"** on built UI: apply the `audit` mode's accessibility, performance,
   responsive, and theming checks plus its design-quality score.
 

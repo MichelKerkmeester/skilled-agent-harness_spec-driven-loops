@@ -19,16 +19,16 @@ Route /create:flowchart to its presentation contract and workflow YAML for creat
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create_flowchart_presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create_flowchart_auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create_flowchart_confirm.yaml` |
+| Presentation contract | `.opencode/commands/create/assets/create-flowchart-presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create-flowchart-auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create-flowchart-confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create_flowchart_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create-flowchart-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
@@ -39,12 +39,12 @@ Route /create:flowchart to its presentation contract and workflow YAML for creat
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create_flowchart_auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_flowchart_confirm.yaml` |
+| `:auto` | `.opencode/commands/create/assets/create-flowchart-auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-flowchart-confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create_flowchart_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create-flowchart-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
 
@@ -52,6 +52,6 @@ The router must not invent visible wording for those surfaces; it only selects t
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create_flowchart_auto.yaml` for `:auto`, `create_flowchart_confirm.yaml` for `:confirm` or an omitted mode) runs the flowchart workflow step by step after Phase 0 verification and setup resolution, producing an ASCII flowchart markdown file with pattern selection and validation. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-flowchart-auto.yaml` for `:auto`, `create-flowchart-confirm.yaml` for `:confirm` or an omitted mode) runs the flowchart workflow step by step after Phase 0 verification and setup resolution, producing an ASCII flowchart markdown file with pattern selection and validation. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
 User request: $ARGUMENTS

@@ -51,7 +51,7 @@
 
 ## Insights for 004-skill-uplift
 
-- Apply framework **RCAF** as the primary template in `assets/prompt_templates.md` §2 SWE-1.6.
+- Apply framework **RCAF** as the primary template in `assets/prompt-templates.md` §2 SWE-1.6.
 - Set pre-planning density to **medium**.
 - Sequential_thinking threshold winning variant used: **5** thoughts.
 - Bundle-gate strictness: **standard**.
@@ -62,8 +62,8 @@
 
 004 reads this file as the BINDING contract. Apply winners to:
 - `.opencode/skills/cli-devin/SKILL.md` (§2 SMART ROUTING + §4 RULES)
-- `.opencode/skills/cli-devin/assets/prompt_templates.md` (replace winners)
-- `.opencode/skills/cli-devin/assets/prompt_quality_card.md` (refine CLEAR cutoffs if needed)
+- `.opencode/skills/cli-devin/assets/prompt-templates.md` (replace winners)
+- `.opencode/skills/cli-devin/assets/prompt-quality-card.md` (refine CLEAR cutoffs if needed)
 - `.opencode/skills/cli-devin/changelog/v1.0.5.0.md` (new entry)
 
 Strict-validate after each authored doc write. No 4-runtime mirror (skill, not agent per ADR-001 in 004).

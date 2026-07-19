@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git references (032 phase 008/012/001)"
+title: "Checklist: sk-git references (020 phase 008/012/001)"
 description: "Blocking SOL verification contract for the sk-git reference-file rename and pointer-closure phase."
 trigger_phrases:
   - "sk-git references checklist"
-  - "032 reference rename verification"
+  - "020 reference rename verification"
   - "reference pointer closure acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -77,7 +77,7 @@ This checklist is the blocking SOL verifier contract for phase 001. **This phase
 ## Documentation
 
 - [ ] CHK-013 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree on the nine-entry map and the exemption boundary.
-- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

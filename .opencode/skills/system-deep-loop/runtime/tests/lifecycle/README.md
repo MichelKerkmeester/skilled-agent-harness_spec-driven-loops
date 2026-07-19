@@ -20,4 +20,4 @@ Verifies the SQLite connection lifecycle invariant: the DB is opened inside a `t
 ## 3. RELATED RESOURCES
 
 - Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
-- Coverage-graph schema: `.opencode/skills/system-deep-loop/runtime/references/coverage_graph_schema.md`
+- Coverage-graph schema: `.opencode/skills/system-deep-loop/runtime/references/coverage-graph-schema.md`

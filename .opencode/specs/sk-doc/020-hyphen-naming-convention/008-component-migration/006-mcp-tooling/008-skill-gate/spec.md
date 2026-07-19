@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: mcp-tooling subtree rollup gate (032 phase 008)"
-description: "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 032 exemption set intact."
+title: "Feature Specification: mcp-tooling subtree rollup gate (020 phase 008)"
+description: "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact."
 trigger_phrases:
   - "mcp-tooling skill gate"
   - "mcp tooling subtree rollup"
-  - "032 mcp tooling phase 008"
+  - "020 mcp tooling phase 008"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-tooling Subtree Rollup Gate
 
@@ -68,7 +68,7 @@ This phase aggregates the eight-child packet, runs the whole-subtree naming and 
 ### Out of Scope
 - Any new rename, reference rewrite, changelog edit, code change, or repair of an individual sibling phase.
 - Renaming code identifiers, JSON/YAML/TOML keys, frontmatter fields, Python files/package directories, tool-mandated names, or frozen history.
-- Other 032 component-migration subtrees and the central whole-repo gate.
+- Other 020 component-migration subtrees and the central whole-repo gate.
 
 ### Files to Change
 
@@ -102,7 +102,7 @@ This phase aggregates the eight-child packet, runs the whole-subtree naming and 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is allowing the rollup gate to become an unreviewed cleanup phase. The checklist therefore fails on any remaining in-scope name and routes the finding back to the owning sibling instead of authorizing an opportunistic rename. A second risk is treating every underscore as debt; the final scan must use the 032 exemption and frozen-history boundary.
+The main risk is allowing the rollup gate to become an unreviewed cleanup phase. The checklist therefore fails on any remaining in-scope name and routes the finding back to the owning sibling instead of authorizing an opportunistic rename. A second risk is treating every underscore as debt; the final scan must use the 020 exemption and frozen-history boundary.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

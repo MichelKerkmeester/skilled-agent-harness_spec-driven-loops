@@ -12,7 +12,7 @@ jobs:
       - name: Run prompt-quality card-sync guard
         run: |
           set -euo pipefail
-          GUARD=".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+          GUARD=".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"
           if [ ! -f "$GUARD" ]; then
             echo "::warning::card-sync guard not found at $GUARD — skipping"
             exit 0

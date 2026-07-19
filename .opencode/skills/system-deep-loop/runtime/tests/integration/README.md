@@ -28,4 +28,4 @@ End-to-end coverage that spawns the `.cjs` script entry points as child processe
 ## 3. RELATED RESOURCES
 
 - Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
-- Script interface contract: `.opencode/skills/system-deep-loop/runtime/references/script_interface_contract.md`
+- Script interface contract: `.opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md`

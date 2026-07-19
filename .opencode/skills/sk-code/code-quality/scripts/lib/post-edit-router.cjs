@@ -34,7 +34,7 @@ const { spawnSync } = require('node:child_process');
 // under sk-doc.
 const CHECKER_RELATIVE_PATHS = {
   commentHygiene: '.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh',
-  flowchart: '.opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh',
+  flowchart: '.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh',
   frontmatterVersions: '.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
   placeholders: '.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh',
   wikilinks: '.opencode/skills/system-spec-kit/scripts/rules/check-links.sh',
@@ -45,7 +45,13 @@ const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', 
 const EXCLUDED_DIR_SEGMENTS = new Set(['dist', 'node_modules', '.git']);
 // Mirrors frontmatter-version.mjs's own SCOPE_SUBTREES so the router's match
 // stays aligned with what the checker itself actually validates.
-const SKILL_SCOPE_SUBTREES = new Set(['references', 'assets', 'feature_catalog', 'manual_testing_playbook']);
+const SKILL_SCOPE_SUBTREES = new Set(['references', 'assets', 'feature-catalog', 'manual-testing-playbook']);
+const CANONICAL_SKILL_SCOPE_SUBTREES = new Map([
+  ['references', 'references'],
+  ['assets', 'assets'],
+  ['feature-catalog', 'feature-catalog'],
+  ['manual-testing-playbook', 'manual-testing-playbook'],
+]);
 const SPEC_DOC_BASENAMES = new Set(['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md']);
 const WIKILINKS_ENABLE_ENV = 'SPECKIT_VALIDATE_LINKS';
 
@@ -109,6 +115,10 @@ function isFlowchartCandidate(basename, segments) {
   return segments.includes('create-flowchart') && segments.includes('assets');
 }
 
+function canonicalSkillScopeSubtree(segment) {
+  return CANONICAL_SKILL_SCOPE_SUBTREES.get(segment) || null;
+}
+
 /**
  * Resolve the versioned-skill-doc scope for frontmatter-versions: true when
  * the file is SKILL.md anywhere under a skill dir, README.md adjacent to a
@@ -123,7 +133,7 @@ function isVersionedSkillDoc(absFilePath, basename, segments) {
   }
   // segments = [skillName, ...rest, basename]; only the middle segments count.
   const restSegments = segments.slice(1, -1);
-  return restSegments.some((seg) => SKILL_SCOPE_SUBTREES.has(seg));
+  return restSegments.some((seg) => canonicalSkillScopeSubtree(seg) !== null);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -432,6 +442,7 @@ module.exports = {
   // path/scope helpers (exposed for table-driven testing)
   relativeSegments,
   isFlowchartCandidate,
+  canonicalSkillScopeSubtree,
   isVersionedSkillDoc,
   // policy
   resolveDispatch,

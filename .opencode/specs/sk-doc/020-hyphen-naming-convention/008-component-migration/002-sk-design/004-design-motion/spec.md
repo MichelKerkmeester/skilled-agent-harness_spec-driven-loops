@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Design-motion (032 phase 004)"
+title: "Feature Specification: Design-motion (020 phase 004)"
 description: "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance."
 trigger_phrases:
   - "design-motion naming phase"
   - "sk-design design-motion phase"
-  - "032 design-motion"
+  - "020 design-motion"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-# Feature Specification: Design-motion (032 phase 004)
+# Feature Specification: Design-motion (020 phase 004)
 
 > Phase 004 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-design |
-| **Origin** | Phase 4 of the sk-design subtree in the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 4 of the sk-design subtree in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

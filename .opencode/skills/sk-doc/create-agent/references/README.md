@@ -32,8 +32,8 @@ Load the file that matches the current task:
 | Concern | Reference | Load When |
 | --- | --- | --- |
 | **Which component to build** — agent vs skill vs command comparison, signals that the answer is an agent, lighter-alternative signals, decision rule | [agent-vs-skill-vs-command.md](agent-vs-skill-vs-command.md) | The request could plausibly be a skill or command, or mixes responsibilities and needs a clear owner |
-| **Frontmatter and permission depth** — `mode` selection, least-authority permission design rules, the deprecated `tools:` contract to migrate away from | [permission_design.md](permission_design.md) | Scoping an agent's `permission:` object, choosing `mode`, or justifying `task: allow` |
-| **What goes wrong** — seven recurring defects with why-it-breaks and the correct fix, plus runtime-placement integrity | [common_pitfalls.md](common_pitfalls.md) | Reviewing a draft agent, or an agent fails validation, over-permits, or bloats |
+| **Frontmatter and permission depth** — `mode` selection, least-authority permission design rules, the deprecated `tools:` contract to migrate away from | [permission-design.md](permission-design.md) | Scoping an agent's `permission:` object, choosing `mode`, or justifying `task: allow` |
+| **What goes wrong** — seven recurring defects with why-it-breaks and the correct fix, plus runtime-placement integrity | [common-pitfalls.md](common-pitfalls.md) | Reviewing a draft agent, or an agent fails validation, over-permits, or bloats |
 
 ---
 
@@ -41,15 +41,15 @@ Load the file that matches the current task:
 
 ### Create-Agent Packet
 - [SKILL.md](../SKILL.md) - authoritative packet contract and the complete creation workflow
-- [agent_template.md](../assets/agent_template.md) - canonical scaffold: frontmatter shape, boundaries, workflow, verification, anti-patterns
+- [agent-template.md](../assets/agent-template.md) - canonical scaffold: frontmatter shape, boundaries, workflow, verification, anti-patterns
 - `.opencode/commands/create/agent.md` - preferred command-driven creation workflow for `/create:agent`
 
 ### Sibling sk-doc Packets
 - [create-skill README](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
-- [command_template.md](../../create-command/assets/command_template.md) - companion scaffold for slash-command entry points
+- [command-template.md](../../create-command/assets/command-template.md) - companion scaffold for slash-command entry points
 
 ### Shared Reference Files
-- [core_standards.md](../../shared/references/core_standards.md) - document type rules and structural requirements
+- [core-standards.md](../../shared/references/core-standards.md) - document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/quick_reference.md) - condensed commands and file locations
+- [quick-reference.md](../../shared/references/quick-reference.md) - condensed commands and file locations
 - [workflows.md](../../create-quality-control/references/workflows.md) - execution-mode reference

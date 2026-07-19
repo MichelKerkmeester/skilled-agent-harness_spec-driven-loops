@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop deep-improvement names (032 phase 007/006)"
+title: "Checklist: system-deep-loop deep-improvement names (020 phase 007/006)"
 description: "Blocking SOL verification contract for the deep-improvement multi-lane rename set, Python/package exemptions, generated artifacts, and benchmark ownership."
 trigger_phrases:
   - "system-deep-loop deep improvement checklist"

@@ -1,0 +1,76 @@
+---
+title: "Post-task learning measurement (task_postflight)"
+description: "Covers the postflight tool that computes a Learning Index by comparing post-task epistemic state against the preflight baseline."
+trigger_phrases:
+  - "post-task learning measurement"
+  - "task_postflight"
+  - "learning index"
+  - "postflight delta computation"
+  - "measure what was learned"
+version: 3.6.0.21
+---
+
+# Post-task learning measurement (task_postflight)
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Covers the postflight tool that computes a Learning Index by comparing post-task epistemic state against the preflight baseline.
+
+After finishing a task, this tool takes the "after" measurement and compares it against the "before" baseline. It calculates a score that tells you how much you learned. A high score means you gained real new understanding. A low score means you mostly applied what you already knew. A negative score means you discovered that what you thought was true turned out to be wrong.
+
+## 2. HOW IT WORKS
+
+### Learning Index Formula
+
+After completing implementation work, this tool captures the post-task epistemic state and computes a Learning Index by comparing against the preflight baseline. The formula weights three deltas: `LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovement * 0.25)`.
+
+The uncertainty delta is inverted (pre minus post) so that reduced uncertainty counts as a positive learning signal. If you started at 70% uncertainty and finished at 20%, that is a +50 uncertainty reduction contributing +17.5 to the Learning Index.
+
+### Interpretation Bands
+
+Interpretation bands give the score meaning. 40 or above signals significant learning (you understood something that changed your approach). 15-39 is moderate learning. 5-14 is incremental. 0-4 is an execution-focused session where you applied existing knowledge without gaining new understanding. Below zero indicates knowledge regression, which usually means the task revealed that prior assumptions were wrong.
+
+### Gap Tracking & Phase Transition
+
+You can track gaps closed during the task and new gaps discovered. Both are stored as JSON arrays alongside the scores. The phase updates from "preflight" to "complete" after postflight runs. Calling postflight without a matching preflight record throws an error.
+
+### Re-Correction Support
+
+The handler also supports re-correction runs. It accepts both "preflight" and already-"complete" records, so you can call `task_postflight` again for the same task to recompute the deltas and overwrite the stored postflight values after refining your assessment.
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Role |
+|------|------|
+| `mcp-server/handlers/session-learning.ts` | Session learning handler: postflight delta computation, Learning Index formula, re-correction support |
+| `mcp-server/lib/learning/corrections.ts` | Learning corrections logic |
+| `mcp-server/core/db-state.ts` | Database state management for `session_learning` table |
+| `mcp-server/lib/response/envelope.ts` | MCP success/error envelope helpers |
+| `mcp-server/schemas/tool-input-schemas.ts` | Zod input schemas for `task_postflight` arguments |
+| `mcp-server/tool-schemas.ts` | MCP-visible JSON schema for `task_postflight` |
+| `mcp-server/tools/lifecycle-tools.ts` | Lifecycle tool dispatcher for learning tools |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/handler-session-learning.vitest.ts` | Automated test | Session learning handler validation |
+| `mcp-server/tests/corrections.vitest.ts` | Automated test | Learning corrections tests |
+
+## 4. SOURCE METADATA
+- Group: Analysis
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `analysis/post-task-learning-measurement-taskpostflight.md`
+
+### MANUAL PLAYBOOK COVERAGE
+
+| Scenario | Role |
+|----------|------|
+| `EX-024` | Direct manual validation for postflight closeout and Learning Index persistence |
+Related references:
+- [epistemic-baseline-capture-taskpreflight.md](../../feature-catalog/analysis/epistemic-baseline-capture-taskpreflight.md) — Epistemic baseline capture (task_preflight)
+- [learning-history-memorygetlearninghistory.md](../../feature-catalog/analysis/learning-history-memorygetlearninghistory.md) — Learning history (memory_get_learning_history)

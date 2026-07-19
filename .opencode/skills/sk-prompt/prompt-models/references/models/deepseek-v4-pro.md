@@ -1,7 +1,7 @@
 ---
 title: DeepSeek-v4-Pro Prompt-Craft Profile
 model_id: "deepseek-v4-pro"
-description: How to prompt DeepSeek-v4-pro via cli-opencode, RCAF framework with medium pre-planning, dispatch scaffold, and gotchas mirroring its model_profiles.json entry.
+description: How to prompt DeepSeek-v4-pro via cli-opencode, RCAF framework with medium pre-planning, dispatch scaffold, and gotchas mirroring its model-profiles.json entry.
 trigger_phrases:
   - "deepseek v4 pro prompt framework"
   - "deepseek dispatch scaffold"
@@ -14,7 +14,7 @@ version: 0.8.0.12
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -22,7 +22,7 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ### Purpose
 
-This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` via the direct DeepSeek provider as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model_profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` via the direct DeepSeek provider as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
@@ -59,7 +59,7 @@ RCAF + medium pre-planning, leaning into depth: name concrete files, exact symbo
 
 **Counter-intuitive note:** Unlike MiniMax (which rewards heavy guardrail framing) or MiMo (which rewards lean brevity-focused framing), DeepSeek-v4-pro is the escalation model for DEPTH — the prompt should lean into specificity: concrete file paths, exact function/class names, and explicit acceptance criteria. Vague high-level prompts waste the model's reasoning capability on scope disambiguation. RCAF earns its keep here not through guardrails but through a tight Role that frames the model as a senior reviewer or architect, and a precise Action that names the problem without hedging.
 
-This mirrors `model_profiles.json` → `recommended_frameworks` for `deepseek-v4-pro`:
+This mirrors `model-profiles.json` → `recommended_frameworks` for `deepseek-v4-pro`:
 - `primary`: `"rcaf"`
 - `fallback`: `null`
 - `avoid`: `[]`
@@ -71,7 +71,7 @@ This mirrors `model_profiles.json` → `recommended_frameworks` for `deepseek-v4
 
 **Status:** default-unverified — no model-specific benchmark has been run for deepseek-v4-pro.
 
-The `recommended_frameworks` entry in `model_profiles.json` records:
+The `recommended_frameworks` entry in `model-profiles.json` records:
 ```
 benchmark:       null
 primary_score:   null
@@ -92,7 +92,7 @@ The discriminator for a future benchmark run should be **correctness on multi-st
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-Primary framework: **RCAF**. For the generic RCAF definition and CLEAR scoring methodology, see [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md).
+Primary framework: **RCAF**. For the generic RCAF definition and CLEAR scoring methodology, see [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md).
 
 The scaffold below is filled for deepseek-v4-pro's escalation use-cases (complex review, RCA, architecture analysis). Copy-paste-ready; executor-agnostic (no opencode wrapper here — add those from the executor SKILL.md).
 
@@ -145,7 +145,7 @@ Constraints:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -171,16 +171,16 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 
 **Implication:** strong raw illustration craft, weak brand-palette discipline. For a brand-critical illustration set prefer kimi-k2.7-code (strongest restraint); if deepseek is used, **pin the lead color and cap gold explicitly** in the brief and palette-check the output.
 
-**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#deepseek-v4-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `prompt-models/benchmarks/<label>/`).
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model-profiles.json#deepseek-v4-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `prompt-models/benchmarks/<label>/`).
 
 ---
 
 ## 8. SEE ALSO
 
-- [`../../assets/model_profiles.json#deepseek-v4-pro`](../../assets/model_profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
-- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
+- [`../../assets/model-profiles.json#deepseek-v4-pro`](../../assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
+- [`../../../prompt-improve/references/patterns-evaluation.md`](../../../prompt-improve/references/patterns-evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow and dispatch matrix
-- [`../pattern_index.md`](../pattern_index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
+- [`../pattern-index.md`](../pattern-index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
 - [`../../../../cli-external-orchestration/cli-opencode/SKILL.md`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — Executor card for the deepseek-api path; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 - **Other active profiles:** [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) (COSTAR + lean — benchmark 007), [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium), [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
-- **Executor quality card:** [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.
+- **Executor quality card:** [`../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

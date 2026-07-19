@@ -1,5 +1,5 @@
 ---
-title: "Tasks: code-opencode filesystem names (032 phase 008/002)"
+title: "Tasks: code-opencode filesystem names (020 phase 008/002)"
 description: "Execution tasks for the code-opencode filesystem rename and resource-reference closure."
 trigger_phrases:
   - "code-opencode naming tasks"

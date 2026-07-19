@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-review filesystem names (032 phase 007/004)"
+title: "Implementation Plan: deep-review filesystem names (020 phase 007/004)"
 description: "Plan for renaming deep-review assets, catalog/playbook paths, references, and state documentation through the frozen semantic map, then repairing static and dynamic path consumers without changing review contracts."
 trigger_phrases:
   - "deep-review implementation plan"

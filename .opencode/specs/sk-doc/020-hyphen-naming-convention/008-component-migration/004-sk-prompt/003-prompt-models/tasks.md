@@ -1,5 +1,5 @@
 ---
-title: "Tasks: prompt-models asset and reference names (032 phase 004.003)"
+title: "Tasks: prompt-models asset and reference names (020 phase 004.003)"
 description: "Tasks for phase 003 of the sk-prompt kebab-case program: rename prompt-models assets and references, preserve JSON data contracts, and close active path consumers."
 trigger_phrases:
   - "prompt-models asset and reference tasks"

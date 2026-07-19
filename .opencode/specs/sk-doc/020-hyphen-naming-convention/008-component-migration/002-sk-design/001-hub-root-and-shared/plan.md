@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Hub root and shared (032 phase 001)"
-description: "Execution plan for Hub root and shared in the 032 sk-design naming subtree."
+title: "Implementation Plan: Hub root and shared (020 phase 001)"
+description: "Execution plan for Hub root and shared in the 020 sk-design naming subtree."
 trigger_phrases:
   - "hub-root-and-shared implementation plan"
   - "sk-design hub/shared plan"
-  - "032 hub-root-and-shared tasks"
+  - "020 hub-root-and-shared tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Hub root and shared (032 phase 001)
+# Implementation Plan: Hub root and shared (020 phase 001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

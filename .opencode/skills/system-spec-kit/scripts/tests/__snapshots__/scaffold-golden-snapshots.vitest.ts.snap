@@ -2,7 +2,7 @@
 
 exports[`manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-implementation-summary.md 1`] = `
 "---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -133,13 +133,13 @@ Explain what the user gains, not what files you touched.]
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
 exports[`manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-plan.md 1`] = `
 "---
-title: "Implementation Plan: [NAME] [template:level_1/plan.md]"
+title: "Implementation Plan: [NAME] [template:level-1/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -304,7 +304,7 @@ CORE TEMPLATE (~90 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-spec.md 1`] = `
 "---
-title: "Feature Specification: [NAME] [template:level_1/spec.md]"
+title: "Feature Specification: [NAME] [template:level-1/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"
@@ -442,7 +442,7 @@ CORE TEMPLATE (~80 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-tasks.md 1`] = `
 "---
-title: "Tasks: [NAME] [template:level_1/tasks.md]"
+title: "Tasks: [NAME] [template:level-1/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -550,7 +550,7 @@ CORE TEMPLATE (~60 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-checklist.md 1`] = `
 "---
-title: "Verification Checklist: [NAME] [template:level_2/checklist.md]"
+title: "Verification Checklist: [NAME] [template:level-2/checklist.md]"
 description: "Verification Date: [YYYY-MM-DD]"
 trigger_phrases:
   - "verification"
@@ -561,7 +561,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-spec-kit/templates/level-2"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -693,7 +693,7 @@ P0 must complete, P1 need approval to defer
 
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-implementation-summary.md 1`] = `
 "---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary [template:level-2/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -704,7 +704,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-spec-kit/templates/level-2"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -723,7 +723,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -824,13 +824,13 @@ Explain what the user gains, not what files you touched.]
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-plan.md 1`] = `
 "---
-title: "Implementation Plan: [NAME] [template:level_2/plan.md]"
+title: "Implementation Plan: [NAME] [template:level-2/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -842,7 +842,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-spec-kit/templates/level-2"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -1051,7 +1051,7 @@ LEVEL 2 PLAN (~140 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-spec.md 1`] = `
 "---
-title: "Feature Specification: [NAME] [template:level_2/spec.md]"
+title: "Feature Specification: [NAME] [template:level-2/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"
@@ -1063,7 +1063,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-spec-kit/templates/level-2"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -1243,7 +1243,7 @@ CORE TEMPLATE (~80 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-tasks.md 1`] = `
 "---
-title: "Tasks: [NAME] [template:level_2/tasks.md]"
+title: "Tasks: [NAME] [template:level-2/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -1254,7 +1254,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-spec-kit/templates/level-2"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -1351,7 +1351,7 @@ CORE TEMPLATE (~60 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-checklist.md 1`] = `
 "---
-title: "Verification Checklist: [NAME] [template:level_3/checklist.md]"
+title: "Verification Checklist: [NAME] [template:level-3/checklist.md]"
 description: "Verification Date: [YYYY-MM-DD]"
 trigger_phrases:
   - "verification"
@@ -1362,7 +1362,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -1566,7 +1566,7 @@ P0 must complete, P1 need approval to defer
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-decision-record.md 1`] = `
 "---
-title: "Decision Record: [NAME] [template:level_3/decision-record.md]"
+title: "Decision Record: [NAME] [template:level-3/decision-record.md]"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
   - "decision"
@@ -1578,7 +1578,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -1597,7 +1597,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -1705,13 +1705,13 @@ Write in direct, active voice.]
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-implementation-summary.md 1`] = `
 "---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
+title: "Implementation Summary [template:level-3/implementation-summary.md]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"
@@ -1722,7 +1722,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -1741,7 +1741,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -1842,13 +1842,13 @@ Explain what the user gains, not what files you touched.]
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-plan.md 1`] = `
 "---
-title: "Implementation Plan: [NAME] [template:level_3/plan.md]"
+title: "Implementation Plan: [NAME] [template:level-3/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -1860,7 +1860,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -2146,7 +2146,7 @@ LEVEL 3 PLAN (~200 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-spec.md 1`] = `
 "---
-title: "Feature Specification: [NAME] [template:level_3/spec.md]"
+title: "Feature Specification: [NAME] [template:level-3/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"
@@ -2158,7 +2158,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -2386,7 +2386,7 @@ LEVEL 3 SPEC (~165 lines)
 
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-tasks.md 1`] = `
 "---
-title: "Tasks: [NAME] [template:level_3/tasks.md]"
+title: "Tasks: [NAME] [template:level-3/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -2397,7 +2397,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3"
+    packet_pointer: "system-spec-kit/templates/level-3"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -2505,7 +2505,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -2721,7 +2721,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -2740,7 +2740,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -2848,7 +2848,7 @@ Write in direct, active voice.]
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
@@ -2865,7 +2865,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -2884,7 +2884,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -2985,7 +2985,7 @@ Explain what the user gains, not what files you touched.]
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->"
 `;
 
@@ -3003,7 +3003,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -3371,7 +3371,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -3647,7 +3647,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_3+"
+    packet_pointer: "system-spec-kit/templates/level-3+"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"

@@ -1,6 +1,6 @@
 ---
 title: "Resource Loading Notes"
-description: "Full rationale for the load-and-prove and citation requirements on two ALWAYS rows in SKILL.md's Resource Loading Levels table, plus the reference-loading discipline notes for design_principles.md, the quality floor, design-system grounding, aesthetics cues, and Mobbin/Refero."
+description: "Full rationale for the load-and-prove and citation requirements on two ALWAYS rows in SKILL.md's Resource Loading Levels table, plus the reference-loading discipline notes for design-principles.md, the quality floor, design-system grounding, aesthetics cues, and Mobbin/Refero."
 trigger_phrases:
   - "resource loading rationale"
   - "load and prove loop"
@@ -21,7 +21,7 @@ Loading triggers themselves stay in `SKILL.md` Section 2 (the Resource Loading L
 
 **Required load-and-prove loop:** `../shared/register.md`, `references/design-process/brief-to-dials.md`, and `assets/interface-preflight-card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery.
 
-## 2. Citation Required For context_loading_contract.md
+## 2. Citation Required For context-loading-contract.md
 
 **Citation required, not just a background load**: name `../shared/context-loading-contract.md` by its relative path in the context-basis line alongside `register.md` — the same explicit by-path citation this mode already requires for procedure cards (`SKILL.md` Section 3) — a recommendation with no visible citation of this path is the same as not loading it.
 

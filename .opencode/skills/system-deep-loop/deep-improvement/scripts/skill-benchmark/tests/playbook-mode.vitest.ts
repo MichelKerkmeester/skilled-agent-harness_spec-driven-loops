@@ -167,16 +167,12 @@ describe('scoreScenario — live surface mismatch fails routing', () => {
 });
 
 describe('run — honors --playbook-dir', () => {
-  it('reads scenarios from the custom playbook dir, not the skill default', () => {
+  it('refuses an empty custom playbook instead of emitting an empty report', () => {
     const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
-    const { readFileSync } = require('node:fs');
     const emptyPlaybook = mkdtempSync(join(tmpdir(), 'skc-empty-pb-'));
     const out = mkdtempSync(join(tmpdir(), 'skc-out-'));
-    run({ skill: SKCODE, 'outputs-dir': out, 'playbook-dir': emptyPlaybook, 'trace-mode': 'router' });
-    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
-    // sk-code's real playbook yields 24 scenarios; an empty custom dir yields 0,
-    // proving the flag is threaded through runPlaybook (was a silent no-op).
-    expect(report.scenarioRows.length).toBe(0);
+    expect(() => run({ skill: SKCODE, 'outputs-dir': out, 'playbook-dir': emptyPlaybook, 'trace-mode': 'router' }))
+      .toThrow(/no scenarios found/);
   });
 });
 

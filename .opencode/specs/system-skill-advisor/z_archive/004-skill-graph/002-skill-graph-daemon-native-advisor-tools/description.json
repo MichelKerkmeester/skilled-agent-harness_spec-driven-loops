@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/004-skill-graph/002-skill-graph-daemon-native-advisor-tools",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/002-skill-graph-daemon-native-advisor-tools",
   "description": "The legacy skill-advisor stack depended on manually refreshed graph files, hand-maintained trigger phrases, fixed Python scoring, and split ownership",
   "keywords": [
     "legacy",
@@ -18,11 +18,12 @@
     "split",
     "ownership"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.544Z",
+  "lastUpdated": "2026-07-18T03:48:57.096Z",
   "specId": "002",
   "folderSlug": "skill-graph-daemon-native-advisor-tools",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph"
   ],
   "memorySequence": 0,

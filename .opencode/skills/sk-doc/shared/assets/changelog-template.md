@@ -1,0 +1,297 @@
+---
+title: Changelog & Release Notes Templates
+description: Templates and writing-style rules for global component changelogs at .opencode/changelog/{NN--component}/v{VERSION}.md and the matching GitHub release notes.
+trigger_phrases:
+  - "changelog format templates"
+  - "release notes template"
+  - "compact changelog format"
+  - "expanded changelog format"
+importance_tier: normal
+contextType: general
+version: 1.8.0.13
+---
+
+# Changelog & Release Notes Templates - Format Reference
+
+Two formats (compact and expanded) for global component changelogs and the matching GitHub release notes, plus writing-style rules and a pointer to nested packet-local changelogs.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Global component changelog files live at `.opencode/changelog/{NN--component}/v{VERSION}.md` and double as the body of GitHub releases. This asset gives the `/create:changelog` command (and human authors) a copy-paste starting point for both layouts, plus the voice and structure rules that keep the 370+ existing files consistent.
+
+### Usage
+
+The `/create:changelog` workflow reads this template at Step 4 of `create-changelog-auto.yaml` and `create-changelog-confirm.yaml`. Human authors can copy a format block directly. Choose **compact** for releases under 10 changes and **expanded** for releases with 10+ changes or a major bump - see Section 5 for the full selection guide.
+
+Nested packet-local changelogs are a different output mode and use the spec-kit templates instead (see Section 7).
+
+**Authoritative source for writing style rules:** `PUBLIC-RELEASE.md` Section 7
+
+---
+
+## 2. CHANGELOG FILE FORMAT
+
+**Key Points**:
+- Files start directly with the summary paragraph - no version header or boilerplate
+- Lead with **WHY** the release matters, not technical stats
+- Pick compact or expanded based on change count and bump type
+
+### Compact Format (under 10 changes)
+
+**Template**:
+
+```markdown
+{One-paragraph summary explaining what this release does and why it matters.}
+
+> Spec folder: `{path}` (Level {N})
+
+---
+
+## What Changed
+
+#### {Category Name}
+
+- **{Feature/Fix name}** -- {What was broken or missing}. {What we did}. {Why it matters}.
+
+## Files Changed
+
+| File           | What changed      |
+| -------------- | ----------------- |
+| `path/to/file` | Brief description |
+
+## Upgrade
+
+No migration required.
+```
+
+### Expanded Format (10+ changes or major releases)
+
+Use this format when individual fixes need full explanation - typically for audit results, major refactors, or releases where understanding the "why" behind each change matters.
+
+**Template**:
+
+```markdown
+{One-paragraph summary explaining what this release does and why it matters. Include the scope (how many fixes), the test impact, and one sentence about the approach.}
+
+> Spec folder: `{path}` (Level {N})
+
+---
+
+## {Category Name}
+
+{Optional 1-2 sentence introduction for the category.}
+
+#### {Short heading}
+
+{One flowing paragraph that explains what was broken or missing AND what was done about it. Write for a smart person who is not a developer. State the broken behavior first, then the new behavior. Use analogies if they help. No unexplained jargon -- first use of a technical term includes a parenthetical definition like "BM25 (exact word matching)" or "CTE (a reusable SQL subquery)." Technical specifics (file paths, function names, SQL syntax) go in the Files Changed table, not here.}
+
+&nbsp;
+
+#### {Next heading}
+
+{Same pattern -- one merged paragraph covering the broken behavior and the fix.}
+
+---
+
+## Test Impact
+
+| Metric            | Before | After |
+| ----------------- | ------ | ----- |
+| Tests passing     | {N}    | {N}   |
+| Test files        | {N}    | {N}   |
+| TypeScript errors | 0      | 0     |
+
+{One sentence about new tests added and existing tests updated.}
+
+---
+
+## Schema Changes (if applicable)
+
+| Change         | Details                         |
+| -------------- | ------------------------------- |
+| Schema version | {old} to {new}                  |
+| New indexes    | {count} ({list})                |
+| New columns    | {name} on {table} for {purpose} |
+
+{One sentence confirming backward compatibility.}
+
+---
+
+<details>
+<summary>Technical Details: Files Changed ({total} total)</summary>
+
+### Source ({count} files)
+
+| File           | Changes                                                  |
+| -------------- | -------------------------------------------------------- |
+| `path/to/file` | {What changed -- function names, behaviors, SQL queries} |
+
+### Tests ({count} files)
+
+{One sentence about test coverage.}
+
+### Documentation ({count} files)
+
+{One sentence about doc updates.}
+
+</details>
+
+---
+
+## Upgrade
+
+{Migration instructions or "No migration required."}
+
+{List any behavioral changes users should be aware of.}
+```
+
+**Field Guidelines**:
+
+**`{Category Name}`** (compact format, H4):
+- Use plain category names from Section 4 vocabulary
+- Examples: `Search`, `Saving Memories`, `Bug Fixes`
+
+**`{Short heading}`** (expanded format, H4):
+- 2-5 words, easy to scan at a glance
+- No packet IDs, no numbering, no sentence-length headings
+
+**`Files Changed` table**:
+- Compact format: simple two-column table
+- Expanded format: collapsible `<details>` with grouped Source/Tests/Documentation tables
+
+---
+
+## 3. GITHUB RELEASE NOTES FORMAT
+
+Changelog files start directly with the summary paragraph - no version header or boilerplate. Use the file content as-is for the `gh release create` body.
+
+At the end, append:
+
+```
+Full changelog: `.opencode/changelog/{component}/v{VERSION}.md`
+```
+
+---
+
+## 4. WRITING STYLE RULES
+
+These rules apply to both changelog files and GitHub release notes. See `PUBLIC-RELEASE.md` Section 7 for the authoritative version.
+
+### Voice
+
+- Write like you are explaining to **a smart person who is not a developer**
+- Lead with **WHY** this release matters, not technical stats
+- Every fix explained as: **what was broken**, **what we did**, **why it matters**
+
+### Jargon
+
+- No jargon without explanation
+- First use includes parenthetical definition: "BM25 (exact word matching)", "CTE (a reusable SQL subquery)"
+- Technical details (file paths, line numbers, function names) go in Files Changed, not in descriptions
+
+### Structure
+
+- **Analogies welcome** when they help understanding
+- **Short bullet points** (1-3 sentences each) in compact format
+- **Single merged paragraph** in expanded format -- combine the broken behavior and the fix into one flowing paragraph. Do NOT use `**Problem:** / **Fix:**` labels.
+- **Short sub-headings** in expanded format: 2-5 words, easy to scan, not sentence-length
+- **No numbered item titles** in expanded format unless the content truly depends on sequence
+- **No metrics soup** -- do not pack 10 numbers into one sentence
+- **H4 (`####`) for category subsections** under each H2 -- never H3
+- **`&nbsp;` between H4 subsections within the same H2** -- this is the soft separator that renders as an invisible line on GitHub. Do NOT use `---` between H4s.
+- **`---` only between H2 sections** -- place a `---` divider before each `##` heading. Do NOT place `---` (or `&nbsp;`) between an H2 (or its intro paragraph) and the first H4 underneath it.
+- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/shared/references/hvr-rules.md`
+
+### Category Vocabulary (use plain names)
+
+- `Search` -- search behavior, ranking, matching
+- `Saving Memories` -- memory save, context preservation
+- `Security` -- access control, input validation
+- `Documentation` -- templates, guides, READMEs
+- `Testing` -- test suites, validation
+- `Commands` -- CLI workflows, user-facing commands
+- `New Features` -- newly added capabilities
+- `Bug Fixes` -- repairs, patches, corrections
+- `Architecture` -- structural changes, refactoring
+- `Breaking Changes` -- compatibility impacts, migration required
+
+---
+
+## 5. FORMAT SELECTION GUIDE
+
+| Release Type                  | Format   | When to Use                                           |
+| ----------------------------- | -------- | ----------------------------------------------------- |
+| Hotfix (1-3 changes)          | Compact  | Quick bug fix, typo correction                        |
+| Feature release (4-9 changes) | Compact  | New feature, small refactor                           |
+| Major release (10+ changes)   | Expanded | Audit results, major refactor, multi-sprint work      |
+| Breaking change               | Expanded | Any release requiring migration or behavioral changes |
+
+**Decision Rule**:
+
+```
+Count the changes in the release.
+├─> < 10 changes AND not major  → Compact format
+├─> >= 10 changes               → Expanded format
+└─> Any breaking change         → Expanded format (regardless of count)
+```
+
+---
+
+## 6. REAL EXAMPLES
+
+### Compact Format Reference
+
+See: `.opencode/changelog/04--commands/v3.0.1.4.md`
+
+### Expanded Format References
+
+- `.opencode/changelog/01--system-spec-kit/v3.0.1.3.md` (28 fixes, full Problem/Fix paragraphs)
+- `.opencode/changelog/01--system-spec-kit/v3.0.1.0.md` (117 fixes, full Problem/Fix paragraphs)
+
+---
+
+## 7. NESTED PACKET-LOCAL CHANGELOGS
+
+Nested packet-local changelogs are a separate output mode for spec folders and phase children. **Do not reuse this template for nested packet output.** Use the spec-kit templates listed below instead.
+
+**Output paths**:
+- Root spec folders write to `changelog/changelog-<packet>-root.md`
+- Phase child folders write to `../changelog/changelog-<packet>-<phase-folder>.md`
+
+**Canonical Templates**:
+- `.opencode/skills/system-spec-kit/templates/changelog/root.md`
+- `.opencode/skills/system-spec-kit/templates/changelog/phase.md`
+
+**Canonical Generator**:
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write
+```
+
+The global component versioning rules in this file do not apply to nested packet changelogs.
+
+---
+
+## 8. RELATED RESOURCES
+
+### Templates
+
+- [readme-template.md](../../create-readme/assets/readme-template.md) - README structure and quality rules
+- [install-guide-template.md](../../create-readme/assets/install-guide-template.md) - Phased installation guides
+- [llmstxt-templates.md](./llmstxt-templates.md) - llms.txt site-map files
+- [frontmatter-templates.md](./frontmatter-templates.md) - YAML frontmatter by document type
+
+### Standards
+
+- `PUBLIC-RELEASE.md` Section 7 - Authoritative writing style for releases
+- [hvr-rules.md](../references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
+- [core-standards.md](../references/core-standards.md) - Markdown structure and naming conventions
+
+### Workflows
+
+- [.opencode/commands/create/changelog.md](../../../../commands/create/changelog.md) - The `/create:changelog` command surface
+- [nested-changelog.md](../../../system-spec-kit/references/workflows/nested-changelog.md) - Nested packet-local changelog workflow

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-code-graph/032-code-graph-scatter/013-code-graph-import-path-cleanup",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/013-code-graph-import-path-cleanup",
   "description": "The `mcpserver` build emitted stale shared-package files under `.opencode/skills/system-spec-kit/mcpserver/dist/system-spec-kit/shared/`",
   "keywords": [
     "mcpserver",
@@ -14,11 +14,12 @@
     "dist",
     "shared"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.869Z",
+  "lastUpdated": "2026-07-18T03:48:55.612Z",
   "specId": "013",
   "folderSlug": "code-graph-import-path-cleanup",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 0,

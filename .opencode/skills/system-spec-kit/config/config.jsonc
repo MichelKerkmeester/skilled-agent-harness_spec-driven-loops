@@ -25,7 +25,7 @@
 	    "embeddingModel": "<resolved-provider-model>"
 	  },
 	  "memoryIndex": {
-	    "databasePath": ".opencode/skills/system-spec-kit/mcp_server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite",
+	    "databasePath": ".opencode/skills/system-spec-kit/mcp-server/database/context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },

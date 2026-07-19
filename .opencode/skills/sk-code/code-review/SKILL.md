@@ -41,8 +41,8 @@ Use the `code-review` mode (of the sk-code family) when:
 - Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.
 - Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-opencode`).
 - Author-side quality gates before review; use `code-quality`.
-- Root-cause debugging; use the surface's `workflow_debug.md` doctrine.
-- Verification evidence collection; use the surface's `workflow_verify.md` doctrine.
+- Root-cause debugging; use the surface's `workflow-debug.md` doctrine.
+- Verification evidence collection; use the surface's `workflow-verify.md` doctrine.
 
 ---
 
@@ -77,17 +77,17 @@ The router discovers markdown resources recursively from `references/` and `asse
 Knowledge is organized by domain mapping:
 
 ```text
-references/review_core.md
-references/review_ux_single_pass.md
-references/pr_state_dedup.md
-references/quick_reference.md
+references/review-core.md
+references/review-ux-single-pass.md
+references/pr-state-dedup.md
+references/quick-reference.md
 assets/*_checklist.md
-assets/removal_plan.md
+assets/removal-plan.md
 ```
 
-- `references/review_core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
-- `references/review_ux_single_pass.md` for interactive single-pass review behavior.
-- `references/quick_reference.md` for the lightweight routing index across review references.
+- `references/review-core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
+- `references/review-ux-single-pass.md` for interactive single-pass review behavior.
+- `references/quick-reference.md` for the lightweight routing index across review references.
 - `references/` for shared doctrine, UX behavior, and PR-state dedup.
 - `assets/` for security, quality, completeness, SOLID, test-quality, and removal checklists.
 
@@ -95,9 +95,9 @@ assets/removal_plan.md
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix_completeness_checklist.md` |
-| CONDITIONAL | Intent score indicates need | `assets/solid_checklist.md`, `assets/code_quality_checklist.md`, `assets/removal_plan.md`, `assets/test_quality_checklist.md` |
-| CONDITIONAL | `CORE` / `COMPLETENESS` / `PR_STATE` / `SETUP` intents | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/fix_completeness_checklist.md`, `references/pr_state_dedup.md`, `references/quick_reference.md` |
+| ALWAYS | Every invocation, including security/correctness reviews | `references/review-core.md`, `references/review-ux-single-pass.md`, `assets/security-checklist.md`, `assets/code-quality-checklist.md`, `assets/fix-completeness-checklist.md` |
+| CONDITIONAL | Intent score indicates need | `assets/solid-checklist.md`, `assets/code-quality-checklist.md`, `assets/removal-plan.md`, `assets/test-quality-checklist.md` |
+| CONDITIONAL | `CORE` / `COMPLETENESS` / `PR_STATE` / `SETUP` intents | `references/review-core.md`, `references/review-ux-single-pass.md`, `assets/fix-completeness-checklist.md`, `references/pr-state-dedup.md`, `references/quick-reference.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -129,11 +129,11 @@ SKILL_ROOT = Path(__file__).resolve().parent
 # Discover resources recursively across references and assets.
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCES = [
-    "references/review_core.md",
-    "references/review_ux_single_pass.md",
-    "assets/security_checklist.md",
-    "assets/code_quality_checklist.md",
-    "assets/fix_completeness_checklist.md",
+    "references/review-core.md",
+    "references/review-ux-single-pass.md",
+    "assets/security-checklist.md",
+    "assets/code-quality-checklist.md",
+    "assets/fix-completeness-checklist.md",
 ]
 
 INTENT_SIGNALS = {
@@ -151,17 +151,17 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "SECURITY": ["assets/security_checklist.md"],
-    "QUALITY": ["assets/code_quality_checklist.md"],
-    "KISS": ["assets/code_quality_checklist.md"],
-    "DRY": ["assets/code_quality_checklist.md"],
-    "SOLID": ["assets/solid_checklist.md"],
-    "REMOVAL": ["assets/removal_plan.md"],
-    "TESTING": ["assets/test_quality_checklist.md"],
-    "CORE": ["references/review_core.md", "references/review_ux_single_pass.md"],
-    "COMPLETENESS": ["assets/fix_completeness_checklist.md"],
-    "PR_STATE": ["references/pr_state_dedup.md"],
-    "SETUP": ["references/quick_reference.md"],
+    "SECURITY": ["assets/security-checklist.md"],
+    "QUALITY": ["assets/code-quality-checklist.md"],
+    "KISS": ["assets/code-quality-checklist.md"],
+    "DRY": ["assets/code-quality-checklist.md"],
+    "SOLID": ["assets/solid-checklist.md"],
+    "REMOVAL": ["assets/removal-plan.md"],
+    "TESTING": ["assets/test-quality-checklist.md"],
+    "CORE": ["references/review-core.md", "references/review-ux-single-pass.md"],
+    "COMPLETENESS": ["assets/fix-completeness-checklist.md"],
+    "PR_STATE": ["references/pr-state-dedup.md"],
+    "SETUP": ["references/quick-reference.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
@@ -423,15 +423,15 @@ Downstream automation parses this final line via exact string match — do not v
 
 ### Core References
 
-- [review_core.md](./references/review_core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
-- [review_ux_single_pass.md](./references/review_ux_single_pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
-- [quick_reference.md](./references/quick_reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
-- [pr_state_dedup.md](./references/pr_state_dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
-- [security_checklist.md](./assets/security_checklist.md) - Mandatory security and reliability checks.
-- [code_quality_checklist.md](./assets/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
-- [solid_checklist.md](./assets/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
-- [removal_plan.md](./assets/removal_plan.md) - Safe-now vs deferred removal planning template.
-- [test_quality_checklist.md](./assets/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
+- [review-core.md](./references/review-core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
+- [review-ux-single-pass.md](./references/review-ux-single-pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
+- [quick-reference.md](./references/quick-reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
+- [pr-state-dedup.md](./references/pr-state-dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
+- [security-checklist.md](./assets/security-checklist.md) - Mandatory security and reliability checks.
+- [code-quality-checklist.md](./assets/code-quality-checklist.md) - Correctness, performance, KISS, and DRY checks.
+- [solid-checklist.md](./assets/solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
+- [removal-plan.md](./assets/removal-plan.md) - Safe-now vs deferred removal planning template.
+- [test-quality-checklist.md](./assets/test-quality-checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 ### Reference Loading Notes
 
@@ -459,11 +459,11 @@ Downstream automation parses this final line via exact string match — do not v
 
 ## 8. RELATED RESOURCES
 
-Start with `references/quick_reference.md`, then load task-specific doctrine, assets, or scripts.
+Start with `references/quick-reference.md`, then load task-specific doctrine, assets, or scripts.
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus per-feature sub-files under `manual_testing_playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
 
 ---
 

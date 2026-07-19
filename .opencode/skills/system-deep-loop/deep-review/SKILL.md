@@ -56,7 +56,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 **ALWAYS:**
 - Invoke via `/deep:review :auto` or `/deep:review :confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_review_auto.yaml`)
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep-review-auto.yaml`)
 - Let `scripts/reduce-state.cjs` be the SINGLE state writer
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
@@ -84,7 +84,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 | Level | When to Load | Resources |
 |-------|-------------|-----------|
-| ALWAYS | Every skill invocation | `references/protocol/quick_reference.md` |
+| ALWAYS | Every skill invocation | `references/protocol/quick-reference.md` |
 | CONDITIONAL | If intent signals match | Loop protocol, convergence, state format, review contract |
 | ON_DEMAND | Only on explicit request | Full protocol docs, detailed specifications |
 
@@ -100,7 +100,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/protocol/quick_reference.md"
+DEFAULT_RESOURCE = "references/protocol/quick-reference.md"
 
 INTENT_SIGNALS = {
     "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "convergence review", "iterative review", ":review", "audit spec"]},
@@ -119,31 +119,31 @@ NOISY_SYNONYMS = {
 # RESOURCE_MAP: local markdown assets + local review-specific protocol docs
 RESOURCE_MAP = {
     "REVIEW_SETUP":       [
-        "references/protocol/loop_protocol.md",
-        "references/state/state_format.md",
-        "references/state/state_outputs.md",
-        "references/state/state_reducer_registry.md",
-        "assets/deep_review_strategy.md",
-        "references/state/state_jsonl.md",
+        "references/protocol/loop-protocol.md",
+        "references/state/state-format.md",
+        "references/state/state-outputs.md",
+        "references/state/state-reducer-registry.md",
+        "assets/deep-review-strategy.md",
+        "references/state/state-jsonl.md",
     ],
     "REVIEW_ITERATION":   [
-        "references/protocol/loop_protocol.md",
+        "references/protocol/loop-protocol.md",
         "references/convergence/convergence.md",
-        "references/convergence/convergence_signals.md",
+        "references/convergence/convergence-signals.md",
     ],
     "REVIEW_CONVERGENCE": [
         "references/convergence/convergence.md",
-        "references/convergence/convergence_signals.md",
-        "references/state/state_outputs.md",
-        "references/protocol/completion_criteria.md",
-        "references/protocol/loop_state_and_gates.md",
-        "references/convergence/convergence_recovery.md",
+        "references/convergence/convergence-signals.md",
+        "references/state/state-outputs.md",
+        "references/protocol/completion-criteria.md",
+        "references/protocol/loop-state-and-gates.md",
+        "references/convergence/convergence-recovery.md",
     ],
     "REVIEW_REPORT":      [
-        "references/state/state_format.md",
-        "references/state/state_outputs.md",
-        "references/state/state_reducer_registry.md",
-        "assets/deep_review_dashboard.md",
+        "references/state/state-format.md",
+        "references/state/state-outputs.md",
+        "references/state/state-reducer-registry.md",
+        "assets/deep-review-dashboard.md",
     ],
 }
 
@@ -151,24 +151,24 @@ LOADING_LEVELS = {
     "ALWAYS":            [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full protocol", "all templates", "complete reference", "resume deep review", "deep-review wave", "review artifact", "release-readiness audit", "convergence-tracked", "same session lineage", "P0"],
     "ON_DEMAND":         [
-        "references/protocol/loop_protocol.md",
-        "references/state/state_format.md",
+        "references/protocol/loop-protocol.md",
+        "references/state/state-format.md",
         "references/convergence/convergence.md",
-        "references/convergence/convergence_signals.md",
-        "references/state/state_outputs.md",
-        "references/state/state_reducer_registry.md",
+        "references/convergence/convergence-signals.md",
+        "references/state/state-outputs.md",
+        "references/state/state-reducer-registry.md",
     ],
 }
 
 PHASE_RESOURCE_MAP = {
-    "init": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_outputs.md"],
-    "iteration": ["references/protocol/loop_protocol.md", "references/convergence/convergence.md", "references/convergence/convergence_signals.md"],
-    "stuck": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/protocol/loop_protocol.md", "references/state/state_reducer_registry.md"],
-    "synthesis": ["references/state/state_format.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
+    "init": ["references/protocol/loop-protocol.md", "references/state/state-format.md", "references/state/state-outputs.md"],
+    "iteration": ["references/protocol/loop-protocol.md", "references/convergence/convergence.md", "references/convergence/convergence-signals.md"],
+    "stuck": ["references/convergence/convergence.md", "references/convergence/convergence-signals.md", "references/protocol/loop-protocol.md", "references/state/state-reducer-registry.md"],
+    "synthesis": ["references/state/state-format.md", "references/state/state-outputs.md", "references/state/state-reducer-registry.md", "assets/deep-review-dashboard.md"],
 }
 
 NON_MARKDOWN_REFERENCES = {
-    "review_contract": "assets/review_mode_contract.yaml",
+    "review_contract": "assets/review-mode-contract.yaml",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -278,7 +278,7 @@ Detect the current review phase from dispatch context to load appropriate resour
 
 ### Resource Map Coverage Gate
 
-When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input: `resource_map_present` is persisted in config, a map snapshot seeds `Known Context`, at least one iteration audits `target_files` coverage against the map (touched / not-touched `expected-by-scope`-vs-`gap` / absent-from-map, findings tagged `resource-map-coverage`), and synthesis adds the `## Resource Map Coverage Gate` report section plus a converged `resource-map.md` (disable via `--no-resource-map`). Absent at init, the gate and section are skipped without failing the loop. Full sequencing: `references/protocol/loop_protocol.md` (init 9a, iteration 3b, synthesis 4); schema: `references/state/state_format.md`.
+When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input: `resource_map_present` is persisted in config, a map snapshot seeds `Known Context`, at least one iteration audits `target_files` coverage against the map (touched / not-touched `expected-by-scope`-vs-`gap` / absent-from-map, findings tagged `resource-map-coverage`), and synthesis adds the `## Resource Map Coverage Gate` report section plus a converged `resource-map.md` (disable via `--no-resource-map`). Absent at init, the gate and section are skipped without failing the loop. Full sequencing: `references/protocol/loop-protocol.md` (init 9a, iteration 3b, synthesis 4); schema: `references/state/state-format.md`.
 
 ### Bounded Context Snapshot Replacement
 
@@ -286,11 +286,11 @@ During initialization, capture a bounded, pointer-based context snapshot in `dee
 
 ### Architecture
 
-`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop_protocol.md`.
+`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop-protocol.md`.
 
 ### State Packet Location
 
-The review state packet always lives under the target spec's local `review/` folder. Root-spec targets use `{spec_folder}/review/` directly; child-phase and sub-phase targets use **flat-first** placement (first run writes flat, a `pt-NN` sibling packet is allocated only when prior content already exists for a different target). Full resolution rule and worked examples: `references/state/state_format.md` §1.
+The review state packet always lives under the target spec's local `review/` folder. Root-spec targets use `{spec_folder}/review/` directly; child-phase and sub-phase targets use **flat-first** placement (first run writes flat, a `pt-NN` sibling packet is allocated only when prior content already exists for a different target). Full resolution rule and worked examples: `references/state/state-format.md` §1.
 
 Core artifacts: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `.deep-review-pause`, `resource-map.md`, `review-report.md`, and `iterations/iteration-NNN.md`.
 
@@ -300,7 +300,7 @@ Each agent dispatch gets a fresh context window; state continuity comes from fil
 
 ### Review Dimensions
 
-The four primary review dimensions (configured in `assets/review_mode_contract.yaml`):
+The four primary review dimensions (configured in `assets/review-mode-contract.yaml`):
 
 | Dimension | Focus | Key Questions |
 |-----------|-------|---------------|
@@ -357,7 +357,7 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 
 ### Executor Selection Contract
 
-Executor settings are owned by the YAML workflow and rendered prompt pack -- never hand-dispatch review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. Full contract (per-iteration invariants, failure modes, JSONL audit field, config surface/precedence, TrustState surface): `references/protocol/loop_protocol.md`.
+Executor settings are owned by the YAML workflow and rendered prompt pack -- never hand-dispatch review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. Full contract (per-iteration invariants, failure modes, JSONL audit field, config surface/precedence, TrustState surface): `references/protocol/loop-protocol.md`.
 
 ---
 
@@ -405,11 +405,11 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 ## 5. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/protocol/quick_reference.md`, `references/protocol/loop_protocol.md`, `references/convergence/convergence.md`, `references/convergence/convergence_signals.md`, `references/state/state_format.md`, `references/state/state_outputs.md`, `references/state/state_reducer_registry.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/protocol/quick-reference.md`, `references/protocol/loop-protocol.md`, `references/convergence/convergence.md`, `references/convergence/convergence-signals.md`, `references/state/state-format.md`, `references/state/state-outputs.md`, `references/state/state-reducer-registry.md`, `assets/deep-review-dashboard.md`, `assets/deep-review-strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
-Detailed contracts: `references/protocol/loop_protocol.md` (executor invariants, failure modes, config surface), `references/protocol/loop_state_and_gates.md` (state transitions, error handling, STOP-decision gates), `references/protocol/completion_criteria.md` (full loop-completion/quality-gate/validation-success checklist), and `references/state/state_reducer_registry.md` (two-tier content-hash dedup).
+Detailed contracts: `references/protocol/loop-protocol.md` (executor invariants, failure modes, config surface), `references/protocol/loop-state-and-gates.md` (state transitions, error handling, STOP-decision gates), `references/protocol/completion-criteria.md` (full loop-completion/quality-gate/validation-success checklist), and `references/state/state-reducer-registry.md` (two-tier content-hash dedup).
 
 Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
@@ -419,7 +419,7 @@ Related skills: `deep-research` for investigation loops, `sk-code`'s code-review
 
 A review loop is complete only when convergence and every quality gate agree: the composite stop score clears `compositeStopScore` (or `maxIterations` is hit without a false-positive STOP), every configured dimension plus required traceability protocols (`spec_code`, `checklist_evidence`) have at least one full iteration of coverage, all canonical state files exist and parse cleanly (`deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, one `iterations/iteration-NNN.md` per dispatched iteration), `review-report.md` carries all 9 core sections plus the conditional `## Resource Map Coverage Gate`, and continuity is saved via `generate-context.js`.
 
-Nine binary quality gates must all pass before STOP is legal: config validity + lineage match, strategy initialization completeness, state/registry consistency, iteration completeness (markdown + JSONL delta), severity-field coverage on every finding (`severity`/`category`/`file:line`/`content_hash`), the advisory-only `riskScore` never gating verdict logic, adversarial P0 replay, dimension/protocol coverage stability, acceptance-coverage (advisory `AC_COVERAGE` signal when the spec-folder lifecycle predicate is active), and the security-sensitive override (`minStabilizationPasses=2` + fix-completeness replay) when the target touches security, path handling, env precedence, schema boundaries, persistence, or shared policy. Full gate-by-gate criteria and rationale: `references/protocol/completion_criteria.md`.
+Nine binary quality gates must all pass before STOP is legal: config validity + lineage match, strategy initialization completeness, state/registry consistency, iteration completeness (markdown + JSONL delta), severity-field coverage on every finding (`severity`/`category`/`file:line`/`content_hash`), the advisory-only `riskScore` never gating verdict logic, adversarial P0 replay, dimension/protocol coverage stability, acceptance-coverage (advisory `AC_COVERAGE` signal when the spec-folder lifecycle predicate is active), and the security-sensitive override (`minStabilizationPasses=2` + fix-completeness replay) when the target touches security, path handling, env precedence, schema boundaries, persistence, or shared policy. Full gate-by-gate criteria and rationale: `references/protocol/completion-criteria.md`.
 
 Validate a completed run with `skill_advisor.py "run a deep review loop" --threshold 0.8` (skill still surfaces) and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (exits 0).
 

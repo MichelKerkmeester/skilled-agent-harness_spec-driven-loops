@@ -120,7 +120,7 @@
 
 - **Per-cell scored results**: `results-mimo-default.json` (preserved prior run), `results-mimo-high.json`, `results-minimax-default.json`, `results-minimax-high.json` (with `retry_provenance`).
 - **Retry detail**: `results-minimax-high-retry.json` (single-combo recovery run).
-- **Raw per-dispatch responses (prompt + assistant text + exit + timing)**, archived per cell so they are not clobbered by tag-reuse across runs: `runs-archive/{mimo-default,mimo-high,minimax-default,minimax-high}/`. The MiniMax/high failure is preserved as `rcaf__parseRange.FAILED-exit124.json` alongside the `rcaf__parseRange.RETRY-ok.json` recovery.
+- **Raw per-dispatch responses (prompt + assistant text + exit + timing)**, archived per cell so they are not clobbered by tag-reuse across runs: `runs-archive/{mimo-default,mimo-high,minimax-default,minimax-high}/`. The MiniMax/high failure is preserved as `rcaf--parseRange.FAILED-exit124.json` alongside the `rcaf--parseRange.RETRY-ok.json` recovery.
 - **Live `runs/`** holds the most-recent run's raw responses (currently the MiniMax/high retry for the rcaf__parseRange tag).
 - **Harness**: `run-mimo-bench.cjs` (now supports `--variant` and `--out`). Frameworks: `frameworks.cjs`. Fixtures + hidden suites: `fixtures.cjs`.
 

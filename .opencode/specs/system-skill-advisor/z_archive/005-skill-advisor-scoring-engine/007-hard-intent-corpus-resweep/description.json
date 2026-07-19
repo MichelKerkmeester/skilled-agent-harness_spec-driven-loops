@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
+  "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
   "description": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing",
   "keywords": [
     "phase",
@@ -17,11 +17,12 @@
     "vectors",
     "flowing"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.849Z",
+  "lastUpdated": "2026-07-18T03:48:57.148Z",
   "specId": "007",
   "folderSlug": "hard-intent-corpus-resweep",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

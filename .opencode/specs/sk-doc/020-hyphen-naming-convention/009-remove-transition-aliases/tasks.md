@@ -1,6 +1,6 @@
 ---
-title: "Tasks: remove transition aliases (032 phase 009)"
-description: "Tasks for phase 009 of the 032 kebab-case filesystem-naming program: remove post-migration root and index aliases and verify fail-closed handling."
+title: "Tasks: remove transition aliases (020 phase 009)"
+description: "Tasks for phase 009 of the 020 kebab-case filesystem-naming program: remove post-migration root and index aliases and verify fail-closed handling."
 trigger_phrases:
   - "remove transition aliases tasks"
   - "hyphen naming phase 009 tasks"

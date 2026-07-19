@@ -18,8 +18,8 @@ describe('outsourced agent handback docs', () => {
   ];
 
   const promptDocs = [
-    '.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt_templates.md',
-    '.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt_templates.md',
+    '.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md',
+    '.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md',
   ];
 
   // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
@@ -61,7 +61,7 @@ describe('outsourced agent handback docs', () => {
 
   it('keeps the feature catalog aligned to the 015 handback phase', () => {
     const content = readWorkspaceFile(
-      '.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md',
+      '.opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md',
     );
 
     expect(content).toContain('015-outsourced-agent-handback');

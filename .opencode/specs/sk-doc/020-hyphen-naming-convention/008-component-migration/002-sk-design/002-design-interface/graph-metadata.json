@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "design-interface naming phase",
       "sk-design design-interface phase",
-      "032 design-interface",
+      "020 design-interface",
       "design-interface implementation plan",
       "sk-design design-interface plan",
-      "032 design-interface tasks",
+      "020 design-interface tasks",
       "design-interface tasks",
       "sk-design design-interface execution",
-      "032 design-interface checklist",
+      "020 design-interface checklist",
       "design-interface verification",
       "sk-design design-interface checklist",
-      "032 design-interface gate"
+      "020 design-interface gate"
     ],
     "key_topics": [
       "design-interface",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
     "created_at": "2026-07-14T15:17:14Z",
-    "last_save_at": "2026-07-17T14:30:09.517Z",
+    "last_save_at": "2026-07-17T20:26:03.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:93124f98d2dc8fd1d1190b1311af4efe33cc36ab8c222775b91a46c0989063c8",
+    "source_fingerprint": "sha256:38ddb141834bfd8575b8da7b2334ee46bb1d364df61e43c65fb269b6e04b3d0f",
     "source_doc_hashes": {
-      "spec.md": "9dc267fc38cf98365debe57e6bbd1f5e216ada197fb008ae241b3398c45e67c3",
-      "plan.md": "3c95eb9198fa9abf05ee367815d09ffc4fab21ba0ed6871b01d1ea4730d54898",
-      "tasks.md": "4f574f1e8c4ccc3af627023e3e6d0377f536f577040578096e4650209f76d7a1",
-      "checklist.md": "1aa371ea7dc46c55acc65bfee0b7e7a7aba6d79827653bb12246d754fb6856ab"
+      "spec.md": "b34f65e06ad71d83087a1813d4d0eb4065fd79b609db43e91d2b11b122ce834d",
+      "plan.md": "831ffaacbf0a6ff18d56fe16645446b66fe00c3fae94b02727ac32ac0216618f",
+      "tasks.md": "743b8fd38e87f4c24ca2e808465561dd98e9e17059d4885a1362d30c568d58b5",
+      "checklist.md": "e7d05e7920d8c35f4accf9b5e36cba2e42c31088bc8510e627ad78635389532c"
     },
     "last_active_child_id": null,
     "last_active_at": null

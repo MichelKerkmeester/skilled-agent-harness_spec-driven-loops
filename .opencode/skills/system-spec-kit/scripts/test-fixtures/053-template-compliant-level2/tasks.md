@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read current Level 2 templates (`.opencode/skills/system-spec-kit/templates/examples/level_2/`) [5m]
+- [x] T001 Read current Level 2 templates (`.opencode/skills/system-spec-kit/templates/examples/level-2/`) [5m]
 - [x] T002 Read existing fixture 053 files (`.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/`) [5m]
 
 <!-- /ANCHOR:phase-1 -->

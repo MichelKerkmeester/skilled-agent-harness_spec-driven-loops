@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-code-graph/031-code-graph-buildout/012-empty-graph-first-time-auto-scan",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan",
   "description": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with",
   "keywords": [
     "code",
@@ -15,11 +15,12 @@
     "status",
     "blocked"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.857Z",
+  "lastUpdated": "2026-07-18T03:48:55.593Z",
   "specId": "012",
   "folderSlug": "empty-graph-first-time-auto-scan",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout"
   ],
   "memorySequence": 1,

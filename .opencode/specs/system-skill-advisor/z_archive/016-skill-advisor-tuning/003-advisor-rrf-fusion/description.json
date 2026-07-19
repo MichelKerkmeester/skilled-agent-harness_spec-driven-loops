@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/003-advisor-rrf-fusion",
+  "specFolder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/003-advisor-rrf-fusion",
   "description": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have",
   "keywords": [
     "skill",
@@ -16,11 +16,12 @@
     "tests",
     "byte-identical"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.465Z",
+  "lastUpdated": "2026-07-18T03:48:57.319Z",
   "specId": "003",
   "folderSlug": "advisor-rrf-fusion",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "016-skill-advisor-tuning"
   ],
   "memorySequence": 0,

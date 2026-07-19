@@ -106,15 +106,15 @@
     ],
     "causal_summary": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
     "created_at": "2026-07-14T15:17:04Z",
-    "last_save_at": "2026-07-17T14:30:43.206Z",
+    "last_save_at": "2026-07-17T20:26:18.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f4ed1268c84eadcb42ad299d3e3c13bb3b4731f109e59277ca325e2e551c719c",
+    "source_fingerprint": "sha256:43027e63804a544a9edfebcdd87865f8bed771312e43952a0f15e3c9bb4a8fdf",
     "source_doc_hashes": {
-      "spec.md": "a7f04db4ae2545e06673485a7933178aa60108f740b035baa5a12844177fb335"
+      "spec.md": "5ed38769a44240041aa3757abb056e2aaf71db9c18552d742bd460333a83ae1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

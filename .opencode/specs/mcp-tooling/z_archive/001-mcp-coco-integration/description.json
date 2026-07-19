@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/001-mcp-coco-integration",
+  "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
   "description": "OpenCode had no semantic code search capability",
   "keywords": [
     "opencode",
@@ -8,11 +8,12 @@
     "search",
     "capability"
   ],
-  "lastUpdated": "2026-07-15T07:46:45.467Z",
+  "lastUpdated": "2026-07-18T03:48:54.415Z",
   "specId": "001",
   "folderSlug": "mcp-coco-integration",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode subtree skill gate (032 component 011 phase 007)"
+title: "Implementation Plan: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
 description: "Aggregate the six preceding child reports, rerun the complete exemption-aware filesystem and reference census, and verify the mcp-code-mode subtree as one read-only naming gate."
 trigger_phrases:
   - "mcp-code-mode subtree gate implementation plan"
@@ -95,7 +95,7 @@ then records one rollup verdict.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This gate depends on the 032 exemption policy, immutable BASE, all six child checklists, final semantic maps, and the
+This gate depends on the 020 exemption policy, immutable BASE, all six child checklists, final semantic maps, and the
 central verification environment. It is the handoff into the next component parent only after its own report is accepted.
 <!-- /ANCHOR:dependencies -->
 

@@ -131,7 +131,7 @@ function buildCleanFixture() {
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
-  fs.mkdirSync(path.join(hubRoot, 'manual_testing_playbook'), { recursive: true });
+  fs.mkdirSync(path.join(hubRoot, 'manual-testing-playbook'), { recursive: true });
   fs.mkdirSync(path.join(hubRoot, 'benchmark'), { recursive: true });
 
   const packetA = path.join(hubRoot, 'create-skill');

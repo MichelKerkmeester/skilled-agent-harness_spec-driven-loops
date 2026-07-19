@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "corpus_id": "semantic-rename-tooling-fixtures-v1",
+  "program_base_sha": "1ec0ad2947b19ac3053c7b031b7d43e67bf42bbe",
+  "seed": "semantic-rename-tooling-fixtures-2026-07-18",
+  "required_coverage": {
+    "semantic_names": [
+      "explicit-targets",
+      "leading-underscore",
+      "double-underscore",
+      "leading-hyphen",
+      "similar-names"
+    ],
+    "collisions": [
+      "exact",
+      "casefold",
+      "nfc"
+    ],
+    "batching": [
+      "dependency-closure",
+      "mixed-extension-scc"
+    ],
+    "references": [
+      "js-module",
+      "markdown-link",
+      "config-path",
+      "registry-path",
+      "shell-source",
+      "shell-executable",
+      "symlink-target",
+      "dynamic-require",
+      "dynamic-source",
+      "dynamic-glob"
+    ],
+    "filesystem": [
+      "symlink-120000",
+      "executable-100755"
+    ],
+    "states": [
+      "dry-run",
+      "apply",
+      "idempotent-rerun",
+      "rollback",
+      "cas-regeneration"
+    ],
+    "failure_gates": [
+      "ambiguous-reference",
+      "missing-source",
+      "undispositioned-dynamic-site",
+      "zero-file-scan",
+      "map-drift",
+      "dirty-tree",
+      "head-drift",
+      "operation-order-drift",
+      "external-target-rejection"
+    ],
+    "exemptions": [
+      "python-file",
+      "python-package-directory",
+      "vendored-tree",
+      "generated-output",
+      "lockfile-output",
+      "tool-mandated-name",
+      "test-runner-magic",
+      "frozen-surface"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "semantic-lifecycle",
+      "kind": "lifecycle",
+      "files": [
+        {
+          "path": "-run_script.sh",
+          "content": "#!/usr/bin/env bash\nexit 0\n",
+          "executable": true
+        },
+        {
+          "path": "docs/_common.md",
+          "content": "# Shared reference\n"
+        },
+        {
+          "path": "tests/__fixtures__.json",
+          "content": "{\"fixture\":true}\n"
+        },
+        {
+          "path": "similar/router_config.json",
+          "content": "{\"kind\":\"singular\"}\n"
+        },
+        {
+          "path": "similar/router_configs.json",
+          "content": "{\"kind\":\"plural\"}\n"
+        },
+        {
+          "path": "src/old_module.ts",
+          "content": "import '../scripts/old_script.sh';\nexport const snake_case_identifier = 1;\n"
+        },
+        {
+          "path": "src/consumer.ts",
+          "content": "import './old_module';\nconst dynamicModule = require(dynamicModulePath);\nconst files = glob('./*.ts');\n"
+        },
+        {
+          "path": "lib/old_widget/index.ts",
+          "content": "export const widget = true;\n"
+        },
+        {
+          "path": "lib/new-widget/.keep",
+          "content": "target parent fixture\n"
+        },
+        {
+          "path": "src/index-consumer.ts",
+          "content": "import '../lib/old_widget';\n"
+        },
+        {
+          "path": "scripts/old_script.sh",
+          "content": "#!/usr/bin/env bash\nsource ../src/old_module.ts\n",
+          "executable": true
+        },
+        {
+          "path": "scripts/runner.sh",
+          "content": "source ./old_script.sh\n./old_script.sh\nsource \"$ROOT/tool.sh\"\n"
+        },
+        {
+          "path": "docs/old_guide.md",
+          "content": "# Old guide\n"
+        },
+        {
+          "path": "docs/guide.md",
+          "content": "---\nmodulePath: ../src/old_module.ts\nold_config: identifier-only\n---\n[module](../src/old_module.ts)\n"
+        },
+        {
+          "path": "config/old_config.json",
+          "content": "{\"entryPath\":\"../src/old_module.ts\",\"old_config\":\"not/a/mapped/path\"}\n"
+        },
+        {
+          "path": "config/old_settings.yaml",
+          "content": "modulePath: ../scripts/old_script.sh\n"
+        },
+        {
+          "path": "config/old_routes.toml",
+          "content": "template_path = \"../docs/old_guide.md\"\n"
+        },
+        {
+          "path": "registry/old_entry.js",
+          "content": "export default {};\n"
+        },
+        {
+          "path": "registry/scripts.json",
+          "content": "{\"scripts\":{\"start\":\"../scripts/old_script.sh\"}}\n"
+        },
+        {
+          "path": "python_tools/helper_name.py",
+          "content": "VALUE = 1\n"
+        },
+        {
+          "path": "python_package/__init__.py",
+          "content": "VALUE = 1\n"
+        },
+        {
+          "path": "vendor/upstream_name.txt",
+          "content": "vendored\n"
+        },
+        {
+          "path": "dist/generated_name.js",
+          "content": "generated\n"
+        },
+        {
+          "path": "package-lock.json",
+          "content": "{}\n"
+        },
+        {
+          "path": "SKILL.md",
+          "content": "# Tool contract\n"
+        },
+        {
+          "path": "tests/__snapshots__/router_name.snap",
+          "content": "snapshot\n"
+        },
+        {
+          "path": "z_archive/old_note.md",
+          "content": "frozen\n"
+        }
+      ],
+      "symlinks": [
+        {
+          "path": "assets/old_link",
+          "target": "../src/old_module.ts"
+        }
+      ],
+      "map_entries": [
+        {
+          "id": "m-common",
+          "source": "docs/_common.md",
+          "target": "docs/common-reference.md",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-fixtures",
+          "source": "tests/__fixtures__.json",
+          "target": "tests/fixture-data.json",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-similar-one",
+          "source": "similar/router_config.json",
+          "target": "similar/router-settings.json",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-similar-many",
+          "source": "similar/router_configs.json",
+          "target": "similar/router-catalog.json",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-leading",
+          "source": "-run_script.sh",
+          "target": "-run-tool.sh",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-js",
+          "source": "src/old_module.ts",
+          "target": "src/new-module.ts",
+          "classification": "rename",
+          "dependencies": [
+            "m-shell"
+          ]
+        },
+        {
+          "id": "m-shell",
+          "source": "scripts/old_script.sh",
+          "target": "scripts/new-script.sh",
+          "classification": "rename",
+          "dependencies": [
+            "m-js"
+          ]
+        },
+        {
+          "id": "m-doc",
+          "source": "docs/old_guide.md",
+          "target": "docs/new-guide.md",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-config",
+          "source": "config/old_config.json",
+          "target": "config/new-config.json",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-yaml",
+          "source": "config/old_settings.yaml",
+          "target": "config/new-settings.yaml",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-toml",
+          "source": "config/old_routes.toml",
+          "target": "config/new-routes.toml",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-registry",
+          "source": "registry/old_entry.js",
+          "target": "registry/new-entry.js",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-link",
+          "source": "assets/old_link",
+          "target": "assets/new-link",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-index",
+          "source": "lib/old_widget/index.ts",
+          "target": "lib/new-widget/index.ts",
+          "classification": "rename",
+          "dependencies": []
+        },
+        {
+          "id": "m-python",
+          "source": "python_tools/helper_name.py",
+          "classification": "exempt",
+          "dependencies": [],
+          "reason": "Python filenames retain language-native naming"
+        },
+        {
+          "id": "m-python-package",
+          "source": "python_package",
+          "classification": "exempt",
+          "dependencies": [],
+          "reason": "Python package directories remain importable"
+        },
+        {
+          "id": "m-vendor",
+          "source": "vendor/upstream_name.txt",
+          "classification": "exempt",
+          "dependencies": [],
+          "reason": "Vendored content is outside authored scope"
+        },
+        {
+          "id": "m-generated",
+          "source": "dist/generated_name.js",
+          "classification": "generated",
+          "dependencies": [],
+          "reason": "Generated output is recreated at its producer"
+        },
+        {
+          "id": "m-lockfile",
+          "source": "package-lock.json",
+          "classification": "generated",
+          "dependencies": [],
+          "reason": "Lockfile output is regenerated"
+        },
+        {
+          "id": "m-tool",
+          "source": "SKILL.md",
+          "classification": "tool-mandated",
+          "dependencies": [],
+          "reason": "The loader requires the exact filename"
+        },
+        {
+          "id": "m-test-magic",
+          "source": "tests/__snapshots__/router_name.snap",
+          "classification": "exempt",
+          "dependencies": [],
+          "reason": "The test runner requires the magic directory"
+        },
+        {
+          "id": "m-frozen",
+          "source": "z_archive/old_note.md",
+          "classification": "frozen",
+          "dependencies": [],
+          "reason": "Frozen history is append-only"
+        }
+      ],
+      "expected": {
+        "plan_summary": {
+          "map_entries": 22,
+          "rename_entries": 14,
+          "pending": 14,
+          "already_at_target": 0,
+          "skipped": 8,
+          "batches": 13
+        },
+        "scc_members": [
+          "m-js",
+          "m-shell"
+        ],
+        "static_reference_kinds": [
+          "config-path",
+          "js-module",
+          "markdown-link",
+          "registry-path",
+          "shell-executable",
+          "shell-source",
+          "symlink-target"
+        ],
+        "dynamic_sites": [
+          {
+            "file": "scripts/runner.sh",
+            "reference_kind": "dynamic-source",
+            "expression": "\"$ROOT/tool.sh\""
+          },
+          {
+            "file": "src/consumer.ts",
+            "reference_kind": "dynamic-glob",
+            "expression": "'./*.ts'"
+          },
+          {
+            "file": "src/consumer.ts",
+            "reference_kind": "dynamic-require",
+            "expression": "dynamicModulePath"
+          }
+        ],
+        "leading_hyphen_safe_argv": [
+          "git",
+          "mv",
+          "--",
+          "-run_script.sh",
+          "-run-tool.sh"
+        ],
+        "source_modes": {
+          "-run_script.sh": "100755",
+          "assets/old_link": "120000",
+          "scripts/old_script.sh": "100755"
+        },
+        "cross_batch_file": "config/old_routes.toml"
+      }
+    },
+    {
+      "id": "collision-exact",
+      "kind": "collision",
+      "files": [
+        {"path": "a_name.md", "content": "a\n"},
+        {"path": "b_name.md", "content": "b\n"}
+      ],
+      "map_entries": [
+        {"id": "m-a", "source": "a_name.md", "target": "same.md", "classification": "rename", "dependencies": []},
+        {"id": "m-b", "source": "b_name.md", "target": "same.md", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "exact target collision"
+    },
+    {
+      "id": "collision-casefold",
+      "kind": "collision",
+      "files": [
+        {"path": "a_name.md", "content": "a\n"},
+        {"path": "b_name.md", "content": "b\n"}
+      ],
+      "map_entries": [
+        {"id": "m-a", "source": "a_name.md", "target": "Docs/Name.md", "classification": "rename", "dependencies": []},
+        {"id": "m-b", "source": "b_name.md", "target": "docs/name.md", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "casefold target collision"
+    },
+    {
+      "id": "collision-nfc",
+      "kind": "collision",
+      "files": [
+        {"path": "a_name.md", "content": "a\n"},
+        {"path": "b_name.md", "content": "b\n"}
+      ],
+      "map_entries": [
+        {"id": "m-a", "source": "a_name.md", "target": "docs/café.md", "classification": "rename", "dependencies": []},
+        {"id": "m-b", "source": "b_name.md", "target": "docs/café.md", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "nfc target collision"
+    },
+    {
+      "id": "ambiguous-reference",
+      "kind": "checker-failure",
+      "files": [
+        {"path": "src/thing.ts", "content": "export default 1;\n"},
+        {"path": "src/thing/index.ts", "content": "export default 2;\n"},
+        {"path": "src/consumer.ts", "content": "import './thing';\n"}
+      ],
+      "map_entries": [
+        {"id": "m-thing", "source": "src/thing.ts", "target": "src/new-thing.ts", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "ambiguous mapped reference"
+    },
+    {
+      "id": "missing-source",
+      "kind": "checker-failure",
+      "files": [
+        {"path": "sentinel.txt", "content": "non-zero scan denominator\n"}
+      ],
+      "map_entries": [
+        {"id": "m-missing", "source": "src/missing_name.ts", "target": "src/missing-name.ts", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "pre state requires source present"
+    },
+    {
+      "id": "undispositioned-dynamic-site",
+      "kind": "checker-failure",
+      "files": [
+        {"path": "src/old_module.ts", "content": "export default 1;\n"},
+        {"path": "src/consumer.ts", "content": "const moduleValue = require(resolveName(name));\n"}
+      ],
+      "map_entries": [
+        {"id": "m-module", "source": "src/old_module.ts", "target": "src/new-module.ts", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "dynamic site lacks a valid disposition"
+    },
+    {
+      "id": "zero-file-scan",
+      "kind": "zero-scan",
+      "files": [],
+      "map_entries": [
+        {"id": "m-missing", "source": "old_name.js", "target": "new-name.js", "classification": "rename", "dependencies": []}
+      ],
+      "expected_error": "zero files"
+    },
+    {
+      "id": "plan-revalidation",
+      "kind": "plan-revalidation",
+      "files": [
+        {"path": "docs/source_name.md", "content": "source\n"}
+      ],
+      "map_entries": [
+        {"id": "m-source", "source": "docs/source_name.md", "target": "docs/source-name.md", "classification": "rename", "dependencies": []}
+      ],
+      "cases": [
+        {"id": "map-drift", "mutation": "map", "expected_error": "stale plan: plan_id changed"},
+        {"id": "dirty-tree", "mutation": "dirty", "expected_error": "dirty tree"},
+        {"id": "head-drift", "mutation": "head", "expected_error": "stale plan"},
+        {"id": "operation-order-drift", "mutation": "order", "expected_error": "exact operation order changed"}
+      ]
+    },
+    {
+      "id": "cas-drift-regeneration",
+      "kind": "cas-drift",
+      "files": [
+        {"path": "src/old_module.ts", "content": "export default 1;\n"},
+        {"path": "src/consumer.ts", "content": "import './old_module';\n"}
+      ],
+      "map_entries": [
+        {"id": "m-cas", "source": "src/old_module.ts", "target": "src/new-module.ts", "classification": "rename", "dependencies": []}
+      ],
+      "drift": {
+        "path": "src/consumer.ts",
+        "content": "// Durable content drift changes the Git blob identity.\nimport './old_module';\n"
+      },
+      "expected": {
+        "map_id": "m-cas",
+        "reference_file": "src/consumer.ts",
+        "cas_rule": "regenerate-on-preimage-drift"
+      }
+    }
+  ]
+}

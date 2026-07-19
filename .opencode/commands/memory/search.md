@@ -31,7 +31,7 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` |
+| Presentation | `.opencode/commands/memory/assets/search-presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design.
 
@@ -42,7 +42,7 @@ Before asking startup questions or displaying results, read the presentation ass
 Execution order:
 
 1. Read the §1 ROUTER CONTRACT argument-resolution output: `ARGS_PRESENT` and `QUERY` are already computed for you.
-2. Read `.opencode/commands/memory/assets/search_presentation.txt` before rendering any response.
+2. Read `.opencode/commands/memory/assets/search-presentation.txt` before rendering any response.
 3. **If `ARGS_PRESENT=true`:** route `QUERY` to the retrieval route (§4 EXECUTION TARGETS), or to the analysis route (§4 EXECUTION TARGETS) when the first token of `QUERY` is a known analysis subcommand. Execute now — do NOT ask the startup question.
 4. **ONLY IF `ARGS_PRESENT=false`:** follow startup routing (below) and ask the one open-ended question.
 5. Render the response from the presentation contract; retrieval results must use the inline contract in §4 EXECUTION TARGETS.
@@ -134,7 +134,7 @@ Known analysis subcommands:
 
 ## 5. PRESENTATION BOUNDARY
 
-The full presentation contract lives in `.opencode/commands/memory/assets/search_presentation.txt`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
+The full presentation contract lives in `.opencode/commands/memory/assets/search-presentation.txt`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
 
 The following content must come from the presentation asset, not from router prose:
 

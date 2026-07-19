@@ -28,9 +28,9 @@ Layout:
 
 | File | What it covers |
 |---|---|
-| [`references/stack_detection.md`](./references/stack_detection.md) | Surface detection (WEBFLOW / OPENCODE / UNKNOWN) plus OpenCode language sub-detection — the primary routing key, resolved from CWD and changed/target files before intent classification. |
-| [`references/smart_routing.md`](./references/smart_routing.md) | Authoritative surface router: intent classification plus surface→resource maps for WEBFLOW, OPENCODE, and MOTION_DEV, with load tiers, verification commands, and the UNKNOWN fallback. |
-| [`references/phase_detection.md`](./references/phase_detection.md) | Phase 1/2/3 development lifecycle (Implementation / Testing + Debugging / Verification) with per-surface resource expectations. |
+| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (WEBFLOW / OPENCODE / UNKNOWN) plus OpenCode language sub-detection — the primary routing key, resolved from CWD and changed/target files before intent classification. |
+| [`references/smart-routing.md`](./references/smart-routing.md) | Authoritative surface router: intent classification plus surface→resource maps for WEBFLOW, OPENCODE, and MOTION_DEV, with load tiers, verification commands, and the UNKNOWN fallback. |
+| [`references/phase-detection.md`](./references/phase-detection.md) | Phase 1/2/3 development lifecycle (Implementation / Testing + Debugging / Verification) with per-surface resource expectations. |
 
 ---
 
@@ -40,9 +40,9 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 | File | What it covers |
 |---|---|
-| [`references/workflow_implement.md`](./references/workflow_implement.md) | Implementation doctrine: research and mutating build work after the router resolves the active surface. |
-| [`references/workflow_debug.md`](./references/workflow_debug.md) | Debugging doctrine: root-cause diagnosis and scoped repair after a symptom, failing command, runtime error, quality failure, or verification failure. |
-| [`references/workflow_verify.md`](./references/workflow_verify.md) | Verification doctrine: the non-mutating evidence phase that runs last, compares against baseline, applies falsifier discipline, and gates any done / works / complete / fixed / passing / ready claim. |
+| [`references/workflow-implement.md`](./references/workflow-implement.md) | Implementation doctrine: research and mutating build work after the router resolves the active surface. |
+| [`references/workflow-debug.md`](./references/workflow-debug.md) | Debugging doctrine: root-cause diagnosis and scoped repair after a symptom, failing command, runtime error, quality failure, or verification failure. |
+| [`references/workflow-verify.md`](./references/workflow-verify.md) | Verification doctrine: the non-mutating evidence phase that runs last, compares against baseline, applies falsifier discipline, and gates any done / works / complete / fixed / passing / ready claim. |
 
 ---
 
@@ -50,9 +50,9 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 | File | What it covers |
 |---|---|
-| [`references/universal-verification_checklist.md`](./references/universal-verification_checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across WEBFLOW or OPENCODE. |
-| [`references/universal-debugging_checklist.md`](./references/universal-debugging_checklist.md) | Stack-agnostic 4-phase debugging workflow: reproduce reliably → identify root cause → test one hypothesis at a time → fix at source. |
-| [`references/performance_loading_checklist.md`](./references/performance_loading_checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading — proves startup wins without a worse first-use experience. |
+| [`references/universal-verification-checklist.md`](./references/universal-verification-checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across WEBFLOW or OPENCODE. |
+| [`references/universal-debugging-checklist.md`](./references/universal-debugging-checklist.md) | Stack-agnostic 4-phase debugging workflow: reproduce reliably → identify root cause → test one hypothesis at a time → fix at source. |
+| [`references/performance-loading-checklist.md`](./references/performance-loading-checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading — proves startup wins without a worse first-use experience. |
 
 ---
 
@@ -60,10 +60,10 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 | File | What it covers |
 |---|---|
-| [`references/universal/code_quality_standards.md`](./references/universal/code_quality_standards.md) | Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate. |
-| [`references/universal/code_style_guide.md`](./references/universal/code_style_guide.md) | Language-agnostic naming, file-structure, commenting, and formatting principles; stack-specific enforcement lives in each stack's standards doc. |
-| [`references/universal/error_recovery.md`](./references/universal/error_recovery.md) | Surface-agnostic recovery decision tree — Document → Isolate → Verify prerequisites → Retry verbose → Escalate — for build, deploy, test, and runtime failures. |
-| [`references/universal/multi_agent_research.md`](./references/universal/multi_agent_research.md) | Parallel-agent specialization model for comprehensive codebase analysis and performance audits when sequential investigation is too slow. |
+| [`references/universal/code-quality-standards.md`](./references/universal/code-quality-standards.md) | Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate. |
+| [`references/universal/code-style-guide.md`](./references/universal/code-style-guide.md) | Language-agnostic naming, file-structure, commenting, and formatting principles; stack-specific enforcement lives in each stack's standards doc. |
+| [`references/universal/error-recovery.md`](./references/universal/error-recovery.md) | Surface-agnostic recovery decision tree — Document → Isolate → Verify prerequisites → Retry verbose → Escalate — for build, deploy, test, and runtime failures. |
+| [`references/universal/multi-agent-research.md`](./references/universal/multi-agent-research.md) | Parallel-agent specialization model for comprehensive codebase analysis and performance audits when sequential investigation is too slow. |
 
 ---
 
@@ -71,8 +71,8 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 | Path | What it is |
 |---|---|
-| [`assets/patterns/validation_patterns.js`](./assets/patterns/validation_patterns.js) | Defense-in-depth, multi-layer validation pattern templates (production-ready). |
-| [`assets/patterns/wait_patterns.js`](./assets/patterns/wait_patterns.js) | Observer-based async DOM waiting patterns (MutationObserver / IntersectionObserver) instead of polling. |
+| [`assets/patterns/validation-patterns.js`](./assets/patterns/validation-patterns.js) | Defense-in-depth, multi-layer validation pattern templates (production-ready). |
+| [`assets/patterns/wait-patterns.js`](./assets/patterns/wait-patterns.js) | Observer-based async DOM waiting patterns (MutationObserver / IntersectionObserver) instead of polling. |
 | [`assets/patterns/README.md`](./assets/patterns/README.md) | Code-facing README for the pattern scripts in this folder. |
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cross-skill symlink closure (032 phase 007 child 002)"
+title: "Checklist: cross-skill symlink closure (020 phase 007 child 002)"
 description: "Blocking SOL verifier contract for the cross-skill symlink closure: complete edge manifest, atomic target/pointer ordering, relative-link and mode preservation, reference resolution, and component handoff."
 trigger_phrases:
   - "cross-skill symlink checklist"

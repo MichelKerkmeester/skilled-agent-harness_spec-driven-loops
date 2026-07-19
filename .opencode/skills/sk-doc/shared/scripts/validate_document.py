@@ -31,7 +31,7 @@ import argparse
 import json
 import re
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Dict, List, Optional, Tuple
 
 
@@ -133,10 +133,17 @@ TEMPLATE_PATTERNS = [
     'system-spec-kit/templates/',  # Spec folder templates are minimal by design
 ]
 
-# Specialized leaf-doc root dir names — hyphen and underscore forms both accepted
-# since consumers have renamed these directories to hyphen-case over time.
-PLAYBOOK_DIR_NAMES = ('manual_testing_playbook', 'manual-testing-playbook')
-CATALOG_DIR_NAMES = ('feature_catalog', 'feature-catalog')
+# Specialized leaf-doc root dir names. Both the hyphen and underscore forms are
+# accepted while the naming migration is in flight; the shared resolver is the
+# single source of truth so this validator and the guards never diverge on which
+# root names are recognized. Fall back to local copies so the validator still runs
+# standalone if the sibling cannot be imported.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from naming_root_resolver import (  # type: ignore
+    PLAYBOOK_ROOT_NAMES as PLAYBOOK_DIR_NAMES,
+    CATALOG_ROOT_NAMES as CATALOG_DIR_NAMES,
+    assert_supported_root_path,
+)
 
 
 def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
@@ -167,7 +174,7 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
 
 def load_template_rules(script_dir: Path) -> Dict[str, Any]:
     """Load template_rules.json from assets folder."""
-    rules_path = script_dir.parent / "assets" / "template_rules.json"
+    rules_path = script_dir.parent / "assets" / "template-rules.json"
     if not rules_path.exists():
         print(f"Error: template_rules.json not found at {rules_path}", file=sys.stderr)
         sys.exit(2)
@@ -184,26 +191,28 @@ def load_rules() -> Dict[str, Any]:
 def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
+    assert_supported_root_path(path_lower)
+    portable_path = PurePosixPath(path_lower.replace('\\', '/'))
 
     if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in PLAYBOOK_DIR_NAMES):
         # A per-feature playbook leaf sits one level below the category root
-        # (manual_testing_playbook/<category>/<feature>.md). Classify by that structural
+        # (manual-testing-playbook/<category>/<feature>.md). Classify by that structural
         # position rather than an ordinal folder-name prefix, so category folders can be
         # named by meaning alone. The root index file (whose parent IS the
         # manual_testing_playbook dir) is intentionally excluded.
-        if Path(path_lower).parent.parent.name in PLAYBOOK_DIR_NAMES:
+        if portable_path.parent.parent.name in PLAYBOOK_DIR_NAMES:
             return 'playbook_feature'
     # Per-feature catalog leaves sit one level below the catalog root
-    # (feature_catalog/<category>/<feature>.md). These carry the Validation And Tests
+    # (feature-catalog/<category>/<feature>.md). These carry the Validation And Tests
     # table whose Type taxonomy and placeholder rows the generic readme path misses.
     # Classify by structural position rather than an ordinal folder-name prefix; the
     # root index file (whose parent IS the feature_catalog dir) stays excluded.
     if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in CATALOG_DIR_NAMES):
-        if Path(path_lower).parent.parent.name in CATALOG_DIR_NAMES:
+        if portable_path.parent.parent.name in CATALOG_DIR_NAMES:
             return 'feature_catalog'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command'
-    if '/install_guides/' in path_lower or '\\install_guides\\' in path_lower:
+    if '/install-guides/' in path_lower or '\\install_guides\\' in path_lower:
         return 'install_guide'
     if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
         return 'install_guide'

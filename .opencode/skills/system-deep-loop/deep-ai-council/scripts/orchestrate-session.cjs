@@ -38,8 +38,8 @@ const DEFAULT_HEARTBEAT_INTERVAL_MS = 45_000;
 const DEFAULT_SEAT_TIMEOUT_MS = 600_000;
 const DEFAULT_SEAT_KILL_GRACE_MS = 250;
 const DEFAULT_EXECUTOR_MODEL = 'openai/gpt-5.5-fast';
-const PROMPT_PACK_PATH = path.join(__dirname, '..', 'assets', 'prompt_pack_round.md');
-const COUNCIL_CONFIG_PATH = path.join(__dirname, '..', 'assets', 'deep_ai_council_config.json');
+const PROMPT_PACK_PATH = path.join(__dirname, '..', 'assets', 'prompt-pack-round.md');
+const COUNCIL_CONFIG_PATH = path.join(__dirname, '..', 'assets', 'deep-ai-council-config.json');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

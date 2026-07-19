@@ -46,11 +46,11 @@ Route by artifact type first, then by folder purpose.
 
 | Request | Output | Primary Template |
 | --- | --- | --- |
-| Project, skill, feature or component README | `README.md` in the target folder | `assets/readme_template.md` |
-| Source-code folder README | `README.md` in the source folder | `assets/readme_code_template.md` |
-| Install guide | Markdown guide, usually under `.opencode/install_guides/` | `assets/install_guide_template.md` |
+| Project, skill, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
+| Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
+| Install guide | `.opencode/install-guides/<guide-slug>.md` | `assets/install-guide-template.md` |
 
-This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/`.
+This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install-guide/` and `assets/`.
 
 Router resilience rules:
 
@@ -129,7 +129,7 @@ def route_readme_request(request):
         }
 
     artifact_type = max(scores, key=scores.get)               # Tier 2: happy path
-    # references/readme/ and references/install_guide/ are artifact groups, not a runtime
+    # references/readme/ and references/install-guide/ are artifact groups, not a runtime
     # key-space: this packet does not use runtime keyed resource discovery. The artifact
     # type selects the template already documented above; load the flat refs that exist.
     for path in sorted(inventory):
@@ -289,19 +289,20 @@ Code-folder README rules:
 
 1. Confirm the install needs a guide rather than a one-line command or link to official docs.
 2. Identify the install-guide type: MCP server, CLI tool, plugin or development dependency.
-3. Read the tool docs, repo files, package metadata and existing config examples.
-4. Build the folded five-phase flow: prerequisites, installation, initialization when needed, configuration and verification.
-5. Use the 11-section install-guide structure: sections 0 through 10, with sections 7 and 8 optional.
-6. Put an AI-first copy-paste prompt at the top that states what the AI will do and the expected time.
-7. Include a 2-4 sentence H1 description that states what the guide covers, key capabilities, workflow or approach and value.
-8. Add a Core Principle blockquote in Overview: install once, verify at each step.
-9. End every phase with a validation checkpoint named `phase_N_complete`.
-10. Add a STOP block after every validation checkpoint that can fail.
-11. Use one command per purpose and make commands copy-pasteable.
-12. Include expected output for every validation command.
-13. Include platform-specific configuration only when it is real for the tool.
-14. Put troubleshooting in its own reference section, not inside the phase flow.
-15. Test commands when feasible, or mark unverified commands clearly.
+3. Resolve `<guide-slug>` as lowercase kebab-case (`^[a-z0-9]+(?:-[a-z0-9]+)*$`). Reject ambiguous or empty names instead of rewriting a target path blindly.
+4. Read the tool docs, repo files, package metadata and existing config examples.
+5. Build the folded five-phase flow: prerequisites, installation, initialization when needed, configuration and verification.
+6. Use the 11-section install-guide structure: sections 0 through 10, with sections 7 and 8 optional.
+7. Put an AI-first copy-paste prompt at the top that states what the AI will do and the expected time.
+8. Include a 2-4 sentence H1 description that states what the guide covers, key capabilities, workflow or approach and value.
+9. Add a Core Principle blockquote in Overview: install once, verify at each step.
+10. End every phase with a validation checkpoint named `phase_N_complete`.
+11. Add a STOP block after every validation checkpoint that can fail.
+12. Use one command per purpose and make commands copy-pasteable.
+13. Include expected output for every validation command.
+14. Include platform-specific configuration only when it is real for the tool.
+15. Put troubleshooting in its own reference section, not inside the phase flow.
+16. Test commands when feasible, or mark unverified commands clearly.
 
 Install guide phases:
 
@@ -458,12 +459,12 @@ Escalate if:
 
 The core workflow lives in this `SKILL.md`. Use these files only for deep overflow detail, exhaustive scaffolds, edge cases and long examples:
 
-- `assets/readme_template.md` for the full fillable general README scaffold.
-- `assets/readme_code_template.md` for the full fillable code-folder scaffold and diagram examples.
-- `assets/install_guide_template.md` for full install-guide examples and platform config patterns.
-- `references/README.md` for the overflow route map that indexes the `readme/` and `install_guide/` reference groups.
+- `assets/readme-template.md` for the full fillable general README scaffold.
+- `assets/readme-code-template.md` for the full fillable code-folder scaffold and diagram examples.
+- `assets/install-guide-template.md` for full install-guide examples and platform config patterns.
+- `references/README.md` for the overflow route map that indexes the `readme/` and `install-guide/` reference groups.
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
-- `references/install_guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
-- `../shared/references/core_standards.md` for shared document formatting rules.
-- `../shared/references/hvr_rules.md` for the full Human Voice Rules.
-- `../shared/references/evergreen_packet_id_rule.md` for current-state documentation rules.
+- `references/install-guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
+- `../shared/references/core-standards.md` for shared document formatting rules.
+- `../shared/references/hvr-rules.md` for the full Human Voice Rules.
+- `../shared/references/evergreen-packet-id-rule.md` for current-state documentation rules.

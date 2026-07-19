@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode runtime (032 component 011 phase 004)"
+title: "Feature Specification: mcp-code-mode runtime (020 component 011 phase 004)"
 description: "The runtime tree must be checked independently because hook and library paths are executed by Node and referenced by manual scenarios. The current runtime names are already kebab-case, so this phase records a zero-candidate proof at the pinned baseline and closes any runtime path references if a later inventory reveals an eligible name."
 trigger_phrases:
   - "mcp-code-mode runtime naming"
@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode runtime
 
@@ -39,7 +39,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 004 of the 032 mcp-code-mode component migration |
+| **Origin** | Phase 004 of the 020 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -19,7 +19,7 @@ trigger_phrases:
 
 The `shared/` directory is the **canonical source** for shared modules used by both:
 - **CLI scripts** (`scripts/`) - `generate-context.ts` and other utilities
-- **MCP server** (`mcp_server/`) - `context-server.ts` and memory tools
+- **MCP server** (`mcp-server/`) - `context-server.ts` and memory tools
 
 This consolidation eliminates code duplication and ensures consistent behavior across all entry points.
 These modules support packet-doc-first continuity: `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, rebuilds active context from `handover.md -> _memory.continuity -> spec docs`, while generated continuity support artifacts remain supporting search material.
@@ -43,7 +43,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 │           ┌───────────┴───────────────────┐                      │
 │           │                               │                      │
 │    ┌──────┴──────┐                 ┌──────┴──────┐               │
-│    │scripts/lib  │                 │mcp_server/  │               │
+│    │scripts/lib  │                 │mcp-server/  │               │
 │    │(RE-EXPORTS) │                 │lib/         │               │
 │    ├─────────────┤                 │(RE-EXPORTS) │               │
 │    │embeddings.ts│                 ├─────────────┤               │
@@ -91,7 +91,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 
 ## 1B. BOUNDARY AND IMPORT POLICY
 
-`shared/` is the canonical source for modules consumed by **both** `scripts/` and `mcp_server/`.
+`shared/` is the canonical source for modules consumed by **both** `scripts/` and `mcp-server/`.
 
 - **Import convention**: Consumers should import via `@spec-kit/shared/*` path alias
 - **Stability**: Shared modules must be stable because breaking changes require coordination with both consumers
@@ -109,7 +109,7 @@ These modules support packet-doc-first continuity: `/speckit:resume`, implemente
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
-// From MCP server (mcp_server/*.ts)
+// From MCP server (mcp-server/*.ts)
 import { generateEmbedding } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 ```
@@ -188,7 +188,7 @@ shared/
 │   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
 ├── ipc/
 │   └── socket-server.ts        # Shared IPC socket server helper
-├── mcp_server/
+├── mcp-server/
 	│   └── database/
 	│       ├── .db-updated         # Update marker for the shared database directory
 	│       ├── README.md           # Database directory notes and handling guidance
@@ -268,7 +268,7 @@ shared/
 
 Two re-export shims exist for path convenience:
 - `scripts/lib/embeddings.ts` → `export * from '@spec-kit/shared/embeddings'`
-- `mcp_server/lib/providers/embeddings.ts` → explicit named re-exports from `@spec-kit/shared/embeddings`
+- `mcp-server/lib/providers/embeddings.ts` → explicit named re-exports from `@spec-kit/shared/embeddings`
 
 The canonical source is the `shared/` package. `shared/embeddings.ts` is the public shared entry point for embeddings, while `shared/embeddings/` contains provider-specific implementation details. These shims stay implementation-free: the scripts shim uses a barrel re-export, while the MCP server shim uses explicit named re-exports for auditability.
 
@@ -377,7 +377,7 @@ console.log(`Triggers: ${triggers.join(', ')}`)
 ### Example 2: MCP Server Usage
 
 ```typescript
-// In mcp_server/context-server.ts
+// In mcp-server/context-server.ts
 import { generateQueryEmbedding, preWarmModel } from '@spec-kit/shared/embeddings'
 import { extractTriggerPhrases } from '@spec-kit/shared/trigger-extractor'
 
@@ -475,7 +475,7 @@ await preWarmModel()
 ```bash
 # Delete old database and let system create a new one
 # Vector shard filenames still encode provider, model, dim and dtype.
-rm .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite*
+rm .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite*
 ```
 
 ---
@@ -535,7 +535,7 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | Document                                                | Purpose                                    |
 | ------------------------------------------------------- | ------------------------------------------ |
 | [scripts/lib/README.md](../scripts/lib/README.md)       | CLI scripts library (re-exports from here) |
-| [mcp_server/lib/README.md](../mcp_server/lib/README.md) | MCP server library (re-exports from here)  |
+| [mcp-server/lib/README.md](../mcp-server/lib/README.md) | MCP server library (re-exports from here)  |
 | [embeddings/README.md](./embeddings/README.md)          | Embeddings factory detailed docs           |
 | [SKILL.md](../SKILL.md)                                 | Parent skill documentation                 |
 

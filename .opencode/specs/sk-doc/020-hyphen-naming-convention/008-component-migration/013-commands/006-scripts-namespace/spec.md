@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: scripts command namespace naming (032 phase 008/013/006)"
+title: "Feature Specification: scripts command namespace naming (020 phase 008/013/006)"
 description: "The shared command-reference checker namespace is already kebab-clean. This phase records the audit, preserves the intentionally broken negative fixture, and accepts only evidence that no in-scope filesystem rename is required."
 trigger_phrases:
   - "scripts command namespace naming"
@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: scripts command namespace naming
 
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 006 of the commands-surface migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 006 of the commands-surface migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - '.opencode/skills/system-spec-kit/mcp_server/**'
+      - '.opencode/skills/system-spec-kit/mcp-server/**'
       - '.opencode/skills/system-spec-kit/shared/**'
 
 jobs:
@@ -23,19 +23,19 @@ jobs:
           # The /dist/ directory is excluded (stale compiled output regenerates on next tsc).
           # The test/stress files are also excluded because they may mock the boundary.
           MATCHES=$(rg -n "from ['\"]?.*system-code-graph" \
-            .opencode/skills/system-spec-kit/mcp_server/ \
+            .opencode/skills/system-spec-kit/mcp-server/ \
             --type ts --type js \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             || true)
           if [ -n "$MATCHES" ]; then
-            echo "::error::Cross-skill imports detected in spec-kit/mcp_server/."
+            echo "::error::Cross-skill imports detected in spec-kit/mcp-server/."
             echo "$MATCHES"
             echo ""
             echo "Per the 015 isolation arc + 018 remediation, spec-kit MUST NOT import from system-code-graph at the TypeScript source level."
-            echo "Use the boundary wrapper (mcp_server/lib/code-graph-boundary.ts) or @spec-kit/shared types instead."
+            echo "Use the boundary wrapper (mcp-server/lib/code-graph-boundary.ts) or @spec-kit/shared types instead."
             exit 1
           fi
           echo "✅ No cross-skill imports found."
@@ -47,15 +47,15 @@ jobs:
           # Blocking: code-graph MUST NOT import from system-spec-kit after Path-1 isolation refactor.
           # Only production source files are checked; tests and stress_test are excluded.
           MATCHES=$(rg -n "from ['\"][^'\"]*system-spec-kit" \
-            .opencode/skills/system-code-graph/mcp_server/ \
+            .opencode/skills/system-code-graph/mcp-server/ \
             --type ts \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             || true)
           if [ -n "$MATCHES" ]; then
-            echo "::error::Cross-skill imports detected in code-graph/mcp_server/ (reverse direction)."
+            echo "::error::Cross-skill imports detected in code-graph/mcp-server/ (reverse direction)."
             echo "$MATCHES"
             echo ""
             echo "Per the Path-1 isolation refactor, system-code-graph MUST NOT import from system-spec-kit at the TypeScript source level."
@@ -67,16 +67,16 @@ jobs:
         run: |
           set -euo pipefail
           MATCHES=$(rg -n "from ['\"][^'\"]*system-spec-kit" \
-            .opencode/skills/system-skill-advisor/mcp_server/ \
+            .opencode/skills/system-skill-advisor/mcp-server/ \
             --type ts \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             --glob '!**/lib/shared/embeddings/**' \
             || true)
           if [ -n "$MATCHES" ]; then
-            echo "::error::Cross-skill imports detected in skill-advisor/mcp_server/ (reverse direction)."
+            echo "::error::Cross-skill imports detected in skill-advisor/mcp-server/ (reverse direction)."
             echo "$MATCHES"
             echo ""
             echo "Per the three-way-isolation contract (packet 040), system-skill-advisor MUST NOT"
@@ -93,12 +93,12 @@ jobs:
           # @spec-kit/shared/embeddings/* is the documented exception (visible via the
           # lib/shared/embeddings symlink). All other @spec-kit/* imports are blocked.
           MATCHES=$(rg -n "from ['\"]@spec-kit/" \
-            .opencode/skills/system-skill-advisor/mcp_server/ \
+            .opencode/skills/system-skill-advisor/mcp-server/ \
             --type ts \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             | grep -v "@spec-kit/shared/embeddings/" \
             || true)
           if [ -n "$MATCHES" ]; then
@@ -111,12 +111,12 @@ jobs:
         run: |
           set -euo pipefail
           MATCHES=$(rg -n "from ['\"]@spec-kit/" \
-            .opencode/skills/system-code-graph/mcp_server/ \
+            .opencode/skills/system-code-graph/mcp-server/ \
             --type ts \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             || true)
           if [ -n "$MATCHES" ]; then
             echo "::error::@spec-kit/* workspace-alias imports detected in code-graph production .ts."
@@ -128,15 +128,15 @@ jobs:
         run: |
           set -euo pipefail
           MATCHES=$(rg -n "from ['\"]?.*system-skill-advisor" \
-            .opencode/skills/system-spec-kit/mcp_server/ \
+            .opencode/skills/system-spec-kit/mcp-server/ \
             --type ts --type js \
             --glob '!**/dist/**' \
             --glob '!**/node_modules/**' \
             --glob '!**/tests/**' \
-            --glob '!**/stress_test/**' \
+            --glob '!**/stress-test/**' \
             || true)
           if [ -n "$MATCHES" ]; then
-            echo "::error::Cross-skill imports detected in spec-kit/mcp_server/."
+            echo "::error::Cross-skill imports detected in spec-kit/mcp-server/."
             echo "$MATCHES"
             echo ""
             echo "Per the 016 isolation arc, spec-kit MUST NOT import from system-skill-advisor at the TypeScript source level."

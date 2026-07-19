@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode changelog verification (032 component 011 phase 006)"
+title: "Implementation Plan: mcp-code-mode changelog verification (020 component 011 phase 006)"
 description: "Verify the post-migration mcp-code-mode changelog entry and skill version bump against the five preceding phase reports. Keep this phase read-only with respect to the migration and fail when the entry is missing, incomplete, or inconsistent."
 trigger_phrases:
   - "mcp-code-mode changelog verify implementation plan"

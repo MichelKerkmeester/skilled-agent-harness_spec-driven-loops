@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # Manual Testing Playbook Reference Implementations
 
-Canonical, shipped playbook packages to model a new package on, plus the scaffold templates that seed one. Study a shipped package before authoring a new one - the layout, root-vs-feature split, and scenario tables are already proven.
+Shipped playbook content models to study, plus the scaffold templates that seed a new canonical package. Existing trees retain their legacy underscore roots until the repository content migration; new output uses kebab-case filesystem names.
 
 ---
 
@@ -28,15 +28,15 @@ The fastest way to author a correct playbook is to model it on one that already 
 
 ## 2. REFERENCE IMPLEMENTATIONS
 
-**Shipped playbook packages** (study the root-vs-feature split and the scenario tables):
+**Shipped legacy playbook packages** (study the root-vs-feature split and the scenario tables, not their pending root spelling):
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/` - multi-category package with orchestration-heavy scenarios
-- `.opencode/skills/system-code-graph/manual_testing_playbook/` - structural and runtime validation package
+- `.opencode/skills/system-spec-kit/manual-testing-playbook/` - multi-category package with orchestration-heavy scenarios
+- `.opencode/skills/system-code-graph/manual-testing-playbook/` - structural and runtime validation package
 
 **Scaffold templates** (copy from these to seed a new package):
 
-- [manual_testing_playbook_template.md](../assets/manual_testing_playbook_template.md) - root playbook scaffold for `manual_testing_playbook/manual_testing_playbook.md`
-- [manual_testing_playbook_snippet_template.md](../assets/manual_testing_playbook_snippet_template.md) - per-feature scaffold for `manual_testing_playbook/{category_name}/{feature_name}.md`
+- [manual-testing-playbook-template.md](../assets/manual-testing-playbook-template.md) - source scaffold for `manual-testing-playbook/manual-testing-playbook.md`
+- [manual-testing-playbook-snippet-template.md](../assets/manual-testing-playbook-snippet-template.md) - source scaffold for `manual-testing-playbook/{CATEGORY_DIR}/{FEATURE_SLUG}.md`, with kebab-case placeholder values
 
 ---
 

@@ -2,7 +2,7 @@
 // MODULE: Folder Scoring
 // ───────────────────────────────────────────────────────────────────
 
-// Canonical location (moved from mcp_server/lib/scoring/folder-scoring.js)
+// Canonical location (moved from mcp-server/lib/scoring/folder-scoring.js)
 
 import type {
   ArchivePattern,

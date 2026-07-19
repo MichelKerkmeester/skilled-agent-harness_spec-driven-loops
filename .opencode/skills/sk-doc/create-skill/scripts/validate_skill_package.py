@@ -78,7 +78,7 @@ def main() -> int:
     parser.add_argument(
         '--strict',
         action='store_true',
-        help="Promote package validation warnings covered by strict mode",
+        help="Promote contract warnings, including noncanonical generated paths",
     )
     parser.add_argument(
         '--json',
@@ -101,7 +101,12 @@ def main() -> int:
     if args.strict:
         package_command.append('--strict')
 
-    checks = [run_check('package_skill.py --check', package_command)]
+    package_check_name = (
+        'package_skill.py --check --strict'
+        if args.strict
+        else 'package_skill.py --check'
+    )
+    checks = [run_check(package_check_name, package_command)]
     missing_checker_error = None
 
     if kind == 'parent':

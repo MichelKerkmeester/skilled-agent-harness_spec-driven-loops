@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-skill scaffolding and packaging (032 phase 003 child 001)"
+title: "Feature Specification: create-skill scaffolding and packaging (020 phase 003 child 001)"
 description: "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not."
 trigger_phrases:
   - "create-skill scaffolding naming"
@@ -11,20 +11,20 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-18T06:41:37.848Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 contract for create-skill and packaging output names"
-    next_safe_action: "Run the standalone and parent-skill scaffolds into isolated temporary directories"
+    recent_action: "Completed create-skill scaffold and package output naming migration"
+    next_safe_action: "No child work remains"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Create-skill Scaffolding and Packaging
 
@@ -38,10 +38,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child 001 of phase 003 in the 032 kebab-case filesystem-naming program |
+| **Origin** | Child 001 of phase 003 in the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -98,5 +98,5 @@ The main risk is making package validation fail on pre-existing repository debt 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking; the policy, exemptions, and staged migration boundary are fixed by the 032 parent and DR-001 through DR-010.
+None blocking; the policy, exemptions, and staged migration boundary are fixed by the 020 parent and DR-001 through DR-010.
 <!-- /ANCHOR:questions -->

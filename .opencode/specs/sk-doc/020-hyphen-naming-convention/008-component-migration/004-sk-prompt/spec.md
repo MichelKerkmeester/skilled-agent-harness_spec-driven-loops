@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt component migration (032 phase 004)"
+title: "Feature Specification: sk-prompt component migration (020 phase 004)"
 description: "Phase parent for the kebab-case filesystem-naming work across the sk-prompt hub, its prompt-improve and prompt-models packets, shared playbooks, benchmark artifacts, and release records. The child phases keep the rename maps, reference rewrites, verification contracts, and rollup evidence independently reviewable."
 trigger_phrases:
   - "sk-prompt kebab-case migration"

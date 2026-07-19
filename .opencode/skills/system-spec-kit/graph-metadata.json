@@ -105,10 +105,10 @@
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
       ".opencode/skills/system-spec-kit/config/config.jsonc",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
@@ -135,13 +135,13 @@
       {
         "name": "quick_reference",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
         "source": "derived"
       },
       {
         "name": "memory_system",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
         "source": "derived"
       },
       {
@@ -153,7 +153,7 @@
       {
         "name": "context-server",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
         "source": "derived"
       },
       {
@@ -180,8 +180,8 @@
       "SKILL.md",
       "README.md",
       "ARCHITECTURE.md",
-      "references/workflows/quick_reference.md",
-      "references/memory/memory_system.md"
+      "references/workflows/quick-reference.md",
+      "references/memory/memory-system.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-04-13T23:00:00Z"

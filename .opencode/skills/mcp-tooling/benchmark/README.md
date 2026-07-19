@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 # mcp-tooling — Skill Benchmark Runs
 
-> Lane C run storage for the six-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer — never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md`.
+> Lane C run storage for the six-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer — never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md`.
 
 ## Verdict (latest)
 

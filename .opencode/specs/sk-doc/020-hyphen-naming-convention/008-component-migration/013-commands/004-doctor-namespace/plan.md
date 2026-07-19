@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: doctor command namespace naming (032 phase 008/013/004)"
+title: "Implementation Plan: doctor command namespace naming (020 phase 008/013/004)"
 description: "Plan for renaming maintained doctor asset files, repairing route and presentation path values, and proving the exact route-manifest and Python exemptions remain intact."
 trigger_phrases:
   - "doctor namespace naming plan"
@@ -109,8 +109,8 @@ Apply the 16 asset rows as a semantic rename closure, then update only path-valu
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 phase 005 rename/reference tooling | Internal | Required before execution | Route/path edits could alter keys or miss dynamic consumers. |
-| 032 phase 006 frozen map | Internal | Required before execution | Maintained and exempt ownership is not fixed. |
+| 020 phase 005 rename/reference tooling | Internal | Required before execution | Route/path edits could alter keys or miss dynamic consumers. |
+| 020 phase 006 frozen map | Internal | Required before execution | Maintained and exempt ownership is not fixed. |
 | 000 baseline route/helper evidence | Internal | Required before verification | Doctor parity cannot be proven. |
 | Doctor route manifest contract | Internal | Required before execution | Exact filename and route-ID boundary could be violated. |
 <!-- /ANCHOR:dependencies -->

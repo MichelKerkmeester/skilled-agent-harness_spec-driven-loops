@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: sk-git component migration (032 phase parent)"
+title: "Feature Specification: sk-git component migration (020 phase parent)"
 description: "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills."
 trigger_phrases:
   - "sk-git kebab-case migration"
   - "sk-git component naming phases"
-  - "032 sk-git phase map"
+  - "020 sk-git phase map"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
@@ -71,7 +71,7 @@ This parent partitions the work into independent child phases. The children desc
 ### Out of Scope
 - Renaming code, scripts, Python .py files, Python import-package directories, or tool-mandated names.
 - Changing JSON/YAML/TOML keys, frontmatter fields, or non-path values.
-- Renaming feature-catalog paths, shared infrastructure, other skills, or any sibling 032 component subtree.
+- Renaming feature-catalog paths, shared infrastructure, other skills, or any sibling 020 component subtree.
 - Executing any rename, reference rewrite, changelog edit, version bump, or validation run during this authoring pass.
 <!-- /ANCHOR:scope -->
 

@@ -30,7 +30,7 @@ const contract = require('../lib/leaf-resource-contract.cjs');
 const SK_DOC_ROOT = path.join(__dirname, '..', '..', '..');
 const REGISTRY_PATH = path.join(SK_DOC_ROOT, 'mode-registry.json');
 const DOC_QUALITY_FIXTURE_PATH = path.join(
-  SK_DOC_ROOT, 'manual_testing_playbook', 'intent_detection', 'doc_quality.md',
+  SK_DOC_ROOT, 'manual-testing-playbook', 'intent-detection', 'doc-quality.md',
 );
 
 function readRegistryModes() {
@@ -63,10 +63,10 @@ function testNormalizationToTypedPair() {
   );
   // Leading "./" and backslashes are stripped/normalized, not rejected.
   assert.deepEqual(
-    contract.makeTypedPair('create-skill', './assets/skill/skill_md_template.md'),
-    { workflowMode: 'create-skill', leafResourceId: 'assets/skill/skill_md_template.md' },
+    contract.makeTypedPair('create-skill', './assets/skill/skill-md-template.md'),
+    { workflowMode: 'create-skill', leafResourceId: 'assets/skill/skill-md-template.md' },
   );
-  assert.equal(contract.normalizeLeafResourceId('references\\hvr_rules.md'), 'references/hvr_rules.md');
+  assert.equal(contract.normalizeLeafResourceId('references\\hvr-rules.md'), 'references/hvr-rules.md');
 }
 
 function testMakeTypedPairRejectsEmptyWorkflowMode() {
@@ -144,16 +144,16 @@ function testCanonicalBytesAreDeterministic() {
   const manifestA = contract.buildManifest({
     resourceContractVersion: 1,
     modeEntries: [
-      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['references/README.md', 'assets/readme/install_guide_template.md'] },
-      { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['assets/agent_template.md', 'references/README.md'] },
+      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['references/README.md', 'assets/readme/install-guide-template.md'] },
+      { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['assets/agent-template.md', 'references/README.md'] },
     ],
   });
   // Same logical input, different insertion order (modes reversed, leaves reversed).
   const manifestB = contract.buildManifest({
     resourceContractVersion: 1,
     modeEntries: [
-      { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['references/README.md', 'assets/agent_template.md'] },
-      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['assets/readme/install_guide_template.md', 'references/README.md'] },
+      { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['references/README.md', 'assets/agent-template.md'] },
+      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['assets/readme/install-guide-template.md', 'references/README.md'] },
     ],
   });
 
@@ -212,14 +212,14 @@ function testDualReadOfRealLegacyFixtureString() {
 // only through an authored alias entry, never through generic prefix
 // stripping of "../shared/".
 function testDualReadOfSharedAliasRequiresAuthoredEntry() {
-  const raw = '../shared/assets/changelog_template.md';
+  const raw = '../shared/assets/changelog-template.md';
   const noAlias = contract.dualReadLegacyResource({ raw, declaredModes: [], aliasEntries: [] });
   assert.equal(noAlias.ok, false, 'a shared-prefixed string must not resolve without an authored alias');
 
-  const aliasEntries = [{ workflowMode: 'create-changelog', leafResourceId: 'assets/changelog_template.md', diskPath: 'shared/assets/changelog_template.md' }];
+  const aliasEntries = [{ workflowMode: 'create-changelog', leafResourceId: 'assets/changelog-template.md', diskPath: 'shared/assets/changelog-template.md' }];
   const withAlias = contract.dualReadLegacyResource({ raw, declaredModes: [], aliasEntries });
   assert.equal(withAlias.ok, true);
-  assert.deepEqual(withAlias.pair, { workflowMode: 'create-changelog', leafResourceId: 'assets/changelog_template.md' });
+  assert.deepEqual(withAlias.pair, { workflowMode: 'create-changelog', leafResourceId: 'assets/changelog-template.md' });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-review filesystem names (032 phase 008/004)"
+title: "Feature Specification: code-review filesystem names (020 phase 008/004)"
 description: "The code-review mode stores review assets, manual-review scenarios, benchmark labels, and reference documents under snake_case names. Those names are embedded in review routing, checklist links, and scenario indexes, so this phase defines a complete kebab-case rename/reference closure without changing review severity or security behavior."
 trigger_phrases:
   - "code-review naming migration"
@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: code-review filesystem names
 
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-code |
-| **Origin** | Phase 004 of the sk-code component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 004 of the sk-code component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

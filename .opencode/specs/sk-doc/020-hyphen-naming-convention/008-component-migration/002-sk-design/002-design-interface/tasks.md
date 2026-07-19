@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Design-interface (032 phase 002)"
-description: "Task breakdown for Design-interface in the 032 sk-design naming subtree."
+title: "Tasks: Design-interface (020 phase 002)"
+description: "Task breakdown for Design-interface in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-interface tasks"
   - "sk-design design-interface execution"
-  - "032 design-interface checklist"
+  - "020 design-interface checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Design-interface (032 phase 002)
+# Tasks: Design-interface (020 phase 002)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

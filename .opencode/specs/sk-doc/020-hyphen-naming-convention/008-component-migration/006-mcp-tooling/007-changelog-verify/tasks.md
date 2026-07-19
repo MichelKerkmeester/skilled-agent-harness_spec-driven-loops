@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-tooling changelog verification (032 phase 007)"
+title: "Tasks: mcp-tooling changelog verification (020 phase 007)"
 description: "Tasks for phase 007 of the mcp-tooling component naming migration: verify append-only changelog entries and version bumps without renaming files."
 trigger_phrases:
   - "mcp-tooling changelog tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: prompt-models asset and reference names (032 phase 004.003)"
+title: "Feature Specification: prompt-models asset and reference names (020 phase 004.003)"
 description: "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by active Markdown and skill references. This phase renames those packet-owned paths to kebab-case, updates path-valued consumers, and preserves model IDs, JSON keys, Python/package exemptions, and generated benchmark output."
 trigger_phrases:
   - "prompt-models kebab-case migration"
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: prompt-models asset and reference names
 
@@ -51,7 +51,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-prompt |
-| **Origin** | Phase 003 of the sk-prompt component subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 003 of the sk-prompt component subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

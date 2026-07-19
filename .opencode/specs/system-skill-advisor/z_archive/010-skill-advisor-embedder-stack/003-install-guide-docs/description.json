@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/003-install-guide-docs",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/003-install-guide-docs",
   "description": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
   "keywords": [
     "document",
@@ -12,11 +12,12 @@
     "mirror",
     "skill-advisor"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.239Z",
+  "lastUpdated": "2026-07-18T03:48:57.265Z",
   "specId": "003",
   "folderSlug": "install-guide-docs",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "010-skill-advisor-embedder-stack"
   ],
   "memorySequence": 1,

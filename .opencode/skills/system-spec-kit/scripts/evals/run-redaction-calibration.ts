@@ -73,7 +73,7 @@ async function loadRedactionGate(): Promise<RedactionGateFn> {
     return cachedRedactionGate;
   }
 
-  const gateModulePath = path.join(process.cwd(), 'mcp_server', 'dist', 'lib', 'extraction', 'redaction-gate.js');
+  const gateModulePath = path.join(process.cwd(), 'mcp-server', 'dist', 'lib', 'extraction', 'redaction-gate.js');
   const gateModule = await import(pathToFileURL(gateModulePath).href) as { applyRedactionGate: RedactionGateFn };
   cachedRedactionGate = gateModule.applyRedactionGate;
   return cachedRedactionGate;

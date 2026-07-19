@@ -71,19 +71,19 @@ command -v opencode || echo "Not installed. Run: brew install opencode (macOS) o
 
 ### Self-Invocation Guard (ADR-001)
 
-Before any dispatch, run the layered ADR-001 detection: Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for an `opencode` parent, Layer 3 a best-effort `~/.opencode/state/<id>/lock` probe. A positive on any layer refuses the dispatch unless the prompt carries explicit parallel-session keywords (use case 2), which permits a SEPARATE session id and state directory instead. Full bash + python detection: [`references/self_invocation_guard.md`](./references/self_invocation_guard.md). Decision tree + refusal text: [`references/integration_patterns.md`](./references/integration_patterns.md) §5.
+Before any dispatch, run the layered ADR-001 detection: Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for an `opencode` parent, Layer 3 a best-effort `~/.opencode/state/<id>/lock` probe. A positive on any layer refuses the dispatch unless the prompt carries explicit parallel-session keywords (use case 2), which permits a SEPARATE session id and state directory instead. Full bash + python detection: [`references/self-invocation-guard.md`](./references/self-invocation-guard.md). Decision tree + refusal text: [`references/integration-patterns.md`](./references/integration-patterns.md) §5.
 
 ### Resource Loading Levels
 
 | Level       | When to Load            | Resources                      |
 | ----------- | ----------------------- | ------------------------------ |
-| ALWAYS      | Every skill invocation  | `references/cli_reference.md`, `assets/prompt_quality_card.md` |
+| ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
 | CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
 | ON_DEMAND   | Only on explicit request| Extended templates and patterns |
 
 ### Smart Router
 
-Intent-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md)):
+Intent-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans existing `references/` and `assets/` folders with `base.exists()` safeguards.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen` so raw loads, missing files, duplicate loads, and path escapes are rejected.
@@ -108,19 +108,19 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "EXTERNAL_DISPATCH":  ["references/cli_reference.md", "references/integration_patterns.md"],
-    "PARALLEL_DETACHED":  ["references/integration_patterns.md", "assets/prompt_templates.md"],
-    "CROSS_AI_HANDBACK":  ["references/integration_patterns.md", "references/opencode_tools.md"],
-    "AGENT_DISPATCH":     ["references/agent_delegation.md", "assets/prompt_templates.md"],
-    "CROSS_REPO":         ["references/cli_reference.md", "references/opencode_tools.md"],
-    "TEMPLATES":          ["assets/prompt_templates.md", "references/cli_reference.md"],
-    "PATTERNS":           ["references/integration_patterns.md", "references/cli_reference.md"],
+    "EXTERNAL_DISPATCH":  ["references/cli-reference.md", "references/integration-patterns.md"],
+    "PARALLEL_DETACHED":  ["references/integration-patterns.md", "assets/prompt-templates.md"],
+    "CROSS_AI_HANDBACK":  ["references/integration-patterns.md", "references/opencode-tools.md"],
+    "AGENT_DISPATCH":     ["references/agent-delegation.md", "assets/prompt-templates.md"],
+    "CROSS_REPO":         ["references/cli-reference.md", "references/opencode-tools.md"],
+    "TEMPLATES":          ["assets/prompt-templates.md", "references/cli-reference.md"],
+    "PATTERNS":           ["references/integration-patterns.md", "references/cli-reference.md"],
 }
 
 LOADING_LEVELS = {
-    "ALWAYS": ["references/cli_reference.md", "assets/prompt_quality_card.md"],
+    "ALWAYS": ["references/cli-reference.md", "assets/prompt-quality-card.md"],
     "ON_DEMAND_KEYWORDS": ["full reference", "all templates", "deep dive", "complete guide", "opencode agent", "opencode prompt", "share url", "ablation", "worker farm", "self-invocation", "memory handback", "minimax", "MiniMax-M3", "tidd-ec"],
-    "ON_DEMAND": ["references/opencode_tools.md", "assets/prompt_templates.md"],
+    "ON_DEMAND": ["references/opencode-tools.md", "assets/prompt-templates.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -131,7 +131,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 ```
 
-**Call sequence** (using shared helpers from `shared_smart_router.md`):
+**Call sequence** (using shared helpers from `shared-smart-router.md`):
 
 1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
 2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
@@ -139,7 +139,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 4. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 5. CONDITIONAL-load existing `RESOURCE_MAP[intent]` entries via `load_if_available()`, ON_DEMAND-load keyword matches, and return a notice when no intent-specific knowledge base is available beyond always-load resources.
 
-The `route_opencode_resources(task)` function body lives in [`shared_smart_router.md`](../../system-spec-kit/references/cli/shared_smart_router.md) — substitute `<PROVIDER>` = `opencode`.
+The `route_opencode_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `opencode`.
 
 ---
 
@@ -149,7 +149,7 @@ The `route_opencode_resources(task)` function body lives in [`shared_smart_route
 
 ```bash
 # Verify installation (cli-opencode v1.0.0 is pinned to opencode v1.3.17)
-opencode --version | grep -q '^1\.' || echo "Not installed or version drift. See references/cli_reference.md §9."
+opencode --version | grep -q '^1\.' || echo "Not installed or version drift. See references/cli-reference.md §9."
 
 # Self-invocation guard
 env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -158,13 +158,13 @@ env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 opencode providers
 ```
 
-**Authentication options**: `opencode providers login <provider>` (and `opencode auth login` for subscription plans). Full per-provider login shapes and the configured-provider list: `references/cli_reference.md` §4.
+**Authentication options**: `opencode providers login <provider>` (and `opencode auth login` for subscription plans). Full per-provider login shapes and the configured-provider list: `references/cli-reference.md` §4.
 
 ### Provider Auth Pre-Flight (Smart Fallback)
 
 **MANDATORY before any first dispatch in a session.** The default provider may not be logged in — silently failing with `provider/model not found` or `401 Unauthorized` mid-dispatch wastes a round-trip. Run the pre-flight once per session, cache the result, and re-run only on an auth failure.
 
-The one-shot pre-flight bash, the per-provider decision trees, the user-facing prompt templates for missing providers, and the error-recovery contract live in [`references/cli_reference.md`](./references/cli_reference.md) §4 — do not duplicate them here. Never substitute a model the user didn't approve; ASK when the default is unavailable.
+The one-shot pre-flight bash, the per-provider decision trees, the user-facing prompt templates for missing providers, and the error-recovery contract live in [`references/cli-reference.md`](./references/cli-reference.md) §4 — do not duplicate them here. Never substitute a model the user didn't approve; ASK when the default is unavailable.
 
 ### Default Invocation (Skill Default)
 
@@ -180,15 +180,15 @@ Honor explicit user model, port, and handback phrasing verbatim; otherwise use t
 
 Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continuation/session/fork flags, `--share` and `--port` for detached sessions, `--file`, `--thinking`, `--pure`, and log flags.
 
-> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation — without it, opencode can inherit parent-terminal stdin and hang. See `references/integration_patterns.md` §6.
+> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation — without it, opencode can inherit parent-terminal stdin and hang. See `references/integration-patterns.md` §6.
 
-> **Registered command dispatch (`--command`)**: slash-command text inside a `run` message is NOT expanded — `opencode run "/memory:search query"` delivers the slash text as raw prose. Execute a registered command via `opencode run --command <family>/<name> [flags] "<args>"` (becomes `$ARGUMENTS`; e.g. `memory/search` for `/memory:search`). Full semantics: `references/cli_reference.md` §4.
+> **Registered command dispatch (`--command`)**: slash-command text inside a `run` message is NOT expanded — `opencode run "/memory:search query"` delivers the slash text as raw prose. Execute a registered command via `opencode run --command <family>/<name> [flags] "<args>"` (becomes `$ARGUMENTS`; e.g. `memory/search` for `/memory:search`). Full semantics: `references/cli-reference.md` §4.
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Alternates (all omit `--agent`): MiniMax Token Plan/Direct API `MiniMax-M3`, Xiaomi Token Plan/Direct API `mimo-v2.5-pro` (+ low-latency `-ultraspeed`), Kimi For Coding `k2p7` (256k, subscription), Z.AI GLM Coding Plan `glm-5.2` (1M, subscription), and the OpenAI GPT-5.6 catalog (`gpt-5.6-sol` flagship default; bare/Sol/Terra/Luna x base/Fast/Pro, `--variant` up to `xhigh`). Full model table, per-provider `--variant` mapping, and model-specific operational caveats: `references/cli_reference.md` §5.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Alternates (all omit `--agent`): MiniMax Token Plan/Direct API `MiniMax-M3`, Xiaomi Token Plan/Direct API `mimo-v2.5-pro` (+ low-latency `-ultraspeed`), Kimi For Coding `k2p7` (256k, subscription), Z.AI GLM Coding Plan `glm-5.2` (1M, subscription), and the OpenAI GPT-5.6 catalog (`gpt-5.6-sol` flagship default; bare/Sol/Terra/Luna x base/Fast/Pro, `--variant` up to `xhigh`). Full model table, per-provider `--variant` mapping, and model-specific operational caveats: `references/cli-reference.md` §5.
 
-Shared small-model facts, context defaults, quota pools, and fallback targets live in `../../sk-prompt/prompt-models/assets/model_profiles.json`.
+Shared small-model facts, context defaults, quota pools, and fallback targets live in `../../sk-prompt/prompt-models/assets/model-profiles.json`.
 
 ### OpenCode Agent Delegation
 
@@ -206,7 +206,7 @@ These live at `.opencode/agents/<slug>.md` with `mode: subagent` and are NOT dir
 2. **`ai-council`** — dispatched via `/deep:ai-council` or `orchestrate`'s registry-backed Task-dispatch. Direct `--agent ai-council` is rejected at the top level (`mode: subagent`).
 3. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`) — LOOP-OWNED by their parent commands (`/deep:research`, `/deep:review`, `/deep:agent-improvement`, `/prompt`), which own iteration state, convergence detection, and continuity. Never dispatch these directly via raw `--agent <slug>`. `orchestrate` is an authorized **caller/coordinator only** — it may perform exactly one bounded hand-off dispatch to the resolved leaf, but MUST NOT re-implement the loop.
 
-See [agent_delegation.md](./references/agent_delegation.md) for the complete agent roster and dispatch patterns.
+See [agent-delegation.md](./references/agent-delegation.md) for the complete agent roster and dispatch patterns.
 
 ### Unique OpenCode Strengths
 
@@ -226,16 +226,16 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 ### ✅ ALWAYS
 
-1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli_reference.md` §9).
+1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli-reference.md` §9).
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive — refuse unless prompt has explicit parallel-session keywords.
 3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model deepseek/deepseek-v4-pro --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `deepseek/deepseek-v4-pro`, `minimax-coding-plan/MiniMax-M3`, `minimax/MiniMax-M3`, `xiaomi-token-plan-ams/mimo-v2.5-pro`, `xiaomi/mimo-v2.5-pro`, `xiaomi/mimo-v2.5-pro-ultraspeed`, `openai/gpt-5.6-sol-pro`).
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
-5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration_patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
+5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration-patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.
-7. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md`:
-   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
-   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model_profiles.json` `recommended_frameworks`); consult it before composing for any small model.
-   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli_prompt_quality_card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
+7. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`:
+   1. **Fast path (default).** Build from the local `assets/prompt-quality-card.md`, which delegates the framework table + CLEAR check to the canonical card.
+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/prompt-models** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/prompt-models/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
+   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` under "Tier 3 — Deep path"; do not re-enumerate it here.
 8. Validate dispatched session output: parse JSON events incrementally (tool calls, partial messages, final summary), run syntax checks if code generated, and cross-reference against project standards via `sk-code` surface detection plus its code-review mode when findings-first review is requested (see ALWAYS rule 12).
 9. Capture stderr (`2>&1`) to catch tool errors and warnings.
 10. Classify the use case (1 / 2 / 3) before dispatching — the smart router refuses dispatches that do not map to one of the three.
@@ -243,7 +243,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 12. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) load `sk-code`'s code-review mode only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 13. **Design Standards Loading (surface-aware contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design` (the hub); (2) let the hub resolve a `workflowMode` through `mode-registry.json` (interface / foundations / motion / audit / md-generator / design-mcp-open-design); (3) load the selected mode packet, set the design register, and run that mode's design verification; (4) if the work feeds Open Design, carry the `design-mcp-open-design` pairing (a nested transport packet of the hub) — the transport never decides taste. Fallback: if the design mode cannot be determined confidently, ask for the surface and design intent. NEVER treat `mcp-figma` or `design-mcp-open-design` as the taste authority, or hardcode obsolete flat design skills in dispatch prompts.
 14. **Pass the design dispatch manifest to the dispatched session** — when dispatching design or UI work, inline a `DESIGN_DISPATCH_MANIFEST v1` block in the prompt (the child cannot resolve skill paths, so the manifest travels in the payload, not by reference): `skDesignLoaded` true, `register` resolved to `Brand` or `Product` (never `unknown`), registry-valid `workflowModes`, `dials`, `loadedFiles`, and `proofDemandBack`. If the manifest cannot be assembled — `sk-design` not loaded, register unresolved, or no registry-valid mode — ASK before launching the child rather than starting a silent design dispatch. The child returns the demanded proof; the parent reconciles it on the return path.
-15. **Destructive-scope-violation prevention (RM-8) for deep-loop dispatches** — The structured permissions-matrix gate (`permissions-gate.ts`; schema and design in `references/permissions_matrix.md`) is built and unit-tested but has ZERO production callers today — no `opencode run` dispatch path invokes it, so a loaded `--permissions-matrix <path>` config or recipe field is NOT currently enforced and does NOT bypass anything. Regardless of whether a matrix config is present, any non-interactive `opencode run` with `--dangerously-skip-permissions` against a populated worktree MUST apply the four-layer mitigation — it is the only active protection today: (L1) rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS`; (L2) `--dir` points at a fresh `git worktree`; (L3) main `git status` clean OR committed, recovery-baseline commit hash recorded; (L4) for multi-phase / phase-parent targets, prefer `cli-copilot` + `gpt-5.6-sol --reasoning-effort high` (verify `gpt-5.6-sol` availability on the Copilot surface — unverified, carried over from a gpt-5.5-era check; if absent, pick an available Copilot model, don't silently fall back to the risky default) over `deepseek-v4-pro`. Background: on 2026-05-04 an `opencode-go/deepseek-v4-pro` dispatch under `/deep:review:auto` deleted 44 files across two phase folders because the only safeguard was prose and `--dangerously-skip-permissions` granted unrestricted FS write. Full incident + root cause + checklist: `references/destructive_scope_violations.md`.
+15. **Destructive-scope-violation prevention (RM-8) for deep-loop dispatches** — The structured permissions-matrix gate (`permissions-gate.ts`; schema and design in `references/permissions-matrix.md`) is built and unit-tested but has ZERO production callers today — no `opencode run` dispatch path invokes it, so a loaded `--permissions-matrix <path>` config or recipe field is NOT currently enforced and does NOT bypass anything. Regardless of whether a matrix config is present, any non-interactive `opencode run` with `--dangerously-skip-permissions` against a populated worktree MUST apply the four-layer mitigation — it is the only active protection today: (L1) rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS`; (L2) `--dir` points at a fresh `git worktree`; (L3) main `git status` clean OR committed, recovery-baseline commit hash recorded; (L4) for multi-phase / phase-parent targets, prefer `cli-copilot` + `gpt-5.6-sol --reasoning-effort high` (verify `gpt-5.6-sol` availability on the Copilot surface — unverified, carried over from a gpt-5.5-era check; if absent, pick an available Copilot model, don't silently fall back to the risky default) over `deepseek-v4-pro`. Background: on 2026-05-04 an `opencode-go/deepseek-v4-pro` dispatch under `/deep:review:auto` deleted 44 files across two phase folders because the only safeguard was prose and `--dangerously-skip-permissions` granted unrestricted FS write. Full incident + root cause + checklist: `references/destructive-scope-violations.md`.
 16. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-opencode, cli-claude-code). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`opencode run ... & OC_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$OC_PID" 2>/dev/null; pkill -9 -P "$OC_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` / `positional_scoring_fallback:app` cleanup. (A backgrounded `opencode run &` is NOT a process-group leader unless launched with `setsid`/`set -m`, so a negative-PID group kill would target a nonexistent group and miss the process — kill the captured PID directly.) **Kill only the dispatch you started, by captured PID; never a blanket `pkill -9 -f "opencode run"` pattern — see Rule 5** (a blanket match kills operator-owned `opencode run` sessions too). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each by its own captured PID as its work returns.
 17. **Set `AI_SESSION_CHILD=1` in the dispatched session's env** when sessions may be launched through the per-session worktree wrapper (`.opencode/bin/worktree-session.sh`). A dispatched `opencode run` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 opencode run ... </dev/null`. Harmless when the wrapper is not in use. See `.opencode/bin/README.md` → "Worktree session isolation". Prepend `MK_SPEC_GATE_ENFORCE=0` next to it so a dispatched child never inherits an enforced spec-gate from the parent shell (belt-and-suspenders alongside the wrapper's own neutralization and the core's `AI_SESSION_CHILD` deny-narrowing): `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run ... </dev/null`.
 
@@ -265,11 +265,11 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from an OpenCode CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory_handback.md`](../../system-spec-kit/references/cli/memory_handback.md).
+When the calling AI needs to preserve session context from an OpenCode CLI delegation, run the canonical 7-step procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file → `memory_index_scan`). Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md).
 
 For read-only or hook-style recovery, use the daemon-backed CLI front doors instead of spawning OpenCode: `node .opencode/bin/spec-memory.cjs <tool>`, `node .opencode/bin/code-index.cjs <tool>`, or `node .opencode/bin/skill-advisor.cjs <tool>`. Prompt-time paths must probe warm sockets or pass `--warm-only`; exit `75` is retryable daemon/IPC unavailability, not a model failure.
 
-OpenCode-specific Memory Epilogue template: see [assets/prompt_templates.md](./assets/prompt_templates.md) §14.
+OpenCode-specific Memory Epilogue template: see [assets/prompt-templates.md](./assets/prompt-templates.md) §14.
 
 Example invocation:
 ```bash
@@ -282,21 +282,21 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 ### Core References
 
-- [cli_reference.md](./references/cli_reference.md) - Full subcommand/flag reference, provider auth pre-flight, models, version drift
-- [integration_patterns.md](./references/integration_patterns.md) - 3 use cases, decision tree, silent stdin
-- [self_invocation_guard.md](./references/self_invocation_guard.md) - ADR-001 layered bash + python detection contract
-- [opencode_tools.md](./references/opencode_tools.md) - Unique value props vs sibling cli-* skills
-- [agent_delegation.md](./references/agent_delegation.md) - Agent routing matrix, leaf-agent constraints
-- [destructive_scope_violations.md](./references/destructive_scope_violations.md) - RM-8 incident, root cause, four-layer prevention playbook
+- [cli-reference.md](./references/cli-reference.md) - Full subcommand/flag reference, provider auth pre-flight, models, version drift
+- [integration-patterns.md](./references/integration-patterns.md) - 3 use cases, decision tree, silent stdin
+- [self-invocation-guard.md](./references/self-invocation-guard.md) - ADR-001 layered bash + python detection contract
+- [opencode-tools.md](./references/opencode-tools.md) - Unique value props vs sibling cli-* skills
+- [agent-delegation.md](./references/agent-delegation.md) - Agent routing matrix, leaf-agent constraints
+- [destructive-scope-violations.md](./references/destructive-scope-violations.md) - RM-8 incident, root cause, four-layer prevention playbook
 
 ### Templates and Assets
 
-- [prompt_templates.md](./assets/prompt_templates.md) - Copy-paste templates per use case + agent + handback
-- [prompt_quality_card.md](./assets/prompt_quality_card.md) - Executor-specific model overrides; delegates framework/CLEAR check to canonical card
+- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste templates per use case + agent + handback
+- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Executor-specific model overrides; delegates framework/CLEAR check to canonical card
 
 ### Shared (cli-* family)
-- [shared_smart_router.md](../../system-spec-kit/references/cli/shared_smart_router.md) - Helper-function bodies for the smart router.
-- [memory_handback.md](../../system-spec-kit/references/cli/memory_handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 - [OpenCode GitHub](https://github.com/sst/opencode) - Official repository
@@ -307,7 +307,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 - Load only references needed for current intent.
 - Smart Routing (Section 2) is the single routing authority.
-- `cli_reference.md` and `prompt_quality_card.md` are ALWAYS loaded as baseline.
+- `cli-reference.md` and `prompt-quality-card.md` are ALWAYS loaded as baseline.
 - The router discovers reference, asset, and script docs dynamically — task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ### Related Skills

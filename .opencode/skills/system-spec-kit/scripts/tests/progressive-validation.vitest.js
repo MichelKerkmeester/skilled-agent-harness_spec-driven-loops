@@ -123,7 +123,7 @@ function readFile(dir, name) {
 // ───────────────────────────────────────────────────────────────
 /** A minimal valid Level-1 spec.md without date placeholders. */
 const MINIMAL_SPEC_MD = `
-<!-- SPECKIT_TEMPLATE_SOURCE: level_1/spec.md | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: level-1/spec.md | v2.2 -->
 
 # Test Feature Spec
 

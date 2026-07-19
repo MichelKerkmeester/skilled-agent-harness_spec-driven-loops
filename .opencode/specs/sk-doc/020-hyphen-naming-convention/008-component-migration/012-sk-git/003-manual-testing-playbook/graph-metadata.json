@@ -12,16 +12,16 @@
   "derived": {
     "trigger_phrases": [
       "sk-git manual testing kebab-case",
-      "032 manual playbook rename",
+      "020 manual playbook rename",
       "manual scenario path closure",
       "sk-git manual playbook implementation plan",
-      "032 manual scenario rename plan",
+      "020 manual scenario rename plan",
       "playbook path closure plan",
       "sk-git manual playbook tasks",
-      "032 manual scenario rename tasks",
+      "020 manual scenario rename tasks",
       "playbook discovery parity tasks",
       "sk-git manual playbook checklist",
-      "032 scenario rename verification",
+      "020 scenario rename verification",
       "manual discovery parity acceptance"
     ],
     "key_topics": [
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map).",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-07-17T14:30:41.973Z",
+    "last_save_at": "2026-07-17T20:26:18.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:22e0ec364d76471c106a910f7b76477a0556fece8d757a1d468b4781f0960966",
+    "source_fingerprint": "sha256:d6f160e339059aba7787038b7030ce7984d111e7cac90975493e4196d0c9ed70",
     "source_doc_hashes": {
-      "spec.md": "04357f561d900cc359a380d15c97d194dfc0631a60ef83f0408a5257fd0a14b0",
-      "plan.md": "95b72be8d73557bd107f313c02bf5afe36f5e8955ce55331be2b16782d913ef2",
-      "tasks.md": "ae41573f297a3a910232b44a18c8c3546f2333192f5be652b8d6e9e719aad204",
-      "checklist.md": "4fe1032f6e85fb4e57ca2830e03a57f5a37ecb08eac8392bcb64494d66be76bd"
+      "spec.md": "21320106416bb81159baea6e8296571c26e03e6abf49582f17b7d2a5f2820fdf",
+      "plan.md": "a274ba9451564243f6405ef1f2fde847e726eca598e105ab9184ac84048c2160",
+      "tasks.md": "495489de9106332bc2522e95f9c32880d6835df2770951adfa780460f2b6ea29",
+      "checklist.md": "34bea65b9bed18b5497377efc81096f83164616529758415dac1ec724f63bcf6"
     },
     "last_active_child_id": null,
     "last_active_at": null

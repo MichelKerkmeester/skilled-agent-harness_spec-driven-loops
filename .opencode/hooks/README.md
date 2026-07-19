@@ -98,4 +98,4 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 ## 7. RELATED
 
 - [`../skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`](../skills/sk-code/code-quality/scripts/check-comment-hygiene.sh) — the checker the hook invokes per staged file.
-- [`../skills/sk-code/shared/references/universal/code_style_guide.md`](../skills/sk-code/shared/references/universal/code_style_guide.md) — §4, the comment-hygiene rule this gate enforces.
+- [`../skills/sk-code/shared/references/universal/code-style-guide.md`](../skills/sk-code/shared/references/universal/code-style-guide.md) — §4, the comment-hygiene rule this gate enforces.

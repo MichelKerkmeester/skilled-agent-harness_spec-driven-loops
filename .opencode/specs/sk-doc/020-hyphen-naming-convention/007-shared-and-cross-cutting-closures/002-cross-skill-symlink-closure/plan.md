@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cross-skill symlink closure (032 phase 007 child 002)"
+title: "Implementation Plan: cross-skill symlink closure (020 phase 007 child 002)"
 description: "Execution plan for the atomic symlink closure: inventory link edges, preflight target ownership and modes, update every pointer with its target, and prove no dangling link remains."
 trigger_phrases:
   - "cross-skill symlink implementation plan"

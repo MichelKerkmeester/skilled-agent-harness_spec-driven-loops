@@ -20,7 +20,7 @@
   "derived": {
     "trigger_phrases": [
       "mcp-code-mode component migration",
-      "032 mcp code mode naming",
+      "020 mcp code mode naming",
       "kebab-case mcp-code-mode"
     ],
     "key_topics": [
@@ -88,15 +88,15 @@
     ],
     "causal_summary": "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-07-17T14:30:38.596Z",
+    "last_save_at": "2026-07-17T20:26:16.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b36d3899a96aaa8594dd4322adbdb95631859b59373fc5bf025cb28d53d91128",
+    "source_fingerprint": "sha256:14499491eb8a4e0c1501714ccb50b8b982eae0499fb5a986e5c90d9fd0532a50",
     "source_doc_hashes": {
-      "spec.md": "16aa51822a531ed2552d92216874b7662129a58b83ae3da0cd2662d4483ae321"
+      "spec.md": "ac4bb81df0e6dd0bd006de1a65f3be4d82baba9aa75838d0e85401ad9a3418a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

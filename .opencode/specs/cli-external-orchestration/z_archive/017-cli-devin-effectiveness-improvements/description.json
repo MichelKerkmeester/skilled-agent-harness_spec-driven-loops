@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/017-cli-devin-effectiveness-improvements",
+  "specFolder": "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements",
   "description": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
   "keywords": [
     "40-iter",
@@ -13,11 +13,12 @@
     "improvement",
     "targets"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.714Z",
+  "lastUpdated": "2026-07-18T03:48:54.301Z",
   "specId": "017",
   "folderSlug": "cli-devin-effectiveness-improvements",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

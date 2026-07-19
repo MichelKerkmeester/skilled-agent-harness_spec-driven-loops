@@ -50,7 +50,7 @@ It is not the multi-iteration loop. `deep-review` adds JSONL state, deltas and c
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
 
 # Or read the runtime instructions directly
 Read(".opencode/skills/sk-code/code-review/SKILL.md")
@@ -103,7 +103,7 @@ Findings-first means the review runs security and correctness checks before anyt
 
 ### Severity Taxonomy
 
-Every finding carries one severity level from `references/review_core.md`, shared with `deep-review` so the labels mean the same thing across both workflows.
+Every finding carries one severity level from `references/review-core.md`, shared with `deep-review` so the labels mean the same thing across both workflows.
 
 P0 is a blocker: exploitable security issues, auth bypass or destructive data loss. A P0 blocks merge. P1 is required: correctness bugs, spec mismatches or must-fix gate issues that need resolution before merge. P2 is a suggestion: non-blocking improvements, documentation polish or style follow-ups that are optional.
 
@@ -137,9 +137,9 @@ Reach for the `code-review` mode (of the sk-code family) when you want severity-
 |---|---|
 | `code-webflow` / `code-opencode` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine (including root-cause debugging and verification evidence). |
 | `code-quality` | Runs author-side quality gates before review. |
-| `deep-review` | The multi-iteration review loop. It adds JSONL state, deltas and autonomous convergence on top of the same severity taxonomy and evidence rules from `references/review_core.md`. |
+| `deep-review` | The multi-iteration review loop. It adds JSONL state, deltas and autonomous convergence on top of the same severity taxonomy and evidence rules from `references/review-core.md`. |
 
-The `code-review` mode and deep-review share `references/review_core.md`, so P0, P1 and P2 mean the same thing in both workflows. The boundary is single-pass versus iterative. Use `code-review` when you want one report. Use deep-review when the scope demands multiple passes with tracked convergence.
+The `code-review` mode and deep-review share `references/review-core.md`, so P0, P1 and P2 mean the same thing in both workflows. The boundary is single-pass versus iterative. Use `code-review` when you want one report. Use deep-review when the scope demands multiple passes with tracked convergence.
 
 ---
 
@@ -147,7 +147,7 @@ The `code-review` mode and deep-review share `references/review_core.md`, so P0,
 
 | What you see | Why | Fix |
 |---|---|---|
-| Findings missing severity labels | The reviewer skipped classification | Every finding must carry P0, P1 or P2 from `references/review_core.md` |
+| Findings missing severity labels | The reviewer skipped classification | Every finding must carry P0, P1 or P2 from `references/review-core.md` |
 | Security minimums not enforced | The security checklist was skipped or downgraded | The security and code-quality checklists are non-negotiable. Rerun with them loaded. |
 | Findings arrive across multiple messages | The reviewer broke the single-pass contract | Collect all findings and emit in one message. Single-pass is the rule. |
 | Surface evidence claimed without source | sk-code returned UNKNOWN or was not loaded | Fall back to baseline-only and disclose that the surface was not detected |
@@ -168,7 +168,7 @@ A: Baseline-only when sk-code cannot detect the code surface or returns UNKNOWN.
 
 **Q: How does this differ from deep-review?**
 
-A: The `code-review` mode is the single-pass baseline. One report, one status line, next action decided by a human. deep-review adds iterative passes, JSONL state tracking, deltas between iterations and autonomous convergence. Both use the same severity taxonomy and evidence rules from `references/review_core.md`.
+A: The `code-review` mode is the single-pass baseline. One report, one status line, next action decided by a human. deep-review adds iterative passes, JSONL state tracking, deltas between iterations and autonomous convergence. Both use the same severity taxonomy and evidence rules from `references/review-core.md`.
 
 **Q: How does this differ from sibling sk-code modes?**
 
@@ -187,9 +187,9 @@ The mode ships a manual testing playbook with per-feature scenarios for findings
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/code-review/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md` |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/code-review/manual-testing-playbook/manual-testing-playbook.md` |
 | Rule invariants | `node .opencode/skills/sk-code/code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
-| Behavior | Run the playbook scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session |
+| Behavior | Run the playbook scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session |
 
 ---
 
@@ -198,13 +198,13 @@ The mode ships a manual testing playbook with per-feature scenarios for findings
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router and the full rule set |
-| [`references/review_core.md`](./references/review_core.md) | Shared doctrine: severity taxonomy, evidence rules and baseline-plus-surface precedence |
-| [`references/review_ux_single_pass.md`](./references/review_ux_single_pass.md) | Single-pass report flow and the next-action prompt |
-| [`assets/security_checklist.md`](./assets/security_checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
-| [`assets/code_quality_checklist.md`](./assets/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
-| [`assets/solid_checklist.md`](./assets/solid_checklist.md) | SOLID principles and architecture smell detection |
-| [`assets/test_quality_checklist.md`](./assets/test_quality_checklist.md) | Test coverage quality, structure and reliability |
-| [`assets/fix_completeness_checklist.md`](./assets/fix_completeness_checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
-| [`assets/removal_plan.md`](./assets/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
-| [`references/pr_state_dedup.md`](./references/pr_state_dedup.md) | Content-hash dedup gate: signature scheme, cache format and retention |
-| [`references/quick_reference.md`](./references/quick_reference.md) | Lightweight routing index across all references |
+| [`references/review-core.md`](./references/review-core.md) | Shared doctrine: severity taxonomy, evidence rules and baseline-plus-surface precedence |
+| [`references/review-ux-single-pass.md`](./references/review-ux-single-pass.md) | Single-pass report flow and the next-action prompt |
+| [`assets/security-checklist.md`](./assets/security-checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
+| [`assets/code-quality-checklist.md`](./assets/code-quality-checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
+| [`assets/solid-checklist.md`](./assets/solid-checklist.md) | SOLID principles and architecture smell detection |
+| [`assets/test-quality-checklist.md`](./assets/test-quality-checklist.md) | Test coverage quality, structure and reliability |
+| [`assets/fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
+| [`assets/removal-plan.md`](./assets/removal-plan.md) | Safe-now versus deferred deletion and rollback planning |
+| [`references/pr-state-dedup.md`](./references/pr-state-dedup.md) | Content-hash dedup gate: signature scheme, cache format and retention |
+| [`references/quick-reference.md`](./references/quick-reference.md) | Lightweight routing index across all references |

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-codex component naming (032 phase 005.004)"
+title: "Implementation Plan: cli-codex component naming (020 phase 005.004)"
 description: "Implementation plan for the cli-codex component: map five reference files and two prompt assets, update local path-valued consumers, preserve Codex safety and dispatch semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-codex implementation plan"
@@ -48,7 +48,7 @@ The plan explicitly maps `cli_reference.md`, `hook_contract.md`, `agent_delegati
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 003 handoff and the 032 exemption record are available.
+- [ ] Phase 003 handoff and the 020 exemption record are available.
 - [ ] Candidate/BASE SHAs and the complete component file inventory are captured.
 - [ ] Each source path has one owner and one rename/protected/delegated disposition.
 
@@ -108,7 +108,7 @@ BASE inventory → path/protected classification → seven-entry map → filesys
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes phase 003's component-boundary handoff and the 032 exemption record. Phase 005 owns the nested playbook references; phase 007 later verifies release evidence for this component and its siblings.
+The phase consumes phase 003's component-boundary handoff and the 020 exemption record. Phase 005 owns the nested playbook references; phase 007 later verifies release evidence for this component and its siblings.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

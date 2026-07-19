@@ -1,6 +1,6 @@
 ---
-title: "Tasks: integrate and close out (032 phase 011)"
-description: "Tasks for phase 011 of the 032 kebab-case filesystem-naming program: integrate the verified migration branch and close out the packet with a consistent parent rollup."
+title: "Tasks: integrate and close out (020 phase 011)"
+description: "Tasks for phase 011 of the 020 kebab-case filesystem-naming program: integrate the verified migration branch and close out the packet with a consistent parent rollup."
 trigger_phrases:
   - "integrate and close out tasks"
   - "hyphen naming phase 011 tasks"
@@ -52,7 +52,7 @@ _memory:
 - [ ] T004 Rebase the migration branch onto `B_latest` and resolve conflicts against the approved policy and frozen map.
 - [ ] T005 Reconcile path references, exemptions, phase documents, and the migration map after conflict resolution.
 - [ ] T006 Fast-forward the integration target only after the post-rebase whole-repo gate passes.
-- [ ] T007 Update final child-phase evidence and the 032 parent rollup from the integrated commit.
+- [ ] T007 Update final child-phase evidence and the 020 parent rollup from the integrated commit.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

@@ -68,7 +68,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 
 The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling. This skill uses a simple flat-resource intent router: `references/` and `assets/` contain direct markdown resources, not keyed `references/<key>/` or `assets/<key>/` subdirectories. Keep the resilient mechanics from the canonical router, but do not force keyed subdirectory discovery onto this skill.
 
-**Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`). Every routable leaf under `references/` and `assets/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/mcp-code-mode`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/naming_convention.md`) to its typed `(mcp-code-mode, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the manual-testing playbook and any navigation index are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+**Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`). Every routable leaf under `references/` and `assets/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/mcp-code-mode`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/naming-convention.md`) to its typed `(mcp-code-mode, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the manual-testing playbook and any navigation index are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories current markdown under `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` guards paths, checks `inventory`, and de-duplicates with `seen`.
@@ -93,10 +93,10 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "NAMING": ["references/naming_convention.md"],
-    "SETUP": ["references/configuration.md", "assets/config_template.md", "assets/env_template.md"],
-    "VALIDATE": ["references/configuration.md", "references/naming_convention.md"],
-    "CATALOG": ["references/tool_catalog.md"],
+    "NAMING": ["references/naming-convention.md"],
+    "SETUP": ["references/configuration.md", "assets/config-template.md", "assets/env-template.md"],
+    "VALIDATE": ["references/configuration.md", "references/naming-convention.md"],
+    "CATALOG": ["references/tool-catalog.md"],
     "WORKFLOW": ["references/workflows.md"],
     "ARCHITECTURE": ["references/architecture.md"],
 }
@@ -237,7 +237,7 @@ await myservice.sites_list({});        // Error: Tool not found
 await clickup.create_task({...});    // Error: Tool not found
 ```
 
-**See [references/naming_convention.md](references/naming_convention.md) for complete guide with troubleshooting.**
+**See [references/naming-convention.md](references/naming-convention.md) for complete guide with troubleshooting.**
 
 ### Context Parameter
 
@@ -335,7 +335,7 @@ const info = await tool_info({
 
 ### Configuration Structure
 
-Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the manual name, MCP server command/args/env, and disabled state. See [references/configuration.md](references/configuration.md) and [assets/config_template.md](assets/config_template.md).
+Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the manual name, MCP server command/args/env, and disabled state. See [references/configuration.md](references/configuration.md) and [assets/config-template.md](assets/config-template.md).
 
 ### Critical: Prefixed Environment Variables
 
@@ -354,7 +354,7 @@ Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the m
 | `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
 | `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
 
-See [env_template.md](assets/env_template.md) for complete examples.
+See [env-template.md](assets/env-template.md) for complete examples.
 
 ### How to Check Active Code Mode Servers
 
@@ -369,7 +369,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 ### ✅ ALWAYS
 
 - **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.
-- **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming_convention.md](references/naming_convention.md))
+- **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming-convention.md](references/naming-convention.md))
 - **Use progressive discovery**: `search_tools()` before calling unknown tools
 - **Use try/catch** for error handling in multi-step workflows
 - **Set appropriate timeouts**: 30s (simple), 60s (complex), 120s+ (very complex)
@@ -388,7 +388,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 
 ### ⚠️ ESCALATE IF
 
-- **Tool naming errors persist** after consulting [naming_convention.md](references/naming_convention.md)
+- **Tool naming errors persist** after consulting [naming-convention.md](references/naming-convention.md)
 - **Configuration fails to load** - Check [configuration.md](references/configuration.md)
 - **Environment variables not found** - Verify .env file exists and syntax is correct
 - **MCP server fails to start** - Check command/args in .utcp_config.json
@@ -472,7 +472,7 @@ Use `search_tools()`, `tool_info()`, `list_tools()`, and `call_tool_chain()` as 
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/naming_convention.md`, `references/configuration.md`, `references/tool_catalog.md`, `references/workflows.md`, `references/architecture.md`, `assets/config_template.md`, `assets/env_template.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/naming-convention.md`, `references/configuration.md`, `references/tool-catalog.md`, `references/workflows.md`, `references/architecture.md`, `assets/config-template.md`, `assets/env-template.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/install.sh`, `scripts/update.sh`, `scripts/validate_config.py`.
 

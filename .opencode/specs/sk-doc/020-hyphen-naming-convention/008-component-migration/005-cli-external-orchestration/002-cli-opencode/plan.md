@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-opencode component naming (032 phase 005.002)"
+title: "Implementation Plan: cli-opencode component naming (020 phase 005.002)"
 description: "Implementation plan for the cli-opencode component: build a semantic local path map for references and assets, update path-valued consumers, preserve permissions/schema semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-opencode implementation plan"
@@ -48,7 +48,7 @@ The plan maps the eight reference files and six asset files explicitly: `cli_ref
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 hub boundary and the 032 exemption record are available.
+- [ ] Phase 001 hub boundary and the 020 exemption record are available.
 - [ ] Candidate/BASE SHAs and the complete local file inventory are captured.
 - [ ] Every source path has an owner and a rename/exempt/protected disposition before mutation.
 
@@ -108,7 +108,7 @@ BASE inventory → path/key classification → bijective local map → filesyste
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase depends on phase 001's hub boundary, the 032 exemption decision record, and phase 005's ownership of all nested manual-testing-playbook paths. Phase 007 later verifies release evidence for the completed component set.
+The phase depends on phase 001's hub boundary, the 020 exemption decision record, and phase 005's ownership of all nested manual-testing-playbook paths. Phase 007 later verifies release evidence for the completed component set.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

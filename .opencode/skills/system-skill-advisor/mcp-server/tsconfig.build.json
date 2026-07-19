@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": false,
+    "noEmit": false,
+    "rootDir": "..",
+    "outDir": "./dist",
+    "tsBuildInfoFile": "./dist/tsconfig.build.tsbuildinfo"
+  },
+  "include": [
+    "../hooks/**/*.ts",
+    "advisor-server.ts",
+    "skill-advisor-cli.ts",
+    "skill-advisor-cli-manifest.ts",
+    "compat/**/*.ts",
+    "handlers/**/*.ts",
+    "lib/**/*.ts",
+    "schemas/**/*.ts",
+    "tools/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib/shared/embeddings",
+    "lib/shared/embeddings/**/*.ts",
+    "tests",
+    "stress-test",
+    "**/*.bench.ts",
+    "**/*.test.ts",
+    "**/*.test-d.ts",
+    "**/*.vitest.ts",
+    "**/__tests__"
+  ]
+}

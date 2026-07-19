@@ -125,7 +125,7 @@
       ".opencode/skills/sk-prompt/description.json",
       ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
       ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/references/pattern_index.md",
+      ".opencode/skills/sk-prompt/prompt-models/references/pattern-index.md",
       ".claude/agents/prompt-improver.md",
       ".opencode/agents/prompt-improver.md"
     ],

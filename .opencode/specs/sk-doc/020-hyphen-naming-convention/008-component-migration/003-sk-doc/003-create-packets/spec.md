@@ -4,7 +4,7 @@ description: "The eleven create-* workflow packets under sk-doc contain snake_ca
 trigger_phrases:
   - "sk-doc create-packet components"
   - "create packet kebab-case phases"
-  - "032 create workflow packet names"
+  - "020 create workflow packet names"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc"

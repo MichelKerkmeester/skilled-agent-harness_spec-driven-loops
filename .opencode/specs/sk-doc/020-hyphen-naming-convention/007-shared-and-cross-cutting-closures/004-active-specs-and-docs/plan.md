@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: active specs and documents (032 phase 007 child 004)"
+title: "Implementation Plan: active specs and documents (020 phase 007 child 004)"
 description: "Execution plan for active spec/document names: separate authored packets from generated and frozen state, preserve numeric phase-folder forms, close document links and path values, and strict-validate every touched packet."
 trigger_phrases:
   - "active specs documents implementation plan"

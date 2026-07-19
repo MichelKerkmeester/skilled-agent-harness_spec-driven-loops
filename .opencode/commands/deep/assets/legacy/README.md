@@ -26,10 +26,10 @@ Each body acts as a thin router. It resolves command setup and selects workflow 
 
 ```text
 legacy/
-+-- deep_ai-council.body.md
-+-- deep_alignment.body.md
-+-- deep_research.body.md
-+-- deep_review.body.md
++-- deep-ai-council.body.md
++-- deep-alignment.body.md
++-- deep-research.body.md
++-- deep-review.body.md
 `-- README.md
 ```
 
@@ -39,10 +39,10 @@ legacy/
 
 | File | Responsibility |
 |---|---|
-| `deep_research.body.md` | Fallback router for the deep-research loop. |
-| `deep_review.body.md` | Fallback router for the deep-review loop. |
-| `deep_ai-council.body.md` | Fallback router for bounded AI Council sessions. |
-| `deep_alignment.body.md` | Fallback router for structured alignment audits. |
+| `deep-research.body.md` | Fallback router for the deep-research loop. |
+| `deep-review.body.md` | Fallback router for the deep-review loop. |
+| `deep-ai-council.body.md` | Fallback router for bounded AI Council sessions. |
+| `deep-alignment.body.md` | Fallback router for structured alignment audits. |
 
 ---
 
@@ -89,7 +89,7 @@ Render tooling can return a legacy body directly when a command uses fallback in
 
 Compiled contracts live in the sibling `compiled/` folder. Their maintained sources remain authoritative, and generated contract files must not replace the workflow YAML as the owner of runtime execution.
 
-`deep_alignment.body.md` remains especially important because alignment has no generated compiler contract.
+`deep-alignment.body.md` remains especially important because alignment has no generated compiler contract.
 
 ---
 
@@ -98,10 +98,10 @@ Compiled contracts live in the sibling `compiled/` folder. Their maintained sour
 Confirm the expected files exist from the repository root:
 
 ```bash
-test -f .opencode/commands/deep/assets/legacy/deep_ai-council.body.md
-test -f .opencode/commands/deep/assets/legacy/deep_alignment.body.md
-test -f .opencode/commands/deep/assets/legacy/deep_research.body.md
-test -f .opencode/commands/deep/assets/legacy/deep_review.body.md
+test -f .opencode/commands/deep/assets/legacy/deep-ai-council.body.md
+test -f .opencode/commands/deep/assets/legacy/deep-alignment.body.md
+test -f .opencode/commands/deep/assets/legacy/deep-research.body.md
+test -f .opencode/commands/deep/assets/legacy/deep-review.body.md
 ```
 
 Expected result: every command exits with status `0`.

@@ -1,9 +1,9 @@
 ---
-title: "Checklist: sk-git assets (032 phase 008/012/002)"
+title: "Checklist: sk-git assets (020 phase 008/012/002)"
 description: "Blocking SOL verification contract for the sk-git asset and template filename rename phase."
 trigger_phrases:
   - "sk-git assets checklist"
-  - "032 asset rename verification"
+  - "020 asset rename verification"
   - "asset template pointer acceptance"
 importance_tier: "important"
 contextType: "planning"
@@ -77,7 +77,7 @@ This checklist is the blocking SOL verifier contract for phase 002. **This phase
 ## Documentation
 
 - [ ] CHK-013 [P1] spec.md, plan.md, tasks.md, and the candidate evidence report agree on the three-entry map and content-parity rules.
-- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 032 convention remains the only naming-policy source.
+- [ ] CHK-014 [P2] The phase outcome is linked from the parent map and the 020 convention remains the only naming-policy source.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

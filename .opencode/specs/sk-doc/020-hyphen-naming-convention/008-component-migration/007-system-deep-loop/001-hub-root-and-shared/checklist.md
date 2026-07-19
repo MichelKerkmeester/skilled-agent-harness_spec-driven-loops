@@ -1,5 +1,5 @@
 ---
-title: "Checklist: system-deep-loop hub root and shared names (032 phase 007/001)"
+title: "Checklist: system-deep-loop hub root and shared names (020 phase 007/001)"
 description: "Blocking SOL verification contract for the system-deep-loop hub/shared boundary, including the current no-candidate result, exact-name protections, and routing/helper parity."
 trigger_phrases:
   - "system-deep-loop hub shared checklist"

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-tooling hub manual-testing-playbook naming closure (032 phase 005)"
+title: "Checklist: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
 description: "Blocking SOL verifier contract for the hub-level manual-testing-playbook naming phase."
 trigger_phrases:
   - "mcp-tooling hub playbook checklist"

@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Changelog verification (032 phase 011)"
-description: "Task breakdown for Changelog verification in the 032 sk-design naming subtree."
+title: "Tasks: Changelog verification (020 phase 011)"
+description: "Task breakdown for Changelog verification in the 020 sk-design naming subtree."
 trigger_phrases:
   - "changelog-verify tasks"
   - "sk-design changelog verification execution"
-  - "032 changelog-verify checklist"
+  - "020 changelog-verify checklist"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Changelog verification (032 phase 011)
+# Tasks: Changelog verification (020 phase 011)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Inspect changelog files and identify the 032 sk-design release-note entry.
+- [ ] T004 Inspect changelog files and identify the 020 sk-design release-note entry.
 - [ ] T005 Compare its version, packet scope, phase coverage, and exemption statement against the phase map.
 - [ ] T006 Return a read-only pass/fail report; do not author a replacement entry or rename files.
 <!-- /ANCHOR:phase-2 -->
@@ -62,7 +62,7 @@ _memory:
 ## Phase 3: Verification
 
 - [ ] T007 Verify the migration entry version is greater than v1.4.3.0 and consistent across filename, heading, and body.
-- [ ] T008 Verify packet 032, sk-design, phase scope, and exemption language are explicit.
+- [ ] T008 Verify packet 020, sk-design, phase scope, and exemption language are explicit.
 - [ ] T009 Attach the exact changelog path and comparison evidence to the phase report.
 <!-- /ANCHOR:phase-3 -->
 

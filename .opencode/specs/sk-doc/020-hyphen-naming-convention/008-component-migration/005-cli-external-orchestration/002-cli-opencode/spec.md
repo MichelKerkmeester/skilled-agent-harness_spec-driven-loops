@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-opencode component naming (032 phase 005.002)"
+title: "Feature Specification: cli-opencode component naming (020 phase 005.002)"
 description: "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership."
 trigger_phrases:
   - "cli-opencode kebab-case migration"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-opencode component naming
 
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration / cli-opencode |
-| **Origin** | Phase 002 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 002 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,7 +105,7 @@ This phase maps every local authored candidate to a unique kebab-case target, up
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is rewriting an underscore inside a permissions key, schema property, or external cross-skill identifier as if it were a filename. The phase depends on the 032 path-vs-key boundary and the phase 005 playbook handoff; a path ledger plus content/key comparison prevents scope leakage.
+The main risk is rewriting an underscore inside a permissions key, schema property, or external cross-skill identifier as if it were a filename. The phase depends on the 020 path-vs-key boundary and the phase 005 playbook handoff; a path ledger plus content/key comparison prevents scope leakage.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

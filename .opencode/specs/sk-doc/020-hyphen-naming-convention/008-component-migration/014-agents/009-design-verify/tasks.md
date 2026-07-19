@@ -1,6 +1,6 @@
 ---
-title: "Tasks: verify design agent naming (032 phase 009)"
-description: "Tasks for phase 009 of the 032 agents component migration: verify the design filename candidate set."
+title: "Tasks: verify design agent naming (020 phase 009)"
+description: "Tasks for phase 009 of the 020 agents component migration: verify the design filename candidate set."
 trigger_phrases:
   - "design agent naming tasks"
   - "agents phase 009 tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the 032 naming policy, exemption boundary, and pinned BASE for this read-only phase
+- [ ] T001 Confirm the 020 naming policy, exemption boundary, and pinned BASE for this read-only phase
 - [ ] T002 Confirm the three expected design definition paths in the runtime inventory
 <!-- /ANCHOR:phase-1 -->
 

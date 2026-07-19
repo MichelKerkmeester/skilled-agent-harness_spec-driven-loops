@@ -1,5 +1,5 @@
 ---
-title: "Tasks: active specs and documents (032 phase 007 child 004)"
+title: "Tasks: active specs and documents (020 phase 007 child 004)"
 description: "Tasks for the active spec/document closure: classify authored versus generated/frozen paths, preserve phase-folder structure, update links and path values, strict-validate touched packets, and publish handoffs."
 trigger_phrases:
   - "active spec document closure tasks"

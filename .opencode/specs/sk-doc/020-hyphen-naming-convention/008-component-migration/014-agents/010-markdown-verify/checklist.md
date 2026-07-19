@@ -1,6 +1,6 @@
 ---
-title: "Checklist: verify markdown agent naming (032 phase 010)"
-description: "Checklist for phase 010 of the 032 agents component migration: verify the markdown filename candidate set."
+title: "Checklist: verify markdown agent naming (020 phase 010)"
+description: "Checklist for phase 010 of the 020 agents component migration: verify the markdown filename candidate set."
 trigger_phrases:
   - "markdown agent naming checklist"
   - "agents phase 010 checklist"

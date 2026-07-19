@@ -15,6 +15,6 @@
   "allowlist": {
     "cli_flags": ["--model", "--permission-mode", "--prompt-file", "--config", "--print", "-p", "--continue", "-c", "--resume", "--sandbox", "--agent-config"],
     "symbols": ["cli-devin", "wrapper", "verify"],
-    "comment": "Real cli-devin flags from references/cli_reference.md. --reasoning-effort is the canonical hallucination test."
+    "comment": "Real cli-devin flags from references/cli-reference.md. --reasoning-effort is the canonical hallucination test."
   }
 }

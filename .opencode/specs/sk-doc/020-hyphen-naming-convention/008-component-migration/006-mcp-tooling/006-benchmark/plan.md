@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-tooling benchmark naming closure (032 phase 006)"
+title: "Implementation Plan: mcp-tooling benchmark naming closure (020 phase 006)"
 description: "This plan verifies the benchmark boundary, preserves the current .gitkeep-only baseline, and renames any real fixture, profile, storage-guide, or support path discovered at execution through an explicit map."
 trigger_phrases:
   - "mcp-tooling benchmark implementation plan"
@@ -34,7 +34,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling/benchmark |
 | **Change class** | Census-first artifact rename or verified zero-candidate boundary |
-| **Execution** | Frozen 032 rename map; no speculative file creation |
+| **Execution** | Frozen 020 rename map; no speculative file creation |
 
 ### Overview
 The current benchmark directory contains only .gitkeep. The implementation therefore starts with a tracked and visible census. If the directory remains empty, the phase records the zero-candidate result and preserves .gitkeep. If fixtures, profiles, storage guides, or support artifacts are present at execution, only their in-scope filesystem names are mapped, renamed, and reference-repaired.
@@ -101,7 +101,7 @@ The current benchmark directory contains only .gitkeep. The implementation there
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 005 hub playbook closure | Internal | Required | Benchmark references may be stale |
-| Frozen 032 rename map | Internal | Required if candidates exist | No safe artifact targets |
+| Frozen 020 rename map | Internal | Required if candidates exist | No safe artifact targets |
 | Benchmark loader references | Internal | Conditional | Moved artifacts may be unreachable |
 | .gitkeep preservation | Repository marker | Required | Empty benchmark boundary disappears |
 <!-- /ANCHOR:dependencies -->

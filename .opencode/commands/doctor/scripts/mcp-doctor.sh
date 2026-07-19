@@ -143,8 +143,8 @@ fi
 diagnose_mk_spec_memory() {
   local srv="mk-spec-memory"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-spec-kit"
-  local dist_entry="$skill_dir/mcp_server/dist/context-server.js"
-  local db_dir="$skill_dir/mcp_server/database"
+  local dist_entry="$skill_dir/mcp-server/dist/context-server.js"
+  local db_dir="$skill_dir/mcp-server/database"
   local marker="$skill_dir/.node-version-marker"
   local needs_fix=false
 
@@ -167,7 +167,7 @@ diagnose_mk_spec_memory() {
   fi
 
   # Check 2: better-sqlite3 loads
-  if node -e "require('$skill_dir/mcp_server/node_modules/better-sqlite3')" 2>/dev/null; then
+  if node -e "require('$skill_dir/mcp-server/node_modules/better-sqlite3')" 2>/dev/null; then
     record_pass "$srv" "better_sqlite3" "Loads successfully"
     _log log_pass "better-sqlite3 loads"
   else
@@ -247,11 +247,11 @@ diagnose_mk_spec_memory() {
   # Check 6: spec-kit dist has no stale package-root layout or runtime state.
   local stale_dist_root
   for stale_dist_root in \
-    "$skill_dir/mcp_server/dist/system-skill-advisor" \
-    "$skill_dir/mcp_server/dist/system-spec-kit" \
-    "$skill_dir/mcp_server/dist/system-code-graph" \
-    "$skill_dir/mcp_server/dist/tests" \
-    "$skill_dir/mcp_server/dist/database"; do
+    "$skill_dir/mcp-server/dist/system-skill-advisor" \
+    "$skill_dir/mcp-server/dist/system-spec-kit" \
+    "$skill_dir/mcp-server/dist/system-code-graph" \
+    "$skill_dir/mcp-server/dist/tests" \
+    "$skill_dir/mcp-server/dist/database"; do
     local drift_key
     drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
     if [[ -e "$stale_dist_root" ]]; then
@@ -288,7 +288,7 @@ diagnose_mk_spec_memory() {
 diagnose_code_mode() {
   local srv="code_mode"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/mcp-code-mode"
-  local dist_entry="$skill_dir/mcp_server/dist/index.js"
+  local dist_entry="$skill_dir/mcp-server/dist/index.js"
   local utcp_config="$PROJECT_ROOT/.utcp_config.json"
   local needs_fix=false
 
@@ -335,7 +335,7 @@ diagnose_code_mode() {
   fi
 
   # Check 4: node_modules exist
-  if [[ -d "$skill_dir/mcp_server/node_modules" ]]; then
+  if [[ -d "$skill_dir/mcp-server/node_modules" ]]; then
     record_pass "$srv" "node_modules" "Installed"
     _log log_pass "node_modules installed"
   else
@@ -357,9 +357,9 @@ diagnose_code_mode() {
         _log log_fail "Install failed — check output above"
       fi
     else
-      (cd "$skill_dir/mcp_server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
+      (cd "$skill_dir/mcp-server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
       record_pass "$srv" "fix_npm" "npm install + build attempted"
-      _log log_info "Ran npm install + build in mcp_server/"
+      _log log_info "Ran npm install + build in mcp-server/"
     fi
   fi
 }
@@ -368,13 +368,13 @@ diagnose_code_mode() {
 diagnose_mk_code_index() {
   local srv="mk_code_index"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
-  local dist_entry="$skill_dir/mcp_server/dist/index.js"
+  local dist_entry="$skill_dir/mcp-server/dist/index.js"
   local stale_root_dist="$skill_dir/dist"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
   # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → the skill-local canonical
   # location → the former shared location as fallback. The launcher auto-migrates a
   # former-shared DB back to the skill-local location on first run.
-  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$skill_dir/mcp_server/database}"
+  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$skill_dir/mcp-server/database}"
   local legacy_db_dir="$PROJECT_ROOT/.opencode/.spec-kit/code-graph/database"
   local needs_fix=false
   local needs_db_dir=false
@@ -390,10 +390,10 @@ diagnose_mk_code_index() {
   # Check 1: dist/index.js exists
   if [[ -f "$dist_entry" ]]; then
     record_pass "$srv" "dist_exists" "$dist_entry"
-    _log log_pass "mcp_server/dist/index.js exists"
+    _log log_pass "mcp-server/dist/index.js exists"
   else
     record_fail "$srv" "dist_exists" "File missing: $dist_entry"
-    _log log_fail "mcp_server/dist/index.js missing — needs build"
+    _log log_fail "mcp-server/dist/index.js missing — needs build"
     needs_fix=true
   fi
 
@@ -417,7 +417,7 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 4: root-level dist is absent. Code Graph now emits directly to mcp_server/dist.
+  # Check 4: root-level dist is absent. Code Graph now emits directly to mcp-server/dist.
   if [[ -e "$stale_root_dist" ]]; then
     record_fail "$srv" "root_dist_absent" "Stale root dist present: $stale_root_dist"
     _log log_fail "stale root dist present — run npm run clean && npm run build"
@@ -494,11 +494,11 @@ diagnose_mk_code_index() {
 diagnose_mk_skill_advisor() {
   local srv="mk_skill_advisor"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
-  local dist_entry="$skill_dir/mcp_server/dist/mcp_server/advisor-server.js"
-  local shared_dep="$skill_dir/mcp_server/node_modules/@spec-kit/shared"
-  local shared_import_probe="$skill_dir/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js"
+  local dist_entry="$skill_dir/mcp-server/dist/mcp-server/advisor-server.js"
+  local shared_dep="$skill_dir/mcp-server/node_modules/@spec-kit/shared"
+  local shared_import_probe="$skill_dir/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-skill-advisor-launcher.cjs"
-  local db_dir="$skill_dir/mcp_server/database"
+  local db_dir="$skill_dir/mcp-server/database"
   local needs_fix=false
 
   _log log_header "Skill Advisor (mk_skill_advisor)"
@@ -529,13 +529,13 @@ diagnose_mk_skill_advisor() {
     needs_fix=true
   fi
 
-  # Check 3: mcp_server/node_modules installed
-  if [[ -d "$skill_dir/mcp_server/node_modules" ]]; then
+  # Check 3: mcp-server/node_modules installed
+  if [[ -d "$skill_dir/mcp-server/node_modules" ]]; then
     record_pass "$srv" "node_modules" "Installed"
-    _log log_pass "mcp_server/node_modules installed"
+    _log log_pass "mcp-server/node_modules installed"
   else
     record_fail "$srv" "node_modules" "Missing"
-    _log log_fail "mcp_server/node_modules missing — needs npm install"
+    _log log_fail "mcp-server/node_modules missing — needs npm install"
     needs_fix=true
   fi
 
@@ -544,7 +544,7 @@ diagnose_mk_skill_advisor() {
     record_pass "$srv" "shared_dependency" "@spec-kit/shared resolved"
     _log log_pass "@spec-kit/shared dependency link present"
   else
-    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir/mcp_server && npm install"
+    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir/mcp-server && npm install"
     _log log_fail "@spec-kit/shared dependency link missing — needs npm install"
     needs_fix=true
   fi
@@ -613,9 +613,9 @@ diagnose_mk_skill_advisor() {
   # Check 8: advisor dist has no stale skill-root layout.
   local stale_dist_root
   for stale_dist_root in \
-    "$skill_dir/mcp_server/dist/system-skill-advisor" \
-    "$skill_dir/mcp_server/dist/system-spec-kit" \
-    "$skill_dir/mcp_server/dist/system-code-graph"; do
+    "$skill_dir/mcp-server/dist/system-skill-advisor" \
+    "$skill_dir/mcp-server/dist/system-spec-kit" \
+    "$skill_dir/mcp-server/dist/system-code-graph"; do
     local drift_key
     drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
     if [[ -e "$stale_dist_root" ]]; then
@@ -630,9 +630,9 @@ diagnose_mk_skill_advisor() {
   # Fix mode
   if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
     _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
-    (cd "$skill_dir/mcp_server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
+    (cd "$skill_dir/mcp-server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
     record_pass "$srv" "fix_npm" "npm install + npm run build attempted"
-    _log log_info "Ran npm install + npm run build in mcp_server/"
+    _log log_info "Ran npm install + npm run build in mcp-server/"
   fi
 }
 

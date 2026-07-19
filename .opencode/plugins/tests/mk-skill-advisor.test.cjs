@@ -22,7 +22,7 @@ const BRIDGE_PATH = path.join(
   '.opencode',
   'skills',
   'system-skill-advisor',
-  'mcp_server',
+  'mcp-server',
   'plugin_bridges',
   'mk-skill-advisor-bridge.mjs',
 );
@@ -31,7 +31,7 @@ const RENDERER_PATH = path.join(
   '.opencode',
   'skills',
   'system-skill-advisor',
-  'mcp_server',
+  'mcp-server',
   'lib',
   'render.ts',
 );
@@ -152,7 +152,7 @@ function makeAdvisorFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'mk-skill-advisor-signature-'));
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
-  const advisorRoot = path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp_server');
+  const advisorRoot = path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor.py'), 'print("advisor")\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'), 'RUNTIME = 1\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'), 'COMPILER = 1\n');

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references",
   "description": "Nine `code-opencode` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
   "keywords": [
@@ -13,7 +14,7 @@
     "javascript",
     "qualitystandards"
   ],
-  "lastUpdated": "2026-07-11T16:48:06.023Z",
+  "lastUpdated": "2026-07-18T03:48:54.460Z",
   "specId": "008",
   "folderSlug": "code-opencode-other-references",
   "parentChain": [
@@ -21,6 +22,5 @@
     "018-rust-standards-for-code-opencode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -7,8 +7,8 @@ import { resolve, join } from 'node:path';
 // names resources like code-webflow/references/x.md and
 // code-webflow/references/animation/y.md. A code-*-blind extractor (one that only
 // knows references/, assets/, ../shared/) silently strips the packet prefix —
-// code-webflow/references/animation/decision_matrix.md parses as
-// references/animation/decision_matrix.md — which breaks gold<->router matching
+// code-webflow/references/animation/decision-matrix.md parses as
+// references/animation/decision-matrix.md — which breaks gold<->router matching
 // for every surface scenario without failing anything loudly. This locks the
 // extractor's code-* awareness so a future packet-folder change can't regress it.
 
@@ -18,17 +18,17 @@ const { extractPaths, extractForbiddenPrefixes } = require(join(HARNESS, 'load-p
 describe('scenario loader parses code-<surface>/ packet paths whole', () => {
   it('extractPaths keeps the full code-<surface>/ prefix and never strips to references/', () => {
     const got = extractPaths(
-      '- `code-webflow/references/animation/decision_matrix.md`\n'
+      '- `code-webflow/references/animation/decision-matrix.md`\n'
       + '- `code-webflow/references/implementation/animation_workflows.md`\n'
       + '- `code-opencode/references/shared/universal_patterns.md`\n'
-      + '- `references/universal/code_quality_standards.md`',
+      + '- `references/universal/code-quality-standards.md`',
     );
-    expect(got).toContain('code-webflow/references/animation/decision_matrix.md');
+    expect(got).toContain('code-webflow/references/animation/decision-matrix.md');
     expect(got).toContain('code-webflow/references/implementation/animation_workflows.md');
     expect(got).toContain('code-opencode/references/shared/universal_patterns.md');
-    expect(got).toContain('references/universal/code_quality_standards.md');
+    expect(got).toContain('references/universal/code-quality-standards.md');
     // the regression this guards against: a packet path collapsed to references/
-    expect(got).not.toContain('references/animation/decision_matrix.md');
+    expect(got).not.toContain('references/animation/decision-matrix.md');
   });
 
   it('extractForbiddenPrefixes captures a code-<surface>/ forbidden glob prefix', () => {

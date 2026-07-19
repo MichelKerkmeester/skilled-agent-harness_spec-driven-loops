@@ -13,12 +13,12 @@ describe('live-mode scoring — asset recall fold + intent-drop', () => {
   it('credits a correctly-routed asset the model states on the assets channel', () => {
     const scenario = {
       scenarioId: 'AF-1', classKind: 'routing',
-      expectedResources: ['assets/security_checklist.md'], negativeActivation: false,
+      expectedResources: ['assets/security-checklist.md'], negativeActivation: false,
     };
     const observed = {
       mode: 'live', parseable: true,
-      observedResources: ['references/review_core.md'],
-      observedAssets: ['assets/security_checklist.md'], missingResources: [],
+      observedResources: ['references/review-core.md'],
+      observedAssets: ['assets/security-checklist.md'], missingResources: [],
     };
     const row = scoreScenario({ scenario, observed, traceMode: 'live' });
     expect(row.dims.d1intra.resourceRecall).toBe(1); // asset folded into recall
@@ -28,11 +28,11 @@ describe('live-mode scoring — asset recall fold + intent-drop', () => {
   it('still scores 0 when the correct asset is absent from both channels', () => {
     const scenario = {
       scenarioId: 'AF-2', classKind: 'routing',
-      expectedResources: ['assets/security_checklist.md'], negativeActivation: false,
+      expectedResources: ['assets/security-checklist.md'], negativeActivation: false,
     };
     const observed = {
       mode: 'live', parseable: true,
-      observedResources: ['references/review_core.md'],
+      observedResources: ['references/review-core.md'],
       observedAssets: ['assets/unrelated.md'], missingResources: [],
     };
     const row = scoreScenario({ scenario, observed, traceMode: 'live' });
@@ -72,12 +72,12 @@ describe('live-mode scoring — asset recall fold + intent-drop', () => {
   it('does not fold assets in router tier (D3 waste artifact stays fixed there)', () => {
     const scenario = {
       scenarioId: 'AF-5', classKind: 'routing',
-      expectedResources: ['assets/security_checklist.md'], negativeActivation: false,
+      expectedResources: ['assets/security-checklist.md'], negativeActivation: false,
     };
     const observed = {
       mode: 'router', parseable: true,
-      observedResources: ['references/review_core.md'],
-      observedAssets: ['assets/security_checklist.md'], missingResources: [],
+      observedResources: ['references/review-core.md'],
+      observedAssets: ['assets/security-checklist.md'], missingResources: [],
     };
     const row = scoreScenario({ scenario, observed, traceMode: 'router' });
     // router tier compares against observedResources only — asset stays on its lane

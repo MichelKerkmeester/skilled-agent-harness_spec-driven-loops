@@ -4,7 +4,7 @@
 # tsc doesn't copy non-TS files (e.g., data/prompt-policy.default.json).
 # Without this step, the MCP launcher fails on first start with:
 #   ENOENT: no such file or directory, open
-#     dist/mcp_server/data/prompt-policy.default.json
+#     dist/mcp-server/data/prompt-policy.default.json
 #
 # Usage:
 #   bash .opencode/scripts/copy-skill-advisor-dist-data.sh
@@ -22,8 +22,8 @@ if [ -z "$REPO_ROOT" ]; then
   exit 1
 fi
 
-SRC="$REPO_ROOT/.opencode/skills/system-skill-advisor/mcp_server/data"
-DST="$REPO_ROOT/.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/data"
+SRC="$REPO_ROOT/.opencode/skills/system-skill-advisor/mcp-server/data"
+DST="$REPO_ROOT/.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/data"
 
 if [ ! -d "$SRC" ]; then
   echo "skipped: source dir not present ($SRC)" >&2

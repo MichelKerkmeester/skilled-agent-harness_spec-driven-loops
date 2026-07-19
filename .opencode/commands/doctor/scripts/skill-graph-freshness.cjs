@@ -25,8 +25,8 @@ function findRepoRoot(start) {
 const REPO = findRepoRoot(__dirname);
 const rel = (p) => path.join(REPO, p);
 
-const SKILL_GRAPH_JSON = '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json';
-const DB_DEFAULT = '.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite';
+const SKILL_GRAPH_JSON = '.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json';
+const DB_DEFAULT = '.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite';
 const SKILLS_DIR = '.opencode/skills';
 
 // id -> family from the Python-compiled graph (families: { family: [ids] }).

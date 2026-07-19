@@ -57,9 +57,9 @@ for (const row of payload.results) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 (async () => {
-  const memoryBridge = await import('../skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs');
-  const codeGraphBridge = await import('../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs');
-  const advisorBridge = await import('../skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs');
+  const memoryBridge = await import('../skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs');
+  const codeGraphBridge = await import('../skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs');
+  const advisorBridge = await import('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs');
 
   for (const classify of [memoryBridge.classifyCliFailure, codeGraphBridge.classifyCliFailure]) {
     const stale = classify(69, 'dist entrypoint is stale. Run a build.', false);

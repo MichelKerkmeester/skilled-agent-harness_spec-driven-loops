@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 // MODULE: Coverage Graph Contradictions
 // ---------------------------------------------------------------
-// Extracted and adapted from mcp_server/lib/graph/contradiction-detection.ts
+// Extracted and adapted from mcp-server/lib/graph/contradiction-detection.ts
 // Provides contradiction scanning and reporting for in-memory
 // coverage graphs used by deep-research and deep-review.
 // ---------------------------------------------------------------

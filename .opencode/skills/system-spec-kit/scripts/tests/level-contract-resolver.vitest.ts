@@ -3,7 +3,7 @@
 // -------------------------------------------------------------------
 
 import { describe, expect, it } from 'vitest';
-import { resolveLevelContract, serializeLevelContract } from '../../mcp_server/lib/templates/level-contract-resolver';
+import { resolveLevelContract, serializeLevelContract } from '../../mcp-server/lib/templates/level-contract-resolver';
 
 describe('resolveLevelContract', () => {
   it('returns the Level 1 core document contract', () => {

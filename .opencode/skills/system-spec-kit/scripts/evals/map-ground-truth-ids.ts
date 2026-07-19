@@ -31,9 +31,9 @@ function resolveScriptsWorkspaceRoot(): string {
 }
 
 const SCRIPTS_ROOT = resolveScriptsWorkspaceRoot();
-const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp_server/database');
+const DB_DIR = path.resolve(SCRIPTS_ROOT, '../mcp-server/database');
 const DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);
-const GT_PATH = path.resolve(SCRIPTS_ROOT, '../mcp_server/lib/eval/data/ground-truth.json');
+const GT_PATH = path.resolve(SCRIPTS_ROOT, '../mcp-server/lib/eval/data/ground-truth.json');
 const OUTPUT_PATH = '/tmp/ground-truth-id-mapping.json';
 
 const args = process.argv.slice(2);

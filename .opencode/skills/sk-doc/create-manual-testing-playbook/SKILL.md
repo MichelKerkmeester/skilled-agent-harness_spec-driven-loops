@@ -9,7 +9,7 @@ version: 1.0.1.1
 
 # Manual Testing Playbook Creation
 
-`create-manual-testing-playbook` is the manual-validation package workflow for the `sk-doc` family. It authors `manual_testing_playbook/` packages for skills and systems that need reproducible operator-facing scenarios, evidence capture, release-readiness review, and realistic orchestration or multi-agent execution planning.
+`create-manual-testing-playbook` is the manual-validation package workflow for the `sk-doc` family. It authors `manual-testing-playbook/` packages for skills and systems that need reproducible operator-facing scenarios, evidence capture, release-readiness review, and realistic orchestration or multi-agent execution planning.
 
 Core principle: keep shared rules in the root playbook, keep execution truth in per-feature files, and make every scenario deterministic enough that another operator can reproduce the verdict.
 
@@ -22,7 +22,7 @@ Core principle: keep shared rules in the root playbook, keep execution truth in 
 Use this workflow when the request involves:
 
 - `/create:manual-testing-playbook`.
-- Creating `manual_testing_playbook/manual_testing_playbook.md`.
+- Creating `manual-testing-playbook/manual-testing-playbook.md`.
 - Building one-file-per-feature manual test scenarios.
 - Designing deterministic prompts, command sequences, expected signals, evidence, pass/fail criteria, and failure triage.
 - Planning manual validation across multiple operators, agents, CLIs, MCP tools, or runtime surfaces.
@@ -154,23 +154,23 @@ def route_manual_testing_playbook_request(request):
 Author this layout:
 
 ```text
-manual_testing_playbook/
-|-- manual_testing_playbook.md
-|-- category_name/
-|   |-- feature_name.md
-|   `-- another_feature_name.md
-`-- another_category/
-    `-- feature_name.md
+manual-testing-playbook/
+|-- manual-testing-playbook.md
+|-- category-name/
+|   |-- feature-name.md
+|   `-- another-feature-name.md
+`-- another-category/
+    `-- feature-name.md
 ```
 
 Package invariants:
 
-- The root file is always `manual_testing_playbook.md`.
+- The root file is always `manual-testing-playbook.md`.
 - Per-feature files live in root-level category folders.
-- Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix).
-- Per-feature files use stable `underscore_case` slugs such as `feature_name.md`; no numeric file prefix.
+- Category directories use descriptive kebab-case names such as `category-name` (no numeric prefix).
+- Per-feature files use stable kebab-case slugs such as `feature-name.md`; no numeric file prefix.
 - Per-feature snippet order is defined by the root playbook listing order.
-- Display order is owned by the root playbook index (`manual_testing_playbook.md`), not the folder name.
+- Display order is owned by the root playbook index (`manual-testing-playbook.md`), not the folder name.
 - Benchmark tier is owned by the per-feature file's optional `stage:` frontmatter field (`routing` default, or `holdout`/`negative`), not by a filename token.
 - Every feature ID maps to exactly one per-feature file.
 
@@ -183,7 +183,7 @@ Do not create:
 
 ### Root Playbook Responsibilities
 
-`manual_testing_playbook/manual_testing_playbook.md` is the package directory and review surface. It owns:
+`manual-testing-playbook/manual-testing-playbook.md` is the package directory and review surface. It owns:
 
 - Frontmatter and H1 intro.
 - Global overview and coverage note.
@@ -238,11 +238,11 @@ Follow this sequence:
 
 1. Confirm the target skill or system, package owner, feature set, and whether a feature catalog already exists.
 2. Decide whether a manual testing playbook is appropriate using the decision rule in this skill.
-3. Define category directories using a descriptive `underscore_case` slug such as `category_name`.
+3. Define category directories using a descriptive kebab-case slug such as `category-name`.
 4. Define stable feature IDs using a consistent `{PREFIX}-{NNN}` pattern.
-5. Create the root `manual_testing_playbook/` directory.
-6. Create `manual_testing_playbook/manual_testing_playbook.md` from `assets/manual_testing_playbook_template.md`.
-7. Create one per-feature file for each feature ID from `assets/manual_testing_playbook_snippet_template.md`.
+5. Create the root `manual-testing-playbook/` directory.
+6. Create `manual-testing-playbook/manual-testing-playbook.md` from `assets/manual-testing-playbook-template.md`.
+7. Create one per-feature file for each feature ID from `assets/manual-testing-playbook-snippet-template.md`.
 8. Write root package policy before writing scenario-specific exceptions.
 9. Write each per-feature prompt and execution truth before polishing root summary prose.
 10. Fill each scenario contract with the required 9 fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage.
@@ -343,8 +343,8 @@ Do not ship unsynchronized prompt fields.
 Run shared validation on the root playbook before delivery from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.opencode/skills/system-spec-kit`):
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md --type reference
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <SKILL_PATH>/manual-testing-playbook/manual-testing-playbook.md --type reference
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>/manual-testing-playbook/manual-testing-playbook.md
 ```
 
 Also check:
@@ -377,7 +377,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ### ✅ ALWAYS
 
-1. Use `manual_testing_playbook.md` as the root file name.
+1. Use `manual-testing-playbook.md` as the root file name.
 2. Put per-feature files in root-level category folders named with the bare descriptive slug.
 3. Keep one canonical per-feature file for each feature ID.
 4. Use exact prompts, exact command sequences, observable expected signals, captured evidence, and binary pass/fail criteria.
@@ -397,7 +397,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 6. Ship unsynchronized prompt fields.
 7. Add packet-local `graph-metadata.json`.
 8. Add numeric prefixes to category folder names or per-feature filenames; the root playbook index owns display order and the per-feature `stage:` field owns benchmark tier.
-9. Use hyphens in category folder or per-feature filename path segments.
+9. Never use underscores in category folder or per-feature filename path segments.
 
 ### ⚠️ ESCALATE IF
 
@@ -414,7 +414,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 A `create-manual-testing-playbook` run is done when:
 
-- The package uses the canonical shape: root `manual_testing_playbook.md` plus `underscore_case` category folders of per-feature files, with no `snippets/` subtree and no separate `review_protocol.md` or `subagent_utilization_ledger.md`.
+- The package uses the canonical shape: root `manual-testing-playbook.md` plus kebab-case category folders of per-feature files, with no `snippets/` subtree and no separate `review_protocol.md` or `subagent_utilization_ledger.md`.
 - Every feature ID maps to exactly one per-feature file, and no packet-local `graph-metadata.json` was added.
 - Every scenario is deterministic: exact prompt, exact command sequence, observable expected signals, captured evidence, and binary `PASS`/`FAIL`/`SKIP` verdicts.
 - Prompt fields are synchronized across the scenario contract, the execution table, and any root summary.
@@ -428,12 +428,14 @@ A `create-manual-testing-playbook` run is done when:
 The core executable workflow lives in this `SKILL.md`. Use these only for overflow detail, exhaustive examples, or template text:
 
 - `references/README.md` - reference map routing to the overflow detail below.
-- `references/prompt_voice.md` - natural-human vs RCAF decision table and voice guidelines.
-- `references/common_pitfalls.md` - recurring package defects and correct fixes.
+- `references/prompt-voice.md` - natural-human vs RCAF decision table and voice guidelines.
+- `references/common-pitfalls.md` - recurring package defects and correct fixes.
 - `references/examples.md` - shipped reference playbooks and scaffold templates.
-- `assets/manual_testing_playbook_template.md` - root playbook scaffold.
-- `assets/manual_testing_playbook_snippet_template.md` - per-feature file scaffold.
-- `../shared/references/core_standards.md` - shared markdown structure rules.
+- `assets/manual-testing-playbook-template.md` - root playbook scaffold.
+- `assets/manual-testing-playbook-snippet-template.md` - per-feature file scaffold.
+- `../shared/references/core-standards.md` - shared markdown structure rules.
 - `../shared/references/validation.md` - shared validation and DQI workflow.
-- `../shared/references/frontmatter_versioning.md` - 4-part version expectations.
-- `../shared/references/evergreen_packet_id_rule.md` - evergreen current-state wording.
+- `../shared/references/frontmatter-versioning.md` - 4-part version expectations.
+- `../shared/references/evergreen-packet-id-rule.md` - evergreen current-state wording.
+
+The source assets keep the filenames `manual-testing-playbook-template.md` and `manual-testing-playbook-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.

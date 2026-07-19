@@ -1,5 +1,5 @@
 ---
-title: "Tasks: mcp-code-mode changelog verification (032 component 011 phase 006)"
+title: "Tasks: mcp-code-mode changelog verification (020 component 011 phase 006)"
 description: "Tasks for checking the post-v1.0.8.0 changelog entry, skill version bump, sibling rename evidence, and frozen history."
 trigger_phrases:
   - "mcp-code-mode changelog verify tasks"

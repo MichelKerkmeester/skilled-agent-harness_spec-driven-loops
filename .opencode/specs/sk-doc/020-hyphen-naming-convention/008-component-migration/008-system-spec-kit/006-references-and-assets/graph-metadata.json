@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions.",
     "created_at": "2026-07-14T15:18:01Z",
-    "last_save_at": "2026-07-17T14:30:31.087Z",
+    "last_save_at": "2026-07-17T20:26:14.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:412c64de53a3b195efb716106ca0d7728a38728707c55887b86d53843d6c5e84",
+    "source_fingerprint": "sha256:ebb6354aa1bfd2b1141ddc6a9135a963b0aaecbc0d9c17a2b79474f72f50da59",
     "source_doc_hashes": {
-      "spec.md": "a7e64b5ddfa1cba78da07b913a4b0196ded80f3ac17117e5bcd4ef6b349568ff",
-      "plan.md": "5b0d2e5f44226fd81c09222aded41497a41c15cc2fa8704128e18e6563428c59",
-      "tasks.md": "d4f7776ea95a7686dc8b1041c20c6c73d75974a75ebe84833083000abd3bf926",
-      "checklist.md": "205a8d3edb2524fea322589af7983b25015810bdeaae816f0e1cc512618edbec"
+      "spec.md": "eeea7b4d115408b3484b8e1803ebfecb7e4b00708a640dde60868c38d60a0423",
+      "plan.md": "4fc868a0b94c2e3ff671b706f2e3d1e1eb08eb2d0c94380e7e8fa4fa52f8728e",
+      "tasks.md": "918a4bf40a402a0d62c9c87dc09b765ea0d9df5cc347a58bb97d569f0769cff5",
+      "checklist.md": "9b875175cd97348ca028238817c1d07ad932bd58c08aa8ee05be596067606842"
     },
     "last_active_child_id": null,
     "last_active_at": null

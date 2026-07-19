@@ -51,4 +51,4 @@ Isolated per-module regression coverage for runtime libraries under `lib/deep-lo
 ## 3. RELATED RESOURCES
 
 - Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
-- Feature catalog: `.opencode/skills/system-deep-loop/runtime/feature_catalog/feature_catalog.md`
+- Feature catalog: `.opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md`

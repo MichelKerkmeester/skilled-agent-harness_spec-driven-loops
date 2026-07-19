@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-review filesystem names (032 phase 007/004)"
+title: "Tasks: deep-review filesystem names (020 phase 007/004)"
 description: "Execution tasks for renaming deep-review resources and repairing state, report, catalog, playbook, and command path consumers without changing review contracts."
 trigger_phrases:
   - "deep-review tasks"

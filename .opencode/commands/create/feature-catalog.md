@@ -19,16 +19,16 @@ Route /create:feature-catalog to its presentation contract and workflow YAML for
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create_feature_catalog_presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create_feature_catalog_auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` |
+| Presentation contract | `.opencode/commands/create/assets/create-feature-catalog-presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create-feature-catalog-auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create-feature-catalog-confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create_feature_catalog_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create-feature-catalog-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Resolve operation from setup: `create` or `update`.
@@ -40,12 +40,12 @@ Route /create:feature-catalog to its presentation contract and workflow YAML for
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create_feature_catalog_auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` |
+| `:auto` | `.opencode/commands/create/assets/create-feature-catalog-auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-feature-catalog-confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create_feature_catalog_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create-feature-catalog-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
@@ -53,6 +53,6 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create_feature_catalog_auto.yaml` for `:auto`, `create_feature_catalog_confirm.yaml` for `:confirm` or an omitted mode) runs the feature-catalog workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch to create or update feature catalog packages. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-feature-catalog-auto.yaml` for `:auto`, `create-feature-catalog-confirm.yaml` for `:confirm` or an omitted mode) runs the feature-catalog workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch to create or update feature catalog packages. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
 User request: $ARGUMENTS

@@ -29,10 +29,10 @@ Load the file that matches the current task:
 | Concern | Reference | Load When |
 | --- | --- | --- |
 | **Execution modes** — the four modes (script-assisted review, structure checks, content optimization, audit snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
-| **Validation & enforcement operations** — validation touchpoints, enforcement approval-prompt templates, phase chaining, troubleshooting | [validation_and_enforcement.md](./validation_and_enforcement.md) | Wording an enforcement prompt, sequencing validation manually, or a run breaks |
-| **Worked examples & batch** — copy-paste command recipes and multi-file/batch processing | [workflow_examples.md](./workflow_examples.md) | Needing a starting command for a common run, or processing many docs at once |
+| **Validation & enforcement operations** — validation touchpoints, enforcement approval-prompt templates, phase chaining, troubleshooting | [validation-and-enforcement.md](./validation-and-enforcement.md) | Wording an enforcement prompt, sequencing validation manually, or a run breaks |
+| **Worked examples & batch** — copy-paste command recipes and multi-file/batch processing | [workflow-examples.md](./workflow-examples.md) | Needing a starting command for a common run, or processing many docs at once |
 | **Optimization procedure** — quality heuristics, analysis workflow, README priority strategy, snippet checklist, iteration loop | [optimization.md](./optimization.md) | The user asked to improve/optimize an existing doc for AI-friendliness |
-| **Transformation pattern catalog** — the 16 patterns with worked before/after code | [transformation_patterns.md](./transformation_patterns.md) | You need the exact before/after shape for a specific pattern |
+| **Transformation pattern catalog** — the 16 patterns with worked before/after code | [transformation-patterns.md](./transformation-patterns.md) | You need the exact before/after shape for a specific pattern |
 
 > `workflows.md` and `optimization.md` are the two externally cited entry files (the `/doc:quality` command and the `sk-doc` hub README point at them). They stay as the route/entry files for their concern; their overflow lives in the siblings above.
 
@@ -45,10 +45,10 @@ Load the file that matches the current task:
 - [../README.md](../README.md) - Human orientation for the packet
 
 ### Shared Backbone
-- [core_standards.md](../../shared/references/core_standards.md) - Document type detection and structural standards
+- [core-standards.md](../../shared/references/core-standards.md) - Document type detection and structural standards
 - [validation.md](../../shared/references/validation.md) - DQI bands and validation severity
-- [hvr_rules.md](../../shared/references/hvr_rules.md) - Human Voice Rules for natural documentation style
-- [quick_reference.md](../../shared/references/quick_reference.md) - Command and quality-gate cheat sheet
+- [hvr-rules.md](../../shared/references/hvr-rules.md) - Human Voice Rules for natural documentation style
+- [quick-reference.md](../../shared/references/quick-reference.md) - Command and quality-gate cheat sheet
 
 ### Scripts
 - [extract_structure.py](../../shared/scripts/extract_structure.py) - Structure metrics, checklist, and DQI (source of truth)

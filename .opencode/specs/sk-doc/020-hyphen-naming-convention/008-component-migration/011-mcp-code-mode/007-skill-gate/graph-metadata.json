@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The mcp-code-mode subtree needs one blocking rollup gate after its five closure phases and changelog verification. This phase aggregates sibling evidence and proves that no in-scope snake_case filesystem name or stale active path remains outside the Python, tool-mandated, generated, lockfile, and frozen-history exemptions.",
     "created_at": "2026-07-14T15:18:25Z",
-    "last_save_at": "2026-07-17T14:30:40.706Z",
+    "last_save_at": "2026-07-17T20:26:17.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:94fb2afeb18d6d318cbc776b05315ad9d4ea83427adf0bbdfce755aafbc5d7d4",
+    "source_fingerprint": "sha256:2c777a3300a77543c5f6dba7df38fca19017bfa0d34607728dc9a406ed3e101c",
     "source_doc_hashes": {
-      "spec.md": "693da5945a6e329c374ef539f22cc394242228a8b0f4bee9cb7ebb806eb2fd0b",
-      "plan.md": "238f895cd92d0b2d0e0bf9682a4c5898908bcad05fbf90cad2fec4dd3d1742d9",
-      "tasks.md": "a60d6fd81f4529f7d5fd7ce70099848cea5e9f25fbafcd743bbd8343a6251bbd",
-      "checklist.md": "445b7af792fad1e68729d97b4535bf2fa76edfc233784e24a761220f40e3812c"
+      "spec.md": "5619a4a0b1c8081215c7f0683f802196aafe14ea652a126f857e1060eb8f0e83",
+      "plan.md": "7ea1ad3aaefae9a96303db59848648ce8254767e796de507deaf5cc5c7694acc",
+      "tasks.md": "9723960df613dc27f1ca5e53054f5ae9e762c6332ec099ed88bf85349e635e76",
+      "checklist.md": "4ef99e74edc49639b878ac80e08ee76349367f815678b56909e65807785d963b"
     },
     "last_active_child_id": null,
     "last_active_at": null

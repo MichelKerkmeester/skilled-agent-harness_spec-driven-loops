@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
   "description": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
   "keywords": [
     "packet",
@@ -12,11 +12,12 @@
     "coverage",
     "sweep"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.747Z",
+  "lastUpdated": "2026-07-18T03:48:57.128Z",
   "specId": "028",
   "folderSlug": "generated-js-declaration-alignment",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

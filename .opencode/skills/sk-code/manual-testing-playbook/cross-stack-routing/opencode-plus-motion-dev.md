@@ -1,0 +1,91 @@
+---
+title: "CS-003: OPENCODE Plus Motion.dev Supplementary References"
+description: "Verify OPENCODE target precedence wins for a TypeScript tool that includes a Motion.dev preview, while motion_dev references load as supplementary context."
+version: 3.5.0.5
+---
+
+# CS-003: OPENCODE Plus Motion.dev Supplementary References
+
+## 1. OVERVIEW
+
+This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool may include a Motion.dev preview or animation fixture, but the target path still owns the work. The AI must detect `OPENCODE`, load TypeScript/OpenCode standards, and use `motion_dev/` only as supplementary API context.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+**Realistic user prompt**:
+```text
+Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
+```
+
+**Expected detection markers** (verbatim from `references/stack-detection.md`):
+```bash
+# 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
+# CWD under .opencode/ OR any changed/target file under .opencode/
+```
+
+**Expected surface**: `OPENCODE`
+
+**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+- `references/stack-detection.md`
+- `references/smart-routing.md`
+- `references/smart-routing.md`
+- `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
+- `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `code-opencode/references/typescript/quick-reference/template-naming-and-types.md`
+- `code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
+- `code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
+- `code-webflow/references/animation/quick-start.md`
+- `code-webflow/references/animation/integration-patterns.md`
+- `code-webflow/references/animation/animate-and-timelines.md`
+
+**Expected assets loaded**:
+- `code-opencode/assets/checklists/universal-checklist.md`
+- `code-opencode/assets/checklists/typescript-checklist.md`
+- `code-webflow/assets/animation/snippets/es-module-bootstrap.js`
+
+**Expected NOT loaded as authoritative surface guidance**:
+- `code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
+- `code-webflow/assets/checklists/verification_checklist.md`
+
+**Expected agent dispatch**: none.
+
+**Pass/fail criteria with binary grading**:
+- **PASS** iff surface is `OPENCODE`, TypeScript/OpenCode references load, Motion.dev references load as supplementary context, Webflow guidance is not treated as the owning surface, and no agent is dispatched.
+- **FAIL** iff surface is `WEBFLOW` or `UNKNOWN`, TypeScript standards are missing, or an agent is dispatched.
+
+**Failure triage**:
+1. If `WEBFLOW` wins, check that OPENCODE target/CWD has early-return precedence.
+2. If TypeScript refs are missing, verify `.ts` language sub-detection.
+3. If Motion.dev refs are missing, inspect `MOTION_DEV` intent scoring for `motion.dev` and `animate()`.
+
+---
+
+## 3. TEST EXECUTION
+
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-003`.
+
+Evidence files:
+- `/tmp/skc-CS-003-<cli>.txt`
+- `<spec-folder><cli>.yaml`
+
+---
+
+## 4. SOURCE FILES
+
+- `.opencode/skills/sk-code/shared/references/stack-detection.md` - OPENCODE precedence rule.
+- `.opencode/skills/sk-code/shared/references/smart-routing.md` - OPENCODE and MOTION_DEV maps.
+- `.opencode/skills/sk-code/code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
+- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
+
+---
+
+## 5. SOURCE METADATA
+
+- **Created**: 2026-05-05
+- **Critical path**: Yes
+- **Destructive**: No
+- **Sandbox**: read-only routing analysis
+- **Concurrent-safe**: Yes
+- **Last validated**: pending Phase D matrix

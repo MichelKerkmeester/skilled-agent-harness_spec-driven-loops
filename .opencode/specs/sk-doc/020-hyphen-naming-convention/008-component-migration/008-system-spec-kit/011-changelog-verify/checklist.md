@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Changelog verification (032 subtree 008 phase 011)"
+title: "Checklist: Changelog verification (020 subtree 008 phase 011)"
 description: "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries."
 trigger_phrases:
   - "system-spec-kit changelog verify"

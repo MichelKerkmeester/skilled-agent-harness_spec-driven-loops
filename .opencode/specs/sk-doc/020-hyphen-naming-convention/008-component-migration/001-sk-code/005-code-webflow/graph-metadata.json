@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook categories, and deep reference tree",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-07-17T14:30:07.694Z",
+    "last_save_at": "2026-07-17T20:26:02.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:59b5e3b56ef412bb14859ca261c9f5e788dafdbdfd2588618ee3096fbcbfe66a",
+    "source_fingerprint": "sha256:97c18313879ade90e585682531d948d7a46705247657c9eecfe3ac31625c11d7",
     "source_doc_hashes": {
-      "spec.md": "72ac5e6da2e02c258a3119c54379058705401722f6c893c2a9151a829807f5b6",
-      "plan.md": "1aa52aa45e200e6e973bde50a35d3e4f9418d6d6d143a1915f6f70037d0b3a1a",
-      "tasks.md": "32210d18d9bcac733177aad5f473d0b6a9a18fd88743991c9f4612fb837d953d",
-      "checklist.md": "b0dab49425b63955aa588ecf345ae4e88ce7f024268e19f4906fe63c68bf5efc"
+      "spec.md": "981f079d8346cdd13bd6e2dc8456ca002ac1a7dd627f378c9db74f0eca9f9255",
+      "plan.md": "3a7c5af2207eec2de88005d2a218de0a56fe3f5a35a8ec8c8597152fa1deeac8",
+      "tasks.md": "b8187918278232909ad4c598a90f550e316ddf62c54c1823d6c53ac10664b2be",
+      "checklist.md": "1a93b6bf9d04783256e77314445fdd3befe383e123063784b40967137677c8bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

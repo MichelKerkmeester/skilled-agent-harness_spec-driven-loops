@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph subtree rollup gate (032 phase 008)"
+title: "Implementation Plan: system-code-graph subtree rollup gate (020 phase 008)"
 description: "This plan aggregates phases 001–007 and runs the complete exemption-aware naming and active-reference checks for system-code-graph without adding a new migration batch."
 trigger_phrases:
   - "system-code-graph subtree gate plan"
@@ -39,7 +39,7 @@ _memory:
 
 ### Overview
 The rollup gate does not provide another rename batch. It first checks the P0/P1 state of phases 001–007, then scans
-every system-code-graph path and active reference against the frozen 032 exemption set. Any failure is returned to the
+every system-code-graph path and active reference against the frozen 020 exemption set. Any failure is returned to the
 owning phase; phase 008 never repairs a leftover path opportunistically.
 <!-- /ANCHOR:summary -->
 
@@ -63,7 +63,7 @@ owning phase; phase 008 never repairs a leftover path opportunistically.
 
 - **Evidence aggregation**: read phases 001–007 checklists, maps, counts, and reports; fail closed on missing P0
   evidence or unresolved blockers.
-- **Naming gate**: scan every system-code-graph descendant and classify remaining underscores through the 032
+- **Naming gate**: scan every system-code-graph descendant and classify remaining underscores through the 020
   filesystem exemption boundary.
 - **Reference gate**: resolve active Markdown links, path-valued metadata, catalog/playbook indexes, launcher/config
   paths, and cross-phase handoffs while excluding frozen-history content by policy.
@@ -111,7 +111,7 @@ owning phase; phase 008 never repairs a leftover path opportunistically.
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phases 001–007 | Internal | Required | No valid rollup evidence |
-| Final 032 rename map | Internal | Required | Cannot classify the full surface |
+| Final 020 rename map | Internal | Required | Cannot classify the full surface |
 | Exemption/frozen-history policy | Program rule | Required | False positives or missed debt |
 | Scope-aware naming/reference gates | Internal verifier | Required | Whole-surface cleanliness cannot be proven |
 <!-- /ANCHOR:dependencies -->

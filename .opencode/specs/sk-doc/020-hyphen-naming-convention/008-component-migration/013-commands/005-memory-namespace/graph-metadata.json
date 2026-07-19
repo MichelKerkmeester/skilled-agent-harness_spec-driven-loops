@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and `searchpresentation.txt`",
     "created_at": "2026-07-14T15:18:34Z",
-    "last_save_at": "2026-07-17T14:30:44.710Z",
+    "last_save_at": "2026-07-17T20:26:19.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2734e68cfaf1939bbbafb073fa995ac48b62966dd52c0fd90007ea2614303c5f",
+    "source_fingerprint": "sha256:10b136afd6ec1e49c9f1caa2c460f79a8b0e95bd0d19de5a71b8e43134330f73",
     "source_doc_hashes": {
-      "spec.md": "c75b5c3ac6f733e4847a119e6099be72aa4cf7724d5a54d04d3370526705f34e",
-      "plan.md": "27d314f0038c95604e968a92aa4552b1def62eae0dbb0d72d6c1bbd9a716d96b",
-      "tasks.md": "0f6f780df7f82189c1fc687cdbf2c4277927bb8ca41197586788408112ab093c",
-      "checklist.md": "d9d791d5b2d6bced9669bf4c309ea2ef213b3f691bb12ca0ac2cdacc9e298495"
+      "spec.md": "b821b38638cb6688da308934ff335f4da85097a7acd1ec8067af36350c4449f1",
+      "plan.md": "00c170c559157ed08d2be03503ab4a24c22b64ee5f7fbea36607b94ba5262f25",
+      "tasks.md": "56d69e6593f9bc0b93a282abacb772b3233109d4cb48eba7ba00e13c252c9c98",
+      "checklist.md": "6d46976d796d2c24394ba057f2f3a9c83d1ad9c8af1d682ff77be6f6f8e98514"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -19,7 +19,7 @@ import { runtimeRoot } from '../helpers/spawn-cjs';
 
 const OPENCODE_ROOT = resolve(runtimeRoot, '..', '..', '..');
 const SPECKIT_COMMAND_ROOT = resolve(OPENCODE_ROOT, 'commands', 'speckit');
-const COMPLETE_AUTO_YAML = resolve(SPECKIT_COMMAND_ROOT, 'assets', 'speckit_complete_auto.yaml');
+const COMPLETE_AUTO_YAML = resolve(SPECKIT_COMMAND_ROOT, 'assets', 'speckit-complete-auto.yaml');
 const TERMINAL_REASON_CODES = [
   'no_eligible_tasks',
   'retry_exhausted',

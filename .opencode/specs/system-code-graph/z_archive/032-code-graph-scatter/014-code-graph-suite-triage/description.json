@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/032-code-graph-scatter/014-code-graph-suite-triage",
+  "specFolder": "system-code-graph/z_archive/032-code-graph-scatter/014-code-graph-suite-triage",
   "description": "Arc 009 phase 007 shipped the code-graph launcher single-owner + closeDb lifecycle work but used a targeted-gate (lib/owner-lease + launcher-lease)",
   "keywords": [
     "arc",
@@ -17,11 +17,12 @@
     "owner-lease",
     "launcher-lease"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.870Z",
+  "lastUpdated": "2026-07-18T03:48:55.613Z",
   "specId": "014",
   "folderSlug": "code-graph-suite-triage",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "032-code-graph-scatter"
   ],
   "memorySequence": 11,

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-click-up naming closure (032 phase 003)"
+title: "Implementation Plan: mcp-click-up naming closure (020 phase 003)"
 description: "This plan migrates the ClickUp component's catalog, playbook, reference, and index paths through a complete semantic map, then repairs links and path-derived values without changing cupt, MCP, package, or data identifiers."
 trigger_phrases:
   - "mcp-click-up naming implementation plan"
@@ -35,7 +35,7 @@ _memory:
 |--------|-------|
 | **Surface** | .opencode/skills/mcp-tooling/mcp-click-up |
 | **Change class** | Catalog/playbook filesystem rename plus reference-graph repair |
-| **Execution** | One dependency-closed component batch from the frozen 032 map |
+| **Execution** | One dependency-closed component batch from the frozen 020 map |
 
 ### Overview
 The ClickUp component census contains 26 snake_case directories and 137 underscored files, including both catalog and manual-playbook roots. The implementation moves the roots, category directories, indexes, scenario files, and references together, then rewrites the full local link graph. The package/server layout and ClickUp vocabulary remain unchanged.
@@ -105,7 +105,7 @@ The ClickUp component census contains 26 snake_case directories and 137 undersco
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 001 hub boundary | Internal | Required | Root references may not follow the component path |
-| Frozen 032 rename map | Internal | Required | No safe target or collision proof |
+| Frozen 020 rename map | Internal | Required | No safe target or collision proof |
 | Catalog/playbook discovery tools | Internal | Required | Silent feature/scenario loss |
 | ClickUp package/server manifests | Tool contract | Preserve | Install and MCP layout could break |
 <!-- /ANCHOR:dependencies -->

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: verify deep-research agent naming (032 phase 007)"
+title: "Feature Specification: verify deep-research agent naming (020 phase 007)"
 description: "The agents surface needs an explicit candidate audit for deep-research across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename."
 trigger_phrases:
   - "deep-research agent naming"
@@ -24,11 +24,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Deep Research Agent Naming Verification
 
-> Phase adjacency under the 032 agents component parent (grouping order, not a runtime dependency): predecessor 006-deep-improvement-verify; successor 008-deep-review-verify.
+> Phase adjacency under the 020 agents component parent (grouping order, not a runtime dependency): predecessor 006-deep-improvement-verify; successor 008-deep-review-verify.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 007 of the 032 agents component migration |
+| **Origin** | Phase 007 of the 020 agents component migration |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -98,7 +98,7 @@ The purpose is to produce a reproducible, read-only candidate-set record for dee
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The principal risk is a false zero caused by missing one runtime directory or by inspecting content instead of the filename. Mitigation is an exact three-path inventory, a path-level evidence record, and a blocking check that fails on a missing or unexpected definition. The phase inherits the 032 program policy and baseline dependencies; it does not introduce a runtime dependency.
+The principal risk is a false zero caused by missing one runtime directory or by inspecting content instead of the filename. Mitigation is an exact three-path inventory, a path-level evidence record, and a blocking check that fails on a missing or unexpected definition. The phase inherits the 020 program policy and baseline dependencies; it does not introduce a runtime dependency.
 
 <!-- /ANCHOR:risks -->
 

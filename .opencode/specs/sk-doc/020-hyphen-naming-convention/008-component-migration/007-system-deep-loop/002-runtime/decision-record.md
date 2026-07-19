@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop runtime names (032 phase 007/002)"
+title: "Decision Record: system-deep-loop runtime names (020 phase 007/002)"
 description: "L2 design decisions for the system-deep-loop runtime naming phase, including runtime-root closure, manifest protections, and verification of dynamic path consumers."
 trigger_phrases:
   - "system-deep-loop runtime decisions"

@@ -1,6 +1,6 @@
 ---
-title: "Tasks: verify context agent naming (032 phase 003)"
-description: "Tasks for phase 003 of the 032 agents component migration: verify the context filename candidate set."
+title: "Tasks: verify context agent naming (020 phase 003)"
+description: "Tasks for phase 003 of the 020 agents component migration: verify the context filename candidate set."
 trigger_phrases:
   - "context agent naming tasks"
   - "agents phase 003 tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the 032 naming policy, exemption boundary, and pinned BASE for this read-only phase
+- [ ] T001 Confirm the 020 naming policy, exemption boundary, and pinned BASE for this read-only phase
 - [ ] T002 Confirm the three expected context definition paths in the runtime inventory
 <!-- /ANCHOR:phase-1 -->
 

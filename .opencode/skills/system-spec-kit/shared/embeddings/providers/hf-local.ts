@@ -37,7 +37,7 @@ const SOCKET_FILE_NAME = 'hf-embed.sock';
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
 // NOTE: legacy compatibility export, not the current default, kept for consumers
-// (shared/embeddings.ts, shared/index.ts, mcp_server/lib/providers/embeddings.ts).
+// (shared/embeddings.ts, shared/index.ts, mcp-server/lib/providers/embeddings.ts).
 // New code should call getPrefixFor() instead — see PREFIX_REGISTRY below.
 /** Defines task prefix. */
 export const TASK_PREFIX: TaskPrefixMap = {
@@ -301,7 +301,7 @@ function parseBoundedPositiveInteger(value: string | undefined, fallback: number
 function systemSpecKitRoot(): string {
   let currentDir = path.dirname(fileURLToPath(import.meta.url));
   while (currentDir !== path.dirname(currentDir)) {
-    if (existsSync(path.join(currentDir, 'mcp_server')) && existsSync(path.join(currentDir, 'shared'))) {
+    if (existsSync(path.join(currentDir, 'mcp-server')) && existsSync(path.join(currentDir, 'shared'))) {
       return currentDir;
     }
     currentDir = path.dirname(currentDir);
@@ -313,7 +313,7 @@ function systemSpecKitRoot(): string {
     path.resolve(process.cwd(), '.opencode', 'skills', 'system-spec-kit'),
   ];
   for (const candidate of cwdCandidates) {
-    if (existsSync(path.join(candidate, 'mcp_server')) && existsSync(path.join(candidate, 'shared'))) {
+    if (existsSync(path.join(candidate, 'mcp-server')) && existsSync(path.join(candidate, 'shared'))) {
       return candidate;
     }
   }
@@ -322,7 +322,7 @@ function systemSpecKitRoot(): string {
 }
 
 function defaultDbDir(): string {
-  return path.join(systemSpecKitRoot(), 'mcp_server', 'database');
+  return path.join(systemSpecKitRoot(), 'mcp-server', 'database');
 }
 
 function normalizeListenTarget(value: string | undefined): string | null {

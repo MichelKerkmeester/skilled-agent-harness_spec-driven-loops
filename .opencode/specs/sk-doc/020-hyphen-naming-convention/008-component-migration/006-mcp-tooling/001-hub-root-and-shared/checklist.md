@@ -1,5 +1,5 @@
 ---
-title: "Checklist: mcp-tooling hub root and shared naming closure (032 phase 001)"
+title: "Checklist: mcp-tooling hub root and shared naming closure (020 phase 001)"
 description: "Blocking SOL verifier contract for the mcp-tooling hub root and shared naming phase."
 trigger_phrases:
   - "mcp-tooling hub root checklist"

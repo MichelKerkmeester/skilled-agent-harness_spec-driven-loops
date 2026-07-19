@@ -51,5 +51,5 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 ## 6. RELATED
 
 - [`../`](../) - Spec folder templates.
-- [`../../references/structure/folder_structure.md`](../../references/structure/folder_structure.md) - Folder structure reference.
-- [`../../references/memory/memory_system.md`](../../references/memory/memory_system.md) - Continuity and recovery reference.
+- [`../../references/structure/folder-structure.md`](../../references/structure/folder-structure.md) - Folder structure reference.
+- [`../../references/memory/memory-system.md`](../../references/memory/memory-system.md) - Continuity and recovery reference.

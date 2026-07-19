@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: mcp-code-mode component migration (032)"
+title: "Feature Specification: mcp-code-mode component migration (020)"
 description: "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers."
 trigger_phrases:
   - "mcp-code-mode component migration"
-  - "032 mcp code mode naming"
+  - "020 mcp code mode naming"
   - "kebab-case mcp-code-mode"
 importance_tier: "important"
 contextType: "implementation"

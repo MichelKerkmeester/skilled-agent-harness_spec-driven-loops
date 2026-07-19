@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: sk-git assets (032 phase 008/012/002)"
+title: "Implementation Plan: sk-git assets (020 phase 008/012/002)"
 description: "Implementation plan for the sk-git asset and template filename rename. The executor will apply the three-entry semantic map, repair asset and reference pointers, and prove that template content contracts remain intact."
 trigger_phrases:
   - "sk-git assets implementation plan"
-  - "032 sk-git asset phase plan"
+  - "020 sk-git asset phase plan"
   - "asset template rename plan"
 importance_tier: "important"
 contextType: "planning"
@@ -105,7 +105,7 @@ The executor will apply the three-entry semantic map for the asset files, then u
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 032 frozen map and BASE | Internal | Required | No safe classification or parity baseline. |
+| 020 frozen map and BASE | Internal | Required | No safe classification or parity baseline. |
 | Phase 001 reference targets | Sibling | Required | Worktree-checklist.md cannot be fully repaired. |
 | Phase 005 reference checker | Internal | Required | Pointer closure lacks a consistent evidence source. |
 | sk-git worktree workflow | Internal | Required | Shared-tree execution invalidates rename evidence. |

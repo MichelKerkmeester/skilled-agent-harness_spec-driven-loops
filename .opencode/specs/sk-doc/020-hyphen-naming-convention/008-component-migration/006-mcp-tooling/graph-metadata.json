@@ -22,7 +22,7 @@
     "trigger_phrases": [
       "mcp-tooling kebab-case migration",
       "mcp tooling component naming",
-      "032 mcp-tooling phase map"
+      "020 mcp-tooling phase map"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -103,15 +103,15 @@
     ],
     "causal_summary": "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior.",
     "created_at": "2026-07-14T15:16:59Z",
-    "last_save_at": "2026-07-17T14:30:23.160Z",
+    "last_save_at": "2026-07-17T20:26:10.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3a1e69ae175925af4248f47e3fcd854c905cd2cf843900edc2ef4570931be5db",
+    "source_fingerprint": "sha256:fbf1203876dd32143b5004bcf20508c476c0a7a27413db097e7ec69ea55eb44a",
     "source_doc_hashes": {
-      "spec.md": "1aa067c0c211992d7b942c73a40e4cf767eb0570116dd5fce9801b781c410bfa"
+      "spec.md": "6d54cccf1608d8be3fa2c3e9d8cc33db4fe604e5a613ac8dc1a54114516ca3fb"
     },
     "last_active_child_id": null,
     "last_active_at": null

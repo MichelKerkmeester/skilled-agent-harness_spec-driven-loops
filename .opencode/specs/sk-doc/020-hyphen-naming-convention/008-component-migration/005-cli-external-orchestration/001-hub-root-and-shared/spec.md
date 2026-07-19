@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration hub root and shared boundary (032 phase 005.001)"
+title: "Feature Specification: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope."
 trigger_phrases:
   - "cli-external hub root kebab-case"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: cli-external-orchestration hub root and shared boundary
 
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | cli-external-orchestration |
-| **Origin** | Phase 001 of the cli-external-orchestration subtree under the 032 kebab-case filesystem-naming program |
+| **Origin** | Phase 001 of the cli-external-orchestration subtree under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -106,7 +106,7 @@ This phase produces a complete root/shared ownership map, renames only any hub/s
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The main risk is a root-wide substitution that captures the delegated playbook or benchmark roots, or changes a tool-mandated filename. The phase depends on the 032 exemption record and hands the protected hub boundary to phases 002–006.
+The main risk is a root-wide substitution that captures the delegated playbook or benchmark roots, or changes a tool-mandated filename. The phase depends on the 020 exemption record and hands the protected hub boundary to phases 002–006.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

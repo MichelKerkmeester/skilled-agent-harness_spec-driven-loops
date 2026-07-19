@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/009-parent-hub-vocab-compat",
+  "specFolder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/009-parent-hub-vocab-compat",
   "description": "The advisor scorer's parent-hub confusion — routing \"audit\" / \"review\" / \"code audit\" prompts among `sk-code`, `sk-design`, and `deep-loop-workflows`",
   "keywords": [
     "advisor",
@@ -17,11 +17,12 @@
     "sk-design",
     "deep-loop-workflows"
   ],
-  "lastUpdated": "2026-07-07T18:33:59.583Z",
+  "lastUpdated": "2026-07-18T03:48:57.325Z",
   "specId": "009",
   "folderSlug": "parent-hub-vocab-compat",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "016-skill-advisor-tuning"
   ],
   "memorySequence": 0,

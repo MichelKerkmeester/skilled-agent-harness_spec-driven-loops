@@ -220,7 +220,7 @@ QUICK REFERENCE:
 
 SKILL REFERENCE:
   .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md
-  .opencode/skills/mcp-tooling/mcp-click-up/references/cupt_commands.md
+  .opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
 
 EOF
 }

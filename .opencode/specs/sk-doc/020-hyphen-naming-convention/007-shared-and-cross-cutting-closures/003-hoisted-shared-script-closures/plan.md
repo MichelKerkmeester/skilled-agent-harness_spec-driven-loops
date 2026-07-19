@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: hoisted shared script closures (032 phase 007 child 003)"
+title: "Implementation Plan: hoisted shared script closures (020 phase 007 child 003)"
 description: "Execution plan for shared scripts consumed by multiple skills: construct the consumer graph, select semantic targets, update every script reference, preserve exemptions and modes, and publish component dependencies."
 trigger_phrases:
   - "shared script closure implementation plan"

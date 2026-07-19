@@ -139,11 +139,11 @@ def test_template_rules_json_not_flagged_as_placeholder(tmp_path):
     skill_path = tmp_path / "demo-skill"
     skill_path.mkdir()
     (skill_path / "assets").mkdir()
-    (skill_path / "assets" / "template_rules.json").write_text("{}", encoding="utf-8")
+    (skill_path / "assets" / "template-rules.json").write_text("{}", encoding="utf-8")
 
     valid, _message, warnings = module.validate_resources(skill_path)
     assert valid is True
-    assert not any("template_rules.json" in warning for warning in warnings)
+    assert not any("template-rules.json" in warning for warning in warnings)
 
 
 # ───────────────────────────────────────────────────────────────
@@ -338,27 +338,41 @@ def test_resource_frontmatter_readme_exempt_from_five_fields(tmp_path):
     assert not any("README.md" in w and "missing frontmatter field" in w for w in warnings)
 
 
-def test_snake_case_check_recurses_into_subdirs(tmp_path):
+def test_kebab_case_check_recurses_into_subdirs(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "demo-skill")
     sub = skill_path / "references" / "domain"
     sub.mkdir(parents=True)
     (sub / "kebab-name.md").write_text(_VALID_RESOURCE_FM, encoding="utf-8")
 
-    valid, _message, warnings = module.validate_resources(skill_path)
-    assert valid is True  # warning, not hard error
-    assert any("kebab-name.md" in w and "snake_case" in w for w in warnings)
+    valid, _message, warnings = module.validate_generated_paths(skill_path)
+    assert valid is True
+    assert warnings == []
 
 
-def test_snake_case_check_exempts_readme(tmp_path):
+def test_kebab_case_check_flags_underscore_paths(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    sub = skill_path / "references" / "bad_domain"
+    sub.mkdir(parents=True)
+    (sub / "bad_name.md").write_text(_VALID_RESOURCE_FM, encoding="utf-8")
+
+    valid, _message, warnings = module.validate_generated_paths(skill_path)
+
+    assert valid is True
+    assert any("bad_domain" in warning and "must use kebab-case" in warning for warning in warnings)
+    assert any("bad_name.md" in warning and "must use kebab-case" in warning for warning in warnings)
+
+
+def test_kebab_case_check_exempts_readme(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "demo-skill")
     refs = skill_path / "references" / "aesthetics"
     refs.mkdir(parents=True)
     (refs / "README.md").write_text(_VALID_RESOURCE_FM, encoding="utf-8")
 
-    _valid, _message, warnings = module.validate_resources(skill_path)
-    assert not any("README.md" in w and "snake_case" in w for w in warnings)
+    _valid, _message, warnings = module.validate_generated_paths(skill_path)
+    assert not any("README.md" in warning for warning in warnings)
 
 
 def test_smart_router_flags_missing_markers(tmp_path):
@@ -390,7 +404,7 @@ def test_new_checks_are_warnings_not_hard_errors(tmp_path):
     skill_path = _write_valid_skill(tmp_path / "demo-skill", with_router_markers=False)
     refs = skill_path / "references" / "domain"
     refs.mkdir(parents=True)
-    # kebab name + missing version + missing 3 of 5 fields, all at once.
+    # Invalid case + missing version + missing 3 of 5 fields, all at once.
     (refs / "bad-Name.md").write_text(
         "---\ntitle: Bad\ndescription: Violates name, version, and 5-field at once.\n---\n\n# Bad\n",
         encoding="utf-8",
@@ -399,7 +413,7 @@ def test_new_checks_are_warnings_not_hard_errors(tmp_path):
     valid, message, warnings = module.validate_skill(skill_path)
     assert valid is True, f"new checks must be warnings, got hard fail: {message}"
     joined = " ".join(warnings)
-    assert "snake_case" in joined
+    assert "kebab-case" in joined
     assert "version" in joined
     assert "trigger_phrases" in joined
     assert "smart-router marker" in joined

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
+  "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
   "description": "`system-skill-advisor` already supports Claude, Gemini, Codex, and OpenCode prompt-time guidance, but Devin CLI has no explicit advisor hook",
   "keywords": [
     "system-skill-advisor",
@@ -17,11 +17,12 @@
     "advisor",
     "hook"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.856Z",
+  "lastUpdated": "2026-07-18T03:48:57.216Z",
   "specId": "004",
   "folderSlug": "devin-advisor-hook-integration",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "007-skill-advisor-production-hardening"
   ],
   "memorySequence": 1,

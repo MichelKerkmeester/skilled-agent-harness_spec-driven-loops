@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: mcp-code-mode runtime (032 component 011 phase 004)"
+title: "Implementation Plan: mcp-code-mode runtime (020 component 011 phase 004)"
 description: "Audit the executable runtime tree, prove its current kebab-case names, and conditionally apply a semantic rename/reference closure if the pinned tree contains an eligible runtime name."
 trigger_phrases:
   - "mcp-code-mode runtime implementation plan"
@@ -94,7 +94,7 @@ blocking evidence result and prevents a silent skip if the pinned tree exposes a
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase depends on the 032 policy, the prior package/scripts/reference closures, Node tooling, and the reference
+This phase depends on the 020 policy, the prior package/scripts/reference closures, Node tooling, and the reference
 checker. It hands a stable runtime path inventory to phase 005, which owns the manual-playbook filename closure.
 <!-- /ANCHOR:dependencies -->
 

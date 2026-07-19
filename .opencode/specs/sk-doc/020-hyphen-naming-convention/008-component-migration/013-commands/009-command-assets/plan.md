@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: command asset and reference closure (032 phase 008/013/009)"
+title: "Implementation Plan: command asset and reference closure (020 phase 008/013/009)"
 description: "Build a residual ownership map, rename only unassigned maintained command assets, and close every active path pointer against final sibling targets."
 trigger_phrases:
   - "command asset closure plan"

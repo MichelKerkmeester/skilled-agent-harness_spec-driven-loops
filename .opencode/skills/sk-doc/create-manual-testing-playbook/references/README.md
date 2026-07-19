@@ -32,8 +32,8 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Prompt voice** - natural-human vs RCAF decision table, voice guidelines, and the ~70/30 default split | [prompt_voice.md](prompt_voice.md) | Choosing or reviewing the `Prompt:` voice for a scenario, or deciding when the RCAF wrapper applies |
-| **Common pitfalls** - the recurring package defects with why-it-breaks and the correct fix | [common_pitfalls.md](common_pitfalls.md) | Reviewing a drafted playbook for defects, or diagnosing a package that splits truth or desyncs prompts |
+| **Prompt voice** - natural-human vs RCAF decision table, voice guidelines, and the ~70/30 default split | [prompt-voice.md](prompt-voice.md) | Choosing or reviewing the `Prompt:` voice for a scenario, or deciding when the RCAF wrapper applies |
+| **Common pitfalls** - the recurring package defects with why-it-breaks and the correct fix | [common-pitfalls.md](common-pitfalls.md) | Reviewing a drafted playbook for defects, or diagnosing a package that splits truth or desyncs prompts |
 | **Reference implementations** - shipped playbooks to model new packages on, plus the scaffold templates | [examples.md](examples.md) | Modeling a new playbook package on a proven, canonical layout |
 
 ---
@@ -41,19 +41,19 @@ Load the file that matches the current task:
 ## 3. RELATED RESOURCES
 
 ### Overflow References
-- [prompt_voice.md](prompt_voice.md) - Natural-human vs RCAF voice decision and guidelines
-- [common_pitfalls.md](common_pitfalls.md) - Recurring package defects and correct fixes
+- [prompt-voice.md](prompt-voice.md) - Natural-human vs RCAF voice decision and guidelines
+- [common-pitfalls.md](common-pitfalls.md) - Recurring package defects and correct fixes
 - [examples.md](examples.md) - Shipped reference playbooks and scaffold templates
 
 ### Templates
-- [manual_testing_playbook_template.md](../assets/manual_testing_playbook_template.md) - Root playbook scaffold
-- [manual_testing_playbook_snippet_template.md](../assets/manual_testing_playbook_snippet_template.md) - Per-feature file scaffold
+- [manual-testing-playbook-template.md](../assets/manual-testing-playbook-template.md) - Root playbook scaffold
+- [manual-testing-playbook-snippet-template.md](../assets/manual-testing-playbook-snippet-template.md) - Per-feature file scaffold
 
 ### Shared Reference Files
-- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Shared validation and DQI workflow
-- [frontmatter_versioning.md](../../shared/references/frontmatter_versioning.md) - 4-part version expectations
-- [quick_reference.md](../../shared/references/quick_reference.md) - Condensed commands and file locations
+- [frontmatter-versioning.md](../../shared/references/frontmatter-versioning.md) - 4-part version expectations
+- [quick-reference.md](../../shared/references/quick-reference.md) - Condensed commands and file locations
 - [workflows.md](../../create-quality-control/references/workflows.md) - Execution-mode reference
 
 ---

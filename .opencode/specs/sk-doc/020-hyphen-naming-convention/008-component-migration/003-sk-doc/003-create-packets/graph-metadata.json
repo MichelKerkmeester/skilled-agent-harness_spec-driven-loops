@@ -25,7 +25,7 @@
     "trigger_phrases": [
       "sk-doc create-packet components",
       "create packet kebab-case phases",
-      "032 create workflow packet names"
+      "020 create workflow packet names"
     ],
     "key_topics": [
       "sk-doc",
@@ -92,15 +92,15 @@
     ],
     "causal_summary": "The create- packets are independent authoring workflows, but their resource directories and template filenames use mixed snakecase forms",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-07-17T14:30:13.415Z",
+    "last_save_at": "2026-07-17T20:26:06.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a6a0dbcfd5bbd31bf9897eb91d51113d7804e80624ddd5f483d36b7426f81cac",
+    "source_fingerprint": "sha256:3c54ce5f1ffeb03d2045fd2522b2cb17d5f3a7fde03309cc3be86b6d7c8bd24f",
     "source_doc_hashes": {
-      "spec.md": "b2cbb91c1cd779af1037c8f054083707c0dc198a12c71f26afdbcfb90c485ce6"
+      "spec.md": "860f356d66cb2d8bea4b398b2a1598857feca41830a38fd7a7ed30d253d8d8ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

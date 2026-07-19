@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/022-cli-devin-deprecation/005-historical-record-reference-sweep",
+  "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep",
   "description": "cli-devin is mentioned in ~1760 historical files (specs/, changelog/, benchmark state/eval)",
   "keywords": [
     "cli-devin",
@@ -13,11 +13,12 @@
     "state",
     "eval"
   ],
-  "lastUpdated": "2026-07-14T19:19:05.689Z",
+  "lastUpdated": "2026-07-18T03:48:54.340Z",
   "specId": "005",
   "folderSlug": "historical-record-reference-sweep",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "022-cli-devin-deprecation"
   ],
   "memorySequence": 0,

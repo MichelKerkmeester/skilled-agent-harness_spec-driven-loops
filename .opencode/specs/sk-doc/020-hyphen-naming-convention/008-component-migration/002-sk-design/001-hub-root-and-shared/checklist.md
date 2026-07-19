@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Hub root and shared (032 phase 001)"
-description: "Blocking SOL verification contract for Hub root and shared in the 032 sk-design naming subtree."
+title: "Checklist: Hub root and shared (020 phase 001)"
+description: "Blocking SOL verification contract for Hub root and shared in the 020 sk-design naming subtree."
 trigger_phrases:
   - "hub-root-and-shared verification"
   - "sk-design hub/shared checklist"
-  - "032 hub-root-and-shared gate"
+  - "020 hub-root-and-shared gate"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Hub root and shared (032 phase 001)
+# Checklist: Hub root and shared (020 phase 001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

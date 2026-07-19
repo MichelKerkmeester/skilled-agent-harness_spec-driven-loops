@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree.",
     "created_at": "2026-07-14T15:16:52Z",
-    "last_save_at": "2026-07-17T14:30:05.390Z",
+    "last_save_at": "2026-07-17T20:26:01.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:46a3b0176213e814ab770b49e590031027d0f2d94222f58b6dcf8592bcd4eadf",
+    "source_fingerprint": "sha256:5138fe299031f644219a6a6f2332dcfc95d102cddfdec0a15db3d3edda796320",
     "source_doc_hashes": {
-      "spec.md": "9079bf7200f2b10433b723dcea3ccd9d2d1b5e7b352f024f41678c3d67e83f83",
-      "plan.md": "a9a92920b5f658421a75acb6c45ef298b4c3018d00878078f07e102372ab4244",
-      "tasks.md": "c65980247c1755d2337a11500217ef5f02707e166607576c4e13bd4ea61e2d0c",
-      "checklist.md": "e00bbe5c0efaf8b011f19244d99c804d68385d589cc009c698c630da929405b2"
+      "spec.md": "f3d37565346337bc99b4a82d2c05ea8b94180f3d96c452eebb942df64fc96cfd",
+      "plan.md": "a6b6cb3f8616e6389cce3b73dd94c1635eec56b1d6ffa0e91a1f0d2135c5845c",
+      "tasks.md": "57075b05bb40d5857bf8be5ac6d76242849c25e0b4595d52b75e066b8fa352f4",
+      "checklist.md": "3c4e6a5d664b9a3ddb7d084bd1832e1fe28aeabab99796e7f6a016d4e920dbf5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -107,15 +107,15 @@
     ],
     "causal_summary": "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary.",
     "created_at": "2026-07-14T15:17:00Z",
-    "last_save_at": "2026-07-17T14:30:25.832Z",
+    "last_save_at": "2026-07-17T20:26:11.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a501c5d29d51634d608c7c66b468c2fa8be575ffd415c8d89771063c129b88ca",
+    "source_fingerprint": "sha256:9cee4f457abadef54c1b730d799d79fc077485c327c2f57b2c548207a5bb8969",
     "source_doc_hashes": {
-      "spec.md": "e36f6f8c754a53d2cd32ce9d475a3ace6753d1caaafb1a6bb4a8fd3ef65a9c1d"
+      "spec.md": "d2797a695760c2e21b32029f749eac36cd9a42897f809df84ea32cfe97a0bc61"
     },
     "last_active_child_id": null,
     "last_active_at": null

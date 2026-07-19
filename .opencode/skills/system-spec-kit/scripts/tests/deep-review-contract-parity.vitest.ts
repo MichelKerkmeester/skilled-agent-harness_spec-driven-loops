@@ -29,10 +29,10 @@ function readWorkspaceFile(relativePath: string): string {
   const primaryDocs = [
     '.opencode/skills/system-deep-loop/deep-review/SKILL.md',
     '.opencode/skills/system-deep-loop/deep-review/README.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md',
-    '.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml',
+    '.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md',
+    '.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md',
+    '.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md',
+    '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml',
   ];
 
   const runtimeMirrors = [
@@ -41,8 +41,8 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.opencode/commands/deep/assets/deep_review_auto.yaml',
-    '.opencode/commands/deep/assets/deep_review_confirm.yaml',
+    '.opencode/commands/deep/assets/deep-review-auto.yaml',
+    '.opencode/commands/deep/assets/deep-review-confirm.yaml',
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -144,7 +144,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('keeps the generated review contract aligned on artifact_dir semantics', () => {
-    const content = readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml');
+    const content = readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml');
 
     expect(content).toContain('{artifact_dir}/deep-review-config.json');
     expect(content).toContain('{artifact_dir}/deep-review-state.jsonl');
@@ -263,7 +263,7 @@ function readWorkspaceFile(relativePath: string): string {
   // it here.
   it('keeps authoredArtifacts docs mentioning the manifest enum ids declared in their enumParityChecked', () => {
     const contract = yaml.load(
-      readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml'),
+      readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml'),
     ) as {
       contract: {
         dimensions: Array<{ id: string }>;

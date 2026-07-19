@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: whole-repo verification gate (032 phase 010)"
+title: "Decision Record: whole-repo verification gate (020 phase 010)"
 description: "Locks the phase 010 gate as an evidence-based conjunction over scope-aware naming, reference closure, Git rename history, and the complete validation/test baseline, with exact pass criteria and measurement sources."
 trigger_phrases:
   - "whole-repo gate decision record"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt hub root and shared boundary (032 phase 004.001)"
+title: "Tasks: sk-prompt hub root and shared boundary (020 phase 004.001)"
 description: "Tasks for phase 001 of the sk-prompt kebab-case program: census the root/shared boundary, protect the hub contract, and verify delegated ownership and reference closure."
 trigger_phrases:
   - "sk-prompt hub root tasks"

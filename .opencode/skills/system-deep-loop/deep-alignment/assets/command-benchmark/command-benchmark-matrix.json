@@ -1,0 +1,955 @@
+{
+  "schemaVersion": 1,
+  "matrixId": "command-surface-dab-012-027-deferred-live",
+  "runnerPath": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+  "bounds": {
+    "scenarioIds": [
+      "DAB-012",
+      "DAB-013",
+      "DAB-014",
+      "DAB-015",
+      "DAB-016",
+      "DAB-017",
+      "DAB-018",
+      "DAB-019",
+      "DAB-020",
+      "DAB-021",
+      "DAB-022",
+      "DAB-023",
+      "DAB-024",
+      "DAB-025",
+      "DAB-026",
+      "DAB-027"
+    ],
+    "scenarioCount": 16,
+    "driverLegs": [
+      {
+        "legName": "claude-cli",
+        "role": "claude-baseline"
+      },
+      {
+        "legName": "gpt-fast-high",
+        "role": "gpt-high-effort-driver"
+      },
+      {
+        "legName": "gpt-fast-med",
+        "role": "gpt-fast-driver"
+      }
+    ],
+    "leafSentinelScenarioIds": [
+      "DAB-012"
+    ],
+    "defaultSamples": 1,
+    "contestedSamples": 3,
+    "requiredCellCount": 52
+  },
+  "fanoutGap": {
+    "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:339",
+    "declaration": "const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);",
+    "consequence": "Alignment leaves remain predeclared skips until alignment fan-out is wired."
+  },
+  "fixtures": {
+    "DAB-012": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "0d238a26ef875311cf4ebe2af256dfeded20628011b8a6f487874b726dc281b0",
+        "plan.md": "23dba5271825b081e573df9a2f97e1727f2e7ef2025b7e68e98e3fe3fa08c634",
+        "spec.md": "f7f485f0879b2ee5c389f8adc8ce7b180f64a79662571ff00292ac9e14018271",
+        "src/slugify.js": "1110cbf72248534f111b2aa5fdbadb3dfb28b646ac40feba4b303e5ddcba7308",
+        "tasks.md": "fab8a0439f3ff6773a76f940d119c4bf52a47cdf24eaaacf5afd40b2a1af3cea"
+      }
+    },
+    "DAB-013": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "e72ad113ddb4a0793ef92a52e9182d15ac8dfbc0357443df81e6c37a03adce77",
+        "plan.md": "f90f0a93fd0ee7c97b4d4d2c36ac78b926ab31034c6be907913b91539efbcf05",
+        "spec.md": "aaff72a6c11a72a14c4aa986d0b779ee498995f324d846b579a90e0ca113569e",
+        "src/parent-skill/mode-registry.json": "8b9b820d8f605c0282e061af15e68ec5bee55d31c2f3b00d57a366a3b72740df",
+        "src/parent-skill/SKILL.md": "84d745ed14e102ca5b10f31a7a606276241289726796a5ec235f3b13bcf0f8eb",
+        "tasks.md": "bfb80ef5923a950506bf252c153342827b8e033cad52fcb4b8fcba12d8a7c463"
+      }
+    },
+    "DAB-014": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-014-direct-tool-router",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "789b25a968679dbad4882dd88831573648baef1c35cacbd584dc2578872008f2",
+        "plan.md": "ac92517573779203d075c6504d87374210f13bb5fd790084324bcad656c6537f",
+        "spec.md": "e1216c45d5084f7758385ed1cb951c78a1927770f034538faf6b7baed8e1922a",
+        "src/query.txt": "0705009dd8cdd43e28e0840d1af942b0444bb6dbc20e7db92a4464bcdf16f28c",
+        "tasks.md": "7b81d660270ebef517fe99edb2d5d95ef40c24663ccc45a7a2aeb93f82f6a786"
+      }
+    },
+    "DAB-015": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "7a7257b8f4da467362b5d90688f08f4d91553befccac15d1a98868e505709d2b",
+        "plan.md": "865dc7f463eda2c6ff1bba54b616ba553d4a74abe7a9866ce11954dc4d05207d",
+        "spec.md": "94cf3a64a1e938c374ec4d6da7ecd2324d047893b5a2b852cc4cf1c04393586d",
+        "src/prompt.txt": "838e373cb6050cab5d07349ff4437d011ee5aa897f30eea63a3f2173be744066",
+        "tasks.md": "4efdcec5c1ffaf1135452b95875967973dc070fcffeecca7e375854bdae27eac"
+      }
+    },
+    "DAB-016": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "448e50a3b0d304adc884156cbf01387149b97c06cb0401e23a6fc765ff515009",
+        "plan.md": "5e7bc4284cef0b857389d780cb2923799025bb3a12c24d48158568720dcd84db",
+        "spec.md": "2dc7407ad1fb03fa8cb3412de4ffeb64145dd1732f5a79acb5a1e518de56919c",
+        "src/demo-mode/SKILL.md": "14628ce5adf5f5c5cf2766799a87c1bc4d49339de4a4d54c184ad9e2873a1c03",
+        "tasks.md": "6e38f402dc42ad6dc9a6aa2541ddaca0cf7a972ea52a383b9241badeecdad5ec"
+      }
+    },
+    "DAB-017": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-017-design-audit",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "5717022b0e37bf7b976929573c7a51db807e231d7ae31cc7cbf7b166be6e9af5",
+        "src/interface.html": "ef638c9b6699a70e836b62c0e3d270e695c77f9516107da5bfb5bea87ce88f9d",
+        "src/styles.css": "561d1e13cee24c44a2a4d9295da5872ffba21e7b6d586b101f36e38bb883e016"
+      }
+    },
+    "DAB-018": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-018-doctor-mcp-install",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "016c33753349c774d3d2ee7561a9c81f385b5e7ea20a161f95e1c37afa28e305",
+        "src/case.txt": "6a899d8999084dfa1e418ae43b62d70b22070037793e252ab1f7f8bc15a9c559"
+      }
+    },
+    "DAB-019": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-019-doctor-mcp-debug",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "f80f15f78fe3311ed48c61bed3debe1d78b7554ef7c5904bb0551330932ae08e",
+        "src/case.txt": "f4186869d8180ab71471478645ea84d315c98a9abf70ead012da2ebeabe8768a"
+      }
+    },
+    "DAB-020": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-020-doctor-mcp-conflict",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "df42b76c724b6f3ec4c7fd4aa78fe5f64bda94eb8c90b8a581dae97f2c0f7ac0",
+        "src/case.txt": "41b2f88107e566ad3fa8a1e9a14e3447d118ab63132d80703d279698f899bbd2"
+      }
+    },
+    "DAB-021": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-021-memory-learn-list",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "a1d9c10466d82e0eec6214d0396b97a8b1f9f351f380e3abb0b4766f1df8f96c",
+        "src/query.txt": "c08a4734da31dee24816e32f4bc3a8ce8ae9617f5805e0591dbeefa012038355"
+      }
+    },
+    "DAB-022": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-022-memory-learn-budget",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "e3329b18aa3d1dbf80eafdb34d9d80e1e807b60487b5f2782253a6b710189bf5",
+        "src/query.txt": "e3f9f24e2e911e36a1e16b3e79c7b9accffb0b44c9063d2e805cb9a496735434"
+      }
+    },
+    "DAB-023": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-023-memory-manage-health",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "ef9d652e8c6c69ba7d41950949831546c638134b4c29d063fda1f179653bc6e6",
+        "src/query.txt": "b20fedf44b3f3813517bcbb99c8792332a8370b65d4f42608bdcae4f5fbb34fe"
+      }
+    },
+    "DAB-024": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-024-memory-checkpoint-list",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "7ca33c14a5d16cb498f29b764c2595bfab43f88992ac8466eada8abde98f3e4a",
+        "src/query.txt": "e28e5074ed783cd6f7c6275446ff0989f1d39c622c6d0e672bdace11984a1867"
+      }
+    },
+    "DAB-025": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-025-memory-save-apply",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "540c17941469baec57febfc31b5599b89b0e6927aea90445b6eaaa1544a296a8",
+        "src/save-packet/implementation-summary.md": "fde57506072a4dfc1b6a22c0f7846a930570d80c54e025ef4ad9de9c8baa4098",
+        "src/save-packet/plan.md": "c19335b886906daf03ad87b62f245417eb2115d740ee0ee7d2a122cd9caa42a7",
+        "src/save-packet/spec.md": "b81aae091352a1b9935a6e8300760261135bf183d74850ec726f6138e9ba4fda",
+        "src/save-packet/tasks.md": "ca1dfd436385878208ed7c2282dd3dc5ed23855454bb0353a6a5ea3a6ea6e0ab"
+      }
+    },
+    "DAB-026": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-026-goal-show",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "fbf4eea71e4a986143a7d524b74b13375e53bf559d104b2299074fc4ec8678ba",
+        "src/query.txt": "934b7f8f9caf45ee43f9b99af4a5ac71d515a3959448462101549288161f35f4"
+      }
+    },
+    "DAB-027": {
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-027-agent-router-bare",
+      "restorePolicy": "git",
+      "hashes": {
+        "FIXTURE.md": "20dfe483ba92c4b7430f7828ee1baaeed170c83c088d7438d1f9de6cb653b2a6",
+        "src/request.txt": "ee58e63fe641f6ca8da9d2bc9c353bd98fae1a34c8049355739c9e791a003e7a"
+      }
+    }
+  },
+  "requiredCells": [
+    {
+      "id": "driver:DAB-012:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-012:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-012:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-013:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-013",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-013",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-013:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-013",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-013",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-013:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-013",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-013",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-014:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-014",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-014",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-014:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-014",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-014",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-014:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-014",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-014",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-015:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-015",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-015-monolithic-prompt-improve.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-015",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-015:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-015",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-015-monolithic-prompt-improve.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-015",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-015:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-015",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-015-monolithic-prompt-improve.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-015",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-016:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-016",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-016-workflow-router-create-benchmark.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-016",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-016:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-016",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-016-workflow-router-create-benchmark.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-016",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-016:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-016",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-016-workflow-router-create-benchmark.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-016",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-017:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-017",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-017",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-017:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-017",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-017",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-017:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-017",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-017",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-018:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-018",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-018-subaction-router-doctor-mcp-install.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-018",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-018:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-018",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-018-subaction-router-doctor-mcp-install.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-018",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-018:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-018",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-018-subaction-router-doctor-mcp-install.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-018",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-019:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-019",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-019-subaction-router-doctor-mcp-debug.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-019",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-019:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-019",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-019-subaction-router-doctor-mcp-debug.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-019",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-019:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-019",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-019-subaction-router-doctor-mcp-debug.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-019",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-020:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-020",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-020-subaction-router-doctor-mcp-conflict.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-020",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-020:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-020",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-020-subaction-router-doctor-mcp-conflict.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-020",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-020:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-020",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-020-subaction-router-doctor-mcp-conflict.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-020",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-021:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-021",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-021-direct-tool-router-memory-learn-list.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-021",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-021:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-021",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-021-direct-tool-router-memory-learn-list.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-021",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-021:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-021",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-021-direct-tool-router-memory-learn-list.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-021",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-022:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-022",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-022-direct-tool-router-memory-learn-budget.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-022",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-022:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-022",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-022-direct-tool-router-memory-learn-budget.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-022",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-022:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-022",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-022-direct-tool-router-memory-learn-budget.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-022",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-023:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-023",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-023-direct-tool-router-memory-manage-health.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-023",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-023:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-023",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-023-direct-tool-router-memory-manage-health.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-023",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-023:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-023",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-023-direct-tool-router-memory-manage-health.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-023",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-024:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-024",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-024-direct-tool-router-memory-checkpoint-list.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-024",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-024:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-024",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-024-direct-tool-router-memory-checkpoint-list.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-024",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-024:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-024",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-024-direct-tool-router-memory-checkpoint-list.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-024",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-025:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-025",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-025-direct-tool-router-memory-save-apply.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-025",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-025:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-025",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-025-direct-tool-router-memory-save-apply.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-025",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-025:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-025",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-025-direct-tool-router-memory-save-apply.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-025",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-026:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-026",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-026-direct-plugin-router-goal-show.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-026",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-026:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-026",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-026-direct-plugin-router-goal-show.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-026",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-026:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-026",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-026-direct-plugin-router-goal-show.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-026",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-027:claude-cli",
+      "cellKind": "driver",
+      "role": "claude-baseline",
+      "scenarioId": "DAB-027",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-027-monolithic-agent-router-bare.md",
+      "legName": "claude-cli",
+      "samples": 1,
+      "fixtureRef": "DAB-027",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-027:gpt-fast-high",
+      "cellKind": "driver",
+      "role": "gpt-high-effort-driver",
+      "scenarioId": "DAB-027",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-027-monolithic-agent-router-bare.md",
+      "legName": "gpt-fast-high",
+      "samples": 1,
+      "fixtureRef": "DAB-027",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "driver:DAB-027:gpt-fast-med",
+      "cellKind": "driver",
+      "role": "gpt-fast-driver",
+      "scenarioId": "DAB-027",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-027-monolithic-agent-router-bare.md",
+      "legName": "gpt-fast-med",
+      "samples": 1,
+      "fixtureRef": "DAB-027",
+      "skip": {
+        "code": "deferred_live_capture_pending_operator_green_light",
+        "reason": "deferred live capture pending operator green-light"
+      }
+    },
+    {
+      "id": "leaf:DAB-012:cli-codex:gpt-5.5:medium",
+      "cellKind": "alignment-leaf-sentinel",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "alignment-leaf-cli-codex-gpt-5.5-medium",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "executor": {
+        "executorKind": "cli-codex",
+        "model": "gpt-5.5",
+        "effort": "medium"
+      },
+      "skip": {
+        "code": "alignment_fanout_not_wired",
+        "reason": "alignment fan-out is absent; alignment-driver leaf capture is not runnable",
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:339",
+        "evidence": "const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);"
+      }
+    },
+    {
+      "id": "leaf:DAB-012:cli-codex:gpt-5.6-sol:xhigh",
+      "cellKind": "alignment-leaf-sentinel",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "alignment-leaf-cli-codex-gpt-5.6-sol-xhigh",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "executor": {
+        "executorKind": "cli-codex",
+        "model": "gpt-5.6-sol",
+        "effort": "xhigh"
+      },
+      "skip": {
+        "code": "alignment_fanout_not_wired",
+        "reason": "alignment fan-out is absent; alignment-driver leaf capture is not runnable",
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:339",
+        "evidence": "const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);"
+      }
+    },
+    {
+      "id": "leaf:DAB-012:cli-codex:gpt-5.6-luna:max",
+      "cellKind": "alignment-leaf-sentinel",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "alignment-leaf-cli-codex-gpt-5.6-luna-max",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "executor": {
+        "executorKind": "cli-codex",
+        "model": "gpt-5.6-luna",
+        "effort": "max"
+      },
+      "skip": {
+        "code": "alignment_fanout_not_wired",
+        "reason": "alignment fan-out is absent; alignment-driver leaf capture is not runnable",
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:339",
+        "evidence": "const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);"
+      }
+    },
+    {
+      "id": "leaf:DAB-012:cli-opencode:gpt-5.6-sol-fast:xhigh",
+      "cellKind": "alignment-leaf-sentinel",
+      "scenarioId": "DAB-012",
+      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "legName": "alignment-leaf-cli-opencode-gpt-5.6-sol-fast-xhigh",
+      "samples": 1,
+      "fixtureRef": "DAB-012",
+      "executor": {
+        "executorKind": "cli-opencode",
+        "model": "gpt-5.6-sol-fast",
+        "effort": "xhigh"
+      },
+      "skip": {
+        "code": "alignment_fanout_not_wired",
+        "reason": "alignment fan-out is absent; alignment-driver leaf capture is not runnable",
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:339",
+        "evidence": "const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);"
+      }
+    }
+  ]
+}

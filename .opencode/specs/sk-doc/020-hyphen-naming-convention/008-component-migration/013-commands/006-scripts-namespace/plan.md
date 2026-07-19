@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: scripts command namespace naming (032 phase 008/013/006)"
+title: "Implementation Plan: scripts command namespace naming (020 phase 008/013/006)"
 description: "Audit the already-clean scripts namespace, preserve its negative fixture contract, and produce evidence for the command-surface rollup."
 trigger_phrases:
   - "scripts namespace naming plan"

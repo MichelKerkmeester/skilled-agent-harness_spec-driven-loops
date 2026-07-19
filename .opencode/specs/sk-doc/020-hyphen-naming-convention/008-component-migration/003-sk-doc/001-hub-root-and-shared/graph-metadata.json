@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "sk-doc hub root shared naming",
       "sk-doc shared backbone kebab-case",
-      "032 hub root and shared",
+      "020 hub root and shared",
       "sk-doc hub shared implementation plan",
       "shared backbone rename plan",
       "sk-doc hub shared tasks",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 032 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries.",
+    "causal_summary": "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 020 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries.",
     "created_at": "2026-07-14T15:17:24Z",
-    "last_save_at": "2026-07-17T14:30:12.841Z",
+    "last_save_at": "2026-07-17T20:26:06.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f8344ad75a3473a238b53c5d834cc4a616f7160955983fca52d633215eeb740a",
+    "source_fingerprint": "sha256:686d9374f2b57cc6d8a6fd9d495ca873a8a1826ef84d618ecf92c675a94ea8d4",
     "source_doc_hashes": {
-      "spec.md": "0d17ed392b6cf6dbdd5cffb4559481beace4c8ce2fcfbc7ce2b419c2a8e44712",
-      "plan.md": "6a2be50a025d60e0e863190bcf9f3ffd61bb5e4ba1217ed55aae1047210c4802",
+      "spec.md": "7144b118b345ff10e828d8d75d44cdc9845a2c540b1b41e5384eda851ee3e710",
+      "plan.md": "6e14a655f8776b352c29a77c8e7a81874f6ba81e2771f59a0fbbdf33d4e48b34",
       "tasks.md": "a225684eb0463b4646deea425f3c7cb5b74c096d5453a1383abdb67452512bdd",
       "checklist.md": "28eed337901d04b8140e43519546ab18bfa117d26073a36e2c6e041e7881497f",
-      "decision-record.md": "399f7cc165f53e7bde4309d0badca43f6406f6609b65cfdee6f1ac163d13420d"
+      "decision-record.md": "e0b5db710956c29070717ca4008b4c6b1116274a155cc78c3c2e45635c00d083"
     },
     "last_active_child_id": null,
     "last_active_at": null

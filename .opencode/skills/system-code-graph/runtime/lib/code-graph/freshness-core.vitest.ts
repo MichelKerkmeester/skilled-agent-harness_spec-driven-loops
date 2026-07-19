@@ -14,7 +14,7 @@ import { join } from 'node:path';
 
 import freshnessCore from './freshness-core.cjs';
 
-const DATABASE_RELATIVE_DIR = '.opencode/skills/system-code-graph/mcp_server/database';
+const DATABASE_RELATIVE_DIR = '.opencode/skills/system-code-graph/mcp-server/database';
 
 function seedReadiness(projectDir: string, graphFreshness: string) {
   const dir = join(projectDir, DATABASE_RELATIVE_DIR);

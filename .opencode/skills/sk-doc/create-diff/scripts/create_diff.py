@@ -73,6 +73,7 @@ STATE_DIR_NAME = ".create-diff"
 CONTEXT_LINES = 3           # lines of unchanged context kept around each change
 COLLAPSE_THRESHOLD = 7      # runs of equal lines longer than this get collapsed
 _MD_HEADING_RE = re.compile(r"#{1,6} \S")  # ATX heading at line start (needs "# " + text)
+_KEBAB_FILE_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*(?:\.diff)?$")
 
 
 class CapabilityError(Exception):
@@ -1240,8 +1241,34 @@ def latest_snapshot(path: Path, state: Path) -> Optional[dict]:
 # Commands
 # --------------------------------------------------------------------------- #
 
+def _canonical_slug(value: str) -> str:
+    """Derive one lowercase kebab-case filename stem from a document stem.
+
+    Args:
+        value: Source document stem used for a default report name.
+
+    Returns:
+        A semantic lowercase slug with punctuation runs collapsed to hyphens.
+
+    Raises:
+        CapabilityError: When the source stem has no ASCII letters or digits.
+    """
+    ascii_value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    words = re.findall(r"[a-z0-9]+", ascii_value.lower())
+    if not words:
+        raise CapabilityError(f"Cannot derive a kebab-case report name from '{value}'")
+    return "-".join(words)
+
+
 def _write_report(html_str: str, out: Optional[str], default_stem: str) -> Path:
-    target = Path(out) if out else Path.cwd() / f"{default_stem}.diff.html"
+    target = Path(out) if out else Path.cwd() / f"{_canonical_slug(default_stem)}.diff.html"
+    report_base = target.name.removesuffix(".html")
+    if not _KEBAB_FILE_RE.fullmatch(report_base):
+        raise CapabilityError(
+            f"Report filename '{target.name}' must use lowercase kebab-case before .html"
+        )
+    if target.exists():
+        raise CapabilityError(f"Refusing to overwrite existing report: {target}")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html_str, encoding="utf-8")
     return target

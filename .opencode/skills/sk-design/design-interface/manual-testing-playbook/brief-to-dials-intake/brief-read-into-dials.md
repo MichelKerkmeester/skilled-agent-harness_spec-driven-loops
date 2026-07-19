@@ -54,7 +54,7 @@ Operators run the exact prompt and command sequence for `ID-014` and confirm the
 1. Restate the user request in plain intake language.
 2. Confirm the register posture is set before any dial is read, since the posture gates the dial centers.
 3. Execute the deterministic steps exactly as written, mapping the brief's own language to values.
-4. Compare the produced Design Read against the inference table and the use-case presets in `brief_to_dials.md`.
+4. Compare the produced Design Read against the inference table and the use-case presets in `brief-to-dials.md`.
 5. Return a concise final verdict that names any surfaced chooser or any skipped posture when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -90,6 +90,6 @@ If the primary run passes, repeat with a genuinely ambiguous brief and confirm t
 
 - Group: Brief-To-Dials Intake
 - Playbook ID: ID-014
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `brief-to-dials-intake/brief-read-into-dials.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

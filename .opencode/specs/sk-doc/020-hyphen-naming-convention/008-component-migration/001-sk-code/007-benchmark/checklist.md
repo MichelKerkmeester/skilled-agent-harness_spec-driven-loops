@@ -1,5 +1,5 @@
 ---
-title: "Checklist: sk-code benchmark artifacts (032 phase 008/007)"
+title: "Checklist: sk-code benchmark artifacts (020 phase 008/007)"
 description: "Blocking SOL verification contract for the sk-code benchmark storage rename and navigation closure."
 trigger_phrases:
   - "benchmark naming checklist"

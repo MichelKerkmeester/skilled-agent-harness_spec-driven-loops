@@ -1,8 +1,8 @@
 [
   {
     "workflowMode": "mcp-code-mode",
-    "leafResourceId": "references/naming_convention.md",
-    "diskPath": "references/naming_convention.md"
+    "leafResourceId": "references/naming-convention.md",
+    "diskPath": "references/naming-convention.md"
   },
   {
     "workflowMode": "mcp-code-mode",
@@ -11,8 +11,8 @@
   },
   {
     "workflowMode": "mcp-code-mode",
-    "leafResourceId": "references/tool_catalog.md",
-    "diskPath": "references/tool_catalog.md"
+    "leafResourceId": "references/tool-catalog.md",
+    "diskPath": "references/tool-catalog.md"
   },
   {
     "workflowMode": "mcp-code-mode",
@@ -26,12 +26,12 @@
   },
   {
     "workflowMode": "mcp-code-mode",
-    "leafResourceId": "assets/config_template.md",
-    "diskPath": "assets/config_template.md"
+    "leafResourceId": "assets/config-template.md",
+    "diskPath": "assets/config-template.md"
   },
   {
     "workflowMode": "mcp-code-mode",
-    "leafResourceId": "assets/env_template.md",
-    "diskPath": "assets/env_template.md"
+    "leafResourceId": "assets/env-template.md",
+    "diskPath": "assets/env-template.md"
   }
 ]

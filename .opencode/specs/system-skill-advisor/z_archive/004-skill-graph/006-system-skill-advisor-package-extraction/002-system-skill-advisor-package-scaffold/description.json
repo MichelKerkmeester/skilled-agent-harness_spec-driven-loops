@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold",
   "description": "ADR-001 (`015/009/001/decision-record.md`) locked the \"Standalone Advisor MCP With Legacy Tool Bridge\" shape and committed to a 5-phase migration",
   "keywords": [
     "adr-001",
@@ -17,11 +17,12 @@
     "5-phase",
     "migration"
   ],
-  "lastUpdated": "2026-07-09T10:02:49.585Z",
+  "lastUpdated": "2026-07-18T03:48:57.101Z",
   "specId": "002",
   "folderSlug": "system-skill-advisor-package-scaffold",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

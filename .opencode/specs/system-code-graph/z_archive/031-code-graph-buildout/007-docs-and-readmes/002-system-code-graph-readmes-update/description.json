@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/002-system-code-graph-readmes-update",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/007-docs-and-readmes/002-system-code-graph-readmes-update",
   "description": "The system-code-graph skill READMEs were inconsistent after extraction and the packet 010 MCP rename",
   "keywords": [
     "system-code-graph",
@@ -12,11 +12,12 @@
     "mcp",
     "rename"
   ],
-  "lastUpdated": "2026-07-15T18:44:11.823Z",
+  "lastUpdated": "2026-07-18T03:48:55.528Z",
   "specId": "002",
   "folderSlug": "system-code-graph-readmes-update",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "007-docs-and-readmes"
   ],

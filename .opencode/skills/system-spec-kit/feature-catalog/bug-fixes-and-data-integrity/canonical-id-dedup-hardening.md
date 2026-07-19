@@ -1,0 +1,60 @@
+---
+title: "Canonical ID dedup hardening"
+description: "Tracks the fix for mixed ID format deduplication failures in hybrid search caused by string/number mismatches."
+trigger_phrases:
+  - "canonical id dedup hardening"
+  - "mixed id format deduplication"
+  - "hybrid search dedup fix"
+  - "string number id mismatch dedup"
+  - "canonical result id normalization"
+version: 3.6.0.16
+---
+
+# Canonical ID dedup hardening
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Tracks the fix for mixed ID format deduplication failures in hybrid search caused by string/number mismatches.
+
+The same spec-doc record was sometimes listed multiple times in search results because different parts of the system referred to it using slightly different labels. This fix standardizes how memories are identified internally so duplicates are correctly detected and merged in the results every time.
+
+---
+
+## 2. HOW IT WORKS
+
+Mixed ID formats (`42`, `"42"`, `mem:42`) caused deduplication failures in hybrid search. Normalization was applied in `combinedLexicalSearch()` for the new pipeline and in legacy `hybridSearch()` for the dedup map. Regression tests `T031-LEX-05` and `T031-BASIC-04` verify the fix.
+
+The save-path dedup path is now hardened around the same canonicalization principle. Instead of a single `(canonical_file_path = ? OR file_path = ?)` lookup, same-path detection performs two direct probes and keeps the newest parent-memory match. The supporting schema now includes parent-only partial indexes for the hot save-path and content-hash checks: `idx_save_parent_canonical_path` on `(spec_folder, canonical_file_path, id DESC)` and `idx_save_parent_content_hash_scope` on `(spec_folder, content_hash, embedding_status, tenant_id, user_id, agent_id, session_id, id DESC) WHERE parent_id IS NULL`. Together, they remove nullable OR predicates from the save path and keep dedup lookups targeted to top-level memory rows.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp-server/lib/search/hybrid-search.ts` | Lib | `canonicalResultId()` normalization and canonical-key dedup across `combinedLexicalSearch()`, legacy `hybridSearch()`, and merge helpers |
+| `mcp-server/handlers/save/dedup.ts` | Handler | Two-probe same-path lookup over canonical and raw file paths for unchanged-save detection |
+| `mcp-server/lib/search/vector-index-schema.ts` | Lib | Parent-only partial index creation for save-path and scoped content-hash dedup hot paths |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp-server/tests/hybrid-search.vitest.ts` | Automated test | `T031-LEX-05` and `T031-BASIC-04` canonical-ID dedup regression coverage for lexical and legacy hybrid flows |
+| `mcp-server/tests/unit-rrf-fusion.vitest.ts` | Automated test | `T006b` canonical numeric/string/`mem:` fusion coverage for multi-source result merging |
+| `mcp-server/tests/content-hash-dedup.vitest.ts` | Automated test | `T320-1` and `T320-2` coverage for two direct save-path probes and exact scope clauses |
+| `mcp-server/tests/vector-index-schema-migration-refinements.vitest.ts` | Automated test | Verifies `idx_save_parent_canonical_path` and `idx_save_parent_content_hash_scope` exist with `WHERE parent_id IS NULL` |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Bug Fixes And Data Integrity
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md`
+Related references:
+- [guards-and-edge-cases.md](../../feature-catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md) — Guards and edge cases
+- [error-response-credential-sanitization.md](../../feature-catalog/bug-fixes-and-data-integrity/error-response-credential-sanitization.md) — Error response credential sanitization

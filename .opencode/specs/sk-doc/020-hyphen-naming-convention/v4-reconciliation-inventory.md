@@ -1,19 +1,19 @@
-# 032 ↔ v4 Reconciliation Inventory
+# 020 ↔ v4 Reconciliation Inventory
 
-> Where concurrent v4 work has moved **ahead of** the 032 kebab-naming plan, and what the plan
+> Where concurrent v4 work has moved **ahead of** the 020 kebab-naming plan, and what the plan
 > must drop / re-ground / add before the migration executes. Read-only analysis — no files were
 > renamed by producing this.
 
 **Provenance**
-- Authoring base (what the 032 specs grounded on): `428dfc2c84` (the structure scaffold).
+- Authoring base (what the 020 specs grounded on): `428dfc2c84` (the structure scaffold).
 - Original-pass v4 tip: `099fe25676`. Method: Claude git-delta analysis + GPT-5.6-SOL (xhigh, fast) exhaustive cross-reference, 2026-07-15.
 - Delta measured: `git diff --name-status -M 428dfc2c84..099fe25676` over the skill/command/agent/runtime surface = **222 paths: 66 R + 110 M + 46 A + 0 D**.
-- **Refresh (this pass):** current v4 tip `65620f2fe6`; branch HEAD `9f94825543` (= v4 + 032 specs + reconciliation). Re-scanned `099fe25676..65620f2fe6` (3 concurrent commits). See the Refresh section below.
+- **Refresh (this pass):** current v4 tip `65620f2fe6`; branch HEAD `9f94825543` (= v4 + 020 specs + reconciliation). Re-scanned `099fe25676..65620f2fe6` (3 concurrent commits). See the Refresh section below.
 
 ## Refresh — 2026-07-15 (v4 `099fe25676` → `65620f2fe6`; reconciliation actions APPLIED)
 
 **The reconciliation actions in this inventory are now APPLIED** — commit `9f94825543` on branch
-`sk-doc/0042-017-authoring` (rebased onto v4 `65620f2fe6`, ff-ready). Applied to the *032 spec docs*
+`sk-doc/0042-017-authoring` (rebased onto v4 `65620f2fe6`, ff-ready). Applied to the *020 spec docs*
 (the migration itself is still unexecuted): sk-git `001-003` → verify-only + `005` rebaseline; `006`
 BASE re-pin + `.codex/prompts` surface + pending/already-applied dispositions; `004`-guard `.codex/`
 exemption; `007/001`-strays `.opencode/bin` family; `013/008`-loose-command-ids `.codex/prompts`
@@ -22,7 +22,7 @@ mirror; `008/008/004`-scripts-tree producer note; cli-ext `007` real baselines. 
 
 **Re-scan of the 3 concurrent commits since the original endpoint** (`099fe25676..65620f2fe6`):
 - 🟡 **NEW — `sk-doc/create-benchmark/conformance_benchmark` (5 snake files)** added by `65620f2fe6`
-  *after* the 032 census. This is the one change that means naming work must be **extended** — see the
+  *after* the 020 census. This is the one change that means naming work must be **extended** — see the
   new NEW-UNCOVERED subsection and checklist row for `007-create-benchmark`.
 - ⚪ `e3e66e6fd6` "renumber sk-git specs 000-006→007-014" — **naming-neutral**: renames only the
   *number prefixes* of `.opencode/specs/sk-git/**` folders (still kebab); no skill-surface name change.
@@ -34,23 +34,23 @@ mirror; `008/008/004`-scripts-tree producer note; cli-ext `007` real baselines. 
 **The fast-forward merge is safe — there is no file to "override."** Verified: `099fe25676` is an
 ancestor of HEAD `a316f4490e`; `git diff 099fe25676..HEAD` = 1,241 paths, **all** under
 `.opencode/specs/sk-doc/020-hyphen-naming-convention/`; intersection with the 222-path v4 surface
-delta = **zero**. The reconciliation is therefore about **stale *plan content*** (the 032 specs
+delta = **zero**. The reconciliation is therefore about **stale *plan content*** (the 020 specs
 describe a surface v4 has partly changed), **not** git collisions. "Drop old / adopt v4's newest"
-applies to the 032 plan's assumptions, not to the merge.
+applies to the 020 plan's assumptions, not to the merge.
 
 ## Summary
 
 | Surface | Category | Reconciliation action |
 |---|---|---|
 | **sk-git** | 🔴 SUPERSEDED | v4 already ran the 66 renames. Convert `012-sk-git/{001-references,002-assets,003-manual-testing-playbook}` to **verify-only**; adopt v4's kebab tree as baseline. Parent NOT done — see nuances. |
-| **.codex/prompts (37)** | 🟡 NEW-UNCOVERED | Whole generated surface absent from 032. Add to `006-inventory-and-frozen-map`; extend guard + `013-commands`. |
+| **.codex/prompts (37)** | 🟡 NEW-UNCOVERED | Whole generated surface absent from 020. Add to `006-inventory-and-frozen-map`; extend guard + `013-commands`. |
 | **.opencode/bin (6)** | 🟡 NEW-UNCOVERED | New wrapper/test family → add to `007/001-root-and-opencode-infra-strays`. |
 | **cli-external-orchestration** | 🟡 NEW-UNCOVERED | New changelog baselines (Claude Code `1.3.0.0`, Codex `1.7.1.0`) → fix `008/005/007-changelog-verify`. |
 | **system-spec-kit** | 🟡 NEW-UNCOVERED | New `scripts/codex/sync-prompts.cjs` producer → add to `008/008/004-scripts-tree`; re-read `.codex/hooks.json` in `…/003-mcp-server-consumer-rewrites`. |
 | **sk-doc/create-benchmark (conformance)** | 🟡 NEW-UNCOVERED *(refresh)* | `65620f2fe6` added `conformance_benchmark/` (5 snake files) after the census → extend `008/003/003/007-create-benchmark` rename map. |
 | **sk-doc (22 M), commands (26 M), system-deep-loop (17 M), sk-design (8 M), mcp-tooling (4 M), sk-code (3 M), sk-prompt (3 M), system-code-graph (1 M), mcp-code-mode (1 M)** | 🟠 STALE-GROUNDING | Content mods only — **no renames**. Re-ground each phase's path-consumer/file lists against v4's current content; do **not** rewrite the rename targets. |
 | **system-skill-advisor, agents** | 🟢 CLEAN | No name adds/renames. Existing plans (incl. agents verify-only) still fit; re-pin evidence SHA. |
-| **Bulk: system-spec-kit (829 snake), sk-code (282), mcp-tooling (198)…** | 🟢 CLEAN | Names untouched by v4 — 032's migration for these is fully valid and still needed. |
+| **Bulk: system-spec-kit (829 snake), sk-code (282), mcp-tooling (198)…** | 🟢 CLEAN | Names untouched by v4 — 020's migration for these is fully valid and still needed. |
 
 ## 🔴 SUPERSEDED — sk-git (the one real "already-done" case)
 
@@ -66,19 +66,19 @@ Current sk-git trees contain **zero** underscore-bearing paths.
 - Convert leaves `001-references`, `002-assets`, `003-manual-testing-playbook` → **verify-only** against v4's targets; drop all rename ops.
 - **Parent is NOT done.** `004-benchmark` is still actionable: `benchmark/live_glm_5.2_high/` and `benchmark/live_kimi_2.7/` remain snake_case and are explicitly planned for rename. `006-skill-gate` cannot pass until 004 runs.
 - Re-ground `005-changelog-verify`: it expects sk-git `1.3.2.0` as a *future* entry, but v4 already shipped `1.3.2.0` (and `1.3.1.0`).
-- The migrated `feature-catalog/` has no matching 032 leaf (032 excluded it). Add it as already-compliant verification evidence, not rename work.
+- The migrated `feature-catalog/` has no matching 020 leaf (020 excluded it). Add it as already-compliant verification evidence, not rename work.
 
 ## 🟡 NEW-UNCOVERED
 
 ### .codex/prompts — a new 37-file generated surface
-Absent from 032's exact-path inventory. **35 are already kebab; 2 are new snake_case** (see regressions below). SOL found the producer: **`system-spec-kit/scripts/codex/sync-prompts.cjs`** flattens `.opencode/commands` directory separators into filenames but **preserves the source basenames' underscores**. So `.codex/prompts/*` is downstream of `.opencode/commands/*`.
+Absent from 020's exact-path inventory. **35 are already kebab; 2 are new snake_case** (see regressions below). SOL found the producer: **`system-spec-kit/scripts/codex/sync-prompts.cjs`** flattens `.opencode/commands` directory separators into filenames but **preserves the source basenames' underscores**. So `.codex/prompts/*` is downstream of `.opencode/commands/*`.
 - Add the surface to `006-inventory-and-frozen-map`.
 - Add its producer/output contract to `008/008-system-spec-kit/004-scripts-tree`.
 - Extend `013-commands/{008-loose-command-ids, 009-command-assets, 010-commands-gate}` to cover generated mirrors.
 - Extend `004-no-new-snake-guard` to scan or explicitly classify this generated output root.
 
 ### .opencode/bin — new wrapper/test family
-Modified `README.md`, `install-codex-hooks.mjs`, `worktree-reaper.sh`, `worktree-session.sh`, `tests/worktree-reaper.test.sh`; **added** `tests/worktree-session.test.sh` (already kebab). Add the six-path family to `007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays` (the new test path appears nowhere in 032).
+Modified `README.md`, `install-codex-hooks.mjs`, `worktree-reaper.sh`, `worktree-session.sh`, `tests/worktree-reaper.test.sh`; **added** `tests/worktree-session.test.sh` (already kebab). Add the six-path family to `007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays` (the new test path appears nowhere in 020).
 
 ### cli-external-orchestration — new changelog baselines
 Added `cli-claude-code/changelog/v1.3.0.0.md` and `cli-codex/changelog/v1.7.1.0.md` (both compliant). `008/005/007-changelog-verify` must use the **actual** baselines (Claude Code `1.3.0.0`, Codex `1.7.1.0`), not an unspecified future entry.
@@ -91,7 +91,7 @@ Commit `65620f2fe6` added a 5th benchmark taxonomy under `sk-doc/create-benchmar
 - `assets/conformance_benchmark/conformance_benchmark_{contract,fixture_manifest,lane_config,readme}_template.md`
 - `references/conformance_benchmark/conformance_benchmark_authoring_guide.md`
 
-The 032 phase `008/003-sk-doc/003-create-packets/007-create-benchmark` (authored 2026-07-14) enumerates
+The 020 phase `008/003-sk-doc/003-create-packets/007-create-benchmark` (authored 2026-07-14) enumerates
 taxonomies **by name** — `behavior_benchmark`, `model_benchmark`, `skill_benchmark`, `agent_improvement`,
 `shared` — and **does not list `conformance_benchmark`**. Its rename map therefore
 misses these 5 paths. **Action:** extend that phase's In-Scope + Files-to-Change to add the
@@ -103,7 +103,7 @@ manifest so no other later-added family is missed.
 
 ## 🟠 STALE-GROUNDING (content mods, no renames — re-ground, don't rewrite)
 
-Every mod below changed **content**, not filenames, so the 032 rename targets stay valid; only the
+Every mod below changed **content**, not filenames, so the 020 rename targets stay valid; only the
 per-phase path-consumer/file lists must be re-read from v4's current versions.
 
 - **sk-doc (22 M):** hub `SKILL.md` + `shared/scripts/validate_document.py`; create-benchmark cluster (README/SKILL + `assets/behavior_benchmark/*_template.md`, model/skill benchmark templates, `references/model_benchmark/*`, `references/skill_benchmark/*`, `changelog/v1.3.0.0.md`); create-{agent,changelog,diff,feature-catalog,flowchart,manual-testing-playbook,quality-control,readme,skill} `SKILL.md`; `create-skill/scripts/package_skill.py`. Re-ground `008/003` leaves 001–003, 005–011 + gate. **Also** program-wide `002-root-name-consumer-migration` (both `validate_document.py` and `package_skill.py` are named consumers there).
@@ -114,7 +114,7 @@ per-phase path-consumer/file lists must be re-read from v4's current versions.
 - **sk-code (3 M):** hub + code-quality + code-review SKILL.md. Re-ground `008/001` leaves 001, 003, 004 + gate.
 - **sk-prompt (3 M):** hub + prompt-improve + prompt-models SKILL.md. Re-ground leaves 001–003 + gate.
 - **system-code-graph (1 M), mcp-code-mode (1 M):** root `SKILL.md` path-consumer only. Re-ground the consumer inventory before the leaves.
-- **Runtime/root (3 M):** `.claude/settings.json` (adds `install-codex-hooks.mjs` path → ties to the `.opencode/bin` closure), `.codex/hooks.json` (live `mcp_server` paths), `AGENTS.md` (establishes the sk-git pilot as authoritative — supersedes any 032 instruction that would replay/reverse those moves).
+- **Runtime/root (3 M):** `.claude/settings.json` (adds `install-codex-hooks.mjs` path → ties to the `.opencode/bin` closure), `.codex/hooks.json` (live `mcp_server` paths), `AGENTS.md` (establishes the sk-git pilot as authoritative — supersedes any 020 instruction that would replay/reverse those moves).
 
 ## 🟢 CLEAN
 `system-skill-advisor` (0 delta), `agents` (6 content mods, 0 name changes — verify-only design holds; re-pin evidence SHA), and the untouched snake_case bulk (system-spec-kit 829, sk-code 282, mcp-tooling 198, sk-design 269, cli-ext 137, sk-doc 121, commands 111, skill-advisor 90, code-graph 55, sk-prompt 48, mcp-code-mode 32). These phases keep their existing rename plans.
@@ -135,7 +135,7 @@ Exactly two added paths carry underscores — both **generated** by `sync-prompt
 **Classify, do not blind-rename.** `013-commands/008-loose-command-ids` today covers only their
 `.opencode/commands/` sources. Whether the `.codex/prompts` copies are renamed or retained as
 generated/tool-mandated names is **UNKNOWN** until the Codex prompt loader and the public command-ID
-contract are checked — 032 must give them an explicit disposition, and the fix likely belongs at the
+contract are checked — 020 must give them an explicit disposition, and the fix likely belongs at the
 **source** (`.opencode/commands/agent_router.md`, `goal_opencode.md`) + regenerate.
 
 ## Per-phase action checklist (for the migration phase)
@@ -144,7 +144,7 @@ contract are checked — 032 must give them an explicit disposition, and the fix
 > commit `9f94825543`.** The rows still describe what the *migration executor* must do at run time; the
 > re-pin SHA is now the current tip `65620f2fe6`, not `099fe25676`.
 
-| 032 phase | Action |
+| 020 phase | Action |
 |---|---|
 | `006-inventory-and-frozen-map` | Re-pin/re-hash against `65620f2fe6` (current tip), not `428dfc2c84`; add `.codex/prompts` surface. |
 | `008/003/003/007-create-benchmark` *(refresh)* | Extend the rename map to add the `conformance_benchmark/` family (5 snake files) from `65620f2fe6`; re-verify all 21 create-benchmark snake paths against the manifest. |

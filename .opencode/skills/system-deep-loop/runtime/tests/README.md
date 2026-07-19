@@ -28,7 +28,7 @@ Shared utilities live at `helpers/`, renamed from `_helpers` per no-underscore c
 ## 4. HOW TO RUN
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp-server
 node_modules/.bin/vitest run --no-coverage \
   /absolute/path/to/.opencode/skills/system-deep-loop/runtime/tests/<subdir-or-file>
 ```
@@ -36,4 +36,4 @@ node_modules/.bin/vitest run --no-coverage \
 ## 5. RELATED RESOURCES
 
 - Library being tested: `.opencode/skills/system-deep-loop/runtime/lib/`
-- vitest config: `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts`
+- vitest config: `.opencode/skills/system-spec-kit/mcp-server/vitest.config.ts`

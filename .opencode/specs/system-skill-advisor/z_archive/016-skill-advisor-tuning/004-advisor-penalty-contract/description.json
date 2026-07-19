@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/004-advisor-penalty-contract",
+  "specFolder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/004-advisor-penalty-contract",
   "description": "The 007 graduation suite adopted the CUT verdict for the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`); the",
   "keywords": [
     "graduation",
@@ -14,11 +14,12 @@
     "guard",
     "speckitadvisorselfrecommendationguard"
   ],
-  "lastUpdated": "2026-07-09T10:02:50.476Z",
+  "lastUpdated": "2026-07-18T03:48:57.320Z",
   "specId": "004",
   "folderSlug": "advisor-penalty-contract",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "016-skill-advisor-tuning"
   ],
   "memorySequence": 0,

@@ -272,6 +272,6 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Canonical example: `.opencode/skills/system-deep-loop/` (hub + `mode-registry.json` + mode packets).
 - Registry: `mode-registry.json` (this hub's routing contract).

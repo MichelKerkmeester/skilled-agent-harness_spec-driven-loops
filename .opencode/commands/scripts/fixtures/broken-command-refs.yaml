@@ -14,7 +14,7 @@ broken_agent_ref:
 
 broken_skill_asset_ref:
   # reorganized-away template path — no longer exists on disk
-  template: ".opencode/skills/system-spec-kit/templates/level_1/spec.md"
+  template: ".opencode/skills/system-spec-kit/templates/level-1/spec.md"
   # interpolated + code-anchored forms — must NOT be flagged
   ok_interpolated: ".opencode/skills/{skill_name}/SKILL.md"
   ok_codex_mirror: ".codex/agents/markdown.md"

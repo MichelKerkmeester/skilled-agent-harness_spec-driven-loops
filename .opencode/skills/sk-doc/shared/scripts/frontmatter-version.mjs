@@ -5,7 +5,7 @@
 // Deterministic compute / insert / verify of the 4-part `version`
 // frontmatter field for in-scope skill docs.
 //
-// Standard: .opencode/skills/sk-doc/shared/references/frontmatter_versioning.md
+// Standard: .opencode/skills/sk-doc/shared/references/frontmatter-versioning.md
 //
 // Usage:
 //   node frontmatter-version.mjs compute [--skill <name>] [--manifest-out <path>]
@@ -47,7 +47,10 @@ const VERSION_RE = /^\d+\.\d+\.\d+\.\d+$/;
 const W_CAP = 99;
 const EXCLUDED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
 // In-scope doc-class globs under a skill directory (markdown only).
-const SCOPE_SUBTREES = ['references', 'assets', 'feature_catalog', 'manual_testing_playbook'];
+// Both the underscore and hyphen root forms are in scope while the naming
+// migration is in flight, so a file under either form of the catalog/playbook
+// root stays validated. Kept in step with post-edit-router.cjs's mirror set.
+const SCOPE_SUBTREES = ['references', 'assets', 'feature-catalog', 'manual-testing-playbook'];
 
 // ─── git helpers ───────────────────────────────────────────────
 
@@ -198,8 +201,8 @@ function classify(absFile, skillsRoot) {
   for (const seg of rel) {
     if (seg === 'references') return 'reference';
     if (seg === 'assets') return 'asset';
-    if (seg === 'feature_catalog') return 'feature-catalog';
-    if (seg === 'manual_testing_playbook') return 'playbook';
+    if (seg === 'feature-catalog') return 'feature-catalog';
+    if (seg === 'manual-testing-playbook') return 'playbook';
   }
   return null;
 }
@@ -217,6 +220,24 @@ function inScope(absFile, skillsRoot) {
     return fs.existsSync(path.join(path.dirname(absFile), 'SKILL.md'));
   }
   return false;
+}
+
+function assertExplicitTargets(targets, skillsRoot) {
+  for (const target of targets) {
+    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
+      throw new Error(`explicit frontmatter target is not a readable file: ${target}`);
+    }
+    const segments = path.relative(skillsRoot, target).split(path.sep);
+    const unsupported = segments.find((segment) => {
+      const normalized = segment.toLowerCase().replace(/-/g, '_');
+      return (normalized.startsWith('feature_catalog') || normalized.startsWith('manual_testing_playbook'))
+        && !SCOPE_SUBTREES.includes(segment);
+    });
+    if (unsupported) throw new Error(`unsupported catalog/playbook root: ${unsupported}`);
+    if (!inScope(target, skillsRoot) || classify(target, skillsRoot) === null) {
+      throw new Error(`explicit frontmatter target is outside the versioned document scope: ${target}`);
+    }
+  }
 }
 
 function walkAllMd(dir, acc) {
@@ -355,7 +376,7 @@ function helpText() {
   return `frontmatter-version.mjs — 4-part version compute/apply/verify
 Modes: compute (dry-run), apply, verify
 Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update
-Standard: .opencode/skills/sk-doc/shared/references/frontmatter_versioning.md`;
+Standard: .opencode/skills/sk-doc/shared/references/frontmatter-versioning.md`;
 }
 
 async function main() {
@@ -389,12 +410,14 @@ async function main() {
     // Source precomputed versions from a compute manifest (skips git re-computation).
     const man = JSON.parse(fs.readFileSync(args.fromManifest, 'utf8'));
     rows = man.map((m) => ({ ...m, absFile: path.isAbsolute(m.path) ? m.path : path.join(root, m.path), derivedTuple: normalize4(m.derivedVersion) }));
+    assertExplicitTargets(rows.map((row) => row.absFile), skillsRoot);
     if (args.skill) rows = rows.filter((r) => r.skill === args.skill || String(r.skill).startsWith(`${args.skill}/`));
   } else {
     let targets;
     if (args.paths) {
       targets = fs.readFileSync(args.paths, 'utf8').split('\n').map((s) => s.trim()).filter(Boolean)
         .map((p) => (path.isAbsolute(p) ? p : path.join(root, p)));
+      assertExplicitTargets(targets, skillsRoot);
     } else {
       targets = discoverInScope(skillsRoot, args.skill);
     }

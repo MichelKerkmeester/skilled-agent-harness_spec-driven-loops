@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/008-runtime-artifacts-cleanup",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout/002-deprecate-coco-index/008-runtime-artifacts-cleanup",
   "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
   "keywords": [
     "part",
@@ -9,11 +9,12 @@
     "deprecation",
     "arc"
   ],
-  "lastUpdated": "2026-07-15T18:35:45.692Z",
+  "lastUpdated": "2026-07-18T03:48:55.423Z",
   "specId": "008",
   "folderSlug": "runtime-artifacts-cleanup",
   "parentChain": [
     "system-code-graph",
+    "z_archive",
     "031-code-graph-buildout",
     "002-deprecate-coco-index"
   ],

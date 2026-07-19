@@ -48,9 +48,9 @@ const checker = require('../../scripts/check-contract-drift.cjs') as {
 };
 
 const COMMAND = 'deep/review';
-const REVIEW_CONFIG_SOURCE = '.opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json';
+const REVIEW_CONFIG_SOURCE = '.opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json';
 const COUNCIL_COMMAND = 'deep/ai-council';
-const COUNCIL_PATTERN_SOURCE = '.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md';
+const COUNCIL_PATTERN_SOURCE = '.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md';
 
 function realContract(command = COMMAND): string {
   return readFileSync(compiler.outputPathFor(command), 'utf8');

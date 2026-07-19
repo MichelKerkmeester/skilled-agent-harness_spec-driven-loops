@@ -1,0 +1,178 @@
+<!--
+   COPY-PASTE TEMPLATE for Webflow Site Settings → Custom Code panels.
+
+   Where to use:
+     - HEAD region → Site Settings → Custom Code → Head Code
+     - FOOTER region → Site Settings → Custom Code → Footer Code
+
+   Conventions enforced (see references/webflow/html/style-guide.md §7):
+     - File-level <!-- HEADER ─ --> and <!-- FOOTER ─ --> markers
+       (only in dev source file; do NOT paste into Webflow panels)
+     - 3-line section header <!-- ─ × 63 / 5-space indent title / ─ × 63 --> per group
+     - Title-cased inline label <!-- Label --> above each <script>/<link>/<meta>
+     - <!-- End ComponentName --> closing marker for multi-line <script> blocks (5+ lines)
+     - Sub-numbering uses letter suffix (4b., 7b.) NOT decimal (4.1)
+     - Title parenthetical context describes WHY this section exists at this position
+     - Inside <script>: snake_case JS, IIFE wrapper, INIT_FLAG guard per JS conventions
+
+   Section orders below match production patterns in anobel.com/src/0_html/global.html.
+   Replace ALL placeholder text marked [LIKE_THIS] before shipping.
+-->
+
+
+<!-- HEADER ───────────────────────────────────────────────────── -->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     1. ANALYTICS (inline, must fire early)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- [Analytics provider] (Delayed for LCP, skipped on slow connections) -->
+<script>
+  (function () {
+    function loadAnalytics() {
+      // Skip on slow connections (2G/slow-3G) or data saver mode
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (conn && (conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g' || conn.saveData)) {
+        return;
+      }
+      // [Analytics bootstrap snippet here]
+    }
+
+    // Delay: 5s mobile, 3s desktop — wait for LCP before firing analytics
+    var isMobile = window.innerWidth < 992;
+    var delay = isMobile ? 5000 : 3000;
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadAnalytics, { timeout: delay });
+    } else {
+      setTimeout(loadAnalytics, delay);
+    }
+  })();
+</script>
+<!-- End [Analytics provider] -->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     2. SECURITY META TAGS
+─────────────────────────────────────────────────────────────── -->
+
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     3. CONNECTION HINTS (preconnect, dns-prefetch)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Preconnect — open early TCP+TLS for high-priority origins -->
+<link rel="preconnect" href="https://[your-cdn].b-cdn.net" crossorigin>
+<link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+
+<!-- DNS Prefetch — cheaper than preconnect; for less-critical origins -->
+<link rel="dns-prefetch" href="https://assets-global.website-files.com">
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     4. PRELOADS (critical resources)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Fonts -->
+<link rel="preload"
+  href="https://cdn.prod.website-files.com/[font-id]/[font-name].woff2"
+  as="font" type="font/woff2" crossorigin>
+
+<!-- Third-party module -->
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/[package]@[version]/+esm" crossorigin>
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     4b. SPECULATIVE PREFETCH (likely navigation targets)
+─────────────────────────────────────────────────────────────── -->
+
+<link rel="prefetch" href="/contact" as="document">
+<link rel="prefetch" href="/[other-likely-page]" as="document">
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     5. JS DETECTION
+─────────────────────────────────────────────────────────────── -->
+
+<script>
+  document.documentElement.classList.add('js-enabled');
+</script>
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     6. MODULE SCRIPTS (ES modules, non-blocking)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Motion.dev (or other ES module dependency) -->
+<script type="module">
+  try {
+    const { animate, inView, scroll } = await import("https://cdn.jsdelivr.net/npm/motion@[version]/+esm");
+    window.Motion = { animate, inView, scroll };
+    window.dispatchEvent(new CustomEvent('motion:ready'));
+  } catch (error) {
+    console.error('Motion.dev failed to load:', error);
+  }
+</script>
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     7. SCHEMA MARKUP
+─────────────────────────────────────────────────────────────── -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "[YourSchemaType]",
+  "name": "[Your business name]",
+  "url": "https://[yourdomain.com]"
+}
+</script>
+
+
+<!-- FOOTER ───────────────────────────────────────────────────── -->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     1. THIRD-PARTY LIBRARIES (load first, others depend on these)
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Lenis Smooth Scrolling (Desktop Only) -->
+<script defer>
+  if (window.matchMedia('(min-width: 992px)').matches) {
+    var lenisCSS = document.createElement('link');
+    lenisCSS.rel = 'stylesheet';
+    lenisCSS.href = 'https://unpkg.com/lenis@[version]/dist/lenis.css';
+    document.head.appendChild(lenisCSS);
+
+    var lenisJS = document.createElement('script');
+    lenisJS.src = 'https://unpkg.com/lenis@[version]/dist/lenis.min.js';
+    lenisJS.onload = function () {
+      window.lenis = new Lenis({ autoRaf: true, duration: 1.25 });
+    };
+    document.head.appendChild(lenisJS);
+  }
+</script>
+<!-- End Lenis Smooth Scrolling -->
+
+
+<!-- ───────────────────────────────────────────────────────────────
+     2. CUSTOM SCRIPTS
+─────────────────────────────────────────────────────────────── -->
+
+<!-- Performance -->
+<script src="https://[your-cdn].r2.dev/attribute_cleanup.min.js?v=1.0.0" defer></script>
+
+<!-- Navigation -->
+<script src="https://[your-cdn].r2.dev/nav_dropdown.min.js?v=1.0.0" defer></script>
+<script src="https://[your-cdn].r2.dev/nav_mobile_menu.min.js?v=1.0.0" defer></script>
+
+<!-- Cookie Consent -->
+<script src="https://[your-cdn].r2.dev/modal_cookie_consent.min.js?v=1.0.0" defer></script>
+
+<!-- [Group label] -->
+<script src="https://[your-cdn].r2.dev/[component_name].min.js?v=[version]" defer></script>

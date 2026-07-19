@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-prompt/006-sk-prompt-models-rename/009-filename-residual-cleanup",
+  "specFolder": "sk-prompt/z_archive/006-sk-prompt-models-rename/009-filename-residual-cleanup",
   "description": "The rename swapped file CONTENT but not a few FILENAMES that embed the old skill name (2 playbook docs + a changelog entry)",
   "keywords": [
     "rename",
@@ -17,11 +17,12 @@
     "changelog",
     "entry"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.303Z",
+  "lastUpdated": "2026-07-18T03:48:55.270Z",
   "specId": "009",
   "folderSlug": "filename-residual-cleanup",
   "parentChain": [
     "sk-prompt",
+    "z_archive",
     "006-sk-prompt-models-rename"
   ],
   "memorySequence": 0,

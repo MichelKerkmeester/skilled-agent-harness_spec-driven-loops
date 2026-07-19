@@ -1,0 +1,77 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "../node_modules/@types",
+      "node_modules/@types"
+    ],
+    "paths": {
+      "better-sqlite3": [
+        "../node_modules/@types/better-sqlite3/index.d.ts"
+      ],
+      "chokidar": [
+        "node_modules/chokidar/index.d.ts"
+      ],
+      "vitest": [
+        "node_modules/vitest/dist/index.d.ts"
+      ],
+      "vitest/config": [
+        "node_modules/vitest/config.d.ts"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ],
+  "include": [
+    "api/**/*.ts",
+    "configs/**/*.ts",
+    "core/**/*.ts",
+    "formatters/**/*.ts",
+    "handlers/**/*.ts",
+    "hooks/**/*.ts",
+    "lib/**/*.ts",
+    "matrix-runners/**/*.ts",
+    "schemas/**/*.ts",
+    "scripts/**/*.ts",
+    "tools/**/*.ts",
+    "utils/**/*.ts",
+    "cli.ts",
+    "spec-memory-cli.ts",
+    "context-server.ts",
+    "startup-checks.ts",
+    "tool-schemas.ts",
+    "lib/eval/data/*.json",
+    "lib/routing/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "../shared",
+    "../shared/**",
+    "lib/test-helpers/**",
+    "scripts/tests/**",
+    "tests/fixtures/**/*.ts",
+    "tests/**",
+    "tests/**/*.vitest.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.vitest.js",
+    "stress-test/**",
+    "stress-test/**/*.vitest.ts",
+    "stress-test/**/*.test.ts",
+    "tests/chunk-thinning.vitest.ts",
+    "tests/layer-definitions.vitest.ts",
+    "tests/dead-code-regression.vitest.ts"
+  ]
+}

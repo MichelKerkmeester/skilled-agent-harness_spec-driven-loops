@@ -26,10 +26,10 @@ The generated contracts combine maintained command, workflow, skill, reference a
 
 ```text
 compiled/
-+-- deep_ai-council.contract.md
-+-- deep_alignment.contract.md
-+-- deep_research.contract.md
-+-- deep_review.contract.md
++-- deep-ai-council.contract.md
++-- deep-alignment.contract.md
++-- deep-research.contract.md
++-- deep-review.contract.md
 +-- manifest.jsonl
 `-- README.md
 ```
@@ -40,10 +40,10 @@ compiled/
 
 | File | Responsibility |
 |---|---|
-| `deep_research.contract.md` | Generated executor contract for `/deep:research`. |
-| `deep_review.contract.md` | Generated executor contract for `/deep:review`. |
-| `deep_ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
-| `deep_alignment.contract.md` | Placeholder required by manifest hashing while alignment remains outside the compiler command map. |
+| `deep-research.contract.md` | Generated executor contract for `/deep:research`. |
+| `deep-review.contract.md` | Generated executor contract for `/deep:review`. |
+| `deep-ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
+| `deep-alignment.contract.md` | Placeholder required by manifest hashing while alignment remains outside the compiler command map. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---
@@ -75,7 +75,7 @@ Regenerate a contract when any maintained source digest changes.
 
 The generated contracts are derived artifacts. Do not edit their generated sections by hand.
 
-`deep_alignment.contract.md` is different. It documents that `/deep:alignment` is not registered in the compiler and that fallback injection uses the matching legacy body. It must not act as an execution authority.
+`deep-alignment.contract.md` is different. It documents that `/deep:alignment` is not registered in the compiler and that fallback injection uses the matching legacy body. It must not act as an execution authority.
 
 The maintained command files, workflow YAML assets, skill instructions and referenced runtime files remain the source of truth.
 

@@ -116,8 +116,8 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 4. **Dual-threshold:** confidence ≥ 0.70 AND uncertainty ≤ 0.35 → PROCEED. Either fails → INVESTIGATE (max 3 iterations) → ESCALATE.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md`.
-2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
+1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
+2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -138,7 +138,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
   - **E) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
 - **Recommendation order:** Keep the A-E labels stable. First test the request against the active/related packet's documented purpose, scope, requirements, and Phase Documentation Map. If it is a positive scope match: recommend `A` when the current packet or child already fits; recommend `D` for a distinct related workstream in an existing or qualifying phased packet; recommend `C` when another related packet fits better. Only when it is NOT a scope match, recommend `B` (new/unrelated). Never recommend `E` by default. "Currently open" is never sufficient to recommend A or D. The user still makes the final selection.
 - **Phase-qualification guard:** Creating a new phased packet or converting a standard packet into a phase parent requires BOTH phase complexity score >= 25/50 AND documentation level >= 3. If only one or neither condition is met, use a standard non-phased packet.
-- **Routing definitions:** "Small" means exempt work or work that remains Level 1 after applying LOC guidance and all risk/complexity overrides. "New/unrelated" means outside the active packet's documented purpose, scope, requirements, and Phase Documentation Map, using the update-versus-create criteria in `references/workflows/quick_reference.md` §8.
+- **Routing definitions:** "Small" means exempt work or work that remains Level 1 after applying LOC guidance and all risk/complexity overrides. "New/unrelated" means outside the active packet's documented purpose, scope, requirements, and Phase Documentation Map, using the update-versus-create criteria in `references/workflows/quick-reference.md` §8.
 - **Router commands:** For router-style commands such as `/doctor`, evaluate Gate 3 per selected route. The route manifest/table must expose each target's location and mutation class before asking or acting:
   - `read-only` routes may inspect and report without a spec-folder write path.
   - `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.
@@ -364,9 +364,9 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 
 ## 6. 🔄 STARTUP & RESUME RECOVERY
 
-Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
+Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook-system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` ("Feature flags reference table").
 
-Before enabling any results-affecting path, check `ENV_REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
+Before enabling any results-affecting path, check `ENV-REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
 
 #### Recovery Flow (hooks unavailable or fail)
 

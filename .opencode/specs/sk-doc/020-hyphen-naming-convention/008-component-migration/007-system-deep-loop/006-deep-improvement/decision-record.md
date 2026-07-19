@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-improvement names (032 phase 007/006)"
+title: "Decision Record: system-deep-loop deep-improvement names (020 phase 007/006)"
 description: "L2 design decisions for the deep-improvement multi-lane naming phase, including Python/package boundaries, generated artifacts, shared loop-host closure, and benchmark ownership."
 trigger_phrases:
   - "system-deep-loop improvement decisions"

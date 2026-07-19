@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/004-skill-graph/007-cross-skill-enhancement-edge-propagation",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/007-cross-skill-enhancement-edge-propagation",
   "description": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges",
   "keywords": [
     "new",
@@ -15,11 +15,12 @@
     "outbound",
     "edges"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.760Z",
+  "lastUpdated": "2026-07-18T03:48:57.134Z",
   "specId": "007",
   "folderSlug": "cross-skill-enhancement-edge-propagation",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph"
   ],
   "memorySequence": 0,

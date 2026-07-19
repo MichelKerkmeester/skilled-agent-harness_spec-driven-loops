@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Template Fixture [template:level_2/checklist.md]"
+title: "Verification Checklist: Template Fixture [template:level-2/checklist.md]"
 description: "Verification Date: 2026-03-16"
 trigger_phrases:
   - "fixture"

@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: system-deep-loop subtree skill gate (032 phase 007/011)"
-description: "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 032 exemption set, with no new rename work."
+title: "Feature Specification: system-deep-loop subtree skill gate (020 phase 007/011)"
+description: "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work."
 trigger_phrases:
   - "system-deep-loop skill gate"
   - "deep loop subtree naming gate"
@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-deep-loop subtree skill gate
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-14 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Rollup gate phase 011 of the system-deep-loop component migration under the 032 kebab-case filesystem-naming program |
+| **Origin** | Rollup gate phase 011 of the system-deep-loop component migration under the 020 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-alignment filesystem names (032 phase 007/007)"
+title: "Tasks: deep-alignment filesystem names (020 phase 007/007)"
 description: "Execution tasks for renaming deep-alignment resources and repairing path-valued adapter, catalog, playbook, state, and verification references while preserving embedded identifiers and keys."
 trigger_phrases:
   - "deep-alignment tasks"

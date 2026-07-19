@@ -1,0 +1,210 @@
+{
+  "version": "1.0.0",
+  "description": "Single source of truth for create-skill authoring rules.",
+  "frontmatter": {
+    "skill": {
+      "required": [
+        "name",
+        "description",
+        "allowed-tools",
+        "version"
+      ],
+      "recommended": [],
+      "optional": [],
+      "notes": "The skill contract uses package_skill.py's strict required set. quick_validate.py currently treats allowed-tools as optional and requires version only for kind skill; later consumers should converge on this strict skill set."
+    },
+    "command": {
+      "required": [
+        "description"
+      ],
+      "recommended": [
+        "argument-hint",
+        "allowed-tools"
+      ],
+      "optional": [
+        "name",
+        "model",
+        "version",
+        "disable-model-invocation"
+      ]
+    },
+    "agent": {
+      "required": [
+        "name",
+        "description",
+        "mode",
+        "temperature",
+        "permission"
+      ],
+      "recommended": [],
+      "optional": []
+    }
+  },
+  "nameRule": {
+    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "noLeadingTrailingHyphen": true,
+    "noConsecutiveHyphens": true,
+    "notes": "converges init_skill.py:293 (^[a-z][a-z0-9-]*[a-z0-9]$, which wrongly allows --) with package_skill.py:165 + quick_validate.py:152 (^[a-z0-9-]+$ plus explicit no-leading/trailing + no-consecutive-hyphen checks). The converged pattern forbids -- and leading/trailing hyphens in one regex."
+  },
+  "descriptionBudget": {
+    "skill": {
+      "softMax": 130
+    },
+    "command": {
+      "softMax": 110
+    },
+    "hardCap": 1536,
+    "projectCeiling": 5600
+  },
+  "sections": {
+    "skill": {
+      "canonicalOrder": [
+        "WHEN TO USE",
+        "SMART ROUTING",
+        "HOW IT WORKS",
+        "RULES",
+        "REFERENCES"
+      ],
+      "required": [
+        "WHEN TO USE",
+        "SMART ROUTING",
+        "HOW IT WORKS",
+        "RULES",
+        "REFERENCES"
+      ],
+      "recommended": [
+        "SUCCESS CRITERIA",
+        "INTEGRATION POINTS",
+        "RELATED RESOURCES"
+      ],
+      "sectionAliases": {
+        "HOW IT WORKS": [
+          "HOW IT WORKS",
+          "HOW TO USE"
+        ],
+        "REFERENCES": [
+          "REFERENCES",
+          "SMART ROUTING & REFERENCES"
+        ],
+        "SMART ROUTING": [
+          "SMART ROUTING",
+          "SMART ROUTING & REFERENCES"
+        ]
+      },
+      "sectionEmojis": {
+        "when_to_use": "🎯",
+        "smart_routing": "🧭",
+        "how_it_works": "🛠️",
+        "rules": "📋",
+        "success_criteria": "🏆",
+        "integration_points": "🔌",
+        "external_resources": "📚",
+        "related_resources": "🔗",
+        "common_pitfalls": "⚠️",
+        "quality_checklist": "🔍"
+      }
+    }
+  },
+  "rulesSubsections": {
+    "required": [
+      {
+        "emoji": "✅",
+        "keyword": "ALWAYS"
+      },
+      {
+        "emoji": "❌",
+        "keyword": "NEVER"
+      },
+      {
+        "emoji": "⚠️",
+        "keyword": "ESCALATE"
+      }
+    ]
+  },
+  "sizeLimits": {
+    "maxWords": 5000,
+    "recommendedMaxWords": 3000,
+    "maxLines": 3000
+  },
+  "resourceDoc": {
+    "frontmatterFields": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType"
+    ],
+    "versionedSubtrees": [
+      "references",
+      "assets",
+      "feature-catalog",
+      "manual-testing-playbook",
+      "changelog"
+    ],
+    "resourceDocSubtrees": [
+      "references",
+      "assets"
+    ],
+    "namingPattern": "snake_case",
+    "namingRegex": "^[a-z0-9_]+$",
+    "readmeExempt": true,
+    "placeholderPatterns": [
+      "example_*",
+      "placeholder_*",
+      "sample_*"
+    ]
+  },
+  "smartRouterMarkers": {
+    "required": [
+      "discover_markdown_resources",
+      "_guard_in_skill",
+      "UNKNOWN_FALLBACK"
+    ],
+    "recommended": [
+      "load_if_available",
+      "get_routing_key",
+      "score_intents",
+      "select_intents"
+    ]
+  },
+  "versionPattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$",
+  "packetKinds": {
+    "standalone": {
+      "requiredFiles": [
+        "SKILL.md"
+      ]
+    },
+    "parent": {
+      "requiredFiles": [
+        "SKILL.md",
+        "mode-registry.json",
+        "graph-metadata.json"
+      ]
+    }
+  },
+  "packagingExclusions": {
+    "hiddenFiles": true,
+    "hiddenAncestorDirs": true,
+    "suffixes": [
+      ".pyc",
+      ".pyo"
+    ],
+    "names": [
+      "__pycache__"
+    ]
+  },
+  "severityDefinitions": {
+    "blocking": {
+      "description": "Errors that must be fixed before document is considered valid",
+      "exitCode": 1
+    },
+    "warning": {
+      "description": "Issues that should be addressed but don't block validation",
+      "exitCode": 0
+    },
+    "info": {
+      "description": "Informational notes that may indicate style inconsistencies",
+      "exitCode": 0
+    }
+  }
+}

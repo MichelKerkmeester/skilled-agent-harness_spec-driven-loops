@@ -88,6 +88,6 @@ If the primary run passes, repeat with a request that names a component the syst
 
 - Group: Real-UI Loop
 - Playbook ID: ID-008
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `real-ui-loop/reuse-before-generate-with-design-system.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
+  "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
   "description": "`system-spec-kit/mcpserver` still contained advisor source imports after advisor extraction",
   "keywords": [
     "system-spec-kit",
@@ -12,11 +12,12 @@
     "imports",
     "extraction"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.705Z",
+  "lastUpdated": "2026-07-18T03:48:57.121Z",
   "specId": "019",
   "folderSlug": "spec-kit-advisor-decoupling",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "004-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

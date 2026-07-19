@@ -1,6 +1,6 @@
 <!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
 ---
-title: "Feature Specification: [NAME] [template:level_3/spec.md]"
+title: "Feature Specification: [NAME] [template:level-3/spec.md]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

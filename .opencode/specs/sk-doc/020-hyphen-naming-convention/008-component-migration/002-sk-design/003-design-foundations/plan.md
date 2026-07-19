@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Design-foundations (032 phase 003)"
-description: "Execution plan for Design-foundations in the 032 sk-design naming subtree."
+title: "Implementation Plan: Design-foundations (020 phase 003)"
+description: "Execution plan for Design-foundations in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-foundations implementation plan"
   - "sk-design design-foundations plan"
-  - "032 design-foundations tasks"
+  - "020 design-foundations tasks"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Design-foundations (032 phase 003)
+# Implementation Plan: Design-foundations (020 phase 003)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

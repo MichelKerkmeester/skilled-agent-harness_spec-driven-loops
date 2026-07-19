@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 // MODULE: Coverage Graph Signals
 // ---------------------------------------------------------------
-// Extracted and adapted from mcp_server/lib/graph/graph-signals.ts
+// Extracted and adapted from mcp-server/lib/graph/graph-signals.ts
 // Provides signal computation for in-memory coverage graphs:
 // degree, depth, recent-edge activity, and cluster metrics.
 // ---------------------------------------------------------------

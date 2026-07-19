@@ -2,12 +2,12 @@
   "modes": [
     {
       "leaves": [
-        "assets/config_template.md",
-        "assets/env_template.md",
+        "assets/config-template.md",
+        "assets/env-template.md",
         "references/architecture.md",
         "references/configuration.md",
-        "references/naming_convention.md",
-        "references/tool_catalog.md",
+        "references/naming-convention.md",
+        "references/tool-catalog.md",
         "references/workflows.md"
       ],
       "packet": ".",

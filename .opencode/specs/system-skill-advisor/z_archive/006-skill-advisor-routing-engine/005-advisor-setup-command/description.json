@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
+  "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/005-advisor-setup-command",
   "description": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is",
   "keywords": [
     "skill",
@@ -18,11 +18,12 @@
     "triggers",
     "keywords"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.834Z",
+  "lastUpdated": "2026-07-18T03:48:57.211Z",
   "specId": "005",
   "folderSlug": "advisor-setup-command",
   "parentChain": [
     "system-skill-advisor",
+    "z_archive",
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 3,

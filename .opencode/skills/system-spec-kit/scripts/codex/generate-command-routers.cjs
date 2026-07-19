@@ -36,7 +36,7 @@ const path = require('path');
 const REPO_ROOT = findRepoRoot(__dirname);
 const CONTRACT_PATH = path.join(
   REPO_ROOT,
-  '.opencode/skills/sk-doc/create-command/assets/command_contract.json'
+  '.opencode/skills/sk-doc/create-command/assets/command-contract.json'
 );
 const COMMANDS_DIR = path.join(REPO_ROOT, '.opencode/commands');
 
@@ -69,7 +69,7 @@ function loadContract() {
   const parsed = JSON.parse(raw);
   const families = parsed.families || parsed;
   if (!families || typeof families !== 'object') {
-    throw new Error('command_contract.json has no families map');
+    throw new Error('command-contract.json has no families map');
   }
   return families;
 }

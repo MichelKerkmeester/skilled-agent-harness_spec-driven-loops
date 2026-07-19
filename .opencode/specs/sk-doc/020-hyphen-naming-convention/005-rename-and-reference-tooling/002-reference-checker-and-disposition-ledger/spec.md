@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: reference checker and disposition ledger (032 phase 005.002)"
+title: "Feature Specification: reference checker and disposition ledger (020 phase 005.002)"
 description: "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site."
 trigger_phrases:
   - "whole-repo reference checker"
@@ -28,11 +28,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Reference Checker and Disposition Ledger
 
-> Phase adjacency under the 032 parent (grouping order, not a runtime dependency): predecessor `001-rename-engine`; successor `003-fixture-corpus-and-dry-run-harness`.
+> Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `001-rename-engine`; successor `003-fixture-corpus-and-dry-run-harness`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -42,10 +42,10 @@ _memory:
 | **Packet** | sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Child phase 002 of the 032 rename-and-reference-tooling program |
+| **Origin** | Child phase 002 of the 020 rename-and-reference-tooling program |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,7 +105,7 @@ sites; it must preserve the naming boundary by checking path values without trea
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase inherits the 032 risks of broken imports, exemption leakage, over-broad text replacement, and concurrent worktrees.
+The phase inherits the 020 risks of broken imports, exemption leakage, over-broad text replacement, and concurrent worktrees.
 Its specific risks are false negatives in dynamic expressions, false positives on identifiers or data keys, unsafe symlink
 traversal, and a ledger that reports rows without proving scan coverage.
 

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: whole-repo verification gate (032 phase 010)"
+title: "Checklist: whole-repo verification gate (020 phase 010)"
 description: "Blocking SOL verifier contract for phase 010: prove the scope-aware naming end state, reference closure, Git rename history, and full validation/test baseline on one candidate SHA."
 trigger_phrases:
   - "whole-repo verification gate checklist"

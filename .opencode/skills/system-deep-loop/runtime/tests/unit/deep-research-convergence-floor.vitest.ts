@@ -24,9 +24,9 @@ const configPath = resolve(
   'system-deep-loop',
   'deep-research',
   'assets',
-  'deep_research_config.json',
+  'deep-research-config.json',
 );
-const yamlPath = resolve(repoRoot, 'commands', 'deep', 'assets', 'deep_research_auto.yaml');
+const yamlPath = resolve(repoRoot, 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
