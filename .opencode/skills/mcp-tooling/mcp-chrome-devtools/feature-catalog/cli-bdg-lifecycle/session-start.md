@@ -33,22 +33,22 @@ The canonical lifecycle is Start, Verify, Execute, Stop. Always capture stderr w
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Essential command list (`bdg <url>`) |
-| `references/session_management.md` §4 | Reference | Start patterns, retry logic, timeout |
+| `references/session-management.md` §4 | Reference | Start patterns, retry logic, timeout |
 | `INSTALL-GUIDE.md` §6 | Guide | Session command reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/cli_bdg_lifecycle/session_start.md` | Manual | BDG-002 scenario contract |
+| `manual-testing-playbook/cli-bdg-lifecycle/session-start.md` | Manual | BDG-002 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: CLI bdg Lifecycle
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `cli_bdg_lifecycle/session_start.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `cli-bdg-lifecycle/session-start.md`
 Related references:
-- [session_status.md](../cli_bdg_lifecycle/session_status.md) — Session Status
-- [session_stop.md](../cli_bdg_lifecycle/session_stop.md) — Session Stop
+- [session-status.md](../cli-bdg-lifecycle/session-status.md) — Session Status
+- [session-stop.md](../cli-bdg-lifecycle/session-stop.md) — Session Stop

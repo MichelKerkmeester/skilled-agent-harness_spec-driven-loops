@@ -147,7 +147,7 @@ operation_router:
       - description.json
       - graph-metadata.json
       - changelog/
-      - manual_testing_playbook/
+      - manual-testing-playbook/
       - "[hub-prefix]-<mode>/SKILL.md"
       - "[hub-prefix]-<mode>/README.md"
       - "[hub-prefix]-<mode>/changelog/"
@@ -169,22 +169,22 @@ operation_router:
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-skill/references/README.md
   pattern_section: "Parent Skills with Nested Mode Packets"
-  hub_router_schema: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md
-  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+  hub_router_schema: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
   canonical_example: .opencode/skills/sk-code
 
 template_sources:
-  hub_skill: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md
-  mode_registry: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json
-  hub_router: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json
-  description: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_description_template.json
-  hub_graph_metadata: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_graph_metadata_template.json
+  hub_skill: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md
+  mode_registry: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json
+  hub_router: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-router-template.json
+  description: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-description-template.json
+  hub_graph_metadata: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
-  advisor_projection_emit: "python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --emit-routing-projection"
+  advisor_projection_emit: "python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --emit-routing-projection"
   advisor_projection_guard: "PATH=\"/opt/homebrew/bin:$PATH\" npm test -- routing-registry-drift-guard.vitest.ts"
 
 quality_standards:
@@ -315,10 +315,10 @@ workflow:
     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
     templates:
     # Use Level 2 templates as default for parent-skill scaffolding
-    - .opencode/skills/system-spec-kit/templates/examples/level_2/spec.md
-    - .opencode/skills/system-spec-kit/templates/examples/level_2/plan.md
-    - .opencode/skills/system-spec-kit/templates/examples/level_2/tasks.md
-    - .opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md
+    - .opencode/skills/system-spec-kit/templates/examples/level-2/spec.md
+    - .opencode/skills/system-spec-kit/templates/examples/level-2/plan.md
+    - .opencode/skills/system-spec-kit/templates/examples/level-2/tasks.md
+    - .opencode/skills/system-spec-kit/templates/examples/level-2/checklist.md
     outputs:
     - spec_path_resolved
     - spec.md: created_or_updated
@@ -342,8 +342,8 @@ workflow:
   step_3_template_loading:
     purpose: Load standards and templates before generation
     activities:
-      - Read parent_skill/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
-      - Read references/parent_skill/parent_hub_router_schema.md for the hub-router.json contract
+      - Read parent-skill/parent-skills-nested-packets.md for the Parent Skills with Nested Mode Packets pattern
+      - Read references/parent-skill/parent-hub-router-schema.md for the hub-router.json contract
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
       - Read parent_skill_hub_router_template.json
@@ -364,7 +364,7 @@ workflow:
       - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
       - "Create or update one workflow packet dir per distinct packet value (default folder == packetSkillName == [hub-prefix]-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md, README.md, and changelog/"
       - "When --surfaces <names> is given, generate each surface as a read-only evidence-base packet: bare-noun folder, packetKind surface, backendKind evidence-base, read-only toolSurface, routingClass metadata, with its own SKILL.md, README.md, and changelog/"
-      - "Create the hub changelog/ and manual_testing_playbook/ (changelog files are real files, never symlinks)"
+      - "Create the hub changelog/ and manual-testing-playbook/ (changelog files are real files, never symlinks)"
       - Create the non-discoverable shared/ dir with a shared/README.md
       - Never write a graph-metadata.json inside any packet or inside shared/
       - "When any mode is routingClass lexical or alias-fold, run advisor_projection_emit to emit/update the advisor routing projection from the finalized mode-registry.json and refresh the embedded projection hash"

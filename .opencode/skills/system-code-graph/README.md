@@ -64,7 +64,7 @@ Walks the workspace, parses changed files through tree-sitter and persists file,
 ```
 mcp__mk_code_index__code_graph_query({
   "operation": "blast_radius",
-  "subject": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-contract.ts"
+  "subject": ".opencode/skills/system-code-graph/mcp-server/lib/readiness-contract.ts"
 })
 ```
 
@@ -157,7 +157,7 @@ The boundary with text search is simple. Use Grep when you know the exact token 
 | `code_graph_query` returns fewer results than expected | Some files are not indexed due to parse failures or scope exclusions | Check `parserHealth` and `nodesByKind` in `code_graph_status` output |
 | `code-index.cjs` exits 69 | The CLI dist entrypoint is missing or stale relative to its sources | Run `tsc -p .opencode/skills/system-code-graph/tsconfig.json` (dev loops can set `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) |
 | `code-index.cjs` exits 75 under `--warm-only` | The daemon is cold and warm-only forbids a cold spawn | Expected at prompt time; retry without `--warm-only` to auto-spawn via the launcher |
-| Plugin bridge reports skipped or fail-open status | The bridge runs prompt-time warm-only and does not cold-spawn missing daemons or sockets | It routes through `.opencode/bin/code-index.cjs` and the launcher IPC bridge; see `mcp_server/plugin_bridges/README.md` |
+| Plugin bridge reports skipped or fail-open status | The bridge runs prompt-time warm-only and does not cold-spawn missing daemons or sockets | It routes through `.opencode/bin/code-index.cjs` and the launcher IPC bridge; see `mcp-server/plugin-bridges/README.md` |
 | An old doc references `system_code_graph` (underscore form) | A pre-rename reference survived the standalone server rename | Use `mk-code-index`, `mk_code_index` and `mcp__mk_code_index__*` for current runtime docs |
 
 ---
@@ -174,7 +174,7 @@ A: Use Grep when you know the exact text or path to match. Use the code graph wh
 
 **Q: Can I run the MCP server without mk-spec-memory installed?**
 
-A: Yes. The standalone MCP server boots independently. The code graph has no runtime dependency on mk-spec-memory. The code-graph production source keeps local contracts under `mcp_server/lib/shared/` and the TypeScript build emits only this package's runtime under `mcp_server/dist/`.
+A: Yes. The standalone MCP server boots independently. The code graph has no runtime dependency on mk-spec-memory. The code-graph production source keeps local contracts under `mcp-server/lib/shared/` and the TypeScript build emits only this package's runtime under `mcp-server/dist/`.
 
 **Q: Why are the skill folder and the MCP server named differently?**
 
@@ -206,13 +206,13 @@ A: Readiness answers whether the graph reflects the current workspace. The four 
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart routing and invariants for agents |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | Package topology, dependency direction and subsystem boundaries |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Native bootstrap, per-runtime config and verification |
-| [`references/runtime/tool_surface.md`](./references/runtime/tool_surface.md) | Per-tool contracts for all eight MCP tools |
-| [`references/readiness/readiness_and_scope_fingerprint.md`](./references/readiness/readiness_and_scope_fingerprint.md) | Readiness state machine, trust state and scope-fingerprint contract |
-| [`references/readiness/code_graph_readiness_check.md`](./references/readiness/code_graph_readiness_check.md) | Readiness contract primer |
-| [`references/runtime/naming_conventions.md`](./references/runtime/naming_conventions.md) | Name map across skill folder, MCP server, launcher and hook locations |
-| [`references/runtime/ownership_boundary.md`](./references/runtime/ownership_boundary.md) | Boundary between system-code-graph and system-spec-kit |
-| [`references/config/database_path_policy.md`](./references/config/database_path_policy.md) | Database path and override rules |
-| [`references/runtime/launcher_lease.md`](./references/runtime/launcher_lease.md) | Launcher PID-file lease and single-writer behavior |
-| [`mcp_server/tool-schemas.ts`](./mcp_server/tool-schemas.ts) | Source of truth for the eight MCP tool schemas |
-| [`mcp_server/handlers/README.md`](./mcp_server/handlers/README.md) | Handler-layer package topology |
-| [`mcp_server/lib/README.md`](./mcp_server/lib/README.md) | Core graph implementation topology |
+| [`references/runtime/tool-surface.md`](./references/runtime/tool-surface.md) | Per-tool contracts for all eight MCP tools |
+| [`references/readiness/readiness-and-scope-fingerprint.md`](./references/readiness/readiness-and-scope-fingerprint.md) | Readiness state machine, trust state and scope-fingerprint contract |
+| [`references/readiness/code-graph-readiness-check.md`](./references/readiness/code-graph-readiness-check.md) | Readiness contract primer |
+| [`references/runtime/naming-conventions.md`](./references/runtime/naming-conventions.md) | Name map across skill folder, MCP server, launcher and hook locations |
+| [`references/runtime/ownership-boundary.md`](./references/runtime/ownership-boundary.md) | Boundary between system-code-graph and system-spec-kit |
+| [`references/config/database-path-policy.md`](./references/config/database-path-policy.md) | Database path and override rules |
+| [`references/runtime/launcher-lease.md`](./references/runtime/launcher-lease.md) | Launcher PID-file lease and single-writer behavior |
+| [`mcp-server/tool-schemas.ts`](./mcp-server/tool-schemas.ts) | Source of truth for the eight MCP tool schemas |
+| [`mcp-server/handlers/README.md`](./mcp-server/handlers/README.md) | Handler-layer package topology |
+| [`mcp-server/lib/README.md`](./mcp-server/lib/README.md) | Core graph implementation topology |

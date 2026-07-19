@@ -45,7 +45,7 @@ Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) ea
 cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith("chrome_devtools"))'
 ```
 
-Expected: both entries, matching the snapshot in [`../../assets/utcp_chrome_devtools_manuals.md`](../../assets/utcp_chrome_devtools_manuals.md). Verify, don't re-add.
+Expected: both entries, matching the snapshot in [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md). Verify, don't re-add.
 
 **Step 2: Confirm tools through Code Mode.**
 
@@ -86,6 +86,6 @@ Close pages in a `finally` block so no browser instance leaks.
 | Document | Purpose |
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and this MCP fallback |
-| [`../../assets/utcp_chrome_devtools_manuals.md`](../../assets/utcp_chrome_devtools_manuals.md) | Byte-true registered-state snapshot of both manuals |
+| [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md) | Byte-true registered-state snapshot of both manuals |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | §4 Code Mode configuration and §10 MCP tools reference |
 | [`../bdg-cli/README.md`](../bdg-cli/README.md) | The primary CLI this MCP is a fallback to |

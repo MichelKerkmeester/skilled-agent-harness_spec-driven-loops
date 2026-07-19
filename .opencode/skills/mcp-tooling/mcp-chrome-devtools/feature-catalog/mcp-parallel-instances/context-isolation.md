@@ -34,21 +34,21 @@ Isolation is what makes parallel testing safe: no session conflicts between inst
 |------|-------|------|
 | `SKILL.md` §3 | MCP | `--isolated=true` key feature and benefits |
 | `INSTALL-GUIDE.md` §4 | Guide | UTCP config with isolation flag |
-| `assets/utcp_chrome_devtools_manuals.md` | Asset | Registered-state snapshot showing both flags |
+| `assets/utcp-chrome-devtools-manuals.md` | Asset | Registered-state snapshot showing both flags |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/mcp_parallel_instances/page_context_isolation.md` | Manual | BDG-018 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md` | Manual | BDG-018 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: MCP Parallel Instances
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `mcp_parallel_instances/context_isolation.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `mcp-parallel-instances/context-isolation.md`
 Related references:
-- [dual_instance_parallel.md](../mcp_parallel_instances/dual_instance_parallel.md) — Dual-Instance Parallel
-- [cookie_management.md](../console_and_network/cookie_management.md) — Cookie Management
+- [dual-instance-parallel.md](../mcp-parallel-instances/dual-instance-parallel.md) — Dual-Instance Parallel
+- [cookie-management.md](../console-and-network/cookie-management.md) — Cookie Management

@@ -51,10 +51,10 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 | MCP server config key | `mk_code_index` | All runtime configs | MCP convention: hyphens in server names become underscores in config keys. |
 | MCP tool namespace prefix | `mcp__mk_code_index__` | Tool call sites | MCP convention: hyphens → underscores in tool prefix. |
 | Launcher file | `mk-code-index-launcher.cjs` | `.opencode/bin/mk-code-index-launcher.cjs` | Filesystem path uses the hyphenated server identity. |
-| Database directory | `.opencode/skills/system-code-graph/mcp_server/database/` | `INSTALL-GUIDE.md §7` | Skill-local data dir; folder name uses `code-graph` (skill-domain) to keep the path readable across runtimes. |
-| Plugin bridge file | `mk-code-graph-bridge.mjs` | `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs` (spawned by the OpenCode plugin `.opencode/plugins/mk-code-graph.js`) | Matches the `code-graph` domain word and the symmetry pattern used by `system-skill-advisor` (whose plugin bridge is `mk-skill-advisor-bridge.mjs`). The bridge routes through the daemon-backed CLI shim in warm-only mode. |
+| Database directory | `.opencode/skills/system-code-graph/mcp-server/database/` | `INSTALL-GUIDE.md §7` | Skill-local data dir; folder name uses `code-graph` (skill-domain) to keep the path readable across runtimes. |
+| Plugin bridge file | `mk-code-graph-bridge.mjs` | `.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs` (spawned by the OpenCode plugin `.opencode/plugins/mk-code-graph.js`) | Matches the `code-graph` domain word and the symmetry pattern used by `system-skill-advisor` (whose plugin bridge is `mk-skill-advisor-bridge.mjs`). The bridge routes through the daemon-backed CLI shim in warm-only mode. |
 | CLI shim | `code-index.cjs` | `.opencode/bin/code-index.cjs` | Daemon-backed CLI uses the hyphenated server identity without the `mk-` prefix; exposes the same tool ids as the MCP namespace as an additive dual-stack fallback (`--warm-only`, exit `75` = retryable). |
-| Hook source location | `.opencode/skills/system-spec-kit/mcp_server/hooks/` | Hook source tree | Asymmetric vs the skill-owned hook pattern. See §4 below. |
+| Hook source location | `.opencode/skills/system-spec-kit/mcp-server/hooks/` | Hook source tree | Asymmetric vs the skill-owned hook pattern. See §4 below. |
 
 ---
 
@@ -74,17 +74,17 @@ ADR-002 settled this: the **skill folder slug** describes what the skill is for;
 
 ## 4. HOOK LOCATION ASYMMETRY (vs skill-advisor)
 
-SessionStart hooks for code-graph (`session-prime.ts`, `session-start.ts`, and their downstream helpers) live under `.opencode/skills/system-spec-kit/mcp_server/hooks/`, NOT under `.opencode/skills/system-code-graph/hooks/`. This is an intentional asymmetry vs the `system-skill-advisor` pattern where hooks are skill-owned (ADR-001 for skill-advisor).
+SessionStart hooks for code-graph (`session-prime.ts`, `session-start.ts`, and their downstream helpers) live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`, NOT under `.opencode/skills/system-code-graph/hooks/`. This is an intentional asymmetry vs the `system-skill-advisor` pattern where hooks are skill-owned (ADR-001 for skill-advisor).
 
 ### Why hooks stayed in spec-kit
 
 - The hook path is referenced by **110+ files** across the repo, including `.claude/settings.local.json`, runtime config bootstrap paths, build config dependencies, and other skill manifests.
-- Migrating the path would be a high-risk breaking change with no immediate operational benefit. The hooks reach code-graph data through the stable boundary at `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`.
+- Migrating the path would be a high-risk breaking change with no immediate operational benefit. The hooks reach code-graph data through the stable boundary at `system-spec-kit/mcp-server/lib/code-graph-boundary.ts`.
 - A future migration would need its own packet with build and config redesign scope; it is currently deferred.
 
 ### Implication for code-graph maintainers
 
-When editing SessionStart-related code that needs to read or write code-graph state, look in `system-spec-kit/mcp_server/hooks/` and `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`, not `system-code-graph/mcp_server/`.
+When editing SessionStart-related code that needs to read or write code-graph state, look in `system-spec-kit/mcp-server/hooks/` and `system-spec-kit/mcp-server/lib/code-graph-boundary.ts`, not `system-code-graph/mcp-server/`.
 
 ---
 
@@ -93,16 +93,16 @@ When editing SessionStart-related code that needs to read or write code-graph st
 The code-graph SQLite triplet (`code-graph.sqlite`, `.sqlite-wal`, `.sqlite-shm`), readiness marker (`.code-graph-readiness.json`), and launcher state (`.mk-code-index-launcher.json`) all live in the skill-local data directory:
 
 ```text
-.opencode/skills/system-code-graph/mcp_server/database/
+.opencode/skills/system-code-graph/mcp-server/database/
 ```
 
-This location is SKILL-LOCAL. The database was briefly consolidated to a shared workspace-root location (`.opencode/.spec-kit/code-graph/`), but that was reversed on 2026-05-29 — every runtime already shares the skill through the `.opencode/skills` symlink, so the skill-local path is already a single shared instance and the separate shared location added no coordination benefit. See [`../config/database_path_policy.md`](../config/database_path_policy.md) for the full migration record and override rules.
+This location is SKILL-LOCAL. The database was briefly consolidated to a shared workspace-root location (`.opencode/.spec-kit/code-graph/`), but that was reversed on 2026-05-29 — every runtime already shares the skill through the `.opencode/skills` symlink, so the skill-local path is already a single shared instance and the separate shared location added no coordination benefit. See [`../config/database-path-policy.md`](../config/database-path-policy.md) for the full migration record and override rules.
 
 ---
 
 ## 6. RELATED RESOURCES
 
-- [`../config/database_path_policy.md`](../config/database_path_policy.md) — full policy + override rules for the database path.
-- [`ownership_boundary.md`](ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
-- [`../readiness/code_graph_readiness_check.md`](../readiness/code_graph_readiness_check.md) — readiness contract that the launcher and read-path tools enforce.
+- [`../config/database-path-policy.md`](../config/database-path-policy.md) — full policy + override rules for the database path.
+- [`ownership-boundary.md`](ownership-boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+- [`../readiness/code-graph-readiness-check.md`](../readiness/code-graph-readiness-check.md) — readiness contract that the launcher and read-path tools enforce.
 - [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) — canonical configuration and verification steps for `mk_code_index` setup.

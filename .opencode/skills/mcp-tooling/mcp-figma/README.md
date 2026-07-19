@@ -187,8 +187,8 @@ A: This skill is the transport that reads and writes Figma content. `sk-design` 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning, and the connect-mode setup |
-| [`references/figma_cli_reference.md`](./references/figma_cli_reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model, and command examples |
-| [`references/tool_surface.md`](./references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |
+| [`references/figma-cli-reference.md`](./references/figma-cli-reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model, and command examples |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating, and destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts, and the Code Mode env-var prefix |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

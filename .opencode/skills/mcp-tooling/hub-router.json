@@ -18,7 +18,7 @@
       "defer": "unclear or contradictory tool intent asks for disambiguation"
     },
     "defaultResource": [
-      "shared/references/smart_routing.md",
+      "shared/references/smart-routing.md",
       "mode-registry.json"
     ],
     "defaultResourceSemantics": "fallback-only",

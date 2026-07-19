@@ -84,5 +84,5 @@ ls -la /tmp/verify.png
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and the Chrome DevTools MCP |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Canonical step-by-step install with validation checkpoints |
-| [`../../references/cdp_patterns.md`](../../references/cdp_patterns.md) | CDP command patterns and Unix composability |
+| [`../../references/cdp-patterns.md`](../../references/cdp-patterns.md) | CDP command patterns and Unix composability |
 | [`../chrome-devtools-mcp/README.md`](../chrome-devtools-mcp/README.md) | The MCP fallback this CLI is preferred over |

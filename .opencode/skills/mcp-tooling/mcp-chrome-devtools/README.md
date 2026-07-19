@@ -202,8 +202,8 @@ The skill ships a manual testing playbook and three example scripts that double 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path router and the full rule set |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for the CLI and the MCP server, with an AI-first prompt |
-| [`references/cdp_patterns.md`](./references/cdp_patterns.md) | CDP domain patterns, workflows and Unix-pipe composition |
-| [`references/session_management.md`](./references/session_management.md) | Session lifecycle, retry, multi-session and cleanup |
+| [`references/cdp-patterns.md`](./references/cdp-patterns.md) | CDP domain patterns, workflows and Unix-pipe composition |
+| [`references/session-management.md`](./references/session-management.md) | Session lifecycle, retry, multi-session and cleanup |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and platform fixes |
 | [`examples/README.md`](./examples/README.md) | Guide to the three production scripts and CI integration |
 | [`scripts/install.sh`](./scripts/install.sh) | Automated bdg installer with Chrome detection |

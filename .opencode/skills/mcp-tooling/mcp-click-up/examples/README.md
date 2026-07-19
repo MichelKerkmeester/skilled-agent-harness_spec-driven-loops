@@ -325,12 +325,12 @@ sudo apt install jq
 **mcp-click-up:**
 - `.opencode/skills/mcp-tooling/mcp-click-up/SKILL.md` — Routing rules and agent invariants
 - `.opencode/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md` — Install and authentication
-- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt_commands.md` — Full cupt command reference
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md` — Full cupt command reference
 
 ### Related References
 
-- `cupt_commands.md §7. TASK COMPLETION` — dry-run and status resolution rules
-- `cupt_commands.md §14. AGENT INVARIANTS` — safety patterns these scripts implement
+- `cupt-commands.md §7. TASK COMPLETION` — dry-run and status resolution rules
+- `cupt-commands.md §14. AGENT INVARIANTS` — safety patterns these scripts implement
 - `troubleshooting.md §7. TEAM FILTER PERFORMANCE` — why `--tag` is preferred over `--team`
 
 ### External
@@ -349,7 +349,7 @@ To add new example scripts:
 2. Make the script executable: `chmod +x examples/your-script.sh`
 3. Add a `--help` / `-h` usage block at the top
 4. Update this README with purpose, usage, what it does, and exit codes
-5. Reference the relevant cupt invariants from `references/cupt_commands.md §14`
+5. Reference the relevant cupt invariants from `references/cupt-commands.md §14`
 
 ---
 

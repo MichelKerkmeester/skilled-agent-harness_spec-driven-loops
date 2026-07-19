@@ -22,11 +22,11 @@ importance_tier: "important"
 
 The package owns three authored zones:
 
-- `mcp_server/` carries the runtime MCP server, scorer, daemon, tools, and tests.
+- `mcp-server/` carries the runtime MCP server, scorer, daemon, tools, and tests.
 - `compat/` carries the Python compatibility shim for legacy callers and CI scripts.
 - `references/` carries operator documentation and the hook reference manual.
 
-The recommendation surface is `advisor_recommend`. The trust surface is `advisor_status`. The refresh surface is `advisor_rebuild`. The skill-graph query surface is `skill_graph_query`. Detail per tool lives in `feature_catalog/feature_catalog.md`.
+The recommendation surface is `advisor_recommend`. The trust surface is `advisor_status`. The refresh surface is `advisor_rebuild`. The skill-graph query surface is `skill_graph_query`. Detail per tool lives in `feature-catalog/feature-catalog.md`.
 
 ### Architecture diagram
 
@@ -42,7 +42,7 @@ The recommendation surface is `advisor_recommend`. The trust surface is `advisor
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
-│  │                       mcp_server/                         │  │
+│  │                       mcp-server/                         │  │
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ scorer/  │ │handlers/ │ │           lib/           │   │  │
 │  │  │ explicit │ │recommend │ │ skill-graph / freshness  │   │  │
@@ -74,7 +74,7 @@ The recommendation surface is `advisor_recommend`. The trust surface is `advisor
 
 ```text
 system-skill-advisor/
-├── mcp_server/             # Runtime MCP server
+├── mcp-server/             # Runtime MCP server
 │   ├── index.ts            # MCP transport entrypoint
 │   ├── tool-schemas.ts     # Public tool schema registry
 │   ├── handlers/           # MCP tool handlers
@@ -88,7 +88,7 @@ system-skill-advisor/
 │   └── scripts/            # Maintenance scripts
 ├── compat/                 # Python compatibility shim
 ├── references/             # Operator docs and hook references
-├── feature_catalog/        # Current feature inventory
+├── feature-catalog/        # Current feature inventory
 ├── manual_testing_playbook # Operator validation scenarios
 └── dist/                   # Generated build output
 ```
@@ -114,9 +114,9 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 **Key modules:**
 
-- `mcp_server/handlers/recommend.ts` owns the read path.
-- `mcp_server/lib/skill-graph/rebuild.ts` owns the write path.
-- `mcp_server/lib/daemon/watcher.ts` owns the file-change loop.
+- `mcp-server/handlers/recommend.ts` owns the read path.
+- `mcp-server/lib/skill-graph/rebuild.ts` owns the write path.
+- `mcp-server/lib/daemon/watcher.ts` owns the file-change loop.
 
 ---
 
@@ -124,7 +124,7 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 The MCP server is composed of focused subsystems that share the transport layer and the SQLite skill graph.
 
-**Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Tool detail and lane semantics live in `feature_catalog/feature_catalog.md`.
+**Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Tool detail and lane semantics live in `feature-catalog/feature-catalog.md`.
 
 **Shadow-delta sink.** `advisor_recommend` returns shadow comparison data without writing by default. Durable JSONL deltas are recorded only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` points to a workspace-contained file or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink; the launcher allowlist forwards both env names to the daemon child.
 
@@ -140,7 +140,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships matching prompt-submit hooks for Claude Code and OpenCode, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The Claude hook applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to the native advisor subprocess and the remaining CLI fallback window. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
+The advisor ships matching prompt-submit hooks for Claude Code and OpenCode, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The Claude hook applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to the native advisor subprocess and the remaining CLI fallback window. The plugin bridge under `.opencode/plugins/` calls into `mcp-server/lib/hooks/` and emits the payload back to the runtime.
 
 ---
 
@@ -150,7 +150,7 @@ Validation runs at two layers.
 
 **Release validation.** `advisor_validate` runs the regression suite and reports threshold semantics (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block. Hook diagnostics persist to bounded JSONL sinks so `advisor_validate` can read them back across processes.
 
-**Test surfaces.** Default `npm test` runs unit and integration suites under `mcp_server/tests/`. Scorer benchmarks run through `npm run bench`. Operator playbook scenarios live in `manual_testing_playbook/`.
+**Test surfaces.** Default `npm test` runs unit and integration suites under `mcp-server/tests/`. Scorer benchmarks run through `npm run bench`. Operator playbook scenarios live in `manual-testing-playbook/`.
 
 ---
 
@@ -171,6 +171,6 @@ Validation runs at two layers.
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
 - [INSTALL-GUIDE.md](./INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
-- [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory and per-tool detail
-- [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
+- [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory and per-tool detail
+- [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
 - [references/](./references/): Operator references including the hook reference manual

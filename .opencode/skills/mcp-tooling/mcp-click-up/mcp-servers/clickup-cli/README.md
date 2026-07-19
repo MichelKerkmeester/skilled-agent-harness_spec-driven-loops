@@ -83,5 +83,5 @@ Expected: `cupt, version <installed version>`, then two lines — `OK: Authentic
 | Document | Purpose |
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
-| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | Full `cupt` command reference with agent patterns |
+| [`../../references/cupt-commands.md`](../../references/cupt-commands.md) | Full `cupt` command reference with agent patterns |
 | [`../../references/INSTALL-GUIDE.md`](../../references/INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

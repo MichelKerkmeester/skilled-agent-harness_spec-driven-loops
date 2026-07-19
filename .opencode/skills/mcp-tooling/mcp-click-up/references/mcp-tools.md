@@ -63,7 +63,7 @@ Use the **Official MCP** when you need:
 
 The following capability classes were explicitly confirmed **absent** from the last successful live inventory and have been removed from this reference's tool list and examples: **Goals/OKRs, bulk task creation, Webhooks, Checklists, User groups and guests (Enterprise), Audit logs (Enterprise)**. Do not route requests for these to MCP; there is currently no known way to fulfill them through this server.
 
-Use **cupt CLI** for everything else (see `cupt_commands.md`).
+Use **cupt CLI** for everything else (see `cupt-commands.md`).
 
 ---
 
@@ -118,7 +118,7 @@ The tables below list tools from the most recent successful `list_tools()` captu
 | `clickup_get_custom_fields` | List custom fields |
 | `clickup_set_custom_field_value` | Set custom field value |
 
-Note: no top-level `get_document`/`update_document` tool was found in the last inventory — only creation and page-level operations. Treat those two capabilities as unsupported until proven otherwise (see `feature_catalog/mcp_medium_priority/{get-document,update-document}.md`).
+Note: no top-level `get_document`/`update_document` tool was found in the last inventory — only creation and page-level operations. Treat those two capabilities as unsupported until proven otherwise (see `feature-catalog/mcp-medium-priority/{get-document,update-document}.md`).
 
 ---
 

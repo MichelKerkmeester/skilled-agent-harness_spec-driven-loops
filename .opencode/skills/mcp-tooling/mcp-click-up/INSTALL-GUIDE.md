@@ -2,7 +2,7 @@
 
 Complete installation and configuration for ClickUp task management, providing AI assistants with two complementary surfaces. The cupt CLI is the primary tool: daily task operations (list, complete, note, time, tag) with per-list status resolution, dry-run safety, and `--json` output. The official ClickUp MCP is the secondary surface, launched through Code Mode for documents, goals, and bulk operations.
 
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install_guides/README.md) for complete setup.
+> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `cupt` (PyPI) | **Dependencies:** Python 3.8+, pipx (or pip); Node.js 18+ for the MCP path
 > **Phase-by-phase validation:** the full checkpoint reference lives in [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) — this front door summarizes it.
 
@@ -211,9 +211,9 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 | [`SKILL.md`](SKILL.md) | Routing rules, agent invariants, quick-reference cheat sheet |
 | [`README.md`](README.md) | Human-facing overview with feature tables and FAQ |
 | [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) | Phase-by-phase install reference with validation checkpoints (loaded by the smart router on INSTALL intent) |
-| [`references/cupt_commands.md`](references/cupt_commands.md) | Complete cupt command reference with `--json` variants |
-| [`references/mcp_tools.md`](references/mcp_tools.md) | Official MCP tool catalog: priorities + invocation |
-| [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_CATALOG.md) | Full cupt + MCP feature inventory |
+| [`references/cupt-commands.md`](references/cupt-commands.md) | Complete cupt command reference with `--json` variants |
+| [`references/mcp-tools.md`](references/mcp-tools.md) | Official MCP tool catalog: priorities + invocation |
+| [`feature-catalog/FEATURE-CATALOG.md`](feature-catalog/FEATURE-CATALOG.md) | Full cupt + MCP feature inventory |
 | [`examples/README.md`](examples/README.md) | Production scripts: task queue + time tracking |
 | [`mcp-servers/clickup-cli/README.md`](mcp-servers/clickup-cli/README.md) | cupt install pointer |
 | [`mcp-servers/clickup-mcp/README.md`](mcp-servers/clickup-mcp/README.md) | Official MCP server configuration notes |

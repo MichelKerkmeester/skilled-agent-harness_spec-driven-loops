@@ -71,7 +71,7 @@ Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and 
 
 ### Gate 2 Caller Guidance
 
-Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is registered and reachable. Keep `mcp_server/scripts/skill_advisor.py` for legacy scripts and runtimes that still expect the Python facade's JSON-array output.
+Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is registered and reachable. Keep `mcp-server/scripts/skill_advisor.py` for legacy scripts and runtimes that still expect the Python facade's JSON-array output.
 
 Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. The CLI has full parity with the MCP surface: all 9 tools are reachable this way over the same daemon the MCP registration uses (dual-stack; the MCP registration is unchanged), and `list-tools` enumerates them offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error.
 
@@ -100,7 +100,7 @@ The advisor scores every prompt against five independent lanes, each producing i
 | `derived_generated` | 0.12 | Sanitized derived metadata from prior runs |
 | `semantic_shadow` | 0.05 | Semantic embedding evidence, lowest fusion weight |
 
-The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, and the launcher allowlist passes it through to the daemon child (an env change needs a daemon restart to apply). Use it for experiments; durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+The lane weights live in `mcp-server/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, and the launcher allowlist passes it through to the daemon child (an env change needs a daemon restart to apply). Use it for experiments; durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
 
 Deep-loop routing modes are projected from `mode-registry.json` into generated constants in `lib/scorer/aliases.ts` and the Python compatibility script. A SHA-256 projection hash is folded into the recommend cache signature and checked by the routing-registry drift guard. When a generated deep-loop alias resolves to the merged workflow skill, `advisor_recommend` publishes an optional `workflowMode` field for downstream routing.
 
@@ -196,7 +196,7 @@ A: Routing is operationally distinct from memory. You can roll back, restart or 
 
 **Q: Can I change the lane weights?**
 
-A: Yes, with measured evidence. `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher for experiments (daemon restart required); the durable path is a source edit in `mcp_server/lib/scorer/lane-registry.ts`. Run `advisor_validate` to capture a baseline, change the weights, re-run validate and ship the diff with doc updates in `references/scoring/advisor_scorer.md` and the feature catalog.
+A: Yes, with measured evidence. `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher for experiments (daemon restart required); the durable path is a source edit in `mcp-server/lib/scorer/lane-registry.ts`. Run `advisor_validate` to capture a baseline, change the weights, re-run validate and ship the diff with doc updates in `references/scoring/advisor-scorer.md` and the feature catalog.
 
 **Q: How does the advisor stay safe to call from hooks?**
 
@@ -208,7 +208,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract across Claude, OpenCode and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/opencode/`.
+A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract across Claude, OpenCode and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/opencode/`.
 
 ---
 
@@ -217,8 +217,8 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/README.md --type readme` reports zero issues |
-| TypeScript build | `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck && npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build` exits 0 |
-| Playbook | Run the manual testing playbook scenarios under `manual_testing_playbook/` in a live session |
+| TypeScript build | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run typecheck && npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` exits 0 |
+| Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
 | Validation battery | `mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })` reports corpus top-1 at or above 75% and holdout top-1 at or above 72.5% |
 
 ---
@@ -230,17 +230,17 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 | [`SKILL.md`](./SKILL.md) | Runtime routing instructions, invariants and the smart router |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | System design, MCP surface, data flow and database layout |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Setup, runtime hooks, rollback and embedder selection |
-| [`references/runtime/tool_ids_reference.md`](./references/runtime/tool_ids_reference.md) | All nine tool ids with inputs and output shapes |
-| [`references/scoring/advisor_scorer.md`](./references/scoring/advisor_scorer.md) | Lane attribution model and fusion rules |
-| [`references/scoring/lane_weight_tuning.md`](./references/scoring/lane_weight_tuning.md) | Evidence requirements for lane weight changes |
-| [`references/scoring/validation_baselines.md`](./references/scoring/validation_baselines.md) | Validation baselines and troubleshooting |
-| [`references/runtime/freshness_contract.md`](./references/runtime/freshness_contract.md) | Trust-state vocabulary and caller obligations |
-| [`references/runtime/daemon_lease_contract.md`](./references/runtime/daemon_lease_contract.md) | Single-writer daemon lease semantics |
-| [`references/runtime/standalone_mcp_shape.md`](./references/runtime/standalone_mcp_shape.md) | Standalone MCP topology |
-| [`references/graph/skill_graph_query_cookbook.md`](./references/graph/skill_graph_query_cookbook.md) | Worked examples for all query types |
-| [`references/graph/skill_graph_drift.md`](./references/graph/skill_graph_drift.md) | Detect and reconcile SQLite drift from source files |
-| [`references/hooks/skill_advisor_hook.md`](./references/hooks/skill_advisor_hook.md) | Prompt-time hook contract across runtimes |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Current feature inventory |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index |
-| [`feature_catalog/hooks_and_plugin/goal_opencode_plugin.md`](./feature_catalog/hooks_and_plugin/goal_opencode_plugin.md) | `/goal` OpenCode plugin reference |
+| [`references/runtime/tool-ids-reference.md`](./references/runtime/tool-ids-reference.md) | All nine tool ids with inputs and output shapes |
+| [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md) | Lane attribution model and fusion rules |
+| [`references/scoring/lane-weight-tuning.md`](./references/scoring/lane-weight-tuning.md) | Evidence requirements for lane weight changes |
+| [`references/scoring/validation-baselines.md`](./references/scoring/validation-baselines.md) | Validation baselines and troubleshooting |
+| [`references/runtime/freshness-contract.md`](./references/runtime/freshness-contract.md) | Trust-state vocabulary and caller obligations |
+| [`references/runtime/daemon-lease-contract.md`](./references/runtime/daemon-lease-contract.md) | Single-writer daemon lease semantics |
+| [`references/runtime/standalone-mcp-shape.md`](./references/runtime/standalone-mcp-shape.md) | Standalone MCP topology |
+| [`references/graph/skill-graph-query-cookbook.md`](./references/graph/skill-graph-query-cookbook.md) | Worked examples for all query types |
+| [`references/graph/skill-graph-drift.md`](./references/graph/skill-graph-drift.md) | Detect and reconcile SQLite drift from source files |
+| [`references/hooks/skill-advisor-hook.md`](./references/hooks/skill-advisor-hook.md) | Prompt-time hook contract across runtimes |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current feature inventory |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenario index |
+| [`feature-catalog/hooks-and-plugin/goal-opencode-plugin.md`](./feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) | `/goal` OpenCode plugin reference |
 | [`changelog/`](./changelog/) | Versioned changelogs |

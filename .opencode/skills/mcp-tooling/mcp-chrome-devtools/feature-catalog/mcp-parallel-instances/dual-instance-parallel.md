@@ -22,7 +22,7 @@ Two registered manuals (`chrome_devtools_1`, `chrome_devtools_2`) each run their
 
 ## 2. HOW IT WORKS
 
-Each instance is launched with `--isolated=true` so there are no session conflicts. `bdg` exposes one global `status`/`stop` lifecycle with no session selector, so genuine parallel browser control routes through the MCP instances (references/cdp_patterns.md §8 makes this explicit).
+Each instance is launched with `--isolated=true` so there are no session conflicts. `bdg` exposes one global `status`/`stop` lifecycle with no session selector, so genuine parallel browser control routes through the MCP instances (references/cdp-patterns.md §8 makes this explicit).
 
 ---
 
@@ -34,21 +34,21 @@ Each instance is launched with `--isolated=true` so there are no session conflic
 |------|-------|------|
 | `SKILL.md` §3 | MCP | Isolated instances and parallel benefit |
 | `INSTALL-GUIDE.md` §6, §8 | Guide | Parallel instance patterns (Pattern 6, Example 5) |
-| `references/cdp_patterns.md` §8 | Reference | Sequential-only CLI boundary, MCP for parallelism |
+| `references/cdp-patterns.md` §8 | Reference | Sequential-only CLI boundary, MCP for parallelism |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/mcp_parallel_instances/dual_instance_parallel.md` | Manual | BDG-015 scenario contract |
+| `manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md` | Manual | BDG-015 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: MCP Parallel Instances
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `mcp_parallel_instances/dual_instance_parallel.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `mcp-parallel-instances/dual-instance-parallel.md`
 Related references:
-- [context_isolation.md](../mcp_parallel_instances/context_isolation.md) — Context Isolation
-- [code_mode_invocation.md](../mcp_parallel_instances/code_mode_invocation.md) — Code Mode Invocation
+- [context-isolation.md](../mcp-parallel-instances/context-isolation.md) — Context Isolation
+- [code-mode-invocation.md](../mcp-parallel-instances/code-mode-invocation.md) — Code Mode Invocation

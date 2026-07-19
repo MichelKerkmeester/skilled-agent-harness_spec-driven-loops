@@ -67,14 +67,14 @@ If `figma-ds-cli@1.0.0` resolves from npm, note the version trap: the published 
 
 | File | Role |
 |---|---|
-| `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/connect_and_daemon/connect_and_daemon.md` | Feature-catalog source for the connect/daemon foundation this unblocks |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../../feature-catalog/connect-and-daemon/connect-and-daemon.md` | Feature-catalog source for the connect/daemon foundation this unblocks |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../references/figma_cli_reference.md` | Binary identity, version trap, and the naming-trap warning |
+| `../../references/figma-cli-reference.md` | Binary identity, version trap, and the naming-trap warning |
 | `../../INSTALL-GUIDE.md` | Install guidance that points to the canonical `figma-ds-cli` |
 
 ---
@@ -83,5 +83,5 @@ If `figma-ds-cli@1.0.0` resolves from npm, note the version trap: the published 
 
 - Group: Detection and Setup
 - Playbook ID: DETECT-001
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `detection-setup/binary-detection.md`

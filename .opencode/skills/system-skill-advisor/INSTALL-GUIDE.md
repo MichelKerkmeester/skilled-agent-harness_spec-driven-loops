@@ -16,7 +16,7 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
-I want to install the Skill Advisor MCP server (mk_skill_advisor) from .opencode/skills/system-skill-advisor/mcp_server
+I want to install the Skill Advisor MCP server (mk_skill_advisor) from .opencode/skills/system-skill-advisor/mcp-server
 
 Please help me:
 1. Verify Node.js and npm are installed
@@ -41,7 +41,7 @@ Your AI assistant will:
 
 ## 1. OVERVIEW
 
-The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/`. It exposes 8 public MCP tools (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) plus 1 internal trusted-caller tool (`skill_graph_propagate_enhances`, gated behind auth). The standalone MCP server owns the advisor handlers, schemas, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
+The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp-server/`. It exposes 8 public MCP tools (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) plus 1 internal trusted-caller tool (`skill_graph_propagate_enhances`, gated behind auth). The standalone MCP server owns the advisor handlers, schemas, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
 
 ---
 
@@ -52,7 +52,7 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 - Runtime MCP configuration includes both `mk-spec-memory` and `mk_skill_advisor`.
 - Native MCP trusted mutations require `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon environment; callers cannot supply this trust grant per request.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
-- The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp_server/node_modules/@spec-kit/shared`.
+- The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp-server/node_modules/@spec-kit/shared`.
 
 ---
 
@@ -61,14 +61,14 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 Install dependencies and build the advisor MCP server:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server install
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 
 Verify the local shared package link exists. Missing this link causes MCP startup to fail with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared`.
 
 ```bash
-test -e .opencode/skills/system-skill-advisor/mcp_server/node_modules/@spec-kit/shared && echo "shared dependency linked"
+test -e .opencode/skills/system-skill-advisor/mcp-server/node_modules/@spec-kit/shared && echo "shared dependency linked"
 ```
 
 Start or refresh the `mk_skill_advisor` MCP server in the active runtime. The launcher is:
@@ -105,10 +105,10 @@ Expected:
 Run before declaring bootstrap complete:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
-node -e "import('./.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js')"
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run test -- tests/compat/plugin-bridge-smoke.vitest.ts tests/handlers/advisor-recommend.vitest.ts --reporter=default
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run typecheck
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+node -e "import('./.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js')"
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run test -- tests/compat/plugin-bridge-smoke.vitest.ts tests/handlers/advisor-recommend.vitest.ts --reporter=default
 ```
 
 Current native advisor baseline:
@@ -132,18 +132,18 @@ Prompt-time routing is available across runtime adapters:
 | --- | --- |
 | Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
 | OpenCode | `.opencode/skills/system-skill-advisor/hooks/opencode/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/opencode-hook-policy.ts` |
-| OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` |
+| OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` |
 
 The OpenCode bridge must use the stable package entrypoint:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts
+.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts
 ```
 
 After build, plugin consumers load:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/compat/index.js
+.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/compat/index.js
 ```
 
 ---
@@ -153,8 +153,8 @@ After build, plugin consumers load:
 `skill_advisor.py` remains the CLI compatibility surface. In one-shot mode it probes the native advisor first and translates `advisor_recommend` output back to the legacy JSON-array shape. If the native probe is unavailable, it falls back to the local Python scorer.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "help me commit my changes"
-printf '%s' "help me commit my changes" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "help me commit my changes"
+printf '%s' "help me commit my changes" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin
 ```
 
 Mode meanings:
@@ -169,20 +169,20 @@ Mode meanings:
 Testing controls:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this context"
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this context"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this context"
 ```
 
 The OpenCode plugin bridge follows the same pattern: MCP-level `mk_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs
+.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
 ```
 
 If a package-level import is needed inside a subprocess fallback, it must target the standalone advisor package, never the old system-spec-kit advisor path. After build, the standalone server entrypoint is:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js
+.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js
 ```
 
 ---
@@ -206,7 +206,7 @@ export SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1
 export SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1
 
 # CLI-only Python path.
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "your prompt"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "your prompt"
 ```
 
 Unset variables after recovery:
@@ -242,7 +242,7 @@ State interpretation:
 Manual recovery scenarios live at:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/system-skill-advisor/mcp-server/manual-testing-playbook/manual-testing-playbook.md
 ```
 
 ### Indexer scan-vs-index counts
@@ -257,7 +257,7 @@ H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 | What You See | Cause | Fix |
 | --- | --- | --- |
-| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp_server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp_server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build`, then restart `mk_skill_advisor`. |
+| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp-server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp-server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build`, then restart `mk_skill_advisor`. |
 | `/doctor:mcp debug --server mk_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server mk_skill_advisor --fix` or run the commands above manually. |
 
 ---
@@ -266,34 +266,34 @@ H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 ```bash
 # Build native package
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 
 # Typecheck native package
-npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run typecheck
 
 # Python shim default
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "create a pull request on github"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "create a pull request on github"
 
 # Python shim stdin
 printf '%s' "save this conversation context to memory" | \
-  python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin
+  python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin
 
 # Native required
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this context"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this context"
 
 # Python fallback required
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this context"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this context"
 
 # Regression compatibility
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py \
+  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 ---
 
 ## 12. CHOOSING AN EMBEDDER
 
-The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp_server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md).
+The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp-server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp-server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
 
 ### 12.1 Current active default
 
@@ -312,7 +312,7 @@ Phase `002/jina-swap-and-reindex` runbook plus phase `004/skill-graph-db-writer-
 
 ### 12.2 Registered alternatives
 
-Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/shared/embeddings/registry.ts). Skill-advisor's local `mcp_server/lib/embedders/registry.ts` is a re-export shim — adding manifests is a single edit in the shared package. The seven text-tuned manifests registered today, each as a frozen `EmbedderManifest`:
+Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/shared/embeddings/registry.ts). Skill-advisor's local `mcp-server/lib/embedders/registry.ts` is a re-export shim — adding manifests is a single edit in the shared package. The seven text-tuned manifests registered today, each as a frozen `EmbedderManifest`:
 
 | Name | Dim | Backend | Ollama tag | Max input | Notes |
 | --- | ---: | --- | --- | ---: | --- |
@@ -334,13 +334,13 @@ There are two operator-facing surfaces. **Neither is an environment variable.**
 
 **Sentinel-driven (default).** `vec_metadata` starts unpopulated; `getActiveEmbedder()` returns `{ name: 'auto', dim: 0 }`. The first daemon start invokes `ensureActiveEmbedder()` which calls the shared cascade and persists the winner. Subsequent daemon starts read the persisted pointer and skip the cascade.
 
-**Manual override.** [`setActiveEmbedder()`](./mcp_server/lib/embedders/schema.ts) writes a specific manifest into `vec_metadata` and creates the matching `vec_<dim>` table:
+**Manual override.** [`setActiveEmbedder()`](./mcp-server/lib/embedders/schema.ts) writes a specific manifest into `vec_metadata` and creates the matching `vec_<dim>` table:
 
 ```typescript
 import Database from 'better-sqlite3';
-import { setActiveEmbedder } from './mcp_server/dist/.../lib/embedders/schema.js';
+import { setActiveEmbedder } from './mcp-server/dist/.../lib/embedders/schema.js';
 
-const db = new Database('.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite');
+const db = new Database('.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite');
 setActiveEmbedder(db, 'jina-embeddings-v3', 1024);
 ```
 
@@ -359,7 +359,7 @@ The mk-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionall
 The writer cross-wire shipped in phase `004` and the cascade-driven default shipped in phase `003/006`. The pointer flip is now safe end-to-end:
 
 1. Stop the daemon.
-2. Snapshot `mcp_server/database/skill-graph.sqlite`.
+2. Snapshot `mcp-server/database/skill-graph.sqlite`.
 3. (Optional) Call `setActiveEmbedder()` to override the cascade choice.
 4. Restart the daemon. `ensureActiveEmbedder()` either honours your override or runs the cascade. The first scan or watcher tick populates `vec_<active.dim>` via the adapter dispatcher.
 5. Smoke-test via the `advisor_recommend` MCP tool against three queries (`"memory save"`, `"code search"`, `"spec folder"`) and confirm top-3 picks are sane.
@@ -380,11 +380,11 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 
 ### 12.6 Cross-references
 
-- Canonical shared-embedder narrative: [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) — covers `mk-spec-memory`, skill-advisor and shared design rationale.
+- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers `mk-spec-memory`, skill-advisor and shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
-- Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp_server/INSTALL-GUIDE.md`](../system-spec-kit/mcp_server/INSTALL-GUIDE.md).
-- Skill-advisor schema helpers: [`mcp_server/lib/embedders/schema.ts`](./mcp_server/lib/embedders/schema.ts).
+- Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp-server/INSTALL-GUIDE.md`](../system-spec-kit/mcp-server/INSTALL-GUIDE.md).
+- Skill-advisor schema helpers: [`mcp-server/lib/embedders/schema.ts`](./mcp-server/lib/embedders/schema.ts).
 - Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
 
 ## 13. RELATED RESOURCES
@@ -393,6 +393,6 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | --- | --- |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
-| [Hook reference](./references/hooks/skill_advisor_hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
-| [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
-| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
+| [Hook reference](./references/hooks/skill-advisor-hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
+| [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
+| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |

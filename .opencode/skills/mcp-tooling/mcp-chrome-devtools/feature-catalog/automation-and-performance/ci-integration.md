@@ -34,7 +34,7 @@ The scripts use configurable thresholds for automated validation and timestamped
 |------|-------|------|
 | `examples/README.md` §4 | Guide | ci-visual-tests chaining pattern |
 | `INSTALL-GUIDE.md` §4 | Guide | CI/CD security flags |
-| `references/session_management.md` §9 | Reference | Trap-based cleanup the scripts rely on |
+| `references/session-management.md` §9 | Reference | Trap-based cleanup the scripts rely on |
 
 ### Validation And Tests
 
@@ -47,8 +47,8 @@ The scripts use configurable thresholds for automated validation and timestamped
 ## 4. SOURCE METADATA
 
 - Group: Automation and Performance
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `automation_and_performance/ci_integration.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `automation-and-performance/ci-integration.md`
 Related references:
-- [performance_baseline.md](../automation_and_performance/performance_baseline.md) — Performance Baseline
-- [sandbox_errors.md](../recovery_and_troubleshooting/sandbox_errors.md) — Linux Sandbox Errors
+- [performance-baseline.md](../automation-and-performance/performance-baseline.md) — Performance Baseline
+- [sandbox-errors.md](../recovery-and-troubleshooting/sandbox-errors.md) — Linux Sandbox Errors

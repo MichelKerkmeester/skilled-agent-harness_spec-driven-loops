@@ -33,22 +33,22 @@ Enable the Runtime domain first (`bdg cdp Runtime.enable`) for full coverage, th
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg console --list`) |
-| `references/cdp_patterns.md` §5 | Reference | Console log analysis workflow |
+| `references/cdp-patterns.md` §5 | Reference | Console log analysis workflow |
 | `INSTALL-GUIDE.md` §6 | Guide | Console pattern and MCP equivalent |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/console_and_network/console_list.md` | Manual | BDG-011 scenario contract |
+| `manual-testing-playbook/console-and-network/console-list.md` | Manual | BDG-011 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: Console and Network
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `console_and_network/console_logs.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `console-and-network/console-logs.md`
 Related references:
-- [eval_javascript.md](../dom_and_screenshot/eval_javascript.md) — Eval JavaScript
-- [har_export.md](../console_and_network/har_export.md) — HAR Export
+- [eval-javascript.md](../dom-and-screenshot/eval-javascript.md) — Eval JavaScript
+- [har-export.md](../console-and-network/har-export.md) — HAR Export

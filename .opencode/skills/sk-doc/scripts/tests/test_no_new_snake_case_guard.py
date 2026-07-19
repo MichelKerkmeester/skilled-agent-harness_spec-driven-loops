@@ -148,7 +148,7 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
                 "alpha_name.md",
                 "snake_dir/clean-name.md",
                 "snake_dir/file_name.md",
-                "feature_catalog/read-path.md",
+                "feature-catalog/read-path.md",
             ]
         )
         self.repo.commit("tree with debt")

@@ -2,7 +2,7 @@
 
 > MCP Server v1.8.0 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -13,7 +13,7 @@ Complete installation and configuration guide for the Spec Kit Memory MCP server
 Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
-I want to install Spec Kit Memory MCP server from .opencode/skills/system-spec-kit/mcp_server
+I want to install Spec Kit Memory MCP server from .opencode/skills/system-spec-kit/mcp-server
 
 Please help me:
 1. Verify I have Node.js >=20.11.0 and npm installed
@@ -63,7 +63,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │                                                                 │
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
-│    mcp_server/database/context-index.sqlite (canonical)          │
+│    mcp-server/database/context-index.sqlite (canonical)          │
 │    skills/system-code-graph/.../database/code-graph.sqlite      │
 └────────────────────┬────────────────────────────────────────────┘
                      │
@@ -94,11 +94,11 @@ This guide addresses the full installation lifecycle and common failures after m
 | Path | Purpose |
 |---|---|
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
-| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
-| `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` | Canonical repo-local memory database |
-| `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | Default structural code-graph database (skill-local; override with `SPECKIT_CODE_GRAPH_DB_DIR`. The former shared `.opencode/.spec-kit/code-graph/database/` location is superseded and auto-migrated back on first launcher startup) |
+| `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
+| `.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` | Canonical repo-local memory database |
+| `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite` | Default structural code-graph database (skill-local; override with `SPECKIT_CODE_GRAPH_DB_DIR`. The former shared `.opencode/.spec-kit/code-graph/database/` location is superseded and auto-migrated back on first launcher startup) |
 
-The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime uses the canonical `context-index.sqlite` memory database; profile-specific vector shards remain under `vectors/context-vectors__*.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp-server/database/`. The runtime uses the canonical `context-index.sqlite` memory database; profile-specific vector shards remain under `vectors/context-vectors__*.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
 ### What Gets Picked
 
@@ -130,7 +130,7 @@ If you skip Ollama, the cascade falls through to `hf-local` (a pure-Node `@huggi
 
 The Code Graph system uses a separate, skill-local database:
 
-- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored skill-local under `.opencode/skills/system-code-graph/mcp_server/database/`; override with `SPECKIT_CODE_GRAPH_DB_DIR`)
+- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored skill-local under `.opencode/skills/system-code-graph/mcp-server/database/`; override with `SPECKIT_CODE_GRAPH_DB_DIR`)
 - Tables: `code_files` (indexed source files), `code_nodes` (symbols), `code_edges` (relationships)
 - Edge types: `CONTAINS`, `CALLS`, `IMPORTS`, `EXPORTS`, `EXTENDS`, `IMPLEMENTS`, `DECORATES`, `OVERRIDES`, `TYPE_OF`
 
@@ -247,16 +247,16 @@ npx tsc --build --noCheck --force
 ### Validation: `phase_2_complete`
 
 ```bash
-ls mcp_server/dist/context-server.js
+ls mcp-server/dist/context-server.js
 # Must show the file
 
-ls mcp_server/node_modules/better-sqlite3
+ls mcp-server/node_modules/better-sqlite3
 # Must show the directory
 ```
 
 Checklist:
-- [ ] `mcp_server/dist/context-server.js` exists
-- [ ] `mcp_server/node_modules/better-sqlite3` exists
+- [ ] `mcp-server/dist/context-server.js` exists
+- [ ] `mcp-server/node_modules/better-sqlite3` exists
 
 ❌ **STOP if validation fails.** Check the installation output for errors before continuing.
 
@@ -276,7 +276,7 @@ bash scripts/setup/rebuild-native-modules.sh
 
 ```bash
 # Smoke test: server should start without crashing
-node mcp_server/dist/context-server.js
+node mcp-server/dist/context-server.js
 # Process starts and waits for MCP stdio input
 # Press Ctrl+C to exit
 ```
@@ -326,7 +326,7 @@ Add the following to `opencode.json` in your project root:
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
+        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database",
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory"
       },
       "enabled": true
@@ -409,7 +409,7 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
+        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database",
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
         "SPECKIT_ADAPTIVE_FUSION": "true",
         "SPECKIT_EXTENDED_TELEMETRY": "true",
@@ -433,7 +433,7 @@ python3 -m json.tool < .claude/mcp.json > /dev/null
 # Verify the MCP launcher path exists (the command clients point at)
 ls -la .opencode/bin/mk-spec-memory-launcher.cjs
 # And the backend artifact the launcher spawns (after `npm run build`)
-ls -la .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+ls -la .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
 ```
 
 Checklist:
@@ -501,7 +501,7 @@ Use [system-skill-advisor/INSTALL-GUIDE.md](../../system-skill-advisor/INSTALL-G
 Then verify the structural side too. Ask your AI assistant:
 
 ```
-Run session bootstrap, then query the code graph for symbols in .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts
+Run session bootstrap, then query the code graph for symbols in .opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts
 ```
 
 Expected result:
@@ -531,7 +531,7 @@ Run one smoke test per shipped capability to confirm the new behaviors are wired
 # 1. Stale path: leave the graph stale OR scan once and then modify a tracked source file
 #    (do NOT rerun code_graph_scan).
 # 2. Generate a unified diff that touches a known indexed function:
-git diff -- .opencode/skills/system-code-graph/mcp_server/code_graph/handlers/scan.ts > /tmp/diff.txt
+git diff -- .opencode/skills/system-code-graph/mcp-server/code_graph/handlers/scan.ts > /tmp/diff.txt
 
 # 3. Call the detect_changes MCP tool with the stale graph:
 #       detect_changes({ diff: <contents of /tmp/diff.txt>, rootDir: <workspace root> })
@@ -564,7 +564,7 @@ FAIL criterion: any expected field is absent, ambiguous subjects are silently re
 #### 4c. Skill Advisor affordance evidence (012/004)
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp-server
 ./node_modules/.bin/vitest run \
   skill_advisor/tests/affordance-normalizer.test.ts \
   skill_advisor/tests/lane-attribution.test.ts \
@@ -581,16 +581,16 @@ FAIL criterion: a raw affordance phrase leaks into recommendation payloads, a ne
 ```bash
 # Source-anchor sanity check (formatter wires the additive badges):
 rg -n "trustBadges|MemoryTrustBadges|weightHistoryChanged|extractionAge|lastAccessAge|orphan" \
-  .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts \
-  .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts
+  .opencode/skills/system-spec-kit/mcp-server/formatters/search-results.ts \
+  .opencode/skills/system-spec-kit/mcp-server/lib/response/profile-formatters.ts
 
 # Protected-file static diff (storage MUST NOT change):
 git diff --stat main -- \
-  .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts \
-  .opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts
+  .opencode/skills/system-spec-kit/mcp-server/lib/storage/causal-edges.ts \
+  .opencode/skills/system-spec-kit/mcp-server/lib/search/causal-boost.ts
 
 # Targeted Vitest:
-cd .opencode/skills/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp-server
 npm exec -- vitest run \
   tests/memory/trust-badges.test.ts \
   tests/response-profile-formatters.vitest.ts
@@ -649,7 +649,7 @@ opencode
 
 ### When to Rebuild
 
-Run `npm run build` (incremental) after pulling updates that change `mcp_server/` code. A running daemon survives this. Run `npm run rebuild` (deletes `dist/` first) only when you need a clean from-scratch compile:
+Run `npm run build` (incremental) after pulling updates that change `mcp-server/` code. A running daemon survives this. Run `npm run rebuild` (deletes `dist/` first) only when you need a clean from-scratch compile:
 
 ```bash
 cd .opencode/skills/system-spec-kit
@@ -670,7 +670,7 @@ bash scripts/setup/rebuild-native-modules.sh
 Use `npm run rebuild` when:
 - Updating your Node.js version
 - Experiencing persistent module resolution errors after `npm run build`
-- Switching branches with large structural changes to `mcp_server/`
+- Switching branches with large structural changes to `mcp-server/`
 
 ### Phase System Support
 
@@ -833,7 +833,7 @@ npm run build
 bash scripts/setup/rebuild-native-modules.sh
 
 # Verify:
-node mcp_server/dist/context-server.js
+node mcp-server/dist/context-server.js
 # Must start without errors (Ctrl+C to exit)
 
 # Restart your AI client
@@ -900,7 +900,7 @@ Search memory for why we chose SQLite over PostgreSQL
 # Symptom: Search returns no results
 
 # Check the database:
-ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -n 1)
+ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite | head -n 1)
 sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 # Shows the spec-doc record count
@@ -956,7 +956,7 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh \
 | `Cannot find module '@spec-kit/shared/...'` | Workspace dependency state is incomplete or stale | Run `npm install && npm run build` from the skill root |
 | `ERR_DLOPEN_FAILED` | Native module compiled for a different Node.js ABI | Run `bash scripts/setup/rebuild-native-modules.sh` |
 | `NODE_MODULE_VERSION mismatch` | Node.js was updated after native modules were compiled | Run `bash scripts/setup/rebuild-native-modules.sh` |
-| `sqlite-vec unavailable` | Platform-specific native package failed to load | Run `npm install && npm rebuild` in both `mcp_server/` and `scripts/` |
+| `sqlite-vec unavailable` | Platform-specific native package failed to load | Run `npm install && npm rebuild` in both `mcp-server/` and `scripts/` |
 | Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
 | `code_graph_query` reports `full_scan`, or `code_graph_context` / `code_graph_query` returns `status: "blocked"` with `requiredAction: "code_graph_scan"` | The graph is empty or too stale for bounded read-path repair | Run `code_graph_scan`, then retry the structural read |
 | Startup or resume shows graph `stale` | Freshness-aware startup detected drift before a structural read ran | Run a structural read to allow bounded inline repair, or run `code_graph_scan` for broader stale states |
@@ -982,7 +982,7 @@ If still failing, remove and reinstall all local workspace modules:
 
 ```bash
 rm -rf .opencode/skills/system-spec-kit/node_modules
-rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules
+rm -rf .opencode/skills/system-spec-kit/mcp-server/node_modules
 rm -rf .opencode/skills/system-spec-kit/shared/node_modules
 cd .opencode/skills/system-spec-kit
 npm install
@@ -1014,7 +1014,7 @@ npm rebuild
 Verify the platform package is present:
 
 ```bash
-ls mcp_server/node_modules/sqlite-vec-darwin-arm64/vec0.dylib
+ls mcp-server/node_modules/sqlite-vec-darwin-arm64/vec0.dylib
 ls scripts/node_modules/sqlite-vec-darwin-arm64/vec0.dylib
 ```
 
@@ -1025,7 +1025,7 @@ ls scripts/node_modules/sqlite-vec-darwin-arm64/vec0.dylib
 Check the database:
 
 ```bash
-ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -n 1)
+ACTIVE_DB=$(ls .opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite | head -n 1)
 sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 
@@ -1043,7 +1043,7 @@ Recovery: ask your AI "Reindex packet continuity docs and supporting artifacts" 
    ```
 2. Verify the binary path exists:
    ```bash
-   ls -la .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+   ls -la .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
    ```
 3. Restart your AI client completely.
 
@@ -1086,7 +1086,7 @@ The four most common failure modes after a major update:
 1. **Install or build run from wrong directory.** Partial installs leave workspace links unresolved, particularly `@spec-kit/shared`.
 2. **Native module ABI mismatch after a Node.js update.** `better-sqlite3` and `sqlite-vec` were compiled for an older `MODULE_VERSION`.
 3. **Stale build output after dependency changes.** The `dist/` folder was not rebuilt, or was rebuilt without the required workspace state.
-4. **Database path confusion.** The current default runtime writes into `mcp_server/database/`, but the exact sqlite filename now depends on the active embedding profile. If your client overrides `SPEC_KIT_DB_DIR` or `MEMORY_DB_PATH`, verify the override before inspecting files manually.
+4. **Database path confusion.** The current default runtime writes into `mcp-server/database/`, but the exact sqlite filename now depends on the active embedding profile. If your client overrides `SPEC_KIT_DB_DIR` or `MEMORY_DB_PATH`, verify the override before inspecting files manually.
 
 ---
 
@@ -1097,17 +1097,17 @@ Use this procedure when an update leaves the server broken and you need to resto
 **Step 1: Back up the current database (if it has data you want to keep)**
 
 ```bash
-ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite
+ACTIVE_DB=.opencode/skills/system-spec-kit/mcp-server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite
 cp "$ACTIVE_DB" \
-   .opencode/skills/system-spec-kit/mcp_server/database/rollback-$(date +%Y%m%d-%H%M%S).sqlite
+   .opencode/skills/system-spec-kit/mcp-server/database/rollback-$(date +%Y%m%d-%H%M%S).sqlite
 ```
 
 **Step 2: Remove built output and reinstalled modules**
 
 ```bash
 cd .opencode/skills/system-spec-kit
-rm -rf mcp_server/dist
-rm -rf mcp_server/node_modules
+rm -rf mcp-server/dist
+rm -rf mcp-server/node_modules
 rm -rf shared/node_modules
 rm -rf node_modules
 ```
@@ -1123,7 +1123,7 @@ npm run build
 **Step 4: Verify the server starts**
 
 ```bash
-node mcp_server/dist/context-server.js
+node mcp-server/dist/context-server.js
 # Must start without errors — press Ctrl+C to exit
 ```
 
@@ -1137,7 +1137,7 @@ bash scripts/setup/check-native-modules.sh
 **Step 6: Restore the database backup if the fresh database is empty**
 
 ```bash
-cp .opencode/skills/system-spec-kit/mcp_server/database/rollback-YYYYMMDD-HHMMSS.sqlite \
+cp .opencode/skills/system-spec-kit/mcp-server/database/rollback-YYYYMMDD-HHMMSS.sqlite \
    "$ACTIVE_DB"
 ```
 
@@ -1160,16 +1160,16 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 | Path | Purpose |
 |---|---|
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
-| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Backend artifact the launcher spawns |
-| `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | Structural code-graph database (skill-local) |
+| `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns |
+| `.opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
+| `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite` | Structural code-graph database (skill-local) |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
 | `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |
 | `.opencode/skills/system-spec-kit/scripts/check-links.sh` | Documentation wikilink validator |
 | `.opencode/skills/system-spec-kit/scripts/validate.sh` | Spec folder validator (supports --recursive) |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts` | Vector index implementation |
-| `.opencode/skills/system-spec-kit/mcp_server/database/README.md` | Database path notes |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-impl.ts` | Vector index implementation |
+| `.opencode/skills/system-spec-kit/mcp-server/database/README.md` | Database path notes |
 
 ### CLI Command Reference
 
@@ -1190,13 +1190,13 @@ bash scripts/setup/check-native-modules.sh
 bash scripts/setup/rebuild-native-modules.sh
 
 # Smoke test
-node mcp_server/dist/context-server.js
+node mcp-server/dist/context-server.js
 
 # Validate configuration
 python3 -m json.tool < opencode.json > /dev/null
 
 # Database inspection
-ACTIVE_DB=$(ls mcp_server/database/context-index__*.sqlite | head -n 1)
+ACTIVE_DB=$(ls mcp-server/database/context-index__*.sqlite | head -n 1)
 sqlite3 "$ACTIVE_DB" \
   "SELECT COUNT(*) FROM memory_index"
 
@@ -1205,7 +1205,7 @@ sqlite3 "$ACTIVE_DB" \
 
 # Backup database
 cp "$ACTIVE_DB" \
-  mcp_server/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
+  mcp-server/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 
 # Validate documentation wikilinks
 bash .opencode/skills/system-spec-kit/scripts/check-links.sh
@@ -1222,8 +1222,8 @@ REBUILD:      npm run rebuild  (deletes dist/ first, use for clean from-scratch 
 PREREQS:      bash scripts/setup/check-prerequisites.sh
 NATIVE CHECK: bash scripts/setup/check-native-modules.sh
 NATIVE FIX:   bash scripts/setup/rebuild-native-modules.sh
-SMOKE TEST:   node mcp_server/dist/context-server.js
-DB PATH:      mcp_server/database/context-index__*.sqlite (active profile)
+SMOKE TEST:   node mcp-server/dist/context-server.js
+DB PATH:      mcp-server/database/context-index__*.sqlite (active profile)
 GRAPH LINKS:  bash scripts/check-links.sh
 PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
 
@@ -1239,7 +1239,7 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 ### External Resources
 
-- MCP package manifest: `.opencode/skills/system-spec-kit/mcp_server/package.json`
+- MCP package manifest: `.opencode/skills/system-spec-kit/mcp-server/package.json`
 - Skill README: `.opencode/skills/system-spec-kit/README.md`
 
 ---

@@ -22,7 +22,7 @@ The live-render authority adapter that wraps no local renderer and checks only c
 
 ## 2. HOW IT WORKS
 
-`discover()` classifies each scope value as a full `http(s)://` URL or a repo-relative `componentEntry` string (a bare leading-slash dev-server route cannot reach it — scoping rejects that shape upstream), with no directory or glob expansion in v1. `standardSource('sk-design')` returns the accessibility/anti-patterns/AI-fingerprint rubric doc paths and a `THRESHOLDS` table cited verbatim from `accessibility_performance.md`. `check()` requires `options.renderResult` — evidence the planned ITERATE-state driving agent (phase-009, not yet built) would obtain by dispatching through `design-mcp-open-design`. Four honest short-circuits each return a single finding instead of crashing or fabricating a pass: no `renderResult` → `render-unavailable`; a `dispatchedThrough` that is not `design-mcp-open-design` → `dispatch-boundary-violation` (P0, ADR-009 enforced as a literal value check); a rejected dispatch → `dispatch-rejected`; an auth-blocked target → `render-blocked-auth-required`. With valid evidence it runs deterministic threshold checks over the supplied `measurements` (contrast, touch-target, Core Web Vitals) and passes through caller-verified `judgmentFindings`, then applies suppression. A parseable `renderedAt` raises the evidence label from `inferred` to `confirmed`.
+`discover()` classifies each scope value as a full `http(s)://` URL or a repo-relative `componentEntry` string (a bare leading-slash dev-server route cannot reach it — scoping rejects that shape upstream), with no directory or glob expansion in v1. `standardSource('sk-design')` returns the accessibility/anti-patterns/AI-fingerprint rubric doc paths and a `THRESHOLDS` table cited verbatim from `accessibility-performance.md`. `check()` requires `options.renderResult` — evidence the planned ITERATE-state driving agent (phase-009, not yet built) would obtain by dispatching through `design-mcp-open-design`. Four honest short-circuits each return a single finding instead of crashing or fabricating a pass: no `renderResult` → `render-unavailable`; a `dispatchedThrough` that is not `design-mcp-open-design` → `dispatch-boundary-violation` (P0, ADR-009 enforced as a literal value check); a rejected dispatch → `dispatch-rejected`; an auth-blocked target → `render-blocked-auth-required`. With valid evidence it runs deterministic threshold checks over the supplied `measurements` (contrast, touch-target, Core Web Vitals) and passes through caller-verified `judgmentFindings`, then applies suppression. A parseable `renderedAt` raises the evidence label from `inferred` to `confirmed`.
 
 Its known-deviations file does not exist yet — no real live-render run has ever produced a finding to seed it — and `loadKnownDeviations()` degrades gracefully to an empty list rather than erroring.
 
@@ -37,7 +37,7 @@ Its known-deviations file does not exist yet — no real live-render run has eve
 | File | Layer | Role |
 |---|---|---|
 | `scripts/adapters/sk-design-live-render.cjs` | Adapter | `discover`/`standardSource`/`check`, the target classifier, the four short-circuits, and the threshold checks over render evidence. |
-| `references/adapters/sk_design_live_render_adapter.md` | Reference | Full specification: the peer relationship (Section 1), the no-local-renderer rationale (Section 8), the evidence-label vocabulary (Section 7). |
+| `references/adapters/sk-design-live-render-adapter.md` | Reference | Full specification: the peer relationship (Section 1), the no-local-renderer rationale (Section 8), the evidence-label vocabulary (Section 7). |
 | `.opencode/skills/sk-design/design-audit/references/accessibility-performance.md` | Standard source | The concrete-thresholds table the `THRESHOLDS` constant cites verbatim. |
 
 ### Validation And Tests
@@ -51,9 +51,9 @@ Its known-deviations file does not exist yet — no real live-render run has eve
 ## 4. SOURCE METADATA
 
 - Group: Adapter contract
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `adapter-contract/adapter-sk-design-live-render.md`
-- Primary sources: `scripts/adapters/sk-design-live-render.cjs`, `references/adapters/sk_design_live_render_adapter.md`
+- Primary sources: `scripts/adapters/sk-design-live-render.cjs`, `references/adapters/sk-design-live-render-adapter.md`
 Related references:
-- [adapter-sk-design.md](../adapter_contract/adapter_sk_design.md) — sk-design adapter
-- [../alignment-contract/verify-first.md](../alignment_contract/verify_first.md) — Verify-first
+- [adapter-sk-design.md](../adapter-contract/adapter-sk-design.md) — sk-design adapter
+- [../alignment-contract/verify-first.md](../alignment-contract/verify-first.md) — Verify-first

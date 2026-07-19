@@ -15,9 +15,9 @@
     },
     {
       "leaves": [
-        "assets/utcp_chrome_devtools_manuals.md",
-        "references/cdp_patterns.md",
-        "references/session_management.md",
+        "assets/utcp-chrome-devtools-manuals.md",
+        "references/cdp-patterns.md",
+        "references/session-management.md",
         "references/troubleshooting.md"
       ],
       "packet": "mcp-chrome-devtools",
@@ -25,9 +25,9 @@
     },
     {
       "leaves": [
-        "references/cupt_commands.md",
+        "references/cupt-commands.md",
         "references/INSTALL-GUIDE.md",
-        "references/mcp_tools.md",
+        "references/mcp-tools.md",
         "references/troubleshooting.md"
       ],
       "packet": "mcp-click-up",
@@ -35,11 +35,11 @@
     },
     {
       "leaves": [
-        "assets/env_template.md",
-        "assets/utcp_figma_manual.md",
-        "references/figma_cli_reference.md",
-        "references/mcp_wiring.md",
-        "references/tool_surface.md",
+        "assets/env-template.md",
+        "assets/utcp-figma-manual.md",
+        "references/figma-cli-reference.md",
+        "references/mcp-wiring.md",
+        "references/tool-surface.md",
         "references/troubleshooting.md"
       ],
       "packet": "mcp-figma",

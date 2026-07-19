@@ -31,7 +31,7 @@ This contract applies identically on every surface: Code Mode (`clickup_official
 
 **Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
 
-Worked examples: `references/mcp_tools.md` (Markdown Transport Contract + invocation patterns).
+Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invocation patterns).
 
 ---
 
@@ -69,8 +69,8 @@ Worked examples: `references/mcp_tools.md` (Markdown Transport Contract + invoca
 
 ```
 ALWAYS:    SKILL.md (this file)
-ON_DEMAND: references/cupt_commands.md    (when cupt command details needed)
-           references/mcp_tools.md         (when MCP tool details needed)
+ON_DEMAND: references/cupt-commands.md    (when cupt command details needed)
+           references/mcp-tools.md         (when MCP tool details needed)
            references/troubleshooting.md   (when error or auth issue detected)
            references/INSTALL-GUIDE.md     (when setup or authentication details needed)
 ```
@@ -104,7 +104,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/cupt_commands.md"
+DEFAULT_RESOURCE = "references/cupt-commands.md"
 # Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
 # into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
 # zero-score routes load nothing and ask for disambiguation instead.
@@ -163,13 +163,13 @@ INTENT_SIGNALS = {
 # by that key (the selected `intent` is always one of the four INTENT_SIGNALS
 # keys above). The no-match case is owned by DEFAULT_RESOURCE above, whose
 # declared fallback-only semantics mean it is SUGGESTED beside the
-# disambiguation checklist, never loaded — so cupt_commands.md can never leak
+# disambiguation checklist, never loaded — so cupt-commands.md can never leak
 # into MCP_ADVANCED/INSTALL/TROUBLESHOOT routes, and router-doc-aware callers
 # (the benchmark replay honors the same declaration) assemble exactly what a
 # scored intent's RESOURCE_MAP entry names.
 RESOURCE_MAP = {
-    "CUPT_DAILY":    ["references/cupt_commands.md"],
-    "MCP_ADVANCED":  ["references/mcp_tools.md"],
+    "CUPT_DAILY":    ["references/cupt-commands.md"],
+    "MCP_ADVANCED":  ["references/mcp-tools.md"],
     "INSTALL":       ["references/INSTALL-GUIDE.md", "references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
@@ -325,7 +325,7 @@ This is ClickUp's official MCP server package, launched over stdio by the regist
 }
 ```
 
-Reference: `references/mcp_tools.md` and `mcp-servers/clickup-mcp/README.md`
+Reference: `references/mcp-tools.md` and `mcp-servers/clickup-mcp/README.md`
 
 **Invocation via Code Mode** (`call_tool_chain` takes a single `code` string, NOT an array of `{tool, input}` records):
 ```typescript
@@ -404,7 +404,7 @@ const result = await call_tool_chain({
 
 **Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for ClickUp task management requests. The skill advisor matches on: `clickup`, `cupt`, `task management`, `work queue`, `time tracking`, `mark done`.
 
-**Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_{tool_name}`. See references/mcp_tools.md for the full tool catalog.
+**Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_{tool_name}`. See references/mcp-tools.md for the full tool catalog.
 
 **Memory:** Save ClickUp workflow context (current list, active tags, workspace ID) using `/memory:save` when switching sessions.
 
@@ -463,8 +463,8 @@ const result = await call_tool_chain({
 ## 8. REFERENCES AND RELATED RESOURCES
 
 **Reference Files (load on demand via router):**
-- `references/cupt_commands.md` — Full cupt command reference with agent patterns
-- `references/mcp_tools.md` — 46 official MCP tools, priority table, invocation
+- `references/cupt-commands.md` — Full cupt command reference with agent patterns
+- `references/mcp-tools.md` — 46 official MCP tools, priority table, invocation
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
 - `references/INSTALL-GUIDE.md` — Step-by-step install with validation checkpoints
 

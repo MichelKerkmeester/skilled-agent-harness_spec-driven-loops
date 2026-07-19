@@ -227,8 +227,8 @@ The skill ships a manual testing playbook and two example scripts that double as
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path operation router and the full agent safety invariants |
 | [`references/INSTALL-GUIDE.md`](./references/INSTALL-GUIDE.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
-| [`references/cupt_commands.md`](./references/cupt_commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
-| [`references/mcp_tools.md`](./references/mcp_tools.md) | Official ClickUp MCP tool catalog with priority tiers and `call_tool_chain()` invocation |
+| [`references/cupt-commands.md`](./references/cupt-commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
+| [`references/mcp-tools.md`](./references/mcp-tools.md) | Official ClickUp MCP tool catalog with priority tiers and `call_tool_chain()` invocation |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and recovery steps for auth, status and MCP issues |
 | [`examples/README.md`](./examples/README.md) | Guide to the two production scripts and common workflow patterns |
 | [`scripts/install.sh`](./scripts/install.sh) | Automated cupt installer that prints the MCP config snippet |

@@ -250,7 +250,7 @@ The official server is launched over stdio by the registered `clickup_official` 
 
 **A client with native stdio MCP support** can use the same `npx -y @clickup/mcp-server` command and environment variables directly.
 
-> Restart your AI client after updating the config, then verify that `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` are available to Code Mode. Reference: `references/mcp_tools.md` and `mcp-servers/clickup-mcp/README.md`.
+> Restart your AI client after updating the config, then verify that `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` are available to Code Mode. Reference: `references/mcp-tools.md` and `mcp-servers/clickup-mcp/README.md`.
 
 ### Validation: `phase_3_complete`
 
@@ -396,10 +396,10 @@ Full guide: `references/troubleshooting.md`
 |----------|---------|
 | `SKILL.md` | Routing rules, agent invariants, quick-reference cheat sheet |
 | `README.md` | Human-facing overview with feature tables and FAQ |
-| `references/cupt_commands.md` | Complete cupt command reference with `--json` variants |
-| `references/mcp_tools.md` | Official MCP tool catalog: HIGH/MEDIUM/LOW priority + invocation |
+| `references/cupt-commands.md` | Complete cupt command reference with `--json` variants |
+| `references/mcp-tools.md` | Official MCP tool catalog: HIGH/MEDIUM/LOW priority + invocation |
 | `references/troubleshooting.md` | Detailed error diagnosis and recovery steps |
-| `feature_catalog/feature_catalog.md` | Full cupt + MCP feature inventory |
+| `feature-catalog/feature-catalog.md` | Full cupt + MCP feature inventory |
 | `examples/task-queue-workflow.sh` | Production script: tagged queue → dry-run → complete → handoff |
 | `examples/time-tracking-workflow.sh` | Production script: start / stop / log / status |
 | [cupt repository](https://github.com/newz2000/cupt) | Upstream cupt source, changelog, issues |

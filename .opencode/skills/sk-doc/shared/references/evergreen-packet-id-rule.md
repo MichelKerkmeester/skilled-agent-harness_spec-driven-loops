@@ -29,16 +29,16 @@ Apply this rule whenever you author or edit any document that describes shipped 
 
 - Repository-wide governance: `AGENTS.md`, `CLAUDE.md`, root `README.md`
 - Skill reference docs: `SKILL.md`, `ARCHITECTURE.md`, `references/**/*.md`
-- Folder-level READMEs: `mcp_server/README.md`, sub-folder READMEs
-- Capability catalogs: `feature_catalog/**/*.md`, `manual_testing_playbook/**/*.md`
-- Configuration references: `ENV_REFERENCE.md`, `INSTALL-GUIDE.md`
+- Folder-level READMEs: `mcp-server/README.md`, sub-folder READMEs
+- Capability catalogs: `feature-catalog/**/*.md`, `manual-testing-playbook/**/*.md`
+- Configuration references: `ENV-REFERENCE.md`, `INSTALL-GUIDE.md`
 
 Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md`) — those ARE the packet record and naturally reference their own packet ID.
 
 ### Prerequisites
 
-- Read [core_standards.md](./core_standards.md) for document type rules.
-- Read [readme_template.md](../../create-readme/assets/readme_template.md), [feature_catalog_template.md](../../create-feature-catalog/assets/feature_catalog_template.md), and [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md) — these templates already enforce evergreen authoring patterns.
+- Read [core-standards.md](./core-standards.md) for document type rules.
+- Read [readme-template.md](../../create-readme/assets/readme-template.md), [feature-catalog-template.md](../../create-feature-catalog/assets/feature-catalog-template.md), and [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — these templates already enforce evergreen authoring patterns.
 - Confirm the doc class (spec-local vs evergreen) before applying the audit grep, because spec-local docs are exempt by design.
 
 ---
@@ -48,7 +48,7 @@ Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist
 | Class | Examples | Packet IDs Allowed |
 | --- | --- | --- |
 | Spec-local docs | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md` | Yes |
-| Evergreen docs | `README.md`, `INSTALL-GUIDE.md`, `ARCHITECTURE.md`, `SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `references/**/*.md`, `feature_catalog/**/*.md`, `manual_testing_playbook/**/*.md`, `ENV_REFERENCE.md` | No |
+| Evergreen docs | `README.md`, `INSTALL-GUIDE.md`, `ARCHITECTURE.md`, `SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `references/**/*.md`, `feature-catalog/**/*.md`, `manual-testing-playbook/**/*.md`, `ENV-REFERENCE.md` | No |
 
 Spec-local docs may reference packet numbers because they are the packet record. Evergreen docs must describe the shipped state by feature name, command, file path, and source anchor.
 
@@ -65,9 +65,9 @@ Spec-local docs may reference packet numbers because they are the packet record.
 
 **✅ GOOD evergreen references:**
 
-- "Defined at `mcp_server/handlers/memory-retention-sweep.ts:42`"
-- "Run `npm run stress` from `mcp_server/`"
-- "See `references/config/hook_system.md` for the hook contract"
+- "Defined at `mcp-server/handlers/memory-retention-sweep.ts:42`"
+- "Run `npm run stress` from `mcp-server/`"
+- "See `references/config/hook-system.md` for the hook contract"
 
 **Why better:** Feature-name + source-anchor references stay valid after packet renumbering, archival, or consolidation.
 
@@ -103,14 +103,14 @@ The target sentence should remain true after packet renumbering.
 
 ### Templates
 
-- [feature_catalog_template.md](../../create-feature-catalog/assets/feature_catalog_template.md) — feature catalog evergreen-authoring shape
-- [feature_catalog_snippet_template.md](../../create-feature-catalog/assets/feature_catalog_snippet_template.md) — per-feature snippet shape (OVERVIEW / CURRENT REALITY / SOURCE FILES / SOURCE METADATA)
-- [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md) — playbook authoring shape
-- [readme_template.md](../../create-readme/assets/readme_template.md) — README authoring shape
-- [skill_reference_template.md](../../create-skill/assets/skill/skill_reference_template.md) — reference file structure (this file's own template)
+- [feature-catalog-template.md](../../create-feature-catalog/assets/feature-catalog-template.md) — feature catalog evergreen-authoring shape
+- [feature-catalog-snippet-template.md](../../create-feature-catalog/assets/feature-catalog-snippet-template.md) — per-feature snippet shape (OVERVIEW / CURRENT REALITY / SOURCE FILES / SOURCE METADATA)
+- [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — playbook authoring shape
+- [readme-template.md](../../create-readme/assets/readme-template.md) — README authoring shape
+- [skill-reference-template.md](../../create-skill/assets/skill/skill-reference-template.md) — reference file structure (this file's own template)
 
 ### Standards
 
-- [core_standards.md](./core_standards.md) — document type rules and frontmatter conventions
-- [hvr_rules.md](./hvr_rules.md) — high-value content rules used by sk-doc validation
+- [core-standards.md](./core-standards.md) — document type rules and frontmatter conventions
+- [hvr-rules.md](./hvr-rules.md) — high-value content rules used by sk-doc validation
 

@@ -33,22 +33,22 @@ The helper wraps the Runtime domain (`Runtime.evaluate` with `returnByValue`). P
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg dom eval`) |
-| `references/cdp_patterns.md` §4 | Reference | Runtime domain patterns and helper alternative |
+| `references/cdp-patterns.md` §4 | Reference | Runtime domain patterns and helper alternative |
 | `INSTALL-GUIDE.md` §8 | Guide | JavaScript execution examples |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/dom_and_screenshot/eval_javascript.md` | Manual | BDG-009 scenario contract |
+| `manual-testing-playbook/dom-and-screenshot/eval-javascript.md` | Manual | BDG-009 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: DOM and Screenshot
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `dom_and_screenshot/eval_javascript.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `dom-and-screenshot/eval-javascript.md`
 Related references:
-- [query_selector.md](../dom_and_screenshot/query_selector.md) — Query Selector
-- [console_logs.md](../console_and_network/console_logs.md) — Console Logs
+- [query-selector.md](../dom-and-screenshot/query-selector.md) — Query Selector
+- [console-logs.md](../console-and-network/console-logs.md) — Console Logs

@@ -40,11 +40,11 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
-    code_mode: ".opencode/install_guides/MCP - Code Mode.md"
-    sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
+    code_mode: ".opencode/install-guides/MCP - Code Mode.md"
+    sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
     health_check: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
   pass_policy:
@@ -94,11 +94,11 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
-  code_mode: .opencode/install_guides/MCP - Code Mode.md
-  sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
+  code_mode: .opencode/install-guides/MCP - Code Mode.md
+  sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: SERVER DEFINITIONS
@@ -108,14 +108,14 @@ servers:
     label: "Spec Kit Memory"
     runtime: node
     skill_dir: ".opencode/skills/system-spec-kit"
-    entry_point: "mcp_server/dist/context-server.js"
+    entry_point: "mcp-server/dist/context-server.js"
     install_script: "scripts/setup/install.sh"
     install_script_mutation_class: mutating  # installer: builds + writes state
     rebuild_script: "scripts/setup/rebuild-native-modules.sh"
     health_checks:
-      - { path: "mcp_server/dist/context-server.js", type: "file_exists" }
-      - { path: "mcp_server/node_modules/better-sqlite3", type: "dir_exists" }
-      - { probe: "node -e \"require('{skill_dir}/mcp_server/node_modules/better-sqlite3')\"", type: "command_succeeds" }
+      - { path: "mcp-server/dist/context-server.js", type: "file_exists" }
+      - { path: "mcp-server/node_modules/better-sqlite3", type: "dir_exists" }
+      - { probe: "node -e \"require('{skill_dir}/mcp-server/node_modules/better-sqlite3')\"", type: "command_succeeds" }
     install_steps:
       - "cd {skill_dir} && npm install"
       - "cd {skill_dir} && npm run build"
@@ -126,32 +126,32 @@ servers:
     label: "Skill Advisor"
     runtime: node
     skill_dir: ".opencode/skills/system-skill-advisor"
-    entry_point: "mcp_server/dist/mcp_server/advisor-server.js"
+    entry_point: "mcp-server/dist/mcp-server/advisor-server.js"
     install_script: null
     install_script_mutation_class: none  # no install script; inline install_steps used
     health_checks:
-      - { path: "mcp_server/dist/mcp_server/advisor-server.js", type: "file_exists" }
+      - { path: "mcp-server/dist/mcp-server/advisor-server.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-skill-advisor-launcher.cjs", type: "file_exists" }
-      - { path: "mcp_server/node_modules", type: "dir_exists" }
-      - { path: "mcp_server/node_modules/@spec-kit/shared", type: "dir_exists" }
-      - { probe: "node -e \"import('./{skill_dir}/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
+      - { path: "mcp-server/node_modules", type: "dir_exists" }
+      - { path: "mcp-server/node_modules/@spec-kit/shared", type: "dir_exists" }
+      - { probe: "node -e \"import('./{skill_dir}/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
     install_steps:
-      - "cd {skill_dir}/mcp_server && npm install"
-      - "cd {skill_dir}/mcp_server && npm run build"
-    fallback_build: "cd {skill_dir}/mcp_server && npm install && npm run build"
+      - "cd {skill_dir}/mcp-server && npm install"
+      - "cd {skill_dir}/mcp-server && npm run build"
+    fallback_build: "cd {skill_dir}/mcp-server && npm install && npm run build"
 
   mk_code_index:
     label: "System Code Graph"
     runtime: node
     skill_dir: ".opencode/skills/system-code-graph"
-    entry_point: "mcp_server/dist/index.js"
+    entry_point: "mcp-server/dist/index.js"
     install_script: null
     install_script_mutation_class: none  # no install script; inline install_steps used
     health_checks:
-      - { path: "mcp_server/dist/index.js", type: "file_exists" }
+      - { path: "mcp-server/dist/index.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
-      - { path: ".opencode/skills/system-code-graph/mcp_server/database", type: "dir_exists" }
+      - { path: ".opencode/skills/system-code-graph/mcp-server/database", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"
       - "cd {skill_dir} && npm run clean && npm run build"
@@ -161,16 +161,16 @@ servers:
     label: "Code Mode"
     runtime: node
     skill_dir: ".opencode/skills/mcp-code-mode"
-    entry_point: "mcp_server/dist/index.js"
+    entry_point: "mcp-server/dist/index.js"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: writes config + npm install
     health_checks:
-      - { path: "mcp_server/dist/index.js", type: "file_exists" }
-      - { path: "mcp_server/node_modules", type: "dir_exists" }
+      - { path: "mcp-server/dist/index.js", type: "file_exists" }
+      - { path: "mcp-server/node_modules", type: "dir_exists" }
     install_steps:
       - "bash {skill_dir}/scripts/install.sh"
     fallback_install:
-      - "cd {skill_dir}/mcp_server && npm install && npm run build"
+      - "cd {skill_dir}/mcp-server && npm install && npm run build"
     extra_config:
       - { path: ".utcp_config.json", type: "file_exists", description: "UTCP config for external MCP servers" }
 

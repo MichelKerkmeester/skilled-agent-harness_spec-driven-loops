@@ -187,7 +187,7 @@ The skill ships a manual testing playbook covering the core tools, the naming co
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-code-mode/README.md --type readme` reports zero issues |
 | Config health | `python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` passes with no errors |
 | Runtime health | `bash .opencode/skills/mcp-code-mode/scripts/doctor.sh` runs a read-only health check against the live config |
-| Behavior | Run the playbook scenarios under `manual_testing_playbook/core_tools/` through `manual_testing_playbook/recovery_and_config/` in a live session |
+| Behavior | Run the playbook scenarios under `manual-testing-playbook/core-tools/` through `manual-testing-playbook/recovery-and-config/` in a live session |
 
 ---
 
@@ -197,9 +197,9 @@ The skill ships a manual testing playbook covering the core tools, the naming co
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install and configuration for `.utcp_config.json`, `.env` and per-client setup |
-| [`references/naming_convention.md`](./references/naming_convention.md) | The naming pattern guide and the number-one-error troubleshooting |
+| [`references/naming-convention.md`](./references/naming-convention.md) | The naming pattern guide and the number-one-error troubleshooting |
 | [`references/configuration.md`](./references/configuration.md) | `.utcp_config.json` and `.env` setup, server configs and environment variable prefixing |
 | [`references/workflows.md`](./references/workflows.md) | Workflow patterns: single tool, multi-tool orchestration, error handling and parallel execution |
 | [`references/architecture.md`](./references/architecture.md) | Token economics, the data flow and the V8 isolate sandbox model |
-| [`assets/config_template.md`](./assets/config_template.md) | Copy-ready `.utcp_config.json` template |
-| [`assets/env_template.md`](./assets/env_template.md) | Copy-ready `.env` template with prefixed placeholders |
+| [`assets/config-template.md`](./assets/config-template.md) | Copy-ready `.utcp_config.json` template |
+| [`assets/env-template.md`](./assets/env-template.md) | Copy-ready `.env` template with prefixed placeholders |

@@ -33,22 +33,22 @@ The performance target is capture in under 2 seconds. The graceful-degradation p
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg dom screenshot`) |
-| `references/cdp_patterns.md` §5 | Reference | Full screenshot workflow with fallback |
+| `references/cdp-patterns.md` §5 | Reference | Full screenshot workflow with fallback |
 | `INSTALL-GUIDE.md` §6 | Guide | Screenshot usage patterns and MCP equivalent |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/dom_and_screenshot/screenshot_capture.md` | Manual | BDG-010 scenario contract (critical path) |
+| `manual-testing-playbook/dom-and-screenshot/screenshot-capture.md` | Manual | BDG-010 scenario contract (critical path) |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: DOM and Screenshot
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `dom_and_screenshot/screenshot_capture.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `dom-and-screenshot/screenshot-capture.md`
 Related references:
-- [viewport_emulation.md](../dom_and_screenshot/viewport_emulation.md) — Viewport Emulation
-- [multi_viewport_test.md](../automation_and_performance/multi_viewport_test.md) — Multi-Viewport Testing
+- [viewport-emulation.md](../dom-and-screenshot/viewport-emulation.md) — Viewport Emulation
+- [multi-viewport-test.md](../automation-and-performance/multi-viewport-test.md) — Multi-Viewport Testing

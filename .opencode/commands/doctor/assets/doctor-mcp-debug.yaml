@@ -40,11 +40,11 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    mk-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
-    code_mode: ".opencode/install_guides/MCP - Code Mode.md"
-    sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
+    code_mode: ".opencode/install-guides/MCP - Code Mode.md"
+    sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
     diagnostic: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
     library: ".opencode/commands/doctor/scripts/mcp-doctor-lib.sh"
@@ -92,11 +92,11 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
+  mk-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
-  code_mode: .opencode/install_guides/MCP - Code Mode.md
-  sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
+  code_mode: .opencode/install-guides/MCP - Code Mode.md
+  sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG FILES
@@ -124,23 +124,23 @@ repair_actions:
       command: "bash .opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh"
       description: "Rebuild native modules for current Node.js version"
     better_sqlite3_fail:
-      command: "cd .opencode/skills/system-spec-kit/mcp_server && npm rebuild better-sqlite3"
+      command: "cd .opencode/skills/system-spec-kit/mcp-server && npm rebuild better-sqlite3"
       description: "Rebuild better-sqlite3 native binding"
   mk_skill_advisor:
     dist_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install && npm run build"
+      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
       description: "Install dependencies and rebuild advisor-server.js"
     node_modules_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install"
+      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install"
       description: "Install node_modules"
     shared_dependency_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp_server && npm install && npm run build"
+      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
       description: "Restore the local @spec-kit/shared file dependency and rebuild compiled imports"
     launcher_missing:
       command: "echo 'Launcher file .opencode/bin/mk-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-skill-advisor-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
-      command: "mkdir -p .opencode/skills/system-skill-advisor/mcp_server/database"
+      command: "mkdir -p .opencode/skills/system-skill-advisor/mcp-server/database"
       description: "Create database directory"
   mk_code_index:
     dist_missing:
@@ -153,14 +153,14 @@ repair_actions:
       command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
-      command: "mkdir -p .opencode/skills/system-code-graph/mcp_server/database"
+      command: "mkdir -p .opencode/skills/system-code-graph/mcp-server/database"
       description: "Create canonical code-graph database directory"
   code_mode:
     dist_missing:
-      command: "cd .opencode/skills/mcp-code-mode/mcp_server && npm install && npm run build"
+      command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install && npm run build"
       description: "Install dependencies and rebuild dist"
     node_modules_missing:
-      command: "cd .opencode/skills/mcp-code-mode/mcp_server && npm install"
+      command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install"
       description: "Install node_modules"
   sequential_thinking:
     package_not_cached:

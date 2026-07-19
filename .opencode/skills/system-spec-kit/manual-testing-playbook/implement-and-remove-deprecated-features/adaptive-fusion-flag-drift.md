@@ -21,7 +21,7 @@ This scenario validates Adaptive-fusion mode flag for `232`. It focuses on confi
 
 
 - Objective: Confirm live hybrid search honors `SPECKIT_ADAPTIVE_FUSION` while the install guide documents the operator-facing disable switch.
-- Real user request: `` Please validate Adaptive-fusion mode flag against cd .opencode/skills/system-spec-kit/mcp_server and tell me whether the expected signals are present: The targeted adaptive-fusion and hybrid-search tests pass, the live fusion path checks `isAdaptiveFusionEnabled()` before choosing adaptive weights vs fixed `fuseResultsMulti(...)`, and `INSTALL-GUIDE.md` documents `SPECKIT_ADAPTIVE_FUSION` as an operator-facing disable switch. ``
+- Real user request: `` Please validate Adaptive-fusion mode flag against cd .opencode/skills/system-spec-kit/mcp-server and tell me whether the expected signals are present: The targeted adaptive-fusion and hybrid-search tests pass, the live fusion path checks `isAdaptiveFusionEnabled()` before choosing adaptive weights vs fixed `fuseResultsMulti(...)`, and `INSTALL-GUIDE.md` documents `SPECKIT_ADAPTIVE_FUSION` as an operator-facing disable switch. ``
 - Prompt: `Validate adaptive-fusion mode flag against the targeted adaptive-fusion and hybrid-search checks.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: The targeted adaptive-fusion and hybrid-search tests pass, the live fusion path checks `isAdaptiveFusionEnabled()` before choosing adaptive weights vs fixed `fuseResultsMulti(...)`, and `INSTALL-GUIDE.md` documents `SPECKIT_ADAPTIVE_FUSION` as an operator-facing disable switch
@@ -35,12 +35,12 @@ This scenario validates Adaptive-fusion mode flag for `232`. It focuses on confi
 ### Prompt
 
 ```
-As a canonical-continuity validation operator, confirm live hybrid search honors SPECKIT_ADAPTIVE_FUSION while the install guide documents the disable switch against cd .opencode/skills/system-spec-kit/mcp_server. Verify the targeted adaptive-fusion and hybrid-search tests pass, the live fusion path checks isAdaptiveFusionEnabled() before choosing adaptive weights vs fixed fuseResultsMulti(...), and INSTALL-GUIDE.md documents SPECKIT_ADAPTIVE_FUSION as an operator-facing disable switch. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a canonical-continuity validation operator, confirm live hybrid search honors SPECKIT_ADAPTIVE_FUSION while the install guide documents the disable switch against cd .opencode/skills/system-spec-kit/mcp-server. Verify the targeted adaptive-fusion and hybrid-search tests pass, the live fusion path checks isAdaptiveFusionEnabled() before choosing adaptive weights vs fixed fuseResultsMulti(...), and INSTALL-GUIDE.md documents SPECKIT_ADAPTIVE_FUSION as an operator-facing disable switch. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit/mcp_server`
+1. `cd .opencode/skills/system-spec-kit/mcp-server`
 2. `npx vitest run tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts`
 3. `sed -n '1248,1312p' lib/search/hybrid-search.ts`
 4. `rg -n "SPECKIT_ADAPTIVE_FUSION" INSTALL-GUIDE.md`
@@ -55,7 +55,7 @@ The targeted adaptive-fusion and hybrid-search tests pass, the live fusion path 
 Command 1:
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp-server
 ```
 
 Output:
@@ -216,8 +216,8 @@ lib/search/hybrid-search.ts:1673:      : fuseResultsMulti(fusionLists, { bonusOv
 Inspect `lib/search/hybrid-search.ts`, `shared/algorithms/adaptive-fusion.ts`, and `INSTALL-GUIDE.md`; confirm the checked-in docs match the tested source tree and that the live pipeline still falls back to fixed fusion when `SPECKIT_ADAPTIVE_FUSION=false`
 
 ## 4. SOURCE FILES
-- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [implement_and_remove_deprecated_features/adaptive_fusion_flag_drift.md](../../feature_catalog/implement_and_remove_deprecated_features/adaptive_fusion_flag_drift.md)
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature catalog: [implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md](../../feature-catalog/implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md)
 
 ---
 
@@ -225,5 +225,5 @@ Inspect `lib/search/hybrid-search.ts`, `shared/algorithms/adaptive-fusion.ts`, a
 
 - Group: Implement and Remove Deprecated Features
 - Playbook ID: 232
-- Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `implement_and_remove_deprecated_features/adaptive_fusion_flag_drift.md`
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md`

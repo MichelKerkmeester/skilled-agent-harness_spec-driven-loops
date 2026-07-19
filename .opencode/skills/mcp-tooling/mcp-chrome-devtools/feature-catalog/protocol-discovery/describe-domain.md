@@ -33,22 +33,22 @@ Step two and three of progressive disclosure: after `--list` finds the domain, `
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Discovery command list |
-| `references/cdp_patterns.md` §7 | Reference | Discovery pattern with validation checkpoints |
+| `references/cdp-patterns.md` §7 | Reference | Discovery pattern with validation checkpoints |
 | `INSTALL-GUIDE.md` §6 | Guide | Discovery command reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/protocol_discovery/describe_page_domain.md` | Manual | BDG-006 scenario contract |
+| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual | BDG-006 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: Protocol Discovery
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `protocol_discovery/describe_domain.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `protocol-discovery/describe-domain.md`
 Related references:
-- [list_cdp_domains.md](../protocol_discovery/list_cdp_domains.md) — List CDP Domains
-- [raw_cdp_command.md](../protocol_discovery/raw_cdp_command.md) — Raw CDP Execution
+- [list-cdp-domains.md](../protocol-discovery/list-cdp-domains.md) — List CDP Domains
+- [raw-cdp-command.md](../protocol-discovery/raw-cdp-command.md) — Raw CDP Execution

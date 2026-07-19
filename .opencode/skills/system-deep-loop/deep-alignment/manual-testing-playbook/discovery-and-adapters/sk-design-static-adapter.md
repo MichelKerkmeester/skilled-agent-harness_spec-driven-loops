@@ -65,7 +65,7 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 
 | File | Role |
 |---|---|
-| `manual_testing_playbook.md` | Root directory page, integrated alignment protocol, and scenario summary |
+| `manual-testing-playbook.md` | Root directory page, integrated alignment protocol, and scenario summary |
 | `discovery-and-adapters/` | Adapter category; the sk-design static adapter CLI is exercised directly here |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
@@ -73,7 +73,7 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 | File | Role |
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | discover/check, required headings, banned-pattern regexes, `checkAuditRubric` verify-first gate |
-| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md` | Full adapter specification incl. STATIC-ONLY scope and required-heading scope |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-adapter.md` | Full adapter specification incl. STATIC-ONLY scope and required-heading scope |
 | `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md` | The Style Reference format the adapter checks against |
 
 ---
@@ -82,6 +82,6 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 
 - Group: DISCOVERY AND ADAPTERS
 - Playbook ID: DAL-012
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `discovery-and-adapters/sk-design-static-adapter.md`
 - Note: The live-render dimension is a SEPARATE adapter (DAL-014); this scenario is the static, non-rendering authority only.

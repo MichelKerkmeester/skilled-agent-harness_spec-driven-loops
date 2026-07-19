@@ -22,9 +22,9 @@ importance_tier: "important"
 
 The package owns three authored zones:
 
-- `mcp_server/` carries the MCP runtime, parser, storage, readiness contract, and recovery operations.
+- `mcp-server/` carries the MCP runtime, parser, storage, readiness contract, and recovery operations.
 - `references/` carries operator primers on readiness, database path policy, and ownership boundaries.
-- `feature_catalog/` and `manual_testing_playbook/` carry the per-tool inventory and validation scenarios.
+- `feature-catalog/` and `manual-testing-playbook/` carry the per-tool inventory and validation scenarios.
 
 Identity surfaces:
 
@@ -33,7 +33,7 @@ Identity surfaces:
 - Client namespace: `mcp__mk_code_index__*`
 - Runtime package: `@spec-kit/system-code-graph`
 
-Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state details live in `references/readiness/code_graph_readiness_check.md`.
+Detail per tool lives in `feature-catalog/feature-catalog.md`. Readiness state details live in `references/readiness/code-graph-readiness-check.md`.
 
 ### Architecture diagram
 
@@ -49,7 +49,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
-│  │                       mcp_server/                         │  │
+│  │                       mcp-server/                         │  │
 │  │  ┌──────────┐ ┌──────────────────────────────────────┐   │  │
 │  │  │handlers/ │ │                lib/                  │   │  │
 │  │  │scan      │ │ tree-sitter parser adapter           │   │  │
@@ -58,7 +58,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │  │  │status    │ │ gold-query verifier                  │   │  │
 │  │  │verify    │ │ blast-radius + change detection      │   │  │
 │  │  └──────────┘ └──────────────────────────────────────┘   │  │
-│  │  plugin_bridges/         tests/                           │  │
+│  │  plugin-bridges/         tests/                           │  │
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
 │                         ┌──┴──────────────┐                     │
@@ -70,7 +70,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │  Dependency direction: handlers/ ──▶ lib/                       │
 │                        parser adapter lives inside lib/          │
 │                        lib/ ──▶ database/                       │
-│                        plugin_bridges/ ──▶ lib/                 │
+│                        plugin-bridges/ ──▶ lib/                 │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -81,7 +81,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 
 ```text
 system-code-graph/
-├── mcp_server/             # Runtime MCP server
+├── mcp-server/             # Runtime MCP server
 │   ├── index.ts            # MCP transport entrypoint (mk-code-index)
 │   ├── tool-schemas.ts     # Public tool schema registry (source of truth)
 │   ├── handlers/           # MCP tool handlers
@@ -89,12 +89,12 @@ system-code-graph/
 │   ├── lib/                # Parser, readiness, apply-mode, query + context
 │   ├── database/           # Local SQLite code-graph storage
 │   ├── tests/              # Vitest + integration coverage
-│   ├── stress_test/        # Pressure and degraded-mode coverage
-│   ├── plugin_bridges/     # CLI bridge entrypoints
+│   ├── stress-test/        # Pressure and degraded-mode coverage
+│   ├── plugin-bridges/     # CLI bridge entrypoints
 │   ├── core/               # Shared runtime helpers
-│   └── dist/               # Generated build output (tsc → mcp_server/dist)
+│   └── dist/               # Generated build output (tsc → mcp-server/dist)
 ├── references/             # Operator primers
-├── feature_catalog/        # Current feature inventory
+├── feature-catalog/        # Current feature inventory
 └── manual_testing_playbook # Operator validation scenarios
 ```
 
@@ -103,7 +103,7 @@ Allowed dependency direction:
 - `handlers/ ──▶ lib/`
 - parser logic lives in `lib/tree-sitter-parser.ts`; there is no separate `parser/` package.
 - `lib/ ──▶ database/`
-- `plugin_bridges/ ──▶ lib/`
+- `plugin-bridges/ ──▶ lib/`
 
 Reverse imports should be treated as boundary violations during review and CI.
 
@@ -119,9 +119,9 @@ The code-graph treats its SQLite store as the durable record. Reads are gated by
 
 **Key modules:**
 
-- `mcp_server/lib/ensure-ready.ts` owns the read-path gate.
-- `mcp_server/lib/structural-indexer.ts` owns the scan loop.
-- `mcp_server/lib/readiness-contract.ts` owns the state machine.
+- `mcp-server/lib/ensure-ready.ts` owns the read-path gate.
+- `mcp-server/lib/structural-indexer.ts` owns the scan loop.
+- `mcp-server/lib/readiness-contract.ts` owns the state machine.
 
 ---
 
@@ -131,9 +131,9 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Parser.** Tree-sitter via `web-tree-sitter` and `tree-sitter-wasms` multi-language WASM grammars. Extracts files, symbols, and edges. Maintains a parser-skip list for files that fail parsing, surfaced through status metadata.
 
-**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`. The launcher's standalone-storage guard refuses to point the database outside the workspace.
+**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite`. The launcher's standalone-storage guard refuses to point the database outside the workspace.
 
-**Readiness contract.** A hard refuse, not a soft degrade. <!-- OR-8-01: GraphFreshness is the four-value enum below; `absent` is the empty-graph trust-state projection, not a freshness state. --> Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is the empty-graph trust-state projection, not a freshness state). Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
+**Readiness contract.** A hard refuse, not a soft degrade. <!-- OR-8-01: GraphFreshness is the four-value enum below; `absent` is the empty-graph trust-state projection, not a freshness state. --> Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is the empty-graph trust-state projection, not a freshness state). Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code-graph-readiness-check.md`.
 
 **Apply-mode recovery.** Gated recovery operations (rescan, prune-excludes, repair-nodes, recover-sqlite-corruption, rollback-bad-apply) run the gold-query verification battery before AND after each operation. Audit log writes to JSONL. Rollback restores the last known-good baseline.
 
@@ -143,7 +143,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The code-graph does not own its own SessionStart hook surface. The hook runtime lives in a sibling spec-kit package and reaches code-graph data through a stable boundary import. This asymmetry vs the advisor pattern is intentional and documented as ADR-001 below. Plugin bridges under `plugin_bridges/` provide CLI entrypoints for context-compaction callers; current status is documented inside the per-folder README.
+The code-graph does not own its own SessionStart hook surface. The hook runtime lives in a sibling spec-kit package and reaches code-graph data through a stable boundary import. This asymmetry vs the advisor pattern is intentional and documented as ADR-001 below. Plugin bridges under `plugin-bridges/` provide CLI entrypoints for context-compaction callers; current status is documented inside the per-folder README.
 
 ---
 
@@ -153,7 +153,7 @@ Verification runs at two layers.
 
 **Gold-query battery.** `code_graph_verify` runs a curated set of structural queries against the current index and compares against persisted baselines. Apply-mode operations run this battery before and after every recovery action; failure rolls back to the last known-good baseline.
 
-**Test surfaces.** Default vitest run covers unit and integration suites under `mcp_server/tests/`. Stress and degraded-mode coverage lives under `mcp_server/stress_test/`. Operator playbook scenarios live in `manual_testing_playbook/`.
+**Test surfaces.** Default vitest run covers unit and integration suites under `mcp-server/tests/`. Stress and degraded-mode coverage lives under `mcp-server/stress-test/`. Operator playbook scenarios live in `manual-testing-playbook/`.
 
 ---
 
@@ -174,8 +174,8 @@ Verification runs at two layers.
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
 - [INSTALL-GUIDE.md](./INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
-- [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory and per-tool detail
-- [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
-- [references/readiness/code_graph_readiness_check.md](./references/readiness/code_graph_readiness_check.md): Readiness contract primer with state-machine detail
-- [references/runtime/ownership_boundary.md](./references/runtime/ownership_boundary.md): Boundary rules for adjacent runtimes
-- [references/config/database_path_policy.md](./references/config/database_path_policy.md): Workspace containment policy
+- [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory and per-tool detail
+- [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
+- [references/readiness/code-graph-readiness-check.md](./references/readiness/code-graph-readiness-check.md): Readiness contract primer with state-machine detail
+- [references/runtime/ownership-boundary.md](./references/runtime/ownership-boundary.md): Boundary rules for adjacent runtimes
+- [references/config/database-path-policy.md](./references/config/database-path-policy.md): Workspace containment policy

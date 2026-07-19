@@ -33,22 +33,22 @@ Requires an active session and a discovered method name (never assume names with
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Raw CDP command reference |
-| `references/cdp_patterns.md` §4 | Reference | Per-domain CDP command patterns |
+| `references/cdp-patterns.md` §4 | Reference | Per-domain CDP command patterns |
 | `INSTALL-GUIDE.md` §6 | Guide | Raw CDP examples |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/protocol_discovery/describe_page_domain.md` | Manual | Discovery precondition (BDG-006) |
+| `manual-testing-playbook/protocol-discovery/describe-page-domain.md` | Manual | Discovery precondition (BDG-006) |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: Protocol Discovery
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `protocol_discovery/raw_cdp_command.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `protocol-discovery/raw-cdp-command.md`
 Related references:
-- [search_cdp_method.md](../protocol_discovery/search_cdp_method.md) — Search CDP Methods
-- [viewport_emulation.md](../dom_and_screenshot/viewport_emulation.md) — Viewport Emulation
+- [search-cdp-method.md](../protocol-discovery/search-cdp-method.md) — Search CDP Methods
+- [viewport-emulation.md](../dom-and-screenshot/viewport-emulation.md) — Viewport Emulation

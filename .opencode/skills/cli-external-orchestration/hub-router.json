@@ -10,7 +10,7 @@
       "orderedBundle": "multiple explicitly requested executors route in tie-break order",
       "defer": "unclear or contradictory dispatch intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/smart_routing.md", "mode-registry.json"]
+    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"]
   },
   "routerSignals": {
     "cli-opencode": {

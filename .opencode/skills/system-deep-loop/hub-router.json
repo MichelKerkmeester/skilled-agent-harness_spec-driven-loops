@@ -10,7 +10,7 @@
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/smart_routing.md", "mode-registry.json"]
+    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"]
   },
   "routerSignals": {
     "research": {

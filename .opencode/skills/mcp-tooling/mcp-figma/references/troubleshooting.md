@@ -32,9 +32,9 @@ Find the root cause before applying a fix, because symptom fixes create cascadin
 
 ### Key Sources
 
-- [figma_cli_reference.md](figma_cli_reference.md) - binary identity, connect modes, and the daemon model behind these symptoms.
-- [tool_surface.md](tool_surface.md) - the command gating classes the escalation rows reference.
-- [mcp_wiring.md](mcp_wiring.md) - the optional Code Mode MCP path and its `.env` prefix.
+- [figma-cli-reference.md](figma-cli-reference.md) - binary identity, connect modes, and the daemon model behind these symptoms.
+- [tool-surface.md](tool-surface.md) - the command gating classes the escalation rows reference.
+- [mcp-wiring.md](mcp-wiring.md) - the optional Code Mode MCP path and its `.env` prefix.
 
 Two hard facts shape every fix below:
 
@@ -55,7 +55,7 @@ Before deeper troubleshooting, confirm the foundation:
 
 - Basic Bash/terminal usage.
 - npm global install and PATH concepts.
-- The difference between the safe plugin connect and the gated yolo patch (see `figma_cli_reference.md`).
+- The difference between the safe plugin connect and the gated yolo patch (see `figma-cli-reference.md`).
 
 ---
 
@@ -469,9 +469,9 @@ When reporting a bug upstream, include: the binary in use and version (`figma-ds
 
 ## 13. REFERENCES
 
-- [figma_cli_reference.md](figma_cli_reference.md) - binary identity, Node/macOS baseline, Figma Desktop requirement, connect modes, and the daemon model.
-- [tool_surface.md](tool_surface.md) - the read-only / mutating / destructive command taxonomy and the gating rules.
-- [mcp_wiring.md](mcp_wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, and discovery.
+- [figma-cli-reference.md](figma-cli-reference.md) - binary identity, Node/macOS baseline, Figma Desktop requirement, connect modes, and the daemon model.
+- [tool-surface.md](tool-surface.md) - the read-only / mutating / destructive command taxonomy and the gating rules.
+- [mcp-wiring.md](mcp-wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, and discovery.
 - [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
 - Code Mode transport for the optional MCP: [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md). Browser-debugging owner for port 9222 conflicts: [mcp-chrome-devtools SKILL.md](../../mcp-chrome-devtools/SKILL.md).

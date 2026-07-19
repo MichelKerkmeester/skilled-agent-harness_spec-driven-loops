@@ -42,9 +42,9 @@ upstream_assets:
   skill: ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"   # the DEPTH/CLEAR engine
   agent: "prompt-improver"                                       # fresh-context dispatch target for dispatch_mode AGENT
   conditional_references:
-    depth: "references/depth_framework.md + references/patterns_evaluation.md"   # for text/improve/refine/short
-    json: "assets/format_guide_json.md"                                          # additionally for json mode
-    yaml: "assets/format_guide_yaml.md"                                          # additionally for yaml mode
+    depth: "references/depth-framework.md + references/patterns-evaluation.md"   # for text/improve/refine/short
+    json: "assets/format-guide-json.md"                                          # additionally for json mode
+    yaml: "assets/format-guide-yaml.md"                                          # additionally for yaml mode
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS (bound by the router MANDATORY INPUT GATE)

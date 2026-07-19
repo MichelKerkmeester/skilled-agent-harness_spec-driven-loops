@@ -56,7 +56,7 @@ Expected: entries prefixed `clickup_official.clickup_official_*`. As of 2026-07-
 tool_info("clickup_official.clickup_official_<tool_name>")
 ```
 
-Never hardcode a tool name without confirming it this way first. See `../../references/mcp_tools.md` for the last-captured inventory.
+Never hardcode a tool name without confirming it this way first. See `../../references/mcp-tools.md` for the last-captured inventory.
 
 ---
 
@@ -76,5 +76,5 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 | Document | Purpose |
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
-| [`../../references/mcp_tools.md`](../../references/mcp_tools.md) | Last-captured tool inventory and invocation pattern |
+| [`../../references/mcp-tools.md`](../../references/mcp-tools.md) | Last-captured tool inventory and invocation pattern |
 | [`../../references/INSTALL-GUIDE.md`](../../references/INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

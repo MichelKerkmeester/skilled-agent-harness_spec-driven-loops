@@ -35,7 +35,7 @@ cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith
 
 ### Why two manuals (dual-manual-for-parallelism)
 
-Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL-GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp_patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
+Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL-GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp-patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
 
 ---
 
@@ -118,4 +118,4 @@ For the parallel pattern across both manuals, see `INSTALL-GUIDE.md` §6 Pattern
 - [../SKILL.md](../SKILL.md) - §3 MCP approach, isolated instances, invocation pattern.
 - [../INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - §4 UTCP configuration steps and §10 MCP tools reference.
 - [../mcp-servers/chrome-devtools-mcp/README.md](../mcp-servers/chrome-devtools-mcp/README.md) - The Code Mode server behind these manuals (nothing vendored).
-- [../feature_catalog/mcp_parallel_instances/dual_instance_parallel.md](../feature_catalog/mcp_parallel_instances/dual_instance_parallel.md) - The parallelism capability these two entries enable.
+- [../feature-catalog/mcp-parallel-instances/dual-instance-parallel.md](../feature-catalog/mcp-parallel-instances/dual-instance-parallel.md) - The parallelism capability these two entries enable.

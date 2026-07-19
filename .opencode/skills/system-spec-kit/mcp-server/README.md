@@ -34,7 +34,7 @@ You rarely touch this server directly. Seven surfaces drive it for you:
 - **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`. The Claude and OpenCode adapters carry a warm-only CLI fallback (`hooks/spec-memory-cli-fallback.ts`, `hooks/code-index-cli-fallback.ts`) that recovers a dropped MCP transport through the daemon CLI without ever cold-spawning at prompt time.
 - **The `mcp_*` tool surface.** Direct MCP callers (other agents, scripts, tests) reach the tools through `mcp__mk_spec_memory__*` after the server registers them.
 - **The daemon-backed CLI.** `node .opencode/bin/spec-memory.cjs <tool>` fronts all 41 tools over the daemon's IPC socket — the dual-stack surface for hooks, cron, CI and transport-down recovery. Exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes instead of spawning; `list-tools` answers offline. Source: `spec-memory-cli.ts`.
-- **The plugin bridge.** The OpenCode plugin (`.opencode/plugins/mk-spec-memory.js`) routes through `plugin_bridges/mk-spec-memory-bridge.mjs` using CLI transport only — it shells the same `spec-memory.cjs` front door rather than holding a second MCP connection.
+- **The plugin bridge.** The OpenCode plugin (`.opencode/plugins/mk-spec-memory.js`) routes through `plugin-bridges/mk-spec-memory-bridge.mjs` using CLI transport only — it shells the same `spec-memory.cjs` front door rather than holding a second MCP connection.
 - **CLI scripts.** Maintenance, evaluation, and migration scripts live under `scripts/`.
 - **The compiled backend artifact.** `dist/context-server.js` is built by `npm run build` and spawned by the launcher. MCP client configs point at `.opencode/bin/mk-spec-memory-launcher.cjs`, which supervises the backend and owns the client-facing transport. The MCP registrations themselves are unchanged by the CLI: dual-stack means the CLI is additive.
 
@@ -88,7 +88,7 @@ hooks ───▶ shared payload builders and read-only status helpers
 ## 3. PACKAGE TOPOLOGY
 
 ```text
-mcp_server/
+mcp-server/
 +-- context-server.ts        # MCP transport entrypoint
 +-- spec-memory-cli.ts       # Daemon-backed CLI entrypoint (dual-stack front door)
 +-- tool-schemas.ts          # Public tool schema registry
@@ -132,7 +132,7 @@ dist/ → source imports
 ## 4. DIRECTORY TREE
 
 ```text
-mcp_server/
+mcp-server/
 +-- api/                     # API-oriented helpers and route surfaces
 +-- configs/                 # Search and cognitive configuration files
 +-- core/                    # Core package support modules
@@ -141,11 +141,11 @@ mcp_server/
 +-- handlers/                # MCP handler modules
 +-- hooks/                   # Runtime hook integration code
 +-- lib/                     # Search, memory, context, scoring, and utility modules
-+-- plugin_bridges/          # Runtime bridge packages
++-- plugin-bridges/          # Runtime bridge packages
 +-- schemas/                 # Runtime input validation schemas
 +-- scripts/                 # Package maintenance scripts
 +-- shared/                  # Shared code used across server zones
-+-- stress_test/             # Stress test support
++-- stress-test/             # Stress test support
 +-- tests/                   # Package tests
 +-- tools/                   # Tool definition and dispatcher modules
 +-- utils/                   # General server utilities
@@ -178,7 +178,7 @@ mcp_server/
 | `lib/search/` | Owns memory retrieval, vector index access, lexical search, fusion, and reranking. |
 | `hooks/` | Builds runtime startup and prompt payloads. |
 | `formatters/` | Shapes search and response-profile output for clients. |
-| `ENV_REFERENCE.md` | Documents runtime environment variables. |
+| `ENV-REFERENCE.md` | Documents runtime environment variables. |
 | `INSTALL-GUIDE.md` | Documents package setup and MCP client registration. |
 
 Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`. `graph-metadata.json` is discovered through the graph-metadata path gate, including metadata backfilled under `<packet>/iterations/`; `research/iterations/` and `review/iterations/` markdown remain working artifacts rather than canonical spec docs.
@@ -270,19 +270,19 @@ The Spec Kit Memory MCP process participates in the shared native MCP lifecycle 
 | Lease-probe reap hardening (019) | A sibling reaps the lease owner and respawns only after N CONSECUTIVE deep liveness-probe failures (`SPECKIT_LEASE_PROBE_RETRIES`, default 1), so a busy-but-alive owner (mid-FTS-merge) is not false-reaped into a duplicate daemon. Any 'alive' probe short-circuits to a bridge; the default budget stays under the 6999 ms probe ceiling. |
 | mk-code-index reconnecting proxy (020) | mk-code-index now bridges secondary clients through the SAME session proxy as mk-spec-memory (`bridgeStdioThroughSessionProxy` in `.opencode/bin/mk-code-index-launcher.cjs`), so a code-index owner change reattaches and replays in-flight read queries instead of a hard `Connection closed`. This is the *client-survival* path and is distinct from the deploy `--recycle` row above (which still exits the code-graph launcher for a fresh dist). Mutating tools (`code_graph_scan`/`apply`/`verify`) are never replayed. |
 | Orphan-sweep Stop-hook (021) | `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off [default] / dry-run / live): when set, the Stop hook's no-session-pid branch delegates to the orphan-only sweeper instead of a no-op, reaping ownerless daemons without ever guessing the session pid (so it cannot kill a live session). |
-| Daemon re-election (default-on) | `SPECKIT_DAEMON_REELECTION` (on by default in the launcher code; set `0` or `off` to revert) spawns the daemon detached and releases (not kills) it on owner shutdown, so a live secondary keeps MCP transport. A fresh session that finds the released daemon under a stale lease adopts it through the bridge when the recorded child is alive and bridgeable; reap + respawn runs only when that daemon is dead or unbridgeable, preserving the single-writer WAL invariant. Covered by `stress_test/durability/daemon-reelection-release-integration.vitest.ts` (decision) and `daemon-reelection-adoption-live.vitest.ts` (live two-session). |
+| Daemon re-election (default-on) | `SPECKIT_DAEMON_REELECTION` (on by default in the launcher code; set `0` or `off` to revert) spawns the daemon detached and releases (not kills) it on owner shutdown, so a live secondary keeps MCP transport. A fresh session that finds the released daemon under a stale lease adopts it through the bridge when the recorded child is alive and bridgeable; reap + respawn runs only when that daemon is dead or unbridgeable, preserving the single-writer WAL invariant. Covered by `stress-test/durability/daemon-reelection-release-integration.vitest.ts` (decision) and `daemon-reelection-adoption-live.vitest.ts` (live two-session). |
 
 Canonical operator references:
 
 - [Repo scripts runbook](../../../scripts/README.md)
-- [Environment reference](./ENV_REFERENCE.md)
+- [Environment reference](./ENV-REFERENCE.md)
 - [Orphan MCP leak prevention implementation summary](../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
 ---
 
 ## 9. VALIDATION
 
-Run from `mcp_server/` unless noted.
+Run from `mcp-server/` unless noted.
 
 ```bash
 npm run build
@@ -293,8 +293,8 @@ npm run test:spec-validation
 Focused documentation checks from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/README.md
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/mcp_server/README.md
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/README.md
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/mcp-server/README.md
 ```
 
 Expected result: build and tests exit 0, README validation reports no blocking issues, and structure extraction returns a README document profile.
@@ -304,7 +304,7 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 ## 10. RELATED
 
 - [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md)
-- [`ENV_REFERENCE.md`](./ENV_REFERENCE.md)
+- [`ENV-REFERENCE.md`](./ENV-REFERENCE.md)
 - [`../../../scripts/README.md`](../../../scripts/README.md)
 - [`configs/README.md`](./configs/README.md)
 - [`hooks/README.md`](./hooks/README.md)

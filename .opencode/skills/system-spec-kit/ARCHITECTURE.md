@@ -12,7 +12,7 @@ importance_tier: "important"
 
 # Architecture: system-spec-kit
 
-> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp_server/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
+> Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp-server/`, and `shared/`. Continuity is rebuilt through `/speckit:resume` and canonical spec documents.
 
 ---
 
@@ -21,7 +21,7 @@ importance_tier: "important"
 `system-spec-kit` is split into three authored zones plus generated build output:
 
 - `scripts/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
-- `mcp_server/` owns the runtime MCP server, handlers, storage, search, hooks, and matrix runners. TypeScript.
+- `mcp-server/` owns the runtime MCP server, handlers, storage, search, hooks, and matrix runners. TypeScript.
 - `shared/` owns neutral modules imported by both scripts and runtime. TypeScript.
 - `dist/` carries generated JavaScript entrypoints only. Not authored.
 
@@ -41,7 +41,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
-│  │                       mcp_server/                         │  │
+│  │                       mcp-server/                         │  │
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
 │  │  │ claude/  │ │save/     │ │ search / resume / merge  │   │  │
@@ -49,7 +49,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │  │          │ │search/   │ │                          │   │  │
 │  │  │          │ │context/  │ │                          │   │  │
 │  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
-│  │  matrix_runners/        stress_test/                      │  │
+│  │  matrix-runners/        stress-test/                      │  │
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
@@ -61,8 +61,8 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │ evals/         │     │ scoring/        │                     │
 │  └────────────────┘     └─────────────────┘                     │
 │                                                                 │
-│  Dependency direction: scripts/ ──▶ mcp_server/api/             │
-│                        mcp_server/ ──▶ shared/                  │
+│  Dependency direction: scripts/ ──▶ mcp-server/api/             │
+│                        mcp-server/ ──▶ shared/                  │
 │                        scripts/ ──▶ shared/                     │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -75,7 +75,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 ```text
 system-spec-kit/
 ├── scripts/                # CLI generation, validation, indexing, evals
-├── mcp_server/             # Runtime MCP server
+├── mcp-server/             # Runtime MCP server
 │   ├── context-server.ts   # MCP transport entrypoint
 │   ├── tool-schemas.ts     # Public tool schema registry
 │   ├── handlers/           # Top-level MCP tool handlers
@@ -89,8 +89,8 @@ system-spec-kit/
 │   ├── scripts/            # Maintenance and evaluation scripts
 │   ├── database/           # Local SQLite stores
 │   ├── tests/              # Vitest + integration coverage
-│   ├── matrix_runners/     # Packet-036 F1-F14 x CLI adapter manifest
-│   └── stress_test/        # Opt-in stress / load / degraded-state suites
+│   ├── matrix-runners/     # Packet-036 F1-F14 x CLI adapter manifest
+│   └── stress-test/        # Opt-in stress / load / degraded-state suites
 ├── shared/                 # Neutral modules importable by scripts + runtime
 ├── dist/                   # Generated build output
 └── tests/                  # Spec-folder test fixtures
@@ -98,10 +98,10 @@ system-spec-kit/
 
 Allowed dependency direction:
 
-- `scripts/ ──▶ mcp_server/api/`
-- `mcp_server/ ──▶ shared/`
+- `scripts/ ──▶ mcp-server/api/`
+- `mcp-server/ ──▶ shared/`
 - `scripts/ ──▶ shared/`
-- `mcp_server/ ──▶ database/`
+- `mcp-server/ ──▶ database/`
 
 Reverse imports are blocked by lint and CI.
 
@@ -127,9 +127,9 @@ Spec-kit treats canonical spec documents as the durable continuity record. Gener
 
 **Key modules:**
 
-- `mcp_server/lib/resume/` owns the read path.
+- `mcp-server/lib/resume/` owns the read path.
 - `scripts/dist/memory/generate-context.js` owns the write path.
-- `mcp_server/lib/continuity/` owns the indexing layer.
+- `mcp-server/lib/continuity/` owns the indexing layer.
 
 ---
 
@@ -145,9 +145,9 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Hook orchestrator.** `hooks/{claude,opencode}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
 
-**Matrix runners.** `matrix_runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
+**Matrix runners.** `matrix-runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
 
-**Stress tests.** `stress_test/` carries opt-in load + degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
+**Stress tests.** `stress-test/` carries opt-in load + degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
 
 ---
 
@@ -157,7 +157,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through local plugins under `.opencode/plugins/`.
 
-**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `mcp_server/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/mk-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
+**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `mcp-server/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/mk-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 
@@ -171,7 +171,7 @@ Spec-kit's quality gates run at three layers.
 
 **Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
-**Test surfaces.** Default `npm test` runs unit + integration suites and, through `mcp_server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix_runners/`.
+**Test surfaces.** Default `npm test` runs unit + integration suites and, through `mcp-server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix-runners/`.
 
 ---
 
@@ -193,8 +193,8 @@ Spec-kit's quality gates run at three layers.
 
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
-- [INSTALL-GUIDE.md](mcp_server/INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
-- [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory
-- [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
-- [mcp_server/README.md](./mcp_server/README.md): MCP server package details
+- [INSTALL-GUIDE.md](mcp-server/INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
+- [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory
+- [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
+- [mcp-server/README.md](./mcp-server/README.md): MCP server package details
 - [references/](./references/): Workflow contracts, hook references, validation playbooks

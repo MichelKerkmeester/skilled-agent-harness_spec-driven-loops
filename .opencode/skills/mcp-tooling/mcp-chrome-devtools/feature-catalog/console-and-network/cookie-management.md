@@ -32,22 +32,22 @@ Enable the Network domain first (`bdg cdp Network.enable`). The cookie-session w
 
 | File | Layer | Role |
 |------|-------|------|
-| `references/cdp_patterns.md` §4-5 | Reference | Network domain patterns and cookie workflow |
+| `references/cdp-patterns.md` §4-5 | Reference | Network domain patterns and cookie workflow |
 | `INSTALL-GUIDE.md` §6, §8 | Guide | Cookie manipulation and session management examples |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/console_and_network/cookies_retrieval.md` | Manual | BDG-012 scenario contract |
+| `manual-testing-playbook/console-and-network/cookies-retrieval.md` | Manual | BDG-012 scenario contract |
 
 ---
 
 ## 4. SOURCE METADATA
 
 - Group: Console and Network
-- Canonical catalog source: `feature_catalog.md`
-- Feature file path: `console_and_network/cookie_management.md`
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `console-and-network/cookie-management.md`
 Related references:
-- [har_export.md](../console_and_network/har_export.md) — HAR Export
-- [context_isolation.md](../mcp_parallel_instances/context_isolation.md) — Context Isolation
+- [har-export.md](../console-and-network/har-export.md) — HAR Export
+- [context-isolation.md](../mcp-parallel-instances/context-isolation.md) — Context Isolation

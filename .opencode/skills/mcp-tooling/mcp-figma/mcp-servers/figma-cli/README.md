@@ -59,7 +59,7 @@ Expected result: a silships version string of `1.2.0` or newer, and a `--help` l
 | Operating system | macOS | The supported baseline. Linux and Windows are experimental and unverified |
 | Figma API key | None | The local daemon drives the live Desktop session instead of the REST API |
 
-Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and the optional Framelink MCP are covered in [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) and [`../../references/figma_cli_reference.md`](../../references/figma_cli_reference.md).
+Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and the optional Framelink MCP are covered in [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) and [`../../references/figma-cli-reference.md`](../../references/figma-cli-reference.md).
 
 ---
 
@@ -81,6 +81,6 @@ Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime contract: command-safety model, routing, and rules |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Full install and connect-mode setup |
-| [`../../references/figma_cli_reference.md`](../../references/figma_cli_reference.md) | Binary identity, connect modes, daemon model, command examples |
-| [`../../references/tool_surface.md`](../../references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy |
+| [`../../references/figma-cli-reference.md`](../../references/figma-cli-reference.md) | Binary identity, connect modes, daemon model, command examples |
+| [`../../references/tool-surface.md`](../../references/tool-surface.md) | The read-only, mutating, and destructive command taxonomy |
 | [`../figma-mcp/README.md`](../figma-mcp/README.md) | The optional Figma MCP pointer, for pulling design context the other way |

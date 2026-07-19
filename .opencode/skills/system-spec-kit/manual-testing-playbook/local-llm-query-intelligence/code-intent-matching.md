@@ -65,7 +65,7 @@ mcp__mk_code_index__code_graph_context({
   queryMode: "neighborhood",
 })
 ```
-Expected: `mcp_server/lib/search/vector-index-store.ts` or `vector-index-impl.ts` (impl) ranks above `references/memory/embedding_resilience.md` (docs).
+Expected: `mcp-server/lib/search/vector-index-store.ts` or `vector-index-impl.ts` (impl) ranks above `references/memory/embedding-resilience.md` (docs).
 
 **Query D — profile-keyed DB filename:**
 ```
@@ -74,7 +74,7 @@ mcp__mk_code_index__code_graph_context({
   queryMode: "neighborhood",
 })
 ```
-Expected: `shared/embeddings/profile.ts:resolveActiveProfileDbPath` (impl) ranks above `mcp_server/INSTALL-GUIDE.md` (docs).
+Expected: `shared/embeddings/profile.ts:resolveActiveProfileDbPath` (impl) ranks above `mcp-server/INSTALL-GUIDE.md` (docs).
 
 For each query, capture:
 - The rank of the implementation file.
@@ -89,7 +89,7 @@ A table like:
 |-------|-------------------------|----------:|-----------------------------------|---------:|------------|
 | A     | factory.ts              | 1         | shared/embeddings/README.md       | 4        | YES         |
 | B     | ollama-availability.ts| 2         | providers/README.md               | 6        | YES         |
-| C     | vector-index-store.ts   | 1         | embedding_resilience.md           | 5        | YES         |
+| C     | vector-index-store.ts   | 1         | embedding-resilience.md           | 5        | YES         |
 | D     | profile.ts              | 3         | INSTALL-GUIDE.md                  | 2        | NO          |
 ```
 
@@ -115,7 +115,7 @@ messages_transform_mode=schema_aligned
 runtime_ready=false
 node_binary=node
 bridge_timeout_ms=15000
-bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
 last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
 cache_entries=0
 cache=empty
@@ -206,7 +206,7 @@ MCP error -32001: backend recycled; retry
 Daemon-backed `memory_health` returned:
 
 ```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
 ```
 
 Top-10 result paths: unavailable for all four queries because `code_graph_context` did not execute successfully.
@@ -218,8 +218,8 @@ Rank-pair table:
 |-------|-----------|----------:|----------|---------:|------------|
 | A | shared/embeddings/factory.ts | unavailable | shared/embeddings/README.md | unavailable | BLOCKED |
 | B | shared/embeddings/ollama-availability.ts | unavailable | shared/embeddings/providers/README.md | unavailable | BLOCKED |
-| C | mcp_server/lib/search/vector-index-store.ts or vector-index-impl.ts | unavailable | references/memory/embedding_resilience.md | unavailable | BLOCKED |
-| D | shared/embeddings/profile.ts:resolveActiveProfileDbPath | unavailable | mcp_server/INSTALL-GUIDE.md | unavailable | BLOCKED |
+| C | mcp-server/lib/search/vector-index-store.ts or vector-index-impl.ts | unavailable | references/memory/embedding-resilience.md | unavailable | BLOCKED |
+| D | shared/embeddings/profile.ts:resolveActiveProfileDbPath | unavailable | mcp-server/INSTALL-GUIDE.md | unavailable | BLOCKED |
 ```
 
 Honest assessment: no implementation-vs-doc ranking assessment is possible because Code Graph returned no ranked results. The missing precondition is a reachable Code Graph backend at `/tmp/mk-code-index/daemon-ipc.sock`; active provider evidence is also blocked by stale Spec Memory MCP dist output.

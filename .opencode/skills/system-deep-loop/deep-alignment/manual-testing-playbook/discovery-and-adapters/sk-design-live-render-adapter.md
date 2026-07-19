@@ -65,7 +65,7 @@ If `check` with no render-result returns zero findings (a silent pass) instead o
 
 | File | Role |
 |---|---|
-| `manual_testing_playbook.md` | Root directory page, integrated alignment protocol, and scenario summary |
+| `manual-testing-playbook.md` | Root directory page, integrated alignment protocol, and scenario summary |
 | `discovery-and-adapters/` | Adapter category; the live-render adapter CLI is exercised directly here |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
@@ -73,7 +73,7 @@ If `check` with no render-result returns zero findings (a silent pass) instead o
 | File | Role |
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs` | discover/check, `REQUIRED_DISPATCH_BOUNDARY`, four short-circuit conditions, threshold checks |
-| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md` | Full adapter specification incl. Section 8 (no standalone renderer) |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-live-render-adapter.md` | Full adapter specification incl. Section 8 (no standalone renderer) |
 | `.opencode/skills/sk-design/design-audit/references/accessibility-performance.md` | The threshold source (contrast/touch-target/CWV values) the adapter cites |
 
 ---
@@ -82,6 +82,6 @@ If `check` with no render-result returns zero findings (a silent pass) instead o
 
 - Group: DISCOVERY AND ADAPTERS
 - Playbook ID: DAL-014
-- Canonical root source: `manual_testing_playbook.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `discovery-and-adapters/sk-design-live-render-adapter.md`
 - Note: This adapter's known-deviation list file does not exist yet (`sk_design_live_render_known_deviations.md`); `loadKnownDeviations()` degrades gracefully to `[]`, which is a documented, intended state, not a defect.

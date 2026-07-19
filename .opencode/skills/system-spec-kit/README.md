@@ -252,11 +252,11 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
-For full architecture details, the 41-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+For full architecture details, the 41-tool API reference, search pipeline internals and configuration, see [`mcp-server/README.md`](./mcp-server/README.md).
 
 #### Dual-Stack Access: MCP and CLI
 
-The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path today, and `node .opencode/bin/spec-memory.cjs` is a full-parity CLI front door over the **same daemon** with the identical 41 tools — nothing about the daemon changed, only the IPC transport. Use MCP for live in-session calls. Use the CLI for hooks, cron jobs, CI, operator shell diagnostics and transport-down recovery: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. Because this CLI already has full parity, a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. See [`mcp_server/ENV_REFERENCE.md`](./mcp_server/ENV_REFERENCE.md) for the CLI env-flag table.
+The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path today, and `node .opencode/bin/spec-memory.cjs` is a full-parity CLI front door over the **same daemon** with the identical 41 tools — nothing about the daemon changed, only the IPC transport. Use MCP for live in-session calls. Use the CLI for hooks, cron jobs, CI, operator shell diagnostics and transport-down recovery: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. Because this CLI already has full parity, a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. See [`mcp-server/ENV-REFERENCE.md`](./mcp-server/ENV-REFERENCE.md) for the CLI env-flag table.
 
 #### Hybrid Search
 
@@ -325,7 +325,7 @@ Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `deriv
 | `orphan` | `true` when the result has no incoming causal edges |
 | `weightHistoryChanged` | `true` when any connected edge has a `weight_history` row |
 
-The formatter at `mcp_server/formatters/search-results.ts` batch-derives the badges from existing causal-edge tables, fails open when the DB handle or `weight_history` table is unavailable and preserves any precomputed `trustBadges` payload a caller already supplied. Response-profile shaping in `mcp_server/lib/response/profile-formatters.ts` preserves the badge payload through `quick`, `research` and `resume` outputs on `results[]` and `topResult` rather than dropping it. Display only: no schema change, no new relation types, no new storage of code/process/tool facts (ADR-012-005).
+The formatter at `mcp-server/formatters/search-results.ts` batch-derives the badges from existing causal-edge tables, fails open when the DB handle or `weight_history` table is unavailable and preserves any precomputed `trustBadges` payload a caller already supplied. Response-profile shaping in `mcp-server/lib/response/profile-formatters.ts` preserves the badge payload through `quick`, `research` and `resume` outputs on `results[]` and `topResult` rather than dropping it. Display only: no schema change, no new relation types, no new storage of code/process/tool facts (ADR-012-005).
 
 #### Save Intelligence
 
@@ -365,7 +365,7 @@ Short decision-type memories can bypass the content-length gate when SPECKIT_SAV
 
 #### Index Schema History (v34 -> v41) and the `.needs-rebuild` Sentinel
 
-The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 41`) advanced eight migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
+The SQLite index schema (`mcp-server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 41`) advanced eight migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
 
 | Migration | Adds | Effect |
 | --- | --- | --- |
@@ -378,7 +378,7 @@ The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA
 | **v40** | Generated causal-edge derived identity | Adds derived-identity provenance to generated causal edges and backfills existing rows. |
 | **v41** | Retention-forgetting and semantic-edge schema support | Adds retention-forgetting partitions and the semantic-edge layer schema. |
 
-After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp_server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
+After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp-server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
 
 #### Memory Hardening and Observability
 
@@ -429,11 +429,11 @@ Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`
 | Command                 | Steps | Purpose                                                                                                                          |
 | ----------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `/speckit:plan --intake-only` | N/A   | Standalone intake interview that publishes `spec.md`, `description.json` and `graph-metadata.json`                        |
-| `/speckit:complete`    | 14    | Full end-to-end workflow: spec through implementation, verification and packet-local changelog closeout, with the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when intake is still needed |
-| `/speckit:plan`        | 7     | Planning only: spec through plan, no implementation, with the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) for `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade` packets |
+| `/speckit:complete`    | 14    | Full end-to-end workflow: spec through implementation, verification and packet-local changelog closeout, with the shared intake contract from [intake-contract.md](./references/workflows/intake-contract.md) when intake is still needed |
+| `/speckit:plan`        | 7     | Planning only: spec through plan, no implementation, with the shared intake contract from [intake-contract.md](./references/workflows/intake-contract.md) for `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade` packets |
 | `/speckit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`. Packet-aware targets also generate local changelog output during closeout |
 | `/speckit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
-| `/deep:research` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../system-deep-loop/deep-research/references/protocol/spec_check_protocol.md) |
+| `/deep:research` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec-check-protocol.md](../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md) |
 | `/deep:review` | N/A   | Autonomous code review loop with convergence detection                                                                           |
 
 **Mode Suffixes** change how commands run:
@@ -497,7 +497,7 @@ A `mkdir`-based advisory lock protects `description.json` and `graph-metadata.js
 
 #### Template Compliance
 
-Templates use ANCHOR markers (`<!-- ANCHOR:section --> ... <!-- /ANCHOR:section -->`) to mark logical sections. Validation checks for required anchors, proper section ordering and template version alignment. The `template_compliance_contract.md` reference defines which anchors are required at each level.
+Templates use ANCHOR markers (`<!-- ANCHOR:section --> ... <!-- /ANCHOR:section -->`) to mark logical sections. Validation checks for required anchors, proper section ordering and template version alignment. The `template-compliance-contract.md` reference defines which anchors are required at each level.
 
 ---
 
@@ -565,7 +565,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 .opencode/skills/system-spec-kit/
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
 ├── README.md                   # This file (what it does, how to use it)
-├── ARCHITECTURE.md             # Boundary contract: scripts/ vs mcp_server/
+├── ARCHITECTURE.md             # Boundary contract: scripts/ vs mcp-server/
 ├── templates/                  # Manifest template source
 │   └── manifest/               # Rendered by Level contract resolver + inline renderer
 ├── scripts/                    # CLI tools (TypeScript source + Bash)
@@ -576,12 +576,12 @@ Template changes flow through the manifest source, Level contract resolver and i
 │   ├── extractors/             # Session data extractors (12 extractors)
 │   ├── utils/                  # Utility modules (20 utilities)
 │   └── dist/                   # Compiled JavaScript output
-├── mcp_server/                 # Spec Kit Memory MCP (TypeScript)
+├── mcp-server/                 # Spec Kit Memory MCP (TypeScript)
 │   ├── context-server.ts       # MCP server entry point and tool registration
 │   ├── handlers/               # Tool handlers, save pipeline, and response assembly
 │   ├── lib/                    # Search pipeline, cognitive engine, graph, governance
-│   ├── matrix_runners/         # F1-F14 x CLI adapter manifest and runner
-│   ├── stress_test/            # Opt-in stress, load, matrix-cell, and degraded-state suites
+│   ├── matrix-runners/         # F1-F14 x CLI adapter manifest and runner
+│   ├── stress-test/            # Opt-in stress, load, matrix-cell, and degraded-state suites
 │   ├── tests/                  # MCP test suite
 │   ├── INSTALL-GUIDE.md        # Full installation walkthrough
 │   └── README.md               # MCP server reference (tool API, pipeline, configuration)
@@ -593,8 +593,8 @@ Template changes flow through the manifest source, Level contract resolver and i
 ├── references/                 # Reference documentation (27 files)
 ├── assets/                     # Decision matrices, YAML configs
 ├── constitutional/             # Always-surface rules (never decay)
-├── feature_catalog/            # Feature documentation catalog
-└── manual_testing_playbook/    # Manual validation scenarios
+├── feature-catalog/            # Feature documentation catalog
+└── manual-testing-playbook/    # Manual validation scenarios
 ```
 
 ### Key Files
@@ -603,14 +603,14 @@ Template changes flow through the manifest source, Level contract resolver and i
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                     | AI agent instructions: routing rules, gates, validation procedures, template application             |
 | [`README.md`](./README.md)                                                   | This file: what Spec Kit does, how to use it, where to find things                                 |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
-| [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp-server/`                                           |
+| [`mcp-server/README.md`](./mcp-server/README.md)                             | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
 | `scripts/dist/memory/generate-context.js`                                    | Primary workflow for updating packet continuity state from structured JSON                            |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Complete catalog of implemented features                                    |
-| [`feature_catalog/lifecycle/speckit_autopilot_lifecycle.md`](./feature_catalog/lifecycle/speckit_autopilot_lifecycle.md) | Branch-preserved unattended Speckit lifecycle for plan, implement and complete |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Complete catalog of implemented features                                    |
+| [`feature-catalog/lifecycle/speckit-autopilot-lifecycle.md`](./feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) | Branch-preserved unattended Speckit lifecycle for plan, implement and complete |
 
 ### How the Pieces Connect
 
@@ -620,9 +620,9 @@ The **spec folder workflow** is the filing system. Every time you modify files, 
 
 The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5 and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` compares folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`, selects the fresher source, then falls back to the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
 
-The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:research` anchors research to `spec.md` through [spec_check_protocol.md](../system-deep-loop/deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
+The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake-contract.md](./references/workflows/intake-contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:research` anchors research to `spec.md` through [spec-check-protocol.md](../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
-The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:research` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
+The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:research` can enrich that packet under the bounded `spec-check-protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
 ```text
 Session starts
@@ -674,9 +674,9 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `LOG_LEVEL`          | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
 | `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | No | Set `1` to enable the launcher RSS-ceiling watchdog. When the mk-spec-memory process tree breaches `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB`, the launcher sends SIGTERM and exits with crash-loop backoff. Default off. |
-| `SPECKIT_BACKEND_ONLY` | No | Backend-only stdio gate read at server boot (`mcp_server/context-server.ts`). Set `1` so the process runs purely as the recyclable backend behind the MCP front-proxy and skips front-facing stdio wiring. The launcher's `bridgeStdioThroughSessionProxy` then owns the client-facing transport. Default off (direct stdio). |
+| `SPECKIT_BACKEND_ONLY` | No | Backend-only stdio gate read at server boot (`mcp-server/context-server.ts`). Set `1` so the process runs purely as the recyclable backend behind the MCP front-proxy and skips front-facing stdio wiring. The launcher's `bridgeStdioThroughSessionProxy` then owns the client-facing transport. Default off (direct stdio). |
 
-For the full list of environment variables (including evaluation, telemetry and feature flag overrides), see [`references/config/environment_variables.md`](./references/config/environment_variables.md).
+For the full list of environment variables (including evaluation, telemetry and feature flag overrides), see [`references/config/environment-variables.md`](./references/config/environment-variables.md).
 
 ### MCP Server Configuration
 
@@ -688,7 +688,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
     "mk-spec-memory": {
       "command": "node",
       "args": [
-        "/absolute/path/to/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        "/absolute/path/to/.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js"
       ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto"
@@ -698,7 +698,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 }
 ```
 
-OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
+OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
 
 ### Feature Flags
 
@@ -712,7 +712,7 @@ The indexed-continuity store uses runtime-resolved feature flags rather than imp
 | Embedding and API        | Startup provider resolution, fail-fast dimension checks, structured fallback metadata                      |
 | Evaluation and Telemetry | Ablation guardrails, reporting dashboard output, optional trace and eval logging                           |
 
-For the full flag reference and rollback procedures, see [`references/workflows/rollback_runbook.md`](./references/workflows/rollback_runbook.md).
+For the full flag reference and rollback procedures, see [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md).
 
 ### Dynamic Token Budget
 
@@ -842,7 +842,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 
 ```bash
 # Check the server can start
-node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
 
 # If it fails, check Node.js version (requires >= 20.11)
 node --version
@@ -986,7 +986,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh \
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/NNN-feature/ --verbose
 
-# Check API boundary (scripts/ vs mcp_server/)
+# Check API boundary (scripts/ vs mcp-server/)
 bash .opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
 
 # View memory system health
@@ -1029,7 +1029,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 41-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp-server/README.md`) goes deep on the indexed-continuity store: the 41-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 
@@ -1063,24 +1063,24 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | Document                                                                                         | Purpose                                                                                              |
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
-| [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
-| [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
-| [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table and swap architecture                              |
-| [`references/memory/embedding_resilience.md`](./references/memory/embedding_resilience.md)       | Embedder fallback, degraded search, retry and cache-boundary behavior                               |
-| [`references/memory/embedder_pluggability.md`](./references/memory/embedder_pluggability.md)     | Cross-MCP embedder defaults, swap flows, device selection and support matrix                        |
-| [`references/workflows/intake_contract.md`](./references/workflows/intake_contract.md)           | Shared spec-folder intake contract for `/speckit:plan`, `/speckit:complete` and resume re-entry     |
-| [`references/workflows/rename_pattern.md`](./references/workflows/rename_pattern.md)             | Mechanical rename workflow and live-vs-historical surface discipline                                 |
-| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | Partial validation-rule reference; the 38-rule registry is authoritative                             |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp-server/`                                           |
+| [`mcp-server/README.md`](./mcp-server/README.md)                                                 | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
+| [`references/memory/memory-system.md`](./references/memory/memory-system.md)                     | Detailed memory system reference                                                                     |
+| [`references/memory/embedder-architecture.md`](./references/memory/embedder-architecture.md)     | Active embedder pointer, vector shard, dim-table and swap architecture                              |
+| [`references/memory/embedding-resilience.md`](./references/memory/embedding-resilience.md)       | Embedder fallback, degraded search, retry and cache-boundary behavior                               |
+| [`references/memory/embedder-pluggability.md`](./references/memory/embedder-pluggability.md)     | Cross-MCP embedder defaults, swap flows, device selection and support matrix                        |
+| [`references/workflows/intake-contract.md`](./references/workflows/intake-contract.md)           | Shared spec-folder intake contract for `/speckit:plan`, `/speckit:complete` and resume re-entry     |
+| [`references/workflows/rename-pattern.md`](./references/workflows/rename-pattern.md)             | Mechanical rename workflow and live-vs-historical surface discipline                                 |
+| [`references/validation/validation-rules.md`](./references/validation/validation-rules.md)       | Partial validation-rule reference; the 38-rule registry is authoritative                             |
 | Level specifications reference                                                                    | Level definitions and template size guidance                                                         |
-| [`references/templates/template_guide.md`](./references/templates/template_guide.md)             | Template usage and composition rules                                                                 |
-| [`references/config/environment_variables.md`](./references/config/environment_variables.md)     | Full environment variable reference                                                                  |
-| [`references/config/launcher_lease.md`](./references/config/launcher_lease.md)                   | mk-spec-memory launcher single-writer lease and stale-reclaim behavior                               |
-| [`references/hooks/skill_advisor_hook.md`](./references/hooks/skill_advisor_hook.md)             | Prompt-time Skill Advisor hook contract across supported runtimes                                    |
-| [`references/hooks/skill_advisor_hook_validation.md`](./references/hooks/skill_advisor_hook_validation.md) | Skill Advisor hook validation playbook                                                     |
-| [`references/workflows/rollback_runbook.md`](./references/workflows/rollback_runbook.md)         | Feature-flag rollback and smoke-test procedures                                                      |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md)                     | Complete catalog of implemented features                                                |
+| [`references/templates/template-guide.md`](./references/templates/template-guide.md)             | Template usage and composition rules                                                                 |
+| [`references/config/environment-variables.md`](./references/config/environment-variables.md)     | Full environment variable reference                                                                  |
+| [`references/config/launcher-lease.md`](./references/config/launcher-lease.md)                   | mk-spec-memory launcher single-writer lease and stale-reclaim behavior                               |
+| [`references/hooks/skill-advisor-hook.md`](./references/hooks/skill-advisor-hook.md)             | Prompt-time Skill Advisor hook contract across supported runtimes                                    |
+| [`references/hooks/skill-advisor-hook-validation.md`](./references/hooks/skill-advisor-hook-validation.md) | Skill Advisor hook validation playbook                                                     |
+| [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md)         | Feature-flag rollback and smoke-test procedures                                                      |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md)                     | Complete catalog of implemented features                                                |
 | [`../../changelog/system-spec-kit/`](../../changelog/system-spec-kit/) | Release changelog history for system-spec-kit |
 
 ### Cross-Skill Alignment
