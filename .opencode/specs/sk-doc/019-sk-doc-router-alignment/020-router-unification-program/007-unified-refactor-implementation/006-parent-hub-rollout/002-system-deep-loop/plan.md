@@ -37,8 +37,8 @@ Compile the seven authored `system-deep-loop` public modes into seven content-ad
 
 ### Definition of Done
 - [x] Seven destinations compiled; `count(destinations) == count(publicModes) != count(packets)`.
-- [x] Deep-loop route-gold green under shadow replay; `router-replay.cjs` unmodified.
-- [x] Stage-4 canary passed: zero hard mismatch, advisor identity matched-or-ignored, document parity, rollback drill proven byte-exact.
+- [ ] Deep-loop route-gold green under shadow replay; `router-replay.cjs` remains unmodified, but 7 positive rows are `shadow-partial`.
+- [ ] Stage-4 canary passed: document parity and rollback pass, but route-gold has 7 `shadow-partial` rows and blocks activation.
 - [x] `spec.md` / `plan.md` / `tasks.md` reconciled; no completion claim without the canary evidence.
 
 ## 3. ARCHITECTURE
@@ -86,15 +86,15 @@ Required inventories:
 ### Phase B: Projections + parity (REQ-005, 009, 010)
 - [x] Emit `AdvisorProjectionV1` with `effectivePolicyHash` + projection hash; preserve `routingClass` aliases; wire the annotation-only degradation on hash mismatch.
 - [x] Build the compatibility projector against the `smart_routing.md` `{workflowMode, leafResourceId}` shape; author `TypedRouteGoldV1` fixtures.
-- [x] Run shadow parity (zero live authority): deep-loop route-gold stays green; `router-replay.cjs` byte-unchanged.
+- [ ] Run shadow parity (zero live authority): 4 rows are real green and 7 positive rows are honestly `shadow-partial`; `router-replay.cjs` is byte-unchanged.
 - [x] (P1) Generate the deep-loop `PolicyCardV1.md`; run the document-only replay lane.
 
 ### Phase C: Fenced canary + rollback (REQ-007, 008; Stage-4 gate)
 - [x] Dual-read (Stage 2): confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves; unmapped fails closed.
 - [x] Verify no over-emission: zero-signal request -> `defer(no-match)` (the `UNKNOWN_FALLBACK` checklist as the `clarify` payload); no default union.
-- [x] Run the fenced canary: zero hard mismatch vs legacy; advisor identity matched-or-ignored; document parity passes.
+- [ ] Run the fenced canary: advisor identity and document parity pass, but 7 resource-incomplete rows prevent zero hard mismatch.
 - [x] Execute the rollback drill: CAS swap to the byte-identical prior manifest; assert a mixed-generation request hard-blocks.
-- [x] Record the Stage-4 evidence and confirm the gate is open for `006/003` (`mcp-tooling`).
+- [ ] Record the Stage-4 evidence; the gate remains blocked until the compiled policy projects the full positive-row resource sets.
 
 ### Implementation Evidence
 
@@ -102,10 +102,10 @@ Required inventories:
 |------|--------|----------|
 | Compile | Pass | `7` registry modes compile to `7` distinct public modes and injective destinations across `5` packets; duplicate/missing public modes fail specifically; canonical recompile is byte-identical. |
 | No-collapse | Pass | End-to-end authored-registry mutations fail with `SHARED_PACKET_COLLAPSE` and `RUNTIME_KEY_COLLAPSE`. |
-| Route-gold | GREEN | `11/11` delivered typed rows pass real read-only `evaluateRouteGold`; `7/7` positives come from live hub output; a persisted coherent tamper fails. |
+| Route-gold | `shadow-partial` | Real read-only `evaluateRouteGold` scores all 11 compatibility-projector observations: 4 real green, 7 positive rows `shadow-partial`; no legacy backfill; a persisted coherent tamper fails. |
 | Document parity | Pass | `15/15` full-request machine/document decisions match, including constraint-only `reject(forbidden)`; planted divergence fails closed. |
-| Activation | Pass | Nine aggregate hard blocks driven; CAS rollback restores byte-identical prior bytes at fence epoch `2`. |
-| Strict packet validation | Not run | The execution brief explicitly forbids `validate.sh`; this boundary remains recorded in `tasks.md` and the summary. |
+| Activation | Blocked | Nine aggregate hard blocks and rollback mechanics pass, but the actual route-gold subgate is not green. |
+| Strict packet validation | Pending | Run after final documentation reconciliation. |
 
 ## 6. VERIFICATION
 

@@ -43,9 +43,6 @@ const {
   ExecutionProtocolError,
 } = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
 const {
-  projectExecutionToRouteGold,
-} = require('../../../003-execution-verify-commit/lib/projector.cjs');
-const {
   CanaryActivationError,
   HARD_BLOCKS,
   assertActivationEligible,
@@ -69,6 +66,7 @@ const {
   replayPolicyCard,
 } = require('../lib/policy-card.cjs');
 const {
+  compatibilityProjection,
   loadSnapshot,
   sourceBytes,
 } = require('./build-artifacts.cjs');
@@ -189,6 +187,26 @@ function routeGoldMismatchReason(verdict) {
   return verdict.reason || 'route-gold-mismatch';
 }
 
+function classifyRouteGoldRow(entry, observed, verdict) {
+  if (verdict.pass === true) return 'real-green';
+  const expectedResources = new Set(entry.gold.expectedResources);
+  const observedResources = new Set(observed.observedResources);
+  const hasUnexpectedResource = [...observedResources].some((resource) => (
+    !expectedResources.has(resource)
+  ));
+  const hasMissingResource = [...expectedResources].some((resource) => (
+    !observedResources.has(resource)
+  ));
+  if (entry.expectedAction === 'route'
+    && verdict.intentOk === true
+    && verdict.resourceOk === false
+    && hasMissingResource
+    && !hasUnexpectedResource) {
+    return 'shadow-partial';
+  }
+  return 'invalid';
+}
+
 function failDeliveredRouteGold(code, message, routeGoldReason = null) {
   const error = new TypeError(message);
   error.code = code;
@@ -213,7 +231,7 @@ function scoreDeliveredRouteGold(typedPath, acceptancePath, fixture) {
       'delivered typed route gold does not cover the authored case set',
     );
   }
-  const scorerInputs = typed.cases.map((row) => {
+  const deliveredRows = typed.cases.map((row) => {
     assert.deepStrictEqual(schemaErrors(TYPED_GOLD_SCHEMA, row), []);
     if (computeProjectionHash('TypedRouteGoldV1', row) !== row.projectionHash) {
       failDeliveredRouteGold(
@@ -229,31 +247,54 @@ function scoreDeliveredRouteGold(typedPath, acceptancePath, fixture) {
       );
     }
     return {
+      entry,
       observed: {
         observedIntents: row.observedIntents,
         observedResources: row.observedResources.map((resource) => resource.resource),
       },
-      scenario: scorerScenario(entry),
+      row,
     };
   });
+  const scorerInputs = deliveredRows.map(({ entry, observed }) => ({
+    observed,
+    scenario: scorerScenario(entry),
+  }));
   const scorer = scoreRouteGoldReadOnly(scorerInputs);
   assert.strictEqual(scorer.writeBackAttempted, false);
-  const failedIndex = scorer.verdicts.findIndex((verdict) => verdict.pass !== true);
-  if (failedIndex >= 0) {
-    const verdict = scorer.verdicts[failedIndex];
-    const scenarioId = typed.cases[failedIndex].scenarioId;
-    const reason = routeGoldMismatchReason(verdict);
-    failDeliveredRouteGold(
-      'DELIVERED_ROUTE_GOLD_MISMATCH',
-      `delivered route-gold scenario failed: ${scenarioId} (${reason})`,
-      reason,
-    );
-  }
+  const rows = scorer.verdicts.map((verdict, index) => {
+    const delivered = deliveredRows[index];
+    const status = classifyRouteGoldRow(delivered.entry, delivered.observed, verdict);
+    if (status === 'invalid') {
+      const reason = routeGoldMismatchReason(verdict);
+      failDeliveredRouteGold(
+        'DELIVERED_ROUTE_GOLD_MISMATCH',
+        `delivered route-gold scenario failed: ${delivered.row.scenarioId} (${reason})`,
+        reason,
+      );
+    }
+    return {
+      observed: delivered.observed,
+      scenarioId: delivered.row.scenarioId,
+      status,
+    };
+  });
+  const shadowPartialScenarioIds = rows
+    .filter((row) => row.status === 'shadow-partial')
+    .map((row) => row.scenarioId);
+  const realGreenScenarioIds = rows
+    .filter((row) => row.status === 'real-green')
+    .map((row) => row.scenarioId);
   return {
     acceptanceDigestBound: true,
     projectionHashesBound: true,
     realEvaluateRouteGoldRows: scorer.verdicts.length,
+    realGreenRows: realGreenScenarioIds.length,
+    realGreenScenarioIds,
+    rows,
     scorerSource: 'real-read-only-evaluateRouteGold',
+    shadowPartialRows: shadowPartialScenarioIds.length,
+    shadowPartialScenarioIds,
+    status: shadowPartialScenarioIds.length > 0 ? 'shadow-partial' : 'real-green',
     writeBackAttempted: scorer.writeBackAttempted,
   };
 }
@@ -265,10 +306,15 @@ function runDeliveredRouteGoldFalsifier(fixture) {
   const temporaryRoot = fs.mkdtempSync(path.join(__dirname, '.tmp-route-gold-'));
   try {
     const typed = readJson(compiledPath);
-    typed.cases[0].observedIntents = ['corrupted-delivered-observation'];
-    typed.cases[0].projectionHash = computeProjectionHash(
+    const realGreenScenarioId = delivered.realGreenScenarioIds[0];
+    const realGreenIndex = typed.cases.findIndex((row) => (
+      row.scenarioId === realGreenScenarioId
+    ));
+    assert.notStrictEqual(realGreenIndex, -1, 'a real-green row is required for the falsifier');
+    typed.cases[realGreenIndex].observedIntents = ['corrupted-delivered-observation'];
+    typed.cases[realGreenIndex].projectionHash = computeProjectionHash(
       'TypedRouteGoldV1',
-      typed.cases[0],
+      typed.cases[realGreenIndex],
     );
     const typedBytes = artifactBytes(typed);
     const acceptance = readJson(acceptancePath);
@@ -290,6 +336,7 @@ function runDeliveredRouteGoldFalsifier(fixture) {
       ...delivered,
       coherentTamperGuard: failure.code,
       coherentTamperReason: failure.routeGoldReason,
+      corruptedScenarioId: realGreenScenarioId,
       persistedTamperScored: true,
     };
   } finally {
@@ -339,6 +386,13 @@ function assertCompiledArtifacts(snapshot) {
   assert.strictEqual(packetCount, 5);
   assert.notStrictEqual(snapshot.policy.destinations.length, packetCount);
   assert.strictEqual(snapshot.policy.compositionRules.length, 0);
+  assert.ok(snapshot.manifestResources.length > 0, 'compiled manifest identities are required');
+  assert.strictEqual(
+    new Set(snapshot.manifestResources.map((entry) => (
+      `${entry.workflowMode}\u0000${entry.leafResourceId}`
+    ))).size,
+    snapshot.manifestResources.length,
+  );
   assertNoCollapse(rows, registry);
   assertInjective(rows);
   assert.strictEqual(typed.identityFixture.injective, true);
@@ -404,6 +458,7 @@ function assertCompiledArtifacts(snapshot) {
     destinationCount: snapshot.policy.destinations.length,
     distinctPublicModeCount: distinctPublicModes,
     identityInjective: true,
+    manifestIdentityCount: snapshot.manifestResources.length,
     packetCount,
     registryModeCount: registry.modes.length,
     runtimeDiscriminatorSource: 'authored-registry-verbatim',
@@ -472,7 +527,6 @@ function runCollapseFalsifiers(snapshot) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function runRouteCases(snapshot, fixture) {
-  const { routeSkillResources } = require(path.join(SCORER_ROOT, 'router-replay.cjs'));
   const rows = [];
   const scorerInputs = [];
   for (const entry of fixture.cases) {
@@ -496,29 +550,12 @@ function runRouteCases(snapshot, fixture) {
       assert.strictEqual(result.decision.clarify.question, snapshot.fallbackChecklist[0]);
     }
 
-    let resources = [];
-    let realHubLegacyMatch = null;
-    if (result.decision.action === 'route') {
-      const legacy = routeSkillResources({ skillRoot: SKILL_ROOT, taskText: entry.prompt });
-      assert.strictEqual(legacy.parseable, true);
-      assert.deepStrictEqual(legacy.missingResources, []);
-      assert.deepStrictEqual(legacy.intents, entry.gold.expectedIntents);
-      assert.deepStrictEqual(legacy.resources, entry.gold.expectedResources);
-      resources = legacy.resources;
-      realHubLegacyMatch = true;
-    } else if (entry.id === 'zero-signal-defer') {
-      const legacy = routeSkillResources({ skillRoot: SKILL_ROOT, taskText: entry.prompt });
-      assert.deepStrictEqual(legacy.intents, []);
-      assert.deepStrictEqual(legacy.resources, []);
-      realHubLegacyMatch = true;
-    }
-    const projection = projectExecutionToRouteGold(result.decision, resources);
+    const projection = compatibilityProjection(snapshot, result.decision);
     scorerInputs.push({ observed: projection, scenario: scorerScenario(entry) });
     rows.push({
       action: result.decision.action,
       id: entry.id,
       projection,
-      realHubLegacyMatch,
       selectionKind: result.decision.route?.selectionKind || null,
       targetModes: targetModes(result.decision),
     });
@@ -526,24 +563,57 @@ function runRouteCases(snapshot, fixture) {
   const scorer = scoreRouteGoldReadOnly(scorerInputs);
   assert.strictEqual(scorer.writeBackAttempted, false);
   scorer.verdicts.forEach((verdict, index) => {
-    assert.strictEqual(verdict.pass, true, `${fixture.cases[index].id} real scorer mismatch`);
-    rows[index].realEvaluateRouteGoldPass = true;
+    const status = classifyRouteGoldRow(
+      fixture.cases[index],
+      scorerInputs[index].observed,
+      verdict,
+    );
+    assert.notStrictEqual(status, 'invalid', `${fixture.cases[index].id} invalid mismatch`);
+    rows[index].realEvaluateRouteGoldPass = verdict.pass;
+    rows[index].routeGoldStatus = status;
   });
 
-  const corrupted = clone(scorerInputs[0]);
+  const realGreenIndex = rows.findIndex((row) => row.routeGoldStatus === 'real-green');
+  assert.notStrictEqual(realGreenIndex, -1, 'a real-green row is required for the falsifier');
+  const corrupted = clone(scorerInputs[realGreenIndex]);
   corrupted.observed.observedIntents = ['corrupted-observation'];
   const falsifier = scoreRouteGoldReadOnly([corrupted]).verdicts[0];
   assert.strictEqual(falsifier.pass, false, 'corrupted observation must fail real scorer');
+
+  const researchIndex = fixture.cases.findIndex((entry) => entry.id === 'single-research');
+  const researchResult = evaluateCanary(snapshot, fixture.cases[researchIndex]);
+  const researchProjectorOutput = compatibilityProjection(snapshot, researchResult.decision);
+  assert.deepStrictEqual(researchProjectorOutput, scorerInputs[researchIndex].observed);
+  assert.deepStrictEqual(researchProjectorOutput.observedResources, []);
+  assert.strictEqual(rows[researchIndex].routeGoldStatus, 'shadow-partial');
+
+  const realGreenScenarioIds = rows
+    .filter((row) => row.routeGoldStatus === 'real-green')
+    .map((row) => row.id);
+  const shadowPartialScenarioIds = rows
+    .filter((row) => row.routeGoldStatus === 'shadow-partial')
+    .map((row) => row.id);
   const deliveredArtifact = runDeliveredRouteGoldFalsifier(fixture);
   return {
     corruptedObservationPass: falsifier.pass,
+    corruptedScenarioId: rows[realGreenIndex].id,
     deliveredArtifact,
+    legacyBackfillUsed: false,
+    projectorProof: {
+      compiledLeafPairs: 0,
+      manifestIdentityCount: snapshot.manifestResources.length,
+      projectorOutput: researchProjectorOutput,
+      projectorOutputEqualsScoredObservation: true,
+      scenarioId: 'single-research',
+      scoredObservation: scorerInputs[researchIndex].observed,
+    },
     realEvaluateRouteGoldRows: rows.length,
-    realHubPositiveRows: rows.filter((row) => (
-      row.action === 'route' && row.realHubLegacyMatch === true
-    )).length,
+    realGreenRows: realGreenScenarioIds.length,
+    realGreenScenarioIds,
     rows,
     scorerSource: 'real-read-only-evaluateRouteGold',
+    shadowPartialRows: shadowPartialScenarioIds.length,
+    shadowPartialScenarioIds,
     writeBackAttempted: scorer.writeBackAttempted,
   };
 }
@@ -903,7 +973,13 @@ function runHardBlocks(snapshot, fixture) {
   }
   const eligible = assertActivationEligible(green);
   assert.deepStrictEqual(eligible, { eligible: true, servingAuthority: 'legacy', shadowOnly: true });
+  assertThrowsCode(
+    () => assertActivationEligible({ ...green, routeGoldGreen: false }),
+    CanaryActivationError,
+    'CANARY_SUBGATE_INCOMPLETE',
+  );
   return {
+    allGreenEligible: eligible,
     codes,
     directGuardCodes: {
       bundleEmission: 'BUNDLE_EMISSION_FORBIDDEN',
@@ -912,7 +988,7 @@ function runHardBlocks(snapshot, fixture) {
       negativeTarget: 'NEGATIVE_TARGET_FORBIDDEN',
       pinnedTupleMismatch: 'PINNED_TUPLE_MISMATCH',
     },
-    eligible,
+    shadowPartialEligible: false,
   };
 }
 
@@ -1040,20 +1116,23 @@ function runCanary() {
     rollback,
     routes,
     stageGate: {
+      activationEligibility: 'blocked-by-shadow-partial',
       advisorIdentity: 'pass-or-annotation-only',
       documentParity: 'pass',
       documentRequest: 'full-machine-request',
       distinctPublicModes: compiled.distinctPublicModeCount,
-      deliveredArtifactRouteGold: 'pass',
+      deliveredArtifactRouteGold: routes.deliveredArtifact.status,
       noCollapse: 'pass',
       rollbackDrill: 'pass',
-      routeGold: 'GREEN',
+      routeGold: 'shadow-partial',
+      routeGoldRealGreenRows: routes.realGreenRows,
+      routeGoldShadowPartialRows: routes.shadowPartialRows,
       scorer: 'real-read-only-evaluateRouteGold',
       selectionKinds: ['single'],
       servingAuthority: 'legacy',
     },
     staticGates,
-    status: 'GREEN',
+    status: 'shadow-partial',
   };
 }
 

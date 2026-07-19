@@ -19,8 +19,8 @@ const {
   qualifiedDestinationId,
 } = require('../../../001-compiler-n1-shadow/compiler/compiler.cjs');
 const {
-  projectExecutionToRouteGold,
-} = require('../../../003-execution-verify-commit/lib/projector.cjs');
+  projectToRouteGold,
+} = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
   artifactBytes,
   compileRegistry,
@@ -96,29 +96,27 @@ function writeBytes(filePath, bytes) {
   fs.writeFileSync(filePath, bytes, { mode: 0o600 });
 }
 
-function liveRouteResources(entry, decision) {
-  if (decision.action !== 'route') return [];
-  const scorerRoot = path.join(
-    SKILL_ROOT,
-    'deep-improvement',
-    'scripts',
-    'skill-benchmark',
-  );
-  const { routeSkillResources } = require(path.join(scorerRoot, 'router-replay.cjs'));
-  const routed = routeSkillResources({ skillRoot: SKILL_ROOT, taskText: entry.prompt });
-  if (!routed.parseable || routed.missingResources.length > 0) {
-    throw new Error(`live route projection failed for ${entry.id}`);
-  }
-  return routed.resources;
+/**
+ * Project only the leaf identities selected by the compiled shadow policy.
+ *
+ * @param {Object} snapshot - Compiled policy and manifest identities.
+ * @param {Object} decision - Typed route decision.
+ * @param {Array<{workflowMode:string,leafResourceId:string}>} [leafPairs]
+ *   Leaf identities selected by the compiled policy.
+ * @returns {{observedIntents:string[],observedResources:string[]}} Scorer observation.
+ */
+function compatibilityProjection(snapshot, decision, leafPairs = []) {
+  return projectToRouteGold(decision, {
+    leafPairs,
+    manifestResources: snapshot.manifestResources,
+    policy: snapshot.policy,
+  });
 }
 
 function typedGold(snapshot, fixture) {
   const rows = fixture.cases.map((entry) => {
     const evaluated = evaluateCanary(snapshot, entry);
-    const projection = projectExecutionToRouteGold(
-      evaluated.decision,
-      liveRouteResources(entry, evaluated.decision),
-    );
+    const projection = compatibilityProjection(snapshot, evaluated.decision);
     const row = {
       assertions: {
         duplicateIdempotencyKeyProducesSingleReceipt: false,
@@ -236,6 +234,7 @@ function buildArtifacts() {
 
 module.exports = {
   buildArtifacts,
+  compatibilityProjection,
   loadSnapshot,
   sourceBytes,
   typedGold,

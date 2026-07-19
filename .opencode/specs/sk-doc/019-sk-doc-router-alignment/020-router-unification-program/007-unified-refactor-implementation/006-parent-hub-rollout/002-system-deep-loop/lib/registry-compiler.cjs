@@ -266,6 +266,54 @@ function detectorGraph(registry, destinations) {
   return { detectors, selectors };
 }
 
+function compileManifestResources(leafManifest, registry) {
+  assertObject(leafManifest, 'leaf manifest');
+  if (!Array.isArray(leafManifest.modes)) {
+    fail('AUTHORED_INPUT_INVALID', 'leaf manifest must declare modes');
+  }
+  const registryByMode = new Map(registry.modes.map((mode) => [mode.workflowMode, mode]));
+  const identities = [];
+  const seen = new Set();
+  leafManifest.modes.forEach((mode, modeIndex) => {
+    assertObject(mode, `leaf manifest modes[${modeIndex}]`);
+    assertString(mode.workflowMode, `leaf manifest modes[${modeIndex}].workflowMode`);
+    assertString(mode.packet, `leaf manifest modes[${modeIndex}].packet`);
+    const registered = registryByMode.get(mode.workflowMode);
+    if (!registered || registered.packet !== mode.packet) {
+      fail(
+        'MANIFEST_IDENTITY_MISMATCH',
+        `leaf manifest identity does not match the registry: ${mode.workflowMode}`,
+      );
+    }
+    if (!Array.isArray(mode.leaves)) {
+      fail('AUTHORED_INPUT_INVALID', `leaf manifest modes[${modeIndex}].leaves must be an array`);
+    }
+    mode.leaves.forEach((leafResourceId, leafIndex) => {
+      assertString(
+        leafResourceId,
+        `leaf manifest modes[${modeIndex}].leaves[${leafIndex}]`,
+      );
+      const key = `${mode.workflowMode}\u0000${leafResourceId}`;
+      if (seen.has(key)) {
+        fail(
+          'MANIFEST_IDENTITY_DUPLICATE',
+          `leaf manifest identity is duplicated: ${mode.workflowMode}/${leafResourceId}`,
+        );
+      }
+      seen.add(key);
+      identities.push({
+        leafResourceId,
+        resource: `${mode.packet}/${leafResourceId}`,
+        workflowMode: mode.workflowMode,
+      });
+    });
+  });
+  return identities.sort((left, right) => (
+    compareText(left.workflowMode, right.workflowMode)
+      || compareText(left.leafResourceId, right.leafResourceId)
+  ));
+}
+
 function buildDestinations(registry) {
   return registry.modes.map((mode) => {
     const id = destinationId(registry.skill, mode);
@@ -341,6 +389,7 @@ function compileRegistry(input) {
   const rows = input.registry.modes.map((mode) => projectionRow(input.registry.skill, mode));
   assertInjective(rows);
   assertNoCollapse(rows, input.registry);
+  const manifestResources = compileManifestResources(input.leafManifest, input.registry);
   const destinations = buildDestinations(input.registry);
   const destinationKeys = destinations.map((destination) => destinationKey(destination.id));
   if (new Set(destinationKeys).size !== destinations.length) {
@@ -397,6 +446,7 @@ function compileRegistry(input) {
     advisorProjection: Object.freeze(advisorProjection),
     aliasProjections: Object.freeze(aliases),
     fallbackChecklist: Object.freeze(fallbackChecklist(input.registry, input.skillMarkdown)),
+    manifestResources: Object.freeze(manifestResources.map((entry) => Object.freeze(entry))),
     policy: Object.freeze(policy),
     projectionGraph: Object.freeze(buildProjectionGraph(input.registry, rows)),
     sourceHashes: Object.freeze(sourceHashes),

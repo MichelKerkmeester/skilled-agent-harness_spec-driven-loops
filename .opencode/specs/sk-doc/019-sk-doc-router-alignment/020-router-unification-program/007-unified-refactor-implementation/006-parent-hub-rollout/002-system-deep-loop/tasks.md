@@ -48,7 +48,7 @@ contextType: "implementation"
 - [x] T012 Wire the projection-hash drift guard: on mismatch, advisor evidence degrades to annotation-only and never rewrites a route (REQ-005).
 - [x] T013 Build the compatibility projector mapping typed decisions into the existing `{workflowMode, leafResourceId}` observation shape via `shared/references/smart_routing.md` (REQ-009; §8.2).
 - [x] T014 Author `TypedRouteGoldV1` fixtures for deep-loop: exact single routes per mode, the two no-collapse cases, zero-signal `defer(no-match)` with no default union, one-turn `clarify`, forbidden `reject`, stale/absent advisor parity, injectivity assertion.
-- [x] T015 Run shadow parity with zero live authority; confirm deep-loop route-gold stays green (REQ-009; §8.2).
+- [ ] T015 Run shadow parity with zero live authority; current evidence is 4 real-green rows and 7 positive `shadow-partial` rows, with no legacy backfill (REQ-009; §8.2).
 - [x] T016 [P] Assert `router-replay.cjs` is byte-unchanged (diff == 0); a required scorer edit is logged as a migration failure, not applied (REQ-009; §10).
 - [x] T017 [P] (P1) Generate the deep-loop `PolicyCardV1.md` from the same compiled snapshot; run the document-only replay lane and confirm it matches the machine policy (REQ-010; §8.3).
 
@@ -56,14 +56,14 @@ contextType: "implementation"
 
 - [x] T018 Stage-2 dual-read: confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves through a declared mode/alias; unmapped input fails closed (§9 Stage 2).
 - [x] T019 Verify no over-emission: a zero-signal deep-loop request yields `defer(no-match)` with the `UNKNOWN_FALLBACK` checklist as the `clarify` payload; no full-registry union (REQ-007; §10).
-- [x] T020 Run the fenced Stage-4 canary on `system-deep-loop`: zero hard mismatch vs legacy; advisor identity matched-or-ignored; document parity passes (spec MIGRATION GATE).
+- [ ] T020 Run the fenced Stage-4 canary on `system-deep-loop`: advisor identity and document parity pass, but 7 positive route-gold rows remain `shadow-partial` (spec MIGRATION GATE).
 - [x] T021 Execute the rollback drill: CAS swap (token lock + fencing epoch; atomic temp/fsync/rename) to the byte-identical prior manifest; retain the prior generation through the bake window (REQ-008; §9).
 - [x] T022 Assert a request observing mixed generations hard-blocks, and that no non-`route` decision carries a target/authority (§9 hard gates).
-- [x] T023 Record the Stage-4 evidence bundle and confirm the gate is OPEN for `006/003` (`mcp-tooling`) activation.
+- [ ] T023 Record the Stage-4 evidence bundle; the gate remains blocked by partial positive-row resource projection.
 
 ## Phase 5: Verification & reconciliation
 
-- [B] T024 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and resolve any errors. **Blocked by the execution brief's explicit `Do NOT run validate.sh` constraint.**
+- [ ] T024 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` after final documentation reconciliation and resolve any errors.
 - [x] T025 Verify `count(destinations)==7` and `count(packets)==5`; both no-collapse assertions green (SC-001).
 - [x] T026 Reconcile `spec.md`/`plan.md`/`tasks.md` completion metadata; make no completion claim without the canary + rollback evidence.
 
@@ -73,9 +73,9 @@ contextType: "implementation"
 |-------|--------|----------|
 | Preconditions and extraction | Pass | Seven registry rows and both live collapse hazards are captured in `compiled/projection-graph.json`. |
 | Compile | Pass | Seven distinct public modes and injective destinations, five packets, verbatim runtime discriminators, single-only selection, and specific duplicate/missing refusals. |
-| Projections and parity | GREEN | Eleven delivered rows pass real read-only `evaluateRouteGold`; all seven positive rows come from live producer output; fifteen full-request document decisions match. |
-| Canary and rollback | Pass | Nine aggregate hard blocks driven; mixed pins refused; prior/restored manifest bytes identical. |
-| Reconciliation | Partial | Phase docs reconciled; strict packet validation prohibited and not run. |
+| Projections and parity | `shadow-partial` | Eleven compatibility-projector observations reach real read-only `evaluateRouteGold`; 4 are real green and 7 positive rows are resource-incomplete without legacy backfill; fifteen full-request document decisions match. |
+| Canary and rollback | Partial | Nine aggregate hard blocks, mixed-pin refusal, and byte-identical rollback pass; activation remains blocked by route-gold. |
+| Reconciliation | Pending strict gate | Phase docs are reconciled to `shadow-partial`; strict packet validation remains to run. |
 
 ---
 
@@ -83,8 +83,8 @@ contextType: "implementation"
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [x] SC-001..SC-005 met with evidence; `router-replay.cjs` byte-unchanged
-- [x] Stage-4 per-hub canary gate for `system-deep-loop` proven, rollback drill byte-exact, gate open for `006/003`
+- [ ] SC-001..SC-005 met with evidence; SC-002/SC-003 remain blocked by partial positive-row resources, while `router-replay.cjs` is byte-unchanged
+- [ ] Stage-4 per-hub canary gate for `system-deep-loop` proven; rollback is byte-exact, but the gate is not open for `006/003`
 
 ---
 
