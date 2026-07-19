@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "V1",
+  "activationOrder": [
+    "mcp-code-mode",
+    "sk-code",
+    "system-deep-loop",
+    "mcp-tooling"
+  ],
+  "bakeWindow": {
+    "minimumSuccessfulDeletions": 4
+  },
+  "rolledOutManifests": [
+    {
+      "canaryGreen": true,
+      "effectivePolicyHash": "3ade42a8ce250ed9b04e6020b7b6782b7de19f7f13e00fcd3c377748647f7de5",
+      "generation": 1,
+      "servingAuthority": "compiled",
+      "skillId": "mcp-code-mode"
+    },
+    {
+      "canaryGreen": true,
+      "effectivePolicyHash": "77bf5a97992b121439292d6c4fe5ac8e1a6f0a9a13fb1f2c90354d66d83fb31c",
+      "generation": 2,
+      "servingAuthority": "compiled",
+      "skillId": "sk-code"
+    },
+    {
+      "canaryGreen": true,
+      "effectivePolicyHash": "8c630732567283d66ae69b969447f462a0818b65049f9104f6c4140ec3d2ff64",
+      "generation": 3,
+      "servingAuthority": "compiled",
+      "skillId": "system-deep-loop"
+    },
+    {
+      "canaryGreen": true,
+      "effectivePolicyHash": "cbfeb97e7257226d9e53810953a2a09f32f2222133ac46d45d3b8bd3897efb75",
+      "generation": 4,
+      "servingAuthority": "compiled",
+      "skillId": "mcp-tooling"
+    }
+  ],
+  "fabricatedLegacyManifest": {
+    "canaryGreen": true,
+    "effectivePolicyHash": null,
+    "generation": 0,
+    "servingAuthority": "legacy",
+    "skillId": "mcp-code-mode"
+  },
+  "aliasRetirement": [
+    {
+      "prompt": "stable jsonl keys",
+      "skillId": "sk-code"
+    },
+    {
+      "prompt": "@deep-ai-council",
+      "skillId": "system-deep-loop"
+    },
+    {
+      "prompt": "aside repl",
+      "skillId": "mcp-tooling"
+    }
+  ],
+  "corruptedManifestHash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "n1": {
+    "exactPrompt": "orchestrate a multi-tool workflow",
+    "zeroSignalPrompt": "write a haiku about rain"
+  },
+  "corruptedObservation": {
+    "observedIntents": [
+      "corrupted-intent"
+    ],
+    "observedResources": []
+  }
+}

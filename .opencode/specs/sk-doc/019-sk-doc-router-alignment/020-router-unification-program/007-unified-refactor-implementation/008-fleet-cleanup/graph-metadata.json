@@ -36,13 +36,29 @@
       "aliases"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "compiled/final-manifest.json",
+      "compiled/PolicyCardV1.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "final-manifest.json",
+        "kind": "config",
+        "path": "compiled/final-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "PolicyCardV1.md",
+        "kind": "doc",
+        "path": "compiled/PolicyCardV1.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -59,6 +75,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -132,23 +160,57 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Legacy",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Cleanup",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
     "created_at": "2026-07-18T13:13:20.991Z",
-    "last_save_at": "2026-07-18T14:47:38.061Z",
+    "last_save_at": "2026-07-19T02:43:55.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f6145f1e34011d7a4e87793f9abd112537965af8d37af86c7f2b60b627f82ac",
+    "source_fingerprint": "sha256:4b4d85cea185d0e7f3460a73a9e8c7e63ee1e37fe26fb4cc3e061c033b03f6b1",
     "source_doc_hashes": {
-      "spec.md": "b2f4f6d4679a5c16b61e93ae185e4608947f239e0585ce2dfe2a9717bae8f1f2",
-      "plan.md": "260f630845decb2e0bd382c8ded2c7be96912722a7516844b05bd062c38de173",
-      "tasks.md": "89a53c31586e08264d7ff27f605e8f41eaa0399f9d91bd8a576c58c0988dc9f2"
+      "spec.md": "ee181ddc76ada2677a77b7ce97fc2dc7f209a6862e4d7e69f215fd1c52df4f7b",
+      "plan.md": "b8415f56abbb8f1f1c00f64580fc9ab3a033836fab3dfd90256463727a9e87a3",
+      "tasks.md": "50a2ac3ba7939a5b99079309fb7c618ec5c959808d8352feb796e3293141a2a4",
+      "checklist.md": "32c77c310649758f3f24a4d8da1f630370dac841e5561791686697cb02fc5de7",
+      "implementation-summary.md": "cbd5942f988ddf348671f3f6281281587ec817e1f32ddaf215ffb09b1e00c095"
     },
     "last_active_child_id": null,
     "last_active_at": null
