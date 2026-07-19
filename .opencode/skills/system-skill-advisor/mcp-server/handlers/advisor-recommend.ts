@@ -2,6 +2,7 @@
 // MODULE: advisor_recommend Handler
 // ───────────────────────────────────────────────────────────────
 
+import { execFileSync } from 'node:child_process';
 import { realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -36,6 +37,16 @@ type ScoredRecommendation = ReturnType<typeof scoreAdvisorPrompt>['recommendatio
 type PublicRecommendationStatus = NonNullable<AdvisorRecommendOutput['recommendations'][number]['status']>;
 type PublicThresholds = AdvisorRecommendOutput['effectiveThresholds'];
 type ShadowRecommendation = NonNullable<AdvisorRecommendOutput['_shadow']>['recommendations'][number];
+
+const COMPILED_ROUTING_HUBS = new Set([
+  'sk-code',
+  'mcp-tooling',
+  'system-deep-loop',
+  'cli-external-orchestration',
+  'sk-prompt',
+  'sk-design',
+  'sk-doc',
+]);
 
 function findWorkspaceRoot(start = process.cwd()): string {
   return findAdvisorWorkspaceRoot(start, { maxDepth: 12 });
@@ -312,6 +323,56 @@ function publicRecommendation(
   };
 }
 
+function compiledRouteForRecommendation(
+  skillId: string,
+  prompt: string,
+  workspaceRoot: string,
+): Record<string, unknown> | undefined {
+  if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
+  try {
+    const output = execFileSync(process.execPath, [
+      resolve(workspaceRoot, '.opencode', 'bin', 'compiled-route.cjs'),
+      '--hub',
+      skillId,
+      '--prompt',
+      prompt,
+    ], {
+      cwd: workspaceRoot,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5_000,
+      maxBuffer: 1_048_576,
+    });
+    const parsed: unknown = JSON.parse(output.trim());
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      return undefined;
+    }
+    const compiledRoute = parsed as Record<string, unknown>;
+    return compiledRoute.servingAuthority === 'legacy' ? undefined : compiledRoute;
+  } catch {
+    return undefined;
+  }
+}
+
+function enrichCompiledRoutes(
+  output: AdvisorRecommendOutput,
+  prompt: string,
+  workspaceRoot: string,
+): AdvisorRecommendOutput {
+  if (process.env.SPECKIT_COMPILED_ROUTING !== '1') return output;
+  return AdvisorRecommendOutputSchema.parse({
+    ...output,
+    recommendations: output.recommendations.map((recommendation) => {
+      const compiledRoute = compiledRouteForRecommendation(
+        recommendation.skillId,
+        prompt,
+        workspaceRoot,
+      );
+      return compiledRoute ? { ...recommendation, compiledRoute } : recommendation;
+    }),
+  });
+}
+
 function publicShadowRecommendations(recommendations: readonly ScoredRecommendation[], topK: number): ShadowRecommendation[] {
   const shadowRecommendations: ShadowRecommendation[] = [];
   for (const recommendation of recommendations) {
@@ -404,7 +465,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   const cached = advisorPromptCache.get(key);
   if (cached) {
     const cachedOutput = cached.value as AdvisorRecommendOutput;
-    return AdvisorRecommendOutputSchema.parse({
+    const parsedCachedOutput = AdvisorRecommendOutputSchema.parse({
       ...cachedOutput,
       workspaceRoot,
       effectiveThresholds,
@@ -413,6 +474,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
         hit: true,
       },
     });
+    return enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot);
   }
 
   const topK = input.options?.topK ?? 3;
@@ -479,7 +541,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     value: parsed,
     skillLabels: recommendationLabels(parsed),
   });
-  return parsed;
+  return enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
 }
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {
