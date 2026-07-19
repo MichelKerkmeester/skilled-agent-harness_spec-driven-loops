@@ -18,6 +18,9 @@ const {
   projectToRouteGold,
 } = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
+  sealCertificate,
+} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+const {
   artifactBytes,
   compileRegistry,
   sha256,
@@ -79,15 +82,32 @@ function writeBytes(filePath, bytes) {
   fs.writeFileSync(filePath, bytes, { mode: 0o600 });
 }
 
+function materializeFixtureInput(fixture, entry) {
+  const input = JSON.parse(JSON.stringify(entry));
+  const fixtureId = input.certificateFixture;
+  const certificateState = input.certificateState || 'live';
+  delete input.certificateFixture;
+  delete input.certificateState;
+  if (!fixtureId) return input;
+  const certificate = sealCertificate(fixture.certificates[fixtureId]);
+  input.certificateHandle = {
+    state: certificateState,
+    activeCertificateId: certificate.certificateId,
+    certificate,
+  };
+  return input;
+}
+
 function typedGold(snapshot, fixture) {
   const rows = fixture.cases.map((entry) => {
-    const evaluated = evaluateCanary(snapshot, entry);
+    const evaluated = evaluateCanary(snapshot, materializeFixtureInput(fixture, entry));
     const projection = projectToRouteGold(evaluated.decision, { policy: snapshot.policy });
     const row = {
       assertions: {
         duplicateIdempotencyKeyProducesSingleReceipt: false,
         handoffEdges: [],
-        rankCalls: evaluated.trace.rankCalls,
+        rankCalls: evaluated.trace.controller?.rankCalls
+          ?? evaluated.trace.evaluator.rankCalls,
       },
       decisionAction: evaluated.decision.action,
       effectivePolicyHash: snapshot.policy.effectivePolicyHash,
