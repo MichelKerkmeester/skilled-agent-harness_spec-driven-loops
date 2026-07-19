@@ -266,6 +266,12 @@ function validateCandidate(candidate, basePolicy) {
   if (!Array.isArray(candidate.adjustments)) {
     fail('CANDIDATE_ADJUSTMENTS_INVALID', 'candidate adjustments must be an array');
   }
+  // A no-op overlay carrying no adjustments would still seal a non-null artifact whose effective
+  // identity diverges from the base-canonical replay of the same input; forbid it so that base and
+  // overlay always resolve to one pinned effective identity (the null-overlay path handles absence).
+  if (candidate.adjustments.length === 0) {
+    fail('CANDIDATE_EMPTY_ADJUSTMENTS', 'overlay candidate must carry at least one adjustment');
+  }
   const policyIndex = destinationIndex(basePolicy);
   candidate.adjustments.forEach((adjustment) => validateAdjustment(adjustment, policyIndex));
   const body = {
@@ -478,7 +484,6 @@ function materializeEvaluatorPolicy(candidate, basePolicy) {
   validateBasePolicy(basePolicy);
   if (candidate === null) return basePolicy;
   validateCandidate(candidate, basePolicy);
-  if (candidate.adjustments.length === 0) return basePolicy;
 
   const policy = clone(basePolicy);
   delete policy.overlayHash;

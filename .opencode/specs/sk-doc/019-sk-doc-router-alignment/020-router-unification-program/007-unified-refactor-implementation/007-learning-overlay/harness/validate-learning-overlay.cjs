@@ -382,12 +382,17 @@ function runValidation() {
     overlayHash: null,
   });
   assert.strictEqual(materializeEvaluatorPolicy(null, basePolicy), basePolicy);
-  assert.strictEqual(materializeEvaluatorPolicy(noOpCandidate, basePolicy), basePolicy);
   assert.strictEqual(basePolicy.effectivePolicyHash, nullOverlayIdentity);
-  const noOpReplay = runRouteGoldReplay(noOpCandidate, basePolicy, fixtures.routeGold);
-  assert.strictEqual(
-    canonicalize(noOverlayReplay.rows.map((row) => row.decision)),
-    canonicalize(noOpReplay.rows.map((row) => row.decision))
+  // A zero-adjustment overlay is rejected rather than canonicalized to the base: permitting it let
+  // replay fold it into the null overlay while promotion sealed a distinct non-null artifact, so one
+  // candidate carried two effective identities. Absence is the null overlay; presence needs content.
+  const emptyAdjustmentsRejection = expectCode(
+    'CANDIDATE_EMPTY_ADJUSTMENTS',
+    () => validateCandidate(noOpCandidate, basePolicy)
+  );
+  const emptyMaterializeRejection = expectCode(
+    'CANDIDATE_EMPTY_ADJUSTMENTS',
+    () => materializeEvaluatorPolicy(noOpCandidate, basePolicy)
   );
   assert.strictEqual(
     canonicalize(noOverlayReplay.rows.map((row) => row.decision)),
@@ -714,6 +719,8 @@ function runValidation() {
       baseBytesPreserved: Buffer.from(canonicalize(basePolicy)).equals(baseBytesBefore),
       forgedCandidateRejected: identityRejection,
       declaredHashMismatchRejected: declaredHashMismatchRejection,
+      emptyAdjustmentsRejected: emptyAdjustmentsRejection,
+      emptyMaterializeRejected: emptyMaterializeRejection,
     },
     vocabularyOnly: {
       inertWeight: INERT_WEIGHT,
@@ -733,9 +740,6 @@ function runValidation() {
       evaluatorBasePolicyHash: firstReplay.evaluatorBasePolicyHash,
       evaluatorPolicyHash: firstReplay.evaluatorPolicyHash,
       nullOverlayEffectivePolicyHash: noOverlayReplay.evaluatorPolicyHash,
-      baseAndNoOpDecisionsByteIdentical: canonicalize(
-        noOverlayReplay.rows.map((row) => row.decision)
-      ) === canonicalize(noOpReplay.rows.map((row) => row.decision)),
       baseRoutesPreservedWithOverlay: canonicalize(
         noOverlayReplay.rows.map((row) => row.decision)
       ) === canonicalize(firstReplay.rows.map((row) => row.decision)),
