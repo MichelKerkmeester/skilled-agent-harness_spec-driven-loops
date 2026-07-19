@@ -644,6 +644,8 @@ def detect_document_type(filepath: str) -> Tuple[str, str]:
         return 'skill', 'filename'
     elif path.name == 'README.md':
         return 'readme', 'filename'
+    elif '/changelog/' in filepath_str or '\\changelog\\' in filepath_str:
+        return 'changelog', 'path'
     elif '/command/' in filepath_str or '\\command\\' in filepath_str or '/commands/' in filepath_str or '\\commands\\' in filepath_str:
         return 'command', 'path'
     elif '/specs/' in filepath_str or '\\specs\\' in filepath_str:
@@ -1077,7 +1079,13 @@ def calculate_dqi(
     
     # H2 formatting: number + ALL CAPS (12 points)
     h2_headings = [h for h in headings if h['level'] == 2]
-    if h2_headings:
+    if doc_type == 'changelog':
+        # Changelogs use Title-Case, unnumbered H2 headings (## What Changed) per the
+        # changelog template. The numbered ALL-CAPS convention is a SKILL/reference-doc
+        # house style, so scoring a correctly-formatted changelog against it is wrong
+        # and caps even excellent changelogs in the "acceptable" band.
+        h2_format_score = 12
+    elif h2_headings:
         h2_with_number = sum(1 for h in h2_headings if h['has_number'])
         h2_all_caps = sum(1 for h in h2_headings if re.sub(r'^\d+\.\s*', '', re.sub(r'^[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]\s*', '', h['text'])).isupper())
 
