@@ -40,7 +40,10 @@ function expectDesignRoute(publicFixture: any, privateFixture: any): void {
   const route = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
   expect(route.parseable).toBe(true);
   expect(route.intents).toContain(privateFixture.expected.workflowMode);
-  expect(route.resources).toContain('design-interface/SKILL.md');
+  // The hub reference-follows into the interface mode's own router and projects
+  // its leaf resources, so the routed set carries interface-mode leaves rather
+  // than the bare mode-pointer SKILL.md.
+  expect(route.resources.some((r: any) => r.startsWith('design-interface/'))).toBe(true);
   expect(route.routeTelemetry.workflowMode).toContain(privateFixture.expected.workflowMode);
 }
 
@@ -68,7 +71,9 @@ describe('design proof token lint — dispatch fixtures', () => {
     const route = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
     expect(route.parseable).toBe(true);
     expect(route.intents).toEqual([]);
-    expect(route.routeTelemetry.defaultApplied).toBe(true);
+    // sk-design carries no default mode, so a non-design prompt fails closed to a
+    // defer with no default applied — the correct negative-activation outcome.
+    expect(route.routeTelemetry.defaultApplied).toBe(false);
     for (const forbidden of privateFixture.expected.forbiddenWorkflowModes) {
       expect(route.intents).not.toContain(forbidden);
     }

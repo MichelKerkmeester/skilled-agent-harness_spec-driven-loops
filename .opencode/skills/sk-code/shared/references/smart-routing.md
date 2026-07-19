@@ -134,9 +134,9 @@ Any WEBFLOW surface detection MUST load the implementation trio before intent-sp
 
 This is a contract, not a guideline. It prevents SD-001-style partial coverage where the surface is correct but implementation guidance falls below the expected threshold.
 
-### Per-language overlay
+### Language-standards overlay
 
-After WEBFLOW + intent selection, also load the language overlay matching the changed/target file extensions:
+For the LANGUAGE_STANDARDS intent, load the language overlay matching the changed/target file extensions:
 
 | Target language | Overlay resources |
 | --- | --- |
@@ -150,6 +150,8 @@ After WEBFLOW + intent selection, also load the language overlay matching the ch
 ## 5. MOTION_DEV MAP
 
 MOTION_DEV loads from `code-webflow/references/animation/` and `code-webflow/assets/animation/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
+
+Webflow implementation and verification resources remain owned by their corresponding WEBFLOW intents; MOTION_DEV owns only the animation peer resources below.
 
 | Intent | Resources |
 | --- | --- |
@@ -194,7 +196,9 @@ DECISION intent MUST name:
 
 OPENCODE loads from `code-opencode/references/` and `assets/code_opencode/`.
 
-### Always-load (every OPENCODE invocation)
+### Implementation shared tier
+
+IMPLEMENTATION loads the shared organization and naming baseline:
 
 - `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 - `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
@@ -452,9 +456,6 @@ RESOURCE_MAP = {
         "code-webflow/references/animation/integration-patterns.md",
         "code-webflow/references/animation/decision-matrix.md",
         "code-webflow/references/animation/performance-and-pitfalls.md",
-        "code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md",
-        "code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md",
-        "code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
         "code-webflow/assets/animation/install-card.md",
         "code-webflow/assets/animation/snippets/principled-reveal.js",
         "code-webflow/assets/animation/snippets/README.md"
@@ -488,13 +489,9 @@ RESOURCE_MAP = {
         "code-opencode/references/config/style-guide.md",
         "code-opencode/references/config/quality-standards.md",
         "code-opencode/references/config/quick-reference.md",
-        "code-opencode/references/shared/code-organization/overview-and-module-organization.md",
-        "code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
         "code-opencode/assets/checklists/config-checklist.md"
     ],
     "LANGUAGE_STANDARDS": [
-        "code-opencode/references/shared/code-organization/overview-and-module-organization.md",
-        "code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
         "code-webflow/references/css/style-guide.md",
         "code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md",
         "code-webflow/references/css/quality-standards/typography-autofill-and-color.md",
@@ -518,17 +515,10 @@ RESOURCE_MAP = {
         "code-webflow/references/javascript/quick-reference.md"
     ],
     "JAVASCRIPT": [
-        "code-webflow/references/javascript/style-guide/overview-naming-and-structure.md",
-        "code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md",
-        "code-webflow/references/javascript/quick-reference.md",
-        "code-webflow/references/css/style-guide.md",
-        "code-webflow/references/shared/cross-language-rules.md",
         "code-opencode/references/javascript/style-guide.md",
         "code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
         "code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md",
-        "code-opencode/references/javascript/quick-reference.md",
-        "code-opencode/references/shared/code-organization/overview-and-module-organization.md",
-        "code-opencode/references/shared/universal-patterns/naming-and-commenting.md"
+        "code-opencode/references/javascript/quick-reference.md"
     ],
     "TYPESCRIPT": [
         "code-opencode/references/typescript/style-guide/overview-strict-and-naming.md",
@@ -553,8 +543,6 @@ RESOURCE_MAP = {
         "code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md"
     ],
     "RUST": [
-        "code-opencode/references/shared/code-organization/overview-and-module-organization.md",
-        "code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
         "code-opencode/references/rust/style-guide/overview-and-file-header.md",
         "code-opencode/references/rust/style-guide/toolchain-and-project-structure.md",
         "code-opencode/references/rust/style-guide/naming-conventions.md",
