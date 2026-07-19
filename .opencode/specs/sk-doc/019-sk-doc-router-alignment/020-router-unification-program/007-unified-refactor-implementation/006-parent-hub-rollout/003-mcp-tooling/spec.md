@@ -7,6 +7,7 @@ trigger_phrases:
   - "transport authority destination-local rollout"
 importance_tier: "critical"
 contextType: "implementation"
+status: "implemented; Stage-4 and Stage-6 phase-local gates GREEN; legacy remains authoritative"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

@@ -19,7 +19,10 @@
       "destination rollout read-only legs first",
       "mcp-tooling activation tasks",
       "composeAfter requiresAuthorityFrom tasks",
-      "stage 4 canary stage 6 destination rollout tasks"
+      "stage 4 canary stage 6 destination rollout tasks",
+      "mcp-tooling canary implementation",
+      "figma authority route proof",
+      "tooling destination rollout results"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -36,11 +39,19 @@
       "requiresauthorityfrom"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "spec.md",
+      "harness/validate-canary.cjs",
+      "compiled/blast-radius.json",
+      "activation/acceptance.json",
+      "compiled/destination-graph.json",
+      "compiled/PolicyCardV1.md",
+      "harness/build-artifacts.cjs",
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -59,6 +70,54 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-canary.cjs",
+        "kind": "file",
+        "path": "harness/validate-canary.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "blast-radius.json",
+        "kind": "config",
+        "path": "compiled/blast-radius.json",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance.json",
+        "kind": "config",
+        "path": "activation/acceptance.json",
+        "source": "derived"
+      },
+      {
+        "name": "destination-graph.json",
+        "kind": "config",
+        "path": "compiled/destination-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "PolicyCardV1.md",
+        "kind": "doc",
+        "path": "compiled/PolicyCardV1.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-artifacts.cjs",
+        "kind": "file",
+        "path": "harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -138,35 +197,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three preceding parent-hub activations (`sk-code`, `system-deep-loop`) exercise evidence composition (`surfaceBundle`) and shared-packet/backend projections, but none of them has an effect-ordered transport chain or a cross-hub judgment approval that must precede an external commit",
     "created_at": "2026-07-18T13:13:20.120Z",
-    "last_save_at": "2026-07-18T14:47:35.814Z",
+    "last_save_at": "2026-07-19T01:00:29.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b5b4045350ee1b5fc278a6634482a0a339f6b4a9c5987d7a2705c880792597c",
+    "source_fingerprint": "sha256:3db1448856c47e9f24e24f33cb5f0bb1432b70edf8cbd5dc3155d71886440741",
     "source_doc_hashes": {
-      "spec.md": "ea3bb957424f25cd33a37412f39f46d7f3cae809e644f90656f5d3d5bd83f2d2",
-      "plan.md": "8888adedb2c21be43a7df051710f14646d3847ffa0d0f9baf09e2e1149c4854b",
-      "tasks.md": "aaaf82be657763448bf4115f3123e357caa49698b4ef5fb9a62768df69b58bc3"
+      "spec.md": "c4b80b21c914810beeb1c2bbd9b278048b7f29696af15e3d45331b514403949c",
+      "plan.md": "d51e2d2d5c9815d2429a597866a777d7b3de7dab3c5a11e1b669ccb7f46eb7e3",
+      "tasks.md": "07d43f46975b0f5d2ebe914b3fbfae18ffec9183b9ee15ce7b154ebdc286a77e",
+      "checklist.md": "35ca7926e5dc0b3e313412d775c48c7867d5023a145604d22a02739f14ff3943",
+      "implementation-summary.md": "ba58ec23c28dfe8fb3ce3b0e15794c471186b0be91584a9c611b78a22379d24c"
     },
     "last_active_child_id": null,
     "last_active_at": null

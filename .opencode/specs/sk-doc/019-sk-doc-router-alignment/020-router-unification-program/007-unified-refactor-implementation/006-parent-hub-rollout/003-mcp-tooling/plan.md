@@ -7,6 +7,7 @@ trigger_phrases:
   - "destination rollout read-only legs first"
 importance_tier: "critical"
 contextType: "implementation"
+status: "executed; phase-local validator GREEN; strict packet validation intentionally not run"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -33,17 +34,17 @@ The plan proceeds in the order: (1) confirm the activation-order precondition an
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases `000`–`004` contracts are stable and cited (compiler, evaluator, execution, recovery)
-- [ ] `006/002` (`system-deep-loop`) Stage 4 canary is cleared — mcp-tooling activates last [synthesis §9]
-- [ ] Real blast-radius data resolving open question Q1 is available before Stage 4 opens [synthesis §11 Q1]
-- [ ] The `mcp-tooling` SKILL.md transport/judgment boundary is re-read as source-of-truth [`.opencode/skills/mcp-tooling/SKILL.md:15,32-36`]
+- [x] Phases `000`–`004` contracts are stable and cited (compiler, evaluator, execution, recovery)
+- [x] `006/002` (`system-deep-loop`) Stage 4 canary is cleared — mcp-tooling activates last [synthesis §9]
+- [x] Real blast-radius data resolving open question Q1 is available before Stage 4 opens [synthesis §11 Q1]
+- [x] The `mcp-tooling` SKILL.md transport/judgment boundary is re-read as source-of-truth [`.opencode/skills/mcp-tooling/SKILL.md:15,32-36`]
 
 ### Definition of Done
-- [ ] Destination graph, composition edges, and authority graph fully specified as compiled data (no hub/transport-name conditionals)
-- [ ] The design-affecting Figma worked case is specified end-to-end with authority withheld until approval
-- [ ] Stage 4 canary + Stage 6 destination-rollout gates defined with read-only-before-mutating sequencing
-- [ ] Fixture families enumerated against the existing compatibility projector; scorer untouched
-- [ ] Rollback drill defined, including the explicit "cannot undo external COMMIT" limit
+- [x] Destination graph, composition edges, and authority graph fully specified as compiled data (no hub/transport-name conditionals)
+- [x] The design-affecting Figma worked case is specified end-to-end with authority withheld until approval
+- [x] Stage 4 canary + Stage 6 destination-rollout gates defined with read-only-before-mutating sequencing
+- [x] Fixture families enumerated against the existing compatibility projector; scorer untouched
+- [x] Rollback drill defined, including the explicit "cannot undo external COMMIT" limit
 
 ## 3. ARCHITECTURE
 
@@ -79,30 +80,30 @@ Authority is destination-local: a proof/recommendation is evidence, never a capa
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: Preconditions
-- [ ] Confirm `006/002` Stage 4 canary cleared and blast-radius data resolves Q1 (mcp-tooling-last) [synthesis §9, §11 Q1]
-- [ ] Re-read `mcp-tooling` transport/judgment boundary and inventory its transports (mcp-figma, mcp-refero, mcp-mobbin, mcp-code-mode as external infra) [`.opencode/skills/mcp-tooling/SKILL.md:15,32-36`]
+- [x] Confirm `006/002` Stage 4 canary cleared and blast-radius data resolves Q1 (mcp-tooling-last) [synthesis §9, §11 Q1]
+- [x] Re-read `mcp-tooling` transport/judgment boundary and inventory its transports (mcp-figma, mcp-refero, mcp-mobbin, mcp-code-mode as external infra) [`.opencode/skills/mcp-tooling/SKILL.md:15,32-36`]
 
 ### Phase B: Author the compiled destination graph
-- [ ] Enumerate `destinations[]` with `role ∈ {actor, evidence, transport, judgment}`; assert no transport carries a judgment role [synthesis §2.2, §7]
-- [ ] Fix `selectionKinds = {single, orderedBundle}`; document that ordered = effect order [synthesis §5.3]
+- [x] Enumerate `destinations[]` with `role ∈ {actor, evidence, transport, judgment}`; assert no transport carries a judgment role [synthesis §2.2, §7]
+- [x] Fix `selectionKinds = {single, orderedBundle}`; document that ordered = effect order [synthesis §5.3]
 
 ### Phase C: Author composition + authority edges
-- [ ] Specify `composeAfter` rules for effect-ordered transport chains [synthesis §7]
-- [ ] Specify `requiresAuthorityFrom` edges in `authorityGraph[]`; specify authority scoped to the approved intent, consumed at VERIFY→COMMIT only [synthesis §2.3, §7]
-- [ ] Specify the design-affecting Figma worked case as the canonical example [synthesis §7]
+- [x] Specify `composeAfter` rules for effect-ordered transport chains [synthesis §7]
+- [x] Specify `requiresAuthorityFrom` edges in `authorityGraph[]`; specify authority scoped to the approved intent, consumed at VERIFY→COMMIT only [synthesis §2.3, §7]
+- [x] Specify the design-affecting Figma worked case as the canonical example [synthesis §7]
 
 ### Phase D: Fenced activation selector
-- [ ] Specify accept-snapshot (candidate + prior manifest), expected generation/hash compare, atomic swap under token lock + fencing epoch checked immediately before rename [synthesis §9]
-- [ ] Specify one-generation-per-request pinning and retained prior generation [synthesis §9]
+- [x] Specify accept-snapshot (candidate + prior manifest), expected generation/hash compare, atomic swap under token lock + fencing epoch checked immediately before rename [synthesis §9]
+- [x] Specify one-generation-per-request pinning and retained prior generation [synthesis §9]
 
 ### Phase E: Fixtures via the compatibility projector (scorer untouched)
-- [ ] Enumerate fixture families: exact single route; ordered bundle; `role escalation + missing authority dependency`; direct route with forbidden handoff artifacts; stale/absent advisor parity; stale proof rejected by VERIFY; duplicate idempotency-key receipt [synthesis §8.2]
-- [ ] Confirm each maps back through the compatibility projector into the existing intent/resource gold shape; `router-replay.cjs` unchanged [synthesis §8.2, §10]
+- [x] Enumerate fixture families: exact single route; ordered bundle; `role escalation + missing authority dependency`; direct route with forbidden handoff artifacts; stale/absent advisor parity; stale proof rejected by VERIFY; duplicate idempotency-key receipt [synthesis §8.2]
+- [x] Confirm each maps back through the compatibility projector into the existing intent/resource gold shape; `router-replay.cjs` unchanged [synthesis §8.2, §10]
 
 ### Phase F: Gates + rollback drill
-- [ ] Define the Stage 4 per-hub canary acceptance (zero hard mismatch; advisor match-or-ignore; document parity; rollback proven) [master plan Stage 4]
-- [ ] Define the Stage 6 destination rollout acceptance with read-only legs proven before any mutating leg [master plan Stage 6]
-- [ ] Define rollback = CAS to byte-identical prior manifest; state explicitly it cannot undo an external COMMIT; post-effect recovery is destination-owned [synthesis §9]
+- [x] Define the Stage 4 per-hub canary acceptance (zero hard mismatch; advisor match-or-ignore; document parity; rollback proven) [master plan Stage 4]
+- [x] Define the Stage 6 destination rollout acceptance with read-only legs proven before any mutating leg [master plan Stage 6]
+- [x] Define rollback = CAS to byte-identical prior manifest; state explicitly it cannot undo an external COMMIT; post-effect recovery is destination-owned [synthesis §9]
 
 ## 5. TESTING STRATEGY
 
