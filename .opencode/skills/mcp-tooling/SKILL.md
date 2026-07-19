@@ -41,6 +41,12 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 
 Routing is registry-driven. `mode-registry.json` lists all six modes (three workflow, three transport) in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
 
+> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+> ```bash
+> node .opencode/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority, and the flag is **off by default**, so this is inert until compiled routing is activated for `mcp-tooling`.
+
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).

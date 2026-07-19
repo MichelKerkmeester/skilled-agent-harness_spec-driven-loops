@@ -172,8 +172,9 @@ _memory:
     and Level-2 root documents.
 - [x] CHK-061 [P0] Protected scorer files remain byte-unchanged. [EVIDENCE: `sha256sum` matches all 3 captured scorer hashes]
   - **Evidence**: Final hashes equal all three pinned baseline hashes.
-- [x] CHK-062 [P1] Live authored inputs remain byte-unchanged. [EVIDENCE: `sha256sum` matches all 5 captured authored hashes]
-  - **Evidence**: Final hashes equal all five pinned authored-source hashes.
+- [x] CHK-062 [P1] Current authored inputs match the canary's pinned provenance hashes. [EVIDENCE: `validate-canary` reports all 5 authored source digests]
+  - **Evidence**: The intentional hub `SKILL.md` change was re-pinned; all five current hashes match
+    the canary and the other four authored inputs remain unchanged.
 
 <!-- /ANCHOR:file-org -->
 ---

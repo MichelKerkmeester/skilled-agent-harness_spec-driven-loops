@@ -15,6 +15,9 @@ const {
   projectToRouteGold,
 } = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
+  sealCertificate,
+} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+const {
   artifactBytes,
   compileRegistry,
   sha256,
@@ -108,12 +111,28 @@ function compatibilityProjection(snapshot, decision, leafPairs = []) {
   });
 }
 
+function materializeFixtureInput(fixture, entry) {
+  const input = JSON.parse(JSON.stringify(entry));
+  const fixtureId = input.certificateFixture;
+  const certificateState = input.certificateState || 'live';
+  delete input.certificateFixture;
+  delete input.certificateState;
+  if (!fixtureId) return input;
+  const certificate = sealCertificate(fixture.certificates[fixtureId]);
+  input.certificateHandle = {
+    state: certificateState,
+    activeCertificateId: certificate.certificateId,
+    certificate,
+  };
+  return input;
+}
+
 function typedGold(snapshot, fixture) {
   const manifest = new Map(snapshot.manifestResources.map((resource) => (
     [`${resource.workflowMode}\0${resource.leafResourceId}`, resource.resource]
   )));
   const cases = fixture.cases.map((entry) => {
-    const evaluated = evaluateCanary(snapshot, entry);
+    const evaluated = evaluateCanary(snapshot, materializeFixtureInput(fixture, entry));
     const leafPairs = leafPairsForDecision(snapshot, evaluated.decision, entry);
     const projection = compatibilityProjection(snapshot, evaluated.decision, leafPairs);
     const row = {

@@ -22,6 +22,9 @@ const {
   projectToRouteGold,
 } = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
+  sealCertificate,
+} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+const {
   artifactBytes,
   compileRegistry,
   sha256,
@@ -128,9 +131,25 @@ function compiledLeafPairsForDecision(snapshot, decision) {
   });
 }
 
+function materializeFixtureInput(fixture, entry) {
+  const input = JSON.parse(JSON.stringify(entry));
+  const fixtureId = input.certificateFixture;
+  const certificateState = input.certificateState || 'live';
+  delete input.certificateFixture;
+  delete input.certificateState;
+  if (!fixtureId) return input;
+  const certificate = sealCertificate(fixture.certificates[fixtureId]);
+  input.certificateHandle = {
+    state: certificateState,
+    activeCertificateId: certificate.certificateId,
+    certificate,
+  };
+  return input;
+}
+
 function typedGold(snapshot, fixture) {
   const rows = fixture.cases.map((entry) => {
-    const evaluated = evaluateCanary(snapshot, entry);
+    const evaluated = evaluateCanary(snapshot, materializeFixtureInput(fixture, entry));
     const leafPairs = compiledLeafPairsForDecision(snapshot, evaluated.decision);
     const projection = compatibilityProjection(snapshot, evaluated.decision, leafPairs);
     const row = {
@@ -208,6 +227,7 @@ function buildArtifacts() {
   const candidatePath = path.join(activationDir, 'manifest.candidate.json');
   const fencePath = path.join(activationDir, 'fence-state.json');
   const priorBytes = fs.readFileSync(priorPath);
+  const expectedFencingEpoch = readJson(fencePath).fencingEpoch;
   const candidate = {
     schemaVersion: 'V1',
     selectedPolicy: {
@@ -219,7 +239,10 @@ function buildArtifacts() {
   };
   writeBytes(manifestPath, priorBytes);
   writeBytes(candidatePath, artifactBytes(candidate));
-  writeBytes(fencePath, artifactBytes({ fencingEpoch: 0, schemaVersion: 'V1' }));
+  writeBytes(
+    fencePath,
+    artifactBytes({ fencingEpoch: expectedFencingEpoch, schemaVersion: 'V1' }),
+  );
 
   const acceptance = {
     candidateArtifacts: Object.fromEntries(Object.entries(artifactPaths).map(([name, filePath]) => (
@@ -227,7 +250,7 @@ function buildArtifacts() {
     ))),
     candidatePolicy: candidate.selectedPolicy,
     expectedCurrent: readJson(priorPath).selectedPolicy,
-    expectedFencingEpoch: 0,
+    expectedFencingEpoch,
     hubId: snapshot.advisorProjection.hubId,
     priorManifestHash: sha256(priorBytes),
     schemaVersion: 'V1',

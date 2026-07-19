@@ -14,6 +14,7 @@
 // and never edits a manifest. Whether its result is authoritative is decided by
 // the resolver, which gates on the activation manifest and a runtime flag.
 
+const fs = require('fs');
 const path = require('path');
 
 // Each hub's compiled policy + engine live in its shadow rollout child; this
@@ -39,9 +40,23 @@ function loadHubEngine(hubId) {
   // Relative requires inside these modules resolve from their own location, so
   // reusing them from here keeps the compiled contract's dependency graph intact.
   const { loadSnapshot } = require(path.join(childRoot, 'harness', 'build-artifacts.cjs'));
-  const { evaluateCanary } = require(path.join(childRoot, 'lib', 'canary-router.cjs'));
+  // Hubs ship one of two engine module shapes: the surfaceBundle canary-router
+  // (evaluateCanary) or the plain router (evaluateRoute). Both take
+  // (snapshot, input) and return a { decision } — pick whichever this hub has.
+  const canaryRouter = path.join(childRoot, 'lib', 'canary-router.cjs');
+  const plainRouter = path.join(childRoot, 'lib', 'router.cjs');
+  const routerPath = fs.existsSync(canaryRouter) ? canaryRouter
+    : (fs.existsSync(plainRouter) ? plainRouter : null);
+  if (!routerPath) throw new Error(`no compiled router module for hub ${hubId}`);
+  const routerMod = require(routerPath);
+  // The export name varies by archetype (evaluateCanary or evaluateRoute); both
+  // share the (snapshot, input) -> { decision } contract.
+  const evaluate = routerMod.evaluateCanary || routerMod.evaluateRoute;
+  if (typeof evaluate !== 'function') {
+    throw new Error(`no evaluate function exported by ${routerPath} for hub ${hubId}`);
+  }
   const { snapshot } = loadSnapshot();
-  const engine = Object.freeze({ snapshot, evaluateCanary });
+  const engine = Object.freeze({ snapshot, evaluate });
   engineCache.set(hubId, engine);
   return engine;
 }
@@ -56,8 +71,8 @@ function normalizeTargets(route) {
 // Route `taskText` through hub `hubId`'s compiled contract. Returns a normalized,
 // serializable decision; `action` is one of route/clarify/defer/reject.
 function compiledRoute(hubId, taskText) {
-  const { snapshot, evaluateCanary } = loadHubEngine(hubId);
-  const evaluated = evaluateCanary(snapshot, { prompt: taskText });
+  const { snapshot, evaluate } = loadHubEngine(hubId);
+  const evaluated = evaluate(snapshot, { prompt: taskText });
   const route = evaluated.decision.route || null;
   return {
     hubId,

@@ -12,6 +12,9 @@ const {
   projectToRouteGold,
 } = require('../../../002-decision-evaluator/lib/projector.cjs');
 const {
+  sealCertificate,
+} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+const {
   artifactBytes,
   compileRegistry,
   sha256,
@@ -100,9 +103,25 @@ function scorerScenario(entry) {
   };
 }
 
+function materializeFixtureInput(fixture, entry) {
+  const input = JSON.parse(JSON.stringify(entry));
+  const fixtureId = input.certificateFixture;
+  const certificateState = input.certificateState || 'live';
+  delete input.certificateFixture;
+  delete input.certificateState;
+  if (!fixtureId) return input;
+  const certificate = sealCertificate(fixture.certificates[fixtureId]);
+  input.certificateHandle = {
+    state: certificateState,
+    activeCertificateId: certificate.certificateId,
+    certificate,
+  };
+  return input;
+}
+
 function typedGold(snapshot, fixture) {
   const cases = fixture.cases.map((entry) => {
-    const result = evaluateRoute(snapshot, entry);
+    const result = evaluateRoute(snapshot, materializeFixtureInput(fixture, entry));
     const observed = projectToRouteGold(result.decision, { policy: snapshot.policy });
     const row = {
       assertions: {

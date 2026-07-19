@@ -83,7 +83,7 @@ const PROTECTED_DIGESTS = Object.freeze({
   'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
 });
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': 'dea6f52fa5e2ca8236807a4d75ab91aa15270b498edab77d6de6070b4c79a137',
+  'SKILL.md': 'e55025662c63a03efb1a19e7bb5f65b19989f95c8d00cab372541f77b5008326',
   'hub-router.json': '8b9afa6284f58267ee935d45c60073bc5931dea53bdfacdfc018a450c3e42dd5',
   'mode-registry.json': '73cffcba5f34cd36e0da91441e9ec587cfa8152c54d3a2334f7060c931f9fb83',
   'packets/create-agent/SKILL.md': 'b0f966cc5de86476e52a4811742a379bdacbff302fa5459848946e8cced5dc10',

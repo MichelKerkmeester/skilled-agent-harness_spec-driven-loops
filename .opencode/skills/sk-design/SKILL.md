@@ -53,6 +53,12 @@ These commands share `shared/creation-contract.md`. The existing `/design:interf
 
 Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode. Canonical `/interface:*` commands and their `/design:*` compatibility aliases resolve to the same stable mode IDs.
 
+> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+> ```bash
+> node .opencode/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority, and the flag is **off by default**, so this is inert until compiled routing is activated for `sk-design`.
+
 ### Manager Intake Before Routing
 
 Before selecting a mode or using a transport, gather the smallest complete context set needed to avoid generic output:
