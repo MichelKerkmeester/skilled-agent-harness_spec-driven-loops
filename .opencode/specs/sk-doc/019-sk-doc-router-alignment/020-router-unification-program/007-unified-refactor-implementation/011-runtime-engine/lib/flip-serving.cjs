@@ -9,8 +9,13 @@
 //   - the hub is already P4a-bound (selectedPolicy is the compiled generation),
 //   - the shadow canary is green,
 //   - the three frozen scorer digests are unchanged,
-//   - the compiled engine actually routes at least one designed scenario.
-// Reversible: `--rollback` restores the byte-identical pre-flip manifest.
+//   - the compiled engine actually routes at least one designed scenario,
+//   - the loaded snapshot identity equals the manifest's selectedPolicy.
+// The swap runs under an exclusive per-hub lock, re-reads and compares the fence
+// epoch immediately before writing (compare), then replaces each file atomically
+// (swap) — so concurrent operators cannot both consume one epoch or interleave a
+// partial write. Reversible: `--rollback` restores the byte-identical pre-flip
+// manifest under the same fenced discipline.
 //
 // This never edits a live SKILL.md, hub-router.json, or the frozen scorer; the
 // runtime only honors the flip when SPECKIT_COMPILED_ROUTING=1 (see resolve.cjs).
@@ -53,6 +58,36 @@ function stableStringify(v) {
   return JSON.stringify(s(v));
 }
 
+// Exclusive per-hub lock around the compare-and-swap critical section: an
+// exclusive-create open fails when another flip/rollback already holds it, giving
+// mutual exclusion between concurrent operators. A stale lock left by a crashed
+// process is reported by path so an operator can clear it deliberately.
+function withHubLock(hubDir, fn) {
+  const lockPath = path.join(hubDir, '.flip.lock');
+  let fd;
+  try {
+    fd = fs.openSync(lockPath, 'wx');
+  } catch (e) {
+    if (e.code === 'EEXIST') throw new Error(`serving flip already in progress (lock held): ${lockPath}`);
+    throw e;
+  }
+  try {
+    fs.writeSync(fd, `${process.pid}\n`);
+    return fn();
+  } finally {
+    try { fs.closeSync(fd); } catch { /* already closed */ }
+    try { fs.unlinkSync(lockPath); } catch { /* best effort */ }
+  }
+}
+
+// Atomic single-file replace: write a sibling temp then rename over the target,
+// so a crash mid-write never leaves a truncated authority file.
+function atomicWrite(targetPath, bytes) {
+  const tmp = `${targetPath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmp, bytes);
+  fs.renameSync(tmp, targetPath);
+}
+
 function assertScorerFrozen() {
   for (const [name, pinned] of Object.entries(PINNED_SCORER_DIGESTS)) {
     const actual = fileHash(path.join(SCORER_DIR, name));
@@ -66,7 +101,9 @@ function assertCanaryGreen(hubId) {
 }
 
 // The engine must route at least one designed scenario (proves the compiled
-// contract is live-routable for this hub before we make it authoritative).
+// contract is live-routable for this hub before we make it authoritative), and
+// returns the loaded snapshot's identity so the caller can bind it to the
+// manifest's selectedPolicy before flipping.
 function assertEngineRoutes(hubId) {
   const { snapshot } = loadHubEngine(hubId);
   const child = path.join(IMPL_ROOT, HUB_CHILD[hubId]);
@@ -79,7 +116,12 @@ function assertEngineRoutes(hubId) {
     if (prompt && compiledRoute(hubId, prompt).action === 'route') routed += 1;
   }
   if (routed < 1) throw new Error(`engine routed 0 scenarios for ${hubId}; refusing to make it authoritative`);
-  return { routedScenarios: routed, totalScenarios: cases.length, effectivePolicyHash: snapshot.policy.effectivePolicyHash };
+  return {
+    routedScenarios: routed,
+    totalScenarios: cases.length,
+    effectivePolicyHash: snapshot.policy.effectivePolicyHash,
+    generation: snapshot.policy.activationGeneration,
+  };
 }
 
 function main() {
@@ -101,12 +143,19 @@ function main() {
   if (rollback) {
     if (!fs.existsSync(servingPriorPath)) throw new Error(`no serving-prior to roll back to for ${hubId}`);
     const priorBytes = fs.readFileSync(servingPriorPath);
-    fs.writeFileSync(manifestPath, priorBytes);
-    const nextFence = fence + 1;
-    fs.writeFileSync(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
-    const restored = readJson(manifestPath);
-    const out = { hubId, rolledBack: true, servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly, fenceEpoch: { before: fence, after: nextFence } };
-    process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n` : `ROLLBACK hub=${hubId} serving=${restored.servingAuthority} shadowOnly=${restored.shadowOnly} fence=${fence}->${nextFence}\n`);
+    const out = withHubLock(hubDir, () => {
+      // Compare: the fence must not have advanced since we read it (no racing
+      // writer) before we restore; then swap manifest and fence atomically.
+      const fenceNow = readJson(fencePath).fencingEpoch;
+      if (fenceNow !== fence) throw new Error(`fence advanced ${fence}->${fenceNow} during rollback (concurrent writer); aborting`);
+      atomicWrite(manifestPath, priorBytes);
+      const nextFence = fence + 1;
+      atomicWrite(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+      const restored = readJson(manifestPath);
+      return { hubId, rolledBack: true, servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly, fenceEpoch: { before: fence, after: nextFence } };
+    });
+    process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
+      : `ROLLBACK hub=${hubId} serving=${out.servingAuthority} shadowOnly=${out.shadowOnly} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after}\n`);
     return;
   }
 
@@ -121,22 +170,40 @@ function main() {
   assertCanaryGreen(hubId);
   const routeProof = assertEngineRoutes(hubId);
 
-  // Retain the byte-identical pre-flip manifest, then flip.
-  if (!fs.existsSync(servingPriorPath)) fs.writeFileSync(servingPriorPath, fs.readFileSync(manifestPath));
-  const flipped = { ...manifest, servingAuthority: 'compiled', shadowOnly: false };
-  fs.writeFileSync(manifestPath, `${stableStringify(flipped)}\n`);
-  const nextFence = fence + 1;
-  fs.writeFileSync(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+  // Identity binding: the snapshot we are about to make authoritative MUST be the
+  // exact generation P4a selected. If a rollout artifact drifted after binding, its
+  // hash/generation diverge from the manifest's selectedPolicy — refuse to certify
+  // a different contract than the one that was bound.
+  if (routeProof.effectivePolicyHash !== manifest.selectedPolicy.effectivePolicyHash) {
+    throw new Error(`${hubId}: loaded snapshot hash ${routeProof.effectivePolicyHash} != selectedPolicy ${manifest.selectedPolicy.effectivePolicyHash}`);
+  }
+  if (routeProof.generation !== manifest.selectedPolicy.generation) {
+    throw new Error(`${hubId}: loaded snapshot generation ${routeProof.generation} != selectedPolicy ${manifest.selectedPolicy.generation}`);
+  }
 
-  const out = {
-    hubId, servingAuthority: 'compiled', shadowOnly: false,
-    selectedPolicy: flipped.selectedPolicy, fenceEpoch: { before: fence, after: nextFence },
-    gate: { canaryGreen: true, scorerFrozen: true, ...routeProof },
-    rollbackTo: 'manifest.serving-prior.json',
-  };
-  fs.writeFileSync(path.join(hubDir, 'serving-flip-record.json'), `${stableStringify(out)}\n`);
+  const out = withHubLock(hubDir, () => {
+    // Compare: re-read the fence after the long gates and abort if a concurrent
+    // writer advanced it. Then swap — write order is serving-prior (rollback
+    // safety) -> manifest (the authority) -> fence (bookkeeping) -> record, each an
+    // atomic replace, so a crash leaves the manifest authority self-consistent.
+    const fenceNow = readJson(fencePath).fencingEpoch;
+    if (fenceNow !== fence) throw new Error(`fence advanced ${fence}->${fenceNow} during flip (concurrent writer); aborting`);
+    if (!fs.existsSync(servingPriorPath)) atomicWrite(servingPriorPath, fs.readFileSync(manifestPath));
+    const flipped = { ...manifest, servingAuthority: 'compiled', shadowOnly: false };
+    atomicWrite(manifestPath, `${stableStringify(flipped)}\n`);
+    const nextFence = fence + 1;
+    atomicWrite(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+    const record = {
+      hubId, servingAuthority: 'compiled', shadowOnly: false,
+      selectedPolicy: flipped.selectedPolicy, fenceEpoch: { before: fence, after: nextFence },
+      gate: { canaryGreen: true, scorerFrozen: true, ...routeProof },
+      rollbackTo: 'manifest.serving-prior.json',
+    };
+    atomicWrite(path.join(hubDir, 'serving-flip-record.json'), `${stableStringify(record)}\n`);
+    return record;
+  });
   process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
-    : `FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${flipped.selectedPolicy.generation} fence=${fence}->${nextFence} routed=${routeProof.routedScenarios}/${routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
+    : `FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${out.selectedPolicy.generation} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} routed=${routeProof.routedScenarios}/${routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
 }
 
 try { main(); } catch (e) { process.stderr.write(`FLIP FAILED: ${e.message}\n`); process.exit(1); }

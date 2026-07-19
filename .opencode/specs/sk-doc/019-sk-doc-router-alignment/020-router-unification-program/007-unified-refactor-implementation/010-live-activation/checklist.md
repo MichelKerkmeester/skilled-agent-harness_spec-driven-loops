@@ -59,7 +59,7 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-020 [P0] All seven hubs bound their compiled generation as `selectedPolicy`.
-  - **Evidence**: sk-code (gen 2), mcp-tooling (gen 4), system-deep-loop (gen 3), cli-external-orchestration (gen 5), sk-prompt (gen 5), sk-design (gen 6), sk-doc (gen 5) each report `activated: true`, `shippedThisRun: true`.
+  - **Evidence**: sk-code (gen 2), mcp-tooling (gen 4), system-deep-loop (gen 4, re-bound from a superseded gen-3 pointer), cli-external-orchestration (gen 5), sk-prompt (gen 5), sk-design (gen 6), sk-doc (gen 5) each report `activated: true`, `shippedThisRun: true`.
 - [x] CHK-021 [P0] The fence epoch advanced `0 → 1` monotonically per hub.
   - **Evidence**: Each `activation/<hub>/fence-state.json` shows fence epoch 1 after the CAS.
 - [x] CHK-022 [P0] Byte-exact rollback is proven for every hub.

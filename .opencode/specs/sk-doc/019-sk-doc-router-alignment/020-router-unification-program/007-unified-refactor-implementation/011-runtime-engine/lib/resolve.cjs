@@ -23,14 +23,19 @@ function flagEnabled() {
   return process.env[FLAG] === '1';
 }
 
-function servingAuthority(hubId) {
+function readManifest(hubId) {
   const manifest = path.join(ACTIVATION_ROOT, hubId, 'manifest.json');
-  if (!fs.existsSync(manifest)) return 'legacy';
+  if (!fs.existsSync(manifest)) return null;
   try {
-    return JSON.parse(fs.readFileSync(manifest, 'utf8')).servingAuthority || 'legacy';
+    return JSON.parse(fs.readFileSync(manifest, 'utf8'));
   } catch {
-    return 'legacy';
+    return null;
   }
+}
+
+function servingAuthority(hubId) {
+  const manifest = readManifest(hubId);
+  return (manifest && manifest.servingAuthority) || 'legacy';
 }
 
 // Returns a normalized compiled decision when this hub is served by the compiled
@@ -39,9 +44,20 @@ function servingAuthority(hubId) {
 // a routing hot path.
 function resolveRoute(hubId, taskText) {
   if (!flagEnabled()) return null;
-  if (servingAuthority(hubId) !== 'compiled') return null;
+  const manifest = readManifest(hubId);
+  if (!manifest || manifest.servingAuthority !== 'compiled') return null;
   try {
-    return compiledRoute(hubId, taskText);
+    const route = compiledRoute(hubId, taskText);
+    // Serve-time identity binding: the snapshot we routed through MUST be the
+    // exact generation the manifest selected. If a rollout artifact drifted after
+    // the flip, the identities diverge — fail safe to legacy rather than serve an
+    // unselected policy on the routing hot path.
+    const selected = manifest.selectedPolicy || {};
+    if (route.effectivePolicyHash !== selected.effectivePolicyHash
+      || route.generation !== selected.generation) {
+      return null;
+    }
+    return route;
   } catch {
     return null;
   }

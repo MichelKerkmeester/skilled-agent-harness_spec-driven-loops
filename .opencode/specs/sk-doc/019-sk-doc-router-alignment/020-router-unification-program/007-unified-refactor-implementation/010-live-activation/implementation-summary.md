@@ -87,11 +87,13 @@ All seven hubs, in activation order, returned `ACTIVATION BOUND … serving=lega
 |-----|--------------------:|:-------------------:|---------|
 | sk-code | 2 | ✓ | compiled |
 | mcp-tooling | 4 | ✓ | compiled |
-| system-deep-loop | 3 | ✓ | compiled |
+| system-deep-loop | 4 | ✓ | compiled |
 | cli-external-orchestration | 5 | ✓ | compiled |
 | sk-prompt | 5 | ✓ | compiled |
 | sk-design | 6 | ✓ | compiled |
 | sk-doc | 5 | ✓ | compiled |
+
+> **`system-deep-loop` re-bind (gen 3 → gen 4):** its serving manifest had been left pinned to a superseded gen-3 pointer while its accepted candidate and live snapshot were gen 4 — a P4b flip omission surfaced by the runtime engine's snapshot-identity gate (`011-runtime-engine`). The manifest has been re-bound to gen 4 (byte-exact rollback retained), so `selectedPolicy` now matches the served contract and the flip record's route-proof.
 
 Frozen scorer digests (unchanged, pinned in the driver):
 
