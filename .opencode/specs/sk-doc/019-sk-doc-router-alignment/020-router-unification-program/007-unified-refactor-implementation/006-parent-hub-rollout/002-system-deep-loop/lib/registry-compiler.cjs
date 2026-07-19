@@ -314,6 +314,93 @@ function compileManifestResources(leafManifest, registry) {
   ));
 }
 
+function parseRouteResourceMap(smartRoutingMarkdown) {
+  const block = /RESOURCE_MAP\s*=\s*\{([\s\S]*?)\n\}/m.exec(smartRoutingMarkdown);
+  if (!block) {
+    fail('ROUTER_RESOURCE_MAP_MISSING', 'surface router must declare RESOURCE_MAP');
+  }
+  const resourceMap = new Map();
+  const entryPattern = /^\s*"([A-Z_]+)"\s*:\s*(\[[\s\S]*?^\s*\])\s*,?\s*$/gm;
+  for (const match of block[1].matchAll(entryPattern)) {
+    const workflowMode = match[1].toLowerCase().replaceAll('_', '-');
+    let resources;
+    try {
+      resources = JSON.parse(match[2]);
+    } catch (error) {
+      fail(
+        'ROUTER_RESOURCE_MAP_INVALID',
+        `surface router resources are invalid for ${workflowMode}: ${error.message}`,
+      );
+    }
+    if (!Array.isArray(resources) || resources.length === 0) {
+      fail(
+        'ROUTER_RESOURCE_MAP_INVALID',
+        `surface router must select at least one resource for ${workflowMode}`,
+      );
+    }
+    resources.forEach((resource, index) => {
+      assertString(resource, `RESOURCE_MAP.${match[1]}[${index}]`);
+    });
+    if (resourceMap.has(workflowMode)) {
+      fail('ROUTER_RESOURCE_MAP_DUPLICATE', `surface router duplicates ${workflowMode}`);
+    }
+    resourceMap.set(workflowMode, resources);
+  }
+  if (resourceMap.size === 0) {
+    fail('ROUTER_RESOURCE_MAP_INVALID', 'surface router contains no resource mappings');
+  }
+  return resourceMap;
+}
+
+function compileRouteLeafSelections(smartRoutingMarkdown, manifestResources, registry) {
+  const resourceMap = parseRouteResourceMap(smartRoutingMarkdown);
+  const registryModes = new Set(registry.modes.map((mode) => mode.workflowMode));
+  for (const workflowMode of resourceMap.keys()) {
+    if (!registryModes.has(workflowMode)) {
+      fail(
+        'ROUTER_RESOURCE_MODE_UNKNOWN',
+        `surface router names an unregistered workflow mode: ${workflowMode}`,
+      );
+    }
+  }
+  const manifestByResource = new Map(manifestResources.map((entry) => [
+    `${entry.workflowMode}\u0000${entry.resource}`,
+    entry,
+  ]));
+  return registry.modes.map((mode) => {
+    const resources = resourceMap.get(mode.workflowMode);
+    if (!resources) {
+      fail(
+        'ROUTER_RESOURCE_MODE_MISSING',
+        `surface router has no resource mapping for ${mode.workflowMode}`,
+      );
+    }
+    const seen = new Set();
+    const leafPairs = resources.map((resource) => {
+      const manifestIdentity = manifestByResource.get(`${mode.workflowMode}\u0000${resource}`);
+      if (!manifestIdentity) {
+        fail(
+          'ROUTER_RESOURCE_NOT_IN_MANIFEST',
+          `surface router resource is absent from the compiled manifest: ${mode.workflowMode}/${resource}`,
+        );
+      }
+      const identityKey = `${mode.workflowMode}\u0000${manifestIdentity.leafResourceId}`;
+      if (seen.has(identityKey)) {
+        fail(
+          'ROUTER_RESOURCE_DUPLICATE',
+          `surface router selects a manifest identity twice: ${identityKey}`,
+        );
+      }
+      seen.add(identityKey);
+      return {
+        leafResourceId: manifestIdentity.leafResourceId,
+        workflowMode: mode.workflowMode,
+      };
+    });
+    return { leafPairs, workflowMode: mode.workflowMode };
+  });
+}
+
 function buildDestinations(registry) {
   return registry.modes.map((mode) => {
     const id = destinationId(registry.skill, mode);
@@ -390,6 +477,11 @@ function compileRegistry(input) {
   assertInjective(rows);
   assertNoCollapse(rows, input.registry);
   const manifestResources = compileManifestResources(input.leafManifest, input.registry);
+  const routeLeafSelections = compileRouteLeafSelections(
+    input.smartRoutingMarkdown,
+    manifestResources,
+    input.registry,
+  );
   const destinations = buildDestinations(input.registry);
   const destinationKeys = destinations.map((destination) => destinationKey(destination.id));
   if (new Set(destinationKeys).size !== destinations.length) {
@@ -449,6 +541,10 @@ function compileRegistry(input) {
     manifestResources: Object.freeze(manifestResources.map((entry) => Object.freeze(entry))),
     policy: Object.freeze(policy),
     projectionGraph: Object.freeze(buildProjectionGraph(input.registry, rows)),
+    routeLeafSelections: Object.freeze(routeLeafSelections.map((selection) => Object.freeze({
+      leafPairs: Object.freeze(selection.leafPairs.map((pair) => Object.freeze(pair))),
+      workflowMode: selection.workflowMode,
+    }))),
     sourceHashes: Object.freeze(sourceHashes),
   });
 }

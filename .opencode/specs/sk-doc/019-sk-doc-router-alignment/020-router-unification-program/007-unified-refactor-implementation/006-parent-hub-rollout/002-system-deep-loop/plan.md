@@ -37,8 +37,8 @@ Compile the seven authored `system-deep-loop` public modes into seven content-ad
 
 ### Definition of Done
 - [x] Seven destinations compiled; `count(destinations) == count(publicModes) != count(packets)`.
-- [ ] Deep-loop route-gold green under shadow replay; `router-replay.cjs` remains unmodified, but 7 positive rows are `shadow-partial`.
-- [ ] Stage-4 canary passed: document parity and rollback pass, but route-gold has 7 `shadow-partial` rows and blocks activation.
+- [x] Deep-loop route-gold green under shadow replay; all 11 rows are `real-green`, 0 are `shadow-partial`, and `router-replay.cjs` remains unmodified.
+- [x] Stage-4 canary passed with document parity, rollback, and compiled-resource route-gold green; serving authority remains legacy/shadow-only.
 - [x] `spec.md` / `plan.md` / `tasks.md` reconciled; no completion claim without the canary evidence.
 
 ## 3. ARCHITECTURE
@@ -86,15 +86,15 @@ Required inventories:
 ### Phase B: Projections + parity (REQ-005, 009, 010)
 - [x] Emit `AdvisorProjectionV1` with `effectivePolicyHash` + projection hash; preserve `routingClass` aliases; wire the annotation-only degradation on hash mismatch.
 - [x] Build the compatibility projector against the `smart_routing.md` `{workflowMode, leafResourceId}` shape; author `TypedRouteGoldV1` fixtures.
-- [ ] Run shadow parity (zero live authority): 4 rows are real green and 7 positive rows are honestly `shadow-partial`; `router-replay.cjs` is byte-unchanged.
+- [x] Run shadow parity (zero live authority): all 11 rows are real green with 0 `shadow-partial`; `router-replay.cjs` is byte-unchanged.
 - [x] (P1) Generate the deep-loop `PolicyCardV1.md`; run the document-only replay lane.
 
 ### Phase C: Fenced canary + rollback (REQ-007, 008; Stage-4 gate)
 - [x] Dual-read (Stage 2): confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves; unmapped fails closed.
 - [x] Verify no over-emission: zero-signal request -> `defer(no-match)` (the `UNKNOWN_FALLBACK` checklist as the `clarify` payload); no default union.
-- [ ] Run the fenced canary: advisor identity and document parity pass, but 7 resource-incomplete rows prevent zero hard mismatch.
+- [x] Run the fenced canary: advisor identity, document parity, rollback, and all 11 real scorer rows pass with zero hard mismatch.
 - [x] Execute the rollback drill: CAS swap to the byte-identical prior manifest; assert a mixed-generation request hard-blocks.
-- [ ] Record the Stage-4 evidence; the gate remains blocked until the compiled policy projects the full positive-row resource sets.
+- [x] Record the Stage-4 evidence: 19 compiled typed leaf pairs project the full resource sets for all 7 positive rows; legacy remains authoritative.
 
 ### Implementation Evidence
 
@@ -102,9 +102,9 @@ Required inventories:
 |------|--------|----------|
 | Compile | Pass | `7` registry modes compile to `7` distinct public modes and injective destinations across `5` packets; duplicate/missing public modes fail specifically; canonical recompile is byte-identical. |
 | No-collapse | Pass | End-to-end authored-registry mutations fail with `SHARED_PACKET_COLLAPSE` and `RUNTIME_KEY_COLLAPSE`. |
-| Route-gold | `shadow-partial` | Real read-only `evaluateRouteGold` scores all 11 compatibility-projector observations: 4 real green, 7 positive rows `shadow-partial`; no legacy backfill; a persisted coherent tamper fails. |
+| Route-gold | Pass | Real read-only `evaluateRouteGold` scores all 11 compatibility-projector observations `real-green`; 0 are `shadow-partial`; no legacy backfill; a persisted coherent resource tamper fails `resource-mismatch`. |
 | Document parity | Pass | `15/15` full-request machine/document decisions match, including constraint-only `reject(forbidden)`; planted divergence fails closed. |
-| Activation | Blocked | Nine aggregate hard blocks and rollback mechanics pass, but the actual route-gold subgate is not green. |
+| Activation | Pass, shadow-only | Nine aggregate hard blocks, the route-gold subgate, and rollback mechanics pass; serving authority intentionally remains legacy and shadow-only. |
 | Strict packet validation | Pending | Run after final documentation reconciliation. |
 
 ## 6. VERIFICATION

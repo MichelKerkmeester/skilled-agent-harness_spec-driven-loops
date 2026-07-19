@@ -66,6 +66,7 @@ const {
   replayPolicyCard,
 } = require('../lib/policy-card.cjs');
 const {
+  compiledLeafPairsForDecision,
   compatibilityProjection,
   loadSnapshot,
   sourceBytes,
@@ -306,12 +307,17 @@ function runDeliveredRouteGoldFalsifier(fixture) {
   const temporaryRoot = fs.mkdtempSync(path.join(__dirname, '.tmp-route-gold-'));
   try {
     const typed = readJson(compiledPath);
-    const realGreenScenarioId = delivered.realGreenScenarioIds[0];
+    const realGreenScenarioId = delivered.realGreenScenarioIds.find((scenarioId) => (
+      fixture.cases.find((entry) => entry.id === scenarioId)?.expectedAction === 'route'
+    ));
     const realGreenIndex = typed.cases.findIndex((row) => (
       row.scenarioId === realGreenScenarioId
     ));
     assert.notStrictEqual(realGreenIndex, -1, 'a real-green row is required for the falsifier');
-    typed.cases[realGreenIndex].observedIntents = ['corrupted-delivered-observation'];
+    typed.cases[realGreenIndex].observedResources = [{
+      intent: typed.cases[realGreenIndex].observedIntents[0],
+      resource: 'corrupted-compiled-observation',
+    }];
     typed.cases[realGreenIndex].projectionHash = computeProjectionHash(
       'TypedRouteGoldV1',
       typed.cases[realGreenIndex],
@@ -331,7 +337,7 @@ function runDeliveredRouteGoldFalsifier(fixture) {
     }
     assert.ok(failure, 'coherently tampered delivered route gold must fail');
     assert.strictEqual(failure.code, 'DELIVERED_ROUTE_GOLD_MISMATCH');
-    assert.strictEqual(failure.routeGoldReason, 'intent-mismatch');
+    assert.strictEqual(failure.routeGoldReason, 'resource-mismatch');
     return {
       ...delivered,
       coherentTamperGuard: failure.code,
@@ -393,6 +399,17 @@ function assertCompiledArtifacts(snapshot) {
     ))).size,
     snapshot.manifestResources.length,
   );
+  assert.strictEqual(snapshot.routeLeafSelections.length, registry.modes.length);
+  const manifestPairKeys = new Set(snapshot.manifestResources.map((entry) => (
+    `${entry.workflowMode}\u0000${entry.leafResourceId}`
+  )));
+  const selectedLeafPairs = snapshot.routeLeafSelections.flatMap((selection) => (
+    selection.leafPairs
+  ));
+  assert.ok(selectedLeafPairs.length > 0, 'compiled route leaf selections are required');
+  selectedLeafPairs.forEach((pair) => {
+    assert.ok(manifestPairKeys.has(`${pair.workflowMode}\u0000${pair.leafResourceId}`));
+  });
   assertNoCollapse(rows, registry);
   assertInjective(rows);
   assert.strictEqual(typed.identityFixture.injective, true);
@@ -461,6 +478,8 @@ function assertCompiledArtifacts(snapshot) {
     manifestIdentityCount: snapshot.manifestResources.length,
     packetCount,
     registryModeCount: registry.modes.length,
+    routeLeafPairCount: selectedLeafPairs.length,
+    routeLeafSelectionCount: snapshot.routeLeafSelections.length,
     runtimeDiscriminatorSource: 'authored-registry-verbatim',
     selfDeclaredInputRejected: true,
   };
@@ -550,11 +569,13 @@ function runRouteCases(snapshot, fixture) {
       assert.strictEqual(result.decision.clarify.question, snapshot.fallbackChecklist[0]);
     }
 
-    const projection = compatibilityProjection(snapshot, result.decision);
+    const leafPairs = compiledLeafPairsForDecision(snapshot, result.decision);
+    const projection = compatibilityProjection(snapshot, result.decision, leafPairs);
     scorerInputs.push({ observed: projection, scenario: scorerScenario(entry) });
     rows.push({
       action: result.decision.action,
       id: entry.id,
+      leafPairs,
       projection,
       selectionKind: result.decision.route?.selectionKind || null,
       targetModes: targetModes(result.decision),
@@ -573,19 +594,38 @@ function runRouteCases(snapshot, fixture) {
     rows[index].routeGoldStatus = status;
   });
 
-  const realGreenIndex = rows.findIndex((row) => row.routeGoldStatus === 'real-green');
+  const realGreenIndex = rows.findIndex((row) => (
+    row.action === 'route' && row.routeGoldStatus === 'real-green'
+  ));
   assert.notStrictEqual(realGreenIndex, -1, 'a real-green row is required for the falsifier');
   const corrupted = clone(scorerInputs[realGreenIndex]);
-  corrupted.observed.observedIntents = ['corrupted-observation'];
+  corrupted.observed.observedResources = ['corrupted-compiled-observation'];
   const falsifier = scoreRouteGoldReadOnly([corrupted]).verdicts[0];
   assert.strictEqual(falsifier.pass, false, 'corrupted observation must fail real scorer');
 
   const researchIndex = fixture.cases.findIndex((entry) => entry.id === 'single-research');
   const researchResult = evaluateCanary(snapshot, fixture.cases[researchIndex]);
-  const researchProjectorOutput = compatibilityProjection(snapshot, researchResult.decision);
+  const researchLeafPairs = compiledLeafPairsForDecision(snapshot, researchResult.decision);
+  const researchProjectorOutput = compatibilityProjection(
+    snapshot,
+    researchResult.decision,
+    researchLeafPairs,
+  );
   assert.deepStrictEqual(researchProjectorOutput, scorerInputs[researchIndex].observed);
-  assert.deepStrictEqual(researchProjectorOutput.observedResources, []);
-  assert.strictEqual(rows[researchIndex].routeGoldStatus, 'shadow-partial');
+  assert.strictEqual(rows[researchIndex].routeGoldStatus, 'real-green');
+  const manifestByPair = new Map(snapshot.manifestResources.map((entry) => (
+    [`${entry.workflowMode}\u0000${entry.leafResourceId}`, entry.resource]
+  )));
+  const researchCompiledResources = researchLeafPairs.map((pair) => (
+    manifestByPair.get(`${pair.workflowMode}\u0000${pair.leafResourceId}`)
+  ));
+  const compiledResourceBytes = canonicalize(researchCompiledResources);
+  const projectorResourceBytes = canonicalize(researchProjectorOutput.observedResources);
+  const scoredResourceBytes = canonicalize(
+    scorerInputs[researchIndex].observed.observedResources,
+  );
+  assert.strictEqual(projectorResourceBytes, compiledResourceBytes);
+  assert.strictEqual(scoredResourceBytes, compiledResourceBytes);
 
   const realGreenScenarioIds = rows
     .filter((row) => row.routeGoldStatus === 'real-green')
@@ -594,18 +634,26 @@ function runRouteCases(snapshot, fixture) {
     .filter((row) => row.routeGoldStatus === 'shadow-partial')
     .map((row) => row.id);
   const deliveredArtifact = runDeliveredRouteGoldFalsifier(fixture);
+  assert.strictEqual(shadowPartialScenarioIds.length, 0);
+  assert.strictEqual(realGreenScenarioIds.length, rows.length);
+  assert.strictEqual(deliveredArtifact.shadowPartialRows, 0);
   return {
     corruptedObservationPass: falsifier.pass,
     corruptedScenarioId: rows[realGreenIndex].id,
     deliveredArtifact,
     legacyBackfillUsed: false,
     projectorProof: {
-      compiledLeafPairs: 0,
+      compiledLeafPairs: researchLeafPairs,
+      compiledLeafPairBytes: canonicalize(researchLeafPairs),
+      compiledResourceBytes,
       manifestIdentityCount: snapshot.manifestResources.length,
       projectorOutput: researchProjectorOutput,
+      projectorResourceBytes,
       projectorOutputEqualsScoredObservation: true,
+      resourceBytesEqualThroughScoring: true,
       scenarioId: 'single-research',
       scoredObservation: scorerInputs[researchIndex].observed,
+      scoredResourceBytes,
     },
     realEvaluateRouteGoldRows: rows.length,
     realGreenRows: realGreenScenarioIds.length,
@@ -1116,7 +1164,7 @@ function runCanary() {
     rollback,
     routes,
     stageGate: {
-      activationEligibility: 'blocked-by-shadow-partial',
+      activationEligibility: 'eligible-shadow-only',
       advisorIdentity: 'pass-or-annotation-only',
       documentParity: 'pass',
       documentRequest: 'full-machine-request',
@@ -1124,7 +1172,7 @@ function runCanary() {
       deliveredArtifactRouteGold: routes.deliveredArtifact.status,
       noCollapse: 'pass',
       rollbackDrill: 'pass',
-      routeGold: 'shadow-partial',
+      routeGold: 'real-green',
       routeGoldRealGreenRows: routes.realGreenRows,
       routeGoldShadowPartialRows: routes.shadowPartialRows,
       scorer: 'real-read-only-evaluateRouteGold',
@@ -1132,7 +1180,7 @@ function runCanary() {
       servingAuthority: 'legacy',
     },
     staticGates,
-    status: 'shadow-partial',
+    status: 'real-green',
   };
 }
 

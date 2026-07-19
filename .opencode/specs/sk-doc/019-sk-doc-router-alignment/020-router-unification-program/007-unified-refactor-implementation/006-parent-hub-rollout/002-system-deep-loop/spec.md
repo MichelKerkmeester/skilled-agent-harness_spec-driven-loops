@@ -21,7 +21,7 @@ This phase activates the council-synthesized compiled router contract (`../../..
 
 The work is therefore **not** a router rewrite. It is: compile the four explicit projections per mode, prove the compiled `system-deep-loop` policy against the existing deterministic route-gold through a compatibility projector (the shared scorer `router-replay.cjs` is never edited), run a fenced canary with a proven byte-exact rollback, and hand a green Stage-4 gate to `mcp-tooling`. Legacy routing stays serving-authoritative until the fenced CAS activation binds the compiled tuple.
 
-**Implementation status (2026-07-19):** Stage-4 route-gold is `shadow-partial`, so activation remains blocked and legacy stays serving-authoritative. Seven modes still compile to seven injective destinations across five packets, and document parity, fencing, mixed-generation refusal, and byte-exact rollback pass. The frozen compatibility projector scores 4 real-green negative-control rows and honestly labels all 7 positive rows `shadow-partial` because the compiled shadow policy selects no leaf resources. Strict packet validation is pending the final documentation reconciliation.
+**Implementation status (2026-07-19):** Stage-4 route-gold is fully `real-green`: all 11 rows, including all 7 positive routes, pass the real read-only scorer with 0 `shadow-partial`. Seven mode selections compile to 19 typed leaf pairs validated against 584 manifest identities; the compatibility projector resolves their packet-qualified resources without legacy backfill. Document parity, fencing, mixed-generation refusal, and byte-exact rollback pass. Legacy remains serving-authoritative and the candidate remains shadow-only; strict packet validation is pending the final documentation reconciliation.
 
 ## PROBLEM & PURPOSE
 
@@ -112,8 +112,8 @@ These apply to this phase and all sibling rollout phases (synthesis §10; master
 | REQ-005 | Pass | Advisor projection preserves all routing classes; stale/absent/unavailable/hash-drift evidence cannot rewrite a route. |
 | REQ-006 | Pass | All seven positive cases are `single`; a planted bundle fails `BUNDLE_EMISSION_FORBIDDEN`. |
 | REQ-007, SC-004 | Pass | Zero signal defers with empty targets and observations; ambiguity emits one checklist-derived clarify. |
-| REQ-008, SC-003, SC-005 | Partial | Fenced ship/rollback advances epoch `0→1→2`; prior/restored bytes match and mixed generations fail closed, but Stage-4 activation remains blocked by partial route-gold. |
-| REQ-009, SC-002 | `shadow-partial` | All 11 projector observations reach real read-only `evaluateRouteGold`: 4 negative-control rows are real green and 7 positive rows are `shadow-partial`. `single-research` scores exactly `{intents:["research"], resources:[]}`; no resource is legacy-backfilled; a coherently corrupted real-green row fails; scorer digests remain pinned. |
+| REQ-008, SC-003, SC-005 | Pass | Fenced ship/rollback advances epoch `0→1→2`; prior/restored bytes match, mixed generations fail closed, and the Stage-4 canary is eligible while authority intentionally remains legacy/shadow-only. |
+| REQ-009, SC-002 | Pass | Real read-only `evaluateRouteGold` scores all 11 projector observations `real-green` with 0 `shadow-partial`. Seven selections compile to 19 manifest-validated leaf pairs; `single-research` proves byte-identical compiled resources, projector resources, and scored resources. `legacyBackfillUsed` is false, a coherently corrupted persisted resource fails `resource-mismatch`, and scorer digests remain pinned. |
 | REQ-010 | Pass | Generated card enumerates seven projections; `15/15` full-request document decisions match, constraint-only reject is covered, and a planted divergence fails. |
 | Packet strict validation | Pending | Run after the final status/evidence reconciliation; no completion claim is made before it passes. |
 

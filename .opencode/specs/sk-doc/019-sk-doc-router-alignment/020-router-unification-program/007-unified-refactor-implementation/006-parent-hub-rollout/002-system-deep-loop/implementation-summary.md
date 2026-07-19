@@ -20,7 +20,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Correctness-hardened; route-gold `shadow-partial`; Stage-4 activation blocked |
+| **Status** | Route-gold fully `real-green`; Stage-4 canary eligible in shadow-only mode |
 | **Date** | 2026-07-19 |
 | **Level** | 2 |
 | **Serving authority** | Legacy; candidate remains shadow-only |
@@ -42,12 +42,13 @@ discriminator, and the destination role (synthesis §§2.2, 7).
 
 The compiler now rejects a missing authored public mode as `PUBLIC_MODE_MISSING` and a duplicate
 as `PUBLIC_MODE_DUPLICATE` before full-tuple injectivity can mask the defect. It also compiles 584
-manifest-aware typed leaf identities from the immutable leaf manifest. The generated typed
-route-gold artifact comes only from the frozen compatibility projector applied to each typed
-decision, the compiled policy, and those identities. The shadow policy currently selects zero
-leaf pairs, so no resource is invented or copied from the legacy router (synthesis §8.2, §3 Ideas
-1 and 6). Document replay consumes the same prompt, constraints, explicit mode, and advisor fields
-as the machine request (synthesis §§2.2–2.3, 8.2–8.3).
+manifest-aware typed leaf identities from the immutable leaf manifest. The authored surface map is
+compiled into seven mode selections totaling 19 typed leaf pairs, and every pair must resolve back
+to one of those identities before the snapshot exists. The generated typed route-gold artifact
+comes only from the frozen compatibility projector applied to each typed decision, the compiled
+policy, and the selected compiled identities; no resource is invented or copied from the legacy
+router (synthesis §8.2, §3 Ideas 1 and 6). Document replay consumes the same prompt, constraints,
+explicit mode, and advisor fields as the machine request (synthesis §§2.2–2.3, 8.2–8.3).
 
 The two live collapse hazards are represented directly. The three improvement lanes retain
 distinct `workflowMode` and `routingClass` values while sharing `deep-improvement` and
@@ -86,15 +87,16 @@ authored value; each runs through the complete authored-registry compile. The sh
 runtime-key falsifiers likewise mutate authored registry rows before compiling, so removing either
 guard changes an end-to-end result rather than an intermediate assertion.
 
-The compatibility lane calls the frozen `projectToRouteGold` function with the typed decision,
-compiled policy, compiled manifest identities, and the leaf pairs actually selected by the shadow
-policy. That selection is currently empty. All eleven delivered observations still reach the real
-read-only `evaluateRouteGold`: the four negative-control rows are real green under its established
-empty-intent convention, while all seven positive rows are `shadow-partial` because their resource
-sets are incomplete. `single-research` projects and scores exactly
-`{observedIntents:["research"], observedResources:[]}`. A persisted real-green row whose intent and
-both hashes are coherently rewritten fails as `DELIVERED_ROUTE_GOLD_MISMATCH` with
-`intent-mismatch`. No legacy resource producer is called or used as a backfill (synthesis §8.2).
+The compatibility lane compiles each surface-map resource into a typed pair by matching both its
+target `workflowMode` and packet-qualified resource string against the 584 compiled manifest
+identities. A route decision selects the compiled pairs for its target modes and passes them to the
+frozen `projectToRouteGold`; negative decisions select none. All eleven delivered observations
+reach the real read-only `evaluateRouteGold` and all eleven are real green, including all seven
+positive modes. `single-research` proves the same canonical resource bytes at the compiled-pair
+lookup, projector output, and scorer input boundaries. A persisted `single-research` row whose
+resource and both hashes are coherently rewritten fails as `DELIVERED_ROUTE_GOLD_MISMATCH` with
+`resource-mismatch`. No legacy prompt router or resource producer is called or used as a backfill
+(synthesis §8.2).
 
 The document-only lane reconstructs the full machine request from card data and supplied request
 fields. Its fifteen parity cases cover the eleven authored route-gold cases plus explicit-mode,
@@ -141,12 +143,12 @@ bytes. The drill is phase-local; no live router is flipped and legacy remains au
 | Runtime-key no-collapse | Pass | Authored-registry packet merge fails full compile as `RUNTIME_KEY_COLLAPSE` |
 | Runtime source | Pass | Authored non-null and null mutation fixtures propagate verbatim |
 | Single-only selection | Pass | Seven positive routes are `single`; planted bundle fails `BUNDLE_EMISSION_FORBIDDEN` |
-| Delivered route-gold | `shadow-partial` | Real `evaluateRouteGold` scores 11/11 projector observations: 4 negative-control rows are `real-green`, 7 positive rows are `shadow-partial`, and coherent persisted tamper fails as `intent-mismatch` |
+| Delivered route-gold | Pass | Real `evaluateRouteGold` scores 11/11 projector observations `real-green`, 0 are `shadow-partial`, and coherent persisted resource tamper fails as `resource-mismatch` |
 | Advisor guard | Pass | Live match may contribute; stale/absent/unavailable/drift cannot rewrite the route |
 | No over-emission | Pass | Zero signal defers; ambiguity clarifies once; negatives have empty targets/observations |
 | Full-request document parity | Pass | 15/15 match; constraint-only negative is `reject(forbidden)`; planted divergence rejected; terminal is document-only unattested |
 | Authority lifecycle | Pass | COMMIT without READY fails; legal path exactly PREPARE→VERIFY→COMMIT |
-| Aggregate hard blocks | Pass | Nine activation blocks plus direct structural refusals are driven; the actual partial route-gold subgate is ineligible |
+| Aggregate hard blocks | Pass | Nine activation blocks plus direct structural refusals are driven; the real-green canary is eligible while serving authority remains legacy/shadow-only |
 | Rollback | Pass | Prior/restored hashes match; final fence epoch 2; mixed pins refused |
 | Dual read | Pass | Seven modes/commands and advisor aliases resolve; unknown alias fails closed |
 | Static constraints | Pass | Seven code files; zero external dependencies, name branches, or comment violations |
@@ -166,15 +168,14 @@ Protected inputs after the Stage-4 run:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Stage-4 activation is not proven green. The candidate manifest remains shadow-only, legacy
-   remains authoritative, and route-gold blocks activation while any positive row is partial.
+1. The Stage-4 canary is real-green, but no serving activation was performed. The candidate manifest
+   remains shadow-only and legacy remains authoritative by scope.
 2. The eleven-case route-gold fixture set covers all seven positive modes plus clarify, defer,
    prompt-driven reject, and constraint-driven reject. It is not an exhaustive natural-language
    corpus; four additional synthetic requests exercise full-request document parity.
-3. The compiled shadow policy selects no typed leaf pairs. Its seven positive rows therefore
-   reproduce intent but not expected resources and remain `shadow-partial`; the four negative rows
-   are the only real greens. Full positive parity requires the compiled policy to select the
-   expected manifest identities in a later in-scope change, never a legacy backfill.
+3. The compiled surface map selects the fixed per-mode leaf sets authored in `smart_routing.md`.
+   It does not add a new within-mode natural-language selector; changes to those leaf sets require
+   authored map and manifest updates followed by recompilation.
 4. Strict packet validation is pending the final reconciled document state, so this report does not
    yet claim that gate.
 5. The compiled schema names the optional runtime field `runtimeDiscriminator`, not

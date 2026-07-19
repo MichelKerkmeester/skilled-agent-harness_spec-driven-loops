@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-07-19T04:04:10.536Z",
+    "last_save_at": "2026-07-19T06:12:51.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c8663b3c66e9370ac7299fe30bb76a5bf02b82cafdd87172c7a4124104c2b5a",
+    "source_fingerprint": "sha256:3cc312595e283b67875999c3b119d335f86e0111025087e58eb13226ca690229",
     "source_doc_hashes": {
-      "spec.md": "b8ea59ed0fe154d754961133e53c90d096fb50ad5de87d0a4d5ee5b0d99795ed",
-      "plan.md": "6bbe5121398c4f6d00d1ac11608b16001b4924eb0f55241b5f0380796db54e31",
-      "tasks.md": "7ffca03b621f0997c6cb38817e3ba7f03ce10bd0ac5d330c2fa695e32211582e",
-      "checklist.md": "954c4f68c77a7d45db8ed9804fd19618720b36cb6ba286b860fdc6fa5ecea281",
-      "implementation-summary.md": "db716213eeeb5a83d81679c08f8b439058eb8672ecb09b0f08f88c9794c3ed34"
+      "spec.md": "2b1f89095d3f5574d8bf78d13c3501871d4c9c8edc861313d33523c150f5fccb",
+      "plan.md": "16fb5766db0eff352f5f674840a6fff8bddee1f1898ec39400a5e7eff6fbd10c",
+      "tasks.md": "7bf162fa0a37086213724df099e291e3ec7ab243ae38a7fa7fce6fda1bcde23c",
+      "checklist.md": "022c2cd3cec3444c5055254242d8b76f9999cc8e8872afbd28cce08af4f5dc1a",
+      "implementation-summary.md": "4b4b8c2f36163013e077bc01055fa2e0119767b763f9f7077c1b3bd97138a5ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

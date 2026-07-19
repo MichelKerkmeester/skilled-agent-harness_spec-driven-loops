@@ -113,10 +113,26 @@ function compatibilityProjection(snapshot, decision, leafPairs = []) {
   });
 }
 
+function compiledLeafPairsForDecision(snapshot, decision) {
+  if (decision.action !== 'route') return [];
+  const selections = new Map(snapshot.routeLeafSelections.map((selection) => (
+    [selection.workflowMode, selection.leafPairs]
+  )));
+  return decision.route.targets.flatMap((target) => {
+    const workflowMode = target.destinationId.workflowMode;
+    const leafPairs = selections.get(workflowMode);
+    if (!leafPairs) {
+      throw new TypeError(`compiled leaf selection is missing for ${workflowMode}`);
+    }
+    return leafPairs;
+  });
+}
+
 function typedGold(snapshot, fixture) {
   const rows = fixture.cases.map((entry) => {
     const evaluated = evaluateCanary(snapshot, entry);
-    const projection = compatibilityProjection(snapshot, evaluated.decision);
+    const leafPairs = compiledLeafPairsForDecision(snapshot, evaluated.decision);
+    const projection = compatibilityProjection(snapshot, evaluated.decision, leafPairs);
     const row = {
       assertions: {
         duplicateIdempotencyKeyProducesSingleReceipt: false,
@@ -234,6 +250,7 @@ function buildArtifacts() {
 
 module.exports = {
   buildArtifacts,
+  compiledLeafPairsForDecision,
   compatibilityProjection,
   loadSnapshot,
   sourceBytes,

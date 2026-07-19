@@ -68,8 +68,8 @@ contextType: "implementation"
   - **Evidence**: Both rows preserve `runtimeLoopType=review` with different packets; an authored-registry packet merge fails full compile as `RUNTIME_KEY_COLLAPSE`.
 - [x] CHK-024 [P0] Runtime-loop discriminators come verbatim from the registry.
   - **Evidence**: Coherent mutation fixtures propagate an unexpected authored `review` discriminator onto `agent-improvement`, while an authored `null` removes the optional schema field; no workflow-name inference occurs.
-- [x] CHK-025 [P0] Real route-gold scoring separates actual greens from incomplete shadow projections.
-  - **Evidence**: Real read-only `evaluateRouteGold` scores all eleven compatibility-projector observations; four negative-control rows are `real-green`, while all seven positive rows are `shadow-partial` because their expected resources are absent.
+- [x] CHK-025 [P0] Real route-gold scoring proves every compiled observation green.
+  - **Evidence**: Real read-only `evaluateRouteGold` scores all eleven compatibility-projector observations `real-green`; all seven positive rows carry compiled resources and `shadowPartialRows` is `0`.
 - [x] CHK-026 [P0] Deep-loop selection is single-only.
   - **Evidence**: `compositionRules` is empty, the card grammar is `single`, every positive case has one target, and a planted `orderedBundle` fails `BUNDLE_EMISSION_FORBIDDEN`.
 - [x] CHK-027 [P0] Advisor drift and availability never rewrite a decision.
@@ -92,15 +92,15 @@ contextType: "implementation"
 - [x] CHK-032 [P0] Dual-read aliases are complete and fail closed.
   - **Evidence**: All seven workflow modes and commands plus advisor aliases resolve; routing classes are preserved, shared advisor id `deep-improvement` resolves to its authored default, and an unknown alias returns `null`.
 - [x] CHK-033 [P0] Legacy remains serving-authoritative after the canary proof.
-  - **Evidence**: Candidate manifests report `servingAuthority: legacy` and `shadowOnly: true`; the actual route-gold subgate is incomplete, `shadowPartialEligible` is false, and no live routing configuration changed.
+  - **Evidence**: Candidate manifests report `servingAuthority: legacy` and `shadowOnly: true`; the route-gold subgate is real-green, activation eligibility is shadow-only, and no live routing configuration changed.
 - [x] CHK-034 [P0] Authored public modes are present and unique before destination compilation.
   - **Evidence**: Changing `ai-council` to duplicate `research` fails full compile as `PUBLIC_MODE_DUPLICATE`; removing a `workflowMode` fails as `PUBLIC_MODE_MISSING`. Removing the uniqueness guard makes the duplicate fixture reach six distinct public modes.
 - [x] CHK-035 [P0] The real scorer consumes the delivered typed route-gold artifact.
-  - **Evidence**: The validator reads `compiled/route-gold.typed.json`, verifies every row projection hash and the acceptance digest, then scores those exact rows. Recomputing both hashes after corrupting the persisted `one-turn-clarify` intent still fails as `DELIVERED_ROUTE_GOLD_MISMATCH`.
+  - **Evidence**: The validator reads `compiled/route-gold.typed.json`, verifies every row projection hash and the acceptance digest, then scores those exact rows. Recomputing both hashes after corrupting the persisted `single-research` resource still fails as `DELIVERED_ROUTE_GOLD_MISMATCH` with `resource-mismatch`.
 - [x] CHK-036 [P0] Document replay consumes the full machine request.
   - **Evidence**: The harmless prompt `unrelated orchard inventory` plus `constraints:["forbidden"]` matches machine `reject(forbidden)`; removing constraint consumption changes document replay to `defer(no-match)`.
 - [x] CHK-037 [P0] Compatibility observations never source or backfill resources from the legacy router.
-  - **Evidence**: The canary reports `legacyBackfillUsed: false`; `single-research` has `compiledLeafPairs: 0`, projector output `{observedIntents:["research"], observedResources:[]}`, byte-equal scored observation, and row status `shadow-partial`.
+  - **Evidence**: The canary reports `legacyBackfillUsed: false`; seven selections compile to 19 typed leaf pairs from 584 manifest identities. For `single-research`, the three compiled resource bytes, projector resource bytes, and scored resource bytes are identical, and the real row is green.
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -122,7 +122,7 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-050 [P0] Spec, plan, tasks, checklist, and summary agree on the canary state.
-  - **Evidence**: Authored docs report 4 real-green rows, 7 `shadow-partial` positive rows, legacy authority retained, and the Stage-4 gate blocked.
+  - **Evidence**: Authored docs report 11 real-green rows, 0 `shadow-partial`, 19 compiled leaf pairs, legacy authority retained, and the Stage-4 canary eligible in shadow-only mode.
 - [x] CHK-051 [P0] Design decisions cite the approved synthesis.
   - **Evidence**: `implementation-summary.md` cites synthesis §§2.2–2.3, 5.3, 7, 8.2–8.3, 9, and 10.
 - [x] CHK-052 [P1] Required anchors are exact, balanced, and ordered.
@@ -152,7 +152,7 @@ contextType: "implementation"
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-19  
-**Verification Scope**: Phase-local compile, manifest-identity projection, honest route-gold classification, delivered-artifact scoring, full-request document parity, authority, activation blocking, and rollback gates.  
+**Verification Scope**: Phase-local compile, manifest-identity projection, fully real-green route-gold, delivered-artifact scoring, full-request document parity, authority, shadow-only activation eligibility, and rollback gates.  
 **External Boundary**: Strict packet validation remains to run after final reconciliation.
 
 <!-- /ANCHOR:summary -->
