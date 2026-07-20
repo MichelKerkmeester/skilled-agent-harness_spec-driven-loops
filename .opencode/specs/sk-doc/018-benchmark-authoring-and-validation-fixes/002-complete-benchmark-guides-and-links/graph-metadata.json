@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark authoring completion",
+      "lane a authoring guide create-benchmark",
+      "benchmark cross-link deep-alignment",
+      "benchmark authoring completion plan",
+      "benchmark authoring completion tasks",
+      "benchmark authoring completion checklist",
+      "benchmark authoring completion decisions",
+      "benchmark authoring completion summary"
+    ],
+    "key_topics": [
+      "benchmark",
+      "authoring",
+      "completion",
+      "lane",
+      "guide",
+      "create-benchmark",
+      "cross-link",
+      "deep-alignment",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Authoring Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Mark",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Parent packet 015 made `sk-doc/create-benchmark` the single home for benchmark-document templates and standards for four families (MCP promotion, behavior, skill-benchmark, model-benchmark)",
+    "created_at": "2026-07-13T13:14:44.226Z",
+    "last_save_at": "2026-07-20T06:30:48.147Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:662447c20ae2c8cba8407f21568d726e0401ec1d209d08a6114c7977b3c22f6c",
+    "source_doc_hashes": {
+      "spec.md": "290963f6c2c2445d3c38bf2939e3426e1667720364da71e5c79f4ae50717c57c",
+      "plan.md": "f7c64c195ebf57b4d1e2fa2dc6bc5c5dface43492c243a0fa082b4cfd7514247",
+      "tasks.md": "a125b2eb665cd0523c53d70281e5c393b4242ca16893e5690d16ed122bd0d34b",
+      "checklist.md": "0c18d01fdabc0fd8f675c5706523e9e36f7b42d19f0498abb4de70577ab48b26",
+      "decision-record.md": "c81f51a9f7f7cb9a1e3a3399546516e063e08ff6811201fdef61f0e9aaed7dfe",
+      "implementation-summary.md": "25b8c3f1aec2f6333d9b1701bb0408f4bdbc17a039dac1e0e10e0ec7f6e3b195"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

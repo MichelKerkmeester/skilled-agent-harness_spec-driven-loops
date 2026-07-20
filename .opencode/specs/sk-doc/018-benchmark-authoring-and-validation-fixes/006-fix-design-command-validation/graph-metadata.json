@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation",
+  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation",
+  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command recipe choreography relocation",
+      "design command surface validator repair",
+      "lane c dead branch cleanup",
+      "choreography relocation plan",
+      "validator repair swarm plan",
+      "choreography relocation tasks",
+      "choreography relocation checklist",
+      "choreography relocation decisions",
+      "command recipe choreography relocation summary",
+      "design command surface validator repair summary"
+    ],
+    "key_topics": [
+      "command",
+      "recipe",
+      "choreography",
+      "relocation",
+      "design",
+      "surface",
+      "validator",
+      "repair",
+      "lane",
+      "dead",
+      "branch",
+      "cleanup"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Act",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequenced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 005 removed a false-positive from the Lane C scorer's `validateRecipeChoreography()`: the \"wrapper `## CHOREOGRAPHY` section is missing\" penalty, which became unsatisfiable once the `/design:` commands became thin routers (choreography moved to asset YAML step keys)",
+    "created_at": "2026-07-14T19:20:48.890Z",
+    "last_save_at": "2026-07-20T06:30:49.496Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:10f6f9352c891ba7260c1f83b8189a512bc74fff250cc4a19d0f8724bf832623",
+    "source_doc_hashes": {
+      "spec.md": "2f36bc878b93ba1a223fba909e9ae6775c95b5cd331ee623f81ad45432063a02",
+      "plan.md": "abcbc95ec1f5805394a65af9383f9568ea0528bae9de6fdbe052eace9496c7a2",
+      "tasks.md": "21de64e71984a7078380f7aea61ca362bec29c37dd67d62f7958bc1403ab073c",
+      "checklist.md": "31bc42c8c8b601833489c60050cfaa5bf477c49b9ceeaee02aee8bda2d9d35e9",
+      "decision-record.md": "649e22fc9eb649e9f33102d180068abfbd5b778b2379c7109253bdffde0f0a4b",
+      "implementation-summary.md": "cdc115701b9af7fc12c455624ce0fbfebb1da4352f0f1e2d47147bc3a7b808a7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

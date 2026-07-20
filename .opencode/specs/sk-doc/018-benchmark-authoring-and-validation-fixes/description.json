@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "description": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families.",
+  "keywords": [
+    "sk-doc",
+    "create-benchmark",
+    "single",
+    "home",
+    "benchmark-document",
+    "templates",
+    "authoring",
+    "standards",
+    "across",
+    "repo",
+    "benchmark",
+    "families"
+  ],
+  "lastUpdated": "2026-07-20T06:24:23.604Z",
+  "specId": "018",
+  "folderSlug": "benchmark-authoring-and-validation-fixes",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
