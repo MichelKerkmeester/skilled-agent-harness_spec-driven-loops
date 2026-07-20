@@ -1,0 +1,3110 @@
+{
+  "schemaVersion": 2,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "activeHarness": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+  "packages": [
+    {
+      "id": "deep-research",
+      "existingCount": 8,
+      "packageDigest": "30ab57cca132049779a786e6922e33f7a9449a2e42bee97b4b686852a4e9a45b",
+      "baselineOracleDigest": "a259273d7291e91bc98e19602b45bd86f1d3ef0fce4e7e28092b8e1e6745ea38"
+    },
+    {
+      "id": "deep-review",
+      "existingCount": 8,
+      "packageDigest": "12fc0c23189b2d8371a10b62afbda3077b7eec3c65b0a1fded225183276023f7",
+      "baselineOracleDigest": "e801fd8e065ee8de4db2b8538a931c19b37b0356f167db1f34c45865eb908872"
+    },
+    {
+      "id": "deep-ai-council",
+      "existingCount": 5,
+      "packageDigest": "eda2041c1a00257bb37f6968e915d8a601eba24b55619954770e906243995899",
+      "baselineOracleDigest": "efbdc1437da8fcd6f1fa2be4337fd8bca31781ad266895785cc5e0f983e0c634"
+    },
+    {
+      "id": "deep-improvement",
+      "existingCount": 5,
+      "packageDigest": "4dbe37790cab022c4da181fa9ad0cdbb2951e8b10a4b920f5d0f97e106ded7b5",
+      "baselineOracleDigest": "b8654c8148ab83e4cdd288903674955b051e6a33162d487d119a827782dd5120"
+    },
+    {
+      "id": "deep-alignment",
+      "existingCount": 27,
+      "packageDigest": "0b909912459580cc72704a111070533abaf6b9656d15d9b59ecd945c8faaa7d6",
+      "baselineOracleDigest": "b73a16556bf9feb08db86d0d6f90b6c922a4b81d400e8b83159d59289cc4f71a"
+    }
+  ],
+  "counts": {
+    "packages": 5,
+    "existing": 53,
+    "added": 3,
+    "total": 56,
+    "workstreamsWithIndependentBaseAssertion": 8,
+    "existingResultArtifacts": 26,
+    "existingStructuredBaselineRows": 27,
+    "additiveExecutionsCaptured": 3
+  },
+  "existingCorpusDigest": "94999f67fe32cd7c9902d2be618accafba7ed51c9627191fe3228baf59018215",
+  "existingScenarios": [
+    {
+      "id": "RSB-001",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-001-auto-run-specified.md",
+      "mode": "research",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "d2e7a48d1cabf57c85462c9b46d5d354950dd6d69283cf9132f52c01a55a3065",
+      "contractDigest": "1c08d91a79de602c3a8d58cd2c11ddd206001ffd6af5a4df27f0c013f18592b5",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/research"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/research/i",
+          "/iteration|dispatch/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-research",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "d0408402d03f9ee22a63c212678ea9db5d0e900838408900895322dcb8fce8cd"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-001-claude-cli.result.json",
+        "sha256": "9d8e407c4bb771b15573953a36706a575df49c874b8d36c9244217fbd201e99c",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 1124367
+      }
+    },
+    {
+      "id": "RSB-002",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-002-bare-command-halt.md",
+      "mode": "research",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "9a54ead6146689b788df9b62ade1e2286b16e57613dff72bacb737cc0aeffca2",
+      "contractDigest": "e4f816e87757768c0df3de29ba4f58254b2f07a56bea5098ee6dc7971c9a68e6",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/research"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/execution mode|:auto|:confirm/i",
+          "/topic|research/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "e37c7f2b21ec7fcccf92362dab9d4fd79e986b7b665ff747ba8c7a4bb1cb570a"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-002-claude-cli.result.json",
+        "sha256": "edc540e3316b6730855a5172c4daabbdd9495d01a1267ec0a0dfda79887fed19",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 114266
+      }
+    },
+    {
+      "id": "RSB-003",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-003-vague-natural-ask.md",
+      "mode": "research",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "f17f19431e4008a0e48c9da34ff6610f20baebe40d826d190c042d8b1f2597b7",
+      "contractDigest": "eea5f5f1c04845373a92ff7c1db0d64030f322c9939eaaee05309cae9706080b",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/what|which|clarif|topic|more detail/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "f1a2a98d8f6c3431b35ddfc3af7c039a57c02dbbb1f08da2f21e052251e6a41c"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-003-claude-cli.result.json",
+        "sha256": "3ad40ea3735c12904380feed1ed562964e8a6c0935a76cb2767784c25cf5d6db",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 362845
+      }
+    },
+    {
+      "id": "RSB-004",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-004-concise-natural-ask.md",
+      "mode": "research",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "c62d6ad4cde89eee806c829dc41570932ed625cb23bdf1257c7f0e024c8fb6a2",
+      "contractDigest": "74c2d6871cb17df1de8a96664adc0b23defd64e207d13d16275498d0054411dc",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/research|deep/i",
+          "/:auto|:confirm|execution mode|topic/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "b55e588ccb12f0ac94a511b90095405775eecb97f6488ad3879f26f7ad85da74"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-004-claude-cli.result.json",
+        "sha256": "d726c00da3d8248f17d1bf84f095df16155bbd67931401d088b6a147fa895344",
+        "leg": "claude-cli",
+        "classification": "partial",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 46533
+      }
+    },
+    {
+      "id": "RSB-005",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-005-orchestrate-handoff.md",
+      "mode": "research",
+      "entrySurface": "E4",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "fe223b0f95762d78428b883038a06610c4c305b60ce9d8c612e932e193f50243",
+      "contractDigest": "36a7a0cbbddf14cc35d5da831375f10047bb0ef3fe3df5aa7ccb19d796405543",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E4",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/deep.?research|Deep Route/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-research",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": false,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "b69cdfad156f49c9d5f5dc8cf6f11f7696d0898234869d7bc575e84bc282cb4a"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-005-claude-cli.result.json",
+        "sha256": "b4f59132108482de83a8f048718d1f551af40be1bbfae00c143ac4884d543746",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 306624
+      }
+    },
+    {
+      "id": "RSB-006",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-006-auto-missing-inputs.md",
+      "mode": "research",
+      "entrySurface": "E1",
+      "clarity": "C1",
+      "expectedInteraction": "fail_fast",
+      "semanticDigest": "816a8a363060b1ede20a86d304dffa2c43648c83814c44c91068fb7cf6c08bdf",
+      "contractDigest": "ef195f7cb59e1470a4031c36fedf50b2e349bd806e3a5c64d670769c76a76a88",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E1",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/research"
+        },
+        "expectedInteraction": "fail_fast",
+        "expectedPresentationMarkers": [
+          "/missing|required|cannot|unresolved/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "70b3cc46f5d5150303cf98e9af72cc5da59564f75972729b04011ab13e4e6a5a"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-006-claude-cli.result.json",
+        "sha256": "95dfbf1a40339954fdcfe76c4a8f72c8cce381af11ecdc08eda3d4a575c3c0c9",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 51556
+      }
+    },
+    {
+      "id": "RSB-007",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-007-delegation-route-proof.md",
+      "mode": "research",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "70d6fa40b9a39182d2575fc801d27fb6ed6b64e6b7190284c937f9dc64ad3698",
+      "contractDigest": "93b7bd37bf06b5cac32a540fb8a2c2bfdea853469ba5189ecfafac663e2e468d",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/research"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/research/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-research",
+          "min_task_events": 1,
+          "route_proof_required": true,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "74500f97c99f4046ff384798271fda283809652eda437bc76b4aa308d8b1ee2f"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-007-claude-cli.result.json",
+        "sha256": "f80b94fd075cb6d335dff69e3888693b14657a2e78f51a18d61faa9fc46f0cf1",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 1247662
+      }
+    },
+    {
+      "id": "RSB-008",
+      "package": "deep-research",
+      "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-008-absorption-probe.md",
+      "mode": "research",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "6fb85eb81df0caab54d8ea0ca156755993d313da00ee2c73461ee21858d49d14",
+      "contractDigest": "80ce36261222ec16a4f452eb871f86078daf8a55028ae2c6bf50065cc2ba14a2",
+      "semanticOracle": {
+        "mode": "research",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/deep.?research/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-research",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "ba8cb9fe679ddfd9d2071c25e13724b1a661bf175dbce6c9ef2130ab20779928"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-008-claude-cli.result.json",
+        "sha256": "69dcd123035a3d30bb96cee0309e2e3acbe5bef82b3031a353dc8e388d7b08d0",
+        "leg": "claude-cli",
+        "classification": "timeout_latency",
+        "scenarioExitCode": null,
+        "killedBy": "hard_timeout",
+        "terminalMs": 901061
+      }
+    },
+    {
+      "id": "RVB-001",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-001-auto-run-specified.md",
+      "mode": "review",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "e60a2d354b973dc952133f9859477fd5e177e1febf6516222d8f72cf5aaa3829",
+      "contractDigest": "33d0b9bce804dcbfdbc8c3fdf7a1dc97f30fe6ec7708b1d6256b3db0e9066d4f",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/review"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/review/i",
+          "/iteration|dispatch/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-review",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "1140553ee22e09b2a5055d645ff12719e67682070c4fb7e5d77619997e6ad910"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-001-claude-cli.result.json",
+        "sha256": "62d7063809fd89591c05580c2923002fde6819a168b30a7a3fa2a91c499a0e6d",
+        "leg": "claude-cli",
+        "classification": "timeout_latency",
+        "scenarioExitCode": null,
+        "killedBy": "hard_timeout",
+        "terminalMs": 1500568
+      }
+    },
+    {
+      "id": "RVB-002",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-002-bare-command-halt.md",
+      "mode": "review",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "75dc78fd6309d78060035ca0d13ffa6591c406a56961e2141b6018eeefa14a7c",
+      "contractDigest": "39b2dadd00931468d0ae12df2b5ccd683dd56f5d86ffc1788756dc9bdd4743c0",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/review"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/execution mode|:auto|:confirm/i",
+          "/dimension|target/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "14b2c607732053ff7fef4e4901f441f242c7c5dd30c032a5b464cdfb729c1474"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-002-claude-cli.result.json",
+        "sha256": "e5e5c6d940f334ce9608b5edc3923c679ed9b435cab69fa669658975513c2d11",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 73951
+      }
+    },
+    {
+      "id": "RVB-003",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-003-vague-natural-ask.md",
+      "mode": "review",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "f1336865177b1425c4be224c4a1d0f260c195dca61fca347ee8df1c6273af7e6",
+      "contractDigest": "5a39a222a0fa721835f791f7639d52b142937ca12e510bfb23dd19190f08207a",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/what|which|clarif|target|point me/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "8cdc9a423b2a329a8d80eb856b19cd39427c5bbcbb0e74744d0c282de948f70f"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-003-claude-cli.result.json",
+        "sha256": "cdd16f29aca5b1d5580313bb094a9645735df1066edf35d9d61ad74b4434aa10",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 522717
+      }
+    },
+    {
+      "id": "RVB-004",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-004-concise-natural-ask.md",
+      "mode": "review",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "281376397e658abcc4d45de249cc2b0dd9dab9df105ae0b06b44284fa8045f8f",
+      "contractDigest": "8d8c507f355f1cf1dde600f9da37b9e0f7c90098c5aa00414482b953d3f3a4cb",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/deep.?review|review/i",
+          "/:auto|:confirm|execution mode|dimension/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "a8916358650b8759b9036e2ec461827d5b4492e959d924905df95a86655399d7"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-004-claude-cli.result.json",
+        "sha256": "8e1c304c46ef098b2fa0d1512e54b9269ece5b005e506d6de7e6b979165dd70b",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 112885
+      }
+    },
+    {
+      "id": "RVB-005",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-005-orchestrate-handoff.md",
+      "mode": "review",
+      "entrySurface": "E4",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "6e5058406dfee2122dd30ab7d56d93696a72892bd00b459a45300a641fe306ce",
+      "contractDigest": "4d359482ae1a6d58a3009878ec1c56ef3ee88db5833f3e08c182a8965bb267c5",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E4",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/deep.?review|Deep Route/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-review",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "6b770e47e041847ccf7858271cba33a871e8244e4ae325cf3286629a345e59c9"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-005-claude-cli.result.json",
+        "sha256": "1daa7e9401bf8a9189170eabfc9fab8ddf4951c9a5ba1f2b4d8a18367b5292eb",
+        "leg": "claude-cli",
+        "classification": "missing_artifact",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 344196
+      }
+    },
+    {
+      "id": "RVB-006",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-006-auto-missing-inputs.md",
+      "mode": "review",
+      "entrySurface": "E1",
+      "clarity": "C1",
+      "expectedInteraction": "fail_fast",
+      "semanticDigest": "07576760682b50d88bbdf185200af5e4963405940a740626679c1400a5bdacc0",
+      "contractDigest": "e87a2509707c529f756ba1cef374124a61f3ea20e9060a8fa5b39cb60bb7ce35",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E1",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/review"
+        },
+        "expectedInteraction": "fail_fast",
+        "expectedPresentationMarkers": [
+          "/missing|required|cannot|unresolved/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "4eec494a0a8636d5396d21e35fef24d328d7cc221180d7a9b79c48c49ba54763"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-006-claude-cli.result.json",
+        "sha256": "753c558022573ce21dab71aa59c5c1737c97f37f9211e1898dca61744b10d585",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 75552
+      }
+    },
+    {
+      "id": "RVB-007",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-007-delegation-route-proof.md",
+      "mode": "review",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "7bdcbd5d6e7c1134d6836f86aa2980ebe883f4c1879f6a878581237f53611af1",
+      "contractDigest": "5054efe722e986d0826bdd56ab21971185aa8195399dcaf7e0fa487b8e1ebea9",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/review"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/review/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-review",
+          "min_task_events": 1,
+          "route_proof_required": true,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "45e9086272f1246863637ba7d6dc2691d93a4c0219d7b02c05eee4314786391d"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-007-claude-cli.result.json",
+        "sha256": "11e45540ed0b571ee9aded8d89aba86c090ab6e624e167a20cb3e1f91545d4f9",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 1338519
+      }
+    },
+    {
+      "id": "RVB-008",
+      "package": "deep-review",
+      "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-008-absorption-probe.md",
+      "mode": "review",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "29aa22301a49343fe38023e0e3de14c9d7dd5776be380bde4fcafbfe1bca03ce",
+      "contractDigest": "4cbc153a587e2a1fde78fb6aaa9f25ae2f025d35bf2a95b316e6619fb48fdc74",
+      "semanticOracle": {
+        "mode": "review",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/deep.?review/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-review",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "a12008a5812d0786983c26ffde95e073508575d419f14b2dd93cda2e57409366"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/baseline-r2/RVB-008-claude-cli.result.json",
+        "sha256": "c75efcd51f4cd6a11eb942f62b8e1961f4888f5b791d83d44dd29ad1aae9fdaa",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 1403290
+      }
+    },
+    {
+      "id": "ACB-001",
+      "package": "deep-ai-council",
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-001-auto-run-specified.md",
+      "mode": "ai-council",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "3262ef5ce4830ca7aa46fb5fce4fb1d19140343e0a2388060cf2a99515b58125",
+      "contractDigest": "de8b73d59f67b6c1e8997cfa1742b08704a57c598fef571b1b9e895e6c92613e",
+      "semanticOracle": {
+        "mode": "ai-council",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/ai-council"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/council|seat|recommend/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "seat_artifacts",
+          "leaf_agent": "ai-council",
+          "min_seats": 2,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "ac25a92b9705c12968e3ea497ea782092fe93ff2193a614179cdc6574d8df4a8"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-001-claude-cli.result.json",
+        "sha256": "525d226ed8f02755f74262608a3f9b328375c3c0c37b77fb50e436f7d7ce6d8f",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 693059
+      }
+    },
+    {
+      "id": "ACB-002",
+      "package": "deep-ai-council",
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-002-bare-command-halt.md",
+      "mode": "ai-council",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "59b47c54d05b91bc7aa30f9ecd801e420a4beece025a30e895c21bc880dd2e31",
+      "contractDigest": "2c773b523be537958c25e622faf8cc336ac8cc0445a0517b4572594ee5748057",
+      "semanticOracle": {
+        "mode": "ai-council",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/ai-council"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/topic|packet|which|what.*council|specify/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "seat_artifacts",
+          "leaf_agent": "ai-council",
+          "min_seats": 2,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "393f1cb614cdd72baacebb32387262d01eb8254807449339abc9a363d6c0fc7f"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-002-claude-cli.result.json",
+        "sha256": "96f531b9a1d964e183ffd096265c2af492e29cf9ad26c0ca8eaa88f55d1975ad",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 67090
+      }
+    },
+    {
+      "id": "ACB-003",
+      "package": "deep-ai-council",
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-003-vague-natural-ask.md",
+      "mode": "ai-council",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "d5b9f9b88ab8e452b8f5ea2ea7a911c54738c24ccb257824c1e2418d2aafb8c7",
+      "contractDigest": "14deb37169726b8fb6546b17e81365d656d508f33948b2b2a36f197f7ea3af98",
+      "semanticOracle": {
+        "mode": "ai-council",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/rate.?limit|token bucket|window|strateg/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "seat_artifacts",
+          "leaf_agent": "ai-council",
+          "min_seats": 2,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": false,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "9c96bd1277e3ed3055ae4e1f26a302199389a54e2ce57d4cd0110b636e6865b6"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-003-claude-cli.result.json",
+        "sha256": "0aa60b8031cd379b2deca6b2995d52749ded0edaa8cb52b6c4abe59204ada106",
+        "leg": "claude-cli",
+        "classification": "partial",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 84570
+      }
+    },
+    {
+      "id": "ACB-004",
+      "package": "deep-ai-council",
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-004-concise-natural-ask.md",
+      "mode": "ai-council",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "8c1b79fd7dd7567ab5c12d38b697c01b34408a41c975fb601f78658f536f63b7",
+      "contractDigest": "52bbd5439440f96c7d810d0cdea13f7600c0fc1aac241b246607b376a9ac4c21",
+      "semanticOracle": {
+        "mode": "ai-council",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/council|seat|recommend/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "seat_artifacts",
+          "leaf_agent": "ai-council",
+          "min_seats": 2,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "a9bade0ceb2f785bbd1d6de7bc10786d64a1246c43a9ca501307e7c08dcad28a"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-004-claude-cli.result.json",
+        "sha256": "4ef6e51fb740ff285d2b1a2ec615524e64f2936e4943506e7d1432787699b3a5",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 1041693
+      }
+    },
+    {
+      "id": "ACB-005",
+      "package": "deep-ai-council",
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-005-orchestrate-handoff.md",
+      "mode": "ai-council",
+      "entrySurface": "E4",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "c474d3aa4f61d10798227e10eadb0b37022877b21b1396377f06c3ec71485683",
+      "contractDigest": "d3f9fb39a7790024df7631c2bf9b6b6a21f799d119904730cbf9c67a68f2e214",
+      "semanticOracle": {
+        "mode": "ai-council",
+        "entrySurface": "E4",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/seat|council|converg|recommend/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "seat_artifacts",
+          "leaf_agent": "ai-council",
+          "min_seats": 3,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "f35b9ac7d7388ef1afb7572b9c59e11ceea255487092a6224b6328cbc1cd5742"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-005-claude-cli.result.json",
+        "sha256": "ae132329ff06c1aa83cb32c54c21069e24e49caf27040c78c341eef9c4f98b7f",
+        "leg": "claude-cli",
+        "classification": "missing_artifact",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 425835
+      }
+    },
+    {
+      "id": "IMB-001",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-001-auto-run-specified.md",
+      "mode": "improvement",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "a80befb3254dfa3c4c11f13407bc3792204844ce9b6ea4a44e1c019703b5330d",
+      "contractDigest": "03d2f03473693b92c0f1741f20f052cce0bec753194a75a4b9bc244c6bd1d80d",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/agent-improvement"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/candidate|score|dimension|improv/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": "deep-improvement",
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "0dea0bf4959d186fa8d8bfd3774933138d223063eff933aa1bf497b82c0486c2"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-001-claude-cli.result.json",
+        "sha256": "c8b5af72d54129cc1bc451402c7fb864c22c8ab405ff214078e770307015a40a",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 838681
+      }
+    },
+    {
+      "id": "IMB-002",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-002-bare-command-halt.md",
+      "mode": "improvement",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "930d83db5d901278e08699900fc24c1b58f3f4d2f0a76c5f87af0127b91244bc",
+      "contractDigest": "1f8d98d585d52a99fe4fa98b5e1bcfc549eea46fdd048761282f23ad7241d6b5",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/agent-improvement"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/target|which agent|path|specify|what.*improve/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": "deep-improvement",
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "1efbe2a6a7dbe81f7f51d268285bc057277e6a3746cf1d99281b6095d4cb8ed8"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-002-claude-cli.result.json",
+        "sha256": "a50cc60d4196c4362ce02e1cb6dbe03d2905ba0667d09325e9248257101bc993",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 66264
+      }
+    },
+    {
+      "id": "IMB-003",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-003-vague-natural-ask.md",
+      "mode": "improvement",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "b7f069f3632452e87c4bd3c047dfa5b4ee8ae3dbbef4831c79f4ac1180b052e9",
+      "contractDigest": "ace2158cf5dcb5dd35fb789ada1492c8a0cd5c54b92660dd62a00ce46237bc54",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/rule|vague|structur|candidate|score|improv/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": "deep-improvement",
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": false,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "187416ba18fb88e62df658ad8bef1932f0e904e1e80a8ed3ac9f535475334f54"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-003-claude-cli.result.json",
+        "sha256": "82a207b76440f991433d0dfbc86972a2ce4a33f7a112691e2898ba1a30e93d7c",
+        "leg": "claude-cli",
+        "classification": "partial",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 95168
+      }
+    },
+    {
+      "id": "IMB-004",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-004-concise-natural-ask.md",
+      "mode": "improvement",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "454a5572d13bfa307245b2c4445540125a5ec061bc0c8084abd16dcc4f6a920d",
+      "contractDigest": "263bdc84f1091d82ac493a26ad324f8019ebb55d893663b6e8c971889633fa8e",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/candidate|score|dimension|improv/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": "deep-improvement",
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "eeea90f4023ab686d942e51e7d9448e61faa0050550f2150d58c173404bb2e96"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-004-claude-cli.result.json",
+        "sha256": "008f079058053051eb0a31b2d340581f383116142037fa7121d303e35a150824",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 448999
+      }
+    },
+    {
+      "id": "IMB-005",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-005-orchestrate-handoff.md",
+      "mode": "improvement",
+      "entrySurface": "E4",
+      "clarity": "C2",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "054dfc8a7d0cdcc09f839c14412b6c8b1e5e2f17092378ff5dc1cd9acf260796",
+      "contractDigest": "3f50a59ce7efa4369c3355faf2d97bbe09d9380a3001f69130a23c7ca710785e",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E4",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/candidate|score|dimension|evaluat/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": "deep-improvement",
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": true,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "7edc28bba9e49b8525c1042fe5d5887bc1c8e7ab888313c86b1b376941aca820"
+      },
+      "baseResult": {
+        "kind": "result-artifact",
+        "path": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/IMB-005-claude-cli.result.json",
+        "sha256": "1c895860fefbad99c294f9989c511d534a7ceb3ee8a4b3ca813f61c75e2a6b81",
+        "leg": "claude-cli",
+        "classification": "pass",
+        "scenarioExitCode": 0,
+        "killedBy": "none",
+        "terminalMs": 420602
+      }
+    },
+    {
+      "id": "DAB-001",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-001-auto-run-lane-config.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "c27c1ca60728f01eecbdc154f54075d1a21156c6f527e8274d14ac5b6ebefd91",
+      "contractDigest": "e7a7147ee1937318e2418bed3de461e81cd59ef16f9f650a68a70a6410265c0f",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/align|conformance/i",
+          "/lane|sk-doc/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "cfc2cd37d4975f3f19d5b60eb29012e8982c59f54a23d9e8ab3f33bd7de801d8"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-001 | autonomous | 1s | 33s | 266s | 862s | pass |",
+        "rowSha256": "ca97100098863c802963d4e8246332a7f7d1f4d991172959224cccc8d1e1df37",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "33s",
+        "firstArtifact": "266s",
+        "terminal": "862s",
+        "classification": "pass"
+      }
+    },
+    {
+      "id": "DAB-002",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-002-bare-command-halt.md",
+      "mode": "alignment",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "cc114b8d79baad8cd7143edf224ad2f6f8e8f34f6d6b21aa2c97ec004c41f2f1",
+      "contractDigest": "93b00ebc521b8d6c72511b06f1918fb05a13bd4aecf32c30b6934fd31d7d3ae5",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/execution mode|:auto|:confirm/i",
+          "/authority|artifact.?class|scope|lane|sk-doc|sk-git|sk-design|sk-code/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "6b0e5409a12b86d78d2a8f2cd6d0e8595c68f997af39cdcc72869f1d08c26852"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-002 | question_halt | 1s | 84s | — | 174s | pass |",
+        "rowSha256": "99b0c8e6ecdc2bfffbca5b3a608c053225a9ef8241deb0eb62091d034a5ef1fe",
+        "captured": true,
+        "interaction": "question_halt",
+        "setup": "1s",
+        "firstDispatch": "84s",
+        "firstArtifact": "—",
+        "terminal": "174s",
+        "classification": "pass"
+      }
+    },
+    {
+      "id": "DAB-003",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-003-vague-natural-ask.md",
+      "mode": "alignment",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "0e5939d2a71785d7c7b2d4de39dd2d3fc33da0df9b3a39e6b987ed873c6c5496",
+      "contractDigest": "533a440cdda6f113b88412e5a35189110fdde5f91f2dec379a4d41a4b97e6678",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/which|what|whose|authority|standard|sk-doc|sk-git|sk-design|sk-code/i",
+          "/scope|target|where|point me/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "7e73ef5a26f62f5f1d5e7803f236ba334aaf8e2b36b8219bf6624e1af35c850d"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-003 | question_halt | 1s | — | — | 16s | pass |",
+        "rowSha256": "e58dc0b7e70d0760e05f9aa40a3d60b1c307725ae462dd98e498da03657eef06",
+        "captured": true,
+        "interaction": "question_halt",
+        "setup": "1s",
+        "firstDispatch": "—",
+        "firstArtifact": "—",
+        "terminal": "16s",
+        "classification": "pass"
+      }
+    },
+    {
+      "id": "DAB-004",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-004-concise-natural-ask.md",
+      "mode": "alignment",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "871a6d56fb5f91574ff79c2d36736b1b2afdbb95d30012d7a7f4e7d9037158d3",
+      "contractDigest": "aee4ce4c02465f83c858b8a5ea1163b85047a8835f22ea83d217726551eba7fe",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/align|conformance|sk-doc/i",
+          "/:auto|:confirm|execution mode/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "0f64435b60a087a502daf04ce837917563a02aa6b3d0b92315dd99810ac1c419"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-004 | question_halt | 1s | — | — | 247s | setup_misbind [^raw4] |",
+        "rowSha256": "06cd982a3a7a8e99887bcc9e9f6846d452be40d64707b1bf95b830c62e08020d",
+        "captured": true,
+        "interaction": "question_halt",
+        "setup": "1s",
+        "firstDispatch": "—",
+        "firstArtifact": "—",
+        "terminal": "247s",
+        "classification": "setup_misbind [^raw4]"
+      }
+    },
+    {
+      "id": "DAB-005",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-005-verify-first.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "421dde1eb20716fcff360e1c7d2eae90dd9f08c61ffa8d1e645e49c0739463cd",
+      "contractDigest": "662a3f7f9d7a28cbfc02bbb1112f0a80ed63fe991ab37891d124278214e4d080",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/verif|re-?probe|re-?verif/i",
+          "/validate_document|validator|live|ground truth/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "4f50d673333c2f69beee4406d8d9d6699baaf0aaece5a36d09d54a25fb5ba5fa"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-005 | autonomous | 1s | 30s | 284s | 799s | pass |",
+        "rowSha256": "24c677ed8e4f2880cd79d1a3a83c259f8fa9a55849f1d7eeeda4645ee27be714",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "30s",
+        "firstArtifact": "284s",
+        "terminal": "799s",
+        "classification": "pass"
+      }
+    },
+    {
+      "id": "DAB-006",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-006-known-deviation-suppression.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "ea5259510ebece514fc67df8ad66370fb0affa0836104d02cd327dea2e85fd3c",
+      "contractDigest": "f8e74b31b91544ffc824f42f666e4f7b6eed477c4af21ecc4fd43c1bd58ea231",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/known.?deviation|suppress|accepted convention|intentional/i",
+          "/compact|pointer.?card|dqi|sk-doc/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "1b4cc8318334c22d97e19e181d7dcb5383e67d308e1db9276a35c4c7e9c595fb"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-006 | autonomous | 1s | 33s | 273s | 901s | timeout_latency [^to] |",
+        "rowSha256": "fd95dcaa328928f9b7a724bbe3a90b5ba61ec0568fea6437eb5508887413bfee",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "33s",
+        "firstArtifact": "273s",
+        "terminal": "901s",
+        "classification": "timeout_latency [^to]"
+      }
+    },
+    {
+      "id": "DAB-007",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-007-read-only-default.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "cc2a98f31a369e71446f7d8352f08955a2dfa1cfdc19fa74e8a0f6e330c4dc75",
+      "contractDigest": "3cb38397477c5ac4a4b4a27f0de29db3e7036817923465d3067bef93d196073e",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/read-?only|observe|report only/i",
+          "/remediat|gated|opt-?in|separate/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "7e7cf1d990dd61530f0865fe8dc88d7138cdf4283f0de96d175510bfa9061662"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-007 | autonomous | 1s | 26s | 336s | 901s | timeout_latency [^to] |",
+        "rowSha256": "8317e6bce5b5c58552b86a83c45c4a46237b965aad7940617971adab2e85a5ad",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "26s",
+        "firstArtifact": "336s",
+        "terminal": "901s",
+        "classification": "timeout_latency [^to]"
+      }
+    },
+    {
+      "id": "DAB-008",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-008-per-lane-report.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "42f9abcbc8187fd3bdd913000257d6566d7cb0d4a6b1ac46d6f88e5e5c879807",
+      "contractDigest": "9b4be3b98c504593624e45d8da4f859207c44cae05eaa7f9e4ff027e50156b59",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/lane/i",
+          "/sk-doc.*sk-code|sk-code.*sk-doc/is"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "94b2850ae149b558678cd6c69daa8c2890c7b5518ccfee3c32d3cbd82afef097"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-008 | autonomous | 1s | 26s | 303s | 900s | timeout_latency [^to] |",
+        "rowSha256": "a9aa1ee6a604f09fc610fd1d3d2e6effc15529692dfa1d8d55bd465a75a6e306",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "26s",
+        "firstArtifact": "303s",
+        "terminal": "900s",
+        "classification": "timeout_latency [^to]"
+      }
+    },
+    {
+      "id": "DAB-009",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-009-boundary-vs-deep-review.md",
+      "mode": "alignment",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "2bcb2d1a8d9ff24a844491bb670024de2bbf7d3f6e997d6498e81638b9a1b625",
+      "contractDigest": "e9233d494d1b8ad6ef8886601b941cc75a985c47b0dd0f96c5886d7404cbc45c",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/deep.?review|general correctness|not.*conformance|out of scope/i",
+          "/authority|standard|which/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "c4e845fe9ca8de8aec23c2812406207c530ffa016b5a825ab9d393b208395ad3"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-009 | question_halt | 1s | 133s | — | 153s | setup_misbind [^raw9] |",
+        "rowSha256": "b67839b9858d57c97b983d1edc0060fec5ba2bdc25720c62b9aa1301527eb341",
+        "captured": true,
+        "interaction": "question_halt",
+        "setup": "1s",
+        "firstDispatch": "133s",
+        "firstArtifact": "—",
+        "terminal": "153s",
+        "classification": "setup_misbind [^raw9]"
+      }
+    },
+    {
+      "id": "DAB-010",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-010-boundary-vs-parent-skill-check.md",
+      "mode": "alignment",
+      "entrySurface": "E3",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "be36d84301c9e6f9381db47cdac3ccdf765cf20967158cafef4c1dfb9e7b733a",
+      "contractDigest": "5ff664c62ba33503881f36065e8588679ddb8e9eece27fe5348b61cdccc9699f",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E3",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/parent-skill-check|hub structure|registry|routing wiring/i",
+          "/not.*artifact content|out of scope|artifact conformance/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "45a5fb5958142ad13c933c436843b979744019f929994b5492e1c7578df140d4"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-010 | question_halt | 1s | 39s | — | 201s | partial |",
+        "rowSha256": "bca991f0f57c17b3068712ecdae2ead878c1ffb2a59b7e3b41b1e92369066778",
+        "captured": true,
+        "interaction": "question_halt",
+        "setup": "1s",
+        "firstDispatch": "39s",
+        "firstArtifact": "—",
+        "terminal": "201s",
+        "classification": "partial"
+      }
+    },
+    {
+      "id": "DAB-011",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-011-clean-pass-zero-findings.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "4ae1594a2486ac140d72f91ba97a823fc4f045044696f9fc1207cb02689622c8",
+      "contractDigest": "d7773b26e9300f6f83c634e78bb50ad29d21a94d4de82cba5c9b1b719eb79eb6",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/alignment"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "/\\bpass\\b|\\bclean\\b|zero findings|no open findings/i",
+          "/lane|sk-doc/i"
+        ],
+        "expectedDelegation": {
+          "leaf_agent": "deep-alignment",
+          "min_task_events": 1,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "592572452d513994ed2ec65a8f64896529cb5dcd38ee544aa9eca0ddea033cda"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-011 | autonomous | 1s | 31s | 352s | 814s | pass |",
+        "rowSha256": "61cb09e89e3c2e0df301863d732a487fd00219d9914f6b132809b15a5fde1212",
+        "captured": true,
+        "interaction": "autonomous",
+        "setup": "1s",
+        "firstDispatch": "31s",
+        "firstArtifact": "352s",
+        "terminal": "814s",
+        "classification": "pass"
+      }
+    },
+    {
+      "id": "DAB-012",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "e451f1f22d3db5e065ea6a7deb822ab4161d9e9a246a9b60dce08bc59c614863",
+      "contractDigest": "5a596b311406712b6138aef97f28cea7039521cf0188b367346371de85ca522b",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/review"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "deep-review",
+          "review-report.md"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": "deep-review",
+          "min_task_events": 1,
+          "route_proof_required": true,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": []
+        },
+        "artifactsRequired": true,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "review/deep-review-state.jsonl"
+          },
+          {
+            "kind": "file_exists",
+            "path": "review/review-report.md"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "review"
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "review"
+          ]
+        },
+        "digest": "2433bee9b9dfa71afde09e49d9b2599a926da5f5f1552432b30e59049aff1b78"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-012 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "c73e8947320e46bc2d2e4df3e41ab67c1155ad181937c5cd5f910d4b5867929c",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-013",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "a564df77950103ca2b6d17a6ff2d806bfc3904041ca3976ac46015f61c56033f",
+      "contractDigest": "d1b9c1adf37285fcb045e81fb99a752615f8ab3281870848a611ba3af478e9a4",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "doctor/speckit"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "parent-skill",
+          "doctor-parent-skill.yaml"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            "/(?:deep|review|research)_[a-z0-9_-]+_(?:auto|confirm)\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/parent-skill/SKILL.md",
+            "binds_setup": true
+          },
+          {
+            "kind": "json_field_equals",
+            "path": "src/parent-skill/mode-registry.json",
+            "field": "modes.0.workflowMode",
+            "value": "quality",
+            "binds_setup": true
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "86be0b2a79135528dc1c42255ec810e2dc17b00550c025e17269be8d4b638331"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-013 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "39f2094b3218886abdc19d93ed48c61e5be7488b8559740973575add41c69c52",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-014",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "d0b8edc3c09ae24caa37bac8d6b9bffec9c083acabd3a3e3305bf1af2c4e654b",
+      "contractDigest": "2bfda22616adf793430edd0e2de4b766b1c80926560a38d25615b6278b279119",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/search"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "MEMORY:SEARCH",
+          "STATUS=OK RESULTS="
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "/mcp__mk_spec_memory__memory_(?:context|quick_search|search)/i"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "command topology pilot"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "2b564b8299759a0f599db2bc3461f7e98a7882e23d16d761702f3fc8a24816aa"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-014 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "c6d5870ff1aa9c14802662b0983ef23265f0fc9629ffb41ae478ec912109efd9",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-015",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-015-monolithic-prompt-improve.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "6ac1e7852bb800a290c464fc19071b7541e5e2a08e1add0784808ab74d08a8c8",
+      "contractDigest": "dcfd5eac596bcb0aef858bb08727dc89d99d67c2f685e87585fad0e93018c67e",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "prompt-improve"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "Q2. Save Location",
+          "Q4. Dispatch Mode"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            "/subagent_type\\s*[=:]\\s*[\"']?prompt-improver/i",
+            "/(?:deep|doctor|create)_[a-z0-9_-]+_(?:auto|confirm)\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/prompt.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/prompt.txt",
+            "substring": "PILOT_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "ceacda45d9698da7b7f423db1e68df73e0163b2d4df1742d3623294df38c2a45"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-015 | question_halt | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "72e1568a2576916d02365778ffc3b2bdff2a5009f999856a8c3dbcb4a0d532d8",
+        "captured": false,
+        "interaction": "question_halt",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-016",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-016-workflow-router-create-benchmark.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "e337138efc8d67c8cd716e3d63af59bc5b9568c3416c3e5f6a817374bed20ff1",
+      "contractDigest": "21d664d33efe3e3174b0359768970392b9d082606099cbab5e67196b9ba7fdff",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "create/benchmark"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "create-benchmark-auto.yaml",
+          "conformance_benchmark"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            ".opencode/commands/deep/assets/",
+            ".opencode/commands/doctor/assets/"
+          ]
+        },
+        "artifactsRequired": true,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/demo-mode/SKILL.md",
+            "binds_setup": true
+          },
+          {
+            "kind": "file_exists",
+            "path": "src/demo-mode/assets/conformance-benchmark/fixture-command-surface/conformance-benchmark.md"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "2692efdb80ec5351dd083d3d61b6afb418719c890484f25029bb572b6007cb79"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-016 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "9aabc4d09de2d54c49075179e726e584c8a093eb184dc350e679177ab430c878",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-017",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "5fd3378a227c74cbdd86afb54fdccdb5ced77f72c835fd00865e4c2ac9f4b7f4",
+      "contractDigest": "ecea9dffa60b835b2406abfdfeadfc1b533d0946cd57efa4eab1fb510f7d3779",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "design/audit"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "design-audit-auto.yaml",
+          "Design Quality Audit Report"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            ".opencode/commands/create/assets/",
+            ".opencode/commands/speckit/assets/"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/interface.html",
+            "binds_setup": true
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/interface.html",
+            "substring": "DESIGN_AUDIT_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "78300b999a53de10cca3873c9ab04e7db6070713c9169541a18c8803eb9ee280"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-017 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "5290fa81490aa7693b36f2407adad510dc19bc143b16f29c8d10b95ad1de560b",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-018",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-018-subaction-router-doctor-mcp-install.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "0a86fdce0fa7cc43c17dc4c40ca83be80a5a50dd7ea5564f75af5eb20b89a89d",
+      "contractDigest": "3617d0be9d194a7e034b58a859241519105a246f35ceabd37b431bc233970473",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "doctor/mcp"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "doctor-mcp-install.yaml",
+          "install"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+            ".opencode/commands/deep/assets/"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "text_contains",
+            "path": "src/case.txt",
+            "substring": "install --server sequential_thinking --runtime opencode",
+            "binds_setup": true
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "96b7b60fea53673deb9bcd3869e6cc4f0ece4b7cb18dd14185379e0a87f57de4"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-018 | question_halt | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "48af9a55f4dba9444511521d1003ed3f92931d137341f878585b9926e7b9b004",
+        "captured": false,
+        "interaction": "question_halt",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-019",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-019-subaction-router-doctor-mcp-debug.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "633dfab2c73992586803c31e2f01a99ab1a6e911f5e39da9b70cfcd754ee3f11",
+      "contractDigest": "6d0af597d97325cb9ba09f942b190a6d09bb0f2ccbbad3a1fb20ae49155fa5e9",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "doctor/mcp"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "doctor-mcp-debug.yaml",
+          "debug"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+            ".opencode/commands/deep/assets/"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "text_contains",
+            "path": "src/case.txt",
+            "substring": "debug --server sequential_thinking",
+            "binds_setup": true
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "d1c511031dd4e77bebd644c31371380f21dbb1b3c33dcab357a99240d0d020f8"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-019 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "1e5d015bb4c44cd649bcfccf600e244ee33f3be143d6e13a87eef9f095f99d67",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-020",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-020-subaction-router-doctor-mcp-conflict.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "fail_fast",
+      "semanticDigest": "0f49ec30b9ee0dea9e9f10adb9e5a906cbf48ebe9f4a721bf079ccded3b3a9ef",
+      "contractDigest": "54112ac43dcfa458f46b9607d5ffd532971350fb2784279fbe4b652161ec670b",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "doctor/mcp"
+        },
+        "expectedInteraction": "fail_fast",
+        "expectedPresentationMarkers": [
+          "--fix",
+          "debug"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+            ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+            ".opencode/commands/deep/assets/"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "text_contains",
+            "path": "src/case.txt",
+            "substring": "install --fix --server mk-spec-memory",
+            "binds_setup": true
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "9fd9a9cfb2c40af79ac3f4815e833085dc49381fae9be961c724d30c25e661e9"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-020 | fail_fast | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "f416139b4b6ae4bdbdc66be26cd6b697a78dd162f0209cf7c0d90ee5d105cdd6",
+        "captured": false,
+        "interaction": "fail_fast",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-021",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-021-direct-tool-router-memory-learn-list.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "93621cbe88b77c46256cda2450b06755d97a5a05328db3f982f166ff1b788901",
+      "contractDigest": "a47f4aee3c962d5ee8f46d209b8db78086f3102b818f32fa517bc8f9a9e15d7f",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/learn"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "STATUS=OK ACTION=",
+          "listed"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mcp__mk_spec_memory__memory_list"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "MEMORY_LEARN_LIST_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "ac6824b1a7768fc09f14c582f0db290022b432a02d920d7ce1676a4da65c29fc"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-021 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "456b01053725ab65abcec05d2f6b84c4fa4d39bcf05094fb348ac47f60da5d8b",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-022",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-022-direct-tool-router-memory-learn-budget.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "cdfa92b7e85e0703a741e466d886330c954d65845472a3e34e58b7fae1be02c0",
+      "contractDigest": "4600713b6c0e06c29232ee1104d8210b316c92110f7d835d72c50c3ea616e491",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/learn"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "STATUS=OK ACTION=",
+          "budget"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mcp__mk_spec_memory__memory_stats"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "MEMORY_LEARN_BUDGET_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "7b2daedada2ad7ba0221e8127108c17f9189a617367509ff977f2417e4fb6664"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-022 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "1b3180ac488c429127a054d4fd51e69be2165b441c961801d9343606fec738a7",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-023",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-023-direct-tool-router-memory-manage-health.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "dd9a8f9223f2ba6326e1345bbaae4c34f52d3e08db7b47841ab2907e2d0ce4b7",
+      "contractDigest": "223adfd411ebe7af06f6cbb846646caf805208b0e3ec67548911489f7dd2c409",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/manage"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "memory_health",
+          "health"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mcp__mk_spec_memory__memory_health"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "MEMORY_MANAGE_HEALTH_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "2bed8a422f809fcb807e78f3758af138e3abae6ac8fcb483ae8c4d192170777f"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-023 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "90ddffe6b5117162071c64558033edc7e660866c31215623732a63542f7fa8ce",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-024",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-024-direct-tool-router-memory-checkpoint-list.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "0b9fe0acaf01162928ec58a792c052e4cf3cf5ce143edec7aca34c42646888a5",
+      "contractDigest": "f217691f6a8a7003cd616d3491d2639a64c508c0020c8af0939c0616fd4d1f41",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/manage"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "checkpoint_list",
+          "checkpoint"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mcp__mk_spec_memory__checkpoint_list"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "MEMORY_CHECKPOINT_LIST_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "5af3b883eb4d693ea221e8ddecb43c302e75501e29d7d2f2637c813f6c8e6d00"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-024 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "8d7d000268e5a13be356148e8cf6fd43130896f2eb2882aff8dea9940fa98964",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-025",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-025-direct-tool-router-memory-save-apply.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "c36d469096d55a4af17cb69b6dcfdbe5f03b7bfb4374760f826e63ebc87d1655",
+      "contractDigest": "2fc9ad80f795593bfcf4244974893b518e9a32e0645b2f133dd4756cc2903f0b",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "memory/save"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "save plan",
+          "memory_index_scan"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mcp__mk_spec_memory__memory_index_scan",
+            "mcp__mk_spec_memory__memory_save"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": true,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/save-packet/implementation-summary.md"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/save-packet/implementation-summary.md",
+            "substring": "MEMORY_SAVE_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "6f5890a4f63a20d1eb8a7598b963ec768028899fd92b8f0d98a77302339a1371"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-025 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "40b1c8781fc6ec5a37be60cf79e450dd776affa0340cce1b6ade823ac80ad73c",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-026",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-026-direct-plugin-router-goal-show.md",
+      "mode": "alignment",
+      "entrySurface": "E1",
+      "clarity": "C3",
+      "expectedInteraction": "autonomous",
+      "semanticDigest": "2ae758acaac0e241407f09c16a462027d39f1aa70193d44e964f8f03040c09c5",
+      "contractDigest": "c1765ef562b85b5e6375f753f97e936719583f2f847229965b1c6f3232dbf460",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E1",
+        "clarity": "C3",
+        "invocation": {
+          "kind": "command",
+          "command": "goal-opencode"
+        },
+        "expectedInteraction": "autonomous",
+        "expectedPresentationMarkers": [
+          "STATUS=OK ACTION=",
+          "remaining_auto_turns"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "direct_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": true,
+          "min_seats": 0,
+          "expected_targets": [
+            "mk_goal_status"
+          ],
+          "forbidden_targets": [
+            "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
+            "/\\.opencode\\/commands\\/(?:deep|doctor|create|design|speckit)\\/assets\\/[^\\s\"']+\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/query.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/query.txt",
+            "substring": "GOAL_SHOW_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "d7e1b4b8b1a64c0689ce1f14588021e7df4f3734eda2717eeaf0423682f7a7dd"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-026 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "f0d10c25db03b1198338aaaf901edfef5c3a32651d24a5c222067ad4222d81f1",
+        "captured": false,
+        "interaction": "autonomous",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    },
+    {
+      "id": "DAB-027",
+      "package": "deep-alignment",
+      "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-027-monolithic-agent-router-bare.md",
+      "mode": "alignment",
+      "entrySurface": "E2",
+      "clarity": "C1",
+      "expectedInteraction": "question_halt",
+      "semanticDigest": "8759b11cdd7fc5cbb59091504575f658707494109275b411ac0ca071fea391ca",
+      "contractDigest": "34234d276cf40620fea8f9d9b61240b9f04455890ee63336ea34864024044bca",
+      "semanticOracle": {
+        "mode": "alignment",
+        "entrySurface": "E2",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "command",
+          "command": "agent_router"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "What request would you like to route?",
+          "Describe my request"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "task_dispatch",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": [
+            "/subagent_type\\s*[=:]/i",
+            "/(?:deep|doctor|create|design|speckit)_[a-z0-9_-]+_(?:auto|confirm)\\.ya?ml/i"
+          ]
+        },
+        "artifactsRequired": false,
+        "postconditions": [
+          {
+            "kind": "file_exists",
+            "path": "src/request.txt"
+          },
+          {
+            "kind": "text_contains",
+            "path": "src/request.txt",
+            "substring": "AGENT_ROUTER_BARE_SENTINEL"
+          },
+          {
+            "kind": "changed_paths_within",
+            "prefix": "."
+          }
+        ],
+        "boundary": {
+          "allow_prefixes": [
+            "."
+          ]
+        },
+        "digest": "b6ab90e56152b0c52fa3fecc82c088dca9a3a297b11d42e9558a0190fabc2a36"
+      },
+      "baseResult": {
+        "kind": "baseline-row",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md",
+        "row": "| DAB-027 | question_halt | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |",
+        "rowSha256": "5f084a026fe666468d8cfb43c734c25d9601cf6b4a2394274f3c945c26a4538b",
+        "captured": false,
+        "interaction": "question_halt",
+        "setup": "pending (deferred live capture)",
+        "firstDispatch": "pending (deferred live capture)",
+        "firstArtifact": "pending (deferred live capture)",
+        "terminal": "pending (deferred live capture)",
+        "classification": "pending (deferred live capture)"
+      }
+    }
+  ],
+  "addedScenarios": [
+    {
+      "id": "IMB-006",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md",
+      "mode": "improvement",
+      "entrySurface": "E3",
+      "clarity": "C1",
+      "expectedInteraction": "question_halt",
+      "workstream": "deep-improvement",
+      "semanticDigest": "a14403828164ca8ec3c9160af9cb141769310471c0ddf61b1d556e478895191c",
+      "contractDigest": "c6d35cbbb9b3b13f018eebab565bfa7583bebe8a801823f85f6d215325e29d7c",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E3",
+        "clarity": "C1",
+        "invocation": {
+          "kind": "natural",
+          "command": null
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/lane|agent|model|skill|target|profile/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": []
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "3a457a3a5b10590722f8e692cbb8f0529c73f362f5ee7e853bf6d1529e23aa4a"
+      },
+      "behaviorExecution": {
+        "command": "env XDG_DATA_HOME=/tmp/deep-loop-census-opencode-data XDG_STATE_HOME=/tmp/deep-loop-census-opencode-state node .opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs --scenario .opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md --leg gpt-fast-high --out-dir .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results --repo-root . --timeout-ms 180000 --watchdog-ms 90000",
+        "harnessExitCode": 0,
+        "scenarioExitCode": 1,
+        "resultPath": "fixtures/behavior-results/IMB-006-gpt-fast-high.result.json",
+        "resultSha256": "5bed3a931b6e872d4a6c6229b85e64d0daa5150a2d9cf5fd05bde4a46f66b549",
+        "rawResultSha256": "bdc8fc2390d5d573f8b4e9c595ad7d427352691d4d18b81497a3b0be032267b2",
+        "transcriptPath": "fixtures/behavior-results/IMB-006-gpt-fast-high.transcript.jsonl",
+        "transcriptSha256": "aaa90f557e989e77dcb24e1deb26d9a6c61b15660768e655be0feffc3502e55b",
+        "rawTranscriptSha256": "ec0b7f68dc29335dd61f71b64953badd4483a90e07186901bfd9d416c05afc07",
+        "classification": "partial",
+        "primaryCause": "partial",
+        "terminalMs": 1810
+      }
+    },
+    {
+      "id": "IMB-007",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md",
+      "mode": "improvement",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "workstream": "model-benchmark",
+      "semanticDigest": "b4c374f64e40055cab6742f5411c73173c1c782c43f3329e98ac367c3359e56e",
+      "contractDigest": "9ed8c16f05a7438f510f6491dc666c658615938c74d5bc79da91e4a7b64fb01e",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/model-benchmark"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/profile|model|run.?label|scor|grader/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": []
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "73de18a88ec87f8e9764494da2529a311741fe9e3e648c4676db4ed2fe6ff48e"
+      },
+      "behaviorExecution": {
+        "command": "env XDG_DATA_HOME=/tmp/deep-loop-census-opencode-data XDG_STATE_HOME=/tmp/deep-loop-census-opencode-state node .opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs --scenario .opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md --leg gpt-fast-high --out-dir .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results --repo-root . --timeout-ms 180000 --watchdog-ms 90000",
+        "harnessExitCode": 0,
+        "scenarioExitCode": 1,
+        "resultPath": "fixtures/behavior-results/IMB-007-gpt-fast-high.result.json",
+        "resultSha256": "9af16f3aaab0f1dfcc4d628c6c9288c0c3e137c4eb5cdd7c5e1555f20b64fe5d",
+        "rawResultSha256": "fc1527ef5c05014ff1030d5cea8fe4fc3d99866c885cb3853df73afe3d91e953",
+        "transcriptPath": "fixtures/behavior-results/IMB-007-gpt-fast-high.transcript.jsonl",
+        "transcriptSha256": "bde4af31bb767e0eca46919fd2c10726922553c71167cd10f374fa899b573ac2",
+        "rawTranscriptSha256": "4ff0f924a8e80753aa70240fc003cb350273e66ab204a5713f242f8b02ea25d5",
+        "classification": "partial",
+        "primaryCause": "partial",
+        "terminalMs": 33818
+      }
+    },
+    {
+      "id": "IMB-008",
+      "package": "deep-improvement",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md",
+      "mode": "improvement",
+      "entrySurface": "E2",
+      "clarity": "C2",
+      "expectedInteraction": "question_halt",
+      "workstream": "skill-benchmark",
+      "semanticDigest": "0e5bf53df3df2f9ccecaf96aaf917e67b0afae0ad7cea2d0ac5e5741908e86c0",
+      "contractDigest": "f9212b534f28636d1d7cd7818f8f01d346ee1081b374a6f134f7ac92e2a0b081",
+      "semanticOracle": {
+        "mode": "improvement",
+        "entrySurface": "E2",
+        "clarity": "C2",
+        "invocation": {
+          "kind": "command",
+          "command": "deep/skill-benchmark"
+        },
+        "expectedInteraction": "question_halt",
+        "expectedPresentationMarkers": [
+          "/skill|output|fixture|trace|advisor/i"
+        ],
+        "expectedDelegation": {
+          "evidence_kind": "candidate_evidence",
+          "leaf_agent": null,
+          "min_task_events": 0,
+          "route_proof_required": false,
+          "role_absorption_forbidden": false,
+          "min_seats": 0,
+          "expected_targets": [],
+          "forbidden_targets": []
+        },
+        "artifactsRequired": null,
+        "postconditions": [],
+        "boundary": null,
+        "digest": "4bb26c7c309dda2da47c57ae80aed0c2f0c212302f6f753b5ebb963c3fe77d1e"
+      },
+      "behaviorExecution": {
+        "command": "env XDG_DATA_HOME=/tmp/deep-loop-census-opencode-data XDG_STATE_HOME=/tmp/deep-loop-census-opencode-state node .opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs --scenario .opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md --leg gpt-fast-high --out-dir .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results --repo-root . --timeout-ms 180000 --watchdog-ms 90000",
+        "harnessExitCode": 0,
+        "scenarioExitCode": 1,
+        "resultPath": "fixtures/behavior-results/IMB-008-gpt-fast-high.result.json",
+        "resultSha256": "ae0c08cadc27b931c027a788d1a66f1e4cfe6ab11f4892dcc15219104bd14fdf",
+        "rawResultSha256": "dc1ab434456b0d0ca8c488156098293a51fd991064132459f77e1df9012ba33b",
+        "transcriptPath": "fixtures/behavior-results/IMB-008-gpt-fast-high.transcript.jsonl",
+        "transcriptSha256": "ac84de8b621ef114b15dcd3b4be582e9d44f78cd879583454dce6ef996288f5f",
+        "rawTranscriptSha256": "d72edb55d2b050a0585deb8af244586e99cf924e08376a36c93fdc580f5aeb32",
+        "classification": "partial",
+        "primaryCause": "partial",
+        "terminalMs": 33498
+      }
+    }
+  ],
+  "workstreamAssertions": [
+    {
+      "workstream": "deep-research",
+      "scenarioId": "RSB-001",
+      "assertion": "A fully specified research auto run remains autonomous."
+    },
+    {
+      "workstream": "deep-review",
+      "scenarioId": "RVB-001",
+      "assertion": "A fully specified review auto run remains autonomous."
+    },
+    {
+      "workstream": "deep-ai-council",
+      "scenarioId": "ACB-001",
+      "assertion": "A fully specified council auto run remains autonomous."
+    },
+    {
+      "workstream": "deep-improvement",
+      "scenarioId": "IMB-006",
+      "assertion": "The common improvement parent halts until a lane is selected."
+    },
+    {
+      "workstream": "deep-alignment",
+      "scenarioId": "DAB-001",
+      "assertion": "A fully specified alignment lane run remains autonomous."
+    },
+    {
+      "workstream": "agent-improvement",
+      "scenarioId": "IMB-001",
+      "assertion": "A fully specified agent improvement run persists candidate evidence."
+    },
+    {
+      "workstream": "model-benchmark",
+      "scenarioId": "IMB-007",
+      "assertion": "The model benchmark lane halts on unresolved run setup."
+    },
+    {
+      "workstream": "skill-benchmark",
+      "scenarioId": "IMB-008",
+      "assertion": "The skill benchmark lane halts on unresolved skill and output setup."
+    }
+  ],
+  "closure": {
+    "missingExistingIds": 0,
+    "changedExistingSemantics": 0,
+    "duplicateIds": 0,
+    "workstreamsWithoutIndependentAssertion": 0,
+    "existingIdsRenumbered": 0,
+    "existingOraclesWeakened": 0,
+    "missingBaseResultReferences": 0,
+    "missingAdditiveExecutions": 0
+  }
+}

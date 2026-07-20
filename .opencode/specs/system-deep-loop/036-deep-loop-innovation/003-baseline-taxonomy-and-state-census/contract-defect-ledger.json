@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "rows": [
+    {
+      "id": "ledger-001",
+      "classification": "protected_contract",
+      "statement": "The registry exposes exactly seven workflowModes in five families.",
+      "owner": "system-deep-loop router",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        "taxonomy-census.json"
+      ],
+      "scenarioOrFixture": "IMB-006",
+      "laterDisposition": "preserve through all migrations"
+    },
+    {
+      "id": "ledger-002",
+      "classification": "protected_contract",
+      "statement": "The improvement family is a many-to-one parent with agent, model, and skill registered modes.",
+      "owner": "deep-improvement",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "taxonomy-census.json"
+      ],
+      "scenarioOrFixture": "IMB-006, IMB-007, IMB-008",
+      "laterDisposition": "012-shared-modes-fixtures-and-utilities"
+    },
+    {
+      "id": "ledger-003",
+      "classification": "protected_contract",
+      "statement": "ai-system-improvement is outside the registered taxonomy and eight-workstream research set.",
+      "owner": "system-deep-loop router",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        "taxonomy-census.json"
+      ],
+      "scenarioOrFixture": "taxonomy-census.json#excluded",
+      "laterDisposition": "preserve through all migrations"
+    },
+    {
+      "id": "ledger-004",
+      "classification": "protected_contract",
+      "statement": "The fifty-three pre-existing behavior scenario IDs and their semantic file digests are immutable BASE evidence.",
+      "owner": "behavior benchmark packages",
+      "evidence": [
+        "behavior-baseline.json"
+      ],
+      "scenarioOrFixture": "behavior-baseline.json#existingScenarios",
+      "laterDisposition": "016-behavioral-equivalence-and-release-gate"
+    },
+    {
+      "id": "ledger-005",
+      "classification": "protected_contract",
+      "statement": "Research, review, alignment, council, and improvement ledgers are replayable append histories; projections are recreated from them.",
+      "owner": "state-checkpointing subsystem",
+      "evidence": [
+        "event-schema-census.json",
+        "state-backend-census.json"
+      ],
+      "scenarioOrFixture": "fixtures/event-streams.json",
+      "laterDisposition": "006-canonical-ledger-and-snapshot-substrate"
+    },
+    {
+      "id": "ledger-006",
+      "classification": "protected_contract",
+      "statement": "Repair preserves every valid JSONL prefix row and discards only a malformed tail.",
+      "owner": "runtime JSONL repair",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+        "replay-rollback-manifest.json"
+      ],
+      "scenarioOrFixture": "fixtures/event-streams.json#repairCase",
+      "laterDisposition": "008-compatibility-bridges-dual-read-and-rollback"
+    },
+    {
+      "id": "ledger-007",
+      "classification": "protected_contract",
+      "statement": "Fanout lineages write isolated evidence and retain lineage attribution through fan-in.",
+      "owner": "fan-out-fan-in subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/event-streams.json#streams.fanout-status-ledger",
+      "laterDisposition": "009-fan-out-fan-in-and-wait-resume"
+    },
+    {
+      "id": "ledger-008",
+      "classification": "protected_contract",
+      "statement": "Lock, pause, snapshot, restore, and recreate exercises operate on temporary copies only.",
+      "owner": "locks-recovery subsystem",
+      "evidence": [
+        "replay-rollback-manifest.json",
+        "validate-evidence.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/control-surfaces.json",
+      "laterDisposition": "008-compatibility-bridges-dual-read-and-rollback"
+    },
+    {
+      "id": "ledger-009",
+      "classification": "protected_contract",
+      "statement": "Graph SQLite databases are derived projections and are recoverable from snapshots or source evidence.",
+      "owner": "runtime graph writers",
+      "evidence": [
+        "state-backend-census.json",
+        "replay-rollback-manifest.json"
+      ],
+      "scenarioOrFixture": "fixtures/coverage-graph.sql, fixtures/council-graph.sql",
+      "laterDisposition": "010-novelty-dedup-projections-and-modeling"
+    },
+    {
+      "id": "ledger-010",
+      "classification": "known_defect",
+      "statement": "Convergence thresholds, signal names, and stop predicates are duplicated by workflow family.",
+      "owner": "convergence subsystem",
+      "evidence": [
+        "subsystem-census.json#convergence",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/expected-projections.json",
+      "laterDisposition": "011-convergence-policy-and-stop-service"
+    },
+    {
+      "id": "ledger-011",
+      "classification": "known_defect",
+      "statement": "State and checkpoint schemas use heterogeneous writers, discriminator fields, and repair paths.",
+      "owner": "state-checkpointing subsystem",
+      "evidence": [
+        "event-schema-census.json",
+        "state-backend-census.json"
+      ],
+      "scenarioOrFixture": "fixtures/event-streams.json",
+      "laterDisposition": "006-canonical-ledger-and-snapshot-substrate"
+    },
+    {
+      "id": "ledger-012",
+      "classification": "known_defect",
+      "statement": "Fanout path isolation is prompt-enforced and the persisted scheduler model is a flat pool rather than durable waves.",
+      "owner": "fan-out-fan-in subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/control-surfaces.json#directory",
+      "laterDisposition": "009-fan-out-fan-in-and-wait-resume"
+    },
+    {
+      "id": "ledger-013",
+      "classification": "known_defect",
+      "statement": "Novelty and duplicate identity combine exact hashes, fuzzy overlap, graph novelty, and family-local heuristics without one contract.",
+      "owner": "dedup-novelty subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+        ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/expected-projections.json",
+      "laterDisposition": "010-novelty-dedup-projections-and-modeling"
+    },
+    {
+      "id": "ledger-014",
+      "classification": "known_defect",
+      "statement": "Observability is best-effort and gauge names are not a single stable cross-mode projection.",
+      "owner": "gauges-observability subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/event-streams.json#streams.observability-events",
+      "laterDisposition": "007-runtime-kernel-services"
+    },
+    {
+      "id": "ledger-015",
+      "classification": "known_defect",
+      "statement": "Budget units and actual cost coverage are not normalized across tokens, calls, time, and currency.",
+      "owner": "budget-cost subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      ],
+      "scenarioOrFixture": "fixtures/control-surfaces.json",
+      "laterDisposition": "007-runtime-kernel-services"
+    },
+    {
+      "id": "ledger-016",
+      "classification": "known_defect",
+      "statement": "Lock implementations use multiple record shapes and do not expose one shared fencing token.",
+      "owner": "locks-recovery subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+        ".opencode/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
+      ],
+      "scenarioOrFixture": "fixtures/control-surfaces.json#lock",
+      "laterDisposition": "007-runtime-kernel-services"
+    },
+    {
+      "id": "ledger-017",
+      "classification": "known_defect",
+      "statement": "Run, session, thread, topic, round, and lineage identities differ by family; improvement modes are fresh-session only.",
+      "owner": "continuity-threading subsystem",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+        ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"
+      ],
+      "scenarioOrFixture": "IMB-007, IMB-008",
+      "laterDisposition": "013-per-mode-migrations"
+    },
+    {
+      "id": "ledger-018",
+      "classification": "known_defect",
+      "statement": "The runtime integration document names a standalone npm test command although the runtime directory has no package.json.",
+      "owner": "system-deep-loop runtime",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/references/integration-points.md",
+        "base-manifest.json#verification.baselineCommandFindings"
+      ],
+      "scenarioOrFixture": "base-manifest.json",
+      "laterDisposition": "012-shared-modes-fixtures-and-utilities"
+    }
+  ],
+  "closure": {
+    "protected_contract": 9,
+    "known_defect": 9,
+    "unknown": 0,
+    "missingOwner": 0,
+    "missingEvidence": 0,
+    "missingScenarioOrFixture": 0,
+    "missingDisposition": 0
+  }
+}

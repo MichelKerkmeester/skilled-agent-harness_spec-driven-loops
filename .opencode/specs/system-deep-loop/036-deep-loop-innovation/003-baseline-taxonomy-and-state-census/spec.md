@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T20:33:41Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-003 baseline and census specification"
-    next_safe_action: "Pin BASE before collecting census or benchmark evidence"
+    recent_action: "Completed immutable BASE evidence census"
+    next_safe_action: "Consume the hashed architecture handoff"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "base-manifest.json"
+      - "phase-004-handoff-manifest.json"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 003 of the 036 recommendations-implementation program; first leaf in `manifest/phase-tree.json` |
@@ -83,8 +85,8 @@ scenario-count proxy.
   dedup/novelty; gauges/observability; budget/cost; locks/recovery; continuity/threading. Each row records owners,
   entry points, callers, persisted state, tests, invariants, and candidate defects.
 - Census every JSONL event surface and schema, including packet state logs, per-iteration deltas, research inbox,
-  council session/round state, improvement state and lifecycle journal, fan-out events, executor failures, and
-  observability events. Each schema row records its discriminator/version, required fields, writer, readers/reducers,
+  council session/round state, improvement state and lifecycle journal, fan-out events, behavior transcripts,
+  compiled-command manifests, executor failures, progress records, and observability events. Each schema row records its discriminator/version, required fields, writer, readers/reducers,
   repair behavior, ordering/idempotency rules, and historical-read obligation.
 - Census every persisted in-flight state shape and backend path: JSON/JSONL projections, lock and pause markers,
   prompt/log/delta/iteration directories, benchmark outputs, SQLite coverage/council graphs, writer locks, and any

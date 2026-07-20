@@ -1,0 +1,25 @@
+{
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "lock": {"pid": 4242, "startedAt": "2026-01-01T00:00:00.000Z", "owner": "fixture"},
+  "pause": {"requestedAt": "2026-01-01T00:00:00.000Z", "reason": "fixture"},
+  "directory": {"name": "fixture-output", "files": ["result.json", "events.jsonl"]},
+  "loopGuard": {
+    "stateDir": ".opencode/skills/.loop-guard-state",
+    "sessionFile": "666978747572652d73657373696f6e.json",
+    "sessionState": {
+      "sessionId": "fixture-session",
+      "dispatches": {
+        "deep-review": {
+          "count": 1,
+          "lastCommandDriven": false,
+          "lastTimestamp": "2026-01-01T00:00:00.000Z"
+        }
+      }
+    },
+    "warningLog": "guard-warnings.log",
+    "warningBackup": "guard-warnings.log.1",
+    "archiveDir": ".archive",
+    "sweepLockDir": ".sweep.lock"
+  },
+  "sanitized": true
+}

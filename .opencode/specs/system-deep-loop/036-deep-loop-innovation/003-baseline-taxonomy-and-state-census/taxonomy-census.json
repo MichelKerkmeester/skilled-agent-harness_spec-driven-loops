@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "counts": {"workflowFamilies": 5, "registeredWorkflowModes": 7, "researchWorkstreams": 8, "subsystemLenses": 8},
+  "workflowFamilies": [
+    {"id": "research", "registeredModes": ["research"], "workstreams": ["deep-research"], "owner": ".opencode/skills/system-deep-loop/deep-research/SKILL.md"},
+    {"id": "review", "registeredModes": ["review"], "workstreams": ["deep-review"], "owner": ".opencode/skills/system-deep-loop/deep-review/SKILL.md"},
+    {"id": "ai-council", "registeredModes": ["ai-council"], "workstreams": ["deep-ai-council"], "owner": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md"},
+    {"id": "improvement", "registeredModes": ["agent-improvement", "model-benchmark", "skill-benchmark"], "workstreams": ["deep-improvement", "agent-improvement", "model-benchmark", "skill-benchmark"], "owner": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md", "mapping": "many-to-one", "commonParent": "deep-improvement"},
+    {"id": "alignment", "registeredModes": ["alignment"], "workstreams": ["deep-alignment"], "owner": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"}
+  ],
+  "registeredWorkflowModes": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "alignment"],
+  "researchWorkstreams": ["deep-research", "deep-review", "deep-ai-council", "deep-improvement", "deep-alignment", "agent-improvement", "model-benchmark", "skill-benchmark"],
+  "subsystemLenses": ["convergence", "state-checkpointing", "fan-out-fan-in", "dedup-novelty", "gauges-observability", "budget-cost", "locks-recovery", "continuity-threading"],
+  "excluded": [{"name": "ai-system-improvement", "reason": "No registered workflowMode and no member of the eight-workstream research decomposition."}],
+  "evidence": [
+    ".opencode/skills/system-deep-loop/mode-registry.json",
+    ".opencode/skills/system-deep-loop/hub-router.json",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-research-and-gap-analysis/research/research-modes.md"
+  ],
+  "closure": {"duplicateModes": 0, "unmappedModes": 0, "unmappedWorkstreams": 0, "excludedInCounts": 0}
+}

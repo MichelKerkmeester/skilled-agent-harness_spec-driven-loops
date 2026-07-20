@@ -1,0 +1,1098 @@
+{
+  "schemaVersion": 2,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "discovery": {
+    "method": "Enumerate immutable-BASE code, identify event surfaces from concrete path/discriminator signatures, and classify producer/consumer source files only when persistence or read/reduce/validate operations are present.",
+    "scanRoots": [
+      ".opencode/skills/system-deep-loop/runtime",
+      ".opencode/skills/system-deep-loop/deep-{research,review,alignment,ai-council,improvement}",
+      ".opencode/skills/system-deep-loop/shared"
+    ],
+    "discoveredSurfaceIds": [
+      "alignment-deltas",
+      "alignment-state",
+      "behavior-transcript",
+      "compiled-command-manifest",
+      "council-round-state",
+      "council-session-state",
+      "council-state",
+      "dispatch-failure",
+      "dispatch-receipt-write-failed",
+      "divergent-pivot-state",
+      "fanout-status-ledger",
+      "improvement-journal",
+      "improvement-state",
+      "model-grader-cache",
+      "observability-events",
+      "progress-record",
+      "research-deltas",
+      "research-inbox",
+      "research-state",
+      "review-deltas",
+      "review-state",
+      "verification-degraded"
+    ],
+    "sourceCoverage": [
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/audit-trail.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/status.cjs",
+        "roles": [
+          "producer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "roles": [
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "roles": [
+          "producer",
+          "consumer"
+        ]
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/shared/progress/progress-record.cjs",
+        "roles": [
+          "consumer"
+        ]
+      }
+    ]
+  },
+  "rows": [
+    {
+      "id": "research-state",
+      "pathTemplate": "{spec_folder}/research/deep-research-state.jsonl",
+      "schemaVersion": "union-v1",
+      "discriminator": "type|event",
+      "requiredFields": [
+        "type"
+      ],
+      "writers": [
+        "deep-research workflow",
+        "runtime/scripts/append-state-record.cjs"
+      ],
+      "readers": [
+        "deep-research/scripts/reduce-state.cjs",
+        "runtime/scripts/convergence.cjs"
+      ],
+      "reducers": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "validators": [
+        "deep-research/scripts/reduce-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix plus locked merge",
+      "ordering": "append order",
+      "idempotency": "record identity on merge",
+      "historicalRead": "legacy rows retained",
+      "fixture": "fixtures/event-streams.json#streams.research-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "writerSourceSha256": "acd8911253a14598e9feef366eee0ea078c0e1f3d1f11fb521b5e96f65bf276e",
+      "schemaSha256": "e52496f1750a141f803d19f3280587e17b71bcc33ebae574cde452e95d2a928f",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+      ]
+    },
+    {
+      "id": "research-deltas",
+      "pathTemplate": "{spec_folder}/research/deltas/iter-NNN.jsonl",
+      "schemaVersion": "union-v1",
+      "discriminator": "type",
+      "requiredFields": [
+        "type"
+      ],
+      "writers": [
+        "deep-research workflow via append-state-record.cjs"
+      ],
+      "readers": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "reducers": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "validators": [
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix",
+      "ordering": "iteration then append order",
+      "idempotency": "finding id or content hash",
+      "historicalRead": "all iteration files",
+      "fixture": "fixtures/event-streams.json#streams.research-deltas",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "schemaSha256": "eca680242a496db0174f6811f2c7ac83efdd7111d82098ce8f4dbc1a2603a3f2",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+      ]
+    },
+    {
+      "id": "research-inbox",
+      "pathTemplate": "{spec_folder}/research/inbox.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "none",
+      "requiredFields": [
+        "text"
+      ],
+      "writers": [
+        "operator or delegated lineage"
+      ],
+      "readers": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "reducers": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "validators": [
+        "deep-research/scripts/reduce-state.cjs"
+      ],
+      "repair": "skip malformed rows with warnings",
+      "ordering": "append order",
+      "idempotency": "id or normalized text",
+      "historicalRead": "all valid question rows",
+      "fixture": "fixtures/event-streams.json#streams.research-inbox",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "writerSourceSha256": "acd8911253a14598e9feef366eee0ea078c0e1f3d1f11fb521b5e96f65bf276e",
+      "schemaSha256": "4f4b9552516a52bffdad51de296ff6eb43021f3ecdd0bfb3d17c29535880429d",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+      ]
+    },
+    {
+      "id": "review-state",
+      "pathTemplate": "{spec_folder}/review/deep-review-state.jsonl",
+      "schemaVersion": "union-v1-v2",
+      "discriminator": "type|event",
+      "requiredFields": [
+        "type"
+      ],
+      "writers": [
+        "deep-review workflow via append-state-record.cjs"
+      ],
+      "readers": [
+        "runtime/scripts/reduce-state.cjs",
+        "runtime/scripts/convergence.cjs",
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "reducers": [
+        "runtime/scripts/reduce-state.cjs"
+      ],
+      "validators": [
+        "runtime/scripts/reduce-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts",
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "repair": "valid-prefix plus locked merge",
+      "ordering": "append order",
+      "idempotency": "record identity on merge",
+      "historicalRead": "legacy and v2 rows retained",
+      "fixture": "fixtures/event-streams.json#streams.review-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "writerSourceSha256": "7ac53c4ff9179cd89d0941870f2e1959a2d22ce317875ba0819ff5ba6e542dcd",
+      "schemaSha256": "57d5fd4438cd732bdc2353ea5c3b5f2847a42e41da37407771e8f91cf970bd0b",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      ]
+    },
+    {
+      "id": "review-deltas",
+      "pathTemplate": "{spec_folder}/review/deltas/iter-NNN.jsonl",
+      "schemaVersion": "union-v1-v2",
+      "discriminator": "type",
+      "requiredFields": [
+        "type",
+        "id",
+        "iteration"
+      ],
+      "writers": [
+        "deep-review workflow via append-state-record.cjs"
+      ],
+      "readers": [
+        "runtime/scripts/reduce-state.cjs"
+      ],
+      "reducers": [
+        "runtime/scripts/reduce-state.cjs"
+      ],
+      "validators": [
+        "runtime/scripts/reduce-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix",
+      "ordering": "iteration then append order",
+      "idempotency": "finding id",
+      "historicalRead": "all iteration files",
+      "fixture": "fixtures/event-streams.json#streams.review-deltas",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "schemaSha256": "afd719d492b3b748c76f8caef783f6c09e003754a3e8b4493fb6ceaa9610fc1e",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+      ]
+    },
+    {
+      "id": "alignment-state",
+      "pathTemplate": "{spec_folder}/alignment/deep-alignment-state.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "type",
+      "requiredFields": [
+        "type",
+        "laneId",
+        "artifactsChecked",
+        "newFindingsRatio"
+      ],
+      "writers": [
+        "deep-alignment iteration via append-state-record.cjs"
+      ],
+      "readers": [
+        "runtime/scripts/reduce-alignment-state.cjs",
+        "deep-alignment/scripts/check-convergence.cjs",
+        "deep-alignment/scripts/partition-corpus.cjs"
+      ],
+      "reducers": [
+        "runtime/scripts/reduce-alignment-state.cjs"
+      ],
+      "validators": [
+        "runtime/scripts/reduce-alignment-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix",
+      "ordering": "append order per lane",
+      "idempotency": "lane and iteration identity",
+      "historicalRead": "all lane iterations",
+      "fixture": "fixtures/event-streams.json#streams.alignment-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "schemaSha256": "3181d7ccdc2747ddf702be082d0c5299dab9a65e8bec0796eb1da05a24fe0bc5",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+      ]
+    },
+    {
+      "id": "alignment-deltas",
+      "pathTemplate": "{spec_folder}/alignment/deltas/iter-NNN.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "type",
+      "requiredFields": [
+        "type",
+        "laneId",
+        "finding"
+      ],
+      "writers": [
+        "alignment lane adapter via append-state-record.cjs"
+      ],
+      "readers": [
+        "runtime/scripts/reduce-alignment-state.cjs"
+      ],
+      "reducers": [
+        "runtime/scripts/reduce-alignment-state.cjs"
+      ],
+      "validators": [
+        "runtime/scripts/reduce-alignment-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix",
+      "ordering": "iteration then append order",
+      "idempotency": "lane finding content hash",
+      "historicalRead": "all delta files",
+      "fixture": "fixtures/event-streams.json#streams.alignment-deltas",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "schemaSha256": "f2f5021ad4541bf55efa8d17381b3b388487a4a6009cf105fdfc45f3e33c539c",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+      ]
+    },
+    {
+      "id": "council-state",
+      "pathTemplate": "{spec_folder}/ai-council/ai-council-state.jsonl",
+      "schemaVersion": "1.2",
+      "discriminator": "event",
+      "requiredFields": [
+        "schema_version",
+        "protocol",
+        "producer",
+        "event",
+        "timestamp"
+      ],
+      "writers": [
+        "deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      ],
+      "readers": [
+        "deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      ],
+      "reducers": [
+        "deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      ],
+      "validators": [
+        "deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      ],
+      "repair": "parser preserves legacy schema defaults",
+      "ordering": "append order",
+      "idempotency": "event identity supplied by caller",
+      "historicalRead": "complete council audit",
+      "fixture": "fixtures/event-streams.json#streams.council-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/audit-trail.cjs",
+      "writerSourceSha256": "70c316ea9059803026e362b33d31c2eaad0630da4a2800d9854b62a23ea24270",
+      "schemaSha256": "39c830e13811f7b7d5914e42509f7429dab5ce64dcfba7ebe926d1673d844b2f",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/audit-trail.cjs"
+      ]
+    },
+    {
+      "id": "council-session-state",
+      "pathTemplate": "{spec_folder}/ai-council/session-state.jsonl",
+      "schemaVersion": "1.0",
+      "discriminator": "type",
+      "requiredFields": [
+        "schema_version",
+        "event_id",
+        "written_at_iso",
+        "type"
+      ],
+      "writers": [
+        "deep-ai-council/scripts/orchestrate-session.cjs via round-state-jsonl.cjs"
+      ],
+      "readers": [
+        "runtime/lib/council/round-state-jsonl.cjs",
+        "deep-ai-council/scripts/orchestrate-session.cjs"
+      ],
+      "reducers": [
+        "deep-ai-council/scripts/orchestrate-session.cjs"
+      ],
+      "validators": [
+        "runtime/lib/council/round-state-jsonl.cjs",
+        "runtime/lib/council/session-state-hierarchy.cjs"
+      ],
+      "repair": "lock then ignore or truncate malformed tail",
+      "ordering": "session append order",
+      "idempotency": "event_id",
+      "historicalRead": "topic completions and heartbeat history",
+      "fixture": "fixtures/event-streams.json#streams.council-session-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+      "writerSourceSha256": "e63acf1141688528523085873e0e6e4763e57850ba486c904be30f2856bc377e",
+      "schemaSha256": "18a68bcdac28d51bdc6e7da558a2dac8a3705679924872f768dcc2d89ba7843a",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+      ]
+    },
+    {
+      "id": "council-round-state",
+      "pathTemplate": "{spec_folder}/ai-council/topics/{topic_id}/rounds/{round_id}/round-state.jsonl",
+      "schemaVersion": "1.0",
+      "discriminator": "type",
+      "requiredFields": [
+        "round_id",
+        "topic_id",
+        "schema_version",
+        "event_id",
+        "written_at_iso"
+      ],
+      "writers": [
+        "runtime/lib/council/round-state-jsonl.cjs"
+      ],
+      "readers": [
+        "runtime/lib/council/round-state-jsonl.cjs",
+        "deep-ai-council/scripts/orchestrate-session.cjs"
+      ],
+      "reducers": [
+        "runtime/lib/council/round-state-jsonl.cjs"
+      ],
+      "validators": [
+        "runtime/lib/council/round-state-jsonl.cjs"
+      ],
+      "repair": "lock then truncate malformed tail",
+      "ordering": "round-local append order",
+      "idempotency": "event_id",
+      "historicalRead": "complete round ledger",
+      "fixture": "fixtures/event-streams.json#streams.council-round-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+      "writerSourceSha256": "e63acf1141688528523085873e0e6e4763e57850ba486c904be30f2856bc377e",
+      "schemaSha256": "4dc490e515b7e32991d77101cd6ef33a64cce18d4b9c9ddfbc75a333185b1ae0",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+      ]
+    },
+    {
+      "id": "improvement-state",
+      "pathTemplate": "{spec_folder}/improvement/agent-improvement-state.jsonl",
+      "schemaVersion": "union-v1",
+      "discriminator": "type",
+      "requiredFields": [
+        "type"
+      ],
+      "writers": [
+        "deep-improvement/scripts/shared/loop-host.cjs"
+      ],
+      "readers": [
+        "deep-improvement/scripts/shared/reduce-state.cjs"
+      ],
+      "reducers": [
+        "deep-improvement/scripts/shared/reduce-state.cjs"
+      ],
+      "validators": [
+        "deep-improvement/scripts/shared/reduce-state.cjs",
+        "runtime/lib/deep-loop/jsonl-repair.ts"
+      ],
+      "repair": "valid-prefix",
+      "ordering": "serialized under common lock",
+      "idempotency": "iteration event identity",
+      "historicalRead": "all lane-tagged rows",
+      "fixture": "fixtures/event-streams.json#streams.improvement-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+      "writerSourceSha256": "bdf1ba134c54b5670375e2fedbf2499826010bc252c487a5c5f1c7d5de132639",
+      "schemaSha256": "eca680242a496db0174f6811f2c7ac83efdd7111d82098ce8f4dbc1a2603a3f2",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs"
+      ]
+    },
+    {
+      "id": "improvement-journal",
+      "pathTemplate": "{spec_folder}/improvement/improvement-journal.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "eventType",
+      "requiredFields": [
+        "timestamp",
+        "eventType"
+      ],
+      "writers": [
+        "deep-improvement/scripts/shared/improvement-journal.cjs"
+      ],
+      "readers": [
+        "deep-improvement/scripts/shared/improvement-journal.cjs",
+        "deep-improvement/scripts/shared/reduce-state.cjs"
+      ],
+      "reducers": [
+        "deep-improvement/scripts/shared/reduce-state.cjs"
+      ],
+      "validators": [
+        "deep-improvement/scripts/shared/improvement-journal.cjs"
+      ],
+      "repair": "skip malformed rows with warnings",
+      "ordering": "candidate lifecycle order",
+      "idempotency": "candidate lifecycle key",
+      "historicalRead": "full candidate history",
+      "fixture": "fixtures/event-streams.json#streams.improvement-journal",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs",
+      "writerSourceSha256": "1e6f21066124024c4e96baeef5dc85619e1a880ee307b89e6131f0c2be455edd",
+      "schemaSha256": "fc9ea91b3ab3720306e3833ee9d0dfc17f3534ea83731983e138124d4ef6161b",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs"
+      ]
+    },
+    {
+      "id": "fanout-status-ledger",
+      "pathTemplate": "{artifact_root}/orchestration-status.log",
+      "schemaVersion": "v1",
+      "discriminator": "event",
+      "requiredFields": [
+        "event",
+        "label",
+        "at"
+      ],
+      "writers": [
+        "runtime/scripts/fanout-pool.cjs",
+        "runtime/scripts/fanout-run.cjs"
+      ],
+      "readers": [
+        "runtime/scripts/fanout-pool.cjs",
+        "runtime/scripts/fanout-run.cjs",
+        "runtime/scripts/fanout-salvage.cjs"
+      ],
+      "reducers": [
+        "runtime/scripts/fanout-pool.cjs"
+      ],
+      "validators": [
+        "runtime/scripts/fanout-run.cjs"
+      ],
+      "repair": "resume from persisted lifecycle rows",
+      "ordering": "pool event order",
+      "idempotency": "label plus attempt plus transition",
+      "historicalRead": "full orchestration audit",
+      "fixture": "fixtures/event-streams.json#streams.fanout-status-ledger",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      "writerSourceSha256": "10798fd64bf5bfa943d359aca4258c14a81c0eda7e2e057ee0dec853f88ac66a",
+      "schemaSha256": "ccf4a2b45d6c3c9d06661b0cb7d9297bc00cec935fee236df0f0fff78851bc5f",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+      ]
+    },
+    {
+      "id": "observability-events",
+      "pathTemplate": "{artifact_root}/observability-events.jsonl",
+      "schemaVersion": "1.0",
+      "discriminator": "event",
+      "requiredFields": [
+        "schema_version",
+        "event_id",
+        "producer",
+        "stream",
+        "subject",
+        "event",
+        "status",
+        "observed_at_iso",
+        "payload"
+      ],
+      "writers": [
+        "runtime/lib/deep-loop/observability-events.cjs"
+      ],
+      "readers": [
+        "runtime/lib/deep-loop/observability-events.cjs",
+        "operators and tests"
+      ],
+      "reducers": [
+        "runtime/lib/deep-loop/observability-events.cjs"
+      ],
+      "validators": [
+        "runtime/lib/deep-loop/observability-events.cjs"
+      ],
+      "repair": "best-effort valid-prefix read by consumers",
+      "ordering": "emission order",
+      "idempotency": "event_id",
+      "historicalRead": "telemetry audit",
+      "fixture": "fixtures/event-streams.json#streams.observability-events",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      "writerSourceSha256": "0b3fa8f2c262a7d3a41554ba3153e1a15af0670f7c37b744b207ae3401c0e883",
+      "schemaSha256": "fec5dd9e7c9b4ae6c6b3887f305920db1a3a60b44d68f01856a220c67f4f931e",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs"
+      ]
+    },
+    {
+      "id": "behavior-transcript",
+      "pathTemplate": "{output_dir}/{scenario_id}-{leg}.transcript.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "src",
+      "requiredFields": [
+        "t",
+        "src",
+        "line"
+      ],
+      "writers": [
+        "shared/behavior-benchmark/behavior-bench-run.cjs"
+      ],
+      "readers": [
+        "shared/behavior-benchmark/behavior-bench-run.cjs",
+        "benchmark graders"
+      ],
+      "reducers": [
+        "shared/behavior-benchmark/behavior-bench-run.cjs"
+      ],
+      "validators": [
+        "shared/behavior-benchmark/behavior-bench-run.cjs"
+      ],
+      "repair": "recreate from scenario execution",
+      "ordering": "capture order",
+      "idempotency": "stream plus monotonic capture order",
+      "historicalRead": "scorecard evidence",
+      "fixture": "fixtures/event-streams.json#streams.behavior-transcript",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      "writerSourceSha256": "f568f79f98c1ccb72924bbee6cb0d742f82bdf34fc65318aff4471148882595b",
+      "schemaSha256": "d26aede4da7ad05565a8916eb85b57f7eb3c007ca9c0736992760af0c59eee74",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+      ]
+    },
+    {
+      "id": "model-grader-cache",
+      "pathTemplate": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/index.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "key",
+      "requiredFields": [
+        "key",
+        "created_at"
+      ],
+      "writers": [
+        "model benchmark grader cache"
+      ],
+      "readers": [
+        "model benchmark grader cache"
+      ],
+      "reducers": [],
+      "validators": [
+        "model benchmark scorer cache reader"
+      ],
+      "repair": "drop invalid cache row and recompute",
+      "ordering": "append order",
+      "idempotency": "cache key",
+      "historicalRead": "cache reuse only",
+      "fixture": "fixtures/event-streams.json#streams.model-grader-cache",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs",
+      "writerSourceSha256": "5b0eb2a732ba3a020ebb6d28bb8c9e2782eefe341a5b34f5a0e3f03dab230e12",
+      "schemaSha256": "eb564d8d5d849df45071afb3a3e6a656d432ad4f9e48b25cc8482654f725b347",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs"
+      ]
+    },
+    {
+      "id": "compiled-command-manifest",
+      "pathTemplate": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      "schemaVersion": "v1",
+      "discriminator": "command",
+      "requiredFields": [
+        "command",
+        "mode",
+        "argsSha256",
+        "legacyBodySha256",
+        "compiledContractSha256",
+        "renderedSha256"
+      ],
+      "writers": [
+        "runtime/scripts/render-command-contract.cjs"
+      ],
+      "readers": [],
+      "reducers": [],
+      "validators": [],
+      "repair": "deterministic regeneration",
+      "ordering": "render invocation order",
+      "idempotency": "command plus mode plus args digest",
+      "historicalRead": "no shipped BASE reader; deterministic rows are retained as render provenance",
+      "fixture": "fixtures/event-streams.json#streams.compiled-command-manifest",
+      "classification": "producer-only",
+      "producerOnlyJustification": "BASE appends render-provenance rows for developer audit, but the command router consumes the compiled contract Markdown directly and no shipped runtime path reads manifest.jsonl; the compiled README exposes only a manual JSON-parse validation snippet.",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      "writerSourceSha256": "ae09d91c01b6448136e83ed9f3a592f4986c3d44c2bbfa28bc410c5e7793a338",
+      "schemaSha256": "c706996f12f63ecb057cafe505cddf9451519fc8c5d4f69ee36bb0722ee71d23",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs"
+      ]
+    },
+    {
+      "id": "dispatch-failure",
+      "pathTemplate": "{state_log_path}",
+      "schemaVersion": "v1",
+      "discriminator": "event",
+      "requiredFields": [
+        "type",
+        "event",
+        "reason",
+        "iteration",
+        "timestamp"
+      ],
+      "writers": [
+        "runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "readers": [
+        "runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "reducers": [],
+      "validators": [
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "repair": "tail repair before append and read",
+      "ordering": "state-log append order",
+      "idempotency": "latest identical failure suppressed",
+      "historicalRead": "executor failure audit",
+      "fixture": "fixtures/event-streams.json#streams.dispatch-failure",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "writerSourceSha256": "a3ce8c9b86a316bd32c48ac39f8625633adbd9991535e96545e73b4abfd23fd5",
+      "schemaSha256": "6f52726082b8be6e73982207576371fcd75ffa7a835165e17ad505941eb5a96e",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ]
+    },
+    {
+      "id": "dispatch-receipt-write-failed",
+      "pathTemplate": "{state_log_path}",
+      "schemaVersion": "v1",
+      "discriminator": "event",
+      "requiredFields": [
+        "type",
+        "event",
+        "reason",
+        "phase",
+        "iteration",
+        "timestamp"
+      ],
+      "writers": [
+        "runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "readers": [
+        "mode state-log reducers",
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "reducers": [
+        "mode reducers retain the additive event outside completion math"
+      ],
+      "validators": [
+        "runtime/lib/deep-loop/post-dispatch-validate.ts reads the appended region and independently validates the missing receipt"
+      ],
+      "repair": "tail repair before append and state-log read",
+      "ordering": "immediately after the failed intent or completion receipt write",
+      "idempotency": "not deduplicated; each failed receipt write remains distinct",
+      "historicalRead": "receipt-write failure audit; generic state readers preserve the event while receipt validation diagnoses the absent or invalid receipt",
+      "fixture": "fixtures/event-streams.json#streams.dispatch-receipt-write-failed",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "writerSourceSha256": "a3ce8c9b86a316bd32c48ac39f8625633adbd9991535e96545e73b4abfd23fd5",
+      "schemaSha256": "3bce1f76915988f6bc356effe455e73b8d5e1c0d70f22161e772c1888e5c7aaa",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ]
+    },
+    {
+      "id": "verification-degraded",
+      "pathTemplate": "{review_state_log_path}",
+      "schemaVersion": "v1",
+      "discriminator": "event",
+      "requiredFields": [
+        "type",
+        "event",
+        "status",
+        "confidence",
+        "threshold",
+        "language",
+        "reason",
+        "detail",
+        "timestamp"
+      ],
+      "writers": [
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "readers": [
+        "runtime/scripts/reduce-state.cjs",
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "reducers": [
+        "review state reducer retains additive events outside iteration completion math"
+      ],
+      "validators": [
+        "runtime/lib/deep-loop/post-dispatch-validate.ts"
+      ],
+      "repair": "tail repair before append and state-log read",
+      "ordering": "appended after optional verification fails",
+      "idempotency": "one event per failed post-dispatch verification attempt",
+      "historicalRead": "review verification-degradation audit",
+      "fixture": "fixtures/event-streams.json#streams.verification-degraded",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      "writerSourceSha256": "edc6179a422e7477777515d4802ae79b08d2314d2f81d93708ddac17a5559e88",
+      "schemaSha256": "b17e4ff8bfc16f48f5263f7c7ce7d7c5b51374047baaea6891a3cadf2f073b24",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      ]
+    },
+    {
+      "id": "divergent-pivot-state",
+      "pathTemplate": "{artifact_root}/divergent/pivots/{pivot_id}/council/state.jsonl",
+      "schemaVersion": "1",
+      "discriminator": "event",
+      "requiredFields": [
+        "schemaVersion",
+        "eventId",
+        "event",
+        "pivotId",
+        "occurredAtIso",
+        "lifecycle",
+        "event_hash"
+      ],
+      "writers": [
+        "runtime/lib/deep-loop/divergent-pivot.ts"
+      ],
+      "readers": [
+        "runtime/lib/deep-loop/divergent-pivot.ts",
+        "deep-research/scripts/divergent-research-pivot.ts",
+        "deep-review/scripts/divergent-review-pivot.ts",
+        "mode reducers"
+      ],
+      "reducers": [
+        "research and review divergent-pivot prior-state loaders"
+      ],
+      "validators": [
+        "runtime/lib/deep-loop/divergent-pivot.ts readEventStore"
+      ],
+      "repair": "replay from the valid append-only event store; conflicting or malformed rows fail closed",
+      "ordering": "pivot lifecycle append order",
+      "idempotency": "eventId plus event_hash",
+      "historicalRead": "resume, deduplicate, finalize, and seed later pivot candidates",
+      "fixture": "fixtures/event-streams.json#streams.divergent-pivot-state",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "writerSourceSha256": "23962b068eb23a90c155f81e09161d69301b9a856007ee78bfd7629070adfe71",
+      "schemaSha256": "7ba6064d6f1c2e5fd1bb9e71f1d90239ca32cf55e8ca6fd0067ddcf6f39fb7f5",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        ".opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+        ".opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts"
+      ]
+    },
+    {
+      "id": "progress-record",
+      "pathTemplate": "{mode_state_log_path}",
+      "schemaVersion": "v1",
+      "discriminator": "event",
+      "requiredFields": [
+        "type",
+        "event",
+        "status",
+        "seat_id",
+        "round_id",
+        "step",
+        "timestamp"
+      ],
+      "writers": [
+        "deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      ],
+      "readers": [
+        "shared/progress/progress-record.cjs",
+        "mode reducers"
+      ],
+      "reducers": [
+        "mode reducers filter progress from completion math"
+      ],
+      "validators": [
+        "shared/progress/progress-record.cjs"
+      ],
+      "repair": "state-ledger repair policy",
+      "ordering": "started then completed",
+      "idempotency": "step identity and work anchor",
+      "historicalRead": "liveness without completion inflation",
+      "fixture": "fixtures/event-streams.json#streams.progress-record",
+      "classification": "producer-consumer",
+      "writerSource": ".opencode/skills/system-deep-loop/shared/progress/progress-record.cjs",
+      "writerSourceSha256": "2b03e4a73239ac23af9fbebb52023ba1703dfdaebd28e89f858a3ae92a610ad9",
+      "schemaSha256": "007c28424ce735b5e0f277bf0d0ffd192d29dd74e9b035446a488266f9648fe1",
+      "evidence": [
+        ".opencode/skills/system-deep-loop/shared/progress/progress-record.cjs"
+      ]
+    }
+  ]
+}

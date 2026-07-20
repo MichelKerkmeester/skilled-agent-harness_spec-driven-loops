@@ -1,0 +1,819 @@
+{
+  "schemaVersion": 2,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "rows": [
+    {
+      "id": "research-config",
+      "surface": "JSON",
+      "mutability": "immutable",
+      "resolvedPath": "{spec_folder}/research/deep-research-config.json",
+      "owner": "deep-research",
+      "lifecycle": "create once, frozen",
+      "recovery": "recreate only from operator inputs",
+      "archivalReader": "deep-research resume",
+      "authority": "input contract",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md"
+    },
+    {
+      "id": "research-state",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/research/deep-research-state.jsonl",
+      "owner": "deep-research",
+      "lifecycle": "append per iteration",
+      "recovery": "repair valid prefix and replay",
+      "archivalReader": "deep-research reducer",
+      "authority": "event history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+    },
+    {
+      "id": "research-deltas",
+      "surface": "JSONL directory",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/research/deltas/iter-NNN.jsonl",
+      "owner": "deep-research",
+      "lifecycle": "append one file per iteration",
+      "recovery": "replay all valid delta rows",
+      "archivalReader": "deep-research reducer",
+      "authority": "finding evidence",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md"
+    },
+    {
+      "id": "research-projections",
+      "surface": "JSON and Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/research/{deep-research-findings-registry.json,deep-research-dashboard.md,research.md,resource-map.md}",
+      "owner": "deep-research reducer",
+      "lifecycle": "atomic regenerate",
+      "recovery": "recreate from state and deltas",
+      "archivalReader": "operators and resume",
+      "authority": "derived projection",
+      "fixture": "fixtures/expected-projections.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+    },
+    {
+      "id": "research-strategy-inbox",
+      "surface": "Markdown and JSONL",
+      "mutability": "mixed",
+      "resolvedPath": "{spec_folder}/research/{deep-research-strategy.md,inbox.jsonl}",
+      "owner": "deep-research",
+      "lifecycle": "strategy replace, inbox append",
+      "recovery": "preserve latest valid strategy and inbox prefix",
+      "archivalReader": "deep-research loop",
+      "authority": "control input",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/SKILL.md"
+    },
+    {
+      "id": "research-controls",
+      "surface": "lock and pause",
+      "mutability": "ephemeral-control",
+      "resolvedPath": "{spec_folder}/research/{.deep-research.lock,.deep-research-pause}",
+      "owner": "deep-research",
+      "lifecycle": "ephemeral acquire/release or operator sentinel",
+      "recovery": "reclaim stale lock; remove pause only on operator resume",
+      "archivalReader": "deep-research router",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md"
+    },
+    {
+      "id": "research-workdirs",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/research/{iterations,prompts,logs,lineages,dispatch-receipts}/",
+      "owner": "deep-research",
+      "lifecycle": "append run evidence",
+      "recovery": "retain completed artifacts and recreate missing derived outputs",
+      "archivalReader": "resume and audit",
+      "authority": "evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-research/SKILL.md"
+    },
+    {
+      "id": "review-config",
+      "surface": "JSON",
+      "mutability": "immutable",
+      "resolvedPath": "{spec_folder}/review/deep-review-config.json",
+      "owner": "deep-review",
+      "lifecycle": "create once, frozen",
+      "recovery": "recreate only from operator inputs",
+      "archivalReader": "deep-review resume",
+      "authority": "input contract",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md"
+    },
+    {
+      "id": "review-state",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/review/deep-review-state.jsonl",
+      "owner": "deep-review",
+      "lifecycle": "append per iteration",
+      "recovery": "repair valid prefix and replay",
+      "archivalReader": "deep-review reducer",
+      "authority": "event history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    },
+    {
+      "id": "review-deltas",
+      "surface": "JSONL directory",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/review/deltas/iter-NNN.jsonl",
+      "owner": "deep-review",
+      "lifecycle": "append one file per iteration",
+      "recovery": "replay all valid delta rows",
+      "archivalReader": "deep-review reducer",
+      "authority": "finding evidence",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md"
+    },
+    {
+      "id": "review-projections",
+      "surface": "JSON and Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/review/{deep-review-findings-registry.json,deep-review-dashboard.md,review-report.md}",
+      "owner": "deep-review reducer",
+      "lifecycle": "atomic regenerate",
+      "recovery": "recreate from state and deltas",
+      "archivalReader": "operators and resume",
+      "authority": "derived projection",
+      "fixture": "fixtures/expected-projections.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    },
+    {
+      "id": "review-strategy",
+      "surface": "Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/review/deep-review-strategy.md",
+      "owner": "deep-review",
+      "lifecycle": "replace between iterations",
+      "recovery": "retain last valid strategy",
+      "archivalReader": "deep-review loop",
+      "authority": "control input",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+    },
+    {
+      "id": "review-controls",
+      "surface": "lock and pause",
+      "mutability": "ephemeral-control",
+      "resolvedPath": "{spec_folder}/review/{.deep-review.lock,.deep-review-pause}",
+      "owner": "deep-review",
+      "lifecycle": "ephemeral acquire/release or operator sentinel",
+      "recovery": "reclaim stale lock; remove pause only on operator resume",
+      "archivalReader": "deep-review router",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md"
+    },
+    {
+      "id": "review-workdirs",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/review/{iterations,prompts,logs,lineages,dispatch-receipts}/",
+      "owner": "deep-review",
+      "lifecycle": "append run evidence",
+      "recovery": "retain completed artifacts and recreate missing derived outputs",
+      "archivalReader": "resume and audit",
+      "authority": "evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+    },
+    {
+      "id": "alignment-config-corpus",
+      "surface": "JSON",
+      "mutability": "write-once",
+      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-config.json,deep-alignment-corpus.json}",
+      "owner": "deep-alignment",
+      "lifecycle": "config frozen; corpus generated once per scope",
+      "recovery": "recreate corpus from frozen config and discovery",
+      "archivalReader": "alignment reducer and partitioner",
+      "authority": "input contract and resolved corpus",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
+    },
+    {
+      "id": "alignment-state-deltas",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-state.jsonl,deltas/iter-NNN.jsonl}",
+      "owner": "deep-alignment",
+      "lifecycle": "append per lane iteration",
+      "recovery": "valid-prefix replay",
+      "archivalReader": "alignment reducer and convergence checker",
+      "authority": "event and finding history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
+    },
+    {
+      "id": "alignment-projections",
+      "surface": "JSON and Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-findings-registry.json,alignment-report.md}",
+      "owner": "alignment reducer",
+      "lifecycle": "atomic regenerate",
+      "recovery": "recreate from config, corpus, state, and deltas",
+      "archivalReader": "operators and resume",
+      "authority": "derived projection",
+      "fixture": "fixtures/expected-projections.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
+    },
+    {
+      "id": "alignment-control",
+      "surface": "lock",
+      "mutability": "ephemeral-control",
+      "resolvedPath": "{spec_folder}/alignment/.deep-alignment.lock",
+      "owner": "deep-alignment",
+      "lifecycle": "ephemeral acquire/release",
+      "recovery": "reclaim stale lock",
+      "archivalReader": "alignment router",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
+    },
+    {
+      "id": "alignment-workdirs",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/alignment/{iterations,prompts,dispatch-receipts}/",
+      "owner": "deep-alignment",
+      "lifecycle": "append run evidence",
+      "recovery": "retain evidence and recreate projections",
+      "archivalReader": "resume and audit",
+      "authority": "evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
+    },
+    {
+      "id": "council-config-state",
+      "surface": "JSON and JSONL",
+      "mutability": "mixed",
+      "resolvedPath": "{spec_folder}/ai-council/{ai-council-config.json,ai-council-state.jsonl,session-state.jsonl}",
+      "owner": "deep-ai-council",
+      "lifecycle": "config bind then append session events",
+      "recovery": "valid-prefix replay and session hierarchy rebuild",
+      "archivalReader": "council orchestrator",
+      "authority": "input and event history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md"
+    },
+    {
+      "id": "council-round-ledgers",
+      "surface": "JSONL hierarchy",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/ai-council/topics/{topic_id}/rounds/{round_id}/round-state.jsonl",
+      "owner": "council round state writer",
+      "lifecycle": "append under per-file lock",
+      "recovery": "truncate malformed tail under lock",
+      "archivalReader": "council orchestrator",
+      "authority": "round event history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+    },
+    {
+      "id": "council-controls",
+      "surface": "locks",
+      "mutability": "ephemeral-control",
+      "resolvedPath": "{spec_folder}/ai-council/{.deep-ai-council.lock,topics/*/rounds/*/round-state.jsonl.lock}",
+      "owner": "deep-ai-council",
+      "lifecycle": "ephemeral acquire/release",
+      "recovery": "stale owner validation and reclaim",
+      "archivalReader": "council orchestrator",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+    },
+    {
+      "id": "council-artifacts",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/ai-council/{topics,seats,deliberations,critiques,failed,logs}/",
+      "owner": "deep-ai-council",
+      "lifecycle": "append round evidence; archive failures",
+      "recovery": "resume from session and round ledgers",
+      "archivalReader": "council report synthesis",
+      "authority": "evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md"
+    },
+    {
+      "id": "council-graph",
+      "surface": "SQLite",
+      "mutability": "transactional",
+      "resolvedPath": ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      "owner": "runtime council graph writer",
+      "lifecycle": "transactional upsert and snapshot",
+      "recovery": "restore snapshot or recreate from council evidence",
+      "archivalReader": "runtime council graph query",
+      "authority": "derived graph projection",
+      "fixture": "fixtures/council-graph.sql",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts"
+    },
+    {
+      "id": "improvement-config-manifests",
+      "surface": "JSON and JSONC",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/improvement/{agent-improvement-config.json,model-benchmark-config.json,target-manifest.jsonc,optimizer-manifest.json}",
+      "owner": "deep-improvement",
+      "lifecycle": "bind before run, manifests update atomically",
+      "recovery": "recreate from explicit setup and canonical target",
+      "archivalReader": "loop host and promotion scripts",
+      "authority": "input and target contract",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"
+    },
+    {
+      "id": "improvement-ledgers",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/improvement/{agent-improvement-state.jsonl,improvement-journal.jsonl}",
+      "owner": "deep-improvement",
+      "lifecycle": "append all three lanes under common lock",
+      "recovery": "valid-prefix replay",
+      "archivalReader": "improvement reducer",
+      "authority": "event and candidate history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs"
+    },
+    {
+      "id": "improvement-derived-state",
+      "surface": "JSON and Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{spec_folder}/improvement/{agent-improvement-registry.json,agent-improvement-dashboard.md,candidate-lineage.json,mutation-coverage.json,experiment-registry.json}",
+      "owner": "improvement reducer and analysis scripts",
+      "lifecycle": "atomic regenerate or append-safe replace",
+      "recovery": "recreate from ledgers and benchmark evidence",
+      "archivalReader": "loop host, trade-off detector, operators",
+      "authority": "derived projection",
+      "fixture": "fixtures/expected-projections.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs"
+    },
+    {
+      "id": "improvement-artifacts",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{spec_folder}/improvement/{candidates,benchmark-runs,benchmark-outputs,archive,logs}/",
+      "owner": "deep-improvement",
+      "lifecycle": "append candidates and evaluation evidence",
+      "recovery": "retain immutable evidence; recreate derived reports",
+      "archivalReader": "scorers, promotion, rollback, audit",
+      "authority": "evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"
+    },
+    {
+      "id": "improvement-controls",
+      "surface": "lock and pause",
+      "mutability": "ephemeral-control",
+      "resolvedPath": "{spec_folder}/improvement/{.deep-improvement.lock,.benchmark-pause}",
+      "owner": "deep-improvement",
+      "lifecycle": "common lock; model benchmark run-scoped pause",
+      "recovery": "reclaim stale lock; remove pause only on resume",
+      "archivalReader": "loop host",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs"
+    },
+    {
+      "id": "model-benchmark-hub-output",
+      "surface": "directory and JSON/Markdown outputs",
+      "mutability": "write-once",
+      "resolvedPath": ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/",
+      "owner": "model-benchmark lane",
+      "lifecycle": "create one immutable run directory",
+      "recovery": "re-run from profile and fixture manifest",
+      "archivalReader": "model benchmark report and promotion tools",
+      "authority": "benchmark evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"
+    },
+    {
+      "id": "skill-benchmark-output",
+      "surface": "directory and JSON/Markdown outputs",
+      "mutability": "write-once",
+      "resolvedPath": "{outputs_dir}/skill-benchmark-report.{json,md}",
+      "owner": "skill-benchmark lane",
+      "lifecycle": "create diagnostic report",
+      "recovery": "re-run from target skill and fixtures",
+      "archivalReader": "operator and remediation handoff",
+      "authority": "benchmark evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs"
+    },
+    {
+      "id": "model-grader-cache",
+      "surface": "JSONL and Markdown cache",
+      "mutability": "mixed",
+      "resolvedPath": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/{index.jsonl,*.out.md}",
+      "owner": "model benchmark scorer",
+      "lifecycle": "append cache index and immutable response",
+      "recovery": "drop invalid row and recompute",
+      "archivalReader": "model benchmark scorer",
+      "authority": "cache only",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs"
+    },
+    {
+      "id": "coverage-graph",
+      "surface": "SQLite",
+      "mutability": "transactional",
+      "resolvedPath": ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite",
+      "owner": "runtime coverage graph writer",
+      "lifecycle": "transactional upsert and snapshot",
+      "recovery": "restore snapshot or recreate from packet evidence",
+      "archivalReader": "runtime coverage graph query",
+      "authority": "derived graph projection",
+      "fixture": "fixtures/coverage-graph.sql",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+    },
+    {
+      "id": "database-controls",
+      "surface": "locks",
+      "mutability": "ephemeral-control",
+      "resolvedPath": ".opencode/skills/system-deep-loop/runtime/database/{.deep-loop-graph-writer.lock,.council-graph-writer.lock}",
+      "owner": "runtime graph writers",
+      "lifecycle": "ephemeral writer exclusion",
+      "recovery": "validate owner and reclaim stale lock",
+      "archivalReader": "graph writer CLI guards",
+      "authority": "execution control",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
+    },
+    {
+      "id": "runtime-observability",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": ".opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl",
+      "owner": "runtime observability emitter",
+      "lifecycle": "best-effort append",
+      "recovery": "valid-prefix read; telemetry can be recreated only by rerun",
+      "archivalReader": "observability projections and tests",
+      "authority": "telemetry evidence",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs"
+    },
+    {
+      "id": "fanout-ledger",
+      "surface": "JSONL log",
+      "mutability": "append-only",
+      "resolvedPath": "{artifact_root}/orchestration-status.log",
+      "owner": "fanout pool",
+      "lifecycle": "append lineage and pool transitions",
+      "recovery": "resume from last durable transition",
+      "archivalReader": "fanout run, salvage, and audit",
+      "authority": "orchestration history",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+    },
+    {
+      "id": "fanout-checkpoints",
+      "surface": "JSON",
+      "mutability": "atomic-replace",
+      "resolvedPath": "{artifact_root}/{orchestration-summary.json,orchestration-wait-checkpoint.json}",
+      "owner": "fanout run and pool",
+      "lifecycle": "atomic replace at pool transitions",
+      "recovery": "resume wait set or rebuild summary from ledger",
+      "archivalReader": "fanout resume and operator",
+      "authority": "checkpoint and derived summary",
+      "fixture": "fixtures/expected-projections.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    },
+    {
+      "id": "fanout-lineages",
+      "surface": "directories and outputs",
+      "mutability": "append-only",
+      "resolvedPath": "{artifact_root}/lineages/{label}/{.executor-state,logs/fanout-lineage.out,mode state,iterations,deltas,registries}",
+      "owner": "fanout lineage executor",
+      "lifecycle": "isolated append per lineage",
+      "recovery": "salvage captured output or rerun missing lineage",
+      "archivalReader": "fan-in merge and audit",
+      "authority": "lineage evidence",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+    },
+    {
+      "id": "behavior-benchmark-output",
+      "surface": "directories, JSON, JSONL, Markdown",
+      "mutability": "write-once",
+      "resolvedPath": "{output_dir}/{scenario_id}.{result.json,transcript.jsonl,scorecard.md}",
+      "owner": "behavior benchmark runner",
+      "lifecycle": "new run output per scenario",
+      "recovery": "recreate from immutable scenario and fixture",
+      "archivalReader": "benchmark grader and operator",
+      "authority": "behavior evidence",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+    },
+    {
+      "id": "divergent-pivot-transactions",
+      "surface": "directory, JSON, JSONL, and Markdown",
+      "mutability": "mixed",
+      "resolvedPath": "{artifact_root}/divergent/pivots/{pivot_id}/council/{config.json,state.jsonl,seats/*.md,deliberation.md,report.md}",
+      "owner": "runtime divergent-pivot transaction",
+      "lifecycle": "write-once config and artifacts around an append-only lifecycle event store",
+      "recovery": "read state.jsonl, reject conflicting durable events, and regenerate missing Markdown from terminal events",
+      "archivalReader": "runtime divergent-pivot resume plus research and review prior-pivot loaders",
+      "authority": "durable pivot lifecycle and evidence",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+    },
+    {
+      "id": "loop-guard-session-state",
+      "surface": "per-session JSON",
+      "mutability": "atomic-replace",
+      "resolvedPath": ".opencode/skills/.loop-guard-state/{hex(session_id)}.json",
+      "owner": "runtime dispatch guard shared by OpenCode and Claude adapters",
+      "lifecycle": "atomic replace after each guarded dispatch; stale active files move to archive",
+      "recovery": "malformed or missing state reads as empty and the next dispatch recreates it",
+      "archivalReader": "dispatch guard reads active session state; operators may inspect archived state",
+      "authority": "session-scoped non-command-driven dispatch counts",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+    },
+    {
+      "id": "loop-guard-warning-logs",
+      "surface": "rotating text logs",
+      "mutability": "retention-managed",
+      "resolvedPath": ".opencode/skills/.loop-guard-state/{guard-warnings.log,guard-warnings.log.1} or .opencode/skills/.loop-guard-state.guard-warnings.log{,.1}",
+      "owner": "runtime dispatch guard",
+      "lifecycle": "best-effort append, single-backup size rotation, and age-based deletion",
+      "recovery": "logging fails open; a configured state-file collision uses the sibling fallback path",
+      "archivalReader": "operator audit only; no shipped BASE parser consumes warning lines",
+      "authority": "non-blocking guard warning and degraded-reject audit",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+    },
+    {
+      "id": "loop-guard-archive",
+      "surface": "retention-managed directory of JSON",
+      "mutability": "retention-managed",
+      "resolvedPath": ".opencode/skills/.loop-guard-state/.archive/{hex(session_id)}.json",
+      "owner": "runtime dispatch guard retention sweep",
+      "lifecycle": "rename inactive session state after the active-retention window and delete after archive retention",
+      "recovery": "archive is non-authoritative retained history; a new dispatch recreates active session state",
+      "archivalReader": "operators only; the guard prunes by mtime and does not restore archived sessions",
+      "authority": "retained historical audit, not active guard decisions",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+    },
+    {
+      "id": "loop-guard-sweep-lock",
+      "surface": "lock directory",
+      "mutability": "ephemeral-control",
+      "resolvedPath": ".opencode/skills/.loop-guard-state/.sweep.lock",
+      "owner": "runtime dispatch guard retention sweep",
+      "lifecycle": "atomic mkdir acquisition, stale reclaim after the sweep interval, and rmdir release",
+      "recovery": "skip the sweep while fresh; reclaim a stale directory lock; always fail open",
+      "archivalReader": "dispatch guard lock acquisition and stale-lock check",
+      "authority": "cross-process retention-sweep exclusion only",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+    },
+    {
+      "id": "compiled-command-contracts",
+      "surface": "generated Markdown",
+      "mutability": "atomic-replace",
+      "resolvedPath": ".opencode/commands/deep/assets/compiled/deep-{research,review,ai-council,alignment}.contract.md",
+      "owner": "runtime command compiler",
+      "lifecycle": "deterministic replace on explicit compile",
+      "recovery": "regenerate from maintained command, workflow, skill, reference, agent, and rollout sources",
+      "archivalReader": "runtime command renderer and contract-drift checker",
+      "authority": "derived executor contract; maintained sources remain authoritative",
+      "fixture": "fixtures/control-surfaces.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+    },
+    {
+      "id": "compiled-command-manifest",
+      "surface": "JSONL",
+      "mutability": "append-only",
+      "resolvedPath": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      "owner": "runtime command renderer",
+      "lifecycle": "append one deterministic row per rendered command contract",
+      "recovery": "regenerate by rendering command contracts and compare digests",
+      "archivalReader": "developer audit only via the compiled README validation snippet; no shipped BASE runtime reader",
+      "authority": "generated render provenance, not command routing",
+      "fixture": "fixtures/event-streams.json",
+      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs"
+    }
+  ],
+  "discovery": {
+    "method": "Enumerate immutable-BASE persistence operations independently, then discover backend IDs from concrete filenames, controls, database names, and output signatures in shipped code and authoritative mode contracts.",
+    "discoveredBackendIds": [
+      "alignment-config-corpus",
+      "alignment-control",
+      "alignment-projections",
+      "alignment-state-deltas",
+      "alignment-workdirs",
+      "behavior-benchmark-output",
+      "compiled-command-contracts",
+      "compiled-command-manifest",
+      "council-artifacts",
+      "council-config-state",
+      "council-controls",
+      "council-graph",
+      "council-round-ledgers",
+      "coverage-graph",
+      "database-controls",
+      "divergent-pivot-transactions",
+      "fanout-checkpoints",
+      "fanout-ledger",
+      "fanout-lineages",
+      "improvement-artifacts",
+      "improvement-config-manifests",
+      "improvement-controls",
+      "improvement-derived-state",
+      "improvement-ledgers",
+      "loop-guard-archive",
+      "loop-guard-session-state",
+      "loop-guard-sweep-lock",
+      "loop-guard-warning-logs",
+      "model-benchmark-hub-output",
+      "model-grader-cache",
+      "research-config",
+      "research-controls",
+      "research-deltas",
+      "research-projections",
+      "research-state",
+      "research-strategy-inbox",
+      "research-workdirs",
+      "review-config",
+      "review-controls",
+      "review-deltas",
+      "review-projections",
+      "review-state",
+      "review-strategy",
+      "review-workdirs",
+      "runtime-observability",
+      "skill-benchmark-output"
+    ],
+    "sourceCoverage": [
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/audit-trail.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/findings-registry.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/check-mirror-drift.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/sweep-reporter.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/browser-executor.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs"
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+      }
+    ]
+  }
+}

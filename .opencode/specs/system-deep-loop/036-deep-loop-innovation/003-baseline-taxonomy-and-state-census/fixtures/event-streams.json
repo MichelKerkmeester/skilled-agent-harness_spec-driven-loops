@@ -1,0 +1,649 @@
+{
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "sanitized": true,
+  "streams": {
+    "research-state": {
+      "schema": {
+        "schemaVersion": "union-v1",
+        "discriminator": "type|event",
+        "requiredFields": [
+          "type"
+        ]
+      },
+      "schemaSha256": "e52496f1750a141f803d19f3280587e17b71bcc33ebae574cde452e95d2a928f",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "writerSourceSha256": "acd8911253a14598e9feef366eee0ea078c0e1f3d1f11fb521b5e96f65bf276e",
+      "rows": [
+        {
+          "type": "iteration",
+          "run": 1,
+          "status": "complete",
+          "focus": "fixture focus",
+          "findingsCount": 1,
+          "newInfoRatio": 1,
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "research-deltas": {
+      "schema": {
+        "schemaVersion": "union-v1",
+        "discriminator": "type",
+        "requiredFields": [
+          "type"
+        ]
+      },
+      "schemaSha256": "eca680242a496db0174f6811f2c7ac83efdd7111d82098ce8f4dbc1a2603a3f2",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "rows": [
+        {
+          "type": "iteration",
+          "iteration": 1,
+          "newInfoRatio": 1,
+          "status": "complete",
+          "focus": "fixture focus"
+        },
+        {
+          "type": "finding",
+          "id": "fixture-research-finding",
+          "severity": "P1",
+          "label": "fixture finding",
+          "iteration": 1
+        }
+      ]
+    },
+    "research-inbox": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "none",
+        "requiredFields": [
+          "text"
+        ]
+      },
+      "schemaSha256": "4f4b9552516a52bffdad51de296ff6eb43021f3ecdd0bfb3d17c29535880429d",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "writerSourceSha256": "acd8911253a14598e9feef366eee0ea078c0e1f3d1f11fb521b5e96f65bf276e",
+      "rows": [
+        {
+          "id": "fixture-question",
+          "text": "Which invariant is load-bearing?",
+          "source": "fixture",
+          "origin": "operator",
+          "injectedAtIteration": 1
+        }
+      ]
+    },
+    "review-state": {
+      "schema": {
+        "schemaVersion": "union-v1-v2",
+        "discriminator": "type|event",
+        "requiredFields": [
+          "type"
+        ]
+      },
+      "schemaSha256": "57d5fd4438cd732bdc2353ea5c3b5f2847a42e41da37407771e8f91cf970bd0b",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "writerSourceSha256": "7ac53c4ff9179cd89d0941870f2e1959a2d22ce317875ba0819ff5ba6e542dcd",
+      "rows": [
+        {
+          "type": "iteration",
+          "mode": "review",
+          "run": 1,
+          "status": "complete",
+          "focus": "correctness",
+          "dimensions": [
+            "correctness"
+          ],
+          "filesReviewed": [
+            "fixture.js"
+          ],
+          "findingsCount": 0,
+          "findingsSummary": {
+            "P0": 0,
+            "P1": 0,
+            "P2": 0
+          },
+          "findingsNew": {
+            "P0": 0,
+            "P1": 0,
+            "P2": 0
+          },
+          "findingDetails": [],
+          "newFindingsRatio": 0,
+          "sessionId": "fixture-review-session",
+          "generation": 1,
+          "lineageMode": "new",
+          "timestamp": "2026-01-01T00:00:00.000Z",
+          "durationMs": 1
+        }
+      ]
+    },
+    "review-deltas": {
+      "schema": {
+        "schemaVersion": "union-v1-v2",
+        "discriminator": "type",
+        "requiredFields": [
+          "type",
+          "id",
+          "iteration"
+        ]
+      },
+      "schemaSha256": "afd719d492b3b748c76f8caef783f6c09e003754a3e8b4493fb6ceaa9610fc1e",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "rows": [
+        {
+          "type": "finding",
+          "id": "fixture-review-finding",
+          "severity": "P1",
+          "status": "active",
+          "title": "Fixture finding",
+          "file": "fixture.js:1",
+          "findingClass": "producer",
+          "claim": "Fixture claim",
+          "iteration": 1
+        }
+      ]
+    },
+    "alignment-state": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "type",
+        "requiredFields": [
+          "type",
+          "laneId",
+          "artifactsChecked",
+          "newFindingsRatio"
+        ]
+      },
+      "schemaSha256": "3181d7ccdc2747ddf702be082d0c5299dab9a65e8bec0796eb1da05a24fe0bc5",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "rows": [
+        {
+          "type": "iteration",
+          "iteration": 1,
+          "laneId": "sk-code::code::fixture",
+          "artifactsChecked": [
+            "fixture.js"
+          ],
+          "newFindingsRatio": 0,
+          "status": "complete",
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "alignment-deltas": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "type",
+        "requiredFields": [
+          "type",
+          "laneId",
+          "finding"
+        ]
+      },
+      "schemaSha256": "f2f5021ad4541bf55efa8d17381b3b388487a4a6009cf105fdfc45f3e33c539c",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "writerSourceSha256": "be6c67747b68fb7574e5a5aa6056b0c38402b12f587720018b7ca8c7877666d6",
+      "rows": [
+        {
+          "type": "finding",
+          "laneId": "sk-code::code::fixture",
+          "finding": {
+            "severity": "P1",
+            "type": "contract",
+            "message": "Fixture finding",
+            "artifactPath": "fixture.js",
+            "contentHash": "fixture-hash"
+          }
+        }
+      ]
+    },
+    "council-state": {
+      "schema": {
+        "schemaVersion": "1.2",
+        "discriminator": "event",
+        "requiredFields": [
+          "schema_version",
+          "protocol",
+          "producer",
+          "event",
+          "timestamp"
+        ]
+      },
+      "schemaSha256": "39c830e13811f7b7d5914e42509f7429dab5ce64dcfba7ebe926d1673d844b2f",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/audit-trail.cjs",
+      "writerSourceSha256": "70c316ea9059803026e362b33d31c2eaad0630da4a2800d9854b62a23ea24270",
+      "rows": [
+        {
+          "schema_version": "1.2",
+          "protocol": "ai-council",
+          "producer": "persist-artifacts@1.2.0",
+          "event": "round_start",
+          "round": 1,
+          "timestamp": "2026-01-01T00:00:00.000Z",
+          "seats": [
+            "seat-001"
+          ]
+        }
+      ]
+    },
+    "council-session-state": {
+      "schema": {
+        "schemaVersion": "1.0",
+        "discriminator": "type",
+        "requiredFields": [
+          "schema_version",
+          "event_id",
+          "written_at_iso",
+          "type"
+        ]
+      },
+      "schemaSha256": "18a68bcdac28d51bdc6e7da558a2dac8a3705679924872f768dcc2d89ba7843a",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+      "writerSourceSha256": "e63acf1141688528523085873e0e6e4763e57850ba486c904be30f2856bc377e",
+      "rows": [
+        {
+          "schema_version": "1.0",
+          "event_id": "fixture-session-event",
+          "written_at_iso": "2026-01-01T00:00:00.000Z",
+          "type": "topic_completed",
+          "session_id": "session-fixture",
+          "topic_id": "topic-fixture",
+          "topic_number": 1,
+          "rounds_completed": 1
+        }
+      ]
+    },
+    "council-round-state": {
+      "schema": {
+        "schemaVersion": "1.0",
+        "discriminator": "type",
+        "requiredFields": [
+          "round_id",
+          "topic_id",
+          "schema_version",
+          "event_id",
+          "written_at_iso"
+        ]
+      },
+      "schemaSha256": "4dc490e515b7e32991d77101cd6ef33a64cce18d4b9c9ddfbc75a333185b1ae0",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+      "writerSourceSha256": "e63acf1141688528523085873e0e6e4763e57850ba486c904be30f2856bc377e",
+      "rows": [
+        {
+          "schema_version": "1.0",
+          "event_id": "fixture-round-event",
+          "written_at_iso": "2026-01-01T00:00:00.000Z",
+          "type": "round_started",
+          "round_id": "round-001",
+          "topic_id": "topic-fixture"
+        }
+      ]
+    },
+    "improvement-state": {
+      "schema": {
+        "schemaVersion": "union-v1",
+        "discriminator": "type",
+        "requiredFields": [
+          "type"
+        ]
+      },
+      "schemaSha256": "eca680242a496db0174f6811f2c7ac83efdd7111d82098ce8f4dbc1a2603a3f2",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs",
+      "writerSourceSha256": "bdf1ba134c54b5670375e2fedbf2499826010bc252c487a5c5f1c7d5de132639",
+      "rows": [
+        {
+          "type": "accepted",
+          "mode": "agent-improvement",
+          "profileId": "fixture-profile",
+          "path": "improvement/candidates/candidate-001.md",
+          "score": 1,
+          "recommendation": "candidate-better",
+          "iteration": 1,
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "improvement-journal": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "eventType",
+        "requiredFields": [
+          "timestamp",
+          "eventType"
+        ]
+      },
+      "schemaSha256": "fc9ea91b3ab3720306e3833ee9d0dfc17f3534ea83731983e138124d4ef6161b",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs",
+      "writerSourceSha256": "1e6f21066124024c4e96baeef5dc85619e1a880ee307b89e6131f0c2be455edd",
+      "rows": [
+        {
+          "timestamp": "2026-01-01T00:00:00.000Z",
+          "eventType": "candidate_scored",
+          "iteration": 1,
+          "candidateId": "candidate-fixture",
+          "details": {
+            "score": 1
+          }
+        }
+      ]
+    },
+    "fanout-status-ledger": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "event",
+        "requiredFields": [
+          "event",
+          "label",
+          "at"
+        ]
+      },
+      "schemaSha256": "ccf4a2b45d6c3c9d06661b0cb7d9297bc00cec935fee236df0f0fff78851bc5f",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      "writerSourceSha256": "10798fd64bf5bfa943d359aca4258c14a81c0eda7e2e057ee0dec853f88ac66a",
+      "rows": [
+        {
+          "event": "started",
+          "label": "fixture-a",
+          "index": 0,
+          "attempt": 1,
+          "at": "2026-01-01T00:00:00.000Z"
+        },
+        {
+          "event": "completed",
+          "label": "fixture-a",
+          "index": 0,
+          "attempt": 1,
+          "at": "2026-01-01T00:00:01.000Z",
+          "duration_ms": 1000
+        }
+      ]
+    },
+    "observability-events": {
+      "schema": {
+        "schemaVersion": "1.0",
+        "discriminator": "event",
+        "requiredFields": [
+          "schema_version",
+          "event_id",
+          "producer",
+          "stream",
+          "subject",
+          "event",
+          "status",
+          "observed_at_iso",
+          "payload"
+        ]
+      },
+      "schemaSha256": "fec5dd9e7c9b4ae6c6b3887f305920db1a3a60b44d68f01856a220c67f4f931e",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      "writerSourceSha256": "0b3fa8f2c262a7d3a41554ba3153e1a15af0670f7c37b744b207ae3401c0e883",
+      "rows": [
+        {
+          "schema_version": "1.0",
+          "event_id": "fixture-observation",
+          "producer": "fixture",
+          "stream": "research",
+          "subject": "fixture-a",
+          "event": "completed",
+          "status": "ok",
+          "observed_at_iso": "2026-01-01T00:00:00.000Z",
+          "payload": {
+            "event": "completed",
+            "label": "fixture-a"
+          }
+        }
+      ]
+    },
+    "behavior-transcript": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "src",
+        "requiredFields": [
+          "t",
+          "src",
+          "line"
+        ]
+      },
+      "schemaSha256": "d26aede4da7ad05565a8916eb85b57f7eb3c007ca9c0736992760af0c59eee74",
+      "writerSource": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      "writerSourceSha256": "f568f79f98c1ccb72924bbee6cb0d742f82bdf34fc65318aff4471148882595b",
+      "rows": [
+        {
+          "t": 12,
+          "src": "out",
+          "line": "fixture output"
+        }
+      ]
+    },
+    "model-grader-cache": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "key",
+        "requiredFields": [
+          "key",
+          "created_at"
+        ]
+      },
+      "schemaSha256": "eb564d8d5d849df45071afb3a3e6a656d432ad4f9e48b25cc8482654f725b347",
+      "writerSource": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs",
+      "writerSourceSha256": "5b0eb2a732ba3a020ebb6d28bb8c9e2782eefe341a5b34f5a0e3f03dab230e12",
+      "rows": [
+        {
+          "key": "fixture-cache-key",
+          "created_at": "2026-01-01T00:00:00.000Z",
+          "model": "fixture-model"
+        }
+      ]
+    },
+    "compiled-command-manifest": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "command",
+        "requiredFields": [
+          "command",
+          "mode",
+          "argsSha256",
+          "legacyBodySha256",
+          "compiledContractSha256",
+          "renderedSha256"
+        ]
+      },
+      "schemaSha256": "c706996f12f63ecb057cafe505cddf9451519fc8c5d4f69ee36bb0722ee71d23",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      "writerSourceSha256": "ae09d91c01b6448136e83ed9f3a592f4986c3d44c2bbfa28bc410c5e7793a338",
+      "rows": [
+        {
+          "command": "deep/review",
+          "mode": "fix",
+          "argsSha256": "8cc9876d090b9516c62e985183cfcef8ca1cc62fd5e0673f6122cfd126483259",
+          "legacyBodySha256": "6855de61c146888ad16398c8fa9084e02b7e40fd8f4b48cc5629742a998c5b30",
+          "compiledContractSha256": "184be12f2649c191d3865fca838422a3a0dc35287f2bb2fbf991040247914994",
+          "renderedSha256": "ec245a03026f9ab8b7d84ef365a467628788a3adc7e0b16ae97c01df4b03445a"
+        }
+      ]
+    },
+    "dispatch-failure": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "event",
+        "requiredFields": [
+          "type",
+          "event",
+          "reason",
+          "iteration",
+          "timestamp"
+        ]
+      },
+      "schemaSha256": "6f52726082b8be6e73982207576371fcd75ffa7a835165e17ad505941eb5a96e",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "writerSourceSha256": "a3ce8c9b86a316bd32c48ac39f8625633adbd9991535e96545e73b4abfd23fd5",
+      "rows": [
+        {
+          "type": "event",
+          "event": "dispatch_failure",
+          "reason": "timeout",
+          "iteration": 1,
+          "detail": "fixture timeout",
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "dispatch-receipt-write-failed": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "event",
+        "requiredFields": [
+          "type",
+          "event",
+          "reason",
+          "phase",
+          "iteration",
+          "timestamp"
+        ]
+      },
+      "schemaSha256": "3bce1f76915988f6bc356effe455e73b8d5e1c0d70f22161e772c1888e5c7aaa",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "writerSourceSha256": "a3ce8c9b86a316bd32c48ac39f8625633adbd9991535e96545e73b4abfd23fd5",
+      "rows": [
+        {
+          "type": "event",
+          "event": "dispatch_receipt_write_failed",
+          "reason": "dispatch_receipt_write_failed",
+          "phase": "intent",
+          "iteration": 1,
+          "detail": "fixture receipt write failure",
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "verification-degraded": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "event",
+        "requiredFields": [
+          "type",
+          "event",
+          "status",
+          "confidence",
+          "threshold",
+          "language",
+          "reason",
+          "detail",
+          "timestamp"
+        ]
+      },
+      "schemaSha256": "b17e4ff8bfc16f48f5263f7c7ce7d7c5b51374047baaea6891a3cadf2f073b24",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      "writerSourceSha256": "edc6179a422e7477777515d4802ae79b08d2314d2f81d93708ddac17a5559e88",
+      "rows": [
+        {
+          "type": "event",
+          "event": "verification_degraded",
+          "status": "degraded",
+          "confidence": 0.4,
+          "threshold": 0.8,
+          "language": "typescript",
+          "reason": "verification_degraded",
+          "detail": "fixture verification confidence below threshold",
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    "divergent-pivot-state": {
+      "schema": {
+        "schemaVersion": "1",
+        "discriminator": "event",
+        "requiredFields": [
+          "schemaVersion",
+          "eventId",
+          "event",
+          "pivotId",
+          "occurredAtIso",
+          "lifecycle",
+          "event_hash"
+        ]
+      },
+      "schemaSha256": "7ba6064d6f1c2e5fd1bb9e71f1d90239ca32cf55e8ca6fd0067ddcf6f39fb7f5",
+      "writerSource": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "writerSourceSha256": "23962b068eb23a90c155f81e09161d69301b9a856007ee78bfd7629070adfe71",
+      "rows": [
+        {
+          "schemaVersion": 1,
+          "eventId": "pivot-1-0123456789ab:pivot_started",
+          "event": "pivot_started",
+          "pivotId": "pivot-1-0123456789ab",
+          "occurredAtIso": "2026-01-01T00:00:00.000Z",
+          "lifecycle": {
+            "from": "LEGAL_STOP",
+            "to": "PIVOT_PENDING",
+            "next": "COUNCIL_RUNNING"
+          },
+          "event_hash": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        }
+      ]
+    },
+    "progress-record": {
+      "schema": {
+        "schemaVersion": "v1",
+        "discriminator": "event",
+        "requiredFields": [
+          "type",
+          "event",
+          "status",
+          "seat_id",
+          "round_id",
+          "step",
+          "timestamp"
+        ]
+      },
+      "schemaSha256": "007c28424ce735b5e0f277bf0d0ffd192d29dd74e9b035446a488266f9648fe1",
+      "writerSource": ".opencode/skills/system-deep-loop/shared/progress/progress-record.cjs",
+      "writerSourceSha256": "2b03e4a73239ac23af9fbebb52023ba1703dfdaebd28e89f858a3ae92a610ad9",
+      "rows": [
+        {
+          "type": "progress",
+          "event": "progress_record",
+          "status": "started",
+          "seat_id": "seat-001",
+          "round_id": "round-001",
+          "step": "seat",
+          "timestamp": "2026-01-01T00:00:00.000Z"
+        },
+        {
+          "type": "progress",
+          "event": "progress_record",
+          "status": "completed",
+          "seat_id": "seat-001",
+          "round_id": "round-001",
+          "step": "seat",
+          "timestamp": "2026-01-01T00:00:01.000Z",
+          "progress_delta": 1,
+          "artifact_path": "ai-council/seats/seat-001.md"
+        }
+      ]
+    }
+  },
+  "repairCase": {
+    "stream": "research-state",
+    "corruptTail": "{\"type\":\"iteration\",\"run\":"
+  },
+  "crashBoundaryCase": {
+    "stream": "fanout-status-ledger",
+    "durablePrefixRows": 1,
+    "resumeFromRow": 1
+  },
+  "mixedReaderCase": {
+    "legacyRows": [
+      {
+        "type": "accepted",
+        "score": 0.5,
+        "recommendation": "candidate-acceptable"
+      }
+    ],
+    "modernStream": "improvement-state"
+  }
+}

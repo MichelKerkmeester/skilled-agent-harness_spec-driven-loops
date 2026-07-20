@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-006",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-20T19:57:13.715Z",
+  "endedAt": "2026-07-20T19:57:15.525Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1780,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 1810
+  },
+  "renderedBlock": null,
+  "budgetEdge": {
+    "budgetMs": 180000,
+    "watchdogMs": 90000,
+    "tFirstArtifactMs": null,
+    "firstArtifactDeadlineRemainingMs": null,
+    "progressCadence": {
+      "eventCount": 1,
+      "firstProgressMs": 1780,
+      "lastProgressMs": 1780,
+      "gapsMs": [
+        1780,
+        30
+      ],
+      "maxGapMs": 1780
+    },
+    "preCapFinalizerRemainingMs": 178190
+  },
+  "vagueAskOutcome": "inline",
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 1,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "primaryCause": "partial",
+  "secondaryCause": null,
+  "multiCauseLocked": false,
+  "stuckNoProgressRate": {
+    "mode": "improvement",
+    "stalled": false,
+    "numerator": 0,
+    "denominator": 1,
+    "value": 0
+  },
+  "dimensions": {
+    "d1": 0,
+    "d2": 0,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "fixtures/behavior-results/IMB-006-gpt-fast-high.transcript.jsonl",
+  "capture": {
+    "command": "env XDG_DATA_HOME=/tmp/deep-loop-census-opencode-data XDG_STATE_HOME=/tmp/deep-loop-census-opencode-state node .opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs --scenario .opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md --leg gpt-fast-high --out-dir .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results --repo-root . --timeout-ms 180000 --watchdog-ms 90000",
+    "harnessExitCode": 0,
+    "rawResultSha256": "bdc8fc2390d5d573f8b4e9c595ad7d427352691d4d18b81497a3b0be032267b2",
+    "rawTranscriptSha256": "ec0b7f68dc29335dd61f71b64953badd4483a90e07186901bfd9d416c05afc07",
+    "normalizedAbsolutePaths": 1,
+    "normalizedRuntimeIdentifiers": 2
+  }
+}
