@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/006-feature-catalogs",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/006-feature-catalogs",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
@@ -11,75 +11,60 @@
   },
   "derived": {
     "trigger_phrases": [
-      "compiled routing deep research",
-      "routing coverage research 25 iterations",
-      "compiled router synthesis verification",
-      "routing coverage research plan",
-      "deep research loop execution plan",
-      "routing coverage research tasks",
-      "deep research loop task list",
-      "routing coverage research checklist",
-      "deep research loop QA gate",
-      "routing coverage research implementation summary",
-      "deep research loop complete 25 iterations",
-      "synthesis verification review authoring brief"
+      "compiled routing feature catalogs",
+      "seven hub root catalog coverage",
+      "feature flag governance compiled routing entry",
+      "compiled routing catalogs plan",
+      "feature catalog topology decision plan",
+      "compiled routing catalogs tasks",
+      "feature catalog leaf authoring tasks",
+      "compiled routing catalogs checklist",
+      "feature catalog QA gate",
+      "compiled routing catalogs planned summary",
+      "feature catalog topology current status"
     ],
     "key_topics": [
       "compiled",
       "routing",
-      "deep",
-      "research",
+      "feature",
+      "catalogs",
+      "seven",
+      "hub",
+      "root",
+      "catalog",
       "coverage",
-      "iterations",
-      "router",
-      "synthesis",
-      "verification",
-      "plan",
-      "loop",
-      "execution"
+      "flag",
+      "governance",
+      "entry"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "research/iterations/iteration-001.md",
-      "research/findings-registry.json",
-      "research/progress.log",
+      "feature-catalog/feature-catalog.md",
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md"
     ],
     "entities": [
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
+        "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "progress.log",
-        "kind": "file",
-        "path": "research/progress.log",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -101,9 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
         "source": "derived"
       },
       {
@@ -113,25 +98,25 @@
         "source": "derived"
       },
       {
-        "name": "Routing Coverage",
+        "name": "Routing Feature Catalogs",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Confirmed Current State",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Compiled",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Purpose Plan",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,13 +140,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Two",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Fan",
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,14 +170,20 @@
         "source": "derived"
       },
       {
-        "name": "Fresh Sonnet",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase Map",
-        "kind": "proper_noun",
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -197,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The compiled skill-router is shipped but inert",
-    "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-07-20T21:50:36.371Z",
+    "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
+    "created_at": "2026-07-20T21:51:34.999Z",
+    "last_save_at": "2026-07-20T21:51:34.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76119e1c7d91a9e41566be3dd85895b294fffa87c840514c9c346534137d4d71",
+    "source_fingerprint": "sha256:a22d20d642d4745b850e511da11cd41340022b99123882a7a378f66da424c2e6",
     "source_doc_hashes": {
-      "spec.md": "bb55df5bf5c86a3789b6bf6264bcfaeffce5ebca273c2309bd94f3f124c30917",
-      "plan.md": "fa0664054f53e7f624cbaf0a3045dee2f9a48b6fed9ebe466d2a96298eadbbf3",
-      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
-      "implementation-summary.md": "ec0472901d3a0f240642de53ee97f58938f7198c26c8f6a4340c5cf28e0c96d2"
+      "spec.md": "2a8701b792389aba38234dd88851c018d39cb46b8a15030873c9eacf7c9fd3d3",
+      "plan.md": "ba74ef6f5b54eb0fd994f631d96358de08e1229b97791978170774e13c5b765c",
+      "tasks.md": "8d51234f6d06d0e5634d7614ebb58072d8eba8dcfbf4e5dc88cc67e9c9d7d471",
+      "checklist.md": "a7a59f904e6a5ee92e0875803e56a47f9b9f94ebebaf5fb0281d73f5880b4e3b",
+      "implementation-summary.md": "5f2c95eda3fb523fb7adc93997d47418fb860838664a85a6828a200a56e3dc7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled lane c parity harness",
+      "benchmark verdict sub-state non-frozen orchestrator",
+      "vacuous parity guard serving authority",
+      "compiled lane c parity plan",
+      "non-frozen verdict sub-state plan",
+      "compiled lane c parity tasks",
+      "benchmark parity task list",
+      "compiled lane c parity checklist",
+      "benchmark parity QA gate",
+      "compiled lane c parity implementation summary",
+      "benchmark parity planned build record"
+    ],
+    "key_topics": [
+      "compiled",
+      "lane",
+      "parity",
+      "harness",
+      "benchmark",
+      "verdict",
+      "sub-state",
+      "non-frozen",
+      "orchestrator",
+      "vacuous",
+      "guard",
+      "serving"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs"
+    ],
+    "entities": [
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-report.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-host.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Compare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
+    "created_at": "2026-07-20T21:51:29.784Z",
+    "last_save_at": "2026-07-20T21:51:29.784Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:013c0b7e7d9d3263f21aec267d33b592839ad0fbe931ff30d7f269eb71e68c83",
+    "source_doc_hashes": {
+      "spec.md": "a59b7aa273832a304ff585d6ffc0e7fe258719d1d05568c33bf8da567f569cf7",
+      "plan.md": "3c14f39cef3a14105491f8bc6784f8d9e8969d44beccbd2289b15fbe4a828768",
+      "tasks.md": "9e9c2b89608e94b93dda6b0bcdfe7e60c52e72db45d5990899e0ad077c022167",
+      "checklist.md": "012b0cf8497cb0da636f971e28bb8cc58fc6325210ff9fa5b266766903e5c560",
+      "implementation-summary.md": "c4342746a03cbc56aa8a45b58d7d55ad075dc269395917c6fe40462d0450f084"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

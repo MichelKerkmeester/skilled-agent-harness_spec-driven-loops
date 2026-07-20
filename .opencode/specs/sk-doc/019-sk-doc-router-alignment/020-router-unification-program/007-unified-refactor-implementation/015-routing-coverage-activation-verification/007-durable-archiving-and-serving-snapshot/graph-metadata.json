@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "durable archiving serving snapshot",
+      "compiled routing report path convention",
+      "serving snapshot schema renderer",
+      "durable archiving plan",
+      "serving snapshot renderer plan",
+      "durable archiving tasks",
+      "serving snapshot tasks",
+      "durable archiving checklist",
+      "serving snapshot QA gate",
+      "durable archiving planned summary",
+      "serving snapshot current status"
+    ],
+    "key_topics": [
+      "durable",
+      "archiving",
+      "serving",
+      "snapshot",
+      "compiled",
+      "routing",
+      "report",
+      "path",
+      "convention",
+      "schema",
+      "renderer",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-storage-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable Archiving",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirmed Current State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Compiled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact answers \"what is this hub's compiled-routing state right now,\" reports carry a stale absolute path the moment they are copied anywhere else, and nothing stops a future archive run from being generated against a `006` shadow candidate instead of the actually-serving `010` manifest — which would archive a decision that was never live",
+    "created_at": "2026-07-20T21:51:37.595Z",
+    "last_save_at": "2026-07-20T21:51:37.595Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9d74b018781dd5e980aaa94c72114bb3a283e6cd0d42de59f383ddacf378d09",
+    "source_doc_hashes": {
+      "spec.md": "12664c90694e8d1ae70305f7b18808ace26c9917955914397e6dcd1aeef6b2c9",
+      "plan.md": "ab91beff5835224fe64fe0d28e16fcf53afa06103b9295a098993425d6bc4704",
+      "tasks.md": "0fb13a132ead606827b8448aa6df92173e0633c59c01f3fb44c460aa8018c767",
+      "checklist.md": "79a014001e1a6a42d904a8c30a431eaa20b13df7fcaa0b268cc51d3dbf32aa0c",
+      "implementation-summary.md": "20abfeabd97eb01b79c4b3cbbd564db6ae8e6cbe10c20f012c197c52d0d448cd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

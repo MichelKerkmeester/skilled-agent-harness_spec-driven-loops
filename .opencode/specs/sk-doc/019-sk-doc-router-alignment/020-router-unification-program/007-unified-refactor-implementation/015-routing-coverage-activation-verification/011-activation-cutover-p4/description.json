@@ -1,0 +1,31 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "description": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
+  "keywords": [
+    "parent",
+    "goal",
+    "wants",
+    "compiled",
+    "routing",
+    "effective",
+    "default",
+    "naively",
+    "reads",
+    "one-line",
+    "flip",
+    "speckitcompiledrouting"
+  ],
+  "lastUpdated": "2026-07-20T21:46:18.000Z",
+  "specId": "011",
+  "folderSlug": "activation-cutover-p4",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing playbook scenario matrix",
+      "luna high live acceptance gold holdout",
+      "vacuous evidence contract compiled route",
+      "compiled routing playbook plan",
+      "luna high acceptance stage plan",
+      "compiled routing playbook tasks",
+      "luna high acceptance task list",
+      "compiled routing playbook checklist",
+      "luna high acceptance QA gate",
+      "compiled routing playbook implementation summary",
+      "luna high acceptance planned build record"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "playbook",
+      "scenario",
+      "matrix",
+      "luna",
+      "high",
+      "live",
+      "acceptance",
+      "gold",
+      "holdout",
+      "vacuous"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Matrix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "High Acceptance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Supplemental",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
+    "created_at": "2026-07-20T21:51:32.363Z",
+    "last_save_at": "2026-07-20T21:51:32.363Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0dca19708c33fd8757906423c6d67d08d08de46886b632cbfb66d34ff996020b",
+    "source_doc_hashes": {
+      "spec.md": "7dfb4a9cb4b537c55077853871888be484ba6133f4799c8bf1f4c25566f52008",
+      "plan.md": "fa55cdd0bd3c791275b5513e943716a967caa4703296bd0040cae00beec1c1f0",
+      "tasks.md": "2e988d454e0b256edc2ed34ab85cb77c302e21287ef003987ecc14686bc20c43",
+      "checklist.md": "66bd5f2044e611c7685ac520d3fcf6f8c046d71d6c7106027b2c095c9fb6ae3e",
+      "implementation-summary.md": "78e8bef75198e690e5573e0018125705fc2b84aef2ba1ff4b46572a2c6ad0217"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

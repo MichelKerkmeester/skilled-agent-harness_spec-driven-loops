@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
@@ -11,41 +11,38 @@
   },
   "derived": {
     "trigger_phrases": [
-      "compiled routing deep research",
-      "routing coverage research 25 iterations",
-      "compiled router synthesis verification",
-      "routing coverage research plan",
-      "deep research loop execution plan",
-      "routing coverage research tasks",
-      "deep research loop task list",
-      "routing coverage research checklist",
-      "deep research loop QA gate",
-      "routing coverage research implementation summary",
-      "deep research loop complete 25 iterations",
-      "synthesis verification review authoring brief"
+      "compiled routing staged hub-by-hub cutover",
+      "compiled routing P4 activation controller",
+      "compiled routing coverage-closure join gate",
+      "compiled routing P4 cutover plan",
+      "staged hub-by-hub activation plan",
+      "coverage-closure join gate plan",
+      "compiled routing P4 cutover tasks",
+      "staged hub-by-hub activation task list",
+      "compiled routing P4 cutover checklist",
+      "staged activation verification gate",
+      "compiled routing cutover decision record",
+      "per-hub cohort staging decision"
     ],
     "key_topics": [
       "compiled",
       "routing",
-      "deep",
-      "research",
-      "coverage",
-      "iterations",
-      "router",
-      "synthesis",
-      "verification",
+      "staged",
+      "hub-by-hub",
+      "cutover",
+      "activation",
+      "controller",
+      "coverage-closure",
+      "join",
+      "gate",
       "plan",
-      "loop",
-      "execution"
+      "tasks"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "research/iterations/iteration-001.md",
-      "research/findings-registry.json",
-      "research/progress.log",
       "spec.md",
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,33 +50,15 @@
     ],
     "entities": [
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "progress.log",
-        "kind": "file",
-        "path": "research/progress.log",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -113,13 +92,19 @@
         "source": "derived"
       },
       {
-        "name": "Routing Coverage",
+        "name": "Compiled Routing",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Staged Hub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Activation Cutover",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,13 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
+        "name": "Purpose Specify",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -149,19 +128,31 @@
         "source": "derived"
       },
       {
+        "name": "Compiled Routing Staged Activation Cutover",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Two",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Fan",
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,27 +170,33 @@
         "source": "derived"
       },
       {
-        "name": "Fresh Sonnet",
+        "name": "Milestone Reference",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase Map",
+        "name": "Requirement Coverage",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The compiled skill-router is shipped but inert",
-    "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-07-20T21:50:36.371Z",
+    "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
+    "created_at": "2026-07-20T21:44:54.891Z",
+    "last_save_at": "2026-07-20T21:44:54.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76119e1c7d91a9e41566be3dd85895b294fffa87c840514c9c346534137d4d71",
+    "source_fingerprint": "sha256:0c542c2d8867ec851ec305e4a884b8d193aadb0e4cf08572f8ce9933f10ab8ab",
     "source_doc_hashes": {
-      "spec.md": "bb55df5bf5c86a3789b6bf6264bcfaeffce5ebca273c2309bd94f3f124c30917",
-      "plan.md": "fa0664054f53e7f624cbaf0a3045dee2f9a48b6fed9ebe466d2a96298eadbbf3",
-      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
-      "implementation-summary.md": "ec0472901d3a0f240642de53ee97f58938f7198c26c8f6a4340c5cf28e0c96d2"
+      "spec.md": "e2ae81de1393a07878415a5c70cfce1d508cb292823588953044cb76376d33d7",
+      "plan.md": "cbd34bedb526d4291f336142c9d5a19b6d160e53bdab9d7f440d8b0a7dc8e43a",
+      "tasks.md": "dfc0d6c0a4e9d9f5254cc1fb5184a563d2d7ffeb64e8f964a5b6f37d721fb699",
+      "checklist.md": "93ac63baf904afc42a98fcdac13aefe5c03ac1cf33ed81d7058ddef008a34c86",
+      "decision-record.md": "62361d434779f81784049cbba60626878affb621af1a61d81bbb6a55a765e310",
+      "implementation-summary.md": "20f8891014da325111f8cbb899e2c88ed19e26017508183b12f4815698fe4a9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

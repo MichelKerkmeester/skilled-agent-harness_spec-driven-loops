@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
@@ -11,71 +11,46 @@
   },
   "derived": {
     "trigger_phrases": [
-      "compiled routing deep research",
-      "routing coverage research 25 iterations",
-      "compiled router synthesis verification",
-      "routing coverage research plan",
-      "deep research loop execution plan",
-      "routing coverage research tasks",
-      "deep research loop task list",
-      "routing coverage research checklist",
-      "deep research loop QA gate",
-      "routing coverage research implementation summary",
-      "deep research loop complete 25 iterations",
-      "synthesis verification review authoring brief"
+      "rollback audit integrity non-hub policy",
+      "activate-hub rollback flag",
+      "fence direction serving-prior",
+      "rollback audit integrity plan",
+      "non-hub policy plan",
+      "canary profile naming plan",
+      "rollback audit integrity tasks",
+      "non-hub policy task list",
+      "rollback audit integrity checklist",
+      "non-hub policy QA gate",
+      "rollback audit integrity implementation summary",
+      "non-hub policy planned summary"
     ],
     "key_topics": [
-      "compiled",
-      "routing",
-      "deep",
-      "research",
-      "coverage",
-      "iterations",
-      "router",
-      "synthesis",
-      "verification",
+      "rollback",
+      "audit",
+      "integrity",
+      "non-hub",
+      "policy",
+      "activate-hub",
+      "flag",
+      "fence",
+      "direction",
+      "serving-prior",
       "plan",
-      "loop",
-      "execution"
+      "canary"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "research/iterations/iteration-001.md",
-      "research/findings-registry.json",
-      "research/progress.log",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
+      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts"
     ],
     "entities": [
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "progress.log",
-        "kind": "file",
-        "path": "research/progress.log",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -107,31 +82,49 @@
         "source": "derived"
       },
       {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Routing Coverage",
+        "name": "Audit Integrity",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Hub Policy",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Three",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,13 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Two",
+        "name": "Overview Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Fan",
+        "name": "Pattern Additive",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Fresh Sonnet",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase Map",
+        "name": "Strict Level",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The compiled skill-router is shipped but inert",
-    "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-07-20T21:50:36.371Z",
+    "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
+    "created_at": "2026-07-20T21:51:45.508Z",
+    "last_save_at": "2026-07-20T21:53:21.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76119e1c7d91a9e41566be3dd85895b294fffa87c840514c9c346534137d4d71",
+    "source_fingerprint": "sha256:17fa0b1ad13c2f2d790d9582f14e0765e71f6ad235b27b77cb4ef88efebffcfa",
     "source_doc_hashes": {
-      "spec.md": "bb55df5bf5c86a3789b6bf6264bcfaeffce5ebca273c2309bd94f3f124c30917",
-      "plan.md": "fa0664054f53e7f624cbaf0a3045dee2f9a48b6fed9ebe466d2a96298eadbbf3",
-      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
-      "implementation-summary.md": "ec0472901d3a0f240642de53ee97f58938f7198c26c8f6a4340c5cf28e0c96d2"
+      "spec.md": "96533b8ce539b5eb3002f12cf7679562d0bff267ac202099b78985bb834748a9",
+      "plan.md": "51d9f4bbedabf39a6c88f40be565da0ca44db6eb0f8d32a67f8bffb3459f5369",
+      "tasks.md": "031e5cb3727bd1ca6c35b62a3f677d0f1d7d2d4c441e94b997c0aa2f56af9983",
+      "checklist.md": "865e6fac48908dc65976ddf515c3783d70de49a2be975231f0f8c5878db2e056",
+      "implementation-summary.md": "368ac62df5c1f4e5e6bc86a21f325cbebf70afd3041272fab4b8d6398a8fe649"
     },
     "last_active_child_id": null,
     "last_active_at": null

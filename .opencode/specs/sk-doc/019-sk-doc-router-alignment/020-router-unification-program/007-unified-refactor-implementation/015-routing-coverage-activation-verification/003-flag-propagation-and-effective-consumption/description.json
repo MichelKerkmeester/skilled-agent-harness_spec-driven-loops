@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
+  "description": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural",
+  "keywords": [
+    "flag",
+    "hub",
+    "compiled-serving",
+    "speckitcompiledrouting",
+    "today",
+    "changes",
+    "zero",
+    "routing",
+    "decisions",
+    "surfaces",
+    "nothing",
+    "two",
+    "structural"
+  ],
+  "lastUpdated": "2026-07-20T21:39:53.044Z",
+  "specId": "003",
+  "folderSlug": "flag-propagation-and-effective-consumption",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 3
+}

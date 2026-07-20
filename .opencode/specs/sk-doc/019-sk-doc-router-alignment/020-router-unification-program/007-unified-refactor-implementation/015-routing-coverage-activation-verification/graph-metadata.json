@@ -45,7 +45,9 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-research/synthesis-v1.md"
+      "001-research/synthesis-v1.md",
+      "001-research/review-v1.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -58,6 +60,18 @@
         "name": "synthesis-v1.md",
         "kind": "doc",
         "path": "001-research/synthesis-v1.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-v1.md",
+        "kind": "doc",
+        "path": "001-research/review-v1.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -95,19 +109,51 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "What this session did",
+        "kind": "heading",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-07-20T21:22:58.451Z",
+    "last_save_at": "2026-07-20T21:51:50.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:61b1a035404fedc55600e8451d33aefd3e468e06d2dbb81d45a665fe0a0b9cc8",
+    "source_fingerprint": "sha256:b97813587faf51c63fd604e0556c521cdd76aee631c92c4101adb8c95e867e8b",
     "source_doc_hashes": {
-      "spec.md": "0f98fec8037f61fb0b251eb96234c104cf257b0565dfdd7e95ec8d2056e5151b"
+      "spec.md": "0f98fec8037f61fb0b251eb96234c104cf257b0565dfdd7e95ec8d2056e5151b",
+      "handover.md": "c67106edef6ea2822490cbd2d1188ff44b4a85eb0b1a254261bf70875ec92217"
     },
     "last_active_child_id": null,
     "last_active_at": null

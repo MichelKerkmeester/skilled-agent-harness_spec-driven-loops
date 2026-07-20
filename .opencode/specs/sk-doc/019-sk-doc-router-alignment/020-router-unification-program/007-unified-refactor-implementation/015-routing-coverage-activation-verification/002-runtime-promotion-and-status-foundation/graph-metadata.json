@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
@@ -11,71 +11,47 @@
   },
   "derived": {
     "trigger_phrases": [
-      "compiled routing deep research",
-      "routing coverage research 25 iterations",
-      "compiled router synthesis verification",
-      "routing coverage research plan",
-      "deep research loop execution plan",
-      "routing coverage research tasks",
-      "deep research loop task list",
-      "routing coverage research checklist",
-      "deep research loop QA gate",
-      "routing coverage research implementation summary",
-      "deep research loop complete 25 iterations",
-      "synthesis verification review authoring brief"
+      "runtime promotion and status foundation",
+      "compiled routing P0 foundation spec",
+      "promote resolver closure status probe tri-state",
+      "runtime promotion status foundation plan",
+      "compiled routing P0 build sequence",
+      "promote closure status probe plan",
+      "runtime promotion status foundation tasks",
+      "compiled routing P0 task list",
+      "runtime promotion status foundation checklist",
+      "compiled routing P0 verification gate",
+      "runtime promotion status foundation decisions",
+      "compiled routing closure promotion decision record"
     ],
     "key_topics": [
+      "runtime",
+      "promotion",
+      "status",
+      "foundation",
       "compiled",
       "routing",
-      "deep",
-      "research",
-      "coverage",
-      "iterations",
-      "router",
-      "synthesis",
-      "verification",
-      "plan",
-      "loop",
-      "execution"
+      "spec",
+      "promote",
+      "resolver",
+      "closure",
+      "probe",
+      "tri-state"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "research/iterations/iteration-001.md",
-      "research/findings-registry.json",
-      "research/progress.log",
       "spec.md",
+      "decision-record.md",
       "plan.md",
+      ".opencode/bin/compiled-route.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+      ".opencode/plugins/mk-skill-advisor.js",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "progress.log",
-        "kind": "file",
-        "path": "research/progress.log",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -83,9 +59,33 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
         "source": "derived"
       },
       {
@@ -113,13 +113,13 @@
         "source": "derived"
       },
       {
-        "name": "Routing Coverage",
+        "name": "Runtime Promotion",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Status Foundation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,7 +131,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Purpose Build",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -149,19 +149,19 @@
         "source": "derived"
       },
       {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fan",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,15 +179,15 @@
         "source": "derived"
       },
       {
-        "name": "Fresh Sonnet",
+        "name": "Milestone Reference",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase Map",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The compiled skill-router is shipped but inert",
-    "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-07-20T21:50:36.371Z",
+    "causal_summary": "The compiled router is shipped but held inert",
+    "created_at": "2026-07-20T21:51:24.395Z",
+    "last_save_at": "2026-07-20T21:51:24.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +207,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76119e1c7d91a9e41566be3dd85895b294fffa87c840514c9c346534137d4d71",
+    "source_fingerprint": "sha256:a850f4f5f5bfc6a61c8729ca7777e5960e165f2383e169bacd626636cf7142e5",
     "source_doc_hashes": {
-      "spec.md": "bb55df5bf5c86a3789b6bf6264bcfaeffce5ebca273c2309bd94f3f124c30917",
-      "plan.md": "fa0664054f53e7f624cbaf0a3045dee2f9a48b6fed9ebe466d2a96298eadbbf3",
-      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
-      "implementation-summary.md": "ec0472901d3a0f240642de53ee97f58938f7198c26c8f6a4340c5cf28e0c96d2"
+      "spec.md": "d3b1f57e5e286bf4bdde23cd1a0344927acb31de65a6fde3a42e03b9aadfc315",
+      "plan.md": "09dd4f0a491a450a87ed7deaafaf5447e8a033dbcbd7270b5fa46ed06d0b793e",
+      "tasks.md": "8036bf63559c5517317d6e76c5b2dac9ed6fcead70c1f909a76a75b6eea38b86",
+      "checklist.md": "9f44e424c66d2b252f844df3d39bcf7254bbae763dc21e34c895d2824da763c1",
+      "decision-record.md": "20c773dcf5ab13452f58596455817dd0e52098ea412ccc83f0631a6ebdcf58f5",
+      "implementation-summary.md": "bf98d8432fcde758861b017506376f05d8479c140ecbd80f2272c40df4f73697"
     },
     "last_active_child_id": null,
     "last_active_at": null
