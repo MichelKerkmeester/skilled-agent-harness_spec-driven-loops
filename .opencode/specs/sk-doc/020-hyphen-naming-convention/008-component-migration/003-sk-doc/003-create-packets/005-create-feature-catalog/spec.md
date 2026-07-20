@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-feature-catalog resource names
+> Phase adjacency — predecessor `004-create-command`; successor `006-create-manual-testing-playbook`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -85,6 +86,7 @@ The outcome is a kebab-case resource surface with resolved template links and un
 | REQ-002 | Template and reference links resolve | Every packet-local old path consumer points at its target |
 | REQ-003 | Catalog schema content remains stable | No field key, feature ID, frontmatter field, or payload key changes as a side effect |
 | REQ-004 | External path boundaries remain explicit | Paths owned by another surface are not silently renamed in this phase |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

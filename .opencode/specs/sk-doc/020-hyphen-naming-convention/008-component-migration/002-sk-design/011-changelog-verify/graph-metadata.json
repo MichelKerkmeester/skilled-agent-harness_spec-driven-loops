@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only.",
     "created_at": "2026-07-14T15:17:22Z",
-    "last_save_at": "2026-07-17T20:26:05.532Z",
+    "last_save_at": "2026-07-20T11:43:45.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0a08de8ab672a976adfb0f3315de498a8a8644dba64d7d8eb515570f1d9eae7b",
+    "source_fingerprint": "sha256:7eaa818de536ddd6b6ac3c9f7ffe34fdbf3d84c7e75a4b93e0a02f0417ea2a61",
     "source_doc_hashes": {
-      "spec.md": "b8fc985c9da1db88d28984fd624adc1055188b1d68541487b283e9fc51960041",
+      "spec.md": "2af2318792348a216071e9dcaac10bc672ae38d63d11443f11b2d72e3c7869c9",
       "plan.md": "fe193071a814b245e981947091065b560647b4b51748f8d12d91ca2ad1388941",
       "tasks.md": "1611ac1ad56b316492f16df3fad8140f56d4abafe668df5a33b072d8da469096",
       "checklist.md": "d3d9d0539dea4f4d9098b57e27808e51c4a1a2d4d6e38524d6f664462dd66151"

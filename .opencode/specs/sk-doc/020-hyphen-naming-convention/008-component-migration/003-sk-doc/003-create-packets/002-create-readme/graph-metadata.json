@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact.",
     "created_at": "2026-07-14T15:22:34Z",
-    "last_save_at": "2026-07-17T14:30:14.012Z",
+    "last_save_at": "2026-07-20T11:09:44.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:98c628387a2443d8559918a9903d13c711b52e6946ee7d1b54e45ba8a4e4a31a",
+    "source_fingerprint": "sha256:b03d8b5beb3a4d250e121c4b2f1f24ad98d5dc2e9935a7ec8beb059073c8bc8f",
     "source_doc_hashes": {
-      "spec.md": "714bbd0fca9dd99d99da1b947e8ef99df8d2e49ea1e472cfc80750f3a12159e2",
+      "spec.md": "e75fbb655b7f152717256140ada6d42dc1ba9c21396450bb047942558d662a36",
       "plan.md": "8c589d9c060a072eee4c1036fb9207400b3030d8d622700057b2e999690c2d1b",
       "tasks.md": "822a03405996b6ce80900bec8d8cffd3f8d7696469e7d3492071e8acd46bf6e2",
       "checklist.md": "f90fa6546a6816689d399812821ab763fa11845e102be98190a306074ba7767b"

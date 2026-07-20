@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Feature-catalog (020 phase 008)
+> Phase adjacency — predecessor `007-design-mcp-open-design`; successor `009-manual-testing-playbook`.
 
 > Phase 008 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -84,6 +85,7 @@ The sk-design hub and mode packets use feature_catalog roots, category directori
 | REQ-002 | Catalog indexes and feature links resolve. | Every catalog-owned Markdown link points to an existing hyphenated target. |
 | REQ-003 | Catalog semantics are unchanged. | Feature IDs, category meaning, frontmatter keys, and cross-reference intent remain identical. |
 | REQ-004 | The playbook handoff is explicit. | References whose target moves in phase 009 are listed for that phase and are not silently left unresolved. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

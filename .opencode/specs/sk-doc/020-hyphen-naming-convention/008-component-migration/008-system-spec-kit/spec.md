@@ -37,6 +37,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->
 
 # Feature Specification: system-spec-kit component migration
+> Phase adjacency — predecessor `007-system-deep-loop`; successor `009-system-skill-advisor`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

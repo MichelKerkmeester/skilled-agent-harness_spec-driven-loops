@@ -34,6 +34,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: MCP server directory and manifest closure
+> Phase adjacency — successor `002-scripts`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

@@ -31,6 +31,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Catalog and Playbook Generators
+> Phase adjacency — predecessor `001-create-skill-and-packaging`; successor `003-readme-agent-command-changelog-flowchart-diff-benchmark`.
 
 > Parallel child under `003-create-generators-and-templates`; it has an external compatibility dependency on phase 002's consumer contract.
 

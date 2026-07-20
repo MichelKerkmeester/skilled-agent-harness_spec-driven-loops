@@ -32,6 +32,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; mechanics live in the six child folders. -->
 
 # Feature Specification: sk-git component migration
+> Phase adjacency — predecessor `011-mcp-code-mode`; successor `013-commands`.
 
 > **SUPERSEDED IN PART — v4 reconciliation (2026-07-15).** Concurrent v4 work already committed the sk-git kebab pilot (the "hyphen-case pilot" made authoritative in AGENTS.md), which renamed the **references**, **assets**, and **manual-testing-playbook** surfaces and shipped version **1.3.2.0** with its changelog entry. As a result, children **001, 002, 003 are now VERIFY-ONLY** and **005** verifies the already-shipped changelog. The **benchmark** surface (child **004**) is still snake on v4 and remains a real, unexecuted rename — this component is therefore NOT complete, and the **006-skill-gate** rollup cannot pass until 004 executes. Full inventory and rationale: the packet's v4-reconciliation-inventory.md.
 

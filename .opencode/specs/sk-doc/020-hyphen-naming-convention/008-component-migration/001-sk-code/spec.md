@@ -35,6 +35,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed mechanics live in the children. -->
 
 # Feature Specification: sk-code component migration
+> Phase adjacency — successor `002-sk-design`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

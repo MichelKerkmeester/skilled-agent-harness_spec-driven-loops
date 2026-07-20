@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-motion (020 phase 004)
+> Phase adjacency — predecessor `003-design-foundations`; successor `005-design-audit`.
 
 > Phase 004 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -83,6 +84,7 @@ The design-motion mode uses underscore-bearing asset, procedure, and reference n
 | REQ-002 | Motion resource paths are rewritten consistently. | All local links and resource tables resolve to the hyphenated targets. |
 | REQ-003 | Motion contract semantics are unchanged. | Routing, reduced-motion, performance, and handoff content differ only where a filesystem path requires it. |
 | REQ-004 | Sibling phase boundaries are explicit. | Catalog/playbook paths remain in their own phase ledgers. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

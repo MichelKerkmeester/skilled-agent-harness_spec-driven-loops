@@ -186,7 +186,7 @@
     ],
     "causal_summary": "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries.",
     "created_at": "2026-07-14T15:18:05Z",
-    "last_save_at": "2026-07-17T20:26:15.344Z",
+    "last_save_at": "2026-07-20T11:09:51.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,9 +195,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:34b2a9d65582e770b60d2ef1c6419afb528a86bd392f10da730fe536733f75d9",
+    "source_fingerprint": "sha256:6ba34876343d7b11c5784910ef20e1756c260ddc1470a029d8c3bcaf12786bb6",
     "source_doc_hashes": {
-      "spec.md": "f39794c67502bf90057de94a85717804b128f29e828d2eeb3c39342f122410a2",
+      "spec.md": "e54f85682ee2e08153035dab1a7e8b8043f89a5999c3db26094adc27ae90c2ee",
       "plan.md": "ba42fdda12fbfee9fa52945f103cb74a18f9fc0c90f2e2670f76e4535fe0bcf2",
       "tasks.md": "cdc48380420195db3f40e354e98568850d856aa56e4600af2aa8ddc0d8401ab5",
       "checklist.md": "cc834f88b026394eddd45691aa0042a6e4f929c4154f70b963c8051a2aa4e641"

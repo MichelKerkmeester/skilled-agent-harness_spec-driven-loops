@@ -28,6 +28,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Config, checkpoints, vectors, and constitutional verification
+> Phase adjacency — predecessor `009-manual-testing-playbook`; successor `011-changelog-verify`.
 
 > Verify-only phase under the 008 system-spec-kit subtree. No filesystem rename is owned here.
 

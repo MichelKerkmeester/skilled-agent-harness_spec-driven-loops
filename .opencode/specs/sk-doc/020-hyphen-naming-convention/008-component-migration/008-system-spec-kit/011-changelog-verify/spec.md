@@ -28,6 +28,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Changelog verification
+> Phase adjacency — predecessor `010-config-checkpoints-vectors-constitutional-verify`; successor `012-skill-gate`.
 
 > Verify-only phase under the 008 system-spec-kit subtree. No rename is performed here.
 

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The mcp-code-mode surface has a changelog through v1.0.8.0 and SKILL.md currently declares version 1.0.8.0, while the embedded npm lock metadata separately records 1.0.9. This verify-only phase checks that the completed rename set has an explicit matching changelog entry and version bump without performing any renames.",
     "created_at": "2026-07-14T15:18:24Z",
-    "last_save_at": "2026-07-17T20:26:17.458Z",
+    "last_save_at": "2026-07-20T11:09:45.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:30c50ad9f501d794275b55fe78e2a7e37ebbac5076f04943b1f221579357e0c8",
+    "source_fingerprint": "sha256:effb73f7a7c5ac470713854b158f3b234c9a497fe65aa697b5abad188c1f30d3",
     "source_doc_hashes": {
-      "spec.md": "29bd946236d0f3703613289bdc25591c7e250d3cbdeae7b62d8ba884127311f3",
+      "spec.md": "e313bd2c3c68b689aae90710510702eae047b6ea480643ed36ac901f3d1a6d8f",
       "plan.md": "e2c19c7aeda4bafe20d6b113643c39417f56b32668065beb1c14777548bb1fcc",
       "tasks.md": "dbeb2f7062bcbffd21e77c82795253349e9680ef5aec23cff1e4fc9e2a5e6b51",
       "checklist.md": "95020593c0c378ddc470ef157c5b43d747dc8675cc01ca40ae1353b680f8debd"

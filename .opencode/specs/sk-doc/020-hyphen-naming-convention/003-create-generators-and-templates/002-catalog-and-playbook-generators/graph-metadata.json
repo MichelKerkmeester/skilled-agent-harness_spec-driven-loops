@@ -42,9 +42,9 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md",
       ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -59,15 +59,15 @@
         "source": "derived"
       },
       {
-        "name": "feature_catalog_template.md",
+        "name": "feature-catalog.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
-        "name": "manual_testing_playbook_template.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-07-18T06:49:22.785Z",
+    "last_save_at": "2026-07-20T11:09:53.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed15ab50e4a08165ae5cb13c6d7098bd266964bf723cf1c8367d8fbbfc615cb1",
+    "source_fingerprint": "sha256:8843b8fc196c87cb866eb94c9bacb765cdc18fa4a166c4b30af5f095ee307891",
     "source_doc_hashes": {
-      "spec.md": "83755b22144a9167d01e2401d1d47b3807ba7d0227b15d2dfa8c12f5ccaa5e5f",
+      "spec.md": "19fc8975af5dcad89517126d592c3bbfa9c15f307d25ed45502c820ad1adcc54",
       "plan.md": "e3705f8e08a122c75483447429fb5840f9c9ff539fb0d5c4904011cfaa9719f2",
       "tasks.md": "16a420bc4d934a1c2a0d7a94938b84add4487eef3c7b20a44316355ea26f2ff5",
       "checklist.md": "c867799fd08d6b06f5893f5b854b796d010e3c429614765fe2916b7049613b67",
-      "implementation-summary.md": "93205c34e58a07cea0fdd9f08b5cff583a9112936b33c8ff8116e06994161673"
+      "implementation-summary.md": "04718183ee0a0f6c98af59c4173002308924c99a145e396f482397359d3dc780"
     },
     "last_active_child_id": null,
     "last_active_at": null

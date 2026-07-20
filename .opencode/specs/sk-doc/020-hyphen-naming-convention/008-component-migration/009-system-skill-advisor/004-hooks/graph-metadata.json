@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
       ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
-      ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,12 +59,6 @@
         "name": "skill-advisor-cli-fallback.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor_hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Hook paths are consumed by runtime settings, install guides, plugin bridges, and the hook reference",
     "created_at": "2026-07-14T15:18:09Z",
-    "last_save_at": "2026-07-17T14:30:34.254Z",
+    "last_save_at": "2026-07-20T11:09:40.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:98fabf2098940b994173aeb8a28ac1b55956d18fb935540f9a826671394812a1",
+    "source_fingerprint": "sha256:15b76f55d3b12c54574e437f3af397dfc57b4578cc1f8b3286666c6e577b8ba1",
     "source_doc_hashes": {
-      "spec.md": "237cc0c3dff0888ccee5f4abc6aed064702e2c14bec1ddbff8da2f3a45b66676",
+      "spec.md": "3ecba3bde4c817768cb4aab34ffdbe0a35f007cb303bdd7c708e70cd85f1f0b2",
       "plan.md": "a517d764f51df605610a062abdeda7337a848f09ef01a680afbbc70a61818011",
       "tasks.md": "c2cfd61fe7ccf72a4d3e4a136e6df483f3e33a7a18c8a79d1b431c8002a02d0d",
       "checklist.md": "54a17b751014752800bb736994d5962dc195eb3fb56c70ec8de76a3e2f590094"

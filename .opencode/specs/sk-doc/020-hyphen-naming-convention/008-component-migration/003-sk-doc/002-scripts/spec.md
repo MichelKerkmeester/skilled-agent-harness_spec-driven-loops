@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-doc scripts and test fixtures
+> Phase adjacency — predecessor `001-hub-root-and-shared`; successor `003-create-packets`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

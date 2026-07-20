@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Manual-testing-playbook (020 phase 009)
+> Phase adjacency — predecessor `008-feature-catalog`; successor `010-benchmark`.
 
 > Phase 009 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -84,6 +85,7 @@ The sk-design hub and mode packets use manual_testing_playbook roots, category d
 | REQ-002 | Playbook indexes and scenario links resolve. | Root indexes, category references, catalog links, and SKILL/README references point to existing hyphenated targets. |
 | REQ-003 | Scenario identity and evidence contracts are preserved. | Scenario IDs, headings, expected outcomes, and evidence requirements remain unchanged. |
 | REQ-004 | The catalog/playbook handoff is closed. | Every cross-reference from phase 008 is either updated or explicitly proven exempt/non-path data. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

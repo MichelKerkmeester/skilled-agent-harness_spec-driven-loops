@@ -35,6 +35,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: system-code-graph references
+> Phase adjacency — predecessor `002-scripts`; successor `004-runtime`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

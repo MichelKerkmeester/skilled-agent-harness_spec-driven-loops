@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The root sk-doc benchmark directory is assigned a naming phase for fixtures, profiles, and storage-guide artifacts, but the pinned surface currently contains only .gitkeep. This phase records the empty baseline, verifies no hidden or referenced snake_case artifact is missed, and keeps create-benchmark packet resources in their separate phase.",
     "created_at": "2026-07-14T15:17:27Z",
-    "last_save_at": "2026-07-17T20:26:06.508Z",
+    "last_save_at": "2026-07-20T11:09:49.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:fb937ff7459134789370d2fc68d9b48132a754ba29c4d2ddff388030e6ef3374",
+    "source_fingerprint": "sha256:9c8cfd3e6d8b8c44525419582993828ca0d2f1f23eb41818b25815e8abe5a9fb",
     "source_doc_hashes": {
-      "spec.md": "86de39852f533f8c522718c595fbb74f84300b8438de9f4589d557facfcb3eb8",
+      "spec.md": "f71f74eed1cec3511c5e2ee2e36c004713fe67313dd447e3fbe23b18c5ff2130",
       "plan.md": "5b175db37a6690c70bab5acf0777909ec48caea391efd284fbc8276f173bf999",
       "tasks.md": "193cbe115db24a2846e694c7e30daef8a4a2312bc928e3a55bac7da1b3c3dd75",
       "checklist.md": "c15a8de1ed8c30d326de047993f4f20fdc8111056da9bdd1610d29d103383e2f"

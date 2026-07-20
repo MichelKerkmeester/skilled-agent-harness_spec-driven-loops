@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,12 +59,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The references tree contains 15 Markdown files with snakecase names across config/, decisions/, graph/, hooks/,",
     "created_at": "2026-07-14T15:18:08Z",
-    "last_save_at": "2026-07-17T14:30:33.979Z",
+    "last_save_at": "2026-07-20T11:09:37.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:14c65215164ca86cc0292cd7c1b5b0461ada107aacaec15be0a4aced302c3dae",
+    "source_fingerprint": "sha256:6a3e74909f7103d9356fd170963f58a3507655b1be2701c6833d2186ff5fb3a6",
     "source_doc_hashes": {
-      "spec.md": "ec73e8952ab9812d4acdd3aba62b8f834936e4a8ae7f1eded9da59d88e62d93b",
+      "spec.md": "11aa2a6111068a77b2a1f13fa681418689ef88f21429f5b20f4be8d531b78611",
       "plan.md": "e5fdc1a41f1905b154fde446b9669152b0dc907d0d8c387a73ef2c49d1c6f36f",
       "tasks.md": "abc57061d2326a32fd75f10d9d118a91d0f5335c61822bc4097b5629501343bd",
       "checklist.md": "987280627688d1d1d2782931dfa2bad82443e70dc267be0b72652eb4f70e8fe9"

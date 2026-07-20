@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-foundations (020 phase 003)
+> Phase adjacency — predecessor `002-design-interface`; successor `004-design-motion`.
 
 > Phase 003 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -85,6 +86,7 @@ The design-foundations mode contains underscore-bearing visual-system references
 | REQ-002 | Foundations resources resolve after the rename. | SKILL.md, README.md, checker docs, and local references contain no stale old path. |
 | REQ-003 | Python execution remains intact. | The phase evidence proves the Python script paths and import/package boundaries were not renamed. |
 | REQ-004 | Catalog/playbook ownership remains clean. | No phase-003 task changes paths owned by phases 008 or 009. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

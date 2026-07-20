@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-flowchart resource names
+> Phase adjacency — predecessor `007-create-benchmark`; successor `009-create-changelog`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -85,6 +86,7 @@ The outcome is a kebab-case flowchart resource tree with unchanged notation and 
 | REQ-002 | Flowchart pattern and guidance links resolve | Every old path consumer points at the correct target |
 | REQ-003 | Validator behavior and notation remain stable | Only the validator path changes; no script logic, box label, branch token, or content identifier changes |
 | REQ-004 | Tool-mandated names remain exact | `SKILL.md`, README, and package metadata are unchanged as names |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

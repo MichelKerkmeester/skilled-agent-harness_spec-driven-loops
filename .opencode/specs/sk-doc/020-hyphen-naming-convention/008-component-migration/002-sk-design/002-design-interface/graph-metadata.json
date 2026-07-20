@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
     "created_at": "2026-07-14T15:17:14Z",
-    "last_save_at": "2026-07-17T20:26:03.976Z",
+    "last_save_at": "2026-07-20T11:43:42.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:38ddb141834bfd8575b8da7b2334ee46bb1d364df61e43c65fb269b6e04b3d0f",
+    "source_fingerprint": "sha256:c173ffc9e5cac10c76ebd1654ba5a2d48e4893619c5515c78a94911c307bbdb5",
     "source_doc_hashes": {
-      "spec.md": "b34f65e06ad71d83087a1813d4d0eb4065fd79b609db43e91d2b11b122ce834d",
+      "spec.md": "ca416436b649bb924241c53c33bfeab2e7497409c98fd74e90a858cacce10886",
       "plan.md": "831ffaacbf0a6ff18d56fe16645446b66fe00c3fae94b02727ac32ac0216618f",
       "tasks.md": "743b8fd38e87f4c24ca2e808465561dd98e9e17059d4885a1362d30c568d58b5",
       "checklist.md": "e7d05e7920d8c35f4accf9b5e36cba2e42c31088bc8510e627ad78635389532c"

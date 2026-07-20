@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-manual-testing-playbook resource names
+> Phase adjacency — predecessor `005-create-feature-catalog`; successor `007-create-benchmark`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -84,6 +85,7 @@ The outcome is a kebab-case authoring-resource tree with intact playbook structu
 | REQ-002 | Template and guidance links resolve | Every old packet-local path consumer points at its target |
 | REQ-003 | Playbook content contracts remain stable | Scenario IDs, fields, keys, and prompt text are unchanged except for path links |
 | REQ-004 | Root playbook scope remains separate | No root `manual_testing_playbook/` directory or scenario file is changed here |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

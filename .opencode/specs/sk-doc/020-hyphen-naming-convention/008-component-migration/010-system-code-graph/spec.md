@@ -32,6 +32,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only. -->
 
 # Feature Specification: system-code-graph component migration
+> Phase adjacency — predecessor `009-system-skill-advisor`; successor `011-mcp-code-mode`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

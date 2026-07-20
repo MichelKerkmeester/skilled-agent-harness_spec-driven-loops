@@ -11,7 +11,7 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
-    last_updated_at: "2026-07-18T06:41:37.848Z"
+    last_updated_at: "2026-07-20T11:05:55Z"
     last_updated_by: "codex"
     recent_action: "Completed create-skill scaffold and package output naming migration"
     next_safe_action: "No child work remains"
@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Create-skill Scaffolding and Packaging
+> Phase adjacency — successor `002-catalog-and-playbook-generators`.
 
 > Parallel child under `003-create-generators-and-templates`; sibling ordering is not a runtime dependency.
 

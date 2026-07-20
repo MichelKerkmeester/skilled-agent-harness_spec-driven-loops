@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The create-diff packet is assigned a component-local naming phase, but its current filesystem inventory contains no non-exempt snake_case name to rename. This Level-2 phase records the zero-row census, verifies path references, and prevents content identifiers from being mistaken for filesystem candidates.",
     "created_at": "2026-07-14T15:22:40Z",
-    "last_save_at": "2026-07-17T14:30:16.412Z",
+    "last_save_at": "2026-07-20T11:43:47.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,9 +199,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8d122401f52bdc1cadb39a69754e05a01a83d0c8a6104b705869b304082e099f",
+    "source_fingerprint": "sha256:fe9d6c319d9289360c3111a4bec292ff24c43f6de0c73619fce10bed576b704c",
     "source_doc_hashes": {
-      "spec.md": "a08f23dbcc30abe983a2ce9ef5bb37ac352ec18d044dc4acabcb0c4af79241d4",
+      "spec.md": "9457e016d2f799d66eff38f56921b7d50dfbb87958de5265e0c3df55ec1dfa01",
       "plan.md": "0dd51433c37fafff8d72152c3bfc5d67b8833a070acf7be5e1cf894aa42081f8",
       "tasks.md": "c616cc580fe2afdedf77bd9ce657fc7f69f726ca3f995d64a70e0834f0691ff3",
       "checklist.md": "bdd67b612e2ac2258c752d83a9f785e1bef4e486a35c77b05829d33ef13b556b"

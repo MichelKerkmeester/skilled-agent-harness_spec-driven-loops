@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/manual-testing-playbook.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-07-17T14:30:34.893Z",
+    "last_save_at": "2026-07-20T11:09:37.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +203,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:08a44d87b493360bacfa9176a782a3eabbc6a8feaa606cadb6c11140f21facde",
+    "source_fingerprint": "sha256:48f153d32f30d6e3818cf21cad96c5be9af4fad1e00da8daef00c2d30810c4f1",
     "source_doc_hashes": {
-      "spec.md": "5038e4dfc8c71ffae25222d6f63cd893ad58beb0d6d22b1faf7480e0cbd608c2",
+      "spec.md": "d70174d283427c8cd6b3e62ee7a2ba7c6f213f28fbde52a2d9c428d722ce52f1",
       "plan.md": "e2fd0a2186230329ed7e2b96742573a95cc87de8db1f9dbcc978de26c048d228",
       "tasks.md": "094d45ce823eb0f6c2926b07b9697dda90c08f61f2282fbe9fc950b714673ba1",
       "checklist.md": "b7e7491359d9d32dec9b929f78f8b5e657e375375badbe265532dd9e0849e958"

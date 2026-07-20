@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-doc changelog and version verification
+> Phase adjacency — predecessor `005-benchmark`; successor `007-skill-gate`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

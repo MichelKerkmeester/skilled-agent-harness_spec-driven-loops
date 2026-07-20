@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for ai-council across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:39Z",
-    "last_save_at": "2026-07-17T20:26:20.999Z",
+    "last_save_at": "2026-07-20T11:43:48.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:085e60461b18a46d97023bfd83f55cc112b2809746b3df947be109f41829d83b",
+    "source_fingerprint": "sha256:9b2e7cf5e4487e2959f4ec8b3e5068f7e2be0c35ea6194e0b429de8176791f01",
     "source_doc_hashes": {
-      "spec.md": "a00215a95b551845383493223f7637022f49578376a800f2bb5ad79e108ca634",
+      "spec.md": "c710f1ec814fa10c9660c17519ad6037dbaad4c434d87dad17618e42f15e4651",
       "plan.md": "db24440f4a718fff734e18cffb252c4d162318a45dd91ebe5b4661f00667f3ec",
       "tasks.md": "d3ed4db45babbaa77e455b6fff35ea7a56e658650f726d1916b1f722be3bc366",
       "checklist.md": "de75f93f1ad2a2d4038ab9ca0a64a97729f78746b8d803718ff58a679b46706f"

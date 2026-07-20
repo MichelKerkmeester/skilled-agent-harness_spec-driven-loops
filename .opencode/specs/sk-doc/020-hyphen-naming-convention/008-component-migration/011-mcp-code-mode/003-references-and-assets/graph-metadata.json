@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact.",
     "created_at": "2026-07-14T15:18:22Z",
-    "last_save_at": "2026-07-17T20:26:16.965Z",
+    "last_save_at": "2026-07-20T11:09:43.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c749521afa9851823f211b6b78aa332fedb1549da730c2b12659de7ee5061d10",
+    "source_fingerprint": "sha256:25d2c013fcd32c9d244d40fe8dca65292b0845d56f668d4033406269ba026f43",
     "source_doc_hashes": {
-      "spec.md": "8c2e3b7ef7e6f8eb9a51375aba38ddc42fe81b6e53f91d1a788eb8d1489bc9fd",
+      "spec.md": "6ef7c32b056d19f63ba8367b35274d1bed3460718888c505a36a3067729d85da",
       "plan.md": "01fe38ed310eed31f14f55cd4b6bb119f6e5a65a2cb6abb6de6cfd9b9ca2d959",
       "tasks.md": "355b451e20587ee2d64c43d1be5048fed2fe454d3da0355370e504e275a7f9dc",
       "checklist.md": "01afe54a3f095e28f4ebdb4e1f16f4cdf79882b3c663be5a2dfb2ef593bb4ee8"

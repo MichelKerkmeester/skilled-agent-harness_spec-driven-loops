@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-benchmark packet uses snake_case taxonomy directories and fixture, profile, guide, and storage filenames. This phase converts those non-exempt resource names to kebab-case and updates packet-local references while preserving benchmark schema fields, manifests, and Python package exemptions.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-07-17T14:30:15.401Z",
+    "last_save_at": "2026-07-20T11:09:45.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:12501682d7ec962bbbf2dadd11f275e1a917832ec75f46a95001eede5396f4c7",
+    "source_fingerprint": "sha256:22c6aaa331bf0011311da45c658db5d56d8349cb43a17bc7118efaf7bd119f01",
     "source_doc_hashes": {
-      "spec.md": "34ca0c0dca8969dea422411e0e1d7118feab0f4cfb66d30557fab2ccd320b744",
+      "spec.md": "067f5e5c618f4c4cc4bf0e8f184cd4564e1f3ceee9df98fd791bccf4b2ee622c",
       "plan.md": "a6717dba29a546e8b77ff0d30efe05a109bf93441425befda4d148f5acd211cf",
       "tasks.md": "356354e8a1acb8088504fef48baa7d6556ed8410e0b2815b8471bb75ae2212f4",
       "checklist.md": "eb3ab34ae8237e88ae94d90d31cee0f76ecb6dee325a92bf13fb423a11312fed"

@@ -13,10 +13,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention"
-    last_updated_at: "2026-07-13T13:10:00Z"
+    last_updated_at: "2026-07-20T10:42:52Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Restructured into the 000-011 phased tree"
-    next_safe_action: "Execute phase 000 (worktree + baseline + census) on the pinned BASE SHA"
+    recent_action: "Registered follow-on phase 012 in the parent phase map"
+    next_safe_action: "Generate 012 child metadata, then validate 012 and the parent"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -145,8 +145,11 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
 | **009** | `009-remove-transition-aliases` | leaf | Drop the underscore aliases from the 002 logic; prove the old live root names are now rejected and only scoped frozen/exempt references remain. |
 | **010** | `010-whole-repo-gate` | leaf | The whole-repo gate: the `--all` naming guard, every affected build/typecheck/test suite with discovery-count parity, whole-repo import + path + markdown-link resolution (0 broken), recursive `validate.sh --strict`, and a fixed-seed Lane C re-baseline (semantic + score, not count only) vs the 000 snapshot. Verification mutates no tracked file. |
 | **011** | `011-integrate-and-closeout` | leaf | Integrate the latest origin in a clean integration worktree and rerun the ENTIRE 010 gate on the exact final commit; mark 027 superseded (append-only), update changelogs, finalize the convention as canonical, parent rollup, reconcile completion metadata, and merge. |
+| **012** | `012-code-dir-naming-enforcement` | leaf | **Follow-on extension (registered after the 000-011 closeout).** Close the code-directory naming gap the migration never scoped: leading-underscore + `__tests__/` code dirs inside skills. Extend the canon, add one shared code-dir checker wired into packaging + the repo-wide guard, forward-point the per-mode restatements, and rename `sk-design/styles/{_db,_engine,_harness,__tests__}` → `{db,engine,harness,tests}`. Does not re-run the migration. |
 
 **Sequencing invariants:** 000 pins BASE + baseline before anything. 001-007 make the toolchain speak hyphens — policy, all-consumer logic, generators, the guard, the rename/reference engine, the frozen map, and the shared cross-cutting closures — before any component rename. 002 ships a bounded dual-name tolerance so it precedes the catalog/playbook reversal inside 008; 009 removes the alias only after 008 lands. 006's map is frozen + hashed with BASE; batches are dependency-closed (a batch may mix JS/shell/JSON/YAML/MD). 007 hoists every closure spanning ≥2 component subtrees, and 008's component phases declare `depends_on` it. 010 is the whole-repo gate; 011 integrates the latest origin and reruns 010 before closeout. Because a runtime path (the classifier) keys on the catalog root names, the catalog/playbook reversal in 008 must land coupled with the 002 logic + tolerance.
+
+**Follow-on note:** Phases 000-011 are the original, self-contained migration program. Phase **012** is a later follow-on extension, registered after the 000-011 closeout, that covers a scope the migration deliberately did not touch — code-directory names inside skills. It is independent of the 000-011 sequence and does not re-run the migration.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:success-criteria -->
@@ -226,6 +229,7 @@ integrate-latest + closeout. Every phase carries a blocking SOL verifier contrac
 | 009 | 009-remove-transition-aliases/ | Drop underscore aliases; prove old roots rejected | Planned |
 | 010 | 010-whole-repo-gate/ | Whole-repo naming/build/test/link/benchmark gate | Planned |
 | 011 | 011-integrate-and-closeout/ | Integrate latest origin, rerun 010, supersede 027, close out | Planned |
+| 012 | 012-code-dir-naming-enforcement/ | Follow-on: code-dir naming enforcement (leading-underscore + __tests__) | Planned |
 
 ### Phase Transition Rules
 

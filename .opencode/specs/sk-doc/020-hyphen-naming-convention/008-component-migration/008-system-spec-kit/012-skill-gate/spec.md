@@ -28,6 +28,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: System-spec-kit skill gate
+> Phase adjacency — predecessor `011-changelog-verify`.
 
 > Rollup gate under the 008 system-spec-kit subtree. No new migration work is introduced here.
 

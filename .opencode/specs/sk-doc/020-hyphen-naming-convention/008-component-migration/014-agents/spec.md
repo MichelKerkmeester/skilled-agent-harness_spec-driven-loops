@@ -27,6 +27,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Agents Surface Migration
+> Phase adjacency — predecessor `013-commands`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

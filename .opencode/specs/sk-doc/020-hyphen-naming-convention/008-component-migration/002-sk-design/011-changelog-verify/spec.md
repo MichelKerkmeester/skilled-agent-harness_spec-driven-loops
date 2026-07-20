@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Changelog verification (020 phase 011)
+> Phase adjacency — predecessor `010-benchmark`; successor `012-skill-gate`.
 
 > Phase 011 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -83,6 +84,7 @@ The rename program needs an auditable sk-design release-note entry that identifi
 | REQ-002 | The version bump is real and internally consistent. | The migration entry's version is greater than v1.4.3.0 and agrees across filename, heading, and body. |
 | REQ-003 | The scope statement matches the migration map. | The entry covers component phases 001–007, catalog 008, playbook 009, benchmark 010, and the no-rename verify/gate phases. |
 | REQ-004 | The exemption boundary is recorded. | The entry states Python scripts/package directories and tool-mandated names were not renamed. |
+| REQ-005 | The phase records its changelog verification evidence. | The verifier pass/fail report with the changelog path, version, and scope match is captured as gate evidence. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Benchmark (020 phase 010)
+> Phase adjacency — predecessor `009-manual-testing-playbook`; successor `011-changelog-verify`.
 
 > Phase 010 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -86,6 +87,7 @@ Benchmark run snapshots use underscore-bearing after-label directories, while th
 | REQ-002 | Benchmark navigation resolves. | README.md and any path-valued changelog/storage-guide references point to the new directories. |
 | REQ-003 | Benchmark evidence is byte/semantic stable. | Report JSON keys, scenario IDs, score values, and baseline identity are unchanged. |
 | REQ-004 | No speculative artifact is introduced. | Profiles or storage guides not present under this benchmark tree are recorded as absent, not fabricated. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-doc manual-testing-playbook tree
+> Phase adjacency — predecessor `003-create-packets`; successor `005-benchmark`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

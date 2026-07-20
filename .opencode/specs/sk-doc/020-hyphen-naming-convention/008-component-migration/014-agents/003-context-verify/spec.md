@@ -85,6 +85,7 @@ The purpose is to produce a reproducible, read-only candidate-set record for con
 | REQ-002 | The rename-candidate set is explicit and correct | The candidate set is exactly ∅ because every observed basename is already kebab-case |
 | REQ-003 | The program exemption boundary is not widened | Classification examines filesystem names only and leaves identifiers, frontmatter fields, TOML keys, Python names, and tool-mandated names untouched |
 | REQ-004 | The phase remains verify-only | The report contains no rename operation or reference rewrite, and no runtime agent file is modified |
+| REQ-005 | The phase hands verify-only evidence to the subtree gate. | Path-level evidence is supplied to `014-agents-gate` and no runtime agent file is modified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

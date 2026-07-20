@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-07-17T20:26:23.549Z",
+    "last_save_at": "2026-07-20T11:09:52.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c2b05203f63562ab88a2967d315a0cb50c1b23aecb3ce7863ff91dd7f14e259e",
+    "source_fingerprint": "sha256:f0bf248bc79029569d3bf33724d58aae83d52bec85d447ede4cd6da4eeb05f8e",
     "source_doc_hashes": {
-      "spec.md": "62b8a968f6b7e33b7d5b8827fce9000d4b81f2b2b10262ffdefe71bc494da575",
+      "spec.md": "54b3e76b64ba15e0554a88bb78ef8eff26a935aaa044c1d455c618de4f0a2b67",
       "plan.md": "bd3d199d2f2a51dc722c6bcb2430f0bfc0cf9e867cfe4d82113c856bcad9f0a7",
       "tasks.md": "6cdb8468ff9870619560488dc510368ae049484380a42e1c6360ff2eb3f86d0a",
       "checklist.md": "dcafeb88067bc720098a68e910371f361858755f3ca60bcb969082b72010c1c3"

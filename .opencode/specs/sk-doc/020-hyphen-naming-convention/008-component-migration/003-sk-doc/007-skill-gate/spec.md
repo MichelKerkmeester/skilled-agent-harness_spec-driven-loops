@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-doc subtree rollup gate
+> Phase adjacency — predecessor `006-changelog-verify`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

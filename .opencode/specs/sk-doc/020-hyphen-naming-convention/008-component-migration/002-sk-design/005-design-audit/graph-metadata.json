@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and audit references.",
     "created_at": "2026-07-14T15:17:17Z",
-    "last_save_at": "2026-07-17T20:26:04.488Z",
+    "last_save_at": "2026-07-20T11:43:43.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5c5aa0d2a1b0edba3c2882d9b646d5e4769f0dbc8690a8fc9972e684580189e9",
+    "source_fingerprint": "sha256:255342cdd446ca202beb3dae895b0ad49610f5821ec6703f8b293c7f240ef5e0",
     "source_doc_hashes": {
-      "spec.md": "0213c14fb47bd55ccfbb2f98baa835104fe940af09b516093ba660c9772ed7cb",
+      "spec.md": "898b71a4891a496e32654bbbd58a2305e3e13924c445d058e79156a25f370886",
       "plan.md": "7a8506665e4be6d6e35e57266f677254a275f70c4f5ca2b58419cf4126fd2ba5",
       "tasks.md": "a1477c9c17b0bb37a65565d730346d5d1951298702242f660637d38f9ef43e21",
       "checklist.md": "bee66f12dc6e62bb803f6e5b6b0bc5122c985334dfd2061d7751ffeefce29393"

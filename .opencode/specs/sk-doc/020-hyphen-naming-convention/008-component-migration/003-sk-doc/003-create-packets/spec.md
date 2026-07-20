@@ -27,6 +27,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT -->
 
 # Feature Specification: sk-doc create-packet components
+> Phase adjacency — predecessor `002-scripts`; successor `004-manual-testing-playbook`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

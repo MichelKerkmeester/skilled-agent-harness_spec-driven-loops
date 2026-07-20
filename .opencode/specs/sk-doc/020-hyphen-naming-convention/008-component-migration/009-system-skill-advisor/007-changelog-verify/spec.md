@@ -34,6 +34,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: system-skill-advisor changelog verification
+> Phase adjacency — predecessor `006-manual-testing-playbook`; successor `008-skill-gate`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

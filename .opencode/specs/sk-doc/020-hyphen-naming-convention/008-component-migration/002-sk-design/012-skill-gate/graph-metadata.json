@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path remains in sk-design.",
     "created_at": "2026-07-14T15:17:23Z",
-    "last_save_at": "2026-07-17T20:26:05.697Z",
+    "last_save_at": "2026-07-20T11:43:45.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0258a8cf12d68981b40c875f5b33d1c76fc200357a20b56a319838f0cbaff1d6",
+    "source_fingerprint": "sha256:19adb45f79af9e465cb803832954331e6caad56c6fad82aa493a642c86b1b7e0",
     "source_doc_hashes": {
-      "spec.md": "38b92a56cdd8a900aa2a851abe33925b6b52968323f239104bf5b2fad71b0b78",
+      "spec.md": "2ab4f2d04083ac2f887acd37262ae610a2fa859488e557be1526a41dc8ce36c0",
       "plan.md": "034a7c544fd3a2b52dc8f2ecbf96f07f48dab55bcba6bbbe8ac5e56f7ea5ff3f",
       "tasks.md": "023a619a5e5cd0feba649f3a84cc47dac82aeaf996941f895bdf19dd3aa14ad4",
       "checklist.md": "1618bca23a8e8d32605c9663bf9ddb9e748faeb9750066feffb71d2a82dbea8a"

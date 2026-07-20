@@ -32,6 +32,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->
 
 # Feature Specification: cli-external-orchestration component migration
+> Phase adjacency — predecessor `004-sk-prompt`; successor `006-mcp-tooling`; parent `../spec.md`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

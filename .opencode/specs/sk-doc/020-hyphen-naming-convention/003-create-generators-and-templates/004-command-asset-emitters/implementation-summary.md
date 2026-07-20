@@ -11,7 +11,7 @@ parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
-    last_updated_at: "2026-07-18T06:38:11Z"
+    last_updated_at: "2026-07-20T11:09:35Z"
     last_updated_by: "codex"
     recent_action: "Completed kebab-case output contracts and regression coverage for create command assets"
     next_safe_action: "Integrate this child with the phase 003 parent after central review"

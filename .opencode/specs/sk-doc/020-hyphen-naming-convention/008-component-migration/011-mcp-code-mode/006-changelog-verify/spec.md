@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode changelog verification
+> Phase adjacency — predecessor `005-manual-testing-playbook`; successor `007-skill-gate`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
