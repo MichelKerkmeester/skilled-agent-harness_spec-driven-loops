@@ -223,6 +223,12 @@ Reference `references/shared/README.md` for deep overflow: it routes to the case
 
 Complete these steps in order. The spec packet must have shipped before promotion.
 
+Before writing any benchmark folder, run label, fixture, profile, or authored report name, validate the resolved artifact path or slug with the shared checker. Router family keys such as `model_benchmark` are identifiers and are not passed as filesystem names.
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
+```
+
 1. **Confirm the promotion gate.** Read the source packet `decision-record.md`, `implementation-summary.md`, and benchmark evidence. Confirm an accepted decision, stable headline, stable fixture, replay commands, and a defensible winner or explicit provisional status.
 2. **Classify the task.** Decide whether this is a true promotion, a re-run update, or a retirement update.
 3. **Confirm the target skill.** Verify the consuming skill has `mcp-server/` and an appropriate measurable MCP surface.

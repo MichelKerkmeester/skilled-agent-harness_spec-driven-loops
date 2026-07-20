@@ -688,7 +688,7 @@ VALIDATION_LEVELS = {
   - ✅ `packaging-guide.md`
   - ❌ `templates.md` (too generic)
   - ❌ `FrontmatterTemplates.md` (wrong case)
-  - ❌ `frontmatter-templates.md` (underscores are not canonical)
+  - ❌ `frontmatter_templates.md` (underscores are not canonical)
 
 **Type-Specific Patterns**:
 

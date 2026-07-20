@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance"
-    last_updated_at: "2026-07-20T10:13:27Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored phase-002 spec for per-mode kebab conformance"
-    next_safe_action: "Plan the shared-checker versus per-mode-check decision"
+    last_updated_at: "2026-07-20T12:28:09Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented shared kebab checker and wired generating mode workflows"
+    next_safe_action: "Operator can run central metadata generation and packet validation"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +33,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `sk-doc/022-naming-standard-hardening` |
@@ -103,6 +103,18 @@ Give every generating mode a kebab conformance check for its own artifacts, and 
 | `create-quality-control/{README.md,SKILL.md}` | Modify | Re-anchor to the canon; add filename-case signal |
 | `create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md` | Modify | Fix the underscore claim; cite canon §6 |
 | `create-skill/assets/skill/skill-asset-template.md` | Modify | Fix the cosmetic counter-example |
+
+### Implemented Files
+
+| File Path | Result |
+|-----------|--------|
+| `shared/scripts/check_authored_name_kebab.py` | Added one shared authored basename/slug checker with canon exemptions delegated to `check_no_new_snake_case.py` |
+| `scripts/tests/test_authored_name_kebab.py` | Added focused kebab, underscore, and exemption coverage |
+| `create-{agent,readme,command,changelog,flowchart,benchmark}/SKILL.md` | Added a reachable shared-checker workflow step |
+| `create-{feature-catalog,manual-testing-playbook}/SKILL.md` | Wired the catalog/playbook guard to an isolated new-content staging root |
+| `create-quality-control/{README.md,SKILL.md}` | Re-anchored structural naming and added a non-scored filename-case signal |
+| `create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md` | Corrected the on-disk kebab directory claim and cited canon §6 |
+| `create-skill/assets/skill/skill-asset-template.md` | Corrected the underscore counter-example |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -153,6 +165,6 @@ Give every generating mode a kebab conformance check for its own artifacts, and 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- One shared authored-name kebab checker invoked by every mode, or a per-mode check each? (Resolved in plan.md; leaning shared.)
-- Should create-quality-control's DQI scorer add a filename-case component, or is a non-scored conformance signal sufficient? (Leaning non-scored signal; DQI change optional.)
+- **Resolved**: One shared authored-name checker is invoked by every prose-only generating mode.
+- **Resolved**: create-quality-control reports filename case as a non-scored signal; DQI components are unchanged.
 <!-- /ANCHOR:questions -->

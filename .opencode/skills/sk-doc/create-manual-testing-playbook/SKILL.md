@@ -343,9 +343,15 @@ Do not ship unsynchronized prompt fields.
 Run shared validation on the root playbook before delivery from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.opencode/skills/system-spec-kit`):
 
 ```bash
+# New-content naming guard. The staging root must contain only the newly authored
+# canonical manual-testing-playbook package, never an ancestor with shipped legacy roots.
+python3 .opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>
+
 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <SKILL_PATH>/manual-testing-playbook/manual-testing-playbook.md --type reference
 python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>/manual-testing-playbook/manual-testing-playbook.md
 ```
+
+The staging scope is mandatory until shipped underscore roots are migrated. Do not run this guard against `.opencode/skills` or another ancestor containing legacy `feature_catalog/` or `manual_testing_playbook/` trees.
 
 Also check:
 

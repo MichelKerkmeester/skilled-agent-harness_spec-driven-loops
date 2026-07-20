@@ -277,11 +277,12 @@ Before delivery, verify document quality and runtime correctness.
 ```bash
 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
 python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/agents/agent-name.md
 ```
 
 Use `.claude/agents/agent-name.md` instead when Claude Code is the active runtime.
 
-Required checks: frontmatter parses, filename stem matches `name`, required sections are present, runtime directory is correct, permissions match authority, `task` matches orchestration intent, related resources exist, and unresolved markdown links are reported.
+Required checks: frontmatter parses, filename stem matches `name`, the shared authored-name checker passes, required sections are present, runtime directory is correct, permissions match authority, `task` matches orchestration intent, related resources exist, and unresolved markdown links are reported.
 
 ---
 

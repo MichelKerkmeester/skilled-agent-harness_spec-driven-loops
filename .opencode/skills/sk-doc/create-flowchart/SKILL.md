@@ -174,6 +174,12 @@ For a standalone flowchart file, use this shape unless the surrounding project h
 
 Write the file as `<flowchart-slug>.md`, where the slug matches `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing, empty or ambiguous names instead of applying a blind character replacement. Embedded flowcharts keep the host document's existing filename.
 
+After resolving a standalone output name, validate it before writing:
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <flowchart-slug>.md
+```
+
 ````markdown
 # <Flowchart Name>
 

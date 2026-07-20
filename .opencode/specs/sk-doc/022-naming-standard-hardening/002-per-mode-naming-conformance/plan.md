@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance"
-    last_updated_at: "2026-07-20T10:13:27Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored phase-002 plan for per-mode kebab conformance"
-    next_safe_action: "Break the plan into tasks and sequence after phase 001"
+    last_updated_at: "2026-07-20T12:21:56Z"
+    last_updated_by: "codex"
+    recent_action: "Executed Phase A through C with focused verification evidence"
+    next_safe_action: "Operator can run central metadata generation and packet validation"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,15 +48,15 @@ Give every generating sk-doc mode a kebab conformance check for its artifacts an
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 1 (shared standard reconciled, guards wired) is complete
-- [ ] The shipped-underscore-root dependency is understood and sequenced
-- [ ] Shared-checker vs per-mode-check decision is recorded
+- [x] Phase 1 (shared standard reconciled, guards wired) is complete
+- [x] The shipped-underscore-root dependency is understood and sequenced
+- [x] Shared-checker vs per-mode-check decision is recorded
 
 ### Definition of Done
-- [ ] A generated snake_case name is flagged for every generating mode
-- [ ] create-quality-control cites the canon; a filename-case signal appears in its output
-- [ ] create-benchmark doc drift reconciled; cosmetic template fixed
-- [ ] `validate.sh --strict` on this phase reports Errors: 0
+- [x] A generated snake_case name is flagged for every generating mode
+- [x] create-quality-control cites the canon; a filename-case signal appears in its output
+- [x] create-benchmark doc drift reconciled; cosmetic template fixed
+- [ ] `validate.sh --strict` on this phase reports Errors: 0 (central operator validation; intentionally not run in this handoff)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -101,20 +101,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: Shared checker
-- [ ] Decide shared-checker vs per-mode-check (record in decision notes)
-- [ ] Provide/identify the shared authored-name kebab checker with canon-§3 exemptions
-- [ ] Make it reachable from each generating mode's workflow
+- [x] Decide shared-checker vs per-mode-check (one shared checker selected)
+- [x] Provide the shared authored-name kebab checker with canon-§3 exemptions
+- [x] Make it reachable from each generating mode's workflow
 
 ### Phase B: Wire existing guards + reconcile docs
-- [ ] Wire `check_no_hyphenated_catalog_content.py` into catalog/playbook workflows, scoped to new content
-- [ ] Re-anchor create-quality-control to the canon; add a filename-case signal
-- [ ] Fix `model-benchmark-fixture-guide.md:67`; cite canon §6 for the family-key exemption
-- [ ] Fix the cosmetic counter-example in `skill-asset-template.md:691`
+- [x] Wire `check_no_hyphenated_catalog_content.py` into catalog/playbook workflows, scoped to new content
+- [x] Re-anchor create-quality-control to the canon; add a non-scored filename-case signal
+- [x] Fix `model-benchmark-fixture-guide.md:67`; cite canon §6 for the family-key exemption
+- [x] Fix the cosmetic counter-example in `skill-asset-template.md:691`
 
 ### Phase C: Verification
-- [ ] Each generating mode flags a deliberate snake_case name
-- [ ] No mode doc points at a snake_case filename rule
-- [ ] `validate.sh --strict` Errors: 0
+- [x] Each generating mode reaches the shared checker; deliberate snake_case fails and kebab passes
+- [x] No touched mode doc points at a snake_case filename rule
+- [x] Focused Python, guard-regression, grep, on-disk, and Markdown validation checks pass
+- [ ] `validate.sh --strict` Errors: 0 (central operator validation)
 <!-- /ANCHOR:phases -->
 
 ---

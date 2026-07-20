@@ -435,6 +435,12 @@ Component selection rules:
 
 Complete these seven steps in order. The SKILL.md is the primary workflow contract.
 
+After resolving a component, packet, or phase slug and before writing, validate that authored slug with the shared checker. Exact version filenames remain governed by the version contract, and frozen changelog paths remain exempt under the filesystem-naming canon.
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <component-or-phase-slug>
+```
+
 1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
 2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.opencode/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.opencode/changelog/{resolved_folder}/` exists.
 3. **Determine version.** If nested mode, skip version calculation. If global mode, list existing files in the target folder, parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.

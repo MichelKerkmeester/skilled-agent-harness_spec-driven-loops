@@ -192,6 +192,14 @@ python ../shared/scripts/quick_validate.py <path>
 
 If validation exits non-zero, fix blocking errors when edits are in scope, then re-run the failing command.
 
+Run the shared authored-name checker for the target path and report its result as a non-scored filename-case conformance signal:
+
+```bash
+python ../shared/scripts/check_authored_name_kebab.py <file>
+```
+
+This signal does not change the DQI score or add a DQI component. It reports `PASS`, `FAIL`, or the canon exemption alongside the scored evidence.
+
 ### Step 4: Apply HVR Voice Review
 
 Review the target for Human Voice Rules after structural issues are understood.
@@ -219,6 +227,10 @@ For report-only, structure-validation or batch modes, produce a concise report w
 - Score: `<score>`
 - Band: `<band>`
 - Source: `extract_structure.py`
+
+**Filename Case (non-scored)**
+- Result: `<PASS|FAIL|EXEMPT>`
+- Source: `check_authored_name_kebab.py`
 
 **Blocking Issues**
 - `<issue>` or `None`
@@ -456,6 +468,6 @@ Use these only for deep overflow detail, edge cases, exhaustive templates and lo
 - `../shared/scripts/extract_structure.py` - Structure extraction, metrics, checklist data and DQI.
 - `../shared/scripts/validate_document.py` - Pre-delivery document validation gate.
 - `../shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
-- `../shared/references/core-standards.md` - Document type detection and structural rules.
+- `../shared/references/filesystem-naming-convention.md` - Structural naming authority and exemption boundary.
 - `../shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
 - `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
