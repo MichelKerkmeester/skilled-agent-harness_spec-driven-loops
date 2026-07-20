@@ -21,8 +21,8 @@
       "kebab checker tasks",
       "mode naming tasks",
       "per-mode conformance summary",
-      "planned phase 002",
-      "kebab conformance planned"
+      "implemented phase 002",
+      "kebab conformance implemented"
     ],
     "key_topics": [
       "per-mode",
@@ -39,7 +39,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -114,6 +114,12 @@
         "source": "derived"
       },
       {
+        "name": "Executed Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,12 +133,6 @@
       },
       {
         "name": "Pattern Shared",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,7 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
+        "name": "What Was Built One",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Only two of about ten sk-doc modes verify kebab filenames in code: create-skill (`packageskill.py checkgeneratedpaths`, blocking only under `--strict`/packaging and invoked manually) and create-diff (its engine)",
     "created_at": "2026-07-20T09:49:53Z",
-    "last_save_at": "2026-07-20T10:13:27.438Z",
+    "last_save_at": "2026-07-20T12:28:09.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d72994f00389d59f7e204bee0e2ffcbd7126ba3de3596234dce5aea781b345c",
+    "source_fingerprint": "sha256:1961f38cede33231907ebf4b421f1ac0a9a2ebc25126d5f631e465104c488159",
     "source_doc_hashes": {
-      "spec.md": "ad0bc7d3fd5549dd38137443713481b066b3f267945559e9a1b271a8f387cfa4",
-      "plan.md": "2b975a9cbb0ef2ef0f2a6062911bf0b74197b67b71e62d6a1c665100cdc386f6",
-      "tasks.md": "d0b46a4d5a79eea720b46a2ce442662ac0e5ba2d983026854e503ba08a5d9034",
-      "implementation-summary.md": "cd12c0c6caeae9b2580ab237ddd39d07a632867ca9c1c210920763ea9134a615"
+      "spec.md": "5ac05cd57b5dd01b1703de6c95f63a4499fca802d99bdc8badc325483ae692f7",
+      "plan.md": "b1c00a0bb9ba0f746088d235f80a95ceb9485ee4ccc9a9dee3d89fc5edbe0205",
+      "tasks.md": "08b071e9e98c3c5db75850e6b56813b320ece8043a9471af270bc696815ac430",
+      "implementation-summary.md": "d87624d2cc518fd7c2d573dfddf6e6b68603517e38a8c25027b7f0bcab253af4"
     },
     "last_active_child_id": null,
     "last_active_at": null

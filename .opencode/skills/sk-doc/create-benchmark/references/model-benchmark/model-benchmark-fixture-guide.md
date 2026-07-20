@@ -64,8 +64,10 @@ scorer.
 ## 2. WHERE THESE LIVE
 
 All model-benchmark data sits under the deep-improvement mode-packet. The parent
-`model-benchmark/` directory name uses an underscore; its `benchmark-fixtures/` and
-`benchmark-profiles/` children use hyphens.
+`model-benchmark/` directory and its `benchmark-fixtures/` and
+`benchmark-profiles/` children use kebab-case. Router family keys such as
+`model_benchmark` remain snake_case because they are structured identifiers, not
+filesystem names; see the [filesystem-naming canon §6](../../../shared/references/filesystem-naming-convention.md#6-out-of-scope-identifiers-and-keys-keep-idiomatic-case).
 
 | Artifact | Location | Role |
 | --- | --- | --- |

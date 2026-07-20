@@ -41,7 +41,7 @@ Shared backbone used by this packet:
 - `../shared/scripts/extract_structure.py` - source of truth for structure metrics, checklist results, and DQI.
 - `../shared/scripts/validate_document.py` - pre-delivery markdown validation gate.
 - `../shared/scripts/quick_validate.py` - fast validation for files, folders, or skill packets.
-- `../shared/references/core-standards.md` - document type detection and structural standards.
+- `../shared/references/filesystem-naming-convention.md` - structural naming authority and exemption boundary.
 - `../shared/references/validation.md` - DQI bands and validation severity.
 - `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
 - `../shared/references/quick-reference.md` - command and quality-gate cheat sheet.
@@ -52,9 +52,12 @@ Shared backbone used by this packet:
 Report-only audit of one markdown file:
 
 ```bash
+python ../shared/scripts/check_authored_name_kebab.py README.md
 python ../shared/scripts/extract_structure.py README.md
 python ../shared/scripts/validate_document.py README.md
 ```
+
+The authored-name result is a non-scored filename-case conformance signal. It does not alter DQI components or the DQI score.
 
 `extract_structure.py` takes only the file path and auto-detects the document type. If detection is ambiguous, force the type on the validation gate instead (the extractor has no `--type` flag):
 

@@ -398,11 +398,12 @@ Before publishing or claiming the command is valid, verify:
 Run shared validators when available:
 
 ```bash
+python3 ../shared/scripts/check_authored_name_kebab.py <command-file.md>
 python3 ../shared/scripts/validate_document.py <command-file.md> --type command
 python3 ../shared/scripts/extract_structure.py <command-file.md>
 ```
 
-Exit code `0` from `validate_document.py` is required before stating that the command document is structurally valid. If validation cannot be run, say that explicitly.
+Exit code `0` from the authored-name checker and `validate_document.py` is required before stating that the command document is structurally valid. If validation cannot be run, say that explicitly.
 
 ---
 

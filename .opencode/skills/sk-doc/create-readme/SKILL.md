@@ -369,8 +369,11 @@ Install guides should contain 5+ STOP blocks across all validation checkpoints a
 Run shared validation on authored markdown when feasible:
 
 ```bash
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <path>
 ```
+
+Run the authored-name check after resolving the output path and before document validation. `README.md` is a tool-mandated exemption; install-guide slugs and other authored names must pass the kebab-case rule.
 
 Use quick validation or structure extraction when appropriate:
 
