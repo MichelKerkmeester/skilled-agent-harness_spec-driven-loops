@@ -7,8 +7,6 @@ import { pathToFileURL } from "node:url";
 
 const REQUIRED_FIELDS = [
   "command",
-  "canonicalCommand",
-  "compatibilityAliases",
   "ownerMode",
   "description",
   "descriptionRole",
@@ -37,13 +35,13 @@ const REQUIRED_FIELDS = [
 ];
 
 const COMMANDS = [
-  "/design:audit",
-  "/design:foundations",
-  "/design:interface",
-  "/design:md-generator",
-  "/design:motion"
+  "/interface:audit",
+  "/interface:design",
+  "/interface:design-reference",
+  "/interface:foundations",
+  "/interface:motion"
 ];
-const CANONICAL_COMMAND_BY_MODE = new Map([
+const COMMAND_BY_MODE = new Map([
   ["interface", "/interface:design"],
   ["foundations", "/interface:foundations"],
   ["motion", "/interface:motion"],
@@ -206,11 +204,9 @@ async function main() {
   }
 
   const records = [...metadata].sort((a, b) => a.command.localeCompare(b.command));
-  const canonicalRecords = projectRecordsToCanonical(records);
-  const transportTokens = readTransportTokens(registry);
   const drift = [
-    ...(await collectSurfaceDrift(canonicalRecords)),
-    ...collectRosterReconciliationDrift(records, canonicalRecords, workflowModes, registry, hubRouter, wrapperRoster, transportTokens)
+    ...(await collectSurfaceDrift(records)),
+    ...collectRosterReconciliationDrift(records, hubRouter, wrapperRoster)
   ].sort(compareDrift);
 
   emitAndExit(
@@ -219,7 +215,6 @@ async function main() {
       stage: drift.length > 0 ? "surface" : "complete",
       metadata: {
         commandCount: records.length,
-        compatibilityAliasCount: records.reduce((count, record) => count + record.compatibilityAliases.length, 0),
         workflowModes: [...workflowModes].sort(),
         aliasCount: records.reduce((count, record) => count + record.aliases.length, 0)
       },
@@ -236,7 +231,7 @@ async function readJson(url) {
 
 async function readWrapperRoster() {
   const wrappers = (
-    await Promise.all(["design", "interface"].map(async (namespace) => {
+    await Promise.all(["interface"].map(async (namespace) => {
       const namespaceUrl = new URL(`${namespace}/`, commandsRootUrl);
       const entries = await readdir(namespaceUrl, { withFileTypes: true });
       return Promise.all(
@@ -320,19 +315,6 @@ function commandTokenForMode(mode) {
   return null;
 }
 
-function readTransportTokens(registry) {
-  if (!registry || !Array.isArray(registry.modes)) {
-    return new Set();
-  }
-
-  return new Set(
-    registry.modes
-      .filter((mode) => mode && mode.packetKind === "transport" && typeof mode.workflowMode === "string" && mode.workflowMode.length > 0)
-      .map((mode) => commandTokenForMode(mode))
-      .filter(Boolean)
-  );
-}
-
 function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode, registry) {
   const errors = [];
 
@@ -356,7 +338,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
     }
 
     if (!expectedCommands.has(command)) {
-      errors.push(`${command}: command is not in the expected /design:* command set`);
+      errors.push(`${command}: command is not in the expected /interface:* command set`);
     }
 
     if (seenCommands.has(command)) {
@@ -369,12 +351,9 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       errors.push(`${command}: ownerMode must match a workflowMode`);
     }
 
-    const expectedCanonical = CANONICAL_COMMAND_BY_MODE.get(record?.ownerMode);
-    if (record?.canonicalCommand !== expectedCanonical) {
-      errors.push(`${command}: canonicalCommand must be ${expectedCanonical ?? "a registered canonical command"}`);
-    }
-    if (!Array.isArray(record?.compatibilityAliases) || !sameValue(record.compatibilityAliases, [command])) {
-      errors.push(`${command}: compatibilityAliases must contain only the legacy command token`);
+    const expectedCommand = COMMAND_BY_MODE.get(record?.ownerMode);
+    if (expectedCommand && command !== expectedCommand) {
+      errors.push(`${command}: command must be ${expectedCommand} for ownerMode ${record?.ownerMode}`);
     }
 
     for (const field of ["description", "argumentHint", "accepts", "returns", "deferToHubWhen"]) {
@@ -673,7 +652,7 @@ function validateInterfaceTasks(record, command, interfaceIntentLanes, commandSe
       actualLanes.push(task.lane);
 
       if (commandSet.has(task.lane)) {
-        errors.push(`${label}.lane must not be promoted into the /design:* command set`);
+        errors.push(`${label}.lane must not be promoted into the /interface:* command set`);
       }
     }
 
@@ -687,7 +666,7 @@ function validateInterfaceTasks(record, command, interfaceIntentLanes, commandSe
       && typeof task.surface === "string"
       && DESIGN_COMMAND_PATTERN.test(task.surface)
     ) {
-      errors.push(`${label}.surface must not name a /design:* command unless class is argument`);
+      errors.push(`${label}.surface must not name a /interface:* command unless class is argument`);
     }
   });
 
@@ -754,7 +733,7 @@ function validateTaskProjections(
         seenVerbs.set(verb, command);
       }
 
-      const projectedCommand = `/design:${verb}`;
+      const projectedCommand = `/interface:${verb}`;
       if (expectedCommands.has(projectedCommand) || workflowCommandSet.has(projectedCommand)) {
         errors.push(`${label}.verb ${verb} must not be minted as ${projectedCommand}`);
       }
@@ -1452,20 +1431,16 @@ async function collectSurfaceDrift(records) {
   return drift.sort(compareDrift);
 }
 
-function collectRosterReconciliationDrift(records, canonicalRecords, workflowModes, registry, hubRouter, wrappers) {
+function collectRosterReconciliationDrift(records, hubRouter, wrappers) {
   const drift = [];
-  const canonicalCommands = new Set(canonicalRecords.map((record) => record.command));
-  const aliasCommands = new Set(records.flatMap((record) => record.compatibilityAliases));
-  const expectedWrappers = new Set([...canonicalCommands, ...aliasCommands]);
+  const canonicalCommands = new Set(records.map((record) => record.command));
   const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
-  const registryCommands = commandSetForModes(workflowModes, registry);
   const canonicalByMode = hubRouter?.commandSurface?.canonicalByMode ?? {};
-  const aliasMap = hubRouter?.commandSurface?.compatibilityAliases ?? {};
   const reconciledCommands = intersectSets(canonicalCommands, wrapperCommands);
 
   for (const wrapper of wrappers) {
-    if (!expectedWrappers.has(wrapper.command)) {
-      drift.push(rosterDrift("orphan-wrapper", wrapper.command, "metadata command or compatibility alias", wrapper.relativePath));
+    if (!canonicalCommands.has(wrapper.command)) {
+      drift.push(rosterDrift("orphan-wrapper", wrapper.command, "metadata command", wrapper.relativePath));
     }
     if (wrapper.frontmatterError) {
       drift.push(rosterDrift("dead-wrapper", wrapper.command, "parseable frontmatter", wrapper.frontmatterError));
@@ -1476,43 +1451,21 @@ function collectRosterReconciliationDrift(records, canonicalRecords, workflowMod
     if (hasPlaceholderWrapper(wrapper)) {
       drift.push(rosterDrift("placeholder-wrapper", wrapper.command, "specific argument contract", GENERIC_ARGUMENT_HINT));
     }
-
-    if (aliasCommands.has(wrapper.command)) {
-      const canonical = aliasMap[wrapper.command];
-      if (!canonical || !wrapper.markdown.includes(canonical)) {
-        drift.push(rosterDrift("alias-route-drift", wrapper.command, canonical ?? "canonical alias target", "<missing target>"));
-      }
-      if (!wrapper.markdown.includes("$ARGUMENTS")) {
-        drift.push(rosterDrift("alias-route-drift", wrapper.command, "$ARGUMENTS passthrough", "<missing>"));
-      }
-      if (!/do not invoke another public command/i.test(wrapper.markdown)) {
-        drift.push(rosterDrift("alias-route-drift", wrapper.command, "no nested public-command dispatch", "<missing>"));
-      }
-    }
   }
 
-  for (const command of sortedSet(expectedWrappers)) {
+  for (const command of sortedSet(canonicalCommands)) {
     if (!wrapperCommands.has(command)) {
       drift.push(rosterDrift("missing-wrapper", command, wrapperPathForCommand(command).relativePath, "<missing>"));
     }
   }
 
-  records.forEach((record, index) => {
-    const canonical = canonicalRecords[index];
-    if (canonicalByMode[record.ownerMode] !== canonical.command) {
-      drift.push(rosterDrift("route-fixture-drift", canonical.command, `hub-router commandSurface.canonicalByMode.${record.ownerMode}`, canonicalByMode[record.ownerMode] ?? "<missing>"));
+  for (const record of records) {
+    if (canonicalByMode[record.ownerMode] !== record.command) {
+      drift.push(rosterDrift("route-fixture-drift", record.command, `hub-router commandSurface.canonicalByMode.${record.ownerMode}`, canonicalByMode[record.ownerMode] ?? "<missing>"));
     }
-    for (const alias of record.compatibilityAliases) {
-      if (aliasMap[alias] !== canonical.command) {
-        drift.push(rosterDrift("alias-route-drift", alias, canonical.command, aliasMap[alias] ?? "<missing>"));
-      }
-      if (!registryCommands.has(alias)) {
-        drift.push(rosterDrift("route-fixture-drift", alias, "mode-registry compatibility command token", "<missing>"));
-      }
-    }
-  });
+  }
 
-  for (const record of canonicalRecords) {
+  for (const record of records) {
     drift.push(...collectDanglingHandoffDrift(record, reconciledCommands));
   }
 
@@ -2664,20 +2617,6 @@ function assetPathsForCommand(command) {
   };
 }
 
-function projectRecordsToCanonical(records) {
-  const commandMap = new Map(records.map((record) => [record.command, record.canonicalCommand]));
-
-  return records.map((record) => {
-    let source = JSON.stringify(record);
-    for (const [legacy, canonical] of commandMap) {
-      source = source.split(legacy).join(canonical);
-    }
-    const projected = JSON.parse(source);
-    projected.command = record.canonicalCommand;
-    return projected;
-  });
-}
-
 function wordOverlapRatio(text, phrase) {
   if (typeof text !== "string" || typeof phrase !== "string") {
     return 0;
@@ -2859,7 +2798,7 @@ function commandSetForModes(workflowModes, registry) {
   return new Set(
     [...workflowModes].map((workflowMode) => {
       const registryToken = commandTokenForMode(registryModes.get(workflowMode));
-      return registryToken ?? `/design:${workflowMode}`;
+      return registryToken ?? `/interface:${workflowMode}`;
     })
   );
 }
@@ -2908,7 +2847,7 @@ function formatTextReport(report) {
 
   if (report.metadata) {
     lines.push(
-      `METADATA commands=${report.metadata.commandCount} compatibilityAliases=${report.metadata.compatibilityAliasCount} aliases=${report.metadata.aliasCount} workflowModes=${report.metadata.workflowModes.join(",")}`
+      `METADATA commands=${report.metadata.commandCount} aliases=${report.metadata.aliasCount} workflowModes=${report.metadata.workflowModes.join(",")}`
     );
   }
 
@@ -2934,7 +2873,6 @@ export {
   commandSetForModes,
   expectedChoreographyDrift,
   parseInterfaceIntentSignalKeys,
-  projectRecordsToCanonical,
   readRegistryAliasesByMode,
   readWorkflowModes,
   validateDiscriminator,

@@ -8,11 +8,11 @@ const opencodeRootUrl = new URL("../../", skillRootUrl);
 const commandsRootUrl = new URL("commands/", opencodeRootUrl);
 
 const EXPECTED = [
-  { mode: "interface", canonical: "/interface:design", action: "design", legacy: "/design:interface", legacyAction: "interface" },
-  { mode: "foundations", canonical: "/interface:foundations", action: "foundations", legacy: "/design:foundations", legacyAction: "foundations" },
-  { mode: "motion", canonical: "/interface:motion", action: "motion", legacy: "/design:motion", legacyAction: "motion" },
-  { mode: "audit", canonical: "/interface:audit", action: "audit", legacy: "/design:audit", legacyAction: "audit" },
-  { mode: "md-generator", canonical: "/interface:design-reference", action: "design-reference", legacy: "/design:md-generator", legacyAction: "md-generator" }
+  { mode: "interface", canonical: "/interface:design", action: "design" },
+  { mode: "foundations", canonical: "/interface:foundations", action: "foundations" },
+  { mode: "motion", canonical: "/interface:motion", action: "motion" },
+  { mode: "audit", canonical: "/interface:audit", action: "audit" },
+  { mode: "md-generator", canonical: "/interface:design-reference", action: "design-reference" }
 ];
 const VISIBLE_BLOCKS = [
   "Route Proof",
@@ -40,10 +40,8 @@ test("canonical commands resolve to stable internal modes", () => {
   for (const expected of EXPECTED) {
     const record = metadata.find((entry) => entry.ownerMode === expected.mode);
     assert.ok(record, `missing metadata for ${expected.mode}`);
-    assert.equal(record.canonicalCommand, expected.canonical);
-    assert.deepEqual(record.compatibilityAliases, [expected.legacy]);
+    assert.equal(record.command, expected.canonical);
     assert.equal(hubRouter.commandSurface.canonicalByMode[expected.mode], expected.canonical);
-    assert.equal(hubRouter.commandSurface.compatibilityAliases[expected.legacy], expected.canonical);
 
     const surface = surfaces.find((entry) => entry.expected.mode === expected.mode);
     assert.match(surface.wrapper, new RegExp(`workflowMode=${escapeRegExp(expected.mode)}`));
@@ -60,16 +58,6 @@ test("every canonical command exposes the shared visible output blocks", () => {
       assert.ok(surface.auto.includes(block), `${surface.expected.canonical} auto workflow missing ${block}`);
       assert.ok(surface.confirm.includes(block), `${surface.expected.canonical} confirm workflow missing ${block}`);
     }
-  }
-});
-
-test("legacy design commands are thin in-place compatibility aliases", () => {
-  for (const surface of surfaces) {
-    assert.ok(surface.alias.includes(surface.expected.canonical));
-    assert.ok(surface.alias.includes("$ARGUMENTS"));
-    assert.match(surface.alias, /Do not invoke another public command/i);
-    assert.doesNotMatch(surface.alias, nestedCommandDispatchPattern());
-    assert.doesNotMatch(surface.alias, /##\s+\d+\.\s+(?:MODE ROUTING|EXECUTION TARGETS|PRESENTATION BOUNDARY)/i);
   }
 });
 
@@ -113,14 +101,13 @@ test("adversarial silent downstream amendment is rejected", () => {
 
 async function loadSurface(expected) {
   const assetBase = `interface-${expected.action}`;
-  const [wrapper, presentation, auto, confirm, alias] = await Promise.all([
+  const [wrapper, presentation, auto, confirm] = await Promise.all([
     readFile(new URL(`interface/${expected.action}.md`, commandsRootUrl), "utf8"),
     readFile(new URL(`interface/assets/${assetBase}-presentation.txt`, commandsRootUrl), "utf8"),
     readFile(new URL(`interface/assets/${assetBase}-auto.yaml`, commandsRootUrl), "utf8"),
-    readFile(new URL(`interface/assets/${assetBase}-confirm.yaml`, commandsRootUrl), "utf8"),
-    readFile(new URL(`design/${expected.legacyAction}.md`, commandsRootUrl), "utf8")
+    readFile(new URL(`interface/assets/${assetBase}-confirm.yaml`, commandsRootUrl), "utf8")
   ]);
-  return { expected, wrapper, presentation, auto, confirm, alias };
+  return { expected, wrapper, presentation, auto, confirm };
 }
 
 function boundaryErrors(source) {

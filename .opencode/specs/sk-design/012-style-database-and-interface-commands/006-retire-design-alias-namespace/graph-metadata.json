@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace",
+  "spec_folder": "sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace",
+  "parent_id": "sk-design/012-style-database-and-interface-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire design aliases",
+      "interface command surface",
+      "command namespace dedup",
+      "retire design aliases plan",
+      "interface surface rekey",
+      "command dedup plan",
+      "retire design aliases tasks",
+      "interface rekey tasks",
+      "command dedup tasks",
+      "retire design aliases checklist",
+      "interface surface verification",
+      "command dedup checklist"
+    ],
+    "key_topics": [
+      "retire",
+      "design",
+      "aliases",
+      "interface",
+      "command",
+      "surface",
+      "namespace",
+      "dedup",
+      "plan",
+      "rekey",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+      ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "interface-command-contract.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 shipped the five `/interface:` creation commands but kept a full `/design:` alias layer for backward compatibility: five thin alias wrappers under `.opencode/commands/design/`, fifteen alias assets, `canonicalCommand` + `compatibilityAliases` fields across the command registries, and alias-reconciliation machinery in the surface checker",
+    "created_at": "2026-07-20T18:20:43.509Z",
+    "last_save_at": "2026-07-20T18:23:46.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0fa9297b2e3cea1c0ddcedc1ba072b512243ec3346ad73274725a55c60d8d92",
+    "source_doc_hashes": {
+      "spec.md": "f47645e7e756c878596684aa4c1e88c8a3a4d8e504e6f3f9e223ce3642ce4151",
+      "plan.md": "3727462f97901b12af3e52574b0dd69bc168557b19f0a22c6663e51eddeda4bc",
+      "tasks.md": "76a6da47927f5432d0c06300d033ae321d0d6659c1cb8531ccff6f8f6f32cd84",
+      "checklist.md": "3085353f68270f2e3dba3d9b685e4393288db9c4fbf503a6360b16adb635075a",
+      "implementation-summary.md": "8db7e7b9e88d58d8e30b723cd4391d5105acb851ac949604ae1b23f71a5c489d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

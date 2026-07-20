@@ -19,7 +19,7 @@ version: 1.3.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Distinctive UI design and the full design surface: visual direction, design systems, motion, quality audit and live-site CSS extraction. |
-| **Invoke with** | `Skill(sk-design)`, the canonical `/interface:*` creation commands or the `design` agent. Existing `/design:*` names remain compatibility aliases. |
+| **Invoke with** | `Skill(sk-design)`, the canonical `/interface:*` creation commands or the `design` agent. |
 | **Works on** | A design request, an existing interface or a live URL to extract from. |
 | **Produces** | Design direction and tokens, motion specs, an audit with scores or a Style Reference DESIGN.md. |
 
@@ -33,13 +33,13 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 ### What It Does
 
-`Skill(sk-design)` loads the hub, and the hub routes the request to one of five design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. The five canonical `/interface:*` creation commands resolve to those unchanged mode IDs through one shared nine-stage creation contract; the older `/design:*` commands remain thin compatibility aliases. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of five design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. The five canonical `/interface:*` creation commands resolve to those unchanged mode IDs through one shared nine-stage creation contract. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Let the advisor route a design request, run a canonical `/interface:*` command, or read `SKILL.md`. The corresponding `/design:*` aliases still work.
+**Step 1: Invoke it.** Let the advisor route a design request, run a canonical `/interface:*` command, or read `SKILL.md`.
 
 **Step 2: Run a mode.** For example, a visual-system pass:
 
@@ -67,7 +67,7 @@ A design request resolves through the hub to one mode when a single design axis 
 
 ### Creation commands
 
-The canonical creation surface maps `/interface:{design,foundations,motion,audit,design-reference}` to the stable `interface`, `foundations`, `motion`, `audit`, and `md-generator` modes. All five commands share [`shared/creation-contract.md`](./shared/creation-contract.md). The corresponding `/design:{interface,foundations,motion,audit,md-generator}` names are additive compatibility aliases, not renamed modes.
+The canonical creation surface maps `/interface:{design,foundations,motion,audit,design-reference}` to the stable `interface`, `foundations`, `motion`, `audit`, and `md-generator` modes. All five commands share [`shared/creation-contract.md`](./shared/creation-contract.md). The former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
 
 ### Style retrieval backend
 

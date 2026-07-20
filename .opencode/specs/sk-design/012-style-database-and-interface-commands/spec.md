@@ -118,6 +118,7 @@ Stand up (1) a real indexed **style database** for the 1,291-style library, mirr
 | 3 | `003-style-database/` | Implement the style database + retrieval per phase 001 | GPT-5.6-SOL via cli-opencode | **Implementation complete**; bounded-fixture verification green, full-corpus activation SLO deferred |
 | 4 | `004-interface-commands/` | Build the five /interface:* creation commands + shared contract + /design:* aliases per phase 002 | GPT-5.6-SOL via cli-opencode | **Complete** (16/16 tests, 4 checkers) |
 | 5 | `005-review-remediation/` | Fix all deep-review findings (P0=0, P1=9, P2=1): persistent-path code hardening + evidence reconciliation | GPT-5.6-SOL | **Complete** (31/31 db, 20/20 legacy; default remains `legacy`) |
+| 6 | `006-retire-design-alias-namespace/` | Retire the `/design:*` alias namespace so `/interface:*` is the sole public command surface: re-key the surface checker + 3 registries, delete `commands/design/`, update the checker tests | Spec-authored (AUTHOR-SPEC); executor TBD | **Planned** |
 
 ### Phase Transition Rules
 

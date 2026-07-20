@@ -12,7 +12,7 @@
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The packet's SKILL.md name. For sk-design the packet folder IS its packetSkillName — the prefixed name (e.g. folder 'design-interface' == packetSkillName 'design-interface') — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
     "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All six sk-design modes use folder == packetSkillName (the prefixed name), so none has a mismatch — grandfatheredFolderMismatch is false for all six.",
-    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. The five design-judgment modes each have a dedicated /design:* command; the sixth mode, the design-mcp-open-design transport, carries command:null and is reached only by mandatory pairing with a design-judgment mode, never by its own command."
+    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. The five design-judgment modes each have a dedicated /interface:* command; the sixth mode, the design-mcp-open-design transport, carries command:null and is reached only by mandatory pairing with a design-judgment mode, never by its own command."
   },
   "extensions": {
     "transform-verbs": {
@@ -25,7 +25,7 @@
     }
   },
   "transformVerbRouting": {
-    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. excludedAliases governs free-text transform-verb framing only (e.g. 'make it typeset'); command-metadata.json's taskProjections is a separate layer governing which mode owns the SAME verb under an explicit slash command (e.g. /design:foundations typeset). The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
+    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. excludedAliases governs free-text transform-verb framing only (e.g. 'make it typeset'); command-metadata.json's taskProjections is a separate layer governing which mode owns the SAME verb under an explicit slash command (e.g. /interface:foundations typeset). The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
     "interfaceFrame": "make it",
     "auditFrame": "should it be",
     "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],
@@ -51,7 +51,7 @@
       "proceduresPath": "design-interface/procedures",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
-      "command": "/design:interface",
+      "command": "/interface:design",
       "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -72,7 +72,7 @@
       "proceduresPath": "design-foundations/procedures",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
-      "command": "/design:foundations",
+      "command": "/interface:foundations",
       "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -93,7 +93,7 @@
       "proceduresPath": "design-motion/procedures",
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
-      "command": "/design:motion",
+      "command": "/interface:motion",
       "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -114,7 +114,7 @@
       "proceduresPath": "design-audit/procedures",
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
-      "command": "/design:audit",
+      "command": "/interface:audit",
       "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "p0 p1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -135,7 +135,7 @@
       "proceduresPath": "design-md-generator/procedures",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
-      "command": "/design:md-generator",
+      "command": "/interface:design-reference",
       "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "design-to-markdown", "extract design tokens", "validate design.md", "design.md validation", "design fidelity check", "design.md report", "render design preview", "source of truth", "study design.md format"],
       "advisorRouting": {
         "routingClass": "metadata",
