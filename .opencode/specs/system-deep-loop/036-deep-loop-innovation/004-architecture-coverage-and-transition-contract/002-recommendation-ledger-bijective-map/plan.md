@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map"
-    last_updated_at: "2026-07-15T13:25:45Z"
+    last_updated_at: "2026-07-20T18:39:30Z"
     last_updated_by: "codex"
-    recent_action: "Planned source extraction, classification, artifact emission, and validation"
-    next_safe_action: "Freeze source digests and extract the 8, 59, and 111 recommendation sets"
+    recent_action: "Completed source extraction, classification, artifact emission, and strict validation"
+    next_safe_action: "Use the immutable ledger as the downstream phase ownership source"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "recommendation-ledger.json"
+      - "recommendation-ledger-validation.json"
+      - "validate-ledger.cjs"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,16 +51,16 @@ coverage of every disposition bucket and manifest phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and all three source-run inputs are pinned by path and digest
-- [ ] Source adapters define run-a rank locators and run-b/run-c JSON-pointer locators without mutating the research packets
-- [ ] The stable-ID ranges, normalized-target enum, disposition grammar, and phase manifest enum are frozen before classification
-- [ ] Reviewers agree that raw compound targets remain preserved while one primary normalized target drives ownership
+- [x] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and all three source-run inputs are pinned by path and digest
+- [x] Source adapters define run-a rank locators and run-b/run-c JSON-pointer locators without mutating the research packets
+- [x] The stable-ID ranges, normalized-target enum, disposition grammar, and phase manifest enum are frozen before classification
+- [x] Raw compound targets remain preserved while one primary normalized target drives ownership
 
 ### Definition of Done
-- [ ] Canonical JSON contains exactly 178 rows with 8/59/111 source counts, unique stable IDs, and unique source locators
-- [ ] Every row has one allowed normalized target and exactly one allowed disposition with required reasons and valid references
-- [ ] All four disposition buckets and all manifest phases are explicitly represented in the coverage report
-- [ ] JSON schema, CSV parity, source-digest reproduction, and the fail-closed validator are green
+- [x] Canonical JSON contains exactly 178 rows with 8/59/111 source counts, unique stable IDs, and unique source locators
+- [x] Every row has one allowed normalized target and exactly one allowed disposition with required reasons and valid references
+- [x] All four disposition buckets and all manifest phases are explicitly represented in the coverage report
+- [x] JSON schema, CSV parity, source-digest reproduction, and the fail-closed validator are green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

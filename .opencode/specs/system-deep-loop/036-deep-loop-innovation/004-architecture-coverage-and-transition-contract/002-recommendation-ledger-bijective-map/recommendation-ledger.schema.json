@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "recommendation-ledger.schema.json",
+  "title": "Deep Loop Recommendation Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "base_commit",
+    "source_manifest",
+    "taxonomy",
+    "phase_manifest",
+    "rows"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "base_commit": {
+      "const": "fe6ca3030917073f3b478bc044e10034dcc4394b"
+    },
+    "source_manifest": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "path",
+          "sha256",
+          "adapter",
+          "expected_count",
+          "run_iterations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "adapter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "run_iterations": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflow-family",
+        "workflow-mode",
+        "research-workstream",
+        "runtime-subsystem"
+      ],
+      "properties": {
+        "workflow-family": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "research",
+              "review",
+              "ai-council",
+              "improvement",
+              "alignment"
+            ]
+          }
+        },
+        "workflow-mode": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "research",
+              "review",
+              "ai-council",
+              "agent-improvement",
+              "model-benchmark",
+              "skill-benchmark",
+              "alignment"
+            ]
+          }
+        },
+        "research-workstream": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "deep-research",
+              "deep-review",
+              "deep-ai-council",
+              "deep-improvement",
+              "deep-alignment",
+              "agent-improvement",
+              "model-benchmark",
+              "skill-benchmark"
+            ]
+          }
+        },
+        "runtime-subsystem": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "convergence",
+              "state-jsonl-checkpointing",
+              "fan-out-fan-in",
+              "dedup-novelty",
+              "gauges-observability",
+              "budget-cost",
+              "locks-recovery",
+              "continuity-threading"
+            ]
+          }
+        }
+      }
+    },
+    "phase_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "phases"
+      ],
+      "properties": {
+        "path": {
+          "const": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
+        },
+        "sha256": {
+          "const": "363da601d45c5eacd90d4ce02adc2af14f80f21d62df6edaf9afa49f6efda50d"
+        },
+        "phases": {
+          "type": "array",
+          "minItems": 15,
+          "maxItems": 15,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "phase",
+              "slug",
+              "kind"
+            ],
+            "properties": {
+              "phase": {
+                "enum": [
+                  "003",
+                  "004",
+                  "005",
+                  "006",
+                  "007",
+                  "008",
+                  "009",
+                  "010",
+                  "011",
+                  "012",
+                  "013",
+                  "014",
+                  "015",
+                  "016",
+                  "017"
+                ]
+              },
+              "slug": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "leaf",
+                  "parent"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 178,
+      "maxItems": 178,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_run",
+          "source_path",
+          "source_locator",
+          "source_sha256",
+          "source_rank",
+          "source_iteration",
+          "original_recommendation",
+          "original_target",
+          "source_rationale",
+          "source_evidence",
+          "source_effort",
+          "source_impact",
+          "source_thread",
+          "source_mode",
+          "source_angle",
+          "source_uniqueness",
+          "companion_evidence",
+          "taxonomy_layer",
+          "taxonomy_key",
+          "primary_rationale",
+          "disposition",
+          "disposition_rationale"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DLR-[ABC]-[0-9]{3}$"
+          },
+          "source_run": {
+            "enum": [
+              "run-a",
+              "run-b",
+              "run-c"
+            ]
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_locator": {
+            "type": "string",
+            "pattern": "^(run-a:section-17/rank-[0-9]{3}|run-[bc]:/recommendations/[0-9]+)$"
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "source_rank": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "source_iteration": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "original_recommendation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "original_target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_rationale": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_evidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_effort": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_impact": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_thread": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_angle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_uniqueness": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "companion_evidence": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                }
+              }
+            ]
+          },
+          "taxonomy_layer": {
+            "enum": [
+              "workflow-family",
+              "workflow-mode",
+              "research-workstream",
+              "runtime-subsystem"
+            ]
+          },
+          "taxonomy_key": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "const": "unknown"
+            }
+          },
+          "primary_rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "disposition": {
+            "type": "string",
+            "pattern": "^(adopt-as-phase-(00[3-9]|01[0-7])|merge-into-DLR-[ABC]-[0-9]{3}|defer-with-reason|reject-with-reason)$"
+          },
+          "disposition_rationale": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
