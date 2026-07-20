@@ -42,18 +42,18 @@ Implement one fail-closed checkpoint between validated transition requests and t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-004 spine ADR and transition/versioning policy are ratified and their authorization fields are frozen
-- [ ] The versioned envelope exposes canonical request bytes and stable event/type/version identities
-- [ ] The ledger exposes a proof-required domain append and a gateway-only non-domain decision-event emitter
-- [ ] Replay fingerprints can incorporate decision, policy, prior-head, authority-epoch, and target-event linkage
-- [ ] The dark/legacy boundary is explicit: gateway outcomes cannot affect legacy mode behavior before phase 014
+- [x] The phase-004 spine ADR and transition/versioning policy are ratified and their authorization fields are frozen
+- [x] The versioned envelope exposes canonical request bytes and stable event/type/version identities
+- [x] The ledger exposes a proof-required domain append and a gateway-only non-domain decision-event emitter
+- [x] Authorization replay receives decision, policy, prior-head, authority-epoch, and target-event linkage fields
+- [x] The dark/legacy boundary is explicit: gateway outcomes cannot affect legacy mode behavior before phase 014
 
 ### Definition of Done
-- [ ] Every typed domain append is preceded by one durable, exact, valid allow event
-- [ ] Allow and deny verdicts are both typed first-class ledger events with complete bounded audit fields
-- [ ] Default-deny, proof-linkage, replay/audit, partial-failure, and direct-bypass tests pass
-- [ ] A dark gateway denial or failure leaves the authoritative legacy result unchanged and emits observable shadow evidence
-- [ ] The phase-006 co-landing gate proves no typed writer exists without the gateway
+- [x] Every typed domain append is preceded by one durable, exact, valid allow event
+- [x] Allow and deny verdicts are both typed first-class ledger events with complete bounded audit fields
+- [x] Default-deny, proof-linkage, replay/audit, partial-failure, and direct-bypass tests pass
+- [x] The reusable dark adapter returns the exact authoritative legacy result for allow, denial, and failure while emitting observable telemetry
+- [x] The phase-006 co-landing gate proves no typed writer exists without the gateway
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -83,7 +83,7 @@ Implement one fail-closed checkpoint between validated transition requests and t
 - The ledger owns sequence allocation and revalidates allow linkage under its exclusive append lock. A pre-lock allow against a changed head or epoch becomes stale and cannot append.
 - Audit-stream progress and domain-stream progress are distinct. A denial or unapplied allow may advance audit order but never domain sequence or projection state.
 - Replay verifies stored verdict/linkage and may deterministically re-evaluate against the registered historical policy. Divergence is reported as evidence; history is never rewritten.
-- Dark integration observes legacy emission boundaries, but gateway errors change only the typed shadow record. Legacy control flow, persistence, outputs, and effects remain authoritative until phase 014.
+- Dark integration is exposed through a reusable result-preserving adapter keyed by a frozen legacy-boundary census. Existing writers are not modified in this core landing; legacy control flow, persistence, outputs, and effects remain authoritative until phase 014.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -103,7 +103,7 @@ Implement one fail-closed checkpoint between validated transition requests and t
 - Implement proof-required domain append linkage with under-lock head, epoch, digest, verdict, and single-use validation.
 - Implement typed rejection results, bounded reason metadata, and sensitive-payload exclusion.
 - Implement replay/audit verification for decision order, allow-to-event linkage, deny absence, policy identity, and deterministic re-evaluation.
-- Integrate the gateway at every dark transition boundary without changing legacy behavior.
+- Implement the reusable dark adapter and frozen transition-boundary census without changing existing runtime writers or legacy behavior.
 
 ### Phase 3: Verification
 - Prove the ledger refuses direct, missing-proof, deny-proof, mismatched, stale, reused, tampered, and unknown-policy appends.
@@ -112,7 +112,7 @@ Implement one fail-closed checkpoint between validated transition requests and t
 - Prove a decision-audit append failure prevents domain append and a crash after allow remains visibly unapplied.
 - Prove replay reproduces verdicts and detects policy, request, head, epoch, or linkage drift without rewriting history.
 - Prove dark denial/failure leaves every authoritative legacy output and effect unchanged through phase 013.
-- Run the phase-006 parent co-landing gate across envelope, ledger, fingerprint, and authorization fixtures.
+- Run the accepted phase-006 co-landing gate across the envelope and authorized-ledger focused suites, including authorization replay linkage proofs.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

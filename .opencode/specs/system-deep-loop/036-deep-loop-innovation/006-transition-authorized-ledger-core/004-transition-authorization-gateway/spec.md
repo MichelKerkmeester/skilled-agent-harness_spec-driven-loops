@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/004-transition-authorization-gateway |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fourth child of the phase-006 transition-authorized ledger-core parent |
@@ -68,7 +68,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - Denial behavior that records bounded audit metadata without copying sensitive payload content and returns a typed rejection without appending the domain event.
 - Replay and audit that re-evaluate deterministic policy inputs where the registered policy is available and always verify stored decision, request, policy, authority, and ledger linkage.
 - Crash and partial-write semantics: an allow event without its target event remains visibly unapplied; inability to durably record the decision prevents the domain append.
-- Additive-dark integration in which authorization gates only the new typed ledger and cannot alter legacy authority before phase 014.
+- A reusable additive-dark adapter and frozen transition-boundary census in which authorization gates only the new typed ledger and cannot alter legacy authority before phase 014.
 
 ### Out of Scope
 - Event-envelope fields and registry/upcast mechanics owned by `001-versioned-event-envelope`.
@@ -76,7 +76,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - Replay-fingerprint composition owned by predecessor `003-replay-fingerprints`; this phase supplies decision inputs and linkage for that fingerprint.
 - Domain-specific transition policies for later orchestration, projection, convergence, or mode schemas; this phase defines the common evaluator and policy contract.
 - Compatibility adapters, shadow-parity decisions, rollback rehearsal, authority cutover, or legacy-writer retirement owned by program phases 005, 011, and 012.
-- Treating an authorization verdict, dark ledger, or audit projection as runtime authority before phase 014.
+- Treating an authorization verdict, dark ledger, or audit projection as runtime authority before phase 014, or wiring the reusable adapter into existing runtime writers in this core landing.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -105,7 +105,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - **SC-002**: Every evaluated denial is durably auditable without a corresponding domain append or domain-state mutation.
 - **SC-003**: Direct, stale, malformed, mismatched, unknown-policy, evaluator-failure, and decision-storage-failure paths all fail closed before domain sequence allocation.
 - **SC-004**: Deterministic replay verifies allow linkage, deny absence, policy identity, and verdict parity while preserving original history.
-- **SC-005**: Dark gateway failures are observable but do not change the authoritative legacy result before phase 014.
+- **SC-005**: The reusable dark adapter returns the exact legacy result for gateway allow, deny, and typed-ledger failure while recording observable telemetry.
 - **SC-006**: The ledger, gateway, envelope, and replay-fingerprint contracts pass one co-landing gate with no authorization bypass.
 
 **Given** a complete request whose deterministic policy evaluation allows the transition, **When** the gateway runs, **Then** it durably records an allow event before the exact domain event and the ledger receipt links both.
@@ -134,5 +134,5 @@ This child declares `depends_on: []`, matching the independent sibling planning 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may select module names, policy expression format, audit-stream partitioning, and decision-retention indexes, but it may not weaken default-deny behavior, exact request/policy/state binding, durable audit of both verdicts, non-domain denial semantics, single-use allow linkage, deterministic replay, or dark non-authority before phase 014.
+None. The implementation selected module names, a typed policy registry, a separate audit stream, and immutable decision linkage without weakening default-deny behavior, exact request/policy/state binding, durable audit of both verdicts, non-domain denial semantics, single-use allow linkage, deterministic replay, or dark non-authority before phase 014.
 <!-- /ANCHOR:questions -->

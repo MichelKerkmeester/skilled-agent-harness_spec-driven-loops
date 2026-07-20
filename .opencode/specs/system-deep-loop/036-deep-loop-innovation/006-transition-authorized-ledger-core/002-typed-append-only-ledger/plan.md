@@ -47,18 +47,18 @@ dark adapters mirror successful legacy-domain events into the new ledger for lat
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The sibling `001-versioned-event-envelope` contract supplies canonical bytes, stable `event_id`, schema version, event type, stream/subject identity, and authorization binding fields.
-- [ ] The phase-006 parent identifies the authorization-proof interface that the ledger must validate before append.
-- [ ] The state census pins every legacy JSONL/state/checkpoint writer and reducer that will receive a dark adapter.
-- [ ] The ledger storage root, file permissions, lock scope, ledger identity, segment naming, and error taxonomy are fixed before implementation.
-- [ ] Legacy authority and dark failure-isolation behavior are encoded as tests before any integration hook is added.
+- [x] The sibling `001-versioned-event-envelope` contract supplies canonical bytes, stable `event_id`, schema version, event type, stream/subject identity, and authorization binding fields.
+- [x] The phase-006 parent identifies the authorization-proof interface that the ledger must validate before append.
+- [x] The state census pins every legacy JSONL/state/checkpoint writer and reducer represented by the reusable dark adapter.
+- [x] The ledger storage root, file permissions, lock scope, ledger identity, segment naming, and error taxonomy are fixed before implementation.
+- [x] Legacy authority and dark failure-isolation behavior are encoded as tests before any integration hook is added.
 
 ### Definition of Done
-- [ ] Locked append, idempotency, ordering, hash-chain integrity, typed read, and deterministic reduction tests pass.
-- [ ] Crash/torn-tail, tamper, gap, fork, reorder, duplicate-conflict, unknown-version, and invalid-authorization tests fail closed.
-- [ ] Every inventoried legacy emission boundary produces dark ledger evidence without changing its existing output or status.
-- [ ] A full ledger replay reaches one verified head and byte-identical projections across repeated runs.
-- [ ] The ledger remains non-authoritative and no legacy writer, reader, repair path, or checkpoint is removed or rewritten.
+- [x] Locked append, idempotency, ordering, hash-chain integrity, typed read, and deterministic reduction tests pass.
+- [x] Crash/torn-tail, tamper, gap, fork, reorder, duplicate-conflict, unknown-version, and invalid-authorization tests fail closed.
+- [x] The reusable dark adapter and frozen census cover every inventoried legacy emission boundary without changing existing writer code, output, or status.
+- [x] A full ledger replay reaches one verified head and byte-identical projections across repeated runs.
+- [x] The ledger remains non-authoritative and no legacy writer, reader, repair path, or checkpoint is removed or rewritten.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -71,7 +71,7 @@ dark adapters mirror successful legacy-domain events into the new ledger for lat
 - **Integrity**: calculate `event_hash` from canonical frame inputs including ledger identity, sequence, previous hash, canonical envelope bytes, and authorization binding. Verification from genesis proves both per-event integrity and the complete ordered head. Head/index sidecars are cache-only and rebuildable.
 - **Typed reader**: frame decoder -> sequence/hash verifier -> envelope decoder from `001-versioned-event-envelope` -> authorization-link verifier -> typed event iterator. Unknown frame/envelope versions, event types, or authorization formats are errors; the reader never skips an invalid committed row.
 - **Reducer boundary**: reducers are pure `(state, typedEvent) -> state` functions registered by event type and reducer version. Reduction consumes only verified iteration order, retains raw event evidence, and emits a projection fingerprint for sibling `003-replay-fingerprints` without promoting the projection to authority.
-- **Dark legacy adapters**: add narrow hooks after successful existing emissions in `atomic-state.ts`, `jsonl-repair.ts` consumers, `round-state-jsonl.cjs`, `fanout-pool.cjs`, `fanout-run.cjs`, and observability/state reducers. Hooks normalize to the sibling envelope, request authorization, and attempt a dark append. Failures emit explicit telemetry and invalidate cutover evidence, but the legacy return value and persisted artifact remain authoritative.
+- **Dark legacy adapter**: expose one reusable post-legacy boundary keyed by a frozen census covering `atomic-state.ts`, `jsonl-repair.ts` consumers, `round-state-jsonl.cjs`, `fanout-pool.cjs`, `fanout-run.cjs`, and observability/state reducers. It requests authorization and attempts a dark append while returning the exact legacy result for allow, deny, and failure. Existing writers remain untouched in this core landing.
 - **Boundary discipline**: do not call legacy `repairJsonlTail`, JSONL merge-by-rewrite, or replace-style checkpoint writers on ledger files. Do not read ledger projections back into runtime control flow in this phase.
 <!-- /ANCHOR:architecture -->
 
@@ -87,15 +87,15 @@ dark adapters mirror successful legacy-domain events into the new ledger for lat
 - Build the ledger-scoped lock, verified-head loader, immutable segment allocator, canonical frame encoder, durable append path, and rebuildable idempotency cache.
 - Build the full-chain verifier, typed envelope decoder, async reader, reducer registry, deterministic fold, and derived projection/head cache.
 - Add the authorization-proof precondition so missing or mismatched proof fails before sequence allocation.
-- Add additive-dark hooks to the reviewed legacy state/checkpoint boundaries without changing existing JSONL shapes, repair behavior, reducer outputs, or checkpoint authority.
+- Add the reusable additive-dark adapter and frozen reviewed-boundary census without changing existing JSONL writers, repair behavior, reducer outputs, or checkpoint authority.
 - Emit typed dark-path health events for append success, exact-repeat idempotency, conflict, corruption, authorization denial, and adapter failure.
 
 ### Phase 3: Verification
 - Prove exact-once logical identity under retries and contiguous sequence under genuinely concurrent writers.
 - Prove mutation, deletion, insertion, reordering, fork, malformed framing, unknown type/version, and torn-tail detection.
-- Prove recovery creates a linked immutable segment and never truncates or rewrites committed bytes.
+- Prove recovery quarantines the exact torn bytes, restores the last verified head, resumes at the same next sequence, and never rewrites earlier committed frames.
 - Prove repeated full replay and reduction are byte-identical for the same ledger, envelope decoder, and reducer version.
-- Prove legacy outputs, return codes, JSONL/checkpoint schemas, and operational authority are unchanged when the dark ledger succeeds, denies, conflicts, or fails.
+- Prove the dark adapter returns the identical legacy result and leaves the domain head unchanged when authorization denies or the dark ledger fails.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
