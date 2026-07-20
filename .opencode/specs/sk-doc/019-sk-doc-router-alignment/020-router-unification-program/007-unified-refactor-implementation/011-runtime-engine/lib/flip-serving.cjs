@@ -11,23 +11,29 @@
 //   - the three frozen scorer digests are unchanged,
 //   - the compiled engine actually routes at least one designed scenario,
 //   - the loaded snapshot identity equals the manifest's selectedPolicy.
-// The swap runs under an exclusive per-hub lock, re-reads and compares the fence
-// epoch immediately before writing (compare), then replaces each file atomically
-// (swap) — so concurrent operators cannot both consume one epoch or interleave a
-// partial write. Reversible: `--rollback` restores the byte-identical pre-flip
-// manifest under the same fenced discipline.
+// The swap runs under the shared exclusive per-hub lock (the SAME lock the
+// activation driver takes), re-reads and compares the fence epoch immediately
+// before writing (compare), then replaces each file atomically (swap) — so no two
+// writers consume one epoch or interleave a partial write. A flip interrupted
+// between the manifest and fence/record writes is reconciled on the next run
+// before the idempotent no-op returns. Reversible: `--rollback` restores the
+// byte-identical pre-flip manifest under the same fenced discipline.
 //
 // This never edits a live SKILL.md, hub-router.json, or the frozen scorer; the
 // runtime only honors the flip when SPECKIT_COMPILED_ROUTING=1 (see resolve.cjs).
 
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { compiledRoute, loadHubEngine, HUB_CHILD } = require('./compiled-route.cjs');
+const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
+const { withHubLock } = require('../../shared/hub-lock.cjs');
 
 const IMPL_ROOT = path.resolve(__dirname, '..', '..');
-const ACTIVATION_ROOT = path.join(IMPL_ROOT, '010-live-activation', 'activation');
+// Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
+// copy so the harness never mutates live committed state (see verify-runtime-engine).
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.join(IMPL_ROOT, '010-live-activation', 'activation');
 
 function findRepoRoot(start) {
   let dir = start;
@@ -39,45 +45,11 @@ function findRepoRoot(start) {
   }
   throw new Error('could not locate repo root (no .opencode ancestor)');
 }
-const SCORER_DIR = path.join(
-  findRepoRoot(IMPL_ROOT),
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark',
-);
-const PINNED_SCORER_DIGESTS = {
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-};
-
-function sha256(buf) { return crypto.createHash('sha256').update(buf).digest('hex'); }
-function fileHash(p) { return sha256(fs.readFileSync(p)); }
 function readJson(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 function stableStringify(v) {
   const s = (x) => Array.isArray(x) ? x.map(s)
     : (x && typeof x === 'object') ? Object.keys(x).sort().reduce((a, k) => (a[k] = s(x[k]), a), {}) : x;
   return JSON.stringify(s(v));
-}
-
-// Exclusive per-hub lock around the compare-and-swap critical section: an
-// exclusive-create open fails when another flip/rollback already holds it, giving
-// mutual exclusion between concurrent operators. A stale lock left by a crashed
-// process is reported by path so an operator can clear it deliberately.
-function withHubLock(hubDir, fn) {
-  const lockPath = path.join(hubDir, '.flip.lock');
-  let fd;
-  try {
-    fd = fs.openSync(lockPath, 'wx');
-  } catch (e) {
-    if (e.code === 'EEXIST') throw new Error(`serving flip already in progress (lock held): ${lockPath}`);
-    throw e;
-  }
-  try {
-    fs.writeSync(fd, `${process.pid}\n`);
-    return fn();
-  } finally {
-    try { fs.closeSync(fd); } catch { /* already closed */ }
-    try { fs.unlinkSync(lockPath); } catch { /* best effort */ }
-  }
 }
 
 // Atomic single-file replace: write a sibling temp then rename over the target,
@@ -88,11 +60,45 @@ function atomicWrite(targetPath, bytes) {
   fs.renameSync(tmp, targetPath);
 }
 
-function assertScorerFrozen() {
-  for (const [name, pinned] of Object.entries(PINNED_SCORER_DIGESTS)) {
-    const actual = fileHash(path.join(SCORER_DIR, name));
-    if (actual !== pinned) throw new Error(`FROZEN SCORER DRIFT: ${name} (${actual} != ${pinned})`);
+// Reconcile a compiled hub's tuple. The manifest is the authority; the fence and
+// serving-flip record are derived bookkeeping written AFTER it. A crash between
+// those writes leaves the manifest compiled while the record is missing/stale or
+// the fence does not match — a state the idempotent no-op would otherwise accept.
+// This rebuilds the record from the authoritative manifest and ensures the fence
+// file exists, so `manifest compiled <=> record matches <=> fence present` holds.
+// Returns the names of the members it repaired (empty when the tuple was whole).
+// Callers MUST hold the hub lock.
+function reconcileTuple(hubDir, manifest, fence) {
+  const repaired = [];
+  const recordPath = path.join(hubDir, 'serving-flip-record.json');
+  const fencePath = path.join(hubDir, 'fence-state.json');
+
+  let record = null;
+  try { record = readJson(recordPath); } catch { record = null; }
+  const recordMatches = record
+    && record.servingAuthority === 'compiled'
+    && stableStringify(record.selectedPolicy) === stableStringify(manifest.selectedPolicy);
+  const fenceMatches = recordMatches
+    && record.fenceEpoch && record.fenceEpoch.after === fence;
+  if (recordMatches && fenceMatches) return repaired; // tuple is whole
+
+  const rebuilt = {
+    hubId: path.basename(hubDir),
+    servingAuthority: 'compiled',
+    shadowOnly: false,
+    selectedPolicy: manifest.selectedPolicy,
+    fenceEpoch: { before: Math.max(0, fence - 1), after: fence },
+    gate: (record && record.gate) || { reconciled: true },
+    rollbackTo: 'manifest.serving-prior.json',
+    reconciled: true,
+  };
+  atomicWrite(recordPath, `${stableStringify(rebuilt)}\n`);
+  repaired.push('serving-flip-record');
+  if (!fs.existsSync(fencePath)) {
+    atomicWrite(fencePath, `${stableStringify({ fencingEpoch: fence, schemaVersion: 'V1' })}\n`);
+    repaired.push('fence-state');
   }
+  return repaired;
 }
 
 function assertCanaryGreen(hubId) {
@@ -143,7 +149,7 @@ function main() {
   if (rollback) {
     if (!fs.existsSync(servingPriorPath)) throw new Error(`no serving-prior to roll back to for ${hubId}`);
     const priorBytes = fs.readFileSync(servingPriorPath);
-    const out = withHubLock(hubDir, () => {
+    const out = withHubLock(hubDir, 'serving-rollback', () => {
       // Compare: the fence must not have advanced since we read it (no racing
       // writer) before we restore; then swap manifest and fence atomically.
       const fenceNow = readJson(fencePath).fencingEpoch;
@@ -159,14 +165,19 @@ function main() {
     return;
   }
 
-  // Idempotent: already compiled-serving.
+  // Idempotent: already compiled-serving. Reconcile any half-committed tuple left
+  // by a crash between the manifest and the fence/record writes BEFORE the no-op
+  // returns, so an interrupted flip is completed rather than accepted as done.
   if (manifest.servingAuthority === 'compiled') {
-    process.stdout.write(`ALREADY-COMPILED hub=${hubId} (no-op)\n`);
+    const repaired = withHubLock(hubDir, 'serving-reconcile', () => reconcileTuple(hubDir, manifest, fence));
+    process.stdout.write(repaired.length
+      ? `ALREADY-COMPILED hub=${hubId} (reconciled: ${repaired.join(', ')})\n`
+      : `ALREADY-COMPILED hub=${hubId} (no-op)\n`);
     return;
   }
   // Preconditions.
   if (manifest.selectedPolicy.effectivePolicyHash == null) throw new Error(`${hubId} is not P4a-bound (selectedPolicy is legacy)`);
-  assertScorerFrozen();
+  assertScorerFrozen(findRepoRoot(IMPL_ROOT), 'the serving flip');
   assertCanaryGreen(hubId);
   const routeProof = assertEngineRoutes(hubId);
 
@@ -181,11 +192,12 @@ function main() {
     throw new Error(`${hubId}: loaded snapshot generation ${routeProof.generation} != selectedPolicy ${manifest.selectedPolicy.generation}`);
   }
 
-  const out = withHubLock(hubDir, () => {
+  const out = withHubLock(hubDir, 'serving-flip', () => {
     // Compare: re-read the fence after the long gates and abort if a concurrent
     // writer advanced it. Then swap — write order is serving-prior (rollback
     // safety) -> manifest (the authority) -> fence (bookkeeping) -> record, each an
-    // atomic replace, so a crash leaves the manifest authority self-consistent.
+    // atomic replace, so a crash leaves the manifest authority self-consistent and
+    // the next run's reconcile completes the tuple.
     const fenceNow = readJson(fencePath).fencingEpoch;
     if (fenceNow !== fence) throw new Error(`fence advanced ${fence}->${fenceNow} during flip (concurrent writer); aborting`);
     if (!fs.existsSync(servingPriorPath)) atomicWrite(servingPriorPath, fs.readFileSync(manifestPath));

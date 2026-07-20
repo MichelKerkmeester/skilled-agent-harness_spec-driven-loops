@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-cutover-hardening",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-cutover-hardening",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation",
   "children_ids": [],
   "manual": {
@@ -11,60 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "unified router live activation",
-      "design-faithful fenced-CAS activation",
-      "hub activation manifest selectedPolicy binding",
-      "live activation plan",
-      "fenced-CAS driver plan",
-      "P4a P4b staging",
-      "live activation tasks",
-      "hub activation task list",
-      "live activation checklist",
-      "hub activation QA gate",
-      "live activation implementation summary",
-      "seven hubs activated design-faithful"
+      "cutover hardening",
+      "deep-review remediation router",
+      "fenced-CAS crash safety",
+      "serving flip lock recovery",
+      "cutover hardening plan",
+      "cutover hardening tasks",
+      "cutover hardening checklist",
+      "cutover hardening implementation summary",
+      "frozen scorer contract module"
     ],
     "key_topics": [
-      "unified",
+      "cutover",
+      "hardening",
+      "deep-review",
+      "remediation",
       "router",
-      "live",
-      "activation",
-      "design-faithful",
       "fenced-cas",
-      "hub",
-      "manifest",
-      "selectedpolicy",
-      "binding",
-      "plan",
-      "driver"
+      "crash",
+      "safety",
+      "serving",
+      "flip",
+      "lock",
+      "recovery"
     ],
-    "importance_tier": "critical",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "lib/activate-hub.cjs",
       "spec.md",
-      "plan.md",
       "tasks.md",
       "checklist.md",
+      "plan.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "activate-hub.cjs",
-        "kind": "file",
-        "path": "lib/activate-hub.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -80,6 +64,12 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -92,31 +82,31 @@
         "source": "derived"
       },
       {
-        "name": "Unified Router Refactor",
+        "name": "Routing Cutover Hardening",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Live Activation",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Establish",
+        "name": "Purpose Closed",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +124,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Bind",
+        "name": "Overview Remediated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -158,13 +154,19 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Completion Boundary",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Strict Level",
+        "name": "Verification Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -182,21 +184,15 @@
         "source": "derived"
       },
       {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The compiled router contract is shadow-complete but never bound",
-    "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-07-20T05:26:39.250Z",
+    "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `011-runtime-engine`, the activation layer `010-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
+    "created_at": "2026-07-20T05:26:38.974Z",
+    "last_save_at": "2026-07-20T06:24:54.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30c31af057a43214d9d39c3186686ab16d643b3721db66733a8f18aa33213c28",
+    "source_fingerprint": "sha256:8709d6b1f820cd3e39a3a93915fa56821e0a5a7fe33465c6808b3a330ac83320",
     "source_doc_hashes": {
-      "spec.md": "e9a290f6880bb774a6c94b007f1124fe7ae90e544a265d0dfce702a6e51158ca",
-      "plan.md": "834a2452aecff6fc32b77fc95cd429cf97c95b698832348ed2b42e35a048bbe4",
-      "tasks.md": "2c2adc05c128ef056b1229031e941e2af2813767158f4cbd51848b44515c7a9f",
-      "checklist.md": "386afa927d21a16ca493ce43196b505b459593b61a65afaa6812049bd9ca2524",
-      "implementation-summary.md": "ac7c79b9fbd1cf6c5c5b73ac3db8eca6c667e4c0bf9ad25552b6b10945187327"
+      "spec.md": "6bbc54afab017a10633f591d6b85a605db54533b8a212ffd5098859026a5e0ef",
+      "plan.md": "5b162862fc7ff24a62aae16e69de3a31f025feb663dca12ecd90174081c7b5e6",
+      "tasks.md": "6091c0f4e5f930cd7b86814f4b616d97ee28a92ee73c5a1e36c95dcfc9ea09d7",
+      "checklist.md": "239b3241e26450c9190a92eb7f8f746aa9844dcedc0e343c4d4f61b04a5938be",
+      "implementation-summary.md": "1cf46f55c62e653e52ad74521f161bf018f9c1851131fdff15c45b461cf9567f"
     },
     "last_active_child_id": null,
     "last_active_at": null

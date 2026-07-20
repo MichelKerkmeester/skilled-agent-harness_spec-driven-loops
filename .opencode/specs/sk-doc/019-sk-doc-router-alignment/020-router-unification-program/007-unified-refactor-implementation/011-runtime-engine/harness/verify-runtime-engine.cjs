@@ -3,21 +3,19 @@
 
 // Phase-local regression suite for the compiled-routing runtime engine.
 //
-// Exercises the security-sensitive shared-runtime branches directly:
-//   1. the closed decision algebra — route-only fields appear only on a route
-//      decision (a negative decision bearing a target is unrepresentable),
-//   2. flag-off inertness — the resolver returns the legacy sentinel unless the
-//      runtime flag is set,
-//   3. serve-time identity binding — a compiled-serving hub only serves when its
-//      loaded snapshot identity matches the manifest's selectedPolicy,
-//   4. the fenced serving CAS — an exclusive lock, an epoch re-check, and an
-//      atomic replace, with a byte-exact rollback,
-//   5. flip-time identity binding — a snapshot whose hash diverges from the
-//      selected policy is refused rather than served.
+// Isolation: the suite runs ENTIRELY against a throwaway copy of the activation
+// tree, never the live committed state. It copies `activation/` into a temp
+// sandbox, points SPECKIT_ACTIVATION_ROOT_OVERRIDE at the copy BEFORE loading the
+// engine modules (they read the override at load), passes the same override to
+// every flip-serving child process, and deletes the sandbox on exit. So the suite
+// mutates freely, is safe to run repeatedly and concurrently, and can never revert
+// a real activation.
 //
-// Non-destructive: the activation state is snapshotted to a temp dir up front and
-// restored in a finally, so the suite is safe to run repeatedly and leaves no
-// committed-state drift even if an assertion throws mid-run.
+// Coverage: the closed decision algebra (both a route AND a negative decision),
+// flag-off inertness, serve-time identity binding (match serves + mismatch fails
+// safe), the fenced serving CAS (byte-exact rollback + byte-identical reflip), the
+// shared lock (a live holder is refused, a stale holder is reclaimed), and
+// flip-time identity binding (a tampered selectedPolicy is refused).
 
 const fs = require('fs');
 const os = require('os');
@@ -28,15 +26,23 @@ const crypto = require('crypto');
 const HARNESS = __dirname;
 const LIB = path.resolve(HARNESS, '..', 'lib');
 const IMPL = path.resolve(HARNESS, '..', '..'); // the implementation root
-const ACT = path.join(IMPL, '010-live-activation', 'activation');
+const LIVE_ACTIVATION = path.join(IMPL, '010-live-activation', 'activation');
 const FLIP = path.join(LIB, 'flip-serving.cjs');
+
+// --- sandbox isolation (must happen before requiring the engine modules) ---
+const SANDBOX = fs.mkdtempSync(path.join(os.tmpdir(), 'rt-engine-verify-'));
+const ACT = path.join(SANDBOX, 'activation');
+fs.cpSync(LIVE_ACTIVATION, ACT, { recursive: true });
+process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE = ACT;
+
 const { compiledRoute } = require(path.join(LIB, 'compiled-route.cjs'));
 const { resolveRoute, servingAuthority } = require(path.join(LIB, 'resolve.cjs'));
 
+const childEnv = { ...process.env, SPECKIT_ACTIVATION_ROOT_OVERRIDE: ACT };
 const sha = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const readAuth = (p) => JSON.parse(fs.readFileSync(p, 'utf8')).servingAuthority;
 const runFlip = (args) => {
-  try { return cp.execFileSync('node', [FLIP, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); }
+  try { return cp.execFileSync('node', [FLIP, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env: childEnv }); }
   catch (e) { return `ERR:${e.stderr || e.message || ''}`; }
 };
 
@@ -47,24 +53,12 @@ const check = (name, ok, detail = '') => {
   process.stdout.write(`${(ok ? 'PASS' : 'FAIL').padEnd(5)} ${name}${detail ? ` ${detail}` : ''}\n`);
 };
 
-function snapshotActivation() {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'rt-engine-verify-'));
-  fs.cpSync(ACT, path.join(tmp, 'activation'), { recursive: true });
-  return tmp;
-}
-function restoreActivation(tmp) {
-  fs.rmSync(ACT, { recursive: true, force: true });
-  fs.cpSync(path.join(tmp, 'activation'), ACT, { recursive: true });
-  fs.rmSync(tmp, { recursive: true, force: true });
-}
-
 function main() {
   const hubs = fs.readdirSync(ACT).filter((h) => fs.existsSync(path.join(ACT, h, 'manifest.json')));
-  if (hubs.length === 0) throw new Error('no activated hubs found');
+  if (hubs.length === 0) throw new Error('no activated hubs in the sandbox');
 
-  // --- read-only checks first (they observe the pristine snapshot state) ---
-
-  // 1. Discriminated union: route-only fields present iff action === 'route'.
+  // 1. Discriminated union: route-only fields present iff action === 'route', AND
+  //    the fixture exercises BOTH a route and a negative decision.
   {
     const child = path.join(IMPL, '006-parent-hub-rollout', '001-sk-code');
     const { loadSnapshot } = require(path.join(child, 'harness', 'build-artifacts.cjs'));
@@ -73,17 +67,20 @@ function main() {
       .map((c) => c.prompt || c.taskText || c.input || '')
       .filter(Boolean);
     prompts.push('zzzz unrelated gibberish nonsense qwerty'); // force a negative
-    let ok = true;
+    const actions = [];
+    let shapeOk = true;
     for (const p of prompts) {
       const d = compiledRoute('sk-code', p);
+      actions.push(d.action);
       const isRoute = d.action === 'route';
-      const hasRouteFields = Object.prototype.hasOwnProperty.call(d, 'targets')
-        && Object.prototype.hasOwnProperty.call(d, 'selectionKind');
-      const hasNeither = !Object.prototype.hasOwnProperty.call(d, 'targets')
-        && !Object.prototype.hasOwnProperty.call(d, 'selectionKind');
-      if (isRoute ? !hasRouteFields : !hasNeither) ok = false;
+      const hasRoute = Object.prototype.hasOwnProperty.call(d, 'targets') && Object.prototype.hasOwnProperty.call(d, 'selectionKind');
+      const hasNeither = !Object.prototype.hasOwnProperty.call(d, 'targets') && !Object.prototype.hasOwnProperty.call(d, 'selectionKind');
+      if (isRoute ? !hasRoute : !hasNeither) shapeOk = false;
     }
-    check('discriminated-union: route-only fields iff action=route', ok);
+    check('discriminated-union: route-only fields iff action=route', shapeOk);
+    const hasRouteDecision = actions.includes('route');
+    const hasNegativeDecision = actions.some((a) => a !== 'route');
+    check('both-decision coverage: a route AND a negative are exercised', hasRouteDecision && hasNegativeDecision, `(${actions.join(',')})`);
   }
 
   // 2. Flag-off inertness.
@@ -93,22 +90,32 @@ function main() {
     check('flag-off inertness: resolver returns legacy sentinel', r === null);
   }
 
-  // 3. Serve-time identity binding: every compiled-serving hub serves (identity matched).
+  // 3. Serve-time identity binding — MATCH: every compiled-serving hub serves.
   {
     process.env.SPECKIT_COMPILED_ROUTING = '1';
     let served = 0;
     for (const h of hubs) {
-      // A non-null decision (route OR a negative decision) proves the served
-      // snapshot identity matched the manifest's selectedPolicy.
       if (servingAuthority(h) === 'compiled' && resolveRoute(h, 'do the requested thing') !== null) served += 1;
     }
-    delete process.env.SPECKIT_COMPILED_ROUTING;
-    check('serve-time identity: all compiled hubs serve', served === hubs.length, `(${served}/${hubs.length})`);
+    check('serve-time identity (match): all compiled hubs serve', served === hubs.length, `(${served}/${hubs.length})`);
   }
 
-  // --- mutating checks (restored by the outer finally) ---
+  // 4. Serve-time identity binding — MISMATCH: a tampered manifest fails safe.
+  {
+    process.env.SPECKIT_COMPILED_ROUTING = '1';
+    const hub = hubs.find((h) => h !== 'sk-code') || hubs[0];
+    const M = path.join(ACT, hub, 'manifest.json');
+    const good = fs.readFileSync(M);
+    const tampered = JSON.parse(good.toString());
+    tampered.selectedPolicy.effectivePolicyHash = 'deadbeef'.repeat(8);
+    fs.writeFileSync(M, JSON.stringify(tampered));
+    const r = resolveRoute(hub, 'do the requested thing');
+    fs.writeFileSync(M, good); // restore the sandbox hub for any later read
+    check('serve-time identity (mismatch): tampered manifest fails safe to legacy', r === null);
+    delete process.env.SPECKIT_COMPILED_ROUTING;
+  }
 
-  // 4. Fenced CAS: reset -> reflip is byte-exact rollback + byte-identical reflip.
+  // 5. Fenced CAS: reset -> reflip is byte-exact rollback + byte-identical reflip.
   {
     const hub = 'sk-code';
     const M = path.join(ACT, hub, 'manifest.json');
@@ -120,48 +127,61 @@ function main() {
     const reOut = runFlip(['--hub', hub]);
     const reCompiled = /serving=compiled/.test(reOut);
     const identical = sha(M) === origSha;
-    check('fenced CAS: byte-exact rollback + byte-identical reflip',
-      rolledBackToLegacy && byteExact && reCompiled && identical);
+    check('fenced CAS: byte-exact rollback + byte-identical reflip', rolledBackToLegacy && byteExact && reCompiled && identical);
   }
 
-  // 5. Fenced CAS: a pre-held lock refuses a concurrent flip.
+  // 6. Shared lock — a LIVE holder is refused.
   {
     const hub = hubs[0];
     const lock = path.join(ACT, hub, '.flip.lock');
-    fs.writeFileSync(lock, 'held-by-test\n', { flag: 'wx' });
-    const blocked = runFlip(['--hub', hub, '--rollback']);
-    const noMutation = readAuth(path.join(ACT, hub, 'manifest.json')) === 'compiled';
-    fs.unlinkSync(lock);
-    check('fenced CAS: pre-held lock refuses concurrent flip', /already in progress/.test(blocked) && noMutation);
+    const liveHolder = { pid: process.pid, nonce: 'liveholder', phase: 'test', acquiredAt: Date.now(), leaseUntil: Date.now() + 3600_000 };
+    fs.writeFileSync(lock, `${JSON.stringify(liveHolder)}\n`, { flag: 'w' });
+    const blocked = runFlip(['--hub', hub]);
+    const stillHeld = fs.existsSync(lock) && JSON.parse(fs.readFileSync(lock, 'utf8')).nonce === 'liveholder';
+    try { fs.unlinkSync(lock); } catch { /* cleanup */ }
+    check('shared lock: a live holder is refused (and left intact)', /held by a live owner/.test(blocked) && stillHeld);
   }
 
-  // 6. Flip-time identity: a tampered selectedPolicy hash is refused.
+  // 7. Shared lock — a STALE holder is reclaimed (crash recovery).
+  {
+    const hub = 'sk-code';
+    const lock = path.join(ACT, hub, '.flip.lock');
+    const staleHolder = { pid: 2147483646, nonce: 'staleholder', phase: 'crashed', acquiredAt: Date.now() - 7200_000, leaseUntil: Date.now() - 3600_000 };
+    fs.writeFileSync(lock, `${JSON.stringify(staleHolder)}\n`, { flag: 'w' });
+    // sk-code is compiled -> the idempotent reconcile path runs under the lock; a
+    // stale lock must be reclaimed so the run succeeds rather than dead-locking.
+    const out = runFlip(['--hub', hub]);
+    const reclaimed = /ALREADY-COMPILED/.test(out) && !out.startsWith('ERR');
+    const lockReleased = !fs.existsSync(lock);
+    check('shared lock: a stale holder is reclaimed, not dead-locked', reclaimed && lockReleased, reclaimed ? '' : `(got: ${out.slice(0, 80)})`);
+  }
+
+  // 8. Flip-time identity: a tampered selectedPolicy hash is refused.
   {
     const hub = 'sk-code';
     const M = path.join(ACT, hub, 'manifest.json');
-    runFlip(['--hub', hub, '--rollback']); // -> legacy, byte-exact serving-prior
+    runFlip(['--hub', hub, '--rollback']); // -> legacy
     const legacyBytes = fs.readFileSync(M);
     const tampered = JSON.parse(legacyBytes.toString());
     tampered.selectedPolicy.effectivePolicyHash = 'deadbeef'.repeat(8);
     fs.writeFileSync(M, JSON.stringify(tampered));
     const refused = runFlip(['--hub', hub]);
     const stayedLegacy = readAuth(M) !== 'compiled';
-    fs.writeFileSync(M, legacyBytes); // restore, then reflip clean
+    fs.writeFileSync(M, legacyBytes);
     runFlip(['--hub', hub]);
-    check('flip-time identity: tampered selectedPolicy hash refused',
-      /!= selectedPolicy/.test(refused) && stayedLegacy);
+    check('flip-time identity: tampered selectedPolicy hash refused', /!= selectedPolicy/.test(refused) && stayedLegacy);
   }
 
   process.stdout.write(`\n${pass}/${pass + fail} checks passed\n`);
   if (fail > 0) throw new Error(`${fail} regression check(s) failed`);
 }
 
-const snap = snapshotActivation();
 try {
   main();
 } catch (e) {
   process.stderr.write(`VERIFY FAILED: ${e.message}\n`);
   process.exitCode = 1;
 } finally {
-  restoreActivation(snap);
+  // The live activation tree was never touched; drop the sandbox.
+  try { fs.rmSync(SANDBOX, { recursive: true, force: true }); } catch { /* best effort */ }
 }

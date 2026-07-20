@@ -16,7 +16,10 @@ const fs = require('fs');
 const path = require('path');
 const { compiledRoute } = require('./compiled-route.cjs');
 
-const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
+// Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
+// copy so the harness never reads or mutates live committed state.
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 
 function flagEnabled() {
