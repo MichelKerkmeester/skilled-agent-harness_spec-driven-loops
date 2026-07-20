@@ -1,0 +1,82 @@
+{
+  "run_id": "1784525177424-b0sf31",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-design/014-hallmark-design-skill-research/001-research",
+  "base_artifact_dir": ".opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol-codex",
+      "state_log": ".opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/research/lineages/sol-codex/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-20T05:26:17.428Z",
+        "end_at_iso": "2026-07-20T06:30:39.907Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 15
+      },
+      "sample": [
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T06:34:00Z",
+          "deltaMs": 80093
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T06:48:00Z",
+          "deltaMs": 920093
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T08:14:05Z",
+          "deltaMs": 6085093
+        }
+      ]
+    },
+    {
+      "label": "sol-opencode",
+      "state_log": ".opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/research/lineages/sol-opencode/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-20T05:26:17.446Z",
+        "end_at_iso": "2026-07-20T07:18:13.962Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 3,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T08:00:00Z",
+          "deltaMs": 2386038
+        }
+      ]
+    }
+  ]
+}

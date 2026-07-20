@@ -1,0 +1,773 @@
+{
+  "sessionId": "fanout-sol-opencode-1784525177424-b0sf31",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-20T07:12:37.761Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-hallmark-s-license-permit-us-to-copy-adapt-and-redistribute-and-what-a",
+      "inboxId": null,
+      "text": "What does Hallmark's license permit us to copy, adapt, and redistribute, and what attribution or notice obligations apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-hallmark-assets-map-to-sk-design-interface-foundations-audit-md-generator-",
+      "inboxId": null,
+      "text": "Which Hallmark assets map to sk-design interface, foundations, audit, md-generator/design-reference, and motion, and what concrete gaps exist in each target?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-hallmark-slop-gates-pre-emit-critique-heuristics-schemas-motion-tokens-and",
+      "inboxId": null,
+      "text": "Which Hallmark slop gates, pre-emit critique heuristics, schemas, motion tokens, and design-DNA fields are absent or weaker in sk-design?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-4-is-hallmark-s-curated-twenty-theme-model-a-useful-complement-to-sk-design-s-extr",
+      "inboxId": null,
+      "text": "Is Hallmark's curated twenty-theme model a useful complement to sk-design's extracted styles corpus, and if so how should the two models coexist?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-redesign-variant-brand-first-data-visualization-tactile-and-image-hook-roa",
+      "inboxId": null,
+      "text": "Which redesign, variant, brand-first, data-visualization, tactile, and image-hook roadmap ideas merit existing-mode adaptation, new capabilities, or rejection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-hallmark-s-license-permit-us-to-copy-adapt-and-redistribute-and-what-a",
+      "inboxId": null,
+      "text": "What does Hallmark's license permit us to copy, adapt, and redistribute, and what attribution or notice obligations apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-2-which-hallmark-assets-map-to-sk-design-interface-foundations-audit-md-generator-",
+      "inboxId": null,
+      "text": "Which Hallmark assets map to sk-design interface, foundations, audit, md-generator/design-reference, and motion, and what concrete gaps exist in each target?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-3-which-hallmark-slop-gates-pre-emit-critique-heuristics-schemas-motion-tokens-and",
+      "inboxId": null,
+      "text": "Which Hallmark slop gates, pre-emit critique heuristics, schemas, motion tokens, and design-DNA fields are absent or weaker in sk-design?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-4-is-hallmark-s-curated-twenty-theme-model-a-useful-complement-to-sk-design-s-extr",
+      "inboxId": null,
+      "text": "Is Hallmark's curated twenty-theme model a useful complement to sk-design's extracted styles corpus, and if so how should the two models coexist?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-5-which-redesign-variant-brand-first-data-visualization-tactile-and-image-hook-roa",
+      "inboxId": null,
+      "text": "Which redesign, variant, brand-first, data-visualization, tactile, and image-hook roadmap ideas merit existing-mode adaptation, new capabilities, or rejection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which Hallmark assets are genuinely stronger or absent after file-level comparison with each mode?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where substantial reuse is recommended, what exact target path and MIT notice mechanism should accompany it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which slop gates, critique heuristics, schema fields, motion tokens, and design-DNA fields merit COPY, ADAPT, LEARN, INSPIRE-NEW, or SKIP?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should curated themes and the extracted styles corpus coexist, if at all?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which roadmap items are true gaps rather than duplicates of shipped procedures or infrastructure?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which registry candidates survive fixture design without overlapping existing tells or creating broad false positives?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which Hallmark interface/foundations structural systems improve generation-time direction without duplicating audit-time checks?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should a future Hallmark MIT notice live if implementation chooses substantial textual reuse despite the idea-level recommendation?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "synthesis-finding-1",
+      "text": "Fix Interface hero/media and authored-depth contracts",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-2",
+      "text": "Add multi-page site locks and page deltas",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-3",
+      "text": "Add selected evidence-backed Audit probes",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-4",
+      "text": "Add a provider-neutral asset provenance and hosting receipt",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-5",
+      "text": "Add measured provenance and conditional Motion projection to MD-GENERATOR",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-6",
+      "text": "Add semantic motion character and interruption/async proof",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-7",
+      "text": "Add fallback-font metrics and target-derived responsive proof",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    },
+    {
+      "id": "synthesis-finding-8",
+      "text": "Keep authored brand systems distinct from measured DESIGN.md",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md",
+        "research.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-834ff2c37453",
+      "text": "**Ruled out:** Treating Hallmark's portable `design.md` as evidence that shipped `sk-design` lacks a design-reference pipeline. The shipped md-generator already has a measured extract-write-validate backend and explicit v3 schema. [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:230-259] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts:90-120]",
+      "contentHash": "834ff2c37453",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-18cdcdd2bca3",
+      "text": "**Ruled out:** Treating README.md's \"Use it, fork it, ship it\" sentence as the complete licensing contract. The actual MIT text adds a notice-preservation condition. [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/README.md:110-112] [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/LICENSE:12-13]",
+      "contentHash": "18cdcdd2bca3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e97942a7c4ad",
+      "text": "**Ruled out:** Copying all 58 gates into `design-audit`. Several are Hallmark-runtime state checks, several duplicate shipped token/accessibility/hardening rules, and several universal bans conflict with the shipped hypothesis-and-register posture. [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/references/slop-test.md:3-5] [SOURCE: .opencode/skills/sk-design/design-audit/procedures/ai-slop-check.md:33-39]",
+      "contentHash": "e97942a7c4ad",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1e6e443941f3",
+      "text": "**Ruled out:** Replacing shipped P0-P3 severity with Hallmark's critical/major/minor labels. The shipped severity is tied to user and release impact, while Hallmark's critical category includes style signatures that need not block a user task. [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/references/anti-patterns.md:9-15] [SOURCE: .opencode/skills/sk-design/design-audit/references/audit-contract.md:36-45]",
+      "contentHash": "1e6e443941f3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9a90cbefe897",
+      "text": "**Ruled out:** Treating README's 57 as evidence that one gate was deleted. The current list explicitly says 58 and contains integer gates 1-57 plus `38a`. [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/references/slop-test.md:1-3] [SOURCE: .opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/references/slop-test.md:98-106]",
+      "contentHash": "9a90cbefe897",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-20e857d0630d",
+      "text": "A one-to-one gate count against the nine-row registry is not meaningful: the registry intentionally contains model fingerprints, while many Hallmark gates belong to accessibility, responsive, theming, or Hallmark-private state. Comparison therefore used behavioral coverage rather than raw row parity. [SOURCE: .opencode/skills/sk-design/design-audit/assets/ai-fingerprint-registry.json:1-92] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:139-152]",
+      "contentHash": "20e857d0630d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-66c99a88ab47",
+      "text": "The initial Hallmark brace glob returned no matches despite known files. Direct reads of the exact iteration-1 paths resolved the inventory without changing scope.",
+      "contentHash": "66c99a88ab47",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-933826c00008",
+      "text": "**Copying the 21 macrostructures or 50 component archetypes as sk-design presets.** This conflicts with subject grounding and the no-reusable-preset guard. [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md:111-116]",
+      "contentHash": "933826c00008",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7b1afb8d94a7",
+      "text": "**Replacing foundations responsive guidance with fixed viewport recipes.** Existing foundations adapts across viewport, input, capability, and posture, which is the stronger abstraction. [SOURCE: .opencode/skills/sk-design/design-foundations/references/layout/adaptation-matrix.md:35-60]",
+      "contentHash": "7b1afb8d94a7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ed68ec186887",
+      "text": "**Separate redesign mode or command.** Existing interface triggers, redesign lane, and preserve/overhaul intake already provide the equivalent; the observed gap is multi-surface coherence inside the existing reference. [SOURCE: .opencode/commands/interface/design.md:55-59] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/redesign-intake.md:35-70]",
+      "contentHash": "ed68ec186887",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1f56b8d1ec7b",
+      "text": "**Separate variant command.** Existing `directions`, seed-of-thought, wireframe, and variation-set contracts already own it, and the procedure cards explicitly remain private. [SOURCE: .opencode/skills/sk-design/design-interface/procedures/variation-set.md:19-27] [SOURCE: .opencode/skills/sk-design/design-interface/procedures/wireframe-exploration.md:19-27]",
+      "contentHash": "1f56b8d1ec7b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-bd59e1c75513",
+      "text": "A brace glob for the named Hallmark files returned no matches, repeating the repository glob limitation noted in iteration 2. Exact paths from iteration 1's inventory were readable and supplied complete evidence; no scope expansion was needed.",
+      "contentHash": "bd59e1c75513",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f3f9257dd225",
+      "text": "Searching shipped interface/foundations for `macrostructure` found no native catalog, but absence alone did not justify importing Hallmark's catalog because shipped guidance explicitly rejects reusable presets. The useful comparison therefore moved from name parity to behavioral mechanisms. [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md:111-116]",
+      "contentHash": "f3f9257dd225",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9bbf78bd312c",
+      "text": "A standalone redesign, variant, theme, craft, hero, imagery, floating-nav, or responsive command. Existing Interface and Foundations owners are sufficient.",
+      "contentHash": "9bbf78bd312c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c880de586bdb",
+      "text": "Fixed 320/375/414/768 widths as universal breakpoints. Foundations' target/content/input model remains authoritative.",
+      "contentHash": "c880de586bdb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bca67fbf6617",
+      "text": "Hallmark's exact recipes contained volatile support, cost, vendor, and bundle claims. Those were not treated as durable guidance; only invariants corroborated by shipped ownership boundaries survived.",
+      "contentHash": "bca67fbf6617",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a841a55ef513",
+      "text": "Hallmark's fixed palette percentages, font lists and pairings, 20-theme catalog, CSS/SVG recipe library, eight hero archetypes, or exact floating-nav timing as sk-design presets.",
+      "contentHash": "a841a55ef513",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-da4f847dcf36",
+      "text": "Hotlinking or redistributing Hallmark's hosted imagery, and copying attributed voice samples without separate rights evidence.",
+      "contentHash": "da4f847dcf36",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e75a2686985a",
+      "text": "Mandatory imagery. It conflicts with subject grounding and can produce decorative filler.",
+      "contentHash": "e75a2686985a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4ef05e390a21",
+      "text": "Name parity was not useful for imagery, custom craft, or custom theme because shipped sk-design organizes those concerns under grounding, real-UI, aesthetic-direction, and preflight contracts. Behavioral comparison exposed the actual owners.",
+      "contentHash": "4ef05e390a21",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fc95a53dd674",
+      "text": "The known brace-glob limitation recurred: a brace query for the nine Hallmark names returned no matches. Exact paths recovered from prior lineage inventory were readable, so no scope expansion was needed.",
+      "contentHash": "fc95a53dd674",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7910590001e4",
+      "text": "A new theme-motion, microinteraction, interaction-state, or reduced-motion command; `/interface:motion` and existing mode assets already own the jobs.",
+      "contentHash": "7910590001e4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-862480ddf9b5",
+      "text": "A universal eight-state requirement for every element; applicability plus explicit N/A is more accurate.",
+      "contentHash": "862480ddf9b5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3ad1e65d8efd",
+      "text": "Copying exact duration, easing, spring, stagger, tooltip, toast, or drag recipes into shipped guidance.",
+      "contentHash": "3ad1e65d8efd",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e4a8508450a7",
+      "text": "Hallmark's global `150ms !important` reduced-motion recipe and absolute transform/opacity-only rule.",
+      "contentHash": "e4a8508450a7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6f4dd9338b4c",
+      "text": "Hallmark's ten-theme duration multiplier table as presets; values are unvalidated against target identity, frequency, input, runtime, and device evidence.",
+      "contentHash": "6f4dd9338b4c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-14c359e4224e",
+      "text": "Raw recipe-count comparison was not useful: Hallmark is a broad catalog while shipped Motion uses purpose/state cards and routes advanced implementation mechanics separately.",
+      "contentHash": "14c359e4224e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-187f06e70196",
+      "text": "Recursive globbing did not locate the three known Hallmark files, repeating the lineage's glob limitation. Exact inventory paths were readable and complete.",
+      "contentHash": "187f06e70196",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7cf3da60c081",
+      "text": "Theme-name parity was rejected because shipped sk-design uses Brand/Product posture plus target-specific direction, not a reusable style chooser.",
+      "contentHash": "7cf3da60c081",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-00aab634d07b",
+      "text": "Automatic ingestion of MD-GENERATOR output into the styles corpus.",
+      "contentHash": "00aab634d07b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f0390b4f2498",
+      "text": "Embedding every portable format in `DESIGN.md` looked convenient but conflicts with the validator's compact deterministic targets, creates naming collision with extraction `tokens.json`, and would force the styles corpus to accept unsupported artifacts.",
+      "contentHash": "f0390b4f2498",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-30e2250c4a85",
+      "text": "Emitting lowercase `design.md` as an interchangeable canonical artifact.",
+      "contentHash": "30e2250c4a85",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d676940463ae",
+      "text": "Importing Hallmark's macrostructure, archetype, theme, reveal, treatment, or anti-pattern catalogs as v3 enums or presets.",
+      "contentHash": "d676940463ae",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fbdb765885b4",
+      "text": "Inventing shadcn destructive/status tokens when the source has no measured equivalent.",
+      "contentHash": "fbdb765885b4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4cff6afdac40",
+      "text": "Name-parity comparison (`macrostructure`, `archetype`, `theme`) overstated gaps. Field-level evidence showed that most underlying colour, type, shape, layout, motion, and component facts already exist under measured native structures.",
+      "contentHash": "4cff6afdac40",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-86c186e979f7",
+      "text": "Recursive Hallmark globs again returned no files despite known paths; exact paths recovered from prior inventory were readable.",
+      "contentHash": "86c186e979f7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-5a24782359be",
+      "text": "Replacing measured Playwright/computed-CSS extraction with screenshot vision or shallow WebFetch diagnosis.",
+      "contentHash": "5a24782359be",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c12b5040669b",
+      "text": "Reusing `tokens.json` for a DTCG projection or embedding all export formats inside `DESIGN.md`.",
+      "contentHash": "c12b5040669b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a96ceaf1cb2d",
+      "text": "Treating an attached screenshot, public URL, or user attestation as proof of copyright or exact-reuse rights.",
+      "contentHash": "a96ceaf1cb2d",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9f2637946164",
+      "text": "Writing image-estimated colours, font candidates, rhythm, or structure into canonical `tokens.json` value fields.",
+      "contentHash": "9f2637946164",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-608f7c815dcc",
+      "text": "A user-visible curated-theme chooser or silent fallback to one native archetype when corpus retrieval returns `no-fit`.",
+      "contentHash": "608f7c815dcc",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-95896ff75ce4",
+      "text": "Allowing archetype labels to bypass provenance/exact-reuse rights, average source values, or upgrade source confidence.",
+      "contentHash": "95896ff75ce4",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-4b8443eb1779",
+      "text": "Broad text search for the literal reported cardinality produced numeric false positives inside extracted style data. A structural census of canonical files and six-role siblings supplied the exact count.",
+      "contentHash": "4b8443eb1779",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-6bb6eca0e4b8",
+      "text": "Importing Hallmark's twenty names, four genre labels, theme token combinations, or four detailed theme specifications as sk-design facets or presets.",
+      "contentHash": "6bb6eca0e4b8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-2567b75aa220",
+      "text": "Name-parity mapping between Hallmark themes and corpus styles remains blocked: it would turn descriptive labels into pseudo-presets and discard source-specific relationships.",
+      "contentHash": "2567b75aa220",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-05f83d2c84f7",
+      "text": "Treating all twenty Hallmark themes as equally specified; only four per-theme specification files exist.",
+      "contentHash": "05f83d2c84f7",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-b313dcb9f8c4",
+      "text": "A cookbook of copied HTML/CSS would create a parallel implementation library and reusable defaults; only the abstract decision-card shape survives.",
+      "contentHash": "b313dcb9f8c4",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9a743a02fecf",
+      "text": "A new multi-page extraction relationship type; `DesignBoundary` already represents the measured relationship.",
+      "contentHash": "9a743a02fecf",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-58ec5d5c0c56",
+      "text": "A public `variant` alias: the shipped `directions` lane already names the job clearly.",
+      "contentHash": "58ec5d5c0c56",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-0621415bcac9",
+      "text": "A separate `variant`, `redesign`, `study`, or `explain` command.",
+      "contentHash": "0621415bcac9",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b86301e45b35",
+      "text": "Cognitive-law rationales invented for every anti-pattern regardless of evidence.",
+      "contentHash": "b86301e45b35",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-ce4f9dfd1f21",
+      "text": "Emotion labels as themes, dials, or style choices.",
+      "contentHash": "ce4f9dfd1f21",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-24568105ad2d",
+      "text": "Filename parity overstates gaps. `variant`, `study`, and `explain` map to shipped directions, extraction, and proof artifacts under different names.",
+      "contentHash": "24568105ad2d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e3f75f6eb056",
+      "text": "Hallmark theme names, curated themes, duration multipliers, or structural sketches as presets.",
+      "contentHash": "e3f75f6eb056",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-4c277f86f7ab",
+      "text": "One universal `design.md` contract cannot serve both measured extraction and forward authoring without destroying provenance semantics.",
+      "contentHash": "4c277f86f7ab",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-56d9c0b61a29",
+      "text": "The sibling `sol-codex` lineage contains its own completed run 8, but it is independent evidence and was not used as a write target or state authority for this lineage.",
+      "contentHash": "56d9c0b61a29",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-04a5aa7f51b3",
+      "text": "Treating a generated brand artifact as extracted `DESIGN.md`, or weakening measured extraction to admit brief-authored values.",
+      "contentHash": "04a5aa7f51b3",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9d940507153e",
+      "text": "`preview-examples.md` demonstrates Hallmark's own presets; abstracting those examples into a sk-design catalog would revive an exhausted direction.",
+      "contentHash": "9d940507153e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-743c6d5a9e5b",
+      "text": "A `tactile` theme, dial, preset, or trend mandate.",
+      "contentHash": "743c6d5a9e5b",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-05762e825ba7",
+      "text": "A Nanobanana-specific core hook, prompt-hash cache, or generated-image provider lock.",
+      "contentHash": "05762e825ba7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-831b3105d63b",
+      "text": "A new live-preview MCP server or automated render-to-acceptance loop.",
+      "contentHash": "831b3105d63b",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-17b2eb85f7b7",
+      "text": "A provider catalog or copied price/license table inside sk-design; those facts are volatile and source-specific.",
+      "contentHash": "17b2eb85f7b7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c18a53df2278",
+      "text": "A rendered preview is not a quality verdict. Existing transport output remains subordinate to Interface/Audit judgment and proof gates.",
+      "contentHash": "c18a53df2278",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-b361d6236bcc",
+      "text": "A reusable image-led `Plate` theme.",
+      "contentHash": "b361d6236bcc",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-5ab0cc1564f8",
+      "text": "A second `data-viz.md` or standalone charts command.",
+      "contentHash": "5ab0cc1564f8",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-9eb6bc6c7aef",
+      "text": "Filename parity again overstated gaps: Hallmark's proposed `data-viz.md` maps to a complete shipped Foundations reference.",
+      "contentHash": "9eb6bc6c7aef",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-85d1c8de01b6",
+      "text": "General web haptics guidance without a supported target runtime and current user-value path.",
+      "contentHash": "85d1c8de01b6",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c7ba9eea7bbb",
+      "text": "Hallmark's provider counts, costs, model versions, and license shorthand are snapshots, not durable implementation authority.",
+      "contentHash": "c7ba9eea7bbb",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-8a287f09c723",
+      "text": "Tool capability is not product justification: Open Design can generate image, video, or audio, but transport availability does not establish that a surface needs those media.",
+      "contentHash": "8a287f09c723",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-153710864c85",
+      "text": "Treating generated-media watermarks, URLs, or user-supplied references as proof of copyright or exact-reuse rights.",
+      "contentHash": "153710864c85",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-b415e605df84",
+      "text": "Direct COPY as the default strategy; wholesale gates, catalogs, themes, recipes, tables, examples and schemas add attribution/preset risk without beating native owners. [SOURCE: iteration-002.md:55-57]",
+      "contentHash": "b415e605df84",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-0b509d6130d1",
+      "text": "Hallmark themes/genres/macrostructures/components as presets, selectors, facets, bundles, enums or fallback values. [SOURCE: iteration-007.md:64-74]",
+      "contentHash": "0b509d6130d1",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-6062021f72ce",
+      "text": "Lowercase `design.md`, screenshot-estimated canonical tokens, automatic styles ingestion, or authored values in measured Style Reference artifacts. [SOURCE: iteration-006.md:120-129]",
+      "contentHash": "6062021f72ce",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-376bf4cf074a",
+      "text": "Name/filename parity repeatedly overstated gaps; behavioral owner mapping is final. [SOURCE: iteration-008.md:116-120] [SOURCE: iteration-009.md:115-121]",
+      "contentHash": "376bf4cf074a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a50a39c53526",
+      "text": "New redesign, variant, study, explain, theme-motion, chart, tactile, hero, imagery, floating-nav or live-preview commands/servers. [SOURCE: iteration-008.md:106-114] [SOURCE: iteration-009.md:104-113]",
+      "contentHash": "a50a39c53526",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-37d2b0609837",
+      "text": "Provider locks/catalogs, prompt-hash caching of sensitive inputs, hotlinking, or treating watermark/URL/attestation as rights proof. [SOURCE: iteration-009.md:104-113]",
+      "contentHash": "37d2b0609837",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-6b8c4e9fb59c",
+      "text": "Raw catalog/gate counts do not establish product value; only evidence-backed gaps with native owners survive. [SOURCE: iteration-002.md:77-80] [SOURCE: iteration-005.md:84-88]",
+      "contentHash": "6b8c4e9fb59c",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-368b5d300c01",
+      "text": "Route-proof wording is provenance metadata and cannot support a Hallmark adoption finding. [INFERENCE: based on iteration-008.md:3-10 and iteration-009.md:3-8]",
+      "contentHash": "368b5d300c01",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 8,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.68,
+    "coverageBySources": {
+      "code": 75,
+      "other": 99
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/research/lineages/sol-opencode/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

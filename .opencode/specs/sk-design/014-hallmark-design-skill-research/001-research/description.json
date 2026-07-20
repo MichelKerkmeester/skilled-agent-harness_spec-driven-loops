@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-design/014-hallmark-design-skill-research/001-research",
+  "description": "Hallmark is a shipped design skill for AI coding assistants (\"refuses to look AI-generated\") whose four verbs — build, `audit`, `redesign`, `study`",
+  "keywords": [
+    "hallmark",
+    "shipped",
+    "design",
+    "skill",
+    "coding",
+    "assistants",
+    "refuses",
+    "look",
+    "ai-generated",
+    "whose",
+    "four",
+    "verbs",
+    "audit",
+    "redesign",
+    "study"
+  ],
+  "lastUpdated": "2026-07-20T09:19:14.483Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-design",
+    "014-hallmark-design-skill-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
