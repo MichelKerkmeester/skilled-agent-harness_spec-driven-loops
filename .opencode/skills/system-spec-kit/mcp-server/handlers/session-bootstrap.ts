@@ -33,6 +33,11 @@ import {
   type CodeGraphOpsContract,
 } from '@spec-kit/shared/code-graph-contracts';
 import type { MCPResponse } from '@spec-kit/shared/types';
+import { createRequire } from 'node:module';
+import { existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+
+const bootstrapRequire = createRequire(import.meta.url);
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -85,8 +90,48 @@ interface SessionBootstrapResult {
   opencodeTransport?: OpenCodeTransportPlan;
   graphOps?: CodeGraphOpsContract;
   skillGraphTopology?: SkillGraphTopologySummary;
+  compiledRouting?: CompiledRoutingSummary;
   hints: string[];
   nextActions: string[];
+}
+
+interface CompiledRoutingSummary {
+  hubCount: number;
+  compiledServing: number;
+  broken: number;
+  hubs: Array<{ hubId: string; servingAuthority: string; causeCode: string }>;
+}
+
+// Prompt-safe per-hub compiled-routing serving readout. Reads the promoted
+// runtime status (file-only, no engine load, no subprocess) and fails closed to
+// `undefined` so bootstrap never throws or blocks on this diagnostic.
+function readCompiledRoutingSummary(): CompiledRoutingSummary | undefined {
+  try {
+    let dir = process.cwd();
+    let statusPath: string | null = null;
+    for (let i = 0; i < 12; i += 1) {
+      const candidate = join(dir, '.opencode', 'bin', 'compiled-route-status.cjs');
+      if (existsSync(candidate)) { statusPath = candidate; break; }
+      const parent = dirname(dir);
+      if (parent === dir) break;
+      dir = parent;
+    }
+    if (!statusPath) return undefined;
+    const statusModule = bootstrapRequire(statusPath) as {
+      computeAllStatus: (opts?: { probeEngine?: boolean }) => Array<{
+        hubId: string; servingAuthority: string; causeCode: string;
+      }>;
+    };
+    const rows = statusModule.computeAllStatus({ probeEngine: false });
+    return {
+      hubCount: rows.length,
+      compiledServing: rows.filter((r) => r.servingAuthority === 'compiled').length,
+      broken: rows.filter((r) => r.causeCode === 'engine-throw').length,
+      hubs: rows.map((r) => ({ hubId: r.hubId, servingAuthority: r.servingAuthority, causeCode: r.causeCode })),
+    };
+  } catch {
+    return undefined;
+  }
 }
 
 const RESUME_LADDER_SUMMARY =
@@ -298,6 +343,10 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
   const cachedSummary = extractCachedSummary(resumeData);
   const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
   const skillGraphTopology = await buildSkillGraphTopologySummary();
+  const compiledRouting = readCompiledRoutingSummary();
+  if (compiledRouting && compiledRouting.broken > 0) {
+    allHints.push(`Compiled routing: ${compiledRouting.broken} hub(s) report engine-throw; run \`compiled-route-status.cjs --all\` to inspect.`);
+  }
   if (structuralRoutingNudge) {
     allHints.push(structuralRoutingNudge.message);
   }
@@ -455,6 +504,7 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
     }),
     graphOps,
     skillGraphTopology,
+    ...(compiledRouting ? { compiledRouting } : {}),
     hints: uniqueHints,
     // Keep advisory routing guidance out of nextActions so bootstrap and resume
     // remain the authoritative recovery owners for startup and deep resume flows.

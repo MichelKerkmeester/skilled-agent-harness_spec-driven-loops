@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 5,
+  "cases": [
+    { "id": "single-create-skill", "prompt": "/create:skill", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-skill"], "gold": { "expectedIntents": ["create-skill"], "expectedResources": ["create-skill/SKILL.md"] } },
+    { "id": "single-create-skill-parent", "prompt": "/create:skill-parent", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-skill-parent"], "gold": { "expectedIntents": ["create-skill-parent"], "expectedResources": ["create-skill/SKILL.md"] } },
+    { "id": "single-create-readme", "prompt": "/create:readme", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-readme"], "gold": { "expectedIntents": ["create-readme"], "expectedResources": ["create-readme/SKILL.md"] } },
+    { "id": "single-create-agent", "prompt": "/create:agent", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-agent"], "gold": { "expectedIntents": ["create-agent"], "expectedResources": ["create-agent/SKILL.md"] } },
+    { "id": "single-create-command", "prompt": "/create:command", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-command"], "gold": { "expectedIntents": ["create-command"], "expectedResources": ["create-command/SKILL.md"] } },
+    { "id": "single-create-feature-catalog", "prompt": "/create:feature-catalog", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-feature-catalog"], "gold": { "expectedIntents": ["create-feature-catalog"], "expectedResources": ["create-feature-catalog/SKILL.md"] } },
+    { "id": "single-create-manual-testing-playbook", "prompt": "/create:manual-testing-playbook", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-manual-testing-playbook"], "gold": { "expectedIntents": ["create-manual-testing-playbook"], "expectedResources": ["create-manual-testing-playbook/SKILL.md"] } },
+    { "id": "single-create-benchmark", "prompt": "/create:benchmark", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-benchmark"], "gold": { "expectedIntents": ["create-benchmark"], "expectedResources": ["create-benchmark/SKILL.md"] } },
+    { "id": "single-create-flowchart", "prompt": "/create:flowchart", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-flowchart"], "gold": { "expectedIntents": ["create-flowchart"], "expectedResources": ["create-flowchart/SKILL.md"] } },
+    { "id": "single-create-changelog", "prompt": "/create:changelog", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-changelog"], "gold": { "expectedIntents": ["create-changelog"], "expectedResources": ["create-changelog/SKILL.md"] } },
+    { "id": "single-create-diff", "prompt": "/create:diff", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-diff"], "gold": { "expectedIntents": ["create-diff"], "expectedResources": ["create-diff/SKILL.md"] } },
+    { "id": "single-create-quality-control", "prompt": "/doc:quality", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-quality-control"], "gold": { "expectedIntents": ["create-quality-control"], "expectedResources": ["create-quality-control/SKILL.md"] } },
+    { "id": "ordered-create-then-quality", "prompt": "create skill and validate documentation quality", "expectedAction": "route", "expectedSelectionKind": "orderedBundle", "expectedModes": ["create-quality-control", "create-skill"], "gold": { "expectedIntents": ["create-quality-control", "create-skill"], "expectedResources": ["create-quality-control/SKILL.md", "create-skill/SKILL.md"] } },
+    { "id": "weighted-dominant-create-skill", "prompt": "create skill new skill command template", "expectedAction": "route", "expectedSelectionKind": "single", "expectedModes": ["create-skill"], "gold": { "expectedIntents": ["create-skill"], "expectedResources": ["create-skill/SKILL.md"] } },
+    { "id": "one-turn-clarify", "prompt": "create command and benchmark package", "expectedAction": "clarify", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
+    { "id": "zero-signal-defer", "prompt": "unrelated orchard inventory", "expectedAction": "defer", "expectedReason": "no-match", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
+    { "id": "forbidden-reject", "prompt": "forbidden documentation operation", "expectedAction": "reject", "expectedReason": "forbidden", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
+    { "id": "constraint-forbidden-reject", "prompt": "unrelated orchard inventory", "constraints": ["forbidden"], "expectedAction": "reject", "expectedReason": "forbidden", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "trust": "live", "expectedContribution": true },
+    { "id": "stale", "trust": "stale", "expectedContribution": false },
+    { "id": "absent", "trust": "absent", "expectedContribution": false },
+    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
+    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+  ]
+}

@@ -1,0 +1,42 @@
+name: Runtime No-Spec-Import Guard
+
+# Durable guard for the compiled-routing promotion: the runtime resolver, engine,
+# activation manifests, and per-hub bundles were promoted out of the mutable spec
+# tree to a stable runtime path so a spec renumber can no longer sever routing.
+# This gate fails if any runtime file re-introduces a require/import from
+# `.opencode/specs`, so the coupling cannot silently return.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/runtime-no-spec-import.yml'
+      - '.opencode/bin/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/runtime-no-spec-import.yml'
+      - '.opencode/bin/**'
+
+jobs:
+  no-spec-import:
+    name: No runtime require/import from .opencode/specs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Scan runtime dirs for spec-tree imports (+ fixture self-test)
+        run: |
+          set -euo pipefail
+          # The guard must pass on the real runtime tree,
+          node .opencode/bin/check-no-spec-imports.cjs
+          # fail on a seeded spec-import fixture,
+          if node .opencode/bin/check-no-spec-imports.cjs .opencode/bin/tests/fixtures/no-spec-import/positive; then
+            echo "expected the positive fixture to FAIL the guard, but it passed" >&2
+            exit 1
+          fi
+          # and pass on a clean-runtime fixture.
+          node .opencode/bin/check-no-spec-imports.cjs .opencode/bin/tests/fixtures/no-spec-import/negative

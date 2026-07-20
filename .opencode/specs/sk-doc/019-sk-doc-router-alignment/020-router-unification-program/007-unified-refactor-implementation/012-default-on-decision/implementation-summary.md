@@ -157,7 +157,7 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 2. **The flag is still undocumented in the environment reference.** That gap is P0 implementation work, not work performed by this authoring phase.
 3. **Drift and breakage are not yet distinguishable in the live verification surface.** The planned P0 harness change owns that distinction.
 4. **Eligibility is still duplicated.** The P3 implementation has not replaced the current hand-maintained sets.
-5. **The resolver still depends on the current runtime path arrangement.** P0 must promote it or record and guard an approved exception.
+5. **The resolver still depends on the current runtime path arrangement.** P0 promotes the whole runtime closure to a stable runtime path (parent ADR-003, binding); guarding a residual spec-tree coupling is not an approved alternative. The runtime promotion foundation packet owns the implementation.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -167,7 +167,7 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 - [ ] Optional: the operator may override the settled ruling to flip-now; record the override in `decision-record.md` if chosen.
 - [ ] Choose the P2 canary environment profile and promotion owner.
-- [ ] Resolve the P0 architecture choice: promote the resolver to a stable runtime location or approve a guarded residual coupling.
+- [x] Resolved: the P0 architecture choice is bound to promoting the closure to a stable runtime path (parent ADR-003); the guarded-residual-coupling alternative is rejected, not offered. Implementation is owned by the runtime promotion foundation packet.
 - [ ] Implement P0-P4 runtime, CI, environment, and hub-directive changes outside this documentation-only authoring pass.
 - [ ] Implement create-skill onboarding alignment in the dependent packet after the P3 minter and eligibility interfaces are stable.
 - [ ] Implement Lane C compiled-path parity and drift fixtures in the dependent benchmark packet without editing the frozen scorer files.

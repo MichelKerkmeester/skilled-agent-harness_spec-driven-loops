@@ -19,6 +19,7 @@ import { readFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import { tool } from '@opencode-ai/plugin/tool';
 
@@ -44,6 +45,30 @@ const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 const FALLBACK_DIRECTIVE = HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+const pluginRequire = createRequire(import.meta.url);
+
+// Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
+// promoted runtime status (file-only, no engine load, no subprocess) and fails
+// closed to a single 'unavailable' line so the status tool never throws.
+function compiledRoutingStatusLines() {
+  try {
+    const statusPath = fileURLToPath(new URL('../bin/compiled-route-status.cjs', import.meta.url));
+    const { computeAllStatus } = pluginRequire(statusPath);
+    const rows = computeAllStatus({ probeEngine: false });
+    const served = rows.filter((r) => r.servingAuthority === 'compiled').length;
+    const broken = rows.filter((r) => r.causeCode === 'engine-throw').length;
+    const lines = [
+      `compiled_routing_hubs=${rows.length}`,
+      `compiled_serving=${served}`,
+      `compiled_broken=${broken}`,
+    ];
+    for (const r of rows) lines.push(`compiled_hub_${r.hubId}=${r.servingAuthority}/${r.causeCode}`);
+    return lines;
+  } catch (err) {
+    return [`compiled_routing=unavailable(${err && err.message ? err.message : 'error'})`];
+  }
+}
+
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
 // Cache-signature paths follow the standalone advisor package to ensure
 // consistent cache invalidation across bridge and MCP server builds.
@@ -855,6 +880,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             `cache_hits=${state.cacheHits}`,
             `cache_misses=${state.cacheMisses}`,
             `cache_hit_rate=${cacheHitRate()}`,
+            ...compiledRoutingStatusLines(),
           ].join('\n');
         },
       }),

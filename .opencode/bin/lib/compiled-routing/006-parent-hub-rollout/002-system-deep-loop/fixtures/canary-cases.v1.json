@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 4,
+  "cases": [
+    {
+      "id": "single-research",
+      "prompt": "deep research",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["research"],
+      "gold": {
+        "expectedIntents": ["research"],
+        "expectedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      }
+    },
+    {
+      "id": "single-review",
+      "prompt": "deep review of this change",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["review"],
+      "gold": {
+        "expectedIntents": ["review"],
+        "expectedResources": [
+          "deep-review/references/protocol/loop-protocol.md",
+          "deep-review/references/protocol/completion-criteria.md",
+          "deep-review/references/convergence/convergence.md"
+        ]
+      }
+    },
+    {
+      "id": "single-ai-council",
+      "prompt": "planning council",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["ai-council"],
+      "gold": {
+        "expectedIntents": ["ai-council"],
+        "expectedResources": [
+          "deep-ai-council/references/integration/loop-protocol.md",
+          "deep-ai-council/references/scoring/scoring-rubric.md",
+          "deep-ai-council/references/structure/output-schema.md"
+        ]
+      }
+    },
+    {
+      "id": "single-agent-improvement",
+      "prompt": "improve agent",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["agent-improvement"],
+      "gold": {
+        "expectedIntents": ["agent-improvement"],
+        "expectedResources": [
+          "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+          "deep-improvement/references/agent-improvement/score-dimensions.md",
+          "deep-improvement/references/shared/promotion-gate-contract.md"
+        ]
+      }
+    },
+    {
+      "id": "single-model-benchmark",
+      "prompt": "/deep:model-benchmark",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["model-benchmark"],
+      "gold": {
+        "expectedIntents": ["model-benchmark"],
+        "expectedResources": [
+          "deep-improvement/references/model-benchmark/evaluator-contract.md",
+          "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
+        ]
+      }
+    },
+    {
+      "id": "single-skill-benchmark",
+      "prompt": "/deep:skill-benchmark",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["skill-benchmark"],
+      "gold": {
+        "expectedIntents": ["skill-benchmark"],
+        "expectedResources": [
+          "deep-improvement/references/skill-benchmark/scoring-contract.md",
+          "deep-improvement/references/skill-benchmark/routing-optimization.md"
+        ]
+      }
+    },
+    {
+      "id": "single-alignment",
+      "prompt": "alignment lane",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["alignment"],
+      "gold": {
+        "expectedIntents": ["alignment"],
+        "expectedResources": [
+          "deep-alignment/references/scoping-protocol.md",
+          "deep-alignment/references/discover-contract.md",
+          "deep-alignment/references/lane-config-schema.md"
+        ]
+      }
+    },
+    {
+      "id": "one-turn-clarify",
+      "prompt": "deep review of this alignment lane",
+      "expectedAction": "clarify",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "zero-signal-defer",
+      "prompt": "unrelated orchard inventory",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden workspace operation",
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "constraint-forbidden-reject",
+      "prompt": "unrelated orchard inventory",
+      "constraints": ["forbidden"],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": ["defer"],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "trust": "live", "expectedContribution": true },
+    { "id": "stale", "trust": "stale", "expectedContribution": false },
+    { "id": "absent", "trust": "absent", "expectedContribution": false },
+    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
+    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+  ],
+  "noCollapseFixtures": {
+    "sharedPacketModes": ["agent-improvement", "model-benchmark", "skill-benchmark"],
+    "sharedRuntimeModes": ["review", "alignment"]
+  }
+}

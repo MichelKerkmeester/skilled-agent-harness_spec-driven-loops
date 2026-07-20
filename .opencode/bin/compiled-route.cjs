@@ -5,19 +5,20 @@
 //
 // A hub whose SKILL.md carries the compiled-routing directive calls this to ask
 // whether the compiled router contract is authoritative for a prompt. It stays a
-// thin delegate to the single-sourced resolver in the activation spec tree, so
-// the compiled contract is never duplicated. Prints the compiled decision when
-// the hub is compiled-serving and SPECKIT_COMPILED_ROUTING=1; otherwise a legacy
-// sentinel so the caller falls back to the prose smart-router. Never throws into
-// a routing path — any failure resolves to the legacy sentinel.
+// thin delegate to the single-sourced resolver, promoted to a stable runtime path
+// under bin/lib rather than the mutable spec tree, so a spec renumber can never
+// sever routing and the compiled contract is never duplicated. Prints the compiled
+// decision when the hub is compiled-serving and the flag permits it; otherwise a
+// legacy sentinel so the caller falls back to the prose smart-router. Never throws
+// into a routing path — any failure resolves to the legacy sentinel.
 
 const path = require('path');
 
 const RESOLVER = path.resolve(
   __dirname,
-  '..',
-  'specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
-  '007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
+  'lib',
+  'compiled-routing',
+  '011-runtime-engine/lib/resolve.cjs',
 );
 
 function main() {
@@ -33,7 +34,12 @@ function main() {
   try {
     const { resolveRoute } = require(RESOLVER);
     route = resolveRoute(hub, prompt);
-  } catch {
+  } catch (err) {
+    // Emit-only, stderr, debug-gated: never reaches stdout (the routing channel)
+    // or the TUI, and never changes the fallback outcome (still legacy sentinel).
+    if (process.env.SPECKIT_COMPILED_ROUTING_DEBUG) {
+      process.stderr.write(`[compiled-routing] front door fell back to legacy for hub=${hub}: ${err && err.message}\n`);
+    }
     route = null;
   }
   process.stdout.write(`${JSON.stringify(route || { servingAuthority: 'legacy', hubId: hub })}\n`);

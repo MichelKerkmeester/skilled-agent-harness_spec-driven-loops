@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 4,
+  "cases": [
+    {
+      "id": "figma-interface-worked-case",
+      "prompt": "render in figma a distinctive visual design for a landing page",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["interface", "mcp-figma"],
+      "judgmentDecision": "approve",
+      "gold": { "expectedIntents": ["interface", "mcp-figma"], "expectedResources": [] }
+    },
+    {
+      "id": "figma-foundations-worked-case",
+      "prompt": "figma tokens using design foundations and a color system",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["foundations", "mcp-figma"],
+      "judgmentDecision": "approve",
+      "gold": { "expectedIntents": ["foundations", "mcp-figma"], "expectedResources": [] }
+    },
+    {
+      "id": "figma-mutation-without-judgment",
+      "prompt": "render in figma component",
+      "expectedAction": "defer",
+      "expectedReason": "dependency-failure",
+      "gold": { "expectedIntents": ["defer"], "expectedResources": [] }
+    },
+    {
+      "id": "refero-read-only",
+      "prompt": "refero mcp search",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["mcp-refero"],
+      "gold": { "expectedIntents": ["mcp-refero"], "expectedResources": [] }
+    },
+    {
+      "id": "clickup-single",
+      "prompt": "clickup task management",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": ["mcp-click-up"],
+      "gold": { "expectedIntents": ["mcp-click-up"], "expectedResources": [] }
+    },
+    {
+      "id": "ambiguous-transport-defer",
+      "prompt": "refero mobbin",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": { "expectedIntents": ["defer"], "expectedResources": [] }
+    },
+    {
+      "id": "zero-signal-defer",
+      "prompt": "orchard inventory",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": { "expectedIntents": ["defer"], "expectedResources": [] }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden external tool operation",
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": { "expectedIntents": ["none"], "expectedResources": [] }
+    }
+  ],
+  "advisorCases": [
+    { "id": "live-match", "state": "live", "drift": false, "contributes": true },
+    { "id": "stale", "state": "stale", "drift": false, "contributes": false },
+    { "id": "absent", "state": "absent", "drift": false, "contributes": false },
+    { "id": "projection-drift", "state": "live", "drift": true, "contributes": false }
+  ]
+}

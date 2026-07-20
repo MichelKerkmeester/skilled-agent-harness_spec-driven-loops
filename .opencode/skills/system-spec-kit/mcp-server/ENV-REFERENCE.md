@@ -65,6 +65,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Degree boost | ON | `SPECKIT_DEGREE_BOOST` | Causal-edge degree-based reranking | current |
 | Context headers | ON | `SPECKIT_CONTEXT_HEADERS` | Stage 4 contextual tree headers | graduated |
 | Markdown file watcher | OFF | `SPECKIT_FILE_WATCHER` | Real-time markdown reindexing watcher | opt-in |
+| Compiled routing | OFF | `SPECKIT_COMPILED_ROUTING` | Tri-state gate for serving the compiled per-hub router instead of the prose smart-router. Unset = per-hub default-on cohort, which ships empty so every hub stays legacy (byte-identical to today); `1` = force-on where a hub also has a compiled activation manifest; `0`/`false`/`off` = explicit fleet-wide kill-switch (force legacy); any other value fails closed to legacy. Serving additionally requires the hub's activation manifest to be `compiled`, so the flag alone lights no hub. Default-on is a later staged cutover, not this flag's default. `SPECKIT_COMPILED_ROUTING_DEBUG` (unset/OFF) emits debug-gated stderr breadcrumbs when a compiled route falls back to legacy. | opt-in |
 | Quality loop | ON | `SPECKIT_QUALITY_LOOP` | Verify-fix-verify memory quality loop | T008 |
 | Query decomposition | ON | `SPECKIT_QUERY_DECOMPOSITION` | Deep-mode facet splitting | D2 REQ-D2-001 |
 | Graph concept routing | ON | `SPECKIT_GRAPH_CONCEPT_ROUTING` | Query-time alias matching into graph channel | D2 REQ-D2-002 |

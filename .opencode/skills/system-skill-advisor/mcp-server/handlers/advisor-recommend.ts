@@ -29,6 +29,11 @@ import {
   type AdvisorRecommendOutput,
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
+import {
+  COMPILED_ROUTING_HUBS,
+  compiledRoutingEnabledForHub,
+  parseCompiledRoutingFlagMode,
+} from '../lib/compiled-routing-flag.js';
 import type { AdvisorScoringOptions } from '../lib/scorer/types.js';
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
@@ -38,15 +43,13 @@ type PublicRecommendationStatus = NonNullable<AdvisorRecommendOutput['recommenda
 type PublicThresholds = AdvisorRecommendOutput['effectiveThresholds'];
 type ShadowRecommendation = NonNullable<AdvisorRecommendOutput['_shadow']>['recommendations'][number];
 
-const COMPILED_ROUTING_HUBS = new Set([
-  'sk-code',
-  'mcp-tooling',
-  'system-deep-loop',
-  'cli-external-orchestration',
-  'sk-prompt',
-  'sk-design',
-  'sk-doc',
-]);
+// Emit-only, stderr, debug-gated compiled-routing diagnostic. Never written to
+// stdout or the tool response, and never changes the recommendation outcome.
+function emitCompiledRoutingBreadcrumb(message: string): void {
+  if (process.env.SPECKIT_COMPILED_ROUTING_DEBUG) {
+    process.stderr.write(`[compiled-routing] ${message}\n`);
+  }
+}
 
 function findWorkspaceRoot(start = process.cwd()): string {
   return findAdvisorWorkspaceRoot(start, { maxDepth: 12 });
@@ -339,7 +342,7 @@ function compiledRouteForRecommendation(
     ], {
       cwd: workspaceRoot,
       encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
+      stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 5_000,
       maxBuffer: 1_048_576,
     });
@@ -349,7 +352,17 @@ function compiledRouteForRecommendation(
     }
     const compiledRoute = parsed as Record<string, unknown>;
     return compiledRoute.servingAuthority === 'legacy' ? undefined : compiledRoute;
-  } catch {
+  } catch (error) {
+    // Surface the otherwise-silent fallback (debug-gated), including any child
+    // stderr the pipe above now captures instead of discarding. The served
+    // outcome is unchanged: a failed probe attaches no compiled route (legacy).
+    const childStderr = (error as { stderr?: unknown } | null)?.stderr;
+    const detail = typeof childStderr === 'string' && childStderr.trim()
+      ? ` child-stderr=${childStderr.trim()}`
+      : '';
+    emitCompiledRoutingBreadcrumb(
+      `compiled-route subprocess failed for hub=${skillId}: ${error instanceof Error ? error.message : String(error)}${detail}`,
+    );
     return undefined;
   }
 }
@@ -359,10 +372,22 @@ function enrichCompiledRoutes(
   prompt: string,
   workspaceRoot: string,
 ): AdvisorRecommendOutput {
-  if (process.env.SPECKIT_COMPILED_ROUTING !== '1') return output;
+  const mode = parseCompiledRoutingFlagMode(process.env.SPECKIT_COMPILED_ROUTING);
+  if (mode === 'invalid') {
+    emitCompiledRoutingBreadcrumb(
+      `ignoring invalid SPECKIT_COMPILED_ROUTING=${JSON.stringify(process.env.SPECKIT_COMPILED_ROUTING)}; serving legacy`,
+    );
+  }
+  // Only enrich hubs the flag permits. The default cohort ships empty, so unset,
+  // the kill-switch ('0'|'false'|'off'), and invalid values all skip enrichment
+  // — byte-identical to the prior bi-state gate. Skip the schema re-parse
+  // entirely when nothing is eligible so the output is returned unchanged.
+  const anyEligible = output.recommendations.some((r) => compiledRoutingEnabledForHub(r.skillId));
+  if (!anyEligible) return output;
   return AdvisorRecommendOutputSchema.parse({
     ...output,
     recommendations: output.recommendations.map((recommendation) => {
+      if (!compiledRoutingEnabledForHub(recommendation.skillId)) return recommendation;
       const compiledRoute = compiledRouteForRecommendation(
         recommendation.skillId,
         prompt,
