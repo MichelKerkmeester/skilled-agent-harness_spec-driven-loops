@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Compiled-Routing Cutover Hardening"
-description: "Task list for the nine-finding remediation; all nine tasks (T001-T009) are done and verified — harness 9/9, node --check clean on 7 files, live activation state untouched."
+description: "Task list for the nine-finding remediation; all nine tasks (T001-T009) are done and verified — harness 9/9, node --check clean on 7 files, live activation state untouched. Round 2 adds T010-T012 for three re-review findings (RR-P1-A/B, RR-P2-C), closed by a lock/journal redesign — harness now 10/10."
 trigger_phrases:
   - "cutover hardening tasks"
 importance_tier: "high"
@@ -53,6 +53,14 @@ contextType: "implementation"
 - [x] T008 [REQ-006] Allowlist + realpath-confine the activation `--hub`/`--child` identifiers before any side effect (P1-003) - [evidence: `confineArgs()` gate in `activate-hub.cjs` runs before any side effect — hub id must match `^[a-z0-9][a-z0-9-]*$`, the hub dir must resolve inside the activation root, `--child` must resolve inside the repo; teeth test — `activate-hub --hub "../../evil"` fails with "unsafe hub id" before any effect]
 - [x] T009 [REQ-007] Document process-replacement as the engine-cache contract or add identity-keyed invalidation (P2-009) - [evidence: `compiled-route.cjs` — the process-lifetime engine cache is now a documented contract (comment); safe because the resolver's serve-time identity gate fails a drifted snapshot to legacy, and a restart picks up a new policy]
 
+**Round 2 — re-review remediation (built)**
+
+A fresh 10-iteration `/deep:review` of the tranches above completed iteration 1, then halted on an unrelated reducer/strategy-anchor workflow-infra bug (external blocker, not a packet finding). Iteration 1 surfaced three real issues, closed by a redesign:
+
+- [x] T010 Rebuild the per-hub lock's stale reclaim as an atomic winner election, and correct its comment (RR-P1-A, RR-P2-C) - [evidence: `shared/hub-lock.cjs` rebuilt on an atomic `mkdir` lock directory (mkdir is an atomic exclusive create); owner identity (pid + nonce + lease) lives in `owner.json` inside the lock dir; stale reclaim re-checks staleness immediately before clearing the dead dir and re-races the mkdir; header comment corrected to describe the real mechanism (mkdir lock + lease + `kill(pid,0)`) and honestly documents the residual (OS-flock needed for perfect reclaim; PID reuse within an unexpired lease is lease-bounded, not detected); `node --check` clean]
+- [x] T011 Replace `reconcileTuple` with a write-ahead journal so a crash-interrupted flip recovers to the intended advanced fence, not a stale one (RR-P1-B) - [evidence: `flip-serving.cjs` writes `.flip-journal.json` (intent + selectedPolicy + before/after fence) BEFORE mutating the tuple and clears it only AFTER all writes; `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended fence on the next run; `node --check` clean]
+- [x] T012 Update the harness for the mkdir-dir lock and add write-ahead-journal recovery coverage (RR-P1-A, RR-P1-B) - [evidence: `verify-runtime-engine.cjs` now **10/10** — adds `write-ahead journal: interrupted flip recovered to the intended advanced fence`; the two shared-lock checks (`a live holder is refused`, `a stale holder is reclaimed`) re-verified against the rebuilt mkdir-dir lock; LIVE `010-live-activation/activation` tree byte-identical after the run (git-dirty 0); `activate-hub --verify` still works under the new lock (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock` dir]
+
 <!-- /ANCHOR:phase-2 -->
 ---
 
@@ -67,9 +75,9 @@ Verification for all nine findings is evidence-based, not task-based — see `ch
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All nine tasks (T001-T009) complete with evidence
-- [x] No regression — `verify-runtime-engine.cjs` 9/9 (grew from 6/6 with the new both-decision, serve-mismatch, and shared-lock fixtures), digests unchanged, LIVE activation tree byte-identical before/after (git-dirty 0)
-- [x] `node --check` clean on all 7 touched runtime files
+- [x] All twelve tasks (T001-T012) complete with evidence — T001-T009 round 1, T010-T012 round 2
+- [x] No regression — `verify-runtime-engine.cjs` **10/10** (grew from 6/6 -> 9/9 in round 1, then 9/9 -> 10/10 in round 2 with the write-ahead-journal recovery fixture and the mkdir-dir lock fixtures), digests unchanged, LIVE activation tree byte-identical before/after (git-dirty 0)
+- [x] `node --check` clean on all 7 touched runtime files (round 1 + round 2 combined)
 
 <!-- /ANCHOR:completion -->
 ---

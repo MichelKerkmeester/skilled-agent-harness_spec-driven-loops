@@ -130,29 +130,32 @@ function main() {
     check('fenced CAS: byte-exact rollback + byte-identical reflip', rolledBackToLegacy && byteExact && reCompiled && identical);
   }
 
-  // 6. Shared lock — a LIVE holder is refused.
+  // 6. Shared lock (mkdir dir) — a LIVE holder is refused.
   {
     const hub = hubs[0];
-    const lock = path.join(ACT, hub, '.flip.lock');
+    const lockDir = path.join(ACT, hub, '.flip.lock');
+    fs.mkdirSync(lockDir);
     const liveHolder = { pid: process.pid, nonce: 'liveholder', phase: 'test', acquiredAt: Date.now(), leaseUntil: Date.now() + 3600_000 };
-    fs.writeFileSync(lock, `${JSON.stringify(liveHolder)}\n`, { flag: 'w' });
+    fs.writeFileSync(path.join(lockDir, 'owner.json'), `${JSON.stringify(liveHolder)}\n`);
     const blocked = runFlip(['--hub', hub]);
-    const stillHeld = fs.existsSync(lock) && JSON.parse(fs.readFileSync(lock, 'utf8')).nonce === 'liveholder';
-    try { fs.unlinkSync(lock); } catch { /* cleanup */ }
+    const ownerP = path.join(lockDir, 'owner.json');
+    const stillHeld = fs.existsSync(ownerP) && JSON.parse(fs.readFileSync(ownerP, 'utf8')).nonce === 'liveholder';
+    try { fs.rmSync(lockDir, { recursive: true, force: true }); } catch { /* cleanup */ }
     check('shared lock: a live holder is refused (and left intact)', /held by a live owner/.test(blocked) && stillHeld);
   }
 
-  // 7. Shared lock — a STALE holder is reclaimed (crash recovery).
+  // 7. Shared lock (mkdir dir) — a STALE holder is reclaimed (crash recovery).
   {
     const hub = 'sk-code';
-    const lock = path.join(ACT, hub, '.flip.lock');
+    const lockDir = path.join(ACT, hub, '.flip.lock');
+    fs.mkdirSync(lockDir);
     const staleHolder = { pid: 2147483646, nonce: 'staleholder', phase: 'crashed', acquiredAt: Date.now() - 7200_000, leaseUntil: Date.now() - 3600_000 };
-    fs.writeFileSync(lock, `${JSON.stringify(staleHolder)}\n`, { flag: 'w' });
-    // sk-code is compiled -> the idempotent reconcile path runs under the lock; a
-    // stale lock must be reclaimed so the run succeeds rather than dead-locking.
+    fs.writeFileSync(path.join(lockDir, 'owner.json'), `${JSON.stringify(staleHolder)}\n`);
+    // sk-code is compiled -> the idempotent path runs under the lock; a stale lock
+    // must be reclaimed so the run succeeds rather than dead-locking.
     const out = runFlip(['--hub', hub]);
     const reclaimed = /ALREADY-COMPILED/.test(out) && !out.startsWith('ERR');
-    const lockReleased = !fs.existsSync(lock);
+    const lockReleased = !fs.existsSync(lockDir);
     check('shared lock: a stale holder is reclaimed, not dead-locked', reclaimed && lockReleased, reclaimed ? '' : `(got: ${out.slice(0, 80)})`);
   }
 
@@ -170,6 +173,27 @@ function main() {
     fs.writeFileSync(M, legacyBytes);
     runFlip(['--hub', hub]);
     check('flip-time identity: tampered selectedPolicy hash refused', /!= selectedPolicy/.test(refused) && stayedLegacy);
+  }
+
+  // 9. Write-ahead journal: an interrupted flip is recovered to the INTENDED fence.
+  {
+    const hub = 'sk-code';
+    const M = path.join(ACT, hub, 'manifest.json');
+    const F = path.join(ACT, hub, 'fence-state.json');
+    const J = path.join(ACT, hub, '.flip-journal.json');
+    runFlip(['--hub', hub, '--rollback']); // -> legacy, a clean pre-flip state
+    const legacyManifest = JSON.parse(fs.readFileSync(M, 'utf8'));
+    const curFence = JSON.parse(fs.readFileSync(F, 'utf8')).fencingEpoch;
+    const targetFence = curFence + 1;
+    // Plant a journal as if a flip crashed after writing it but before the tuple.
+    fs.writeFileSync(J, `${JSON.stringify({ intent: 'flip', hubId: hub, selectedPolicy: legacyManifest.selectedPolicy, before: curFence, after: targetFence })}\n`);
+    runFlip(['--hub', hub]); // recovery runs first, completes the flip to targetFence
+    const m2 = JSON.parse(fs.readFileSync(M, 'utf8'));
+    const f2 = JSON.parse(fs.readFileSync(F, 'utf8')).fencingEpoch;
+    const journalGone = !fs.existsSync(J);
+    check('write-ahead journal: interrupted flip recovered to the intended advanced fence',
+      m2.servingAuthority === 'compiled' && f2 === targetFence && journalGone,
+      `(serving=${m2.servingAuthority} fence=${f2} want ${targetFence} journalGone=${journalGone})`);
   }
 
   process.stdout.write(`\n${pass}/${pass + fail} checks passed\n`);

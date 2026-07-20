@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Compiled-Routing Cutover Hardening"
-description: "Remediated the nine deep-review findings (7 P1 + 2 P2) on the P4b compiled-routing cutover: crash-safe tuple ownership, harness isolation, activation confinement, evidence reconciliation, and contract centralization. All nine are now built and verified; a fresh deep-review is recommended as follow-up."
+description: "Remediated the nine deep-review findings (7 P1 + 2 P2) on the P4b compiled-routing cutover: crash-safe tuple ownership, harness isolation, activation confinement, evidence reconciliation, and contract centralization. All nine are now built and verified. Round 2: a follow-up 10-iteration /deep:review completed iteration 1, surfaced three further issues in the round-1 hardening (RR-P1-A, RR-P1-B, RR-P2-C), now closed by a lock/journal redesign, then halted on an unrelated review-harness infra bug."
 trigger_phrases:
   - "cutover hardening"
   - "deep-review remediation router"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete — all nine deep-review findings (7 P1 + 2 P2) are built and verified: `node --check` clean on all 7 touched runtime files, harness `verify-runtime-engine.cjs` 9/9, LIVE activation tree byte-identical before/after (git-dirty 0). A fresh `/deep:review` has NOT yet been run over these fixes (the prior review is what surfaced them) — recommended as follow-up |
+| **Status** | Complete — all nine round-1 deep-review findings (7 P1 + 2 P2) are built and verified: `node --check` clean on all 7 touched runtime files, harness `verify-runtime-engine.cjs` 9/9, LIVE activation tree byte-identical before/after (git-dirty 0). **Round 2**: a fresh 10-iteration `/deep:review` completed iteration 1 (then halted on an unrelated reducer/strategy-anchor workflow-infra bug — an external blocker, not a packet finding) and surfaced three further issues in the round-1 hardening (RR-P1-A, RR-P1-B, RR-P2-C), now closed by a redesign: `node --check` clean on the 4 dependent files, harness `verify-runtime-engine.cjs` **10/10** (grown from 9/9), LIVE activation tree byte-identical after a harness run (git-dirty 0). The remaining nine re-review iterations have not run — blocked by the external infra bug, recommended as follow-up once resolved |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 
@@ -63,6 +63,23 @@ Closed the nine findings in risk order — the two zero-risk quick wins first (d
 - The three shipped fixes' proven behavior (discriminated union, fenced-CAS binding, snapshot-identity fail-safe) — confirmed correct, not re-litigated.
 - Any edit to the frozen benchmark scorer (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) — the pinned digests are preserved byte-for-byte.
 - Enabling `SPECKIT_COMPILED_ROUTING` — the cutover stays flag-default-off and reversible throughout.
+
+### Round 2 (re-review remediation)
+
+A fresh 10-iteration `/deep:review` of this packet's round-1 hardening completed iteration 1, then halted on an unrelated reducer/strategy-anchor workflow-infra bug — an external blocker in the review harness itself, not a finding against this packet's code. Iteration 1 nonetheless surfaced three real issues in the round-1 hardening, in scope for this packet:
+
+| ID | Sev | Finding | Site |
+|----|-----|---------|------|
+| RR-P1-A | P1 | `shared/hub-lock.cjs` reclaim was a write-then-read, not an atomic winner election — two stale-lock reclaimers could both enter the critical section | `shared/hub-lock.cjs` |
+| RR-P1-B | P1 | Flip-serving `reconcileTuple` rebuilt the record but did not advance the fence, certifying a crash-interrupted flip with a stale epoch | `011-runtime-engine/lib/flip-serving.cjs` |
+| RR-P2-C | P2 | `hub-lock.cjs` comment overclaimed a PID-reuse/start-stamp check the code did not implement | `shared/hub-lock.cjs` |
+
+**Fixes (all built and verified):**
+- **RR-P1-A**: `hub-lock.cjs` rebuilt on an atomic `mkdir` lock directory (`mkdir` is an atomic exclusive create — a real winner election); owner identity (pid + nonce + lease) now lives in `owner.json` inside the lock dir; stale reclaim re-checks staleness immediately before clearing the dead dir and re-races the `mkdir`.
+- **RR-P1-B**: `reconcileTuple` replaced with a write-ahead journal — `flip-serving.cjs` writes `.flip-journal.json` (intent + selectedPolicy + before/after fence) BEFORE mutating the tuple and clears it only AFTER all writes; on the next run, `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended (advanced) fence.
+- **RR-P2-C**: the `hub-lock.cjs` header comment now describes the real mechanism (mkdir lock + lease + `kill(pid,0)` liveness probe) and honestly documents the residual: perfectly race-free stale reclaim needs OS advisory locking (flock/fcntl), unavailable in zero-dependency Node; PID reuse within an unexpired lease is bounded by the 10-minute lease, not detected.
+
+**External blocker (not a packet finding):** the re-review's remaining nine iterations did not run — the loop halted on an unrelated reducer/strategy-anchor workflow-infra bug in the review harness itself, outside this packet's scope.
 
 <!-- /ANCHOR:scope -->
 ---

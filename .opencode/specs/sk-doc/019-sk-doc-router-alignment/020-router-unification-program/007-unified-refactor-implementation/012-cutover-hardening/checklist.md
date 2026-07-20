@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Compiled-Routing Cutover Hardening"
-description: "QA gate for all four tranches (all nine findings) of the deep-review remediation — now fully built and verified."
+description: "QA gate for all four tranches (all nine findings) of the deep-review remediation — now fully built and verified. Round 2 adds three re-review findings (RR-P1-A/B, RR-P2-C), also closed and verified — harness 10/10."
 trigger_phrases:
   - "cutover hardening checklist"
 importance_tier: "high"
@@ -70,8 +70,8 @@ contextType: "implementation"
   - **Evidence**: harness check `serve-time identity (mismatch): tampered manifest fails safe to legacy`; part of the 9/9 pass.
 - [x] CHK-016 [P0] Shared-lock recovery — a live holder is refused, a stale holder is safely reclaimed (P1-007, P1-008).
   - **Evidence**: harness checks `shared lock: a live holder is refused (and left intact)` and `shared lock: a stale holder is reclaimed, not dead-locked`; `hub-lock.cjs` records owner pid + random nonce + timestamp and a 10-minute lease.
-- [x] CHK-017 [P0] Reconcile — the idempotent no-op path rebuilds a half-committed tuple from the manifest before returning (P1-001).
-  - **Evidence**: `reconcileTuple()` runs under the shared hub lock in `flip-serving.cjs`; teeth test — with sk-code's serving-flip-record deleted in a sandbox, `flip-serving --hub sk-code` prints "ALREADY-COMPILED (reconciled: serving-flip-record)" and rebuilds a record matching the manifest with `reconciled:true`.
+- [x] CHK-017 [P0] Reconcile — the idempotent no-op path rebuilds a half-committed tuple from the manifest before returning (P1-001). **Round 1 mechanism — superseded by the Round 2 write-ahead journal (CHK-099); `reconcileTuple()` no longer exists in the code.**
+  - **Evidence (round 1, historical)**: `reconcileTuple()` ran under the shared hub lock in `flip-serving.cjs`; teeth test — with sk-code's serving-flip-record deleted in a sandbox, `flip-serving --hub sk-code` printed "ALREADY-COMPILED (reconciled: serving-flip-record)" and rebuilt a record matching the manifest with `reconciled:true`. Round 2 found this mechanism did not advance the fence (RR-P1-B) and replaced it entirely — see CHK-099 for the current, verified mechanism.
 - [x] CHK-018 [P0] Confinement — activation identifiers are validated before any side effect (P1-003).
   - **Evidence**: `confineArgs()` in `activate-hub.cjs` runs before any side effect; teeth test — `activate-hub --hub "../../evil"` fails with "unsafe hub id" before any effect; `activate-hub --verify` still works under the new lock+confinement (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock`.
 - [x] CHK-019 [P1] Engine cache lifecycle is documented as a contract, not silently left open (P2-009).
@@ -90,6 +90,22 @@ contextType: "implementation"
   - **Evidence**: `spec.md` REQ-004..007 marked Satisfied with acceptance evidence; `tasks.md` T003-T009 all `[x]` with evidence tags; harness `verify-runtime-engine.cjs` 9/9.
 
 <!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:round-2 -->
+## Round 2 (Re-Review Remediation)
+
+A fresh 10-iteration `/deep:review` completed iteration 1, then halted on an unrelated reducer/strategy-anchor workflow-infra bug (external blocker, not a packet finding). Iteration 1 surfaced three real issues in the round-1 hardening, now closed by a redesign.
+
+- [x] CHK-098 [P1] Winner election for the per-hub lock is an atomic `mkdir`, not a write-then-read race (RR-P1-A).
+  - **Evidence**: `shared/hub-lock.cjs` rebuilt on an atomic `mkdir` lock directory (mkdir is an atomic exclusive create); owner identity (pid + nonce + lease) lives in `owner.json` inside the lock dir; stale reclaim re-checks staleness immediately before clearing the dead dir and re-races the mkdir; harness `verify-runtime-engine.cjs` **10/10** — `shared lock: a live holder is refused (and left intact)` and `shared lock: a stale holder is reclaimed, not dead-locked` both re-verified against the rebuilt lock.
+- [x] CHK-099 [P1] A crash-interrupted serving flip recovers to the intended (advanced) fence, not a stale one (RR-P1-B).
+  - **Evidence**: `reconcileTuple()` replaced by a write-ahead journal in `flip-serving.cjs` — `.flip-journal.json` (intent + selectedPolicy + before/after fence) is written BEFORE the tuple is mutated and cleared only AFTER every tuple member is written; `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended fence on the next run; harness **10/10** — new check `write-ahead journal: interrupted flip recovered to the intended advanced fence` passes.
+- [x] CHK-100 [P1] The lock module's documentation states its real mechanism and residual honestly, not an overclaimed guarantee (RR-P2-C).
+  - **Evidence**: `hub-lock.cjs` header comment now describes the actual mechanism (mkdir lock + lease + `kill(pid,0)` liveness probe) and documents the residual: perfectly race-free stale reclaim needs OS advisory locking (flock/fcntl), unavailable in zero-dependency Node; PID reuse within an unexpired lease is bounded by the 10-minute lease, not detected.
+
+<!-- /ANCHOR:round-2 -->
 
 ---
 
@@ -137,9 +153,9 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 17 | 17/17 |
-| P1 Items | 8 | 8/8 |
+| P1 Items | 11 | 11/11 |
 
 **Verification Date**: 2026-07-20
-**Completion Boundary**: All four tranches (nine findings) are complete and verified — `node --check` clean on 7 touched runtime files, harness `verify-runtime-engine.cjs` 9/9, LIVE activation tree byte-identical before/after (git-dirty 0). This is new runtime behavior, gated behind `SPECKIT_COMPILED_ROUTING` (default off) and reversible via `git revert`. A fresh `/deep:review` has NOT yet run over these nine fixes (the prior review is what surfaced them) — recommended as follow-up.
+**Completion Boundary**: All four tranches (nine round-1 findings) are complete and verified — `node --check` clean on 7 touched runtime files, harness `verify-runtime-engine.cjs` 9/9 at round-1 close, LIVE activation tree byte-identical before/after (git-dirty 0). This is new runtime behavior, gated behind `SPECKIT_COMPILED_ROUTING` (default off) and reversible via `git revert`. **Round 2**: a fresh 10-iteration `/deep:review` completed iteration 1 (then halted on an unrelated reducer/strategy-anchor workflow-infra bug — an external blocker, not a packet finding) and surfaced three further issues (RR-P1-A, RR-P1-B, RR-P2-C) — all now closed by a redesign: `node --check` clean on the 4 dependent files, harness `verify-runtime-engine.cjs` now **10/10**, LIVE activation tree byte-identical after a harness run (git-dirty 0), and `activate-hub --verify` still works under the new mkdir lock (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock` dir. The remaining nine re-review iterations have not run — blocked by the external infra bug, recommended as follow-up once resolved.
 
 <!-- /ANCHOR:summary -->
