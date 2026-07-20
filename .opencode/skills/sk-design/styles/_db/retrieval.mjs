@@ -2,9 +2,9 @@
 // ║ Generation-Bound Persistent Style Retrieval                             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-import { createHash } from 'node:crypto';
-
 import { assembleCandidateCards } from '../_engine/cards.mjs';
+import { compareRawStrings, digest, stableJson } from './canonical.mjs';
+import { RESIDENCY } from './stage-telemetry.mjs';
 import {
   STYLE_DB_SCHEMA_VERSION,
   openPublishedStyleDatabase,
@@ -23,23 +23,6 @@ const MAX_QUERY_VECTOR_BYTES = 256 * 1_024;
 const MAX_CANDIDATE_K = 200;
 const DEFAULT_CANDIDATE_K = 50;
 const EXACT_REUSE_LICENSES = new Set(['allowed', 'licensed', 'public-domain']);
-
-function compareRawStrings(left, right) {
-  return String(left) < String(right) ? -1 : String(left) > String(right) ? 1 : 0;
-}
-
-function digest(value) {
-  return `sha256:${createHash('sha256').update(value).digest('hex')}`;
-}
-
-function stableJson(value) {
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
-  if (value && typeof value === 'object') {
-    return `{${Object.keys(value).sort(compareRawStrings)
-      .map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`;
-  }
-  return JSON.stringify(value);
-}
 
 function normalizeFacet(value) {
   return String(value ?? '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -118,7 +101,8 @@ function requestFingerprint(request, candidateK, profile) {
   }));
 }
 
-function loadEligibility(database, request) {
+function loadEligibility(database, request, telemetry) {
+  const loadSpan = telemetry?.span('eligibility.load', RESIDENCY.NATIVE);
   const rows = database.prepare(`
     SELECT s.style_rowid, s.style_id, s.slug, s.title, s.thesis, s.theme,
       s.industry, s.aggregate_hash, s.retrieval_hash, p.status AS provenance_status,
@@ -129,25 +113,36 @@ function loadEligibility(database, request) {
     WHERE s.lifecycle_state = 'active'
     ORDER BY s.style_id ASC
   `).all();
-  if (rows.length === 0) return { eligible: [], rejectedCount: 0, activeCount: 0 };
+  loadSpan?.end(rows.length);
+  if (rows.length === 0) {
+    return { eligible: [], rejectedCount: 0, activeCount: 0 };
+  }
   const ids = rows.map((row) => row.style_rowid);
   const bindings = placeholders(ids.length);
-  const facetsById = new Map(ids.map((id) => [Number(id), new Set()]));
-  for (const term of database.prepare(`
+  const facetsLoadSpan = telemetry?.span('eligibility.facets.load', RESIDENCY.NATIVE);
+  const termRows = database.prepare(`
     SELECT style_rowid, term FROM style_terms WHERE style_rowid IN (${bindings})
-  `).all(...ids)) {
+  `).all(...ids);
+  const axisRows = database.prepare(`
+    SELECT style_rowid, axis FROM style_token_axes WHERE style_rowid IN (${bindings})
+  `).all(...ids);
+  const sectionRows = database.prepare(`
+    SELECT style_rowid, name FROM style_sections WHERE style_rowid IN (${bindings})
+  `).all(...ids);
+  facetsLoadSpan?.end(termRows.length + axisRows.length + sectionRows.length);
+  const facetsAssembleSpan = telemetry?.span('eligibility.facets.assemble', RESIDENCY.JS_RESIDENT);
+  const facetsById = new Map(ids.map((id) => [Number(id), new Set()]));
+  for (const term of termRows) {
     facetsById.get(Number(term.style_rowid)).add(normalizeFacet(term.term));
   }
-  for (const axis of database.prepare(`
-    SELECT style_rowid, axis FROM style_token_axes WHERE style_rowid IN (${bindings})
-  `).all(...ids)) {
+  for (const axis of axisRows) {
     facetsById.get(Number(axis.style_rowid)).add(normalizeFacet(axis.axis));
   }
-  for (const section of database.prepare(`
-    SELECT style_rowid, name FROM style_sections WHERE style_rowid IN (${bindings})
-  `).all(...ids)) {
+  for (const section of sectionRows) {
     facetsById.get(Number(section.style_rowid)).add(normalizeFacet(section.name));
   }
+  facetsAssembleSpan?.end(rows.length);
+  const filterSpan = telemetry?.span('eligibility.filter', RESIDENCY.JS_RESIDENT);
   const required = (request.requiredFacets ?? []).map(normalizeFacet).filter(Boolean);
   const excluded = (request.exclusions ?? []).map(normalizeFacet).filter(Boolean);
   const exactReuse = request.usage === 'exact-reuse' || request.exactReuse === true;
@@ -166,14 +161,16 @@ function loadEligibility(database, request) {
     facets: facetsById.get(Number(row.style_rowid)),
     matchedRequiredFacets: required,
   }));
+  filterSpan?.end(eligible.length);
   return { eligible, rejectedCount: rows.length - eligible.length, activeCount: rows.length };
 }
 
-function structuredLane(database, eligible, request, candidateK) {
+function structuredLane(database, eligible, request, candidateK, telemetry) {
   const axes = new Set((request.axes ?? []).map(normalizeFacet));
   const needs = new Set((request.needs ?? []).map(normalizeFacet));
   const ids = eligible.map((row) => row.style_rowid);
   if (ids.length === 0) return [];
+  const loadSpan = telemetry?.span('lane.structured.load', RESIDENCY.NATIVE);
   const axisRows = database.prepare(`
     SELECT style_rowid, axis FROM style_token_axes
     WHERE style_rowid IN (${placeholders(ids.length)})
@@ -182,28 +179,33 @@ function structuredLane(database, eligible, request, candidateK) {
     SELECT style_rowid, term FROM style_terms
     WHERE term_type = 'capability' AND style_rowid IN (${placeholders(ids.length)})
   `).all(...ids);
+  loadSpan?.end(axisRows.length + capabilities.length);
+  const rankSpan = telemetry?.span('lane.structured.rank', RESIDENCY.JS_RESIDENT);
   const axisById = new Map(ids.map((id) => [Number(id), new Set()]));
   const capabilitiesById = new Map(ids.map((id) => [Number(id), new Set()]));
   for (const row of axisRows) axisById.get(Number(row.style_rowid)).add(normalizeFacet(row.axis));
   for (const row of capabilities) {
     capabilitiesById.get(Number(row.style_rowid)).add(normalizeFacet(row.term));
   }
-  return eligible.map((row) => ({
+  const ranked = eligible.map((row) => ({
     id: row.style_id,
     rawScore: row.matchedRequiredFacets.length * 10
       + [...axes].filter((axis) => axisById.get(Number(row.style_rowid)).has(axis)).length * 2
       + [...needs].filter((need) => capabilitiesById.get(Number(row.style_rowid)).has(need)).length,
   })).sort((left, right) => right.rawScore - left.rawScore
     || compareRawStrings(left.id, right.id)).slice(0, candidateK);
+  rankSpan?.end(ranked.length);
+  return ranked;
 }
 
-function ftsLane(database, eligible, request, candidateK) {
+function ftsLane(database, eligible, request, candidateK, telemetry) {
   const terms = queryTerms(request.text ?? '');
   if (terms.length === 0) return [];
   const ids = eligible.map((row) => row.style_rowid);
   if (ids.length === 0) return [];
   const expression = terms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ');
-  return database.prepare(`
+  const span = telemetry?.span('lane.fts', RESIDENCY.NATIVE);
+  const ranked = database.prepare(`
     SELECT s.style_id AS id, bm25(style_fts, 5.0, 3.0, 2.0, 2.0, 1.0, 1.0) AS raw_score
     FROM style_fts
     JOIN styles s ON s.style_rowid = style_fts.rowid
@@ -213,6 +215,8 @@ function ftsLane(database, eligible, request, candidateK) {
     id: row.id,
     rawScore: Number(row.raw_score),
   }));
+  span?.end(ranked.length);
+  return ranked;
 }
 
 function cosine(left, right) {
@@ -229,24 +233,30 @@ function cosine(left, right) {
   return dot / (Math.sqrt(leftNorm) * Math.sqrt(rightNorm));
 }
 
-function vectorLane(database, eligible, request, candidateK) {
+function vectorLane(database, eligible, request, candidateK, telemetry) {
   if (!Array.isArray(request.queryVector) || !request.vectorProfile) return [];
   const queryVector = request.queryVector;
   const ids = eligible.map((row) => row.style_rowid);
   if (ids.length === 0) return [];
-  return database.prepare(`
+  const fetchSpan = telemetry?.span('lane.vector.fetch', RESIDENCY.NATIVE);
+  const rows = database.prepare(`
     SELECT s.style_id AS id, v.vector_json
     FROM style_vectors v
     JOIN styles s ON s.style_rowid = v.style_rowid
       AND s.retrieval_hash = v.retrieval_hash
       AND s.lifecycle_state = 'active'
     WHERE v.profile_id = ? AND v.style_rowid IN (${placeholders(ids.length)})
-  `).all(request.vectorProfile, ...ids).map((row) => ({
+  `).all(request.vectorProfile, ...ids);
+  fetchSpan?.end(rows.length);
+  const computeSpan = telemetry?.span('lane.vector.cosine', RESIDENCY.JS_RESIDENT);
+  const ranked = rows.map((row) => ({
     id: row.id,
     rawScore: cosine(queryVector, JSON.parse(row.vector_json)),
   })).filter((row) => row.rawScore !== null)
     .sort((left, right) => right.rawScore - left.rawScore
       || compareRawStrings(left.id, right.id)).slice(0, candidateK);
+  computeSpan?.end(ranked.length);
+  return ranked;
 }
 
 /**
@@ -283,7 +293,8 @@ export function weightedRrf(lanes, profile = FUSION_PROFILE) {
   ));
 }
 
-function validateGeneration(database) {
+function validateGeneration(database, telemetry) {
+  const readSpan = telemetry?.span('generation.read', RESIDENCY.NATIVE);
   const generation = database.prepare(`
     SELECT g.* FROM current_corpus_generation p
     JOIN corpus_generations g ON g.generation_hash = p.generation_hash
@@ -296,6 +307,8 @@ function validateGeneration(database) {
     SELECT style_id, aggregate_hash FROM styles
     WHERE lifecycle_state = 'active' ORDER BY style_id ASC
   `).all();
+  readSpan?.end(activeRows.length);
+  const verifySpan = telemetry?.span('generation.verify', RESIDENCY.JS_RESIDENT);
   const aggregateHash = digest(
     `style-corpus-aggregate-v1\0${activeRows.map((row) => (
       `${row.style_id}\0${row.aggregate_hash}\n`
@@ -305,6 +318,7 @@ function validateGeneration(database) {
     || aggregateHash !== generation.aggregate_corpus_hash) {
     throw retrievalError('generation-invalid', 'Published generation does not match indexed style state.');
   }
+  verifySpan?.end(activeRows.length);
   return generation;
 }
 
@@ -358,11 +372,16 @@ export function queryPersistentStyles(request = {}, options = {}) {
   validateQueryVector(request.queryVector);
   const database = options.database ?? openPublishedStyleDatabase(options.databasePath);
   const ownsDatabase = !options.database;
+  const telemetry = options.telemetry;
   const candidateK = Math.max(1, Math.min(MAX_CANDIDATE_K, request.candidateK ?? DEFAULT_CANDIDATE_K));
+  const fingerprintSpan = telemetry?.span('request.fingerprint', RESIDENCY.JS_RESIDENT);
   const fingerprint = requestFingerprint(request, candidateK, FUSION_PROFILE);
+  fingerprintSpan?.end(1);
+  const beginSpan = telemetry?.span('transaction.begin', RESIDENCY.NATIVE);
   database.exec('BEGIN');
+  beginSpan?.end(1);
   try {
-    const generation = validateGeneration(database);
+    const generation = validateGeneration(database, telemetry);
     if (request.generationHash !== undefined
       && request.generationHash !== generation.generation_hash) {
       throw retrievalError(
@@ -370,9 +389,11 @@ export function queryPersistentStyles(request = {}, options = {}) {
         'Requested generation is not the published generation.',
       );
     }
+    const vectorRevisionSpan = telemetry?.span('generation.vector-revision', RESIDENCY.NATIVE);
     const vectorRevision = request.vectorProfile ? Number(database.prepare(`
       SELECT revision FROM vector_projection_revisions WHERE profile_id = ?
     `).get(request.vectorProfile)?.revision ?? 0) : 0;
+    vectorRevisionSpan?.end(request.vectorProfile ? 1 : 0);
     let cursor = null;
     if (request.cursor) {
       cursor = decodeOpaque(request.cursor, 'invalid-cursor');
@@ -386,18 +407,18 @@ export function queryPersistentStyles(request = {}, options = {}) {
         throw retrievalError('invalid-cursor', 'Cursor does not match this retrieval request.');
       }
     }
-    const eligibility = loadEligibility(database, request);
+    const eligibility = loadEligibility(database, request, telemetry);
     const channelHealth = {
       structured: { state: 'healthy' },
       fts: { state: request.disableFts === true ? 'disabled' : 'healthy' },
       vector: { state: request.disableVector === true ? 'disabled' : 'healthy' },
     };
     const lanes = {
-      structured: structuredLane(database, eligibility.eligible, request, candidateK),
+      structured: structuredLane(database, eligibility.eligible, request, candidateK, telemetry),
     };
     if (!request.disableFts) {
       try {
-        lanes.fts = ftsLane(database, eligibility.eligible, request, candidateK);
+        lanes.fts = ftsLane(database, eligibility.eligible, request, candidateK, telemetry);
       } catch (error) {
         if (error.code === 'invalid-query') throw error;
         channelHealth.fts = { state: 'failed', reason: String(error.message ?? error) };
@@ -405,7 +426,7 @@ export function queryPersistentStyles(request = {}, options = {}) {
     }
     if (!request.disableVector) {
       try {
-        lanes.vector = vectorLane(database, eligibility.eligible, request, candidateK);
+        lanes.vector = vectorLane(database, eligibility.eligible, request, candidateK, telemetry);
       } catch (error) {
         if (error.code === 'invalid-query-vector') throw error;
         channelHealth.vector = { state: 'failed', reason: String(error.message ?? error) };
@@ -420,15 +441,18 @@ export function queryPersistentStyles(request = {}, options = {}) {
         : hasVector
           ? 'structured+vector'
           : 'structured-only';
+    const fusionSpan = telemetry?.span('fusion.rrf', RESIDENCY.JS_RESIDENT);
     let fused = weightedRrf(lanes);
     if (cursor) {
       fused = fused.filter((entry) => entry.fusedScore < cursor.lastScore
         || (entry.fusedScore === cursor.lastScore
           && compareRawStrings(entry.id, cursor.lastId) > 0));
     }
+    fusionSpan?.end(fused.length);
     const limit = Math.max(0, Math.min(5, Number.isInteger(request.limit) ? request.limit : 5));
     const page = fused.slice(0, limit);
     const rowById = new Map(eligibility.eligible.map((row) => [row.style_id, row]));
+    const hydrateSpan = telemetry?.span('cards.hydrate', RESIDENCY.NATIVE);
     const ranked = page.map((entry) => ({
       style: loadCardStyle(database, rowById.get(entry.id)),
       score: {
@@ -437,7 +461,11 @@ export function queryPersistentStyles(request = {}, options = {}) {
         total: Number(entry.fusedScore.toFixed(12)),
       },
     }));
+    hydrateSpan?.end(ranked.length);
+    const assembleSpan = telemetry?.span('cards.assemble', RESIDENCY.JS_RESIDENT);
     const cards = assembleCandidateCards(ranked, generation.generation_hash, request);
+    assembleSpan?.end(cards.length);
+    const encodeSpan = telemetry?.span('cards.attribution.encode', RESIDENCY.JS_RESIDENT);
     const attributions = Object.fromEntries(page.map((entry) => [entry.id, {
       sourceRanks: entry.sourceRanks,
       channelContributions: entry.channelContributions,
@@ -458,7 +486,10 @@ export function queryPersistentStyles(request = {}, options = {}) {
       lastScore: last.fusedScore,
       lastId: last.id,
     }) : null;
+    encodeSpan?.end(page.length);
+    const commitSpan = telemetry?.span('transaction.commit', RESIDENCY.NATIVE);
     database.exec('COMMIT');
+    commitSpan?.end(1);
     return {
       ok: true,
       generationHash: generation.generation_hash,

@@ -2,7 +2,6 @@
 // ║ Incremental Style Database Indexer                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-import { createHash } from 'node:crypto';
 import {
   lstat,
   open,
@@ -15,6 +14,20 @@ import {
 } from 'node:fs/promises';
 import path from 'node:path';
 
+import {
+  compareRawStrings,
+  digest,
+  lengthFrame,
+  stableJson,
+} from './canonical.mjs';
+import {
+  buildManifest,
+  hashArtifactFile,
+  writeManifestPointer,
+} from './generation-manifest.mjs';
+import {
+  RESIDENCY,
+} from './stage-telemetry.mjs';
 import {
   DEFAULT_STYLE_DATABASE_PATH,
   STYLE_DB_SCHEMA_VERSION,
@@ -32,7 +45,6 @@ export const INDEXER_LIFECYCLE = Object.freeze([
 ]);
 export const DEFAULT_EMBEDDING_PROFILE = 'style-default-v1';
 
-const HASH_PREFIX = 'sha256:';
 const AGGREGATE_HASH_VERSION = 'style-all-artifacts-v2';
 const RETRIEVAL_HASH_VERSION = 'style-retrieval-document-v1';
 const GENERATION_HASH_VERSION = 'style-corpus-generation-v2';
@@ -47,35 +59,8 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function compareRawStrings(left, right) {
-  return String(left) < String(right) ? -1 : String(left) > String(right) ? 1 : 0;
-}
-
 function normalizeTerm(value) {
   return String(value ?? '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-}
-
-function digest(parts) {
-  const hash = createHash('sha256');
-  for (const part of parts) hash.update(part);
-  return `${HASH_PREFIX}${hash.digest('hex')}`;
-}
-
-function lengthFrame(value) {
-  const buffer = Buffer.isBuffer(value) ? value : Buffer.from(String(value), 'utf8');
-  const length = Buffer.allocUnsafe(8);
-  length.writeBigUInt64BE(BigInt(buffer.byteLength));
-  return [length, buffer];
-}
-
-function stableJson(value) {
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
-  if (value && typeof value === 'object') {
-    const entries = Object.keys(value).sort(compareRawStrings)
-      .map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`);
-    return `{${entries.join(',')}}`;
-  }
-  return JSON.stringify(value);
 }
 
 function normalizeMarkdown(value) {
@@ -645,7 +630,11 @@ export async function indexStyleCorpus(options) {
     options.databasePath ?? DEFAULT_STYLE_DATABASE_PATH,
   );
   const ownsDatabase = !options.database;
-  const emit = (stage, details = {}) => options.onStage?.(stage, details);
+  const telemetry = options.telemetry ?? null;
+  const overallTimer = telemetry?.overall() ?? null;
+  const emit = (stage, details = {}) => {
+    options.onStage?.(stage, details);
+  };
   const profile = {
     id: options.embeddingProfile?.id ?? DEFAULT_EMBEDDING_PROFILE,
     provider: options.embeddingProfile?.provider ?? 'external',
@@ -655,6 +644,7 @@ export async function indexStyleCorpus(options) {
   };
   try {
     emit('DISCOVER');
+    const discoverSpan = telemetry?.span('discover', RESIDENCY.JS_RESIDENT);
     const corpusRealPath = await realpath(options.corpusRoot);
     const crawlPath = path.join(options.corpusRoot, '_manifest.json');
     const crawlRealPath = await realpath(crawlPath);
@@ -670,13 +660,17 @@ export async function indexStyleCorpus(options) {
     const entries = await readdir(options.corpusRoot, { withFileTypes: true });
     const slugs = entries.filter((entry) => entry.isDirectory() && !entry.name.startsWith('_'))
       .map((entry) => entry.name).sort(compareRawStrings);
+    discoverSpan?.end(slugs.length);
+    const snapshotSpan = telemetry?.span('snapshot.load', RESIDENCY.NATIVE);
     const currentRows = database.prepare(`
       SELECT s.style_rowid, s.style_id, s.slug, s.crawl_status, s.aggregate_hash,
         s.retrieval_hash, s.lifecycle_state, i.artifact_hint_hash, i.crawl_record_hash
       FROM styles s
       LEFT JOIN style_index_state i ON i.style_rowid = s.style_rowid
     `).all();
+    snapshotSpan?.end(currentRows.length);
     const currentBySlug = new Map(currentRows.map((row) => [row.slug, row]));
+    const verifySpan = telemetry?.span('verify.parse', RESIDENCY.JS_RESIDENT);
     const discovered = [];
     let candidateCount = 0;
     for (const slug of slugs) {
@@ -716,8 +710,10 @@ export async function indexStyleCorpus(options) {
         });
       }
     }
+    verifySpan?.end(candidateCount);
     emit('VERIFY', { discovered: slugs.length, candidates: candidateCount });
     emit('PARSE_VALIDATE', { verified: candidateCount });
+    const planSpan = telemetry?.span('plan.hash', RESIDENCY.JS_RESIDENT);
     const parsedStyles = discovered.map((entry) => entry.style);
     if (new Set(parsedStyles.map((style) => style.id)).size !== parsedStyles.length) {
       const error = new Error('The corpus contains duplicate style UUIDs.');
@@ -756,6 +752,8 @@ export async function indexStyleCorpus(options) {
         .map((style) => `${style.id}\0${style.aggregateHash}\n`),
     ]);
     const timestamp = nowIso();
+    planSpan?.end(parsedStyles.length);
+    const planLoadSpan = telemetry?.span('plan.load', RESIDENCY.NATIVE);
     const currentGeneration = database.prepare(`
       SELECT generation_hash FROM current_corpus_generation WHERE singleton = 1
     `).get()?.generation_hash ?? null;
@@ -790,6 +788,7 @@ export async function indexStyleCorpus(options) {
           ))
       )
     `).get(profile.id).count) : parsedStyles.length;
+    planLoadSpan?.end(1);
     const needsVectorQueue = !profileRow || missingProfileJobs > 0 || changedStyles.length > 0;
     const shouldPublish = changedStyles.length > 0
       || missingRows.length > 0
@@ -813,6 +812,7 @@ export async function indexStyleCorpus(options) {
         hintOnly: hintOnlyStyles.length,
         missing: missingRows.length,
       });
+      const commitSpan = telemetry?.span('commit.write', RESIDENCY.NATIVE);
       ensureEmbeddingProfile(database, profile, timestamp);
       const upsertStyle = database.prepare(`
         INSERT INTO styles(
@@ -890,17 +890,22 @@ export async function indexStyleCorpus(options) {
         enqueueVector(database, row.style_rowid, row.retrieval_hash, profile.id, timestamp);
         queued += 1;
       }
+      commitSpan?.end(changedStyles.length + queued);
 
       emit('VECTOR_DRAIN', { queued });
       if (!shouldPublish) {
+        const finalizeSpan = telemetry?.span('commit.finalize', RESIDENCY.NATIVE);
         database.exec('COMMIT');
+        finalizeSpan?.end(1);
         if (options.embedder) {
           const { drainVectorQueue } = await import('./vectors.mjs');
+          const drainSpan = telemetry?.span('vector.drain', RESIDENCY.JS_RESIDENT);
           await drainVectorQueue(database, {
             profileId: profile.id,
             embedder: options.embedder,
             limit: options.vectorDrainLimit,
           });
+          drainSpan?.end(queued);
         }
         return {
           ok: true,
@@ -914,6 +919,7 @@ export async function indexStyleCorpus(options) {
         };
       }
 
+      const missingSpan = telemetry?.span('publish.missing', RESIDENCY.NATIVE);
       let quarantined = 0;
       let tombstoned = 0;
       for (const row of missingRows) {
@@ -942,8 +948,10 @@ export async function indexStyleCorpus(options) {
           WHERE style_rowid = ?
         `).run(timestamp, row.style_rowid);
       }
+      missingSpan?.end(missingRows.length);
       resolveRelationships(database);
 
+      const publishSpan = telemetry?.span('publish.write', RESIDENCY.NATIVE);
       const counts = Object.fromEntries(database.prepare(`
         SELECT lifecycle_state, COUNT(*) AS count FROM styles GROUP BY lifecycle_state
       `).all().map((row) => [row.lifecycle_state, Number(row.count)]));
@@ -978,14 +986,17 @@ export async function indexStyleCorpus(options) {
       `).run(generationHash);
       options.failureInjector?.({ phase: 'PUBLISH', database });
       database.exec('COMMIT');
+      publishSpan?.end(changedStyles.length);
 
       if (options.embedder) {
         const { drainVectorQueue } = await import('./vectors.mjs');
+        const drainSpan = telemetry?.span('vector.drain', RESIDENCY.JS_RESIDENT);
         await drainVectorQueue(database, {
           profileId: profile.id,
           embedder: options.embedder,
           limit: options.vectorDrainLimit,
         });
+        drainSpan?.end(changedStyles.length);
       }
       return {
         ok: true,
@@ -1001,6 +1012,7 @@ export async function indexStyleCorpus(options) {
       throw error;
     }
   } finally {
+    overallTimer?.end();
     if (ownsDatabase) database.close();
   }
 }
@@ -1016,36 +1028,21 @@ async function writeGenerationPointer(
   generationHash,
   databaseFile,
   afterRename,
+  options = {},
 ) {
   if (path.basename(databaseFile) !== databaseFile) {
     throw new TypeError('Generation database file must be a basename.');
   }
   const pointerPath = `${databasePath}${STYLE_DATABASE_POINTER_SUFFIX}`;
-  const temporaryPath = `${pointerPath}.tmp-${process.pid}-${Date.now()}`;
-  const pointer = {
-    schemaVersion: 1,
+  const artifactPath = path.join(path.dirname(databasePath), databaseFile);
+  const { sha256, bytes } = await hashArtifactFile(artifactPath);
+  const manifest = buildManifest({
     generationHash,
-    databaseFile,
-  };
-  let temporaryHandle;
-  try {
-    temporaryHandle = await open(temporaryPath, 'wx');
-    await temporaryHandle.writeFile(`${JSON.stringify(pointer, null, 2)}\n`);
-    await temporaryHandle.sync();
-    await temporaryHandle.close();
-    temporaryHandle = null;
-    await rename(temporaryPath, pointerPath);
-    afterRename?.({ pointerPath, generationHash, databaseFile });
-    const directoryHandle = await open(path.dirname(pointerPath), 'r');
-    try {
-      await directoryHandle.sync();
-    } finally {
-      await directoryHandle.close();
-    }
-  } finally {
-    if (temporaryHandle) await temporaryHandle.close();
-    await rm(temporaryPath, { force: true });
-  }
+    createdAt: nowIso(),
+    parentGenerationHash: options.parentGenerationHash ?? null,
+    artifacts: { sqlite: { role: 'sqlite', file: databaseFile, sha256, bytes } },
+  });
+  await writeManifestPointer(pointerPath, manifest, { afterRename });
 }
 
 export async function buildStyleDatabase(options) {

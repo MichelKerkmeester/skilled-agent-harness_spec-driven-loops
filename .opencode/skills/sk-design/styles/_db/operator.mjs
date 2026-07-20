@@ -13,12 +13,38 @@ import {
   rollbackStyleDatabase,
 } from './indexer.mjs';
 import {
+  manifestArtifactFiles,
+  readManifest,
+} from './generation-manifest.mjs';
+import {
   DEFAULT_STYLE_DATABASE_PATH,
   STYLE_DATABASE_POINTER_SUFFIX,
   openPublishedStyleDatabase,
   resolvePublishedDatabasePath,
 } from './schema.mjs';
 import { rebuildVectorProjection } from './vectors.mjs';
+
+/**
+ * Read the published manifest's artifact roles and absolute file paths.
+ *
+ * @param {string} databasePath - Logical database path.
+ * @returns {Promise<{roles:string[], paths:string[]}>} Current-manifest artifacts.
+ */
+async function currentManifestArtifacts(databasePath) {
+  const pointerPath = `${databasePath}${STYLE_DATABASE_POINTER_SUFFIX}`;
+  if (!existsSync(pointerPath)) return { roles: [], paths: [] };
+  try {
+    const manifest = await readManifest(pointerPath);
+    const directory = path.dirname(databasePath);
+    return {
+      roles: Object.keys(manifest.artifacts).sort(),
+      paths: manifestArtifactFiles({ artifacts: manifest.artifacts })
+        .map((file) => path.resolve(path.join(directory, file))),
+    };
+  } catch {
+    return { roles: [], paths: [] };
+  }
+}
 
 function optionValue(argumentsList, name) {
   const index = argumentsList.indexOf(name);
@@ -68,6 +94,7 @@ export async function getStyleDatabaseStatus(options = {}) {
     };
   }
   const currentGenerationPath = resolvePublishedDatabasePath(databasePath);
+  const manifestArtifacts = await currentManifestArtifacts(databasePath);
   const database = openPublishedStyleDatabase(databasePath);
   try {
     const generationHash = database.prepare(`
@@ -82,6 +109,7 @@ export async function getStyleDatabaseStatus(options = {}) {
       published: true,
       generationHash,
       currentGenerationPath,
+      manifestArtifacts: manifestArtifacts.roles,
       rollbackGenerationPath: generations
         .find((entry) => entry.path !== currentGenerationPath)?.path ?? null,
       retainedGenerationPaths: generations.map((entry) => entry.path),
@@ -105,6 +133,11 @@ export async function pruneStyleDatabaseGenerations(options) {
   const rollbackGenerationPath = options?.rollbackGenerationPath ?? null;
   const keep = new Set([currentGenerationPath, rollbackGenerationPath]
     .filter(Boolean).map((value) => path.resolve(value)));
+  // Protect every artifact the published manifest references, so a generation is
+  // retained as a whole unit once it spans more than the SQLite file.
+  for (const artifactPath of (await currentManifestArtifacts(databasePath)).paths) {
+    keep.add(artifactPath);
+  }
   const generations = await listGenerationPaths(databasePath);
   const removed = [];
   for (const generation of generations) {

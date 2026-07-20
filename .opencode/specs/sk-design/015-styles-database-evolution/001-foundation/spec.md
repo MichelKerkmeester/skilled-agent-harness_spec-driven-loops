@@ -69,26 +69,45 @@ Ship the measurement and contract foundation — generation manifest, stage tele
 ## 3. SCOPE
 
 ### In Scope
-- Design and document the generation manifest contract (atomic publish, rollback, N-generation retention).
-- Design and document stage telemetry instrumentation (indexer + query lanes, residency-honest).
-- Design and document the pinned TypeScript differential oracle (frozen byte reference).
-- Design and document 1x/10x/100x replay fixtures and labeled relevance judgments.
+- Build and ship the generation manifest — a versioned, multi-artifact pointer with atomic publish, rollback, and N-generation retention (REQ-001).
+- Build and ship stage telemetry across the indexer AND query lanes, residency-honest (native SQLite/FTS5 vs JS-resident compute attributed separately) (REQ-002).
+- Build and ship the pinned differential oracle — a freeze/replay harness over frozen JS/ESM golden bytes; no TypeScript toolchain is introduced (REQ-003).
+- Build and ship 1x/10x/100x deterministic replay fixtures and a versioned, honestly-labeled relevance-judgment seed set (REQ-004, REQ-005).
 - This phase-child's own Level 2 spec-folder documentation.
 
 ### Out of Scope
-- Building or shipping any of the above (this packet is PLANNED; implementation is a future session) - see `plan.md` Phase A-D.
-- Any Rust work - explicitly excluded from Phase 0 (REQ-006).
+- Any Rust work - explicitly excluded from Phase 0 (REQ-006); SQLite/FTS5 are already native.
+- Introducing a TypeScript build step (`tsc` / `tsconfig`) - the oracle ships as pinned JS/ESM golden bytes.
+- Human-authored gold relevance labels - this phase ships an honestly-labeled seed (authored-similar + silver-heuristic) and flags that human labeling is still required (REQ-005).
 - Phase 1-3 roadmap work (`002-js-capabilities`, `003-measured-native`, `004-growth`) - blocked on this phase's exit gate.
+- Any change outside the `.opencode/skills/sk-design/styles/_db/` tree and this packet's own docs.
 
 ### Files to Change
 
-None in this packet beyond its own spec-folder docs. Reference-only future surfaces (not modified this phase):
+Real build surfaces this session, all under `.opencode/skills/sk-design/styles/_db/` (plus this packet's docs):
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-design/styles/_db/retrieval.mjs` | Reference only (not modified) | Query lane the future telemetry/oracle will wrap |
-| `.opencode/skills/sk-design/styles/_db/vectors.mjs` | Reference only (not modified) | JS-resident vector projection the oracle will snapshot |
-| Indexer + publication path (styles DB build pipeline) | Reference only (not modified) | Target of the future generation manifest's atomic publish |
+| `_db/generation-manifest.mjs` | New | Versioned multi-artifact manifest: atomic publish, rollback, N-generation retention (REQ-001) |
+| `_db/stage-telemetry.mjs` | New | Residency-tagged per-stage latency/throughput/RSS recorder (REQ-002) |
+| `_db/canonical.mjs` | New | Shared canonicalizer (stable-JSON + length-framed digest) hoisted so the oracle cannot diverge from production serialization (REQ-003) |
+| `_db/oracle/differential-oracle.mjs` | New | Freeze/replay harness asserting byte-for-byte parity (REQ-003) |
+| `_db/oracle/query-set.mjs` | New | Fixed query matrix driving the oracle (REQ-003) |
+| `_db/oracle/replay-fixtures.mjs` | New | Deterministic 1x/10x/100x fixture generator (REQ-004) |
+| `_db/oracle/relevance-judgments.mjs` | New | Judgment loader + provenance schema (REQ-005) |
+| `_db/oracle/golden/` | New | Frozen canonical golden bytes replayed against (REQ-003) |
+| `_db/oracle/relevance-judgments.seed.json` | New | Small versioned seed (authored-similar + silver-heuristic); human labeling flagged (REQ-005) |
+| `_db/__tests__/manifest.test.mjs` | New | Atomic publish/rollback/retention + legacy-pointer tests (REQ-001) |
+| `_db/__tests__/telemetry.test.mjs` | New | Per-stage emission, no-blended-bucket, DTO-unchanged tests (REQ-002) |
+| `_db/__tests__/oracle.test.mjs` | New | Freeze/replay byte-parity + perturbation negative test (REQ-003) |
+| `_db/__tests__/fixtures.test.mjs` | New | Regenerate-and-hash determinism at 1x/10x/100x (REQ-004) |
+| `_db/__tests__/judgments.test.mjs` | New | Provenance-on-every-row + authored-similar traceability (REQ-005) |
+| `_db/indexer.mjs` | Modified | Emit the generation manifest on publish; wrap lifecycle stages with telemetry; use the shared canonicalizer (REQ-001, REQ-002, REQ-003) |
+| `_db/schema.mjs` | Modified | Generalize the single-file pointer into a multi-artifact manifest target; keep immutable-generation guards (REQ-001) |
+| `_db/operator.mjs` | Modified | Extend retention/rollback to flip and prune whole manifests (REQ-001) |
+| `_db/retrieval.mjs` | Modified | Optional side-channel telemetry hook (DTO bytes unchanged); use the shared canonicalizer (REQ-002, REQ-003) |
+| `_db/__tests__/index.mjs` | Modified | Register the five new test suites (REQ-001..005) |
+| `_db/README.md` | Modified | Document the manifest, telemetry, oracle, fixtures, and judgment-seed provenance |
 
 <!-- /ANCHOR:scope -->
 
@@ -101,17 +120,17 @@ None in this packet beyond its own spec-folder docs. Reference-only future surfa
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Generation manifest — a versioned, multi-artifact manifest that atomically publishes SQLite + screenshot features + model profiles + optional index under one pointer, with rollback (N-generation retention) | A generation publishes and rolls back atomically via a single pointer flip; no partial/torn publication is observable to readers |
-| REQ-002 | Stage telemetry — instrument per-stage latency/throughput/RSS across the indexer AND query lanes; residency-honest (native FTS5/SQLite compute decomposed separately from JS-resident cosine/sort/RRF) | Every indexer/query stage emits latency+throughput+RSS; native vs JS-resident compute is attributable, not blended |
-| REQ-003 | Pinned TypeScript differential oracle — freeze current retrieval/index outputs as the byte reference (DTO shape, hashes, ordering, tie-breaks) | The oracle reproduces current outputs byte-for-byte and is the single parity reference all later phases replay against |
-| REQ-006 | Phase 0 is a HARD BLOCKER — no Phase 1/2/3 work begins until REQ-001..005 exist and are versioned | Later phases cite Phase 0 completion as their entry gate; no capability/native work can prove a claim or roll back without this foundation |
+| REQ-001 | Generation manifest — a versioned, multi-artifact manifest that atomically publishes SQLite + screenshot features + model profiles + optional index under one pointer, with rollback (N-generation retention) | Built in `_db/`: a `node --test` suite proves a generation publishes and rolls back via a single manifest-pointer flip, an interrupted publish leaves the prior manifest fully readable, retention keeps N generations, and legacy single-file pointers still open |
+| REQ-002 | Stage telemetry — instrument per-stage latency/throughput/RSS across the indexer AND query lanes; residency-honest (native FTS5/SQLite compute decomposed separately from JS-resident cosine/sort/RRF) | Built and tested: every indexer/query stage emits latency+throughput+RSS through the recorder; native and JS-resident buckets sum to the total with zero unattributed cost; telemetry-off leaves the retrieval DTO byte-identical to the oracle golden |
+| REQ-003 | Pinned differential oracle (JS/ESM golden bytes) — freeze current retrieval/index outputs as the byte reference (DTO shape, hashes, ordering, tie-breaks) via the shared canonicalizer | Built and tested: `freeze()` writes canonical golden bytes and `replay()` re-derives them byte-for-byte; a deliberate ordering/tie-break/field perturbation fails the oracle; no TypeScript toolchain is introduced |
+| REQ-006 | Phase 0 is a HARD BLOCKER — no Phase 1/2/3 work begins until REQ-001..005 are built, tested, and versioned | Later phases cite Phase 0 completion as their entry gate; no capability/native work can prove a claim or roll back without this foundation; Phase 0 itself ships no Rust |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Replay fixtures — representative 1x/10x/100x deterministic corpora | Fixtures exist, are versioned, and drive deterministic replay at all three scales |
-| REQ-005 | Labeled relevance judgments — retrieval-quality ground truth for regression measurement | A labeled judgment set exists and is versioned |
+| REQ-004 | Replay fixtures — representative 1x/10x/100x deterministic corpora | Built and tested: a deterministic generator materializes 1x/10x/100x corpora to temp dirs, regenerate-and-hash proves byte-determinism, and the oracle replays at all three scales |
+| REQ-005 | Labeled relevance judgments — retrieval-quality ground truth for regression measurement | A versioned judgment seed exists where every row carries `label_source ∈ {authored-similar, silver-heuristic}` and provenance; authored rows trace to real `style_relationships`; the header flags that human gold labeling is still required and no row is presented as human gold |
 
 <!-- /ANCHOR:requirements -->
 
@@ -122,7 +141,7 @@ None in this packet beyond its own spec-folder docs. Reference-only future surfa
 
 - **SC-001**: A generation manifest publish/rollback cycle completes with zero torn/partial state observable to any reader.
 - **SC-002**: Stage telemetry attributes 100% of indexer + query lane cost to either native (SQLite/FTS5) or JS-resident compute, with no blended/opaque buckets.
-- **SC-003**: The pinned TS oracle reproduces current retrieval/index outputs byte-for-byte across all three replay scales (1x/10x/100x).
+- **SC-003**: The pinned oracle (JS/ESM golden bytes) reproduces current retrieval/index outputs byte-for-byte across all three replay scales (1x/10x/100x).
 
 <!-- /ANCHOR:success-criteria -->
 
@@ -183,10 +202,10 @@ None in this packet beyond its own spec-folder docs. Reference-only future surfa
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | Docs-only this packet (0 LOC); defines the contract 3 later phases depend on |
+| Scope | 14/25 | Real build across the `_db/` tree (generation manifest, stage telemetry, oracle, fixtures, judgments + tests); no longer 0 LOC, but reuses existing atomic-flip/retention machinery |
 | Risk | 15/25 | Hard blocker — an incorrect foundation invalidates every later phase's parity/rollback claims |
 | Research | 15/20 | Novel manifest/telemetry/oracle design, not a port of existing code |
-| **Total** | **38/70** | **Level 2** |
+| **Total** | **44/70** | **Level 2** |
 
 <!-- /ANCHOR:complexity -->
 

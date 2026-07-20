@@ -3,9 +3,10 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { DatabaseSync } from 'node:sqlite';
-import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { resolvePublishedTarget } from './generation-manifest.mjs';
 
 export const STYLE_DB_SCHEMA_VERSION = 2;
 export const DEFAULT_STYLE_DATABASE_PATH = path.join(
@@ -14,44 +15,11 @@ export const DEFAULT_STYLE_DATABASE_PATH = path.join(
 );
 export const STYLE_DATABASE_POINTER_SUFFIX = '.current.json';
 
-function isContained(rootPath, candidatePath) {
-  const relative = path.relative(rootPath, candidatePath);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
+// The published pointer is a versioned multi-artifact manifest; legacy
+// single-file pointers still resolve. Manifest ownership lives in
+// generation-manifest.mjs so publish and resolve share one shape contract.
 function resolvePublishedDatabaseTarget(databasePath) {
-  const pointerPath = `${databasePath}${STYLE_DATABASE_POINTER_SUFFIX}`;
-  if (!existsSync(pointerPath)) return { databasePath, generationHash: null };
-  let pointer;
-  try {
-    pointer = JSON.parse(readFileSync(pointerPath, 'utf8'));
-  } catch (cause) {
-    const error = new Error('Style database generation pointer is invalid JSON.', { cause });
-    error.code = 'generation-pointer-invalid';
-    throw error;
-  }
-  if (pointer?.schemaVersion !== 1
-    || typeof pointer.generationHash !== 'string'
-    || typeof pointer.databaseFile !== 'string'
-    || path.basename(pointer.databaseFile) !== pointer.databaseFile) {
-    const error = new Error('Style database generation pointer has an invalid shape.');
-    error.code = 'generation-pointer-invalid';
-    throw error;
-  }
-  const publishedPath = path.join(path.dirname(databasePath), pointer.databaseFile);
-  if (!existsSync(publishedPath)) {
-    const error = new Error('Published style database generation is unavailable.');
-    error.code = 'generation-unavailable';
-    throw error;
-  }
-  const generationDirectory = realpathSync(path.dirname(databasePath));
-  const publishedRealPath = realpathSync(publishedPath);
-  if (!isContained(generationDirectory, publishedRealPath)) {
-    const error = new Error('Published style database generation escapes its directory.');
-    error.code = 'generation-pointer-escape';
-    throw error;
-  }
-  return { databasePath: publishedPath, generationHash: pointer.generationHash };
+  return resolvePublishedTarget(databasePath, STYLE_DATABASE_POINTER_SUFFIX);
 }
 
 /**

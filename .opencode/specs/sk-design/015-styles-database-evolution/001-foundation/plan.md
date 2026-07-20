@@ -47,7 +47,7 @@ _memory:
 | **Testing** | `node --test`; byte-for-byte differential parity vs the pinned TS oracle |
 
 ### Overview
-This phase plans the measurement and contract foundation for the styles-database evolution roadmap: a versioned generation manifest, residency-honest stage telemetry, a pinned TypeScript differential oracle, and replay fixtures with labeled relevance judgments. No Rust in Phase 0 — SQLite/FTS5 are already native, and the roadmap's own verdict is "Rust only if measured."
+This phase builds and ships the measurement and contract foundation for the styles-database evolution roadmap: a versioned generation manifest, residency-honest stage telemetry, a pinned differential oracle (JS/ESM golden bytes), and replay fixtures with an honestly-labeled relevance-judgment seed. No Rust in Phase 0 — SQLite/FTS5 are already native, and the roadmap's own verdict is "Rust only if measured."
 
 <!-- /ANCHOR:summary -->
 
@@ -62,8 +62,8 @@ This phase plans the measurement and contract foundation for the styles-database
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met (deferred — Phase A-D implementation is future work)
-- [ ] Tests passing (N/A this phase — no code ships)
+- [ ] All acceptance criteria met (REQ-001..006, proven by the build's `node --test` suite)
+- [ ] Tests passing (`node --test './__tests__/*.test.mjs'`, zero regressions vs the pre-change baseline)
 - [x] Docs updated (spec/plan/tasks/checklist/implementation-summary)
 
 <!-- /ANCHOR:quality-gates -->
@@ -74,7 +74,7 @@ This phase plans the measurement and contract foundation for the styles-database
 ## 3. ARCHITECTURE
 
 ### Pattern
-Measurement/contract foundation — no runtime pattern ships this phase (planning packet).
+Measurement/contract foundation built directly on the existing `_db/` publish + retrieval pipeline — it reuses the pipeline's atomic-flip and N-generation retention machinery rather than introducing a new runtime pattern.
 
 ### Key Components
 - **Generation Manifest**: atomic publish/rollback pointer spanning SQLite + screenshot features + model profiles + optional index.
@@ -92,7 +92,11 @@ Indexing writes land in a new generation, the manifest publishes it atomically, 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-N/A — planning packet, not a bug fix. No production code changes ship in this phase-child; the affected-surfaces inventory applies once Phase A-D are implemented in a future session.
+Feature build, not a bug fix. All affected surfaces live under `.opencode/skills/sk-design/styles/_db/`:
+
+- **New:** `generation-manifest.mjs`, `stage-telemetry.mjs`, `canonical.mjs`, `oracle/{differential-oracle,query-set,replay-fixtures,relevance-judgments}.mjs`, `oracle/golden/`, `oracle/relevance-judgments.seed.json`, and five `__tests__/*.test.mjs` suites.
+- **Modified:** `indexer.mjs`, `schema.mjs`, `operator.mjs`, `retrieval.mjs`, `__tests__/index.mjs`, `README.md`.
+- **Reference (read-only):** `vectors.mjs` — the JS-resident vector projection the oracle snapshots and telemetry attributes.
 
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -135,7 +139,7 @@ Manifest publishes/rolls back atomically; telemetry emits per-stage latency/thro
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Manifest publish/rollback, telemetry emission | `node --test` |
-| Differential | Oracle byte-for-byte parity vs current outputs | `node --test` + pinned TS oracle |
+| Differential | Oracle byte-for-byte parity vs current outputs | `node --test` + pinned JS/ESM golden bytes |
 | Replay | 1x/10x/100x fixture corpora | Deterministic replay harness |
 
 <!-- /ANCHOR:testing -->
@@ -159,8 +163,8 @@ Manifest publishes/rolls back atomically; telemetry emits per-stage latency/thro
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: N/A this phase — no runtime artifact ships; documentation-only rollback is a plain revert of the spec-folder docs.
-- **Procedure**: `git revert` the commit(s) that added `001-foundation/` docs; no data or runtime rollback required.
+- **Trigger**: A shipped `_db/` artifact regresses the oracle or breaks the `node --test` suite.
+- **Procedure**: `git revert` the build commit(s); the generation manifest additionally supports runtime rollback — flip the pointer back to a retained prior generation with no data loss (generations are immutable and content-addressed).
 
 <!-- /ANCHOR:rollback -->
 
@@ -191,11 +195,11 @@ Phase B (Telemetry) ─────┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| A: Generation Manifest | Medium | TBD — future implementation session |
-| B: Stage Telemetry | Medium | TBD — future implementation session |
-| C: Pinned TS Oracle | Medium | TBD — future implementation session |
-| D: Fixtures & Judgments | Low-Medium | TBD — future implementation session |
-| **Total** | | **TBD — planning packet, no build session scheduled yet** |
+| A: Generation Manifest | Medium | This session — reuses the existing atomic-flip / retention machinery |
+| B: Stage Telemetry | Medium | This session — additive side-channel instrumentation, DTO unchanged |
+| C: Pinned Oracle | Medium | This session — freeze/replay over the shared canonicalizer |
+| D: Fixtures & Judgments | Low-Medium | This session — seeded generator + honestly-labeled seed |
+| **Total** | | **One build session (this session); no hour estimate — effort is bounded by reuse of the existing publish/retrieval code** |
 
 <!-- /ANCHOR:effort -->
 
@@ -205,19 +209,19 @@ Phase B (Telemetry) ─────┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (N/A — no data migrations this phase)
-- [ ] Feature flag configured (N/A — no runtime component ships this phase)
-- [ ] Monitoring alerts set (N/A — telemetry itself is Phase B's future deliverable)
+- [ ] Backup created (N/A — generations are immutable and content-addressed; the prior manifest is retained by policy)
+- [ ] Feature flag configured (telemetry is off by default; enabling it is a no-op on the retrieval DTO)
+- [ ] Monitoring alerts set (Phase B stage telemetry emits per-stage latency/throughput/RSS once wired)
 
 ### Rollback Procedure
-1. N/A this phase — no runtime code ships.
-2. Revert code: `git revert` the doc-only commit(s) if the plan itself needs to change.
-3. Verify: confirm the phase folder returns to its pre-authoring state.
-4. Notify: none required — planning-only, no user-facing impact.
+1. Runtime: flip the manifest pointer back to the retained prior generation (no data loss).
+2. Code: `git revert` the build commit(s) that landed the `_db/` changes.
+3. Verify: re-run `node --test './__tests__/*.test.mjs'` and confirm the oracle replays against the retained generation.
+4. Notify: none required — the styles DB is internal tooling with no external consumers.
 
 ### Data Reversal
-- **Has data migrations?** No.
-- **Reversal procedure**: N/A.
+- **Has data migrations?** No — the SQLite DB is rebuildable from the flat-file corpus, and generations are immutable and content-addressed.
+- **Reversal procedure**: flip the manifest pointer to the prior generation, or rebuild from the corpus via the indexer.
 
 <!-- /ANCHOR:enhanced-rollback -->
 

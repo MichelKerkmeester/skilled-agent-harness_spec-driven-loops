@@ -44,11 +44,6 @@
       ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
       ".opencode/skills/sk-design/styles/_db/vectors.mjs",
       ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
-      ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/spec.md",
-      ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/plan.md",
-      ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/tasks.md",
-      ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/checklist.md",
-      ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/implementation-summary.md",
       "plan.md",
       "spec.md",
       "tasks.md",
@@ -69,33 +64,33 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/015-styles-database-evolution/001-foundation/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,15 +190,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The styles database evolution roadmap (015) has no measurement plane",
     "created_at": "2026-07-20T09:21:22.622Z",
-    "last_save_at": "2026-07-20T09:28:30.743Z",
+    "last_save_at": "2026-07-20T17:45:14.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25a682b19a43e254240cd3cad7c4cb35a28c9bf8e15faf97889f6c0ab1b79f4c",
+    "source_fingerprint": "sha256:fd57775a2c3fd7d272e22957b0ab98d8ef228c7fc5b8ca41a92e78b5403505e8",
     "source_doc_hashes": {
-      "spec.md": "172fd9d59eb62fac18a1babd9849633c8de736199a0d0eb3b44b806de365461a",
-      "plan.md": "2794a14b8a85a9c4767761d849bf03d0e634006f9e66ed996cb12b07a464c8d1",
-      "tasks.md": "3c3a130eff9f38cb1b9c8ea8f5d1e21c42c21cc1043a65f212b6d0a281be5928",
-      "checklist.md": "4c4d711ae63ae7cf5b0c7c78eff5ae8115a0d032f5255c2ca291c679b26a3bbb",
-      "implementation-summary.md": "85e363ead5ae5efb8886cac97002dd3db09fec4aa8d58ebaf58578292edfc762"
+      "spec.md": "ab3e5ab6585406c825956d553c7f5e2dcca29b27abe397e941b8ba10d8298e6a",
+      "plan.md": "ea21bf9c2fb76ba3725a21466ce81463c88f373ce494d4f7a7b60b4920e1787e",
+      "tasks.md": "3ffe5aef59473195bed711184cb07c3528b9b332c226c64da6e4700869348823",
+      "checklist.md": "b90c695e4f6024c1113f76c49b369ecb4c335d662b6cf149fa1af05f4b323e26",
+      "implementation-summary.md": "f77faa4a1a3f44e692f4b24b6011c03b8f6813f8c48ad709227f9d228eb107b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

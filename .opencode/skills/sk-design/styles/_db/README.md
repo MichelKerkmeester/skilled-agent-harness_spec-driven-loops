@@ -8,9 +8,11 @@ directory. The flat files remain authoritative. Normal persistent reads never wa
 `styles.style_id` is the stable UUID identity; `style_rowid` is an internal join key for FTS,
 vectors, and normalized children. A successful index run writes source rows, vector jobs, an
 immutable `corpus_generations` record, and the singleton `current_corpus_generation` pointer in
-one `BEGIN IMMEDIATE` transaction. Readers realpath-check the selected file against the generation
-directory, bind the pointer's generation hash to the opened database, then validate that the schema
-version, active count, and aggregate hash agree. Any mismatch fails closed.
+one `BEGIN IMMEDIATE` transaction. The on-disk publish pointer (`.current.json`) is a versioned
+generation manifest that content-addresses one or more immutable artifacts (`generation-manifest.mjs`);
+legacy single-file pointers still resolve. Readers realpath-check the selected file against the
+generation directory, bind the pointer's generation hash to the opened database, then validate that
+the schema version, active count, and aggregate hash agree. Any mismatch fails closed.
 
 Artifact freshness uses `style-all-artifacts-v2`: the stable style UUID, sorted artifact roles, and
 raw bytes are encoded as unsigned 64-bit length frames before SHA-256. The mutable slug locator is
@@ -83,6 +85,51 @@ an explicitly retained generation; `rollback` selects the newest retained non-cu
 unless `--generation` is supplied. `repair` invalidates and requeues one vector profile. After each
 build, cutover, or rollback, pruning keeps the current generation and, when available, one rollback
 generation; older generation files and SQLite sidecars are removed.
+
+## Measurement & Contract Foundation
+
+The `_db/` tree carries a measurement and parity plane so later work can prove a claim, detect a
+regression, and roll back safely. Every piece serializes identity through one shared canonicalizer
+(`canonical.mjs`: stable-key JSON plus length-framed SHA-256), so a byte reference can never drift
+from what production emits.
+
+- **Generation manifest** (`generation-manifest.mjs`) — a versioned pointer that content-addresses
+  a generation's artifacts (the SQLite projection today, plus optional screenshot features, model
+  profiles, and index). Publishing is one atomic pointer flip with fsync durability, so a reader
+  sees the whole prior manifest or the whole new one. `pruneManifestGenerations` drops a generation
+  as a unit; an artifact shared with a retained manifest is never removed. Digest verification is
+  opt-in (`verifyDigests`) so the query hot path is not re-hashed on every open. Currently the real
+  build publishes only the `sqlite` artifact; the multi-artifact machinery is proven by the manifest
+  test suite and activates as later phases produce the additional artifacts.
+
+- **Stage telemetry** (`stage-telemetry.mjs`) — a residency-honest recorder threaded (off by
+  default) through the indexer lifecycle and the query lanes. Every stage is tagged `native` (work
+  inside the node:sqlite / FTS5 boundary) or `js-resident` (JS heap and event-loop work: fs
+  orchestration, JSON decode, cosine, sort, RRF, card assembly). There is no blended bucket — an
+  unattributed record cannot be created — so native and JS-resident latency sum to the total. The
+  vector lane splits its native row fetch from JS-resident `JSON.parse` + cosine + sort. Telemetry
+  is a pure side channel: with it on or off, the retrieval DTO is byte-identical.
+
+- **Differential oracle** (`oracle/differential-oracle.mjs`, `oracle/query-set.mjs`,
+  `oracle/golden/`) — freezes the current retrieval/index output for a fixed query matrix as
+  canonical golden bytes, then replays byte-for-byte. A deliberate ordering, tie-break, or field
+  perturbation fails replay; a missing golden is reported rather than silently passing. No
+  TypeScript toolchain is introduced — the oracle ships as pinned JS/ESM golden bytes. Regenerate
+  the golden only via `freezeOracle` when an intended output change lands.
+
+- **Replay fixtures** (`oracle/replay-fixtures.mjs`) — deterministic 1x/10x/100x corpora
+  (`REPLAY_SCALES`, base 13 → 13/130/1,300; the 100x scale approximates the real ~1,290-bundle
+  corpus and is tunable). Every byte is a pure function of an index-derived seed, so regenerating a
+  scale yields identical bytes and the oracle reproduces identical query output. Per-scale corpus
+  and oracle hashes are frozen in `oracle/golden/scales.json`.
+
+- **Relevance judgments** (`oracle/relevance-judgments.mjs`,
+  `oracle/relevance-judgments.seed.json`) — a versioned, honestly-labeled seed. `authored-similar`
+  rows trace to a style's own `designSystem.similar[]` authorship resolved against the corpus;
+  `silver-heuristic` rows are retrieval-derived weak positives where a candidate agrees across at
+  least two lanes. Every row carries its `label_source` and provenance. **No row is human gold**,
+  and the seed header flags that human relevance labeling is still required for a true judged qrels
+  set.
 
 ## Adapter Modes
 
