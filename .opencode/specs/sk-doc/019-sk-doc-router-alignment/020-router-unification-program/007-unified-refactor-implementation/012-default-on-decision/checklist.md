@@ -12,9 +12,8 @@ _memory:
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Prepared the unchecked Planned verification matrix"
-    next_safe_action: "Collect implementation evidence only after ratification"
-    blockers:
-      - "Operator ratification is pending"
+    next_safe_action: "Collect implementation evidence only after the go-ahead to begin"
+    blockers: []
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -216,7 +215,7 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Decision owner | [ ] Planned ratification | |
+| Operator | Decision owner | [x] Ruling settled on the analysis (adopt phased path); override available | ADR-001 Accepted |
 | Runtime owner | P0-P4 implementation owner | [ ] Planned review | |
 | Benchmark owner | Frozen-scorer and parity owner | [ ] Planned review | |
 <!-- /ANCHOR:sign-off -->

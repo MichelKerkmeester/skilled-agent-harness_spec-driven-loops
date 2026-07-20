@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Prepared the Planned P0-to-P4 supporting plan"
-    next_safe_action: "Obtain operator ratification, then begin P0 only"
-    blockers:
-      - "Operator ratification of the recommended ruling is pending"
+    next_safe_action: "Begin P0 on operator go-ahead"
+    blockers: []
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -29,9 +28,9 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Will the operator ratify the phased ruling?"
       - "Which environment profile will host the P2 canary?"
-    answered_questions: []
+    answered_questions:
+      - "Flip the default now or adopt the phased path? Adopt the phased path, settled on the analysis; operator may override."
 ---
 # Implementation Plan: Compiled Routing Default-On Safe Cutover
 
@@ -74,7 +73,7 @@ Each stage preserves two invariants: the three scorer files stay byte-pinned and
 
 ### Definition of Ready
 
-- [ ] Operator ratification is recorded in `decision-record.md`.
+- [ ] The ruling is settled in `decision-record.md` (ADR-001 Accepted, adopt the phased path); an operator override to flip-now is recorded there if chosen.
 - [ ] The fallback, drift-CI, observability, and migration contracts in `spec.md` and `decision-record.md` are treated as authoritative.
 - [ ] Baseline hashes for the three frozen scorer files are captured before implementation.
 - [ ] The P2 canary environment profile and promotion owner are named.
@@ -204,7 +203,7 @@ Required inventories before implementation:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Operator ratification of the recommended ruling | Governance | Pending | No implementation stage begins |
+| Operator go-ahead to begin implementation | Governance | Pending | No implementation stage begins until given |
 | Authoritative contracts in `spec.md` and `decision-record.md` | Internal | Available | Dependent phases must not invent alternate fallback or eligibility rules |
 | Create-skill onboarding alignment | Sibling phase | Planned | Future hubs cannot self-onboard as compiled-ready |
 | Lane C benchmark alignment | Sibling phase | Planned | The benchmark does not yet exercise the compiled-serving path |
@@ -229,7 +228,7 @@ Required inventories before implementation:
 ## L2: PHASE DEPENDENCIES
 
 ```text
-Operator ratification
+Operator go-ahead to begin
         |
         v
 P0 governance + observability
@@ -247,7 +246,7 @@ P1 drift CI -----> P2 one-profile canary
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| P0 | Operator ratification | P1, P2 |
+| P0 | Operator go-ahead to begin | P1, P2 |
 | P1 | P0 status classification and stable resolver decision | P3, P4 |
 | P2 | P0 observability and named canary profile | P3, P4 |
 | P3 | P1 green and P2 canary evidence | P4 |
@@ -347,7 +346,7 @@ P1 drift CI -----> P2 one-profile canary
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Operator ratification** - gating decision.
+1. **Operator go-ahead to begin implementation** - execution gate; the ruling itself is settled.
 2. **P0 flag governance, observability, and resolver remediation** - prerequisite safety surface.
 3. **P1 drift CI and P2 canary** - parallel only after P0 is green.
 4. **P3 derived eligibility** - requires both enforcement and canary evidence.
@@ -366,7 +365,7 @@ P1 drift CI -----> P2 one-profile canary
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M0 | Ruling ratified | Operator choice recorded in `decision-record.md` | Before P0 |
+| M0 | Ruling settled | ADR-001 Accepted in `decision-record.md` (adopt the phased path) | Done |
 | M1 | Safe to observe | Flag documented; status and drift classification available; resolver coupling remediated or guarded | P0 |
 | M2 | Safe to enforce | Re-mint-required CI catches stale manifests | P1 |
 | M3 | Safe to canary | One profile runs flag-on with parity and clean fallback evidence | P2 |
@@ -381,17 +380,17 @@ P1 drift CI -----> P2 one-profile canary
 
 ### Pre-Task Checklist
 
-- Confirm operator ratification is recorded before starting P0.
+- Confirm the operator go-ahead to begin is recorded before starting P0.
 - Read every target file and the authoritative decision contracts before editing.
 - Capture the frozen-scorer digests and the relevant baseline gate before each stage.
-- Confirm the change list remains inside the ratified stage and names a byte-exact or flag-based rollback.
+- Confirm the change list remains inside the authorized stage and names a byte-exact or flag-based rollback.
 
 ### Execution Rules
 
 | Rule | Requirement |
 |------|-------------|
 | Ordered gates | Do not start a later stage until all earlier stage exit criteria are evidenced |
-| Scope lock | Modify only surfaces named by the ratified stage; route unrelated work to Follow-ups |
+| Scope lock | Modify only surfaces named by the authorized stage; route unrelated work to Follow-ups |
 | Frozen scorer | Treat the three pinned scorer files as read-only and fail on digest drift |
 | Reversibility | Preserve `SPECKIT_COMPILED_ROUTING=0` and each stage's rollback evidence |
 | Evidence | Keep tasks and checklist items unchecked until the named command or artifact exists |

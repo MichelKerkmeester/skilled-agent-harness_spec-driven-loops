@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the L3 decision spec and record from verified source evidence"
-    next_safe_action: "Await ADR-001 ratification"
+    recent_action: "Settled ADR-001 and reconciled the packet to the phased path"
+    next_safe_action: "Begin P0 on operator go-ahead"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,10 +22,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 40
-    open_questions:
-      - "Does the operator ratify the phased path or override to flip now?"
-    answered_questions: []
+    completion_pct: 60
+    open_questions: []
+    answered_questions:
+      - "Flip the default now or adopt the phased path? Adopt the phased path, settled on the analysis; operator may override."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -45,7 +45,7 @@ The compiled skill-router is built, hardened, wired into the live advisor, and *
 
 This phase is a **decision packet**, not a flip. It records — against verified source evidence, not narrative — that flipping the repo default to ON **today changes zero routing decisions** and therefore trades real operational surface for no behavioral gain, and it specifies the four contracts (P0→P4) under which a global default-on becomes a safe, observable, reversible *outcome*. The single load-bearing finding: in the only live integration point, the compiled decision is attached as **additive metadata** to a recommendation the legacy path has already computed — so enabling the flag can only make an extra `compiledRoute` field appear or silently not-appear; it cannot change which skill is recommended (`advisor-recommend.ts:357-374`, decisive line `:371`).
 
-The recommended ruling is **adopt the phased path**; the operator's ratification is the one open decision this spec exists to capture.
+The ruling is **settled: adopt the phased path** — decided on the analysis and source verification above (per the session directive to settle the decision), reversible, and open to operator override to flip-now. No runtime change follows from this decision; a separate operator go-ahead gates the start of P0 implementation.
 
 ---
 
@@ -56,7 +56,7 @@ The recommended ruling is **adopt the phased path**; the operator's ratification
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned — decision framed and recommended (adopt phased P0→P4); awaiting operator ratification of the ruling. No runtime change is authored in this phase. |
+| **Status** | Ruling settled — adopt the phased path (P0→P4), decided on the analysis; reversible and operator-overridable. No runtime implementation started; a separate operator go-ahead gates P0. |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Migration stage** | Decision gate preceding P0 (documentation + observability); default-on is the P4 outcome |
@@ -93,7 +93,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 ### In Scope
 
-- The **ruling**: default-on is deferred to a staged P4 outcome; the phased path P0→P4 is adopted as the program of record. Operator ratification is the gating open question.
+- The **ruling** (settled): default-on is a staged P4 outcome; the phased path P0→P4 is adopted as the program of record, decided on the analysis and reversible. A separate operator go-ahead gates the start of P0 implementation.
 - The **fallback contract**: a precise, single-sourced definition of "graceful backwards-compat for skills lacking the compiled JSONs/snapshot" — no-manifest OR stale-hash resolves to the legacy sentinel; the `sk-git` non-hub template stays pinned legacy.
 - The **drift-detection CI contract**: recompute each hub's live config hash vs its minted manifest; fail "re-mint required" on mismatch; wire "edit a hub → re-mint" as an enforced rule, not a remembered one.
 - The **observability contract**: the verify harness must classify drift-to-legacy as *degraded/expected*, not *broken*, and expose a per-hub serving-status readout (compiled-serving | legacy-fallback | drifted).
@@ -137,7 +137,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Capture the operator's ratification of the ruling (adopt phased path) OR an explicit override (flip now), as the resolution of OPEN QUESTION 1. | The decision-record's ruling section records the operator's choice verbatim once given; until then it is marked "recommended, awaiting ratification." |
+| REQ-006 | Settle the ruling on the analysis (adopt phased path) and record it, leaving an explicit override (flip now) open to the operator. | The decision-record ADR-001 status reads Accepted (adopt the phased path, decided on the analysis, reversible); an operator override to flip-now can be recorded at any time. |
 | REQ-007 | Cross-link the two dependent alignment phases so the fallback and eligibility contracts have exactly one home. | `013-create-skill-alignment` and `014-benchmark-alignment` reference this phase's contracts rather than restating them; this spec's RELATED DOCUMENTS lists both. |
 
 <!-- /ANCHOR:requirements -->
@@ -151,7 +151,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 - **SC-002**: The fallback contract is unambiguous and single-sourced: "no valid fresh manifest ⇒ legacy" holds by construction, and the eligibility predicate has one named home for P3 to implement.
 - **SC-003**: The drift-CI and observability contracts are specified concretely enough to implement in P0/P1 without further design.
 - **SC-004**: The P0→P4 map is reversible at every step, restates the frozen-scorer pin and the no-routing-change invariant per step, and names the resolver spec-path coupling as a P0 remediation.
-- **SC-005**: The ruling's status honestly reflects reality — "recommended, awaiting operator ratification" until the operator decides — with no premature "decided" or "default-on" claim.
+- **SC-005**: The ruling's status honestly reflects reality — settled on the analysis (adopt the phased path), reversible and operator-overridable — with no premature "default-on" or "implementation started" claim.
 
 <!-- /ANCHOR:success-criteria -->
 
@@ -209,7 +209,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 |-----------|-------|-------|
 | Scope | 9/25 | A decision plus four contracts plus a migration map; no runtime code authored in this phase |
 | Risk | 18/25 | The decision governs the highest-blast change in the program (the global serving default); the phase itself is zero-blast documentation, but its ruling is load-bearing for every later phase |
-| Research | 12/20 | Mechanism verified from source this phase (additive metadata, sentinel fallback, allowlist duplication, resolver coupling); residual is operator ratification, not investigation |
+| Research | 12/20 | Mechanism verified from source this phase (additive metadata, sentinel fallback, allowlist duplication, resolver coupling); residual is P0 implementation, not investigation |
 | **Total** | **39/70** | **Level 3** — decision-record plus architecture-level consequence, not authoring volume, sets the level |
 
 ---
@@ -228,7 +228,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 ## 11. USER STORIES
 
-- **US-001 (operator).** As the operator deciding the cutover, I want the default-on question recorded with verifiable receipts and a clear recommendation, so I can ratify the phased path or override to flip now with full information rather than a narrative.
+- **US-001 (operator).** As the operator overseeing the cutover, I want the default-on question recorded with verifiable receipts and the settled ruling, so I can see how it was decided and override to flip-now if I choose, with full information rather than a narrative.
 - **US-002 (skill author).** As someone creating a new hub via `create-skill`, I want compiled eligibility to follow from minting a manifest, so my skill onboards by a documented step and, until then, routes via legacy by construction instead of being silently half-wired.
 - **US-003 (maintainer).** As a maintainer editing a hub's routing inputs, I want CI to fail "re-mint required" when I forget to re-mint, so a silent revert to legacy becomes a loud, fixable signal instead of an invisible regression.
 - **US-004 (release owner).** As the owner of the eventual global flip, I want a per-hub serving-status readout and a documented `=0` kill-switch, so I can flip hub-by-hub, watch each land, and revert instantly if any hub misbehaves.
@@ -237,7 +237,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 
 ## 12. OPEN QUESTIONS
 
-- **Q1 (gating).** Does the operator ratify the recommended ruling — default-on as a staged P4 outcome after P0–P3 — or override it to flip `SPECKIT_COMPILED_ROUTING` to a repo default now? The recommendation is to ratify; the steelman for flipping now is recorded in `decision-record.md` ("flip it when compiled does something legacy can't").
+- **Q1 (resolved).** The ruling is settled: adopt the phased path (default-on as a staged P4 outcome after P0–P3), decided on the analysis and reversible. An operator override to flip `SPECKIT_COMPILED_ROUTING` on now remains available but is not blocking; the steelman for flipping now is recorded in `decision-record.md` ("flip it when compiled does something legacy can't").
 - **Q2.** For the P0 resolver-coupling remediation: promote `resolve.cjs` out of the spec tree into a stable runtime location, or keep it in place behind a path-integrity guard that fails loudly on a renumber? (Recommendation: promote; it removes the drift source rather than guarding it.)
 - **Q3.** Which single env profile hosts the P2 canary default-on (repo default staying off), and what parity + clean-fallback thresholds gate promotion from P2 to P3?
 

@@ -12,7 +12,7 @@
     "switch",
     "flip"
   ],
-  "lastUpdated": "2026-07-20T17:45:54.263Z",
+  "lastUpdated": "2026-07-20T18:10:01.194Z",
   "specId": "012",
   "folderSlug": "default-on-decision",
   "parentChain": [
@@ -22,5 +22,6 @@
     "007-unified-refactor-implementation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": 3
 }

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the default-on decision record (three ADRs) from verified source evidence"
-    next_safe_action: "Await ADR-001 ratification"
+    recent_action: "Settled ADR-001 on the analysis to adopt the phased path"
+    next_safe_action: "Begin P0 on operator go-ahead"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,11 +22,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 40
-    open_questions:
-      - "Does the operator ratify the phased path (ADR-001) or override to flip now?"
-      - "Promote the resolver out of the spec tree, or guard it in place (ADR-003)?"
-    answered_questions: []
+    completion_pct: 60
+    open_questions: []
+    answered_questions:
+      - "Flip the default now or adopt the phased path? Adopt the phased path (ADR-001), settled on the analysis; operator may override."
+      - "Promote the resolver out of the spec tree, or guard it in place? Promote (ADR-003)."
 ---
 # Decision Record: Compiled Routing Default-On
 
@@ -43,9 +43,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (recommended; awaiting operator ratification) |
+| **Status** | Accepted: adopt the phased path (settled on the fresh-Opus analysis and source verification per the session directive; reversible; operator may override to flip-now) |
 | **Date** | 2026-07-20 |
-| **Deciders** | Operator (ratifies), Claude Opus 4.8 (recommends), independent fresh-Opus review (dissents against a naive flip) |
+| **Deciders** | Claude Opus 4.8 (settled on the analysis, per the session directive to settle the decision), independent fresh-Opus review (the dissent this ruling adopts); operator retains override authority |
 
 ---
 
@@ -73,6 +73,8 @@ The sibling `011-runtime-engine` already flipped all seven hubs' manifests to `s
 **We chose**: Treat global default-on as the final outcome of a four-step program (P0 through P4), not a one-line default change made now.
 
 **How it works**: P0 documents the flag in `ENV-REFERENCE.md` and makes the verify harness distinguish drift-to-legacy from breakage plus a per-hub serving-status readout. P1 adds a drift-detection CI that recomputes each hub's live hash against its minted manifest and fails re-mint-required. P2 canaries default-on in one env profile while the repo default stays off. P3 replaces the two hardcoded allowlists with a data-driven eligibility rule (see ADR-002). P4 flips the repo default hub-by-hub, keeping `=0` as the documented kill-switch. The flip becomes worthwhile precisely when compiled routing does something legacy cannot (a consumed decision, a caught drift), which P0 through P3 create.
+
+**Settlement**: This ruling is settled on the merits of the analysis above (the five premise-failures and the resolver coupling), as the session directive to settle the decision using the fresh-Opus analysis requires. It is a reversible documentation decision: no runtime change follows from it, and the operator may override to flip-now at any time. Acceptance settles the sequencing (phased) only; a separate operator go-ahead gates the start of P0 implementation.
 
 <!-- /ANCHOR:adr-001-decision -->
 
@@ -154,7 +156,7 @@ The sibling `011-runtime-engine` already flipped all seven hubs' manifests to `s
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (implements in P3) |
+| **Status** | Accepted (design direction; implemented in P3) |
 | **Date** | 2026-07-20 |
 | **Deciders** | Operator, Claude Opus 4.8 |
 
@@ -259,7 +261,7 @@ Which hubs are compiled-eligible is hardcoded in two places: `COMPILED_ROUTING_H
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (P0 remediation; recommend promote) |
+| **Status** | Accepted (P0 remediation; promote the resolver) |
 | **Date** | 2026-07-20 |
 | **Deciders** | Operator, Claude Opus 4.8 |
 

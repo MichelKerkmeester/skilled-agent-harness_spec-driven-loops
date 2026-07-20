@@ -12,9 +12,8 @@ _memory:
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Prepared the Planned requirement-mapped task breakdown"
-    next_safe_action: "Record operator ratification before starting P0 tasks"
-    blockers:
-      - "Operator ratification is pending"
+    next_safe_action: "Begin P0 tasks on operator go-ahead"
+    blockers: []
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -74,7 +73,7 @@ _memory:
 - [ ] T003 Capture baseline SHA-256 values for the three frozen scorer files and make digest equality a gate for each migration stage. (REQ-005; benchmark integrity)
 - [ ] T004 Inventory every flag read, eligibility consumer, hub directive, activation manifest, and resolver path before modifying runtime behavior. (REQ-001, REQ-002, REQ-005; runtime and configuration)
 
-**Planned evidence**: updated receipt table, operator-ratification entry, scorer digest record, and affected-surface inventory.
+**Planned evidence**: updated receipt table, settled-ruling entry, scorer digest record, and affected-surface inventory.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -117,7 +116,7 @@ _memory:
 ## Completion Criteria
 
 - [ ] REQ-001 through REQ-007 each have direct evidence and an owning task.
-- [ ] Operator ratification is recorded before P0 implementation begins.
+- [ ] The operator go-ahead to begin is recorded before P0 implementation starts.
 - [ ] P0 through P4 advance only through their named gates and rollback checks.
 - [ ] The three frozen scorer files remain byte-identical to their baseline hashes.
 - [ ] Compiled routing remains decision-identical to legacy across the gated corpus.

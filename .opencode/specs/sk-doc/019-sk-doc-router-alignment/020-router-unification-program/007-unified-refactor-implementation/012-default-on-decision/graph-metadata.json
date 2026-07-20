@@ -196,8 +196,8 @@
       }
     ],
     "causal_summary": "The parent goal frames \"compiled routing as the effective default\" as a switch to flip",
-    "created_at": "2026-07-20T17:46:53.099Z",
-    "last_save_at": "2026-07-20T17:46:53.099Z",
+    "created_at": "2026-07-20T18:11:31.092Z",
+    "last_save_at": "2026-07-20T18:11:31.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:261782d4451ab9fa5894a6a505be8f945d92cc8d4d2348e041a055f1b4cf5ca9",
+    "source_fingerprint": "sha256:c62c8088d69859a882454e91e9787503cc5d875c50426c0cdbe26b21930c7eff",
     "source_doc_hashes": {
-      "spec.md": "a6c6a2ee28bdf52aeef767a2099950fe45cd78434d4c93001e7ee2d2b131253f",
-      "plan.md": "61013325b139e64daa0c9a7d4c70058c303ff8831b2b1c780797f7f2751b927a",
-      "tasks.md": "dcb2401b59933f6b5b9d22e1d37840a0b3b767b71a53031621fd60bae16070f7",
-      "checklist.md": "3c007338636226b8c3d7a70ae67c671fc122b465f021dba266afb5418ccdfe14",
-      "decision-record.md": "ea7a1382563681a40df875ad4e5cfe617005e14d9a5d70ae3296e83d9477efd8",
-      "implementation-summary.md": "e38be1eede6d89421b06b8a1b9cd74a2f9ac874e3e5df10a39529832ceea1c10"
+      "spec.md": "3c2bc9ca3abe581e8ed256a4df2c3f90c625ccf30757d41c7181adadbab39fc8",
+      "plan.md": "8a5c5f1bd2c4277c3cddeb58cbc0a1fa4f64c775047a78208a04e7f05bbbb254",
+      "tasks.md": "21770f96f3b5391fc1327a578703a909972e4c1cfa1f2dd9f3b0e90181db4bae",
+      "checklist.md": "ade33f6234382ab008191b4500c544f4ee4d72d511019682ae5033aece1c0df0",
+      "decision-record.md": "7b7c073aa730bf8c9c33ef97482b9f43c1b27f503de450817d181976ae5eeb14",
+      "implementation-summary.md": "50ebf6b8aa7d4350bb8a9fcd8ec41bf9d09b57f300d145f62127cca16759d659"
     },
     "last_active_child_id": null,
     "last_active_at": null
