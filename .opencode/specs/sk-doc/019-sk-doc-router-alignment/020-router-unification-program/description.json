@@ -15,13 +15,34 @@
     "policy",
     "question"
   ],
-  "lastUpdated": "2026-07-18T16:17:18.300Z",
+  "lastUpdated": "2026-07-19T16:09:54.591Z",
   "specId": "020",
   "folderSlug": "router-unification-program",
   "parentChain": [
     "sk-doc",
     "019-sk-doc-router-alignment"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 37,
+  "memoryNameHistory": [
+    "19-07-26_09-28__holding.md",
+    "19-07-26_09-28__holding.md",
+    "19-07-26_09-29__holding.md",
+    "19-07-26_09-29__holding.md",
+    "19-07-26_09-29__holding.md",
+    "19-07-26_09-29__holding.md",
+    "19-07-26_09-29__holding.md",
+    "19-07-26_09-30__holding.md",
+    "19-07-26_12-23__p1-p2-p3-and-the-full-rollout-are-complete-and.md",
+    "19-07-26_12-24__everything-short-of-the-live-cutover-is-done-and.md",
+    "19-07-26_12-24__holding-at-the-p4-live-cutover-boundary-the.md",
+    "19-07-26_12-25__holding-p4-is-a-fleet-wide-live-production.md",
+    "19-07-26_12-25__holding-p4-fleet-wide-live-routing-cutover-awaits.md",
+    "19-07-26_12-25__holding-for-your-go-ahead-on-p4.md",
+    "19-07-26_12-25__holding-for-your-go-ahead-on-p4.md",
+    "19-07-26_12-26__holding-for-your-go-ahead-on-p4.md",
+    "19-07-26_13-30__critical-p4b-finding-confirmed-no-runtime-code.md",
+    "19-07-26_15-52__the-full-deep-path-is-now-underway-i-ve.md",
+    "19-07-26_15-57__the-sk-code-cascade-is-re-dispatched-background.md",
+    "19-07-26_17-09__fresh-post-flip-real-model-sweep-is-running.md"
+  ]
 }

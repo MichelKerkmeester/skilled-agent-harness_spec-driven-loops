@@ -2,9 +2,9 @@
 name: create-diff
 description: Local, Git-free before/after review of an edited document (text, Markdown, HTML, DOCX, text PDF) as a self-contained HTML report.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.1.0
 ---
-<!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff -->
+<!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff, multi-file diff, aggregate file boundaries -->
 
 # Create Diff
 
@@ -151,9 +151,31 @@ Use this when there is no baseline, when comparing two arbitrary versions, or wh
 python3 scripts/create_diff.py compare-pair --before old.md --after new.md --report review.html
 ```
 
+### Pre-composed aggregate pairs
+
+`compare-pair` can also review a pre-composed pair containing two or more files.
+Wrap every file in both inputs with the same ordered, unique markers:
+
+```text
+===== BEGIN FILE: docs/first.md =====
+[file content]
+===== END FILE: docs/first.md =====
+===== BEGIN FILE: docs/second.md =====
+[file content]
+===== END FILE: docs/second.md =====
+```
+
+When both inputs contain a balanced matching envelope, the report renders every
+start and end as an explicit full-width boundary band. Boundaries stay visible
+through collapsed context, later files receive a 32px canvas gap before their
+start band, and transitions reset Markdown section labels between files. This
+does not add native directory comparison or repeated multi-file CLI arguments;
+callers compose the two aggregate documents before invoking `compare-pair`.
+
 ### Report and verification
 
 - The report is a single self-contained HTML file (inlined CSS, no scripts, no network). Views: `--view unified` (default) or `--view side-by-side`.
+- Valid aggregate pairs display semantic `START FILE` and `END FILE` bands in both views; malformed envelopes remain ordinary document text.
 - Without `--report`, the source stem is semantically normalized to lowercase kebab-case and emitted as `<source-slug>.diff.html`. An explicit report basename must already use lowercase kebab-case and the engine refuses to overwrite an existing report.
 - Always verify a generated report is safe and self-contained before handing it off:
 
@@ -200,6 +222,7 @@ State the tier to the user; never present a low-fidelity comparison as complete.
 - Read a file before editing it; never modify the source document during comparison.
 - Run `scripts/validate_report.py` on a generated report before handing it off, and report the result.
 - Offer the explicit-pair fallback when no valid baseline exists.
+- Require balanced, matching aggregate markers before presenting file-boundary chrome.
 
 ### ⛔ NEVER
 
@@ -236,6 +259,7 @@ The task is successful when:
 - The correct workflow shape is used (automatic baseline when one exists; explicit pair otherwise), and code/Git/design/audit requests are deferred to their owners.
 - The baseline was captured before the edit, or the explicit-pair fallback was used, and the source file is unchanged.
 - A single self-contained, accessible HTML report is produced and passes `validate_report.py`.
+- Valid aggregate pairs keep every file transition visible in both report views without leaking one file's Markdown section label into the next.
 - The fidelity tier and any warnings are stated; a limited-fidelity result is never presented as complete.
 - All processing stayed local, and no packet-local advisor metadata was created.
 

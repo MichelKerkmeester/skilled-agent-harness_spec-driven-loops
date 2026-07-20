@@ -8,10 +8,12 @@ trigger_phrases:
   - "accessible before after report"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.1.0
 ---
 
 # Report accessibility & self-containment contract
+
+## 1. OVERVIEW
 
 The report is meant to be reviewable by everyone, from `file://`, forever, with no dependencies. `scripts/validate_report.py` enforces the safety half of this; the guarantees below describe the whole contract.
 
@@ -31,6 +33,7 @@ The report is meant to be reviewable by everyone, from `file://`, forever, with 
 - Contrast targets WCAG AA in both light and dark themes (`prefers-color-scheme`), using `color-scheme: light dark`.
 - Relative units govern typography and content/column sizing so browser zoom and text scaling work (the 4px spacing scale, hairline borders, and radii use fixed pixel tokens). In the **unified** view, content wraps (`overflow-wrap: anywhere`) so the page itself never scrolls sideways. The **side-by-side** view keeps its two code columns aligned inside a scoped `overflow-x: auto` container that is given a `min-width`, so on a narrow viewport that diff region actually scrolls horizontally instead of collapsing the columns — while the surrounding page (header, summary, legend, footer) still reflows and never forces the whole document to scroll. That scroll container is keyboard-operable: it is a labelled `role="region"` with `tabindex="0"` and a visible focus ring, so a keyboard-only user can focus and scroll it.
 - Long runs of unchanged lines are collapsed to a labelled "N unchanged lines" row to keep the report scannable.
+- In validated aggregate reports, every file transition remains visible as a full-width table row group. `START FILE` is the strongest transition, `END FILE` explicitly closes the group, and both include the escaped path as visible text so color is never the only signal. Every file after the first receives a 32px canvas-colored spacer row marked `aria-hidden="true"`; that gap also masks the frame edges at its sides, so it reads as open whitespace without adding empty navigation to the accessibility tree. Boundary rows also reset Markdown section context, preventing a heading from one file from labelling changes in the next.
 
 ## Views
 

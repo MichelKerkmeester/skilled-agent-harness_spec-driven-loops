@@ -8,10 +8,12 @@ trigger_phrases:
   - "snapshot cleanup lifecycle"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.1.0
 ---
 
 # Workflow: baseline, comparison, and lifecycle
+
+## 1. OVERVIEW
 
 The core invariant: **capture the baseline before the edit.** A before/after review needs a real before-state, and once a file is overwritten the original is gone. `create-diff` never mutates the source — capture copies it into a local store.
 
@@ -43,6 +45,30 @@ python3 ../scripts/create_diff.py compare-pair \
 ```
 
 No stored state is read or written. `--label-before`/`--label-after` set the names shown in the report (default: the file names).
+
+## Pre-composed aggregate pairs
+
+When one review needs to cover multiple files, compose one before document and
+one after document with the same ordered, unique file markers:
+
+```text
+===== BEGIN FILE: docs/first.md =====
+[file content]
+===== END FILE: docs/first.md =====
+===== BEGIN FILE: docs/second.md =====
+[file content]
+===== END FILE: docs/second.md =====
+```
+
+Run those aggregate documents through the ordinary `compare-pair` command. The
+engine activates boundary mode only when both inputs contain at least two files
+and every start/end pair is balanced, path-matched, unique, and in the same
+order. Valid boundaries become explicit `START FILE` and `END FILE` bands in
+both report views and cannot be hidden by collapsed context. Invalid envelopes
+fall back to ordinary document text instead of producing partial file chrome.
+
+This is a pre-composed input format, not native directory comparison or repeated
+multi-file CLI arguments.
 
 ## Where snapshots live
 

@@ -114,6 +114,7 @@ Define a local-first skill and portable core that automatically preserves a base
 | `008-fidelity-safety-a11y-hardening/` | Create | 008 | Post-review remediation: strict decode, allowlist safety gate, legend/scroll accessibility, and code-opencode script alignment |
 | `009-create-diff-command/` | Create | 009 | The `/create:diff` slash command for OpenCode and Codex (full sibling command pattern) |
 | `010-fluid-responsive-report/` | Create | 010 | Container-query fluid type/rhythm layer for the HTML report, tuned for IDE preview-pane widths |
+| `015-multi-file-boundary-dividers/` | Create | 015 | Validated aggregate-file start/end bands that remain visible through collapsed context |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -133,6 +134,7 @@ Define a local-first skill and portable core that automatically preserves a base
 | 8 | `008-fidelity-safety-a11y-hardening/` | Post-review hardening: strict decode, allowlist validator, legend/scroll accessibility, code-opencode alignment | Complete |
 | 9 | `009-create-diff-command/` | `/create:diff` command (router + presentation + auto/confirm YAML) for OpenCode and Codex | Complete |
 | 10 | `010-fluid-responsive-report/` | Container-query fluid type/rhythm layer for the HTML report, tuned for IDE preview-pane widths | Complete |
+| 15 | `015-multi-file-boundary-dividers/` | Semantic file-start and file-end bands for validated aggregate document pairs | Complete |
 
 ### Phase Transition Rules
 
@@ -156,6 +158,7 @@ Define a local-first skill and portable core that automatically preserves a base
 | Phase 004 rich adapters | Phase 005 PDF and state | Adapter isolation, fidelity diagnostics, contextual moves, and report views are stable | HTML and DOCX fixture results plus direct contract tests |
 | Phase 005 portable surface | Phase 006 sk-doc create-diff mode | CLI, API, state lifecycle, capability messages, and exit codes are frozen | Three-platform CLI and lifecycle evidence |
 | Phases 003 and 005 | Phase 007 OCR decision | Accuracy, security, license, offline distribution, determinism, and resource evidence is complete | Recorded go or no-go decision against approved thresholds |
+| Shipped report renderer | Phase 015 boundary dividers | Aggregate delimiter grammar is balanced and explicit; no command-file changes are required | Both report views, report validator, full renderer suite, and child strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
