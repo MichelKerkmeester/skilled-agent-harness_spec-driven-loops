@@ -133,6 +133,18 @@
         "source": "derived"
       },
       {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phased Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -140,18 +152,6 @@
       },
       {
         "name": "Purpose Deliver",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A route decision is not an effect",
     "created_at": "2026-07-18T13:13:17.358Z",
-    "last_save_at": "2026-07-18T19:44:22.314Z",
+    "last_save_at": "2026-07-20T13:09:51.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +211,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d7a69a967d5093713755f763bc74e1c06a109dae03c8f4c9c32764d8e141f4f",
+    "source_fingerprint": "sha256:18c05f2f41f5391632939e768ed6998a1728e8dbe2060ab823b74e2ff507f89b",
     "source_doc_hashes": {
-      "spec.md": "0a5697e7c4c763f1b1e13049817493915c9b1da50575e004b42130de6982cde4",
-      "plan.md": "ad9329b0bbe20f391239a1f34d3141fbc5a4f516c6a1461ceef258c3911bf8d3",
-      "tasks.md": "d77759dbe01e6540808ce08ccf62d38145930fe9445673cd50ec7bb33fdd7762",
+      "spec.md": "0c2631b60e0c4d9c0642174aad667f5dfbc36e9cb0c936320f5460440c2c5116",
+      "plan.md": "619e7c7bfda73b635920a9841948e49257961c8ead6c34fc6ff648c206ba36e3",
+      "tasks.md": "403babf08ef26cdbe703bd958e772361d768f972325730cf47ab9c3b15f4aad5",
       "checklist.md": "1174c2f30c3933257460f7bb6b02e9e54ef2e99b29fefc4aa418a4ab674bf6d0",
       "implementation-summary.md": "52b7d2a0a2bb2dd63ffcc2b174b11f5ad4c3391ddabdf0b2b869edf64c345edb"
     },

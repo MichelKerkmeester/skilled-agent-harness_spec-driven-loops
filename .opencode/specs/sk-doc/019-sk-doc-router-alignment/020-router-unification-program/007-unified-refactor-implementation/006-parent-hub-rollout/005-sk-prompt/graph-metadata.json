@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The authored hub cannot be represented by treating every zero-signal request as a defer",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-19T10:24:18.776Z",
+    "last_save_at": "2026-07-20T13:23:07.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6913d4c0baabd0671a40518809c4684e23705ca11dc16501572628b5d6ae6469",
+    "source_fingerprint": "sha256:9e48f8c9270eadf74c509f2b33c0e47042eeb225f2c056e0700906cf6246653a",
     "source_doc_hashes": {
       "spec.md": "fc402426dfb611db58505f8e1ed561e4b48e3d50478dea6e2a3e01299e7b9402",
       "plan.md": "fa37d53bf40b51621f82e8623c6bd11d26067cd88da7beae9a053d87e304fe92",
       "tasks.md": "ed66d0500c9fd368642fe2db078522c7541467640d38b3912297e6d0d8372a6c",
-      "checklist.md": "3563125b8c7a2fd13cde908ccecace77987ff5c3b20f0c3ff2969a9bdb542c24",
+      "checklist.md": "2f18aa78cc11ba9873b3ad0d055e10e10fd9c1a56c3ec42e3c6a2a4efc9bb543",
       "implementation-summary.md": "ccf7dbfd207c8738250b088fadab15074459a33a5a509fed29c3442c90836f10"
     },
     "last_active_child_id": null,

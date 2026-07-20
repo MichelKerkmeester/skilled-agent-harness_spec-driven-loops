@@ -14,6 +14,7 @@ status: "blocked-shadow"
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -28,7 +29,9 @@ status: "blocked-shadow"
 
 ### Overview
 Retire the legacy dual-read resolution path fleet-wide, one skill at a time, behind per-skill deletion gates, only after phase 006 has canaried and rolled out every hub. Each deletion is a fenced CAS that retains the byte-identical prior generation for a bake window; the compatibility alias array is stripped from the hot card by regenerating the card from the compiled snapshot; the terminal state is verified against a recorded fingerprint (drift check). The N=1 `mcp-code-mode` runs the **identical** deletion path — the driver branches on empty collections, never on the skill name (synthesis §5.2). This document plans the work; it modifies nothing live (planning/design only).
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -48,7 +51,9 @@ Retire the legacy dual-read resolution path fleet-wide, one skill at a time, beh
   - **Evidence**: the checked-in card is a hypothetical terminal artifact, not evidence of current fleet authority.
 - [x] `git diff` shows zero changes to `router-replay.cjs` (REQ-007).
   - **Evidence**: no git command was run by instruction; independent before/after SHA-256 verification proves the scorer family unchanged at the three protected digests.
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -63,7 +68,9 @@ Gated, reversible teardown — a mirror of the fenced-CAS activation used to rol
 
 ### Data Flow
 `readiness preflight → (per skill, in activation order) delete legacy artifacts → fenced CAS to a generation without that skill's dual-read → route-gold replay via projector → drift check → retain prior generation for bake window → next skill`. After the last skill: `strip aliases from hot card via snapshot regeneration → final drift check → hold prior generation until the bake window and quiet signal authorize discard`.
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 | Surface | Current Role | Action | Verification |
@@ -78,7 +85,9 @@ Required inventories:
 - Legacy-path references: `rg -n 'dual.?read\|legacy.?(alias\|resolver\|adapter)\|compatibility.?alias' <router-surface>`.
 - Special-case guard: `rg -n 'SingularRouter\|skillId == .mcp-code-mode.\|if.*mcp-code-mode' <cleanup-surface>` MUST be empty.
 - Scorer immutability: `git diff --stat -- '**/router-replay.cjs'` MUST be empty.
+<!-- /ANCHOR:affected-surfaces -->
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Readiness Preflight
@@ -106,7 +115,9 @@ Required inventories:
   - **Evidence**: blocked; the current candidate evidence includes seven `system-deep-loop` resource mismatches.
 - [ ] Prove byte-exact fenced-CAS rollback of the retained prior generation; document the post-effect (external COMMIT) limit.
   - **Evidence**: stale CAS is rejected in the harness, but no real deletion/rollback drill is authorized.
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -116,7 +127,9 @@ Required inventories:
 | Rollback drill | Byte-exact restore of retained prior generation within the window | CAS swap + hash equality |
 | Negative | Zero-signal `defer(no-match)`, singular-omission + zero rank-call, unmapped-fails-closed | Route-gold fixtures (§8.2) |
 | Immutability | `router-replay.cjs` unchanged | `git diff` |
+<!-- /ANCHOR:testing -->
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -124,12 +137,16 @@ Required inventories:
 | `006-parent-hub-rollout/*` (Stages 4 + 6) | Internal | Must be green fleet-wide | Preflight gate blocks all deletion (REQ-001) |
 | `003-execution-verify-commit/` (Stage 6) | Internal | Must be live | Destination legs must precede legacy-read removal |
 | Retained-generation storage + bake-window policy | Internal | Required | No safe rollback path without it |
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: any per-skill deletion changes route-gold output, fails the drift check, or opens a fallback path; or a regression surfaces during the bake window.
 - **Procedure**: fenced CAS to the retained byte-identical prior generation (hash equality proven); requests pin one generation, so in-flight requests are unaffected. Rollback restores routing bytes only — it CANNOT undo an external COMMITted effect; post-effect recovery is destination-owned (synthesis §9).
+<!-- /ANCHOR:rollback -->
 
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -143,7 +160,9 @@ Phase 1 (Readiness) ──► Phase 2 (Per-Skill Deletion, ordered) ──► Ph
 | Readiness | 006 (Stages 4+6), 003 (Stage 6) | Per-Skill Deletion |
 | Per-Skill Deletion | Readiness | Hot-Card & Final State |
 | Hot-Card & Final State | all four skills deleted | None (terminal) |
+<!-- /ANCHOR:phase-deps -->
 
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deletion Checklist
@@ -157,3 +176,4 @@ Phase 1 (Readiness) ──► Phase 2 (Per-Skill Deletion, ordered) ──► Ph
 2. Verify hash equality against the pre-deletion generation.
 3. Re-run route-gold to confirm the restored state matches baseline.
 4. Record the post-effect limit: any external COMMIT already emitted is destination-owned recovery.
+<!-- /ANCHOR:enhanced-rollback -->

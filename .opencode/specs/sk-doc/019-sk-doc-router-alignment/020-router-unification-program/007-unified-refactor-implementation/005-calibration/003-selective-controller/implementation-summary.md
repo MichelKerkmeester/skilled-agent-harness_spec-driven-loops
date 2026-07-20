@@ -24,7 +24,7 @@ status: "shadow-partial"
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
-## What Built
+## What Was Built
 
 `lib/selective-controller.cjs` implements the terminal decision controller as a
 pure function over a request-pinned policy/risk identity, ordered candidates,
@@ -71,7 +71,7 @@ hard-blocks, without a skill-name branch (synthesis
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
-## How Delivered
+## How It Was Delivered
 
 `resolveSelectiveController()` and `inspectSelectiveController()` return the
 same frozen envelope: public `decision`, sibling calibration evidence, returned
@@ -97,7 +97,7 @@ shared scorer digests are checked before and after the lane (synthesis §8.2,
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
-## Decisions
+## Key Decisions
 
 - Certificate legality is anchored to the request-pinned policy identity and
   risk slice. The envelope's calibration claim is evidence, never the

@@ -20,7 +20,8 @@ shadow-only and do not fit thresholds, mint operational certificates, or modify
 runtime routing. `implementation-summary.md` records the real scorer result and
 the intentionally deferred activation properties.
 
-## 1. APPROACH
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
 Build the contract in the same order the safety argument reads: **fix the evidence shape first, then the certificate it depends on, then the legality rule that binds them, then prove the whole thing is invisible to the shared scorer.** Every artifact is a schema, a rule, or a fixture — nothing in this phase fits a threshold, mints a live certificate, or edits a serving policy. The controller (`005/003`) and the corpus (`005/001`) are the two moving parts this phase deliberately holds still and only references.
 
@@ -30,8 +31,25 @@ The sequencing is deliberate:
 2. **Certificate before legality rule.** `CalibrationCertificateV1` must enumerate `corpusId`/`corpusHash`/`method`/`policyHash`/`riskSlice`/`evaluationWindow` so the legality rule has concrete fields to test against. The corpus id is a *reference* to `005/001`'s deliverable — the schema pins its shape, not its bytes.
 3. **Legality rule before fixtures.** The rule (§3.4 of spec.md) is the single load-bearing invariant; fixtures exist to make its dangerous states unrepresentable and its safe states replayable.
 4. **Projection-invisibility last, as the gate.** The Stage-3 migration gate (deterministic replay + compatibility-projection parity) is proven only after the field exists, by showing the compatibility projector drops `calibration`/`estimatedError` on the floor.
+<!-- /ANCHOR:summary -->
 
-## 2. KEY FILES & CONTRACTS TOUCHED (this packet only)
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] `005/001` corpus identity contract available to reference (`corpusId`/`corpusHash`).
+- [x] Phase 2 evaluator decision shape (`rankScore`/`scoreMargin` as evidence) understood.
+
+### Definition of Done
+- [x] `estimatedError` / probability language is admissible only behind a validated, policy/risk-slice-bound certificate.
+- [x] `estimatedError` is projection-invisible; deterministic route-gold replay stays byte-identical and the shared scorer is untouched.
+- [x] Every un-certified path stays honest: rank-only evidence, and one-turn `clarify` or typed `defer` instead of invented probability.
+<!-- /ANCHOR:quality-gates -->
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Key files & contracts touched (this packet only)
 
 This phase authors **specification and fixture artifacts inside this packet folder**. It touches **no** runtime file. The contracts it *specifies against* (owned by sibling phases) are named so `005/003` and the schema phase can consume them.
 
@@ -44,8 +62,10 @@ This phase authors **specification and fixture artifacts inside this packet fold
 | `CalibrationCertificateV1` | schema (sibling) | no | Joins the contract family in `../../000-contract-schemas/`. |
 | Compatibility projector | adapter (sibling) | no | `../../002-decision-evaluator/`; this phase specifies that it MUST drop `calibration`. |
 | `router-replay.cjs` | shared scorer | **NEVER** | Read-only reference; editing it to pass is a migration failure (synthesis §8.2, §10). |
+<!-- /ANCHOR:architecture -->
 
-## 3. BUILD STEPS
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
 
 ### Step 1 — Pin the unconditional evidence shape
 Specify `rankScore` and `scoreMargin` as always-present, authority-free, non-probability fields on a `route` decision (spec.md §3.1). State explicitly that they cannot cross an auto-route threshold alone (synthesis §2.3 invariant 4). Deliverable: REQ-001 satisfied in `spec.md`.
@@ -70,8 +90,10 @@ State that a certified route keeps `authority: WithheldUntilVerify`, commits onl
 
 ### Step 8 — Specify projection-invisibility + the fixture families
 State that the compatibility projector drops `calibration`/`estimatedError` so route-gold replay is byte-identical (synthesis §8.2). Enumerate fixture families F1–F9 (see tasks) covering licensed, withheld, mismatch, rollback, and parity paths. Deliverable: REQ-007.
+<!-- /ANCHOR:phases -->
 
-## 4. VERIFICATION
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
 
 Because this phase produces contract text and fixture specifications (not runtime), verification is a **design-consistency and gate-readiness** check, not a code test run:
 
@@ -82,8 +104,10 @@ Because this phase produces contract text and fixture specifications (not runtim
 5. **Spec-kit validation.** When this child is run through `validate.sh --strict` as part of the parent packet, frontmatter + markers + required sections parse; DQI-equivalent structural check passes.
 
 **Explicitly NOT in this phase's verification:** fitted ECE/selective-risk numbers, live certificate issuance, or any per-hub canary — those are `005/003` and `006/*` respectively.
+<!-- /ANCHOR:testing -->
 
-## 5. RISKS & MITIGATIONS
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
@@ -91,8 +115,15 @@ Because this phase produces contract text and fixture specifications (not runtim
 | A certificate is reused across policy generations or risk slices | High | policyHash + riskSlice binding in the legality rule (Step 4); fixtures F4/F5. |
 | Someone edits the shared scorer to make the enriched field pass | High (hard-constraint breach) | Projection-invisibility (Step 8); scorer is read-only; a required edit is declared a migration failure (synthesis §10). |
 | Contract drifts from `005/003`'s method needs | Med | Method envelope (Step 5) is authored as the controller's input contract, not a fitted result. |
+<!-- /ANCHOR:dependencies -->
 
-## 6. CROSS-REFERENCES
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+This is contract/design work; it writes only this packet's docs and packet-local schema/fixtures, so rollback is byte-clean: revert the packet's artifacts and nothing downstream has changed. At activation, a certificate is promoted/rotated by a fenced CAS with the prior generation retained; revocation reverts to rank-only evidence (clarify/defer), never an invalid calibrated route (synthesis §9).
+<!-- /ANCHOR:rollback -->
+
+## 8. CROSS-REFERENCES
 
 - **Specification**: `spec.md`
 - **Tasks**: `tasks.md`

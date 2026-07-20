@@ -22,6 +22,21 @@ The corpus is a first-class, immutable, content-addressed artifact — `Calibrat
 
 This is planning/design only. It defines the labeling protocol, coverage requirements, gates, governance, and identity model for the corpus. It **does not** modify any live routing config, registry, scorer, or skill, and it **never** touches the shared benchmark scorer `router-replay.cjs` (synthesis §8.2, §10).
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Shadow-partial — the sealed `CalibrationCorpusV1` contract (intent-derived labeling protocol, risk slices, per-hub coverage minimums, offline/live gates, retention/privacy governance, hash-pinned corpus identity) is authored; no live routing/registry/scorer/skill change; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `001-holdout-corpus` |
+| **Parent** | `../spec.md` (Calibration phase parent) |
+| **Design source** | `../../../006-unified-refactor-research/unified-refactor-synthesis.md` (§8.1, §11 open-q 2/7, §2.3, §5.1) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -31,7 +46,9 @@ The unified router treats advisor rank and score margin as evidence, never as au
 ### Purpose
 
 Deliver a sealed, hash-pinned held-out routing corpus per multi-candidate hub and per risk slice, with an intent-derived labeling protocol, defined coverage minimums, offline and live validation gates, and retention/privacy governance — so that calibrated auto-routing can become a certifiable capability whose every claim binds to a stable corpus id.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -54,7 +71,9 @@ Deliver a sealed, hash-pinned held-out routing corpus per multi-candidate hub an
 - Editing live routing config, the mode registries, hub routers, leaf manifests, or any skill — this phase is design/authoring only.
 - The offline learning overlay (Idea 2) and its training-traffic pipeline — owned by phase `007`; the corpus here is a *validation* held-out set, not overlay training data.
 - Building the compiler, evaluator, or projections — owned by phases `000`–`002`; this phase consumes their identity hashes, it does not produce them.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -76,7 +95,9 @@ Deliver a sealed, hash-pinned held-out routing corpus per multi-candidate hub an
 | REQ-008 | Define retention/privacy governance: sanitization, independent privacy review sign-off, retention windows, partitioned storage, and deletion handling (synthesis §11 open-q 7). | Governance section names the PII-scrub step, the independent reviewer role, the retention window, and the right-to-be-forgotten procedure; a corpus generation cannot be sealed without a recorded privacy sign-off. |
 | REQ-009 | Specify N=1 handling: `mcp-code-mode` gets an explicit "no calibration slice — nothing to calibrate (one candidate)" record, not a silent omission (synthesis §5.1). | The corpus manifest lists `mcp-code-mode` with an explicit no-slice rationale citing candidateCount=1; a coverage validator does not flag it as a missing hub. |
 | REQ-010 | Encode the non-negotiable constraints as corpus invariants: authority destination-local, no over-emission, reversible + gated CAS, scorer untouched, deterministic offline replay preserved (synthesis §10). | Each invariant is stated with its violation-is-a-hard-block wording; the corpus/certificate is defined as *evidence*, never a capability — it can raise a route's evidential `basis` but never grant a destination the right to COMMIT (synthesis §2.3, §8.1). |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: A sealed `CalibrationCorpusV1` is specified for every multi-candidate hub (`sk-code`, `system-deep-loop`, `mcp-tooling`), each hash-pinned to a specific `effectivePolicyHash` (synthesis §2.1, §5.3).
@@ -86,6 +107,20 @@ Deliver a sealed, hash-pinned held-out routing corpus per multi-candidate hub an
 - **SC-005**: Retention/privacy governance is defined with an independent privacy sign-off that is a precondition for sealing a corpus generation (REQ-008).
 - **SC-006**: The corpus id is stable and referenceable, and the downstream binding contract makes any calibration claim without a matching `corpusId` inadmissible (REQ-006).
 - **SC-007**: `mcp-code-mode` carries an explicit "nothing to calibrate at N=1" record rather than an implied gap (REQ-009, synthesis §5.1).
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 0–2 `effectivePolicyHash` identity (schema + generation) | The corpus cannot pin its identity without it | The corpus is content-addressed and pinned to a specific `effectivePolicyHash`; a claim with a stale/mismatched pin fails closed |
+| Dependency | Sibling children `005/002` (rank-vs-calibrated) and `005/003` (selective controller) | They cannot certify calibration without a sealed corpus id | Every downstream calibration claim binds to a `corpusId` minted here; a claim with no corpus id is structurally inadmissible |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + route-gold | A required scorer edit would be a migration failure | The offline gate replays deterministically and leaves the scorer byte-identical [synthesis §8.2] |
+| Risk | Gold-label leakage from router output (self-confirmation) | Would invalidate the whole calibration substrate | Labels are intent-derived, independently authored; a validator rejects any record reconciled against live router output (REQ-002) |
+| Risk | Applying calibration at N=1 where there is nothing to calibrate | A false coverage gap or a meaningless slice | `mcp-code-mode` carries an explicit "no calibration slice — one candidate" record, not a silent omission (REQ-009) [synthesis §5.1] |
+| Risk | Privacy exposure in retained corpus records | Governance failure | Sanitization + an independent privacy sign-off is a precondition for sealing a generation; retention windows + deletion handling are defined (REQ-008) |
+<!-- /ANCHOR:risks -->
 
 ## MIGRATION GATE
 
@@ -96,3 +131,11 @@ This phase is governed by the shared migration-gate model in the master plan (`.
 2. **Gate this phase unblocks — Stage 4 (Per-hub canary).** Because calibrated auto-route was deferred for lack of this corpus (synthesis §11 open-q 2), no calibration certificate from `005/002`/`005/003`, and therefore no per-hub canary (Stage 4, owned by phases `006/*`) that admits calibrated auto-route, may activate until a sealed, hash-pinned corpus id from this phase is available. The corpus is the precondition that lets Stage 4's "zero hard mismatch" gate include calibrated routes at all.
 
 Activation is reversible and fenced: a corpus generation is promoted by a fenced CAS on a corpus pointer with the prior generation retained (synthesis §9), mirroring the activation-manifest discipline. A rollback swaps to the byte-identical prior corpus generation; it can invalidate future certificates but cannot retroactively undo a COMMITted effect, because authority stays destination-local (synthesis §9, §10).
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The exact per-slice calibration metric and tolerance (reliability / ECE per risk slice) is specified as a gate here, but its numeric thresholds are validated downstream against a real corpus in `005/002`; open-question 2 is resolved structurally, not numerically [synthesis §11 open-q 2].
+- The production privacy program (independent reviewer role, retention owner, right-to-be-forgotten operations) is open-question 7; this phase defines the governance contract, not the operational program [synthesis §11 open-q 7].
+- Whether any hub beyond the three multi-candidate hubs (`sk-code`, `system-deep-loop`, `mcp-tooling`) ever needs a calibration slice is deferred until a real routing-gain signal appears.
+<!-- /ANCHOR:questions -->

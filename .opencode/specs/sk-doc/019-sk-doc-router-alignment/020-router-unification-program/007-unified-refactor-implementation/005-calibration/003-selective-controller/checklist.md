@@ -4,13 +4,13 @@ description: "Level-2 evidence for certificate-gated decisions, bounded clarific
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Verification Checklist
+# Verification Checklist: Selective-Classification Controller
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 <!-- ANCHOR:protocol -->
-## Protocol
+## Verification Protocol
 
 - [x] CHK-001 [P0] Multi-candidate routing requires externally bound certificate evidence.
   - **Evidence**: `validateCertificateGate()` recomputes both certificate hashes and compares policy hash, risk slice, generation, active id, lifecycle, method, and corpus identity against request/handle authorities.
@@ -116,7 +116,7 @@ contextType: "implementation"
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
-## Summary
+## Verification Summary
 
 - [x] CHK-070 [P0] Targeted validator reaches the honest shadow gate.
   - **Evidence**: `node harness/validate-selective-controller.cjs` exits 0; 17 decisions pass the frozen external oracle, the spent-budget mutation flips `defer→clarify` only when its guard is removed, SC-001..SC-004 are `pass`, and SC-005 is `shadow-partial`.

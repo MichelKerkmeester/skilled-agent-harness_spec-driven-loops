@@ -110,13 +110,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement After Stage",
+        "name": "Unified Router Refactor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Retire",
+        "name": "Phased Implementation Plan",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
     "created_at": "2026-07-18T13:13:20.991Z",
-    "last_save_at": "2026-07-19T04:14:11.413Z",
+    "last_save_at": "2026-07-20T13:14:19.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a151c7ebed893aaf1dd41fd9b5551f44d62c69505d3ed3511f51ea3fb1e2598a",
+    "source_fingerprint": "sha256:887e3879aab8a01b1ae6317a70f2917f0759500015b73a58354b25c98f3a5e9d",
     "source_doc_hashes": {
-      "spec.md": "27c67fe55983583d8685846311fa3a273da372d279eb3d0fd78de838f87fcd59",
-      "plan.md": "ca2d643099ca932b5c0b3087bc5ed2a00d73d0b76465931823f85c6fdd588fa4",
-      "tasks.md": "2e6b3eb1fe54382257547b920a1843765eccff430135bcdd1fc856d5ee906908",
+      "spec.md": "510e2715e930fe3342b7f9de31ea75eb910b99c8aac33d358e53ef90c9e59724",
+      "plan.md": "203520c9ee5fac7195656cc699e1cbe5a3151be623851447ff0fb376d30c89f5",
+      "tasks.md": "f596e6b55c6c26295fcb6c4a08fbbbad639c10bf747b86538c2b32053ad575be",
       "checklist.md": "1da2c4f122b32ad3c8e835739a9583083e30fbb826b878dd5acd649f4fd8a251",
       "implementation-summary.md": "921351d28b83846e9b46f8c6f61428f2e202e51b641341505ce6e4a1e7d79435"
     },

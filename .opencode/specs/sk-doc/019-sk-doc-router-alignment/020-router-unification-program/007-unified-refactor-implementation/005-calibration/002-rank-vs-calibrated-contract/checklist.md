@@ -4,10 +4,13 @@ description: "Level-2 evidence for certificate-gated calibrated routing, rank-on
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Verification Checklist
+# Verification Checklist: Rank-vs-Calibrated Route Contract
+
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 <!-- ANCHOR:protocol -->
-## Protocol
+## Verification Protocol
 
 - [x] CHK-001 [P1] Ranking evidence remains authority-free and calibration remains evidence-only.
   - **Evidence**: `validateRouteDecision()` imports the frozen `parseRouteDecisionShape()` oracle; public evidence is the exact `rankScore`/`scoreMargin` array with `nonAuthority:true`, while calibration is a sibling envelope field.
@@ -113,7 +116,7 @@ contextType: "implementation"
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
-## Summary
+## Verification Summary
 
 - [x] CHK-060 [P1] Targeted executable verification reaches the intended shadow gate.
   - **Evidence**: `node harness/validate-calibration-contract.cjs` exits 0 and reports SC-001, SC-002, SC-004, and SC-005 as `PASS`, with SC-003 honestly `shadow-partial`.

@@ -27,6 +27,21 @@ An **idempotency ledger** keyed on the proof's idempotency key guarantees that a
 
 This phase is a **shadow implementation with zero live authority**. It authors and executes the phase-local contract, state machine, ledger, and deterministic route-gold fixtures that prove the plane; it does **not** modify any live routing config, registry, scorer, or skill, and it never edits the shared benchmark scorer `router-replay.cjs` [synthesis §8.2; §10].
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Implemented — phase-local shadow plane (PREPARE→VERIFY→COMMIT + idempotency ledger + receipt/fencing epoch) built and proven via deterministic route-gold fixtures under zero live authority; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `003-execution-verify-commit` |
+| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
+| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§3 Idea 7, §9 Stage 6, §11 open-q 5) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -38,7 +53,9 @@ The synthesis fixes the *shape* of the plane but explicitly parks the operationa
 ### Purpose
 
 Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `RouteProofV1` evidence contract, the idempotency ledger with a duplicate-key single-effect guarantee, and the receipt + fencing-epoch model — such that authority is consumed *only* at a destination's own VERIFY → COMMIT boundary, exactly-once is an adapter property of the ledger (not a claim in the proof text) [synthesis §3 Idea 7], and every one of these behaviors is provable through deterministic offline route-gold fixtures that leave the shared scorer untouched.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -72,7 +89,9 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 | `execution-plane.md`, `checklist.md`, `implementation-summary.md` | Create | Operating decisions, Level-2 evidence, and honest shadow boundary |
 
 > All executable artifacts are phase-local shadow assets. They mutate no live router, registry, scorer, or skill and consume zero live authority.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 ### P0 — Blockers (MUST complete)
@@ -96,7 +115,9 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 | REQ-010 | The advisory route guard cannot become destination VERIFY | The packet's `mcp-route-guard.cjs` stays `allow`/`warn`, fails open, and is never wired as the VERIFY authority check [synthesis §5.2 line 168] |
 | REQ-011 | Execution behaviors are provable via deterministic route-gold fixtures | New `TypedRouteGoldV1` fixtures (stale-proof-rejected, duplicate-key-single-receipt, direct route carrying no forbidden handoff artifacts) replay deterministically through the compatibility projector; `router-replay.cjs` is unmodified [synthesis §8.2] |
 | REQ-012 | Idempotency ledger location + retention/partition model is specified | The design fixes ledger storage, partition key, and retention window, and declares which destination roles supply side-effect-free PREPARE and atomic vs explicitly non-atomic COMMIT (resolves open-q 5) [synthesis §11 item 5] |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: A stale proof (any bound hash drifted, generation superseded, or expiry passed) is rejected at VERIFY with `STALE_PROOF` and never reaches COMMIT — demonstrated by the stale-proof route-gold fixture.
@@ -105,6 +126,19 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 - **SC-004**: The identical PREPARE/VERIFY/COMMIT code path runs for `mcp-code-mode` (N=1) and a multi-target bundle with zero name/skill conditionals.
 - **SC-005**: Route-gold stays green end to end and the shared scorer file is byte-unchanged; the git diff touches no live routing config, registry, scorer, or skill.
 - **SC-006**: A rollback drill proves the pre-effect adapter can be disabled cleanly, and the design documents that post-COMMIT external recovery is destination-owned (no atomic router undo is asserted).
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 0 `RouteProofV1` schema + deterministic hashing; Phase 2 `route` decision | The plane cannot bind proofs or consume a route without them | Consumed read-only; VERIFY recomputes the bound digests + current authority immediately before the first side effect |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + frozen route-gold | A required scorer edit would be a migration failure | Adapted via the compatibility projector only; the scorer stays byte-unchanged [synthesis §8.2] |
+| Risk | A stale or forged proof is treated as a capability | Would trigger an effect it no longer authorizes | Proof is evidence only; authority is consumed solely at destination VERIFY→COMMIT; a drifted hash / superseded generation / passed expiry ⇒ `STALE_PROOF` |
+| Risk | A duplicate submission produces a second effect | Unintended double effect | Idempotency ledger keyed on the proof key: duplicate ⇒ single effect + the original receipt |
+| Risk | Expecting router-owned atomic rollback across external effects | Silent attribution corruption | By design there is none: the pre-effect adapter is disable-able; post-COMMIT recovery is destination-owned [synthesis §9 Stage 6] |
+<!-- /ANCHOR:risks -->
 
 ## MIGRATION GATE
 
@@ -115,6 +149,14 @@ This phase owns the **Stage 6 — Destination rollout** gate from the master pla
 **Reversibility (Stage 6 rollback column):** `disable pre-effect adapter`. The pre-effect PREPARE/VERIFY adapter can be switched off to fall back to legacy serving authority; a **post-effect external COMMIT cannot be undone by the router** — that recovery is destination-owned. This phase therefore builds and proves the destination-rollout *mechanism and fixtures* here; the actual per-hub live destination rollout is consumed downstream by phases `006/*`, which reuse this identical execution plane [`../spec.md` §"SHARED MIGRATION-GATE MODEL"].
 
 **Hard-gate interactions (any one hard-blocks activation)** [synthesis §9 line 261]: a COMMIT lacking a matching VERIFY; a duplicate idempotency key creating a second effect; a negative decision that carries a target/authority; a request observing mixed generations; a required edit to the shared scorer.
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Idempotency-ledger storage/partition/retention is fixed here for the shadow plane (resolving open-q 5); production sizing per destination role is validated downstream when phases `006/*` execute the live destination rollout [synthesis §11 item 5].
+- The exhaustive per-hub mapping of which destination roles supply a side-effect-free PREPARE and an atomic (vs explicitly non-atomic) COMMIT is declared per role here and confirmed during the `006/*` rollout.
+- Post-COMMIT external recovery is destination-owned by design; the standard recovery contract each destination must honor is out of scope for this plane and left to the destination's own doctrine.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

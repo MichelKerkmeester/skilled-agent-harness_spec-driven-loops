@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The three preceding parent-hub activations (`sk-code`, `system-deep-loop`) exercise evidence composition (`surfaceBundle`) and shared-packet/backend projections, but none of them has an effect-ordered transport chain or a cross-hub judgment approval that must precede an external commit",
     "created_at": "2026-07-18T13:13:20.120Z",
-    "last_save_at": "2026-07-19T03:50:54.878Z",
+    "last_save_at": "2026-07-20T13:35:25.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:665ef3fa180fa42994220f7561fd071051a367dc207f9e36dc8a158466e8881b",
+    "source_fingerprint": "sha256:05be261aee219e3dbe11634f1116d2b6b36221e9894239eb757a88f97dcb1343",
     "source_doc_hashes": {
-      "spec.md": "e48ab48744d03f225f4743a37bacdc7093cefabc9b093f43c9ebacb3433e71bb",
-      "plan.md": "f0fc26343baed0f00bd7cecbd84c1c81af47bc2f4f2e85cb9c4005dc664d42e6",
-      "tasks.md": "913458197b2b5e7ed31e470b732ebf4494346b72c2e5050838b8778f34e59462",
-      "checklist.md": "025e9d53abf1af7cd274afe9c2c3b615fa8582aeb13d80ddb11651824f998a8b",
+      "spec.md": "ed60065c66bf8ecc2e233ee26fe1dd3c7a1c39331b46bb0780ab7370c3b45c41",
+      "plan.md": "8063c60b41f692b7ba720eebe50aa1dedbf6e7c9be6d05f11ea70506b3672eec",
+      "tasks.md": "3c8a2044638e61b2d7a66f3865e8172a0b3e1521f6c96c45154d86fbe288cb37",
+      "checklist.md": "cef31aca0b398904c6e7ccf861765c95b177d8504b8c4c281d958db42104528a",
       "implementation-summary.md": "ab8c482528b5e03570a80769390679cee6cba7160e0965dc5aac80a03d2964cd"
     },
     "last_active_child_id": null,

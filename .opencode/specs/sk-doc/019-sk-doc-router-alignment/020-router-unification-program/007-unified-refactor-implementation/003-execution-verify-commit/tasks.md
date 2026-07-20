@@ -28,19 +28,23 @@ contextType: "implementation"
 <!-- /ANCHOR:notation -->
 ---
 
-<!-- ANCHOR:phase-a -->
-## Phase A: Contract + lifecycle
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Phase A: Contract + lifecycle
 
 - [x] T001 Confirm the `RouteProofV1` field set consumed from phase `000` and pin the binding set through frozen fields + versioned read-set digests → REQ-001 (`lib/execution-plane.cjs`, fixed proof hashes)
 - [x] T002 Enforce the "proof is evidence, never a capability" invariant; authority is consumed only at destination VERIFY → COMMIT → REQ-002 (proof field allowlist + local acquisition)
 - [x] T003 Define `idempotencyKey = hash(requestFactsHash, target, effectivePolicyHash)` and prove it deterministic across resubmission → REQ-005 (duplicate fixture)
 - [x] T004 [P] Bind `expiresAtEpoch` and exercise passed expiry as `STALE_PROOF` → REQ-003 (transition test)
 
-<!-- /ANCHOR:phase-a -->
+<!-- /ANCHOR:phase-1 -->
 ---
 
-<!-- ANCHOR:phase-b -->
-## Phase B: State machines
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Phase B: State machines
 
 - [x] T005 Implement pure PREPARE `routeDecision → RouteProofV1[] | none`; all three negatives emit no proof → REQ-002
 - [x] T006 Prove PREPARE leaves decision/context bytes unchanged and never touches destination state → REQ-001
@@ -51,11 +55,7 @@ contextType: "implementation"
 - [x] T011 Exercise null, bare-proof, forged, and stale COMMIT attempts as specific hard failures → REQ-003
 - [x] T012 Keep the advisory guard outside every runtime dependency and authority callback → REQ-010 (source/import scan)
 
-<!-- /ANCHOR:phase-b -->
----
-
-<!-- ANCHOR:phase-c -->
-## Phase C: Ledger + ordering
+### Phase C: Ledger + ordering
 
 - [x] T013 Fix destination-local storage, compound partition key, and max-horizon retention rule → REQ-012 (`execution-plane.md`)
 - [x] T014 Declare actor/evidence/transport/judgment PREPARE and atomicity classes → REQ-012 (`execution-plane.md`)
@@ -64,11 +64,13 @@ contextType: "implementation"
 - [x] T017 Exercise mutation epoch advance, later-leg invalidation, and `STALE_PROOF` re-PREPARE fence → REQ-006
 - [x] T018 Exercise pre-effect disable and pending non-atomic destination recovery boundary → REQ-007
 
-<!-- /ANCHOR:phase-c -->
+<!-- /ANCHOR:phase-2 -->
 ---
 
-<!-- ANCHOR:phase-d -->
-## Phase D: Proof + verification
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Phase D: Proof + verification
 
 - [x] T019 Author and execute stale-proof-rejected typed fixture via the compatibility projector → REQ-011, SC-001
 - [x] T020 Author and execute duplicate-key-single-receipt fixture → REQ-011, SC-002
@@ -78,7 +80,7 @@ contextType: "implementation"
 - [x] T024 Document and locally prove Stage 6 shadow inputs under zero live authority → Migration Gate
 - [x] T025 Execute adapter-disable drill and document destination-owned external recovery → REQ-007, SC-006
 
-<!-- /ANCHOR:phase-d -->
+<!-- /ANCHOR:phase-3 -->
 ---
 
 <!-- ANCHOR:completion -->

@@ -13,6 +13,7 @@ contextType: "implementation"
 
 # Implementation Plan: Contract Schemas
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -29,9 +30,11 @@ contextType: "implementation"
 ### Overview
 
 Build the foundation the whole refactor binds to, in a strict dependency order: (1) fix the serialization rule so "canonical bytes" has a precise meaning; (2) fix the domain-separated hashing rule so identity is defined; (3) author the schema family against those two rules; (4) author golden fixtures — including the N=1 `mcp-code-mode` shape; (5) build the harness that proves determinism, algebra safety, and degeneracy. The serialization and hashing rules come *first* because every schema's identity fields (`basePolicyHash`, `effectivePolicyHash`, `requestFactsHash`, `proofHash`) are defined in terms of them [synthesis §2, §11.4]. This is planning/design work materialized as schema + spec + harness; it runs entirely offline and mutates no live routing surface.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -45,10 +48,27 @@ Build the foundation the whole refactor binds to, in a strict dependency order: 
 - [x] Serialization/hashing reference includes an exact reproduction vector and closed tag registry.
 - [x] Nothing imports from `router-replay.cjs`, the registry, or any `SKILL.md`.
 - [x] Strict spec validation is explicitly delegated to the orchestrator; the operator prohibited running it in this worktree.
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
-## 3. BUILD APPROACH (ordered)
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+The phase-0 deliverable is four artifact groups bound in a strict dependency order:
+
+- `serialization-hashing.md` — the canonical-JSON serialization rule and the domain-separated `SHA-256` hashing rule (resolves open-q 4); authored first because every schema's identity fields are defined in terms of it.
+- `schemas/*.schema.json` — the versioned `V1` contract family (`CompiledPolicyV1`, `CorrectionOverlayV1`, `RouteRequestV1`, `RouteDecisionV1`, `RouteProofV1`, `UncertaintyBudgetV1`, and the three read-only projections), each binding to the serialization/hashing rules for identity.
+- `fixtures/*.json` — golden + N=1 + the synthesis §8.2 fixture families, plus the adversarial must-fail cases.
+- `harness/validate-contracts.cjs` — the offline validator that proves determinism, algebra safety, degeneracy, and domain separation, importing nothing from the scorer, registry, or skills.
+
+No live routing surface is touched; the whole design is document-and-schema material plus an offline harness.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
 
 ### Step 1 — Fix the canonical-JSON serialization rule (resolves open-q 4, part A)
 
@@ -96,10 +116,11 @@ A Node harness that: validates every fixture against its schema; asserts the dis
 ### Step 6 — Verify + record the migration gate closure
 
 Run the harness green; hand strict spec validation to the orchestrator as required by the operator constraint; confirm the Stage 0 freeze conditions and that `TypedRouteGoldV1` fixtures parse into the compatibility shape without touching `router-replay.cjs`. Record that Stage 1 (phase `001`) is technically unblocked, with strict packet validation remaining an external administrative gate.
+<!-- /ANCHOR:phases -->
 
 ---
 
-## 4. KEY FILES & CONTRACTS TOUCHED
+## Key Files & Contracts Touched
 
 | Artifact (proposed) | Role | Binds to |
 |---------------------|------|----------|
@@ -112,7 +133,8 @@ Run the harness green; hand strict spec validation to the orchestrator as requir
 
 ---
 
-## 5. VERIFICATION
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
 
 | What | How |
 |------|-----|
@@ -124,17 +146,27 @@ Run the harness green; hand strict spec validation to the orchestrator as requir
 | No over-emission | Zero-signal fixture is target-free `defer(no-match)`; no default union present |
 | Scope hygiene | `grep`-verify the harness imports nothing from scorer/registry/skills |
 | Spec discipline | Orchestrator runs `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`; local execution prohibited by operator |
+<!-- /ANCHOR:testing -->
 
 ---
 
-## 6. RISKS & ROLLBACK
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
+| Dependency | None upstream — this is the first slice | — | Nothing blocks it; everything downstream (001–007) binds to this phase's schemas + identity rules |
 | Risk | Canonicalization profile (JCS) proves insufficient for some field type | Medium — would re-open open-q 4 | Marked Proposed; reproduction test gates Stage 1; profile change is a versioned bump, not a silent edit [synthesis §11.4, §13] |
 | Risk | A schema field boundary is wrong (synthesis §13 "Medium" confidence) | Medium | `V1` is additive; a correction mints `V2` and does not mutate `V1` in place (REQ-012) |
-| Dependency | None upstream | — | This is the first slice; nothing blocks it |
-| Rollback | This phase writes only docs/schemas/harness under its own folder | Trivial | Delete the folder's artifacts; no live surface changed, so rollback is byte-clean by construction |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+This phase writes only docs, schemas, fixtures, and the harness under its own folder — no live routing surface is touched, so rollback is byte-clean by construction: delete the phase's artifacts and nothing downstream has changed. Because serialization is deterministic and `effectivePolicyHash` binds `{base, overlay|null, schema, generation}`, any prior generation's bytes remain exactly recoverable (REQ-009, REQ-012).
+<!-- /ANCHOR:rollback -->
 
 ---
 

@@ -27,6 +27,7 @@ It also resolves **synthesis open-question 4** — "Canonical JSON serialization
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -38,9 +39,11 @@ It also resolves **synthesis open-question 4** — "Canonical JSON serialization
 | **Branch** | `000-contract-schemas` |
 | **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
 | **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -50,9 +53,11 @@ The unified router refactor is *not a router rewrite* — it is a shadow compile
 ### Purpose
 
 Freeze one versioned schema family, one canonical-JSON serialization rule, and one domain-separated hashing rule — and prove, with an offline harness, that identical inputs hash identically, that negative decisions cannot carry authority, and that the N=1 (`mcp-code-mode`) shape and the multi-mode shape differ only in cardinality and empty collections.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -86,9 +91,11 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 | `000-contract-schemas/tasks.md` | Create | Ordered, checkable task list |
 
 > Schema artifacts, the serialization/hashing reference, and the harness are *design deliverables described* by these docs; their concrete file layout is proposed in `plan.md`. No live routing surface is touched by this phase.
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers (MUST complete)
@@ -113,9 +120,11 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 |----|-------------|---------------------|
 | REQ-012 | Document the schema-evolution/versioning rule: any change to a hashed field or to the canonicalization rules is a breaking version bump (`V1`→`V2`) because it changes byte-identity; `schemaVersion` participates in `effectivePolicyHash` [synthesis §2, §4 Seam C]. | The rule is written in the serialization/hashing reference with a worked example of a field addition minting a new version. |
 | REQ-013 | Provide a minimum golden-fixture set spanning the families the benchmark will later need [synthesis §8.2]: exact single route; ordered + surface bundles; zero-signal `defer(no-match)` with no default union; one-turn clarify; forbidden `reject`; stale/absent advisor; stale proof; overlay replay; the singular-omission + zero-rank-call assertion; duplicate idempotency-key receipt. | Every fixture parses; each maps 1:1 to a synthesis §8.2 fixture family; the zero-signal fixture contains no fallback/default union (no over-emission). |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Every artifact in the contract family has a frozen `V1` schema that validates both a multi-mode golden fixture and the N=1 `mcp-code-mode`-shaped fixture, with no schema branch on skill name [REQ-001, REQ-011; synthesis §5].
@@ -124,9 +133,24 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 - **SC-004**: Identity holds: `effectivePolicyHash` binds exactly `{base, overlay|null, schema, generation}` and is stable under re-serialization; artifact-type domain separation prevents cross-type hash collision [REQ-009; synthesis §2, §4 Seam D].
 - **SC-005**: The offline harness passes on the golden set, asserts all algebra + determinism + degeneracy invariants, and imports nothing from the scorer/registry/skills [REQ-010, REQ-013].
 - **SC-006**: The no-over-emission property is structural: the zero-signal path is `defer(no-match)` with a target-free body and no default union anywhere in the fixtures [REQ-013; synthesis §10].
+<!-- /ANCHOR:success-criteria -->
 
 ---
 
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | None upstream — this is the first slice | — | Everything downstream (001 shadow compiler through 007 overlay) binds to these schemas and this identity model; nothing blocks this phase [synthesis §1] |
+| Risk | Canonical-JSON profile (Proposed: RFC 8785 / JCS) proves insufficient for some field type | Medium — would re-open open-question 4 | Stated as Proposed; a cross-implementation reproduction test gates Stage 1; a profile change is a versioned bump, never a silent edit [synthesis §11.4] |
+| Risk | A schema field boundary is wrong (synthesis §13 "Medium" confidence) | Medium | `V1` is additive; a correction mints `V2` and never mutates `V1` in place (REQ-012) |
+| Risk | Foundational blast radius — every later phase binds to these schemas and identity | High reach, but zero live-routing blast radius | Design-only phase; no scorer, registry, or `SKILL.md` is read or written; reversible by construction |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Determinism (the load-bearing NFR)
@@ -139,9 +163,11 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 
 ### Portability / Standalone
 - **NFR-P01**: The schemas and the hashing rule are expressible in a document-only context so a later `PolicyCardV1.md` can be generated from the same compiled snapshot (a matching `humanViewHash` alone is explicitly insufficient) [synthesis §8.3].
+<!-- /ANCHOR:nfr -->
 
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 ### Data boundaries
@@ -156,9 +182,11 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 
 ### State transitions
 - **Version bump**: a hashed-field change mints `V2`; `V1` fixtures continue to validate against `V1` (schemas are additive, not mutated in place) [REQ-012].
+<!-- /ANCHOR:edge-cases -->
 
 ---
 
+<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -167,6 +195,7 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 | Risk | 14/25 | Foundational (every phase binds here), but zero live-routing blast radius; reversible by definition |
 | Research | 12/20 | Resolves open-q 4; canonicalization/hashing profiles are Proposed and need validation |
 | **Total** | **42/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ---
 
@@ -187,12 +216,14 @@ This phase satisfies **Stage 0 — Baseline freeze** of the shared migration-gat
 
 ---
 
+<!-- ANCHOR:questions -->
 ## OPEN QUESTIONS
 
 - **OQ-1 (resolves synthesis §11.4 here):** canonical-JSON profile is Proposed as RFC 8785 (JCS) and the hash as `SHA-256` with `H(domainTag || 0x00 || canonicalBytes)`. These are the design decisions this phase is chartered to make; they still require a cross-implementation reproduction test before Stage 1 relies on them [synthesis §11.4, §13 "Medium" confidence on schema field boundaries].
 - **OQ-2:** Whether `runtimeDiscriminator` must be a first-class identity field for hubs beyond `system-deep-loop`, or an optional extension — deferred to the per-hub archetype work in phase `006` [synthesis §2.2, §7].
 - **OQ-3:** Which `CorrectionOverlayV1` fields are learnable is out of scope here (open-q 3); this phase only fixes the overlay's *shape* and its binding-by-`basePolicyHash` [synthesis §11.3].
 - **OQ-4:** Idempotency-ledger location/retention (open-q 5) is not decided here; `RouteProofV1` only carries the `idempotencyKey` field, not the ledger model [synthesis §11.5].
+<!-- /ANCHOR:questions -->
 
 ---
 

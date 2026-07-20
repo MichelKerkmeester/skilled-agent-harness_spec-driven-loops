@@ -14,6 +14,7 @@ status: "implemented-dormant"
 
 # Implementation Plan: Learning Overlay — Offline CorrectionOverlayV1 (Phase 7)
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Overview
@@ -27,7 +28,9 @@ Build the learning plane as a **strictly offline, additive, dormant-by-default**
 | **Serving-side surface** | The activation pointer only — a fenced CAS that flips which frozen overlay is active |
 | **Never touches** | `router-replay.cjs` (shared scorer); any live routing config, registry, or skill; the serving policy in place |
 | **Runtime posture** | `P = offline-learned` corner of `(T,R,P)` — an optional corner; the base runs `P = static` (synthesis §8/§12) |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -47,7 +50,9 @@ Build the learning plane as a **strictly offline, additive, dormant-by-default**
   - Evidence: null overlay, empty overlay, and parity overlay emit byte-identical base decisions.
 - [x] The meta-gate (demonstrated routing gain from real telemetry) is documented and enforced before any promotion.
   - Evidence: positive gain and corpus binding remain mandatory; fixture evidence is shadow-only and does not change serving authority.
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### The offline pipeline (one direction, never online)
@@ -67,8 +72,10 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 - **`EffectivePolicy` identity** — `hash(base, overlay|null, schema, generation)`, pinned once per request (synthesis §4 seam D). The overlay never changes base bytes.
 - **`ActivationManifestV1`** — the fenced selector; promotion/rollback is a token-locked, fencing-epoch-checked CAS (synthesis §9).
 - **Compatibility projector + route-gold** — from `002`; maps typed decisions into the existing intent/resource contract so the shared scorer is untouched (synthesis §8.2).
+<!-- /ANCHOR:architecture -->
 
-## 4. BUILD SEQUENCE
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
 
 1. **Bind upstream contracts.** Consume the `CorrectionOverlayV1` schema + serialization from `000` and the effective-identity hash + fenced manifest from `001`. Assert the base is complete with `overlay = null` (the N=1 configuration) before adding anything (synthesis §5.3, §12).
 2. **Offline ingestion + sanitizer.** Build a batch ingester that reads receipts (`003`) and accepted-handoff records (`004`), applies the privacy filter + retention/partition policy, and emits normalized, sanitized correction records (synthesis open-q 7). Nothing enters the compiler unsanitized.
@@ -79,8 +86,10 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 7. **Fenced activation + rollback drill.** Implement promotion as a CAS on the activation manifest (snapshot candidate + prior manifest, compare expected generation/hash, swap atomically under token lock + fencing epoch). Retain the prior generation; build and run a byte-exact rollback drill that CAS-swaps back to base-only or the prior overlay (synthesis §9 stage 5).
 8. **Overlay replay/rollback fixtures.** Add the overlay replay/rollback fixture family to the typed route-gold set (synthesis §8.2) so the reversible round-trip is regression-guarded.
 9. **Wire the meta-gate.** Document and enforce that none of steps 3–7 may promote absent a demonstrated routing gain from real correction-telemetry volume; the subsystem is dormant until then and may stay `P = static` forever (synthesis §12).
+<!-- /ANCHOR:phases -->
 
-## 5. VERIFICATION
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
 
 - **Offline replay green + scorer untouched.** Route-gold passes for `base+candidate`; `git diff -- router-replay.cjs` is empty (REQ-004, SC-002).
 - **Byte-stable tuple + rollback.** The activated tuple hashes deterministically; the rollback drill reproduces byte-identical prior bytes (REQ-006, SC-003).
@@ -89,8 +98,18 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 - **Independent approval + hard gates.** Promotion is blocked without an independent approval record or with any hard-gate violation (REQ-005, SC-006).
 - **Destination-local authority.** A test proves an overlay cannot make a non-`route` decision carry a target, cannot let evidence COMMIT, and cannot bypass VERIFY (REQ-007).
 - **Migration gate.** Confirm the Stage 5 gate — offline replay + safety/parity + independent approval + byte-stable tuple — is satisfied before any `overlay ≠ null` generation serves (`spec.md` → MIGRATION GATE).
+<!-- /ANCHOR:testing -->
 
-## 6. RISKS & ROLLBACK
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+- **Upstream (read-only):** `000-contract-schemas` (`CorrectionOverlayV1` schema + canonical serialization); `001-compiler-n1-shadow` (effective-identity hash + fenced `ActivationManifestV1` selector); `002-decision-evaluator` (pure evaluator + compatibility projector + typed route-gold); `003-execution-verify-commit` (receipts) and `004-recovery-ladder` (handoff records) as the correction-signal source.
+- **Fixed boundary:** the shared benchmark scorer `router-replay.cjs` and the existing route-gold — invoked read-only, never edited; a required scorer edit is a migration failure [synthesis §8.2].
+- **Meta-gate:** a demonstrated routing gain from real correction-telemetry volume plus an independent human approver — absent either, the plane stays dormant (`overlay=null` / `P=static`) [synthesis §12].
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -101,6 +120,7 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 | Rollback | An activated overlay must be undone | — | CAS-swap to the byte-identical prior (base-only or prior-overlay) generation; the prior generation is always retained |
 
 > **Rollback boundary:** the CAS reverts *routing* to the byte-identical prior generation. It cannot undo an external COMMITted effect — post-effect recovery is destination-owned (synthesis §9). Because this plane is offline and pre-effect, its rollback is always byte-exact.
+<!-- /ANCHOR:rollback -->
 
 ## RELATED DOCUMENTS
 - **Specification**: `spec.md`

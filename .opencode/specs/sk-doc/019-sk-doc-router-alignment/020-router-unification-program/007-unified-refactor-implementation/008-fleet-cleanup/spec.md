@@ -22,6 +22,21 @@ Cleanup is not a big-bang teardown. It runs **per-skill deletion gates** in the 
 
 **Planning/design only.** This spec, its plan, and its tasks author the cleanup contract. No live routing config, registry, activation manifest, scorer, or skill is modified by this packet.
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Planning/design authored — the terminal Stage-7 cleanup contract (per-skill deletion gates + hot-card alias strip + drift-checked final state) is specified; execution is BLOCKED until phase 006 is green fleet-wide (harness reports `PREFLIGHT_BLOCKED`); repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `008-fleet-cleanup` |
+| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
+| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -29,7 +44,9 @@ After Stage 6 (destination rollout) each hub serves from the compiled typed cont
 
 ### Purpose
 Retire the legacy dual-read resolution path fleet-wide behind reversible per-skill deletion gates, leaving the compiled typed contract as the sole resolver, the hot card free of compatibility aliases, and the final state drift-checked against a recorded fingerprint — with the prior generation retained for byte-exact rollback throughout a bake window.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -54,7 +71,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 | `008-fleet-cleanup/spec.md` | Create | This Level-2 spec-core (the cleanup contract). |
 | `008-fleet-cleanup/plan.md` | Create | Build approach, touched contracts, verification. |
 | `008-fleet-cleanup/tasks.md` | Create | Ordered, checkable execution list. |
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -73,7 +92,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 |----|-------------|---------------------|
 | REQ-006 | No over-emission after alias removal — removing aliases must not open a fallback/default-union path (§9, §10). | Zero-signal fixtures still return typed `defer(no-match)` with no default union; the "singular omission + zero rank-call assertion" fixture (§8.2) still holds after `mcp-code-mode` alias removal. |
 | REQ-007 | Scorer untouched across the entire cleanup (§9, §10). | `git diff` over the cleanup shows zero changes to `router-replay.cjs`; deletion-gate fixtures reach the scorer only through the existing compatibility projector. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All four hubs (`mcp-code-mode`, `sk-code`, `system-deep-loop`, `mcp-tooling`) resolve exclusively through the compiled typed contract; the legacy dual-read resolver is deleted; no hub remains legacy-authoritative.
@@ -81,7 +102,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 - **SC-003**: The prior generation is retained through the bake window and byte-exact fenced-CAS rollback is proven; the final compiled state passes its drift check.
 - **SC-004**: The hot card carries no compatibility alias array, is regenerated from the compiled snapshot, and passes document-parity and route-gold replay.
 - **SC-005**: `router-replay.cjs` is unchanged; deterministic offline route-gold replay is preserved byte-identically end to end.
+<!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -91,7 +114,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 | Risk | A per-skill deletion changes route-gold output | Silent routing regression | Route-gold replay after every deletion; drift check on the compiled fingerprint; retained prior generation for immediate byte-exact rollback |
 | Risk | Alias removal opens a fallback/default-union path | Over-emission (violates hard constraint) | REQ-006 zero-signal + singular-omission fixtures assert typed `defer`, no union |
 | Risk | Pressure to edit the scorer so the cleaned route passes | Loss of baseline comparability | REQ-007: scorer edit is a cleanup FAILURE; only the compatibility projector may change fixtures |
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Reversibility
@@ -101,14 +126,18 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 ### Determinism & Safety
 - **NFR-D01**: Identical inputs compile to byte-identical policy bodies before and after cleanup; route-gold replay never calls a live advisor (§10).
 - **NFR-S01**: Unmapped legacy inputs fail closed after dual-read retirement — no silent fallback (§9, Stage 2 invariant carried to its terminal state).
+<!-- /ANCHOR:nfr -->
 
+<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 - **Partial fleet readiness**: three hubs rolled out, one still legacy-authoritative → preflight gate blocks all deletion; no partial dual-read teardown (REQ-001).
 - **N=1 emptiness**: `mcp-code-mode` has empty ranking/bundle/handoff collections; deletion walks empty collections, it does not branch on the skill name (§5.1, §5.2).
 - **Bake-window rollback**: a regression surfaces mid-window → CAS to the retained prior generation; the external COMMIT already emitted is not reversed by routing rollback (§9).
 - **Alias still referenced**: a legacy consumer still speaks an alias after removal → resolves as unmapped → fails closed (not a silent default).
+<!-- /ANCHOR:edge-cases -->
 
+<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -117,6 +146,7 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 | Risk | 18/25 | Removes the legacy safety net; terminal, fleet-wide; mitigated by retained generation + drift check. |
 | Research | 6/20 | Design fully specified by synthesis §9/§5.3/§10; no open architecture. |
 | **Total** | **38/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ## MIGRATION GATE
 
@@ -128,10 +158,12 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 
 **Hard constraints (inherited, every phase):** deterministic offline route-gold replay preserved; **never** touch the shared scorer `router-replay.cjs`; authority stays destination-local (a proof/recommendation is never a capability); reversible + gated (fenced CAS activation, retained prior generation); no over-emission.
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Bake-window duration and the telemetry/quiet-period signal that authorizes permanently discarding a retained prior generation (empirical; synthesis §11 defers concrete windows).
 - Whether any legacy alias must survive as an external-consumer compatibility shim beyond the hot card (must be named explicitly; default is full removal, fail-closed on unmapped).
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 - **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)

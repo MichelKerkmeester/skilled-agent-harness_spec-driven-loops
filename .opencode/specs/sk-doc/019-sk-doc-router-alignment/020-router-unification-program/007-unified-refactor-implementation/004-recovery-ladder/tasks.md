@@ -13,6 +13,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -25,10 +26,14 @@ contextType: "implementation"
 **Task Format**: `T### [P?] Description (file path)`
 
 **Traceability**: each task cites the REQ/SC it advances (see `spec.md`).
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase 1: Ground the contract seams
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Ground the contract seams
 
 - [x] T001 Confirm phase 000 `UncertaintyBudgetV1` and phase 002 `RouteDecisionV1` + compatibility projector exist and are read-only inputs; record their generation/hash (dependency gate — plan §5)
 - [x] T002 Pin the shared-budget semantics on the ladder: one `{ userTurns: 1 }` per request; clarify and handoff draw from the SAME budget (REQ-002, synthesis §2.1)
@@ -37,10 +42,14 @@ contextType: "implementation"
 **Evidence**: `recovery-ladder.v1.json` pins the frozen decision and budget schema digests and the
 single shared limit. The implementation imports Phase-0 `lib/canonical.cjs` and uses an own
 phase-local projector as directed; the downstream `NEEDS_INPUT` fixture ends at one spent turn.
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
-## Phase 2: Specify the six rungs and their guards
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Specify the six rungs and their guards
 
 - [x] T004 Specify rung 1 — eligibility + authority gate BEFORE ranking; negative outcome withholds authority (REQ-003, synthesis §4 step 1, §2.3)
 - [x] T005 Specify rung 2 — deterministic exact route; encode the "no phase-005 certificate ⇒ no calibrated auto-route" fall-through; auto-route stays inert (REQ-004, synthesis §4 step 2, §8.1)
@@ -58,7 +67,7 @@ returns valid confident routes with an empty rung trace.
 
 ---
 
-## Phase 3: Author typed route-gold fixtures (via the phase-002 compatibility projector only)
+### Author typed route-gold fixtures (via the phase-002 compatibility projector only)
 
 - [x] T011 [P] Fixture: one-turn clarification — discriminating ambiguity → one clarify, ≤3 options + `none_of_these`, one rescore (REQ-005)
 - [x] T012 [P] Fixture: non-discriminating ambiguity → defer (NOT clarify) (REQ-005/REQ-008)
@@ -74,10 +83,14 @@ returns valid confident routes with an empty rung trace.
 `fixtures/typed-route-gold.v1.json` stores their frozen-schema-shaped projections. The cases
 exercise every defer reason plus direct, two-call clarify, threaded handoff re-entry, unthreaded
 contract violation, gate absence, targetless candidate, invalidity, authority, and bypass families.
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
-## Phase 4: Verify (deterministic, scorer untouched)
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Verify (deterministic, scorer untouched)
 
 - [x] T020 Replay all ladder fixtures through the compatibility projector; assert byte-identical outputs and route-gold stays byte-green (SC-001, synthesis §8.2)
 - [x] T021 Assert budget finiteness across all fixtures: ≤1 user turn (clarify+handoff), hop count ≤1, no visited-set revisit (SC-002)
@@ -94,7 +107,7 @@ intentionally orchestrator-owned by the execution brief; `validate.sh` was not i
 
 ---
 
-## Phase 5: Gate & close
+### Gate & close
 
 - [x] T026 Confirm the phase satisfies the shared **Stage 3 — Shadow evaluate** gate (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (spec.md MIGRATION GATE)
 - [x] T027 Confirm the three §9 hard gates hold: (a) no handoff revisits/exceeds budget; (b) no exact route emits recovery artifacts; (c) no negative decision carries target/authority (synthesis §9)
@@ -103,12 +116,27 @@ intentionally orchestrator-owned by the execution brief; `validate.sh` was not i
 **Evidence**: Stage-3 phase-local evidence is green and intentionally reported as
 `shadow-partial`; real producer/hub scenario activation remains a later per-hub gate. All three
 hard gates are asserted, and `recovery-ladder.v1.json` keeps certificate-backed auto-route inert.
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
-## RELATED DOCUMENTS
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [x] The six-rung ladder on one shared `UncertaintyBudgetV1 { userTurns: 1 }` is specified and encoded (Phases 1–2).
+- [x] All ladder fixtures replay deterministically through the phase-002 compatibility projector; route-gold stays byte-green and `router-replay.cjs` is hash-identical (Phase 3).
+- [x] Budget finiteness, authority-withholding, and the confident-route bypass are proven by fixtures (SC-002, SC-003, SC-004).
+- [x] The Stage 3 shadow-evaluate gate and the three §9 hard gates hold; rung-2 calibrated auto-route stays inert until phase 005 ships the risk certificate.
+- [B] Strict `validate.sh` (T025) is intentionally orchestrator-owned by the execution brief; not run in this worktree.
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
 
 - **Specification**: `spec.md`
 - **Build approach**: `plan.md`
 - **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
 - **Master plan**: `../spec.md`
+<!-- /ANCHOR:cross-refs -->

@@ -24,6 +24,21 @@ The evaluator carries no capability. A decision is a proof-shaped recommendation
 
 The benchmark seam is the load-bearing constraint of this phase. Typed decisions reach the existing deterministic route-gold via a **compatibility projector** that maps them back into the current `observedIntents`/`observedResources` shape. The shared scorer `router-replay.cjs` is **never edited** — a scorer change required to make the unified route pass is recorded as a *migration failure*, not performed (synthesis §8.2, §6, §10). This is planning/design only: no live routing config, registry, scorer, or skill is modified.
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Implemented — phase-local verification passing (`replay-driver.cjs` 11/11 route-gold matches; N=1 zero rank/bundle/handoff calls); repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `002-decision-evaluator` |
+| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
+| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §4 seam A, §8.2) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -31,7 +46,9 @@ The eight routing ideas each type "what happens next" differently, and two of th
 
 ### Purpose
 Ship a pure, offline, deterministic evaluator whose only output type is the closed four-action algebra, whose invariants make the dangerous states *unrepresentable*, and whose typed fixtures replay through the untouched shared scorer via a compatibility projector — so the whole fleet routes on one decision shape at every cardinality from N=1 to a multi-mode parent hub.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -55,7 +72,9 @@ Ship a pure, offline, deterministic evaluator whose only output type is the clos
 - **Authority stays destination-local.** A proof/recommendation is never a capability; only destination VERIFY→COMMIT consumes authority; negatives withhold it (synthesis §10, §2.3).
 - **Reversible + gated.** The evaluator activates behind the fenced CAS activation manifest with a retained prior generation; requests pin one generation (synthesis §9, master plan shared-gate model).
 - **No over-emission.** Zero-signal ⇒ a typed `defer` with no fallback/default union; the full registry is never scored into routes (synthesis §10, §5.2).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -80,7 +99,9 @@ Ship a pure, offline, deterministic evaluator whose only output type is the clos
 | REQ-011 | The evaluator-side **typed fixture families** exist: exact single route; ordered + surface bundles; zero-signal idle `defer` with no default union; one-turn `clarify`; forbidden `reject`; direct route carrying **no** clarify/handoff artifacts; singular omission + zero rank-call assertion (synthesis §8.2). | Each family has ≥1 fixture that parses and replays deterministically; the "direct route" fixture asserts absence of recovery artifacts (synthesis §9 hard gate). |
 | REQ-012 | **N=1 degeneracy honored:** at `candidateCount = 1` the evaluator walks empty ranking/bundle/handoff collections and never invokes that machinery; a singular evaluation calling ranking/bundle/handoff is a hard-block (synthesis §5.1, §5.2, §9). | An `mcp-code-mode` fixture asserts zero rank/bundle/handoff calls and that zero leaf signal ⇒ `defer(no-match)` (never default-to-self). |
 | REQ-013 | Generation pinning: a request whose `pinnedActivationGeneration` mismatches `policy.effectivePolicyHash` is refused via `defer(stale-policy)` or `reject`; a request observing mixed generations hard-blocks (synthesis §2.1, §9). | A stale/mixed-generation fixture yields the refusal branch, never a `route`. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: `evaluate()` is pure and deterministic — every fixture replays byte-identically across repeated runs and across processes (REQ-001).
@@ -94,6 +115,18 @@ three child processes; all decision hashes match fixed fixture oracles. The shar
 `evaluateRouteGold()` scorer reports 11/11 matches, the injected mismatch is classified as
 `intent-mismatch`, protected scorer/gold hashes remain unchanged, and all three N=1 rows report
 zero rank, bundle, and handoff calls.
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 0 schemas + Phase 1 `CompiledPolicyV1`/projections | The evaluator cannot type or generation-pin decisions without them | Consumed read-only; the request's `pinnedActivationGeneration` is cross-checked against `effectivePolicyHash` before any route |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + frozen route-gold | A scorer/gold change would invalidate the Stage 3 comparison | Adapted to via the compatibility projector only; both are read-only and never auto-updated — a required scorer edit is a migration failure [synthesis §8.2] |
+| Risk | The compatibility projection drifts from the existing intent/resource convention | Medium — a false mismatch could mask a real regression | Mismatches are emitted as a classified report, never silently reconciled; the gold is never written back [synthesis §9 stage 3] |
+| Risk | Rank leaking into authority (rank-as-probability) | Would break the closed-algebra safety model | `rankScore`/`scoreMargin` are typed as evidence; no path converts rank to a probability or auto-routes on it (calibration is Phase 5) |
+<!-- /ANCHOR:risks -->
 
 ## VERIFICATION & EDGE CASES
 
@@ -116,6 +149,14 @@ This phase owns **Stage 3 — Shadow evaluate** in the shared migration-gate mod
 **Gate evidence**: phase-local replay passes all 11 projected rows through the unchanged shared
 scorer, rejects an injected mismatch without write-back, and records byte hashes for the scorer,
 router replay, and frozen typed-gold fixtures before and after execution.
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Advisor-evidence consumption is treated here as one optional evidence record; the full advisor-projection ingestion contract (recommendation strength, staleness handling) is Phase 6 scope and is not settled in this phase [synthesis §8.1].
+- Whether the `defer(handoff-required)` reason vocabulary needs extension once Phase 4's recovery ladder debits a persistent `UncertaintyBudgetV1` — this phase only emits the typed shape, it does not debit a budget.
+- Calibrated auto-route thresholds that would let `rankScore` act as a probability are deferred to Phase 5 (`005-calibration/`); the evaluator is correct with rank as inert evidence only.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 - **Build approach**: see `plan.md`

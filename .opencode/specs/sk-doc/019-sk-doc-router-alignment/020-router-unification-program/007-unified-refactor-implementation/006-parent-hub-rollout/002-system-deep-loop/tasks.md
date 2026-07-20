@@ -13,6 +13,7 @@ contextType: "implementation"
 
 # Tasks: Unified Router Rollout — system-deep-loop (Phase 006/002)
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -23,18 +24,26 @@ contextType: "implementation"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (artifact / evidence)`
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase 1: Preconditions & extraction
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Preconditions & extraction
 
 - [x] T001 Confirm the activation-order precondition: `006/001` (`sk-code`) Stage-4 canary is green (synthesis §9). Block if not. (`../001-sk-code/`)
 - [x] T002 Read the authored source and enumerate the seven public modes with their raw rows (`.opencode/skills/system-deep-loop/mode-registry.json`).
 - [x] T003 [P] Record the three-tier discriminator semantics: `runtimeLoopType` is read verbatim and NEVER inferred from `workflowMode` (`mode-registry.json:8`, `SKILL.md` "three-tier discriminator").
 - [x] T004 Extract the four projections + identity tuple per mode: `{workflowMode, packetRef, packetKind, backendKind, runtimeLoopType|null, routingClass, role}` (spec REQ-001; §2.2, §7).
 - [x] T005 Record the two confirmed collapse hazards as fixtures-to-write: `deep-improvement` shared by `agent-improvement`/`model-benchmark`/`skill-benchmark`; `review` runtime key shared by `review`(`deep-review`)/`alignment`(`deep-alignment`).
+<!-- /ANCHOR:phase-1 -->
 
-## Phase 2: Compile the deep-loop policy slice
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Compile the deep-loop policy slice
 
 - [x] T006 Compile `CompiledPolicyV1.destinations[]` for `skillId=system-deep-loop`, one destination per public mode (REQ-001).
 - [x] T007 Key each destination on `(skillId, workflowMode, packetId, packetKind, backendKind)` + `runtimeLoopType` + `role`; assert the identity function is injective across all seven (REQ-004).
@@ -42,7 +51,7 @@ contextType: "implementation"
 - [x] T009 Add the shared-runtime-key no-collapse assertion: `review` and `alignment` stay distinct at identical `runtimeLoopType=review` with different `packetId` (REQ-003). A collapse hard-fails.
 - [x] T010 Encode the backend/runtime relationships as annotating `crossTargetEdges` (projections, not merges) and fix `selectionKinds={single}`; assert no bundle can be emitted (REQ-006; §5.3, §2.3).
 
-## Phase 3: Projections & route-gold parity (scorer untouched)
+### Projections & route-gold parity (scorer untouched)
 
 - [x] T011 Emit `AdvisorProjectionV1` carrying `effectivePolicyHash` + projection hash; preserve each mode's `routingClass` as a compatibility alias projection (REQ-005; §8.2).
 - [x] T012 Wire the projection-hash drift guard: on mismatch, advisor evidence degrades to annotation-only and never rewrites a route (REQ-005).
@@ -52,7 +61,7 @@ contextType: "implementation"
 - [x] T016 [P] Assert `router-replay.cjs` is byte-unchanged (diff == 0); a required scorer edit is logged as a migration failure, not applied (REQ-009; §10).
 - [x] T017 [P] (P1) Generate the deep-loop `PolicyCardV1.md` from the same compiled snapshot; run the document-only replay lane and confirm it matches the machine policy (REQ-010; §8.3).
 
-## Phase 4: Dual-read, canary & rollback (Stage-4 gate)
+### Dual-read, canary & rollback (Stage-4 gate)
 
 - [x] T018 Stage-2 dual-read: confirm every `workflowMode`, `/deep:*` command, and advisor alias resolves through a declared mode/alias; unmapped input fails closed (§9 Stage 2).
 - [x] T019 Verify no over-emission: a zero-signal deep-loop request yields `defer(no-match)` with the `UNKNOWN_FALLBACK` checklist as the `clarify` payload; no full-registry union (REQ-007; §10).
@@ -60,8 +69,12 @@ contextType: "implementation"
 - [x] T021 Execute the rollback drill: CAS swap (token lock + fencing epoch; atomic temp/fsync/rename) to the byte-identical prior manifest; retain the prior generation through the bake window (REQ-008; §9).
 - [x] T022 Assert a request observing mixed generations hard-blocks, and that no non-`route` decision carries a target/authority (§9 hard gates).
 - [x] T023 Record the Stage-4 evidence bundle with 19 compiled leaf pairs, 7 positive compiled-resource projections, 0 `shadow-partial`, and legacy/shadow-only authority retained.
+<!-- /ANCHOR:phase-2 -->
 
-## Phase 5: Verification & reconciliation
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Verification & reconciliation
 
 - [ ] T024 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` after final documentation reconciliation and resolve any errors.
 - [x] T025 Verify `count(destinations)==7` and `count(packets)==5`; both no-collapse assertions green (SC-001).
@@ -76,21 +89,26 @@ contextType: "implementation"
 | Projections and parity | Pass | Eleven compatibility-projector observations reach real read-only `evaluateRouteGold`; all 11 are real green, 0 are `shadow-partial`, and fifteen full-request document decisions match. |
 | Canary and rollback | Pass, shadow-only | Nine aggregate hard blocks, mixed-pin refusal, route-gold, and byte-identical rollback pass; serving authority remains legacy. |
 | Reconciliation | Pending strict gate | Phase docs are reconciled to fully real-green route-gold; strict packet validation remains to run. |
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [x] SC-001..SC-005 met with evidence; all 11 route-gold rows are real green and `router-replay.cjs` is byte-unchanged
 - [x] Stage-4 per-hub canary gate for `system-deep-loop` proven with byte-exact rollback; serving authority remains legacy/shadow-only
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Source design**: `../../../006-unified-refactor-research/unified-refactor-synthesis.md`
 - **Master plan**: `../../spec.md`
+<!-- /ANCHOR:cross-refs -->

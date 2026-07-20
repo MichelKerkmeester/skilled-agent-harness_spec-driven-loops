@@ -4,10 +4,13 @@ description: "Level-2 verification evidence for the immutable corpus contract, r
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Verification Checklist
+# Verification Checklist: Calibration Held-Out Routing Corpus
+
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 <!-- ANCHOR:protocol -->
-## Protocol
+## Verification Protocol
 
 - [x] The checked artifact is evidence-only and cannot grant destination COMMIT authority.
   - **Evidence**: `CalibrationClaimV1.grantsCommitAuthority` is fixed to `false`; the validator rejects authority escalation.
@@ -107,7 +110,7 @@ contextType: "implementation"
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
-## Summary
+## Verification Summary
 
 - [x] Targeted executable verification passes with an explicit shadow-partial status.
   - **Evidence**: `node harness/validate-calibration-corpus.cjs` exits 0 and reports SC-001 through SC-007.

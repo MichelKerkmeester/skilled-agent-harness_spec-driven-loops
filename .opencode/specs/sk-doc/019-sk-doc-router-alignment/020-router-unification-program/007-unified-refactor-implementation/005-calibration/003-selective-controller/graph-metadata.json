@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The evaluator (`002`) can already emit the closed four-action algebra, and the recovery ladder (`004`) already orders `clarify → handoff → defer/reject` on one budget",
     "created_at": "2026-07-18T13:13:18.777Z",
-    "last_save_at": "2026-07-19T03:43:34.207Z",
+    "last_save_at": "2026-07-20T13:35:12.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8658f488ffb59b0ea56e66eb6a6e7b799e9f554f3fb3c7431bfcdc16c82b000e",
+    "source_fingerprint": "sha256:3c465a143ef41006075cd68636728e3f3032513a2daf438bd533d71c6d3a745e",
     "source_doc_hashes": {
-      "spec.md": "d5cad181b30257b7d41e09e7a613fe2d0013d2beee5a253a7a807c24a2081940",
-      "plan.md": "28acf6ee35de0014be5809a0cb88b92a2bbef4d06fff5f177deb1c47486d79a3",
-      "tasks.md": "8478a75603b20674407b7dbbeaacf52324a6476826dd5c759df79166aa187917",
-      "checklist.md": "45116dd9f2b87914b30180809b980b4c88df22a1646d9fcdc29da9d240fab20d",
-      "implementation-summary.md": "670d49ddeabcab47a81aea4c6583c22c2e4c59186138134ed1af49431e170ca9"
+      "spec.md": "ca54abbc70911e56e3e4c5c5f94744eac945dc83d41d2ccc2a1b3ba2638a75ba",
+      "plan.md": "9b620cb4c7761e4bee85ad74ca7916dbac07a101c7a3cb2c46a7556cf00b9c2c",
+      "tasks.md": "63c2be21f3f23dda78ee5c4f42a4e7a5f283d09eb370c4062dbfe8fc11dbdbc5",
+      "checklist.md": "550ec3acbe9b1ed142951e1452b80d7b18b7bb88ff128ea5c77e772b8a6bc2ac",
+      "implementation-summary.md": "3ed104303280db7d9f6feba7cc15c0d78a90624b4713dd2961af195bd3a849df"
     },
     "last_active_child_id": null,
     "last_active_at": null

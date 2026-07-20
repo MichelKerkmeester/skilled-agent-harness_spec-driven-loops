@@ -54,7 +54,6 @@
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/shared/references/smart_routing.md",
       "compiled/projection-graph.json",
       "compiled/policy.json",
       "compiled/route-gold.typed.json"
@@ -139,12 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
         "name": "projection-graph.json",
         "kind": "config",
         "path": "compiled/projection-graph.json",
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-07-19T06:12:51.135Z",
+    "last_save_at": "2026-07-20T13:37:44.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +216,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cc312595e283b67875999c3b119d335f86e0111025087e58eb13226ca690229",
+    "source_fingerprint": "sha256:84a532bf27c45a8180a5918b83ecf733063a34ae6c40d6fe64f2650eadf610d4",
     "source_doc_hashes": {
-      "spec.md": "2b1f89095d3f5574d8bf78d13c3501871d4c9c8edc861313d33523c150f5fccb",
-      "plan.md": "16fb5766db0eff352f5f674840a6fff8bddee1f1898ec39400a5e7eff6fbd10c",
-      "tasks.md": "7bf162fa0a37086213724df099e291e3ec7ab243ae38a7fa7fce6fda1bcde23c",
+      "spec.md": "28d96c27574d33e94917016959ef2a9531079c72e60be424872039446c3ed5f4",
+      "plan.md": "eb2bdeca134872fac9c0f6347209ebc070c815ac9087d279359e18b348564d82",
+      "tasks.md": "4b6eeee73f822b4709bac79d3ef03ffb88fefb456a367005553a98b30c98013d",
       "checklist.md": "022c2cd3cec3444c5055254242d8b76f9999cc8e8872afbd28cce08af4f5dc1a",
       "implementation-summary.md": "e24a27c29313ce11729f2734b895d61c51c92331301e1a3f6d7298c26baf1914"
     },

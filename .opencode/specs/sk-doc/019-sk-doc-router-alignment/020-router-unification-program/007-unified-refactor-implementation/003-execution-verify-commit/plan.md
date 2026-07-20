@@ -13,6 +13,7 @@ contextType: "implementation"
 
 # Implementation Plan: Execution Plane — PREPARE → VERIFY → COMMIT
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -30,7 +31,9 @@ contextType: "implementation"
 The execution plane turns a single positive `route` decision into an effect through three destination-local steps and a ledger. The build is deliberately staged so that authority is *structurally* impossible to consume before a destination's own VERIFY, and so exactly-once is a property of the **idempotency ledger** rather than a sentence written into the proof [synthesis §3 Idea 7 "exactly-once is an adapter property, not proof text"].
 
 The implementation delivers the contract, state machine, ledger design (resolving open-q 5), fencing/epoch rules, and deterministic route-gold fixtures as phase-local shadow artifacts. No live routing config, registry, scorer, or skill is modified in this phase.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -44,7 +47,9 @@ The implementation delivers the contract, state machine, ledger design (resolvin
 - [x] N=1 degenerate correctness exercised explicitly (no name conditionals)
 - [x] Migration Gate (Stage 6) satisfaction path documented; rollback drill executed
 - [x] `tasks.md` fully enumerates and records the build steps in dependency order
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### The three-step protocol (per target leg)
@@ -100,7 +105,9 @@ COMMIT (destination-local)
 ### N=1 degeneracy
 
 The plane is cardinality-agnostic. For `mcp-code-mode` the decision has one target, `selectionKind = single`, `crossTargetEdges = []`, `handoffEdges = []` — the leg scheduler walks a one-element ordered set and the fencing/invalidation logic operates on an empty "later legs" set, both free operations, not a special case [synthesis §5.2 retained; §5.3 dial]. There is no skill-name conditional anywhere in PREPARE/VERIFY/COMMIT.
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: Contract + lifecycle
@@ -121,7 +128,9 @@ The plane is cardinality-agnostic. For `mcp-code-mode` the decision has one targ
 - [x] Author and replay the stale-proof-rejected and duplicate-key-single-receipt route-gold fixtures via the compatibility projector
 - [x] Exercise N=1 correctness (no name conditionals)
 - [x] Document and execute the Stage 6 rollback drill (disable pre-effect adapter)
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Approach |
@@ -131,7 +140,9 @@ The plane is cardinality-agnostic. For `mcp-code-mode` the decision has one targ
 | Degeneracy | Identical path for N=1 and multi-target bundle | Assert zero skill/name conditionals; empty-collection walk [synthesis §5.2] |
 | Ordering | Read-only legs commit before mutating legs; mutation fences later legs | Leg-scheduler fixture with mixed read-only/mutating legs [synthesis §9 Stage 6] |
 | Rollback drill | Disable pre-effect adapter cleanly; assert no atomic router undo of external COMMIT | Adapter toggle + destination-owned recovery note [synthesis §9 Stage 6] |
+<!-- /ANCHOR:testing -->
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -141,16 +152,19 @@ The plane is cardinality-agnostic. For `mcp-code-mode` the decision has one targ
 | Compatibility projector + existing route-gold (phase `002` / benchmark) | Internal | Reuse | Cannot prove fixtures without editing scorer (forbidden) |
 | Destination role model (`actor` vs `evidence`; who can COMMIT) | Internal | From `000`/`006` | Cannot enforce evidence-never-commits |
 | `mcp-route-guard.cjs` (advisory, fails open) | External infra | Confirmed | Must stay advisory; never becomes VERIFY [synthesis §5.2] |
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Execution-plane fixtures fail deterministic replay, or a design flaw lets authority leak before VERIFY.
 - **Procedure (this phase, planning)**: revert the three authored docs; no live artifact is touched, so there is nothing to unwind at runtime.
 - **Procedure (Stage 6 at rollout, documented for phases `006/*`)**: `disable pre-effect adapter` to fall back to legacy serving authority. A post-COMMIT external effect is **not** router-reversible; recovery is destination-owned [synthesis §9 Stage 6 rollback column].
+<!-- /ANCHOR:rollback -->
 
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -165,10 +179,11 @@ A (Contract) ──> B (State machines) ──> C (Ledger + ordering) ──> D 
 | C Ledger + ordering | B | D |
 | D Proof + fixtures | C | Stage 6 gate → phases 004, 006/* |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
+
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-activation checklist (for downstream 006/* consumers)
@@ -180,4 +195,4 @@ A (Contract) ──> B (State machines) ──> C (Ledger + ordering) ──> D 
 1. **Pre-effect**: disable the PREPARE/VERIFY adapter → legacy serving authority resumes.
 2. **Post-effect**: no router atomic undo; hand off to the destination's own recovery per its declared role and COMMIT atomicity class (open-q 5 resolution).
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->

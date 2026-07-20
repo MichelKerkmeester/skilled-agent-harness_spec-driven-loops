@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The unified router treats advisor rank and score margin as evidence, never as authority, and explicitly forbids promoting them to a calibrated probability without a validation certificate tied to the policy/risk slice (synthesis §2.3 invariant, §3 Idea 5 row, §8.1)",
     "created_at": "2026-07-18T13:13:18.033Z",
-    "last_save_at": "2026-07-18T21:28:17.781Z",
+    "last_save_at": "2026-07-20T13:35:00.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6974bdf1257a8befdc37d63089a38fcc42a0d5d06f7485f5f5d67cd4e3b62966",
+    "source_fingerprint": "sha256:119f9ceacb83d251502ff060ac27ea376b53297cfe3d044ab917b86619d713d1",
     "source_doc_hashes": {
-      "spec.md": "1169ca674cf90dd0d131d0391e16114467c4c7fe6845ade292810a8157aba612",
-      "plan.md": "fdcb0ab499b549181e93b5f11910d1893dbc957940b8f1c57a4d5cbdc72e1ad5",
-      "tasks.md": "d4a7d22ee4ec370c5a335f50efb266523b9cf523b520288e9f320c6b9b93169d",
-      "checklist.md": "68be5adeb83cb2524243850d0c760ab0c5246f91886784dce20836106ae98221",
-      "implementation-summary.md": "3746b233e0a18f60dcf54bc16499acc18a4eed7d654ba57207bb5112bf3700df"
+      "spec.md": "06ee7ecd48adce94c7cda5092cca0b52b20f9d1576f5a9dba1d5b757f8f4b77e",
+      "plan.md": "3e3be3893071a54743d14a2528fd93ec8390e7e7858520062bc0ab179d564edb",
+      "tasks.md": "6b587b83a8e9b4f86a2c340c2045baf4c4b03d7da58eaa3f72e48e1b5786eaab",
+      "checklist.md": "00b0db77d3e7c1a6817934459e9bf218097d7aa4c11346b11d99a5d70ba7442f",
+      "implementation-summary.md": "72e797ec598e3bd8f2a9bd280ee0599bdde84d1b332b8d9d2a5ffa3f1f2a3da9"
     },
     "last_active_child_id": null,
     "last_active_at": null

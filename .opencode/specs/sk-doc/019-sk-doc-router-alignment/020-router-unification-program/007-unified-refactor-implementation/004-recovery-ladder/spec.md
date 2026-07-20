@@ -26,6 +26,21 @@ The ladder is not a second decision shape — it is the negative-branch behavior
 
 Six rungs, fixed order: (1) eligibility + authority gate before ranking; (2) deterministic exact route, or a calibrated auto-route **only** with a validated risk certificate — and the certificate itself is produced by phase 005, so absent it, rank/margin remain evidence and cannot auto-route; (3) one typed `clarify` iff a single answer discriminates to a legal local route (≤3 options + `none_of_these`, exactly one rescore); (4) one bounded `handoff` iff a distinct viable candidate is already named and policy permits it (visited-set guarded, `H=1`); (5) typed `defer` for recoverable missing evidence/dependency; (6) `reject` for invalid/forbidden requests. Rungs 3 and 4 share the one budget. **This is planning/design only** — no live routing config, registry, scorer, or skill is modified.
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Correctness-remediated and phase-locally verified (`shadow-partial`) — one ordered six-rung ladder on one shared `UncertaintyBudgetV1 { userTurns: 1 }`, proven via typed fixtures; no live routing/registry/scorer/skill change; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `004-recovery-ladder` |
+| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
+| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§4 Seam B, §3 Ideas 4-5, §2.1) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -35,7 +50,9 @@ The synthesis named "two ways to handle uncertainty" as an open seam: Idea 4 (bo
 ### Purpose
 
 Ship one ordered, budget-bounded recovery ladder such that every uncertain request terminates in a single user turn at most, every negative decision is target-free and authority-free, and confident routes bypass recovery entirely — with all behavior expressed as typed fixtures that replay deterministically against unchanged route-gold.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -74,7 +91,9 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 | `004-recovery-ladder/tasks.md` | Create | Ordered, checkable task list |
 
 > No live routing config, registry, scorer, or skill file is in scope. This phase is planning/design only; downstream implementation phases own the runtime edits behind their own gates.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 | ID | Requirement | Acceptance |
@@ -89,7 +108,9 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 | REQ-008 | **(P1)** Rung 5 typed `defer` for recoverable missing evidence/dependency, reason ∈ {idle, no-match, dependency-failure, handoff-required, stale-policy, evidence-unavailable}; NO default/fallback union emitted (synthesis §2.3; §10). | A zero-signal fixture yields `defer` with empty `targets` and no registry/default union; each defer reason is exercised by at least one fixture. |
 | REQ-009 | **(P1)** Rung 6 `reject` for invalid/forbidden requests; structurally target-free and authority-free (synthesis §2.3). | A forbidden-request fixture yields `reject` with no target and no authority field populated. |
 | REQ-010 | **(P0, cross-cutting)** No live routing artifact is modified; route-gold replay preserved; `router-replay.cjs` untouched; authority stays destination-local; the phase output is planning docs + typed fixtures via the compatibility projector only (synthesis §8.2, §10). | `git` diff for this phase touches only `004-recovery-ladder/**` planning docs and (downstream) typed fixtures; `router-replay.cjs` is hash-identical; a required scorer edit is logged as a migration failure, not applied. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: All ladder fixtures replay deterministically, and the phase-002 compatibility projector maps every `clarify | defer | reject` to route-gold's existing empty-intent convention while route-gold stays byte-green (satisfies the Stage 3 shared gate; synthesis §8.2).
@@ -97,6 +118,19 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 - **SC-003**: No negative decision (`clarify | defer | reject`) carries a target or authority in any fixture (synthesis §2.3 authority-withheld invariant).
 - **SC-004**: Confident-route fixtures demonstrate zero ladder-rung invocation — the bypass is proven, not assumed (synthesis §4 line "confident routes never touch the ladder").
 - **SC-005**: Zero live routing artifact modified and `router-replay.cjs` unchanged (hash-identical); this phase's outputs are planning docs plus typed fixtures only (synthesis §10).
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 2 evaluator + closed four-action algebra + compatibility projector | The ladder is behavior over that algebra; it cannot type or replay decisions without it | Consumed read-only; the ladder orders the evaluator's negative branches and rides the same Stage 3 gate |
+| Dependency | Phase 5 risk certificate (calibration) for rung-2 auto-route | Without it, calibrated auto-route must stay inert | This phase encodes only the "no certificate ⇒ no auto-route" fall-through; rank/margin stay evidence |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + frozen route-gold | A required scorer edit would be a migration failure | Ladder decisions map through the compatibility projector only; the scorer stays hash-identical [synthesis §8.2] |
+| Risk | Independent clarify + handoff budgets permitting duplicate user turns / unbounded loops | Recovery would not be provably finite | One shared `UncertaintyBudgetV1 { userTurns: 1 }`; a second hop or a visited-set revisit is refused (`H=1`) |
+| Risk | Over-emission (unioning candidates on uncertainty) | Regresses toward a full-registry union on zero signal | Zero signal ⇒ typed `defer` with no default/fallback union; every negative branch is target-free and authority-free |
+<!-- /ANCHOR:risks -->
 
 ## MIGRATION GATE
 
@@ -105,6 +139,14 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 The recovery ladder is the negative-branch behavior of the phase-002 evaluator, so its `clarify | defer | reject` decisions ride the **same** Stage 3 shadow-evaluate gate that phase 002 owns. The master plan's stage-ownership column enumerates Stage 3 under phases 002 and 006 and does not list phase 004 explicitly; this phase inherits Stage 3 because it extends — rather than replaces — the evaluated algebra. It must satisfy Stage 3 (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 (`005-calibration`) may activate its calibrated auto-route path, since rung 2's certificate-gated auto-route is inert until 005 ships and must not be reachable before it is proven.
 
 In addition, this phase contributes three **hard gates** to the shared activation model that hard-block activation of any downstream phase if violated (synthesis §9): (a) a handoff revisiting a destination or exceeding the shared budget; (b) an exact route emitting clarification/handoff artifacts; (c) a negative decision carrying a target/authority. Each is a fenced-CAS activation blocker, reversible by swapping to the byte-identical prior generation; rollback cannot undo an external COMMITted effect, but the ladder itself commits no external effect (authority is destination-local), so ladder rollback is byte-exact.
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Rung 2's calibrated auto-route depends on a validated risk certificate produced by Phase 5 (`005-calibration`); the certificate's held-out corpus and selective-classification threshold are open-question 2 and are not decided here — this phase only encodes the certificate-absent fall-through [synthesis §11 open-q 2].
+- The exact `clarify` option-ranking heuristic (which ≤3 options to surface when several discriminate) is left to the evaluator's ranking evidence; this phase fixes only the cardinality and the single-rescore rule.
+- Whether an additional `defer` reason is needed once downstream destinations report richer `NEEDS_INPUT` causes; the current reason vocabulary is fixed here and revisited only if a real destination need appears.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

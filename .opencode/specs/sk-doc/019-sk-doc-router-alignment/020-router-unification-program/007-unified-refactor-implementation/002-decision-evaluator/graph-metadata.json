@@ -138,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Unified Router Refactor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Ship",
+        "name": "Phased Implementation Plan",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -156,19 +156,19 @@
         "source": "derived"
       },
       {
+        "name": "The Stage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "zero",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "empty",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "clarify",
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The eight routing ideas each type \"what happens next\" differently, and two of them collide directly: Idea 3 (typed no-destination) and Idea 6 (minimal typed contract) both propose an outcome type, and Idea 6's sketch flattens composition and control flow into a single six-value enum `single|orderedBundle|surfaceBundle|clarify|defer|reject`",
     "created_at": "2026-07-18T13:13:17.009Z",
-    "last_save_at": "2026-07-18T19:06:11.620Z",
+    "last_save_at": "2026-07-20T13:03:56.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:681e9a8ca78ca985aff6d6de161d36959e1d2bfdb46dba042814239c3393f1e4",
+    "source_fingerprint": "sha256:765968a99eb122c4974913eb0241b555c1d6cd652feb9fd52012bd8c0484de75",
     "source_doc_hashes": {
-      "spec.md": "11a95686a94baaa190a43617a30cb37e7cb71e4d1356212e2d3a6b19333b0fdc",
-      "plan.md": "b3547ee2a17eb23b8d998fbec08452a3913ba30cb748f648dd3c0ba3c1b0131a",
-      "tasks.md": "ff6c6316e7a56b85a4c56e760bca862c52d87548a43f719b828a4928d0a0bd25",
+      "spec.md": "d79822e522aa5e93e29252c56b49197edda2ea0959dc860b79994495c5248eb4",
+      "plan.md": "b5b5841ec804d9d23186c652c951c13d644427c4f68a8153f9ecf6fea6b9bc3c",
+      "tasks.md": "45a506f702b5ef75290c797902f2ffde9bf87a5e1c25d4319db79104724a7d1f",
       "checklist.md": "c92a3d70f94841d7d40925a44eac023667687ab20acb4bc931cc7e0106baad2d",
       "implementation-summary.md": "6ba9e3ab25026b9e7d5d78851b4d718df9e94b8b1158d99c3c65f0cb3550066d"
     },

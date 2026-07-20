@@ -27,6 +27,21 @@ The load-bearing correctness property is that **transports never own design judg
 
 This is planning/design only. No live routing config, registry, scorer, or skill is modified in this packet.
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Implemented — execution-plane idempotency binding aligned; Stage-4 and Stage-6 GREEN; legacy remains serving-authoritative; repository-level strict validation reserved for the orchestrator (blocked by legacy template/runtime prerequisites) |
+| **Created** | 2026-07-18 |
+| **Branch** | `006-parent-hub-rollout/003-mcp-tooling` |
+| **Migration stage** | Stage 4 — Per-hub canary (highest blast radius, activated last) (synthesis §9) |
+| **Blast radius** | External effects + cross-hub judgment (`composeAfter` + `requiresAuthorityFrom`) — reversible, gated |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -41,7 +56,9 @@ Because the blast radius is external and post-COMMIT recovery is destination-own
 ### Purpose
 
 Activate the compiled contract on `mcp-tooling` such that: composition edges (`composeAfter`, `requiresAuthorityFrom`) live entirely in compiled data; authority stays destination-local and is consumed only at each destination's VERIFY→COMMIT; the fenced selector makes activation a reversible CAS on the activation manifest; and every read-only leg is proven before any mutating leg is enabled [synthesis §7, §9; master plan Stage 4 + Stage 6]. Prove the design-affecting Figma worked case end-to-end as the canonical acceptance scenario.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -70,7 +87,9 @@ Activate the compiled contract on `mcp-tooling` such that: composition edges (`c
 | `006-parent-hub-rollout/003-mcp-tooling/spec.md` | Create | This specification |
 | `006-parent-hub-rollout/003-mcp-tooling/plan.md` | Create | Build approach, contracts touched, verification |
 | `006-parent-hub-rollout/003-mcp-tooling/tasks.md` | Create | Ordered, checkable task list |
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers (MUST complete)
@@ -93,7 +112,9 @@ Activate the compiled contract on `mcp-tooling` such that: composition edges (`c
 | REQ-009 | Document-only parity holds for the tooling card | A generated `PolicyCardV1.md` lets a document-only AI reach the same `route`/`clarify`/`defer`/`reject` and emit `PREPARED_DRAFT`, never claiming live activation freshness or committed effects [synthesis §8.3] |
 | REQ-010 | No over-emission on uncertainty | Zero-signal or ambiguous tooling intent yields a typed `defer` with no default union and no fallback transport [synthesis §2.3, §10] |
 | REQ-011 | Blast-radius data recorded before Stage 4 opens | The `mcp-tooling`-last ordering is confirmed against real blast-radius data, resolving the cross-lineage disagreement (Terra argued transports-before-bundles) [synthesis §11 Q1] |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The canonical `sk-design/<mode> → mcp-tooling/mcp-figma` design-affecting route replays deterministically as an `orderedBundle` with the transport authorized only post-approval, and the reverse (transport-first, or transport-without-approval) is structurally unrepresentable [synthesis §7, §2.3].
@@ -101,7 +122,9 @@ Activate the compiled contract on `mcp-tooling` such that: composition edges (`c
 - **SC-003**: The Stage 6 destination-rollout fixtures pass for tooling transports — proof/expiry/read-set/authority/epoch/idempotency/receipt — with every read-only leg green before any mutating leg is enabled [master plan Stage 6; synthesis §9].
 - **SC-004**: Route-gold stays byte-green throughout with `router-replay.cjs` untouched; the `role escalation + missing authority dependency` fixture family passes via the compatibility projector [synthesis §8.2, §10].
 - **SC-005**: No hard gate is tripped — in particular no transport supplies judgment, no missing authority edge, no COMMIT without VERIFY, no duplicate-key second effect, and no exact route emits clarify/handoff artifacts [synthesis §9].
+<!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -112,6 +135,7 @@ Activate the compiled contract on `mcp-tooling` such that: composition edges (`c
 | Risk | External COMMIT cannot be rolled back | Manifest rollback cannot undo a committed Figma/tool effect | Read-only legs first; destination-owned post-effect recovery; canary before any mutating leg [synthesis §9] |
 | Risk | Transport acquiring judgment via a mis-modeled edge | Silent taste-authority capture | `requiresAuthorityFrom` in compiled data + hard gate blocking transport-supplied judgment [synthesis §6, §7, §9] |
 | Risk | Cross-process authority representation | `sk-design → mcp-figma` approval spans process/machine boundaries | Track as open question Q8; canary must exercise the real boundary, not an in-process shortcut [synthesis §11 Q8] |
+<!-- /ANCHOR:risks -->
 
 ## 7. MIGRATION GATE
 
@@ -121,6 +145,14 @@ Per the master plan SHARED MIGRATION-GATE MODEL, this phase (`006/003`) owns two
 - **Stage 6 — Destination rollout** (owned by `003`, `006/*`): proof/expiry/read-set/authority/epoch/idempotency/receipt fixtures pass, with **read-only legs proven before mutating legs** — the decisive control for this external-effect surface [master plan Stage 6; synthesis §9 Stage 6].
 
 **Ordering:** `mcp-tooling` activates **last** in `mcp-code-mode → sk-code → system-deep-loop → mcp-tooling`; this phase must not open its Stage 4 canary until `006/002` (`system-deep-loop`) has cleared its own Stage 4 gate [synthesis §9, §11 Q1]. **Downstream:** clearing this phase's Stage 4 + Stage 6 gates is the precondition for phase `008` (fleet cleanup, Stage 7) to retire legacy dual-read for the tooling transports, and it is the entry condition for an optional `mcp-tooling` overlay in phase `007` (Stage 5). Rollback is a fenced CAS to the byte-identical prior manifest and **cannot** undo an external COMMITted effect — post-effect recovery is destination-owned [synthesis §9, §10].
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The exhaustive per-transport mapping of which destination roles supply a side-effect-free PREPARE and an atomic vs explicitly non-atomic COMMIT is inherited from phase 003 and confirmed per transport here; the full external-effect matrix is validated at live rollout.
+- The production authorization for enabling compiled serving on the highest-blast-radius hub (external effects + cross-hub judgment) is owned by the cutover phase; this canary proves the mechanism under legacy-authoritative serving.
+- Whether any additional judgment destination (beyond the worked `sk-design → mcp-figma` case) needs a `requiresAuthorityFrom` edge is a per-route design decision left to the hub's authored policy.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 
