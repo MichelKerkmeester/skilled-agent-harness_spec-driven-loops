@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
-    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_at: "2026-07-20T09:07:18Z"
     last_updated_by: "claude-code"
     recent_action: "Reorg + reference migration + link repair + family routing vocab complete"
     next_safe_action: "Recursive strict validation and commit"

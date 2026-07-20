@@ -7,10 +7,10 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes"
-    last_updated_at: "2026-07-20T06:37:55Z"
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
+    last_updated_at: "2026-07-20T09:23:08Z"
     last_updated_by: "claude-code"
-    recent_action: "Phased: added child 001 (per-family resource grouping + routing vocab); parent phase-map + child back-ref linked"
+    recent_action: "Centralization complete; templates, guides, family table, pointer-only rewire shipped"
     next_safe_action: "Terminal gates + push the goal branch"
     blockers: []
     completion_pct: 100
@@ -27,7 +27,7 @@ _memory:
 ## Metadata
 | Field | Value |
 |-------|-------|
-| **Packet** | 018 — benchmark-authoring-and-validation-fixes |
+| **Packet** | 000 — benchmark-authoring-centralization |
 | **Status** | Complete |
 | **Track** | sk-doc |
 <!-- /ANCHOR:metadata -->

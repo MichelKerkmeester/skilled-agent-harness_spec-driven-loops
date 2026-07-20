@@ -7,8 +7,8 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes"
-    last_updated_at: "2026-07-12T11:38:53Z"
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
+    last_updated_at: "2026-07-20T08:57:11Z"
     last_updated_by: "claude-code"
     recent_action: "ADRs recorded for the centralization boundaries"
     next_safe_action: "Implement per ADRs; run terminal gates"
