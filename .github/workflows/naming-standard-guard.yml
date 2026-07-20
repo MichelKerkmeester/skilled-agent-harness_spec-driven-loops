@@ -1,0 +1,52 @@
+name: Naming Standard Guard
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'skilled/v*'
+
+permissions:
+  contents: read
+
+jobs:
+  naming-standard:
+    name: Enforce kebab-case filesystem names
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependency
+        run: python3 -m pip install pytest==8.4.2
+
+      - name: Reject newly introduced snake-case names
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_REF: ${{ github.base_ref }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            BASE="$(git rev-parse "origin/$PR_BASE_REF")"
+          else
+            BASE="$PUSH_BEFORE"
+            if [[ "$BASE" =~ ^0+$ ]]; then
+              BASE="$(git rev-parse HEAD^ 2>/dev/null || git hash-object -t tree /dev/null)"
+            fi
+          fi
+          python3 .opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py \
+            --changed-since "$BASE"
+
+      - name: Run naming guard tests
+        run: |
+          python3 -m pytest \
+            .opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py \
+            .opencode/skills/sk-doc/scripts/tests/test_naming_root_resolver.py

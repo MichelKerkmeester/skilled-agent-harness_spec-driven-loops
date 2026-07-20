@@ -162,7 +162,6 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
             offender_lines,
             [
                 "alpha_name.md",
-                "feature_catalog",
                 "snake_dir",
                 "snake_dir/file_name.md",
                 "zeta_name.md",

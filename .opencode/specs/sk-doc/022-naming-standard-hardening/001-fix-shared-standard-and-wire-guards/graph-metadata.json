@@ -22,7 +22,7 @@
       "no-new-snake gate tasks",
       "core-standards kebab summary",
       "kebab guard wiring summary",
-      "phase 001 planned"
+      "phase 001 implemented"
     ],
     "key_topics": [
       "core-standards",
@@ -39,9 +39,10 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/shared/references/core-standards.md",
+      ".github/workflows/naming-standard-guard.yml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,6 +53,12 @@
         "name": "core-standards.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/shared/references/core-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming-standard-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/naming-standard-guard.yml",
         "source": "derived"
       },
       {
@@ -175,21 +182,21 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Not",
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Planned Change This",
+        "name": "Changed Files",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`shared/references/core-standards.md` still teaches snakecase as the `.md` filename rule: §2 (`:41` \"lowercase snakecase for all `.md` files\"; `:44-48` \"Hyphens to underscores\"), §4 (`:103` \"Filename violations - Convert to snakecase\" under Safe Auto-Fixes), and §5 (`:163-164` table \"Hyphenated filename .",
+    "causal_summary": "`shared/references/core-standards.md` taught snakecase as the `.md` filename rule: §2 (`:41` \"lowercase snakecase for all `.md` files\"; `:44-48` \"Hyphens to underscores\"), §4 (`:103` \"Filename violations - Convert to snakecase\" under Safe Auto-Fixes), and §5 (`:163-164` table \"Hyphenated filename .",
     "created_at": "2026-07-20T09:49:52Z",
-    "last_save_at": "2026-07-20T10:13:27.246Z",
+    "last_save_at": "2026-07-20T12:06:56.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57e99e7eaeee5dd522b9a071ed165795511cd99cb51c1445e0340e63e738f14d",
+    "source_fingerprint": "sha256:88de2c2508c5266b9fc38de05d61b66e47ede80b2d9d7dab657b093837cb20ec",
     "source_doc_hashes": {
-      "spec.md": "1616ac21eaed4c95e788b0cd41e7d10d76da6759b0794c170b3b98636d3fa63c",
-      "plan.md": "1bc4fd5ff770c2f8b53fa489b62798d864e8127a0f50e47aa1cca35504ac73d3",
-      "tasks.md": "ab085fefad9438590397b2810a3cd4105832667d869a192f63fea7cdbeaf98c4",
-      "implementation-summary.md": "6e9fcd0dfa5d1268b30e3ad956ece3eb6e4d787f13f6ee86db3695c0c38801de"
+      "spec.md": "fee993e7d0dc15ae7b869950a1b56ab22080d7adc30e479e496f78a4fd6fa595",
+      "plan.md": "a446282167864c4fde171b1b4cd6706a93e91ec985586aa3110c0d8c4862c091",
+      "tasks.md": "4111be05d7721107c53f289f3e10a7da803cf6af95615bcafdabcc0a069804d8",
+      "implementation-summary.md": "1ba6c3ad982df01daafb29753639eb14492ad778fd8de92b6876cae72b973f9d"
     },
     "last_active_child_id": null,
     "last_active_at": null
