@@ -153,3 +153,42 @@ vindicating the decision to census the full commit range rather than a `system-d
 Everything else is second-order: the substrate moved under phases 006-016 in ways that **shrink** their remaining
 work. That is a scope-reduction signal, not a decay signal, and it points the same direction as the independent
 recommendation to right-size the 17-phase program before executing it.
+
+---
+
+## 9. Cross-program coupling — the 020 router-unification program
+
+A follow-on impact analysis (35 agents, 6 shared surfaces, every coupling adversarially verified) asked whether
+`sk-doc/019-sk-doc-router-alignment/020-router-unification-program` — a fleet-wide refactor that unifies every
+parent-hub router under one compiled policy — affects this program. **Verdict: yes, one-directionally (020 → 036),
+bounded, and non-blocking.** 036 must be authored against 020's landed state, not a pristine baseline; it already
+holds the machinery (BASE-pin at 003, re-census/reopen at 017) to absorb it.
+
+**Confirmed couplings (CONFIRMED against `path:line` / `git show`):**
+
+| Sev | Coupling | What 036 must do |
+|-----|----------|------------------|
+| significant | 020's early phases already shipped onto this hub — `908efde8d8f`, `6cd8ab14e4e`, `708d25acf04` touch `hub-router.json` / `mode-registry.json` / `SKILL.md`; 036 has not executed | 003 pins BASE downstream of them; 012/013/018 treat `defaultMode:null`, dropped `hub-identity`, command-bridge signals as pre-existing baseline |
+| significant | 036/012's frozen boundary grew by 5 components (`resourceContractVersion`, `defaultMode:null`, benchmark-signal restriction, `smart-routing.md`, `leaf-manifest.json`) | Extend the 012 freeze to include all five before authoring 013 — already the §2 REFINE verdict for 012 |
+| latent | 020's compiled-policy **live-activation** (phase-010, `SPECKIT_COMPILED_ROUTING`, default-off) would make the runtime read a compiled policy instead of the registry directly | Nothing today; do not interleave it with 036's 013/014 cutover unannounced. Registered as a 003 drift dependency for 017 |
+| minor | 020 hash-pins 4 parent-hub files (`SKILL.md`, `mode-registry.json`, `smart-routing.md`, `leaf-manifest.json`) in its shadow snapshot | 013's per-mode migrations must stay inside per-mode trees; touching a pinned parent-hub file forces a 020 recompile before its activation |
+
+**Explicitly REFUTED by verification (do not carry forward):**
+- *"executor-config.ts couples 020 to 036/005 and 009"* — **false**. The path 020 names
+  (`system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts`) does not exist; the real file is under
+  `system-deep-loop/runtime/`, and 020's implementation phases never reference `executor-config`/`expandLineages`/
+  fan-out. **036/005 and 009 are untouched by 020.**
+- *"036's registry edits would go inert under the compiled router"* — false; 036 never writes
+  `mode-registry.json` / `hub-router.json` (0 write-refs across the 012/013 tree; 003 only parses).
+- *"020 and 036 are competing routing authorities"* — a category error. 020's compiled router owns
+  request→mode/packet **routing**; 036's transition-authorization gateway (014) owns event-ledger **state**
+  authority within a running mode. Different layers.
+
+**Not in conflict:** the 7-mode / 5-packet / 8-workstream taxonomy (020 actively *protects* it with hard-fail
+collapse guards) and the benchmark scorer `router-replay.cjs` (byte-frozen by both programs).
+
+**Sequencing:** coordinate, do not serialize. The programs can interleave; the one constraint is that 020's
+phase-010 live-activation of *this* hub should land before 036 pins BASE, or be caught as a named drift event by
+017's re-census. Neither program references the other in prose (0 cross-refs both directions), so 036's 017
+re-census is the only mechanism that will catch a further 020 landing — hence the explicit dependency now recorded
+in 003.

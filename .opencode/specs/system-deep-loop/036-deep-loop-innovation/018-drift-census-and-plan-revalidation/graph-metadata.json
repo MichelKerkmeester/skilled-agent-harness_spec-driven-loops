@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-07-19T18:16:03.228Z",
+    "last_save_at": "2026-07-20T17:23:25.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2ea737bdc6eb826718994fca727b00ca7d7905df84d70caa54654a28c19fe0a7",
+    "source_fingerprint": "sha256:dc3397be10b2ae982531444bfe3fc55b7a8d8275f178cb689d4759d434894b7a",
     "source_doc_hashes": {
-      "spec.md": "1ae7a22eb3b48c62a6c1baa64a7ac3b3027dbd7cbdc561195b3eedeb92e91fc2",
-      "plan.md": "9d781fcb0ea096d559f9b9f9b4cfe75ba67fddd1870f8b11651448f4600df84d",
-      "tasks.md": "3130d2ca50157e3adaeb045e3b1367087341d7dae34d625e2ed7154f95257cdb",
-      "checklist.md": "b19ffbba64ad3e3d15ed5e7081d66b8c2df31d1dc071d988dcd43aaaab62c1a1",
-      "implementation-summary.md": "e70cba054ce81956d9e03fd9b12be8953bcc30ce4257a9f149173db00cf786f0",
-      "research/research.md": "a9730a216de7336bd6963f7f8962ea5fbee6bdc91d21be6178c601d692a9e4f8"
+      "spec.md": "9e34f2f59e157ef31aa31418c556f7815661d87a88009f62459b67bbf785ea3f",
+      "plan.md": "9021825aca6430264906d2e378bea370e76f2877106bee58d53523f5436da7f3",
+      "tasks.md": "5650ddeaed434418baac234a80abbacb7fe55e21d1694373fa5d7591154f72b7",
+      "checklist.md": "47afeb081e5addc6984a30beee4dadc6b3c4c94b45a2370a74d074689dd67805",
+      "implementation-summary.md": "c94ccb3ddfbaf7ca460ccfb83a020d1c76ebd86ed2da5772452f70112ff98187",
+      "research/research.md": "8073db4c48fe39ab285c07c591112032f6f95342b8e12641f8e5ac940cff0b1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,4 @@
 {
-  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census",
   "description": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture,",
   "keywords": [
@@ -16,7 +15,7 @@
     "behavior-benchmark",
     "replay-fixture"
   ],
-  "lastUpdated": "2026-07-18T03:48:55.886Z",
+  "lastUpdated": "2026-07-20T17:29:19.097Z",
   "specId": "003",
   "folderSlug": "baseline-taxonomy-and-state-census",
   "parentChain": [
@@ -24,5 +23,6 @@
     "036-deep-loop-innovation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

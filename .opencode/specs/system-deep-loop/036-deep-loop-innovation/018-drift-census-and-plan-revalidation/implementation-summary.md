@@ -10,7 +10,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-rev
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation"
-    last_updated_at: "2026-07-19T18:16:02Z"
+    last_updated_at: "2026-07-20T17:23:24Z"
     last_updated_by: "claude-opus"
     recent_action: "Ran the census, merged both lineages, applied Tier-1 repairs"
     next_safe_action: "Decide Tier-2/Tier-3 handling"
@@ -69,8 +69,15 @@ _memory:
 | `mode_workstreams_phase_010` → `_phase_013` | 17 refs / 15 files | Manifest key did not exist; `012` P0 validators derived from it |
 | `manifest/phase-tree.json` packet identity `065` → `036` | 1 | 116 docs treat this manifest as authority |
 
+- **Cross-program coupling analysis folded in** (operator instruction 2026-07-20): a 35-agent adversarially-verified
+  impact analysis of the `020-router-unification-program` against 036, recorded as `research/research.md` §9. Net:
+  020 affects 036 one-directionally, bounded, non-blocking; two CONFIRMED actions (BASE captures 020's three
+  shipped commits as pre-existing; 020's compiled-router live-activation registered as an external drift dependency
+  for 017) were written into `003/spec.md` §6. The analysis also refuted three plausible couplings — most notably
+  the `executor-config.ts` path (nonexistent), clearing 036/005 and 009.
+
 **Pending:**
-- Tier-2 and Tier-3 items below — deliberately not attempted.
+- Tier-3 items below — deliberately not attempted (Tier-2 references completed 2026-07-19).
 <!-- /ANCHOR:what-built -->
 
 ---

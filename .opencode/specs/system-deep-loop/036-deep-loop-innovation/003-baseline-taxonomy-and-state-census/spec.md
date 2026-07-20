@@ -144,6 +144,20 @@ consumers, fixtures containing credentials or host paths, count-only benchmark c
 SQLite files. The controlling sources are the 036 parent and phase tree, the shipped
 `.opencode/skills/system-deep-loop/runtime/` tree, the mode registry and packets, the five current
 `behavior-benchmark/` packages, and the run-2 eight-workstream research synthesis.
+
+**Concurrent-lane coupling — the router-unification program (`sk-doc/019/020-router-unification-program`).** A
+separate fleet-wide router refactor has already landed three commits on this hub, and they are *inside* the BASE
+this phase pins, not deltas 036 introduces: `908efde8d8f` (`hub-router.json` `defaultMode` research→null),
+`6cd8ab14e4e` (`hub-router.json` mode-routing fix + `hub-identity` drop + benchmark signals restricted to
+command-bridge), and `708d25acf04` (`SKILL.md` + `mode-registry.json` typed-pair / `resourceContractVersion`
+surface). When pinning BASE, record these as pre-existing so no later phase misattributes them as 036 changes; the
+registered-mode count is unchanged at 7 (verified by the 018 drift census). One forward dependency for 017's
+re-census: that program's compiled-router **live-activation** (its phase-010, gated behind default-off
+`SPECKIT_COMPILED_ROUTING`) would make the runtime read a content-addressed compiled policy instead of
+`mode-registry.json` directly. It is dormant today (routing is byte-identical to the prose router) and does **not**
+constrain 036's own registry work — 036 only parses the registry, never writes it — but if it is activated on this
+hub between BASE-pin and the 013/014 authority cutover, treat it as a named external drift event. Full coupling
+record: `018-drift-census-and-plan-revalidation/research/research.md` §9.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

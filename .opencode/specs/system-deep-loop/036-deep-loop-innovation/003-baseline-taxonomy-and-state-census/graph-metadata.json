@@ -38,19 +38,12 @@
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "state-format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-07-19T18:01:27.114Z",
+    "last_save_at": "2026-07-20T17:29:53.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:af3f06374295af3a4b3cab1cf9da8154ae8f185f543436ad28f3ca715c2b9235",
+    "source_fingerprint": "sha256:ab35088671b44e6e728ff487dc7cd219d6d3d5b690752642355955e30f954117",
     "source_doc_hashes": {
-      "spec.md": "9dd919be63324a96456b36c44ea0daa5aa323dbb07c04bc17117e8c87586f0db",
-      "plan.md": "955b54048b180ffbbc9fa64b91be0ff8e8c49406f0669266778739ace0a2a3de",
+      "spec.md": "99dbbd9f6156bc0f1e3ce6261ba5e92ca97077ada778d1c8820651b3c1f4d17d",
+      "plan.md": "6eb624f3abe0069b15c425c7056f0fb4727bc6756cad2fa1321c944031b5f556",
       "tasks.md": "e573aeabcd678bc271a14190d4c5330f5eba3e20878a4e1f1e2e9b75ae14dcbd",
-      "checklist.md": "82126d7d2b5c812205db7e2381a900243bd0e62f4d84f691ce2b6c587b0a22de"
+      "checklist.md": "398810313d12226080689454844ceb76d882eeb1cf08f3f3efd824046dea24e8"
     },
     "last_active_child_id": null,
     "last_active_at": null
