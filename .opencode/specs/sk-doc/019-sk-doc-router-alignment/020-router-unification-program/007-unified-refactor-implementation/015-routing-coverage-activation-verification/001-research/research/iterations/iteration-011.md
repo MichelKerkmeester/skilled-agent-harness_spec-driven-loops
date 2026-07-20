@@ -1,0 +1,28 @@
+# Iteration 11 — gpt-5.6-terra xhigh — focus: playbooks
+
+There is no current manual-playbook path that both dispatches GPT‑5.6 LUNA High and proves the compiled decision. Lane C can run LUNA, but its live executor grades the model’s self-declared routing—not the compiled front door—and does not explicitly enable compiled routing.
+
+Lane C loads playbook scenarios, dispatches each through `dispatchScenario`, and uses the live executor only under `--trace-mode live`. `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:275`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:143`
+
+The LUNA High invocation is presently environment-scoped, not scenario-scoped: set `SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.6-luna` and `SKILL_BENCH_OPENCODE_VARIANT=high`. The executor otherwise defaults to DeepSeek with `high`; it emits `opencode run --model … --variant …`. `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:41`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:94`, `.opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:139`
+
+The live assertion is insufficient for compiled routing: its prompt asks the model to state routing in JSON, then scores parsed model text and tool observations. `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:19`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:311` Worse, although `runDispatch` supports child-only environment overrides, `runLiveScenario` does not supply one, so `SPECKIT_COMPILED_ROUTING=1` is only inherited opportunistically from the parent process. `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:125`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:363`
+
+Results land exactly where `--outputs-dir` names: the runner creates that directory and writes `skill-benchmark-report.json` plus rendered Markdown. `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:239`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:295` A durable LUNA run should therefore target `.opencode/skills/<hub>/benchmark/live-gpt-5-6-luna-high/`.
+
+Ranked recommendations:
+
+1. Add a non-frozen compiled-route observation adapter that invokes `.opencode/bin/compiled-route.cjs` with an explicit child-only `SPECKIT_COMPILED_ROUTING=1`, then asserts authority, action, and ordered targets against route gold.
+2. Make a compiled-routing manual scenario pass only when both planes pass: the direct compiled-route assertion proves runtime behavior; the LUNA High dispatch proves the routed test subject follows that route. Do not treat model-declared JSON as runtime proof.
+3. Add a new orchestrator-owned scenario execution map keyed by scenario ID for `providerModel`, `variant`, timeout, and compiled expectation. The frozen loader cannot be extended, and `--executor` currently selects transport rather than model.
+4. Require the runner to pin the durable output directory and record the model/variant plus compiled observation in the report JSON before Markdown rendering.
+
+===FINDINGS-JSON-START===
+[
+  {"id":"F-11-1","area":"playbooks","finding":"The live playbook executor never explicitly enables SPECKIT_COMPILED_ROUTING for its child process, so a LUNA run cannot deterministically exercise the compiled path.","evidence":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:363","severity":"P0","actionable":"Add a new non-frozen compiled-route adapter that spawns the public front door with child-only SPECKIT_COMPILED_ROUTING=1 and asserts serving authority, action, and ordered targets against route gold.","novelty":"new"},
+  {"id":"F-11-2","area":"playbooks","finding":"Live Lane C scores the model's declared routing JSON and observed skill calls, not a compiled-router decision, so LUNA agreement cannot prove compiled serving.","evidence":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:19","severity":"P0","actionable":"Define each compiled-routing playbook case as a two-plane gate: direct compiled-route CLI parity plus a separately recorded LUNA High routed-subject result.","novelty":"new"},
+  {"id":"F-11-3","area":"benchmark","finding":"LUNA High selection is process-wide environment configuration rather than per-scenario data, while --executor selects only the Codex versus OpenCode transport.","evidence":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:146","severity":"P1","actionable":"Add an orchestrator-owned scenario execution map with providerModel=openai/gpt-5.6-luna and variant=high, consumed by the new adapter without editing the frozen scenario loader.","novelty":"new"},
+  {"id":"F-11-4","area":"archiving","finding":"Lane C writes its JSON and rendered Markdown only under the caller-provided outputs directory, so durable LUNA evidence requires an explicit hub benchmark path.","evidence":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:295","severity":"P1","actionable":"Require the LUNA compiled-routing runner to use .opencode/skills/<hub>/benchmark/live-gpt-5-6-luna-high/ and persist model, variant, compiled observation, and parity verdict in its canonical report pair.","novelty":"refines:F-4-1"}
+]
+===FINDINGS-JSON-END===
+

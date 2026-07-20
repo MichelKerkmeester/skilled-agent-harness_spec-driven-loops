@@ -1,0 +1,171 @@
+[0m
+> build · glm-5.2
+[0m
+[0m→ [0mRead .opencode/bin/compiled-route.cjs
+[0m
+[0m$ [0mls -la .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
+total 800
+drwxr-xr-x@ 22 michelkerkmeester  staff    704 Jul 20 19:45 .
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  18731 Jul 20 19:45 README.md
+-rw-r--r--@  1 michelkerkmeester  staff   2613 Jul 20 19:45 _args.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13449 Jul 20 19:45 advisor-probe.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  10524 Jul 20 19:45 browser-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  14351 Jul 20 19:45 build-report.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11132 Jul 20 19:45 codex-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   7198 Jul 20 19:45 contamination-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13209 Jul 20 19:45 d4-ablation.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  17671 Jul 20 19:45 d5-connectivity.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  16862 Jul 20 19:45 design-dispatch-boundary-proof.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   9863 Jul 20 19:45 design-token-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11334 Jul 20 19:45 executor-dispatch.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18537 Jul 20 19:45 live-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  36652 Jul 20 19:45 load-playbook-scenarios.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18032 Jul 20 19:45 parent-hub-vocab-sync.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11750 Jul 20 19:45 playbook-generator.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  34158 Jul 20 19:45 router-replay.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  21898 Jul 20 19:45 run-skill-benchmark.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  84243 Jul 20 19:45 score-skill-benchmark.cjs
+drwxr-xr-x@ 20 michelkerkmeester  staff    640 Jul 20 19:45 tests
+[0m
+[0m$ [0mls -la .opencode/skills/sk-code/benchmark/ 2>/dev/null && echo "---" && ls -la .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/feature-catalog/ 2>/dev/null
+total 24
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 .
+drwxr-xr-x@ 17 michelkerkmeester  staff   544 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  8289 Jul 20 19:45 README.md
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 after
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 baseline
+drwxr-xr-x@  5 michelkerkmeester  staff   160 Jul 20 19:45 d4r-live
+drwxr-xr-x@  3 michelkerkmeester  staff    96 Jul 20 19:45 fixtures
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 full
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live
+drwxr-xr-x@  5 michelkerkmeester  staff   160 Jul 20 19:45 live-final
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live-mode-b
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live-remediated
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 router-baseline
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 router-final
+---
+[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs
+[0m✱ [0mGrep "evaluateRouteGold|routeGold|route-gold|route_gold"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 65 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/_args.cjs
+[0m
+[0m$ [0mls .opencode/skills/*/activation/ 2>/dev/null; echo "---compiled/route-gold.typed.json locations---"; ls .opencode/skills/*/compiled/route-gold.typed.json 2>/dev/null; echo "---hub-router.json locations---"; ls .opencode/skills/*/hub-router.json 2>/dev/null
+zsh:1: no matches found: .opencode/skills/*/activation/
+zsh:1: no matches found: .opencode/skills/*/compiled/route-gold.typed.json
+---compiled/route-gold.typed.json locations---
+---hub-router.json locations---
+.opencode/skills/cli-external-orchestration/hub-router.json
+.opencode/skills/mcp-tooling/hub-router.json
+.opencode/skills/sk-code/hub-router.json
+.opencode/skills/sk-design/hub-router.json
+.opencode/skills/sk-doc/hub-router.json
+.opencode/skills/sk-prompt/hub-router.json
+.opencode/skills/system-deep-loop/hub-router.json
+[0m
+[0m✱ [0mGrep "function evaluateRouteGold|function scoreScenario|module.exports"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs · 18 matches[0m
+[0m✱ [0mGrep "^function evaluateRouteGold|^function reduceRouteGold|module\.exports"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs · 17 matches[0m
+[0m
+[0m$ [0mecho "=== activation/manifest.json anywhere ==="; find .opencode -name "manifest.json" -path "*activation*" 2>/dev/null; echo "=== route-gold.typed.json anywhere ==="; find .opencode -name "route-gold.typed.json" 2>/dev/null; echo "=== 010-live-activation dir ==="; ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/ 2>/dev/null; echo "=== 006-parent-hub-rollout ==="; ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/ 2>/dev/null
+=== activation/manifest.json anywhere ===
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/005-sk-prompt/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design/activation/manifest.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/activation/manifest.json
+=== route-gold.typed.json anywhere ===
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/compiled/mcp-code-mode/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git/compiled/sk-git/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/005-sk-prompt/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design/compiled/route-gold.typed.json
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/compiled/route-gold.typed.json
+=== 010-live-activation dir ===
+activation
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+lib
+plan.md
+real-model
+spec.md
+tasks.md
+=== 006-parent-hub-rollout ===
+001-sk-code
+002-system-deep-loop
+003-mcp-tooling
+004-cli-external-orchestration
+005-sk-prompt
+006-sk-design
+007-sk-doc
+description.json
+graph-metadata.json
+spec.md
+[0m
+[0m$ [0mgrep -n "function evaluateRouteGold" .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs
+885:function evaluateRouteGold({ scenario, observed }) {
+[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [offset=885, limit=120][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m
+[0m$ [0mecho "=== sk-code activation manifest ==="; cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json 2>/dev/null; echo; echo "=== compiled engine file exists? ==="; ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/; echo "=== sample route-gold.typed.json (sk-code hub) — first 40 lines ==="; head -40 .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json 2>/dev/null
+=== sk-code activation manifest ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
+
+=== compiled engine file exists? ===
+compiled-route.cjs
+flip-serving.cjs
+resolve.cjs
+=== sample route-gold.typed.json (sk-code hub) — first 40 lines ===
+{"cases":[{"assertions":{"duplicateIdempotencyKeyProducesSingleReceipt":false,"handoffEdges":[],"rankCalls":1},"decisionAction":"route","effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","observedIntents":["code-review","code-webflow"],"observedResources":[],"projectionHash":"cbaf5e847d5e8bdd82065905c454e92c8d711292d18b59aa04d2a087603989d1","receiptAttempts":[],"scenarioId":"surface-bundle-reference","schemaVersion":"V1","selectionKind":"surfaceBundle","targetQualifiedIds":["sk-code/code-review/code-review/workflow/review-cache","sk-code/code-webflow/code-webflow/surface/evidence-base"]},{"assertions":{"duplicateIdempotencyKeyProducesSingleReceipt":false,"handoffEdges":[],"rankCalls":0},"decisionAction":"route","effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","observedIntents":["quality"],"observedResources":[],"projectionHash":"b45fe3e452b4db34866ec5fca401f2f11db6de48b84382d2683810b230707d84","receiptAttempts":[],"scenarioId":"single-quality","schemaVersion":"V1","selectionKind":"single","targetQualifiedIds":["sk-code/quality/code-quality/workflow/surface-router"]},{"assertions":{"duplicateIdempotencyKeyProducesSingleReceipt":false,"handoffEdges":[],"rankCalls":1},"decisionAction":"clarify","effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","observedIntents":[],"observedResources":[],"projectionHash":"9643270290f018d9771e78d81016087816600c9217ffb8882ba073a11b5e0d53","receiptAttempts":[],"scenarioId":"ambiguous-leaf","schemaVersion":"V1","targetQualifiedIds":[]},{"assertions":{"duplicateIdempotencyKeyProducesSingleReceipt":false,"handoffEdges":[],"rankCalls":1},"decisionAction":"defer","effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","observedIntents":[],"observedResources":[],"projectionHash":"f162547d051d6439b1fb456f8a33b298159ad8cb14ad3fbb4208af014cac783e","receiptAttempts":[],"scenarioId":"zero-leaf-signal","schemaVersion":"V1","targetQualifiedIds":[]},{"assertions":{"duplicateIdempotencyKeyProducesSingleReceipt":false,"handoffEdges":[],"rankCalls":0},"decisionAction":"reject","effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","observedIntents":[],"observedResources":[],"projectionHash":"975636bc07e6b15223c24570722801cdffebff1827239cff8cba1925516d2fd7","receiptAttempts":[],"scenarioId":"forbidden-request","schemaVersion":"V1","targetQualifiedIds":[]}],"schemaVersion":"V1"}
+[0m
+[0m$ [0mecho "=== leaf-resource-contract.cjs ==="; ls -la .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs 2>/dev/null; echo "=== leaf-manifest.json across hubs ==="; ls .opencode/skills/*/leaf-manifest.json 2>/dev/null; echo "=== loop-host references to skill-benchmark / trace-mode ==="; grep -rn "skill-benchmark\|trace-mode\|traceMode" .opencode/skills/system-deep-loop/ --include="*.md" --include="*.cjs" --include="*.ts" -l 2>/dev/null | grep -v "scripts/skill-benchmark" | head -10
+=== leaf-resource-contract.cjs ===
+-rw-r--r--@ 1 michelkerkmeester  staff  19774 Jul 20 19:45 .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs
+=== leaf-manifest.json across hubs ===
+.opencode/skills/cli-external-orchestration/leaf-manifest.json
+.opencode/skills/mcp-code-mode/leaf-manifest.json
+.opencode/skills/mcp-tooling/leaf-manifest.json
+.opencode/skills/sk-code/leaf-manifest.json
+.opencode/skills/sk-design/leaf-manifest.json
+.opencode/skills/sk-doc/leaf-manifest.json
+.opencode/skills/sk-prompt/leaf-manifest.json
+.opencode/skills/system-code-graph/leaf-manifest.json
+.opencode/skills/system-deep-loop/leaf-manifest.json
+.opencode/skills/system-skill-advisor/leaf-manifest.json
+.opencode/skills/system-spec-kit/leaf-manifest.json
+=== loop-host references to skill-benchmark / trace-mode ===
+.opencode/skills/system-deep-loop/benchmark/router-mode-a/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/README.md
+.opencode/skills/system-deep-loop/benchmark/after-d3-proxy/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs
+.opencode/skills/system-deep-loop/changelog/v1.1.0.0.md
+.opencode/skills/system-deep-loop/runtime/tests/unit/host-driven-improvement.vitest.ts
+.opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs
+.opencode/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md
+.opencode/skills/system-deep-loop/manual-testing-playbook/advisor-integration/no-false-fire-code-edit.md
+[0m

@@ -1,0 +1,261 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"agentId":"opencode","include_cognitive":true,"limit":3,"prompt":"Iteration 4 read-only deep research: durable archiving layout for compiled-vs-legacy routing benchmark results under .opencode/skills/<hub>/benchmark/<run-label>/, frozen baseline, mirror populated sk-code/benchmark/, plus unnamed gaps.","session_id":"0089-sk-doc-default-routing-cutover-iteration-4","specFolder":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision","tenantId":"default","turnNumber":1,"userId":"opencode"} failed
+[91m[1mError: [0m{
+  "summary": "Error: sessionId \"0089-sk-doc-default-routing-cutover-iteration-4\" does not match a server-managed session. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.",
+  "data": {
+    "error": "sessionId \"0089-sk-doc-default-routing-cutover-iteration-4\" does not match a server-managed session. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.",
+    "code": "E_SESSION_SCOPE",
+    "details": {
+      "requestedSessionId": "0089-sk-doc-default-routing-cutover-iteration-4"
+    }
+  },
+  "hints": [
+    "Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context."
+  ],
+  "meta": {
+    "tool": "memory_match_triggers",
+    "tokenCount": 233,
+    "cacheHit": false,
+    "isError": true,
+    "severity": "error",
+    "tokenBudget": 3500
+  }
+}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"agentId":"opencode","include_cognitive":true,"limit":3,"prompt":"Iteration 4 read-only deep research: durable archiving layout for compiled-vs-legacy routing benchmark results under .opencode/skills/<hub>/benchmark/<run-label>/, frozen baseline, mirror populated sk-code/benchmark/, plus unnamed gaps.","session_id":"","specFolder":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision","tenantId":"default","turnNumber":1,"userId":"opencode"}
+[0m
+[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py" "Iteration 4 read-only deep research: durable archiving layout for compiled-vs-legacy routing benchmark results under .opencode/skills/<hub>/benchmark/<run-label>/, frozen baseline, mirror populated sk-code/benchmark/, and unnamed gaps" --threshold 0.8
+Native advisor unavailable (NATIVE_DIST_MISSING; freshness=unavailable); falling back to local Python scorer.
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.81,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: !code(multi), !layout, !layout(multi), !opencode, !opencode(keyword) [disambiguation: deep-research reserved for this prompt]",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched: benchmark, code~, hub, opencode, read~",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !layout(keyword), css, layout, opencode~, responsive",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "system-deep-loop",
+    "kind": "skill",
+    "confidence": 0.91,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched: !deep research(keyword), deep(name), research, unnamed~ [Candidate-3 deep routing: system-deep-loop research MED]",
+    "_graph_boost_count": 0,
+    "mode": "research",
+    "workflowMode": "research",
+    "clarifying_question": "Should this route to research or review mode, and what output do you expect: review-report.md, research.md, or council-report.md?",
+    "source": "local"
+  },
+  {
+    "skill": "command-spec-kit-deep-research",
+    "kind": "command",
+    "confidence": 0.81,
+    "uncertainty": 0.35,
+    "passes_threshold": true,
+    "reason": "Matched: command_penalty, deep(name), research(name), run",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+[0m
+[0m→ [0mSkill "system-deep-loop"
+[0m→ [0mSkill "deep-research"
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/**"[90m in . · 100 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-code/benchmark/**"[90m in . · 27 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/**"[90m in . · 37 matches[0m
+[0m✱ [0mGlob ".opencode/skills/*/benchmark/**"[90m in . · 69 matches[0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/**"[90m in . · 8 matches[0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/**"[90m in . · 7 matches[0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/**"[90m in . · 7 matches[0m
+[0m✱ [0mGlob ".opencode/specs/**/research/iterations/iteration-004.md"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "baseline|archive|benchmark|run|report|frozen|compiled|legacy|model|playbook"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 70 matches[0m
+[0m✱ [0mGrep "baseline|run|report|fixtures|README|archive|model|scenario|replay"[90m in .opencode/skills/sk-code/benchmark · 100 matches[0m
+[0m✱ [0mGrep "benchmark|archive|baseline|compiled|legacy|LUNA|GPT-5\.6|run-label|durable"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation · 100 matches[0m
+[0m✱ [0mGrep "benchmark/<run-label>|run-label|SPECKIT_COMPILED_ROUTING|servingAuthority|compiled-vs-legacy|route-gold"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/benchmark/README.md[90m [limit=170, offset=1][0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/README.md[90m [limit=190, offset=1][0m
+[0m→ [0mRead .opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md[90m [limit=220, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md[90m [limit=220, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md[90m [limit=180, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/checklist.md[90m [limit=180, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md[90m [limit=200, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/plan.md[90m [limit=200, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md[90m [limit=200, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md[90m [limit=200, offset=181][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md[90m [limit=200, offset=1][0m
+[0m→ [0mRead .opencode/bin/compiled-route.cjs
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=340, limit=50][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md[90m [limit=100, offset=200][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md[90m [offset=200, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [offset=1, limit=400][0m
+[0m✱ [0mGrep "fixture|legacy|compiled|run-label|scenario"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs · 100 matches[0m
+[0m✱ [0mGrep "frozen|legacy|compiled|router-final|live-final|run-label|baseline"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs · 24 matches[0m
+[0m✱ [0mGrep "run-skill-benchmark|compiled-parity|compiled-routing|runLabel|outputs-dir"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs · 45 matches[0m
+[0m✱ [0mGrep "durable|archiv|benchmark/|compiled-vs-legacy|compiled.*legacy|baseline|run-label|route-gold"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment · 100 matches[0m
+[0m✱ [0mGrep "compiled-vs-legacy|compiled.*legacy|legacy.*compiled|route-gold.*compiled|compiled.*route-gold|durable.*result|archive.*benchmark|frozen.*baseline"[90m in .opencode/skills · 44 matches[0m
+[0m✱ [0mGlob "*/benchmark/README.md"[90m in .opencode/skills · 4 matches[0m
+[0m✱ [0mGlob "*/benchmark/*/README.md"[90m in .opencode/skills · 1 match[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/spec.md[90m [offset=60, limit=240][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md[90m [limit=160, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/checklist.md
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/benchmark/README.md
+[0m→ [0mRead .opencode/skills/sk-design/benchmark/README.md
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md[90m [limit=120][0m
+[0m→ [0mRead .opencode/skills/mcp-tooling/benchmark/README.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/lib/activation-gate.cjs[90m [limit=150][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/compiled/route-gold.typed.json[90m [limit=120][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/activation/manifest.json
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/*"[90m in . · 3 matches[0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/**/compiled/route-gold.typed.json"[90m in . · 7 matches[0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/**/activation/manifest.json"[90m in . · 7 matches[0m
+[0m✱ [0mGlob "**/route-gold*.json"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program · 12 matches[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 0 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m✱ [0mGlob "*/benchmark/.gitkeep"[90m in .opencode/skills · 4 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/activation/fence-state.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc/activation/acceptance.json
+[0m✗ [0mRead /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-router-alignment failed[90m [limit=20, offset=1][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-router-alignment
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json[90m [limit=100, offset=1][0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json[90m [limit=40, offset=1][0m
+[0m✱ [0mGrep "GPT-5\.6|gpt-5\.6|LUNA|luna|SKILL_BENCH_OPENCODE_MODEL|SKILL_BENCH_OPENCODE_VARIANT"[90m in .opencode/skills · 100 matches[0m
+[0m✱ [0mGrep "GPT-5\.6|gpt-5\.6|LUNA|luna|compiled parity|archive|benchmark/"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment · 100 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring/spec.md[90m [limit=200, offset=1][0m
+[0m✱ [0mGrep "report.compiledRouting|compiledRouting|compile-parity"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs · 0 matches[0m
+[0m✱ [0mGrep "default-off|SPECKIT"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 100 matches[0m
+[0m✱ [0mGrep "serving-authority|compiled-routing|compiled|SPECKIT"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 100 matches[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 0 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json[90m [limit=10][0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json"[90m in . · 1 match[0m
+[0m✱ [0mGrep "CLI run|run-skill-benchmark|outputs-dir|run-label|run command|re-run"[90m in .opencode/skills/sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md · 16 matches[0m
+[0m→ [0mRead .opencode/skills/sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md[90m [limit=160][0m
+[0m✱ [0mGrep "compiled-routing|compiledRouting|compile-parity"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs · 0 matches[0m
+[0m✱ [0mGrep "artifact|report pair|json|md|README|run-label|baseline"[90m in .opencode/skills/sk-doc/create-benchmark/references · 100 matches[0m
+[0m✗ [0mGrep "compiled|route-gold|spec-tree|durable|benchmark" failed[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/spec.md[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/spec.md[90m [limit=180][0m
+[0m✱ [0mGrep "targetSkill|skillRoot|traceMode|topologyDigest"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [limit=120, offset=980][0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [limit=120, offset=1010][0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs[90m [limit=100, offset=1][0m
+[0m✗ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/research failed
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/research
+[0m✱ [0mGrep "iteration-004|iteration-003|iteration-002|iteration-001"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program · 80 matches[0m
+[0m✱ [0mGlob "**/research/iterations/iteration-00{1,2,3,4}.md"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program · 2 matches[0m
+[0m✱ [0mGlob "007-unified-refactor-implementation/research/**"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program · 0 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation[90m [limit=100, offset=1][0m
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/**"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "servingAuthority|hubId|selectedPolicy|generation"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation · 63 matches[0m
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills -mindepth 2 -maxdepth 3 -type d -name benchmark -not -path '*/node_modules/*'
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/prompt-improve/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/deep-improvement/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-review/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-opencode/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-quality/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-webflow/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration/benchmark
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/benchmark
+[0m
+[0m✱ [0mGlob "*/benchmark/*/skill-benchmark-report.json"[90m in .opencode/skills · 22 matches[0m
+[0m✱ [0mGlob "*/benchmark/router*"[90m in .opencode/skills · 0 matches[0m
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills -mindepth 3 -maxdepth 4 -type d -name 'baseline' -o -mindepth 3 -maxdepth 4 -type d -name 'router-*' -o -mindepth 3 -maxdepth 4 -type d -name 'live-*' -o -mindepth 3 -maxdepth 4 -type d -name 'after-*' -o -mindepth 3 -maxdepth 4 -type d -name 'router-*' -o -mindepth 3 -maxdepth 4 -type d -name 'full' -o -mindepth 3 -maxdepth 4 -type d -name 'after' 2>/dev/null | sort
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling/benchmark/after-routing-remediation
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling/benchmark/baseline
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/after
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/baseline
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/full
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/live-final
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/live-remediated
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/router-baseline
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/benchmark/router-final
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-opencode/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-opencode/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-quality/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-quality/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-review/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-review/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-webflow/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/code-webflow/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-009
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-012-routing-rigor
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-016-hub-routing
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-018-transport-integration
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-022-coverage-fill
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/after-d3-proxy
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/benchmark/baseline
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/benchmark/live-glm-5.2-high
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/benchmark/live-kimi-2.7
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/benchmark/live-final
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/benchmark/router-final
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/prompt-improve/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/benchmark/after-d3-proxy
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/benchmark/baseline
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/benchmark/router-mode-a
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/deep-improvement/benchmark/live-mode-b
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/deep-improvement/benchmark/router-mode-a
+[0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/live-final/skill-benchmark-report.json[90m [limit=150, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/prompts.json[90m [limit=180, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json[90m [limit=120, offset=1][0m
+[0m✱ [0mGrep "model|variant|provider|executor|traceMode|command"[90m in .opencode/skills/sk-code/benchmark/live-final · 6 matches[0m
+[0m✱ [0mGrep "SKILL_BENCH_OPENCODE_MODEL|SKILL_BENCH_OPENCODE_VARIANT|chosenModel|model:|variant:"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 9 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs[90m [limit=130, offset=340][0m
+[0m✱ [0mGrep "routerHash|frozenHash|compiledRouting|compiled-vs-legacy|baselineHash|parityHash"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 0 matches[0m
+[0m✱ [0mGrep "model:|variant:|runModel|runVariant|reportModel|envModel"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 3 matches[0m
+[0m✱ [0mGrep "executor|run.label|runLabel|runEnv|envSnapshot"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/aggregate|builder|orchestrator|report|load-playbook|run-skill-benchmark|score-skill-benchmark · 55 matches[0m
+[0m✱ [0mGrep "output.+dir|outputsDir|runLabel|reportPath|baseName"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 8 matches[0m
+[0m✱ [0mGrep "targetSkill"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts · 4 matches[0m
+[0m✱ [0mGrep "function aggregate|aggregate =|aggregate\("[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 1 match[0m
+[0m✱ [0mGrep "root:|skillRoot,"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 95 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [limit=100, offset=1600][0m
+[0m✗ [0mGrep "return { skillId|return report|return \{|root:|traceMode:" failed[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark[0m
+[91m[1mError: [0mrg: regex parse error:
+    (?:return { skillId|return report|return \{|root:|traceMode:)
+                ^
+error: repetition quantifier expects a valid decimal
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [limit=100, offset=1700][0m
+[0m✱ [0mGrep "targetSkill|report.report|targetSkill:|targetSkill ="[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 4 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs[90m [limit=150, offset=89][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/tasks.md[90m [limit=150, offset=1][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/implementation-summary.md[90m [limit=150, offset=1][0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [limit=100, offset=1791][0m

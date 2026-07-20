@@ -1,0 +1,1015 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/ | head -40
+README.md
+cli-external-orchestration
+mcp-code-mode
+mcp-tooling
+sk-code
+sk-design
+sk-doc
+sk-git
+sk-prompt
+system-code-graph
+system-deep-loop
+system-skill-advisor
+system-spec-kit
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/bin/ 2>/dev/null; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/hooks/ 2>/dev/null; ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/ 2>/dev/null
+README.md
+check-git-hooks.sh
+cli-exit-taxonomy-smoke.cjs
+cli-offline-smoke.cjs
+cli-offline-smoke.test.cjs
+code-index.cjs
+compiled-route.cjs
+git-live-follow.sh
+git-sync.sh
+hf-model-server.cjs
+install-codex-hooks.mjs
+lib
+mk-code-index-launcher-cas.vitest.ts
+mk-code-index-launcher-identity-guards.vitest.ts
+mk-code-index-launcher-owner-reclaim.vitest.ts
+mk-code-index-launcher-pid-registry.vitest.ts
+mk-code-index-launcher-reclaim-e2e.vitest.ts
+mk-code-index-launcher-wal-hygiene.vitest.ts
+mk-code-index-launcher.cjs
+mk-skill-advisor-launcher.cjs
+mk-spec-memory-launcher.cjs
+skill-advisor.cjs
+spec-memory.cjs
+speckit-completion.cjs
+tests
+worktree-guard.sh
+worktree-reaper.sh
+worktree-session.sh
+worktree-status.sh
+README.md
+install-hooks.sh
+pre-commit
+agents
+bin
+bun.lock
+changelog
+commands
+hooks
+install-guides
+logs
+node_modules
+package-lock.json
+package.json
+plugins
+scripts
+skills
+specs
+vitest.config.bin.ts
+[0m
+[0m→ [0mRead .opencode/hooks/pre-commit
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/plugins/ 2>/dev/null
+README.md
+mk-cli-dispatch-audit.js
+mk-code-graph-freshness.js
+mk-code-graph.js
+mk-codex-hooks-watchdog.js
+mk-completion-sentinel.js
+mk-deep-loop-guard.js
+mk-dist-freshness-guard.js
+mk-goal.js
+mk-mcp-route-guard.js
+mk-post-edit-quality.js
+mk-skill-advisor.js
+mk-spec-gate.js
+mk-spec-memory.js
+mk-speckit-completion.js
+session-cleanup.js
+tests
+[0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/ 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/:
+INSTALL-GUIDE.md
+README.md
+SKILL.md
+assets
+changelog
+graph-metadata.json
+leaf-aliases.json
+leaf-manifest.config.json
+leaf-manifest.json
+manual-testing-playbook
+mcp-server
+references
+runtime
+scripts
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/:
+README.md
+SKILL.md
+benchmark
+changelog
+create-agent
+create-benchmark
+create-changelog
+create-command
+create-diff
+create-feature-catalog
+create-flowchart
+create-manual-testing-playbook
+create-quality-control
+create-readme
+create-skill
+description.json
+graph-metadata.json
+hub-router.json
+leaf-aliases.json
+leaf-manifest.json
+manual-testing-playbook
+mode-registry.json
+scripts
+shared
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/:
+README.md
+SKILL.md
+assets
+benchmark
+changelog
+feature-catalog
+graph-metadata.json
+manual-testing-playbook
+references
+scripts
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/:
+README.md
+SKILL.md
+benchmark
+changelog
+description.json
+graph-metadata.json
+hub-router.json
+leaf-manifest.json
+manual-testing-playbook
+mode-registry.json
+prompt-improve
+prompt-models
+shared
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills -name "hub-router.json" 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/hub-router.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration/hub-router.json
+[0m
+[0m→ [0mRead .opencode/bin/compiled-route.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/ 2>/dev/null
+cli-external-orchestration
+mcp-tooling
+sk-code
+sk-design
+sk-doc
+sk-prompt
+system-deep-loop
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/ 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/:
+001-sk-code
+002-system-deep-loop
+003-mcp-tooling
+004-cli-external-orchestration
+005-sk-prompt
+006-sk-design
+007-sk-doc
+description.json
+graph-metadata.json
+spec.md
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/:
+activation-record.json
+fence-state.json
+manifest.candidate.json
+manifest.json
+manifest.prior.json
+manifest.serving-prior.json
+serving-flip-record.json
+[0m
+[0m$ [0mgrep -n "HUB_CHILD\|COMPILED_ROUTING_HUBS" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/*.cjs 2>/dev/null | head -50
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:41:const COMPILED_ROUTING_HUBS = new Set([
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:331:  if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs:23:const HUB_CHILD = Object.freeze({
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs:37:  const child = HUB_CHILD[hubId];
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs:87:module.exports = { compiledRoute, loadHubEngine, HUB_CHILD };
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs:22:const { compiledRoute, loadHubEngine, HUB_CHILD } = require('./compiled-route.cjs');
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs:64:  const child = path.join(IMPL_ROOT, HUB_CHILD[hubId]);
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs:72:  const child = path.join(IMPL_ROOT, HUB_CHILD[hubId]);
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs:90:  if (!hubId || !HUB_CHILD[hubId]) throw new Error('usage: flip-serving.cjs --hub <hubId> [--rollback] [--json]');
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+[0m
+[0m$ [0mgrep -l "smart-router\|compiled-routing\|SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/*/SKILL.md 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-design/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-prompt/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md
+[0m
+[0m$ [0mgrep -n "compiled-routing\|SPECKIT_COMPILED_ROUTING\|compiled-route.cjs" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md 2>/dev/null
+(no output)
+[0m
+[0m$ [0mgrep -rn "smart-router" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md:90:- `references/cli/` for daemon CLI parity, shared smart-router behavior, and memory handback contracts.
+[0m
+[0m$ [0mgrep -n "Hub routing\|Smart-router\|Router shape\|router-archetype\|router archetype\|archetype" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/*.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/spec.md 2>/dev/null | head -30
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs:52:  // The export name varies by archetype (evaluateCanary or evaluateRoute); both
+[0m
+[0m$ [0mgrep -rn "single-skill router\|non-hub\|smart-router" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/ 2>/dev/null | head -20
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/changelog/v1.0.0.0.md:16:- `assets/` - copy-from templates: `skill/skill-md-template.md`, `skill/skill-readme-template.md`, `skill/skill-reference-template.md`, `skill/skill-asset-template.md` and `skill/skill-smart-router.md` for standalone skills; `parent-skill/parent-skill-hub-template.md`, `parent-skill/parent-skill-registry-template.json`, `parent-skill/parent-skill-hub-router-template.json`, `parent-skill/parent-skill-description-template.json` and `parent-skill/parent-skill-graph-metadata-template.json` for parent hubs.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:199:      "keywords": ["sk-code", "surface-aware", "smart-router"]
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/skill/creation-workflow.md:220:   - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the Smart Router Pseudocode subsection, then adapt the routing key and resource map to this skill's domain. A SKILL.md with an empty or missing Smart Router Pseudocode subsection is incomplete.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/shared/common-pitfalls.md:57:# Good — verb + domain noun + smart-router phrase, ≤ 130 chars
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/shared/overview.md:119:- Use [skill-smart-router.md](../../assets/skill/skill-smart-router.md) as the canonical pattern for runtime markdown discovery, guarded existence-checked loading, extensible routing keys, and multi-tier fallback behavior.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/README.md:37:- `assets/skill/skill-smart-router.md`: router-heavy skill pattern.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:171:# smart-router markers, placeholder/TODO completeness). Recommended-section, file-type,
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:181:    "missing smart-router marker",    # SMART ROUTING resilience markers
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:329:    section / RULES / smart-router shape checks and the description soft-target
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:643:    Checks for the canonical smart-router resilience markers
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:683:            f"SMART ROUTING section missing smart-router marker(s): "
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/scripts/package_skill.py:790:    # smart-router markers. Emitted as warnings (see VERSIONED_DOC_SUBTREES
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/SKILL.md:75:| Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/SKILL.md:190:20. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/SKILL.md:366:- `assets/skill/skill-smart-router.md` - resilient smart-router pattern.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/assets/skill/skill-smart-router.md:3:description: Canonical resilient smart-router pattern for skill resource discovery, guarded loading, runtime routing keys, and graceful fallback.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md:235:> Pattern: see [sk-doc smart-router resilience template](./skill-smart-router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md:743:# Authoritative router logic. See skill-smart-router.md for the full resilience pattern.
+[0m
+[0m$ [0mgrep -l "SMART ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md
+[0m
+[0m$ [0mgrep -n "SMART ROUTING\|hub\|single-skill" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/SKILL.md 2>/dev/null | head -20
+3:description: "Documentation & OpenCode-component authoring parent hub: routes to eleven workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, ASCII flowcharts, changelogs, and local before/after document reviews, plus a create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+11:<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, create-flowchart, create-changelog, create-diff, create-quality-control, shared-backbone, create-quality-control-pipeline -->
+15:One advisor identity, eleven workflow packets, one shared create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+21:Use this skill for documentation and OpenCode-component authoring, and for document-quality work. The hub classifies the request, resolves a `workflowMode`, and loads the matching nested packet.
+25:| **create-skill** | Scaffold an OpenCode skill (and, via `create-skill-parent`, a parent hub with nested mode packets) | `create-skill/` | `/create:skill`, `/create:skill-parent` |
+46:## 2. SMART ROUTING
+48:Routing is **registry-driven at runtime and packet-authored at source**. Each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
+52:> node .opencode/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
+65:HUB_ROUTER = SKILL_ROOT / "hub-router.json"
+84:  return defer("router metadata missing; inspect sk-doc/mode-registry.json and sk-doc/hub-router.json")
+86:read mode-registry.json and hub-router.json
+87:classify the request to one or more workflowMode values using hub-router.json
+101:return single or orderedBundle according to hub-router.json routerPolicy.outcomes
+103:`routerPolicy.defaultMode` is `null`: an unclear documentation intent asks for disambiguation rather than forcing a stale default. `hub-router.json` carries the router signals, vocabulary classes, default fallback resource, and bundle rules. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
+107:This hub does **not** use keyed resource discovery (`references/<key>/` or `assets/<key>/`) at the hub root: there are no hub-root `references/` or `assets/` directories, and packet resources stay inside their owning packet or the shared backbone. If a future workflow needs keyed resource subdirectories, add that behavior inside the owning packet using guarded runtime discovery; do not hardcode resource inventories in this hub.
+116:  SKILL.md               # this routing hub (no per-packet logic)
+118:  hub-router.json        # router signals + vocabulary classes
+119:  description.json       # hub advisor descriptor
+132:`shared/` holds the universal create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/`), and shared templates (`shared/assets/`). The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
+139:- **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=1, limit=120][0m
+[0m
+[0m$ [0mgrep -n "compiled\|compiled-route\|SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/ -name "spec.md" -o -name "plan.md" 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/plan.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/003-default-mode-implementation/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/004-oob-glm-parallel-research/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/plan.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit/plan.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/002-decision-evaluator/plan.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/002-decision-evaluator/spec.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/ 2>/dev/null
+001-3-tier-consistency-standard
+002-default-mode-policy-research
+003-default-mode-implementation
+004-oob-glm-parallel-research
+005-oob-idea-deep-dives
+006-unified-refactor-research
+007-unified-refactor-implementation
+GLM-cross-lineage-notes.md
+context-index.md
+description.json
+graph-metadata.json
+live-activation-goal.md
+spec.md
+[0m
+[0m$ [0mgrep -rn "single-skill router\|non-hub router\|registry-less\|archetype" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/spec.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/spec.md 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mgrep -rn "non-hub\|registry-less\|single-skill" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/ 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -rn "single-skill" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/ 2>/dev/null | head -10
+Binary file /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs:15: * single-skill suppression. Skill-OFF is APPROXIMATED with
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/references/scoring/validation-baselines.md:71:For a single-skill check (skip corpus + holdout):
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:42:      skillId: { type: 'string', description: 'Skill identifier for single-skill queries' },
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/advisor-feedback-calibration.vitest.ts:159:    const records = Array.from({ length: 10 }, () => outcome('single-skill', 'corrected'));
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/advisor-feedback-calibration.vitest.ts:164:      laneAttributionBySkill: { 'single-skill': 'lexical' },
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts:121:        skillId: { type: 'string', description: 'Skill identifier for single-skill queries' },
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts:60:// multi-concern optimization is under-specified for single-skill routing.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts:811:  // for single-skill routing. When the top code-like candidate carries that
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md:30:Validate that ambiguous advisor results surface as ambiguity rather than a false single-skill certainty.
+[0m
+[0m$ [0mgrep -rn "single-mode\|registry-less\|hubless\|non-hub" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -n "registry-less\|no mode-registry\|registry-less" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md:95:**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+[0m
+[0m$ [0mgrep -n "single-mode\|registry-less\|SMART ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md | head -5
+39:## 2. SMART ROUTING
+[0m
+[0m$ [0mgrep -n "leaf-manifest\|hub-router\|mode-registry\|smart-router pattern" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md 2>/dev/null | head -20
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:98:This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` (the authorized 53-leaf inventory) via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The runtime schema array, not this router, remains authoritative for executable tool registration.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:112:# (WORKFLOW_MODE, leafResourceId) pair. leaf-manifest.json is the authorized
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:128:# leaves and from leaf-manifest.json. A broad "list the features / playbook"
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:181:# concrete markdown leaf that exists in leaf-manifest.json (package indexes are
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md:71:**Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`). Every routable leaf under `references/` and `assets/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/mcp-code-mode`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/naming-convention.md`) to its typed `(mcp-code-mode, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the manual-testing playbook and any navigation index are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+[0m
+[0m$ [0mgrep -n "hub-router\|mode-registry\|registry-less\|single-mode\|single-skill" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md 2>/dev/null | head -20
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md:87:**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/system-skill-advisor`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the corpus changes. The `mcp-server/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf — it is intentionally outside every `leafRoot` and never appears in the manifest.
+[0m
+[0m$ [0mgrep -n "leaf-manifest\|hub-router\|mode-registry\|registry-less\|single-mode" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md 2>/dev/null | head -5
+(no output)
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/ | head -10
+README.md
+SKILL.md
+assets
+benchmark
+changelog
+feature-catalog
+graph-metadata.json
+manual-testing-playbook
+references
+scripts
+[0m
+[0m$ [0mgrep -n "compiled\|SPECKIT_COMPILED_ROUTING\|advisor-hook" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md 2>/dev/null | head -5
+(no output)
+[0m
+[0m→ [0mRead .opencode/skills/sk-git/SKILL.md[90m [offset=1, limit=120][0m
+[0m
+[0m$ [0mgrep -rn "smart-router pattern\|no hub-router\|hub-router.json\|mode-registry.json" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/SKILL.md:95:**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-code-mode/SKILL.md:71:**Typed leaf projection (fleet routing standard).** mcp-code-mode is a normal, standalone single-mode skill whose sole workflow mode is `mcp-code-mode` (there is no `mode-registry.json`). Every routable leaf under `references/` and `assets/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/mcp-code-mode`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/naming-convention.md`) to its typed `(mcp-code-mode, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the manual-testing playbook and any navigation index are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/SKILL.md:87:**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/system-skill-advisor`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the corpus changes. The `mcp-server/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf — it is intentionally outside every `leafRoot` and never appears in the manifest.
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=300, limit=200][0m
+[0m
+[0m$ [0mgrep -n "SPECKIT_COMPILED_ROUTING\|compiled-routing\|compiled routing" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mgrep -rn "SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/ --include="*.md" 2>/dev/null | head -20
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:3:description: "The P4b runtime engine: an archetype-adaptive compiled-route engine that reuses each rollout child's proven engine (evaluateCanary or evaluateRoute), a double-gated fail-safe resolver + CLI front-door, and a fenced-CAS per-hub serving flip with byte-exact rollback. Proven end-to-end on sk-code, then the cutover executed across all 7 hubs (each SKILL.md wired + re-certified + flipped legacy->compiled), held inert behind the default-off SPECKIT_COMPILED_ROUTING flag; scorer frozen. Advisor-hook machine-enforcement in progress."
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:23:| **Status** | Complete — the P4b runtime engine (archetype-adaptive compiled-route engine + resolver/CLI front-door + per-hub serving flip) is built, proven end-to-end on `sk-code`, and the cutover is executed across all seven hubs: each carries a flag-gated compiled-routing directive in its live `SKILL.md`, was recompiled with archetype-adaptive re-certification, and reads `servingAuthority: compiled`. Each flip is canary-green via the real scorer, route-gold byte-identical, byte-exact-reversible. The runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off). Advisor-hook machine-enforcement remains in progress. Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:26:| **Serving authority** | `compiled` across all 7 hubs (committed) — but the compiled path is inert by default (`SPECKIT_COMPILED_ROUTING` off), so live routing is unchanged until enabled |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:38:`lib/compiled-route.cjs` is an archetype-adaptive pure engine: given `(hubId, taskText)` it loads the hub's compiled snapshot from its rollout child and routes it through the **same** closed decision algebra the shadow canary already validates — the export name varies by archetype (`evaluateCanary` for the surfaceBundle canary-router, `evaluateRoute` for the plain router) — returning a normalized `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}` and deferring on prompts that lack the policy's detector signals. `lib/resolve.cjs` is the safety gate and CLI front-door: it serves the compiled decision only when the runtime flag `SPECKIT_COMPILED_ROUTING=1` is set **and** the hub's activation manifest reads `servingAuthority: compiled`, and it fails safe to null (legacy) on any error. `lib/flip-serving.cjs` is the operated cutover: a fenced compare-and-swap that moves a hub `legacy → compiled` behind four green gates, retaining a byte-identical pre-flip manifest so `--rollback` is byte-exact.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:60:The resolver wraps the engine in two independent gates. `resolveRoute(hubId, taskText)` returns null unless `flagEnabled()` (the process env `SPECKIT_COMPILED_ROUTING` equals `1`) and `servingAuthority(hubId)` reads `compiled` from `010-live-activation/activation/<hub>/manifest.json`; on a missing or unparseable manifest, `servingAuthority()` defaults to `legacy`, and any error resolving the compiled route is caught and returns null rather than throwing into a routing hot path. The CLI front-door — `node resolve.cjs --hub <id> --prompt <text>` — prints the compiled decision when authoritative, else a legacy sentinel `{servingAuthority: legacy, hubId}` so the caller keeps the prose smart-router.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:78:| Prove end-to-end on one hub, then execute the cutover behind a flag | `sk-code` exercised the whole path (flip → compiled-served route → byte-exact rollback) as real evidence; the cutover was then executed across all seven hubs (flipped `legacy → compiled`), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag and byte-exact-reversible per hub. |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:109:1. **All seven hubs are wired to the resolver.** Each hub's live `SKILL.md` carries an additive, flag-gated compiled-routing directive that shells to the `--hub/--prompt` front-door and self-gates on serving authority; the directive is inert while `SPECKIT_COMPILED_ROUTING` is off, and existing prose routing is unchanged.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:111:3. **Post-flip real-model re-verification was not separately re-run; it is treated as satisfied.** The engine routes correctly in the harness (canary-green, routes ≥1 designed scenario), and compiled routing is route-gold byte-identical to legacy, so enabling `SPECKIT_COMPILED_ROUTING` changes hashes only, not routing decisions — the earlier P4a T9 result (0 wrong-hub routes across 3 models) plus this flag-off inertness stands in for a fresh post-flip sweep. The advisor-hook machine-enforcement layer that would machine-enforce the wired routing remains in progress.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:119:    current_focus: "P4b runtime engine built + proven end-to-end on sk-code (flip -> compiled-served route -> byte-exact rollback); the cutover is then executed across all 7 hubs (each SKILL.md wired + archetype-adaptive re-certification + serving flip legacy->compiled), held inert behind the default-off SPECKIT_COMPILED_ROUTING flag, byte-exact rollback retained per hub. Commits engine d7da0fca43, sk-code cutover 2fa3357f80, remaining-6 cutover 337ca43cfa (pushed on v4)"
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:122:      - "Post-flip real-model re-verification treated as satisfied by the P4a T9 result plus flag-off inertness (routing byte-identical); enable per-hub via SPECKIT_COMPILED_ROUTING=1, reversible via flip-serving --rollback or flag off"
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:39:- [x] T004 Author `lib/resolve.cjs` — the double-gated (`SPECKIT_COMPILED_ROUTING=1` AND `servingAuthority: compiled`), fail-safe resolver with a `--hub/--prompt` CLI front-door.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:67:- [x] T012 Prove the front-door: with `SPECKIT_COMPILED_ROUTING=1` the CLI returns `action: route` to the `code-quality` surface (sk-code/quality mode); with the flag off it returns the legacy sentinel.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:71:**Evidence**: The `sk-code` end-to-end proof is complete, and the cutover was then executed across all seven hubs — each flipped `legacy → compiled` and left compiled-serving but inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. Evidence lives in `010-live-activation/activation/<hub>/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:82:- [x] Frozen scorer digests unchanged; the runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off).
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:87:**Evidence**: The P4b runtime engine, its `sk-code` end-to-end proof, the hub `SKILL.md` wiring (T015), and the seven-hub `legacy → compiled` flip (T016) are all complete — landed in commits engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/checklist.md:64:  - **Evidence**: `resolveRoute` returns null unless `SPECKIT_COMPILED_ROUTING=1` AND the manifest reads `servingAuthority: compiled`; the flag-off CLI prints the legacy sentinel `{servingAuthority: legacy, hubId}`.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/checklist.md:84:  - **Evidence**: Each hub's committed `manifest.json` reads `servingAuthority: compiled`, `shadowOnly: false`; the runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off), so live routing is unchanged until the flag is enabled (compiled routing is route-gold byte-identical), and each hub is byte-exact-reversible via its retained `manifest.serving-prior.json`.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/checklist.md:147:**Completion Boundary**: The per-hub live-`SKILL.md` routing directive and the seven-hub `legacy → compiled` serving flip are complete, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag and byte-exact-reversible. Post-flip real-model re-verification is treated as satisfied by the P4a T9 result plus flag-off inertness; the one item still in progress is the advisor-hook machine-enforcement layer.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/plan.md:34:| **Serving gate** | Double gate: runtime flag `SPECKIT_COMPILED_ROUTING=1` AND manifest `servingAuthority: compiled`; default off = inert |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/plan.md:40:P4b adds the runtime consumer P4a left out, as three small modules. `compiled-route.cjs` is an archetype-adaptive pure engine: given `(hubId, taskText)` it loads the hub's compiled snapshot and routes it through the child's own engine — `evaluateCanary` or `evaluateRoute`, by archetype — returning a normalized decision and deferring on off-signal prompts. `resolve.cjs` is the safety gate: it serves the compiled decision only when the runtime flag is set and the hub's manifest reads `servingAuthority: compiled`, fails safe to null on any error, and exposes a `--hub/--prompt` CLI front-door. `flip-serving.cjs` is the operated switch: a fenced CAS that moves a hub `legacy → compiled` behind a P4a-binding check, a green canary, the frozen-scorer pin, and a live-route proof, retaining a byte-identical pre-flip manifest so `--rollback` is byte-exact. The path was proven on `sk-code`, then the cutover was executed across all seven hubs — each live `SKILL.md` wired with an additive flag-gated directive, recompiled with archetype-adaptive re-certification, and flipped `legacy → compiled` — held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag with a byte-exact rollback retained per hub.
+[0m
+[0m$ [0mgrep -rn "ENV-REFERENCE\|SPECKIT_COMPILED_ROUTING\|compiled-routing" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ 2>/dev/null | head -10; echo "---"; find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit -name "ENV-REFERENCE.md" 2>/dev/null
+ENV-REFERENCE.md
+INSTALL-GUIDE.md
+LICENSE
+README.md
+api
+benchmarks
+cli.ts
+configs
+context-server.ts
+core
+---
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md
+[0m
+[0m$ [0mgrep -n "compiled-routing\|SPECKIT_COMPILED_ROUTING\|advisor-hook\|advisor-hook-machine" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mgrep -n "compiled\|SPECKIT_" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null | head -30
+3:description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server (plus the MK_*/runtime variables of the dual-stack CLI front door), organized by subsystem with defaults, types and source file references.
+8:> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server, plus the `MK_*` and runtime prompt-time variables used by the daemon-backed CLI front door.
+16:**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> Code Graph -> Memory), the graph env vars are among the most impactful configuration levers.
+33:| Session attention boost | ON | `SPECKIT_SESSION_BOOST` | Search result re-ranking from session attention signals | graduated |
+34:| Causal graph boost | ON | `SPECKIT_CAUSAL_BOOST` | Causal graph traversal boost for search ranking | graduated |
+35:| Dynamic init | ON | `SPECKIT_DYNAMIC_INIT` | Startup instruction injection for the MCP server | graduated |
+36:| Pressure policy | ON | `SPECKIT_PRESSURE_POLICY` | Token-pressure policy for `memory_context` | graduated |
+37:| Auto resume | ON | `SPECKIT_AUTO_RESUME` | Automatic resume context injection for `memory_context` | graduated |
+38:| MMR reranking | ON | `SPECKIT_MMR` | Graph-guided MMR diversity reranking | current |
+39:| TRM evidence gap detection | ON | `SPECKIT_TRM` | Transparent Reasoning Module evidence-gap detection | current |
+40:| Multi-query expansion | ON | `SPECKIT_MULTI_QUERY` | Deep-mode multi-query expansion | current |
+41:| Search fallback | ON | `SPECKIT_SEARCH_FALLBACK` | Quality-aware 3-tier search fallback chain | PI-A2 |
+42:| Folder discovery | ON | `SPECKIT_FOLDER_DISCOVERY` | Automatic spec folder discovery via description cache | PI-B3 |
+43:| Save planner mode | OFF | `SPECKIT_SAVE_PLANNER_MODE` | Mutation-first canonical save behavior. Default is `plan-only` | planner-first save |
+44:| Save reconsolidation | OFF | `SPECKIT_RECONSOLIDATION_ENABLED` | Save-time reconsolidation, opt-in. Gates a destructive merge/deprecate path (further checkpoint-gated) | planner-first save |
+45:| Post-insert enrichment | ON | `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | Save-time enrichment bundle: causal links + entities + summaries + graph lifecycle (populates graph, async by default) | spec 017 |
+46:| Quality auto-fix retries | ON | `SPECKIT_QUALITY_AUTO_FIX` | Save-time quality auto-fix retry loop (trigger phrases, char-budget trim, anchor normalize) | spec 017 |
+47:| Docscore aggregation | ON | `SPECKIT_DOCSCORE_AGGREGATION` | Document-level chunk-to-memory score aggregation | R1 MPAB |
+48:| Save quality gate | ON | `SPECKIT_SAVE_QUALITY_GATE` | Pre-storage quality gate for memory saves | graduated |
+49:| Dynamic token budget | ON | `SPECKIT_DYNAMIC_TOKEN_BUDGET` | Query-complexity token budget allocation | graduated |
+50:| Confidence truncation | ON | `SPECKIT_CONFIDENCE_TRUNCATION` | Low-confidence tail truncation | graduated |
+51:| Channel minimum representation | ON | `SPECKIT_CHANNEL_MIN_REP` | Minimum channel representation after fusion | graduated |
+52:| Reconsolidation on save | ON | `SPECKIT_RECONSOLIDATION` | Memory deduplication reconsolidation path | TM-06 |
+53:| Negative feedback | ON | `SPECKIT_NEGATIVE_FEEDBACK` | Negative-feedback confidence demotion | T002b/A4 |
+54:| Embedding expansion | ON | `SPECKIT_EMBEDDING_EXPANSION` | Embedding-based query expansion | R12 |
+55:| Consolidation engine | ON | `SPECKIT_CONSOLIDATION` | Contradiction scan, strengthening, staleness, edge bounds | N3-lite |
+56:| Encoding intent | ON | `SPECKIT_ENCODING_INTENT` | Index-time intent metadata capture | R16 |
+57:| Graph walk rollout | ON | `SPECKIT_GRAPH_WALK_ROLLOUT`, `SPECKIT_GRAPH_SIGNALS` | Graph walk mode, defaults to `bounded_runtime` when graph signals are ON | N2a/N2b |
+58:| Graph signals | ON | `SPECKIT_GRAPH_SIGNALS` | Graph momentum and causal depth signals | N2a/N2b |
+59:| Community detection | ON | `SPECKIT_COMMUNITY_DETECTION` | BFS components with Louvain escalation | N2c |
+[0m
+[0m$ [0mgrep -n "skill-advisor\|skill_advisor\|skill advisor\|advisor\|ROUTING_HUBS\|ROUTING_HOOK" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null | head -30
+96:| Memory idempotency receipts | OFF | `SPECKIT_MEMORY_IDEMPOTENCY` | Default-off server-derived replay receipts for memory_save/memory_update plus advisory near_duplicate_of hints | memory hardening |
+109:| Acceptance coverage gate | OFF | `SPECKIT_AC_COVERAGE` | Opt-in advisory scan for acceptance-criteria traceability coverage during spec validation | acceptance coverage gate |
+165:| Metadata disk-path consistency enforce | ON (enforcing) | `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` | Advisory→enforce toggle for the `METADATA_DISK_PATH_CONSISTENCY` rule: a `description.json`/`graph-metadata.json` path mismatch against the on-disk folder fails `--strict`. Graduated 2026-07-10 on a reconciled tree-wide census (1,130 real mismatches reconciled; remaining residual is non-production paths, see 019-validation-enforce-graduation/implementation-summary.md); set `false` to fall back to advisory-only | `scripts/rules/check-metadata-disk-consistency.sh` |
+166:| Status cross-doc consistency enforce | ON (enforcing) | `SPECKIT_STATUS_CROSS_DOC_ENFORCE` | Advisory→enforce toggle for the `STATUS_CROSS_DOC_CONSISTENCY` rule: a classified-status disagreement between `spec.md` and `implementation-summary.md` fails `--strict`. Graduated 2026-07-10 on a reconciled tree-wide census (2 honestly-documented residuals remain, see 019-validation-enforce-graduation/implementation-summary.md); set `false` to fall back to advisory-only | `scripts/rules/check-status-cross-doc-consistency.sh` |
+167:| Graph metadata child-drift enforce | ON (enforcing) | `SPECKIT_CHILD_DRIFT_ENFORCE` | Advisory→enforce toggle for the `GRAPH_METADATA_CHILD_DRIFT` rule: a phase parent's `children_ids` missing an on-disk phase child fails `--strict`. Also gates a dist-presence freshness guard on the child-scanner dependency, so a stale or missing scanner build fails closed rather than silently reporting clean. Graduated 2026-07-10 on a reconciled tree-wide census, see 019-validation-enforce-graduation/implementation-summary.md; set `false` to fall back to advisory-only | `scripts/rules/check-graph-metadata-child-drift.sh`, `scripts/lib/dist-freshness.cjs` |
+214:| `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | number | Idle self-exit timeout, in minutes, for the spec-memory, skill-advisor, and code-graph MCP server processes. Fractional values are allowed for tests. `0` disables the idle monitor. Primary stdio input and secondary IPC socket connect/data/write events refresh activity, and active secondary IPC clients keep the server alive. | `mcp-server/lib/ipc/launcher-idle-timeout.ts`, `.opencode/skills/system-*/mcp-server/*server.ts` |
+251:| `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` | `3000` | number | Timeout (ms) for the OpenCode `UserPromptSubmit` hook and the skill-advisor subprocess execution when invoked from OpenCode. On timeout, the OpenCode hook returns a stale advisory brief instead of empty output, so operators who raise this value trade responsiveness for fresher advisor data. Set via environment variable before launching OpenCode. [026/009/012, flagged by 03] | `hooks/opencode/user-prompt-submit.ts`, `skill-advisor/lib/subprocess.ts` |
+453:| `SPECKIT_MEMORY_IDEMPOTENCY` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Default-off server-derived replay receipts for `memory_save`/`memory_update`, plus advisory `near_duplicate_of` hints. Default OFF, so set an enabled value to opt in. | `lib/storage/idempotency-receipts.ts` |
+463:| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | number | Minimum covered acceptance-criteria ratio for the advisory scan. Values outside `[0,1]` are clamped before the floor is calculated. | `scripts/rules/check-ac-coverage.sh` |
+470:| `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `METADATA_DISK_PATH_CONSISTENCY` rule. **Default ON, enforcing (graduated 2026-07-10)**: a `description.json`/`graph-metadata.json` path mismatch against the folder's actual on-disk path fails `--strict`. Graduated on a reconciled tree-wide census across ~2,420 spec folders (1,130 real mismatches — mostly a stale `system-spec-kit`→`system-speckit` directory-rename prefix plus a stale `continuity.packet_pointer` frontmatter field — found and reconciled via the canonical generators plus a targeted frontmatter fix; the remaining ~74-folder residual is entirely non-production paths: deliberately-synthetic test fixtures, a reserved not-yet-built `z-future/` namespace, timestamped `.backup-*` snapshots, and auxiliary research/scratch subdirectories never meant to be validated as standalone spec folders — see `019-validation-enforce-graduation/implementation-summary.md`). Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-metadata-disk-consistency.sh` |
+471:| `SPECKIT_STATUS_CROSS_DOC_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `STATUS_CROSS_DOC_CONSISTENCY` rule. **Default ON, enforcing (graduated 2026-07-10)**: a classified-status disagreement between `spec.md` and `implementation-summary.md` fails `--strict`. Graduated on a reconciled tree-wide census across ~2,420 spec folders (128 real mismatches found and reconciled to 2 honestly-documented residuals — see `019-validation-enforce-graduation/implementation-summary.md`). Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-status-cross-doc-consistency.sh`, `scripts/lib/status-classifier.sh` |
+472:| `SPECKIT_CHILD_DRIFT_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `GRAPH_METADATA_CHILD_DRIFT` rule. **Default ON, enforcing (graduated 2026-07-10)**: a phase parent's `graph-metadata.json.children_ids` missing an on-disk phase child the writer would add on its next refresh fails `--strict`. Unlike the other two flags in this graduation group, enforce mode also fails closed when the child-scanner dependency (`scripts/dist/spec/is-phase-parent.js`) is unavailable OR stale — gated by a dedicated `dist-freshness.cjs` entry (`system-spec-kit/scripts` package, `is-phase-parent` distEntry, scoped to just that one file's own dependency-free source rather than the package's whole-tree default, so unrelated concurrent edits elsewhere in `scripts/` never cause a false-stale result) built and fixture-tested before this flag graduated. Graduated on a reconciled tree-wide census across ~2,420 spec folders — see `019-validation-enforce-graduation/implementation-summary.md`. Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-graph-metadata-child-drift.sh`, `scripts/lib/dist-freshness.cjs`, `scripts/spec/is-phase-parent.ts` |
+550:| `HF_EMBED_SERVER_URL` | (unset → `<dbDir>/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then `<dbDir>/hf-embed.sock`. Leave unset so mk-spec-memory and skill-advisor share one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
+563:| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string | Set `1` to let the **skill-advisor** launcher win the shared model-server spawn when mk-spec-memory is absent (single-winner via the socket-keyed lock). Default off, so the memory daemon owns the spawn in the steady state. **The default-ON flip (031/005) is GATED on the live two-launcher model-path test (`SPECKIT_LIVE_MODEL_TEST=1`) passing green. It is currently blocked because `onnxruntime-common` is unresolvable in this checkout's `@huggingface/transformers` tree, so no live embed can run. Flip the one-line default in `isModelServerEnabled` once that dep is repaired and the live test is green.** | `bin/mk-skill-advisor-launcher.cjs` |
+572:When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`bin/hf-model-server.cjs`) over a Unix socket at `<dbDir>/hf-embed.sock`, with no in-process model load and no sidecar. The mk-spec-memory launcher lazily spawns and supervises it on first embed demand. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` lets skill-advisor win that spawn when the memory daemon is absent. Both services resolve the **same** socket, so one resident model serves all consumers.
+624:Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer and prompt-policy engine at runtime without code changes.
+638:| `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10,"semantic_shadow":0.05}` | JSON string (partial merge) | Override shadow-mode lane weights for the 5-lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `mcp-server/lib/scorer/lane-registry.ts` |
+639:| `SPECKIT_ADVISOR_DOC_TRIGGERS` | unset (off), pinned `true` in all three runtime configs (`.claude/mcp.json`, `opencode.json`, `opencode.json`) | boolean (string `"true"`) | Opt-in doc-frontmatter trigger harvest: `skill_graph_scan` indexes reference/asset doc frontmatter into the `skill_docs` table, the watcher tracks harvestable docs, the derived lane scores doc phrases (top-3/skill, tier-weighted, 0.45 cap) and recommendations carry sanitized `matchedDocs` paths. Code default is off, so the daemon runs with the harvest ON only because the runtime configs supply `true`. Flag-off behavior is byte-identical to pre-feature. Must be present in the launcher's `CHILD_ENV_ALLOWLIST` to reach the daemon child (it is). Daemon adoption of a flip requires a fresh session after all advisor-attached sessions end. The Python shim honors the same flag. | `skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts`, `.opencode/bin/mk-skill-advisor-launcher.cjs` |
+640:| `SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST` | unset | string (colon-separated paths) | Extra allowed `workspaceRoot` prefixes beyond the repo root, `os.tmpdir()` and `/tmp`. Each colon-separated entry is canonicalized and added to the bounding allowlist. | `mcp-server/schemas/advisor-tool-schemas.ts` |
+641:| `SPECKIT_ADVISOR_RRF_FUSION` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Routes the 5-lane advisor scorer through Reciprocal Rank Fusion instead of the legacy weighted blend. Default OFF, so set an enabled value to opt in. | `mcp-server/lib/scorer/fusion.ts` |
+642:| `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Caps the advisor's recommendation of its own skill on a read-only explainer prompt. Default OFF, so set an enabled value to opt in. | `mcp-server/lib/scorer/fusion.ts` |
+643:| `SPECKIT_METRICS_ENABLED` | unset (OFF) | boolean (`'true'`) | Enables advisor metrics emission. Default OFF, so the emit path runs only when set to `true`. | `mcp-server/lib/metrics.ts` |
+646:| `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` | `75` | number (ms) | Warn threshold for advisor hook cache-hit p95 latency. | `mcp-server/lib/metrics.ts` |
+662:| `SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD` | `100` | number (positive int) | File-count threshold above which the advisory `post-commit` git hook (`.opencode/scripts/git-hooks/post-commit`) invalidates the code-graph SQLite + lease files. Forces the next Claude Code session to run an inline full scan at launcher boot, preventing accumulated drift. Only effective when the hook is installed via `bash .opencode/scripts/install-git-hooks.sh`. | `.opencode/scripts/git-hooks/post-commit` |
+664:| `SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN` | unset (treated as `0`) | boolean (string `"1"`) | Dry-run mode for the `post-commit` hook: prints the would-invalidate advisory but does NOT delete the SQLite. Useful for verifying the threshold + advisory text before relying on the hook in real commits. | `.opencode/scripts/git-hooks/post-commit` |
+705:Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (41 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons. MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.
+721:| `MK_SKILL_ADVISOR_CLI_WARM_ONLY` | unset (off) | flag | Default the skill-advisor CLI to warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
+722:| `MK_SKILL_ADVISOR_CLI_PROMPT_TIME` | unset (off) | flag | Marks the skill-advisor CLI invocation as prompt-time, which implies warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
+727:| `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the skill-advisor shim's dist-freshness guard. Alias: `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. | `.opencode/bin/skill-advisor.cjs` |
+728:| `MK_SKILL_ADVISOR_CLI_TRUSTED` | unset (untrusted) | boolean (`"1"`) | Send skill-advisor CLI calls as trusted (equivalent to `--trusted`), required for the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances`. Alias: `SPECKIT_SKILL_ADVISOR_CLI_TRUSTED`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/hooks -type f 2>/dev/null | head -20
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/hooks/install-hooks.sh
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/hooks/README.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/hooks/pre-commit
+[0m
+[0m→ [0mRead .opencode/hooks/install-hooks.sh
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/plugins/tests/ 2>/dev/null | head -10
+README.md
+claude-task-dispatch-guard.test.cjs
+helpers
+mk-code-graph-freshness.test.cjs
+mk-code-graph.test.cjs
+mk-completion-sentinel.test.cjs
+mk-deep-loop-guard.test.cjs
+mk-dist-freshness-guard.test.cjs
+mk-goal-capabilities.test.cjs
+mk-goal-continuation.test.cjs
+[0m
+[0m$ [0mgrep -rln "compiled-routing\|SPECKIT_COMPILED_ROUTING\|compiled-route.cjs" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/plugins/ 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/schemas/ 2>/dev/null
+README.md
+advisor-tool-schemas.ts
+compat-contract.json
+daemon-status.ts
+generation-metadata.ts
+skill-derived-v2.ts
+[0m
+[0m$ [0mgrep -n "compiledRoute\|compiled_route" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts 2>/dev/null | head -10
+221:  compiledRoute: z.record(z.string(), z.unknown()).optional(),
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts[90m [offset=200, limit=80][0m
+[0m
+[0m$ [0mgrep -n "makeKey\|promptCache\|prompt-cache\|SPECKIT_COMPILED" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/lib/prompt-cache.ts 2>/dev/null | head -20
+68:/** Build an opaque HMAC key for exact prompt-cache lookups. */
+94:  makeKey(parts: AdvisorPromptCacheKeyParts): string {
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/lib/prompt-cache.ts
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=460, limit=100][0m
+[0m
+[0m$ [0mgrep -n "servingAuthority\|compiled-routing\|SPECKIT_COMPILED" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-status.ts 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -rn "servingAuthority\|compiled-route" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/ 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:334:      resolve(workspaceRoot, '.opencode', 'bin', 'compiled-route.cjs'),
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:351:    return compiledRoute.servingAuthority === 'legacy' ? undefined : compiledRoute;
+[0m
+[0m$ [0mfind /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover -name "opencode.json" -not -path "*/node_modules/*" 2>/dev/null | head -5
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/opencode.json
+[0m
+[0m$ [0mgrep -n "compiled\|SPECKIT_COMPILED\|advisor" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/opencode.json 2>/dev/null | head -20
+40:        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket. Pinned identically for mk-spec-memory AND mk_skill_advisor so both consume ONE resident nomic server (single-owner via the socket-keyed respawn lock). Short /tmp path stays under the macOS sun_path 104-char limit. Do not diverge the two services.",
+47:    "mk_skill_advisor": {
+51:        ".opencode/bin/mk-skill-advisor-launcher.cjs"
+55:        "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
+59:        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-skill-advisor",
+61:        "_NOTE_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback (both still recognized by the launcher + handlers).",
+62:        "_NOTE_MEMORY_DB_PATH": "createChildEnv() pins the advisor child's embedder-pointer resolution (which DB's active_embedder_* row gets read) to this package's own skill-graph.sqlite. An ambient MEMORY_DB_PATH — including one set for mk-spec-memory's own unrelated use of that same name — is never honored as an override, since that would silently misroute the advisor's embedder selection to spec-memory's database (the exact bug this pin fixed). Tests/CI only: MK_SKILL_ADVISOR_MEMORY_DB_PATH overrides the pin. See db_path_policy.md §4.",
+64:        "_NOTE_DOC_TRIGGERS": "Opt-in doc-frontmatter harvest: skill_graph_scan ingests references/assets trigger_phrases into skill_docs and advisor_recommend returns matchedDocs pointers (dampened derived-lane signal). Default-off in code; enabled for this repo. Unset/false to roll back.",
+65:        "_NOTE_TRUST_DEFAULT": "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected.",
+66:        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)"
+[0m
+[0m$ [0mgrep -n "SPECKIT_COMPILED\|compiled\|COMPILED_ROUTING_HUBS" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/opencode.json 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -rn "SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/ 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-doc/SKILL.md:50:> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+[0m
+[0m→ [0mRead .opencode/skills/sk-doc/SKILL.md[90m [offset=46, limit=15][0m
+[0m
+[0m$ [0mgrep -n "SPECKIT_COMPILED_ROUTING\|compiled-route.cjs" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-code/SKILL.md 2>/dev/null | head -5
+52:> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+54:> node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
+[0m
+[0m$ [0mgrep -rn "servingAuthority" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json:1:{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
+[0m
+[0m$ [0mgrep -n "leaf-manifest.json\|leaf-aliases.json\|hub-router\|mode-registry" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/sk-git/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md 2>/dev/null | head -5
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:98:This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` (the authorized 53-leaf inventory) via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The runtime schema array, not this router, remains authoritative for executable tool registration.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:112:# (WORKFLOW_MODE, leafResourceId) pair. leaf-manifest.json is the authorized
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:113:# 53-leaf inventory; leaf-aliases.json binds each router-emitted path to its
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:128:# leaves and from leaf-manifest.json. A broad "list the features / playbook"
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-code-graph/SKILL.md:181:# concrete markdown leaf that exists in leaf-manifest.json (package indexes are
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/ 2>/dev/null
+000-contract-schemas
+001-compiler-n1-shadow
+002-decision-evaluator
+003-execution-verify-commit
+004-recovery-ladder
+005-calibration
+006-parent-hub-rollout
+007-learning-overlay
+008-fleet-cleanup
+009-non-hub-rollout
+010-live-activation
+011-runtime-engine
+012-default-on-decision
+013-create-skill-alignment
+014-benchmark-alignment
+015-routing-coverage-activation-verification
+description.json
+graph-metadata.json
+spec.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/ 2>/dev/null
+001-sk-git
+002-system-code-graph
+003-system-skill-advisor
+004-system-spec-kit
+description.json
+graph-metadata.json
+spec.md
+[0m
+[0m$ [0mhead -50 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/spec.md 2>/dev/null
+---
+title: "Feature Specification: Non-Hub Rollout — Phase Parent"
+description: "Phase parent for compiling standalone, non-hub skills that own an inline router and have no sub-mode packets. Each child proves typed projections, frozen-scorer compatibility, zero-authority shadow parity, and fenced byte-exact rollback before any live activation."
+trigger_phrases:
+  - "non hub router rollout"
+  - "standalone skill compiled policy"
+  - "inline skill router canary"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Non-Hub Rollout — Phase Parent
+
+## Purpose
+
+Compile standalone skills that carry their own inline router into the unified policy contract. A child remains shadow-only until its typed fixtures pass the frozen scorer, its legacy comparison is classified at zero effects, and a one-generation fenced activation can be rolled back to byte-identical prior manifest bytes.
+
+## Phase Documentation Map
+
+| Order | Folder | Skill | Router shape |
+|-------|--------|-------|--------------|
+| 1 | `001-sk-git/` | `sk-git` | One standalone destination, five authored intents, inline resource map, explicit default |
+
+## Boundaries
+
+- The phase does not modify live skills, routing configuration, shared compiler code, or scorer code.
+- Heavy implementation documentation belongs in each child.
+- Legacy remains serving-authoritative throughout shadow verification.
+[0m
+[0m$ [0mcat /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/spec.md 2>/dev/null | head -100 | tail -60
+---
+title: "Feature Specification: Non-Hub Rollout — Phase Parent"
+description: "Phase parent for compiling standalone, non-hub skills that own an inline router and have no sub-mode packets. Each child proves typed projections, frozen-scorer compatibility, zero-authority shadow parity, and fenced byte-exact rollback before any live activation."
+trigger_phrases:
+  - "non hub router rollout"
+  - "standalone skill compiled policy"
+  - "inline skill router canary"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Non-Hub Rollout — Phase Parent
+
+## Purpose
+
+Compile standalone skills that carry their own inline router into the unified policy contract. A child remains shadow-only until its typed fixtures pass the frozen scorer, its legacy comparison is classified at zero effects, and a one-generation fenced activation can be rolled back to byte-identical prior manifest bytes.
+
+## Phase Documentation Map
+
+| Order | Folder | Skill | Router shape |
+|-------|--------|-------|--------------|
+| 1 | `001-sk-git/` | `sk-git` | One standalone destination, five authored intents, inline resource map, explicit default |
+
+## Boundaries
+
+- The phase does not modify live skills, routing configuration, shared compiler code, or scorer code.
+- Heavy implementation documentation belongs in each child.
+- Legacy remains serving-authoritative throughout shadow verification.
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit/ 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git/:
+activation
+checklist.md
+compiled
+description.json
+graph-metadata.json
+harness
+implementation-summary.md
+parity
+plan.md
+spec.md
+tasks.md
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit/:
+activation
+checklist.md
+compiled
+description.json
+graph-metadata.json
+harness
+implementation-summary.md
+parity
+plan.md
+spec.md
+tasks.md
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/ 2>/dev/null
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/:
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+spec.md
+tasks.md
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/:
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+spec.md
+tasks.md
+[0m
+[0m$ [0mgrep -n "non-hub\|standalone\|registry-less\|single-mode\|leaf-manifest" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/spec.md 2>/dev/null | head -10
+52:The active parent-hub generator is `scripts/init_skill.py::init_parent_skill()`. It reads `assets/parent-skill/scaffold/hub-skill-scaffold.md`, creates `SKILL.md`, `README.md`, `mode-registry.json`, `hub-router.json`, `graph-metadata.json`, `description.json`, hub support directories, and one primary packet. Its CLI exposes only `--kind standalone|parent`. The generated hub `SKILL.md` routes through the registry and prose router only.
+72:- Parent-hub generation through `init_skill.py --kind parent`; standalone-skill scaffolding remains unchanged.
+132:| REQ-006 | Preserve legacy compatibility. | `legacy` emits no manifest, the generated directive falls through safely, existing `--kind parent` calls remain valid, and standalone scaffolding is byte-equivalent except for unrelated timestamp fields. |
+138:| REQ-007 | Add contract tests and package validation for both states. | Tests cover directive substitution, legacy no-manifest output, ready fresh-manifest output through a test minter, stale/malformed rejection, unknown option rejection, and unchanged standalone behavior. |
+151:- **SC-005**: Existing parent and standalone generation invocations retain backward-compatible behavior.
+197:- `--compiled-routing ready` with `--kind standalone`: reject with an actionable parent-only error.
+[0m
+[0m$ [0mgrep -n "non-hub\|standalone\|registry-less\|single-mode\|leaf-manifest" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mhead -50 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md 2>/dev/null
+---
+title: "Feature Specification: Lane C Compiled-Routing Benchmark Alignment"
+description: "Plan the Lane C harness changes that exercise the compiled router with SPECKIT_COMPILED_ROUTING=1, compare its normalized routing decisions with legacy router replay and the same authored route gold, and classify manifest drift separately from compiled-path breakage without editing the three frozen scorer files."
+trigger_phrases:
+  - "skill benchmark compiled routing alignment"
+  - "Lane C compiled legacy parity"
+  - "compiled routing drift benchmark"
+importance_tier: "critical"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+# Lane C Compiled-Routing Benchmark Alignment
+
+## EXECUTIVE SUMMARY
+
+Lane C currently benchmarks deterministic routing through `router-replay.cjs`, joins the observed result to authored route gold, and scores it through `score-skill-benchmark.cjs`. The orchestrator never turns on `SPECKIT_COMPILED_ROUTING`, never invokes the compiled front door, and never compares the compiled decision with the legacy replay. A hub can therefore pass the benchmark while the path intended to serve under the compiled flag is stale, falling back, or broken.
+
+This phase plans a harness around the frozen scorer. For each eligible hub and authored route-gold scenario, Lane C will preserve the existing legacy observation, invoke the public compiled front door in a child process with the flag set to `1`, normalize both outputs to the same routing projection, assert each against the same route gold, and require compiled-versus-legacy routing equality. Drift and no-manifest states use the classifications owned by `../012-default-on-decision/`; this packet references those contracts and does not restate them.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Planned |
+| **Created** | 2026-07-20 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Lane** | Lane C (`skill-benchmark`) |
+| **Blast radius** | Deterministic benchmark harness, reporting, fixtures, and tests; no routing policy or scorer semantics change |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Confirmed Current State
+[0m
+[0m$ [0mgrep -n "non-hub\|standalone\|registry-less\|single-mode\|leaf-manifest" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/tasks.md 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md:119:- Capture a baseline report for a representative hub and non-hub skill.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/tasks.md:36:- [ ] T002 Capture representative hub/non-hub reports, D1-D5 values, verdicts, and exit codes. (REQ-005; temp outputs)
+[0m
+[0m$ [0mgrep -rn "SPECKIT_COMPILED_ROUTING\|compiledRoute\|compiled-route" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/tests/ 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -rn "SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/ --include="*.ts" --include="*.js" --include="*.cjs" --include="*.mjs" 2>/dev/null | head -25
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/bin/compiled-route.cjs:10:// the hub is compiled-serving and SPECKIT_COMPILED_ROUTING=1; otherwise a legacy
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:7://   1. the runtime flag SPECKIT_COMPILED_ROUTING=1 is set (default off), and
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:20:const FLAG = 'SPECKIT_COMPILED_ROUTING';
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs:16:// runtime only honors the flip when SPECKIT_COMPILED_ROUTING=1 (see resolve.cjs).
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:362:  if (process.env.SPECKIT_COMPILED_ROUTING !== '1') return output;
+[0m
+[0m$ [0mgrep -rln "compiledRoute" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/ --include="*.ts" --include="*.js" --include="*.cjs" --include="*.mjs" 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts
+[0m
+[0m$ [0mgrep -n "compiledRoute" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs 2>/dev/null
+17:const { compiledRoute } = require('./compiled-route.cjs');
+44:    return compiledRoute(hubId, taskText);
+[0m
+[0m$ [0mgit log --oneline -10 2>/dev/null
+04b646da72 docs(specs): settle default-on ruling (ADR-001 Accepted) + reconcile packet (012)
+8312af6d7c docs(specs): add compiled-routing default-on decision + alignment phases (020/007/012-014)
+74a34f921f refactor(specs): renumber system-speckit — spec-root→029, rust→030
+2aaf184181 feat(sk-doc): per-mode kebab conformance — shared checker + mode wiring (022/002)
+5aa1525881 fix(sk-doc): reconcile core-standards to kebab + wire naming guard into CI (022/001)
+743a5b4f53 docs(specs): add naming-standard-hardening spec (022, phased)
+2e929f83f0 docs(specs): extract 018 centralization into phase 000, lean parent
+7e6e9864c9 docs(specs): rename 018 benchmark packet + children to literal names
+8d220e5e5a fix(sk-doc): score changelogs by their own heading convention
+98aa2723e7 fix(sk-doc): correct create-agent frontmatter docs + naming-convention examples
+[0m
+[0m$ [0mgit show --stat 8312af6d7c 2>/dev/null | head -40
+commit 8312af6d7c9a926f9833d72d2f1f67c554ee7679
+Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Mon Jul 20 19:53:09 2026 +0200
+
+    docs(specs): add compiled-routing default-on decision + alignment phases (020/007/012-014)
+    
+    Three phase children under 007-unified-refactor-implementation settling the
+    "make compiled routing the effective default" goal:
+    
+    - 012-default-on-decision (L3, 3 ADRs): flipping SPECKIT_COMPILED_ROUTING today
+      is zero routing change (compiled route is additive metadata; fail-safe to
+      legacy on any drift). Ruling: default-on is a staged P4 outcome, not a
+      switch-flip. ADRs: defer to phased P0-P4; single-source compiled eligibility
+      to a valid fresh manifest; promote the runtime resolver out of the spec tree.
+      Recommended, awaiting operator ratification.
+    - 013-create-skill-alignment (L2): create-skill mints compiled eligibility so a
+      new hub is born compiled-ready or explicitly legacy (no manifest => legacy).
+    - 014-benchmark-alignment (L2): benchmarks validate the compiled reality
+      (route-gold parity + drift) without editing the three frozen scorer files.
+    
+    Parent children_ids backfilled to 000-014. All three validate --strict Errors:0.
+    012 decision authored by Opus; 012 supporting docs + 013 + 014 by GPT-5.6 SOL
+    (cli-codex). Recovered via stash after a concurrent session swept the untracked
+    folders off the shared checkout; re-landed in this isolated worktree.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+    Claude-Session: https://claude.ai/code/session_01LQ8hLmV8RoFXBW12AX1VAG
+
+ .../012-default-on-decision/checklist.md           | 241 ++++++++++++
+ .../012-default-on-decision/decision-record.md     | 363 ++++++++++++++++++
+ .../012-default-on-decision/description.json       |  26 ++
+ .../012-default-on-decision/graph-metadata.json    | 223 +++++++++++
+ .../implementation-summary.md                      | 185 +++++++++
+ .../012-default-on-decision/plan.md                | 427 +++++++++++++++++++++
+ .../012-default-on-decision/spec.md                | 258 +++++++++++++
+ .../012-default-on-decision/tasks.md               | 141 +++++++
+ .../013-create-skill-alignment/checklist.md        | 143 +++++++
+ .../013-create-skill-alignment/description.json    |  25 ++
+ .../013-create-skill-alignment/graph-metadata.json | 226 +++++++++++
+ .../implementation-summary.md                      | 108 ++++++
+[0m
+[0m$ [0mcat /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md 2>/dev/null | head -50
+---
+title: "Decision Record: Compiled Routing Default-On"
+description: "Three decisions governing whether and how SPECKIT_COMPILED_ROUTING becomes the repo's effective default: defer global default-on to a staged P4 outcome, single-source compiled eligibility to a valid fresh manifest, and remediate the runtime-to-spec-tree resolver coupling."
+trigger_phrases:
+  - "compiled routing default-on decision record"
+  - "compiled eligibility single source"
+  - "resolver spec-tree coupling remediation"
+importance_tier: "critical"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
+    last_updated_at: "2026-07-20T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Settled ADR-001 on the analysis to adopt the phased path"
+    next_safe_action: "Begin P0 on operator go-ahead"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 60
+    open_questions: []
+    answered_questions:
+      - "Flip the default now or adopt the phased path? Adopt the phased path (ADR-001), settled on the analysis; operator may override."
+      - "Promote the resolver out of the spec tree, or guard it in place? Promote (ADR-003)."
+---
+# Decision Record: Compiled Routing Default-On
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Defer global default-on to a staged P4 outcome
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted: adopt the phased path (settled on the fresh-Opus analysis and source verification per the session directive; reversible; operator may override to flip-now) |
+| **Date** | 2026-07-20 |
+| **Deciders** | Claude Opus 4.8 (settled on the analysis, per the session directive to settle the decision), independent fresh-Opus review (the dissent this ruling adopts); operator retains override authority |
+
+---
+[0m
+[0m$ [0mgrep -n "ADR-002\|ADR-003\|eligibility\|single-source\|resolver" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md 2>/dev/null | head -20
+3:description: "Three decisions governing whether and how SPECKIT_COMPILED_ROUTING becomes the repo's effective default: defer global default-on to a staged P4 outcome, single-source compiled eligibility to a valid fresh manifest, and remediate the runtime-to-spec-tree resolver coupling."
+6:  - "compiled eligibility single source"
+7:  - "resolver spec-tree coupling remediation"
+29:      - "Promote the resolver out of the spec tree, or guard it in place? Promote (ADR-003)."
+75:**How it works**: P0 documents the flag in `ENV-REFERENCE.md` and makes the verify harness distinguish drift-to-legacy from breakage plus a per-hub serving-status readout. P1 adds a drift-detection CI that recomputes each hub's live hash against its minted manifest and fails re-mint-required. P2 canaries default-on in one env profile while the repo default stays off. P3 replaces the two hardcoded allowlists with a data-driven eligibility rule (see ADR-002). P4 flips the repo default hub-by-hub, keeping `=0` as the documented kill-switch. The flip becomes worthwhile precisely when compiled routing does something legacy cannot (a consumed decision, a caught drift), which P0 through P3 create.
+77:**Settlement**: This ruling is settled on the merits of the analysis above (the five premise-failures and the resolver coupling), as the session directive to settle the decision using the fresh-Opus analysis requires. It is a reversible documentation decision: no runtime change follows from it, and the operator may override to flip-now at any time. Acceptance settles the sequencing (phased) only; a separate operator go-ahead gates the start of P0 implementation.
+107:- Four phases of enabling work precede the headline default change. Mitigation: each phase ships standalone value (docs, CI, canary, single-sourced eligibility) rather than being pure overhead.
+129:| 5 | **Open Horizons?** | PASS | Data-driven eligibility (ADR-002) scales to every future skill, so the path does not paint the fleet into a hardcoded corner |
+143:- P2 to P4: a canary env profile, the data-driven eligibility rule (ADR-002), then the staged hub-by-hub default flip.
+153:## ADR-002: Single-source compiled eligibility to a valid fresh manifest
+182:**We chose**: Define compiled eligibility as a single derived predicate: a hub is compiled-eligible if and only if a valid, fresh manifest exists for it (its minted digest matches its live config hash). Both `COMPILED_ROUTING_HUBS` and `HUB_CHILD` derive from that one rule.
+195:| **Data-driven single source (chosen)** | No divergence possible; self-serve onboarding; backward-compat is free by construction | Requires a manifest-freshness read where eligibility is decided | 9/10 |
+233:| 3 | **Sufficient?** | PASS | One derived predicate covers eligibility, onboarding, and backward-compat together |
+234:| 4 | **Fits Goal?** | PASS | Directly enables a safe global default-on by making eligibility a maintained property, not a code constant |
+247:- P3: a single eligibility predicate keyed on manifest freshness; `COMPILED_ROUTING_HUBS` and `HUB_CHILD` become derived, then removed as hand-authored constants.
+248:- Phase 013: `create-skill` scaffolds the manifest step so onboarding mints eligibility.
+258:## ADR-003: Remediate the runtime-to-spec-tree resolver coupling
+264:| **Status** | Accepted (P0 remediation; promote the resolver) |
+273:The runtime front door `.opencode/bin/compiled-route.cjs` resolves its resolver from a path inside the spec tree: `compiled-route.cjs:16-21` points at `007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`. This repo renumbers and re-nests spec folders constantly (the memory index records repeated hyphen migrations, renumbers, and re-nests). A single such move silently breaks every compiled route to the legacy sentinel, with no observable signal. The repo's own reorganization is a latent drift engine independent of hub-config edits.
+277:- The shim must keep failing safe to legacy on any resolver error (that property is correct and stays).
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md[90m [offset=200, limit=100][0m
+[0m
+[0m$ [0mgrep -n "SPECKIT_COMPILED_ROUTING" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md 2>/dev/null
+(no output)
+[0m
+[0m$ [0mgrep -rn "compiled-route.cjs\|SPECKIT_COMPILED" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/ 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/ 2>/dev/null | head -20
+README.md
+claude-session-cleanup.sh
+copy-skill-advisor-dist-data.sh
+git-hooks
+install-git-hooks.sh
+launchagents
+orphan-mcp-sweeper.sh
+session-cleanup.sh
+[0m
+[0m$ [0mls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/ 2>/dev/null | head -10
+README.md
+commit-msg
+lib
+post-commit
+post-merge
+post-rewrite
+pre-commit
+pre-push
+tests
+[0m
+[0m$ [0mgrep -n "compiled\|COMPILED\|advisor" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/pre-commit /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/post-commit 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/pre-commit:2:# Pre-commit hook — advisory model-reference drift check.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/pre-commit:38:  echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/pre-commit:64:  CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/post-commit:2:# Post-commit hook — advisory index staleness mitigation.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/scripts/git-hooks/post-commit:15:# Disable marker creation (still print advisory): SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN=1
+[0m
+[0m$ [0mgrep -n "CHILD_ENV_ALLOWLIST\|SPECKIT_COMPILED" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs 2>/dev/null | head -10
+58:const CHILD_ENV_ALLOWLIST = new Set([
+212:    Object.entries(sourceEnv).filter((entry) => CHILD_ENV_ALLOWLIST.has(entry[0]) && typeof entry[1] === 'string'),
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=58, limit=30][0m
+[0m
+[0m$ [0mgrep -rn "enrichCompiledRoutes\|compiledRoute.*cache\|cache.*compiledRoute" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/ 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:357:function enrichCompiledRoutes(
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:477:    return enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot);
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:544:  return enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=325, limit=25][0m
+[0m
+[0m$ [0mgrep -n "advisor-hook machine-enforcement\|machine-enforce\|enforcement layer\|advisor_hook" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/*.md 2>/dev/null | head -10
+(no output)
+[0m
+[0m$ [0mgrep -rn "machine-enforce\|machine enforcement" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/ 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/001-smallcode-deep-research/research/iterations/iteration-015.md:41:| 010-cli-opencode-permissions-matrix | P0 | **P1 argument:** The four-layer prose mitigation (cli-opencode v1.3.3.0 ALWAYS #13) is already shipped in packet 113. RM-8 incident occurred under `--dangerously-skip-permissions` flag, which bypasses ALL constraints regardless of prose vs structured. Structured permissions improve enforcement but don't prevent bypass. P0 overstates urgency when prose mitigation already exists. | **STAY P0** — RM-8 incident analysis (spec.md:81) proves prose-only constraints failed under DeepSeek-v4-pro. Structured JSON allowlist provides machine-enforceable boundaries that prose cannot. The four-layer mitigation is a stopgap, not a fix. P0 is justified for RM-8 prevention. | P0 |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/iterations-modes/iteration-038.md:3:The current Lane C measures router health better than skill effectiveness. Packet-056’s validity lesson should become a machine-enforced gate, not more rubric prose.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/iterations-modes/iteration-038.md:11521:The current Lane C measures router health better than skill effectiveness. Packet-056’s validity lesson should become a machine-enforced gate, not more rubric prose.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract/implementation-summary.md:115:1. **Contract declared, not yet enforced.** This phase declares the contract and aligns the prose to consume it; the semantic validators that fail a command on a contract violation are phase 003, and generating routers from the contract is phase 005. The required-input rule is resolved in its declared form but is not yet machine-enforced.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/research/iterations/iteration-010.md:12:The reusable playbook runner is scoped to `system-spec-kit`, not the five deep-loop skills. The only confirmed machine-enforced governance check in this slice is the council playbook anchor-integrity test pinned to `.opencode/skills/deep-ai-council/manual_testing_playbook`; the `COVERED_FEATURES == TOTAL_FEATURES` strings are prose contract literals unless another angle finds a skill-specific validator.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/research/iterations/iteration-010.md:61:- I found no general machine validator enforcing `COVERED_FEATURES == TOTAL_FEATURES` for the five deep-loop skills. The confirmed machine-enforced item is the council playbook anchor-integrity test path.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/010-deep-loop-skill-system-review/review/deltas/iter-003.jsonl:7:{"type":"finding","seat":"W3-C","slice":"152 R5 stale-docs + R10 phase-007 divergence","status":"active","id":"W3-C-4","severity":"P2","packet":"152","file":".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md + deep-research/manual_testing_playbook/manual_testing_playbook.md","line":"improvement:110; research:29","title":"Per-mode count self-checks hold; no broken merged total exists","evidence":"improvement playbook:110 `The deep-improvement per-mode subtotal is 48 numbered scenarios (IS-001..SB-048, Lanes A/B/C)... the on-disk count is 49 scenario files`; research playbook:29 `This playbook provides 44 deterministic scenarios... (35 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios)`; rg `198` across all 10 feature_catalog/playbook files returns zero hits.","why":"The merge (which would produce a 198 merged total) is unstarted, so each mode retains its own intact self-check; the spec's 198 is a forward estimate, not a live machine-enforced literal that could be broken.","fix":"None; confirms the no-broken-total acceptance condition is currently satisfied for the un-consolidated trees."}
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/010-deep-loop-skill-system-review/review/logs/seat-W3-C.out:12:{"id":"W3-C-4","severity":"P2","packet":"152","file":".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md + deep-research/manual_testing_playbook/manual_testing_playbook.md","line":"improvement:110; research:29","title":"Per-mode count self-checks hold; no broken merged total exists","evidence":"improvement playbook:110 `The deep-improvement per-mode subtotal is 48 numbered scenarios (IS-001..SB-048, Lanes A/B/C)... the on-disk count is 49 scenario files`; research playbook:29 `This playbook provides 44 deterministic scenarios... (35 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios)`; rg `198` across all 10 feature_catalog/playbook files returns zero hits.","why":"The merge (which would produce a 198 merged total) is unstarted, so each mode retains its own intact self-check; the spec's 198 is a forward estimate, not a live machine-enforced literal that could be broken.","fix":"None; confirms the no-broken-total acceptance condition is currently satisfied for the un-consolidated trees."}
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/007-governance-consolidation/spec.md:55:All five skills ship a feature_catalog and a manual_testing_playbook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council). Feature-ID prefixes collide (CP- reused across research, review, and improvement at different bands), some count self-checks are machine-enforced literals (deep-improvement == 48) and others are prose, the council catalog is UPPERCASE while the others are lowercase, and there is pre-existing intra-skill drift (false "no catalog exists" prose, duplicate headings). Every per-feature file embeds old skill-rooted SOURCE FILES paths.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/007-governance-consolidation/spec.md:71:- Rewrite the machine-enforced count self-checks to the merged total or per-mode sub-totals; update old skill-rooted SOURCE FILES paths (preserving deep-loop-runtime paths).
+[0m
+[0m$ [0mgrep -rn "CHILD_ENV_ALLOWLIST" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/ 2>/dev/null | head -5
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs:58:const CHILD_ENV_ALLOWLIST = new Set([
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs:212:    Object.entries(sourceEnv).filter((entry) => CHILD_ENV_ALLOWLIST.has(entry[0]) && typeof entry[1] === 'string'),
+[0m
+[0m$ [0mgrep -rn "advisor_status\|compiled.*observ\|serving.*observ\|serving.*read" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/ 2>/dev/null | head -10
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/live-activation-goal.md:70:- **P3.2** Complete the compiled resource projection for every hub whose canary shows `shadow-partial`, so the 002 compatibility projector reproduces the full `(intent, resource)` observation.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/004-oob-glm-parallel-research/research/lineages/glm-oob/logs/fanout-lineage.out:44:{"type":"tool_use","timestamp":1784347398826,"sessionID":"ses_08c9e6f24ffeeO094AtRujB8OZ","part":{"type":"tool","tool":"bash","callID":"call_b5a513ef5fb246dbbd75dfc6","state":{"status":"completed","input":{"command":"head -100 .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md 2>&1 | head -100","workdir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse"},"output":"---\ntitle: \"Combined Synthesis: Parent-Hub defaultMode Policy (Run-1 + Run-2 Divergent)\"\ndescription: \"Two-run deep-research study on whether a parent hub's routerPolicy.defaultMode should name a child or be null. Run-1 established keep-1 (sk-prompt) / flip-4 (cli-external, system-deep-loop, mcp-tooling, sk-design) to null with a defer-time-suggestion reframe. Run-2 was told to DIVERGE: 3 usable lineages (sol-ultra, terra-max, glm-max; luna-max failed) add a runnable live-falsification benchmark, a compressed-disambiguation-card fallback (vs the full registry), a one-hub-at-a-time migration/rollback contract, a co-dominance evidence ladder, Layer-0/Layer-1 coupling analysis, a per-axis archetype reframe, second-order anti-patterns of null+mode-map, and one genuine per-hub challenge: cli should be detection-defaulted (runtime-detected), not pure-defer. Verdict direction survives; cli encoding and the fallback-helper shape change; the three nulls are downgraded from settled to directional-pending-measurement.\"\ntrigger_phrases:\n  - \"default mode policy combined synthesis\"\n  - \"run 2 divergent defaultMode findings\"\n  - \"cli detection-defaulted vs pure-defer\"\n  - \"null hub compressed disambiguation card\"\n  - \"defaultMode migration rollback\"\nimportance_tier: \"important\"\ncontextType: \"research\"\n---\n\n# Combined Synthesis: Parent-Hub `defaultMode` Policy (Run-1 + Run-2 Divergent)\n\n**Method.** Two research runs. Run-1 (4 iterations: 3 GPT-5.6-SOL + 1 Fable-5 adversarial lens) produced the established answer. Run-2 was a 4-model parallel fan-out told to **diverge** from run-1, not re-derive it — so it deliberately does NOT re-litigate the keep/flip table; it stress-tests the *reasons*, the *encoding*, the *experiment*, and the *edges*. One lineage (luna-max, 7 iterations) **failed entirely** on a workflow Gate-3 loop and produced nothing. Run-2 therefore = **13 usable iterations**, not 20: sol-ultra (3), terra-max (5), glm-max (5).\n\n> **Provenance caveat (honest, up front).** sol-ultra emitted explicit `Route Proof` blocks (iters 2-3) and terra-max ran **real** `router-replay` commands (its findings carry `command output:` citations — the only lineage that actually executed the router). glm-max produced the **most consequential** divergences (the cli recovery, the four-shape rule, the second-order anti-patterns) but carries **no route-proof block and no command output** — it is source-reading + inference only. Its line-citations check out internally, but treat glm-max's *source citations* as the load-bearing evidence and its harness provenance as unconfirmed. Nothing here has been live-model measured; all verdicts remain proposals over a live-routing behavior change.\n\n---\n\n## Bottom line — does run-2 change the run-1 verdict?\n\n**The direction survives. One hub's encoding changes, two encoding details sharpen, and the confidence honesty improves.**\n\n- **Keep-1 / flip-4 stands as a direction.** sk-prompt keep and the three nulls (system-deep-loop, mcp-tooling, sk-design) are not overturned by any run-2 lineage.\n- **The one genuine per-hub challenge is `cli-external-orchestration`.** glm-max (iter 4-5) argues cli should **not** be encoded like the other three \"pure-defer\" flips: cli alone has an *environmental* signal (which CLI runtime you are inside is machine-detectable), so it should be **detection-defaulted** — `defaultMode: null` **plus** a runtime-detection block that auto-picks the in-runtime executor — not `null + mode-map`. This is not really a contradiction of run-1's *insight* (Fable already called cli's default \"runtime-dependent … a detection problem, not a default problem\"); it converts that observation from \"flip to null\" into a *positive encoded shape*. Null remains the right first step both agree on; the divergence is whether to stop there.\n- **Two fallback/encoding details change under cross-model pressure.** (1) The null-hub fallback should be a **compressed disambiguation card, presented not scored** — *not* the full `mode-registry.json` run-1 named. All three lineages converge here. (2) `defaultApplied` needs **dual telemetry** (configured vs consulted vs selected), not the bare rename run-1 proposed.\n- **The three nulls are downgraded from \"settled\" to \"directional-pending-measurement.\"** Run-1 explicitly \"routed around needing a corpus\"; run-2 shows you *can* build a falsifiable live experiment (sol-ultra) and that the flips are cheap at Layer-0 (glm-max) — but also that, absent that measurement, the three nulls remain *unfalsified in the over-deferring direction*.\n\nUpdated one-line-per-hub table (baseline = run-1; delta = run-2):\n\n| Hub | Run-1 verdict | Run-2 delta | Net |\n|---|---|---|---|\n| `sk-prompt` | KEEP (catch-all anchor + defer-time suggestion) | Unchanged; glm condition-(b) keep, sol \"declared-prior\" case | **KEEP** |\n| `cli-external-orchestration` | FLIP → null (+ neutralize `defaultResource`) | **glm: null is right first step but incomplete — encode runtime detection (`detection-defaulted`)** | **NULL + runtime-detection block** (contingent on a robust runtime-detection test) |\n| `system-deep-loop` | FLIP → null (fully vestigial) | Confidence downgraded to directional-pending-measurement | **NULL** |\n| `mcp-tooling` | FLIP → null (already defer-with-suggestion) | Same, plus fallback = compressed card not full registry | **NULL** |\n| `sk-design` | FLIP → null + move `hub-identity` off all 6 modes | Confirmed not detection-feasible (no env signal); most likely future detection candidate (URL→md-generator) | **NULL + hub-identity → discovery-only** |\n\n---\n\n## Thread-by-thread: what run-2 ADDED / CHALLENGED / CONFIRMED\n\n### A. Live-routing / benchmark experiment design — *does a real model on a null hub disambiguate well, and what is the runnable test?*\nLineages: sol-ultra (iter 1-2), terra-max (iter 2).\n\n- **CONFIRMED (all).** Run-1's replay semantics hold line-for-line: `defaultApplied = selectedModes.length===0 && policy.defaultMode!=null`; `workflowMode` stays null on zero signal; a named child and `null` are **replay-indistinguishable** except for the flag. (sol-ultra iter 1, citing `router-replay.cjs:342-356,476-480,643-702`; terra-max iter 1-2, same.) So today's exact-set gold *still* cannot tell a keep from a flip — the run-1 finding is independently re-confirmed twice.\n- **ADDED — the falsifiable live experiment run-1 said it was routing around.** sol-ultra turns \"keep vs null\" into a runnable, non-mutating benchmark (sol-ultra iter 2): copy each hub's `SKILL.md` + `hub-router.json` + `mode-registry.json` into an isolated fixture root (never edit live hubs), then run a **2×4 factorial**: policy `{named default, null}` × helper `{full registry, compressed card, child hint, none}`, driven through the existing Lane-C `live-executor.cjs:18-26,60-90,270-342`. Corpus is stratified `{zero-signal / boundary / weak-but-resolvable}` (12 stems/hub), dual **blind**-graded on the repo's 0/1/2 evidence dimensions plus one primary outcome bucket (`correct_pick / targeted_question / unsupported_pick / arbitrary_pick / freeze / invented_mode`), **3 replays** as a screening floor (the stability helper refuses a verdict below 3 — `benchmark-stability.cjs:16-35,112-135`), **10** to confirm threshold-crossers, with **preregistered per-hub falsification margins**. Full screening matrix = 5 hubs × 12 stems × 8 arms × 3 models × 3 replays = **4,320 live dispatches**.\n  - Falsification is symmetric: a named default is falsified as harmless if it *raises* unsupported/arbitrary picks on defer strata; null is falsified as preferable if it *raises* freezes/unnecessary questions without reducing wrong picks (sol-ultra iter 1).\n  - **Honest ceiling (sol-ultra iter 2 \"What This Experiment Cannot Infer\").** It still cannot estimate production prevalence or prove ~80% dominance — the corpus is balanced by design, not sampled from traffic. So it answers *falsification*, not *prevalence*.\n- **ADDED — the only actually-executed evidence in either run.** terra-max iter 2 *ran* `router-replay` on `sk-doc`: a zero-signal prompt → no intents, `defaultApplied:false`, `deferReason:\"no-mode-scored\"`; an alias prompt → `create-command`; an adversarial \"…but only one; choose one\" prompt → tied `create-command`+`create-flowchart`, `deferReason:\"ambiguous-multi-axis\"` **but replay still returned both candidate modes and resources**. Lesson: deterministic replay is a necessary mechanical baseline but *cannot* grade whether a live model honored the \"only one\" constraint — you need the live pass. This grounds sol-ultra's design in a real trace.\n- **Net.** Mild CHALLENGE to run-1's \"deliberately route around needing a corpus\": run-2 shows a falsifiable experiment is buildable *and* names precisely what it still can't prove.\n\n### B. Minimum-useful shape of the null-hub routing-helper resource — *full registry vs a compressed card?*\nLineages: terra-max (iter 1), sol-ultra (iter 2, as an experimental factor), glm-max (iter 3).\n\n- **CHALLENGED (strong 3-model convergence against a run-1 detail).** Run-1 said the null fallback loads the **routing helper = `smart_routing.md` + `mode-registry.json`** (the full mode-map). Run-2 pushes back on the *full registry*:\n  - terra-max iter 1: the full `mode-registry.json` is **not** a minimal null-state helper — it carries all workflow entries with packet identity, command, aliases, tool surfaces, advisor metadata (`sk-doc/mode-registry.json:17-160`). Payload sizes (measured with `wc -c`): `quick_reference.md` 14,132 B, full registry 10,515 B, `hub-router.json` 5,937 B. Proposes a **newly generated compressed disambiguation card**: defer reason + 0-2 ranked candidate labels (one discriminating alias each) + the four hub confirmation fields + a child hint *only for an already-ranked candidate*.\n  - glm-max iter 3 (the mechanism): `smart_routing.md` is **safe** as a fallback resource — its `DEFAULT_RESOURCE = []`, so it loads nothing on zero signal (`sk-design/shared/references/smart_routing.md:72-75`). But `mode-registry.json` is a **menu, not a scorer**; loading it is safe **only if presented as a disambiguation card**, never scored. Fix: an explicit `defaultResourceSemantics: \"disambiguation-card\"` distinct from a scored resource, and a **compressed card derived from the registry** (iter 3 A4).\n  - sol-ultra iter 2 treats helper shape as a *separate experimental factor* and gives a decision rule: prefer the compressed card if it is non-inferior to the full registry within 3 pp and cuts median input tokens ≥20%.\n- **Net.** Run-1's `smart_routing.md` half is confirmed safe; its \"load the full `mode-registry.json`\" half is superseded by a **compressed, presented-not-scored card**. This matters because loading the raw registry is exactly what risks recreating the disease (Thread G).\n\n### C. Migration & rollback — *safe ordering of the 4 flips, regression surface, gating.*\nLineages: sol-ultra (iter 3), terra-max (iter 3).\n\n- **ADDED — the ordered, reversible contract run-1 lacked.**\n  - terra-max iter 3: change **one hub's `defaultMode` at a time, single-field only** — never a coupled router/vocab/registry/fallback redesign, because coupled edits destroy causal attribution and clean rollback. Per-change gate: D5 connectivity + hub-registry scan; run the frozen target-owned playbook corpus with route-gold enabled; retain the JSON/Markdown report + topology digest (`run-skill-benchmark.cjs:10-20,65-89,246-298`). Keep two immutable fixture views (baseline gold unchanged + candidate-specific private gold). Promote only when the candidate ≥ predeclared pass rate and cost envelope; roll back by **restoring the one recorded value and rerunning the baseline**. Honest limits: no runtime canary/percentage selector exists — don't assume one; structural + route-gold failures are zero-tolerance; any live tolerance must be predeclared.\n  - sol-ultra iter 3: an **8-step additive rollout** — (1) schema/parser + legacy normalization, (2) dual-emit telemetry + teach reports/tests both names, (3) fixtures for all archetypes + empty/single-mode/stale/rename failures, (4) canon/templates, (5) annotate hubs *without changing routing*, (6) deterministic + live gates, (7) *only then* per-hub policy-value changes, (8) remove the old field after a clean repo-wide consumer scan. Rollback reverses dependency order (hub values first; keep tolerant readers + dual telemetry until old artifacts age out). **Legacy packets cannot be auto-classified from `defaultMode` alone** (non-null coexists with defer; null means either defer or detect) → explicit per-hub annotation, **not** an automatic codemod.\n- **CONFIRMED + extended.** Both reinforce run-1/Fable's \"each flip is a two-field decision\" and add the sequencing and rollback discipline run-1 only gestured at.\n\n### D. Co-dominant modes / the dominance evidence rule.\nLineage: terra-max (iter 4).\n\n- **ADDED — an operational ladder that replaces run-1's unfalsifiable inequality.** Run-1 (SOL iter 2) built an expected-loss inequality; Fable judged it \"unfalsifiable in practice.\" terra-max iter 4 gives the testable version: run a contextual detector first → a unique predeclared discriminator ⇒ `single`; if the prompt *independently* requests both compatible tasks and an explicit bundle rule supports order ⇒ `orderedBundle`; if two modes stay co-dominant, or the user wants one but supplies no discriminator ⇒ `defer` + a **ranked helper shown as a non-binding explanation, never dispatched**. A candidate becomes a \"true dominant default\" **only** after a current-ID, independently private-golded corpus keeps it the unique desired outcome **with `defaultMode` held null during measurement**, invariant under paraphrase/alias-order/context, preserving explicit-bundle and contradictory-single-choice cases (`sk-doc/hub-router.json:4-20`, `run-skill-benchmark.cjs`). Absent that counterfactual, the default is a *presumption* and the correct outcome is `defer`. Explicitly **ruled out**: `tieBreak` order or an already-configured `defaultMode` as dominance proof.\n- **Net.** CONFIRMS run-1's \"configuration is the hypothesis, not evidence\" and gives it a falsifiable measurement (hold the default null, require invariance).\n\n### E. Layer-0 (advisor) ↔ Layer-1 coupling under a null default.\nLineage: glm-max (iter 1).\n\n- **ADDED — an entirely new vertical run-1 never opened, and it strengthens the flips.**\n  - The advisor **already** pre-resolves a `(skill, mode)` pair for **one** hub (system-deep-loop) via `_apply_deep_skill_routing_layer()` writing `recommendation[\"mode\"]/[\"workflowMode\"]`, gated on a lexical `has_deep_signal` regex (`skill_advisor.py:2784-2793,2825-2860`). So \"should the advisor pre-resolve more so hubs never reach zero-signal\" is a **real shipped capability** — but a bespoke, hand-maintained per-hub scoring table; generalizing it would duplicate each hub's `mode-registry.json` discrimination logic into the advisor.\n  - The advisor's own low-signal behavior **is** defer-with-clarification (`clarifying_question` below `DEEP_ROUTING_CONFIDENCE_THRESHOLD`; `DEFAULT_RESOURCE_SEMANTICS=\"fallback-only\"` — `skill_advisor.py:2810-2811,2865-2866`, `system-skill-advisor/SKILL.md:122-126`). Layer-0 and a null Layer-1 hub speak the **same** disambiguation vocabulary.\n  - **Key reframe:** the \"extra clarification\" cost run-1/Fable attributed to null is **relocatable, not additive** — with a deep-routing layer it surfaces at Layer-0 (early); without one, in-hub (late); the user sees ~one clarification either way. And there is **no re-escalation loop**: the defer terminates at the *user*, not back at Layer-0 (`system-skill-advisor/SKILL.md:61-73`). Flipping the four hubs moves **zero** work to Layer-0 — only the in-hub fallback branch changes.\n- **Net.** CHALLENGES the run-1-spec framing \"null pushes cost to Layer-0\" (it does not, unless you also build a deep-routing layer) and thereby *lowers* the perceived cost of the flips.\n\n### F. Is detection-routed the universal archetype? (sk-design feasibility)\nLineage: glm-max (iter 2, with iter 4).\n\n- **ADDED / REFRAMED.** sk-code's \"detection-routed\" works **only** because its discriminator is *environmental* (surface from `CWD + library markers`, `sk-code/SKILL.md:120-122`); it nulls `defaultMode` on the *workflow* axis (intent). So **detection is an axis-level property gated on an environmental signal, not a hub-level one** — sk-code is *both* archetypes at once (detect surface + defer workflow). sk-design has **no** environmental discriminator for its five judgment modes — all aliases are request vocabulary (`sk-design/mode-registry.json:55-118`) — so sk-design **cannot** be detection-routed (the signal isn't there); only `md-generator` is semi-detectable (a URL present), 1 of 6.\n- **CHALLENGED (mis-leveling, not direction).** Run-1's \"add a *third hub archetype* (defer-routed)\" is right in spirit but **mis-leveled** — the canon should describe routing strategy **per axis**, and `routerPolicy` should declare strategy per axis, not one hub-level `defaultMode`. Run-1's third archetype is **not** redundant (detection is not universal), but it should be one of several *per-axis* strategies.\n\n### G. Second-order anti-patterns of `null + mode-map` — *does the fix recreate the disease?*\nLineage: glm-max (iter 3).\n\n- **ADDED — the direct stress-test run-1 skipped.** Answer: **no, provided you present-not-score and use a compressed card** — otherwise yes.\n  - The canon *already names* the mechanism: hub-identity belongs on the **default mode only**; a class shared across modes makes them all co-fire — \"over-emission that fails the route-gold gate\" (`parent_skill_hub_router_template.json:5,37,60-62`). So \"flip to null\" **evicts hub-identity's only scoring home** — the point (kills bias) *and* the seed of the costs below.\n  - **A1 (over-deferring friction):** the skill's own bare name (`design`, `prompt`) then scores no mode and defers every time. Safe but potentially annoying; bounded (menu, not dead end). Canon should *name* this as the expected cost so authors don't re-add a default to suppress it.\n  - **A2 (the disease recreated — the central risk):** loading `mode-registry.json` recreates the co-fire over-emission **only if a future author scores the menu** (e.g. tags every mode with the skill name to make it \"feel complete\"). Fix: explicit `defaultResourceSemantics: \"disambiguation-card\"`; forbid hub-identity vocabulary in any fallback-*scored* resource.\n  - **A3 (drift becomes user-visible):** pre-null a stale `mode-registry.json` is an internal routing bug; post-null it is a *user-facing lie* (the menu shown on defer). Needs drift-validation as a gate / single-source derivation.\n","metadata":{"output":"---\ntitle: \"Combined Synthesis: Parent-Hub defaultMode Policy (Run-1 + Run-2 Divergent)\"\ndescription: \"Two-run deep-research study on whether a parent hub's routerPolicy.defaultMode should name a child or be null. Run-1 established keep-1 (sk-prompt) / flip-4 (cli-external, system-deep-loop, mcp-tooling, sk-design) to null with a defer-time-suggestion reframe. Run-2 was told to DIVERGE: 3 usable lineages (sol-ultra, terra-max, glm-max; luna-max failed) add a runnable live-falsification benchmark, a compressed-disambiguation-card fallback (vs the full registry), a one-hub-at-a-time migration/rollback contract, a co-dominance evidence ladder, Layer-0/Layer-1 coupling analysis, a per-axis archetype reframe, second-order anti-patterns of null+mode-map, and one genuine per-hub challenge: cli should be detection-defaulted (runtime-detected), not pure-defer. Verdict direction survives; cli encoding and the fallback-helper shape change; the three nulls are downgraded from settled to directional-pending-measurement.\"\ntrigger_phrases:\n  - \"default mode policy combined synthesis\"\n  - \"run 2 divergent defaultMode findings\"\n  - \"cli detection-defaulted vs pure-defer\"\n  - \"null hub compressed disambiguation card\"\n  - \"defaultMode migration rollback\"\nimportance_tier: \"important\"\ncontextType: \"research\"\n---\n\n# Combined Synthesis: Parent-Hub `defaultMode` Policy (Run-1 + Run-2 Divergent)\n\n**Method.** Two research runs. Run-1 (4 iterations: 3 GPT-5.6-SOL + 1 Fable-5 adversarial lens) produced the established answer. Run-2 was a 4-model parallel fan-out told to **diverge** from run-1, not re-derive it — so it deliberately does NOT re-litigate the keep/flip table; it stress-tests the *reasons*, the *encoding*, the *experiment*, and the *edges*. One lineage (luna-max, 7 iterations) **failed entirely** on a workflow Gate-3 loop and produced nothing. Run-2 therefore = **13 usable iterations**, not 20: sol-ultra (3), terra-max (5), glm-max (5).\n\n> **Provenance caveat (honest, up front).** sol-ultra emitted explicit `Route Proof` blocks (iters 2-3) and terra-max ran **real** `router-replay` commands (its findings carry `command output:` citations — the only lineage that actually executed the router). glm-max produced the **most consequential** divergences (the cli recovery, the four-shape rule, the second-order anti-patterns) but carries **no route-proof block and no command output** — it is source-reading + inference only. Its line-citations check out internally, but treat glm-max's *source citations* as the load-bearing evidence and its harness provenance as unconfirmed. Nothing here has been live-model measured; all verdicts remain proposals over a live-routing behavior change.\n\n---\n\n## Bottom line — does run-2 change the run-1 verdict?\n\n**The direction survives. One hub's encoding changes, two encoding details sharpen, and the confidence honesty improves.**\n\n- **Keep-1 / flip-4 stands as a direction.** sk-prompt keep and the three nulls (system-deep-loop, mcp-tooling, sk-design) are not overturned by any run-2 lineage.\n- **The one genuine per-hub challenge is `cli-external-orchestration`.** glm-max (iter 4-5) argues cli should **not** be encoded like the other three \"pure-defer\" flips: cli alone has an *environmental* signal (which CLI runtime you are inside is machine-detectable), so it should be **detection-defaulted** — `defaultMode: null` **plus** a runtime-detection block that auto-picks the in-runtime executor — not `null + mode-map`. This is not really a contradiction of run-1's *insight* (Fable already called cli's default \"runtime-dependent … a detection problem, not a default problem\"); it converts that observation from \"flip to null\" into a *positive encoded shape*. Null remains the right first step both agree on; the divergence is whether to stop there.\n- **Two fallback/encoding details change under cross-model pressure.** (1) The null-hub fallback should be a **compressed disambiguation card, presented not scored** — *not* the full `mode-registry.json` run-1 named. All three lineages converge here. (2) `defaultApplied` needs **dual telemetry** (configured vs consulted vs selected), not the bare rename run-1 proposed.\n- **The three nulls are downgraded from \"settled\" to \"directional-pending-measurement.\"** Run-1 explicitly \"routed around needing a corpus\"; run-2 shows you *can* build a falsifiable live experiment (sol-ultra) and that the flips are cheap at Layer-0 (glm-max) — but also that, absent that measurement, the three nulls remain *unfalsified in the over-deferring direction*.\n\nUpdated one-line-per-hub table (baseline = run-1; delta = run-2):\n\n| Hub | Run-1 verdict | Run-2 delta | Net |\n|---|---|---|---|\n| `sk-prompt` | KEEP (catch-all anchor + defer-time suggestion) | Unchanged; glm condition-(b) keep, sol \"declared-prior\" case | **KEEP** |\n| `cli-external-orchestration` | FLIP → null (+ neutralize `defaultResource`) | **glm: null is right first step but incomplete — encode runtime detection (`detection-defaulted`)** | **NULL + runtime-detection block** (contingent on a robust runtime-detection test) |\n| `system-deep-loop` | FLIP → null (fully vestigial) | Confidence downgraded to directional-pending-measurement | **NULL** |\n| `mcp-tooling` | FLIP → null (already defer-with-suggestion) | Same, plus fallback = compressed card not full registry | **NULL** |\n| `sk-design` | FLIP → null + move `hub-identity` off all 6 modes | Confirmed not detection-feasible (no env signal); most likely future detection candidate (URL→md-generator) | **NULL + hub-identity → discovery-only** |\n\n---\n\n## Thread-by-thread: what run-2 ADDED / CHALLENGED / CONFIRMED\n\n### A. Live-routing / benchmark experiment design — *does a real model on a null hub disambiguate well, and what is the runnable test?*\nLineages: sol-ultra (iter 1-2), terra-max (iter 2).\n\n- **CONFIRMED (all).** Run-1's replay semantics hold line-for-line: `defaultApplied = selectedModes.length===0 && policy.defaultMode!=null`; `workflowMode` stays null on zero signal; a named child and `null` are **replay-indistinguishable** except for the flag. (sol-ultra iter 1, citing `router-replay.cjs:342-356,476-480,643-702`; terra-max iter 1-2, same.) So today's exact-set gold *still* cannot tell a keep from a flip — the run-1 finding is independently re-confirmed twice.\n- **ADDED — the falsifiable live experiment run-1 said it was routing around.** sol-ultra turns \"keep vs null\" into a runnable, non-mutating benchmark (sol-ultra iter 2): copy each hub's `SKILL.md` + `hub-router.json` + `mode-registry.json` into an isolated fixture root (never edit live hubs), then run a **2×4 factorial**: policy `{named default, null}` × helper `{full registry, compressed card, child hint, none}`, driven through the existing Lane-C `live-executor.cjs:18-26,60-90,270-342`. Corpus is stratified `{zero-signal / boundary / weak-but-resolvable}` (12 stems/hub), dual **blind**-graded on the repo's 0/1/2 evidence dimensions plus one primary outcome bucket (`correct_pick / targeted_question / unsupported_pick / arbitrary_pick / freeze / invented_mode`), **3 replays** as a screening floor (the stability helper refuses a verdict below 3 — `benchmark-stability.cjs:16-35,112-135`), **10** to confirm threshold-crossers, with **preregistered per-hub falsification margins**. Full screening matrix = 5 hubs × 12 stems × 8 arms × 3 models × 3 replays = **4,320 live dispatches**.\n  - Falsification is symmetric: a named default is falsified as harmless if it *raises* unsupported/arbitrary picks on defer strata; null is falsified as preferable if it *raises* freezes/unnecessary questions without reducing wrong picks (sol-ultra iter 1).\n  - **Honest ceiling (sol-ultra iter 2 \"What This Experiment Cannot Infer\").** It still cannot estimate production prevalence or prove ~80% dominance — the corpus is balanced by design, not sampled from traffic. So it answers *falsification*, not *prevalence*.\n- **ADDED — the only actually-executed evidence in either run.** terra-max iter 2 *ran* `router-replay` on `sk-doc`: a zero-signal prompt → no intents, `defaultApplied:false`, `deferReason:\"no-mode-scored\"`; an alias prompt → `create-command`; an adversarial \"…but only one; choose one\" prompt → tied `create-command`+`create-flowchart`, `deferReason:\"ambiguous-multi-axis\"` **but replay still returned both candidate modes and resources**. Lesson: deterministic replay is a necessary mechanical baseline but *cannot* grade whether a live model honored the \"only one\" constraint — you need the live pass. This grounds sol-ultra's design in a real trace.\n- **Net.** Mild CHALLENGE to run-1's \"deliberately route around needing a corpus\": run-2 shows a falsifiable experiment is buildable *and* names precisely what it still can't prove.\n\n### B. Minimum-useful shape of the null-hub routing-helper resource — *full registry vs a compressed card?*\nLineages: terra-max (iter 1), sol-ultra (iter 2, as an experimental factor), glm-max (iter 3).\n\n- **CHALLENGED (strong 3-model convergence against a run-1 detail).** Run-1 said the null fallback loads the **routing helper = `smart_routing.md` + `mode-registry.json`** (the full mode-map). Run-2 pushes back on the *full registry*:\n  - terra-max iter 1: the full `mode-registry.json` is **not** a minimal null-state helper — it carries all workflow entries with packet identity, command, aliases, tool surfaces, advisor metadata (`sk-doc/mode-registry.json:17-160`). Payload sizes (measured with `wc -c`): `quick_reference.md` 14,132 B, full registry 10,515 B, `hub-router.json` 5,937 B. Proposes a **newly generated compressed disambiguation card**: defer reason + 0-2 ranked candidate labels (one discriminating alias each) + the four hub confirmation fields + a child hint *only for an already-ranked candidate*.\n  - glm-max iter 3 (the mechanism): `smart_routing.md` is **safe** as a fallback resource — its `DEFAULT_RESOURCE = []`, so it loads nothing on zero signal (`sk-design/shared/references/smart_routing.md:72-75`). But `mode-registry.json` is a **menu, not a scorer**; loading it is safe **only if presented as a disambiguation card**, never scored. Fix: an explicit `defaultResourceSemantics: \"disambiguation-card\"` distinct from a scored resource, and a **compressed card derived from the registry** (iter 3 A4).\n  - sol-ultra iter 2 treats helper shape as a *separate experimental factor* and gives a decision rule: prefer the compressed card if it is non-inferior to the full registry within 3 pp and cuts median input tokens ≥20%.\n- **Net.** Run-1's `smart_routing.md` half is confirmed safe; its \"load the full `mode-registry.json`\" half is superseded by a **compressed, presented-not-scored card**. This matters because loading the raw registry is exactly what risks recreating the disease (Thread G).\n\n### C. Migration & rollback — *safe ordering of the 4 flips, regression surface, gating.*\nLineages: sol-ultra (iter 3), terra-max (iter 3).\n\n- **ADDED — the ordered, reversible contract run-1 lacked.**\n  - terra-max iter 3: change **one hub's `defaultMode` at a time, single-field only** — never a coupled router/vocab/registry/fallback redesign, because coupled edits destroy causal attribution and clean rollback. Per-change gate: D5 connectivity + hub-registry scan; run the frozen target-owned playbook corpus with route-gold enabled; retain the JSON/Markdown report + topology digest (`run-skill-benchmark.cjs:10-20,65-89,246-298`). Keep two immutable fixture views (baseline gold unchanged + candidate-specific private gold). Promote only when the candidate ≥ predeclared pass rate and cost envelope; roll back by **restoring the one recorded value and rerunning the baseline**. Honest limits: no runtime canary/percentage selector exists — don't assume one; structural + route-gold failures are zero-tolerance; any live tolerance must be predeclared.\n  - sol-ultra iter 3: an **8-step additive rollout** — (1) schema/parser + legacy normalization, (2) dual-emit telemetry + teach reports/tests both names, (3) fixtures for all archetypes + empty/single-mode/stale/rename failures, (4) canon/templates, (5) annotate hubs *without changing routing*, (6) deterministic + live gates, (7) *only then* per-hub policy-value changes, (8) remove the old field after a clean repo-wide consumer scan. Rollback reverses dependency order (hub values first; keep tolerant readers + dual telemetry until old artifacts age out). **Legacy packets cannot be auto-classified from `defaultMode` alone** (non-null coexists with defer; null means either defer or detect) → explicit per-hub annotation, **not** an automatic codemod.\n- **CONFIRMED + extended.** Both reinforce run-1/Fable's \"each flip is a two-field decision\" and add the sequencing and rollback discipline run-1 only gestured at.\n\n### D. Co-dominant modes / the dominance evidence rule.\nLineage: terra-max (iter 4).\n\n- **ADDED — an operational ladder that replaces run-1's unfalsifiable inequality.** Run-1 (SOL iter 2) built an expected-loss inequality; Fable judged it \"unfalsifiable in practice.\" terra-max iter 4 gives the testable version: run a contextual detector first → a unique predeclared discriminator ⇒ `single`; if the prompt *independently* requests both compatible tasks and an explicit bundle rule supports order ⇒ `orderedBundle`; if two modes stay co-dominant, or the user wants one but supplies no discriminator ⇒ `defer` + a **ranked helper shown as a non-binding explanation, never dispatched**. A candidate becomes a \"true dominant default\" **only** after a current-ID, independently private-golded corpus keeps it the unique desired outcome **with `defaultMode` held null during measurement**, invariant under paraphrase/alias-order/context, preserving explicit-bundle and contradictory-single-choice cases (`sk-doc/hub-router.json:4-20`, `run-skill-benchmark.cjs`). Absent that counterfactual, the default is a *presumption* and the correct outcome is `defer`. Explicitly **ruled out**: `tieBreak` order or an already-configured `defaultMode` as dominance proof.\n- **Net.** CONFIRMS run-1's \"configuration is the hypothesis, not evidence\" and gives it a falsifiable measurement (hold the default null, require invariance).\n\n### E. Layer-0 (advisor) ↔ Layer-1 coupling under a null default.\nLineage: glm-max (iter 1).\n\n- **ADDED — an entirely new vertical run-1 never opened, and it strengthens the flips.**\n  - The advisor **already** pre-resolves a `(skill, mode)` pair for **one** hub (system-deep-loop) via `_apply_deep_skill_routing_layer()` writing `recommendation[\"mode\"]/[\"workflowMode\"]`, gated on a lexical `has_deep_signal` regex (`skill_advisor.py:2784-2793,2825-2860`). So \"should the advisor pre-resolve more so hubs never reach zero-signal\" is a **real shipped capability** — but a bespoke, hand-maintained per-hub scoring table; generalizing it would duplicate each hub's `mode-registry.json` discrimination logic into the advisor.\n  - The advisor's own low-signal behavior **is** defer-with-clarification (`clarifying_question` below `DEEP_ROUTING_CONFIDENCE_THRESHOLD`; `DEFAULT_RESOURCE_SEMANTICS=\"fallback-only\"` — `skill_advisor.py:2810-2811,2865-2866`, `system-skill-advisor/SKILL.md:122-126`). Layer-0 and a null Layer-1 hub speak the **same** disambiguation vocabulary.\n  - **Key reframe:** the \"extra clarification\" cost run-1/Fable attributed to null is **relocatable, not additive** — with a deep-routing layer it surfaces at Layer-0 (early); without one, in-hub (late); the user sees ~one clarification either way. And there is **no re-escalation loop**: the defer terminates at the *user*, not back at Layer-0 (`system-skill-advisor/SKILL.md:61-73`). Flipping the four hubs moves **zero** work to Layer-0 — only the in-hub fallback branch changes.\n- **Net.** CHALLENGES the run-1-spec framing \"null pushes cost to Layer-0\" (it does not, unless you also build a deep-routing layer) and thereby *lowers* the perceived cost of the flips.\n\n### F. Is detection-routed the universal archetype? (sk-design feasibility)\nLineage: glm-max (iter 2, with iter 4).\n\n- **ADDED / REFRAMED.** sk-code's \"detection-routed\" works **only** because its discriminator is *environmental* (surface from `CWD + library markers`, `sk-code/SKILL.md:120-122`); it nulls `defaultMode` on the *workflow* axis (intent). So **detection is an axis-level property gated on an environmental signal, not a hub-level one** — sk-code is *both* archetypes at once (detect surface + defer workflow). sk-design has **no** environmental discriminator for its five judgment modes — all aliases are request vocabulary (`sk-design/mode-registry.json:55-118`) — so sk-design **cannot** be detection-routed (the signal isn't there); only `md-generator` is semi-detectable (a URL present), 1 of 6.\n- **CHALLENGED (mis-leveling, not direction).** Run-1's \"add a *third hub archetype* (defer-routed)\" is right in spirit but **mis-leveled** — the canon should describe routing strategy **per axis**, and `routerPolicy` should declare strategy per axis, not one hub-level `defaultMode`. Run-1's third archetype is **not** redundant (detection is not universal), but it should be one of several *per-axis* strategies.\n\n### G. Second-order anti-patterns of `null + mode-map` — *does the fix recreate the disease?*\nLineage: glm-max (iter 3).\n\n- **ADDED — the direct stress-test run-1 skipped.** Answer: **no, provided you present-not-score and use a compressed card** — otherwise yes.\n  - The canon *already names* the mechanism: hub-identity belongs on the **default mode only**; a class shared across modes makes them all co-fire — \"over-emission that fails the route-gold gate\" (`parent_skill_hub_router_template.json:5,37,60-62`). So \"flip to null\" **evicts hub-identity's only scoring home** — the point (kills bias) *and* the seed of the costs below.\n  - **A1 (over-deferring friction):** the skill's own bare name (`design`, `prompt`) then scores no mode and defers every time. Safe but potentially annoying; bounded (menu, not dead end). Canon should *name* this as the expected cost so authors don't re-add a default to suppress it.\n  - **A2 (the disease recreated — the central risk):** loading `mode-registry.json` recreates the co-fire over-emission **only if a future author scores the menu** (e.g. tags every mode with the skill name to make it \"feel complete\"). Fix: explicit `defaultResourceSemantics: \"disambiguation-card\"`; forbid hub-identity vocabulary in any fallback-*scored* resource.\n  - **A3 (drift becomes user-visible):** pre-null a stale `mode-registry.json` is an internal routing bug; post-null it is a *user-facing lie* (the menu shown on defer). Needs drift-validation as a gate / single-source derivation.\n","exit":0,"truncated":false},"title":"head -100 .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md 2>&1 | head -100","time":{"start":1784347398823,"end":1784347398824}},"id":"prt_f7364929b001NsVcAQf7rgyHwL","sessionID":"ses_08c9e6f24ffeeO094AtRujB8OZ","messageID":"msg_f73647467001tq4rDVSybvwwNO"}}
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/parity/shadow-parity.cjs:39: * Compare compiled decisions with serving legacy observations without effects.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/checklist.md:95:  - **Evidence**: The parity runner validates and pins the checked manifest, derives legacy authority from `servingAuthority=legacy` plus `shadowOnly=true`, and totals emitted effect arrays. It reports `effects=0 gold_mutation=observed-none status=shadow-partial activation_deferred=true`; live per-hub authority remains unproven here.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/checklist.md:112:  - **Evidence**: The harness calls the legacy replay as the serving decision, while the compiled evaluator result is observation-only and cannot select or commit a live destination.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit/execution-plane.md:86:preserving authored order within each group. A mutating COMMIT hard-fails until earlier read-only
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:23:| **Status** | Complete — the P4b runtime engine (archetype-adaptive compiled-route engine + resolver/CLI front-door + per-hub serving flip) is built, proven end-to-end on `sk-code`, and the cutover is executed across all seven hubs: each carries a flag-gated compiled-routing directive in its live `SKILL.md`, was recompiled with archetype-adaptive re-certification, and reads `servingAuthority: compiled`. Each flip is canary-green via the real scorer, route-gold byte-identical, byte-exact-reversible. The runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off). Advisor-hook machine-enforcement remains in progress. Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:60:The resolver wraps the engine in two independent gates. `resolveRoute(hubId, taskText)` returns null unless `flagEnabled()` (the process env `SPECKIT_COMPILED_ROUTING` equals `1`) and `servingAuthority(hubId)` reads `compiled` from `010-live-activation/activation/<hub>/manifest.json`; on a missing or unparseable manifest, `servingAuthority()` defaults to `legacy`, and any error resolving the compiled route is caught and returns null rather than throwing into a routing hot path. The CLI front-door — `node resolve.cjs --hub <id> --prompt <text>` — prints the compiled decision when authoritative, else a legacy sentinel `{servingAuthority: legacy, hubId}` so the caller keeps the prose smart-router.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:62:The flip is the only mutating step. `flip-serving.cjs --hub <id>` runs four gates before any write: (1) the hub is P4a-bound (`selectedPolicy.effectivePolicyHash` is non-null); (2) the three frozen scorer files (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) re-hash to their pinned digests; (3) the child's `validate-canary.cjs` exits zero; (4) `assertEngineRoutes` confirms the engine routes ≥1 designed scenario. On success it retains a byte-identical `manifest.serving-prior.json`, writes `servingAuthority: compiled` and `shadowOnly: false`, advances the monotonic fence epoch, and emits `serving-flip-record.json`. `--rollback` restores the byte-identical serving-prior and advances the fence; a hub already `compiled`-serving is an idempotent `ALREADY-COMPILED` no-op.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/tasks.md:68:- [x] T013 Prove byte-exact rollback: `--rollback` restores `manifest.serving-prior.json` byte-for-byte (the retained serving-prior reads `servingAuthority: legacy`, `shadowOnly: true`). The rollback mechanism was exercised and proven; `sk-code` was then flipped for the production cutover and is currently `servingAuthority: compiled` at fence epoch 4, with the byte-identical serving-prior retained so the same byte-exact rollback remains available.
+[0m

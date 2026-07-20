@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research",
+  "description": "The compiled skill-router is shipped but inert",
+  "keywords": [
+    "compiled",
+    "skill-router",
+    "shipped",
+    "inert"
+  ],
+  "lastUpdated": "2026-07-20T21:21:28.344Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

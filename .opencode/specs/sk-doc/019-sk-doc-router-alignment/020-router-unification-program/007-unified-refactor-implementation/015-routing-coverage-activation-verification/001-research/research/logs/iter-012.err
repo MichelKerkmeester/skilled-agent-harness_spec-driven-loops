@@ -1,0 +1,382 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m→ [0mRead .opencode/bin/compiled-route.cjs
+[0m
+[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/ 2>/dev/null | head -50
+total 40
+drwxr-xr-x@ 21 michelkerkmeester  staff   672 Jul 20 21:09 .
+drwxr-xr-x@ 15 michelkerkmeester  staff   480 Jul 20 19:45 ..
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 000-contract-schemas
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 001-compiler-n1-shadow
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 002-decision-evaluator
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 003-execution-verify-commit
+drwxr-xr-x@ 13 michelkerkmeester  staff   416 Jul 20 19:45 004-recovery-ladder
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul 20 19:45 005-calibration
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 006-parent-hub-rollout
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 007-learning-overlay
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 008-fleet-cleanup
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:45 009-non-hub-rollout
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 010-live-activation
+drwxr-xr-x@ 10 michelkerkmeester  staff   320 Jul 20 19:45 011-runtime-engine
+drwxr-xr-x@ 10 michelkerkmeester  staff   320 Jul 20 20:11 012-default-on-decision
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:46 013-create-skill-alignment
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:46 014-benchmark-alignment
+drwxr-xr-x@  3 michelkerkmeester  staff    96 Jul 20 21:09 015-routing-coverage-activation-verification
+-rw-r--r--@  1 michelkerkmeester  staff   819 Jul 20 19:45 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  5007 Jul 20 19:47 graph-metadata.json
+-rw-r--r--@  1 michelkerkmeester  staff  6099 Jul 20 19:45 spec.md
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/**/*.md"[90m 100 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/tasks.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md
+[0m→ [0mRead .opencode/skills/sk-code/benchmark
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
+[0m
+[0m$ [0mls -la .opencode/skills/sk-code/benchmark/full .opencode/skills/sk-code/benchmark/live-final 2>/dev/null
+.opencode/skills/sk-code/benchmark/full:
+total 16
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  4038 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff  1621 Jul 20 19:45 skill-benchmark-report.md
+
+.opencode/skills/sk-code/benchmark/live-final:
+total 40
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff    581 Jul 20 19:45 d4-ablation.json
+-rw-r--r--@  1 michelkerkmeester  staff  11545 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff   1439 Jul 20 19:45 skill-benchmark-report.md
+[0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/README.md
+[0m
+[0m$ [0mls -la .opencode/skills/sk-code/benchmark/live-final .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark 2>/dev/null | head -80
+.opencode/skills/sk-code/benchmark/live-final:
+total 40
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff    581 Jul 20 19:45 d4-ablation.json
+-rw-r--r--@  1 michelkerkmeester  staff  11545 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff   1439 Jul 20 19:45 skill-benchmark-report.md
+
+.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark:
+total 800
+drwxr-xr-x@ 22 michelkerkmeester  staff    704 Jul 20 19:45 .
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  18731 Jul 20 19:45 README.md
+-rw-r--r--@  1 michelkerkmeester  staff   2613 Jul 20 19:45 _args.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13449 Jul 20 19:45 advisor-probe.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  10524 Jul 20 19:45 browser-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  14351 Jul 20 19:45 build-report.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11132 Jul 20 19:45 codex-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   7198 Jul 20 19:45 contamination-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13209 Jul 20 19:45 d4-ablation.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  17671 Jul 20 19:45 d5-connectivity.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  16862 Jul 20 19:45 design-dispatch-boundary-proof.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   9863 Jul 20 19:45 design-token-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11334 Jul 20 19:45 executor-dispatch.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18537 Jul 20 19:45 live-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  36652 Jul 20 19:45 load-playbook-scenarios.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18032 Jul 20 19:45 parent-hub-vocab-sync.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11750 Jul 20 19:45 playbook-generator.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  34158 Jul 20 19:45 router-replay.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  21898 Jul 20 19:45 run-skill-benchmark.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  84243 Jul 20 19:45 score-skill-benchmark.cjs
+drwxr-xr-x@ 20 michelkerkmeester  staff    640 Jul 20 19:45 tests
+
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code:
+total 56
+drwxr-xr-x@ 9 michelkerkmeester  staff   288 Jul 20 19:45 .
+drwxr-xr-x@ 9 michelkerkmeester  staff   288 Jul 20 19:45 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  2653 Jul 20 19:45 activation-record.json
+-rw-r--r--@ 1 michelkerkmeester  staff    40 Jul 20 19:45 fence-state.json
+-rw-r--r--@ 1 michelkerkmeester  staff   192 Jul 20 19:45 manifest.candidate.json
+-rw-r--r--@ 1 michelkerkmeester  staff   195 Jul 20 19:45 manifest.json
+-rw-r--r--@ 1 michelkerkmeester  staff   130 Jul 20 19:45 manifest.prior.json
+-rw-r--r--@ 1 michelkerkmeester  staff   192 Jul 20 19:45 manifest.serving-prior.json
+-rw-r--r--@ 1 michelkerkmeester  staff   447 Jul 20 19:45 serving-flip-record.json
+[0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/live-final/skill-benchmark-report.json[90m [limit=120][0m
+[0m✱ [0mGrep "serving-status|servingStatus|compiled-serving|legacy-fallback|drifted|SERVING_STATUS|status-probe|servingStatus\("[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/live-final/d4-ablation.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.prior.json
+[0m✱ [0mGrep "010-live-activation|compiled-serving|legacy-fallback|drifted|readActivationManifest|isCompiledServing"[90m in .opencode · 95 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=320, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [limit=200][0m
+[0m✱ [0mGrep "compiled-routing|SPECKIT_COMPILED_ROUTING|enrichCompiledRoutes"[90m in .opencode/skills · 7 matches[0m
+[0m→ [0mRead .opencode/skills/sk-doc/create-benchmark/SKILL.md
+[0m
+[0m$ [0mls -la .opencode/skills/system-skill-advisor/mcp-server/scripts 2>/dev/null | head -40
+total 688
+drwxr-xr-x@ 17 michelkerkmeester  staff     544 Jul 20 19:45 .
+drwxr-xr-x@ 23 michelkerkmeester  staff     736 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff    4441 Jul 20 19:45 README.md
+-rwxr-xr-x@  1 michelkerkmeester  staff    8736 Jul 20 19:45 check-prompt-quality-card-sync.sh
+-rwxr-xr-x@  1 michelkerkmeester  staff    7028 Jul 20 19:45 check-skill-doc-frontmatter.mjs
+-rwxr-xr-x@  1 michelkerkmeester  staff    1483 Jul 20 19:45 check-skill-doc-frontmatter.sh
+drwxr-xr-x@  3 michelkerkmeester  staff      96 Jul 20 19:45 fixtures
+-rwxr-xr-x@  1 michelkerkmeester  staff    4602 Jul 20 19:45 init-skill-graph.sh
+drwxr-xr-x@  3 michelkerkmeester  staff      96 Jul 20 19:45 out
+drwxr-xr-x@ 13 michelkerkmeester  staff     416 Jul 20 19:45 routing-accuracy
+-rw-r--r--@  1 michelkerkmeester  staff    6686 Jul 20 19:45 skill-graph.json
+-rwxr-xr-x@  1 michelkerkmeester  staff  194899 Jul 20 19:45 skill_advisor.py
+-rw-r--r--@  1 michelkerkmeester  staff   14490 Jul 20 19:45 skill_advisor_bench.py
+-rw-r--r--@  1 michelkerkmeester  staff   14108 Jul 20 19:45 skill_advisor_regression.py
+-rw-r--r--@  1 michelkerkmeester  staff   13229 Jul 20 19:45 skill_advisor_runtime.py
+-rw-r--r--@  1 michelkerkmeester  staff   47267 Jul 20 19:45 skill_graph_compiler.py
+-rwxr-xr-x@  1 michelkerkmeester  staff    4206 Jul 20 19:45 verify-zombie-soak.sh
+[0m
+[0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=40, limit=90][0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|compiledRoute|servingAuthority|advisor_recommend|env-var"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 10 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/spec.md
+[0m
+[0m$ [0mls -la .opencode/plugins 2>/dev/null | head -30
+total 672
+drwxr-xr-x@ 19 michelkerkmeester  staff     608 Jul 20 19:45 .
+drwxr-xr-x@ 19 michelkerkmeester  staff     608 Jul 20 21:14 ..
+-rw-r--r--@  1 michelkerkmeester  staff   13617 Jul 20 19:45 README.md
+-rw-r--r--@  1 michelkerkmeester  staff    5674 Jul 20 19:45 mk-cli-dispatch-audit.js
+-rw-r--r--@  1 michelkerkmeester  staff   11986 Jul 20 19:45 mk-code-graph-freshness.js
+-rw-r--r--@  1 michelkerkmeester  staff   18756 Jul 20 19:45 mk-code-graph.js
+-rw-r--r--@  1 michelkerkmeester  staff    4538 Jul 20 19:45 mk-codex-hooks-watchdog.js
+-rw-r--r--@  1 michelkerkmeester  staff    9341 Jul 20 19:45 mk-completion-sentinel.js
+-rw-r--r--@  1 michelkerkmeester  staff    5930 Jul 20 19:45 mk-deep-loop-guard.js
+-rw-r--r--@  1 michelkerkmeester  staff   11191 Jul 20 19:45 mk-dist-freshness-guard.js
+-rw-r--r--@  1 michelkerkmeester  staff  123657 Jul 20 19:45 mk-goal.js
+-rw-r--r--@  1 michelkerkmeester  staff    5753 Jul 20 19:45 mk-mcp-route-guard.js
+-rw-r--r--@  1 michelkerkmeester  staff   10201 Jul 20 19:45 mk-post-edit-quality.js
+-rw-r--r--@  1 michelkerkmeester  staff   34164 Jul 20 19:45 mk-skill-advisor.js
+-rw-r--r--@  1 michelkerkmeester  staff   12966 Jul 20 19:45 mk-spec-gate.js
+-rw-r--r--@  1 michelkerkmeester  staff   23483 Jul 20 19:45 mk-spec-memory.js
+-rw-r--r--@  1 michelkerkmeester  staff    6263 Jul 20 19:45 mk-speckit-completion.js
+-rw-r--r--@  1 michelkerkmeester  staff    9087 Jul 20 19:45 session-cleanup.js
+drwxr-xr-x@ 24 michelkerkmeester  staff     768 Jul 20 19:45 tests
+[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|serving-authority|servingAuthority|compiled-route|advisor_status|spec_kit_skill_advisor_status"[90m in .opencode/plugins · 3 matches[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|servingAuthority|compiledRoute|CHILD_ENV_ALLOWLIST"[90m in .opencode · 2 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=510, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=40, limit=100][0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=820, limit=100][0m
+[0m
+[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model 2>/dev/null | head -20
+echo "---"
+ls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code 2>/dev/null
+echo "---"
+ls -la .opencode/skills/sk-code/benchmark/full 2>/dev/null | head -10
+total 40
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Jul 20 19:45 .
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Jul 20 19:45 ..
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 cli-external-orchestration
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 mcp-tooling
+-rw-r--r--@  1 michelkerkmeester  staff   7999 Jul 20 19:45 prompts.json
+-rw-r--r--@  1 michelkerkmeester  staff  10330 Jul 20 19:45 run-log.txt
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 sk-code
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 sk-design
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 sk-doc
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 sk-prompt
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 system-deep-loop
+---
+total 8
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 .
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Jul 20 19:45 ..
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 raw
+-rw-r--r--@  1 michelkerkmeester  staff  1802 Jul 20 19:45 verdict.json
+---
+total 16
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  4038 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff  1621 Jul 20 19:45 skill-benchmark-report.md
+[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|environment variable|env-var|flag:|load-bearing"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 100 matches[0m
+[0m
+[0m$ [0mgrep -n "compiled" .opencode/skills/sk-code/benchmark/full/skill-benchmark-report.md 2>/dev/null
+echo "---"
+ls -la .opencode/skills/sk-code/benchmark/router-final .opencode/skills/sk-code/benchmark/router-baseline 2>/dev/null
+---
+.opencode/skills/sk-code/benchmark/router-baseline:
+total 176
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  78041 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff   4148 Jul 20 19:45 skill-benchmark-report.md
+
+.opencode/skills/sk-code/benchmark/router-final:
+total 160
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Jul 20 19:45 .
+drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  75186 Jul 20 19:45 skill-benchmark-report.json
+-rw-r--r--@  1 michelkerkmeester  staff   4082 Jul 20 19:45 skill-benchmark-report.md
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json
+[0m
+[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw 2>/dev/null
+echo "---"
+ls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna 2>/dev/null | head -20
+total 96
+drwxr-xr-x@ 14 michelkerkmeester  staff  448 Jul 20 19:45 .
+drwxr-xr-x@  4 michelkerkmeester  staff  128 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  118 Jul 20 19:45 luna-1-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  123 Jul 20 19:45 luna-1-2.txt
+-rw-r--r--@  1 michelkerkmeester  staff   39 Jul 20 19:45 luna-2-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  134 Jul 20 19:45 luna-2-2.txt
+-rw-r--r--@  1 michelkerkmeester  staff  102 Jul 20 19:45 minimax-1-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  106 Jul 20 19:45 minimax-1-2.txt
+-rw-r--r--@  1 michelkerkmeester  staff  122 Jul 20 19:45 minimax-2-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  107 Jul 20 19:45 minimax-2-2.txt
+-rw-r--r--@  1 michelkerkmeester  staff  147 Jul 20 19:45 sol-1-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  128 Jul 20 19:45 sol-1-2.txt
+-rw-r--r--@  1 michelkerkmeester  staff  118 Jul 20 19:45 sol-2-1.txt
+-rw-r--r--@  1 michelkerkmeester  staff  133 Jul 20 19:45 sol-2-2.txt
+---
+[0m
+[0m✱ [0mGrep "SPECKIT_"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 100 matches[0m
+[0m
+[0m$ [0mcat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json 2>/dev/null | python3 -m json.tool 2>/dev/null | head -80
+{
+    "activated": true,
+    "candidatePolicy": {
+        "effectivePolicyHash": "1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c",
+        "generation": 2
+    },
+    "eligibility": {
+        "canaryGreen": true,
+        "scorerDigests": {
+            "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+            "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+            "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c"
+        },
+        "scorerDigestsPinned": true
+    },
+    "fenceEpoch": {
+        "after": 1,
+        "before": 0
+    },
+    "hubId": "sk-code",
+    "priorManifestHash": "5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23",
+    "realModelVerification": {
+        "hubId": "sk-code",
+        "notes": "",
+        "perModelPass": {
+            "luna": "2/2",
+            "minimax": "2/2",
+            "sol": "2/2"
+        },
+        "prompts": [
+            {
+                "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.",
+                "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md"
+            },
+            {
+                "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.",
+                "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md"
+            }
+        ],
+        "results": [
+            {
+                "expected": "sk-code",
+                "model": "luna",
+                "pass": true,
+                "prompt_idx": 1,
+                "run1_skill": "sk-code",
+                "run2_skill": "sk-code"
+            },
+            {
+                "expected": "sk-code",
+                "model": "luna",
+                "pass": true,
+                "prompt_idx": 2,
+                "run1_skill": "sk-code",
+                "run2_skill": "sk-code"
+            },
+            {
+                "expected": "sk-code",
+                "model": "sol",
+                "pass": true,
+                "prompt_idx": 1,
+                "run1_skill": "sk-code",
+                "run2_skill": "sk-code"
+            },
+            {
+                "expected": "sk-code",
+                "model": "sol",
+                "pass": true,
+                "prompt_idx": 2,
+                "run1_skill": "sk-code",
+                "run2_skill": "sk-code"
+            },
+            {
+                "expected": "sk-code",
+                "model": "minimax",
+                "pass": true,
+                "prompt_idx": 1,
+                "run1_skill": "sk-code",
+                "run2_skill": "sk-code"
+            },
+[0m
+[0m$ [0mfor hub in cli-external-orchestration mcp-tooling sk-code sk-design sk-doc sk-prompt system-deep-loop; do
+  echo "=== $hub ==="
+  cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/manifest.json 2>/dev/null
+  echo ""
+  echo "fence: $(cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/fence-state.json 2>/dev/null)"
+  echo "serving-flip: $(cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/serving-flip-record.json 2>/dev/null)"
+  echo ""
+done
+=== cli-external-orchestration ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b57fa1b5cd7f","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":2,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":2,"before":1},"gate":{"canaryGreen":true,"effectivePolicyHash":"8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b57fa1b5cd7f","routedScenarios":5,"scorerFrozen":true,"totalScenarios":8},"hubId":"cli-external-orchestration","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b57fa1b5cd7f","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+=== mcp-tooling ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"afe102ea655e81025a471e6b33479b3d84fa2bb990a533da21467294e38a9ff0","generation":4},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":4,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":4,"before":3},"gate":{"canaryGreen":true,"effectivePolicyHash":"afe102ea655e81025a471e6b33479b3d84fa2bb990a533da21467294e38a9ff0","routedScenarios":4,"scorerFrozen":true,"totalScenarios":8},"hubId":"mcp-tooling","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"afe102ea655e81025a471e6b33479b3d84fa2bb990a533da21467294e38a9ff0","generation":4},"servingAuthority":"compiled","shadowOnly":false}
+
+=== sk-code ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":4,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":4,"before":3},"gate":{"canaryGreen":true,"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","routedScenarios":1,"scorerFrozen":true,"totalScenarios":5},"hubId":"sk-code","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
+
+=== sk-design ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"2bace44fdf4fc4e68c97873c63556db43600a3f02af5758fbf671f3b003938ed","generation":6},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":4,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":4,"before":3},"gate":{"canaryGreen":true,"effectivePolicyHash":"2bace44fdf4fc4e68c97873c63556db43600a3f02af5758fbf671f3b003938ed","routedScenarios":9,"scorerFrozen":true,"totalScenarios":13},"hubId":"sk-design","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"2bace44fdf4fc4e68c97873c63556db43600a3f02af5758fbf671f3b003938ed","generation":6},"servingAuthority":"compiled","shadowOnly":false}
+
+=== sk-doc ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"82496ebeee1491c0320eb4fccdbbd3e6aac582950b81552f823fd75a2193f553","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":4,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":4,"before":3},"gate":{"canaryGreen":true,"effectivePolicyHash":"82496ebeee1491c0320eb4fccdbbd3e6aac582950b81552f823fd75a2193f553","routedScenarios":14,"scorerFrozen":true,"totalScenarios":18},"hubId":"sk-doc","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"82496ebeee1491c0320eb4fccdbbd3e6aac582950b81552f823fd75a2193f553","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+=== sk-prompt ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"6f581ac84cf282aea57da0298c66b5f52e08888b2ba5a4540706b94d55f5c39d","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":4,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":4,"before":3},"gate":{"canaryGreen":true,"effectivePolicyHash":"6f581ac84cf282aea57da0298c66b5f52e08888b2ba5a4540706b94d55f5c39d","routedScenarios":6,"scorerFrozen":true,"totalScenarios":8},"hubId":"sk-prompt","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"6f581ac84cf282aea57da0298c66b5f52e08888b2ba5a4540706b94d55f5c39d","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+=== system-deep-loop ===
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032d6ff77cc3c","generation":3},"servingAuthority":"compiled","shadowOnly":false}
+
+fence: {"fencingEpoch":3,"schemaVersion":"V1"}
+serving-flip: {"fenceEpoch":{"after":3,"before":2},"gate":{"canaryGreen":true,"effectivePolicyHash":"7b5491c4500f08f14aff75736c72a292d1bd4beeadeb409548fa0dd38a8f4b94","routedScenarios":7,"scorerFrozen":true,"totalScenarios":11},"hubId":"system-deep-loop","rollbackTo":"manifest.serving-prior.json","selectedPolicy":{"effectivePolicyHash":"82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032d6ff77cc3c","generation":3},"servingAuthority":"compiled","shadowOnly":false}
+[0m

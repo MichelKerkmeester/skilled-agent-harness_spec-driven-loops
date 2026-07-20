@@ -1,0 +1,481 @@
+[0m
+> build · MiniMax-M3
+[0m
+[0m$ [0mls -la .opencode/skills/sk-code/benchmark/ 2>/dev/null || echo "no benchmark dir"
+total 24
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 .
+drwxr-xr-x@ 17 michelkerkmeester  staff   544 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  8289 Jul 20 19:45 README.md
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 after
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 baseline
+drwxr-xr-x@  5 michelkerkmeester  staff   160 Jul 20 19:45 d4r-live
+drwxr-xr-x@  3 michelkerkmeester  staff    96 Jul 20 19:45 fixtures
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 full
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live
+drwxr-xr-x@  5 michelkerkmeester  staff   160 Jul 20 19:45 live-final
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live-mode-b
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 live-remediated
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 router-baseline
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Jul 20 19:45 router-final
+[0m
+[0m$ [0mls -la .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
+total 800
+drwxr-xr-x@ 22 michelkerkmeester  staff    704 Jul 20 19:45 .
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Jul 20 19:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  18731 Jul 20 19:45 README.md
+-rw-r--r--@  1 michelkerkmeester  staff   2613 Jul 20 19:45 _args.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13449 Jul 20 19:45 advisor-probe.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  10524 Jul 20 19:45 browser-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  14351 Jul 20 19:45 build-report.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11132 Jul 20 19:45 codex-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   7198 Jul 20 19:45 contamination-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  13209 Jul 20 19:45 d4-ablation.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  17671 Jul 20 19:45 d5-connectivity.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  16862 Jul 20 19:45 design-dispatch-boundary-proof.cjs
+-rw-r--r--@  1 michelkerkmeester  staff   9863 Jul 20 19:45 design-token-lint.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11334 Jul 20 19:45 executor-dispatch.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18537 Jul 20 19:45 live-executor.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  36652 Jul 20 19:45 load-playbook-scenarios.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  18032 Jul 20 19:45 parent-hub-vocab-sync.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  11750 Jul 20 19:45 playbook-generator.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  34158 Jul 20 19:45 router-replay.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  21898 Jul 20 19:45 run-skill-benchmark.cjs
+-rw-r--r--@  1 michelkerkmeester  staff  84243 Jul 20 19:45 score-skill-benchmark.cjs
+drwxr-xr-x@ 20 michelkerkmeester  staff    640 Jul 20 19:45 tests
+[0m
+[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/
+total 40
+drwxr-xr-x@ 21 michelkerkmeester  staff   672 Jul 20 21:09 .
+drwxr-xr-x@ 15 michelkerkmeester  staff   480 Jul 20 19:45 ..
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 000-contract-schemas
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 001-compiler-n1-shadow
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 002-decision-evaluator
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 003-execution-verify-commit
+drwxr-xr-x@ 13 michelkerkmeester  staff   416 Jul 20 19:45 004-recovery-ladder
+drwxr-xr-x@  8 michelkerkmeester  staff   256 Jul 20 19:45 005-calibration
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 006-parent-hub-rollout
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 007-learning-overlay
+drwxr-xr-x@ 14 michelkerkmeester  staff   448 Jul 20 19:45 008-fleet-cleanup
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:45 009-non-hub-rollout
+drwxr-xr-x@ 12 michelkerkmeester  staff   384 Jul 20 19:45 010-live-activation
+drwxr-xr-x@ 10 michelkerkmeester  staff   320 Jul 20 19:45 011-runtime-engine
+drwxr-xr-x@ 10 michelkerkmeester  staff   320 Jul 20 20:11 012-default-on-decision
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:46 013-create-skill-alignment
+drwxr-xr-x@  9 michelkerkmeester  staff   288 Jul 20 19:46 014-benchmark-alignment
+drwxr-xr-x@  3 michelkerkmeester  staff    96 Jul 20 21:09 015-routing-coverage-activation-verification
+-rw-r--r--@  1 michelkerkmeester  staff   819 Jul 20 19:45 description.json
+-rw-r--r--@  1 michelkerkmeester  staff  5007 Jul 20 19:47 graph-metadata.json
+-rw-r--r--@  1 michelkerkmeester  staff  6099 Jul 20 19:45 spec.md
+[0m
+[0m$ [0mls .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/
+README.md
+code-opencode-playbook-ids.vitest.ts
+code-surface-path-parse.vitest.ts
+design-dispatch-boundary-proof.vitest.ts
+design-token-lint.vitest.ts
+dimension-applicability.vitest.ts
+live-asset-recall.vitest.ts
+load-playbook-typed-derivation.vitest.ts
+mcp-figma-router-sync.vitest.ts
+parent-hub-vocab-sync.vitest.ts
+playbook-mode.vitest.ts
+route-gold-gate.vitest.ts
+routing-allowlist.vitest.ts
+sk-code-router-sync.vitest.ts
+sk-doc-leaf-routing-contract.vitest.ts
+skill-benchmark-error-taxonomy.vitest.ts
+skill-benchmark.vitest.ts
+surface-slice-sync.vitest.ts
+[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs[90m [offset=1240][0m
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/
+activation
+checklist.md
+description.json
+graph-metadata.json
+implementation-summary.md
+lib
+plan.md
+real-model
+spec.md
+tasks.md
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/
+cli-external-orchestration
+mcp-tooling
+sk-code
+sk-design
+sk-doc
+sk-prompt
+system-deep-loop
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts
+[0m✱ [0mGrep "resolveRouteGold|isHubTypeSkill|route-gold|compiledRoute|compiled|routingAuthority|servingAuthority"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs · 41 matches[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|compiled|drift|legacy|hub_route"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs · 72 matches[0m
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [offset=60, limit=280][0m
+[0m✱ [0mGrep "routeGold|route.gold|route_gold|compiled|legacy|hub-route|hub_route|serving|servingAuthority"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs · 100 matches[0m
+[0m
+[0m$ [0mls .opencode/bin/
+README.md
+check-git-hooks.sh
+cli-exit-taxonomy-smoke.cjs
+cli-offline-smoke.cjs
+cli-offline-smoke.test.cjs
+code-index.cjs
+compiled-route.cjs
+git-live-follow.sh
+git-sync.sh
+hf-model-server.cjs
+install-codex-hooks.mjs
+lib
+mk-code-index-launcher-cas.vitest.ts
+mk-code-index-launcher-identity-guards.vitest.ts
+mk-code-index-launcher-owner-reclaim.vitest.ts
+mk-code-index-launcher-pid-registry.vitest.ts
+mk-code-index-launcher-reclaim-e2e.vitest.ts
+mk-code-index-launcher-wal-hygiene.vitest.ts
+mk-code-index-launcher.cjs
+mk-skill-advisor-launcher.cjs
+mk-spec-memory-launcher.cjs
+skill-advisor.cjs
+spec-memory.cjs
+speckit-completion.cjs
+tests
+worktree-guard.sh
+worktree-reaper.sh
+worktree-session.sh
+worktree-status.sh
+[0m
+[0m→ [0mRead .opencode/bin/compiled-route.cjs
+[0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs[90m [limit=250][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.json
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/
+activation-record.json
+fence-state.json
+manifest.candidate.json
+manifest.json
+manifest.prior.json
+manifest.serving-prior.json
+serving-flip-record.json
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/activation-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/serving-flip-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=300, limit=110][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [limit=100][0m
+[0m
+[0m$ [0mls .opencode/skills/system-skill-advisor/mcp-server/handlers/
+README.md
+advisor-rebuild.ts
+advisor-recommend.ts
+advisor-status.ts
+advisor-validate.ts
+index.ts
+skill-graph
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-status.ts
+[0m
+[0m$ [0mls .opencode/skills/system-skill-advisor/
+ARCHITECTURE.md
+INSTALL-GUIDE.md
+README.md
+SKILL.md
+changelog
+feature-catalog
+graph-metadata.json
+hooks
+leaf-aliases.json
+leaf-manifest.config.json
+leaf-manifest.json
+manual-testing-playbook
+mcp-server
+references
+scripts
+[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|compiled-route|compiledRoute|CHILD_ENV_ALLOWLIST|envAllowlist|servingAuthority"[90m in .opencode/skills/system-skill-advisor · 19 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=40, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=525, limit=150][0m
+[0m
+[0m$ [0mls .opencode/skills/sk-code/benchmark/full/
+skill-benchmark-report.json
+skill-benchmark-report.md
+[0m
+[0m→ [0mRead .opencode/skills/sk-code/benchmark/router-final
+[0m
+[0m$ [0mhead -100 .opencode/skills/sk-code/benchmark/full/skill-benchmark-report.json
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 55,
+  "gate": {
+    "d5Score": 91,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": 0
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 100
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 0
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 91,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D4"
+  ],
+  "funnel": {
+    "activated-inter": 2
+  },
+  "headlineBottleneck": "activated-inter",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "activated-inter",
+      "detail": "2 scenario(s) first fail at stage 'activated-inter'"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/phase-detection.md",
+      "detail": "references/phase-detection.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/smart-routing.md",
+      "detail": "references/smart-routing.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/stack-detection.md",
+      "detail": "references/stack-detection.md is not reachable from any RESOURCE_MAP intent"
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "sk-code-loadspeed-001",
+      "tier": "T2",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+[0m
+[0m✱ [0mGrep "drift-to-legacy|drift_to_legacy|driftToLegacy|degrade|degraded|legacy.fallback|legacyFallback"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark · 5 matches[0m
+[0m✱ [0mGrep "drift-to-legacy|drift_to_legacy|driftToLegacy|degraded-class|compiled.serving|legacy.serving|servingAuthority"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs · 0 matches[0m
+[0m
+[0m$ [0mgrep -n "CHILD_ENV_ALLOWLIST\|SPECKIT_COMPILED" .opencode/bin/mk-skill-advisor-launcher.cjs | head -40
+99:const CHILD_ENV_ALLOWLIST = new Set([
+269:    Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
+[0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=99, limit=90][0m
+[0m✱ [0mGrep "drift|legacy-fallback|legacy_fallback|legacySentinel|legacy.sentinel"[90m in .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests · 26 matches[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|servingAuthority|serving-authority"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 0 matches[0m
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/
+compiled-route.cjs
+flip-serving.cjs
+resolve.cjs
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+[0m✱ [0mGrep "compiled|route-gold|servingAuthority|legacy|defer|degraded|drift"[90m in .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs · 6 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=395, limit=75][0m
+[0m
+[0m$ [0mgrep -n "available.*degraded\|degraded.*available\|drift\|serving" .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs | head -20
+408:// drift from the shared `renderAdvisorBrief()` formatter. Bridge output now
+493:  // 'unavailable' but trustState is live/stale, serve native in a degraded mode
+500:    return { ...probe, available: true, degraded: true, daemonAvailable: false };
+[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=488, limit=40][0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
+[0m
+[0m$ [0mfor hub in cli-external-orchestration mcp-tooling sk-code sk-design sk-doc sk-prompt system-deep-loop; do
+  echo "--- $hub ---"
+  cat ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/manifest.json"
+  echo ""
+done
+--- cli-external-orchestration ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"8421624a5e7550ff0471728ea9ec6c116c083a21a3880169e5a1b57fa1b5cd7f","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+--- mcp-tooling ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"afe102ea655e81025a471e6b33479b3d84fa2bb990a533da21467294e38a9ff0","generation":4},"servingAuthority":"compiled","shadowOnly":false}
+
+--- sk-code ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
+
+--- sk-design ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"2bace44fdf4fc4e68c97873c63556db43600a3f02af5758fbf671f3b003938ed","generation":6},"servingAuthority":"compiled","shadowOnly":false}
+
+--- sk-doc ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"82496ebeee1491c0320eb4fccdbbd3e6aac582950b81552f823fd75a2193f553","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+--- sk-prompt ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"6f581ac84cf282aea57da0298c66b5f52e08888b2ba5a4540706b94d55f5c39d","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+--- system-deep-loop ---
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"82d7f3af886d3e154da2b0f4ec01302c9266fd24ef89f30244a032d6ff77cc3c","generation":3},"servingAuthority":"compiled","shadowOnly":false}
+[0m
+[0m$ [0mls .opencode/skills/system-skill-advisor/manual-testing-playbook/ 2>/dev/null && echo "---" && find .opencode/skills/system-skill-advisor/manual-testing-playbook -name "*.md" 2>/dev/null | head -10
+auto-indexing
+auto-update-daemon
+cli-hooks-and-plugin
+compat-and-disable
+lifecycle-routing
+manual-testing-playbook.md
+native-mcp-tools
+operator-h5
+python-compat
+scorer-fusion
+---
+.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/archive-handling.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/schema-migration.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/supersession.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/age-haircut.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/quarantined-daemon.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/unavailable-daemon.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+.opencode/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+[0m
+[0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING"[90m in .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation · 100 matches[0m
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/
+001-research
+[0m
+[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/ 2>/dev/null
+iteration-001.md
+iteration-002.md
+iteration-003.md
+iteration-004.md
+iteration-005.md
+iteration-006.md
+iteration-007.md
+iteration-008.md
+iteration-009.md
+iteration-011.md
+iteration-013.md
+iteration-015.md
+[0m
+[0m$ [0mgrep -n "drift\|legacy.fallback\|legacy.fallback\|drifted\|degraded\|serving.status\|serving-status\|serving_status\|per.hub" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/*.md 2>/dev/null | head -30
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:7:- `sk-design/feature-catalog/` is the only existing catalog that explicitly inventories an eligible hub and its mode-routing shell (`.opencode/skills/sk-design/feature-catalog/feature-catalog.md:15`, `.opencode/skills/sk-design/feature-catalog/feature-catalog.md:25`). Add a root entry under `## 2. MANAGER SHELL` named “Compiled routing, legacy fallback, and kill switch,” linking to a new `manager-shell/compiled-routing-and-legacy-fallback.md`.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:8:- That new leaf should follow the four required template sections: overview, behavior, source files, and metadata (`.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md:193`, `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md:201`, `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md:219`, `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md:237`). Its `HOW IT WORKS` content should cover eligibility/default polarity, `route|clarify|defer|reject`, fail-safe legacy fallback, serving-status observability, drift handling, and the `=0` kill switch.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:11:- The Spec Kit catalog already has a canonical “Feature flag governance” entry and leaf (`.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:4480`, `.opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md:25`). Extend those rather than creating another flag feature. Document `SPECKIT_COMPILED_ROUTING`, its current/default state, staged rollout, explicit kill switch, eligibility rule, drift response, and serving-status readout. Because the touched leaf currently uses an unstructured source list (`.opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md:49`), convert it to the template’s separate implementation and validation tables.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:21:3. P1: require every leaf’s source tables to anchor the stable front door/resolver, eligibility manifest, drift verifier, automated parity tests, and matching manual-playbook scenario.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:27:  {"id":"F-1-1","area":"catalogs","finding":"The sk-design hub catalog needs a dedicated compiled-routing entry because it already owns the hub's manager-shell routing inventory.","evidence":".opencode/skills/sk-design/feature-catalog/feature-catalog.md:15","severity":"P1","actionable":"Add a MANAGER SHELL root entry and a template-authored manager-shell/compiled-routing-and-legacy-fallback.md leaf.","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-001.md:29:  {"id":"F-1-3","area":"activation","finding":"The feature-flag governance catalog must document compiled-routing polarity and rollback because the live handler directly gates enrichment on SPECKIT_COMPILED_ROUTING.","evidence":".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:362","severity":"P0","actionable":"Extend the existing system-spec-kit feature-flag-governance root entry and leaf with phased defaults, eligibility, serving status, drift behavior, and the explicit =0 kill switch.","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:6:Now I need: the scorer's `evaluateRouteGold` signature, the `_args.cjs` surface, and what route-gold artifacts exist per-hub (the gold source the lane would assert parity against).
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:34:- **F-2-4 Spec-tree resolver coupling (P1, novel).** `compiled-route.cjs:16-21` resolves the resolver from `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`. Specs are mutable planning artifacts; any rename of 011-runtime-engine (sk-doc packets restructure often) silently breaks the resolver, `compiled-route.cjs:36-39` catches and returns the legacy sentinel, and the lane goes vacuously green. The lane MUST pre-flight that path's existence and surface breakage as drift, not parity.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:35:- **F-2-5 Hub-type vs compiled-eligibility mismatch (P2, novel).** `isHubTypeSkill` (run-skill-benchmark.cjs:68) keys off `hub-router.json` (7 hubs have one). Compiled-serving eligibility is keyed off the activation manifest *plus* the `COMPILED_ROUTING_HUBS` allowlist in `advisor-recommend.ts`. A hub can have route-gold auto-on while being compiled-N/A. The lane MUST distinguish `n/a (not compiled-eligible)` from `drift`, otherwise N/A hubs get scored as either false-pass or false-fail.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:39:2. **Build the lane around a `compiledParity` status enum**: `{match, drift, vacuous, n/a, resolver-missing}` — only `match` is a pass; `vacuous` and `resolver-missing` are hard failures (the trap states), `drift` is a real regression, `n/a` is informational.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:41:4. **Assert the resolver path + manifest state in `compiled-parity.cjs`'s pre-flight**, before any scenario loop — fail loud on spec-tree drift, never fail safe.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:46:  {"id":"F-2-2","area":"benchmark","finding":"Vacuous-parity trap: SPECKIT_COMPILED_ROUTING=1 alone is insufficient. resolve.cjs:41-42 requires the per-hub activation manifest to read servingAuthority==='compiled'; otherwise resolveRoute returns null and compiled-route.cjs:39 emits a legacy sentinel that a naive lane reads as 'compiled matches legacy'.","evidence":"resolve.cjs:41-42 (flagEnabled AND servingAuthority!=='compiled'); compiled-route.cjs:36-39 (catch→legacy sentinel); .opencode/specs/.../010-live-activation/activation/sk-code/manifest.json shows servingAuthority:'compiled' (so sk-code is the valid pilot; other hubs may still be 'legacy')","severity":"P0","actionable":"compiled-parity.cjs pre-flight MUST read 010-live-activation/activation/<hub>/manifest.json and treat servingAuthority!=='compiled' as status 'vacuous' (hard fail), never a pass; document the dual gate in the lane README.","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:48:  {"id":"F-2-4","area":"archiving","finding":"Spec-tree resolver coupling: compiled-route.cjs:16-21 resolves the resolver from inside .opencode/specs/.../011-runtime-engine/lib/resolve.cjs. Specs are mutable planning artifacts; a rename silently breaks the resolver and the catch at compiled-route.cjs:36-39 returns the legacy sentinel, producing vacuous parity. ZERO activation/manifest.json or compiled/route-gold.typed.json live under .opencode/skills/<hub>/ — all 19 + 12 live under specs only.","evidence":"compiled-route.cjs:16-21 (path.resolve into specs/); find results: 19 activation/manifest.json + 12 route-gold.typed.json ALL under .opencode/specs/sk-doc/019-.../007-unified-refactor-implementation/, ZERO under .opencode/skills/<hub>/","severity":"P1","actionable":"compiled-parity.cjs pre-flight asserts the resolver path exists (fs.existsSync) AND skills-tree activation archive exists; recommend a follow-up to copy per-hub activation/manifest.json + compiled/route-gold.typed.json into .opencode/skills/<hub>/activation/ + compiled/ as the durable serving source (closes named gap #4 for the benchmark's reliance).","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-002.md:49:  {"id":"F-2-5","area":"benchmark","finding":"Hub-type detection (isHubTypeSkill, run-skill-benchmark.cjs:68 keys on hub-router.json) is misaligned with compiled-serving eligibility (keys on activation manifest + advisor-recommend.ts COMPILED_ROUTING_HUBS allowlist). A hub can have --route-gold auto-on while compiled-parity is structurally N/A.","evidence":"run-skill-benchmark.cjs:68-70 (isHubTypeSkill=fs.existsSync hub-router.json); 7 hubs have hub-router.json; resolve.cjs:42 serving authority is per-hub and independent","severity":"P2","actionable":"compiled-parity.cjs returns status enum {match|drift|vacuous|n/a|resolver-missing}; the orchestrator's verdict switch treats only match as pass, drift/vacuous/resolver-missing as failures, and n/a as informational (no verdict impact) so non-compiled hubs don't false-fail.","novelty":"new"}
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:9:| `compiled-routing/flag-off-kill-switch.md` | Flag absent or `0` | Legacy `skillId`/`workflowMode` remain unchanged; `compiledRoute` is absent; status reports `legacy-fallback` with cause `flag-disabled`. |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:11:| `compiled-routing/drift-falls-back-to-legacy.md` | Flag `1`, stale routing input in disposable workspace | Status is `drifted` with re-mint-required cause; advisor omits `compiledRoute`; the legacy recommendation still serves. |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:12:| `compiled-routing/serving-status-classification.md` | Seven-hub fleet readout | Every hub reports exactly `compiled-serving`, `legacy-fallback`, or `drifted`, including cause, manifest identity, policy hash, and generation. |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:22:The serving-status scenario also needs a new causal interface. Today missing/unparseable manifests become `legacy` (`011-runtime-engine/lib/resolve.cjs:26-33`), while flag-off, legacy authority, and engine failure all collapse to `null` (`011-runtime-engine/lib/resolve.cjs:40-47`) and finally the same legacy sentinel (`011-runtime-engine/lib/resolve.cjs:64-65`). A manual playbook cannot distinguish kill-switch behavior from drift or breakage until a machine-readable status probe preserves the cause.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:30:The model and effort are valid (`cli-codex/SKILL.md:235-242`), and the CLI contract requires explicit model, effort, and service tier (`cli-codex/SKILL.md:267-268`). Keep routing validation read-only and tell LUNA to return the injected advisor skill, compiled action, target mode/packet, and serving status without executing the underlying user task. Treat timeout as `SKIP` with an infrastructure blocker, not routing failure: earlier LUNA routing runs hit the existing 150-second ceiling repeatedly (`010-live-activation/real-model/run-log.txt:50-57`, `:95-102`, `:143-150`).
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:34:1. P0 — carry `compiledRoute` and serving status through the prompt-time hook; otherwise LUNA never sees the decision being tested.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:35:2. P0 — expose causal serving status and an injectable disposable-workspace fixture path for drift testing.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:40:7. P1 — extend the named alignment gate: `verify_alignment_drift.py` currently scans language files and dispatches extension-specific checks (`sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:480-515`), while the router contract it must protect lives in Markdown `RESOURCE_MAP` (`sk-code/code-opencode/SKILL.md:43-51`). It presently cannot prove parent/child router-map equality.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:45:  {"id":"F-3-2","area":"playbooks","finding":"The minimal canonical state corpus is four scenarios covering flag-off, flag-on fresh, drift-to-legacy, and causal seven-hub serving status.","evidence":".opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:17","severity":"P0","actionable":"Create a compiled-routing category in the system-skill-advisor playbook with four per-feature files and exact JSON, exit-code, hook, and verdict evidence.","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:46:  {"id":"F-3-3","area":"unnamed","finding":"The prompt-time hook cannot machine-enforce compiled routing because its recommendation type and rendered brief discard compiledRoute.","evidence":".opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts:16","severity":"P0","actionable":"Carry compiled action, targets, and serving status through the hook subprocess contract and render them into the injected advisor brief before running LUNA scenarios.","novelty":"new"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:49:  {"id":"F-3-6","area":"activation","finding":"The current legacy sentinel collapses flag-disabled, missing or malformed manifest, legacy authority, and engine failure, so a serving-status playbook cannot classify cause.","evidence":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:40","severity":"P0","actionable":"Add a machine-readable per-hub status probe returning compiled-serving, legacy-fallback, or drifted plus a stable cause code, hash, and generation.","novelty":"refines:F-2-4"},
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-003.md:51:  {"id":"F-3-8","area":"sk-code-align","finding":"The named verify_alignment_drift.py gate checks language files but does not inspect the Markdown RESOURCE_MAP whose parent-child equality it is expected to enforce.","evidence":".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:480","severity":"P0","actionable":"Extend the verifier or add a companion check that parses code-opencode RESOURCE_MAP and fails when the sk-code parent projection diverges.","novelty":"new"}
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-004.md:8:**Headline:** Promote compiled-vs-legacy evidence as per-hub Lane C run pairs under `.opencode/skills/<hub>/benchmark/<run-label>/`; do not copy `route-gold.typed.json` or activation artifacts out of the spec tree as standalone “results.” The storage contract allows only `skill-benchmark-report.json`, its rendered `.md`, and an optional per-run `README.md` ([storage guide:120-148](.opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md:120-148)); the parity result therefore belongs in a report-level `compiledRouting` block, as already planned ([014 spec:132-137](.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:132-137)).
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-004.md:16:- The planned parity report must contain resolved mode, eligible rows, parity counts, drift rows, breakages, and frozen scorer hashes ([014 checklist:79-88](.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/checklist.md:79-88)). Current Lane C is not yet capable of this: its planned-state summary says implementation has not started and the current path is legacy replay only ([014 implementation summary:17-28](.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/implementation-summary.md:17-28)).
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-004.md:45:- `router-compiled-parity-baseline/`: first same-revision, fresh-manifest compiled-vs-legacy reference; freeze after zero drift/breakage, dual route-gold success, equality, and frozen-scorer hash checks.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-004.md:46:- `router-compiled-parity-final/`: final deterministic P4 result; intermediate gates may use immutable `after-p0-observability`, `after-p1-drift-ci`, `after-p2-canary`, `after-p3-eligibility`, and `after-p4-compiled-serving` siblings.
+[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-009.md[90m [limit=60][0m
+[0m
+[0m$ [0mgrep -n "compiledRouting\|compiled-routing\|compiledParity" .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/*.cjs 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mgrep -rn "compiledRouting\|compiled-routing\|compiledParity" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/ 2>/dev/null | head -30
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/implementation-summary.md:42:| Parity harness | `compiled-routing-parity.cjs` | Invocation, normalization, status, equality, and digest checks |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/tasks.md:49:- [ ] T006 Create `compiled-routing-parity.cjs` with child-process compiled invocation and parent-env isolation. (REQ-002, REQ-006) {deps: T003}
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/tasks.md:55:- [ ] T012 Add `report.compiledRouting`, distinct gate/verdict handling, and process signal behavior. (REQ-005) {deps: T011}
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md:94:                                          report.compiledRouting
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md:136:- [ ] Add `compiled-routing-parity.cjs` with frozen hash verification, child env isolation, normalization, gold evaluation, and equality comparison.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/plan.md:138:- [ ] Add `report.compiledRouting` and distinct verdict/exit handling without changing the score aggregate.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:62:Add a deterministic compiled-routing parity harness, integrate its structured result into Lane C reporting and process gates, and cover fresh, drifted, missing, and broken fixture states. The three frozen scorer files remain byte-identical and are consumed read-only.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:107:7. Record the result under a new `compiledRouting` report block without altering D1-D5 scoring.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:113:| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs` | Create | Own compiled invocation, normalization, status classification, parity, and frozen-file hashes |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:115:| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs` | Modify | Render the `compiledRouting` block from report JSON |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:117:| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts` | Create | Cover fresh parity, divergence, drift, no-manifest, breakage, and env isolation |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:118:| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/fixtures/compiled-routing/` | Create | Deterministic copied/minimal fixture states around the harness |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:136:| REQ-005 | Integrate parity as a Lane C gate without changing D1-D5. | `report.compiledRouting` contains mode, eligible rows, parity counts, drift rows, breakages, and frozen hashes; routing divergence or breakage produces a distinct blocked verdict and non-zero exit, while drift remains visibly classified according to the authoritative contract. |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md:242:- Should the parity gate default to `auto` for valid-fresh hubs and `off/not-applicable` elsewhere, or use an explicit `--compiled-routing-parity on|off|auto` flag mirroring route-gold? The recommendation is `auto` with a recorded resolved mode.
+[0m
+[0m$ [0mgrep -n "compiled-serving\|legacy-fallback\|drifted\|broken" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/*.md 2>/dev/null | head -30
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/checklist.md:90:| [ ] CHK-021 [P0] | Flag-on serves a fresh eligible hub | Compiled decision and `compiled-serving` readout | Planned |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/checklist.md:91:| [ ] CHK-022 [P0] | Missing manifest follows legacy | No-manifest fixture and `legacy-fallback` readout | Planned |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md:102:- The eventual flip is observable: a per-hub readout shows compiled-serving vs legacy-fallback vs drifted, so a red signal means breakage rather than routine churn.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md:301:| Path-integrity guard in place | Cheapest; fails loudly on a broken path | Keeps the coupling; converts silent breakage to loud breakage but still breaks on every renumber | 6/10 |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md:103:- **Serving-status probe**: reports `compiled-serving`, `legacy-fallback`, or `drifted` for each hub and separates expected degradation from execution failure.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md:133:| Verify harness | Treats fallback outcomes without enough cause detail | Add drift-vs-breakage classification and a per-hub status readout | Fresh, stale, missing, and broken fixtures |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md:157:- [ ] Extend the verify harness so drift-to-legacy is reported as degraded/expected while a broken resolver remains a hard failure.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md:177:- [ ] P4: after every hub, require route-gold parity, a `compiled-serving` status, clean fallback behavior, and unchanged scorer hashes before proceeding.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md:209:| Lane C benchmark alignment | Sibling phase | Planned | The benchmark does not yet exercise the compiled-serving path |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:77:3. **No observability.** Nothing distinguishes "serving compiled" from "silently fell back to legacy." A drifted hub and a broken hub read identically.
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:99:- The **observability contract**: the verify harness must classify drift-to-legacy as *degraded/expected*, not *broken*, and expose a per-hub serving-status readout (compiled-serving | legacy-fallback | drifted).
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:133:| REQ-004 | Specify the observability contract. | The contract defines a per-hub serving-status readout with three states (compiled-serving | legacy-fallback | drifted) and requires the verify harness to score drift-to-legacy as degraded/expected rather than a hard failure, so a red signal means breakage, not routine churn. |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:166:| Risk | Silent drift normalized as "compiled" | A drifted hub serves legacy while dashboards claim compiled | P1 drift-CI fails re-mint-required; P0 observability distinguishes drifted from broken |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:198:- Drifted hub vs broken resolver: both currently read identically; P0 observability must separate "degraded/expected (drift)" from "broken (error)".
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md:222:| A hub edit silently reverts that hub to legacy | High | Medium | P1 drift-CI fails re-mint-required at edit time; P0 readout shows the drifted state | P1 owner |
+.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/tasks.md:86:- [ ] T007 Add the per-hub `compiled-serving | legacy-fallback | drifted` serving-status readout and remediate or loudly guard the resolver's spec-tree coupling. (REQ-004, REQ-005; resolver and observability) {deps: T004}
+[0m

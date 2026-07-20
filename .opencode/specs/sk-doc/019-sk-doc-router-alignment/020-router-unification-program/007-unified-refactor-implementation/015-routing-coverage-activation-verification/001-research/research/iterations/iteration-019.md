@@ -1,0 +1,34 @@
+# Iteration 19 — gpt-5.6-sol high — focus: catalogs
+
+Headline finding: catalog work is larger than adding eight leaves. The runtime allowlist contains seven hubs (`sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-prompt`, `sk-design`, `sk-doc`) at `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:41-49`. A filesystem audit found that only `sk-design` currently has the canonical hub-root catalog; the other six canonical roots are absent. Because the catalog contract defines the root as a complete inventory with exactly one leaf per entry, creating router-only catalogs for those hubs would violate the workflow rather than close coverage (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:182-191`, `.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:211-224`).
+
+Every compiled-routing feature must use the complete per-feature scaffold—not an abbreviated page. The exact copy boundary is `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md:60-132`; it requires frontmatter, the template marker, four numbered sections, implementation and validation tables, and source metadata. Recommended stable leaves are:
+
+- Router: `system-skill-advisor/feature-catalog/compiled-routing/compiled-route-enrichment.md`.
+- Each eligible hub: `<hub>/feature-catalog/routing/compiled-mode-routing.md`.
+
+The router leaf should document the currently shipped behavior: the flag must equal `1`, and the compiled result is additive metadata only (`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:362-371`). The seven hub leaves should describe their hub-specific command, fallback, manifest eligibility, and router inputs. Final default-on wording must land only after P4 ships because catalogs must describe current behavior and explicitly label rollout states (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:303-307`).
+
+Two validation defects need explicit spec work. First, root/leaf parity and source-anchor accuracy remain manual checks (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:343-357`), so current validators cannot prove router-plus-seven-hub completeness. Second, the leaf validator describes a two-value validation taxonomy but emits only a warning for off-taxonomy values (`.opencode/skills/sk-doc/shared/scripts/validate_document.py:728-736`). Baseline validation returned valid for the existing advisor and `sk-design` root/leaf samples, but that proves document shape, not coverage.
+
+A template/runtime contradiction is also confirmed. The scaffold says per-feature `trigger_phrases` drive advisor document matching (`.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md:41-45`), while the live harvester scans only `references/` and `assets/`, excluding `feature-catalog/` entirely (`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts:146-190`).
+
+Ranked recommendations:
+
+1. Make six complete hub-root catalog packages a prerequisite, then add the routing leaf to all seven hubs and the router catalog.
+2. Stage current-state wording: opt-in/additive before P4; default-on plus explicit-zero kill-switch only after the runtime flip.
+3. Delay final source tables until resolver and manifest paths are stable; runtime catalogs explicitly reject mutable spec-tree history (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md:343-351`).
+4. Add a package-level CI validator for the eight-surface matrix, root↔leaf bijection, source existence, and strict validation-type taxonomy.
+5. Correct the trigger-harvest claim or extend harvesting to `feature-catalog/` with scorer-invariance tests.
+
+===FINDINGS-JSON-START===
+[
+  {"id":"F-19-1","area":"catalogs","finding":"Six of the seven compiled-eligible hubs lack the canonical hub-root catalog required before a compiled-routing leaf can be added without creating a misleading partial inventory.","evidence":".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:41-49","severity":"P0","actionable":"Create complete canonical hub-root catalog packages for sk-code, mcp-tooling, system-deep-loop, cli-external-orchestration, sk-prompt, and sk-doc, then add one routing leaf to all seven hubs.","novelty":"new"},
+  {"id":"F-19-2","area":"sk-doc-templates","finding":"The exact per-feature contract is the entire scaffold, including source and validation tables, rather than a root-catalog paragraph or abbreviated router note.","evidence":".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md:60-132","severity":"P1","actionable":"Create one compiled-route-enrichment leaf for the advisor and one compiled-mode-routing leaf per eligible hub using the complete scaffold.","novelty":"new"},
+  {"id":"F-19-3","area":"activation","finding":"Catalog current-reality wording cannot claim default-on before P4 because the shipped advisor still enables enrichment only when SPECKIT_COMPILED_ROUTING equals 1.","evidence":".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:362-371","severity":"P0","actionable":"Land opt-in additive wording before cutover and make the default-on plus explicit-zero kill-switch wording a P4 lockstep edit.","novelty":"new"},
+  {"id":"F-19-4","area":"catalogs","finding":"Final catalog source tables cannot comply with the stable-source rule while resolver and activation authority still live under mutable spec history.","evidence":".opencode/skills/sk-doc/create-feature-catalog/SKILL.md:343-351","severity":"P0","actionable":"Sequence final catalog authoring after resolver promotion and canonical manifest-location work, and cite only durable runtime paths.","novelty":"refines:F-16-2"},
+  {"id":"F-19-5","area":"sk-doc-templates","finding":"The per-feature template claims trigger phrases drive advisor routing, but the live document harvester excludes feature-catalog directories by scanning only references and assets.","evidence":".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts:146-190","severity":"P1","actionable":"Either remove the routing-effect claim from the catalog template or extend harvesting to feature-catalog with capped scoring and invariance tests.","novelty":"new"},
+  {"id":"F-19-6","area":"catalogs","finding":"Existing validation cannot prove catalog completeness and treats off-taxonomy validation types as warnings rather than blocking failures.","evidence":".opencode/skills/sk-doc/shared/scripts/validate_document.py:728-736","severity":"P1","actionable":"Add a strict package validator covering the router plus seven hubs, root-leaf bijection, source-path existence, and Automated test or Manual playbook taxonomy.","novelty":"new"}
+]
+===FINDINGS-JSON-END===
+
