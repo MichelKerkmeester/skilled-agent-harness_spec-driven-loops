@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment",
+  "description": "Lane C validates authored routing but not the path that will serve when compiled routing is enabled",
+  "keywords": [
+    "lane",
+    "validates",
+    "authored",
+    "routing",
+    "path",
+    "serve",
+    "compiled",
+    "enabled"
+  ],
+  "lastUpdated": "2026-07-20T17:45:54.267Z",
+  "specId": "014",
+  "folderSlug": "benchmark-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment",
+  "description": "New parent hubs cannot express a deliberate compiled state",
+  "keywords": [
+    "new",
+    "parent",
+    "hubs",
+    "cannot",
+    "express",
+    "deliberate",
+    "compiled",
+    "state"
+  ],
+  "lastUpdated": "2026-07-20T17:45:54.265Z",
+  "specId": "013",
+  "folderSlug": "create-skill-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

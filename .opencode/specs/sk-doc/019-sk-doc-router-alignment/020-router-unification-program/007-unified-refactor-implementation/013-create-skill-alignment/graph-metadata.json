@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-skill compiled routing alignment",
+      "new hub compiled-ready scaffold",
+      "create-skill activation manifest step",
+      "create-skill compiled routing plan",
+      "parent hub manifest onboarding plan",
+      "create-skill compiled routing tasks",
+      "parent hub onboarding tasks",
+      "create-skill compiled routing checklist",
+      "parent hub readiness QA gate",
+      "create-skill compiled routing planned summary",
+      "parent hub onboarding current status"
+    ],
+    "key_topics": [
+      "create-skill",
+      "compiled",
+      "routing",
+      "alignment",
+      "new",
+      "hub",
+      "compiled-ready",
+      "scaffold",
+      "activation",
+      "manifest",
+      "step",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      ".opencode/skills/sk-doc/create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/README.md",
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_skill_contract.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "hub-skill-scaffold.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_skill_package.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirmed Current State The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement New",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "New parent hubs cannot express a deliberate compiled state",
+    "created_at": "2026-07-20T17:46:53.250Z",
+    "last_save_at": "2026-07-20T17:46:53.250Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bfff32659b73e481037732b366a716489d2f0bcc1f09b59bac9dd83ed7144be7",
+    "source_doc_hashes": {
+      "spec.md": "0f52171a47ba76bde27b3094be448ec2576555812b04e7b855371414cfd96c21",
+      "plan.md": "1e525a428025704066ecc8ae6078b01078f01f5dfbb718a9b3356b78f28c7f71",
+      "tasks.md": "50447deed4552d3f3a094b67c5b25d1a8af47379fe4a15ac21521d19601febda",
+      "checklist.md": "241f8e9033387373e41e98ea0f2fb8efa6f12222459ae986ca06b9c55ab78bd7",
+      "implementation-summary.md": "8f4d49d02bf2316237d1f02b4c7ba4238d7fe37004d4bc40872e5fcf8b0f78e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

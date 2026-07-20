@@ -12,7 +12,13 @@
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/005-calibration",
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/007-learning-overlay",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/008-fleet-cleanup"
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/008-fleet-cleanup",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -90,7 +96,7 @@
     ],
     "causal_summary": "Phase parent for implementing the council-synthesized unified router refactor: one content-addressed compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation (Idea 5, fully integrated — not deferred), and an optional offline correction overlay. Nine top-level phases, two of them multi-phased (calibration, parent-hub rollout), each gated on route-gold and reversible, activated one skill at a time in the order mcp-code-mode → sk-code → system-deep-loop → mcp-tooling. The shared scorer is never touched.",
     "created_at": "2026-07-18T13:13:21.286Z",
-    "last_save_at": "2026-07-18T14:47:44.166Z",
+    "last_save_at": "2026-07-20T17:47:41.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
