@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The create-benchmark packet keeps unrelated benchmark-family resources in flat `assets/` and `references/` directories",
     "created_at": "2026-07-13T04:08:05.115Z",
-    "last_save_at": "2026-07-20T06:30:47.804Z",
+    "last_save_at": "2026-07-20T09:07:18.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb68b772a5df52fdbce8febebb9db1dcc099b73a4960a2eb3e56724ebeb818f2",
+    "source_fingerprint": "sha256:562e96fb22a74f1256e8406ad07e100794093798fcf02160ff19b522a6695aa5",
     "source_doc_hashes": {
-      "spec.md": "940c310fc70320075e614dc1aede00d2a54af83c72a6c93516960fb764898350",
+      "spec.md": "10878a98d060f171b2b8e14a975bd9e5a0c10412cf11e7a113d7f87b49d19fae",
       "plan.md": "4440210da90a1d3d04baff3e59ddd5a66c29ba4f3f124f38ce4ec86a6b4a9535",
       "tasks.md": "23aaee54196bea46afaa2a152746b83a4c2563b80fbf7b99c1187b2615cc2c95",
       "checklist.md": "6e7536c4f8f7a41914c5f89a9a9ceaffb367b222ea7baede4668b3da5fe339af",
-      "implementation-summary.md": "5d4a6b070e79dbaf817ad31ecbf604a92718c20c39c6c35856b1655bc49e158e"
+      "implementation-summary.md": "785bc790034c7ad1ff4e0602b16b36aa2043fa289d51b0c19bb3f45c88a5ee29"
     },
     "last_active_child_id": null,
     "last_active_at": null

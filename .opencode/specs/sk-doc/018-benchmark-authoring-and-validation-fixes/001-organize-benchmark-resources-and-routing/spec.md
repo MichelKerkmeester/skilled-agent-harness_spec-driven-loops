@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
-    last_updated_at: "2026-07-13T06:05:00Z"
+    last_updated_at: "2026-07-20T09:07:18Z"
     last_updated_by: "claude-code"
     recent_action: "Reorg + reference migration + link repair + family routing vocab complete"
     next_safe_action: "Recursive strict validation and commit"
@@ -41,7 +41,7 @@ _memory:
 | **Created** | 2026-07-13 |
 | **Parent** | `sk-doc/018-benchmark-authoring-and-validation-fixes` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | None |
+| **Predecessor** | `../000-benchmark-authoring-centralization/spec.md` |
 | **Successor** | `../002-complete-benchmark-guides-and-links/spec.md` |
 <!-- /ANCHOR:metadata -->
 
