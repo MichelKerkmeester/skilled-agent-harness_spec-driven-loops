@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "t r p decomposition deep dive",
       "threshold recovery provenance routing",
-      "defaultMode is one corner"
+      "defaultMode is one corner",
+      "t r p decomposition plan",
+      "threshold recovery provenance research plan",
+      "t r p decomposition tasks",
+      "threshold recovery provenance task list"
     ],
     "key_topics": [
       "decomposition",
@@ -26,13 +30,17 @@
       "defaultmode",
       "one",
       "corner",
-      "candidate",
-      "8th"
+      "plan",
+      "research"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -42,53 +50,163 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "siblings",
-        "kind": "key_phrase",
+        "name": "Purpose Prepare",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "NEITHER",
-        "kind": "key_phrase",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "EXECUTIVE SUMMARY",
-        "kind": "heading",
+        "name": "Change Type",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decomposition Deep Dive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hypothesis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dive Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pending Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Candidate 8th idea (from the GLM-5.2 parallel lineage): decompose routing policy into three orthogonal knobs — Threshold (how much evidence to commit), Recovery (what happens after an uncertain/wrong pick), Provenance (where the vocab-to-mode evidence comes from). defaultMode is one corner (T low, R none, P static) of this space; the field conflates T and R and cannot express low-threshold + high-recovery. A hub's policy becomes a (T,R,P) triple plus a vocabulary table. This packet is the dive-ready scaffold; the presentation is authored, the 5-iteration SOL xhigh-fast dive is NOT yet run.",
+    "causal_summary": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
     "created_at": "2026-07-18T10:05:19.988Z",
-    "last_save_at": "2026-07-18T14:47:41.238Z",
+    "last_save_at": "2026-07-20T14:46:15.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e43564f066049dd089132fd918895e4c1ac6bf722faefbfc6865ac5db529a14",
+    "source_fingerprint": "sha256:a038ad4b5ca380ef35c923c3a7582ab43fc235c0478edbbaf70b2f865c94a4e3",
     "source_doc_hashes": {
-      "spec.md": "b195e30c24d8987d1d5eeda1dec44535babccb90be73356a4ebbdca1d812eba2"
+      "spec.md": "33d59a853f798675bdf7261d2b337d8568eb8be40cef50d70adf08db73a69302",
+      "plan.md": "919d1b56a3c6bcbe0722eba45fd8dacdef8aee30406e391a575ab2c5a30d09fc",
+      "tasks.md": "2ba67ebcb82c8b607ef4980d99ef6f650c538c9f5ad99c25fe7292258dcd5fa1",
+      "checklist.md": "7cb7cd2483a4c4ed32950a1bef6eed22f79a045a25bd2c3434275b286f88d038",
+      "implementation-summary.md": "7baa07e2f03995cb88fd5e0a118a596695884097575c3a6f174746ea050286b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

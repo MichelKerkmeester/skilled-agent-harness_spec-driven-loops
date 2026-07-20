@@ -8,45 +8,160 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "research"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: templates/spec.md -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Deep-Dive: Replayable Correction Overlay
 
-## EXECUTIVE SUMMARY
+---
 
-Iteration 2 of `sol-oob` found the repository already contains most of a two-plane learning split (frozen live weights + opt-in shadow deltas + a bounded calibration reducer that requires held-out validation). The missing piece is an **immutable `(basePolicyHash, overlayHash)` identity** that turns a learned candidate into a replayable snapshot instead of mutable runtime state. This lineage designs that overlay end to end.
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-## 3. RESEARCH CONTEXT
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | Important |
+| **Status** | Research complete; overlay implementation and empirical efficacy remain unproven |
+| **Created** | 2026-07-18 |
+| **Packet** | `002-replayable-correction-overlay` |
+<!-- /ANCHOR:metadata -->
 
-Seed evidence (do NOT re-derive): `../../002-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-002.md` and lineage `research.md` §7 (two-plane learning), §11(6). The key constraint: correction telemetry is deliberately prompt-free, so it can support aggregate calibration but not per-prompt gold reconstruction.
+---
 
-<!-- BEGIN GENERATED: deep-research/spec-findings -->
-The five-iteration research run selected immutable policy semantics plus mutable selection. Content-addressed base, candidate, and promoted cores bind the complete effective policy, compatibility contracts, evidence identities, and approval decision; a separate compare-and-swap pointer selects one `(basePolicyDigest, overlayHash | null, generation)` tuple. Each advisor request pins and verifies that tuple before extraction or scoring, while shadow candidates remain evidence-only and cannot alter active routing.
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-Decision replay starts from a packet-safe normalized pre-fusion feature artifact. End-to-end extraction replay uses a separate consented, privacy-reviewed fixture corpus, and prompt-free operational outcomes remain aggregate calibration evidence rather than fixtures or gold. Route-gold replays immutable tuples and scripted degradation states without a live advisor. Document-only routing remains useful through a complete resolved policy card, but every result is explicitly `DOCUMENT_ONLY_UNATTESTED` because documents cannot prove activation, extraction identity, signatures, private gold, or empirical gain.
+### Problem Statement
 
-Promotion requires independently qualified shadow windows, byte-identical paired replay, private held-out and protected-slice validation, privacy validity, role-separated approval, and mechanical activation. Rollback selects retained compatible truth through the same compare-and-swap protocol. Missing evidence, contract mismatch, privacy invalidation, sparse or concentrated samples, nondeterminism, and protected regressions fail closed or defer visibly. The architecture is ready for an implementation specification, but the overlay store, schemas, verifier, fixtures, privacy ledger, monitor, and empirical efficacy evidence do not yet exist. See `research/research.md` for the canonical synthesis and `research/resource-map.md` for evidence coverage.
-<!-- END GENERATED: deep-research/spec-findings -->
+Routing cannot safely learn by mutating serving rules online because mutable policy destroys deterministic replay. Existing correction telemetry is deliberately prompt-free, so it can support aggregate calibration but cannot become per-prompt route gold or reconstruct the original request.
 
-### Idea-specific agenda (deepen, do not survey)
-1. **Overlay schema.** Define the content-addressed overlay: `schemaVersion`, `basePolicyHash`, `parentOverlayHash`, calibrator version, bounded weight/threshold deltas, training-window digest, held-out-fixture digest, promotion evidence.
-2. **Decision-replay vs feature-extraction-replay.** Specify what must be persisted (normalized/packet-safe feature vector + two policy hashes + feature-schema version) to reproduce a selection without raw prompts, and why end-to-end replay needs a separate curated fixture.
-3. **Promotion + rollback governance.** Shadow comparison → held-out validation → explicit promotion gate → new overlay version; rollback = select a prior overlay hash; base-hash/schema mismatch = visible abstention.
-4. **Curated fixture corpus.** What an opt-in, privacy-reviewed routing fixture must contain to validate an overlay (since operational telemetry cannot supply it).
-5. **Bounds + guardrails.** Delta caps, low-sample/concentrated-sample exclusion, no online self-promotion, drift-guard integration.
+### Purpose
 
-### MANDATORY cross-cutting evaluation (every iteration MUST address all three)
+Define an end-to-end two-plane design in which immutable base and overlay artifacts are selected by a separately governed pointer, every decision binds its effective policy identity, and candidate learning remains shadow-only until explicit promotion gates pass.
 
-Beyond the idea-specific agenda, each iteration must explicitly evaluate this idea along three separated dimensions:
+### Research Outcome
 
-1. **System skill advisor integration** — how the idea interacts with, depends on, or changes the Layer-0 advisor (`system-skill-advisor`): its recommendation, scoring/fusion, mode projections, and calibration/telemetry. State what the advisor must expose or consume for the idea to work, and what degrades if the advisor is absent or stale.
-2. **Benchmark integration** — how the idea interacts with the deterministic route-gold / skill-benchmark machinery: replay determinism, typed gold, the offline oracle, and drift guards. State the new fixtures or scorer contracts it needs and whether it preserves byte-identical deterministic replay.
-3. **Standalone effectiveness on documents alone** — how effective the idea is with NEITHER the advisor NOR the benchmark present: purely an AI reading the `SKILL.md` + skill docs (the INTENT_SIGNALS / RESOURCE_MAP prose, hub/mode docs) and routing by hand. Does the idea still help, degrade gracefully, or become inert at the pure-document level? This is the primary lens the operator flagged — do not skip it.
+The five-iteration run selected immutable policy semantics plus mutable selection. Content-addressed base, candidate, and promoted artifacts bind policy and evidence identities; a compare-and-swap pointer selects one `(basePolicyDigest, overlayHash | null, generation)` tuple. Decision replay starts from a packet-safe normalized pre-fusion feature artifact, while end-to-end extraction replay requires a separate consented, privacy-reviewed fixture corpus. The retained `presentation.md` records the full synthesis and explicitly states that no overlay store, verifier, fixtures, privacy ledger, monitor, or empirical gain has been built or proven.
+<!-- /ANCHOR:problem -->
 
-### Deliverable
-Per-iteration narrative in `research/`; findings feed this packet's `presentation.md` and the parent's combined synthesis.
+---
 
-## 4. SCOPE
-- In: 5-iteration SOL xhigh-fast research on the overlay schema, replay split, governance, fixtures, and guardrails.
-- Out: implementation; editing the shared scorer/telemetry; re-deriving the shipped `defaultMode` answer.
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Five-iteration research on overlay schemas, replay boundaries, promotion and rollback governance, curated fixtures, and guardrails.
+- Explicit evaluation of advisor integration, deterministic benchmark replay, and document-only effectiveness.
+- A retained operator-facing synthesis in `presentation.md`.
+
+### Out of Scope
+
+- Implementing the overlay store, schemas, verifier, fixtures, privacy ledger, monitor, or promotion system.
+- Editing the shared scorer or telemetry implementation.
+- Claiming any measured routing improvement or live promotion.
+
+### Packet Artifacts
+
+| File | Role |
+|------|------|
+| `spec.md` | Research charter, boundaries, and conclusions |
+| `presentation.md` | Retained five-iteration synthesis |
+| `plan.md`, `tasks.md`, `checklist.md` | Canonical planning and evidence surfaces |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Research Contract
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Define immutable base, candidate, promoted-overlay, and activation identities. | `presentation.md` describes three hashed artifacts and one generation-bearing compare-and-swap pointer. |
+| REQ-002 | Separate decision replay from feature-extraction replay. | The synthesis names the normalized decision-feature core and the separate consented prompt fixture lane. |
+| REQ-003 | Define fail-closed promotion and rollback governance. | The synthesis records conjunctive replay, held-out, privacy, approval, activation, monitoring, and retained-tuple rollback gates. |
+| REQ-004 | Preserve prompt-free correction privacy. | Operational corrections join through opaque decision identity and are not repurposed as prompt fixtures or gold. |
+
+### P1 - Cross-Cutting Evaluation
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Evaluate system-skill-advisor integration. | `presentation.md` defines tuple pinning, shadow isolation, cache identity, and revocation checks. |
+| REQ-006 | Evaluate benchmark integration. | `presentation.md` defines deterministic immutable replay without a live advisor. |
+| REQ-007 | Evaluate standalone document-only routing. | `presentation.md` defines a resolved policy card and the `DOCUMENT_ONLY_UNATTESTED` boundary. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- The synthesis defines immutable artifact and activation-pointer boundaries without online policy mutation.
+- Decision replay, extraction replay, correction telemetry, and document-only replay remain distinct evidence surfaces.
+- Promotion and rollback are explicit, role-separated, and fail closed on missing or invalid evidence.
+- The packet makes no implementation, production-data, live-promotion, or efficacy claim.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Curated consented fixture corpus | Prompt-free telemetry cannot validate extraction or become route gold | Keep extraction replay separate and block promotion without private held-out evidence |
+| Risk | Mutable or mixed policy generations | Replay ceases to reproduce the served decision | Pin one verified tuple per request and fail on mixed identities |
+| Risk | Sparse or concentrated corrections | Candidate overlays can overfit or amplify a small sample | Apply versioned sample, concentration, delta, and protected-slice gates |
+| Risk | Documents imply activation or gain | Operators could mistake inspectability for attestation | Stamp document-only results unattested and state that empirical gain is unproven |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+- **Determinism**: repeated replay of one immutable policy tuple and fixture must produce byte-identical decision bodies.
+- **Privacy**: prompt-free correction records must not become reconstructable prompts, fixtures, or public gold.
+- **Governance**: proposer, approver, and activator roles remain separated; aggregate gain cannot override a blocking safety or parity gate.
+- **Reversibility**: rollback selects a retained compatible tuple through the same compare-and-swap protocol.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+- Base-hash, overlay-hash, schema, generation, or privacy mismatch must fail closed or visibly defer.
+- Revocation is the only allowed interruption after a request pins its tuple; the overlay result is discarded and verified base-only behavior resumes.
+- Sparse, concentrated, nondeterministic, or protected-slice-regressing candidates cannot promote.
+- Documents can reproduce a declared procedure but cannot attest activation, signatures, private gold, or real-world gain.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+The packet retains its declared Level 2 classification because it separates multiple replay and governance surfaces and requires explicit verification boundaries. No numeric score is reconstructed from the retained artifacts.
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- Who owns production promotion, rollback, retention, and privacy revocation?
+- What curated fixture corpus and protected slices are sufficient for promotion evidence?
+- Which versioned sample, concentration, gain, and delta thresholds should govern a real deployment?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Five-iteration synthesis**: `presentation.md`
+- **Parent phase map**: `../spec.md`
+- **Source lineage**: `../../002-default-mode-policy-research/research/lineages/sol-oob/`

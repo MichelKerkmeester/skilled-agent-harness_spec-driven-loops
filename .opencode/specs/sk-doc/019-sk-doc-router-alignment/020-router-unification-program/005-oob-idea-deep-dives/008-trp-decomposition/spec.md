@@ -8,37 +8,168 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "research"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
-
 # Deep-Dive: The (T, R, P) Decomposition
 
-## EXECUTIVE SUMMARY
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: templates/spec.md -->
 
-The seven SOL ideas type the routing *decision*; this GLM-originated candidate types the *policy knob-space*. Its claim: routing has three orthogonal knobs — Threshold, Recovery, Provenance — and `defaultMode` is one corner `(T low, R none, P static)` that silently sets T and R together. A hub's policy becomes a `(T, R, P)` triple plus a vocabulary table. This is the dive-ready scaffold: presentation authored, 5-iteration SOL xhigh-fast dive NOT yet run. Provenance: single GLM-5.2 lineage, no live-router execution — validate before adopting.
+---
 
-## 3. RESEARCH CONTEXT
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-Seed evidence (do NOT re-derive): `../../GLM-cross-lineage-notes.md` and the GLM lineage synthesis `../../004-oob-glm-parallel-research/research/lineages/glm-oob/research.md` (§4 Iteration 4 (T,R,P); §5 Iteration 5 minimal router + contrarian claim). Two sourced, model-independent facts: signal `weight` is uniform `4` fleet-wide (learn the vocab→mode table, not weights); `_apply_deep_skill_routing_layer` is the one shipped advisor-side mode pre-resolution precedent.
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Dive-ready scaffold; five-iteration deep dive not yet run |
+| **Created** | 2026-07-18 |
+| **Branch** | `0069-skilled-router-refactor-impl` |
+<!-- /ANCHOR:metadata -->
 
-### Idea-specific agenda (deepen, do not survey)
-1. **Formalize the three axes.** Exact value enums for T (`low`/`calibrated`/`defer-below-threshold`), R (`none`/`handoff`/`card`/`orderedBundle`), P (`static`/`prior`/`offline-learned`); the per-field mapping from today's `routerPolicy`.
-2. **Conflation inventory.** Per hub, prove which current field (`defaultMode`, `ambiguityDelta`, `bundleRules`, `defaultResource`, `tieBreak`) encodes which axis and where axes collide.
-3. **Minimal-router shape.** A `(T, R, P) + vocabulary` schema; what it deletes/relocates; migration ambiguity (`defaultMode: X` between `(T low, R none)` and `(T low, R handoff)`).
-4. **Wider falsification.** Does the decomposition survive named-default, bundle, transport, and same-packet-mode hubs?
-5. **Composition with siblings.** How R=handoff (Idea 4) feeds P=learned (Idea 2); how T=calibrated is Idea 5; how the triple relates to Idea 6's typed decision.
+---
 
-### MANDATORY cross-cutting evaluation (every iteration MUST address all three)
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-Beyond the idea-specific agenda, each iteration must explicitly evaluate this idea along three separated dimensions:
+### Problem Statement
 
-1. **System skill advisor integration** — how the idea interacts with, depends on, or changes the Layer-0 advisor (`system-skill-advisor`): does Layer 0 carry the `(T,R,P)` triple; what it must expose/consume; what degrades if the advisor is absent or stale.
-2. **Benchmark integration** — how the idea interacts with the deterministic route-gold / skill-benchmark machinery: can route-gold assert a valid `(T,R,P)` triple per hub; new fixtures/contracts; byte-identical deterministic replay preserved?
-3. **Standalone effectiveness on documents alone** — how effective with NEITHER advisor NOR benchmark: can an AI route purely off the `(T,R,P)` triple + vocabulary table in the docs, no scoring? Does it help, degrade gracefully, or become inert at the pure-document level?
+The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick. Other policy fields may also mix threshold, recovery, and provenance, preventing a hub from expressing combinations such as low threshold with strong recovery.
 
-### Deliverable
-Per-iteration narrative in `research/`; findings feed this packet's `presentation.md` and the parent's synthesis.
+### Purpose
 
-## 4. SCOPE
-- In: 5-iteration SOL xhigh-fast research on the three-axis formalization, conflation inventory, minimal-router shape, wider falsification, and sibling composition.
-- Out: implementation; changing live routing config or the scorer; re-deriving the shipped `defaultMode` answer.
+Prepare a five-iteration investigation of whether routing policy can be represented as independent Threshold, Recovery, and Provenance axes plus a vocabulary table, while keeping the single-GLM origin and unvalidated status explicit.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Formalize candidate values for Threshold, Recovery, and Provenance.
+- Inventory how `defaultMode`, `ambiguityDelta`, `bundleRules`, `defaultResource`, and `tieBreak` map to or conflate those axes.
+- Test a `(T, R, P) + vocabulary` schema against named-default, bundle, transport, and same-packet-mode hubs.
+- Examine composition with calibrated thresholds, handoff recovery, offline learning, and typed route decisions.
+- Evaluate advisor, deterministic benchmark, and document-only behavior in every future iteration.
+
+### Out of Scope
+
+- Claiming that the candidate has passed its five-iteration deep dive.
+- Runtime implementation or changes to live routing configuration or the scorer.
+- Automatic migration from `defaultMode` where the intended recovery policy is ambiguous.
+- Re-deriving the shipped `defaultMode` answer.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `spec.md` | Modify | Conform the dive-ready specification to the Level 2 structure |
+| `plan.md` | Create | Record the proposed research approach |
+| `tasks.md` | Create | Track pending deep-dive and verification work |
+| `checklist.md` | Create | Record pending verification without invented evidence |
+| `implementation-summary.md` | Create | State that only the scaffold and presentation exist |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve the candidate's unvalidated provenance. | Every synthesis states that the idea comes from one GLM-5.2 lineage and has not completed the proposed five-iteration dive. |
+| REQ-002 | Keep the three axes independently defined. | Threshold, Recovery, and Provenance each answer one distinct policy question with explicit candidate values. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-003 | Produce a per-hub conflation inventory. | Each relevant current policy field is mapped to one or more axes with collisions made explicit. |
+| REQ-004 | Falsify the decomposition across dissimilar hub archetypes. | Named-default, bundle, transport, and same-packet-mode cases are tested and counterexamples recorded. |
+| REQ-005 | Evaluate the three operating dimensions. | Advisor, deterministic benchmark, and document-only behavior are addressed separately in every iteration. |
+| REQ-006 | Define composition with sibling ideas. | The relationship to calibrated threshold, handoff recovery, offline-learned provenance, and typed decisions is explicit. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The three axes have non-overlapping definitions and falsifiable value sets.
+- **SC-002**: Every current routing-policy field can be mapped, split, retained, or rejected with a documented reason.
+- **SC-003**: Cross-archetype falsification either preserves the decomposition or identifies the missing axis.
+- **SC-004**: No implementation or adoption recommendation is made before the proposed dive is complete.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | GLM cross-lineage notes and synthesis | The candidate loses its actual provenance and seed claims | Keep the source lineage explicit and do not re-label it as SOL evidence |
+| Dependency | Per-hub policy inventory | The decomposition cannot be falsified against real archetypes | Build the inventory before drawing a final schema conclusion |
+| Risk | Orthogonality is assumed rather than demonstrated | A fourth axis or coupled constraint may be missed | Force counterexamples and record any field that cannot map cleanly |
+| Risk | Presentation prose is mistaken for completed research | An unvalidated candidate may be adopted prematurely | Repeat the not-yet-run status in metadata, plan, tasks, and current-state summary |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Determinism
+- **NFR-D01**: Any benchmark representation of the triple and vocabulary table must replay byte-identically under pinned inputs.
+
+### Traceability
+- **NFR-T01**: Every proposed enum, mapping, and conclusion must identify whether it comes from seed evidence or the future deep dive.
+
+### Degradation
+- **NFR-G01**: Without advisor or benchmark support, the document-only path must remain understandable without claiming measured routing quality.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Axis Mapping
+- A field that controls both commitment and recovery must be split or explicitly recorded as a counterexample.
+- `defaultMode: X` cannot be mechanically classified as no recovery or handoff recovery without additional evidence.
+
+### Archetypes
+- Ordered bundles may require recovery semantics that do not fit a single enum value.
+- Same-packet public modes and transport hubs may expose provenance or authority constraints outside the proposed triple.
+
+### Evidence State
+- Existing presentation content is a candidate framing, not evidence that the five-iteration falsification passed.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 14/25 | Three policy axes, vocabulary, current-field mapping, and four archetypes |
+| Risk | 11/25 | Premature adoption could oversimplify authority and bundle behavior |
+| Research | 19/20 | The five-iteration dive and wider falsification remain outstanding |
+| **Total** | **44/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- Are Threshold, Recovery, and Provenance genuinely orthogonal across all hub archetypes?
+- Does authority require a fourth axis, or is it a separate constraint on every point in the space?
+- Can bundle recovery be represented by one value without losing target roles and order?
+- Which current fields survive the decomposition rather than moving into the vocabulary table?
+<!-- /ANCHOR:questions -->

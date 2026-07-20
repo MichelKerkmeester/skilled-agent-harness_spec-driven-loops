@@ -26,19 +26,47 @@
       "protocol",
       "acceptance",
       "completion",
-      "five-iteration",
-      "sol"
+      "one-shot",
+      "recovery"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -54,41 +82,127 @@
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement One",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Purpose Define",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "RFC",
-        "kind": "key_phrase",
+        "name": "Research Outcome The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "changed",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Door Bounded Handoff Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Only",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on a no-wrong-door routing protocol where any mode can accept intake and offer a typed transfer through a bounded INTAKE→OFFERED→ACCEPTED→ACTIVE state machine, where acceptance transfers execution ownership but is distinct from completion, authority stays destination-local via a short-lived scoped lease, and cost is bounded by an idempotent transfer id, visited-mode set, hop budget, deadline, and at most one clarification turn — used only on the ambiguous path, never replacing confident one-shot routes.",
+    "causal_summary": "One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode",
     "created_at": "2026-07-18T04:39:05.270Z",
-    "last_save_at": "2026-07-18T14:47:42.617Z",
+    "last_save_at": "2026-07-20T15:00:24.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a27eaf16902aa1a53c9a67ebb531a64f0a3785d06e5448d1679629cb29822d22",
+    "source_fingerprint": "sha256:6bf95cf3ffee92c1c6700f24b9f9f865f69da4a29a19877023ab7a27492a7698",
     "source_doc_hashes": {
-      "spec.md": "cb42f25492e64a5cacf5d6707267206013c5617616782836b20f453dc8c15415"
+      "spec.md": "245fb9ea5cbf6398f199f4ec978c24f71ae58450fccdf0f99cce6e7e3d2429be",
+      "plan.md": "c73269c8cbca47cba1b240b55e4b2a7a72a189be3771d725ef316edf2554cea9",
+      "tasks.md": "8daf994b713c1e4f31c858b84355f76b5d183f0706f1c7239b11d74a6e8e8c28",
+      "checklist.md": "a173f3d40e3bb8c1cf9a9479dfe300a1f11a04d6b5e17f30c255c958663d858f",
+      "implementation-summary.md": "5ce96bf292eb2f20eca3b1b50318255990260b535e3c3d0fb7b09d428649bc6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

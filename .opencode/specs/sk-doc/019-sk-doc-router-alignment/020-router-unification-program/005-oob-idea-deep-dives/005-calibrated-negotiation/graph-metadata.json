@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "calibrated routing negotiation deep dive",
       "selective classification routing",
-      "rank score vs estimated error"
+      "rank score vs estimated error",
+      "calibrated negotiation plan",
+      "selective routing research plan",
+      "calibrated negotiation tasks",
+      "selective routing task list"
     ],
     "key_topics": [
       "calibrated",
@@ -27,18 +31,46 @@
       "score",
       "estimated",
       "error",
-      "five-iteration"
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -60,35 +92,121 @@
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Purpose Define",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "NEITHER",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Turn Routing Negotiation Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Preserve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Supporting Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pending Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on modeling the zero-signal branch as a calibrated one-turn negotiation: always expose rankScore and scoreMargin, expose estimatedError only when a versioned held-out corpus validates calibration, frame the whole thing as selective classification (auto-route under a validated risk budget, else one typed clarification, else defer/reject), and enforce a measurable friction budget (one turn, at most three candidates plus none_of_these, at most two attempts, a 256-token card) whose thresholds are promotable only from held-out risk/coverage",
+    "causal_summary": "The advisor's `confidence` is a bounded ranking heuristic, not a probability of correctness",
     "created_at": "2026-07-18T04:39:05.409Z",
-    "last_save_at": "2026-07-18T14:47:42.276Z",
+    "last_save_at": "2026-07-20T14:46:15.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:492fac0f6324c5ea1c30e320aa8b60df672b2151f26c95c1378040272bef1aba",
+    "source_fingerprint": "sha256:44ab306883b1a0aa275283dea1131f1bd6e7fc105970ca4e51ee6669fac6faaf",
     "source_doc_hashes": {
-      "spec.md": "b4282218c4e27bf48f28fdccee2a4e466d20807e83c46f2e929e0e20dda7e4ce"
+      "spec.md": "a6e9d026f70e79451355a9095660ab30dd0c14b999da6c42b64c3de0ae11e19c",
+      "plan.md": "e71fc19620968ede94f2f471afca956212bd1f2923668b09b1d79c7bed81c770",
+      "tasks.md": "5ec161a1eb966cd3fa5f91eb7723717733fc840cc395e06cff39772ff0810bff",
+      "checklist.md": "0e9214994bfdb69160de4756a0d065ccdbd35ed96d8b45519c06d95968181aa0",
+      "implementation-summary.md": "af4f6c3b92530f70a5a35b2317150dc6c4fb4acd2597a542cd3e8b668222a537"
     },
     "last_active_child_id": null,
     "last_active_at": null

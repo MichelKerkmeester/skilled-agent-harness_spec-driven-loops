@@ -8,37 +8,165 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "research"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
-
 # Deep-Dive: Minimal Typed Router Contract
 
-## EXECUTIVE SUMMARY
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: templates/spec.md -->
 
-Iteration 6 of `sol-oob` identified the deeper smell behind `defaultMode`: premature, unobservable commitment, where "no evidence," "a policy prior," and "execute this child" collapse into one field. The fix is a typed decision boundary before a confidence number: `RouteRequest facts + CompiledPolicy + RouteDecision` with `outcome ∈ single|orderedBundle|surfaceBundle|clarify|defer|reject`. It was falsified against two dissimilar hubs. This lineage finalizes the contract and widens the falsification.
+---
 
-## 3. RESEARCH CONTEXT
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-Seed evidence (do NOT re-derive): `../../002-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-006.md` (includes the information-preservation test + the concrete minimal contract) and lineage `research.md` §4.1, §11(2). Falsified so far against `sk-code` (workflow+surface bundler) and `system-deep-loop` (same-packet public modes).
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Research synthesized; implementation is out of scope |
+| **Created** | 2026-07-18 |
+| **Branch** | `0069-skilled-router-refactor-impl` |
+<!-- /ANCHOR:metadata -->
 
-### Idea-specific agenda (deepen, do not survey)
-1. **Contract schema.** Finalize `RouteRequest` (explicit hint + typed facts), `CompiledPolicy` (policyHash, factSchemaHash, modes, detectors, bundleConstraints), and `RouteDecision` (outcome, ordered targets+roles, evidence, alternatives, replay hashes).
-2. **Collapse mechanics.** `INTENT_SIGNALS` → compiled evidence-producing detectors; `RESOURCE_MAP` → registry + leaf-manifest selectors; policy-pinned `modeId` derives packet/backend/authority/default resources.
-3. **Wider falsification.** Test the contract against additional archetypes beyond the first two — named-default, contextual-default, transport, and complex leaf-resource hubs — and record any field that must be added.
-4. **Irreducible detection boundary.** Prove which lexical/command/surface detection cannot be deleted (only compiled), and where capability solving legitimately begins.
-5. **Machine-checkability.** Toward a schema that route-gold can assert, with every omitted static field recoverable from the policy hash.
+---
 
-### MANDATORY cross-cutting evaluation (every iteration MUST address all three)
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-Beyond the idea-specific agenda, each iteration must explicitly evaluate this idea along three separated dimensions:
+### Problem Statement
 
-1. **System skill advisor integration** — how the idea interacts with, depends on, or changes the Layer-0 advisor (`system-skill-advisor`): its recommendation, scoring/fusion, mode projections, and calibration/telemetry. State what the advisor must expose or consume for the idea to work, and what degrades if the advisor is absent or stale.
-2. **Benchmark integration** — how the idea interacts with the deterministic route-gold / skill-benchmark machinery: replay determinism, typed gold, the offline oracle, and drift guards. State the new fixtures or scorer contracts it needs and whether it preserves byte-identical deterministic replay.
-3. **Standalone effectiveness on documents alone** — how effective the idea is with NEITHER the advisor NOR the benchmark present: purely an AI reading the `SKILL.md` + skill docs (the INTENT_SIGNALS / RESOURCE_MAP prose, hub/mode docs) and routing by hand. Does the idea still help, degrade gracefully, or become inert at the pure-document level? This is the primary lens the operator flagged — do not skip it.
+`defaultMode` conflates missing evidence, a policy prior, and authority to execute. Routing information is also split across parallel intent and resource maps, leaving no single typed result that preserves ordered bundle roles, same-packet public modes, evidence, and replay identity.
 
-### Deliverable
-Per-iteration narrative in `research/`; findings feed this packet's `presentation.md` and the parent's combined synthesis.
+### Purpose
 
-## 4. SCOPE
-- In: 5-iteration SOL xhigh-fast research on the contract schema, collapse mechanics, wider falsification, detection boundary, and machine-checkability.
-- Out: implementation; re-deriving the shipped `defaultMode` answer (this idea explains *why* the field is a smell; it does not re-litigate the flips).
+Define the smallest information-preserving boundary as immutable `RouteRequestV1` facts, a content-addressed `CompiledPolicyV1`, and a typed `RouteDecisionV1` whose outcome is `single`, `orderedBundle`, `surfaceBundle`, `clarify`, `defer`, or `reject`.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Finalize the request, compiled-policy, and decision schemas described in `presentation.md`.
+- Collapse intent signals and resource maps into one compiled detector, mode-rule, leaf-selector, and bundle-rule graph.
+- Preserve explicit commands, ordered target roles, same-packet modes, alternatives, evidence pointers, and replay hashes.
+- Falsify the contract against named-default, executor, transport, bundle, and large leaf-inventory archetypes.
+- Separate advisor, deterministic benchmark, and document-only behavior.
+
+### Out of Scope
+
+- Runtime implementation or migration of every hub.
+- Re-deriving the shipped `defaultMode` answer.
+- Treating a document-derived proposal as replay-verifiable without compiled bytes and a matching policy hash.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `spec.md` | Modify | Conform the research specification to the Level 2 structure |
+| `plan.md` | Create | Record the research-document delivery approach |
+| `tasks.md` | Create | Track synthesis and verification work |
+| `checklist.md` | Create | Record pending verification without invented evidence |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Keep explicit mode intent separate from inferred facts. | Commands retain precedence and cannot be reduced to another weighted lexical fact. |
+| REQ-002 | Keep positive and negative outcomes structurally distinct. | Route outcomes contain at least one ordered target; clarify, defer, and reject contain no targets and include a typed control reason. |
+| REQ-003 | Make compilation total and fail-closed. | Unbound facts, unreachable modes, orphan selectors, invalid ownership, or invalid order publish no partial policy. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-004 | Preserve all current routing information while removing duplicate maps. | Detectors, mode rules, selectors, bundle rules, authority references, and source digests remain recoverable from the compiled policy. |
+| REQ-005 | Bind decisions to replay identity. | Each decision identifies the policy, fact schema, normalized facts, ordered targets, roles, evidence, and alternatives needed for exact replay. |
+| REQ-006 | Bound the document-only path honestly. | Documents may produce a transparent proposal but cannot claim a replay-verifiable decision without compiled artifacts. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: No public field can be removed without losing a demonstrated routing distinction.
+- **SC-002**: One compiled policy graph replaces parallel intent and resource maps without deleting the evidence-producing detection boundary.
+- **SC-003**: Exact route-gold can assert request and decision bytes, including target order and roles.
+- **SC-004**: Defaults act only as bounded priors over already eligible candidates, never as hidden selection authority.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Canonical policy compiler | No content-addressed policy or fail-closed publication | Validate totality, containment, ownership, order, and source digests before publish |
+| Dependency | Frozen detector fixtures and typed route gold | Exact replay cannot be established | Pin detector inputs and compare complete request and decision objects |
+| Risk | Contract is reduced too far | Bundle roles, same-packet modes, or control outcomes disappear | Retain every field that survived cross-archetype falsification |
+| Risk | Document-only output is over-trusted | A proposal may be mistaken for machine authority | Label it document-derived and require destination revalidation |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Determinism
+- **NFR-D01**: A pinned compiled policy and detector fixture must produce byte-identical request and decision objects.
+
+### Integrity
+- **NFR-I01**: Static packet, backend, authority, and resource data must derive from `modeId` plus the authenticated policy hash rather than copied decision fields.
+
+### Degradation
+- **NFR-G01**: A stale advisor projection or missing compiled policy must defer to the documented fallback rather than silently selecting a mode.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Outcome Shape
+- Empty targets are valid only for `clarify`, `defer`, and `reject`, each with a typed reason.
+- Ordered and surface bundles must preserve target role and order; a set is insufficient.
+
+### Policy State
+- A stale advisor policy hash discards advisor evidence rather than mutating local eligibility.
+- A compiler error publishes nothing; the previous authenticated policy or fallback remains authoritative.
+
+### Document-Only State
+- An AI may explain a proposed route from the policy card but cannot synthesize a policy hash or replay proof from prose.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 15/25 | Three public objects plus one compiled graph spanning five archetypes |
+| Risk | 14/25 | Contract loss or hidden commitment would affect every hub migration |
+| Research | 18/20 | Five-iteration synthesis and wider falsification are documented |
+| **Total** | **47/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- What exact schema language and versioning policy should define the three public objects?
+- Which compatibility views must remain during migration, and when may they be removed?
+- What runtime component should authenticate and load the compiled policy before evaluation?
+<!-- /ANCHOR:questions -->

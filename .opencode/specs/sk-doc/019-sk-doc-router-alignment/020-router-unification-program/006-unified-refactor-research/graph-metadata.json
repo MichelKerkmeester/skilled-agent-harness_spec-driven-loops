@@ -13,7 +13,12 @@
     "trigger_phrases": [
       "unified router refactor research",
       "fuse eight routing ideas into one",
-      "parent hub and singular skill routing contract"
+      "parent hub and singular skill routing contract",
+      "unified router research plan",
+      "router synthesis plan",
+      "singular skill degeneracy research",
+      "unified router research tasks",
+      "router synthesis task record"
     ],
     "key_topics": [
       "unified",
@@ -30,15 +35,64 @@
       "singular"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "ai-council/ai-council-strategy.md",
+      "ai-council/council-report.md",
+      "ai-council/deliberations/round-001.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-strategy.md",
+        "kind": "doc",
+        "path": "ai-council/ai-council-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "round-001.md",
+        "kind": "doc",
+        "path": "ai-council/deliberations/round-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -54,41 +108,109 @@
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "modes AND",
-        "kind": "key_phrase",
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "near-zero",
-        "kind": "key_phrase",
+        "name": "Research Context Source",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a PREPARE",
-        "kind": "key_phrase",
+        "name": "Specific Agenda",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "20-iteration, 3-model, non-converge deep-research lineage (10 GPT-5.6-SOL xhigh + 5 Terra xhigh + 5 Luna max, all fast, concurrency >=3) designing ONE coherent router refactor that takes the best of all eight routing ideas (compiled policy, correction overlay, typed no-destination, no-wrong-door handoff, calibrated negotiation, minimal typed contract, proof-carrying commit, and the T-R-P decomposition) and makes them work together perfectly — optimized for BOTH parent skills with modes AND simple singular skills like mcp-code-mode, where a singular skill must be the degenerate N=1 case of the",
+    "causal_summary": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority, and migration",
     "created_at": "2026-07-18T10:28:55.781Z",
-    "last_save_at": "2026-07-18T14:47:44.562Z",
+    "last_save_at": "2026-07-20T14:41:03.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d83ba5afbe7cd96ed59cd50d3688deb3b62d55261de3a294813e089dad07a40f",
+    "source_fingerprint": "sha256:3e0ac57b6421b8bbd1af7bfad98c36000c0229db38f8d0b7702b00cded9321c3",
     "source_doc_hashes": {
-      "spec.md": "3f9ab3b8f60a80a5ada8109a787d36b2410f12219da51b120d74a9a674fb7ca0"
+      "spec.md": "e1702ca66b624258ce00c9bdb6eef157042ac51726531ab830cd7f44764c541d",
+      "plan.md": "70775f8f561ac04ad44a31301e3a4108483aab055b480a69a625e87bad6992e0",
+      "tasks.md": "cc128624ef9812192b8462ce7a2f375a981e5c5f6bbf2f148aff77e23db52ef3",
+      "checklist.md": "ac8954fe053094092f20bead32bd8f20b1e782d3716245c6f55e30ab1dbc9143",
+      "implementation-summary.md": "9702e2e49bf1d115f8aaf11bf1ca2dc6d2c349d8c06cb075718f993ba796cf6d"
     },
     "last_active_child_id": null,
     "last_active_at": null
