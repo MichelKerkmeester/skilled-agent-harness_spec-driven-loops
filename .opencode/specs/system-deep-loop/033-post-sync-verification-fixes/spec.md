@@ -93,6 +93,19 @@ Same theme — a real defect surfaced by verification. While verifying an unrela
 | `.opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs` | Create | Deterministic stdin→append helper: reads one record, validates it as JSON, appends a single line — no patch anchoring |
 | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Modify | Convert the three post-iteration `append_jsonl` steps (the iteration-error record and the claim-adjudication pass/fail events) to heredoc `command:` calls of the helper |
 
+### Amendment (2026-07-20b): deep-review reducer strategy-heading robustness
+
+Same theme again. Re-running `/deep:review` to confirm the router hardening, the loop advanced past the state-append crash (above) and then halted in the reducer: `reduce-state.cjs` refused to rewrite the strategy file with `Missing insertion heading "11. RULED OUT DIRECTIONS"`. Root cause: the strategy file is agent-authored and had arrived in an un-numbered heading dialect (`## Ruled Out Directions`), but the reducer's one non-anchor section upsert required the exact numbered heading and hard-threw — even though every machine-owned anchor section beside it self-heals under `--create-missing-anchors`. The reducer's own manual-testing-playbook documents that flag as the "allow the reducer to proceed" bootstrap, but the loop never passed it and the upsert was not wired into that bootstrap.
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Modify | Make `upsertHeadingSectionBefore` match a heading in either the numbered or un-numbered dialect, preserve the authored heading text, and append-bootstrap (instead of throwing) when the insertion heading is absent under create-missing — consistent with the anchor sections. Export it for unit coverage |
+| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Modify | Pass `--create-missing-anchors` on all three loop reduce calls so an agent-authored strategy self-heals instead of halting the review |
+| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Modify | Same flag on confirm-mode's four reduce calls (identical latent gap, shared reducer) |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts` | Create | Regression suite: numbered/un-numbered insertion, create-missing bootstrap, fail-closed default, idempotent update |
+
+The fail-closed default is preserved (no flag → still throws); the playbook's DRV-034 test, which invokes the reducer directly without the flag, is unaffected.
+
 <!-- /ANCHOR:scope -->
 ---
 

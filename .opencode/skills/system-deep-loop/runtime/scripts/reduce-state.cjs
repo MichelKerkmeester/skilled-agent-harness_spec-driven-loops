@@ -1671,19 +1671,35 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   return content.replace(pattern, replacement);
 }
 
-function upsertHeadingSectionBefore(content, heading, body, beforeHeading) {
-  const escapedHeading = escapeRegExp(heading);
-  const sectionPattern = new RegExp(`(?:^|\\n)##\\s+${escapedHeading}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
+// Strip a leading "N." / "NA." ordinal from a heading so a section authored in the
+// un-numbered dialect ("## Ruled Out Directions") resolves to the same machine
+// section as the canonical numbered form ("## 11. RULED OUT DIRECTIONS"). Strategy
+// files are seeded by an agent and the ordinal is not always carried through.
+function headingCore(heading) {
+  return escapeRegExp(heading.replace(/^\d+[A-Za-z]?\.\s+/, ''));
+}
+
+function upsertHeadingSectionBefore(content, heading, body, beforeHeading, options = {}) {
+  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
+  const sectionPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
   const replacement = `\n## ${heading}\n${body.trim() || '[None yet]'}\n`;
   if (sectionPattern.test(content)) {
     return content.replace(sectionPattern, replacement);
   }
-  const escapedBefore = escapeRegExp(beforeHeading);
-  const beforePattern = new RegExp(`\\n##\\s+${escapedBefore}\\s*\\n`, 'i');
+  const beforePattern = new RegExp(`\\n##\\s+${numberedPrefix}${headingCore(beforeHeading)}\\s*\\n`, 'i');
   if (!beforePattern.test(content)) {
+    // Fail closed by default so a genuinely corrupt strategy file surfaces. Under the
+    // same create-missing bootstrap the anchor sections already honor, append instead
+    // of halting — this is what lets the reducer proceed on a freshly seeded strategy
+    // that has no machine sections yet, rather than blocking the whole loop.
+    if (options.createMissing) {
+      const suffix = content.endsWith('\n') ? '' : '\n';
+      return `${content}${suffix}${replacement}`;
+    }
     throw new Error(`Missing insertion heading "${beforeHeading}" in deep-review strategy file.`);
   }
-  return content.replace(beforePattern, `${replacement}\n## ${beforeHeading}\n`);
+  // Insert before the existing heading, preserving its authored text verbatim.
+  return content.replace(beforePattern, (match) => `${replacement}${match}`);
 }
 
 function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
@@ -1782,6 +1798,7 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     '10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER',
     expansionLines.join('\n'),
     '11. RULED OUT DIRECTIONS',
+    anchorOptions,
   );
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
   return updated;
@@ -2225,6 +2242,7 @@ module.exports = {
   parseJsonlDetailed,
   parseFindingLine,
   replaceAnchorSection,
+  upsertHeadingSectionBefore,
   reduceReviewState,
   deltaRecordToFinding,
   deriveDashboardStatus,

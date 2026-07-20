@@ -902,7 +902,7 @@ workflow:
                     next_dimension: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                     saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                   log: "Divergent review pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_normalize_pause_events
                 if_failed:
@@ -1536,7 +1536,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1748,7 +1748,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"

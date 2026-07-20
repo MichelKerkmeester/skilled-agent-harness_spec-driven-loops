@@ -880,7 +880,7 @@ workflow:
                       next_dimension: "{pivot_result.restoredFocus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                       saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}"
+                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_B:
                     message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
@@ -913,7 +913,7 @@ workflow:
                       next_dimension: "{operator_selected_candidate.focus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
                       saturated_directions: "{operator_saturated_directions}"
-                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}"
+                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_C:
                     append_to_jsonl: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
@@ -1193,7 +1193,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1458,7 +1458,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
