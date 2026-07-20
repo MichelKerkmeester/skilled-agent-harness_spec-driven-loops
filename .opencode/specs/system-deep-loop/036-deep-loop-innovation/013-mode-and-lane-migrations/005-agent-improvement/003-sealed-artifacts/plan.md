@@ -49,7 +49,7 @@ or canary epochs change; the successor binds the verified references into certif
 ### Definition of Ready
 
 - [ ] `002-reducers-and-projections` publishes the artifact references, evaluator epoch, canary status, promotion status, and projection fingerprints consumed by this phase
-- [ ] The shared phase-006 sealing primitive and deep-improvement-common adapter publish canonicalization, digest, dependency, seal-on-write, publication, and verification semantics
+- [ ] The shared phase-007 sealing primitive and deep-improvement-common adapter publish canonicalization, digest, dependency, seal-on-write, publication, and verification semantics
 - [ ] The AgentIR and change-contract field matrix names every immutable component, inherited dependency, patch operation, producer, consumer, and visibility rule
 - [ ] The improver lane, causal evidence, behavior-family, executor, four-ring, and canary ownership boundaries are explicit
 - [ ] Common evaluator, canary, redaction, and promotion services expose the agent-specific binding seams without private variant replacements
@@ -67,7 +67,7 @@ or canary epochs change; the successor binds the verified references into certif
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Single sealing adapter**: use the deep-improvement-common adapter over the phase-006 primitive for canonicalize, digest, seal, publish, inspect, and verify. The agent variant owns fields and bindings, not alternate cryptography or storage.
+- **Single sealing adapter**: use the deep-improvement-common adapter over the phase-007 primitive for canonicalize, digest, seal, publish, inspect, and verify. The agent variant owns fields and bindings, not alternate cryptography or storage.
 - **Base AgentIR bundle**: seal canonical AgentIR, inheritance graph, component IDs, authority/capability policy, tool schemas, routing and memory configuration, inference settings, executor descriptor, and parent artifact digest.
 - **Change-contract bundle**: seal typed patch operations, changed and inherited clauses, intended behavior, preserved behavior, static assertions, trace policies, generated scenario references, and behavioral-semver impact before proposal generation.
 - **Improver-lane reference**: bind improver model/build, optimizer version, training/dev/sealed failure corpora, mutation policy, candidate-visible evidence policy, and query budget. Freeze this reference for the experiment.
@@ -86,7 +86,7 @@ or canary epochs change; the successor binds the verified references into certif
 ### Phase 1: Setup
 
 - Confirm `002-reducers-and-projections` is frozen for artifact references, evaluator epoch, canary status, promotion status, and projection fingerprints.
-- Read the shared phase-006 sealing primitive and deep-improvement-common adapter contract; record canonicalization, dependency ordering, publication, verification, lifecycle, and failure semantics. Reject duplicate sealing behavior.
+- Read the shared phase-007 sealing primitive and deep-improvement-common adapter contract; record canonicalization, dependency ordering, publication, verification, lifecycle, and failure semantics. Reject duplicate sealing behavior.
 - Build the AgentIR, change-contract, improver, causal-evidence, candidate, trajectory, behavior-family, executor, four-ring, canary, and successor-binding field matrix.
 - Pin representative fixtures for a valid base/candidate lineage, one causal proposal, one clean and perturbed trial, one non-discovery executor, one active and one retired canary, and every declared read failure.
 
@@ -119,7 +119,7 @@ or canary epochs change; the successor binds the verified references into certif
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Adapter contract tests prove every agent artifact uses the common phase-006-backed seal and reject alternate seal metadata or verification paths |
+| REQ-001 | Adapter contract tests prove every agent artifact uses the common phase-007-backed seal and reject alternate seal metadata or verification paths |
 | REQ-002 | AgentIR property tests mutate inherited clauses, capabilities, tools, routing, memory, inference, executor, and parent references and prove dependency-closed identity changes |
 | REQ-003 | Change-contract fixtures round-trip typed patch operations, intended/preserved behavior, clause obligations, static assertions, scenario references, and behavioral-semver impact |
 | REQ-004 | Improver-lane fixtures bind model/build, optimizer, train/dev/sealed corpus, operator, visibility, and budget and reject mid-experiment mutation |
@@ -135,7 +135,7 @@ or canary epochs change; the successor binds the verified references into certif
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The primary inputs are `002-reducers-and-projections` for artifact references and shared service status, the shared phase-006
+The primary inputs are `002-reducers-and-projections` for artifact references and shared service status, the shared phase-007
 sealing primitives for all digest, publication, and verification behavior, and
 `004-deep-improvement-common/003-sealed-artifacts` for the common evaluator, canary, redaction, scoring, and promotion-input
 contract. The phase also consumes the phase 012 shared mode interfaces and write-set conflict graph. The successor

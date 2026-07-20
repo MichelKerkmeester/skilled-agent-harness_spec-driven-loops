@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Legacy Writer Retirement
 
-> Phase adjacency under the 006 parent (navigation order, not a hard runtime dependency): predecessor `014-staged-state-migration-and-authority-cutover`; successor `016-whole-system-gate`.
+> Phase adjacency under the 036 parent (navigation order, not a hard runtime dependency): predecessor `014-staged-state-migration-and-authority-cutover`; successor `016-whole-system-gate`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -158,9 +158,9 @@ second compatibility-removal phase.
   Mitigation: bind every report to the exact candidate SHA and rerun the gate on any drift.
 - **Comment and scope drift** - Deletion work can leave ephemeral phase IDs in runtime comments or touch unrelated cleanup.
   Mitigation: review the deletion diff for comment hygiene and enforce the frozen delete/retain manifest.
-- **Dependencies**: the controlling sources are the 006 parent spec, `manifest/phase-tree.json`, phase-003 baseline and
+- **Dependencies**: the controlling sources are the 036 parent spec, `manifest/phase-tree.json`, phase-003 baseline and
   census, phase-014 authority-flip and cutover-window contracts, the retained phase-007 receipt semantics, and the phase
-  013 whole-system gate. The validator and isolated git worktree provide the packet-level execution boundary.
+  016 whole-system gate. The validator and isolated git worktree provide the packet-level execution boundary.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

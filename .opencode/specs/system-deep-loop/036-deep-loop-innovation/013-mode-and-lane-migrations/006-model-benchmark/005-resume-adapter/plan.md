@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / model-benchmark child phase |
 | **Change class** | Planning contract: sealed-ledger reconstruction and idempotent re-entry |
-| **Execution** | Plan against the frozen ledger, reducer, shared-service, and phase-015 contracts; no authority cutover or runtime implementation in this phase |
+| **Execution** | Plan against the frozen ledger, reducer, shared-service, and phase-012 contracts; no authority cutover or runtime implementation in this phase |
 
 ### Overview
 
@@ -170,7 +170,7 @@ budget, effect-recovery, and authority semantics are referenced, not reimplement
 The direct contract inputs are Model Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections`, the shared
 phase-006 ledger and phase-012 event contracts, and the deep-improvement-common mode-004 services. The predecessor
 `004-certificates-and-receipts` and successor `006-shadow-parity` provide adjacent planning boundaries, not a hard runtime
-dependency for this child. Phase 015 supplies the shared mode contracts and write-set conflict graph before implementation
+dependency for this child. Phase 012 supplies the shared mode contracts and write-set conflict graph before implementation
 integration; phase 013 migrations consume the frozen shared contracts afterward.
 
 The research evidence is `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` for replay fingerprints,

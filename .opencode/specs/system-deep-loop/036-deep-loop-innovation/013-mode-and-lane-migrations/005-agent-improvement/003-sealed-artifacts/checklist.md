@@ -40,7 +40,7 @@ the gate.
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] `002-reducers-and-projections` artifact-reference, evaluator-epoch, canary-status, promotion-status, and projection-fingerprint inputs are frozen
-- [ ] CHK-002 [P0] The shared phase-006 sealing primitive and deep-improvement-common adapter record canonicalization, digest, dependency, seal-on-write, publication, verification, lifecycle, and failure semantics
+- [ ] CHK-002 [P0] The shared phase-007 sealing primitive and deep-improvement-common adapter record canonicalization, digest, dependency, seal-on-write, publication, verification, lifecycle, and failure semantics
 - [ ] CHK-003 [P1] The AgentIR, change-contract, improver, causal, candidate, trajectory, behavior-family, executor, four-ring, canary, and successor-binding field matrix is complete
 - [ ] CHK-004 [P1] Ownership boundaries exclude common evaluator/canary/promotion implementation, reducer and ledger logic, shadow/rollback/mode gates, and successor certificate/receipt materialization
 - [ ] CHK-005 [P1] Valid, mutated, partial-write, missing-dependency, stale-epoch, hidden-leak, executor-mismatch, insufficient-evidence, and mixed-version fixtures are pinned
@@ -49,7 +49,7 @@ the gate.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every agent artifact kind uses the shared phase-006-backed sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
+- [ ] CHK-006 [P0] Every agent artifact kind uses the shared phase-007-backed sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
 - [ ] CHK-007 [P0] Digest coverage includes canonical AgentIR or artifact bytes, kind, schema version, and ordered dependency closure for inheritance, capabilities, evaluator, executor, fixtures, and lineage
 - [ ] CHK-008 [P0] Sealed bytes are immutable, writes are atomic, incomplete artifacts are unreadable, and every covered AgentIR, clause, operator, evaluator, executor, fixture, seed, or dependency change creates a new identity
 - [ ] CHK-009 [P1] Scope is limited to agent-specific sealed references, common-service bindings, fixtures, visibility, and verification; no authority cutover or adjacent cleanup is included

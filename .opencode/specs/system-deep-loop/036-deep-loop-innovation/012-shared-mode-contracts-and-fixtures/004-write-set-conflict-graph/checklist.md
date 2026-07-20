@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Write-Set Conflict Graph"
-description: "Checklist for phase 007 of the phase-012 shared mode contracts and fixtures parent: verify the phase-013 write-set conflict graph, hard ordering, safe parallelism, and orchestrator contract."
+description: "Checklist for the 004-write-set-conflict-graph child of the phase-012 shared mode contracts and fixtures parent: verify the phase-013 write-set conflict graph, hard ordering, safe parallelism, and orchestrator contract."
 trigger_phrases:
   - "write-set conflict graph checklist"
   - "phase-013 graph verification"
@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent runs
+This checklist is the blocking SOL verifier contract for phase 012's `004-write-set-conflict-graph` child. Every item is a check the paired verify agent runs
 before the graph is accepted as the phase-013 orchestration input; each report pins the BASE identity, graph source
 digests, graph schema version, graph digest, commands, exit codes, node/edge counts, lane decisions, and unexpected
 tracked mutation. A serial-single-writer fallback is evidence of safety, not evidence that the graph is complete.
@@ -40,7 +40,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] The parent `spec.md`, `execution-sequencing-strategy.md`, and `manifest/phase-tree.json` are pinned and their source digests are recorded
-- [ ] CHK-002 [P0] The graph node set exactly matches the eight `mode_workstreams_phase_010` entries
+- [ ] CHK-002 [P0] The graph node set exactly matches the eight `mode_workstreams_phase_013` entries
 - [ ] CHK-003 [P1] The phase-013 child resource manifests and the graph schema version are recorded in the candidate report
 - [ ] CHK-004 [P2] This child retains `depends_on: []`; `003-mixed-version-fixtures` remains navigation-only predecessor text
 <!-- /ANCHOR:pre-impl -->
@@ -57,7 +57,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] Exact node coverage is validated against `mode_workstreams_phase_010`; missing, duplicate, renamed, and extra nodes fail
+- [ ] CHK-009 [P0] Exact node coverage is validated against `mode_workstreams_phase_013`; missing, duplicate, renamed, and extra nodes fail
 - [ ] CHK-010 [P0] Read/write normalization catches path, symlink, shared-packet, backend, state-store, lock, and generated-output aliases
 - [ ] CHK-011 [P0] Write-write and write-read fixtures derive conflict edges with resource-level evidence and prevent concurrent conflicting lanes
 - [ ] CHK-012 [P0] `004-deep-improvement-common` is a hard predecessor of `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`

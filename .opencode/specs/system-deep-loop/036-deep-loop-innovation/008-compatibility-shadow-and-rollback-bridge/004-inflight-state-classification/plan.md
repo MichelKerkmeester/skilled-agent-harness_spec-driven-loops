@@ -90,7 +90,7 @@ default is `BLOCK`.
 - Implement normalized evidence extraction and the fail-closed five-way precedence engine.
 - Apply the spec's family baseline map, then require an explicit evidence-backed decision for every concrete row.
 - Implement class-specific fixtures and verifiers for pure upcast, legacy pin, dark fork, reversible migration, and block.
-- Bind shadow forks to phase-006 parity cases and bind all non-blocked dispositions to sibling rollback-drill scenarios.
+- Bind shadow forks to phase-008 parity cases and bind all non-blocked dispositions to sibling rollback-drill scenarios.
 - Emit the canonical classification manifest and a read-only phase-014 gate adapter with freshness revalidation.
 
 ### Phase 3: Verification
@@ -122,7 +122,7 @@ default is `BLOCK`.
 
 The phase definition declares `depends_on: []`; the predecessor and successor are sibling navigation contracts rather
 than hard runtime dependencies. Execution still requires the frozen phase-003 census as its data source, the
-phase-004 transition/versioning/rollback policy as its normative decision boundary, phase-006 shadow parity for dark
+phase-004 transition/versioning/rollback policy as its normative decision boundary, phase-008 shadow parity for dark
 fork evidence, sibling rollback drills for reversal evidence, and phase 014 as the sole state-migration and authority
 cutover consumer. If the census remains planned or contains unclassified rows, execution stops with `BLOCK` rather
 than inferring state from the working tree.

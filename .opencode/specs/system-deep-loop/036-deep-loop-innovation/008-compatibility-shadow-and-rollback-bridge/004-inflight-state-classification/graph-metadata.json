@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.300Z",
-    "last_save_at": "2026-07-17T13:21:14.985Z",
+    "last_save_at": "2026-07-19T18:01:18.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e5981b113b1d4487d363f84ab60119b0918891c62c86192b4ed64f38e92785ab",
+    "source_fingerprint": "sha256:381beab98ce535765d4a2291a2bc2e8d824a466c48a1cab5af2bd8be094ee4fb",
     "source_doc_hashes": {
       "spec.md": "5f9e708bf4dd4c199d0322dfd5e17a3e7c65426ab00a127afb9b02c797418bea",
-      "plan.md": "0d59003919c34bf2661ec6c68b4e42241f6298e17080d49410bbdea130f35d07",
+      "plan.md": "86e4a1d7d55e4326eb10369008ef7fccbd53d1d37c98968d9046bbab722812ec",
       "tasks.md": "7c6621f74c1fbb41a9ebe1b059fc2098d86f11995492ff93e322d308f2c5bf0e",
       "checklist.md": "92c65b5854a99c21c09574171533c3188ef6a4159136ea48e5783fe82add8708"
     },

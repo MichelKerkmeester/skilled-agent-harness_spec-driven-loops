@@ -44,7 +44,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 006; shadow-parity planning after the Model Benchmark schema, reducer, sealing, and receipt contracts |
 | **Child depends_on** | `[]` |
-| **Inputs** | Phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict graph; phase-012 contract freeze; Model Benchmark siblings `001-typed-ledger-schema` through `005-resume-adapter`; mode 004 Deep Improvement Common Services; 065/002 findings registries |
+| **Inputs** | Phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict graph; phase-012 contract freeze; Model Benchmark siblings `001-typed-ledger-schema` through `005-resume-adapter`; mode 004 Deep Improvement Common Services; 036/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -108,7 +108,7 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
 - Flipping authority, migrating live in-flight state, retiring legacy writers, issuing a cutover certificate, or implementing the
   successor rollback and mode gate.
 - Implementing the six sibling concerns, the other two benchmark variants, or the parent integration gate.
-- Implementing the per-mode 010 migrations before phase 012 freezes shared contracts and emits the write-set conflict graph.
+- Implementing the per-mode 013 migrations before phase 012 freezes shared contracts and emits the write-set conflict graph.
 - Hand-writing generated `description.json` or `graph-metadata.json` metadata for this folder.
 <!-- /ANCHOR:scope -->
 
@@ -211,7 +211,7 @@ records the same cursor and evidence boundary and leaves all action authority wi
   Mitigation: isolated sinks, non-authoritative flags, receipt assertions, and a zero-authority-write gate.
 - **Dependencies**: phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict
   graph; phase-012 shared contract freeze; parent compatibility bridge; mode 004 Deep Improvement Common Services; Model Benchmark
-  siblings `001-typed-ledger-schema` through `005-resume-adapter`; existing benchmark scripts and fixtures; the 065/002 registries;
+  siblings `001-typed-ledger-schema` through `005-resume-adapter`; existing benchmark scripts and fixtures; the 036/002 registries;
   and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 

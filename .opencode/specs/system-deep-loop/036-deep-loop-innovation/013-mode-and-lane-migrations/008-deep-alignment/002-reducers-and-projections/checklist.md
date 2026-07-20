@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 005. The verifier replays the exact typed event sequence from a pinned multi-lane fixture, records the schema, contract, authority, and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Alignment path. It must fail on hidden side effects, invalid authority material, incomplete applicability denominators, invalid transitions, missing verify-first evidence, erased raw findings, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
+This checklist is the blocking verifier contract for phase 013's `008-deep-alignment/002-reducers-and-projections` child. The verifier replays the exact typed event sequence from a pinned multi-lane fixture, records the schema, contract, authority, and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Alignment path. It must fail on hidden side effects, invalid authority material, incomplete applicability denominators, invalid transitions, missing verify-first evidence, erased raw findings, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

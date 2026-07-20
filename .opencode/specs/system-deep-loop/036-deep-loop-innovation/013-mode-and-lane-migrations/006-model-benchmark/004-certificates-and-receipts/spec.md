@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant over the deep-improvement-common backbone) |
-| **Origin** | Phase 007 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
+| **Origin** | Phase 004 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
 | **Manifest dependency** | `depends_on: []`; sibling adjacency is navigation and ordering, not a hard runtime dependency |
 | **Shared inputs** | `003-sealed-artifacts`, deep-improvement-common evaluator/canary/promotion services, typed ledger and reducer contracts |
 <!-- /ANCHOR:metadata -->
@@ -121,7 +121,7 @@ consumes the receipt and fingerprint boundary; the later mode gate consumes pari
 | REQ-007 | Judge, rubric, contamination, and protocol validity are explicit | Candidate-specific calibration and model-build provenance are bound to the evidence; rubric axes are tested for isolation; contamination includes exposure lineage; protocol variations are crossed with model and task rather than averaged away |
 | REQ-008 | The variant reuses deep-improvement-common services | Model-benchmark calls one shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto contract; variant adapters cannot fork common evidence fields, outcome semantics, or promotion ordering |
 | REQ-009 | The contract remains additive and dark | Certificates, receipts, and offline verdicts are emitted beside the legacy benchmark path, cannot change live router or authority state, and retain legacy projections and evidence during rollback |
-| REQ-010 | The successor and later fan-out receive stable handoffs | `005-resume-adapter` receives explicit replay, salvage, uncertain-effect, unsupported-version, and block cases; the later 010 migration consumes this contract only after the shared contracts and write-set conflict graph are frozen |
+| REQ-010 | The successor and later fan-out receive stable handoffs | `005-resume-adapter` receives explicit replay, salvage, uncertain-effect, unsupported-version, and block cases; the later 013 migration consumes this contract only after the shared contracts and write-set conflict graph are frozen |
 
 ### Model-benchmark certificate and receipt evidence boundary
 
@@ -190,7 +190,7 @@ audits can identify verifier drift.
 - **Contamination or protocol drift invalidates selection** - A recent or named fixture is not proof of non-exposure, and formatting or system-prompt variants can reorder models. Mitigation: retain item lineage, visibility, rotation and retirement state, fresh-case comparisons, and model-by-task protocol strata.
 - **Cost-aware scoring favors the wrong model** - Quality-per-dollar hides hard quality floors, tail latency, abstention, and switching loss. Mitigation: keep operational terms separate, require quality constraints, and expose Pareto or utility sensitivity instead of an unqualified ratio.
 - **Shared-service fork** - Variant code may copy evaluator, canary, promotion, or receipt logic. Mitigation: one adapter boundary, shared fixtures, common hard-veto ordering, and a negative test against variant-local semantics.
-- **Unknown external outcome** - A model or measurement effect can complete before its receipt is durable. Mitigation: consume phase-006 effect/receipt recovery, preserve `uncertain`, and require explicit resolution before retry or selection.
+- **Unknown external outcome** - A model or measurement effect can complete before its receipt is durable. Mitigation: consume phase-007 effect/receipt recovery, preserve `uncertain`, and require explicit resolution before retry or selection.
 - **Dependencies**: `003-sealed-artifacts` primitives; typed ledger and reducer siblings; deep-improvement-common evaluator/canary/promotion services; phase 012 shared mode contracts and write-set conflict graph; model-benchmark runtime paths and research registries; the successor `005-resume-adapter`; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 

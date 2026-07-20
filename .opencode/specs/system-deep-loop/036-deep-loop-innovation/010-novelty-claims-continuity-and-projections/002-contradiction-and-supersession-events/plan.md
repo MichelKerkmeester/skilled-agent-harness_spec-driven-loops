@@ -73,7 +73,7 @@ Source contracts are the program parent `../../spec.md`, `../../manifest/phase-t
 `../001-semantic-communities/spec.md`, phase-006
 `../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md` and
 `../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`, plus run-2
-`../../../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
+`../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->

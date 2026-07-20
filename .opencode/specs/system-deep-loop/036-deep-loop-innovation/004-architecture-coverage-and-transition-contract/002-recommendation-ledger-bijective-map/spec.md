@@ -79,7 +79,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 - Preserve source provenance per row: run, source path, source locator, source digest, original recommendation text, original target text, iteration/rank, and available evidence fields.
 - Normalize one primary target per row as a `taxonomy_layer` + `taxonomy_key` pair drawn from phase 003's runtime-subsystem, workflow-family, workflow-mode, or research-workstream vocabulary; preserve compound raw targets without pretending they were singular.
 - Assign exactly one disposition string per row: `adopt-as-phase-NNN`, `merge-into-<id>`, `defer-with-reason`, or `reject-with-reason`. Merge, defer, and reject rows require a non-empty rationale.
-- Validate every adoption phase against the manifest's real `000..014` phase IDs; validate merge targets as existing, non-self stable IDs with no cycles.
+- Validate every adoption phase against the manifest's real `003..017` phase IDs; validate merge targets as existing, non-self stable IDs with no cycles.
 - Publish a coverage summary that names all four disposition buckets and all manifest phases, including explicit zero counts and reasons rather than omitted or silently empty buckets.
 - Produce phase-local artifacts such as `recommendation-ledger.json`, `recommendation-ledger.csv`, `recommendation-ledger.schema.json`, and `recommendation-ledger-validation.json`, plus a deterministic validator owned by this phase.
 
@@ -104,7 +104,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 | REQ-006 | Non-adoption dispositions are justified and referentially sound | Merge/defer/reject rows have non-empty reasons; merge targets exist, are non-self, and resolve without cycles |
 | REQ-007 | Adoption targets are real program phases | Every `adopt-as-phase-NNN` value names a phase present in `manifest/phase-tree.json`; no free-text or non-manifest phase is accepted |
 | REQ-008 | Disposition coverage is explicit | The validation report includes all four bucket keys, their row IDs and counts; a zero-count bucket is present with an explicit rationale |
-| REQ-009 | Phase coverage is complete and auditable | The coverage report enumerates every manifest phase `000..014` with adopted-row IDs and counts; zero-adoption phases are explicit and reasoned |
+| REQ-009 | Phase coverage is complete and auditable | The coverage report enumerates every manifest phase `003..017` with adopted-row IDs and counts; zero-adoption phases are explicit and reasoned |
 | REQ-010 | Canonical and review artifacts cannot drift | JSON validates against the schema, CSV is a deterministic projection of the same 178 IDs, and the validator exits non-zero on any corpus, bijection, disposition, reference, or phase-coverage violation |
 <!-- /ANCHOR:requirements -->
 
@@ -114,7 +114,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 - **SC-001**: The canonical ledger has exactly 178 rows split 8/59/111, with 178 unique stable IDs and 178 unique source locators.
 - **SC-002**: Every row has one normalized target and exactly one disposition; no `unknown`, missing, or multi-disposition row exists.
 - **SC-003**: Every adoption resolves to a real phase, every merge resolves to a real non-self ID without cycles, and every required reason is non-empty.
-- **SC-004**: All four disposition buckets and all 15 manifest phases appear in the validation report, including explicit reasoned zero counts.
+- **SC-004**: All four disposition buckets and all 15 implementation phases (`003..017`) appear in the validation report, including explicit reasoned zero counts.
 - **SC-005**: The canonical JSON, CSV projection, schema, and validation report reproduce deterministically from the frozen source digests and pass the phase-local validator.
 <!-- /ANCHOR:success-criteria -->
 

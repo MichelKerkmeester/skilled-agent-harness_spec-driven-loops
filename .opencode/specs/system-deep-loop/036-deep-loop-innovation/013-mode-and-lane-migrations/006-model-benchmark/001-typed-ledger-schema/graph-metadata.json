@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone. The phase defines the mode envelope specialization, concrete run and scoring-matrix event types, field-level types, provenance and contamination lineage, normalized usage, versioned envelope policy, and upcaster hooks. It stops before reducer and projection design in 002-reducers-and-projections and does not re-implement shared evaluator, canary, or promotion services.",
     "created_at": "2026-07-16T03:43:39.273Z",
-    "last_save_at": "2026-07-17T13:21:39.447Z",
+    "last_save_at": "2026-07-19T18:01:21.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,9 +179,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:eec6b98278f4f758f58bca73421862529e39dd7145dff181e8fcc93eba4b1a1d",
+    "source_fingerprint": "sha256:94de22c86fb6fc0af2f4fd55a6acaa8074a74879dfd28fb9af3d3a1201507fde",
     "source_doc_hashes": {
-      "spec.md": "c549b8c8a027edfdeae5a544ae37dc3f7c3ea80dc400843aec6e1553464471ea",
+      "spec.md": "ec34d3a5abeb72d4c3748d8a2f90c234d0700c132cf6fcecbacb827034067203",
       "plan.md": "0a6a8465e5ea0baee7f8d5e3ceb2bed14b8a39ca515f48b5c7ac8a664a5de1ce",
       "tasks.md": "0636d8b4d5debc91ad12ff86ba3d13cdbfdac3349e3646d58d5edffb2f8a8e73",
       "checklist.md": "10ea62c91509afc6088d89e945db044b5f9dc20b2949f753e95374e6f0da51c5"

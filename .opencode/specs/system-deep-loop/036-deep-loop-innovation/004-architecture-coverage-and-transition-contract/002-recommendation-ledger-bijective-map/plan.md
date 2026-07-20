@@ -78,7 +78,7 @@ coverage of every disposition bucket and manifest phase.
 
 ### Phase 1: Setup
 - Pin the source paths and SHA-256 digests; confirm extraction counts 8, 59, and 111 and total 178.
-- Freeze the run-specific locator schemes, stable-ID ranges, phase-003 taxonomy enum, and manifest phase IDs `000..014`.
+- Freeze the run-specific locator schemes, stable-ID ranges, phase-003 taxonomy enum, and manifest phase IDs `003..017`.
 - Record the run-a source-shape exception and verify its eight ranked entries against the 001 research synthesis.
 
 ### Phase 2: Implementation
@@ -90,7 +90,7 @@ coverage of every disposition bucket and manifest phase.
 ### Phase 3: Verification
 - Re-extract from frozen inputs and prove exactly 178 source locators map one-to-one onto 178 ledger rows and 178 unique stable IDs.
 - Prove each row has one normalized target and one disposition; reject unknowns, multiple flags, missing reasons, invalid phases, self-merges, missing merge targets, and cycles.
-- Prove all four disposition buckets and all 15 manifest phases appear explicitly, with reasoned zero counts where applicable.
+- Prove all four disposition buckets and all 15 implementation phases (`003..017`) appear explicitly, with reasoned zero counts where applicable.
 - Rebuild the CSV and validation report twice and compare hashes; run this packet's strict spec-kit validation.
 <!-- /ANCHOR:phases -->
 
@@ -107,14 +107,14 @@ coverage of every disposition bucket and manifest phase.
 | REQ-006 | Reason/reference tests reject blank rationales, missing/self merge targets, and merge cycles |
 | REQ-007 | Adoption test derives allowed `NNN` values from `manifest/phase-tree.json` and rejects non-manifest phases |
 | REQ-008 | Bucket-coverage test requires all four bucket keys, counts, row-ID lists, and reasons for zero counts |
-| REQ-009 | Phase-coverage test requires every manifest phase `000..014`, adopted-row IDs, counts, and reasons for zero-adoption phases |
+| REQ-009 | Phase-coverage test requires every manifest phase `003..017`, adopted-row IDs, counts, and reasons for zero-adoption phases |
 | REQ-010 | JSON-schema validation, regenerated CSV equality, repeated-build hash parity, and non-zero negative fixtures prove fail-closed behavior |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The child dependency list is empty. Inputs are the 006 parent `spec.md`, `manifest/phase-tree.json`, phase 003's frozen
+The child dependency list is empty. Inputs are the 036 parent `spec.md`, `manifest/phase-tree.json`, phase 003's frozen
 taxonomy contract, the 001 research packet's ranked §17 recommendations and companion `findings-registry.json`, and
 the 005 packet's run-b `findings-registry.json` plus run-c `findings-registry-modes.json`. The parent phase-004 gate
 coordinates this output with sibling 001's architecture ADR and sibling 003's transition policy; neither sibling is a

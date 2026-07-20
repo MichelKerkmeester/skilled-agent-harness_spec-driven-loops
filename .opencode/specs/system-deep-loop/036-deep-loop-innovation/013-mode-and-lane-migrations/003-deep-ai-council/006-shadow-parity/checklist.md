@@ -1,10 +1,10 @@
 ---
 title: "Checklist: Deep AI Council — Shadow Parity"
-description: "Blocking checklist for phase 009 of the Deep AI Council migration: prove event-for-event canonical projection parity between the legacy emitter and the dark typed ledger path before authority cutover."
+description: "Blocking checklist for the `006-shadow-parity` child of the phase-013 Deep AI Council migration: prove event-for-event canonical projection parity between the legacy emitter and the dark typed ledger path before authority cutover."
 trigger_phrases:
   - "deep ai council shadow parity checklist"
   - "council projection parity gate"
-  - "phase 009 council parity verifier"
+  - "council shadow parity verifier"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 009. Every item is a check the paired
+This checklist is the blocking SOL verifier contract for the `006-shadow-parity` child of phase 013. Every item is a check the paired
 verify agent runs before a parity candidate can become cutover-eligible; each report pins BASE SHA,
 candidate SHA, fixture and input digests, mapping and normalization-profile hashes, raw event digests,
 canonical projection fingerprints, commands, exit codes, and legacy-authority status. A missing fixture,

@@ -24,7 +24,7 @@ _memory:
       - "What exact elapsed window and health evidence permit automatic rollback?"
       - "Which shadow fixtures are mandatory for the Deep AI Council gate?"
     answered_questions:
-      - "This phase is planning only; phase-017 owns authority cutover"
+      - "This phase is planning only; phase-014 owns authority cutover"
       - "The gate certifies Deep AI Council evidence, not semantic truth or cross-mode readiness"
 ---
 
@@ -50,7 +50,7 @@ _memory:
 | **Origin** | Final Deep AI Council child concern in the phase-013 per-mode migration fan-out |
 | **Depends on** | `[]` in `phase-tree.json`; sibling references are navigation only |
 | **Consumes** | Typed ledger, reducer, sealed-artifact, receipt, certificate, resume, shadow-parity, and shared mode contracts |
-| **Output** | A fail-closed rollback-switch contract, bounded rollback-window policy, independent mode-gate checklist, and certificate handoff to phase-017 |
+| **Output** | A fail-closed rollback-switch contract, bounded rollback-window policy, independent mode-gate checklist, and certificate handoff to phase-014 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -72,8 +72,8 @@ certificate bundle verifies, and the rollback anchor is usable.
 
 This phase plans the switch and gate only. The switch is a default-deny authority-cutover toggle with explicit legacy,
 shadow, armed, active-window, rollback, and closed dispositions. The gate emits a Deep AI Council certificate over the
-declared evidence bundle and hands the result to the later cutover path. It is the mode's exit gate for the phase-014
-convergence and health obligations; phase-017 alone changes runtime authority.
+declared evidence bundle and hands the result to the later cutover path. It is the mode's exit gate for the phase-011
+convergence and health obligations; phase-014 alone changes runtime authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -91,7 +91,7 @@ convergence and health obligations; phase-017 alone changes runtime authority.
   sealed artifact integrity, receipt-chain validity, certificate validity, replay compatibility, and rollback readiness.
 - A Deep AI Council mode certificate that binds the exact candidate and baseline fingerprints, event frontier, sealed
   manifest, shadow-parity report, test-gate result, rollback window, and unresolved-obligation disposition.
-- A handoff contract to phase-017 that distinguishes `gate_passed`, `gate_blocked`, `gate_incomplete`, and
+- A handoff contract to phase-014 that distinguishes `gate_passed`, `gate_blocked`, `gate_incomplete`, and
   `rollback_required` without changing authority in this phase.
 
 ### Out of Scope
@@ -101,7 +101,7 @@ convergence and health obligations; phase-017 alone changes runtime authority.
 - Implementing seat selection, critique, adjudication, reducers, projections, convergence policy, artifact generation, or
   the council test suite; this phase defines their gate evidence and ownership boundaries.
 - Moving production authority, migrating arbitrary in-flight packets, closing the global migration window, or retiring
-  legacy writers; phase-017 and phase-015 own those decisions.
+  legacy writers; phase-014 and phase-015 own those decisions.
 - A cross-mode gate, a global cutover certificate, or any claim that a valid process certificate proves semantic truth.
 <!-- /ANCHOR:scope -->
 
@@ -117,7 +117,7 @@ convergence and health obligations; phase-017 alone changes runtime authority.
 | REQ-005 | Required artifacts are sealed and addressable | The gate verifies the mode artifact manifest, content digests, source event ranges, replay fingerprint, required sections, supersession lineage, and tamper-evident reads |
 | REQ-006 | The certificate is mode-specific and independently verifiable | The emitted certificate names `deep-ai-council`, exact baseline and candidate fingerprints, gate predicates, receipt chain, sealed references, rollback anchor, and terminal disposition; another mode cannot satisfy it |
 | REQ-007 | Failure and uncertainty never become a green gate | Failed bias or metamorphic checks, unresolved required evidence, unknown effects, incomplete receipts, incompatible replay, non-convergence, or stale artifacts produce `blocked`, `incomplete`, or `rollback_required` |
-| REQ-008 | The phase does not move authority | Gate and rollback outputs are additive evidence; the implementation plan leaves the legacy path authoritative until phase-017 consumes a valid certificate and opens its own cutover window |
+| REQ-008 | The phase does not move authority | Gate and rollback outputs are additive evidence; the implementation plan leaves the legacy path authoritative until phase-014 consumes a valid certificate and opens its own cutover window |
 | REQ-009 | The handoff is deterministic and replay-bound | Re-evaluating the same sealed frontier, policy versions, fixture manifest, and receipt chain produces the same gate result and certificate body digest |
 | REQ-010 | Rollback restoration is independently testable | A drill can restore the pinned legacy path, reconcile typed and legacy tails, preserve all evidence, and emit a receipt proving restoration without rewriting history |
 
@@ -136,7 +136,7 @@ unknown effects, and rollback restoration. Research findings also require an exp
 seat count, minority survival, calibrated judge evidence, and counterfactual or metamorphic stability where those inputs
 are declared mandatory by the shared mode contract.
 
-**Given** the toggle is absent, malformed, expired, or bound to another mode, **When** phase-017 evaluates a cutover request,
+**Given** the toggle is absent, malformed, expired, or bound to another mode, **When** phase-014 evaluates a cutover request,
 **Then** the request is refused, legacy authority remains selected, and a typed refusal receipt identifies the failed predicate.
 
 **Given** shadow parity is green for nominal runs but a required minority, order-swap, or bias fixture is missing, **When** the
@@ -164,7 +164,7 @@ independent mode gate runs on the same frontier twice, **Then** it emits the sam
   exact mode and event frontier.
 - **SC-006**: A Deep AI Council certificate is emitted only for this mode and is independently verifiable from its declared
   evidence bundle; blocked or incomplete obligations cannot be hidden in a green summary.
-- **SC-007**: The phase hands a deterministic gate result to phase-017 without moving authority or retiring legacy writers.
+- **SC-007**: The phase hands a deterministic gate result to phase-014 without moving authority or retiring legacy writers.
 
 **Given** a valid gate bundle, **When** an offline verifier checks the mode certificate, **Then** it reproduces the declared
 shadow-parity, sealed-artifact, receipt, replay, and rollback predicates without running a council.
@@ -193,7 +193,7 @@ shadow-parity, sealed-artifact, receipt, replay, and rollback predicates without
 - **Mode boundary leakage** - a generic runtime or another mode's certificate could satisfy this gate accidentally. Mitigation:
   bind mode ID, event namespace, artifact kinds, fixtures, and certificate verifier inputs to `deep-ai-council`.
 - **Dependency ordering** - this child needs outputs from `001-typed-ledger-schema`, `002-reducers-and-projections`,
-  `003-sealed-artifacts`, `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`, while phase-017
+  `003-sealed-artifacts`, `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`, while phase-014
   consumes its result. The manifest's `depends_on: []` remains authoritative for sibling planning order.
 <!-- /ANCHOR:risks -->
 
@@ -214,7 +214,7 @@ shadow-parity, sealed-artifact, receipt, replay, and rollback predicates without
 - How does the gate distinguish a true legacy regression from a typed-versus-legacy representation difference that remains
   semantically equivalent?
 - Which phase-011 convergence and health witnesses are required for this mode's exit gate, and how are they represented in
-  the phase-017 handoff without moving their generic ownership?
+  the phase-014 handoff without moving their generic ownership?
 
 These questions are contract-ratification inputs for implementation. They do not authorize a local authority toggle,
 unbounded rollback, second certificate scheme, runtime cutover, legacy-writer retirement, or semantic claim about council

@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep AI Council mode migration) |
-| **Origin** | Phase 005 of the 013 per-mode migration program; reducers and projections concern |
+| **Origin** | Phase 002 of the 013 per-mode migration program; reducers and projections concern |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling references are navigation only |
 <!-- /ANCHOR:metadata -->
 
@@ -113,14 +113,14 @@ projection derives current views without turning agreement into proof.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase inherits the 065 program risks: live in-flight state, additive-dark migration, replay compatibility, shared
+The phase inherits the 036 program risks: live in-flight state, additive-dark migration, replay compatibility, shared
 write-set ownership, and staged authority cutover. Phase-specific risks are that event order leaks into council state,
 correlated seats are mistaken for independent evidence, majority pressure erases minority lineage, confidence is exposed
 before calibration support exists, pairwise or counterfactual results are treated as sealed artifacts, or a scalar
 agreement signal silently becomes the convergence authority.
 
 The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, shared fan-out/fan-in and mode contracts
-from the 013 parent and phase 015, shared adjudication, budget, convergence, and health events, the 013 write-set
+from the 013 parent and phase 012, shared adjudication, budget, convergence, and health events, the 012 write-set
 conflict graph, and legacy Deep AI Council replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but
 is an adjacency reference, not a runtime dependency of this planning contract. No authority cutover is permitted from
 this phase.

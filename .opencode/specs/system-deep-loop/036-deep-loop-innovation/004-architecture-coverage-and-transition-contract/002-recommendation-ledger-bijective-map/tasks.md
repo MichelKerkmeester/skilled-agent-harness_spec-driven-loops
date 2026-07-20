@@ -67,7 +67,7 @@ _memory:
 - [ ] T016 Verify every row has one allowed normalized target and exactly one allowed disposition; no `unknown` or parallel flags exist
 - [ ] T017 Verify all four disposition bucket keys are present and any zero count carries an explicit rationale
 - [ ] T018 Verify every adoption maps to a real manifest phase and every merge/defer/reject row satisfies its reason/reference contract
-- [ ] T019 Verify the phase coverage report enumerates every manifest phase `000..014`, including explicit reasoned zero-adoption phases
+- [ ] T019 Verify the phase coverage report enumerates every manifest phase `003..017`, including explicit reasoned zero-adoption phases
 - [ ] T020 Regenerate CSV and validation report twice; compare ID sets and hashes with the canonical JSON for deterministic parity
 - [ ] T021 Run negative fixtures for missing rows, duplicate IDs, duplicate locators, invalid targets, multi-disposition rows, blank reasons, invalid phases, and merge cycles
 - [ ] T022 Run `validate.sh --strict` for this packet and attach the ledger-validator command, exit code, counts, and artifact hashes to execution evidence

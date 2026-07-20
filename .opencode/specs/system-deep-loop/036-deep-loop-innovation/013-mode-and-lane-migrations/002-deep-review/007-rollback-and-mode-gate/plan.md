@@ -52,7 +52,7 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent 065 invariant, phase tree, phase-012 shared review-loop contract, and write-set conflict graph are pinned by digest
+- [ ] The parent 036 invariant, phase tree, phase-012 shared review-loop contract, and write-set conflict graph are pinned by digest
 - [ ] The six Deep Review sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries
 - [ ] The legacy lifecycle is inventoried for scope, every dimension, candidate and adjudication, convergence, report, resume, and handoff
 - [ ] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed

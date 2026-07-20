@@ -85,7 +85,7 @@ This checklist is the blocking verifier contract for phase 005. Every item remai
 ## Documentation
 
 - [ ] CHK-026 [P1] Runtime config/feature documentation describes all four policies, the capability matrix, manifest form, and explicit rejection behavior
-- [ ] CHK-027 [P2] The 065/005 prototype remains cited as design evidence and is not promoted into shipped runtime code
+- [ ] CHK-027 [P2] The 036/002 prototype remains cited as design evidence and is not promoted into shipped runtime code
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

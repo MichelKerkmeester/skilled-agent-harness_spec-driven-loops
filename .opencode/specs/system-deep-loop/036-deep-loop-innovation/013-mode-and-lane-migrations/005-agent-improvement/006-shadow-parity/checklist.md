@@ -93,7 +93,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 ## Documentation
 
 - [ ] CHK-029 [P1] The parity report schema, mismatch taxonomy, protected-field manifest, common-service reuse boundary, normalization manifest, and cutover-blocking criteria are reflected in the phase docs and successor handoff
-- [ ] CHK-030 [P2] Research traceability cites the 065/002 findings on typed AgentIR, causal slicing, frozen evaluator epochs, raw trials, discipline families, transfer, and staged promotion
+- [ ] CHK-030 [P2] Research traceability cites the 036/002 findings on typed AgentIR, causal slicing, frozen evaluator epochs, raw trials, discipline families, transfer, and staged promotion
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

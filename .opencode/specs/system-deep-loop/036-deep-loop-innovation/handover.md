@@ -132,7 +132,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 - [ ] Indexed save or continuity target: `_memory.continuity` in this handover + the root `spec.md`; run `generate-context.js` for an indexed save when execution starts.
 - [ ] Spec file: `spec.md` (§PHASE MAP & OUTCOMES, §Sequencing invariants, §Success Criteria, §Risks)
 - [ ] Strategy file: `execution-sequencing-strategy.md` (the wave/ordering plan for the whole program)
-- [ ] Architecture + rec ledger: `004-architecture-coverage-and-transition-contract/decision-record.md` (the spine ADR + the bijective 178-row classified ledger)
+- [ ] Architecture + rec ledger: `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md` (the spine ADR) and `002-recommendation-ledger-bijective-map/` (the bijective 178-row classified ledger). Note: 004 is a phase parent under the lean-trio policy, so it carries no decision-record.md of its own.
 <!-- /ANCHOR:next-session -->
 
 ---

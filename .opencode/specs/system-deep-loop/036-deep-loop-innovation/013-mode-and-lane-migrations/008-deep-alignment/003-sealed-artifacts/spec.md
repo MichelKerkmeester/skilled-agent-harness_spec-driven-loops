@@ -44,7 +44,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Third Deep Alignment child in the phase-013 per-mode migration fan-out |
 | **Depends on** | None (`[]`); sibling planning contracts compose at the Deep Alignment mode gate |
-| **Consumes** | Shared phase-006 sealing primitives, typed replay references, and the phase-012 shared review-loop contract used by Deep Review |
+| **Consumes** | Shared phase-007 sealing primitives, typed replay references, and the phase-012 shared review-loop contract used by Deep Review |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -69,7 +69,7 @@ also requires an immutable artifact target, adapter-owned discovery, blinded det
 the frozen authority plus live re-probe receipts, and a fresh target version after any remediation candidate
 (`findings-registry.json:2770-2777`).
 
-This phase plans the Deep Alignment binding to the shared phase-006 sealing primitives. It registers mode artifact kinds,
+This phase plans the Deep Alignment binding to the shared phase-007 sealing primitives. It registers mode artifact kinds,
 seals exact canonical bytes at each lifecycle boundary, carries only algorithm-qualified digest references through the
 phase-012 review-loop contract, typed events, predecessor reducers, replay, convergence, and report projections, and
 verifies every read before a consumer receives bytes. Deep Alignment and Deep Review consume the same shared review-loop
@@ -146,7 +146,7 @@ read failures block new dark evidence and trusted report or handoff promotion wi
 
 The highest risk is a second mode-local sealing scheme that hashes a path, rule JSON, authority URL, JSONL line, or report
 file without committing the exact canonical bytes consumed by the next alignment stage. The mode adapter must consume the
-shared phase-006 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and
+shared phase-007 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and
 expose only digest references to the phase-012 review-loop, ledger, reducer, replay, convergence, and report layers.
 
 Sealing only the control plane leaves the authority source, compiled rule IR, applicability facts, discovered target bytes,
@@ -166,7 +166,7 @@ write ownership.
 The verify-first contract is also a security boundary. A known deviation must remain visible as a typed exception or exempt
 disposition, not erase a failure; a remediation candidate must receive a new target version and a fresh audit; and a verifier
 must not accept authority, issuer, or exception claims supplied only by the artifact under audit. Dependencies are the shared
-phase-006 sealing, event, and replay contracts; the phase-012 shared review-loop contract and write-set conflict graph;
+phase-007 sealing contract; the phase-006 event and replay contracts; the phase-012 shared review-loop contract and write-set conflict graph;
 predecessor `002-reducers-and-projections`; the existing Deep Alignment state, adapter, convergence, and report references;
 and the compatibility/shadow bridge. Successor `004-certificates-and-receipts` consumes this phase's verified reference set
 for boundary evidence. Deep Review consumes the same shared review-loop contract and must not receive a Deep Alignment-only

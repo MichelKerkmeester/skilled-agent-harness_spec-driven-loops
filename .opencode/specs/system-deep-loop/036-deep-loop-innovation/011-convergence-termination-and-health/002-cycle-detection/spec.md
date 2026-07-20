@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Cycle Detection
 
-> Phase adjacency under the 008 parent (grouping order, not a runtime dependency): predecessor `001-path-covering-termination`; successor `003-stopping-clocks`.
+> Phase adjacency under the 011 parent (grouping order, not a runtime dependency): predecessor `001-path-covering-termination`; successor `003-stopping-clocks`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

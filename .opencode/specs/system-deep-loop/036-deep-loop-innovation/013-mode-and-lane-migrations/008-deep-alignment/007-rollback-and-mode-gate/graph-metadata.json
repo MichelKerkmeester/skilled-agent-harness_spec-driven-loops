@@ -164,7 +164,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-014 handoff without moving runtime authority.",
     "created_at": "2026-07-16T03:43:44.407Z",
-    "last_save_at": "2026-07-17T13:21:46.867Z",
+    "last_save_at": "2026-07-19T18:09:52.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,12 +173,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:261cf9e96b5a7c003e739dff27b43d4d7aeb7acecf70e108aa6e1d1fe8ab8517",
+    "source_fingerprint": "sha256:66476873e51c01765750ed89e7ab95ba808c321b57c819b7241efb2f198d7b86",
     "source_doc_hashes": {
-      "spec.md": "047ad774a5324ffb569d7bc56a9522cfa22642bb61b2712055fb225321a7fd03",
-      "plan.md": "4a38027f4b0bf54b672b3559658c7bb5edf7e45354fd2a3984e7cc4263491e41",
-      "tasks.md": "d51b7189fa3a63956c1fe01cd1fa284be0022668704e98062c3bf7b798fc7411",
-      "checklist.md": "ac3cf0dda5968f8f9774ef74e57440356ded0a80150137c59aac30a9c7a73a34"
+      "spec.md": "4cba38b23f3364b42e6ba5bcb6182a433742f3ac597239fc3af9fd1d124cc944",
+      "plan.md": "4ac9419f6b69888dc9b4c2caae119925ea0a15fff2d49265bdead1b7bcdf7db2",
+      "tasks.md": "a1b1fdc3aa0ac8656dff82f2d35b4d585514fd6ac36fd7a00b4470e4328c232c",
+      "checklist.md": "af91830207586837c441e1e6667fa41910cf623f075460ec6305058a0cd87674"
     },
     "last_active_child_id": null,
     "last_active_at": null

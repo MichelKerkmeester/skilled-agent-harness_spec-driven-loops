@@ -97,7 +97,7 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Predecessor parity contract**: `../006-shadow-parity`
-- **Shared rollback policy**: `../../../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
+- **Shared rollback policy**: `../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
 - **Shared Deep Improvement Common Services**: `../../004-deep-improvement-common/007-rollback-and-mode-gate`
 - **Model Benchmark inputs**: `../001-typed-ledger-schema`, `../002-reducers-and-projections`, `../003-sealed-artifacts`, `../004-certificates-and-receipts`, and `../005-resume-adapter`
 - **Phase-014 handoff**: See the staged cutover and authority handoff contract

@@ -36,21 +36,21 @@ _memory:
 
 ### Overview
 The phase converts the cross-mode research convergence into a binding architecture decision before implementation.
-Run-2 synthesis section 12 supplies five recurring mode primitives; the 006 parent and phase-tree architecture field
+Run-2 synthesis section 12 supplies five recurring mode primitives; the 036 parent and phase-tree architecture field
 add the transition-authorization gateway needed to protect the shared ledger. The accepted decision is therefore a
 six-part spine, governed by the manifest's additive-dark migration model. The result is an architecture contract that
-phases 003, 004, and 005 consume without independently choosing persistence, authority, evidence, or scoring topology.
+phases 006, 007, and 008 consume without independently choosing persistence, authority, evidence, or scoring topology.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 006 parent `spec.md` architecture, sequencing invariants, and success criteria are treated as controlling program context
+- [ ] The 036 parent `spec.md` architecture, sequencing invariants, and success criteria are treated as controlling program context
 - [ ] `manifest/phase-tree.json` architecture and migration-model fields are quoted accurately in the decision rationale
 - [ ] Run-2 `research/research-modes.md` section 12 is traced to its five recurring mode primitives
 - [ ] The authorization gateway is identified as the parent-program addition that completes the six-part runtime spine
-- [ ] The phase remains decision-only and does not absorb implementation details from phases 003-005
+- [ ] The phase remains decision-only and does not absorb implementation details from phases 006-008
 
 ### Definition of Done
 - [ ] The decision, primitive matrix, rejected alternatives, consequences, and consumer ownership are ratified as one coherent contract
@@ -128,7 +128,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the three controlling sources: the 006 parent `spec.md`, `manifest/phase-tree.json`, and run-2 `research/research-modes.md` section 12.
+- Pin the three controlling sources: the 036 parent `spec.md`, `manifest/phase-tree.json`, and run-2 `research/research-modes.md` section 12.
 - Reconcile the five research primitives with the transition-authorization gateway added by the parent architecture.
 - Confirm `depends_on: []` and keep runtime implementation outside this phase.
 
@@ -137,7 +137,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 - Record each primitive's problem, invariant, and downstream owner.
 - Record alternatives with concrete rejection reasons rather than preference claims.
 - Record positive consequences, costs, compatibility obligations, and migration constraints.
-- Bind phase 006, 004, and 005 to their consumer responsibilities without preselecting their implementation details.
+- Bind phase 006, 007, and 008 to their consumer responsibilities without preselecting their implementation details.
 
 ### Phase 3: Verification
 - Trace every decision claim to at least one controlling source.
@@ -159,7 +159,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 | REQ-005 | Verify receipt/certificate language covers phase and mode boundaries and links to governing evidence |
 | REQ-006 | Verify adjudication requires separation, blinding, counterfactual stability, and raw evidence retention |
 | REQ-007 | Check every named alternative has a concrete rejected failure mode and a corresponding consequence |
-| REQ-008 | Cross-check phase 006, 004, and 005 ownership against `manifest/phase-tree.json` outcomes |
+| REQ-008 | Cross-check phase 006, 007, and 008 ownership against `manifest/phase-tree.json` outcomes |
 | REQ-009 | Compare migration consequences with the manifest `migration_model` field and parent sequencing invariants |
 | REQ-010 | Run a citation-path review for all three controlling source files and section 12 |
 <!-- /ANCHOR:testing -->
@@ -178,7 +178,7 @@ seals/receipts/adjudication, and phase 008 must preserve the complete decision t
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Before phases 003-005 consume the decision, rollback is a documentation revert followed by re-ratification. After a
+Before phases 006-008 consume the decision, rollback is a documentation revert followed by re-ratification. After a
 consumer begins implementation, the ADR is immutable history: changing the topology requires a superseding decision,
 an explicit impact analysis for all three consumer phases, and a migration amendment. No implementation may silently
 weaken the decision through a local schema, writer, adapter, or scoring shortcut.

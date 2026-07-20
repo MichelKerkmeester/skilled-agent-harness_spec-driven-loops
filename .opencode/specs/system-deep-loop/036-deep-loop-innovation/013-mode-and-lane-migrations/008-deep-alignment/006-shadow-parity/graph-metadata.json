@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
     "created_at": "2026-07-16T03:43:44.129Z",
-    "last_save_at": "2026-07-17T13:21:46.606Z",
+    "last_save_at": "2026-07-19T18:09:57.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,10 +179,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:77a2e79cc659a887accc504e556cc22058c5e8af0af552d389f86c343d634d70",
+    "source_fingerprint": "sha256:4960c2b0ff8b4ebbfb933da6dc2c4f82e38cc2f4e74c6e04b7e5ba723006d3da",
     "source_doc_hashes": {
-      "spec.md": "8964b0d1ad091015eb15b939b1ce0ab661c475da7c008f3b364358fee9b31caf",
-      "plan.md": "a1ae880d9585861bd845b6991d714b7d427b7a0c8baff990b9fe730eb52807b9",
+      "spec.md": "940f34aa38cbb3aa76a2226cf95bdca467295ab44c6b558dbafa17a9a6542d2b",
+      "plan.md": "98edd16250a968fb979c7cfc2e293761920520a6c276c0f625ca2d83b80ca903",
       "tasks.md": "ada3a386e3e1ef67d75a828202f4f3a0f307827d53ee946e6ad9561e8940ee4f",
       "checklist.md": "8511d5ed58a4883cf26aad684e083c79ea9e2bcae265ad65e63b9cea311334d1"
     },

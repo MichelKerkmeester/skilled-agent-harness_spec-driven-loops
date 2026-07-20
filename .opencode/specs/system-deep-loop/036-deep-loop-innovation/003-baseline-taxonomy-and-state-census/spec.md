@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: baseline, taxonomy, and state census"
-description: "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 006 phase must preserve."
+description: "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve."
 trigger_phrases:
   - "baseline taxonomy and state census"
   - "deep-loop recommendations phase 003"
@@ -28,9 +28,9 @@ _memory:
 
 # Feature Specification: Baseline, taxonomy, and state census
 
-> Sibling phase adjacency (sorted order under the 065 parent): predecessor `002-deep-loop-effectiveness-and-fanout`; successor `004-architecture-coverage-and-transition-contract`.
+> Sibling phase adjacency (sorted order under the 036 parent): predecessor `002-deep-loop-effectiveness-and-fanout`; successor `004-architecture-coverage-and-transition-contract`.
 
-> Phase adjacency under the 006 parent (dependency order): predecessor none; successor `004-architecture-coverage-and-transition-contract`.
+> Phase adjacency under the 036 parent (dependency order): predecessor none; successor `004-architecture-coverage-and-transition-contract`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -43,21 +43,23 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 003 of the 006 recommendations-implementation program; first leaf in `manifest/phase-tree.json` |
+| **Origin** | Phase 003 of the 036 recommendations-implementation program; first leaf in `manifest/phase-tree.json` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The 006 program will replace a live, stateful deep-loop runtime through additive dark writes, compatibility adapters,
+The 036 program will replace a live, stateful deep-loop runtime through additive dark writes, compatibility adapters,
 shadow parity, staged authority cutover, and gated legacy retirement. None of those claims is testable until one
 immutable BASE commit and its observable behavior are frozen. The present vocabulary is also ambiguous: the hub
 documents five active workflow families, `mode-registry.json` registers seven public `workflowMode` keys, while the
 research program defines eight workstreams by treating `deep-improvement` as both a workstream and the common parent
-of three benchmark variants. Packet 033's behavior evidence mirrors the five package roots rather than that eight-way
-research decomposition.
+of three benchmark variants. The behavior-benchmark evidence — authored as packet 033, now archived at
+`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/` — mirrors the five package roots
+rather than that eight-way research decomposition. The bare number "033" now names an unrelated packet
+(`033-post-sync-verification-fixes`); cite the archive path, never the number.
 
-This phase establishes the non-negotiable reference corpus. It pins one BASE for all phases 000-014; states the 5/7/8
+This phase establishes the non-negotiable reference corpus. It pins one BASE for all phases 003-017; states the 5/7/8
 taxonomy authoritatively; inventories the eight runtime subsystems, every JSONL schema and its readers and writers,
 every persisted in-flight state shape and backend path; separates protected behavior from known defects; extends the
 existing behavior benchmarks into an eight-workstream, scenario-semantic baseline; and freezes replay fixtures and
@@ -69,7 +71,7 @@ scenario-count proxy.
 ## 3. SCOPE
 
 ### In Scope
-- Pin one full immutable BASE commit for the entire 006 program and record its tree cleanliness, repository state,
+- Pin one full immutable BASE commit for the entire 036 program and record its tree cleanliness, repository state,
   tool versions, source digests, and baseline artifact hashes in a single manifest.
 - Normalize three distinct taxonomy layers: **5 workflow families** (`research`, `review`, `ai-council`,
   `improvement`, `alignment`); **7 registered workflow modes** (`research`, `review`, `ai-council`,
@@ -90,7 +92,7 @@ scenario-count proxy.
 - Produce a binary known-defect-versus-protected-contract ledger. Every observed behavior has evidence, an owner,
   a linked scenario or fixture, and one final classification before phase 004 begins; no ambiguous bucket survives.
 - Inventory the five existing behavior-benchmark packages and 53 scenario IDs under
-  `.opencode/skills/system-deep-loop/*/behavior_benchmark/`, then extend coverage to all eight research workstreams.
+  `.opencode/skills/system-deep-loop/*/behavior-benchmark/`, then extend coverage to all eight research workstreams.
   Preserve existing IDs and compare expected routing, halt/fail-fast behavior, evidence kind, state mutation, and
   terminal semantics against BASE; package or scenario counts alone are insufficient.
 - Capture minimal sanitized replay fixtures and expected projections for each state/event family, plus rollback
@@ -110,13 +112,13 @@ scenario-count proxy.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | One immutable BASE is pinned for phases 000-014 | A full commit SHA, clean/dirty state, ref provenance, tool versions, submodule state, and source digests are recorded once; every baseline artifact references the same SHA |
+| REQ-001 | One immutable BASE is pinned for phases 003-017 | A full commit SHA, clean/dirty state, ref provenance, tool versions, submodule state, and source digests are recorded once; every baseline artifact references the same SHA |
 | REQ-002 | The deep-loop taxonomy is normalized without conflating layers | The census states 5 workflow families, 7 registered `workflowMode` keys, and 8 research workstreams; mappings are bijective where applicable and explicitly many-to-one for the improvement family |
 | REQ-003 | The eight runtime subsystems are completely inventoried | Every subsystem has owners, entry points, callers, state, tests, invariants, and defect candidates with live path evidence under `.opencode/skills/system-deep-loop/runtime/` or its mode consumers |
 | REQ-004 | Every JSONL schema has closed reader/writer traceability | Every discovered JSONL path has a discriminator/shape, all writers, all readers/reducers/validators, repair and ordering semantics, and a replay fixture; an automated orphan check reports zero unclassified producers or consumers |
 | REQ-005 | All persisted in-flight state and backends are censused | JSON, JSONL, SQLite, lock/pause, directory, and output artifacts have canonical/resolved paths, ownership, lifecycle, mutability, recovery, archival-read, and authority status recorded |
 | REQ-006 | Current behavior is split into protected contracts and known defects | Each observed behavior is classified exactly once with evidence and an owner; protected contracts have no-regression scenarios, defects have a later-phase disposition, and no `unknown` classification remains |
-| REQ-007 | Packet-033 behavior evidence becomes an eight-workstream baseline | The current 5 packages/53 scenarios are frozen by ID and semantics; coverage is extended until all 8 workstreams have independent semantic assertions and BASE results, without renumbering or weakening existing scenarios |
+| REQ-007 | Archived behavior evidence becomes an eight-workstream baseline | Provenance is the archived packet at `z_archive/027-deep-loop-behavior-benchmarks/`; active execution is `shared/behavior-benchmark/behavior-bench-run.cjs` plus the per-mode `behavior-benchmark/` packages. The current 5 packages/53 scenarios are frozen by ID and semantics; coverage is extended until all 8 workstreams have independent semantic assertions and BASE results, without renumbering or weakening existing scenarios |
 | REQ-008 | Replay fixtures reproduce current state semantics | Sanitized fixtures cover each event/state family, declare schema/source digests and expected reducer/projection results, and replay deterministically from a clean temporary backend |
 | REQ-009 | Rollback anchors are executable and keyed to BASE | Every mutable backend has a snapshot/restore or recreate procedure, integrity digest, rollback boundary, and pass/fail check tied to BASE; fixture execution never mutates live tracked state |
 | REQ-010 | Phase 004 receives a frozen, auditable handoff | A manifest enumerates all census and baseline artifacts, hashes them, reports zero unresolved taxonomy/schema/state rows, and is referenced by the phase-004 architecture contract |
@@ -125,7 +127,7 @@ scenario-count proxy.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All later 006 phases name the same immutable BASE and can verify the baseline manifest's digests.
+- **SC-001**: All later 036 phases name the same immutable BASE and can verify the baseline manifest's digests.
 - **SC-002**: The authoritative 5-family / 7-workflowMode / 8-workstream taxonomy resolves the parent spec's ambiguity.
 - **SC-003**: Reader/writer, state-backend, and eight-subsystem censuses close with zero unclassified persisted surfaces.
 - **SC-004**: No-regression evidence is addressable by stable scenario ID plus semantic assertions for all eight workstreams.
@@ -135,13 +137,13 @@ scenario-count proxy.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 006 parent spec: taxonomy conflation, live in-flight state, hidden cross-mode
+Inherits the program-level risks in the 036 parent spec: taxonomy conflation, live in-flight state, hidden cross-mode
 coupling, concurrent branch movement, and accidental preservation of defects. Phase-specific risks are baseline drift
 after capture, missed dynamic path construction, reader/writer discovery that stops at `runtime/` and omits mode/YAML
 consumers, fixtures containing credentials or host paths, count-only benchmark comparisons, and replay against live
-SQLite files. The controlling sources are the 006 parent and phase tree, the shipped
+SQLite files. The controlling sources are the 036 parent and phase tree, the shipped
 `.opencode/skills/system-deep-loop/runtime/` tree, the mode registry and packets, the five current
-`behavior_benchmark/` packages, and the run-2 eight-workstream research synthesis.
+`behavior-benchmark/` packages, and the run-2 eight-workstream research synthesis.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

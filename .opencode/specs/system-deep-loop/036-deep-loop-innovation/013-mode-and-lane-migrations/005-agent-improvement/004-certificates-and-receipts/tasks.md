@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-015 shared contracts, write-set graph, phase-006 primitives, and `003-sealed-artifacts` boundary are frozen before implementation
+- [ ] T001 Confirm the phase-012 shared contracts, write-set graph, phase-007 primitives, and `003-sealed-artifacts` boundary are frozen before implementation
 - [ ] T002 Inventory every Agent Improvement proposal, execution, scoring, canary, promotion, rollback, and closure transition and map ownership
 - [ ] T003 [P] Record mode 004 common-service IDs, evaluator/canary/promotion epochs, and consumed receipt interfaces without copying their logic
 - [ ] T004 Freeze the certificate fields, receipt transition matrix, canonical fingerprint vector, protected-evidence commitments, and verifier refusal codes
@@ -52,7 +52,7 @@ _memory:
 - [ ] T005 Define the per-run `CERTIFICATE` schema and builder with run, lineage, artifact, epoch, terminal-transition, receipt-root, and verifier bindings
 - [ ] T006 Define typed `RECEIPTS` for proposal generation, candidate execution, evaluator observation, reduction, canary, promotion, rollback, and closure
 - [ ] T007 Implement canonical replay-fingerprint construction over ordered parents, candidate/target/operator digests, service epochs, fixtures, executor configuration, budgets, reducers, and prior state
-- [ ] T008 Bind phase-006 primitives and `003-sealed-artifacts` references as versioned dependencies with explicit incompatibility handling
+- [ ] T008 Bind phase-007 primitives and `003-sealed-artifacts` references as versioned dependencies with explicit incompatibility handling
 - [ ] T009 [P] Implement the network-free offline verifier and its typed fail-closed outcomes for missing, stale, mutated, reordered, incomplete, or unauthorized evidence
 - [ ] T010 [P] Create valid and negative fixture families for lineages, evaluator epochs, score-policy replay, protected evidence, and receipt-chain failures
 <!-- /ANCHOR:phase-2 -->

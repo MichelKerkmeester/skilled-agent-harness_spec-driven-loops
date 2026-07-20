@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Review mode migration) |
-| **Origin** | Phase 005 of the 013 per-mode migration program; reducers and projections concern |
+| **Origin** | Second Deep Review child in the 013 per-mode migration program; reducers and projections concern |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -101,7 +101,7 @@ This phase plans the reducers that consume the typed event log defined by `001-t
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase inherits the 065 program risks: live in-flight state, additive-dark migration, replay compatibility, shared write-set ownership, and staged authority cutover. Phase-specific risks are that event order or object serialization leaks into state, duplicate or late evidence changes terminal status, the artifact index accidentally mutates immutable evidence, P0/P1/P2 becomes a hidden source of truth, or Deep Review diverges from Deep Alignment's shared loop contract.
+The phase inherits the 036 program risks: live in-flight state, additive-dark migration, replay compatibility, shared write-set ownership, and staged authority cutover. Phase-specific risks are that event order or object serialization leaks into state, duplicate or late evidence changes terminal status, the artifact index accidentally mutates immutable evidence, P0/P1/P2 becomes a hidden source of truth, or Deep Review diverges from Deep Alignment's shared loop contract.
 
 The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 012, the write-set conflict graph from the 013 parent, and the legacy Deep Review replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but is an adjacency reference, not a runtime dependency of this planning contract. No authority cutover is permitted from this phase.
 <!-- /ANCHOR:risks -->

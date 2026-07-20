@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Plan the Deep Review rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, shadow-parity acceptance, sealed artifacts, certificate evidence, and the scope-to-report handoff without moving runtime authority.",
     "created_at": "2026-07-16T03:43:33.680Z",
-    "last_save_at": "2026-07-17T13:21:29.765Z",
+    "last_save_at": "2026-07-19T18:09:54.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,12 +185,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2d693f2c1b66ae24a205d82ed08d3a70fd272d6d18082194f4f064eb92a969c9",
+    "source_fingerprint": "sha256:cc71a2edbf817f0a6138af73636c344132c44637e4adb2a26e79a3b510211d35",
     "source_doc_hashes": {
-      "spec.md": "a8cc684fb2b0ba9f76e14d77e796cf4a5265bd2e6fa24a99d4f1e6b4f38c5566",
-      "plan.md": "a6c345e201470fb1b99382042860f99c14bad4302c42893175f656859abe02b7",
-      "tasks.md": "b6fa18eec87c0b3ec3722ebb6dd180faae91b053299b7311f9153768a7cef81a",
-      "checklist.md": "d3bd2720fc9eaeec2d86d881e1e7bc6ca822fb15fdcacba75811a4a436ffbe35"
+      "spec.md": "4f9815bd6eb77a155081268792f6cc36935d5c35940cfc0707ea75a3f2b79797",
+      "plan.md": "e3bd2b8cd997b660bd0555d23649a3a72587841ae792b423a5f7084b381fa9f5",
+      "tasks.md": "5d9ea024e1626f699a9eccbe1d8790d8f8de8633e0c914718a85df4c6632a974",
+      "checklist.md": "c1d14e229e3349dbe82d18393ad5f4a28ffbfd4c7f0ba1f869ceb9551f5415b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

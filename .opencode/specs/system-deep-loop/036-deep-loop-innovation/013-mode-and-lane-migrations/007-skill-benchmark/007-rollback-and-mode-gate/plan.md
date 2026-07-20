@@ -143,7 +143,7 @@ readiness certificate, not a production authority flip.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase depends on the parent 065 contracts and phase 012 shared mode interfaces; deep-improvement-common mode 004;
+This phase depends on the parent 036 contracts and phase 012 shared mode interfaces; deep-improvement-common mode 004;
 the typed ledger and transition gateway; shared evidence/control services; compatibility and shadow parity; durable
 fan-out/fan-in, projections, and convergence/health services; predecessor `006-shadow-parity`; and the phase-013
 write-set conflict graph. It consumes the packet-033 behavior benchmark harness as an extended baseline and does not

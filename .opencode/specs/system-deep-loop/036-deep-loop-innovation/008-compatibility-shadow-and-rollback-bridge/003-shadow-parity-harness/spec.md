@@ -105,7 +105,7 @@ cutover**.
 
 ### Out of Scope
 - Defining sealed artifact identity or retention, replay-fingerprint formats, upcasters, dual-read adapters, legacy
-  projection algorithms, or in-flight-state dispositions owned by phases 004, 003, and adjacent phase-008 children.
+  projection algorithms, or in-flight-state dispositions owned by phases 007, 006, and adjacent phase-008 children.
 - Fixing a dark-path or legacy-path divergence. This phase surfaces and routes evidence; the owning implementation
   phase changes behavior and must rerun the affected parity closure.
 - Waiving known defects, weakening protected behavior, inventing tolerance bands, or dropping scenarios at comparison

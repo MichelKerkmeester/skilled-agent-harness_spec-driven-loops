@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant) |
-| **Origin** | Phase 005 of the model-benchmark migration under phase 013 |
+| **Origin** | Phase 002 of the model-benchmark migration under phase 013 |
 | **Depends on** | None as a sibling planning contract; consumes the preceding typed schema and shared deep-improvement services |
 <!-- /ANCHOR:metadata -->
 
@@ -66,7 +66,7 @@ Define the model-benchmark reducers and projections on top of the deep-improveme
 Model-specific logic is limited to multi-model run identity, matrix-cell progress, benchmark recipe and workload
 provenance, scoring-matrix reduction, uncertainty and coverage views, and model-benchmark status. The shared evaluator,
 canary, promotion, rollback, and veto semantics remain owned by deep-improvement-common and are consumed through their
-versioned events and projections. This is planning only. The per-mode 010 migrations land after phase 012 freezes the
+versioned events and projections. This is planning only. The per-mode 013 migrations land after phase 012 freezes the
 shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:problem -->
 
@@ -105,7 +105,7 @@ shared contracts and emits the write-set conflict graph.
 - Reimplementing deep-improvement-common evaluator, canary, promotion, rollback, receipt, veto, or shared per-mode
   status logic. Model Benchmark consumes those contracts and adds only its matrix and scoring extensions.
 - The six sibling concerns and the mode gate, authority cutover, legacy-writer retirement, runtime fan-out/fan-in
-  redesign, or the per-mode 010 migration write-set execution.
+  redesign, or the per-mode 013 migration write-set execution.
 - Calling model providers, running evaluators, reading mutable benchmark directories, changing score policy, writing
   artifacts, or mutating persisted state during replay.
 <!-- /ANCHOR:scope -->
@@ -160,7 +160,7 @@ shared contracts and emits the write-set conflict graph.
   the phase-012 write-set conflict graph a downstream integration gate.
 - **Dependencies**: model-benchmark `001-typed-ledger-schema`; deep-improvement-common mode 004 reducers and shared
   evaluator/canary/promotion contracts; `003-sealed-artifacts` for immutable references; phase 012 shared mode contracts
-  and write-set conflict graph; the 065/002 findings registries; and the spec-kit validator.
+  and write-set conflict graph; the 036/002 findings registries; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

@@ -61,7 +61,7 @@ duplicate or omitted mapping, any invalid disposition/reference, or any silently
 - [ ] CHK-012 [P0] Every merge/defer/reject row has a non-empty reason; merge targets exist, are non-self, and the merge graph is acyclic
 - [ ] CHK-013 [P0] Every adoption's `NNN` exists in `manifest/phase-tree.json`; no free-text or nonexistent phase target passes
 - [ ] CHK-014 [P0] Coverage report names all four disposition buckets with counts and row IDs; every zero-count bucket is explicit and reasoned
-- [ ] CHK-015 [P0] Coverage report names every manifest phase `000..014` with adopted-row IDs and counts; every zero-adoption phase is explicit and reasoned
+- [ ] CHK-015 [P0] Coverage report names every manifest phase `003..017` with adopted-row IDs and counts; every zero-adoption phase is explicit and reasoned
 - [ ] CHK-016 [P0] Canonical JSON validates against the schema and deterministic CSV contains the identical 178-ID set and disposition/target values
 - [ ] CHK-017 [P0] Two clean regenerations from the frozen inputs produce identical canonical, CSV, and validation-report hashes
 - [ ] CHK-018 [P0] Negative fixtures fail non-zero for missing/extra rows, duplicate IDs/locators, invalid targets, multiple dispositions, blank reasons, invalid phases, self/missing merges, and merge cycles

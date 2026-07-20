@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 006. Every item remains pending during planning. The implementation verifier must bind its report to the candidate revision, phase-005 manifest fixture fingerprint, phase-007 fencing contract version, and wave-plan derivation version; record commands, exit codes, event counts, and accepted/rejected fence epochs; and fail on zero executed branches, silent manifest drift, or unexpected tracked mutation.
+This checklist is the blocking verifier contract for phase 009's `003-logical-branch-ids-leases-waves` child. Every item remains pending during planning. The implementation verifier must bind its report to the candidate revision, phase-005 manifest fixture fingerprint, phase-007 fencing contract version, and wave-plan derivation version; record commands, exit codes, event counts, and accepted/rejected fence epochs; and fail on zero executed branches, silent manifest drift, or unexpected tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

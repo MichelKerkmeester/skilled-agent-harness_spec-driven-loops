@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate. The contract keeps authority fail-closed, bounds the rollback window, proves shadow parity, verifies sealed council artifacts, and emits a mode-specific certificate before phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:35.476Z",
-    "last_save_at": "2026-07-17T13:21:32.907Z",
+    "last_save_at": "2026-07-19T18:01:19.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3fab6056b7700a8a10df1252eef39508fc065549d9bc07633f9d193e105626ed",
+    "source_fingerprint": "sha256:a6df57ef907c55b92dd17240ad1d31f8183bf346ce1865dbc812f1274778a102",
     "source_doc_hashes": {
-      "spec.md": "7d78f512b53d5f8f0ac9891cfd766f67c3c2831867f0923cf8424fcdc6397919",
+      "spec.md": "ab01a6a0d881f44d49b8182116179dcd4bbbac3a9f6ef37cf8f8a62223f8c6f3",
       "plan.md": "0db8ceea40645e1705b9e7f3203e83fdedd4b70188bf77c753ffa3943431d645",
       "tasks.md": "2ccc00c62b46bac43b113ebd8c552b7a36160ef045202adde233a6ffe5852342",
       "checklist.md": "cf6e108b5b1be25cf7df663c6d81c23052662fc73ebec9d66aaf064ea6cddca9"

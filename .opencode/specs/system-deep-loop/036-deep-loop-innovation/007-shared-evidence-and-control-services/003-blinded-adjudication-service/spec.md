@@ -159,7 +159,7 @@ equivalence fixtures, cloned-seat correlation cases, cycle/tie cases, event repl
 ## 7. OPEN QUESTIONS
 
 None blocking for the planning contract. Implementation may choose the opaque-label format, identity-map custody
-mechanism, pair-selection optimizer, and reducer family after the phase-006 envelope and phase-005 sealed-artifact
+mechanism, pair-selection optimizer, and reducer family after the phase-006 envelope and sibling `002-sealed-reference-artifacts`
 interfaces are fixed. Those choices may not expose provenance during scoring, force a winner from unstable evidence,
 discard raw scores, equate competence weighting with independence, or let a consuming mode bypass typed verdict events.
 <!-- /ANCHOR:questions -->

@@ -109,13 +109,13 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 
 | Program phase | Contract obligation inherited from this phase |
 |---------------|----------------------------------------------|
-| 003 | Implement the canonical envelope, version registry, append boundary, replay fingerprint inputs, authorization gateway, decision log, and rejection receipt together; remain dark and legacy-authoritative. |
-| 004 | Ensure effect receipts, budgets, locks, and continuity identities consume authorized event identity and authority epochs without bypassing the gateway. |
-| 005 | Implement registered upcasters, dual-read/single-write adapters, mixed-version replay, state classification, shadow parity, and rollback rehearsal; move no authority. |
-| 006-008 | Emit only registered current event versions and prove deterministic replay through orchestration, projections, and convergence consumers. |
-| 009-010 | Freeze shared and per-mode schemas, fixtures, mode gates, adapters, rollback switches, and write ownership against this policy. |
-| 011 | Execute the per-mode cutover state machine, issue cutover and rollback certificates, and enforce the full rollback window. |
-| 012 | Retire legacy live writers only after window closure, zero-use telemetry, rollback evidence, and retained archival-reader verification. |
+| 006 | Implement the canonical envelope, version registry, append boundary, replay fingerprint inputs, authorization gateway, decision log, and rejection receipt together; remain dark and legacy-authoritative. |
+| 007 | Ensure effect receipts, budgets, locks, and continuity identities consume authorized event identity and authority epochs without bypassing the gateway. |
+| 008 | Implement registered upcasters, dual-read/single-write adapters, mixed-version replay, state classification, shadow parity, and rollback rehearsal; move no authority. |
+| 009-011 | Emit only registered current event versions and prove deterministic replay through orchestration, projections, and convergence consumers. |
+| 012-013 | Freeze shared and per-mode schemas, fixtures, mode gates, adapters, rollback switches, and write ownership against this policy. |
+| 014 | Execute the per-mode cutover state machine, issue cutover and rollback certificates, and enforce the full rollback window. |
+| 015 | Retire legacy live writers only after window closure, zero-use telemetry, rollback evidence, and retained archival-reader verification. |
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

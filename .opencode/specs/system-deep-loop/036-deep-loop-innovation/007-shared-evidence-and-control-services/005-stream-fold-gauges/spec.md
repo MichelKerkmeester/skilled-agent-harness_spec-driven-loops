@@ -72,8 +72,8 @@ cutoff must produce byte-identical output whether replayed from genesis or resum
 The standard set covers progress, novelty, cost, and health inputs while retaining mode-specific extension points.
 This follows the program outcome and phase placement in `../../spec.md` and `../../manifest/phase-tree.json`, and it
 grounds cross-mode metric needs in the run-2 synthesis and registry at
-`../../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md` and
-`../../../002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`. Gauge values remain derived,
+`../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md` and
+`../../002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`. Gauge values remain derived,
 non-authoritative projections during the additive-dark period; later convergence and mode phases may consume them only
 through their own authority and cutover contracts.
 <!-- /ANCHOR:problem -->
@@ -98,8 +98,8 @@ through their own authority and cutover contracts.
 - Defining or implementing the phase-006 envelope, ledger writer, authorization proof, sequence allocator, integrity chain, or replay fingerprint.
 - Owning hierarchical budget authorization or exhaustion policy; this phase folds budget events emitted under sibling `004-hierarchical-typed-budgets`.
 - Defining novelty semantics, continuity identities, or claim supersession policy owned by later phase 010; this phase defines how their typed events are reduced once available.
-- Choosing convergence thresholds, stop policy, degeneration policy, or promotion decisions owned by phases 008 and 010.
-- Upcasters, dual-read compatibility, shadow-parity orchestration, rollback drills, authority cutover, or legacy-writer retirement owned by phases 005, 011, and 012.
+- Choosing convergence thresholds, stop policy, degeneration policy, or promotion decisions owned by phases 011 and 013.
+- Upcasters, dual-read compatibility, shadow-parity orchestration, rollback drills, authority cutover, or legacy-writer retirement owned by phases 008, 014, and 015.
 - Treating gauge snapshots, dashboards, wall-clock reads, process memory, or mutable database rows as source events or canonical state.
 <!-- /ANCHOR:scope -->
 

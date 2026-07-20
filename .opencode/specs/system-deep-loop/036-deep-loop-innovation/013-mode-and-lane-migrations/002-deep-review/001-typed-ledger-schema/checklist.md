@@ -42,7 +42,7 @@ replacement, missing raw observations, unadjudicated P0/P1 activation, reducer-o
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Phase 006 publishes the transition-authorized envelope and append boundary; phase 012 publishes the shared review-loop, event, lineage, and replay contracts
-- [ ] CHK-002 [P0] Current Deep Review lifecycle and JSONL obligations are inventoried from `deep-review/SKILL.md:287-356` and `deep-review/references/state/state_jsonl.md:45-344`
+- [ ] CHK-002 [P0] Current Deep Review lifecycle and JSONL obligations are inventoried from `deep-review/SKILL.md:287-356` and `deep-review/references/state/state-jsonl.md:45-344`
 - [ ] CHK-003 [P1] The event ownership matrix names one owner for every shared, mode, reducer, projection, report, artifact, and certificate concern
 - [ ] CHK-004 [P2] The candidate report records phase-006 and phase-012 contract revisions plus the event-vocabulary manifest hash
 - [ ] CHK-005 [P1] The Deep Review and deep-alignment shared-backbone boundary is recorded and no mode-local duplicate event family is accepted

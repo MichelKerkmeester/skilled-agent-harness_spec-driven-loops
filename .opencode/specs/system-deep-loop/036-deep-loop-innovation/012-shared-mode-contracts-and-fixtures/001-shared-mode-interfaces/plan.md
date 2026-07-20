@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: shared mode interfaces"
-description: "Implementation Plan for phase 004 of the 009 shared-mode-contracts-and-fixtures parent: freeze the typed lifecycle contract and conformance boundary for all eight phase-013 modes."
+description: "Implementation Plan for phase 012 child 001 of the shared-mode-contracts-and-fixtures parent: freeze the typed lifecycle contract and conformance boundary for all eight phase-013 modes."
 trigger_phrases:
   - "shared mode interfaces implementation plan"
   - "deep-loop mode contract plan"
@@ -66,7 +66,7 @@ The work freezes one `ModeContract` for the eight phase-013 workstreams. The con
 - Require every sealed artifact and certificate to declare its content digests, source events, validity scope, producer version, invalidation rule, and whether it is shadow-parity evidence or a later cutover input.
 - Model resume as an explicit adapter result: `upcast`, `pin-legacy`, `fork`, `migrate`, or `block`, with the result bound to the snapshot version, replay fingerprint, lease/fencing state, pending effects, receipts, artifacts, and continuity identity.
 - Make interface versioning independent from event schema versioning. Additive changes may be read by older consumers only when the compatibility fixture proves safe defaults; semantic and breaking changes require a versioned adapter or a fail-closed refusal.
-- Derive the mode matrix and write-set declarations from `mode_workstreams_phase_010`; do not encode a second list that can drift from the manifest.
+- Derive the mode matrix and write-set declarations from `mode_workstreams_phase_013`; do not encode a second list that can drift from the manifest.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -112,7 +112,7 @@ The work freezes one `ModeContract` for the eight phase-013 workstreams. The con
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The contract depends on the planned boundaries in `006-transition-authorized-ledger-core/spec.md`, `007-shared-evidence-and-control-services/spec.md`, and `011-convergence-termination-and-health/spec.md`, plus the sequencing and handoff rules in `../spec.md` and `../manifest/phase-tree.json`. It also consumes the durable fan-out/fan-in and compatibility assumptions recorded in phases 005-007. Phase 013 cannot begin its eight mode migrations until this contract and its conformance fixtures are frozen. The successor `002-cross-mode-closures` may depend on this interface but must not silently alter it.
+The contract depends on the planned boundaries in `006-transition-authorized-ledger-core/spec.md`, `007-shared-evidence-and-control-services/spec.md`, and `011-convergence-termination-and-health/spec.md`, plus the sequencing and handoff rules in `../spec.md` and `../../manifest/phase-tree.json`. It also consumes the durable fan-out/fan-in and compatibility assumptions recorded in phases 005-007. Phase 013 cannot begin its eight mode migrations until this contract and its conformance fixtures are frozen. The successor `002-cross-mode-closures` may depend on this interface but must not silently alter it.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

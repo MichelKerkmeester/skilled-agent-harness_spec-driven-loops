@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Fan-out Live-Tools Unblock
 
-> Sibling phase adjacency (sorted order under the 065 parent): predecessor `004-architecture-coverage-and-transition-contract`; successor `006-transition-authorized-ledger-core`.
+> Sibling phase adjacency (sorted order under the 036 parent): predecessor `004-architecture-coverage-and-transition-contract`; successor `006-transition-authorized-ledger-core`.
 
 > Required dependency: `004-architecture-coverage-and-transition-contract`. The next numbered sibling is phase 006; durable fan-in and canonical dispatch receipts remain owned by phase 009.
 
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 005 of the 065/006 recommendations-implementation program; early split from durable fan-in after the SOL-ultra design review |
+| **Origin** | Phase 005 of the 036 recommendations-implementation program; early split from durable fan-in after the SOL-ultra design review |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

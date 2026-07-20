@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Skill Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 013 mode-and-lane-migrations, mode 007 `skill-benchmark`, rollback and mode-gate workstream |
-| **Inputs** | 065 parent spec, `manifest/phase-tree.json`, findings registries from 065/002, deep-improvement-common mode 004 contracts, predecessor `006-shadow-parity` |
+| **Inputs** | 036 parent spec, `manifest/phase-tree.json`, findings registries from 036/002, deep-improvement-common mode 004 contracts, predecessor `006-shadow-parity` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -79,7 +79,7 @@ emitted before this mode exits into phase 014. The phase is planning only; it do
 - Replacing the shared fan-out/fan-in, event ledger, transition-authorization gateway, upcasters, or shadow-parity harness.
 - Flipping production authority or removing legacy writers; authority cutover belongs to phase 017 after all mode gates pass.
 - Defining the six sibling concerns in this mode workstream; this packet covers only Skill Benchmark rollback and mode-gate planning.
-- Re-running the 065 research or inventing a new leaderboard metric outside the frozen mode contracts.
+- Re-running the 036 research or inventing a new leaderboard metric outside the frozen mode contracts.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

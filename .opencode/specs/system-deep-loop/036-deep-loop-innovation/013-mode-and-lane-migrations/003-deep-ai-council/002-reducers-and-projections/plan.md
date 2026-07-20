@@ -123,7 +123,7 @@ The plan consumes the typed event schema from `001-typed-ledger-schema`, shared 
 the 013 write-set conflict graph, shared adjudication/budget/convergence services, and the legacy Deep AI Council replay
 corpus. The research inputs are the Deep AI Council findings in
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`, the cross-cutting council and replay
-findings in `findings-registry.json`, the 065 parent `spec.md`, and `manifest/phase-tree.json`.
+findings in `findings-registry.json`, the 036 parent `spec.md`, and `manifest/phase-tree.json`.
 
 `003-sealed-artifacts` is a downstream adjacency boundary for artifact sealing and certification, not a dependency for
 defining the index. The migration remains additive and dark. Legacy projections remain authoritative until adapters,

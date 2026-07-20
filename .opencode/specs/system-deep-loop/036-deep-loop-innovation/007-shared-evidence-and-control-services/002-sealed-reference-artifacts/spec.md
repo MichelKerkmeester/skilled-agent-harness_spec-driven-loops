@@ -57,12 +57,12 @@ equivalent because their reference inputs were never pinned.
 
 The phase-004 spine ADR ratifies sealed reference artifacts addressed by digest as one of the shared primitives and
 requires mutable or unversioned inputs to fail the replay contract
-(`../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-006
+(`../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-006
 replay-fingerprint contract requires every replay-affecting artifact or configuration value to be ledger-addressable
 by immutable digest and refuses trusted output when an input cannot be reconstructed
-(`../../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`). The parent program and phase
+(`../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`). The parent program and phase
 manifest place this mechanism in the additive-dark shared-services layer before compatibility and shadow parity
-(`../../../spec.md`, `../../../manifest/phase-tree.json`).
+(`../../spec.md`, `../../manifest/phase-tree.json`).
 
 This phase plans one mechanism that canonicalizes an input, computes and records its content digest, freezes the exact
 bytes, references the artifact only by that digest, recomputes the commitment on every read, and fails closed on
@@ -88,7 +88,7 @@ effective events and projection bytes; a difference is a typed verification fail
 ### Out of Scope
 - Choosing the concrete hash primitive, storage backend, compression format, encryption scheme, or access-control provider before runtime constraints are measured; implementations must register these choices without weakening content identity.
 - Defining the replay descriptor, ledger frame, event envelope, or transition-authorization vocabulary owned by phase 006.
-- Implementing shadow comparison, upcasters, compatibility adapters, rollback orchestration, or authority cutover owned by phases 005 and 011.
+- Implementing shadow comparison, upcasters, compatibility adapters, rollback orchestration, or authority cutover owned by phases 008 and 014.
 - Defining mode-specific artifact schemas or certificate semantics; phase 013 mode children specialize the shared descriptor without replacing its seal and verified-read invariants.
 - Treating a signature, filename, object-store version, database row ID, timestamp, or access-control decision as a substitute for the canonical content digest.
 - Mutating, overwriting, auto-repairing, or silently re-sealing bytes under an existing digest after publication.

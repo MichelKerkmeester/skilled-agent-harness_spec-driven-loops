@@ -85,9 +85,9 @@ outcomes. The fixture runner is a consumer of phase-008 contracts, not a second 
   terminal result, pending effects, receipt set, continuity identity, and resume classification. The oracle is fixture data
   and contract evidence, not a second production reducer.
 - **Replay and parity coordinator**: Run legacy and dark paths from isolated clones of one verified capsule, verify phase-
-  003 replay components, compare declared projections, and route input inequality, divergence, or nondeterminism as
+  006 replay components, compare declared projections, and route input inequality, divergence, or nondeterminism as
   blocking evidence. Phase-008 remains responsible for the harness and certificate semantics.
-- **Manifest-derived matrix**: Expand the case rows from `mode_workstreams_phase_010`; preserve
+- **Manifest-derived matrix**: Expand the case rows from `mode_workstreams_phase_013`; preserve
   `004-deep-improvement-common` before its three variants and keep the fixture namespace stable across reruns.
 
 The verification order is fixed: manifest closure -> fixture-schema validation -> seal and digest verification -> causal

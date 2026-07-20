@@ -135,7 +135,7 @@ and replay fingerprint, making the verdict reproducible without reading process-
 
 This child has no hard sibling dependency in `manifest/phase-tree.json`, but its contract composes with child 004's
 await-set and decision-boundary output and child 006's reduction input. It also consumes the phase-006 canonical ledger
-and transition authorization, phase-007 budget/receipt services, and phase-008 compatibility bridge named by the 006
+and transition authorization, phase-007 budget/receipt services, and phase-008 compatibility bridge named by the 009
 program parent. The main risks are counting retries as separate failed leaves, changing the denominator after dispatch,
 mistaking a pre-admission budget omission for executor failure, letting one integrity failure hide inside a quorum,
 finalizing progressive output too early, leaking unbounded executor error text, and preserving current ad-hoc `partial`

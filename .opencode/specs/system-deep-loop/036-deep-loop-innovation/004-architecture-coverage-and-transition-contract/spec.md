@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Architecture, Coverage & Transition Contract
 
-> Sibling phase adjacency (sorted order under the 065 parent): predecessor `003-baseline-taxonomy-and-state-census`; successor `005-fanout-live-tools-unblock`.
+> Sibling phase adjacency (sorted order under the 036 parent): predecessor `003-baseline-taxonomy-and-state-census`; successor `005-fanout-live-tools-unblock`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay.",
     "created_at": "2026-07-16T03:43:52.164Z",
-    "last_save_at": "2026-07-17T13:21:19.610Z",
+    "last_save_at": "2026-07-19T18:01:21.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8eb7b96f1f0e71f0bca00a41a81076c0f5ecfd1e18b8f7cfc926f9f44110da4f",
+    "source_fingerprint": "sha256:17c40bcee60d5a92d18b7ad452de8b48af40cbf271ce27e356bd47e78bbea6e7",
     "source_doc_hashes": {
-      "spec.md": "29ad9d5fc95467c56390145fc17199cc64e9bc6422dc70bda5bbc51a03bcc6b0",
+      "spec.md": "04a5fcc445d1344e1dbc03b774f15663ed7c2b9f698d8514809eff9b36367871",
       "plan.md": "99b850f8b7714ac718b0908d257c8f80dc21e1705a7a893f6005570a9dc21028",
       "tasks.md": "d2c635a694e09ebb42c931ce4a32ede0e08782b4aea66e673c9faf5ee27df8aa",
-      "checklist.md": "250951e603b32ce373af82a114c407a5ff95975f6f41428f2c3b9828e4193891"
+      "checklist.md": "60c7e67d18565fb6da6f029f9e5eaae2a42a7f144c417034cb78fef372bab6f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -76,7 +76,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 - Rewriting historical JSONL rows, snapshots, checkpoints, or committed ledger bytes into a new version.
 - Treating an unversioned legacy shape as a supported version without an explicit, fixture-backed discriminator and lossless mapping.
 - Returning a dark value when the legacy read fails, allowing a dark append to change legacy success/failure semantics, or promoting dark state to canonical authority.
-- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-004 rollback-window policy; those actions remain in phases 011 and 012.
+- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-004 rollback-window policy; those actions remain in phases 014 and 015.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
+  "description": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
+  "keywords": [
+    "packet",
+    "authored",
+    "planning",
+    "documents",
+    "across",
+    "phases",
+    "against",
+    "tree",
+    "state",
+    "frozen"
+  ],
+  "lastUpdated": "2026-07-19T18:16:02.961Z",
+  "specId": "018",
+  "folderSlug": "drift-census-and-plan-revalidation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

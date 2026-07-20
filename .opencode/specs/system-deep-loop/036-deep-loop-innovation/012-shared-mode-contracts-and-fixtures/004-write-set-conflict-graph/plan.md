@@ -48,7 +48,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 
 ### Definition of Ready
 - [ ] The parent `spec.md`, `execution-sequencing-strategy.md`, and `manifest/phase-tree.json` are the pinned source set
-- [ ] The graph node set exactly matches the eight entries in `mode_workstreams_phase_010`
+- [ ] The graph node set exactly matches the eight entries in `mode_workstreams_phase_013`
 - [ ] Every node has reviewed canonical read, write, shared-state, lock, fixture, and generated-output declarations
 - [ ] Conflict derivation distinguishes write-write, write-read, shared-backend, fence, and hard-order relationships
 - [ ] Unknown, stale, aliased, and contradictory resource evidence is conservative and fail closed
@@ -125,7 +125,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Compare graph node IDs with `mode_workstreams_phase_010`; fail on missing, duplicate, renamed, or extra nodes |
+| REQ-001 | Compare graph node IDs with `mode_workstreams_phase_013`; fail on missing, duplicate, renamed, or extra nodes |
 | REQ-002 | Validate every node's canonical read/write/shared-state records against reviewed phase-013 resource manifests |
 | REQ-003 | Run path, symlink, generated-output, backend-alias, and state-store normalization fixtures; unresolved aliases become conflicts |
 | REQ-004 | Derive conflict fixtures for write-write, write-read, shared-backend, and fence overlap and compare resource evidence |

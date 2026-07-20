@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window policy before any typed event writer exists.",
     "created_at": "2026-07-16T03:43:45.134Z",
-    "last_save_at": "2026-07-17T13:21:08.323Z",
+    "last_save_at": "2026-07-19T18:01:15.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +202,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:fb93f9943169f000a5d0c9d2ad2c61d274f791ce26245fbdd358a28b0dee6f9a",
+    "source_fingerprint": "sha256:ded34407253423e88c30ae9f17bb4146e42f8198a96a95ded1fe6ec128caa4b0",
     "source_doc_hashes": {
-      "spec.md": "337be85a447d58e9c321a1de1dd4cf0ace74830b3bae42e89cf01a2e386bf1da",
+      "spec.md": "573917fba3a44b50784c1bec48994bc585061fa29b70c55e0c6b0b330f055606",
       "plan.md": "11a345b4838aa8aa102137774661e7347678aa4ac9b47da16e836709ef204882",
       "tasks.md": "635d1c821ab78fe1626f5114edc1a5cc3aefa6223c97b534eee4c1974c1e94db",
       "checklist.md": "3ef5d6d8a8f8733c028d35c07139658564eb87127dd829b4c14d9ab4b294415d"

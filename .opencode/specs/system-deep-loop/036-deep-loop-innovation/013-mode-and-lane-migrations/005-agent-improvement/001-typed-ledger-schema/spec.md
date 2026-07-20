@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement variant) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; first child of the Agent Improvement migration |
-| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; mode 004 Deep Improvement Common Services; 065/002 findings registries |
+| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; mode 004 Deep Improvement Common Services; 036/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -136,7 +136,7 @@ self-authorize.
 ## 6. RISKS & DEPENDENCIES
 
 The direct contract inputs are the phase-006 transition-authorized ledger core and phase-012 shared event contracts.
-Mode 004 supplies the reusable evaluator, canary, promotion, receipt, and authorization event vocabulary. The 065/002
+Mode 004 supplies the reusable evaluator, canary, promotion, receipt, and authorization event vocabulary. The 036/002
 findings require typed AgentIR, clause-level causal slicing, Pareto-preserved candidate lineage, frozen evaluator and
 canary epochs, controlled feedback, critical invariant gates, family-level non-inferiority, isolated verifiers,
 cross-executor transfer, and content-addressed behavioral evidence.

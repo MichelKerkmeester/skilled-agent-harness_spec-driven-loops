@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references, content-addressed proposal and trial outputs, and a tamper-evident read path layered on the deep-improvement-common sealing and evaluator services.",
     "created_at": "2026-07-16T03:43:38.008Z",
-    "last_save_at": "2026-07-17T13:21:37.287Z",
+    "last_save_at": "2026-07-19T18:09:54.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +188,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5bc3f7753f297ea28059b2b489ea2be0206babab8ba72d5d19760f8e48dd512c",
+    "source_fingerprint": "sha256:26cb6c0c44f13fe076c973cd7b9b3a9f736c5213ba57c0572a23edd61035cbf6",
     "source_doc_hashes": {
-      "spec.md": "274d3b6ae288ac226fc1dca6ecf5c5ddf4d6034b8cb986a69000c20f4553d8ba",
-      "plan.md": "72340b0b1a98ef101907807796411dd3f7af3098bcdafc23edb9845d006d3cef",
-      "tasks.md": "2ff90eb73eff04deb4174a3e62759b8c777a681df50b492ece9e797003100044",
-      "checklist.md": "5d080116f1add8dc8d1161ee9f2561da26978477f2ea9e30bd220da8a9e79950"
+      "spec.md": "9077460e9fe1f32f70751fb18972c8c4e304ec8fa5ce329c00ae91f1462d5dd2",
+      "plan.md": "dfdba7acc8fcc2fe08292acc1a7415d0ac332266a7c1509ade48f2d45df55f15",
+      "tasks.md": "6ac8cc07175c58f20e816c3849949ec9599d8b57d6fba646cd67d22d5227bbb6",
+      "checklist.md": "7794b9fe9582f5cc5296092d9e38c04070edfd6af76b5156eeb8cc1e0ebfb65a"
     },
     "last_active_child_id": null,
     "last_active_at": null

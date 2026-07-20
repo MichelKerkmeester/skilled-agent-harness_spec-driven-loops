@@ -1,6 +1,6 @@
 ---
 title: "Checklist: shared mode interfaces"
-description: "Checklist for phase 004 of the 009 shared-mode-contracts-and-fixtures parent: verify the frozen typed mode interface, version matrix, and conformance fixtures before phase 013."
+description: "Checklist for phase 012 child 001 of the shared-mode-contracts-and-fixtures parent: verify the frozen typed mode interface, version matrix, and conformance fixtures before phase 013."
 trigger_phrases:
   - "shared mode interfaces checklist"
   - "deep-loop mode contract verification"
@@ -29,13 +29,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 004. The verifier derives the mode rows from `manifest/phase-tree.json`, binds each check to the frozen interface version, records fixture names and exit outcomes, and fails on missing ports, unowned writes, nondeterministic replay, unsupported version transitions, or any evidence that grants authority before phase 014.
+This checklist is the blocking verifier contract for phase 012 child 001. The verifier derives the mode rows from `manifest/phase-tree.json`, binds each check to the frozen interface version, records fixture names and exit outcomes, and fails on missing ports, unowned writes, nondeterministic replay, unsupported version transitions, or any evidence that grants authority before phase 014.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The parent outcome, phase adjacency, and `mode_workstreams_phase_010` list are pinned to the reviewed phase-tree manifest
+- [ ] CHK-001 [P0] The parent outcome, phase adjacency, and `mode_workstreams_phase_013` list are pinned to the reviewed phase-tree manifest
 - [ ] CHK-002 [P0] Phase-006 ledger/envelope, phase-007 evidence/control services, and phase-011 convergence/health contracts are reconciled in the source-to-port matrix
 - [ ] CHK-003 [P1] The boundary with `002-cross-mode-closures` is explicit; this phase freezes interfaces and write sets without hoisting shared implementations
 - [ ] CHK-004 [P2] The interface version baseline and fixture namespace are recorded before mode-specific work begins
@@ -89,7 +89,7 @@ This checklist is the blocking verifier contract for phase 004. The verifier der
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-025 [P1] Authored changes are limited to the four phase-004 documents; generated metadata is produced later by deterministic tooling
+- [ ] CHK-025 [P1] Authored changes are limited to the four `001-shared-mode-interfaces` documents; generated metadata is produced later by deterministic tooling
 - [ ] CHK-026 [P2] Fixture and conformance artifacts are scoped to the phase contract and do not mutate research inputs or adjacent phase folders
 <!-- /ANCHOR:file-org -->
 

@@ -19,7 +19,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which phase-006 primitive seals the run certificate?"
+      - "Which phase-007 primitive seals the run certificate?"
       - "Which phase-012 fields are inherited by alignment receipts?"
     answered_questions:
       - "The certificate attests process integrity, not semantic truth"

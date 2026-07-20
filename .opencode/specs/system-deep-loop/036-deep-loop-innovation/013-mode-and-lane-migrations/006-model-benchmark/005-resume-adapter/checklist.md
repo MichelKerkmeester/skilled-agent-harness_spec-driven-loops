@@ -94,7 +94,7 @@ mutation fails the gate.
 
 - [ ] CHK-028 [P1] spec.md, plan.md, tasks.md, and checklist.md use the leaf mold's frontmatter, marker comments, anchors, adjacency line, and section order
 - [ ] CHK-029 [P1] The phase documents name `004-certificates-and-receipts` as predecessor and `006-shadow-parity` as successor while keeping those references navigational
-- [ ] CHK-030 [P2] The phase documents name the 010 migration timing and keep the six sibling concerns and mode gate outside this resume-adapter scope
+- [ ] CHK-030 [P2] The phase documents name the 013 migration timing and keep the six sibling concerns and mode gate outside this resume-adapter scope
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

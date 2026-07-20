@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Transition-Authorized Ledger Core
 
-> Sibling phase adjacency (sorted order under the 065 parent): predecessor `005-fanout-live-tools-unblock`; successor `007-shared-evidence-and-control-services`.
+> Sibling phase adjacency (sorted order under the 036 parent): predecessor `005-fanout-live-tools-unblock`; successor `007-shared-evidence-and-control-services`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The shipped runtime under `.opencode/skills/system-deep-loop/runtime/` persists in-flight state through existing JSONL and checkpoint paths, while the cross-mode research calls for one typed append-only event substrate with versioned replay identity. The phase-004 spine ADR ratifies that shared architecture and makes the first typed writer inseparable from default-deny transition authorization: a structurally valid event is not sufficient evidence that its transition is permitted (`../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md`, `../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`).
+The shipped runtime under `.opencode/skills/system-deep-loop/runtime/` persists in-flight state through existing JSONL and checkpoint paths, while the cross-mode research calls for one typed append-only event substrate with versioned replay identity. The phase-004 spine ADR ratifies that shared architecture and makes the first typed writer inseparable from default-deny transition authorization: a structurally valid event is not sufficient evidence that its transition is permitted (`../002-deep-loop-effectiveness-and-fanout/research/research-modes.md`, `../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`).
 
 This phase turns that frozen architecture and transition policy into the core substrate every later spine service records into. Its four children must co-land as one additive-dark, non-authoritative unit: events may be recorded in parallel, but legacy writers remain the source of truth until the per-mode authority cutover in phase 014. The completed parent hands phase 007 an authorized, typed, replay-verifiable recording foundation without moving authority or absorbing the successor's evidence and control services (`../spec.md`, `../manifest/phase-tree.json`, `../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`).
 <!-- /ANCHOR:problem -->

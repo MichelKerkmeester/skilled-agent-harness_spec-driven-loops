@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Cross-Mode Closures"
-description: "Tasks for phase 005 of the 009 shared-mode-contracts-and-fixtures parent: define, implement, adapt, and verify reusable cross-mode closures before phase 013."
+description: "Tasks for the 002-cross-mode-closures child of the 012 shared-mode-contracts-and-fixtures parent: define, implement, adapt, and verify reusable cross-mode closures before phase 013."
 trigger_phrases:
   - "cross-mode closures tasks"
   - "deep-loop shared closure tasks"
@@ -42,7 +42,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Read the phase parent, `manifest/phase-tree.json`, `001-shared-mode-interfaces/spec.md`, and the phase-007 parent and child service contracts; record the shared invariants and `depends_on: []` posture
-- [ ] T002 [P] Derive the eight phase-013 adapter rows directly from `mode_workstreams_phase_010`, including `004-deep-improvement-common` before its three variants
+- [ ] T002 [P] Derive the eight phase-013 adapter rows directly from `mode_workstreams_phase_013`, including `004-deep-improvement-common` before its three variants
 - [ ] T003 [P] Inventory repeated evidence, receipt/effect, adjudication, budget, and projection paths across the mode packets, shipped runtime, council helpers, shared synthesis, and deep-improvement library
 - [ ] T004 Build the recurrence matrix with one shared owner, service port, inputs, outputs, write set, failure result, parity source, and allowed mode override for every repeated behavior
 - [ ] T005 Record the boundary with `001-shared-mode-interfaces`, `003-mixed-version-fixtures`, and `004-write-set-conflict-graph`; preserve intentional parser and convergence-policy divergence
@@ -93,7 +93,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Parent outcome**: See `../spec.md` and `../manifest/phase-tree.json`
+- **Parent outcome**: See `../spec.md` and `../../manifest/phase-tree.json`
 - **Interface contract**: See `../001-shared-mode-interfaces/spec.md`
 - **Phase-007 service contracts**: See `../../007-shared-evidence-and-control-services/spec.md` and its child service specs
 - **Successor fixture handoff**: See `../003-mixed-version-fixtures/spec.md`

@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Read the parent spec, `manifest/phase-tree.json`, phase-007 sealed-reference-artifact spec, phase-008 upcaster spec, and phase-008 shadow-parity spec; record fixture obligations and authority constraints
-- [ ] T002 [P] Derive the eight phase-013 workstream rows and deep-improvement-common ordering directly from `mode_workstreams_phase_010`
+- [ ] T002 [P] Derive the eight phase-013 workstream rows and deep-improvement-common ordering directly from `mode_workstreams_phase_013`
 - [ ] T003 [P] Inventory supported event and state versions, adjacent upcaster edges, causal-boundary fields, and comparable event/state pairs from the phase-008 contracts
 - [ ] T004 Define `MixedVersionCase`, record envelopes, sealed case capsules, expected outcome records, failure classes, and the stable fixture namespace
 - [ ] T005 Define the boundary with `002-cross-mode-closures` and `004-write-set-conflict-graph`; this phase supplies cases and evidence inputs without hoisting shared implementations

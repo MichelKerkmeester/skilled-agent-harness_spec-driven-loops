@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate on the same claim through replay and resume.",
     "created_at": "2026-07-16T03:43:51.906Z",
-    "last_save_at": "2026-07-17T13:21:19.228Z",
+    "last_save_at": "2026-07-19T18:01:24.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d61fd89506d711a477a458d2a2fc23e5ca1e3809310f247e36c90848ae131f85",
+    "source_fingerprint": "sha256:d544b025a6bee58c6ea93fd14e71b241581009e1e6c11db77419c6f4993cda7a",
     "source_doc_hashes": {
-      "spec.md": "655a1ac0bacde9c71c6c94bc11a6a68faf21ca438c93013603b4cafddb1721f4",
+      "spec.md": "1e04eddc3bf82b386d25c6c537da1658ea8af299b32145f7745635cb55679b7a",
       "plan.md": "dbaa426c81d6d8a2b78827176c93b8d0ad30896fad3576068222dd012ca88011",
       "tasks.md": "5a14105362e5efe24db6fde3b951572e7ec62b9deb306ddbb4dc79f0fe72a75b",
       "checklist.md": "053b807730ae53a1d8f1b50d98d703af662b2ba0d22be25e8581a6b77bc0f5ad"

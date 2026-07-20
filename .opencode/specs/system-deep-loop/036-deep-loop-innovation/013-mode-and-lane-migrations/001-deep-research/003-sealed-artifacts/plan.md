@@ -35,7 +35,7 @@ _memory:
 | **Execution** | Seal-on-write references across init, iterate, convergence, synthesis, resume, and memory-save; additive-dark |
 
 ### Overview
-Plan one Deep Research adapter over the shared phase-006 sealing primitives. The adapter maps the autonomous loop's
+Plan one Deep Research adapter over the shared phase-007 sealing primitives. The adapter maps the autonomous loop's
 typed lifecycle to registered artifact kinds, seals exact canonical bytes at each boundary, binds ordered digest
 references into the existing event, reducer, projection, replay, and shadow paths, and verifies every reference before
 release to a consumer. The mode must preserve the research registry's branch-local context, typed gap-to-query
@@ -64,7 +64,7 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared seal adapter**: accepts a typed mode artifact request, delegates canonicalization, atomic publication, digest derivation, and verified reads to the phase-006 primitive, and exposes no alternate hash or blob identity.
+- **Shared seal adapter**: accepts a typed mode artifact request, delegates canonicalization, atomic publication, digest derivation, and verified reads to the phase-007 primitive, and exposes no alternate hash or blob identity.
 - **Mode artifact registry**: registers the initial objective/reference set, source capture, analysis batch, convergence witness, synthesis view, and memory-save handoff as Deep Research specializations of the shared descriptor.
 - **Lifecycle seal boundaries**: seal the init set before dispatch, source captures before analysis, atomic claims and evidence before reduction, one convergence snapshot before the stop decision, the synthesis view after projection, and the handoff before memory save.
 - **Reference-set binder**: assembles the ordered verified digest set using shared logical branch and event ordering, then supplies the same set to typed events, predecessor reducers, replay fingerprints, resume comparison, and shadow parity.
@@ -80,7 +80,7 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ### Phase 1: Setup
 - Confirm the phase-012 shared mode contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns the reducer and projection boundary.
 - Inventory current Deep Research init state, branch observations, source captures, analysis records, convergence inputs, synthesis outputs, resume state, and memory-save payloads against the pinned baseline.
-- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable logical identities, and ordered reference-set rules using the shared phase-006 primitive.
+- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable logical identities, and ordered reference-set rules using the shared phase-007 primitive.
 - Define typed seal/read failures, source-refresh dispositions, append-only supersession, legacy fallback refusal, and the mode rollback switch.
 
 ### Phase 2: Implementation
@@ -125,7 +125,7 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` as an independent planning contract, while its implementation composes with the
-phase-012 shared mode interfaces and write-set conflict graph. The shared phase-006 sealing primitive owns descriptor,
+phase-012 shared mode interfaces and write-set conflict graph. The shared phase-007 sealing primitive owns descriptor,
 canonicalization, content addressing, atomic publication, verified reads, and lifecycle retention. The phase-006 event
 and replay contracts own outer envelopes and fingerprint derivation. Predecessor `002-reducers-and-projections` owns
 claim/evidence reductions and projection identity. The compatibility and shadow bridge supplies the parity boundary.

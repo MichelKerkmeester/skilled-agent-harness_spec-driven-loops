@@ -88,7 +88,7 @@ defined by
 ### Out of Scope
 - Leaf dispatch, result-envelope persistence, resume/salvage, leases/waves, fan-in readiness, or failure-tolerance decisions owned by siblings `001` through `005`.
 - Generating new leaf content, choosing models/executors, changing per-leaf prompts, or treating model reputation as a hidden quality score.
-- Semantic novelty, contradiction/supersession, claim continuity, projections, or convergence policy owned by phases 007 and 008 of the parent program.
+- Semantic novelty, contradiction/supersession, claim continuity, projections, or convergence policy owned by phases 010 and 011 of the parent program.
 - Replacing blinded adjudication with an identity-aware tie-break, majority vote, response-length heuristic, or competence weight presented as independence correction.
 - Authority cutover or legacy-writer retirement; the reducer lands additive and dark until later migration gates authorize consumption.
 <!-- /ANCHOR:scope -->

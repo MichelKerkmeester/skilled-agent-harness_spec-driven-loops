@@ -20,7 +20,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which phase-006 primitive seals the Deep Alignment run certificate?"
+      - "Which phase-007 primitive seals the Deep Alignment run certificate?"
       - "Which phase-012 receipt fields are inherited by each alignment transition?"
       - "Which authority-epoch changes require witness replay versus a fresh lane run?"
       - "Does the verifier pin a finalized frontier, a contiguous range, or both?"
@@ -102,7 +102,7 @@ it; the evidence and independent verification boundary remains explicit.
 - Resume planning, reuse and re-execution decisions owned by `005-resume-adapter`; this phase specifies receipt and certificate references required for later recovery only.
 - Shadow parity, rollback switching, the independent mode gate, authority cutover, legacy-writer retirement, and any change to the legacy authority path.
 - New authorities, conformance policy, remediation behavior, or verifier algorithms beyond the Deep Alignment lifecycle and the cited research recommendations.
-- The other six sibling concerns and their mode-gate integration. The 010 migrations are the later per-mode fan-out after phase 012 freezes shared contracts and emits the write-set conflict graph.
+- The other six sibling concerns and their mode-gate integration. The 013 migrations are the later per-mode fan-out after phase 012 freezes shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -143,12 +143,12 @@ The per-transition receipt plan uses these required evidence groups:
 The fingerprint input registry must distinguish stable identity inputs from versioned behavior inputs. Stable inputs include
 logical run, transition, authority, epoch, lane, rule, subject, observation, candidate, finding, witness, deviation, receipt,
 and handoff identifiers plus content-addressed digests. Behavior inputs include envelope and payload schema versions, the phase
-009 review-loop and mode-contract revisions, authorization and certificate policy revisions, authority compiler and rule-IR
+012 review-loop and mode-contract revisions, authorization and certificate policy revisions, authority compiler and rule-IR
 versions, profile and applicability policy, ordered lane and rule plans, verifier/analyzer/tool capabilities, witness
 generator and minimizer versions, deviation policy, reducer and handoff codec versions, and the exact included receipt set.
 A verifier must report the first mismatching input class rather than returning a generic replay failure.
 
-The offline verifier follows this order: load the trusted contract and phase-006 certificate primitive registry; validate the
+The offline verifier follows this order: load the trusted contract and phase-007 certificate primitive registry; validate the
 certificate schema, seal, and immutable reference bundle; load the certificate-pinned event range; verify event hashes, causal
 links, transition authorization, receipt sequence, authority validity, and effect states; recompute the run and transition
 fingerprints; resolve applicability and coverage; verify observation, candidate, proof, verification, adjudication, deviation,

@@ -19,7 +19,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
+      - "Which exact phase-007 certificate primitive signs or seals the run certificate?"
       - "Which receipt states are canonical for unresolved report findings?"
     answered_questions:
       - "Planned scope excludes authority cutover and resume policy"

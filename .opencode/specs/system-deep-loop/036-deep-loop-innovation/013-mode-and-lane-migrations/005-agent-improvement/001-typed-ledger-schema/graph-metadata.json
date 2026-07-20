@@ -158,7 +158,7 @@
     ],
     "causal_summary": "Plan the typed append-only event vocabulary for the Agent Improvement variant: typed AgentIR and change contracts, candidate and failure lineage, causal behavior experiments, evaluation manifests, transfer evidence, and versioned envelope/upcaster hooks over the shared Deep Improvement Common Services backbone. Reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:37.523Z",
-    "last_save_at": "2026-07-17T13:21:36.474Z",
+    "last_save_at": "2026-07-19T18:09:52.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,9 +167,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:394bc24358539512c6a01265df7b8739b0d681b2efbfc2d1194207cc795e50cc",
+    "source_fingerprint": "sha256:bb206dd80e0415cef5ac9004ff4e6d2e43e1075908290ee0799a7c7284e84520",
     "source_doc_hashes": {
-      "spec.md": "be5f60bb6862f183890ae2a3ee10572fce24da8ae4535fe139d5ab320209d868",
+      "spec.md": "c34c230390cb02d9cc8f5350bd0822529e0849c1b009890b2dc834a8fe304481",
       "plan.md": "b77997fec5a51708e8f0c59d952d41b749ca770d2934942bd15f47a8272cc6f1",
       "tasks.md": "31b8d936b6a688fa64d003f2beec7ed6276b87c05cfbafb06834e64bf19bbd5d",
       "checklist.md": "af2425ced9ead8f9d60633890d21ee613c3683e45c5e020ff873b3cf8a2404b4"

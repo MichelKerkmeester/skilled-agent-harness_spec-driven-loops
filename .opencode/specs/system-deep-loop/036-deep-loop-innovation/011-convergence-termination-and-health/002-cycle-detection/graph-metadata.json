@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface degeneration as a health signal and stopping-clock input.",
     "created_at": "2026-07-16T03:43:53.009Z",
-    "last_save_at": "2026-07-17T13:21:21.054Z",
+    "last_save_at": "2026-07-19T18:01:25.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2474b88b467ae5681f39b01175a63751f3269d017814e1567cdfef10c4d561f6",
+    "source_fingerprint": "sha256:4ae085b6a3cb9168939f2ef2db604fb212c338092b4451d8cb2ed19406bca2b4",
     "source_doc_hashes": {
-      "spec.md": "a9068ee7e8ad9de276947c8dc2be27a15771adccc8ef46f167e87fa07f0f6a54",
+      "spec.md": "ea9afdc62885c4c5efdf41c289af1d6ccd277cd653804b308843aec08db6746e",
       "plan.md": "3f2f4f67c5d16aa4edba7b9874c7507714695fa1ed802a6c8b2d9a40ce7e4952",
       "tasks.md": "30f65444aa3fcdc25f8cf0b738b4702e966559d7908cc03f55f47ffa88e74034",
       "checklist.md": "b2adf154f5a926d0a353e300c069955bbe874bec0342fcc3cda11e06c3537c74"

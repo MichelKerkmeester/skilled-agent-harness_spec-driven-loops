@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger while legacy remains canonical and every compatibility action stays reversible.",
     "created_at": "2026-07-16T03:43:48.404Z",
-    "last_save_at": "2026-07-17T13:21:14.099Z",
+    "last_save_at": "2026-07-19T18:01:16.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a8069da58b721a61ae9a25ddf54543fcdfb5eb9dc7493e7ddc8f7aa51041543f",
+    "source_fingerprint": "sha256:57cf138b809ffd2d0cb2e21f30c63b726d07a44bfbf1917be535ba4c8c84eb0a",
     "source_doc_hashes": {
-      "spec.md": "9f5f1770d09fa5d832fbac16fc629ce8d7013aeed6f70f027c7f6d0d720d77f9",
+      "spec.md": "f72f3b7ff6019bcf7804a7901b5fbb997b243d96bb152fac0b946253eec2c7e1",
       "plan.md": "e1e6022d431008112927bdedf36c0aa68bf3db9eeda6b1f135c1bb94622d21df",
       "tasks.md": "485aeaa03b598a850f16bc1ae3fa62908aa9812565f31b100d40dc0885e011be",
       "checklist.md": "866cc4d17c2d6992053200900c1a14848d9a42699cee2be0cfcab2755887e4f0"

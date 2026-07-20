@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 017 lands the system-deep-loop recommendations program on the moving mainline: integrate the latest origin in a clean worktree, re-census touched contracts, reopen phases whose inputs drifted, rerun the whole-system gate on the exact final SHA, and reconcile the parent packet's open items, changelogs, and generated metadata.",
     "created_at": "2026-07-16T03:44:01.465Z",
-    "last_save_at": "2026-07-17T13:21:48.753Z",
+    "last_save_at": "2026-07-19T18:10:00.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0e1623ccb0a1a51e334bf5d430f49bf0dc921532946be2dac37e25554277143c",
+    "source_fingerprint": "sha256:e2fca6fd12f93624ed31c1f4fa62a4cc3e779f3141b2742f95892719e93c0860",
     "source_doc_hashes": {
-      "spec.md": "386750e941ab92c58854c53d4f91675c9e7f37519338f1ec2b3de5d81760889d",
-      "plan.md": "6d58cfd79bd872687f527588432fb15250ed86deba8ab5a3f4b9877905953402",
-      "tasks.md": "164dd7f6cd52ebe3d03fbcd1863431d2eec5adde2d887b9bd7428db28827cd0b",
-      "checklist.md": "e9855fe3c78544c6ff334f378b6142251f5e5e7ea8d54e377834d14b8c0eed13"
+      "spec.md": "e48335aed1d0416957e929fa1d353eb29c1c76178f5a9852b69bcecafa3dbaf2",
+      "plan.md": "6eacfe9d5dfa3230fefca389efddf36e429200ba8c57bf809708c9a29a98a720",
+      "tasks.md": "1a68d8570d7d077454132586e3333e4405a1f4af47725a90da704f1b2023b20b",
+      "checklist.md": "9927d4daae130e983449d88365349ab6aa6f291f5aa0b5b8dc6f22c7f5993b58"
     },
     "last_active_child_id": null,
     "last_active_at": null

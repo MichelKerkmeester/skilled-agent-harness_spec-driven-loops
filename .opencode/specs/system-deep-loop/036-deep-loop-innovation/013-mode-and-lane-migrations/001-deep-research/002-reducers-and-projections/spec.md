@@ -53,7 +53,7 @@ _memory:
 
 The current deep-research control path does not expose one replayable state model. The live reducer reads the complete
 state log and reparses iteration Markdown, while heartbeat paths also inspect the full history; the research findings
-explicitly identify this as different from a claimed delta fold (`.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` and `.opencode/commands/deep/assets/deep_research_auto.yaml`). A raw `newInfoRatio`, prose-only Next Focus value, or terminal report cannot establish which evidence was trusted, which claims were superseded, which artifacts are reusable, or why a run is incomplete rather than converged.
+explicitly identify this as different from a claimed delta fold (`.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` and `.opencode/commands/deep/assets/deep-research-auto.yaml`). A raw `newInfoRatio`, prose-only Next Focus value, or terminal report cannot establish which evidence was trusted, which claims were superseded, which artifacts are reusable, or why a run is incomplete rather than converged.
 
 This phase plans the pure reducers that replay the typed events frozen by predecessor `001-typed-ledger-schema` into
 three mode-owned projections: iteration and convergence state, an artifact index, and per-mode status. The fold must

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required contradictions are resolved, and partial coverage remains explicit instead of being hidden by an iteration cap.",
     "created_at": "2026-07-16T03:43:52.736Z",
-    "last_save_at": "2026-07-17T13:21:20.614Z",
+    "last_save_at": "2026-07-19T18:01:23.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c2ec6aaba45349577453eb85dc4ff18e0485e44c950ae0dc006a0401c64a7515",
+    "source_fingerprint": "sha256:96391c0b3c5f3555dfc85650d95f3ba108d9fc291f0a54c59dd7af6a1078977f",
     "source_doc_hashes": {
-      "spec.md": "e9946b5c95485f9436156b796aba106d779794b4ba4ff6ef6807b9623dc9bcd9",
+      "spec.md": "64ad8a69bae846e75b4afe3c946ac7c39cec8f0a22b163996d6a6f1b5502ec16",
       "plan.md": "8abb89bd2b373d9a680baecdcb7e2d66b40fae43ad39df124109de040b113915",
       "tasks.md": "209abc164d9f1385880dac8056a5b4b2823005f8693c9956c5e8b502b59d3e75",
       "checklist.md": "92fa793f2623d6ce7dc706df422602d14de03b6165e61516a7dbc494333224d5"

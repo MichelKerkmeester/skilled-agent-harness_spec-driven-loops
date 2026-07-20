@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Cross-Mode Closures"
-description: "Checklist for phase 005 of the 009 shared-mode-contracts-and-fixtures parent: verify one reusable closure layer, explicit mode overrides, and additive-dark parity before phase 013."
+description: "Checklist for phase 012 child 002 of the shared-mode-contracts-and-fixtures parent: verify one reusable closure layer, explicit mode overrides, and additive-dark parity before phase 013."
 trigger_phrases:
   - "cross-mode closures checklist"
   - "deep-loop closure verification"
@@ -30,13 +30,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 005. The verifier derives the eight mode rows from `manifest/phase-tree.json`, binds each row to the frozen phase-004 interface version, records the shared closure owner and override strategy, and fails on duplicate implementations, bypassed safety ports, nondeterministic output, hidden writes, or evidence that changes legacy authority before phase 014.
+This checklist is the blocking verifier contract for phase 012 child 002. The verifier derives the eight mode rows from `manifest/phase-tree.json`, binds each row to the frozen `001-shared-mode-interfaces` interface version, records the shared closure owner and override strategy, and fails on duplicate implementations, bypassed safety ports, nondeterministic output, hidden writes, or evidence that changes legacy authority before phase 014.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The parent outcome, `depends_on: []`, phase adjacency, and `mode_workstreams_phase_010` list are pinned to `manifest/phase-tree.json`
+- [ ] CHK-001 [P0] The parent outcome, `depends_on: []`, phase adjacency, and `mode_workstreams_phase_013` list are pinned to `manifest/phase-tree.json`
 - [ ] CHK-002 [P0] `001-shared-mode-interfaces/spec.md`, the phase-007 service contracts, and the shipped runtime/council shared libraries are reconciled in the recurrence-to-port matrix
 - [ ] CHK-003 [P0] The five closure families have one proposed owner, one result envelope, one write-set declaration, and one allowed override boundary
 - [ ] CHK-004 [P1] The handoff boundary with `003-mixed-version-fixtures` and `004-write-set-conflict-graph` is explicit; neither successor artifact is duplicated here
@@ -96,7 +96,7 @@ This checklist is the blocking verifier contract for phase 005. The verifier der
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-031 [P1] Authored changes are limited to the four phase-005 documents; `description.json` and `graph-metadata.json` are left to deterministic tooling
+- [ ] CHK-031 [P1] Authored changes are limited to the four `002-cross-mode-closures` documents; `description.json` and `graph-metadata.json` are left to deterministic tooling
 - [ ] CHK-032 [P2] Closure fixtures and handoff inputs remain scoped to this phase and do not mutate phase-004, phase-006, phase-007, research inputs, or shipped runtime files during planning
 <!-- /ANCHOR:file-org -->
 
@@ -109,5 +109,5 @@ The phase is complete when every P0 closure and bypass check passes, one impleme
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the verifier records the closure version, recurrence and override matrices, adapter coverage, fixture outcomes, and confirms that no closure or mode override changes runtime authority or bypasses a phase-006/004 safety port.
+Signed off when the verifier records the closure version, recurrence and override matrices, adapter coverage, fixture outcomes, and confirms that no closure or mode override changes runtime authority or bypasses a phase-006/007 safety port.
 <!-- /ANCHOR:sign-off -->

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
     "created_at": "2026-07-16T03:43:54.270Z",
-    "last_save_at": "2026-07-17T13:21:23.198Z",
+    "last_save_at": "2026-07-19T18:01:25.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b84701c6545fed119a350c7fba2c0ed5357b1a0e5f3b9709b080749d0462c4a5",
+    "source_fingerprint": "sha256:82d356276e4fe1a31481c08bd602da093b4c898c990161c5c8194b8075c7230f",
     "source_doc_hashes": {
-      "spec.md": "400ab4284956defc73bf85829d60904f84e70295775674293873b31724d72956",
-      "plan.md": "6ee02efba7b33e389823409d74224663b67dbf9fc1b399a32679df12f01f4dd9",
-      "tasks.md": "2d17f235c8a3310d616d1d54b9fde2fbda73d83bc9b53dc85c9ee382be1bedca",
-      "checklist.md": "6bf0de2e2955cb4af48d516f19d7ac7439771e7494d59a5fc1173c49cb5f7c18"
+      "spec.md": "eaecba5402e8bb27511a8741a0a14249dae184c8bbb1e32598b221b344cf20ad",
+      "plan.md": "a51ec68040f3fd00542f9ec6183aa06a9c96dc0f74cf69187aeee82bd5ab95d0",
+      "tasks.md": "63f929f2591ca750a1a77e668c155b5ebfec88cb006ce25329c4632d4313dbdc",
+      "checklist.md": "70e63bfb8d8657ec9718eb2881fc98b3acfd827d92cf35b4979c6480bd719568"
     },
     "last_active_child_id": null,
     "last_active_at": null

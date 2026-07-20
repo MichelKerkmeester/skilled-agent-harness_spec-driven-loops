@@ -83,7 +83,7 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 - Replacing the phase-006 envelope, ledger append, hash chain, authorization proof, replay fingerprint, or verified reader.
 - Replacing phase-007 effect reconciliation, inventing exactly-once guarantees for opaque executors, or re-dispatching an `in_doubt` external effect.
 - Treating recovered stdout as equivalent to independently persisted iteration content without a typed parser, digest, source record, and explicit completeness status.
-- Authority cutover, per-mode migration, or legacy-writer retirement, owned by phases 010, 011, and 012.
+- Authority cutover, per-mode migration, or legacy-writer retirement, owned by phases 013, 014, and 015.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

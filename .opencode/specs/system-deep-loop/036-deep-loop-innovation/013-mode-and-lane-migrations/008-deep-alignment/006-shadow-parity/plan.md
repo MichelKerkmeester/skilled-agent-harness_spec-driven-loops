@@ -118,7 +118,7 @@ The plan consumes the phase-014 shadow framework and pins the shared review-loop
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 065 program dependencies: the pinned baseline and state census, the transition-authorized ledger core, shared evidence and control services, compatibility adapters, and the spec-kit validator. Phase-specific dependencies are the phase-014 shadow framework, the phase-012 shared review-loop contract, the sibling Deep Alignment schema/reducer/artifact/certificate/resume outputs, the unchanged legacy emitter, and the successor `007-rollback-and-mode-gate` receipt contract.
+Inherits the 036 program dependencies: the pinned baseline and state census, the transition-authorized ledger core, shared evidence and control services, compatibility adapters, and the spec-kit validator. Phase-specific dependencies are the phase-014 shadow framework, the phase-012 shared review-loop contract, the sibling Deep Alignment schema/reducer/artifact/certificate/resume outputs, the unchanged legacy emitter, and the successor `007-rollback-and-mode-gate` receipt contract.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

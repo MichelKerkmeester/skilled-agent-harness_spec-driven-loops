@@ -96,15 +96,15 @@
     ],
     "causal_summary": "Migrate the multi-seat Deep AI Council deliberation onto the shared typed event-ledger substrate through seven concern children, preserving replayable run state, sealed artifacts, independent verification, resumability, shadow parity, and a rollback-guarded mode gate.",
     "created_at": "2026-07-16T03:43:55.503Z",
-    "last_save_at": "2026-07-17T13:21:30.056Z",
+    "last_save_at": "2026-07-19T18:01:26.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1fb7f2babf4cb7761b099582dcfb0a3947953d1da11a5698986146b0d0df6657",
+    "source_fingerprint": "sha256:8824412dbcf6e24b1dac6e69666bc88e03d2d12899168293b1bdb66a8a0c93e7",
     "source_doc_hashes": {
-      "spec.md": "eeefcbf3218a86a5abdb1db0e106c1b8089d9f699f9f9f6ded27239ec6a9da31"
+      "spec.md": "c3e5227c4183ebf6606964ae80e93f3337237dfaa5a39e9893c30154d4c69449"
     },
     "last_active_child_id": null,
     "last_active_at": null

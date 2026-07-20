@@ -172,7 +172,7 @@ value-of-computation requests more work, **Then** admission fails closed and no 
 
 This child has `depends_on: []` as an independently authored sibling planning contract. Integration consumes the
 phase-006 authorized event envelope and replay fingerprint, receipt-normalization output from sibling 001, and atomic
-write/fencing behavior from sibling 006. Program phases 006 and 008 are downstream consumers. These contract inputs do
+write/fencing behavior from sibling 006. Program phases 009 and 011 are downstream consumers. These contract inputs do
 not make predecessor `003-blinded-adjudication-service` or successor `005-stream-fold-gauges` runtime dependencies;
 their adjacency is navigation only, as required by the shared-services parent.
 

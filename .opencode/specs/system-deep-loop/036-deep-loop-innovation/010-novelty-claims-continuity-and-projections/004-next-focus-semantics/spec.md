@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Next-Focus Semantics
 
-> Phase adjacency under the 007 parent (grouping order, not a runtime dependency): predecessor `003-claim-continuity`; successor `005-transactional-projections-and-gauges`.
+> Phase adjacency under the 010 parent (grouping order, not a runtime dependency): predecessor `003-claim-continuity`; successor `005-transactional-projections-and-gauges`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 007 of the 007 novelty, claims, continuity, and projections intelligence layer |
+| **Origin** | Fourth child of phase 010, the novelty, claims, continuity, and projections intelligence layer |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,7 +105,7 @@ Replay identifies a decision from immutable run lineage, source iteration, proje
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 006 parent spec: the new path must remain additive/dark, every typed write must
+Inherits the program-level risks in the 036 parent spec: the new path must remain additive/dark, every typed write must
 pass transition authorization, replay fingerprints must remain versioned, and authority cannot move before shadow
 parity and rollback evidence. Phase-specific risks are enumerated in this phase's plan.md. This child has no hard sibling
 planning dependency; its runtime interfaces consume the parent program's ledger, stable identities, and durable fan-in.

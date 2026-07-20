@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Cross-Mode Closures"
-description: "Implementation Plan for phase 005 of the 009 shared-mode-contracts-and-fixtures parent: hoist recurring mode behavior into reusable closures with typed override seams before phase 013."
+description: "Implementation Plan for phase 012 child 002 of the shared-mode-contracts-and-fixtures parent: hoist recurring mode behavior into reusable closures with typed override seams before phase 013."
 trigger_phrases:
   - "cross-mode closures implementation plan"
   - "deep-loop shared closure plan"
@@ -34,7 +34,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop runtime, shared synthesis, and phase-013 mode adapters |
 | **Change class** | Shared closure modules, typed adapters, and parity fixtures |
-| **Execution** | Freeze against the phase-004 interface and phase-007 service ports; retain additive-dark authority |
+| **Execution** | Freeze against the `001-shared-mode-interfaces` interface and phase-007 service ports; retain additive-dark authority |
 
 ### Overview
 The plan creates one reusable implementation for each recurring cross-mode responsibility, then gives every phase-013 workstream a thin mode adapter. The five closures are evidence, receipts/effects, adjudication, budgets, and projections. Each closure accepts the frozen mode context and a mode-owned strategy, invokes the phase-007 port, and returns a typed result with evidence and provenance. The mode retains its schema, reducer fields, policy thresholds, artifact/certificate meaning, and convergence decision. The plan deliberately does not unify parser dialects or erase the deep-improvement variant boundaries documented in the shipped shared library.
@@ -130,7 +130,7 @@ The plan creates one reusable implementation for each recurring cross-mode respo
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The closure layer consumes the frozen contract in `001-shared-mode-interfaces/spec.md`, the parent outcome and sequencing rules in `../spec.md`, and the eight workstream rows in `../manifest/phase-tree.json`. Its service ports are defined by `../../007-shared-evidence-and-control-services/spec.md` and the child contracts for receipts/effect recovery, sealed artifacts, blinded adjudication, hierarchical budgets, stream-fold gauges, locks/fencing, and continuity identities. The shipped implementation anchors are `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/`, `.opencode/skills/system-deep-loop/runtime/lib/council/`, `.opencode/skills/system-deep-loop/shared/`, and `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/`. `003-mixed-version-fixtures` consumes closure inputs for old/new-state cases, while `004-write-set-conflict-graph` consumes closure ownership and write-set declarations; neither sibling changes this phase's closure boundary.
+The closure layer consumes the frozen contract in `001-shared-mode-interfaces/spec.md`, the parent outcome and sequencing rules in `../spec.md`, and the eight workstream rows in `../../manifest/phase-tree.json`. Its service ports are defined by `../../007-shared-evidence-and-control-services/spec.md` and the child contracts for receipts/effect recovery, sealed artifacts, blinded adjudication, hierarchical budgets, stream-fold gauges, locks/fencing, and continuity identities. The shipped implementation anchors are `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/`, `.opencode/skills/system-deep-loop/runtime/lib/council/`, `.opencode/skills/system-deep-loop/shared/`, and `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/`. `003-mixed-version-fixtures` consumes closure inputs for old/new-state cases, while `004-write-set-conflict-graph` consumes closure ownership and write-set declarations; neither sibling changes this phase's closure boundary.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

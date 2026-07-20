@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent
+This checklist is the blocking SOL verifier contract for phase 013's `004-certificates-and-receipts` child. Every item is a check the paired verify agent
 runs against the pinned candidate and shared-service contract before implementation is accepted. Each report records
 the candidate SHA, BASE SHA, contract and evaluator-capsule digests, canary epoch, replay-fingerprint inputs, commands,
 exit codes, fixture counts, verifier version, and unexpected tracked mutation. A missing, unknown, or redacted input
@@ -88,7 +88,7 @@ must produce an explicit incomplete or unsupported result; it must never silentl
 ## Documentation
 
 - [ ] CHK-025 [P1] The phase docs define the shared contract consumed by agent-improvement, model-benchmark, and skill-benchmark without duplicating variant design
-- [ ] CHK-026 [P2] The 009 freeze and 010 fan-out handoff, phase-006 primitive consumption, and phase-008 resume boundary are reflected consistently in packet docs
+- [ ] CHK-026 [P2] The 009 freeze and 010 fan-out handoff, phase-006 primitive consumption, and the `005-resume-adapter` resume boundary are reflected consistently in packet docs
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

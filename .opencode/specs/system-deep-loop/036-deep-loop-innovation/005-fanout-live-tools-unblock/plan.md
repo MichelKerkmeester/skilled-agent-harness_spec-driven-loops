@@ -105,7 +105,7 @@ The existing fan-out scheduler is retained. `executor-config.ts` gains a backwar
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Phase 004 is the sole blocking program dependency. Runtime dependencies are the shipped Zod executor schema, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `fanout-pool.cjs`, and the existing Vitest harness. The live argv contract is grounded in the 065/005 prototype. Phase 009 consumes this phase's stable logical IDs and invocation fingerprint later, when durable receipts and fan-in persistence are authorized.
+Phase 004 is the sole blocking program dependency. Runtime dependencies are the shipped Zod executor schema, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `fanout-pool.cjs`, and the existing Vitest harness. The live argv contract is grounded in the 036/002 prototype. Phase 009 consumes this phase's stable logical IDs and invocation fingerprint later, when durable receipts and fan-in persistence are authorized.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

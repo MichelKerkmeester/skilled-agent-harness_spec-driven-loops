@@ -152,7 +152,7 @@
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
     "created_at": "2026-07-16T03:43:40.820Z",
-    "last_save_at": "2026-07-17T13:21:41.588Z",
+    "last_save_at": "2026-07-19T18:09:52.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -161,12 +161,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e3f0dd25ddbf2562f00cf406b9a1cd7516d00cad4b597a9a1b2e99febe7d26a1",
+    "source_fingerprint": "sha256:5ee8cbb14c511d26f5fabfa3ba982d90336e354430ff7f7e758bfdf9be058078",
     "source_doc_hashes": {
-      "spec.md": "e65060473ea50b5f7e32fcd403da4456fa4ecf98c50db459e588354a6e7fe797",
+      "spec.md": "358ab50120c4b4d7d1a88a68fb7f5d9a4ccbd2dff1793b44bbbcb7a8616505df",
       "plan.md": "340b2be8b6ce3811d2368838a7bee149355702fde4186938c108cf5762c83c84",
-      "tasks.md": "4e0049c869be64e11c3cc4eff3ee742a3c9762b6f6f84afaa816ca3b7b2d37bc",
-      "checklist.md": "753244d740ff49bb0f555a7a363e2b0e10e11ad4cf3cd14d0a4e2794ace097f9"
+      "tasks.md": "3d91cb3cd830f06c7ac57a15689291ec80c9ad97baa1f5557650ea76b17e2c30",
+      "checklist.md": "1e4027355d12c1bf3d86cfd2b18665db7fca22a1f03a3caaf89d6b76bac362ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

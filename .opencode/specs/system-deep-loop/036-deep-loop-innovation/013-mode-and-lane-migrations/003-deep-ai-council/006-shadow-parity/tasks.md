@@ -84,6 +84,6 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Shared shadow input**: Phase-014 shadow framework named by the phase brief
-- **Mode state contract**: `deep-ai-council/references/structure/state_format.md`
-- **Mode workflow contract**: `deep-ai-council/references/integration/loop_protocol.md`
+- **Mode state contract**: `deep-ai-council/references/structure/state-format.md`
+- **Mode workflow contract**: `deep-ai-council/references/integration/loop-protocol.md`
 <!-- /ANCHOR:cross-refs -->

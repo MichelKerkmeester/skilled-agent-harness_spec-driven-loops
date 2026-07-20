@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Verify: The graph covers every phase-013 workstream exactly — Node IDs equal `mode_workstreams_phase_010` with no missing, duplicate, renamed, or extra entries
+- [ ] T012 Verify: The graph covers every phase-013 workstream exactly — Node IDs equal `mode_workstreams_phase_013` with no missing, duplicate, renamed, or extra entries
 - [ ] T013 Verify: Every node has canonical reads and writes — Resource records include access, scope, mutability, owner, and source evidence
 - [ ] T014 Verify: Conflict edges are derived from access sets — Write-write, write-read, shared-backend, and fence fixtures name the overlapping resources
 - [ ] T015 Verify: Required ordering is executable — Common precedes all three variants and review/alignment never overlap on a shared review-loop resource

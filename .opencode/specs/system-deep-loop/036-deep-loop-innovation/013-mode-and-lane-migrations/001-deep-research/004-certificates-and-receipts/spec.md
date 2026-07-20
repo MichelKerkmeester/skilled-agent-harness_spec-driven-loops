@@ -44,7 +44,7 @@ _memory:
 | **Owner skill** | system-deep-loop / deep-research |
 | **Origin** | Fourth child of the phase-013 Deep Research mode migration fan-out |
 | **Depends on** | `[]`; sibling planning contracts are independent and compose at the Deep Research mode gate |
-| **Consumes** | Shared phase-006 receipt and certificate primitives, typed ledger/replay contracts, and predecessor `003-sealed-artifacts` references |
+| **Consumes** | Shared phase-007 receipt and certificate primitives, typed ledger/replay contracts, and predecessor `003-sealed-artifacts` references |
 | **Inputs** | Parent program spec, phase tree, `findings-registry.json`, and `findings-registry-modes.json` |
 <!-- /ANCHOR:metadata -->
 
@@ -69,7 +69,7 @@ otherwise retry or resume can turn missing evidence into an apparent success.
 This phase plans one per-run Deep Research certificate and the per-transition receipts that support it. The run
 certificate attests to the verified, replay-addressable run record and its declared result. Each receipt attests to one
 authorized transition, its exact input and output reference set, its resulting ledger head, and its recovery status. The
-plan consumes the shared phase-006 receipt and certificate primitives and the sealed artifact references from
+plan consumes the shared phase-007 receipt and certificate primitives and the sealed artifact references from
 `003-sealed-artifacts`; it does not create a mode-local digest, signing scheme, artifact store, reducer, or authority
 decision. An independent verifier must be able to validate the bundle offline without rerunning search, models, or the
 memory service.
@@ -88,7 +88,7 @@ memory service.
 - Idempotent retry, duplicate detection, stale-head detection, source-refresh drift, unknown external outcomes, and append-only supersession behavior while the new mode path remains additive-dark and non-authoritative.
 
 ### Out of Scope
-- Defining or replacing the shared phase-006 receipt, certificate, ledger, transition-authorization, certification-provider, or generic replay-fingerprint primitives.
+- Defining or replacing the shared phase-007 receipt, certificate, and certification-provider primitives or the phase-006 ledger, transition-authorization, and generic replay-fingerprint primitives.
 - Creating or sealing Deep Research artifacts, changing canonicalization, or defining verified-read behavior; predecessor `003-sealed-artifacts` owns those mode bindings.
 - Defining event names, reducers, projections, convergence policy, budgets, fan-out/fan-in scheduling, or the memory database persistence service owned by sibling or shared phases.
 - Implementing the resume adapter owned by successor `005-resume-adapter`; this phase only defines the receipt and certificate inputs that resume consumes and the recovery evidence it must emit.
@@ -101,7 +101,7 @@ memory service.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The mode consumes one shared receipt and certificate contract | A contract matrix maps every mode receipt and the run certificate to phase-006 primitives, with no mode-local digest, signature, key, verifier, or trust root |
+| REQ-001 | The mode consumes one shared receipt and certificate contract | A contract matrix maps every mode receipt and the run certificate to phase-007 primitives, with no mode-local digest, signature, key, verifier, or trust root |
 | REQ-002 | One run certificate attests the complete Deep Research run | The certificate binds run/lineage/generation identity, lifecycle result, start and final ledger heads, ordered reference-set digest, receipt-chain digest, replay fingerprint, output references, open obligations, and shared certification metadata |
 | REQ-003 | Each logical transition emits a complete receipt | `init`, `gather`, `analyze`, convergence, synthesis, handoff, and resume/recovery rows identify the authorized transition, logical operation, attempt history, input references, output references, result disposition, and resulting head |
 | REQ-004 | Replay inputs are explicit and versioned | Recomputing the fingerprint uses only registered replay-affecting fields and produces the same value for identical canonical inputs; contract, event, artifact, executor, policy, reducer, projection, and effect versions are included |
@@ -190,7 +190,7 @@ verification profile. A missing or unavailable external proof is `unverifiable`,
 retractions, poisoned content, and claim supersession must append new evidence and invalidate only affected downstream
 conclusions rather than rewriting the prior run.
 
-Dependencies are the phase-006 receipt/certificate, event, ledger, authorization, and replay contracts; predecessor
+Dependencies are the phase-007 receipt/certificate contracts and the phase-006 event, ledger, authorization, and replay contracts; predecessor
 `003-sealed-artifacts`; the Deep Research `001-typed-ledger-schema` and `002-reducers-and-projections` contracts; the
 phase-012 shared mode interfaces and write-set conflict graph; and the source findings in `002-deep-loop-effectiveness-and-fanout`.
 Successor `005-resume-adapter` consumes the receipt and certificate contract. Phase 014 alone changes authority.

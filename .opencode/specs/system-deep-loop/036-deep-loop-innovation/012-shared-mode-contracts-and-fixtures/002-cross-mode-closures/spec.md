@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 005 of the 009 shared-mode-contracts-and-fixtures parent |
+| **Origin** | Phase 012 child 002 of the shared-mode-contracts-and-fixtures parent |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling contracts are navigation inputs |
 | **Parent outcome** | Hoist cross-mode closures before the eight phase-013 migrations |
 <!-- /ANCHOR:metadata -->
@@ -61,7 +61,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 ## 3. SCOPE
 
 ### In Scope
-- A manifest-derived closure catalog for all eight entries in `manifest/phase-tree.json` `mode_workstreams_phase_010`, showing one shared owner for each recurring behavior and the allowed mode override.
+- A manifest-derived closure catalog for all eight entries in `manifest/phase-tree.json` `mode_workstreams_phase_013`, showing one shared owner for each recurring behavior and the allowed mode override.
 - A typed closure context carrying mode identity, interface version, lifecycle event, continuity identity, evidence references, service ports, budget scope, write set, legacy/shadow posture, and correlation identifiers.
 - An evidence closure that normalizes claim class, scope, provenance, sealed-artifact references, raw mode evidence, and verification status without discarding mode-specific payloads.
 - A receipt/effect closure that orders intent, execution, observed result, recovery, and boundary receipt emission through the phase-007 receipt and effect-recovery service; it must reuse the shipped executor-audit and post-dispatch evidence seams rather than issue parallel receipts.
@@ -103,7 +103,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 
 - **SC-001**: One closure catalog and implementation set covers evidence handling, receipt/effect emission, adjudication calls, typed budget checks, and projection updates for all eight phase-013 workstreams.
 - **SC-002**: The shared closures preserve raw evidence, receipt ordering, blinded verdict evidence, budget exhaustion semantics, replay provenance, and additive-dark authority without mode-specific copies.
-- **SC-003**: An override matrix proves mode-specific schemas and policies enter through typed seams; no mode can bypass the phase-006/004 safety ports.
+- **SC-003**: An override matrix proves mode-specific schemas and policies enter through typed seams; no mode can bypass the phase-006/007 safety ports.
 - **SC-004**: `deep-improvement-common` is implemented once for agent-improvement, model-benchmark, and skill-benchmark, while intentional parser and policy differences remain explicit; deep-review and deep-alignment reuse only their common loop closures.
 - **SC-005**: Closure parity and bypass fixtures produce deterministic pass, reject, or incomplete outcomes and are consumable by `003-mixed-version-fixtures` and `004-write-set-conflict-graph`.
 - **SC-006**: Phase 013 receives a reusable closure package and adapter matrix without changing the frozen lifecycle contract or moving authority from the legacy path.
@@ -117,7 +117,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 - **Receipt or effect duplication** — existing `executor-audit.ts`, `post-dispatch-validate.ts`, council JSONL, and legacy projections may emit overlapping facts. Mitigation: define a single closure emission order and preserve legacy records as adapters or parity observations, never as a second new authority.
 - **Policy leakage across modes** — a common adjudicator or budget helper may decide a mode-owned transition. Mitigation: closures return typed service results; mode reducers and convergence policy remain the only owners of domain decisions.
 - **Shared write races** — deep-improvement variants and review/alignment may touch common state. Mitigation: expose closure write sets to `004-write-set-conflict-graph`, use phase-007 locks/fencing, and keep serialization decisions outside the closure implementation.
-- **Version drift** — closure inputs may evolve while phase 013 proceeds. Mitigation: bind each closure to the frozen phase-004 interface version and hand mixed-version behavior to `003-mixed-version-fixtures`.
+- **Version drift** — closure inputs may evolve while phase 013 proceeds. Mitigation: bind each closure to the frozen `001-shared-mode-interfaces` interface version and hand mixed-version behavior to `003-mixed-version-fixtures`.
 - **Dependencies**: `001-shared-mode-interfaces/spec.md`, the phase-007 parent and child contracts under `007-shared-evidence-and-control-services/`, the parent `../spec.md`, `manifest/phase-tree.json`, and the shipped runtime sources under `.opencode/skills/system-deep-loop/runtime/` are contract inputs. `003-mixed-version-fixtures` and `004-write-set-conflict-graph` are sibling handoff consumers, not hard dependencies.
 <!-- /ANCHOR:risks -->
 

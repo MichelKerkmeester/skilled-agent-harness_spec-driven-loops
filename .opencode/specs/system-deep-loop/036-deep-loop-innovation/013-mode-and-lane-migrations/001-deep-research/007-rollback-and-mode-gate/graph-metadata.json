@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate. The gate consumes shadow-parity, sealed-artifact, certificate, receipt, resume, and replay evidence, keeps authority with the legacy path until phase 014, and emits the mode certificate required for staged cutover.",
     "created_at": "2026-07-16T03:43:31.931Z",
-    "last_save_at": "2026-07-17T13:21:27.350Z",
+    "last_save_at": "2026-07-19T18:01:20.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,11 +191,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f47b902418ac001e115d72f41c6b5b6ac30bee1ed09eacdc1a23685230ae276f",
+    "source_fingerprint": "sha256:e3a4bc1b8893009ef59f00dcdd488478c7b94e1981a26928e07cc9c41522dfb7",
     "source_doc_hashes": {
       "spec.md": "fee8faed3579f12ec81affd41fff51341972f076798661ed9f69bda7f762dc70",
       "plan.md": "a34c8ce38ffae7fdb43aef94e2e1979a7f90044c15d83d972dcc9f4edb2453e4",
-      "tasks.md": "a791b50de8d2287196f7a3358644d415866a59745b9e1b06a071ff4aa51e5583",
+      "tasks.md": "fd9e0be65778872e1ade061a40b978e7e08d7b71044d4cb0b445eec5fa96d54c",
       "checklist.md": "d279810c5751011a1dd35da3fcfc6930e056ba3dbbe0f9f59ef09fe1e846b7ae"
     },
     "last_active_child_id": null,

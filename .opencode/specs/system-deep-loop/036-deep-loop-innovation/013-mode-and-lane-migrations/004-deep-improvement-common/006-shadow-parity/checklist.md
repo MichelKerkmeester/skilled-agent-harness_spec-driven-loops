@@ -92,7 +92,7 @@ eligible boundaries is a failed gate, not an implicit pass.
 ## Documentation
 
 - [ ] CHK-028 [P1] The parity report schema, mismatch taxonomy, normalization manifest, and cutover-blocking criteria are reflected in the phase docs and successor handoff
-- [ ] CHK-029 [P2] Research traceability cites the 065/002 findings on raw observations, evaluator capsules, canary freshness, independent oversight, and shadow/canary promotion
+- [ ] CHK-029 [P2] Research traceability cites the 036/002 findings on raw observations, evaluator capsules, canary freshness, independent oversight, and shadow/canary promotion
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

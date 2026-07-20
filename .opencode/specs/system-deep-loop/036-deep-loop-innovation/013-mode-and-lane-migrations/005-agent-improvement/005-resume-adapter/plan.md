@@ -136,7 +136,7 @@ change across retries. Variant code adds no evaluator, canary, certificate, prom
 
 The adapter depends on the typed ledger and event envelope, deterministic Agent Improvement reducers and projections, shared
 sealed artifact references, common certificate and receipt fingerprints, and common evaluator/canary/promotion/effect
-recovery services. It also consumes phase-015 mode interfaces and the phase-012 write-set and replay contracts. The 065/002
+recovery services. It also consumes phase-015 mode interfaces and the phase-012 write-set and replay contracts. The 036/002
 findings supply the mode-specific invariants: typed AgentIR and causal slicing, blocker-aware successive halving, frozen
 improver/evaluator material, behavior-family retention, cross-executor transfer, and exposure-aware canaries. `006-shadow-parity`
 consumes the adapter's replay and mismatch evidence; no dependency is added to the manifest's `depends_on: []` planning field.

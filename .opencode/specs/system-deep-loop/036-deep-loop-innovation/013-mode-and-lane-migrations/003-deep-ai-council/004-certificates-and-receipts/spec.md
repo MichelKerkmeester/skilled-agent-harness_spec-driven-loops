@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Fourth child of the Deep AI Council mode migration fan-out |
 | **Depends on** | `[]`; sibling planning contracts are independent and compose at the Deep AI Council mode gate |
-| **Consumes** | Shared phase-006 receipt and certificate primitives, typed ledger and replay contracts, and predecessor `003-sealed-artifacts` references |
+| **Consumes** | Shared phase-007 receipt and certificate primitives, typed ledger and replay contracts, and predecessor `003-sealed-artifacts` references |
 | **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `findings-registry.json`, `findings-registry-modes.json`, and the Deep AI Council typed-ledger and reducer contracts |
 <!-- /ANCHOR:metadata -->
 
@@ -69,7 +69,7 @@ This phase plans one per-run Deep AI Council certificate and a receipt profile f
 recovery, and completion. A receipt attests one authorized transition, its exact input and output references, resulting
 ledger head, and effect or recovery disposition. The certificate attests the verified run bundle, declared result, sealed
 reference set, receipt chain, replay fingerprint, projection and artifact outputs, and test-gate evidence. The phase
-consumes the shared phase-006 primitives and predecessor sealed references; it does not create a mode-local signing scheme,
+consumes the shared phase-007 primitives and predecessor sealed references; it does not create a mode-local signing scheme,
 digest, verifier, artifact store, reducer, resume adapter, or authority decision.
 <!-- /ANCHOR:problem -->
 
@@ -86,7 +86,7 @@ digest, verifier, artifact store, reducer, resume adapter, or authority decision
 - Idempotent retry, duplicate detection, stale-head detection, unknown-effect handling, late-result supersession, counterfactual mismatch, and additive-dark failure behavior.
 
 ### Out of Scope
-- Defining or replacing the shared phase-006 receipt, certificate, ledger, transition-authorization, certification-provider, or generic replay-fingerprint primitives.
+- Defining or replacing the shared phase-007 receipt, certificate, and certification-provider primitives or the phase-006 ledger, transition-authorization, or generic replay-fingerprint primitives.
 - Creating or sealing Deep AI Council artifacts, changing artifact canonicalization, or defining verified reads; predecessor `003-sealed-artifacts` owns those bindings.
 - Defining event names, reducers, projections, seat producers, critique execution, judge calibration, protocol routing, budgets, fan-out/fan-in scheduling, or the council test-gate implementation owned by sibling or shared phases.
 - Implementing the resume adapter owned by successor `005-resume-adapter`; this phase defines the receipt and certificate inputs that resume consumes and the recovery evidence it must emit.
@@ -99,7 +99,7 @@ digest, verifier, artifact store, reducer, resume adapter, or authority decision
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The mode consumes one shared receipt and certificate contract | A contract matrix maps every council receipt and the run certificate to phase-006 primitives, with no mode-local digest, signature, key, verifier, or trust root |
+| REQ-001 | The mode consumes one shared receipt and certificate contract | A contract matrix maps every council receipt and the run certificate to phase-007 primitives, with no mode-local digest, signature, key, verifier, or trust root |
 | REQ-002 | One run certificate attests the complete Deep AI Council run | The certificate binds run/lineage/generation identity, lifecycle result, start and final ledger heads, ordered sealed-reference digest, receipt-chain digest, replay fingerprint, projections, artifact manifest, test-gate result, and unresolved obligations |
 | REQ-003 | Each logical council transition emits a complete receipt | Initialization, seats, critique, blinding, judgment, synthesis, convergence, artifacts, test gate, recovery, and completion rows identify authorization, logical operation, attempts, inputs, outputs, result disposition, and resulting head |
 | REQ-004 | Replay inputs are explicit and versioned | Recomputing the fingerprint uses registered semantic inputs and produces the same value for identical canonical inputs; contract, event, seat, proposal, judgment, policy, reducer, projection, artifact, gate, and effect versions are included |
@@ -191,13 +191,13 @@ verdict with the first failed invariant and evidence digest; verification does n
 - **Mutable-reference leakage** - a digest may point to a mutable artifact path or expose unrestricted seat material. Mitigation: require sealed or content-addressed references, safe locators, declared disclosure boundaries, and secret exclusion.
 - **Unknown external effect** - a lost dispatch or artifact publication response can be interpreted as failure or success. Mitigation: retain `in_doubt` and delegate reuse, reconcile, compensate, or block decisions to the later resume adapter.
 - **Cross-phase scope creep** - certificate work may absorb reducers, artifact sealing, resume, rollback, or authority concerns. Mitigation: keep the ownership table and adjacency line as implementation blockers.
-- **Dependencies**: phase-006 receipt/certificate, event, ledger, authorization, and replay contracts; predecessor `003-sealed-artifacts`; the Deep AI Council `001-typed-ledger-schema` and `002-reducers-and-projections` contracts; phase-012 shared mode interfaces and write-set conflict graph; later `005-resume-adapter`, shadow-parity, rollback, cutover, and mode-gate concerns; and the two findings registries under `002-deep-loop-effectiveness-and-fanout`.
+- **Dependencies**: phase-007 receipt/certificate contracts; phase-006 event, ledger, authorization, and replay contracts; predecessor `003-sealed-artifacts`; the Deep AI Council `001-typed-ledger-schema` and `002-reducers-and-projections` contracts; phase-012 shared mode interfaces and write-set conflict graph; later `005-resume-adapter`, shadow-parity, rollback, cutover, and mode-gate concerns; and the two findings registries under `002-deep-loop-effectiveness-and-fanout`.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-006 primitive represents the run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
+- Which exact phase-007 primitive represents the run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
 - Which phase-015 event-tail, authorization, effect, and projection fields are inherited directly by council receipts, and which require digest-only mode extensions?
 - Is the certificate pinned to a finalized ledger frontier, a contiguous event range, or both when late seat results or gate receipts arrive after synthesis?
 - Which artifact kinds and council test-gate checks are mandatory for a valid certificate, and which remain diagnostic evidence during the additive-dark window?

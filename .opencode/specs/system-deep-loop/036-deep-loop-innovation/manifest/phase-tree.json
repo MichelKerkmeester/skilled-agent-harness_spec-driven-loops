@@ -1,5 +1,5 @@
 {
-  "packet": "system-deep-loop/065-deep-loop-innovation",
+  "packet": "system-deep-loop/036-deep-loop-innovation",
   "kind": "phase-parent",
   "generated_from": "GPT-5.6-sol (ultra) design review, verdict REQUESTED_CHANGES, folded in",
   "architecture": "single cross-mode spine: typed append-only event ledger + fail-closed transition-authorization gateway + sealed reference artifacts + versioned replay fingerprints + receipts/certificates + blinded/counterfactual adjudication",

@@ -37,7 +37,7 @@ unclassified census rows, live-state mutation, or a BASE mismatch.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The execution checkout is clean and one full immutable BASE SHA is recorded for all 006 phases
+- [ ] CHK-001 [P0] The execution checkout is clean and one full immutable BASE SHA is recorded for all 036 phases
 - [ ] CHK-002 [P0] BASE provenance, tool versions, submodule state, and source digests are captured before generated evidence
 - [ ] CHK-003 [P1] Fixture and replay paths resolve to temporary copies and cannot mutate tracked runtime/database state
 <!-- /ANCHOR:pre-impl -->

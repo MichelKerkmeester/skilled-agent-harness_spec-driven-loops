@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder mapping, idempotent re-entry, and the shared evaluator, canary, and guarded-promotion service contracts reused by the three benchmark variants.",
     "created_at": "2026-07-16T03:43:36.808Z",
-    "last_save_at": "2026-07-17T13:21:35.012Z",
+    "last_save_at": "2026-07-19T18:09:52.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:46f263473e7b1473e108dd8de3927423db8d5acfe06bfe6f03d607f14fba915e",
+    "source_fingerprint": "sha256:634af7f34ed0d50b890d671cc1cc006518c7e5fe553a47fad849801948dafe35",
     "source_doc_hashes": {
-      "spec.md": "db587720dd6fff7594c5c6f1e26776ce5b2dfd17b12f506881dc10ff5f162a7f",
+      "spec.md": "dcdf0cd42c08f92226f448ce67d2b0cdda178872b5fa58ba29faddaad75ee2f1",
       "plan.md": "4f2642f7cfa686c57a4ada61c30656f17b172962e7423d2c57becc5cae6f5673",
       "tasks.md": "de814324f66bed0b23f4630017bad8103cd71679e0117d435bc196be00b54fcd",
-      "checklist.md": "5861dc218eedb98877e4012d708a7a2b0d5d26c5e07e3484d77e74892eec5bd4"
+      "checklist.md": "865b22554b6678b7c6a680fbd032577c8e9e07caee374992e249285d6a5f174a"
     },
     "last_active_child_id": null,
     "last_active_at": null

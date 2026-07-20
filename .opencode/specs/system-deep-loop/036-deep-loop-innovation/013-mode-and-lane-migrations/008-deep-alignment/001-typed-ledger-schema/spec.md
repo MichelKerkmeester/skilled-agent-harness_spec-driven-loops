@@ -187,7 +187,7 @@ if introduced by a later mode concern, creates a new subject version and is not 
 - **Cross-epoch replay loss** - old witnesses may not map to a new authority without direction-sensitive comparison. Mitigation: retain epoch compatibility classes, affected rule IDs, old witness references, and blocked/degraded outcomes.
 - **Review/alignment fork** - a mode-local review loop would diverge from Deep Review and invalidate shared write-set assumptions. Mitigation: import the phase-012 review-loop contract and keep only Deep Alignment payload extensions.
 - **Cross-phase scope creep** - reducers, certificates, sealed artifacts, and authority changes are tempting to embed in this schema. Mitigation: use the adjacency contract and explicit ownership handoff as implementation blockers.
-- **Dependencies**: phase-006 transition-authorized ledger core, phase-012 shared event and review-loop contracts, the 065/002 findings registries, the Deep Review shared-backbone contract, the later `002-reducers-and-projections` sibling, and the later Deep Alignment mode-gate children.
+- **Dependencies**: phase-006 transition-authorized ledger core, phase-012 shared event and review-loop contracts, the 036/002 findings registries, the Deep Review shared-backbone contract, the later `002-reducers-and-projections` sibling, and the later Deep Alignment mode-gate children.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

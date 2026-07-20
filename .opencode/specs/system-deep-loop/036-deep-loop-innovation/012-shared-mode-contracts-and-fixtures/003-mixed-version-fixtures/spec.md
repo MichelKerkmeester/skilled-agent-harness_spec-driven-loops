@@ -58,7 +58,7 @@ record at the same causal time. Testing only a fully old or fully new stream hid
 bridge must handle.
 
 The phase-008 upcaster and dual-read contract requires adjacent, deterministic, lossless transforms, immutable source
-evidence, and fail-closed handling of future, ambiguous, or unsupported versions (`../../005-compatibility-shadow-and-
+evidence, and fail-closed handling of future, ambiguous, or unsupported versions (`../../008-compatibility-shadow-and-
 rollback-bridge/001-upcasters-and-dual-read-adapters/spec.md`). Its shadow-parity child requires both legacy and dark
 paths to consume one identical sealed case capsule, compare verified replay components and legacy projections, and keep
 authority on the legacy path (`../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md`).
@@ -210,11 +210,11 @@ phase-007 verified read fails before either path executes and the case is classi
 - **Interrupted restart duplicates effects** - A restart can replay an accepted effect without its receipt. Mitigation:
   seal receipt, lease/fencing, pending-effect, and continuity evidence and expect the phase-008 resume classification.
 - **Mode-specific fixture drift** - Eight workstreams may invent private version combinations. Mitigation: derive the
-  matrix from `mode_workstreams_phase_010`, use one fixture envelope, and reject unregistered exceptions.
+  matrix from `mode_workstreams_phase_013`, use one fixture envelope, and reject unregistered exceptions.
 - **Dependencies**: the child declares `depends_on: []` in `manifest/phase-tree.json`, but its implementation consumes
   the phase-007 sealed-reference-artifact contract, phase-008 upcaster and shadow-parity contracts, the phase-012
   shared-mode interface, and the parent sequencing rules. The phase-013 mode migrations consume this fixture set; phase
-  011 consumes its parity evidence but remains the sole authority-cutover owner.
+  014 consumes its parity evidence but remains the sole authority-cutover owner.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

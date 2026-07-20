@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
-| **Origin** | Phase 005 of the Agent Improvement migration under phase 013 |
+| **Origin** | Phase 002 of the Agent Improvement migration under phase 013 |
 | **Depends on** | None (`[]`); runtime composition uses the preceding typed-ledger schema and the shared deep-improvement-common services |
 | **Outcome** | Deterministic Agent Improvement reducers and projections over the typed event log, with common evaluator/canary/promotion services reused rather than reimplemented |
 <!-- /ANCHOR:metadata -->
@@ -67,7 +67,7 @@ content-addressed candidate and artifact index, and the shared per-mode status v
 typed events from `001-typed-ledger-schema`, composes with the shared evaluator, canary, and promotion contracts from
 mode `004-deep-improvement-common`, and adds only Agent Improvement-specific state such as AgentIR component lineage,
 behavior-family coverage, failure-gradient references, and profile-scoped candidate frontiers. An identical ordered
-event sequence and reducer version must always produce identical projection bytes. This is planning only; the 010
+event sequence and reducer version must always produce identical projection bytes. This is planning only; the 013
 migrations land after phase 012 freezes the shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:problem -->
 
@@ -106,7 +106,7 @@ migrations land after phase 012 freezes the shared contracts and emits the write
   lifecycle facts, and digest links needed by its projections.
 - Implementing Agent Improvement proposal operators, AgentIR mutation execution, evaluator execution, canary execution,
   promotion effects, or the independent mode gate. Those services produce events consumed by this fold.
-- Authority cutover, legacy-writer retirement, broad fan-out/fan-in changes, or the per-mode 010 migration write-set.
+- Authority cutover, legacy-writer retirement, broad fan-out/fan-in changes, or the per-mode 013 migration write-set.
 - Allowing reducers or projections to read mutable AgentIR files, evaluator assets, hidden fixtures, network state,
   clocks, randomness, or promotion state during replay.
 <!-- /ANCHOR:scope -->
@@ -183,7 +183,7 @@ status values.
 - **Information leakage** - exact hidden fixtures, scores, or rationales can train the improver against the evaluator.
   Mitigation: expose only the common service's permitted redacted view and record access violations as blocking evidence.
 - **Authority drift** - a projection cache or dark reducer could accidentally control live execution. Mitigation: keep
-  legacy state authoritative, make projection failures observable, and defer authority changes to phase 017.
+  legacy state authoritative, make projection failures observable, and defer authority changes to phase 014.
 - **Dependencies**: `001-typed-ledger-schema` for canonical event inputs; mode `004-deep-improvement-common` for shared
   evaluator, canary, promotion, status, and receipt contracts; `003-sealed-artifacts` for immutable artifact references;
   phase 012 shared mode contracts and write-set conflict graph; existing Agent Improvement scripts and fixtures; and the

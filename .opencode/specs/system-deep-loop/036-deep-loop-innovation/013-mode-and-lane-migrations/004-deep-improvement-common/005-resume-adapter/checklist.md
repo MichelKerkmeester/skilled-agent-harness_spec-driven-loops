@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 008. Every item is a check the paired verifier runs BEFORE the
+This checklist is the blocking SOL verifier contract for phase 013's `005-resume-adapter` child. Every item is a check the paired verifier runs BEFORE the
 candidate commit lands; each report pins the candidate SHA, BASE SHA, sealed-ledger range and digest, event-registry/upcaster
 identity, reducer-set identity, fixture digest, commands, exit codes, replay fingerprints, and shadow-authority result. The gate
 fails on missing evidence, zero exercised transitions, silent fallback, mutated sealed history, or unexpected tracked mutation.

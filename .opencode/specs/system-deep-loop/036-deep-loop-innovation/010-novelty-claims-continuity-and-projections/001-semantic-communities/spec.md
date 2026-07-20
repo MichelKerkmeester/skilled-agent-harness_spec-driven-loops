@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Semantic Communities
 
-> Phase adjacency under the 007 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-contradiction-and-supersession-events`.
+> Phase adjacency under the 010 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-contradiction-and-supersession-events`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

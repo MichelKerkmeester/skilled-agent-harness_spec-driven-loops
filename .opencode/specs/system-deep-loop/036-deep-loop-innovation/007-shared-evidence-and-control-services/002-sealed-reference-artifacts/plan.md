@@ -40,9 +40,9 @@ service canonicalizes and seals exact bytes, publishes an algorithm-qualified di
 verification, resolves runtime inputs only by that digest, verifies again before releasing bytes, and records lifecycle
 changes separately from immutable identity. The phase-006 replay descriptor consumes the ordered verified digest set;
 phase 008 may compare legacy and dark outputs only when both cite the same set. The plan is grounded in
-`../../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`,
-`../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`,
-`../../../spec.md`, and `../../../manifest/phase-tree.json`.
+`../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`,
+`../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`,
+`../../spec.md`, and `../../manifest/phase-tree.json`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -122,7 +122,7 @@ phase 008 may compare legacy and dark outputs only when both cite the same set. 
 The phase has no hard execution dependency (`depends_on: []`) and is an independent sibling planning contract. Its
 implementation composes with the phase-006 event envelope, typed ledger, and replay-fingerprint APIs; the phase-004
 ADR fixes immutable digest addressing as a spine invariant. Phase 008 consumes verified reference sets for shadow
-parity, phase 013 specializes artifact kinds, and phases 011-013 preserve retained inputs through rollback, archival
+parity, phase 013 specializes artifact kinds, and phases 014-016 preserve retained inputs through rollback, archival
 replay, and whole-system verification. The phase-003 census supplies concrete storage and legacy-reference evidence.
 <!-- /ANCHOR:dependencies -->
 

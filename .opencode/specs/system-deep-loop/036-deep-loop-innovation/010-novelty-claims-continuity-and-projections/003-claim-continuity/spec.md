@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Claim Continuity
 
-> Phase adjacency under the 007 parent (grouping order, not a runtime dependency): predecessor `002-contradiction-and-supersession-events`; successor `004-next-focus-semantics`.
+> Phase adjacency under the 010 parent (grouping order, not a runtime dependency): predecessor `002-contradiction-and-supersession-events`; successor `004-next-focus-semantics`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

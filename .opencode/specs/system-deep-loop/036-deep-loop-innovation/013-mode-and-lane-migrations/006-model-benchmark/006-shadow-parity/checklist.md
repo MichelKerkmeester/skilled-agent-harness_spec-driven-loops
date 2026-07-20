@@ -95,7 +95,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 ## Documentation
 
 - [ ] CHK-031 [P1] The parity report schema, mismatch taxonomy, protected-field manifest, common-service reuse boundary, normalization manifest, matrix acceptance criteria, and cutover-blocking handoff are reflected in the phase docs and successor handoff
-- [ ] CHK-032 [P2] Research traceability cites the 065/002 findings on task-conditioned model strength, adaptive coverage, judge calibration, contamination lineage, workload metrics, paired inference, and versioned benchmark recipes
+- [ ] CHK-032 [P2] Research traceability cites the 036/002 findings on task-conditioned model strength, adaptive coverage, judge calibration, contamination lineage, workload metrics, paired inference, and versioned benchmark recipes
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / 065 recommendations implementation |
+| **Surface** | system-deep-loop / 036 recommendations implementation |
 | **Change class** | Integration, contract recensus, gate rerun, and packet reconciliation |
 | **Execution** | Clean isolated worktree; final evidence bound to one exact SHA |
 
@@ -45,7 +45,7 @@ Phase 017 is the final landing loop for the 15-phase program. It takes the last 
 - [ ] `016-whole-system-gate` is green on its pre-integration SHA with receipts and exact candidate evidence
 - [ ] The latest origin target, clean worktree, and integration method are recorded
 - [ ] The 000 baseline and all phase receipts needed for touched-contract comparison are available
-- [ ] The parent 065 open-item and changelog surfaces are inventoried without rewriting research inputs
+- [ ] The parent 036 open-item and changelog surfaces are inventoried without rewriting research inputs
 - [ ] The deterministic metadata generation commands for the affected packet tree are identified
 
 ### Definition of Done
@@ -63,7 +63,7 @@ Phase 017 is the final landing loop for the 15-phase program. It takes the last 
 - **Drift classifier**: Mark drift relevant when it changes a phase input/output contract, protected baseline, persistence or schema boundary, dependency/write-set relation, or evidence binding. Mark drift non-relevant only with a recorded rationale and no changed acceptance surface.
 - **Reopen router**: Reopen the owning phase first, then any downstream phase whose declared input is changed. Preserve prior receipts as historical evidence and require fresh phase evidence before phase 016 is accepted.
 - **Final gate boundary**: Run the entire phase-016 contract against the final SHA, not a branch-relative range. The gate covers behavior and mode baselines, mixed-version replay, crash injection, counterfactual and degeneration tests, parity against 000, the blocking SOL review, and recursive strict validation.
-- **Append-only closeout**: Add dispositions for 065 open items, append changelog entries, run deterministic metadata generation, and reconcile parent/child status fields without deleting historical records.
+- **Append-only closeout**: Add dispositions for 036 open items, append changelog entries, run deterministic metadata generation, and reconcile parent/child status fields without deleting historical records.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -106,7 +106,7 @@ Phase 017 is the final landing loop for the 15-phase program. It takes the last 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `execution-sequencing-strategy.md` | Internal contract | Green | Integrate-latest and reopen-on-drift sequencing is undefined |
-| Parent 065 `spec.md` | Internal contract | Green | Scope, phase outcomes, success criteria, and open-item ownership cannot be reconciled |
+| Parent 036 `spec.md` | Internal contract | Green | Scope, phase outcomes, success criteria, and open-item ownership cannot be reconciled |
 | `manifest/phase-tree.json` | Internal manifest | Green | Dependency and phase outcome comparison is incomplete |
 | `016-whole-system-gate` artifacts | Internal gate | Yellow | Final-SHA verification cannot be replayed until the phase-016 contract and receipts are available |
 | 000 baseline and phase receipts | Internal evidence | Yellow | Regression and evidence-lineage comparison is blocked |

@@ -173,7 +173,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:32.713Z",
-    "last_save_at": "2026-07-17T13:21:28.406Z",
+    "last_save_at": "2026-07-19T18:01:24.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8a23b4ff3961b48bb490d6027bb868feb0acc2197c721758916947245e4c1de7",
+    "source_fingerprint": "sha256:05691b50be19b4f79061d8cdb9893c71e0154ab6dd7b13a0789e7474330a2548",
     "source_doc_hashes": {
-      "spec.md": "32c660fc87be1a902b65c52151842f707de12670e76c237a34920bf59f54a065",
-      "plan.md": "7396617ae07b0211fa3dd665610516c6fa442bfc575af3ee1ced09fa41daa9b8",
-      "tasks.md": "4b2a18306dba7f19e5e36deb54bf4f48bf25260a2fe07a7b21333453e5a7d0ee",
-      "checklist.md": "de5748a3fa1f37803d6b0ec0414112186cf6f53e939c69de275b371392f3691b"
+      "spec.md": "00687b51c6d313f7c3104e341817a6928442a84adc3cd6a5cebb3ba2a0876e37",
+      "plan.md": "e09b2115cd3ce3a26636c4b1eeeca1bd7e75e4932b74759580e3efa797b9bbe7",
+      "tasks.md": "23900ccb0183bd53e2d290941defa445a70fffbb3a9a03f2de23b7122c95c60c",
+      "checklist.md": "d001bd8e519fc08e8951d8000539ea4bebe055bf235155f54e448de4bf5c3722"
     },
     "last_active_child_id": null,
     "last_active_at": null

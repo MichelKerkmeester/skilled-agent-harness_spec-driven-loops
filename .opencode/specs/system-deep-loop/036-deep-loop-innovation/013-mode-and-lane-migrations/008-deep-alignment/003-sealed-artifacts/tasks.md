@@ -44,7 +44,7 @@ _memory:
 - [ ] T002 Inventory Deep Alignment lane, authority, adapter, scope, discovery, rule, finding, witness, exception, convergence, report, resume, and save state and output shapes against the pinned baseline
 - [ ] T003 Freeze the mode artifact-kind matrix, shared descriptor fields, canonicalization profiles, media types, authority epochs, digest-reference roles, and deterministic reference ordering
 - [ ] T004 Define typed seal/read failures, invalid-authority and expired-exception dispositions, target and authority drift handling, append-only supersession, report/handoff refusal, and the additive-dark rollback switch
-- [ ] T005 Confirm the mode consumes the phase-006 sealing primitives and does not introduce a mode-local digest, blob store, descriptor, or verification path
+- [ ] T005 Confirm the mode consumes the phase-007 sealing primitives and does not introduce a mode-local digest, blob store, descriptor, or verification path
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

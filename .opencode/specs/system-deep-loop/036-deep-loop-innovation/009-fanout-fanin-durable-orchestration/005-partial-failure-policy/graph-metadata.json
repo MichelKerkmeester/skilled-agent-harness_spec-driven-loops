@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures.",
     "created_at": "2026-07-16T03:43:50.882Z",
-    "last_save_at": "2026-07-17T13:21:17.527Z",
+    "last_save_at": "2026-07-19T18:01:24.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5a5a6975c23a2cf3e16beaf329dc8bd2445087244e7b59bd9310ffd04d6a23d9",
+    "source_fingerprint": "sha256:6bf55ee65c0f86807ed8f094b76c00b873133c2ff64be1441b0110b897b49da3",
     "source_doc_hashes": {
-      "spec.md": "627832ca6b13a6d9228d13fcd92d9755963811984c87562f2c960da354c72b4a",
+      "spec.md": "8ff709523b23117abbe3831131559dc52491c90bd26df9d5b2d1112bcc887b75",
       "plan.md": "16f3cd12295e2d46155dbbb13ee2460a039d9f9eb425ba1e406deda71807bf66",
       "tasks.md": "c099e27f70eea2648d2f50cad52aeb2c758a436bd2a5ebd0849deaed7662e62a",
       "checklist.md": "ba1448d8987075e0e5ac71c33868a8fcb24373c084fbfd4271f6482b9e13a684"

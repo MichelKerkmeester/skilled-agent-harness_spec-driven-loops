@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence.",
     "created_at": "2026-07-16T03:43:46.678Z",
-    "last_save_at": "2026-07-17T13:21:11.456Z",
+    "last_save_at": "2026-07-19T18:01:21.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7df8316a64b49be7f64bafb54ad5c04718bc9fd3992a3fc0a888f3d0f6df8f8d",
+    "source_fingerprint": "sha256:f3f29846ed41febe91641b773060e39f55781fe235a14bc827152f288ebff743",
     "source_doc_hashes": {
-      "spec.md": "77d79218e1fc2638e5ed15c0d319e949ab4e22e6373391227132736d317ccb1b",
-      "plan.md": "01ef236a0b674e3104cfe2acc4add4f980bd68bd6c86a407969bba99929d7ed2",
+      "spec.md": "ed4e4f6cd5a38c7dc85338c03c93f7974f5074e71a6bf6c7447508f3bee2d10e",
+      "plan.md": "4389fccba56b8b49140e0e77ad3d3e6bc3aa29b4519c8587d63588ec385f8aa6",
       "tasks.md": "018f59478330ab0febf8fccea29f2f45d9b104ce06e03b750db9e8628981ff24",
       "checklist.md": "4a81e10370d21a7bd5e0cb13bf6e72dbf03dbf24f199f9cdaf2dfe34d34cdc05"
     },

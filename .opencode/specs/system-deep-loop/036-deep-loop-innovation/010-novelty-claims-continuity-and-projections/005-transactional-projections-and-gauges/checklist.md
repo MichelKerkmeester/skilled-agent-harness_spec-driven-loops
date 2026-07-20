@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 008. Every item remains pending while the phase status
+This checklist is the blocking SOL verifier contract for phase 010 child 005. Every item remains pending while the phase status
 is Planned. The implementation verifier binds its report to the candidate SHA, ledger fixture digest, projection
 manifest digest, bundle/reducer versions, canonical-store schema version, and legacy baseline. It records commands,
 exit codes, fixture counts, transaction fault points, ledger cutoffs, generation IDs, and canonical hashes; zero-event,

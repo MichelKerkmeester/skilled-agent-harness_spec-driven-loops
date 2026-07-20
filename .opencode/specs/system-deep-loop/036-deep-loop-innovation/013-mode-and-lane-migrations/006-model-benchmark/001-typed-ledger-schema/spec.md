@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Model Benchmark Typed Ledger Schema
 
-> Phase adjacency under `013-mode-and-lane-migrations` (independent sibling planning contracts, not a runtime dependency): predecessor `none` (first sibling); successor `002-reducers-and-projections`.
+> Phase adjacency under `006-model-benchmark` (independent sibling planning contracts, not a runtime dependency): predecessor `none` (first sibling); successor `002-reducers-and-projections`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
-| **Origin** | Phase 009 of the 013 mode-and-lane migration parent; the model-benchmark research recommendations in `findings-registry-modes.json` |
+| **Origin** | Phase 006 of the 013 mode-and-lane migration parent; the model-benchmark research recommendations in `findings-registry-modes.json` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

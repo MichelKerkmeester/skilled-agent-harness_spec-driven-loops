@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verification contract for phase 005. Implementation evidence must pin the candidate SHA, ledger/reducer/event-schema versions, replay head, fixture corpus digest, and commands with exit codes. Repeated resume runs must report execution counts per leaf, and every checked item must carry machine-detectable evidence before phase completion is claimed.
+This checklist is the blocking verification contract for phase 009's `002-result-envelopes-and-resume-salvage` child. Implementation evidence must pin the candidate SHA, ledger/reducer/event-schema versions, replay head, fixture corpus digest, and commands with exit codes. Repeated resume runs must report execution counts per leaf, and every checked item must carry machine-detectable evidence before phase completion is claimed.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

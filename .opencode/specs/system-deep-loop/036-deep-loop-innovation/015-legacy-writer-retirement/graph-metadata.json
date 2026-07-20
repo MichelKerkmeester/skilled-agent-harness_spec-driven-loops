@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. Retain archival readers required for historical legacy packets.",
     "created_at": "2026-07-16T03:44:00.951Z",
-    "last_save_at": "2026-07-17T13:21:48.229Z",
+    "last_save_at": "2026-07-19T18:01:27.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:977769c320b2c5d6764522eba111a1eb92a8f90e83a2d1d2b155fa2e3b86d08b",
+    "source_fingerprint": "sha256:a5fd80645afe33affbdd3d594f5914f961ec4f5ad57bad65187a34287492ccba",
     "source_doc_hashes": {
-      "spec.md": "89f9b8155e9c2adb9b8f7586432ff25e554bfba1b26dc6c044eebe6d1a8939f6",
-      "plan.md": "998a7446853ef4ff79d44538f24ca26acbf2dc4fb4473d66a7c94bc101621495",
+      "spec.md": "abc5f4d0a51ed03d596af75df19648cd6e6127fca79a616ba81789b9754d49f1",
+      "plan.md": "847f167a2d3471a8cf45e106cf630bc639d1798aa3f6a8ccc35e7d23d31d955f",
       "tasks.md": "bedaad47c8690fef75b481c0249dcf7c31286bb0910b1f9a724a91bfc6421843",
-      "checklist.md": "55d513791658d5d566ce1ac8a9c63578f8ebe607803859cd37ab6971e29a9c61"
+      "checklist.md": "16c4de63aada0ff6504fc4128e9519b15b7c9b0856760b39456e5e0b89b930f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

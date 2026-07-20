@@ -20,7 +20,8 @@
     "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover",
     "system-deep-loop/036-deep-loop-innovation/015-legacy-writer-retirement",
     "system-deep-loop/036-deep-loop-innovation/016-whole-system-gate",
-    "system-deep-loop/036-deep-loop-innovation/017-integrate-latest-and-closeout"
+    "system-deep-loop/036-deep-loop-innovation/017-integrate-latest-and-closeout",
+    "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation"
   ],
   "manual": {
     "depends_on": [],
@@ -56,6 +57,7 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md",
       "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
       "scratch/normalize-phase-refs.cjs",
       "spec.md",
@@ -169,17 +171,17 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-07-17T13:21:05.661Z",
+    "last_save_at": "2026-07-19T18:01:27.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:00fb48b50b090eee2bf51aa8a38628fd98106f5b4874ce615b1160930fe57389",
+    "source_fingerprint": "sha256:6a343532f81efa44ecfcbbc4833f94f2fae249a7f9a70610f6f509739154e0a1",
     "source_doc_hashes": {
-      "spec.md": "04771f79a9dd3588280b398430ddd1643412f46cc0c0b32f3eee5e743576d605",
-      "handover.md": "4988eda012a3cba8e33d32fe1915baa3f095e7984b6f68d9028236d58568f18e"
+      "spec.md": "d5cb19392cfec58a51869de37e1f8c546f9db3669d703ad0174a6fec6923d634",
+      "handover.md": "8647f17f587b82002a9345c5d86573cdf5eccc53313415ca98a2c4a93bc53fc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

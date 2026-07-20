@@ -110,7 +110,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan inherits the 065 program's typed ledger, transition authorization, receipts, replay fingerprint, projection, and
+The plan inherits the 036 program's typed ledger, transition authorization, receipts, replay fingerprint, projection, and
 strict-validation contracts. It consumes the phase-012 shared review-loop contract and phase-014 generic shadow framework.
 The `005-resume-adapter` and `007-rollback-and-mode-gate` siblings provide navigation and handoff context; this planning
 contract does not turn that adjacency into an unrecorded runtime dependency.

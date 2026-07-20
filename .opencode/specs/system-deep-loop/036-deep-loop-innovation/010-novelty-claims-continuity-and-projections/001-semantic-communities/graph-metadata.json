@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Plan a deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept and novelty measures new ideas rather than new strings.",
     "created_at": "2026-07-16T03:43:51.399Z",
-    "last_save_at": "2026-07-17T13:21:18.474Z",
+    "last_save_at": "2026-07-19T18:01:22.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:cc7dc482e59d410582129bdab7ef9c4173461d39e9ec07c9d940414e4e6f1b40",
+    "source_fingerprint": "sha256:43d17005b58e28597cade68506f70184e149c5accb04a2f82003da16a25f6555",
     "source_doc_hashes": {
-      "spec.md": "6b29dbb1d01215b0774e374b37e0d14fbaef33e389d7e29c3952a0eb0abda706",
+      "spec.md": "c06d7e0dc2019f71345b7a83c27a18d931855786320d832c9fe34660d2a980aa",
       "plan.md": "ee0771bb0fb2bb7c90808678e21ea8a0a40e5195de7dc3173bd5da4315d33336",
       "tasks.md": "854771950df3fef0e97b9604b6a8f5d1d23c7fd9419e3f17e5379a666849dca1",
       "checklist.md": "b99f54e552fd6a557f1252e898ec2cc6d237a9d56ac344953e7263d1f9f86233"

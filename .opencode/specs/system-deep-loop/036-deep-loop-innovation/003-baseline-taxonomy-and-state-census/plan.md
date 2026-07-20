@@ -78,8 +78,8 @@ the logical artifacts and their relationships are fixed:
 | Behavior baseline | Existing and added scenario IDs, workstream mapping, semantic oracle, BASE result, evidence digest | Eight-workstream coverage; semantic parity, not count parity |
 | Replay/rollback manifest | Sanitized fixtures, expected projections, snapshots, restore/recreate commands, hashes and checks | Clean-temp replay and rollback pass |
 
-The census starts from `.opencode/skills/system-deep-loop/runtime/references/state_format.md` and
-`integration_points.md`, then verifies implementation truth in `runtime/lib/`, `runtime/scripts/`, command YAML,
+The census starts from `.opencode/skills/system-deep-loop/runtime/references/state-format.md` and
+`integration-points.md`, then verifies implementation truth in `runtime/lib/`, `runtime/scripts/`, command YAML,
 and mode-owned reducers. Seeded JSONL families include `deep-{research,review,alignment}-state.jsonl`, iteration
 `deltas/*.jsonl`, research `inbox.jsonl`, council session/round state, improvement
 `agent-improvement-state.jsonl` and `improvement-journal.jsonl`, fan-out state events, dispatch failures, and
@@ -147,10 +147,10 @@ surface not named here; this list is a starting set, not an allowlist.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase has no predecessor (`depends_on: []`). It depends on read access to the 006 parent and phase tree, the
+This phase has no predecessor (`depends_on: []`). It depends on read access to the 036 parent and phase tree, the
 shipped `.opencode/skills/system-deep-loop/runtime/` implementation and integration consumers, the hub
 `mode-registry.json`, the five current mode packets, and all five behavior-benchmark packages under
-`.opencode/skills/system-deep-loop/*/behavior_benchmark/`. Research truth for the eight-workstream layer comes from
+`.opencode/skills/system-deep-loop/*/behavior-benchmark/`. Research truth for the eight-workstream layer comes from
 `002-deep-loop-effectiveness-and-fanout/research/research-modes.md`. Phase 004 is blocked until this phase's BASE,
 taxonomy, census, behavior baseline, fixtures, and rollback anchors are frozen.
 <!-- /ANCHOR:dependencies -->

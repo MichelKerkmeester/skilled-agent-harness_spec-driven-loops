@@ -44,7 +44,7 @@ _memory:
 | **Origin** | Final child concern in the phase-013 Model Benchmark migration |
 | **Depends on** | `[]` in the approved phase definition; sibling adjacency is navigation only |
 | **Outcome** | Plan the Model Benchmark rollback switch and independent mode gate for the typed event-ledger migration |
-| **Inputs** | Parent 065 spec, phase-tree manifest, 065/002 findings registries, Model Benchmark siblings `001` through `006`, and the shared transition/versioning/rollback policy |
+| **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, Model Benchmark siblings `001` through `006`, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -233,9 +233,9 @@ admission freezes, stale writers are fenced, legacy resumes at a new epoch, and 
 - **Sequencing drift** - The mode gate could be treated as authority or run before shared contracts are frozen. Mitigation:
   keep the phase-014 handoff separate from cutover, require the phase 012 contract and write-set digests, and preserve the
   010 fan-out ordering stated by the parent program.
-- **Dependencies**: the parent 065 additive-dark migration model; shared transition/versioning/rollback policy; Model
+- **Dependencies**: the parent 036 additive-dark migration model; shared transition/versioning/rollback policy; Model
   Benchmark siblings `001` through `006`; Deep Improvement Common Services mode 004; phase 012 shared contract freeze and
-  write-set conflict graph; phase-014 handoff; 065/002 findings registries; the model-benchmark runtime paths; and the
+  write-set conflict graph; phase-014 handoff; 036/002 findings registries; the model-benchmark runtime paths; and the
   spec-kit validator.
 <!-- /ANCHOR:risks -->
 

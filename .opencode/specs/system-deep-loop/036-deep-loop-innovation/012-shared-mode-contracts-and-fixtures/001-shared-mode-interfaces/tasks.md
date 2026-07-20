@@ -1,6 +1,6 @@
 ---
 title: "Tasks: shared mode interfaces"
-description: "Tasks for phase 004 of the 009 shared-mode-contracts-and-fixtures parent: author, freeze, and verify the common typed contract for every phase-013 mode."
+description: "Tasks for phase 012 child 001 of the shared-mode-contracts-and-fixtures parent: author, freeze, and verify the common typed contract for every phase-013 mode."
 trigger_phrases:
   - "shared mode interfaces tasks"
   - "deep-loop mode contract tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Read the parent spec, phase-tree manifest, and phase-006, phase-007, and phase-011 source contracts; record the stable obligations and sequencing constraints
-- [ ] T002 [P] Derive the eight phase-013 workstream rows and common/variant ordering directly from `mode_workstreams_phase_010`
+- [ ] T002 [P] Derive the eight phase-013 workstream rows and common/variant ordering directly from `mode_workstreams_phase_013`
 - [ ] T003 [P] Map each substrate service port to its owning phase, mode-facing inputs/outputs, evidence shape, and fail-closed behavior
 - [ ] T004 Define the boundary between this interface phase and `002-cross-mode-closures`, including shared implementation ownership and write-set declarations
 <!-- /ANCHOR:phase-1 -->
@@ -89,6 +89,6 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Parent outcome**: See `../spec.md` and `../manifest/phase-tree.json`
+- **Parent outcome**: See `../spec.md` and `../../manifest/phase-tree.json`
 - **Substrate contracts**: See `../../006-transition-authorized-ledger-core/spec.md`, `../../007-shared-evidence-and-control-services/spec.md`, and `../../011-convergence-termination-and-health/spec.md`
 <!-- /ANCHOR:cross-refs -->

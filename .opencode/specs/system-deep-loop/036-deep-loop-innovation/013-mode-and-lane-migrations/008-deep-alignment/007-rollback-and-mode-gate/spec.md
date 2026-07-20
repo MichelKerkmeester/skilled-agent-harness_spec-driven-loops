@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
-| **Origin** | Phase 011 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
+| **Origin** | Phase 013 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -183,7 +183,7 @@ the original observation.
 - **False parity** - matching reports can hide event order, authority epoch, known-deviation, evidence, receipt, or resume drift. Mitigation: compare events, projections, source and target digests, lane coverage, and replay fingerprints with a narrow volatility allowlist.
 - **Certificate overclaim** - a signed certificate can prove origin and integrity without proving authority correctness, scope closure, or evidence sufficiency. Mitigation: keep those obligations as independent P0 evidence rows.
 - **Review/alignment fork** - Deep Alignment and Deep Review could drift in scope, convergence, or report semantics. Mitigation: consume the frozen phase-012 shared review-loop contract and write-set fence rather than defining local lifecycle rules.
-- **Dependencies**: the 065 parent and phase tree; phase-012 shared review-loop and write-set contracts; phase-014 handoff consumer; the phase-006 authorization spine; the six Deep Alignment siblings; Deep Alignment's existing state-machine and adapter contracts; the two findings registries; and the spec-kit validator. The phase tree declares `depends_on: []`; these are pinned contract inputs and navigation boundaries, not an added phase dependency.
+- **Dependencies**: the 036 parent and phase tree; phase-012 shared review-loop and write-set contracts; phase-014 handoff consumer; the phase-006 authorization spine; the six Deep Alignment siblings; Deep Alignment's existing state-machine and adapter contracts; the two findings registries; and the spec-kit validator. The phase tree declares `depends_on: []`; these are pinned contract inputs and navigation boundaries, not an added phase dependency.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

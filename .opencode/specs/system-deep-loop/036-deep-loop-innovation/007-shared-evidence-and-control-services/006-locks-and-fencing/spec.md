@@ -74,7 +74,7 @@ The phase-006 typed-ledger contract requires an exclusive append, expected-head 
 ### Out of Scope
 - Defining the event envelope, ledger frame, replay fingerprint, or transition vocabulary owned by phase 006.
 - Implementing continuity-identity semantics owned by successor `007-continuity-identities`; this phase consumes an opaque canonical lineage/resource identity.
-- Upcasters, shadow-parity policy, in-flight-state classification, rollback drills, or authority cutover owned by phases 005 and 011.
+- Upcasters, shadow-parity policy, in-flight-state classification, rollback drills, or authority cutover owned by phases 008 and 014.
 - Replacing the legacy path as authority, retiring legacy writers, or allowing a dark-path failure to change the legacy operational result.
 - A general multi-host consensus system. A backend is valid only inside its declared atomicity domain; unsupported storage/topology combinations fail closed instead of claiming a distributed lock.
 - Using wall-clock timestamps, PIDs, random nonces, file mtimes, or process-local mutexes as fencing tokens.

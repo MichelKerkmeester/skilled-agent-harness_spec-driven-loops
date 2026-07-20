@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Health & Degeneration Harness"
-description: "Checklist for phase 008 of the convergence-termination-and-health program: blocking verification of generic health signals, degeneration detection, bounded action requests, and additive-dark behavior."
+description: "Checklist for phase 011 child 005 of the convergence-termination-and-health program: blocking verification of generic health signals, degeneration detection, bounded action requests, and additive-dark behavior."
 trigger_phrases:
   - "health and degeneration harness checklist"
   - "deep-loop health signal checklist"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 008. The verifier runs every item against a pinned candidate and
+This checklist is the blocking verifier contract for phase 011 child 005. The verifier runs every item against a pinned candidate and
 BASE, records commands, exit codes, fixture IDs, policy/adapter digests, ledger/projection watermarks, replay hashes, signal
 counts, action-request counts, and legacy-parity results. It fails on a positive health verdict from missing data, duplicate
 signal identity, unauthorized action, zero fixtures, or unexpected tracked mutation. Shadow output is evidence only until a

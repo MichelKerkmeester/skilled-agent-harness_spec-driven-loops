@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines authority and applicability attestations, verify-first finding coverage, replay-fingerprint inputs, and independent offline verification for per-lane conformance against a named authority.",
     "created_at": "2026-07-16T03:43:43.622Z",
-    "last_save_at": "2026-07-17T13:21:46.005Z",
+    "last_save_at": "2026-07-19T18:01:18.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,11 +185,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ffc5ccd9747e9ef552c74c93ca70f4046e36c9af5830c5bc226ee9839dd23134",
+    "source_fingerprint": "sha256:c330225beea1c995639c4ea60646b8a91743e080086974928c7981031a0a5726",
     "source_doc_hashes": {
-      "spec.md": "51353474a3809e1d1c3562d4316cd81a47b0c9f82b3553d0742de37b7d7e9f16",
-      "plan.md": "b3eb324528dc8962da7f2dea83354b87195ca5cd29e7e7a2ef897b6587851d73",
-      "tasks.md": "03b8450364bfd44e5ebeb209bc38fefa22394ce9d849dd657a152c7265a7b00a",
+      "spec.md": "d31c9add00f6ae953d366df6124c0ae57204c1b82766e6ee8eec7f7815d98c19",
+      "plan.md": "ca898146b8b92537e2154871a5298675579f9a3eb976f6cb99dac4dffc6f35de",
+      "tasks.md": "3b9bc4f4d5053abacdee49b7dd64572078942896a9c31f13073c21306945fb80",
       "checklist.md": "32c5d7a2655ae1b22fb22936b821ba3aea4ff3a008a81b5cd5d1f9bdc5cc619e"
     },
     "last_active_child_id": null,

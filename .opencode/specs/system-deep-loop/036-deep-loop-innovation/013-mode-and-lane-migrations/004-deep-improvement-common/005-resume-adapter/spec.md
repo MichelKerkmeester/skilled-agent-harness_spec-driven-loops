@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Resume Adapter child of the deep-improvement common migration under phase 013 |
-| **Inputs** | 065 parent spec; phase-tree manifest; findings registries from 065/002; typed ledger, receipts, and reducer contracts frozen by earlier program phases |
+| **Inputs** | 036 parent spec; phase-tree manifest; findings registries from 036/002; typed ledger, receipts, and reducer contracts frozen by earlier program phases |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

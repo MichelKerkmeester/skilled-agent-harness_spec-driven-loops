@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan replay-stable value-of-computation scoring and adaptive allocation that directs remaining typed budget toward regions and modes with the highest expected marginal evidence value.",
     "created_at": "2026-07-16T03:43:53.514Z",
-    "last_save_at": "2026-07-17T13:21:21.779Z",
+    "last_save_at": "2026-07-19T18:01:20.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d3b36d34165f2f84fe866ed9c0780ec9a58776fb06ac62be478490edb6620a49",
+    "source_fingerprint": "sha256:499ff8b3d175616c07c5ed0926b86219a1e45d4e8202d13039fee01e6a1de619",
     "source_doc_hashes": {
       "spec.md": "ae9068e093aee9c35c5ffa2dd956687447769823f7ae0aca36dbdaa572221920",
       "plan.md": "396067b5279acaf828e945940775528614dd03843381355bdf00b6e8397b1555",
       "tasks.md": "13edc160fd4b8dfc3267c344dab82c7ea054d7ac5c3d26869e0736b95c699e35",
-      "checklist.md": "36a69536cfa52838d5ec7da270faf54bff506ebd5acb12234c25fabee40b17aa"
+      "checklist.md": "5cd14ec46009945559f37273fe4df1fd16b81133cb324dc4f1af3b498da172b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

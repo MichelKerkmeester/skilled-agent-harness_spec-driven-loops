@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority.",
     "created_at": "2026-07-16T03:43:37.283Z",
-    "last_save_at": "2026-07-17T13:21:35.648Z",
+    "last_save_at": "2026-07-19T18:09:49.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:07186c05724b2512770e379b3f0d947d69be0af72c81c5318daa2600b7aefbab",
+    "source_fingerprint": "sha256:4922da30b93e6ed28e1c83c31db9a9cdb4601e16eac2f67e3e67286bf141e41f",
     "source_doc_hashes": {
-      "spec.md": "7e96ffd5ed449ffaaba0d3c053f8e766955b722a19b044f0f90b204d949ec507",
+      "spec.md": "622e9bd13cdf0e6836e177a2b80e35d83040e21b5510703ed0ef761ed111e39a",
       "plan.md": "93269005d39221d2757b75a6b5557899d54a9183d3a40ddd59558ab75d08d555",
-      "tasks.md": "0fe782f949ac20807b4049baddc31f3f498f04e7a93281b3301669207ea83b34",
-      "checklist.md": "be75af2b40df275852db1ec25c4cd991a3dbfae0d96b64a63a82062b4eb37a34"
+      "tasks.md": "a4db9aac8e83eb7c1c2929d16f628ef9c12509a7e8c6096359a274d35c5dd0ae",
+      "checklist.md": "765b3d830143677aaa7dd58a18af4a455c8d0283d8fecea1840bc7cfced38dac"
     },
     "last_active_child_id": null,
     "last_active_at": null

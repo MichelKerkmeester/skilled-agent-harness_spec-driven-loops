@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent runs
+This checklist is the blocking SOL verifier contract for phase 011 child 004. Every item is a check the paired verify agent runs
 BEFORE the candidate commit lands; each report pins candidate and baseline SHAs, schema/policy/estimator/calibration
 digests, fixture IDs, commands and exit codes, candidate counts, allocation quanta, typed budget outcomes, fan-in
 decision digests, and tracked-mutation status. Zero discovered fixtures or missing replay evidence fails the phase.

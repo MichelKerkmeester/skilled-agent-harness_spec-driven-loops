@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Path-Covering Termination
 
-> Phase adjacency under the 008 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-cycle-detection`.
+> Phase adjacency under the 011 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-cycle-detection`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

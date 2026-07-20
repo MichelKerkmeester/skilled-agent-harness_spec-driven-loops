@@ -93,7 +93,7 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Predecessor parity contract**: `../006-shadow-parity`
-- **Shared rollback policy**: `../../../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
-- **Downstream consumers**: `../005-agent-improvement`, `../006-model-benchmark`, and `../007-skill-benchmark`
+- **Shared rollback policy**: `../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
+- **Downstream consumers**: `../../005-agent-improvement`, `../../006-model-benchmark`, and `../../007-skill-benchmark`
 - **Phase-014 handoff**: See the staged cutover and authority handoff contract
 <!-- /ANCHOR:cross-refs -->

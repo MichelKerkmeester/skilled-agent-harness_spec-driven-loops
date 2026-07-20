@@ -41,7 +41,7 @@ pass, blanket exception suppression, mixed reference watermarks, changed legacy 
 
 - [ ] CHK-001 [P0] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Alignment
 - [ ] CHK-002 [P0] The lifecycle artifact matrix covers init/scope, discover, iterate/check, witness/exception, convergence/report, and resume/save boundaries
-- [ ] CHK-003 [P0] The mode consumes the shared phase-006 sealing primitives and names no alternate digest, descriptor, store, or verifier
+- [ ] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier
 - [ ] CHK-004 [P1] Predecessor `002-reducers-and-projections` owns findings, coverage, exception, lane-verdict, and report projection semantics, while this phase owns only artifact binding
 <!-- /ANCHOR:pre-impl -->
 

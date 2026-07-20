@@ -88,7 +88,7 @@ consequences, and phase-consumer boundaries as one internally consistent decisio
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-027 [P1] Load-bearing claims cite the 006 parent spec, manifest architecture/migration fields, or run-2 section 12
+- [ ] CHK-027 [P1] Load-bearing claims cite the 036 parent spec, manifest architecture/migration fields, or run-2 section 12
 - [ ] CHK-028 [P1] The ADR distinguishes the research's five recurring mode primitives from the six-part runtime spine ratified here
 - [ ] CHK-029 [P2] Later phase authors can identify their owned primitives and forbidden weakenings without reopening this decision
 <!-- /ANCHOR:docs -->

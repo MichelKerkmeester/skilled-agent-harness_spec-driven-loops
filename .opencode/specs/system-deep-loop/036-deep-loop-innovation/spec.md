@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, the architecture + rec-ledger decisions in 004's decision-record.md. -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, the architecture + rec-ledger decisions in 004's children (`001-spine-architecture-adr/plan.md`, `002-recommendation-ledger-bijective-map/`). -->
 
 # Feature Specification: system-deep-loop Recommendations Implementation
 
@@ -50,7 +50,7 @@ _memory:
 | **Owner skill** | system-deep-loop (owns the runtime subsystems, the five deep modes + benchmark variants, and the externalized-state contract) |
 | **Origin** | Operator: "do that [017-depth multi-phase planning] for our deep-loop innovation multi-phases spec … all the recs from the initial 45 iterations and all those after as well, the 40 after … collaborate with GPT 5.6 SOL ULTRA on how to properly plan and spec this" |
 | **Inputs** | 065/001 (8 ranked recs R1-R8), 065/002 run-1 (59 runtime recs + fan-out finding), 065/002 run-2 (111 per-mode recs). Machine-readable: the three `findings-registry*.json`. |
-| **Review** | GPT-5.6-sol (ultra) design review returned **REQUESTED_CHANGES**; this decomposition folds in every P0/P1. See `004-architecture-coverage-and-transition-contract/decision-record.md`. |
+| **Review** | GPT-5.6-sol (ultra) design review returned **REQUESTED_CHANGES**; this decomposition folds in every P0/P1. See `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md`. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -111,7 +111,7 @@ recommendations assigned to exactly one phase or explicitly deferred**.
 ### Out of Scope (deliberate)
 - **Research artifacts** under 001/ and 002/ — read-only inputs; never rewritten (append-only supersession of their "open" items only).
 - **The `ai-system-improvement` mode** and any non-`system-deep-loop` skill.
-- **Recommendations rated low-impact and deferred by the phase-007 triage** — carried in the ledger as `deferred` with a reason, not silently dropped.
+- **Recommendations rated low-impact and deferred by the phase-004 triage** — carried in the ledger as `deferred` with a reason, not silently dropped.
 - **Model/executor selection policy** beyond wiring the fan-out capability matrix (the research's model choices are settled).
 <!-- /ANCHOR:scope -->
 
@@ -129,8 +129,8 @@ its `checklist.md`.
 
 | Phase | Child | Kind | Outcome |
 |-------|-------|------|---------|
-| **001** | `001-deep-loop-market-research` | research (input) | The 8 ranked recommendations (R1-R8) and the market/landscape research — a complete, read-only input consumed by the phase-007 ledger. |
-| **002** | `002-deep-loop-effectiveness-and-fanout` | research (input) | The 59 runtime recommendations + the fan-out finding (run 1) and the 111 per-mode recommendations (run 2) — complete, read-only inputs consumed by the phase-007 ledger. |
+| **001** | `001-deep-loop-market-research` | research (input) | The 8 ranked recommendations (R1-R8) and the market/landscape research — a complete, read-only input consumed by the phase-004 ledger. |
+| **002** | `002-deep-loop-effectiveness-and-fanout` | research (input) | The 59 runtime recommendations + the fan-out finding (run 1) and the 111 per-mode recommendations (run 2) — complete, read-only inputs consumed by the phase-004 ledger. |
 | **003** | `003-baseline-taxonomy-and-state-census` | leaf | Pin an immutable BASE. Normalize the taxonomy (workflow families vs registered workflow modes vs the eight research workstreams — packet 033's benchmark set is stale and must be extended). Census the runtime subsystems, every event schema + reader/writer, all persisted in-flight state and backend paths, known-defects-vs-protected-contracts, replay fixtures, and rollback anchors. Everything later is proven against this. |
 | **004** | `004-architecture-coverage-and-transition-contract` | parent | Ratify the one-architecture spine (decision-record). Freeze a **bijective 178-row classified ledger** — mint stable rec IDs, normalize targets, assign every rec exactly one disposition (phase / deferred / eliminated), no "unknown" bucket. Define the canonical event namespace, transition vocabulary, schema-version + replay-compatibility policy, the authority boundary, and the cutover/rollback/disposition policy — **before any writer exists**. |
 | **005** | `005-fanout-live-tools-unblock` | leaf | The operator's most-requested capability, shipped early and **backward-compatibly**: a typed `liveTools.webSearch` policy + capability matrix + per-kind executor adapters + manifest expansion on `fanout-run.cjs`, so automated fan-out can pass codex top-level `--search` per leaf. Changes dispatch only — **no canonical-persistence change** — so it lands independent of the ledger. Reference: the proven `002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs`. |
@@ -163,7 +163,7 @@ its `checklist.md`.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-1. **Bijective coverage**: all 178 recommendations carry a stable ID and exactly one disposition (a named phase, or `deferred`/`eliminated` with a reason) in the phase-007 ledger — no "unknown" bucket; a validator proves the 178-row single-disposition property.
+1. **Bijective coverage**: all 178 recommendations carry a stable ID and exactly one disposition (a named phase, or `deferred`/`eliminated` with a reason) in the phase-004 ledger — no "unknown" bucket; a validator proves the 178-row single-disposition property.
 2. **No behavioral regression**: the packet-033 deep-loop behavior benchmarks (extended in 003) show no regression vs the pinned BASE, compared by scenario ID + semantics, not count alone.
 3. **Additive-dark discipline held**: at no commit before its mode's cutover does the ledger become authoritative; shadow parity is green for a mode before its authority flips.
 4. **Staged cutover + rollback proven**: each mode's authority flip carries a cutover certificate; a rollback drill restores the legacy path within the declared window on every mode.
@@ -227,6 +227,7 @@ Deferred to the phase that owns the decision (per the SOL review):
 | 015 | 015-legacy-writer-retirement/ | Gated legacy-writer removal; archival readers retained | Planned |
 | 016 | 016-whole-system-gate/ | Whole-system gate on the frozen SHA | Planned |
 | 017 | 017-integrate-latest-and-closeout/ | Integrate latest, rerun gate, reconcile, close out | Planned |
+| 018 | 018-drift-census-and-plan-revalidation/ | Drift census: revalidate phases 003-017 against current HEAD before execution | In Progress |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

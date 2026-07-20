@@ -39,7 +39,7 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The 006 parent outcome, phase-tree dependency, phase-003 census, and phase-016 handoff are cited
+- [ ] CHK-001 [P0] The 036 parent outcome, phase-tree dependency, phase-003 census, and phase-016 handoff are cited
 - [ ] CHK-002 [P0] Every workstream has a phase-014 cutover certificate, final authority epoch, clean later-of-14-days-and-five-runs window closure, and retained rollback assets
 - [ ] CHK-003 [P0] The current candidate reconciles every phase-003 writer, reader, schema, state surface, backend, dynamic path, and historical-read obligation
 - [ ] CHK-004 [P0] The delete/retain manifest identifies every live emitter or replaced logic unit and every archival reader, decoder, upcaster, schema, projection, and fixture
@@ -89,7 +89,7 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 ## Documentation
 
 - [ ] CHK-025 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on zero-use proof, mode order, writers-before-shared sequencing, retention, rollback boundary, and phase ownership
-- [ ] CHK-026 [P1] Cross-references resolve to the 006 parent, `manifest/phase-tree.json`, phase-003 census, phase-014 cutover specs, and phase-016 successor
+- [ ] CHK-026 [P1] Cross-references resolve to the 036 parent, `manifest/phase-tree.json`, phase-003 census, phase-014 cutover specs, and phase-016 successor
 - [ ] CHK-027 [P2] Deterministic metadata generation is deferred exactly as instructed and no metadata file is hand-authored
 <!-- /ANCHOR:docs -->
 

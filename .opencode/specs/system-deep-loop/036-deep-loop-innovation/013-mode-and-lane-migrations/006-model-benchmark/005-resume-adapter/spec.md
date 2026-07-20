@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
-| **Origin** | Phase 008 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 065/002 registries |
+| **Origin** | Phase 005 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 036/002 registries |
 | **Depends on** | `[]` as a sibling planning contract; consumes frozen shared and preceding mode contracts when implementation begins |
 <!-- /ANCHOR:metadata -->
 
@@ -75,7 +75,7 @@ Plan the Model Benchmark resume adapter for the typed event-ledger substrate. Th
 replay compatibility, reducer projections, matrix-cell evidence, and shared-service status into one deterministic
 continuity ladder. It defines an idempotent re-entry contract in which the same sealed frontier yields the same resume plan,
 duplicate application is a no-op, conflicting duplicates fail closed, and no event or effect is lost or replayed by a crash.
-This phase is planning only. The per-mode 010 migrations land after phase 012 freezes the shared contracts and emits the
+This phase is planning only. The per-mode 013 migrations land after phase 012 freezes the shared contracts and emits the
 write-set conflict graph; the six sibling concerns and the mode gate integrate the rest of Model Benchmark.
 <!-- /ANCHOR:problem -->
 

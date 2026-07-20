@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Continuity Identities
 
-> Phase adjacency under the 004 parent (navigation order, not a runtime dependency): predecessor `006-locks-and-fencing`; successor none (last sibling).
+> Phase adjacency under the 007 parent (navigation order, not a runtime dependency): predecessor `006-locks-and-fencing`; successor none (last sibling).
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -88,7 +88,7 @@ Those mechanisms are valid local coordinates, but they are not durable logical i
 | REQ-007 | Record identity provenance and relationships on the canonical ledger | Mint, alias, continuation/fork, and cross-mode reference events are replayable and every identity-bearing domain event includes typed subject references |
 | REQ-008 | Observe legacy identifiers without making the new service authoritative | Dark-path events bind legacy keys as namespaced aliases, detect ambiguity/collision, and leave shipped readers and writers unchanged |
 | REQ-009 | Make replay deterministic and tamper-evident | Replaying the same authorized event prefix reconstructs the same identity registry, relationships, and alias map under the versioned fingerprint |
-| REQ-010 | Publish stable downstream contracts for claim continuity and per-mode cutover | Program phases 007 and 011 can reference the identity schema without depending on array indexes, regenerated keys, or mode-local ID formats |
+| REQ-010 | Publish stable downstream contracts for claim continuity and per-mode cutover | Program phases 010 and 014 can reference the identity schema without depending on array indexes, regenerated keys, or mode-local ID formats |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -103,7 +103,7 @@ Those mechanisms are valid local coordinates, but they are not durable logical i
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-This child has no sibling hard dependency (`depends_on: []`); the predecessor reference is adjacency only. It inherits the 004 parent program dependency on the dark transition-authorized ledger core. The main risks are accidental identity reminting during resume, alias collisions across modes, conflating a retry with a fork, leaking mode-local semantics into the shared schema, and making the dark registry authoritative before phase 008 proves compatibility. The implementation must keep identity writes additive, fail closed on ambiguity, and retain legacy coordinates as namespaced metadata. Downstream program phases 007 and 011 are contract consumers, not owners of identity minting.
+This child has no sibling hard dependency (`depends_on: []`); the predecessor reference is adjacency only. It inherits the 007 parent program dependency on the dark transition-authorized ledger core. The main risks are accidental identity reminting during resume, alias collisions across modes, conflating a retry with a fork, leaking mode-local semantics into the shared schema, and making the dark registry authoritative before phase 008 proves compatibility. The implementation must keep identity writes additive, fail closed on ambiguity, and retain legacy coordinates as namespaced metadata. Downstream program phases 010 and 014 are contract consumers, not owners of identity minting.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

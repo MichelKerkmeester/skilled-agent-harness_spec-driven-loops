@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin and review the 006 parent spec, phase-tree manifest, and run-2 research synthesis section 12
+- [ ] T001 Pin and review the 036 parent spec, phase-tree manifest, and run-2 research synthesis section 12
 - [ ] T002 Reconcile the research's five recurring primitives with the parent's transition-authorization gateway to form the six-part spine
 - [ ] T003 Confirm this child has `depends_on: []` and delegates runtime mechanics to phases 003-005
 <!-- /ANCHOR:phase-1 -->

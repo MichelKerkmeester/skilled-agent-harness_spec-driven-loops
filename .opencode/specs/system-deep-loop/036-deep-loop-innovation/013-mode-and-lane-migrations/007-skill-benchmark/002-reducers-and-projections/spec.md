@@ -112,7 +112,7 @@ This phase plans deterministic reducers that replay one event sequence into stab
 ## 7. OPEN QUESTIONS
 
 - Which exact event names and payload fields from `001-typed-ledger-schema` represent scenario-cell creation, exposure, invocation, milestone evidence, scoring, gold blocking, and run terminality?
-- Which reducer helpers are guaranteed by deep-improvement-common phase 007, and which skill-specific score normalization or attribution functions are permitted in this child?
+- Which reducer helpers are guaranteed by deep-improvement-common phase 004, and which skill-specific score normalization or attribution functions are permitted in this child?
 - Does the artifact index expose only references and digests, or also a denormalized certificate-input view for successor `003-sealed-artifacts`?
 - What is the canonical policy for a late event after a projection has entered a terminal or withheld state: append a correction event, reopen the projection, or retain a superseding status?
 - Which projection fields are required for the phase 013 independent mode gate, and which remain diagnostic-only until the shared mode gate integrates them?
