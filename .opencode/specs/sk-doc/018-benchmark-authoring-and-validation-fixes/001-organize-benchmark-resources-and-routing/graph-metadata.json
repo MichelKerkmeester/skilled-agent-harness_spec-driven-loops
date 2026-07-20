@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
+  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
+  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create benchmark resource reorganization",
+      "create benchmark family routing",
+      "benchmark fixture routing",
+      "create benchmark reorganization plan",
+      "benchmark routing coverage plan",
+      "create benchmark reorganization tasks",
+      "benchmark routing coverage tasks",
+      "verify create benchmark reorganization",
+      "verify benchmark routing coverage",
+      "create benchmark reorg summary",
+      "benchmark family routing summary"
+    ],
+    "key_topics": [
+      "benchmark",
+      "resource",
+      "reorganization",
+      "family",
+      "routing",
+      "fixture",
+      "plan",
+      "coverage",
+      "tasks",
+      "verify",
+      "reorg",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Resource Reorganization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Family",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "command",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-benchmark packet keeps unrelated benchmark-family resources in flat `assets/` and `references/` directories",
+    "created_at": "2026-07-13T04:08:05.115Z",
+    "last_save_at": "2026-07-20T06:30:47.804Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cb68b772a5df52fdbce8febebb9db1dcc099b73a4960a2eb3e56724ebeb818f2",
+    "source_doc_hashes": {
+      "spec.md": "940c310fc70320075e614dc1aede00d2a54af83c72a6c93516960fb764898350",
+      "plan.md": "4440210da90a1d3d04baff3e59ddd5a66c29ba4f3f124f38ce4ec86a6b4a9535",
+      "tasks.md": "23aaee54196bea46afaa2a152746b83a4c2563b80fbf7b99c1187b2615cc2c95",
+      "checklist.md": "6e7536c4f8f7a41914c5f89a9a9ceaffb367b222ea7baede4668b3da5fe339af",
+      "implementation-summary.md": "5d4a6b070e79dbaf817ad31ecbf604a92718c20c39c6c35856b1655bc49e158e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

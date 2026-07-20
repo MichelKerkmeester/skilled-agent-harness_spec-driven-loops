@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
+  "description": "The create-benchmark packet keeps unrelated benchmark-family resources in flat `assets/` and `references/` directories",
+  "keywords": [
+    "create-benchmark",
+    "packet",
+    "keeps",
+    "unrelated",
+    "benchmark-family",
+    "resources",
+    "flat",
+    "assets",
+    "references",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-20T06:24:23.692Z",
+  "specId": "001",
+  "folderSlug": "organize-benchmark-resources-and-routing",
+  "parentChain": [
+    "sk-doc",
+    "018-benchmark-authoring-and-validation-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

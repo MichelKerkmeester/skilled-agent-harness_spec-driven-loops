@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
+  "description": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is",
+  "keywords": [
+    "independent",
+    "two-model",
+    "audit",
+    "gpt-5",
+    "sol",
+    "max",
+    "luna",
+    "sk-doc",
+    "create-benchmark",
+    "confirmed",
+    "packet",
+    "benchmark-family",
+    "coverage"
+  ],
+  "lastUpdated": "2026-07-20T06:24:23.879Z",
+  "specId": "003",
+  "folderSlug": "fix-benchmark-paths-docs-and-routing",
+  "parentChain": [
+    "sk-doc",
+    "018-benchmark-authoring-and-validation-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

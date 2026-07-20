@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
+  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
+  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-benchmark contract drift",
+      "benchmark template runtime alignment",
+      "d5 hard fail exit",
+      "alignment budget cap",
+      "create-benchmark contract drift plan",
+      "benchmark runtime alignment plan",
+      "create-benchmark contract drift tasks",
+      "create-benchmark contract drift checklist",
+      "create-benchmark contract drift summary",
+      "d5 hard fail alignment cap summary"
+    ],
+    "key_topics": [
+      "create-benchmark",
+      "contract",
+      "drift",
+      "benchmark",
+      "template",
+      "runtime",
+      "alignment",
+      "hard",
+      "fail",
+      "exit",
+      "budget",
+      "cap"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Land",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A three-model GPT-5.6 SOL audit of `sk-doc/create-benchmark` confirmed the packet is structurally complete (all five families present, packager PASS, zero broken links) but that its authoring templates and guides describe an intended contract that drifts from what the deep-improvement (Lane B) and deep-alignment runtime actually implement or accept",
+    "created_at": "2026-07-14T16:34:01.669Z",
+    "last_save_at": "2026-07-20T06:30:48.821Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be234bf847d53b53979bc8dde1a97bd684b2e962076d197f7cbca4c2a3627fee",
+    "source_doc_hashes": {
+      "spec.md": "df90765857e23706470820bb0bf2a980711ba3df2a9fd45eda728e9e55f46249",
+      "plan.md": "f9c749cd1d6029d48990983ac3074f6adcb518ede271d636e8e07585109f8d36",
+      "tasks.md": "889ecac571373181ae33650f1ec31d86c0f2c0131234cd79f13a51cdb31fdc95",
+      "checklist.md": "362ea6019028cd1cbe5ee8c8b708c8b2f37e28845ce022b81fe07832f105f477",
+      "implementation-summary.md": "4fbd7e4dc30915c2d463b1e5f2ccff22a16a415f8d06cc48b63991f55153c9e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
