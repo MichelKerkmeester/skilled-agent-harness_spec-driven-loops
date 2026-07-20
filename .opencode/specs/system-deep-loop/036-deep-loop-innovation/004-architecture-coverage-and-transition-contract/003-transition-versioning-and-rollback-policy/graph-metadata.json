@@ -19,7 +19,10 @@
       "transition versioning rollback policy tasks",
       "event upcaster cutover contract tasks",
       "transition versioning rollback policy checklist",
-      "authority cutover contract verification"
+      "authority cutover contract verification",
+      "transition policy implementation summary",
+      "typed event policy ratification evidence",
+      "rollback policy completion receipt"
     ],
     "key_topics": [
       "transition",
@@ -36,20 +39,21 @@
       "cutover"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
     ],
     "entities": [
       {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -65,15 +69,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
         "source": "derived"
       },
       {
@@ -107,7 +117,7 @@
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -131,12 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "four",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -149,14 +153,8 @@
         "source": "derived"
       },
       {
-        "name": "traceable",
+        "name": "no",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -189,25 +187,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window policy before any typed event writer exists.",
     "created_at": "2026-07-16T03:43:45.134Z",
-    "last_save_at": "2026-07-19T18:01:15.725Z",
+    "last_save_at": "2026-07-20T19:10:39.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ded34407253423e88c30ae9f17bb4146e42f8198a96a95ded1fe6ec128caa4b0",
+    "source_fingerprint": "sha256:05ae9dfb2c4e704f6bfd967c73200c5f349c1f82d86593139c146e427f87fe5d",
     "source_doc_hashes": {
-      "spec.md": "573917fba3a44b50784c1bec48994bc585061fa29b70c55e0c6b0b330f055606",
-      "plan.md": "11a345b4838aa8aa102137774661e7347678aa4ac9b47da16e836709ef204882",
-      "tasks.md": "635d1c821ab78fe1626f5114edc1a5cc3aefa6223c97b534eee4c1974c1e94db",
-      "checklist.md": "3ef5d6d8a8f8733c028d35c07139658564eb87127dd829b4c14d9ab4b294415d"
+      "spec.md": "fccce0137b24c6c3f4f75fa13deab45487fac8fd80e0d768483ee024df255bc9",
+      "plan.md": "20f43f30e380e209ef30468ff661057adee49f86369c93343b6483c10dc022be",
+      "tasks.md": "af23d58d4a5f81478e20d2ca2150e5fa13f9b06ea35992653959b1a507e24322",
+      "checklist.md": "569859e7365117675be5e4a48b2b81784cb69fc0ac40f7c183da0a2ac3fdc76b",
+      "implementation-summary.md": "35d7aada0f542b63131dde05a20592800debbf6d1b332d3a145287122b64db5a"
     },
     "last_active_child_id": null,
     "last_active_at": null
