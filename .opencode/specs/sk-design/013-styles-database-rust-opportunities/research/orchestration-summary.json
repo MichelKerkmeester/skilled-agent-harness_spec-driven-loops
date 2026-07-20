@@ -1,0 +1,71 @@
+{
+  "run_id": "1784520993412-ps7omk",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-design/013-styles-database-rust-opportunities",
+  "base_artifact_dir": ".opencode/specs/sk-design/013-styles-database-rust-opportunities/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol-codex",
+      "state_log": ".opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-codex/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-20T04:16:33.415Z",
+        "end_at_iso": "2026-07-20T04:35:55.028Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 15,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 24
+      },
+      "sample": [
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T04:39:55Z",
+          "deltaMs": 119972
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T04:40:00Z",
+          "deltaMs": 124972
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T04:45:55Z",
+          "deltaMs": 479972
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T04:46:00Z",
+          "deltaMs": 484972
+        },
+        {
+          "index": 13,
+          "reason": "after_window",
+          "timestamp": "2026-07-20T05:00:00Z",
+          "deltaMs": 1324972
+        }
+      ]
+    }
+  ]
+}

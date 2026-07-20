@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/013-styles-database-rust-opportunities",
+  "spec_folder": "sk-design/013-styles-database-rust-opportunities",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles database rust opportunities",
+      "rust features optimizations automations integrations styles",
+      "sk-design styles rust research"
+    ],
+    "key_topics": [
+      "styles",
+      "database",
+      "rust",
+      "opportunities",
+      "features",
+      "optimizations",
+      "automations",
+      "integrations",
+      "sk-design",
+      "research",
+      "sqlite",
+      "fts5"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "interop-model.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Performance Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Security Any",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The styles database (`styles/db/`, SQLite + FTS5 + rebuildable vector projection over ~1,290 style bundles) works, but the question is whether Rust could make it materially better — not whether to port it",
+    "created_at": "2026-07-20T07:00:06.322Z",
+    "last_save_at": "2026-07-20T07:07:02.150Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8632b116e6cbfcb97771115ce553c6045858341798e1cee2d229d293c2919ab6",
+    "source_doc_hashes": {
+      "spec.md": "de74b50c183c7f425fde79ad0b918b852aa363ba0a018243ca25cb87efa0666f",
+      "plan.md": "c912b2eda6c06e0cf35691e90cf89d8b687be62044846b70da396f5e3266878e",
+      "tasks.md": "e025cec0dc646a30d5a97ac3e4e9b80eadbe26a694db364714cdf809bcc8127f",
+      "checklist.md": "e1f853da5f3884ad18c69669c0ba27a400c7db0e801a1ba70f9f6cfdab599552",
+      "implementation-summary.md": "9b93858010107280ec92e2e3edc43ad942be536e84ff5682ba34fc53cb052284"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-design/013-styles-database-rust-opportunities",
+  "description": "The styles database (`styles/db/`, SQLite + FTS5 + rebuildable vector projection over ~1,290 style bundles) works, but the question is whether Rust",
+  "keywords": [
+    "styles",
+    "database",
+    "sqlite",
+    "fts5",
+    "rebuildable",
+    "vector",
+    "projection",
+    "style",
+    "bundles",
+    "works",
+    "question",
+    "whether",
+    "rust"
+  ],
+  "lastUpdated": "2026-07-20T07:00:05.734Z",
+  "specId": "013",
+  "folderSlug": "styles-database-rust-opportunities",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

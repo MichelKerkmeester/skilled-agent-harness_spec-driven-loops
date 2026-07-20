@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution",
+  "spec_folder": "sk-design/015-styles-database-evolution",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles database evolution roadmap",
+      "sk-design styles db phased plan",
+      "styles db rust conditional roadmap",
+      "js-first styles database features",
+      "styles database evolution plan",
+      "styles db 4-phase roadmap",
+      "js-first styles db plan",
+      "styles db measurement-gated rust",
+      "styles database evolution tasks",
+      "styles db roadmap task list",
+      "sk-design styles db planned work items",
+      "styles database evolution checklist"
+    ],
+    "key_topics": [
+      "styles",
+      "database",
+      "evolution",
+      "roadmap",
+      "sk-design",
+      "phased",
+      "plan",
+      "rust",
+      "conditional",
+      "js-first",
+      "features",
+      "4-phase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      ".opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/plan.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/tasks.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/checklist.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/implementation-summary.md",
+      "checklist.md",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vectors.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/015-styles-database-evolution/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/015-styles-database-evolution/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/015-styles-database-evolution/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/015-styles-database-evolution/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Encode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change None",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Indexing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capability Features",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roadmap Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Native Experiments",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The styles database (`styles/db/`, SQLite + FTS5 + a rebuildable vector projection over ~1,290 style bundles / ~135 MiB) works, but its evolution is undecided",
+    "created_at": "2026-07-20T06:33:30.329Z",
+    "last_save_at": "2026-07-20T06:36:17.094Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a85e27abbdf4d2fd5793c9241b4980390ddc95cb850b11ca6f1f839c045f85ac",
+    "source_doc_hashes": {
+      "spec.md": "cb90e870e496e1c85fe722b56170197d90811688a6161266be5ee12094f42cdd",
+      "plan.md": "37b8a79aa80f7fc18c5599f3ab9810ca1b71a2d753a59942dc9567df03e596d5",
+      "tasks.md": "19cd276b58312a6a312b69bbcb3e51ba8a4c86aa7289db07e9098edcd2213c08",
+      "checklist.md": "abc9bd6bd345bd7db424f34184e046a15b0a978df8d0371a5394766654d62bdf",
+      "implementation-summary.md": "5bc87c2874392487ab819aac658f86196fd1ff734c01b45098ab959852d36461"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "sessionId": "fanout-sol-opencode-1784520993412-ps7omk",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-vector-search-architecture-if-any-unlocks-meaningful-capability-at-1-290-1",
+      "inboxId": null,
+      "text": "Which vector-search architecture, if any, unlocks meaningful capability at 1,290, 10x, and 100x bundles: in-process HNSW/IVF, a SQLite loadable extension, WASM, or an existing native addon?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-indexing-and-embedding-automations-become-materially-better-with-rust-para",
+      "inboxId": null,
+      "text": "Which indexing and embedding automations become materially better with Rust: parallel streaming ingestion, incremental content hashing, local model inference, file watching, and content-addressed caches?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-new-visual-style-analysis-features-are-practical-screenshot-palette-and-sp",
+      "inboxId": null,
+      "text": "Which new visual/style-analysis features are practical: screenshot palette and spacing extraction, perceptual hashing, layout fingerprints, and multimodal embeddings?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-is-a-shared-rust-search-core-across-sk-design-system-code-graph-and-spec-kit-mem",
+      "inboxId": null,
+      "text": "Is a shared Rust search core across sk-design, system-code-graph, and Spec Kit Memory valuable enough to justify contract, release, and ownership coordination?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-which-opportunities-clear-the-repository-s-residency-materiality-and-scale-gates",
+      "inboxId": null,
+      "text": "Which opportunities clear the repository's residency, materiality, and scale gates today versus only under measured growth, and what phased adoption preserves TS ownership and exact oracle parity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-vector-search-architecture-if-any-unlocks-meaningful-capability-at-1-290-1",
+      "inboxId": null,
+      "text": "Which vector-search architecture, if any, unlocks meaningful capability at 1,290, 10x, and 100x bundles: in-process HNSW/IVF, a SQLite loadable extension, WASM, or an existing native addon?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-indexing-and-embedding-automations-become-materially-better-with-rust-para",
+      "inboxId": null,
+      "text": "Which indexing and embedding automations become materially better with Rust: parallel streaming ingestion, incremental content hashing, local model inference, file watching, and content-addressed caches?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-new-visual-style-analysis-features-are-practical-screenshot-palette-and-sp",
+      "inboxId": null,
+      "text": "Which new visual/style-analysis features are practical: screenshot palette and spacing extraction, perceptual hashing, layout fingerprints, and multimodal embeddings?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-is-a-shared-rust-search-core-across-sk-design-system-code-graph-and-spec-kit-mem",
+      "inboxId": null,
+      "text": "Is a shared Rust search core across sk-design, system-code-graph, and Spec Kit Memory valuable enough to justify contract, release, and ownership coordination?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-which-opportunities-clear-the-repository-s-residency-materiality-and-scale-gates",
+      "inboxId": null,
+      "text": "Which opportunities clear the repository's residency, materiality, and scale gates today versus only under measured growth, and what phased adoption preserves TS ownership and exact oracle parity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Is a shared Rust search core worth cross-system coordination?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which visual and multimodal analysis features are practical?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete opportunity set clears residency, materiality, and scale gates?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the existing generation publication model atomically publish an external HNSW index with the SQLite database, or does it require a new manifest contract?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which indexing and embedding automations materially improve with Rust?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What measured p50/p95 query latency, vector dimension, eligible-row distribution, and query rate trigger the 10x or 100x migration gate?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are the measured production or replayed eligibility percentiles, active embedding dimensions, stage p50/p95 values, and query-rate distribution on the declared reference host?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are production arrival-rate percentiles and representative facet-selectivity percentiles after persistent opt-in?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which vector-search architecture, if any, unlocks meaningful capability once a published vector projection and representative trace exist?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which indexing and embedding automations become materially better with Rust?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can an external vector index or shared cache be atomically bound to the current generation pointer without a new manifest contract?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What production arrival, facet-selectivity, cold-build stage, and embedding-drain measurements clear the staged gates?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which visual and multimodal analysis features are practical, and which can share the same resident local-model worker?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete opportunity set clears residency, materiality, and scale gates at current, 10x, and 100x scale?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is a shared Rust inference/search core worth cross-system contract and release coordination?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which screenshot palette, spacing, perceptual-hash, layout-fingerprint, and multimodal-embedding features are practical, and which can reuse the existing resident model-service shape?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete opportunity set clears residency, materiality, and scale gates today versus conditionally?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can an external ANN index be atomically bound to the styles generation pointer without a new manifest contract?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What measured arrival, selectivity, cold-build, embedding-drain, and end-to-end query values clear phased adoption at current, 10x, and 100x scale?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What screenshot artifact and derived-feature schema binds viewport, capture provenance, algorithm/model profile, and generation publication atomically?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What measured arrival, selectivity, cold-build, image-processing, embedding-drain, and end-to-end query values clear phased adoption at current, 10x, and 100x scale?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which labeled visual-search tasks and relevance judgments demonstrate that multimodal retrieval adds value beyond existing tokens, prose, and text embeddings?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which labeled text-to-visual and image-to-style tasks prove a joint embedding profile adds retrieval value over structured tokens, prose, and text embeddings?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What measured cold-load, warm-batch, RSS, package-size, preprocessing, drain, and end-to-end thresholds define “material” on the reference host?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact model/profile manifest and screenshot-derived-feature schema joins local artifacts to an immutable styles generation?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete opportunity set clears residency, materiality, and scale gates after the remaining evidence iterations?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the existing generation pointer atomically publish screenshot features and an external vector index without a new manifest contract?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete opportunity set clears residency, materiality, and scale gates after the final evidence iterations?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are measured DISCOVER, VERIFY, PARSE_VALIDATE, COMMIT, VECTOR_DRAIN, and PUBLISH p50/p95 times for no-op, one-bundle, and cold full builds?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What build-latency SLO and minimum end-to-end improvement define materiality on the reference host?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact versioned generation-manifest schema atomically binds SQLite, screenshot features, and an external ANN projection?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact versioned generation-manifest schema atomically binds SQLite, screenshot-derived features, model/profile identity, and a conditional external ANN projection?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What measured DISCOVER, VERIFY, PARSE_VALIDATE, COMMIT, VECTOR_DRAIN, PUBLISH, query-stage, model-load, and image-processing values clear each current, 10x, and 100x adoption gate?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which final ranked opportunity set is unconditional, benchmark-gated, growth-gated, or ruled out?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do labeled text-to-visual and image-to-style judgments show material relevance gain over structured, lexical, and text-vector retrieval?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which declared product SLO and minimum end-to-end improvement threshold should govern promotion from shadow to persistent mode?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are the measured stage p50/p95, eligibility/selectivity, QPS, model load/RSS, image preprocessing, and embedding-drain distributions on the declared reference host?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which vector-search architecture, if any, unlocks meaningful capability at 1,290, 10x, and 100x bundles: in-process HNSW/IVF, a SQLite loadable extension, WASM, or an existing native addon?",
+    "Which indexing and embedding automations become materially better with Rust: parallel streaming ingestion, incremental content hashing, local model inference, file watching, and content-addressed caches?",
+    "Which new visual/style-analysis features are practical: screenshot palette and spacing extraction, perceptual hashing, layout fingerprints, and multimodal embeddings?",
+    "Is a shared Rust search core across sk-design, system-code-graph, and Spec Kit Memory valuable enough to justify contract, release, and ownership coordination?",
+    "Which opportunities clear the repository's residency, materiality, and scale gates today versus only under measured growth, and what phased adoption preserves TS ownership and exact oracle parity?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-10-4-blake3-as-canonical-identity-the-measured-full-sha-256-pass-is-only-1-188-second",
+      "text": "**BLAKE3 as canonical identity:** the measured full SHA-256 pass is only 1.188 seconds at current scale, while changing identity invalidates persisted contracts and oracle fixtures. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/iterations/iteration-008.md:24-28]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-rust-embedding-cache-or-complete-indexer-rewrite-retrieval-hash-profile-caching-",
+      "text": "**Rust embedding cache or complete indexer rewrite:** retrieval-hash/profile caching, incremental identities, retries, publication, and fallback already exist; moving ownership adds no capability. [SOURCE: .opencode/skills/sk-design/styles/_db/vectors.mjs:197-281]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-shared-rust-search-platform-across-three-systems-system-code-graph-has-no-vector",
+      "text": "**Shared Rust search platform across three systems:** system-code-graph has no vector workload, and styles and Spec Memory intentionally differ in ranking, storage, publication, and fallback. A shared search core would create release coordination without shared compute residency. [SOURCE: .opencode/skills/system-code-graph/SKILL.md:16-26] [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/iterations/iteration-005.md:16-44]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-standalone-rust-watcher-filesystem-events-remain-fallible-across-languages-use-c",
+      "text": "**Standalone Rust watcher:** filesystem events remain fallible across languages. Use Chokidar to debounce hints and preserve authoritative startup/periodic rescans and two-observation deletion rules. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/iterations/iteration-008.md:38-42]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-wasm-default-bespoke-palette-engine-screenshot-based-spacing-extraction-and-perc",
+      "text": "**WASM default, bespoke palette engine, screenshot-based spacing extraction, and perceptual hash as semantic rank:** no browser requirement exists; native-backed Node image tooling and exact DOM geometry already cover the first baselines; perceptual similarity is dedupe, not design-language relevance. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/iterations/iteration-006.md:16-46]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-weighted-rrf-comparator-chains-and-canonical-sha-256-rrf-is-bounded-to-roughly-6",
+      "text": "**Weighted RRF, comparator chains, and canonical SHA-256:** RRF is bounded to roughly 600 contributions, SHA-256 already runs in native code, and both are parity contracts rather than product capabilities. Keep them as the TS oracle; port only as private support inside an independently justified component. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:23-24] [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/iterations/iteration-009.md:16-20]",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 37,
+    "keyFindings": 6,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.46,
+    "coverageBySources": {
+      "code": 9,
+      "other": 5
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-opencode/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/015-styles-database-evolution",
+  "description": "The styles database (`styles/db/`, SQLite + FTS5 + a rebuildable vector projection over ~1,290 style bundles / ~135 MiB) works, but its evolution is",
+  "keywords": [
+    "styles",
+    "database",
+    "sqlite",
+    "fts5",
+    "rebuildable",
+    "vector",
+    "projection",
+    "style",
+    "bundles",
+    "mib",
+    "works",
+    "evolution"
+  ],
+  "lastUpdated": "2026-07-20T06:26:26.493Z",
+  "specId": "015",
+  "folderSlug": "styles-database-evolution",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

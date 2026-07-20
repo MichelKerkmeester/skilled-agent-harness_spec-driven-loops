@@ -1,0 +1,45 @@
+{
+  "status": "complete",
+  "openQuestions": [],
+  "resolvedQuestions": ["Current residency and scale baseline", "ANN materiality and boundary", "SQLite vector extension architecture", "Local embedding runtime", "Indexing and watcher automation", "Screenshot-derived style analysis", "Cross-system search core", "Caches and deterministic ranking", "Adapter and parity architecture", "Ranked recommendation and adoption path"],
+  "keyFindings": [
+    "SQLite/FTS5 is already native; only vector JSON parse/cosine/sort scales across the eligible set in JavaScript.",
+    "At 1,290 bundles, tokenizer and weighted RRF are bounded and do not justify a Rust boundary.",
+    "ANN is a credible growth feature but needs filter-aware design, exact rescoring, recall gates, and benchmark evidence.",
+    "Rust is not necessary for ANN because mature native engines already expose JavaScript, WASM, SQLite, or service surfaces.",
+    "A pinned SQLite vector extension is worth a spike because it removes vector JSON transfer and composes with the existing database.",
+    "Authoring that extension in Rust is not justified; extension loading, packaging, filtering, and maturity are the real risks.",
+    "Local inference adds offline, privacy, cost, and reproducibility value and clears the present-day materiality gate.",
+    "Use Node ONNX Runtime for the MVP; Rust becomes attractive only as a shared multimodal inference core.",
+    "Continuous dirty-set indexing is valuable, but a TypeScript Chokidar shell plus reconciliation is sufficient today.",
+    "Batch-aware embedding scheduling is material and may later live beside a justified native inference core.",
+    "Palette, perceptual hash, and simple screenshot geometry add validation and duplicate detection, but Sharp makes Rust unnecessary.",
+    "CLIP-class screenshot embeddings add new text-to-image and image-to-image retrieval; Rust is optional for the MVP.",
+    "Only profile identity, inference, vector encoding/index interfaces, cache keys, and tie-break primitives are coherent cross-system Rust candidates.",
+    "Extract a shared Rust core only after a second system commits to the same material native workload and pinned profile.",
+    "Binary or in-database vector representation can remove JSON transfer/parsing, but Rust is not necessary.",
+    "Existing hashing and deterministic ranking stay TypeScript; a shared artifact cache becomes useful only with local models or multiple consumers.",
+    "Use one pure inference/vector core with a thin napi-rs adapter; TypeScript retains behavior and persistence authority.",
+    "The Node ONNX/Sharp fallback should ship first and become the pinned byte oracle for a later Rust path.",
+    "Strict whole-result parity may prohibit ANN unless fallback uses the same engine/index or policy defines a separate feature contract.",
+    "Ship and measure the Node ONNX/Sharp/Chokidar capability baseline before extracting Rust.",
+    "Local multimodal inference is the first plausible Rust extraction; existing vector extensions and ANN follow only after evidence gates."
+  ],
+  "ruledOutDirections": [
+    "Like-for-like Rust port of native SQLite/FTS5 or the current small JavaScript kernels"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 21,
+    "convergenceScore": 0.48,
+    "questionCoverage": 1,
+    "coverageBySources": {"repository":29,"paper":2,"upstream":19}
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-codex-1784520993412-ps7omk",
+    "generation": 1,
+    "executor": "cli-codex:gpt-5.6-sol"
+  }
+}
