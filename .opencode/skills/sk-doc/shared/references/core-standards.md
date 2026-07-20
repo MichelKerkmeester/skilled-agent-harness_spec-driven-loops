@@ -8,7 +8,7 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 1.8.0.21
+version: 1.8.0.22
 ---
 
 # Core Standards - Structure and Validation Rules
@@ -36,21 +36,26 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 ## 2. FILENAME CONVENTIONS
 
-> **📍 Migrating to kebab-case**: The repository is moving filesystem names to kebab-case (hyphens) as the sole canonical form. The single source of truth is [filesystem-naming-convention.md](filesystem-naming-convention.md), governed by the `sk-doc/020-hyphen-naming-convention` program. The snake_case rule below describes the classifier's current behavior; it reconciles to the kebab canon during that program's consumer-migration and generator phases, under bounded dual-name tolerance.
+> **📍 Canonical rule**: Kebab-case (hyphens) is the sole canonical form for in-scope filesystem names. The single source of truth, including the complete exemption boundary, is [filesystem-naming-convention.md](filesystem-naming-convention.md).
 
-**Rule**: lowercase snake_case for all `.md` files
+**Rule**: Use lowercase kebab-case for in-scope filesystem names, including `.md` files.
 
 **Transformations**:
-1. ALL CAPS → lowercase: `README.MD` → `readme.md`
-2. Hyphens → underscores: `my-document.md` → `my_document.md`
-3. Mixed case → snake_case: `MyDocument.md` → `my_document.md`
-4. Spaces → underscores: `my document.md` → `my_document.md`
-5. Multiple underscores → single: `my__doc.md` → `my_doc.md`
+1. ALL CAPS → lowercase: `MY-DOCUMENT.MD` → `my-document.md`
+2. Underscores → hyphens: `my_document.md` → `my-document.md`
+3. Spaces → hyphens: `my document.md` → `my-document.md`
+4. Multiple hyphens → single: `my--document.md` → `my-document.md`
 
-**Exceptions** (never modify):
-- `README.md` (standard convention)
-- `SKILL.md` (in `.opencode/skills/` only)
-- Packet-local numbered docs (`NNN-name.md`) may use hyphens to match spec-folder naming conventions.
+**Exceptions** (never rename):
+- Python source files such as `validate_document.py`
+- Python import-package directories such as `my_package/`
+- Vendored or third-party trees such as `node_modules/`
+- Generated and lockfile output such as `dist/` and `package-lock.json`
+- Tool-mandated names such as `SKILL.md`, `README.md`, `.utcp_config.json`, `action.yml`, and `conftest.py`
+- Test-runner magic such as `__snapshots__/`, `__mocks__/`, and `test_*.py`
+- Frozen surfaces: `z_archive/`, changelogs, and completed spec-folder history
+
+Numbered documents such as `NNN-name.md` use hyphens by default and conform to the canonical rule.
 
 ---
 
@@ -100,9 +105,8 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 **Applied automatically, logged, execution continues**:
 
-1. **Filename violations** - Convert to snake_case
-2. **H2 case** - Convert to ALL CAPS: `## when to use` → `## WHEN TO USE`
-3. **Missing separators** - Add `---` between major H2 sections (not between H3 subsections)
+1. **H2 case** - Convert to ALL CAPS: `## when to use` → `## WHEN TO USE`
+2. **Missing separators** - Add `---` between major H2 sections (not between H3 subsections)
 
 ### Critical Violations (Blocking)
 
@@ -159,8 +163,8 @@ allowed-tools: Read, Write, Edit
 
 | Violation | Detection | Fix | Auto |
 |-----------|-----------|-----|------|
-| ALL CAPS filename | `[A-Z]+\.md` | Lowercase | ✅ |
-| Hyphenated filename | `-` in filename | Replace with `_` | ✅ |
+| ALL CAPS filename | `[A-Z]+\.md` | Lowercase | ❌ Manual |
+| Underscored filename | `_` in non-exempt filename | Replace word-separating `_` with `-` | ❌ Manual |
 | Missing frontmatter (SKILL) | No `---` at line 1 | Add YAML block | ❌ Manual |
 | H1 no subtitle (SKILL/Knowledge) | Single `#` line | Add ` - Subtitle` (Format: `# Name - Brief Description`) | ❌ Manual |
 | Multiple H1 | Count `^#\s` > 1 | Remove extras | ❌ Manual |

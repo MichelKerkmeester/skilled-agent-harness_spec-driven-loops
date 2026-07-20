@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Fix the Shared Naming Standard and Wire the Kebab Guards"
-description: "core-standards.md still documents snake_case as the .md filename rule and labels a nonexistent kebab-to-snake auto-fix, contradicting the kebab canon the code already enforces. And the two repo-wide kebab guards run in no gate, so a new snake_case name can land unblocked. This phase reconciles the shared standard doc to the canon and wires the guards into a gate."
+description: "core-standards.md documented snake_case as the .md filename rule and labeled a nonexistent kebab-to-snake auto-fix. This phase reconciles the shared standard to the kebab canon and runs the repo-wide guard and its unit tests in CI."
 trigger_phrases:
   - "core-standards kebab reconciliation"
   - "wire kebab guards"
@@ -10,19 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-naming-standard-hardening/001-fix-shared-standard-and-wire-guards"
-    last_updated_at: "2026-07-20T10:13:27Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored phase-001 spec for shared-standard reconciliation and guard wiring"
-    next_safe_action: "Plan the core-standards edits and the guard gate wiring"
+    last_updated_at: "2026-07-20T12:06:56Z"
+    last_updated_by: "codex"
+    recent_action: "Resolved and implemented the CI-only shared naming gate"
+    next_safe_action: "Run central metadata and packet validation"
     blockers: []
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Gate host: CI only; pre-commit wiring remains a documented follow-up"
+      - "Comparison mode: --changed-since the PR base or push's previous commit"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Fix the Shared Naming Standard and Wire the Kebab Guards
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
 
@@ -33,7 +35,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented; central validation pending |
 | **Created** | 2026-07-20 |
 | **Parent** | `sk-doc/022-naming-standard-hardening` |
 | **Parent Spec** | ../spec.md |
@@ -48,17 +50,17 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of Naming Standard Hardening — the shared / global half. It reconciles the authoritative shared standard doc and wires the existing kebab guards, so the per-mode phase (002) builds on an enforced canon.
+This is **Phase 1** of Naming Standard Hardening — the shared / global half. It reconciles the authoritative shared standard doc and wires the repo-wide kebab guard into CI, so the per-mode phase (002) builds on an enforced canon.
 
-**Scope Boundary**: The shared standard doc (`core-standards.md`) and the gate wiring for the two kebab guards. Per-mode conformance is phase 002. No file renames on disk.
+**Scope Boundary**: The shared standard doc (`core-standards.md`) and CI wiring for the repo-wide kebab guard. Per-mode conformance is phase 002. No file renames on disk.
 
 **Dependencies**:
 - The kebab canon (`filesystem-naming-convention.md`) is already correct and is the reconciliation target.
-- The two guards (`check_no_new_snake_case.py`, `check_no_hyphenated_catalog_content.py`) already exist and pass their unit tests.
+- The repo-wide guard (`check_no_new_snake_case.py`) and its root resolver already exist and pass their unit tests.
 
 **Deliverables**:
 - A kebab-correct `core-standards.md` §2/§4/§5.
-- The two guards invoked by a real gate.
+- The repo-wide naming guard and its unit tests invoked by CI.
 
 **Changelog**: When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
@@ -69,10 +71,10 @@ This is **Phase 1** of Naming Standard Hardening — the shared / global half. I
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`shared/references/core-standards.md` still teaches snake_case as the `.md` filename rule: §2 (`:41` "lowercase snake_case for all `.md` files"; `:44-48` "Hyphens to underscores"), §4 (`:103` "Filename violations - Convert to snake_case" under Safe Auto-Fixes), and §5 (`:163-164` table "Hyphenated filename ... Replace with `_` ... auto"). This reverses the kebab canon and misdescribes the code: no script performs a kebab-to-snake conversion, and `validate_document.py --fix` never renames a file. Separately, the two repo-wide kebab guards run in no gate (verified: no invoker in the pre-commit hook, any CI workflow, or any build file), so kebab is advisory repo-wide.
+`shared/references/core-standards.md` taught snake_case as the `.md` filename rule: §2 (`:41` "lowercase snake_case for all `.md` files"; `:44-48` "Hyphens to underscores"), §4 (`:103` "Filename violations - Convert to snake_case" under Safe Auto-Fixes), and §5 (`:163-164` table "Hyphenated filename ... Replace with `_` ... auto"). This reversed the kebab canon and misdescribed the code: no script performs a kebab-to-snake conversion, and `validate_document.py --fix` never renames a file. Separately, the repo-wide guard ran in no gate, so kebab was advisory repo-wide.
 
 ### Purpose
-Make the shared standard doc state the kebab canon, and make a gate actually run a kebab guard so a new snake_case authored name is blocked.
+Make the shared standard doc state the kebab canon, and make CI run the repo-wide kebab guard so a new snake_case authored name is blocked.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -83,19 +85,21 @@ Make the shared standard doc state the kebab canon, and make a gate actually run
 ### In Scope
 - Rewrite `core-standards.md` §2 (filename rule + transformations), §4 (auto-fix list), and §5 (common-violations table) to the kebab canon; drop the nonexistent kebab-to-snake auto-fix; keep the §2 forward-pointer to the canon.
 - Correct the inverted numbered-doc framing at `core-standards.md:53` (hyphens are the default under the canon, not an exception to a snake default).
-- Wire `check_no_new_snake_case.py` (and `check_no_hyphenated_catalog_content.py` for catalog/playbook content) into a gate — the existing pre-commit hook and/or a CI workflow — and run the guards' own unit tests wherever the sk-doc suite runs.
+- Wire `check_no_new_snake_case.py` into CI for pull requests and release-branch pushes, and run its unit tests in the same job.
 
 ### Out of Scope
 - Per-mode conformance (phase 002) - separate workstream.
+- Catalog/playbook-specific guard wiring - phase 002 owns those content surfaces.
 - Renaming files on disk - the 020 program already made the tree kebab-case.
 - The legacy underscore content roots still shipped on disk - a separate content workstream.
+- Pre-commit-hook wiring - deferred until the guard has a staged-only mode that cannot inspect another session's unstaged files.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-doc/shared/references/core-standards.md` | Modify | Flip §2/§4/§5 to kebab; fix §53 framing |
-| `.opencode/scripts/git-hooks/pre-commit` (or a CI workflow) | Modify | Invoke the kebab guard(s) on changed paths |
+| `.github/workflows/naming-standard-guard.yml` | Add | Run the repo-wide guard and its unit tests in CI |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -145,6 +149,6 @@ Make the shared standard doc state the kebab canon, and make a gate actually run
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the gate live in the pre-commit hook (fast, local), CI (unskippable), or both?
-- Should the gate run `--changed-since` (staged/changed paths) or `--all` (whole tree) in each context?
+- **Gate host**: CI only. The current guard takes about 28 seconds against the dirty shared workspace and has no staged-only mode, so a local hook could flag another session's unstaged files.
+- **Comparison base**: Use `--changed-since` with the pull request base ref or the push event's previous commit. Whole-tree mode remains unsuitable while legacy underscore roots are still present.
 <!-- /ANCHOR:questions -->
