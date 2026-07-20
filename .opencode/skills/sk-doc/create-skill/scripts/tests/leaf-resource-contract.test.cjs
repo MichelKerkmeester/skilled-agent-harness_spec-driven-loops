@@ -223,7 +223,59 @@ function testDualReadOfSharedAliasRequiresAuthoredEntry() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. RUN
+// 8. TESTS: QUALIFIED-ID BRIDGE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function testQualifiedIdToLeafParsesAndResolves() {
+  // Parse-only (no modeIndex): decompose the compiled destination grammar.
+  const parsed = contract.qualifiedIdToLeaf('sk-code/code-webflow/code-webflow/surface/evidence-base');
+  assert.equal(parsed.ok, true);
+  assert.equal(parsed.hub, 'sk-code');
+  assert.equal(parsed.workflowMode, 'code-webflow');
+  assert.equal(parsed.packet, 'code-webflow');
+  assert.equal(parsed.kind, 'surface');
+  assert.equal(parsed.slug, 'evidence-base');
+  assert.equal(parsed.mode, null);
+
+  // Resolution against a manifest-shaped mode index binds on (workflowMode, packet).
+  const modeIndex = {
+    'code-webflow': { packet: 'code-webflow', leaves: ['references/css/style-guide.md'] },
+    quality: { packet: 'code-quality', leaves: ['assets/x.md'] },
+  };
+  const resolved = contract.qualifiedIdToLeaf('sk-code/quality/code-quality/workflow/surface-router', { modeIndex });
+  assert.equal(resolved.ok, true);
+  assert.equal(resolved.workflowMode, 'quality');
+  assert.equal(resolved.mode, modeIndex.quality, 'resolves to the leaf-owning manifest mode');
+
+  // A Map modeIndex resolves identically to a plain-object one.
+  const mapResolved = contract.qualifiedIdToLeaf('sk-code/code-webflow/code-webflow/surface/evidence-base', {
+    modeIndex: new Map(Object.entries(modeIndex)),
+  });
+  assert.equal(mapResolved.ok, true);
+  assert.equal(mapResolved.workflowMode, 'code-webflow');
+}
+
+function testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch() {
+  const modeIndex = { 'code-webflow': { packet: 'code-webflow' } };
+
+  // Unknown workflowMode is an orphan naming the offending id, not a throw.
+  const orphan = contract.qualifiedIdToLeaf('sk-code/not-a-mode/not-a-packet/workflow/x', { modeIndex });
+  assert.equal(orphan.ok, false);
+  assert.equal(orphan.code, 'ORPHAN_WORKFLOW_MODE');
+  assert.ok(orphan.message.includes('not-a-mode'));
+
+  // A packet segment that disagrees with the manifest mode fails closed.
+  const mismatch = contract.qualifiedIdToLeaf('sk-code/code-webflow/wrong-packet/surface/evidence-base', { modeIndex });
+  assert.equal(mismatch.ok, false);
+  assert.equal(mismatch.code, 'PACKET_MISMATCH');
+
+  // Malformed and empty ids report a code rather than throwing.
+  assert.equal(contract.qualifiedIdToLeaf('', { modeIndex }).code, 'EMPTY_QUALIFIED_ID');
+  assert.equal(contract.qualifiedIdToLeaf('sk-code//packet/x/y', { modeIndex }).code, 'MALFORMED_QUALIFIED_ID');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
 testNormalizationToTypedPair();
@@ -235,4 +287,6 @@ testDualReadDoesNotGenericallyStripUnrecognizedPrefixes();
 testCanonicalBytesAreDeterministic();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();
+testQualifiedIdToLeafParsesAndResolves();
+testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch();
 console.log('[sk-doc] leaf-resource-contract unit coverage passed');

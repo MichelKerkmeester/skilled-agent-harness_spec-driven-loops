@@ -191,3 +191,100 @@ describe('sk-code surface children own the parent projection', () => {
     expect(tierViolations).toEqual([]);
   });
 });
+
+// Bijection guard between the compiled router's destination identities and the
+// documented resource map, meeting at sk-code's leaf-manifest.json. The compiled
+// router names each destination as `<hub>/<workflowMode>/<packet>/<kind>/<slug>`;
+// the manifest declares each mode's (workflowMode, packet) and its routable
+// leaves; and the code-opencode surface SKILL.md declares a RESOURCE_MAP of those
+// leaves. `qualifiedIdToLeaf` is the one bridge from a compiled destination to a
+// manifest mode, so a compiled decision and a documented resource can no longer
+// silently diverge: every compiled destination must resolve to a leaf-owning
+// mode, and every RESOURCE_MAP entry must be a real manifest leaf.
+const REPO_ROOT = resolve(REPO_SKILLS, '..', '..');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const LEAF_CONTRACT = require(
+  join(REPO_SKILLS, 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
+);
+// The committed compiled route-gold is the SOURCE of the destination identities
+// under test. This is a drift-guard test reading a committed artifact read-only,
+// not runtime code taking a require/import dependency, so the manifest round-trip
+// below is the durable, relocation-independent guarantee and the route-gold read
+// is an additional check exercised whenever the artifact is present.
+const SK_CODE_ROUTE_GOLD = join(
+  REPO_ROOT,
+  '.opencode', 'specs', 'sk-doc', '019-sk-doc-router-alignment', '020-router-unification-program',
+  '007-unified-refactor-implementation', '006-parent-hub-rollout', '001-sk-code', 'compiled',
+  'route-gold.typed.json',
+);
+
+interface ManifestMode {
+  packet: string;
+  leaves: Set<string>;
+}
+
+function manifestModeIndex(): Record<string, ManifestMode> {
+  const manifest = JSON.parse(readFileSync(join(SKCODE, 'leaf-manifest.json'), 'utf8'));
+  const index: Record<string, ManifestMode> = {};
+  for (const mode of manifest.modes || []) {
+    index[mode.workflowMode] = { packet: mode.packet, leaves: new Set(mode.leaves || []) };
+  }
+  return index;
+}
+
+function compiledTargetQualifiedIds(): string[] {
+  const gold = JSON.parse(readFileSync(SK_CODE_ROUTE_GOLD, 'utf8'));
+  const ids = new Set<string>();
+  for (const testCase of gold.cases || []) {
+    for (const id of testCase.targetQualifiedIds || []) ids.add(id);
+  }
+  return [...ids];
+}
+
+function codeOpencodeResourcePaths(): Set<string> {
+  const md = readFileSync(join(SKCODE, 'code-opencode', 'SKILL.md'), 'utf8');
+  const router = parseRouter(md, join(SKCODE, 'code-opencode'));
+  const paths = new Set<string>();
+  for (const r of router.defaultResource || []) paths.add(norm(r));
+  for (const list of Object.values(router.resourceMap) as string[][]) {
+    for (const p of list) paths.add(norm(p));
+  }
+  return paths;
+}
+
+describe('sk-code qualifiedIdToLeaf bijection — compiled destinations <-> leaf-manifest <-> RESOURCE_MAP', () => {
+  const modeIndex = manifestModeIndex();
+
+  it('every manifest mode round-trips through qualifiedIdToLeaf and a wrong packet fails closed', () => {
+    // Durable, manifest-anchored direction: independent of any spec-tree path.
+    const orphans: string[] = [];
+    for (const [workflowMode, mode] of Object.entries(modeIndex)) {
+      const probe = `sk-code/${workflowMode}/${mode.packet}/workflow/identity-probe`;
+      const resolved = LEAF_CONTRACT.qualifiedIdToLeaf(probe, { modeIndex });
+      if (!resolved.ok || resolved.mode !== mode) orphans.push(probe);
+    }
+    expect(orphans).toEqual([]);
+
+    const [anyMode] = Object.keys(modeIndex);
+    const wrongPacket = LEAF_CONTRACT.qualifiedIdToLeaf(
+      `sk-code/${anyMode}/not-the-real-packet/workflow/identity-probe`,
+      { modeIndex },
+    );
+    expect(wrongPacket.ok).toBe(false);
+  });
+
+  it('every compiled targetQualifiedIds entry resolves to a leaf-owning manifest mode', () => {
+    if (!existsSync(SK_CODE_ROUTE_GOLD)) return; // relocation must not hard-break a committed hub guard
+    const orphans = compiledTargetQualifiedIds().filter(
+      (id) => !LEAF_CONTRACT.qualifiedIdToLeaf(id, { modeIndex }).ok,
+    );
+    expect(orphans).toEqual([]);
+  });
+
+  it('every code-opencode RESOURCE_MAP entry matches a manifest leaf (no doc/manifest drift)', () => {
+    const codeOpencode = modeIndex['code-opencode'];
+    expect(codeOpencode, 'leaf-manifest.json declares no code-opencode mode').toBeTruthy();
+    const orphans = [...codeOpencodeResourcePaths()].filter((p) => !codeOpencode.leaves.has(p));
+    expect(orphans).toEqual([]);
+  });
+});

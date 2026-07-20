@@ -16,10 +16,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 // Each hub's compiled policy + engine live in its shadow rollout child; this
 // phase reuses them read-only rather than duplicating the compiled contract.
 const IMPL_ROOT = path.resolve(__dirname, '..', '..');
+
+// Promoted activation manifests (never the spec tree). Fingerprinting a hub's
+// manifest lets the engine cache invalidate when the manifest flips, so a
+// serving-authority or selected-policy change never serves an engine cached
+// against the prior manifest.
+const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
 const HUB_CHILD = Object.freeze({
   'sk-code': '006-parent-hub-rollout/001-sk-code',
   'system-deep-loop': '006-parent-hub-rollout/002-system-deep-loop',
@@ -32,8 +39,24 @@ const HUB_CHILD = Object.freeze({
 
 const engineCache = new Map();
 
+// Fingerprint the hub's activation manifest. A read failure yields a stable
+// sentinel so a route never throws on a missing or unreadable manifest; the
+// downstream HUB_CHILD check still rejects an unknown hub.
+function manifestFingerprint(hubId) {
+  try {
+    return crypto.createHash('sha256')
+      .update(fs.readFileSync(path.join(ACTIVATION_ROOT, hubId, 'manifest.json')))
+      .digest('hex');
+  } catch {
+    return 'no-manifest';
+  }
+}
+
 function loadHubEngine(hubId) {
-  if (engineCache.has(hubId)) return engineCache.get(hubId);
+  // Key on the manifest fingerprint so a flip invalidates a stale cached engine
+  // while an unchanged manifest still hits the cache within a process.
+  const cacheKey = `${hubId}::${manifestFingerprint(hubId)}`;
+  if (engineCache.has(cacheKey)) return engineCache.get(cacheKey);
   const child = HUB_CHILD[hubId];
   if (!child) throw new Error(`unknown hub: ${hubId}`);
   const childRoot = path.join(IMPL_ROOT, child);
@@ -57,7 +80,7 @@ function loadHubEngine(hubId) {
   }
   const { snapshot } = loadSnapshot();
   const engine = Object.freeze({ snapshot, evaluate });
-  engineCache.set(hubId, engine);
+  engineCache.set(cacheKey, engine);
   return engine;
 }
 

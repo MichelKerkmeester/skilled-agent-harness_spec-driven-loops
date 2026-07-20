@@ -71,7 +71,15 @@ INTEGRITY_RULE_PREFIXES = (
     "PY-SHEBANG",
     "TS-MODULE-HEADER",
     "RUST-UNSAFE",
+    "ROUTER-",
 )
+
+# A router RESOURCE_MAP/DEFAULT_RESOURCE names its leaves as packet-root-relative
+# paths under references/ or assets/. Matching only those two roots keeps the
+# opt-in router check off hub-qualified or shared-prefixed shorthands that resolve
+# under a different root, so it never false-flags a legitimately packet-qualified
+# entry.
+ROUTER_RESOURCE_PATH_RE = re.compile(r'"((?:references|assets)/[^"\n]+?)"')
 CONTEXT_ADVISORY_SEGMENTS = {
     "z_archive",
     "scratch",
@@ -119,6 +127,15 @@ def parse_args() -> argparse.Namespace:
         "--fail-on-warn",
         action="store_true",
         help="Treat warning findings as build-breaking failures.",
+    )
+    parser.add_argument(
+        "--check-router",
+        action="store_true",
+        help=(
+            "Additionally check that every RESOURCE_MAP/DEFAULT_RESOURCE leaf a "
+            "SKILL.md router names exists on disk (dead-route guard). Default off; "
+            "the default invocation never parses markdown."
+        ),
     )
     return parser.parse_args()
 
@@ -504,6 +521,74 @@ def relpath(path: str) -> str:
         return path
 
 
+def extract_router_resources(md_text: str) -> List[str]:
+    """Collect a SKILL.md router's RESOURCE_MAP/DEFAULT_RESOURCE leaf paths.
+
+    Scoped to the fenced code block(s) that actually declare the router, so the
+    check reads a router table rather than general markdown prose. Only
+    packet-root-relative (references/ or assets/) leaves are returned.
+    """
+    resources: List[str] = []
+    in_fence = False
+    fence_lines: List[str] = []
+    for line in md_text.splitlines():
+        if line.lstrip().startswith("```"):
+            if in_fence:
+                block = "\n".join(fence_lines)
+                if "RESOURCE_MAP" in block or "DEFAULT_RESOURCE" in block:
+                    resources.extend(ROUTER_RESOURCE_PATH_RE.findall(block))
+                fence_lines = []
+                in_fence = False
+            else:
+                in_fence = True
+                fence_lines = []
+            continue
+        if in_fence:
+            fence_lines.append(line)
+    return resources
+
+
+def check_router_paths(roots: Iterable[str]) -> List[Finding]:
+    """Flag any RESOURCE_MAP leaf a SKILL.md router names that has no file.
+
+    Default-off companion to the language checks (runs only under
+    --check-router). A dead route means a documented resource cannot be loaded,
+    so it is an integrity finding. Existence is resolved packet-root-relative to
+    each SKILL.md's own directory.
+    """
+    findings: List[Finding] = []
+    seen: Set[str] = set()
+    for root in roots:
+        abs_root = os.path.realpath(root)
+        for current_root, dirs, files in os.walk(abs_root):
+            dirs[:] = [entry for entry in dirs if entry not in EXCLUDED_DIRS]
+            if "SKILL.md" not in files:
+                continue
+            skill_md = os.path.join(current_root, "SKILL.md")
+            real = os.path.realpath(skill_md)
+            if real in seen:
+                continue
+            seen.add(real)
+            try:
+                with open(skill_md, "r", encoding="utf-8") as handle:
+                    text = handle.read()
+            except (UnicodeDecodeError, OSError):
+                continue
+            skill_dir = os.path.dirname(skill_md)
+            for rel in extract_router_resources(text):
+                if not os.path.exists(os.path.join(skill_dir, rel)):
+                    findings.append(
+                        Finding(
+                            path=skill_md,
+                            line=1,
+                            rule_id="ROUTER-DEAD-PATH",
+                            message=f"RESOURCE_MAP names a path with no file on disk: {rel}",
+                            fix_hint="Fix the RESOURCE_MAP entry or restore the referenced resource file.",
+                        )
+                    )
+    return findings
+
+
 def main() -> int:
     args = parse_args()
     roots = args.root or [os.getcwd()]
@@ -513,6 +598,11 @@ def main() -> int:
     for file_path in sorted(iter_code_files(roots)):
         scanned += 1
         findings.extend(check_file(file_path))
+
+    if args.check_router:
+        for finding in check_router_paths(roots):
+            finding.severity = classify_severity(finding.path, finding.rule_id)
+            findings.append(finding)
 
     error_count = sum(1 for item in findings if item.severity == "ERROR")
     warning_count = sum(1 for item in findings if item.severity == "WARN")

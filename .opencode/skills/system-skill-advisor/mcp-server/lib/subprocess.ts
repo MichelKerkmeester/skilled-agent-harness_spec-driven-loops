@@ -13,6 +13,21 @@ import type { ChildProcess } from 'node:child_process';
 import type { AdvisorThresholds } from './prompt-cache.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 
+/**
+ * Compact summary of a compiled routing decision, small enough to cross the
+ * brief boundary without carrying the full internal decision object. The served
+ * outcome is one of route/clarify/defer/reject; the fingerprint is the manifest
+ * serving-state hash used to invalidate a stale cached brief.
+ */
+export interface CompiledRouteSummary {
+  readonly outcome: string;
+  readonly hubId: string | null;
+  readonly targets: readonly string[];
+  readonly servingAuthority: string;
+  readonly fingerprint: string | null;
+  readonly generation: number | null;
+}
+
 export interface AdvisorRecommendation {
   readonly skill: string;
   readonly kind?: string;
@@ -20,6 +35,11 @@ export interface AdvisorRecommendation {
   readonly uncertainty: number;
   readonly passes_threshold?: boolean;
   readonly reason?: string;
+  // Additive: the compiled decision summary when a hub is compiled-serving. This
+  // path parses the Python advisor stdout, which does not emit it today, but the
+  // interface must not structurally drop it so a compiled decision reaching this
+  // brief path survives instead of being silently stripped.
+  readonly compiledRouteSummary?: CompiledRouteSummary;
 }
 
 export type AdvisorSubprocessErrorCode =
@@ -99,6 +119,22 @@ function sanitizeStderr(stderr: string): string | null {
   return compact.slice(0, 240);
 }
 
+function coerceCompiledRouteSummary(value: unknown): CompiledRouteSummary | undefined {
+  if (!isRecord(value)) return undefined;
+  if (typeof value.outcome !== 'string' || value.outcome.length === 0) return undefined;
+  const targets = Array.isArray(value.targets)
+    ? value.targets.filter((target): target is string => typeof target === 'string')
+    : [];
+  return {
+    outcome: value.outcome,
+    hubId: typeof value.hubId === 'string' ? value.hubId : null,
+    targets,
+    servingAuthority: typeof value.servingAuthority === 'string' ? value.servingAuthority : 'compiled',
+    fingerprint: typeof value.fingerprint === 'string' ? value.fingerprint : null,
+    generation: typeof value.generation === 'number' ? value.generation : null,
+  };
+}
+
 function parseRecommendations(stdout: string): AdvisorRecommendation[] {
   const parsed: unknown = JSON.parse(stdout);
   if (!Array.isArray(parsed)) {
@@ -118,6 +154,7 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
     if (typeof item.uncertainty !== 'number' || Number.isNaN(item.uncertainty)) {
       throw new Error(`${path}.uncertainty: expected finite number; actual ${typeof item.uncertainty}.`);
     }
+    const compiledRouteSummary = coerceCompiledRouteSummary(item.compiledRouteSummary);
     return {
       skill: item.skill,
       ...(typeof item.kind === 'string' ? { kind: item.kind } : {}),
@@ -125,6 +162,7 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
       uncertainty: item.uncertainty,
       ...(typeof item.passes_threshold === 'boolean' ? { passes_threshold: item.passes_threshold } : {}),
       ...(typeof item.reason === 'string' ? { reason: item.reason } : {}),
+      ...(compiledRouteSummary ? { compiledRouteSummary } : {}),
     };
   });
 }

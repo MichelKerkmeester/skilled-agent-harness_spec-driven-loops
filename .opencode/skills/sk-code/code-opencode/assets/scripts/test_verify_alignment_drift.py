@@ -212,6 +212,49 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertEqual(0, result.returncode)
             self.assertIn("[RUST-PANIC-BOUNDARY] [WARN]", result.stdout)
 
+    def _write_router_fixture(self, root: Path, resource_rel: str, create_target: bool) -> None:
+        # A minimal SKILL.md whose fenced router block names one RESOURCE_MAP leaf.
+        self.write_file(
+            root / "SKILL.md",
+            "# skill\n\n"
+            "```python\n"
+            "DEFAULT_RESOURCE = []\n"
+            f'RESOURCE_MAP = {{ "IMPLEMENTATION": ["{resource_rel}"] }}\n'
+            "```\n",
+        )
+        if create_target:
+            self.write_file(root / resource_rel, "# resource\n")
+
+    def test_check_router_passes_when_resource_map_paths_exist(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_router_fixture(root, "references/shared/present.md", create_target=True)
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(0, result.returncode)
+            self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
+
+    def test_check_router_fails_on_dead_resource_map_path(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_router_fixture(root, "references/shared/missing.md", create_target=False)
+
+            result = self.run_cli(root, ["--check-router"])
+            self.assertEqual(1, result.returncode)
+            self.assertIn("[ROUTER-DEAD-PATH] [ERROR]", result.stdout)
+            self.assertIn("references/shared/missing.md", result.stdout)
+
+    def test_router_check_is_off_by_default(self) -> None:
+        # Without --check-router the verifier never parses the SKILL.md router,
+        # so a dead route is invisible and the default invocation stays clean.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_router_fixture(root, "references/shared/missing.md", create_target=False)
+
+            result = self.run_cli(root)
+            self.assertEqual(0, result.returncode)
+            self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

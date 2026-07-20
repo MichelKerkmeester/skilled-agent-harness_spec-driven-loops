@@ -48,7 +48,11 @@ This block is the deterministic projection of code-opencode's own reference/asse
 # code-opencode owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
 # (re-prefixed with code-opencode/) and the sibling code-webflow map plus the
-# parent-owned universal/shared tier; a drift guard enforces that equality.
+# parent-owned universal/shared tier; the sk-code-router-sync.vitest.ts suite
+# (under system-deep-loop's skill-benchmark tests) is the guard that enforces
+# that equality. verify_alignment_drift.py is markdown-blind by default and does
+# not check this map unless invoked with --check-router (dead-route existence
+# only), so it is not the equality authority.
 DEFAULT_RESOURCE = [
     "references/shared/universal-patterns/naming-and-commenting.md",
     "references/shared/universal-patterns/organization-security-and-examples.md",
@@ -160,7 +164,7 @@ RESOURCE_MAP = {
 
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality-standards/overview-modules-and-docs.md` and the plugin exemption tier.
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality-standards.md`.
-- **Alignment drift is a verification gate.** System-code changes re-run the alignment verifier (`references/shared/alignment-verification-automation.md`) before any completion claim.
+- **Alignment drift is a verification gate.** System-code changes re-run all three sk-code drift guards before any completion claim — `assets/scripts/verify_alignment_drift.py` (language integrity; add `--check-router` for dead RESOURCE_MAP routes), `assets/scripts/verify_stack_folders.py` (language reference folders resolve), and the `sk-code-router-sync.vitest.ts` suite (machine router vs filesystem/prose, plus the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection) — through the single entry point `scripts/run-all-drift-guards.sh`. See `references/shared/alignment-verification-automation.md`.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
 - **Touched-language set, not one-per-task.** Most `.opencode/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
@@ -170,7 +174,7 @@ Component authoring (`assets/checklists/`): `skill-authoring.md`, `agent-authori
 
 Language quality gates (`assets/checklists/`): `universal-checklist.md`, `typescript-checklist.md`, `python-checklist.md`, `shell-checklist.md`, `javascript-checklist.md`, `rust-checklist/` (split into topic parts), `config-checklist.md`
 
-Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts used by this surface.
+Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts used by this surface. `scripts/run-all-drift-guards.sh` is the single entry point that runs both of them plus the `sk-code-router-sync.vitest.ts` bijection suite as one gate (non-zero if any guard fails).
 
 Changelog directories (`changelog/`): real skill and packet changelog files are part of the OpenCode surface inventory, not out-of-scope documentation noise.
 

@@ -113,6 +113,11 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'MK_SKILL_ADVISOR_TRUST_DEFAULT',
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SPECKIT_RUNTIME',
+  // Compiled-routing runtime flag. Without this literal key the operator's .env
+  // value is stripped at the process boundary and never reaches the spawned
+  // advisor daemon child, so the advisor can never see it to attach a compiled
+  // decision. One exact key, no prefix widening.
+  'SPECKIT_COMPILED_ROUTING',
   'SPECKIT_ADVISOR_FRESHNESS',
   'SPECKIT_ADVISOR_DOC_TRIGGERS',
   'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',

@@ -82,6 +82,58 @@ function assertEngineRoutes(hubId) {
   return { routedScenarios: routed, totalScenarios: cases.length, effectivePolicyHash: snapshot.policy.effectivePolicyHash };
 }
 
+// Append-only per-hub audit ledger. Same file and same shape emitted by
+// activate-hub.cjs; the canonical schema is documented once in the rollback
+// packet's references/flip-history-schema.md.
+function appendFlipEvent(hubDir, event) {
+  const line = JSON.stringify({ ts: new Date().toISOString(), schemaVersion: 'flip-history/V1', ...event });
+  fs.appendFileSync(path.join(hubDir, 'flip-history.jsonl'), `${line}\n`);
+}
+
+// Persist the fence epoch with a transition direction so a cutover advance and a
+// recovery advance are distinguishable from the persisted state alone.
+function writeFence(hubDir, fencingEpoch, direction) {
+  fs.writeFileSync(
+    path.join(hubDir, 'fence-state.json'),
+    `${stableStringify({ fencingEpoch, direction, schemaVersion: 'V1' })}\n`,
+  );
+}
+
+// Retain the byte-identical CURRENT manifest as the serving-prior. Unconditional
+// on purpose: a re-flip after a rollback must capture the state immediately
+// before THIS flip, not the first-ever prior (the original guard saved only on
+// the very first flip, silently going stale on every re-flip).
+function resaveServingPrior(hubDir) {
+  fs.writeFileSync(
+    path.join(hubDir, 'manifest.serving-prior.json'),
+    fs.readFileSync(path.join(hubDir, 'manifest.json')),
+  );
+}
+
+// Serving-authority rollback: restore the byte-identical pre-flip manifest, tag
+// the fence advance as a recovery, and append the event to the audit ledger.
+function performServingRollback(hubDir, hubId) {
+  const manifestPath = path.join(hubDir, 'manifest.json');
+  const servingPriorPath = path.join(hubDir, 'manifest.serving-prior.json');
+  const fence = readJson(path.join(hubDir, 'fence-state.json')).fencingEpoch;
+  if (!fs.existsSync(servingPriorPath)) throw new Error(`no serving-prior to roll back to for ${hubId}`);
+  fs.writeFileSync(manifestPath, fs.readFileSync(servingPriorPath));
+  const nextFence = fence + 1;
+  writeFence(hubDir, nextFence, 'rollback');
+  const restored = readJson(manifestPath);
+  const restoredHash = fileHash(manifestPath);
+  appendFlipEvent(hubDir, {
+    hubId, driver: 'flip-serving', event: 'serving-rollback', direction: 'rollback',
+    servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly === true,
+    selectedGeneration: restored.selectedPolicy ? restored.selectedPolicy.generation : null,
+    fenceEpoch: { before: fence, after: nextFence }, manifestHash: restoredHash, restoredHash,
+  });
+  return {
+    hubId, rolledBack: true, servingAuthority: restored.servingAuthority,
+    shadowOnly: restored.shadowOnly, fenceEpoch: { before: fence, after: nextFence },
+  };
+}
+
 function main() {
   const args = process.argv.slice(2);
   const hubId = args[args.indexOf('--hub') + 1];
@@ -91,7 +143,6 @@ function main() {
 
   const hubDir = path.join(ACTIVATION_ROOT, hubId);
   const manifestPath = path.join(hubDir, 'manifest.json');
-  const servingPriorPath = path.join(hubDir, 'manifest.serving-prior.json');
   const fencePath = path.join(hubDir, 'fence-state.json');
   if (!fs.existsSync(manifestPath)) throw new Error(`hub not P4a-activated (no manifest): ${hubId}`);
 
@@ -99,14 +150,10 @@ function main() {
   const fence = readJson(fencePath).fencingEpoch;
 
   if (rollback) {
-    if (!fs.existsSync(servingPriorPath)) throw new Error(`no serving-prior to roll back to for ${hubId}`);
-    const priorBytes = fs.readFileSync(servingPriorPath);
-    fs.writeFileSync(manifestPath, priorBytes);
-    const nextFence = fence + 1;
-    fs.writeFileSync(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
-    const restored = readJson(manifestPath);
-    const out = { hubId, rolledBack: true, servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly, fenceEpoch: { before: fence, after: nextFence } };
-    process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n` : `ROLLBACK hub=${hubId} serving=${restored.servingAuthority} shadowOnly=${restored.shadowOnly} fence=${fence}->${nextFence}\n`);
+    const out = performServingRollback(hubDir, hubId);
+    process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
+      : `ROLLBACK hub=${hubId} serving=${out.servingAuthority} shadowOnly=${out.shadowOnly} `
+        + `fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} direction=rollback\n`);
     return;
   }
 
@@ -121,12 +168,12 @@ function main() {
   assertCanaryGreen(hubId);
   const routeProof = assertEngineRoutes(hubId);
 
-  // Retain the byte-identical pre-flip manifest, then flip.
-  if (!fs.existsSync(servingPriorPath)) fs.writeFileSync(servingPriorPath, fs.readFileSync(manifestPath));
+  // Retain the byte-identical pre-flip manifest (unconditional), then flip.
+  resaveServingPrior(hubDir);
   const flipped = { ...manifest, servingAuthority: 'compiled', shadowOnly: false };
   fs.writeFileSync(manifestPath, `${stableStringify(flipped)}\n`);
   const nextFence = fence + 1;
-  fs.writeFileSync(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+  writeFence(hubDir, nextFence, 'forward');
 
   const out = {
     hubId, servingAuthority: 'compiled', shadowOnly: false,
@@ -135,8 +182,26 @@ function main() {
     rollbackTo: 'manifest.serving-prior.json',
   };
   fs.writeFileSync(path.join(hubDir, 'serving-flip-record.json'), `${stableStringify(out)}\n`);
+  appendFlipEvent(hubDir, {
+    hubId, driver: 'flip-serving', event: 'serving-flip', direction: 'forward',
+    servingAuthority: 'compiled', shadowOnly: false, selectedGeneration: flipped.selectedPolicy.generation,
+    fenceEpoch: { before: fence, after: nextFence }, manifestHash: fileHash(manifestPath), restoredHash: null,
+  });
   process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
     : `FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${flipped.selectedPolicy.generation} fence=${fence}->${nextFence} routed=${routeProof.routedScenarios}/${routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
 }
 
-try { main(); } catch (e) { process.stderr.write(`FLIP FAILED: ${e.message}\n`); process.exit(1); }
+if (require.main === module) {
+  try { main(); } catch (e) { process.stderr.write(`FLIP FAILED: ${e.message}\n`); process.exit(1); }
+}
+
+module.exports = {
+  appendFlipEvent,
+  writeFence,
+  resaveServingPrior,
+  performServingRollback,
+  assertScorerFrozen,
+  fileHash,
+  readJson,
+  stableStringify,
+};

@@ -364,7 +364,65 @@ function buildManifest({ resourceContractVersion = CONTRACT_VERSION, modeEntries
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. EXPORTS
+// 8. QUALIFIED-ID BRIDGE (compiled destination -> manifest mode)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Bridge a compiled router's qualified destination id to the leaf-owning mode a
+ * leaf-manifest declares. A compiled router names a destination as
+ * `<hub>/<workflowMode>/<packet>/<kind>/<slug>` (parent-hub route-golds) or a
+ * shorter `<hub>/<mode>` (non-hub transports). The trailing `<kind>/<slug>` is
+ * the compiled leaf's own synthetic identity, not a packet-root-relative doc
+ * path, so the identity a manifest and a compiled route both agree on is the
+ * `(workflowMode, packet)` pair. This is the single conversion boundary between
+ * a compiled destination id and a manifest mode: a drift guard resolves through
+ * here instead of re-parsing the id grammar itself.
+ *
+ * Pure: no filesystem access. The caller owns reading the manifest and passes
+ * `modeIndex`, a lookup from workflowMode to a mode entry carrying at least
+ * `{ packet }` (usually `{ packet, leaves }`). Resolution fails closed and never
+ * throws: an unknown workflowMode, or a packet segment that disagrees with the
+ * manifest mode, returns `ok:false` naming the offending id, so a guard can
+ * collect and name every orphan in one pass. With no `modeIndex`, it parses
+ * only, returning the decomposed identity with `mode:null`.
+ *
+ * @param {string} qualifiedId - Compiled `<hub>/<workflowMode>/<packet>[/<kind>/<slug>]` id.
+ * @param {Object} [options] - Resolution inputs.
+ * @param {Map<string,Object>|Object<string,Object>} [options.modeIndex] - workflowMode -> mode entry ({ packet, leaves? }).
+ * @returns {{ok:true, qualifiedId:string, hub:string, workflowMode:string, packet:(string|undefined), kind:(string|undefined), slug:(string|undefined), mode:(Object|null)}|{ok:false, code:string, qualifiedId:string, message:string}} Parsed identity with resolved mode, or a fail-closed orphan.
+ */
+function qualifiedIdToLeaf(qualifiedId, { modeIndex } = {}) {
+  if (typeof qualifiedId !== 'string' || qualifiedId.length === 0) {
+    return { ok: false, code: 'EMPTY_QUALIFIED_ID', qualifiedId: String(qualifiedId), message: 'qualifiedId must be a non-empty string' };
+  }
+  const segments = toPosix(qualifiedId).split('/');
+  if (segments.length < 2 || segments.some((segment) => segment.length === 0)) {
+    return { ok: false, code: 'MALFORMED_QUALIFIED_ID', qualifiedId, message: `qualifiedId must be slash-delimited non-empty segments: ${qualifiedId}` };
+  }
+  const parsed = {
+    qualifiedId,
+    hub: segments[0],
+    workflowMode: segments[1],
+    packet: segments.length >= 3 ? segments[2] : undefined,
+    kind: segments.length >= 4 ? segments[3] : undefined,
+    slug: segments.length >= 5 ? segments.slice(4).join('/') : undefined,
+  };
+
+  if (modeIndex == null) {
+    return { ok: true, ...parsed, mode: null };
+  }
+  const mode = modeIndex instanceof Map ? modeIndex.get(parsed.workflowMode) : modeIndex[parsed.workflowMode];
+  if (!mode) {
+    return { ok: false, code: 'ORPHAN_WORKFLOW_MODE', qualifiedId, message: `no manifest mode declares workflowMode "${parsed.workflowMode}": ${qualifiedId}` };
+  }
+  if (parsed.packet !== undefined && mode.packet !== undefined && String(mode.packet) !== parsed.packet) {
+    return { ok: false, code: 'PACKET_MISMATCH', qualifiedId, message: `qualifiedId packet "${parsed.packet}" does not match manifest mode packet "${mode.packet}" for workflowMode "${parsed.workflowMode}": ${qualifiedId}` };
+  }
+  return { ok: true, ...parsed, mode };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -384,4 +442,5 @@ module.exports = {
   canonicalManifestBytes,
   digestManifestBytes,
   buildManifest,
+  qualifiedIdToLeaf,
 };

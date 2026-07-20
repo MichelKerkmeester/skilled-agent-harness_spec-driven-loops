@@ -71,6 +71,10 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'MK_SKILL_ADVISOR_DB_DIR',
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SPECKIT_RUNTIME',
+  // Compiled-routing runtime flag. Forwarded so the operator's .env value reaches
+  // the bridge-spawned advisor child instead of being stripped at the boundary;
+  // without it a compiled-routing canary is impossible. One exact key, no prefix.
+  'SPECKIT_COMPILED_ROUTING',
   'SPECKIT_ADVISOR_FRESHNESS',
   'MK_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
@@ -503,6 +507,55 @@ async function probeNativeAdvisor(input, dependencies = {}) {
 }
 
 /**
+ * Summarize the compiled decision the advisor attached to a recommendation.
+ *
+ * The full decision object stays at the advisor layer; only this compact summary
+ * crosses the brief boundary, so the served outcome (route/clarify/defer/reject),
+ * its authority, and its manifest fingerprint reach an agent without leaking or
+ * recomputing any routing field. Returns null when no compiled decision is
+ * present, which keeps the brief byte-identical to the legacy shape.
+ *
+ * @param {unknown} compiledRoute - Additive compiled decision from the advisor.
+ * @returns {object|null} Compact serializable summary, or null when absent.
+ */
+function compiledRouteSummaryFrom(compiledRoute) {
+  if (!compiledRoute || typeof compiledRoute !== 'object') return null;
+  const outcome = typeof compiledRoute.action === 'string' ? compiledRoute.action : null;
+  if (!outcome) return null;
+  return {
+    outcome,
+    hubId: typeof compiledRoute.hubId === 'string' ? compiledRoute.hubId : null,
+    targets: Array.isArray(compiledRoute.targets)
+      ? compiledRoute.targets.filter((target) => typeof target === 'string')
+      : [],
+    servingAuthority: 'compiled',
+    fingerprint: typeof compiledRoute.effectivePolicyHash === 'string'
+      ? compiledRoute.effectivePolicyHash
+      : null,
+    generation: typeof compiledRoute.generation === 'number' ? compiledRoute.generation : null,
+  };
+}
+
+/**
+ * Summarize the first attached compiled decision across recommendations.
+ *
+ * The advisor attaches a route only for the top eligible hub, so the first hit is
+ * the served decision. One summary is derived here, at a single site, rather than
+ * re-deriving it in every downstream consumer.
+ *
+ * @param {unknown} recommendations - Advisor recommendation list.
+ * @returns {object|null} The served summary, or null when none carried a route.
+ */
+function topCompiledRouteSummary(recommendations) {
+  if (!Array.isArray(recommendations)) return null;
+  for (const recommendation of recommendations) {
+    const summary = compiledRouteSummaryFrom(recommendation && recommendation.compiledRoute);
+    if (summary) return summary;
+  }
+  return null;
+}
+
+/**
  * Build an advisor brief through the native in-process advisor path.
  *
  * @param {object} input - Validated bridge input payload.
@@ -528,6 +581,10 @@ async function buildNativeBrief(input, dependencies = {}) {
   });
   const parsed = JSON.parse(handlerResponse.content[0].text);
   const data = parsed.data;
+  // The advisor attaches the compiled decision additively to a recommendation;
+  // the recommendation-list rebuild below drops it. Summarize it once here so the
+  // served outcome survives to the top-level metadata the hook renders.
+  const compiledRouteSummary = topCompiledRouteSummary(data?.recommendations);
   const maxTokens = positiveInt(input.maxTokens, 80);
   const top = Array.isArray(data?.recommendations) ? data.recommendations[0] : null;
   const skillLabel = sanitizeLabel(top?.skillId);
@@ -592,6 +649,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       status: safeStatus,
       redirectTo,
       redirectFrom,
+      ...(compiledRouteSummary ? { compiledRouteSummary } : {}),
     },
   });
 }

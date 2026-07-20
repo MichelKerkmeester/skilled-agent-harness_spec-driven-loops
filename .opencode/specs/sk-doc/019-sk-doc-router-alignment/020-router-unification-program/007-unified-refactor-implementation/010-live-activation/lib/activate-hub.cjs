@@ -83,11 +83,15 @@ function parseArgs(argv) {
     if (arg === '--hub') out.hub = argv[(i += 1)];
     else if (arg === '--child') out.child = argv[(i += 1)];
     else if (arg === '--verify') out.mode = 'verify';
+    else if (arg === '--rollback') out.mode = 'rollback';
     else if (arg === '--json') out.json = true;
     else throw new Error(`unknown argument: ${arg}`);
   }
   if (!out.hub) throw new Error('missing --hub <hubId>');
-  if (!out.child) throw new Error('missing --child <path to rollout child>');
+  // Binding or verifying a compiled generation needs the rollout child; a
+  // rollback recovers an already-committed hub from its retained prior manifest
+  // and needs no child.
+  if (out.mode !== 'rollback' && !out.child) throw new Error('missing --child <path to rollout child>');
   return out;
 }
 
@@ -179,8 +183,126 @@ function proveRollback(paths, acceptance) {
   }
 }
 
+// Append-only per-hub audit ledger. Every bind/rollback event is one JSON line;
+// entries are never rewritten, so re-mint history survives every re-run. The
+// canonical field set is documented once alongside this driver's rollback
+// packet (references/flip-history-schema.md); flip-serving.cjs emits the same
+// shape into the same file.
+function appendFlipEvent(hubDir, event) {
+  const line = JSON.stringify({ ts: new Date().toISOString(), schemaVersion: 'flip-history/V1', ...event });
+  fs.appendFileSync(path.join(hubDir, 'flip-history.jsonl'), `${line}\n`);
+}
+
+// Committed binding-layer rollback: restore the byte-identical prior manifest
+// for an already-activated hub, reusing proveRollback()'s hash validation as a
+// pre-commit proof. The binding layer never owns serving authority, so a
+// rollback that would flip serving 'compiled'->'legacy' is refused — the P4b
+// serving flip must be rolled back first.
+function rollbackHub(hubDir) {
+  const manifestPath = path.join(hubDir, 'manifest.json');
+  const priorPath = path.join(hubDir, 'manifest.prior.json');
+  const candidatePath = path.join(hubDir, 'manifest.candidate.json');
+  const fencePath = path.join(hubDir, 'fence-state.json');
+  const recordPath = path.join(hubDir, 'activation-record.json');
+  for (const p of [manifestPath, priorPath, candidatePath, fencePath, recordPath]) {
+    if (!fs.existsSync(p)) {
+      throw new Error(`no retained prior manifest to roll back (missing ${path.basename(p)} in ${hubDir})`);
+    }
+  }
+  const record = readJson(recordPath);
+  const before = readJson(manifestPath);
+  const prior = readJson(priorPath);
+
+  // The retained prior must still hash to the accepted priorManifestHash, or the
+  // recovery target is not the generation we bound against.
+  const retainedPriorHash = fileHash(priorPath);
+  if (retainedPriorHash !== record.priorManifestHash) {
+    throw new Error(`retained prior manifest drifted: ${retainedPriorHash} != accepted ${record.priorManifestHash}`);
+  }
+
+  // P4a binding rollback must not change serving authority (that is the P4b
+  // flip's domain). Fail closed if it would.
+  const sameServing = prior.servingAuthority === before.servingAuthority
+    && (prior.shadowOnly === true) === (before.shadowOnly === true);
+  if (!sameServing) {
+    throw new Error(
+      `binding rollback would change serving authority (${before.servingAuthority}/shadowOnly=${before.shadowOnly}`
+      + ` -> ${prior.servingAuthority}/shadowOnly=${prior.shadowOnly}); roll back the serving flip first`,
+    );
+  }
+
+  const fenceBefore = readJson(fencePath).fencingEpoch;
+
+  // Idempotent no-op: already at the prior generation. Record the no-op in
+  // history without advancing the fence or rewriting the manifest.
+  if (fileHash(manifestPath) === record.priorManifestHash) {
+    const h = fileHash(manifestPath);
+    appendFlipEvent(hubDir, {
+      hubId: record.hubId, driver: 'activate-hub', event: 'binding-rollback-noop', direction: 'rollback',
+      servingAuthority: before.servingAuthority, shadowOnly: before.shadowOnly === true,
+      selectedGeneration: before.selectedPolicy.generation,
+      fenceEpoch: { before: fenceBefore, after: fenceBefore }, manifestHash: h, restoredHash: h,
+    });
+    return { hubId: record.hubId, rolledBack: false, noop: true, byteExact: true, restoredHash: h,
+      priorManifestHash: record.priorManifestHash, fenceEpoch: { before: fenceBefore, after: fenceBefore } };
+  }
+
+  // Reuse the existing byte-exact hash validation as a pre-commit proof.
+  const acceptance = { priorManifestHash: record.priorManifestHash, expectedCurrent: prior.selectedPolicy };
+  const proof = proveRollback({ hubDir }, acceptance);
+
+  // Commit the real state change: restore the byte-identical prior manifest.
+  fs.writeFileSync(manifestPath, fs.readFileSync(priorPath));
+  const restoredHash = fileHash(manifestPath);
+  if (restoredHash !== record.priorManifestHash) {
+    throw new Error(`committed rollback not byte-exact: ${restoredHash} != ${record.priorManifestHash}`);
+  }
+  const restored = readJson(manifestPath);
+  if (restored.servingAuthority !== before.servingAuthority) {
+    throw new Error('rollback changed serving authority — invariant violated');
+  }
+
+  // Advance the fence monotonically, tagging the transition as a recovery so
+  // cutover-vs-rollback is reconstructable from the persisted state alone.
+  const fenceAfter = fenceBefore + 1;
+  fs.writeFileSync(fencePath, `${stableStringify({ fencingEpoch: fenceAfter, direction: 'rollback', schemaVersion: 'V1' })}\n`);
+
+  appendFlipEvent(hubDir, {
+    hubId: record.hubId, driver: 'activate-hub', event: 'binding-rollback', direction: 'rollback',
+    servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly === true,
+    selectedGeneration: restored.selectedPolicy.generation,
+    fenceEpoch: { before: fenceBefore, after: fenceAfter }, manifestHash: restoredHash, restoredHash,
+  });
+
+  return {
+    hubId: record.hubId, rolledBack: true, noop: false,
+    byteExact: proof.byteExact && restoredHash === record.priorManifestHash,
+    selectedReverted: proof.selectedReverted, restoredHash, priorManifestHash: record.priorManifestHash,
+    fenceEpoch: { before: fenceBefore, after: fenceAfter },
+  };
+}
+
 function main() {
   const args = parseArgs(process.argv);
+
+  if (args.mode === 'rollback') {
+    const hubDir = path.join(ACTIVATION_ROOT, args.hub);
+    if (!fs.existsSync(path.join(hubDir, 'manifest.json'))) {
+      throw new Error(`hub not activated (no manifest): ${args.hub}`);
+    }
+    const result = rollbackHub(hubDir);
+    if (args.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `ROLLBACK ${result.noop ? 'NOOP' : 'DONE'} hub=${args.hub} byteExact=${result.byteExact} `
+          + `restoredHash=${result.restoredHash.slice(0, 12)} `
+          + `fence=${result.fenceEpoch.before}->${result.fenceEpoch.after} direction=rollback\n`,
+      );
+    }
+    return;
+  }
+
   const childRoot = path.isAbsolute(args.child) ? args.child : path.join(REPO_ROOT, args.child);
   if (!fs.existsSync(childRoot)) throw new Error(`rollout child not found: ${childRoot}`);
 
@@ -213,7 +335,7 @@ function main() {
     }
     fs.writeFileSync(paths.servingDst, fs.readFileSync(paths.candidateDst)); // swap
     fenceAfter = fenceBefore + 1;
-    fs.writeFileSync(paths.fenceDst, `${stableStringify({ fencingEpoch: fenceAfter, schemaVersion: 'V1' })}\n`);
+    fs.writeFileSync(paths.fenceDst, `${stableStringify({ fencingEpoch: fenceAfter, direction: 'forward', schemaVersion: 'V1' })}\n`);
     shipped = true;
   }
 
@@ -245,6 +367,12 @@ function main() {
     path.join(paths.hubDir, 'activation-record.json'),
     `${stableStringify(record)}\n`,
   );
+  appendFlipEvent(paths.hubDir, {
+    hubId: args.hub, driver: 'activate-hub', event: shipped ? 'activate' : 'activate-noop', direction: 'forward',
+    servingAuthority: servingNow.servingAuthority, shadowOnly: servingNow.shadowOnly === true,
+    selectedGeneration: servingNow.selectedPolicy.generation,
+    fenceEpoch: { before: fenceBefore, after: fenceAfter }, manifestHash: fileHash(paths.servingDst), restoredHash: null,
+  });
 
   if (args.json) {
     process.stdout.write(`${JSON.stringify(record, null, 2)}\n`);
@@ -272,9 +400,23 @@ function readExistingRealModel(hub) {
   return 'pending';
 }
 
-try {
-  main();
-} catch (err) {
-  process.stderr.write(`ACTIVATION FAILED: ${err.message}\n`);
-  process.exit(1);
+if (require.main === module) {
+  try {
+    main();
+  } catch (err) {
+    process.stderr.write(`ACTIVATION FAILED: ${err.message}\n`);
+    process.exit(1);
+  }
 }
+
+module.exports = {
+  parseArgs,
+  seedActivation,
+  proveRollback,
+  rollbackHub,
+  appendFlipEvent,
+  assertScorerFrozen,
+  fileHash,
+  readJson,
+  stableStringify,
+};

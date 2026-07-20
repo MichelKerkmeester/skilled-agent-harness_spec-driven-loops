@@ -69,6 +69,45 @@ function compiledRoutingStatusLines() {
   }
 }
 
+// Stable fingerprint of the current per-hub serving state, consumed from the
+// promoted status probe (the single source of serving truth). A manifest flip or
+// a kill-switch changes a hub's servingAuthority/causeCode/manifestFingerprint
+// here, so folding this into the advisor-brief cache key guarantees a miss and a
+// stale compiled brief is never re-served. Fails closed to a stable sentinel so
+// the degraded case still caches deterministically.
+function compiledServingSignature() {
+  try {
+    const statusPath = fileURLToPath(new URL('../bin/compiled-route-status.cjs', import.meta.url));
+    const { computeAllStatus } = pluginRequire(statusPath);
+    const rows = computeAllStatus({ probeEngine: false });
+    const canonical = rows
+      .map((r) => `${r.hubId}:${r.servingAuthority}:${r.causeCode}:${r.manifestFingerprint ?? ''}:${r.effectivePolicyHash ?? ''}`)
+      .join('|');
+    return createHash('sha256').update(canonical).digest('hex');
+  } catch {
+    return 'serving-unavailable';
+  }
+}
+
+// Render the served compiled decision as one additive, bounded, human-legible
+// line. It reports the served authority and outcome (route/clarify/defer/reject),
+// never a new routing target — the compiled decision is byte-identical to legacy
+// on routing fields. Returns null when no compiled decision is served, so the
+// injected context stays byte-identical to the legacy brief.
+function renderCompiledRouteSummaryLine(summary) {
+  if (!summary || typeof summary !== 'object') return null;
+  const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
+  if (!outcome) return null;
+  const hub = typeof summary.hubId === 'string' && summary.hubId ? summary.hubId : 'unknown';
+  const authority = typeof summary.servingAuthority === 'string' && summary.servingAuthority
+    ? summary.servingAuthority
+    : 'compiled';
+  const targets = Array.isArray(summary.targets) && summary.targets.length
+    ? summary.targets.join(',')
+    : 'none';
+  return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
+}
+
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
 // Cache-signature paths follow the standalone advisor package to ensure
 // consistent cache invalidation across bridge and MCP server builds.
@@ -293,7 +332,7 @@ function statusSafeBinary(binary) {
   return binary;
 }
 
-function cacheKeyForPrompt(prompt, options, sessionID, sourceSignature, workspaceRoot) {
+function cacheKeyForPrompt(prompt, options, sessionID, sourceSignature, workspaceRoot, servingSignature) {
   const sessionKey = normalizeSessionID(sessionID);
   const promptKey = createHash('sha256')
     .update(prompt)
@@ -305,6 +344,8 @@ function cacheKeyForPrompt(prompt, options, sessionID, sourceSignature, workspac
     .update(sourceSignature)
     .update('\u001f')
     .update(workspaceRoot)
+    .update('')
+    .update(String(servingSignature ?? ''))
     .digest('hex');
   return `${String(sessionKey)}::${promptKey}`;
 }
@@ -659,7 +700,14 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       cacheable = false;
       sourceSignature = 'unavailable';
     }
-    const key = cacheKeyForPrompt(prompt, options, sessionID, sourceSignature, workspaceRoot);
+    const key = cacheKeyForPrompt(
+      prompt,
+      options,
+      sessionID,
+      sourceSignature,
+      workspaceRoot,
+      compiledServingSignature(),
+    );
     const now = Date.now();
     const cached = cacheable ? state.advisorCache.get(key) : null;
 
@@ -796,6 +844,10 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       output.system.push(response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : FALLBACK_DIRECTIVE);
+      const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary);
+      if (compiledLine) {
+        output.system.push(compiledLine);
+      }
     } catch {
       state.lastBridgeStatus = 'fail_open';
       state.lastErrorCode = 'UNEXPECTED_HOOK_ERROR';
