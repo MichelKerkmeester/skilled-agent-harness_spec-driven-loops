@@ -35,10 +35,10 @@
       "evidence-ledger runtime for system-deep-loop",
       "per-mode migration deep-loop",
       "transition-authorized ledger core",
-      "resume 065 deep-loop innovation",
-      "deep-loop recommendations implementation handover",
-      "065 phase tree authoring state",
-      "start deep-loop phase 003 execution"
+      "resume 036 deep-loop innovation execution",
+      "start implementing the 178 deep-loop recs",
+      "deep-loop innovation execution handover",
+      "parallelize deep-loop implementation cli-codex"
     ],
     "key_topics": [
       "deep-loop",
@@ -59,11 +59,9 @@
     "key_files": [
       "004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md",
       "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-      "scratch/normalize-phase-refs.cjs",
+      "handover.md",
       "spec.md",
-      "scratch/regen-changed-metadata.cjs",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
-      "handover.md"
+      "018-drift-census-and-plan-revalidation/research/research.md"
     ],
     "entities": [
       {
@@ -73,27 +71,15 @@
         "source": "derived"
       },
       {
-        "name": "normalize-phase-refs.cjs",
-        "kind": "file",
-        "path": "scratch/normalize-phase-refs.cjs",
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "regen-changed-metadata.cjs",
-        "kind": "file",
-        "path": "scratch/regen-changed-metadata.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -139,7 +125,7 @@
         "source": "derived"
       },
       {
-        "name": "Session Handover Document Continuation",
+        "name": "Execution Start The",
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
@@ -151,19 +137,19 @@
         "source": "derived"
       },
       {
-        "name": "From Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "To Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Modified",
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
@@ -171,17 +157,17 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-07-19T18:01:27.953Z",
+    "last_save_at": "2026-07-20T17:52:34.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6a343532f81efa44ecfcbbc4833f94f2fae249a7f9a70610f6f509739154e0a1",
+    "source_fingerprint": "sha256:cc8974bb96f30a39ff69369ee0fac4348ff3a2c292223ec319e9b4d96e0cd3d9",
     "source_doc_hashes": {
       "spec.md": "d5cb19392cfec58a51869de37e1f8c546f9db3669d703ad0174a6fec6923d634",
-      "handover.md": "8647f17f587b82002a9345c5d86573cdf5eccc53313415ca98a2c4a93bc53fc2"
+      "handover.md": "c75e48300eaa3143ea3f141e5284f93c848904ff3b4eede35506570a822eb6c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

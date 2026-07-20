@@ -1,40 +1,41 @@
 ---
-title: "Session Handover: 065 deep-loop-innovation phase-tree authoring"
-description: "The 17-phase implementation-planning tree is flattened, authored, phase-reference-normalized, and pushed to v4; execution of the 178 recs into the shipped runtime has not started."
+title: "Session Handover: 036 deep-loop-innovation — EXECUTION start (parallel cli-codex SOL)"
+description: "The 17-phase implementation-planning tree is authored, validated (125/125 strict), reference-repaired, drift-censused, and pushed to v4. Execution of the 178 recs into the shipped system-deep-loop runtime has NOT started. This handover hands the execution frontier to a fresh agent, optimized for maximal parallelization via cli-codex GPT-5.6-SOL xhigh fast (cli-opencode gpt-5.6-sol-fast fallback)."
 trigger_phrases:
-  - "resume 065 deep-loop innovation"
-  - "deep-loop recommendations implementation handover"
-  - "065 phase tree authoring state"
-  - "start deep-loop phase 003 execution"
+  - "resume 036 deep-loop innovation execution"
+  - "start implementing the 178 deep-loop recs"
+  - "deep-loop innovation execution handover"
+  - "parallelize deep-loop implementation cli-codex"
 importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-07-16T04:15:00Z"
+    last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Normalized 065 phase refs; pushed to v4 as merge 0ce43ff589"
-    next_safe_action: "Run recursive strict validate on 065; then begin execution at phase 003"
+    recent_action: "Authored execution handover + goal.md; census/repairs/coupling all on origin"
+    next_safe_action: "Pin isolated worktree off origin tip; pin BASE in 003; run 004/002 triage first"
     blockers: []
     key_files:
+      - "goal.md"
       - "spec.md"
       - "execution-sequencing-strategy.md"
-      - "013-mode-and-lane-migrations"
-      - "scratch/normalize-phase-refs.cjs"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-16-036-deep-loop-innovation-authoring"
-      parent_session_id: null
-    completion_pct: 5
-    open_questions: []
+      - "018-drift-census-and-plan-revalidation/research/research.md"
+    completion_pct: 40
+    open_questions:
+      - "Right-size 013 after 012's cross-mode closures hoist shared logic?"
+      - "Serial-single-writer vs satellite-worktrees-per-mode for 013 — decided in 012"
     answered_questions:
-      - "Placement = the implementation program IS the 065 packet; research 001-002 stay pure inputs; implementation is phases 003-017"
-      - "Flatten = old program phases 000-014 shifted +3 to new 003-017; the two research phases keep 001-002"
-      - "Reconcile = push my 065 work via merge-tree/commit-tree plumbing, never an in-place rebase, to protect concurrent-session dirty files"
+      - "Planning is complete and validated (125/125 strict); execution has not started"
+      - "Executor = cli-codex GPT-5.6-SOL xhigh fast primary, cli-opencode gpt-5.6-sol-fast fallback"
+      - "BASE pins against current HEAD (247 commits past the plan's 2026-07-16 reference)"
 ---
-# Session Handover Document
+# Session Handover — 036 Execution Start
 
-Continuation state for the 065 deep-loop-innovation implementation-planning program: the 17-phase tree is authored and normalized; the next frontier is executing the plan into the shipped runtime, one phase at a time on a pinned BASE.
+The 17-phase tree is authored, validated, repaired, censused, and on `origin/skilled/v4.0.0.0`. **The next
+frontier is EXECUTION: implementing the 178 recs into the shipped `system-deep-loop` runtime, one wave at a
+time, maximally parallel, on a pinned BASE.** Read `goal.md` (same folder) for the objective + success
+criteria; this doc is the operational how-to.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -43,13 +44,7 @@ Continuation state for the 065 deep-loop-innovation implementation-planning prog
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-**Use handover.md when:**
-- Ending a session with incomplete work that needs continuation
-- Context needs to be preserved for a future session (same or different agent)
-- Transitioning work between team members or AI sessions
-- Complex multi-session features requiring state preservation
-- Session compaction detected and recovery needed
-
+**Use this handover when:** starting execution of the 036 implementation program, or resuming it mid-wave.
 **Status values:** in_progress
 <!-- /ANCHOR:when-to-use -->
 
@@ -58,11 +53,11 @@ Continuation state for the 065 deep-loop-innovation implementation-planning prog
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
-- **From Session:** 2026-07-14 → 2026-07-16 (flatten program out of its `006` wrapper → author the 013 mode fan-out → normalize phase references packet-wide → reconcile + push to v4)
-- **To Session:** next fresh session — either close any authoring loose-ends or begin execution at phase 003
-- **Phase Completed:** PLANNING / AUTHORING layer — the 17-phase implementation-planning tree (001-017) is authored and phase-reference-normalized. The EXECUTION layer (implementing the 178 recs into the runtime) has **not** started; every implementation phase (003-017) is still `Planned` in the phase map.
-- **Handover Time:** 2026-07-16T04:15:00Z
-- **Recent action:** phase-reference normalization pushed to `origin/skilled/v4.0.0.0` as merge commit `0ce43ff589`
+- **From:** the authoring + census + repair sessions (2026-07-14 → 2026-07-20).
+- **To:** a fresh execution agent that will implement runtime code, wave by wave, in parallel.
+- **Phase Completed:** PLANNING + VALIDATION + REFERENCE-REPAIR + DRIFT-CENSUS. All on origin.
+- **Not started:** EXECUTION. Every phase 003-017 is `Planned`; 0 implementation-summaries exist; the shipped runtime is untouched by 036.
+- **Executor mandate (operator):** maximize parallelization via `cli-codex` GPT-5.6-SOL `xhigh` `fast`; `cli-opencode` `openai/gpt-5.6-sol-fast --variant xhigh` as fallback. Operator has authorized N-parallel dispatch.
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -70,69 +65,103 @@ Continuation state for the 065 deep-loop-innovation implementation-planning prog
 <!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
-### 2.1 Key Decisions Made
-| Decision | Rationale | Impact |
-| -------- | --------- | ------ |
-| The implementation program IS the 065 packet; flatten it out of the old `006` wrapper to the packet root | The wrapper added a redundant coordinate level; the packet already scopes the program | `537ab78671` moved every implementation phase to `065/003-017`; research stays `001-002` |
-| Renumber the flattened program +3: old `000-014` → new `003-017` | The two research phases occupy `001-002`, so the implementation program starts at `003` | Every padded program-phase reference had to shift by three across the tree |
-| Strip parenthetical coordinate labels (e.g. `(006 phase 000)`) from titles/prose | The folder path already encodes the coordinate; the label is pure noise and, post-flatten, wrong | 419 md files cleaned; folder path is the single source of the coordinate |
-| Normalize only PADDED `phase-0NN` refs; leave non-padded `phase-1` alone | Padded = program-phase references; non-padded = a leaf's local plan stage (`## Phase 1: Setup`, `ANCHOR:phase-1`) | `scratch/normalize-phase-refs.cjs` encodes the distinction; local stages untouched |
-| Push the 065 normalization via `merge-tree` + `commit-tree` plumbing, not an in-place rebase | The shared tree holds 243 concurrent-session uncommitted deletions that an autostash rebase would disturb | Working tree left 100% untouched; only my 666 065 files landed on the remote |
+### 2.1 The architecture (read `goal.md` §1 for the full spine)
+ONE cross-mode spine: typed append-only event ledger + fail-closed transition-authorization gateway + sealed
+artifacts + replay fingerprints + receipts/certificates + blinded adjudication. Landed additive-dark → shadow
+parity → per-mode cutover → legacy retirement. **No big-bang swap.**
 
-### 2.2 Blockers Encountered
-**Blockers:** none open.
+### 2.2 The execution model: waves + write-set conflict graph
 
-| Blocker | Status | Resolution/Workaround |
-| ------- | ------ | --------------------- |
-| Non-fast-forward push (ahead 2 / behind 3) with an apparent 065 overlap from remote | resolved | The overlap was illusory — `git diff HEAD..FETCH_HEAD` showed my own commit inverted; `git show e7827caf23 --stat` proved 0 065 files touched. My `fcade` is disjoint from all incoming |
-| 243 of 255 dirty files collide with the incoming `5838` track-deletion | resolved (avoided) | They are status `D` (a concurrent session already deleting the same track) — aligned, not conflicting; plumbing push sidesteps them entirely |
-| My local `0986910746` (068) duplicates remote `d2d04908af` | resolved | Trees are byte-identical; the plumbing merge drops it as already-applied |
+The DAG (`goal.md` §3, `execution-sequencing-strategy.md`) defines **wave boundaries**; within a wave, leaves
+that touch disjoint write-sets run **in parallel**. Rules:
 
-### 2.3 Files Modified
-**Key files:** `spec.md`, `execution-sequencing-strategy.md`, `013-mode-and-lane-migrations/**`, `scratch/normalize-phase-refs.cjs`
+- **Critical path is serial:** `003 → 004 → 006 → 007 → 008 → 009 → 010 → 011 → 012 → 013 → 014 → 015 → 016 → 017`.
+- **005 runs parallel to 006/007** (dispatch-only, no canonical-persistence change).
+- **Inside 007** (7 service leaves — receipts, sealed-artifacts, adjudication, budgets, gauges, locks, continuity): largely independent → parallelize behind the 006 envelope contract.
+- **Inside 013** (8 modes × 7 leaves = 56): `004-deep-improvement-common` lands FIRST (owns evaluator/canary/promotion its 3 variants reuse); `002-deep-review` and `008-deep-alignment` are **fenced** (shared review-loop backbone); `001-deep-research` and `003-deep-ai-council` run concurrently. **012/004 emits the write-set conflict graph that is the AUTHORITY for what parallelizes in 013 — build 012 before fanning out 013.**
+- **Parallel isolation:** dispatch each concurrent leaf in its own `git worktree` off the pinned BASE, or single-writer-serial where the conflict graph shows a shared write-set. The serial-vs-satellite-worktree choice for 013 is decided in 012 once the graph is known (default: serial-single-writer + serial SOL verify).
 
-| File | Change Summary | Status |
-| ---- | -------------- | ------ |
-| `065/` packet root + all 17 children (paths + numbers) | Flattened the program out of the `006` wrapper to the packet root; renumbered old `000-014` → `003-017` | complete (`537ab78671`) |
-| `065/013-mode-and-lane-migrations/**` (modes 002-008) | Authored the per-mode fan-out: 56 leaves + 8 mode parents + top, all strict 0/0 | complete (`00acbb4668`) |
-| 419 md + 244 json across `065` | Stripped coordinate labels + shifted padded phase refs to the flattened scheme; description.json + graph-metadata.json regenerated for the 122 changed folders | complete (`fcade7e2cd`) |
-| `origin/skilled/v4.0.0.0` | The normalization landed on the remote as merge commit `0ce43ff589` (parents = remote tip + `fcade`) via plumbing | pushed |
-| `065/scratch/{normalize-phase-refs,detect-phase-mismatches,regen-changed-metadata,gen-010-worklist,author-swarm}.cjs` | Tooling for the fan-out + the normalization pass | complete (in `fcade7e2cd`) |
+### 2.3 Per-phase gate contract (every phase, before handoff)
+1. `validate.sh --strict` Errors 0 on the phase folder.
+2. A **blocking SOL verifier receipt** bound to the exact commit (SOL read-only review; the phase's `checklist.md` carries the contract).
+3. For substrate/mode phases: **shadow parity** vs the 003 BASE proven before anything consuming it runs.
+4. Artifacts keyed to BASE so non-regression is by ID + semantics, not count.
 
-### 2.4 Traps & Scar Tissue
-Carry only what the next reader cannot re-derive: where a trap bit, what triggers it, and whether the guard is load-bearing or defensive.
+### 2.4 Files Modified this session (all on origin)
+| File | Change | Status |
+| ---- | ------ | ------ |
+| `018-drift-census-and-plan-revalidation/**` | New drift-census phase: 2-model census, per-phase verdicts | on origin (`919e093196`) |
+| ~400 cross-phase refs across the tree | `065→036`, 006/007 service misattribution, leaf-index+3, kebab paths, ledger phase-ID space, manifest identity | on origin (`919e093196`) |
+| `003/spec.md` §6 + `018/research.md` §9 | 020 router-unification coupling record | on origin (`9b037b07c2`) |
+| `goal.md`, `handover.md` | This handover + the goal doc | pending commit |
 
-| Trap / blast site | Activation condition | Load-bearing or defensive? | How to avoid re-paying it |
-| ----------------- | -------------------- | -------------------------- | ------------------------- |
-| Shared working tree (concurrent 068 / 138 sessions) | `git add -A`, or any in-place rebase autostash over the 255 dirty files | load-bearing | Path-scope every commit to `065/` only; reconcile with `merge-tree`/`commit-tree` plumbing; never blanket `pkill` codex/opencode (shared OAuth) |
-| Padded vs non-padded phase refs | Re-running a blind `+3` shift over the whole tree | load-bearing | Only padded `phase-0NN` are program references; non-padded `phase-1` / `ANCHOR:phase-1` are local plan stages — `normalize-phase-refs.cjs` encodes this; leave local stages alone |
-| Metadata integrity fingerprint | Editing any doc without regenerating its `description.json` | load-bearing | Run `scratch/regen-changed-metadata.cjs` (scoped to git-changed folders, deepest-first) after content edits; hand-editing metadata fails `GENERATED_METADATA_INTEGRITY` |
-| Normalization regex on multi-line / capitalized refs | A single-pass label/shift regex that spans newlines or misses `Phase-NNN` | defensive | The dry-run-first pass caught three real bugs (multi-line label swallow, case-sensitivity, over-shift of already-flattened refs); keep the `detect-phase-mismatches.cjs` safety net |
-| Local branch left behind the remote | Assuming local `HEAD` == what's on v4 | defensive | Local `HEAD` is `fcade7e2cd` (pre-reconcile); the remote carries `0ce43ff589`; it fast-forwards on the next full pull once the concurrent track-deletion settles |
-| `pgrep -fl \| wc -l` on LUNA agents | Each `opencode run` argv carries a multi-line brief | defensive | Count with `pgrep -f <pat> \| wc -l` (one PID per line), not `-fl` |
+### 2.5 Traps & scar tissue (carry these — they bit this session)
+| Trap | Trigger | How to avoid re-paying it |
+| ---- | ------- | ------------------------- |
+| **Shared working tree gets reset by concurrent sessions** | any in-place rebase/checkout; trusting the working tree to persist | Land every commit via `git merge-tree`/`commit-tree` plumbing on `origin/skilled/v4.0.0.0` tip, path-scoped to `036/`; verify the built tree diff before commit; the working tree is disposable |
+| **`xargs -a` is unsupported on macOS (BSD)** | `xargs -a filelist git add` silently no-ops → empty commit | use `tr '\n' '\0' < list \| xargs -0` |
+| **Destructive stale-file overwrite** | committing a working-tree file that is an OLDER/truncated copy of origin's | run a gutting check (origin size vs local size) before staging any "edited" file; blob-hash compare, don't trust "modified" flags |
+| **`description.json` swallows `--level`** | re-running `generate-description.js` over an existing description merges and drops the level field | `rm -f description.json` first, then regenerate with `--level 2` |
+| **Metadata integrity fingerprint drift** | editing a doc without regenerating its `description.json` + `graph-metadata.json` | after content edits, run `generate-description.js --level N` + `backfill-graph-metadata.js` **deepest-first**, then `validate.sh --strict` |
+| **opencode fanout stalls at 0% CPU** | dispatched child inherits an enforced spec-gate | set `MK_SPEC_GATE_DISABLED=1 AI_SESSION_CHILD=1` and close stdin `</dev/null` (already wired in `fanout-run.cjs:1789`) |
+| **CONTINUITY_FRESHNESS race** | each metadata regen bumps the graph stamp past the continuity stamp | set all continuity `last_updated_at` to now in one pass, THEN regenerate metadata |
+| **codex effort flag** | `--reasoning-effort` does not exist | use `-c model_reasoning_effort="xhigh"`; `--search` is top-level (`codex --search exec …`) |
 <!-- /ANCHOR:context-transfer -->
 
 ---
 
 <!-- ANCHOR:next-session -->
-## 3. For Next Session
+## 3. For Next Session (the execution agent)
 
-### 3.1 Recommended Starting Point
-- **File:** `.opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md` (the PHASE MAP & OUTCOMES + Sequencing invariants)
-- **Next safe action:** run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation --strict --recursive` to establish current pass/fail across the authored tree, then decide authoring-closeout vs execution.
-- **Cold-read order** (reader who knows nothing): 1. this `handover.md` → 2. `spec.md` (phase map + sequencing invariants) → 3. `execution-sequencing-strategy.md` (wave order) → 4. `004-architecture-coverage-and-transition-contract/` (the one-architecture ADR + the 178-row rec ledger).
-- **Context:** distinguish the two layers. The planning docs are authored; the runtime is untouched. Execution begins at phase 003 on a **pinned BASE** and, unlike the research phases, WILL modify shipped `system-deep-loop` runtime code.
+### 3.1 Recommended starting point
+- **Cold-read order:** `goal.md` → this `handover.md` → `spec.md` (§PHASE MAP + sequencing invariants) → `execution-sequencing-strategy.md` → `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md` (the spine ADR) + `004/002-recommendation-ledger-bijective-map/` (the 178-row ledger).
+- **First safe action:** create an isolated worktree off `origin/skilled/v4.0.0.0` tip (`sk-git` lifecycle — ASK operator worktree-vs-branch first); pin that SHA as BASE in phase 003.
 
-### 3.2 Priority Tasks Remaining
-1. **Confirm authoring is closed.** Run the recursive strict validate above. The last full sweep this session was 124/124 PASSED (post-normalization), but the flatten + concurrent churn mean the resuming agent should re-establish ground truth rather than trust that number. Fix any nav-ref / PHASE_LINKS drift the flatten left between sorted-order siblings.
-2. **Refresh the parent phase map & continuity if authoring changed.** `spec.md`'s PHASE DOCUMENTATION MAP still lists 003-012 / 014-017 as `Planned` and 013 as `In Progress`; reconcile those states with reality, and regenerate root metadata via `scratch/regen-changed-metadata.cjs` if any doc changed.
-3. **Begin execution at phase 003** (`003-baseline-taxonomy-and-state-census`): pin the immutable BASE, normalize the taxonomy, and census the runtime subsystems + state + schema + behavior baselines. Everything later is proven against this. Honor the sequencing invariants in `spec.md` §PHASE MAP (additive-dark; authorization co-lands with the first writer; no big-bang swap).
+### 3.2 Priority order (do NOT start at 013)
+1. **Pin BASE (003).** Against current HEAD (247 commits past the plan's reference). Record 020's three shipped commits + all kebab renames as pre-existing baseline (see `003/spec.md` §6). Normalize the 5/7/8 taxonomy from the live `mode-registry.json`. Extend the behavior benchmarks.
+2. **Run 004/002 (the 178-row bijective ledger + triage) STANDALONE, FIRST, with authority to defer/reject.** This is the single lever that right-sizes the program — expect 178 to fall well below 100. Freeze the transition vocabulary + event namespace + schema-version policy here, before any writer exists.
+3. **Ship 005 early** (18 tasks, off critical path, backward-compatible live-tools unblock — the operator's most-requested capability). It validates the whole execution+dispatch model on a small leaf.
+4. Then the critical path in waves: 006 (ledger core + gateway, DARK) → 007 (7 parallel service leaves) → 008 (adapters + shadow parity + rollback) → 009 → 010 → 011 → **012 (emit the write-set conflict graph)** → 013 (parallel per the graph) → 014 → 015 → 016 → 017.
 
-### 3.3 Critical Context to Load
-- [ ] Indexed save or continuity target: `_memory.continuity` in this handover + the root `spec.md`; run `generate-context.js` for an indexed save when execution starts.
-- [ ] Spec file: `spec.md` (§PHASE MAP & OUTCOMES, §Sequencing invariants, §Success Criteria, §Risks)
-- [ ] Strategy file: `execution-sequencing-strategy.md` (the wave/ordering plan for the whole program)
-- [ ] Architecture + rec ledger: `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md` (the spine ADR) and `002-recommendation-ledger-bijective-map/` (the bijective 178-row classified ledger). Note: 004 is a phase parent under the lean-trio policy, so it carries no decision-record.md of its own.
+### 3.3 The dispatch pattern (parallel implementation)
+
+**Primary — cli-codex GPT-5.6-SOL xhigh fast (implementation, workspace-write):**
+```bash
+AI_SESSION_CHILD=1 codex exec \
+  --model gpt-5.6-sol -c model_reasoning_effort="xhigh" -c service_tier="fast" \
+  -c approval_policy=never --sandbox workspace-write \
+  "<leaf brief: GATE-3 PRE-RESOLVED spec folder <path>; implement <leaf> per its plan.md/tasks.md; \
+   additive-dark; touch only <write-set from 012 graph>; run validate.sh --strict; emit evidence>" \
+  > "$LOG" 2>&1 </dev/null &
+CODEX_PID=$!   # capture PID; SIGKILL by captured PID when the leaf returns (never blanket pkill)
+```
+
+**Blocking SOL verifier (read-only, per phase — the gate receipt):**
+```bash
+codex exec --model gpt-5.6-sol -c model_reasoning_effort="xhigh" -c service_tier="fast" \
+  -c approval_policy=never --sandbox read-only \
+  "Verify <phase> against its checklist.md; confirm additive-dark held, shadow parity green, \
+   validate.sh --strict Errors 0; return PASS/FAIL + evidence" > "$RECEIPT" 2>&1 </dev/null
+```
+
+**Fallback — cli-opencode gpt-5.6-sol-fast (when codex rate-limits / auth fails):**
+```bash
+MK_SPEC_GATE_DISABLED=1 AI_SESSION_CHILD=1 opencode run \
+  --model openai/gpt-5.6-sol-fast --variant xhigh --format json --dir <REPO_ROOT> \
+  "<same brief>" </dev/null
+```
+
+**Parallelization rules:**
+- Operator has authorized N-parallel; run all leaves of a wave whose write-sets are disjoint (per 012's graph) concurrently, each in its own worktree.
+- Capture each dispatch PID at launch; SIGKILL only that PID + its orphan children when it returns; **never** `pkill -9 -f "codex exec"` (kills the operator's sessions too).
+- Pre-flight once per session: `command -v codex`; `codex login status`. If not logged in, ASK the operator — never substitute a model.
+- Each leaf brief must carry `GATE-3 PRE-RESOLVED: <spec folder>` (the child can't answer Gate 3 non-interactively).
+
+### 3.4 Critical context to load
+- [ ] `goal.md` — objective, six problems, success criteria, wave order.
+- [ ] `018-drift-census-and-plan-revalidation/research/research.md` — per-phase drift verdicts (003/012/013 need refinement) + §9 the 020 coupling.
+- [ ] `004/002-recommendation-ledger-bijective-map/` — the 178-row triage that gates 005-007.
+- [ ] `012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/` — the 013 parallel-safety authority.
 <!-- /ANCHOR:next-session -->
 
 ---
@@ -140,12 +169,12 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 <!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
-Before handover, verify:
-- [x] All in-progress work committed and pushed (013 fan-out `00acbb4668`; normalization `fcade7e2cd` → remote `0ce43ff589`); nothing of mine left uncommitted
-- [x] Current context saved via this handover + root `spec.md` continuity block
-- [x] No breaking changes left mid-implementation (authoring-only session; the shipped runtime was not touched)
-- [x] Tests / gates passing (post-normalization sweep 124/124 folders PASSED this session; re-run recursive strict to re-confirm)
-- [x] This handover document is complete
+Before this handover is trusted, verify:
+- [x] Planning tree validates 125/125 `--strict` (errors 0 warnings 0)
+- [x] Census + repairs + 020 coupling all on `origin/skilled/v4.0.0.0`
+- [x] Execution has not started (0 implementation-summaries in 003-017)
+- [x] Executor policy + dispatch commands recorded (§3.3)
+- [x] Traps & scar tissue captured (§2.5)
 <!-- /ANCHOR:validation-checklist -->
 
 ---
@@ -153,35 +182,9 @@ Before handover, verify:
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
-- **The +3 flatten mapping (load-bearing):** old program phases `000-014` → new `003-017`; research phases keep `001-002`. Any reference reasoning must apply this map. `scratch/normalize-phase-refs.cjs` has the exact `SHIFT` table and the `PROTECT` guards that stop an already-flattened ref from shifting twice.
-- **The 013 fractal is complete across all 8 modes.** Mode-001 was authored earlier (under the pre-flatten numbering); this session authored modes 002-008. The subtree is 56 leaves + 8 mode parents + top, scoped-swept 65/65 PASSED.
-- **Executor policy (operator directive, still in force):** force opencode / LUNA — `opencode run --model openai/gpt-5.6-luna-fast --variant xhigh --format json --dir <ROOT> "<brief>"` with closed stdin (separate paid-API credential, avoids the shared-OAuth kill risk). Switch back to cli-codex-first only when the operator says codex recovered.
-- **Comment-hygiene HARD BLOCK:** never embed spec paths / packet-phase-task ids in CODE comments — write the durable WHY. This is a code-comment rule only; spec docs (like this one) reference phase numbers and commit SHAs freely.
-- **Reconcile pattern for this shared branch:** when a push is rejected, first prove overlap with `git show <sha> --stat`, not `git diff HEAD..FETCH_HEAD` (which conflates your own local commits). If your work is disjoint, build the rebased result with `git merge-tree --write-tree <remote> <mine>` + `git commit-tree` and push that — it never touches the working tree, so concurrent sessions' dirty files are safe.
-- **Two Artifacts were published earlier in the program** (a 67-rec convergence view and a 111-per-mode view) from the research phases; they are external HTML deliverables, not tracked files.
+- **Do NOT start at 013.** It is 54% of the program and its extent should shrink after 012's cross-mode closures hoist shared logic and after 004/002's triage defers low-value recs. Build the spine first; re-decide 013's full scope at 012.
+- **Additive-dark is the one rule that drives everything.** No commit in this program may leave the running system unable to execute an in-flight loop. The ledger records in parallel but is never authoritative until its mode's cutover (014). Legacy writers die last (015), only after zero-use telemetry.
+- **The gateway is fail-closed but lands dark:** it rejects *unauthorized transitions among typed events it records*, while legacy remains the serving authority — it is not a second authority over the live loop until cutover.
+- **Shared-branch discipline:** plumbing commits on origin tip, path-scoped to `036/`; never blanket-`pkill` codex/opencode (shared OAuth); expect concurrent sessions to reset the working tree.
+- **020 router-unification coupling is live** (`003/spec.md` §6, `018/research.md` §9): do not interleave 020's compiled-router live-activation with 036's 013/014 cutover unannounced; 017's re-census is the catch-net.
 <!-- /ANCHOR:session-notes -->
-
----
-
-<!-- ANCHOR:template-instructions -->
-## TEMPLATE INSTRUCTIONS
-
-**How to use this template:**
-1. Fill in all placeholders with actual values
-2. Complete all validation checklist items before handover
-3. Ensure memory file is saved with current context
-4. Prioritize tasks clearly for next session
-5. Remove placeholder text after filling in content
-
-**Common mistakes to avoid:**
-- Handover without saving memory context
-- Incomplete validation checklist
-- Vague task descriptions that lose context
-- Missing file references or line numbers
-
-**Related templates:**
-- Use with `/memory:save` so the main agent can capture end-of-session continuity
-- Reference `handover.md`, `_memory.continuity` in `implementation-summary.md`, and canonical spec docs for context recovery
-- Link to spec.md, plan.md, and tasks.md for complete picture
-- Run `generate-context.js` before handover when the session also needs an indexed save
-<!-- /ANCHOR:template-instructions -->
