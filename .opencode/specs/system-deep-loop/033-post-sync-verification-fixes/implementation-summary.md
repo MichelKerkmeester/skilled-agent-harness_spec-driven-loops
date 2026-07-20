@@ -118,3 +118,11 @@ Each of the 5 failures was root-caused against real source/registry files before
 <!-- /ANCHOR:limitations -->
 
 ---
+
+## Amendment (2026-07-20): deep-review state-append robustness
+
+While verifying an unrelated router cutover with `/deep:review`, the loop halted at `step_post_iteration_claim_adjudication`: the orchestrator fulfilled the `append_jsonl` directive with an edit/patch tool that had to context-match the multi-KB single-line iteration record, and the match failed (the file-protection gate then halted the run). Two independent runs halted at the identical step — a deterministic shared-workflow defect, distinct from this packet's original five test fixes but the same "real defect surfaced by verification" theme.
+
+**Fix:** `append-state-record.cjs` — a deterministic stdin→append helper that validates the record as JSON and appends a single line via `fs.appendFileSync` (no patch anchoring) — plus converting the three crash-path `append_jsonl` directives in `deep-review-auto.yaml` (the iteration-error record and the claim-adjudication pass/fail events) to heredoc `command:` invocations of the helper. The helper is unit-tested (it appends a small record after a 3944-char giant line and rejects invalid JSON); the YAML still parses; a full 10-iteration `/deep:review` re-run validates the end-to-end path.
+
+---

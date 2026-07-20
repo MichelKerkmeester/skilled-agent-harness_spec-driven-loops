@@ -84,6 +84,15 @@ Root-cause and fix each of the 5 failures individually rather than papering over
 | `.opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs` | Create | Wire the skill's `.vitest.ts` suite into a real, checked-in config |
 | `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Modify | Carry `execution_provenance` through into persisted `completed` progress records |
 
+### Amendment (2026-07-20): deep-review state-append robustness
+
+Same theme — a real defect surfaced by verification. While verifying an unrelated router cutover with `/deep:review`, the loop halted at the post-iteration `claim_adjudication` step: the orchestrator fulfils the `append_jsonl` directive with an edit/patch tool that must context-match the multi-KB single-line iteration record, and the match reliably fails (the file-protection gate then halts the run). Two independent runs halted at the identical step. Fix: a deterministic stdin→append helper, plus converting the three crash-path `append_jsonl` directives to heredoc `command:` invocations of it, so state-log appends never route through a context-matched patch.
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs` | Create | Deterministic stdin→append helper: reads one record, validates it as JSON, appends a single line — no patch anchoring |
+| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Modify | Convert the three post-iteration `append_jsonl` steps (the iteration-error record and the claim-adjudication pass/fail events) to heredoc `command:` calls of the helper |
+
 <!-- /ANCHOR:scope -->
 ---
 
