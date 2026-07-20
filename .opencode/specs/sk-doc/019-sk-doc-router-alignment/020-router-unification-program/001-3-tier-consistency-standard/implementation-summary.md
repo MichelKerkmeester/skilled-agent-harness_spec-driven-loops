@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/001-3-tier-consistency-standard"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), each SOL-agent output independently verified honest; all committed + pushed to v4"
-    next_safe_action: "REQ-001 (de-skill-specific the shared harness) + REQ-002 full shape convergence, then REQ-006 fleet verification (mutation + blind holdout + live-mode)"
+    recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), pushed to v4"
+    next_safe_action: "REQ-001 harness de-skill-specific + REQ-002 convergence, then REQ-006 fleet verification"
     blockers: []
     key_files:
       - "spec.md"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-router-unification-program/001-3-tier-consistency-standard |
+| **Spec Folder** | 001-3-tier-consistency-standard |
 | **Milestone** | Route-gold gate full-fix (a slice of the packet; Phases per REQ-001/002-full/006/007 remain) |
 | **Completed** | Route-gold slice: DONE. Packet overall: ~45%. |
 | **Level** | 3 |

@@ -21,6 +21,22 @@ Apply the `defaultMode` recommendations synthesized in the sibling research pack
 
 ---
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete — 4 hubs flipped, sk-design over-emission fixed, defer-routed archetype added; route-gold held all baselines |
+| **Created** | 2026-07-17 |
+| **Track** | sk-doc |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment/020-router-unification-program` |
+| **Executor** | GPT-5.6-SOL high fast (independently verified) |
+<!-- /ANCHOR:metadata -->
+
+---
+
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
@@ -67,12 +83,42 @@ Route-gold baselines (must hold after): sdl 20/20, mcp 13/13, cli 7/7, sk-design
 | REQ-2 | sk-design `hub-identity` removed from all 6 modes' classes | router-replay on a hub-generic prompt no longer co-fires all 6 modes |
 | REQ-3 | No route-gold regression | each hub holds its baseline verdict/counts |
 | REQ-4 | Reversible + config-only | no shared-machinery edits; original values recorded |
+| REQ-5 | Canon gains a defer-routed archetype | create-skill `parent_hub_router_schema` documents null-default defer-routed hubs |
 <!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 - **SC-1**: All four hubs at `defaultMode: null` with the routing-helper fallback; sk-prompt unchanged.
 - **SC-2**: sk-design over-emission fixed (verified via router-replay).
 - **SC-3**: Route-gold green fleet-wide, no regression.
 - **SC-4**: Every change reversible from the recorded originals.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| A null flip raises disambiguation friction on a hub whose default was genuinely dominant | Low | Medium | Config-only + reversible from the recorded originals; gated on route-gold |
+| Removing `hub-identity` from sk-design modes under-emits on a real hub-identity prompt | Low | Medium | Class kept as discovery-only; router-replay confirms defer, not silence |
+
+### Dependencies
+
+| Dependency | Status |
+|------------|--------|
+| 021 defaultMode research (keep-1/flip-4 recs) | Vetted; drives this packet |
+| Route-gold baselines (sdl 20/20, mcp 13/13, cli 7/7, sk-design 0/0) | Green; gate for every change |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- `defaultApplied` dual-write telemetry lives in the shared scorer (off-limits) — the constraint conflict is unresolved and needs an operator decision.
+- Live measurement (a sol-ultra 2x4 keep-vs-null benchmark) would turn the directional confidence into measured — not yet run.
+<!-- /ANCHOR:questions -->
