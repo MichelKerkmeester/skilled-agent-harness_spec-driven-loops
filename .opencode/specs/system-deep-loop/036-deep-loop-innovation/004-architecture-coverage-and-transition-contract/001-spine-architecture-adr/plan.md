@@ -12,11 +12,13 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
     last_updated_at: "2026-07-15T18:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Planned the spine decision rationale, alternatives, and consequences"
-    next_safe_action: "Run the ratification checklist against all six primitives"
+    recent_action: "Ratified the planned spine decision and closed its evidence gates"
+    next_safe_action: "Use the accepted decision as the contract for phases 006, 007, and 008"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "decision-record.md"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,15 +48,15 @@ phases 006, 007, and 008 consume without independently choosing persistence, aut
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 036 parent `spec.md` architecture, sequencing invariants, and success criteria are treated as controlling program context
-- [ ] `manifest/phase-tree.json` architecture and migration-model fields are quoted accurately in the decision rationale
-- [ ] Run-2 `research/research-modes.md` section 12 is traced to its five recurring mode primitives
-- [ ] The authorization gateway is identified as the parent-program addition that completes the six-part runtime spine
-- [ ] The phase remains decision-only and does not absorb implementation details from phases 006-008
+- [x] The 036 parent `spec.md` architecture, sequencing invariants, and success criteria are treated as controlling program context [File: decision-record.md]
+- [x] `manifest/phase-tree.json` architecture and migration-model fields are quoted accurately in the decision rationale [File: decision-record.md]
+- [x] Run-2 `research/research-modes.md` section 12 is traced to its five recurring mode primitives [File: decision-record.md]
+- [x] The authorization gateway is identified as the parent-program addition that completes the six-part runtime spine [File: decision-record.md]
+- [x] The phase remains decision-only and does not absorb implementation details from phases 006-008 [File: decision-record.md]
 
 ### Definition of Done
-- [ ] The decision, primitive matrix, rejected alternatives, consequences, and consumer ownership are ratified as one coherent contract
-- [ ] Every P0 and P1 ratification check in `checklist.md` is satisfied with evidence
+- [x] The decision, primitive matrix, rejected alternatives, consequences, and consumer ownership are ratified as one coherent contract [File: decision-record.md]
+- [x] Every P0 and P1 ratification check in `checklist.md` is satisfied with evidence [File: checklist.md]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -144,7 +146,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 - Verify all six primitives appear in the decision, requirements, task set, and ratification checklist.
 - Verify default-deny behavior and additive-dark sequencing cannot be read as optional.
 - Verify no alternative recreates per-mode authority, mutable truth, unversioned replay, or self-scoring.
-- Run strict spec-kit validation and accept only the expected missing generated-metadata errors.
+- Run strict spec-kit validation and require Errors: 0 and Warnings: 0.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

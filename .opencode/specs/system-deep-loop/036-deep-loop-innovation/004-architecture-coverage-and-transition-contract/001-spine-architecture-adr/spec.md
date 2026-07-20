@@ -13,11 +13,13 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
     last_updated_at: "2026-07-15T18:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined the planned ADR scope and six-primitive ratification contract"
-    next_safe_action: "Ratify the spine before phase 006 introduces any typed writer"
+    recent_action: "Ratified the six-primitive spine as the binding architecture contract"
+    next_safe_action: "Apply the accepted decision in phases 006, 007, and 008"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "decision-record.md"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-004 architecture, coverage, and transition-contract parent |

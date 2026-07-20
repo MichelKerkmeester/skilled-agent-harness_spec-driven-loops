@@ -19,7 +19,10 @@
       "spine architecture ADR tasks",
       "cross-mode spine ratification tasks",
       "spine architecture ADR checklist",
-      "cross-mode spine ratification checklist"
+      "cross-mode spine ratification checklist",
+      "six-primitive cross-mode spine decision",
+      "deep-loop spine architecture ADR",
+      "transition-authorized ledger architecture"
     ],
     "key_topics": [
       "spine",
@@ -36,17 +39,43 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md",
       "checklist.md",
+      "spec.md",
+      "plan.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -69,18 +98,6 @@
         "name": "research-modes.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,20 +173,20 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "failure-specific",
-        "kind": "key_phrase",
+        "name": "Consumer Contract",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "raw",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -178,37 +195,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
     "created_at": "2026-07-16T03:43:44.661Z",
-    "last_save_at": "2026-07-19T18:01:19.296Z",
+    "last_save_at": "2026-07-20T19:03:35.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28f2f390fe9a0b0fd3a70704cb2cc93537e4d71aaf713a0429539a680f562d14",
+    "source_fingerprint": "sha256:b19466ce24853fc4a1833d672f455cf69b889211c1c7eba79a90312a21af5fc8",
     "source_doc_hashes": {
-      "spec.md": "d84a8dd9c89d00acc5b7b8ebe4c069b152dda39a176266ecf4b7a624b5af1749",
-      "plan.md": "6393194cf910bc7061565fbc9fe647f9037279bf8141c878d268ae6d0c05fc61",
-      "tasks.md": "03a7d8df6d2d7bb6f16ef4eefb6ec16eba7ecd427173a047095d327552e7dd34",
-      "checklist.md": "d3c995a54c5fc3b2d754f63450f8793793b9cc7feceee48e36db8a2397aa8f9e"
+      "spec.md": "b1426992a24485e4fb5fdd1caed0e8981b2cb64c618d7addd3302d2e9d9c82c3",
+      "plan.md": "6015c4404eea42dc9218d528225e9585c36125a4d8f47d4fe986d06e3571fbe4",
+      "tasks.md": "7be0151dc9557126b7b8d0bbea96f512c5cc4268cf296d22c210f99d3a402c57",
+      "checklist.md": "d5b72e0806d5870a33d40ea5b2e82c33406fd096a90e626a1398bdffbd0361f2",
+      "decision-record.md": "d7e07a7c9b2b856310f4330e8e0acaffd1c55943e2393f069922c09423498e55",
+      "implementation-summary.md": "d73eab3cb20bba1f9dc6bf4e3a690e8ae79f550a1b010dfda234bf0d188eed0a"
     },
     "last_active_child_id": null,
     "last_active_at": null
