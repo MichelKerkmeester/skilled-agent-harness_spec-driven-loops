@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
-  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
-  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "packet_id": "system-speckit/029-spec-root-resolution-hardening/004-reader-normalization",
+  "spec_folder": "system-speckit/029-spec-root-resolution-hardening/004-reader-normalization",
+  "parent_id": "system-speckit/029-spec-root-resolution-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,63 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "writer canonicalization",
-      "session-stop autosave canonical",
-      "create.sh canonical",
-      "writer canonicalization plan",
-      "collision rejection plan",
-      "writer canonicalization tasks",
-      "create.sh canonical tasks"
+      "reader normalization",
+      "canonical-first readers",
+      "legacy read fallback",
+      "reader normalization plan",
+      "canonical-first readers plan",
+      "reader normalization tasks",
+      "compatibility window tasks"
     ],
     "key_topics": [
-      "writer",
-      "canonicalization",
-      "session-stop",
-      "autosave",
-      "canonical",
+      "reader",
+      "normalization",
+      "canonical-first",
+      "readers",
+      "legacy",
+      "read",
+      "fallback",
       "plan",
-      "collision",
-      "rejection",
       "tasks",
-      "automatic",
-      "writers",
-      "resolve"
+      "compatibility",
+      "window",
+      "shared"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec/create.sh",
-      "mcp_server/hooks/claude/session-stop.ts",
-      "scripts/memory/generate-context.ts",
-      "scripts/core/workflow.ts",
-      "scripts/spec/create.sh",
+      "scripts/core/config.ts",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.ts",
+        "name": "config.ts",
         "kind": "code",
-        "path": "mcp_server/hooks/claude/session-stop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
+        "path": "scripts/core/config.ts",
         "source": "derived"
       },
       {
@@ -95,7 +73,7 @@
         "source": "derived"
       },
       {
-        "name": "Writer Canonicalization",
+        "name": "Reader Normalization",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,7 +97,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Purpose Switch",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -137,13 +115,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Canonicalize",
+        "name": "Overview With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Each",
+        "name": "Pattern Canonical",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,15 +157,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "read-only",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh (which re-resolves the original argument and can silently skip), and `spec/create.sh` untracked (`mkdir -p specs/`)",
-    "created_at": "2026-07-17T11:01:02.467Z",
-    "last_save_at": "2026-07-17T11:01:02.467Z",
+    "causal_summary": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP discovery, resume/authored continuity, API indexing, spec affinity, memory-quality validation) resolve with mixed precedence",
+    "created_at": "2026-07-17T11:01:02.723Z",
+    "last_save_at": "2026-07-20T13:58:05.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,11 +173,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:50a752702e06c3c999cd27304ef9b0bdf5d698cb7f2aa146c9b901ecb3234902",
+    "source_fingerprint": "sha256:f79c9d1dff81fd937bf56dc86f5d11a3c5b91a98f62db7b7f768d70e84014505",
     "source_doc_hashes": {
-      "spec.md": "026bab2c9d7f18d9ad337a5853dd4beb9f403eabf543f161bb7bde1171a8f858",
-      "plan.md": "e066f3609083b4808e3bf4096a0a8608c345bcb4a7efce8766a5b4ca38c72da7",
-      "tasks.md": "43af64de9c10aba9c0297a697773d50b6aab98bd27e77f9e8668b9d7904e37c9"
+      "spec.md": "01b292344e19aa3f3b2c6e645e91b0ef10eaea80388d58841817690d24bad808",
+      "plan.md": "e2b13fbc0b96fe75a1862cf0cfe3df0a01af29e61e89063674fbf7c8b8092a13",
+      "tasks.md": "82f42faa8f3fa05b867ddc23be5bbc222839c2237d0c13f0abb681089b42a00d"
     },
     "last_active_child_id": null,
     "last_active_at": null

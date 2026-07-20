@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/029-rust-backend-rewrite-research/001-research",
+  "specFolder": "system-speckit/030-rust-backend-rewrite-research/001-research",
   "description": "A Rust rewrite is attractive on paper (SIMD, no GC, single-binary distribution, fearless concurrency) but the honest picture is nuanced: the backend's",
   "keywords": [
     "rust",
@@ -17,12 +17,12 @@
     "nuanced",
     "backend"
   ],
-  "lastUpdated": "2026-07-17T17:01:47.828Z",
+  "lastUpdated": "2026-07-20T14:10:34.139Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
     "system-speckit",
-    "029-rust-backend-rewrite-research"
+    "030-rust-backend-rewrite-research"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

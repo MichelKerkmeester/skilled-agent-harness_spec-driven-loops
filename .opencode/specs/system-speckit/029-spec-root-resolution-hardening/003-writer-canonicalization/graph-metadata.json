@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
-  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
-  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "packet_id": "system-speckit/029-spec-root-resolution-hardening/003-writer-canonicalization",
+  "spec_folder": "system-speckit/029-spec-root-resolution-hardening/003-writer-canonicalization",
+  "parent_id": "system-speckit/029-spec-root-resolution-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,36 +11,58 @@
   },
   "derived": {
     "trigger_phrases": [
-      "symlink retirement",
-      "no-alias validation",
-      "root resolution validation matrix",
-      "symlink retirement plan",
-      "validation matrix plan",
-      "symlink retirement tasks",
-      "validation matrix tasks"
+      "writer canonicalization",
+      "session-stop autosave canonical",
+      "create.sh canonical",
+      "writer canonicalization plan",
+      "collision rejection plan",
+      "writer canonicalization tasks",
+      "create.sh canonical tasks"
     ],
     "key_topics": [
-      "symlink",
-      "retirement",
-      "no-alias",
-      "validation",
-      "root",
-      "resolution",
-      "matrix",
+      "writer",
+      "canonicalization",
+      "session-stop",
+      "autosave",
+      "canonical",
       "plan",
+      "collision",
+      "rejection",
       "tasks",
-      "specs",
-      "alias",
-      "already"
+      "automatic",
+      "writers",
+      "resolve"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec/create.sh",
+      "scripts/memory/generate-context.ts",
+      "scripts/core/workflow.ts",
+      "scripts/spec/create.sh",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,7 +88,7 @@
         "source": "derived"
       },
       {
-        "name": "Symlink Retirement",
+        "name": "Writer Canonicalization",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -90,7 +112,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Prove",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,19 +130,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Terminal",
+        "name": "Overview Canonicalize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Core Implementation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -150,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The `specs` alias was already deleted in the working tree ahead of plan",
-    "created_at": "2026-07-17T11:01:02.966Z",
-    "last_save_at": "2026-07-17T11:01:02.966Z",
+    "causal_summary": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh (which re-resolves the original argument and can silently skip), and `spec/create.sh` untracked (`mkdir -p specs/`)",
+    "created_at": "2026-07-17T11:01:02.467Z",
+    "last_save_at": "2026-07-20T13:58:05.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,11 +188,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:b0150320b8e1fee21e8250753838ff2d4985ea2680d7de05d4d1f2b7f6d3f373",
+    "source_fingerprint": "sha256:50a752702e06c3c999cd27304ef9b0bdf5d698cb7f2aa146c9b901ecb3234902",
     "source_doc_hashes": {
-      "spec.md": "b5e165c6b561d8fa137a91766f96ba494b97cfb0145a58732f03b59a9d3b334f",
-      "plan.md": "f26a7046c25d82f3f6f73202bfad86dc3857ecc553f908028c683bd604305f7e",
-      "tasks.md": "698bdc75bfadb53f3349efc78bc5133cb194858446222cfe93e95c9ba4e11fc2"
+      "spec.md": "026bab2c9d7f18d9ad337a5853dd4beb9f403eabf543f161bb7bde1171a8f858",
+      "plan.md": "e066f3609083b4808e3bf4096a0a8608c345bcb4a7efce8766a5b4ca38c72da7",
+      "tasks.md": "43af64de9c10aba9c0297a697773d50b6aab98bd27e77f9e8668b9d7904e37c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -45813,7 +45813,7 @@
       "lastUpdated": "2026-07-18T03:48:59.824Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening",
       "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
       "keywords": [
         "spec-root",
@@ -45832,7 +45832,7 @@
       "lastUpdated": "2026-07-18T03:48:59.831Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
       "description": "Root resolution is implemented ~20 times with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no",
       "keywords": [
         "root",
@@ -45850,7 +45850,7 @@
       "lastUpdated": "2026-07-18T03:48:59.825Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening/002-data-canonicalization",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening/002-data-canonicalization",
       "description": "Before writers change, packet data itself must be canonicalized",
       "keywords": [
         "writers",
@@ -45864,7 +45864,7 @@
       "lastUpdated": "2026-07-18T03:48:59.826Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening/003-writer-canonicalization",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening/003-writer-canonicalization",
       "description": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh",
       "keywords": [
         "automatic",
@@ -45884,7 +45884,7 @@
       "lastUpdated": "2026-07-18T03:48:59.826Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening/004-reader-normalization",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening/004-reader-normalization",
       "description": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP",
       "keywords": [
         "shared",
@@ -45903,7 +45903,7 @@
       "lastUpdated": "2026-07-18T03:48:59.827Z"
     },
     {
-      "specFolder": "system-speckit/042-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+      "specFolder": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
       "description": "The `specs` alias was already deleted in the working tree ahead of plan",
       "keywords": [
         "specs",

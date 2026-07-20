@@ -11,10 +11,10 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/029-rust-backend-rewrite-research"
+    packet_pointer: "system-speckit/030-rust-backend-rewrite-research"
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase parent and the 001-research charter for a pre-planned 20-round deep-research pass on a Rust backend rewrite"
+    recent_action: "Authored phase parent + 001-research charter for a 20-round Rust-rewrite deep-research pass"
     next_safe_action: "Human review of the 20-round charter; then launch 001-research/research via /deep:research"
     blockers: []
     key_files:
@@ -24,7 +24,7 @@ _memory:
       - "001-research/research/deep-research-strategy.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-11-029-rust-backend-rewrite-research-parent"
+      session_id: "2026-07-11-030-rust-backend-rewrite-research-parent"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
