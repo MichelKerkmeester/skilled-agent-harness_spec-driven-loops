@@ -19,7 +19,10 @@
       "fan-out live-tools tasks",
       "fanout search adapter tasks",
       "fan-out live-tools checklist",
-      "fanout live search verification"
+      "fanout live search verification",
+      "fan-out live-tools implementation",
+      "fanout live search shipped",
+      "fanout manifest compiler complete"
     ],
     "key_topics": [
       "fan-out",
@@ -36,35 +39,18 @@
       "adapter"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs"
     ],
     "entities": [
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-prototype.cjs",
-        "kind": "file",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,6 +73,30 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
         "source": "derived"
       },
       {
@@ -138,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "Shape Diff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -150,13 +166,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "How It Was Delivered",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -168,20 +184,8 @@
         "source": "derived"
       },
       {
-        "name": "top-level",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "live-search",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "Exact Commands",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -194,21 +198,23 @@
     ],
     "causal_summary": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor capability matrix, per-kind command adapters with invocation fingerprints, and models-by-branches-by-replicas manifest expansion. The phase changes dispatch only and preserves every canonical persisted state and event shape.",
     "created_at": "2026-07-16T03:43:58.400Z",
-    "last_save_at": "2026-07-19T18:10:00.829Z",
+    "last_save_at": "2026-07-20T19:55:37.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:589763ad5c86da218877bcf47628efbdc604aa758fc33184acf56d46e3354106",
+    "source_fingerprint": "sha256:729ad0cbc292651daf0c1b1b9a0e25a77bbfc0afdb24960579ee5c21a8d87ffa",
     "source_doc_hashes": {
-      "spec.md": "f3755f32cd4f444c6d08827bcf9e3cdcd7480d9b3fb44d6968d200e9c71e5ec7",
-      "plan.md": "2ac5756dc816a7e946b5156794fc0a034c8ef7a17d6912a882f626487a16b428",
-      "tasks.md": "68a9504817f295210cdd07ae54c556d00eec95adfad06f1bcfb97fcc71a06453",
-      "checklist.md": "dab21b954a2a1b3309e73138c9ea6c3220034c24b270b7c0283511e0aa3ccfed"
+      "spec.md": "57d865194a06989f0d819aa6fbe8677e0b187d3780b1281d66ca5359d8289714",
+      "plan.md": "499ad0e72dfcbf4dfdafcbea32e4b6c3cde153aea54620061aaa6913e4162408",
+      "tasks.md": "59ed8e8baed892416453c722b2832ea2acdce0b8cf61e825dc11667e6ce121c0",
+      "checklist.md": "7965cacd8c0c8015862a58cd00f50cbff442bfe91262166e1675ca5a18fdfa50",
+      "implementation-summary.md": "adf2b4d020f6e77664d3e5a05ec43a2730094cd904b0262f8ab929eb7a2967fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-live-tools-unblock
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-live-tools-unblock"
-    last_updated_at: "2026-07-15T13:07:03Z"
+    last_updated_at: "2026-07-20T19:48:41Z"
     last_updated_by: "codex"
-    recent_action: "Defined the adapter, capability, manifest, and legacy-parity implementation sequence"
-    next_safe_action: "Implement schema-first preflight and preserve the legacy executor expansion path"
+    recent_action: "Completed the adapter, capability, manifest, and legacy-parity implementation sequence"
+    next_safe_action: "Preserve the dispatch-only boundary until durable receipts are implemented later"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +32,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop runtime fan-out dispatch |
 | **Change class** | Additive executor config + dispatch adapters + manifest compiler |
-| **Execution** | Future implementation on the operator-selected git workspace, pinned after phase 004 |
+| **Execution** | Completed in the operator-selected worktree after all phase-004 child contracts were frozen |
 
 ### Overview
 The existing fan-out scheduler is retained. `executor-config.ts` gains a backward-compatible live-tools policy and a discriminated manifest input; `fanout-run.cjs` gains a capability preflight plus per-kind adapters whose output includes an invocation fingerprint. The new manifest compiles to the same flat lineage list consumed by `runCappedPool`, and omission of every new field preserves the current parse, argv, expansion, and persisted-artifact behavior.
@@ -42,16 +42,16 @@ The existing fan-out scheduler is retained. `executor-config.ts` gains a backwar
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 is complete and its executor/transition vocabulary is frozen
-- [ ] Baseline fixtures pin current `executors[]`, `count`, `buildLineageCommand`, and pool behavior
-- [ ] The capability matrix declares all four executor kinds against all four search policies
-- [ ] The dispatch-only boundary explicitly excludes canonical receipts and persisted-shape changes
+- [x] Phase 004 is complete and its executor/transition vocabulary is frozen [Evidence: implementation-summary.md Metadata]
+- [x] Baseline fixtures pin current `executors[]`, `count`, `buildLineageCommand`, and pool behavior [Test: baseline 126/126]
+- [x] The capability matrix declares all four executor kinds against all four search policies [Test: exhaustive matrix fixture]
+- [x] The dispatch-only boundary explicitly excludes canonical receipts and persisted-shape changes [Evidence: implementation-summary.md Persistence-Shape Diff]
 
 ### Definition of Done
-- [ ] A live-search `cli-codex` leaf launches with `codex --search exec`
-- [ ] An unsupported kind × live-search combination fails before any dispatch
-- [ ] Existing fan-out behavior and persisted artifacts are unchanged when new fields are absent
-- [ ] Manifest cross-products emit stable logical branch IDs into the existing pool
+- [x] A live-search `cli-codex` leaf launches with `codex --search exec` [Test: hermetic pooled Codex leaf]
+- [x] An unsupported kind × live-search combination fails before any dispatch [Test: cached-policy spawn sentinel untouched]
+- [x] Existing fan-out behavior and persisted artifacts are unchanged when new fields are absent [Test: 126 baseline tests retained; persistence diff clean]
+- [x] Manifest cross-products emit stable logical branch IDs into the existing pool [Test: deterministic 12-leaf pool fixture]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
