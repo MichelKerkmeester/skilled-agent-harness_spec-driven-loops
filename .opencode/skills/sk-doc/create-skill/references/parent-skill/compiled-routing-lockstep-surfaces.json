@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "description": "Authoritative list of every file that must be rewritten in lockstep whenever a hub's compiled-routing directive wording changes (for example, an eventual default-on flip). This manifest is the single source of truth for that surface set; the normalized-parity fixture test (compiled-routing-lockstep-parity.test.cjs) reads it to compare current wording across all surfaces, and any later activation-cutover work reads it as its rewrite-target list.",
+  "directiveMarker": "> **Compiled routing (opt-in, flag-gated, additive).**",
+  "hubNamePlaceholder": "{{HUB_NAME}}",
+  "notes": [
+    "A surface without the directiveMarker present is not a violation by itself — it is a safe, inert 'not rendered yet' state (a legacy scaffold or a not-yet-updated template). Only surfaces that DO carry the directive and disagree after hub-name normalization count as drifted.",
+    "hubName is null for the two create-skill parent templates because their source form carries the literal hubNamePlaceholder token, not a real hub name — normalization treats that literal token as already-normalized."
+  ],
+  "surfaces": [
+    { "id": "hub-skill.cli-external-orchestration", "kind": "hub-skill", "hubName": "cli-external-orchestration", "path": ".opencode/skills/cli-external-orchestration/SKILL.md" },
+    { "id": "hub-skill.mcp-tooling", "kind": "hub-skill", "hubName": "mcp-tooling", "path": ".opencode/skills/mcp-tooling/SKILL.md" },
+    { "id": "hub-skill.sk-code", "kind": "hub-skill", "hubName": "sk-code", "path": ".opencode/skills/sk-code/SKILL.md" },
+    { "id": "hub-skill.sk-design", "kind": "hub-skill", "hubName": "sk-design", "path": ".opencode/skills/sk-design/SKILL.md" },
+    { "id": "hub-skill.sk-doc", "kind": "hub-skill", "hubName": "sk-doc", "path": ".opencode/skills/sk-doc/SKILL.md" },
+    { "id": "hub-skill.sk-prompt", "kind": "hub-skill", "hubName": "sk-prompt", "path": ".opencode/skills/sk-prompt/SKILL.md" },
+    { "id": "hub-skill.system-deep-loop", "kind": "hub-skill", "hubName": "system-deep-loop", "path": ".opencode/skills/system-deep-loop/SKILL.md" },
+    { "id": "parent-template.active-scaffold", "kind": "parent-template", "hubName": null, "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md" },
+    { "id": "parent-template.canonical", "kind": "parent-template", "hubName": null, "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md" }
+  ]
+}

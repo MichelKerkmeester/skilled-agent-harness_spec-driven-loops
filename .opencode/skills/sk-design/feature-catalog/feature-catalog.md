@@ -1,13 +1,13 @@
 ---
 title: "sk-design: Feature Catalog"
-description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, indexed style retrieval, canonical interface creation commands, transport separation, and private procedure-card selection."
+description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, the opt-in compiled-routing fallback, indexed style retrieval, canonical interface creation commands, transport separation, and private procedure-card selection."
 trigger_phrases:
   - "sk-design feature catalog"
   - "design family hub capabilities"
   - "procedure card system"
   - "design proof gates"
-last_updated: "2026-07-19"
-version: 1.2.0.0
+last_updated: "2026-07-21"
+version: 1.3.0.0
 ---
 
 # sk-design: Feature Catalog
@@ -69,6 +69,22 @@ The hub treats Figma, Open Design, browser, and extraction transports as evidenc
 #### Source Files
 
 See [`manager-shell/transport-vs-taste-separation.md`](manager-shell/transport-vs-taste-separation.md) for the boundary and integration points.
+
+---
+
+### Compiled Routing And Legacy Fallback
+
+#### Description
+
+An opt-in, flag-gated, additive directive in `sk-design`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the manager shell's own registry-driven routing above.
+
+#### Current Reality
+
+The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `sk-design` continues to route entirely through `mode-registry.json`. When the flag is force-enabled and `sk-design`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub sk-design --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing — and every manager-shell intake and proof-gate requirement above — unchanged.
+
+#### Source Files
+
+See [`manager-shell/compiled-routing-and-legacy-fallback.md`](manager-shell/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
 
 ---
 

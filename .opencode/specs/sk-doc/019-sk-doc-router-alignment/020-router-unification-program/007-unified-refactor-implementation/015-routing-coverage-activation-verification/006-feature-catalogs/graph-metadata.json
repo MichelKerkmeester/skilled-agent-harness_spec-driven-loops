@@ -20,7 +20,7 @@
       "feature catalog leaf authoring tasks",
       "compiled routing catalogs checklist",
       "feature catalog QA gate",
-      "compiled routing catalogs planned summary",
+      "compiled routing catalogs implementation summary",
       "feature catalog topology current status"
     ],
     "key_topics": [
@@ -38,23 +38,16 @@
       "entry"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "feature-catalog/feature-catalog.md",
       "spec.md",
-      "implementation-summary.md",
-      "plan.md",
       "tasks.md",
+      "plan.md",
+      "implementation-summary.md",
       "checklist.md",
       ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -62,9 +55,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -74,9 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -146,13 +139,13 @@
         "source": "derived"
       },
       {
-        "name": "Strict Level",
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Extend",
+        "name": "Strict Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -170,20 +163,20 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Routing Flag",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "rationale",
-        "kind": "key_phrase",
+        "name": "Source Files",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Routing Enrichment",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
     "created_at": "2026-07-20T21:51:34.999Z",
-    "last_save_at": "2026-07-20T21:51:34.999Z",
+    "last_save_at": "2026-07-20T23:59:52.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a22d20d642d4745b850e511da11cd41340022b99123882a7a378f66da424c2e6",
+    "source_fingerprint": "sha256:4e60ee8f28d28df0cd0e7e562d51245c6628a7cbc82da632eda0bac9cbdfc30f",
     "source_doc_hashes": {
-      "spec.md": "2a8701b792389aba38234dd88851c018d39cb46b8a15030873c9eacf7c9fd3d3",
-      "plan.md": "ba74ef6f5b54eb0fd994f631d96358de08e1229b97791978170774e13c5b765c",
-      "tasks.md": "8d51234f6d06d0e5634d7614ebb58072d8eba8dcfbf4e5dc88cc67e9c9d7d471",
-      "checklist.md": "a7a59f904e6a5ee92e0875803e56a47f9b9f94ebebaf5fb0281d73f5880b4e3b",
-      "implementation-summary.md": "5f2c95eda3fb523fb7adc93997d47418fb860838664a85a6828a200a56e3dc7d"
+      "spec.md": "a141213f41491e2a699dcb76cfeb0116297a5d070e92dfce40947a461b99dfc0",
+      "plan.md": "9290a50302cf01365ea1af27392388a1161803c66570b734eed67cc0205651f1",
+      "tasks.md": "d2a8f7e5e77a18b6e071cf3894b88d18cde20d858ea6d16cf3ed508f62bdb59f",
+      "checklist.md": "7511a831eb2bce81888408ce1ff7a76acd9c751ffef8ccf027b3a00cb88a5ec3",
+      "implementation-summary.md": "6d250530ea062dd296ebd1f01cb49eb4d7820bd9c003334570593ff8315fcf0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

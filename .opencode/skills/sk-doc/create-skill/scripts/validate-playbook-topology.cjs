@@ -58,6 +58,14 @@ const CLASS_SELECTION = 'fixture_selection_error';
 // 3. FRONTMATTER PARSING (typed gold only; legacy fields are read elsewhere)
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Quote-tolerant: every scalar/pair regex below accepts an optional matching
+// `'` or `"` around the value and strips it from the captured group, so
+// `workflow_mode: quality` and `workflow_mode: "quality"` parse to the
+// identical string. The canonical serialization new fixtures should use is
+// the unquoted form (matching `load-playbook-scenarios.cjs`'s Lane C loader,
+// the proven parser for this same corpus shape); quoted values remain valid
+// input, they are simply not what tooling emits by default.
+
 function readFileSafe(filePath) {
   try { return fs.readFileSync(filePath, 'utf8'); } catch { return null; }
 }
@@ -92,7 +100,7 @@ function parseExpectedLeafResources(block) {
   const m = /(?:^|\n)[ \t]*expected_leaf_resources:[ \t]*\n((?:[ \t]*-[ \t]*workflow_mode:.*\n[ \t]*leaf_resource_id:.*\n?)+)/.exec(block);
   if (!m) return { ok: false, pairs: null };
   const pairs = [];
-  const entryRe = /-[ \t]*workflow_mode:[ \t]*(\S+)[ \t]*\n[ \t]*leaf_resource_id:[ \t]*(\S+)/g;
+  const entryRe = /-[ \t]*workflow_mode:[ \t]*["']?([^"'\n]+?)["']?[ \t]*\n[ \t]*leaf_resource_id:[ \t]*["']?([^"'\n]+?)["']?[ \t]*(?:\n|$)/g;
   let entry;
   while ((entry = entryRe.exec(m[1])) !== null) {
     pairs.push({ workflowMode: entry[1].trim(), leafResourceId: entry[2].trim() });
@@ -107,8 +115,8 @@ function parseFixture(absPath, playbookDir) {
   if (!block) return { ok: false, path: absPath, error: 'NO_FRONTMATTER' };
 
   const idM = /(?:^|\n)[ \t]*id:[ \t]*["']?([A-Za-z0-9-]+)/.exec(block);
-  const modeM = /(?:^|\n)[ \t]*expected_workflow_mode:[ \t]*(.+)/.exec(block);
-  const fullInventoryM = /(?:^|\n)[ \t]*full_inventory_intent:[ \t]*(true|false)/.exec(block);
+  const modeM = /(?:^|\n)[ \t]*expected_workflow_mode:[ \t]*["']?([^"'\n]+?)["']?[ \t]*(?:\n|$)/.exec(block);
+  const fullInventoryM = /(?:^|\n)[ \t]*full_inventory_intent:[ \t]*["']?(true|false)["']?/.exec(block);
   const leafResult = parseExpectedLeafResources(block);
 
   return {

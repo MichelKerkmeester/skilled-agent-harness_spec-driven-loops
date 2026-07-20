@@ -35,6 +35,10 @@ const { probeAdvisor } = require('./advisor-probe.cjs');
 const { renderReport } = require('./build-report.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
 const { dispatchScenario } = require('./executor-dispatch.cjs');
+const {
+  compiledParity, rollupCompiledParity, applyCompiledDriftVerdict, classifyFlagState,
+  assertFrozenScorerDigests, loadEligibleHubs,
+} = require('./compiled-routing-parity.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -83,6 +87,28 @@ function resolveRouteGold(args, skillRoot) {
   const raw = args['route-gold'] == null ? 'auto' : String(args['route-gold']).toLowerCase();
   if (!['on', 'off', 'auto'].includes(raw)) {
     throw new Error(`invalid --route-gold value "${raw}" (expected on|off|auto)`);
+  }
+  const enabled = raw === 'on' || (raw === 'auto' && isHubTypeSkill(skillRoot));
+  return { mode: raw, enabled };
+}
+
+/**
+ * Resolve the compiled-routing-parity lane flag: `--compiled-routing-parity
+ * on|off|auto` (default off, so the lane is inert and Lane C stays byte-identical
+ * unless an operator opts in). A bare `--compiled-routing-parity` reads as `on`.
+ * `auto` engages for a hub-type target; a flat skill stays off under `auto`.
+ * When off, no compiled decision is exercised and no compiled block is emitted.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @param {string} skillRoot - Target skill root dir.
+ * @returns {{mode:'on'|'off'|'auto', enabled:boolean}} Parity lane configuration.
+ */
+function resolveCompiledParity(args, skillRoot) {
+  const value = args['compiled-routing-parity'];
+  if (value === undefined) return { mode: 'off', enabled: false };
+  const raw = value === true ? 'on' : String(value).toLowerCase();
+  if (!['on', 'off', 'auto'].includes(raw)) {
+    throw new Error(`invalid --compiled-routing-parity value "${raw}" (expected on|off|auto)`);
   }
   const enabled = raw === 'on' || (raw === 'auto' && isHubTypeSkill(skillRoot));
   return { mode: raw, enabled };
@@ -175,7 +201,7 @@ function filterScenarios(scenarios, filter) {
 // the executor for its classKind; browser scenarios are routed out of the text
 // executors. Contamination-lint is a drift FINDING in router mode (the playbook
 // intentionally carries trigger words) and is skipped entirely in live mode.
-function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, playbookDir, scenariosFilter, scenarioRows, lintFindings, warningsOut }) {
+function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, playbookDir, scenariosFilter, scenarioRows, lintFindings, warningsOut, compiledParityCfg }) {
   let scenarios;
   let warnings;
   try {
@@ -217,6 +243,17 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
     // Route-gold lane: evaluated on every row that carries authored gold so
     // the report always shows the counts; the gate flag decides enforcement.
     row.routeGold = evaluateRouteGold({ scenario: sc, observed });
+    // Compiled-parity lane (opt-in): compare the compiled decision to the legacy
+    // one against the same frozen evaluator. Off by default, so a run that does
+    // not opt in is byte-identical to before.
+    if (compiledParityCfg && compiledParityCfg.enabled) {
+      row.compiledParity = compiledParity({
+        scenario: sc,
+        legacyObserved: { ...observed, routeGold: row.routeGold },
+        skillRoot,
+        skillId,
+      });
+    }
     scenarioRows.push(row);
   }
 }
@@ -249,11 +286,28 @@ function run(args) {
   }
 
   let routeGold;
+  let compiledParityCfg;
   try {
     routeGold = resolveRouteGold(args, skillRoot);
+    compiledParityCfg = resolveCompiledParity(args, skillRoot);
   } catch (err) {
     process.stderr.write(`run-skill-benchmark: ${err.message}\n`);
     return 2;
+  }
+
+  // Frozen-scorer pin: when the compiled-parity lane is engaged, re-hash the
+  // three shared scorer files first and abort before any comparison or report
+  // write if one drifted from its pinned digest — a scorer changed mid-flight
+  // would invalidate the parity baseline, and no partial evidence must persist.
+  if (compiledParityCfg.enabled) {
+    const frozenGate = assertFrozenScorerDigests({ scorerDir: __dirname });
+    if (!frozenGate.ok) {
+      const detail = frozenGate.drift
+        .map((entry) => `${entry.file} (expected ${entry.expected}, got ${entry.actual || 'unreadable'})`)
+        .join('; ');
+      process.stderr.write(`run-skill-benchmark: frozen_scorer_drift — compiled-parity aborted, no report written: ${detail}\n`);
+      return 2;
+    }
   }
 
   // Topology digest snapshot: a manifest-bearing skill's leaf-manifest.json
@@ -276,6 +330,7 @@ function run(args) {
       skillRoot, skillId, traceMode, advisorMode, executor: args.executor,
       playbookDir: args['playbook-dir'],
       scenariosFilter: args.scenarios, scenarioRows, lintFindings, warningsOut: warnings,
+      compiledParityCfg,
     });
   }
 
@@ -292,6 +347,50 @@ function run(args) {
   const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings, routeGold });
   if (topologyDigestBefore !== null) report.topologyDigest = topologyDigestBefore;
   if (warnings.length) report.parseWarnings = warnings;
+
+  // Compiled-parity verdict sub-state lives here in the non-frozen orchestrator,
+  // never in the frozen scorer. The per-scenario statuses roll up into one of
+  // three distinct sub-verdicts (serving / legacy-fallback-drifted /
+  // broken-compiled-path), and a drift or broken path raises its own outer
+  // verdict rather than collapsing into a route-gold or generic block. A
+  // higher-precedence structural/registry/route-gold block is left intact; the
+  // compiled cause stays legible in the sub-verdict either way.
+  if (compiledParityCfg.enabled) {
+    const rollup = rollupCompiledParity(scenarioRows);
+    report.compiledRouting = {
+      mode: compiledParityCfg.mode,
+      flagState: classifyFlagState(process.env.SPECKIT_COMPILED_ROUTING),
+      subVerdict: rollup.subVerdict,
+      blocking: rollup.blocking,
+      scored: rollup.scored,
+      counts: rollup.counts,
+      gate: rollup.gate,
+      rows: scenarioRows
+        .filter((row) => row && row.compiledParity)
+        .map((row) => ({
+          scenarioId: row.compiledParity.scenarioId,
+          hubId: row.compiledParity.hubId,
+          status: row.compiledParity.status,
+          reason: row.compiledParity.reason,
+        })),
+    };
+    if (report.routeGold) {
+      report.routeGold.summary = {
+        ...(report.routeGold.summary || {}),
+        compiledEligibility: {
+          hubType: isHubTypeSkill(skillRoot),
+          compiledEligible: loadEligibleHubs().has(skillId),
+        },
+        statusEnum: ['match', 'drift', 'vacuous', 'n/a', 'resolver-missing'],
+        passStatus: 'match',
+        informationalStatus: 'n/a',
+      };
+    }
+    // A compiled block only overrides a non-blocked outer verdict; an existing
+    // BLOCKED-BY-* stays, so route-gold and compiled drift remain distinct.
+    report.verdict = applyCompiledDriftVerdict(report.verdict, rollup.blocking);
+  }
+
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
   const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
   fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
@@ -304,10 +403,13 @@ function run(args) {
   // 0 on that verdict lets a CI caller treat "blocked" the same as "passed" —
   // reports still write either way, but the process signal must disagree. The
   // route-gold gate carries the same contract: an enforced route-contract
-  // violation must be a non-zero process signal, not just report text.
+  // violation must be a non-zero process signal, not just report text. The
+  // compiled-parity gate is the same again: a drifted or broken compiled path
+  // must fail the process signal, not merely annotate the report.
   if (report.verdict === 'BLOCKED-BY-STRUCTURE'
       || report.verdict === 'BLOCKED-BY-REGISTRY'
-      || report.verdict === 'BLOCKED-BY-ROUTE-GOLD') return 3;
+      || report.verdict === 'BLOCKED-BY-ROUTE-GOLD'
+      || report.verdict === 'BLOCKED-BY-COMPILED-DRIFT') return 3;
   return 0;
 }
 
@@ -380,12 +482,12 @@ async function augmentWithD4R(args) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill, resolveRouteGold };
+module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill, resolveRouteGold, resolveCompiledParity };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (!args.skill || !args['outputs-dir']) {
-    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--route-gold on|off|auto] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
+    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--route-gold on|off|auto] [--compiled-routing-parity on|off|auto] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
     process.exit(2);
   }
   const code = run(args);

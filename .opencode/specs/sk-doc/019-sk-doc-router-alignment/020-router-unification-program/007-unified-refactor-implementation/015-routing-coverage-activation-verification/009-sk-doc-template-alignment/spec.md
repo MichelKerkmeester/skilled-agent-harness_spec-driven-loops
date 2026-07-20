@@ -37,7 +37,7 @@ sk-doc's feature-catalog and playbook templates make claims their live enforceme
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P3 — coverage-closure input in the P0→P4 safety graph; parallelizable with 006/007/008/010 once 002 lands |
-| **Status** | Planned |
+| **Status** | Complete (P0 REQ-001..REQ-004 delivered; P1 REQ-005 delivered; P1 REQ-006 explicitly deferred, out of scope per build directive) |
 | **Created** | 2026-07-20 |
 | **Branch** | `009-sk-doc-template-alignment` |
 | **DAG Stage** | P3 (`001-research/synthesis-v1.md` §5 P0→P4 graph: coverage-closure join gate) |
@@ -208,9 +208,11 @@ Correct or remove the false trigger_phrases routing claim; make the topology val
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the 12-value taxonomy's `off_taxonomy_validation_type` check (currently warning-only by design, per `validate_document.py`'s own comment) be promoted to blocking once REQ-005 ships, or stay advisory indefinitely? Record the decision explicitly rather than defaulting either way.
-- Is the new strict package validator (REQ-003) a standalone script, or should its bijection/taxonomy logic be folded into `validate_document.py` as an additional check mode? Decide at build time based on how much cross-file state the bijection check needs versus `validate_document.py`'s current single-file scope.
-- Does REQ-006's harvester extension ship in this child, or does it more properly belong to `system-skill-advisor` (the harvester's owning skill)? If the latter, REQ-006 becomes a cross-referenced dependency rather than a delivered item here — resolve before implementation starts.
+> All three questions below were resolved at build time; each answer is recorded next to the question it resolves rather than left open.
+
+- **Resolved: stays advisory.** The `off_taxonomy_validation_type` check remains warning-only. REQ-005 shipped with the 12-value canonical set already covering 100% of the live corpus's observed Type values (zero off-taxonomy violations found), so there is no known-bad backlog forcing a blocking promotion; promoting it is a separate, independently-approvable follow-up if the corpus later drifts.
+- **Resolved: standalone script.** `validate_catalog_package.py` shipped as a new file under `create-feature-catalog/scripts/`, not folded into `validate_document.py`. The bijection check needs cross-file state (a root catalog's links compared against every leaf file in its category tree, across all 8 router/advisor-central + hub packages) that `validate_document.py`'s single-file-at-a-time scope cannot hold; it reuses `validate_document.py`'s `load_template_rules`/`validate_feature_catalog_table` for the taxonomy check rather than duplicating that logic.
+- **Resolved: does not ship in this child.** REQ-006 (the `doc-frontmatter.ts` harvester extension) is explicitly deferred, out of scope per this child's build directive ("do NOT touch the advisor/benchmark/sk-code/activation code" — `doc-frontmatter.ts` lives under `system-skill-advisor`). It remains a cross-referenced dependency for a future `system-skill-advisor` packet, not a delivered item here.
 
 <!-- /ANCHOR:questions -->
 

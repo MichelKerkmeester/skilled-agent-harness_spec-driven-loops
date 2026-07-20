@@ -78,6 +78,7 @@ const SKILL_BENCHMARK_RUN_OPTIONS = [
   'scenarios',
   'executor',
   'playbook-dir',
+  'compiled-routing-parity',
 ];
 
 // Single source of truth for the optional model-benchmark flags loop-host

@@ -38,7 +38,7 @@ All per-feature snippet files require this frontmatter block. Fields marked `# r
 ---
 title: "{FEATURE_NAME}"                           # required — human-readable label, matches H3 in root catalog
 description: "{ONE_LINE_FEATURE_SUMMARY}"         # required — shown in catalog tables and advisor doc matches
-trigger_phrases:                                   # required — drives skill-advisor routing (doc-trigger harvest; memory does not index skill docs)
+trigger_phrases:                                   # required — must match the H3 feature heading in the root catalog (doc-trigger harvest scans references/ and assets/, not feature-catalog/, so this list does not drive skill-advisor routing today)
   - "{primary trigger phrase}"
   - "{alternate phrasing}"
   - "{tool or command name}"
@@ -115,8 +115,8 @@ version: 1.0.0.0
 
 | File | Type | Role |
 |---|---|---|
-| `{TEST_FILE_1}` | {Automated test\|Manual playbook} | {TEST_ROLE_1} |
-| `{TEST_FILE_2}` | {Automated test\|Manual playbook} | {TEST_ROLE_2} |
+| `{TEST_FILE_1}` | {TEST_TYPE} | {TEST_ROLE_1} |
+| `{TEST_FILE_2}` | {TEST_TYPE} | {TEST_ROLE_2} |
 
 ---
 
@@ -155,7 +155,7 @@ Related references:
 
 **SOURCE FILES**
 - Layer column valid values: `Handler`, `Shared`, `Script`, `Test`.
-- Type column valid values: `Automated test`, `Manual playbook`.
+- Type column valid values (canonical taxonomy, `{TEST_TYPE}` placeholder above): `Automated test`, `Unit`, `Integration`, `Fixture`, `Benchmark`, `Schema`, `Manual playbook`, `Reference`, `Vitest`, `Node test`, `MCP integration test`, `Test harness`.
 - List only stable public-facing paths. Omit transient build artifacts or generated files.
 - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
 

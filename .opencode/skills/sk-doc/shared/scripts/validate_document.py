@@ -690,12 +690,16 @@ def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any])
 
     The generic readme path misses two drift classes here: placeholder rows (an em-dash File and Role
     with a filler Type) that pass as 'valid' while documenting no real coverage, and off-taxonomy Type
-    values. The per-feature template defines Type as exactly {Automated test | Manual playbook}; anything
-    else (Integration, Manual scenario contract, a bare em-dash) hides missing or mislabeled tests.
-    Un-filled template rows (`{TEST_FILE_1}`) are skipped so a fresh scaffold does not fail.
+    values. The per-feature template's Type column is a curated canonical taxonomy (see
+    `allowedValidationTypes` below); a value outside it (a bare em-dash, an unrecognized descriptive
+    string) hides missing or mislabeled tests. Un-filled template rows (`{TEST_FILE_1}`) are skipped so
+    a fresh scaffold does not fail.
     """
     errors: List[Dict[str, Any]] = []
-    allowed = set(doc_type_rules.get('allowedValidationTypes', ['Automated test', 'Manual playbook']))
+    allowed = set(doc_type_rules.get('allowedValidationTypes', [
+        'Automated test', 'Unit', 'Integration', 'Fixture', 'Benchmark', 'Schema',
+        'Manual playbook', 'Reference', 'Vitest', 'Node test', 'MCP integration test', 'Test harness',
+    ]))
     dash = {'—', '-', '–', ''}
     lines = content.split('\n')
     in_table = False
@@ -725,9 +729,9 @@ def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any])
                             f"'{type_cell}') — replace with a real test file + role, or remove the row."),
             })
         type_bare = type_cell.strip('`').strip()
-        # Advisory only: the live corpus uses ~35 descriptive Type values (Vitest, Fixture, MCP
-        # integration test, ...), so the template's 2-value taxonomy is de-facto stale. Warn to
-        # surface the inconsistency for a normalization decision rather than block a third of catalogs.
+        # Advisory only: the live corpus still carries near-dupes/typos of the canonical taxonomy
+        # (e.g. stray casing or wording variants) predating this taxonomy's adoption. Warn to surface
+        # the drift for normalization rather than block catalogs that haven't been swept yet.
         if type_bare and type_bare not in allowed:
             errors.append({
                 'type': 'off_taxonomy_validation_type',

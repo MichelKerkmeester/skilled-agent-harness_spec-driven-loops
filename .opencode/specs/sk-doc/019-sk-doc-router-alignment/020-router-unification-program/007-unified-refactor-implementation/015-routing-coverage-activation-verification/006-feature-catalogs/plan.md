@@ -45,18 +45,18 @@ The plan resolves one decision before writing a single file — complete the six
 
 ### Definition of Ready
 
-- [ ] `../002-runtime-promotion-and-status-foundation/` reports its promotion complete and names the stable runtime paths to cite.
-- [ ] The topology decision (Option A: 6 root catalogs + 7 leaves, or Option B: centralized `system-skill-advisor` entry) is made and recorded.
-- [ ] The exact phase-gated wording block (opt-in pre-cutover / default-on+kill-switch at P4) is approved against the seven hubs' current `SKILL.md` directives.
+- [x] `../002-runtime-promotion-and-status-foundation/` reports its promotion complete and names the stable runtime paths to cite. (Verified directly against live runtime code + `git log`, not against 002's own stale-"Planned" doc — see `implementation-summary.md` Known Limitations.)
+- [x] The topology decision (Option A: 6 root catalogs + 7 leaves, or Option B: centralized `system-skill-advisor` entry) is made and recorded. (Option A.)
+- [x] The exact phase-gated wording block (opt-in pre-cutover / default-on+kill-switch at P4) is approved against the seven hubs' current `SKILL.md` directives.
 
 ### Definition of Done
 
-- [ ] Every eligible hub has either a canonical root catalog + leaf (Option A) or is represented in the centralized entry (Option B); no single-feature pseudo-catalog exists.
-- [ ] `feature-flag-governance.md` and `advisor-recommend.md` are extended with the `SPECKIT_COMPILED_ROUTING` / `compiledRoute` documentation.
-- [ ] Zero `.opencode/specs/**` citations exist in any shipped catalog.
-- [ ] Every catalog's wording matches its hub's live cutover state at ship time.
-- [ ] No child-mode catalog was edited with compiled-router content.
-- [ ] Strict Level-2 packet validation passes on this phase folder.
+- [x] Every eligible hub has either a canonical root catalog + leaf (Option A) or is represented in the centralized entry (Option B); no single-feature pseudo-catalog exists.
+- [x] `feature-flag-governance.md` and `advisor-recommend.md` are extended with the `SPECKIT_COMPILED_ROUTING` / `compiledRoute` documentation.
+- [x] Zero `.opencode/specs/**` citations exist in any shipped catalog.
+- [x] Every catalog's wording matches its hub's live cutover state at ship time.
+- [x] No child-mode catalog was edited with compiled-router content.
+- [ ] Strict Level-2 packet validation passes on this phase folder. (Deferred to operator's commit-time pass; all catalog-file-level validators pass — see `implementation-summary.md`.)
 <!-- /ANCHOR:quality-gates -->
 
 ---

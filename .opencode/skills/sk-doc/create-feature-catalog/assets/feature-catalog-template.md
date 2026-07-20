@@ -229,8 +229,8 @@ version: 1.0.0.0
 
 | File | Type | Role |
 |---|---|---|
-| `{TEST_FILE_1}` | {Automated test\|Manual playbook} | {TEST_ROLE_1} |
-| `{TEST_FILE_2}` | {Automated test\|Manual playbook} | {TEST_ROLE_2} |
+| `{TEST_FILE_1}` | {TEST_TYPE} | {TEST_ROLE_1} |
+| `{TEST_FILE_2}` | {TEST_TYPE} | {TEST_ROLE_2} |
 
 ---
 
@@ -255,6 +255,7 @@ Related references:
 - In per-feature files, if `HOW IT WORKS` exceeds 3 paragraphs, break it into H3 sub-headings — e.g. `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Long unbroken prose sections should always have navigation anchors.
 - Keep the root catalog readable by summarizing behavior instead of dumping raw source-file tables there.
 - Put implementation and test anchor detail in the per-feature files.
+- SOURCE FILES "Validation And Tests" Type column: use the canonical taxonomy documented in [feature-catalog-snippet-template.md](./feature-catalog-snippet-template.md) §4 — do not invent new Type values.
 - Preserve stable file paths once other docs start linking to them.
 - Use numbered all-caps H2 section headers in the root catalog. Do not add a Table of Contents.
 - Do not write packet-history references such as "added in packet 033" or "Phase 017 update". Rewrite them as current behavior plus a source file, test, or reference-doc link.

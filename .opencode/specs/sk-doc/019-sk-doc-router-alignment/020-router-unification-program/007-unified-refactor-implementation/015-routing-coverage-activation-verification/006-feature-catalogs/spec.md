@@ -35,7 +35,7 @@ This phase plans — but does not yet author — the catalog coverage: either co
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P3 |
-| **Status** | Planned |
+| **Status** | Implemented — uncommitted (see `implementation-summary.md`; topology resolved as Option A) |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Phase** | 006-feature-catalogs (015 child; contributes to the P3 coverage-closure join gate ahead of P4) |
