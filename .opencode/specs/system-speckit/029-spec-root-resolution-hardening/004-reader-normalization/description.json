@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/042-spec-root-resolution-hardening/004-reader-normalization",
+  "specFolder": "system-speckit/029-spec-root-resolution-hardening/004-reader-normalization",
   "description": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP",
   "keywords": [
     "shared",
@@ -15,12 +15,12 @@
     "generic",
     "mcp"
   ],
-  "lastUpdated": "2026-07-18T03:48:59.827Z",
+  "lastUpdated": "2026-07-20T14:10:34.157Z",
   "specId": "004",
   "folderSlug": "reader-normalization",
   "parentChain": [
     "system-speckit",
-    "042-spec-root-resolution-hardening"
+    "029-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

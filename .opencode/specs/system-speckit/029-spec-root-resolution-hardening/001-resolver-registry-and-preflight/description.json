@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/042-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+  "specFolder": "system-speckit/029-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
   "description": "Root resolution is implemented ~20 times with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no",
   "keywords": [
     "root",
@@ -14,12 +14,12 @@
     "canonical-only",
     "direct-path-first"
   ],
-  "lastUpdated": "2026-07-18T03:48:59.825Z",
+  "lastUpdated": "2026-07-20T14:10:34.155Z",
   "specId": "001",
   "folderSlug": "resolver-registry-and-preflight",
   "parentChain": [
     "system-speckit",
-    "042-spec-root-resolution-hardening"
+    "029-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

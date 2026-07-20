@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/029-rust-backend-rewrite-research/001-research"
+    packet_pointer: "system-speckit/030-rust-backend-rewrite-research/001-research"
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the 20-round allocation and executor config"
@@ -158,7 +158,7 @@ Single-lineage sequential deep-research (`/deep:research`), one round per iterat
 - **Cap/convergence**: `deep-research-state.jsonl` ends with a terminal `stopReason`.
 - **Coverage**: every angle A1–A16 appears in at least one round's findings.
 - **Discipline check**: spot-check that no "big win" in `research.md` counts already-native (`sqlite-vec`/ONNX/tree-sitter) work; each names JS-resident code.
-- **Structure**: `scripts/spec/validate.sh` passes for `029-rust-backend-rewrite-research/001-research`.
+- **Structure**: `scripts/spec/validate.sh` passes for `030-rust-backend-rewrite-research/001-research`.
 <!-- /ANCHOR:testing -->
 
 ---

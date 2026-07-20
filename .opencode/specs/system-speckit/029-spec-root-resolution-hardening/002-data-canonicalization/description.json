@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/042-spec-root-resolution-hardening/002-data-canonicalization",
+  "specFolder": "system-speckit/029-spec-root-resolution-hardening/002-data-canonicalization",
   "description": "Before writers change, packet data itself must be canonicalized",
   "keywords": [
     "writers",
@@ -10,12 +10,12 @@
     "must",
     "canonicalized"
   ],
-  "lastUpdated": "2026-07-18T03:48:59.826Z",
+  "lastUpdated": "2026-07-20T14:10:34.158Z",
   "specId": "002",
   "folderSlug": "data-canonicalization",
   "parentChain": [
     "system-speckit",
-    "042-spec-root-resolution-hardening"
+    "029-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

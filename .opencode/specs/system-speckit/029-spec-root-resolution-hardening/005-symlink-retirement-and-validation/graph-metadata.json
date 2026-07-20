@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
-  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
-  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "packet_id": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+  "spec_folder": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+  "parent_id": "system-speckit/029-spec-root-resolution-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,43 +11,36 @@
   },
   "derived": {
     "trigger_phrases": [
-      "reader normalization",
-      "canonical-first readers",
-      "legacy read fallback",
-      "reader normalization plan",
-      "canonical-first readers plan",
-      "reader normalization tasks",
-      "compatibility window tasks"
+      "symlink retirement",
+      "no-alias validation",
+      "root resolution validation matrix",
+      "symlink retirement plan",
+      "validation matrix plan",
+      "symlink retirement tasks",
+      "validation matrix tasks"
     ],
     "key_topics": [
-      "reader",
-      "normalization",
-      "canonical-first",
-      "readers",
-      "legacy",
-      "read",
-      "fallback",
+      "symlink",
+      "retirement",
+      "no-alias",
+      "validation",
+      "root",
+      "resolution",
+      "matrix",
       "plan",
       "tasks",
-      "compatibility",
-      "window",
-      "shared"
+      "specs",
+      "alias",
+      "already"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "scripts/core/config.ts",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "scripts/core/config.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,7 +66,7 @@
         "source": "derived"
       },
       {
-        "name": "Reader Normalization",
+        "name": "Symlink Retirement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -97,7 +90,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Switch",
+        "name": "Purpose Prove",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -115,19 +108,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview With",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Canonical",
+        "name": "Overview Terminal",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -157,15 +150,15 @@
         "source": "derived"
       },
       {
-        "name": "read-only",
+        "name": "zero",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP discovery, resume/authored continuity, API indexing, spec affinity, memory-quality validation) resolve with mixed precedence",
-    "created_at": "2026-07-17T11:01:02.723Z",
-    "last_save_at": "2026-07-17T11:01:02.723Z",
+    "causal_summary": "The `specs` alias was already deleted in the working tree ahead of plan",
+    "created_at": "2026-07-17T11:01:02.966Z",
+    "last_save_at": "2026-07-20T13:58:06.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,11 +166,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f79c9d1dff81fd937bf56dc86f5d11a3c5b91a98f62db7b7f768d70e84014505",
+    "source_fingerprint": "sha256:b0150320b8e1fee21e8250753838ff2d4985ea2680d7de05d4d1f2b7f6d3f373",
     "source_doc_hashes": {
-      "spec.md": "01b292344e19aa3f3b2c6e645e91b0ef10eaea80388d58841817690d24bad808",
-      "plan.md": "e2b13fbc0b96fe75a1862cf0cfe3df0a01af29e61e89063674fbf7c8b8092a13",
-      "tasks.md": "82f42faa8f3fa05b867ddc23be5bbc222839c2237d0c13f0abb681089b42a00d"
+      "spec.md": "b5e165c6b561d8fa137a91766f96ba494b97cfb0145a58732f03b59a9d3b334f",
+      "plan.md": "f26a7046c25d82f3f6f73202bfad86dc3857ecc553f908028c683bd604305f7e",
+      "tasks.md": "698bdc75bfadb53f3349efc78bc5133cb194858446222cfe93e95c9ba4e11fc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/029-rust-backend-rewrite-research",
-  "spec_folder": "system-speckit/029-rust-backend-rewrite-research",
+  "packet_id": "system-speckit/030-rust-backend-rewrite-research",
+  "spec_folder": "system-speckit/030-rust-backend-rewrite-research",
   "parent_id": "null",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-speckit/029-rust-backend-rewrite-research/001-research"
+    "system-speckit/030-rust-backend-rewrite-research/001-research"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,7 +43,6 @@
       "001-research/spec.md",
       "001-research/plan.md",
       "001-research/research/deep-research-strategy.md",
-      "mcp_server/context-server.ts",
       "shared/algorithms/rrf-fusion.ts",
       "shared/ranking/learned-combiner.ts",
       "shared/trigger-extractor.ts",
@@ -62,12 +61,6 @@
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "001-research/research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -139,15 +132,15 @@
     ],
     "causal_summary": "The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcpserver/`, `scripts/`, `shared/`), run as a long-lived MCP server over `StdioServerTransport` (`mcpserver/context-server.ts`)",
     "created_at": "2026-07-11T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:12:50.717Z",
+    "last_save_at": "2026-07-20T14:16:34.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9ef36770f4786f60c413462df171ed4918ee9956aaa23b55aa9b4d048ddb8e64",
+    "source_fingerprint": "sha256:b1e2df1e7a6d2d589e601bfe3041a9b792d955a17c4f7d55d067ed8ac166c79b",
     "source_doc_hashes": {
-      "spec.md": "91de99365b9b5f7c5dc985f56f2c228330cf015a0bf88c4a5d05e2127a9d5eaf"
+      "spec.md": "cb19ab00919c3e69fabea5f94192b745e99373a8355314d8e29e15da438297c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

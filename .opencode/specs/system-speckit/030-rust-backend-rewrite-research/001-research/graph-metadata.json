@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/029-rust-backend-rewrite-research/001-research",
-  "spec_folder": "system-speckit/029-rust-backend-rewrite-research/001-research",
-  "parent_id": "system-speckit/029-rust-backend-rewrite-research",
+  "packet_id": "system-speckit/030-rust-backend-rewrite-research/001-research",
+  "spec_folder": "system-speckit/030-rust-backend-rewrite-research/001-research",
+  "parent_id": "system-speckit/030-rust-backend-rewrite-research",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -47,22 +47,22 @@
       "plan.md",
       "research/deep-research-strategy.md",
       "research/deep-research-fanout-config.json",
-      "mcp_server/context-server.ts",
       "shared/chunking.ts",
       "shared/trigger-extractor.ts",
-      "mcp_server/package.json",
       "scripts/evals/run-performance-benchmarks.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/handlers/memory-context.ts",
-      "mcp_server/lib/search/hybrid-search.ts",
       "shared/algorithms/rrf-fusion.ts",
       "shared/algorithms/adaptive-fusion.ts",
       "shared/algorithms/mmr-reranker.ts",
       "shared/ranking/learned-combiner.ts",
       "shared/ranking/matrix-math.ts",
       "shared/embeddings/providers/hf-local.ts",
-      "mcp_server/lib/ops/file-watcher.ts"
+      "handlers/memory-save.ts",
+      "handlers/memory-search.ts",
+      "lib/search/hybrid-search.ts",
+      "lib/search/vector-index-schema.ts",
+      "lib/ops/file-watcher.ts",
+      "lib/search/pipeline/stage1-candidate-gen.ts",
+      "lib/search/rerank/retrieval-rescue.ts"
     ],
     "entities": [
       {
@@ -90,12 +90,6 @@
         "source": "derived"
       },
       {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
         "name": "chunking.ts",
         "kind": "code",
         "path": "shared/chunking.ts",
@@ -108,39 +102,9 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
         "name": "run-performance-benchmarks.ts",
         "kind": "code",
         "path": "scripts/evals/run-performance-benchmarks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
         "source": "derived"
       },
       {
@@ -180,9 +144,45 @@
         "source": "derived"
       },
       {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
         "name": "file-watcher.ts",
         "kind": "code",
-        "path": "mcp_server/lib/ops/file-watcher.ts",
+        "path": "lib/ops/file-watcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage1-candidate-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": "lib/search/rerank/retrieval-rescue.ts",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "A Rust rewrite is attractive on paper (SIMD, no GC, single-binary distribution, fearless concurrency) but the honest picture is nuanced: the backend's hottest primitives are already outside V8",
     "created_at": "2026-07-11T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:12:50.973Z",
+    "last_save_at": "2026-07-20T14:16:35.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +220,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ec8b4846964082f2e85b02c8d803a2521826896a58d1247641497b6d3ee6ca22",
+    "source_fingerprint": "sha256:b3db8ad95d8289adbcc9389a2747560cc910d27d0fd7d5dfa570629b91cad4a6",
     "source_doc_hashes": {
-      "spec.md": "ffc0d18c8484d84caf2d6daf4f7967ac7c6aeab53128577adcc34ab5c3e9eb89",
-      "plan.md": "173775bb183f5fda4f2169cbb382db749760dfc0da0bab5b80db48e23ed5865b",
-      "tasks.md": "08c24d2ef9d5b03afac766e7bf47eff353eb4824bbd3f009898cbc1486057f0f"
+      "spec.md": "285269f1584f452e73da9693903aa17b87511a0106268c712110c16aa228e93b",
+      "plan.md": "ab62430f1f052046a92583f0c5e970e3e583c1bcb10ba231792aa1bda4e7d7ad",
+      "tasks.md": "eef2d8a853a406d05104d02b1b8d15f43758e840d7624c15357a0e6546d457ef"
     },
     "last_active_child_id": null,
     "last_active_at": null
