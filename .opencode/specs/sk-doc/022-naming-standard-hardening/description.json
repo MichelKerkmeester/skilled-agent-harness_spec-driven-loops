@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/022-naming-standard-hardening",
+  "description": "The kebab-case naming canon (`shared/references/filesystem-naming-convention.md`) is enforced by the code but not by the standard docs or the gates",
+  "keywords": [
+    "kebab-case",
+    "naming",
+    "canon",
+    "shared",
+    "references",
+    "filesystem-naming-convention",
+    "enforced",
+    "code",
+    "standard",
+    "docs",
+    "gates"
+  ],
+  "lastUpdated": "2026-07-20T09:54:24.848Z",
+  "specId": "022",
+  "folderSlug": "naming-standard-hardening",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

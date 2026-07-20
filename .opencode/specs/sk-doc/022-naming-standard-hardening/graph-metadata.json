@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/022-naming-standard-hardening",
+  "spec_folder": "sk-doc/022-naming-standard-hardening",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/022-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
+    "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "naming standard hardening",
+      "kebab-case enforcement",
+      "filesystem naming conformance"
+    ],
+    "key_topics": [
+      "naming",
+      "standard",
+      "hardening",
+      "kebab-case",
+      "enforcement",
+      "filesystem",
+      "conformance",
+      "canon",
+      "shared",
+      "references",
+      "filesystem-naming-convention",
+      "enforced"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "filesystem-naming-convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Standard Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The kebab-case naming canon (`shared/references/filesystem-naming-convention.md`) is enforced by the code but not by the standard docs or the gates",
+    "created_at": "2026-07-20T09:49:51Z",
+    "last_save_at": "2026-07-20T10:06:33.069Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:01c491a1689e36e12a6b30dc39c2e895ab1cbdb4409c036f3d9c5dd70abb9009",
+    "source_doc_hashes": {
+      "spec.md": "334f99a0f205c264839cffaa531b25d9363a03188ad6487371bec4433405385f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

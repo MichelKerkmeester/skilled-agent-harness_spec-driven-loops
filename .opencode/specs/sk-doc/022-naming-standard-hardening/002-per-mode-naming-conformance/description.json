@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance",
+  "description": "Only two of about ten sk-doc modes verify kebab filenames in code: create-skill (`packageskill.py checkgeneratedpaths`, blocking only under",
+  "keywords": [
+    "only",
+    "two",
+    "about",
+    "ten",
+    "sk-doc",
+    "modes",
+    "verify",
+    "kebab",
+    "filenames",
+    "code",
+    "create-skill",
+    "packageskill",
+    "checkgeneratedpaths",
+    "blocking"
+  ],
+  "lastUpdated": "2026-07-20T10:05:30.866Z",
+  "specId": "002",
+  "folderSlug": "per-mode-naming-conformance",
+  "parentChain": [
+    "sk-doc",
+    "022-naming-standard-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
