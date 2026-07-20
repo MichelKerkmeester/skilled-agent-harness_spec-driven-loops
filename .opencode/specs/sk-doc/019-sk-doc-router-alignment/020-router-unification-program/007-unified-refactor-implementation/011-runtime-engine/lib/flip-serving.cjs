@@ -149,9 +149,23 @@ function main() {
     }
 
     // Idempotent: already compiled-serving (recovery above already completed any
-    // interrupted flip, so a compiled manifest here means a whole tuple).
+    // interrupted flip, so a compiled manifest here means a whole tuple). Self-heal a
+    // serving-flip record removed after a clean flip: it is a non-serving audit
+    // artifact (the manifest stays the authority), so rebuild it from the live
+    // manifest + fence rather than leave an audit gap. The exact original fence
+    // transition is unrecoverable once the record is gone, so mark the rebuild and
+    // bind only the current epoch.
     if (manifest.servingAuthority === 'compiled') {
-      return { kind: 'idempotent', hubId, recovered: recovered ? recovered.after : null };
+      let recordRebuilt = false;
+      if (!fs.existsSync(recordPath)) {
+        atomicWrite(recordPath, `${stableStringify({
+          hubId, servingAuthority: 'compiled', shadowOnly: false,
+          selectedPolicy: manifest.selectedPolicy, fenceEpoch: { before: null, after: fence },
+          gate: { reconstructed: true }, rollbackTo: 'manifest.serving-prior.json',
+        })}\n`);
+        recordRebuilt = true;
+      }
+      return { kind: 'idempotent', hubId, recovered: recovered ? recovered.after : null, recordRebuilt };
     }
 
     // Preconditions.
@@ -194,9 +208,10 @@ function main() {
   if (out.kind === 'rollback') {
     process.stdout.write(`ROLLBACK hub=${hubId} serving=${out.servingAuthority} shadowOnly=${out.shadowOnly} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after}\n`);
   } else if (out.kind === 'idempotent') {
-    process.stdout.write(out.recovered != null
-      ? `ALREADY-COMPILED hub=${hubId} (recovered interrupted flip to fence ${out.recovered})\n`
-      : `ALREADY-COMPILED hub=${hubId} (no-op)\n`);
+    const note = out.recovered != null ? `recovered interrupted flip to fence ${out.recovered}`
+      : out.recordRebuilt ? 'rebuilt a missing serving-flip audit record'
+      : 'no-op';
+    process.stdout.write(`ALREADY-COMPILED hub=${hubId} (${note})\n`);
   } else {
     process.stdout.write(`FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${out.selectedPolicy.generation} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} routed=${out.routeProof.routedScenarios}/${out.routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
   }

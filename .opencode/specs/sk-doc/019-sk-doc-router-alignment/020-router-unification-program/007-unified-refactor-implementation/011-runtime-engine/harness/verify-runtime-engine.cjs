@@ -14,8 +14,10 @@
 // Coverage: the closed decision algebra (both a route AND a negative decision),
 // flag-off inertness, serve-time identity binding (match serves + mismatch fails
 // safe), the fenced serving CAS (byte-exact rollback + byte-identical reflip), the
-// shared lock (a live holder is refused, a stale holder is reclaimed), and
-// flip-time identity binding (a tampered selectedPolicy is refused).
+// shared lock (a live holder is refused, a stale holder is reclaimed), flip-time
+// identity binding (a tampered selectedPolicy is refused), write-ahead journal
+// recovery (an interrupted flip completes to the intended fence), and audit-record
+// self-heal (a deleted serving-flip record is rebuilt from the manifest).
 
 const fs = require('fs');
 const os = require('os');
@@ -194,6 +196,21 @@ function main() {
     check('write-ahead journal: interrupted flip recovered to the intended advanced fence',
       m2.servingAuthority === 'compiled' && f2 === targetFence && journalGone,
       `(serving=${m2.servingAuthority} fence=${f2} want ${targetFence} journalGone=${journalGone})`);
+  }
+
+  // 10. Record self-heal: a serving-flip record removed after a clean flip is rebuilt
+  //     on the next run (idempotent path) from the manifest — a non-serving audit
+  //     artifact, so an audit gap must not persist.
+  {
+    const hub = 'sk-code';
+    const R = path.join(ACT, hub, 'serving-flip-record.json');
+    runFlip(['--hub', hub]); // ensure compiled-serving
+    fs.rmSync(R, { force: true }); // simulate a manually-removed audit record
+    const out = runFlip(['--hub', hub]); // idempotent path rebuilds it
+    let rebuilt = false;
+    try { rebuilt = JSON.parse(fs.readFileSync(R, 'utf8')).gate.reconstructed === true; } catch { /* stays false */ }
+    check('record self-heal: a deleted serving-flip record is rebuilt on the next run',
+      rebuilt && /rebuilt a missing serving-flip audit record/.test(out), rebuilt ? '' : `(out: ${out.slice(0, 80)})`);
   }
 
   process.stdout.write(`\n${pass}/${pass + fail} checks passed\n`);
