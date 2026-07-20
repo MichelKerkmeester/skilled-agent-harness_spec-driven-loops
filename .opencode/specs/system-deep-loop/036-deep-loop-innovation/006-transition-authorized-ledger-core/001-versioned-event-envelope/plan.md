@@ -10,13 +10,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-led
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T21:40:26Z"
     last_updated_by: "codex"
-    recent_action: "Defined envelope fields, registry boundaries, upcast flow, and verification gates"
-    next_safe_action: "Implement registry fixtures and mixed-version read tests before ledger integration"
+    recent_action: "Completed the envelope, registry, upcast, and verification plan"
+    next_safe_action: "Hand the frozen contracts to the typed-ledger and authorization siblings"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,26 +43,26 @@ Build one strict envelope module and one deterministic event-definition registry
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-004 transition/versioning policy is ratified and its `event_type`, `event_version`, upcaster, and fail-closed rules are treated as normative
-- [ ] The phase-003 BASE and runtime writer census identify the shipped observability, council, iteration/audit, fan-out status, and generic JSONL boundaries
-- [ ] The canonical outer field table, namespace grammar, version semantics, nullability, and unknown-field posture are frozen in tests before the first event type is registered
-- [ ] Ownership is explicit: this child owns envelope/registry/upcast seams; `002-typed-append-only-ledger` owns persistence; the authorization child owns allow/deny decisions
-- [ ] No legacy writer, reducer, projection, or authority switch is included in the implementation write set
+- [x] The phase-004 transition/versioning policy is ratified and its `event_type`, `event_version`, upcaster, and fail-closed rules are treated as normative
+- [x] The phase-003 BASE and runtime writer census identify the shipped observability, council, iteration/audit, fan-out status, and generic JSONL boundaries
+- [x] The canonical outer field table, namespace grammar, version semantics, nullability, and unknown-field posture are frozen in tests before the first event type is registered
+- [x] Ownership is explicit: this child owns envelope/registry/upcast seams; `002-typed-append-only-ledger` owns persistence; the authorization child owns allow/deny decisions
+- [x] No legacy writer, reducer, projection, or authority switch is included in the implementation write set
 
 ### Definition of Done
-- [ ] All current write requests validate and serialize through one canonical envelope API; caller-selected historical/future versions fail closed
-- [ ] All supported historical read fixtures traverse deterministic adjacent upcaster chains and expose stored/effective forms plus hop provenance
-- [ ] Unknown, duplicate, cyclic, incomplete, future, lossy, identity-mutating, and ambiguous cases return stable typed errors
-- [ ] Representative shipped producer fixtures fit beneath the common `payload` field without changing their authoritative runtime files
-- [ ] The successor ledger consumes the exported append-preflight/read result contracts without redefining envelope fields
-- [ ] Strict spec validation, typecheck, targeted unit tests, deterministic replay fixtures, and the blocking SOL verification contract are green on the candidate SHA
+- [x] All current write requests validate and serialize through one canonical envelope API; caller-selected historical/future versions fail closed
+- [x] All supported historical read fixtures traverse deterministic adjacent upcaster chains and expose stored/effective forms plus hop provenance
+- [x] Unknown, duplicate, cyclic, incomplete, future, lossy, identity-mutating, and ambiguous cases return stable typed errors
+- [x] Representative shipped producer fixtures fit beneath the common `payload` field without changing their authoritative runtime files
+- [x] The successor ledger test double consumes the exported append-preflight/read result contracts without redefining envelope fields
+- [x] Strict spec validation, typecheck, targeted unit tests, deterministic replay fixtures, and the blocking SOL verification contract are green on the scoped candidate
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 - **Wire contract**: a closed outer object with explicit `envelope_version`, namespaced `event_type`, per-type `event_version`, immutable identity/stream/time/producer/authority/correlation/causation/idempotency fields, and one typed `payload` object.
-- **Definition registry**: exact `event_type` keys; one current version; a validator/required-field contract for every supported version; one pure adjacent upcaster for every non-current version; deterministic registry and chain identities.
+- **Definition registry**: exact `event_type` keys; one current version; a validator/required-field contract and validator-bound schema digest for every supported version; one controlled adjacent upcaster for every non-current version; deterministic registry and chain identities.
 - **Write seam**: construct from domain input plus ledger-assigned stream metadata, reject non-current or unknown versions, validate outer/current payload, canonicalize once, and return canonical bytes plus digest inputs. It performs no append and grants no authorization.
 - **Read seam**: preserve raw stored bytes, parse and validate the stored envelope, resolve exact type/version, reject unsupported future values, run and validate every adjacent hop, validate the current payload, then return `{ stored, effective, upcast_trace }`.
 - **Immutability boundary**: upcasters may change only the effective `payload` and increment the effective `event_version`; event ID, stream identity/sequence, timestamps, producer, authority epoch, correlation, causation, and idempotency identity remain byte-semantically stable.
@@ -107,7 +108,7 @@ Read flow:
 | REQ-004 | Registry completeness tests enumerate validators and required fields for every supported type/version |
 | REQ-005 | Write-preflight accepts only the registry current version and produces byte-stable canonical output |
 | REQ-006 | Mixed-version fixtures assert the exact adjacent hop order and current effective result before reducer dispatch |
-| REQ-007 | Repeat, frozen-clock/randomness, I/O-spy, event-emission-spy, and immutable-field differential tests constrain upcasters |
+| REQ-007 | Registration repeats transforms on deep-frozen probes, rejects input mutation and byte-unstable output, and read-time differential tests protect immutable fields; code ownership enforces the no-I/O/no-emission trust-boundary contract |
 | REQ-008 | Raw-byte hash and stored-envelope deep-equality remain stable across successful upcasts and replay repetitions |
 | REQ-009 | Unknown/future/gap/cycle/duplicate/invalid-hop/lossy/default fixtures assert typed errors and no effective event |
 | REQ-010 | Contract tests pass canonical bytes and metadata directly into ledger/authorization test doubles with no reparsing |

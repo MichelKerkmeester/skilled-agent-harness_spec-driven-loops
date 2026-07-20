@@ -19,7 +19,10 @@
       "versioned event envelope tasks",
       "deep-loop upcaster implementation tasks",
       "versioned event envelope checklist",
-      "deep-loop upcaster verification"
+      "deep-loop upcaster verification",
+      "versioned event envelope implementation",
+      "event type registry implementation",
+      "adjacent upcaster verification"
     ],
     "key_topics": [
       "versioned",
@@ -36,8 +39,10 @@
       "checklist"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -45,12 +50,25 @@
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "event-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "observability-events.cjs",
         "kind": "file",
@@ -79,6 +97,12 @@
         "name": "jsonl-repair.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -176,43 +200,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "stable",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "per-version",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative.",
     "created_at": "2026-07-16T03:43:45.370Z",
-    "last_save_at": "2026-07-17T13:21:09.316Z",
+    "last_save_at": "2026-07-20T22:50:33.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fbadf68e46df6b560264838a544e961ccf483bc23d86501740a387fd47b77ec",
+    "source_fingerprint": "sha256:806bd23ff666b801c171f05f4da5e27dfdf69751cc66be03f5cfa133a6d01d4b",
     "source_doc_hashes": {
-      "spec.md": "cf582c6a1eacb0061e3e9b2744e5e40f2c6fab9ed09a71a629086a83511e90a9",
-      "plan.md": "6707b84044b5aebee08a2da102289e92edbcb71fd84c735e71d8535533ded855",
-      "tasks.md": "c97e9ae036d4695207387859c42851da8e6b1ffcf488b83ab91618a29cc8441d",
-      "checklist.md": "302632270583e21b0f045dc8d0ea60058dfbc9cc9a8c397d0cd4e3dea318dfc1"
+      "spec.md": "256c20455e1f6b91e28c28347745423e486ec1280a8dd2249f63b2fabd7b01b5",
+      "plan.md": "a517994b37672fb33dc6f70295adbb94bd05914e64bf4b994b084f7a78a990d1",
+      "tasks.md": "9e08709d6b477bc59dc2aee05cd33b09dd4850af09f678f2830393fabc61fe82",
+      "checklist.md": "747908964564b644974c8e4dd8983f38448d783736ac574ca34244b9a07eb598",
+      "implementation-summary.md": "a81a5bd1e10fcc8f607cde7f1be55aca974c2cc5ad4b736807420fcd9b9ef5d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

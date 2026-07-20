@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-led
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T21:40:26Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 planning contract for the canonical versioned event envelope"
-    next_safe_action: "Implement the registry, validators, and upcaster seams behind the dark ledger path"
+    recent_action: "Implemented and verified the canonical versioned event envelope"
+    next_safe_action: "Integrate the frozen preflight contracts from the typed-ledger and authorization siblings"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +39,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-006 transition-authorized ledger core |
@@ -59,7 +61,7 @@ This phase plans the common outer record, the registry that binds each event typ
 
 ### In Scope
 - One strict stored wire envelope with required fields: `envelope_version`, `event_id`, `event_type`, `event_version`, `stream_id`, `stream_sequence`, `occurred_at`, `recorded_at`, `producer`, `authority_epoch`, `correlation_id`, `causation_id`, `idempotency_key`, and `payload`.
-- Field semantics: positive integer versions and sequence/epoch values; stable namespaced event types; UTC timestamps; non-empty immutable identifiers; nullable-but-present correlation and causation fields; an object payload; and no producer-specific fields outside `payload`.
+- Field semantics: positive integer versions and sequence/epoch values; stable namespaced event types; UTC timestamps; non-empty immutable identifiers including required non-null `correlation_id`; nullable-but-present `causation_id`; an object payload; and no producer-specific fields outside `payload`.
 - A deterministic registry keyed by `event_type` with the current version, every supported historical version, the required payload-field contract for each version, and exactly one adjacent `N -> N+1` upcaster for every supported non-current version.
 - Write-side validation entry points that accept only the current registered type/version and return a validated canonical envelope for the typed-ledger append boundary.
 - Read-side entry points that parse stored bytes, validate the stored envelope and historical payload, resolve the registry, apply the complete upcaster chain, validate every hop and the current payload, and return stored/effective versions plus an auditable upcast trace.
@@ -85,7 +87,7 @@ This phase plans the common outer record, the registry that binds each event typ
 | REQ-004 | Every registered type/version has a required-field contract | Registry inspection can enumerate required payload fields and validators for every supported version; missing, invalid, or unexpected fields fail with a typed validation error |
 | REQ-005 | Writers emit only the current registered event version | The write entry point rejects historical, future, unknown, and caller-selected versions and returns only a canonical current-version envelope |
 | REQ-006 | Readers upcast supported old events at one explicit boundary | The read entry point validates stored bytes, applies `type@N -> type@N+1` until current, validates each hop, and returns the current effective shape before reducers or mode code run |
-| REQ-007 | Upcasters are deterministic, adjacent, and side-effect-free | Each registered upcaster is pure and total over its declared input, performs no I/O or event emission, preserves immutable envelope fields, and produces byte-stable canonical output for repeated inputs |
+| REQ-007 | Upcasters are adjacent, deterministic, and input-preserving | Registration executes each transform repeatedly against deep-frozen probe inputs and rejects input mutation or differing canonical output; immutable envelope fields are checked at read time. No-I/O and no-emission remain a controlled-module trust-boundary contract because JavaScript cannot prove closure purity at runtime. |
 | REQ-008 | Stored evidence remains immutable and auditable | Read results expose the untouched stored bytes/envelope, stored and effective versions, registry/upcaster-chain identity, and ordered hop trace; no read path overwrites historical rows |
 | REQ-009 | Compatibility failures are fail-closed | Unknown types, unsupported outer/future versions, registry gaps, cycles, duplicate edges, invalid intermediate output, lossy conversions, or ambiguous defaults return typed failures and no effective event |
 | REQ-010 | The envelope composes with authorization and ledger siblings | The append-preflight result includes the exact canonical bytes/digest inputs, type/version, stream, sequence, authority epoch, and idempotency identity needed by the authorization gateway and typed ledger without either sibling reparsing producer payloads |
@@ -104,7 +106,7 @@ This phase plans the common outer record, the registry that binds each event typ
 | `occurred_at` / `recorded_at` | UTC ISO-8601 instants for domain occurrence and durable recording; upcasters cannot rewrite them. |
 | `producer` | Required object identifying producer name and version; capability detail belongs in the payload or authorization evidence. |
 | `authority_epoch` | Positive monotonic epoch evaluated by the transition-authorization gateway. |
-| `correlation_id` / `causation_id` | Required keys containing a non-empty ID or `null`; absence is invalid and invented defaults are forbidden. |
+| `correlation_id` / `causation_id` | Both keys are required. `correlation_id` is always a non-empty ID; only `causation_id` may be `null`. Absence and invented defaults are forbidden. |
 | `idempotency_key` | Non-empty caller-stable key used by the authorized append boundary; preserved across upcasts. |
 | `payload` | Event-type/version-specific object validated by the registry; all producer-native domain content lives here. |
 
@@ -134,7 +136,8 @@ The stored row is parsed once into a strict historical envelope. Registry resolu
 ## 6. RISKS & DEPENDENCIES
 
 - **Two version fields become conflated** — consumers could treat outer `envelope_version` as the payload schema. Mitigation: separate validators, names, fixtures, and error codes; `event_version` is always resolved with `event_type`.
-- **Permissive upcasting invents history** — optional defaults could hide missing evidence. Mitigation: required per-version contracts, adjacent pure transforms, explicit default provenance, and fail-closed ambiguous/lossy conversions.
+- **Permissive upcasting invents history** — optional defaults could hide missing evidence. Mitigation: required per-version contracts, controlled adjacent transforms, registration-time determinism and input-mutation checks, explicit default provenance, and fail-closed ambiguous/lossy conversions.
+- **JavaScript cannot prove no-I/O closure purity** — source inspection can be bypassed by captured capabilities. Mitigation: callable upcasters are unavailable on the public registry surface, only `readEvent` executes registered transforms, registration checks byte stability and input preservation, and controlled-module review enforces the no-I/O/no-emission contract.
 - **Registry nondeterminism changes replay** — discovery order or duplicate registrations could alter the chosen chain. Mitigation: exact keys, deterministic ordering, duplicate/cycle/gap rejection, and a registry/upcaster-chain identity included in replay inputs.
 - **Envelope becomes a second authority path** — a convenient writer could bypass the transition gate. Mitigation: this child exposes validation and serialization only; sibling ledger append requires a co-landed authorization decision and legacy remains authoritative.
 - **Legacy format churn** — generalizing current writers could accidentally rewrite shipped state. Mitigation: representative fixtures are copies of shapes, not migrations; `.opencode/skills/system-deep-loop/runtime/` writers remain unchanged in this child.
