@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research",
+  "description": "Phase parent for forced GPT-5.6-SOL deep-research on the four confirmed gaps in the sk-design styles library and /interface:* commands, feeding an",
+  "keywords": [
+    "phase",
+    "parent",
+    "forced",
+    "gpt-5",
+    "6-sol",
+    "deep-research",
+    "four",
+    "confirmed",
+    "gaps",
+    "sk-design",
+    "styles",
+    "library",
+    "interface",
+    "commands",
+    "feeding"
+  ],
+  "lastUpdated": "2026-07-21T06:43:14.605Z",
+  "specId": "007",
+  "folderSlug": "gap-remediation-research",
+  "parentChain": [
+    "sk-design",
+    "012-style-database-and-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

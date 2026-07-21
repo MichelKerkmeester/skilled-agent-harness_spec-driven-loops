@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/004-commands",
+  "spec_folder": "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/004-commands",
+  "parent_id": "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "interface commands literal prompts research",
+      "commands as claude design prompts",
+      "interface command rewrite research"
+    ],
+    "key_topics": [
+      "interface",
+      "commands",
+      "literal",
+      "prompts",
+      "research",
+      "claude",
+      "design",
+      "command",
+      "rewrite",
+      "forced",
+      "5-iter",
+      "gpt-5"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Literal Design Prompts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Forced 5-iter GPT-5.6-SOL research on rewriting the /interface:* commands as literal self-contained design prompts, spending the 002 research that shipped only thin routers.",
+    "created_at": "2026-07-21T09:46:42.069Z",
+    "last_save_at": "2026-07-21T09:46:42.069Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9f211d319e5ed07b1dd4cfb812d2b5992f3726a7c0e95f858713924406a637e8",
+    "source_doc_hashes": {
+      "spec.md": "aa9d5b23420eadcd9a3d9f28419dc81203f734abc50724690351566fbc38ded1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "run_id": "1784622756165-kgdopz",
+  "loop_type": "research",
+  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0093-sk-design-012-gap-research/.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/003-db-fate",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0093-sk-design-012-gap-research/.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/003-db-fate/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol-high-fast",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0093-sk-design-012-gap-research/.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/003-db-fate/research/lineages/sol-high-fast/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-21T08:32:36.169Z",
+        "end_at_iso": "2026-07-21T08:52:09.351Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 18
+      },
+      "sample": [
+        {
+          "index": 17,
+          "reason": "after_window",
+          "timestamp": "2026-07-21T08:54:30Z",
+          "deltaMs": 20649
+        }
+      ]
+    }
+  ]
+}

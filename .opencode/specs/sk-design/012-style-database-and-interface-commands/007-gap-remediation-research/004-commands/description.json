@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/004-commands",
+  "description": "Forced 5-iter GPT-5.6-SOL research on rewriting the /interface:* commands as literal self-contained design prompts, spending the 002 research that",
+  "keywords": [
+    "forced",
+    "5-iter",
+    "gpt-5",
+    "6-sol",
+    "research",
+    "rewriting",
+    "interface",
+    "commands",
+    "literal",
+    "self-contained",
+    "design",
+    "prompts",
+    "spending"
+  ],
+  "lastUpdated": "2026-07-21T06:44:36.737Z",
+  "specId": "004",
+  "folderSlug": "commands",
+  "parentChain": [
+    "sk-design",
+    "012-style-database-and-interface-commands",
+    "007-gap-remediation-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

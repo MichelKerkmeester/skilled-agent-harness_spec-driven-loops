@@ -1,0 +1,941 @@
+{
+  "sessionId": "fanout-sol-high-fast-1784616068213-1azjys",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-21T07:35:51Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-exact-current-ownership-and-dependency-topology-across-style-data-en",
+      "inboxId": "charter-topology",
+      "text": "What is the exact current ownership and dependency topology across style data, engine, database, harness, manifests, tests, docs, and consumers?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-parts-of-system-deep-loop-runtime-transfer-directly-and-where-should-style",
+      "inboxId": "charter-runtime-transfer",
+      "text": "Which parts of system-deep-loop/runtime transfer directly, and where should styles intentionally differ?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-target-layout-cleanly-separates-data-library-code-runtime-databases-manifes",
+      "inboxId": "charter-target-layout",
+      "text": "What target layout cleanly separates data, library code, runtime databases, manifests, tests, scripts, and documentation?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-dependency-ordered-migration-preserves-behavior-and-avoids-a-flag-day-acros",
+      "inboxId": "charter-migration",
+      "text": "What dependency-ordered migration preserves behavior and avoids a flag day across imports, path constants, fixtures, commands, and docs?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-exact-git-mv-sequence-verification-ladder-rollback-boundary-and-compatibili",
+      "inboxId": "charter-move-plan",
+      "text": "What exact git mv sequence, verification ladder, rollback boundary, and compatibility policy should implementation use?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-is-the-exact-current-ownership-and-dependency-topology-across-style-data-en",
+      "inboxId": "charter-topology",
+      "text": "What is the exact current ownership and dependency topology across style data, engine, database, harness, manifests, tests, docs, and consumers?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-parts-of-system-deep-loop-runtime-transfer-directly-and-where-should-style",
+      "inboxId": "charter-runtime-transfer",
+      "text": "Which parts of system-deep-loop/runtime transfer directly, and where should styles intentionally differ?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-target-layout-cleanly-separates-data-library-code-runtime-databases-manifes",
+      "inboxId": "charter-target-layout",
+      "text": "What target layout cleanly separates data, library code, runtime databases, manifests, tests, scripts, and documentation?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-dependency-ordered-migration-preserves-behavior-and-avoids-a-flag-day-acros",
+      "inboxId": "charter-migration",
+      "text": "What dependency-ordered migration preserves behavior and avoids a flag day across imports, path constants, fixtures, commands, and docs?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-exact-git-mv-sequence-verification-ladder-rollback-boundary-and-compatibili",
+      "inboxId": "charter-move-plan",
+      "text": "What exact git mv sequence, verification ladder, rollback boundary, and compatibility policy should implementation use?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What exact `git mv` and verification/rollback sequence should implementation use?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What concrete kebab-case target layout should represent data, library code, runtime database files, manifests, tests, scripts, and docs?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which `system-deep-loop/runtime` boundaries transfer directly, and which must differ for corpus/manifests?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What dependency-ordered migration avoids breaking the facade, root derivation, fixtures, and positional generator paths?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-engine-and-db-are-not-independent-move-units-today-persistent-adapter-mjs-import",
+      "text": "`_engine` and `_db` are not independent move units today. `persistent-adapter.mjs` imports database retrieval and schema, while `_db/retrieval.mjs` imports card assembly from `_engine`; database tests and oracle fixtures also import engine fixtures and facade functions. This bidirectional dependency means migration ordering must establish a stable library boundary before either subtree is moved independently. [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18] [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:5-7] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs:9-11] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/fixtures.mjs:11-14]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-2-a-downloaded-bundle-is-a-six-artifact-unit-design-md-css-variables-css-tailwind-",
+      "text": "A downloaded bundle is a six-artifact unit: `DESIGN.md`, `css-variables.css`, `tailwind-v4.css`, `design-tokens.json`, `<slug>-canonical.json`, and `source.md`. This is the data ownership boundary, distinct from backend code and root documentation. [SOURCE: .opencode/skills/sk-design/styles/README.md:5-8]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-8-documentation-is-a-large-secondary-consumer-surface-the-skill-overview-readme-fe",
+      "text": "Documentation is a large secondary consumer surface: the skill overview, README, feature catalog, manual-testing playbook, changelog, and multiple specs name `_engine`/`_db` paths. Scoped exact searches found no matching command or agent files, so commands/agents are not currently direct path blockers, but docs and spec metadata must be handled after executable paths. [SOURCE: .opencode/skills/sk-design/SKILL.md:215-226,261] [SOURCE: .opencode/skills/sk-design/feature-catalog/styles-library-utilization/retrieval-engine.md:42-54] [SOURCE: .opencode/skills/sk-design/feature-catalog/styles-library-utilization/style-database-backend.md:42-58] [INFERENCE: scoped exact searches under `.opencode/commands` and `.opencode/agents` returned no matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-3-manifest-ownership-is-split-but-root-bound-harness-extract-refero-mjs-writes-man",
+      "text": "Manifest ownership is split but root-bound: `_harness/extract-refero.mjs` writes `_manifest.json`; `_engine/manifest.mjs` names both root manifests; and `style-library.mjs` derives `CORPUS_ROOT` as the parent of `_engine` and locates `_retrieval-manifest.json` there. Moving only code without changing these constants would silently preserve the old mixed-tree assumption. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:34-36,80-94]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-5-tests-form-a-broader-old-path-surface-than-production-code-each-mode-suite-impor",
+      "text": "Tests form a broader old-path surface than production code: each mode suite imports engine modules and shared engine fixtures, constructs `_retrieval-manifest.json`, and constructs `_manifest.json`; the generator baseline test directly resolves the root retrieval manifest. These fixtures are coupled to both module location and corpus-root shape. [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/__tests__/relationship-blueprint.test.mjs:16-23,47,80] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/__tests__/relational-exemplar.test.mjs:16-23,59,96] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-22,47,68] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/__tests__/comparison-lane.test.mjs:16-23,61,108] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tests/corpus-baseline-v3.test.ts:19]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-production-facade-is-consumed-directly-by-four-mode-adapters-foundations-int",
+      "text": "The production facade is consumed directly by four mode adapters: foundations, interface, motion, and audit import `runQuery`/`runHydrate` from `../../styles/_engine/style-library.mjs`. The generator is a fifth production consumer, but it constructs both the CLI and retrieval-manifest paths positionally instead of importing the facade. [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:28] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:28] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:24] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:28] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-real-persistent-artifact-defaults-to-db-style-library-sqlite-alongside-sourc",
+      "text": "The real persistent artifact defaults to `_db/style-library.sqlite`, alongside source modules and tests. The database is rebuildable, the flat bundles remain authoritative, and persistent selection remains opt-in behind `legacy|shadow|persistent`; therefore source relocation and runtime-database relocation are separate concerns that must preserve this mode contract. [SOURCE: .opencode/skills/sk-design/styles/_db/schema.mjs:12-14] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:3-5,134-147]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-reference-runtime-s-transferable-topology-is-structural-not-domain-specific-",
+      "text": "The reference runtime's transferable topology is structural, not domain-specific: importable code lives under `lib/`, executable adapters under `scripts/`, and the package has independent tests/configuration. Styles differs because it also owns a large authoritative data corpus and two committed manifests, so a direct runtime-tree copy would be incomplete. [SOURCE: .opencode/skills/system-deep-loop/runtime/README.md:23-30,42-44,97-103] [INFERENCE: styles corpus and manifest ownership from findings 1-3]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-root-has-1-297-entries-1-290-downloaded-bundle-directories-plus-db-engine-ha",
+      "text": "The root has 1,297 entries: 1,290 downloaded bundle directories plus `_db/`, `_engine/`, `_harness/`, `_manifest.json`, `_retrieval-manifest.json`, `README.md`, and `manual-testing-playbook.md`. The data corpus and every backend/support category therefore share one namespace. [SOURCE: .opencode/skills/sk-design/styles:directory-listing] [SOURCE: .opencode/skills/sk-design/styles/README.md:5-12]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/` directory inventory",
+        "`.opencode/skills/sk-design/styles/README.md:5-21`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:14-36,80-94,123-207`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:23-34`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,27-49,69-87,134-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:12-14,334-359`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "Four mode corpus consumers and their test suites",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-67`",
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,97-103`",
+        "Scoped exact-path searches under `.opencode/skills/sk-design`, `.opencode/commands`, and `.opencode/agents`"
+      ]
+    },
+    {
+      "id": "finding-2-7-a-centralized-tests-boundary-transfers-structurally-runtime-separates-unit-integ",
+      "text": "A centralized `tests/` boundary transfers structurally: runtime separates unit, integration, lifecycle, helpers, and fixtures and owns discovery through a root config. For styles, engine tests, database tests, oracle data, and mode-adapter integration tests should be classified under one test root, but golden oracle files remain test evidence rather than corpus data or runtime database artifacts. [SOURCE: .opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25] [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/:scoped-inventory] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:89-124] [SOURCE: iterations/iteration-001.md:20-21]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-3-a-top-level-database-boundary-transfers-directly-only-for-mutable-runtime-public",
+      "text": "A top-level `database/` boundary transfers directly only for mutable runtime publication state: the logical SQLite path, immutable generation files, `.current.json` pointer, rollback generation, locks, and transient sidecars belong together there. It must not absorb source modules or authoritative corpus inputs. The reference runtime creates SQLite state on demand and excludes transient sidecars, while styles already models its database as a rebuildable projection with atomic generation publication and rollback. [SOURCE: .opencode/skills/system-deep-loop/runtime/database/README.md:10-30] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:3-15] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:40-49] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-10]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-2-engine-and-database-should-become-sibling-domains-inside-one-lib-boundary-not-se",
+      "text": "Engine and database should become sibling domains inside one `lib/` boundary, not separate top-level backends. The existing persistent adapter imports database retrieval/schema while the database retrieval path depends back on engine card assembly, so one library boundary acknowledges the real coupling while domain subdirectories preserve ownership. This transfers the runtime's `lib/deep-loop`, `lib/coverage-graph`, and `lib/council` pattern without copying those domain names. [SOURCE: .opencode/skills/system-deep-loop/runtime/README.md:109-115] [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18] [SOURCE: iterations/iteration-001.md:21]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-6-path-ownership-should-transfer-as-an-explicit-library-seam-but-styles-should-imp",
+      "text": "Path ownership should transfer as an explicit library seam, but styles should improve on the reference's remaining positional derivation. Runtime exposes a canonical artifact-root import seam and exports its database directory from the database owner; styles currently derives corpus, manifest, and database locations independently from each module's parent directory. A single styles path module should export the styles root, corpus root, committed manifest paths, and database root, while callable APIs retain explicit path overrides for fixtures and external callers. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:31-36,80-94] [SOURCE: .opencode/skills/sk-design/styles/_db/schema.mjs:11-32] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:41-45]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-4-styles-intentionally-needs-a-first-class-authoritative-corpus-boundary-that-runt",
+      "text": "Styles intentionally needs a first-class authoritative corpus boundary that runtime does not have. The flat bundles remain the source of truth, persistent reads are a projection, and the indexer reads the crawl manifest from the same corpus ownership context before discovering bundle directories. Therefore the 1,290 bundle folders and corpus-authoritative metadata must move as one data domain, outside `lib/`, `scripts/`, and `database/`. [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:1-5] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:645-663] [SOURCE: iterations/iteration-001.md:16-18]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-runtime-should-not-be-copied-as-a-literal-npm-package-template-it-has-a-scop",
+      "text": "The runtime should not be copied as a literal npm-package template. It has a scoped `vitest.config.ts`, `tsconfig.json`, and `package-lock.json`, but the expected `runtime/package.json` was absent during this pass; the styles tree likewise has no local package metadata. The safe transfer is therefore ownership and verification boundaries, not an unsupported claim that styles should immediately become an independently installable package. [SOURCE: .opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25] [INFERENCE: direct read of `.opencode/skills/system-deep-loop/runtime/package.json` returned file-not-found, and scoped glob found no package metadata under `styles/`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-runtime-s-primary-transferable-rule-is-a-two-surface-code-boundary-importabl",
+      "text": "The runtime's primary transferable rule is a two-surface code boundary: importable implementation belongs under `lib/`, while executable adapters under `scripts/` parse inputs, call library functions, emit machine-readable output, and close resources. Styles currently combines both roles in `_engine/style-library.mjs` and places the operator CLI inside `_db`, so the transfer should split thin query/build/operator entry points from reusable engine/database modules rather than merely renaming `_engine` and `_db`. [SOURCE: .opencode/skills/system-deep-loop/runtime/README.md:23-44] [SOURCE: .opencode/skills/system-deep-loop/runtime/README.md:117-121] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:69-80]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-three-manifest-classes-divide-by-lifecycle-rather-than-by-file-extension-the",
+      "text": "The three manifest classes divide by lifecycle rather than by file extension. The crawl manifest records authoritative extraction/provenance state and is written by the corpus acquisition script; the retrieval manifest is a committed, deterministic index derived from corpus data and used by the default legacy backend; database generation manifests are mutable publication pointers for opt-in persistent artifacts. The first two belong with corpus-owned committed metadata, while `.current.json` and generation manifests belong under `database/`. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:73-109] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:6-15,134-147]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/README.md:23-44,107-146,191-229`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:143-155`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs:3-19`",
+        "`.opencode/skills/system-deep-loop/runtime/vitest.config.ts:1-25`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/` scoped inventory",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:1-36,73-109`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-34`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-18,52-56`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:1-147`",
+        "`.opencode/skills/sk-design/styles/_db/schema.mjs:11-32`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-32`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:645-663`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:19-28,41-45`"
+      ]
+    },
+    {
+      "id": "finding-3-3-lib-paths-mjs-is-the-one-exported-ownership-seam-it-should-export-the-styles-roo",
+      "text": "`lib/paths.mjs` is the one exported ownership seam. It should export the styles root, bundle root, crawl-manifest path, retrieval-manifest path, and database root; production modules consume those exports, while callable APIs retain explicit path overrides for fixtures and external callers. This is the only new cross-domain source module warranted by the restructure. [SOURCE: iterations/iteration-002.md:21]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-1-library-is-the-appropriate-committed-data-name-because-it-describes-the-curated-",
+      "text": "`library/` is the appropriate committed-data name because it describes the curated style library as a product asset, while `lib/` remains the conventional and already-proven reusable-code boundary. The names are intentionally similar but semantically distinct, and each has a single owner: data versus source. Renaming the data boundary to `corpus/` would also be defensible, but it would add vocabulary drift from the existing “style library” public concept without improving lifecycle separation. [SOURCE: .opencode/skills/sk-design/styles/README.md:3-12] [SOURCE: iterations/iteration-002.md:16,19]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-2-library-manifests-crawl-manifest-json-and-library-manifests-retrieval-manifest-j",
+      "text": "`library/manifests/crawl-manifest.json` and `library/manifests/retrieval-manifest.json` are the exact committed metadata names. They preserve the two existing semantic roles while removing underscore-prefixed root globals. Database publication metadata keeps the `generation` and `current` vocabulary under `database/`, preventing “manifest” from implying one lifecycle across committed inputs and mutable projections. [SOURCE: iterations/iteration-002.md:18,20]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-8-compatibility-should-be-source-level-and-explicit-not-filesystem-level-checked-i",
+      "text": "Compatibility should be source-level and explicit, not filesystem-level. Checked-in consumers should update imports and paths atomically; no `_engine`, `_db`, `_harness`, or root-manifest forwarding shims are justified by current evidence. Existing callable path overrides remain the compatibility mechanism for tests and external invocation, while an old rebuildable SQLite projection should be regenerated at the new database root rather than searched through fallback paths. [SOURCE: iterations/iteration-001.md:19-23] [SOURCE: iterations/iteration-002.md:18,21] [INFERENCE: no command or agent direct consumers were found in iteration 1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-4-production-oracle-code-and-golden-oracle-evidence-must-split-executable-comparis",
+      "text": "Production oracle code and golden oracle evidence must split: executable comparison/normalization/query logic belongs under `lib/database/`, while static expected results belong under `tests/oracle/`. Putting both under `tests/` would hide production behavior; putting both under `lib/` would make golden evidence look runtime-authoritative. [INFERENCE: based on iterations/iteration-001.md:21 and iterations/iteration-002.md:22]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-move-cannot-be-executed-as-independent-subtree-renames-the-implementation-or",
+      "text": "The move cannot be executed as independent subtree renames. The implementation order must first introduce the exported path seam and explicit overrides, then move committed data/manifests and the coupled engine/database source boundary in one behavior-preserving migration window, then relocate entrypoints/tests/runtime state, and finally update documentation. [SOURCE: iterations/iteration-001.md:18-23] [SOURCE: iterations/iteration-002.md:21]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-target-does-not-create-separate-backend-runtime-src-or-package-layers-styles",
+      "text": "The target does not create separate `backend/`, `runtime/`, `src/`, or package layers. `styles/` is already the subsystem root; `lib/`, `scripts/`, `database/`, `tests/`, `library/`, and `docs/` each add an ownership distinction that current artifacts require, while another wrapper would only deepen paths. [SOURCE: iterations/iteration-002.md:16-19,23]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-tree-preserves-all-semantic-contracts-legacy-retrieval-reads-library-bundles",
+      "text": "The tree preserves all semantic contracts. Legacy retrieval reads `library/bundles/` plus the committed retrieval manifest by default; shadow and persistent modes reuse the same authoritative inputs; persistent mode alone reads the rebuildable projection under `database/`. No target name implies a mode-default change. [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:134-147] [SOURCE: iterations/iteration-002.md:19-20]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md:3-18`",
+        "`.opencode/skills/sk-design/styles/_db/README.md:3-15,40-49,134-147`",
+        "`.opencode/skills/system-deep-loop/runtime/database/README.md:10-30`",
+        "`iterations/iteration-001.md:16-24`",
+        "`iterations/iteration-002.md:16-23`",
+        "`deep-research-strategy.md:7-10,43-82,86-98`",
+        "`findings-registry.json:2-32`"
+      ]
+    },
+    {
+      "id": "finding-4-5-engine-database-source-moves-form-one-group-because-imports-are-bidirectional-th",
+      "text": "Engine/database source moves form one group because imports are bidirectional: the persistent adapter imports database retrieval/schema, while database retrieval imports engine cards. Update all imports and checked-in mode consumers before the group gate. [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-14] [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:5] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:28] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:28] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:24] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:28]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-8-mutable-database-artifacts-are-outside-the-source-move-change-the-module-relativ",
+      "text": "Mutable database artifacts are outside the source move. Change the module-relative default from `_db/style-library.sqlite` to `database/style-library.sqlite`, but do not move, create, or publish a database. Existing state remains rebuildable and opt-in. [SOURCE: .opencode/skills/sk-design/styles/_db/schema.mjs:7-14,31] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:1048-1122] [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:97-110]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-6-preserve-explicit-fixture-roots-and-fixture-local-legacy-filenames-tests-create-",
+      "text": "Preserve explicit fixture roots and fixture-local legacy filenames. Tests create `_manifest.json` and `_retrieval-manifest.json` under temporary roots and pass explicit paths; renaming those files does not improve production ownership. [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:76-83,120-127] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/fixtures.mjs:109] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:65,98,118-128]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-2-preserve-module-names-and-behavior-one-for-one-style-library-mjs-and-operator-mj",
+      "text": "Preserve module names and behavior one-for-one. `style-library.mjs` and `operator.mjs` already export callable APIs and implement guarded direct execution. Move them to `lib/engine/style-library.mjs` and `lib/database/operator.mjs`; do not invent `scripts/style-library.mjs` or `scripts/style-database.mjs` wrappers. The proven standalone script is `_harness/extract-refero.mjs`. [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:180-261] [SOURCE: .opencode/skills/sk-design/styles/_db/operator.mjs:207-268] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:22-28,445-449]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-4-the-committed-retrieval-manifest-is-the-authoritative-bundle-inventory-read-only",
+      "text": "The committed retrieval manifest is the authoritative bundle inventory. Read-only validation found `recordCount=1290`, 1,290 unique slugs, no missing source directories, and no unsafe slash/NUL/dot names. The command below validates each source against Git and invokes `git mv` with an argument array plus `--`; shell metacharacters are never expanded. [SOURCE: .opencode/skills/sk-design/styles/_retrieval-manifest.json:1] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:295-308]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-7-the-generator-is-a-hard-cutover-consumer-study-prepare-ts-positionally-derives-b",
+      "text": "The generator is a hard cutover consumer: `study-prepare.ts` positionally derives both executable and manifest. Update it and its baseline test in the same group. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-91] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tests/corpus-baseline-v3.test.ts:19]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-3-the-oracle-contradiction-resolves-to-test-ownership-exact-search-found-oracle-mo",
+      "text": "The oracle contradiction resolves to test ownership. Exact search found oracle modules imported only by `_db/__tests__`; oracle modules consume production database modules. Move the complete `_db/oracle/` subtree to `tests/oracle/`; do not create `lib/database/oracle.mjs`. [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/oracle.test.mjs:22-29] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/fixtures.test.mjs:10-19] [SOURCE: .opencode/skills/sk-design/styles/_db/oracle/differential-oracle.mjs:12-23]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    },
+    {
+      "id": "finding-4-1-use-two-explicit-mixed-state-boundaries-first-add-lib-paths-mjs-while-its-defaul",
+      "text": "Use two explicit mixed-state boundaries. First add `lib/paths.mjs` while its defaults still point to the root corpus/manifests and `_db`; refactor callers to accept independent bundle, crawl-manifest, retrieval-manifest, and database paths. Move code/tests only after that is green. Move bundles/manifests and flip defaults last. This is necessary because manifest and indexer code currently derive `_manifest.json` from `corpusRoot`, while the target separates `library/bundles/` and `library/manifests/`. [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:34-36,80-98] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:584-601,640-652] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:623-650]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs`",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs`",
+        "`.opencode/skills/sk-design/styles/_db/oracle/**`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs`",
+        "`.opencode/skills/sk-design/design-{foundations,interface,motion,audit}/corpus/**`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/**`",
+        "Exact scoped `Grep`, `Glob`, `git ls-files`, `git status`, `git check-ignore`, and manifest validation outputs."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-96bd4c1af22e",
+      "text": "Copying `runtime/` mechanically is exhausted as a design direction; only its ownership rules are transferable.",
+      "contentHash": "96bd4c1af22e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ffb271d466e9",
+      "text": "Parent-directory derivation should not be preserved as a compatibility strategy because the restructure intentionally breaks the positional relationship it assumes.",
+      "contentHash": "ffb271d466e9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-31b5cae9225e",
+      "text": "Ruled out a literal mirror of runtime directory names: styles requires an authoritative corpus and committed corpus manifests that runtime does not own.",
+      "contentHash": "31b5cae9225e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-20e9fd81cd3b",
+      "text": "Ruled out placing `_manifest.json` and `_retrieval-manifest.json` under `database/`: their authority and default-backend lifecycle differ from mutable SQLite publication pointers.",
+      "contentHash": "20e9fd81cd3b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-20652b12b5bf",
+      "text": "Ruled out separate top-level `engine/` and `database-code/` source domains: current bidirectional imports make one `lib/` boundary the more accurate ownership model.",
+      "contentHash": "20652b12b5bf",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-601bcbaaada7",
+      "text": "Ruled out treating the runtime as proof that styles needs a standalone npm package: the reference package metadata is incomplete in the checked-in tree.",
+      "contentHash": "601bcbaaada7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2ababab39a1e",
+      "text": "A literal runtime-tree copy remains exhausted because it has no authoritative committed-corpus boundary.",
+      "contentHash": "2ababab39a1e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c9e0a4ad182e",
+      "text": "Independent `_engine`, `_db`, and `_harness` moves remain blocked until the shared path seam and coupled import update are designed together.",
+      "contentHash": "c9e0a4ad182e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5d1dee331fdf",
+      "text": "Ruled out `corpus/` as the selected committed-data name: technically sound, but `library/` better preserves the subsystem's established product vocabulary while remaining distinct from code-only `lib/`.",
+      "contentHash": "5d1dee331fdf",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5074eca8cb6c",
+      "text": "Ruled out `lib/oracle/` and `tests/oracle-code/` as separate domains: production oracle logic belongs to its database domain, and only golden evidence needs a test-owned oracle directory.",
+      "contentHash": "5074eca8cb6c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2439a8d7fa73",
+      "text": "Ruled out a top-level `manifests/`: both committed files are metadata for `library/`, whereas generation metadata belongs to `database/`; a shared manifest root would merge lifecycles again.",
+      "contentHash": "2439a8d7fa73",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9961caa57ea6",
+      "text": "Ruled out keeping `_manifest.json` and `_retrieval-manifest.json` at the styles root: root globals preserve the ownership ambiguity the restructure is intended to remove.",
+      "contentHash": "9961caa57ea6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4e1becd0c088",
+      "text": "Ruled out wrapper layers such as `backend/`, `runtime/`, or `src/`: none adds an ownership distinction beyond the six direct roots.",
+      "contentHash": "4e1becd0c088",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-09915f33f5a8",
+      "text": "CLI wrappers during relocation: duplicate an existing dual-purpose contract without need.",
+      "contentHash": "09915f33f5a8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3c75f0526bb8",
+      "text": "Database creation during verification: persistent state is opt-in and separate from source rollback.",
+      "contentHash": "3c75f0526bb8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a859811c8d8b",
+      "text": "Old-path aliases or database fallback: hide incomplete migration without a concrete consumer.",
+      "contentHash": "a859811c8d8b",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f57b61e8dfc8",
+      "text": "Production oracle under `lib/database`: no production importer exists.",
+      "contentHash": "f57b61e8dfc8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9d301ec2c660",
+      "text": "Root wildcards or negative exclusions for bundles: not inventory-authoritative and can capture backend/docs.",
+      "contentHash": "9d301ec2c660",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-2a987a20a4a1",
+      "text": "Whole `_db` move: can carry ignored mutable artifacts.",
+      "contentHash": "2a987a20a4a1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-064c49696b81",
+      "text": "Aliases, old-database fallback, or database creation: no concrete consumer justifies them.",
+      "contentHash": "064c49696b81",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-000b9c067bc6",
+      "text": "Chunked, `xargs`, wildcard, shell-expanded, or per-bundle moves: unnecessary under measured limits and add failure boundaries.",
+      "contentHash": "000b9c067bc6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e0cd3aa39721",
+      "text": "Committed example database artifacts: mutable and rebuildable.",
+      "contentHash": "e0cd3aa39721",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6593ea060fb8",
+      "text": "Fixture-local manifest renames: fixtures intentionally exercise explicit paths.",
+      "contentHash": "6593ea060fb8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2483d911ed90",
+      "text": "New wrappers or production oracle code: contradicted by exports and importers.",
+      "contentHash": "2483d911ed90",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8d12468288ca",
+      "text": "Whole backend subtree moves: preserve false ownership and may carry ignored state.",
+      "contentHash": "8d12468288ca",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 4,
+    "keyFindings": 33,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.44,
+    "coverageBySources": {
+      "code": 27,
+      "other": 75
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/sol-high-fast-reducer/001-restructure/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}
