@@ -4,7 +4,12 @@ _Worktree `.worktrees/0089-sk-doc-default-routing-cutover` (branch `sk-doc/0089-
 
 ## Committed checkpoints
 - **`f19ee17179`** — sk-code routing recipe + manifest `refresh` verb + 013 spec.
-- **`e56361ee53`** — parity-harness correctness (3 bugs) + sk-doc/system-deep-loop unblock (SKILL.md `UNKNOWN_FALLBACK_CHECKLIST` + manifest re-mint).
+- **`e56361ee53`** — parity-harness correctness (3 bugs) + sk-doc/system-deep-loop unblock.
+- **`f9f639674b`** — sk-design + system-deep-loop + mcp-tooling compiled-serving.
+- **`b03b1dd882`** — sk-doc under-routing fixes (27/5 → 31/1).
+- **`6ba5f2957f`** — parity non-route/surface-layer refinement (SD-015).
+
+**STATUS: ALL 7 hubs verified `compiled-serving` (drift=0 each; sk-code 23, sk-design 38, sk-doc 32, sk-prompt 5, mcp-tooling 14, system-deep-loop 21, cli-ext 8), routing == legacy. Coverage build-out COMPLETE. The flip (populate `DEFAULT_ON_HUBS` + doc lockstep) is the only remaining step. If resuming: re-run the 7-hub parity to confirm all serving, then execute the flip per §"NEXT" below. Minor follow-up: add an explicit parity vitest for the non-route/surface-layer clause (verified live + 47/47 existing, but no dedicated lock-in test yet).**
 
 ## Verified state (parity, fixed harness + fresh manifests)
 | Hub | verdict | notes |

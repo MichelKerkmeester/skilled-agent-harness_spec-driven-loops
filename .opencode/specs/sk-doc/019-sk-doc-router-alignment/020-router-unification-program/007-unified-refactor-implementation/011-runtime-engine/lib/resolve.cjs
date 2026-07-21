@@ -20,10 +20,20 @@ const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '010-live-activation
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
-// Per-hub default-on cohort. Ships empty and stays empty until the staged
-// cutover adds hubs one at a time, so an unset flag resolves to legacy for
-// every hub — byte-identical to the bi-state default this replaces.
-const DEFAULT_ON_HUBS = new Set();
+// Per-hub default-on cohort. All seven compiled-eligible hubs are verified
+// compiled-serving (Lane C parity: compiled byte-identical to legacy on every
+// scenario, 0 drift) and have been cut over together, so an unset flag now
+// resolves to compiled for every eligible hub. SPECKIT_COMPILED_ROUTING=0
+// remains the explicit fleet-wide kill-switch back to legacy.
+const DEFAULT_ON_HUBS = new Set([
+  'sk-code',
+  'system-deep-loop',
+  'mcp-tooling',
+  'cli-external-orchestration',
+  'sk-prompt',
+  'sk-design',
+  'sk-doc',
+]);
 
 // Emit-only diagnostic. Gated behind an explicit debug flag and written to
 // stderr, so it never reaches stdout (the routing channel) or the TUI.

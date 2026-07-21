@@ -1,6 +1,6 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "How cli-external-orchestration resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the legacy fallback that keeps it inert until explicitly authorized."
+description: "How cli-external-orchestration resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch that falls back to legacy."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
@@ -15,9 +15,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`cli-external-orchestration`'s `SKILL.md` carries an opt-in, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`cli-executor-dispatch-routing.md`](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md).
+`cli-external-orchestration`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`cli-executor-dispatch-routing.md`](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md).
 
-The directive is off by default and byte-identical to today's behavior when unset: the compiled front door returns a `{"servingAuthority":"legacy"}` sentinel (or is never meaningfully consulted), and `cli-external-orchestration` falls back to its registry-driven routing every time.
+The directive is on by default for `cli-external-orchestration` (a member of the per-hub default-on cohort): the compiled front door resolves and `cli-external-orchestration` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `cli-external-orchestration` (and every eligible hub) back to legacy registry-driven routing.
 
 ---
 
@@ -25,11 +25,11 @@ The directive is off by default and byte-identical to today's behavior when unse
 
 ### Resolution Order
 
-When `SPECKIT_COMPILED_ROUTING=1`, the directive shells out to `node .opencode/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `cli-external-orchestration`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/010-live-activation/activation/cli-external-orchestration/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `cli-external-orchestration` routes unchanged. As of this writing, `cli-external-orchestration`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false` — the tri-state flag is the sole gate currently withholding compiled serving by default.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .opencode/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `cli-external-orchestration`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/010-live-activation/activation/cli-external-orchestration/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `cli-external-orchestration` routes unchanged. As of this writing, `cli-external-orchestration`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `cli-external-orchestration` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path: unset resolves through a per-hub default-on cohort that ships empty, so `cli-external-orchestration` (like every eligible hub) stays legacy until a later staged cutover adds it explicitly; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `cli-external-orchestration` (like all seven eligible hubs) is now a member of the resolver's cohort, so `cli-external-orchestration`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
 
 ### Outcome Handling
 
@@ -47,7 +47,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/SKILL.md` | Shared | Carries the opt-in compiled-routing directive `cli-external-orchestration` follows. |
+| `.opencode/skills/cli-external-orchestration/SKILL.md` | Shared | Carries the default-on compiled-routing directive `cli-external-orchestration` follows. |
 | `.opencode/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
 | `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
 | `.opencode/bin/lib/compiled-routing/010-live-activation/activation/cli-external-orchestration/manifest.json` | Shared | `cli-external-orchestration`'s promoted activation manifest (serving authority, shadow status, selected policy). |

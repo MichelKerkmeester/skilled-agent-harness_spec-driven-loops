@@ -37,11 +37,11 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 
 Routing is **registry-driven** (invokable-hub, Option E). `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. When invoked as `Skill(system-deep-loop[, "<mode>: <request>"])`, the hub classifies the request to a `workflowMode`, resolves it through the registry, and loads `registry[mode].packet`. The advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then picks the mode. The `/deep:*` commands and native agent types remain as complementary surfaces — they reach the same packets through static routers/agent definitions — and the hub holds NO per-mode logic.
 
-> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority, and the flag is **off by default**, so this is inert until compiled routing is activated for `system-deep-loop`.
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `system-deep-loop`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
 This hub is an intent/registry router, not a keyed resource-discovery router: at runtime it omits `discover_markdown_resources` and only guards registry-selected packet loads, never selecting hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. It does carry a second-layer surface router at `shared/references/smart-routing.md` — a benchmark/replay artifact (mirroring sk-prompt/sk-code) that maps a resolved mode's intent to packet-qualified child leaves so router-replay can emit canonical `{workflowMode, leafResourceId}` typed pairs against `leaf-manifest.json`. That surface layer never re-decides the mode and is not a runtime hub discovery surface; the hub still routes by `workflowMode` through `mode-registry.json` alone.
 

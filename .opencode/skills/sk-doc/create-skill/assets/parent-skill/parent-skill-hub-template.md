@@ -154,11 +154,11 @@ Use this skill when the request belongs to the [family/domain] family and should
 
 Routing is registry-driven. `mode-registry.json` lists every workflow and surface packet in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, ordered workflow bundle, defer response, or surface bundle.
 
-> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+> **Compiled routing (default-on fleet-wide, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority, and the flag is **off by default**, so this is inert until compiled routing is activated for `{{HUB_NAME}}`.
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for the seven proven hubs (`sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`); `SPECKIT_COMPILED_ROUTING=0` is the fleet-wide kill-switch. A newly scaffolded `{{HUB_NAME}}` ships without a compiled activation manifest, so this directive stays inert (legacy sentinel) until `{{HUB_NAME}}` completes its own compiled-routing activation and is added to the default-on cohort.
 
 ### Two-Axis Model
 

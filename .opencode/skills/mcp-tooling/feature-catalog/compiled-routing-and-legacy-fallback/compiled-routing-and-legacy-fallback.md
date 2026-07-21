@@ -1,6 +1,6 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "How mcp-tooling resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the legacy fallback that keeps it inert until explicitly authorized."
+description: "How mcp-tooling resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch that falls back to legacy."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
@@ -15,9 +15,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`mcp-tooling`'s `SKILL.md` carries an opt-in, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`workflow-vs-transport-routing.md`](../workflow-vs-transport-routing/workflow-vs-transport-routing.md).
+`mcp-tooling`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`workflow-vs-transport-routing.md`](../workflow-vs-transport-routing/workflow-vs-transport-routing.md).
 
-The directive is off by default and byte-identical to today's behavior when unset: the compiled front door returns a `{"servingAuthority":"legacy"}` sentinel (or is never meaningfully consulted), and `mcp-tooling` falls back to its registry-driven routing every time.
+The directive is on by default for `mcp-tooling` (a member of the per-hub default-on cohort): the compiled front door resolves and `mcp-tooling` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `mcp-tooling` (and every eligible hub) back to legacy registry-driven routing.
 
 ---
 
@@ -25,11 +25,11 @@ The directive is off by default and byte-identical to today's behavior when unse
 
 ### Resolution Order
 
-When `SPECKIT_COMPILED_ROUTING=1`, the directive shells out to `node .opencode/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `mcp-tooling`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/010-live-activation/activation/mcp-tooling/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `mcp-tooling` routes unchanged. As of this writing, `mcp-tooling`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false` — the tri-state flag is the sole gate currently withholding compiled serving by default.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .opencode/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `mcp-tooling`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/010-live-activation/activation/mcp-tooling/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `mcp-tooling` routes unchanged. As of this writing, `mcp-tooling`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `mcp-tooling` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path: unset resolves through a per-hub default-on cohort that ships empty, so `mcp-tooling` (like every eligible hub) stays legacy until a later staged cutover adds it explicitly; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `mcp-tooling` (like all seven eligible hubs) is now a member of the resolver's cohort, so `mcp-tooling`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
 
 ### Outcome Handling
 
@@ -47,7 +47,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/mcp-tooling/SKILL.md` | Shared | Carries the opt-in compiled-routing directive `mcp-tooling` follows. |
+| `.opencode/skills/mcp-tooling/SKILL.md` | Shared | Carries the default-on compiled-routing directive `mcp-tooling` follows. |
 | `.opencode/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
 | `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
 | `.opencode/bin/lib/compiled-routing/010-live-activation/activation/mcp-tooling/manifest.json` | Shared | `mcp-tooling`'s promoted activation manifest (serving authority, shadow status, selected policy). |
