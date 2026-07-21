@@ -56,10 +56,17 @@ The hub's own routing logic is read-only (classify, guard a path, load a packet)
 
 ### Routing rule
 ```
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this is research, review, ai-council, alignment, or one improvement lane (agent-improvement, model-benchmark, skill-benchmark) work",
+    "Confirm the target artifact: research.md, a review verdict, ai-council deliberation artifacts, alignment findings, or an improvement candidate",
+    "Confirm the matching /deep:* command or agent type when one is already known",
+    "Confirm the backend expectations: runtimeLoopType (research/review/council/alignment) or the improvement-host lane",
+]
+
 classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
 guard mode-registry.json inside SKILL_ROOT and read it as data
 if classifier confidence is low or no mode dominates:
-  → return UNKNOWN_FALLBACK with a disambiguation checklist: choose research, review, ai-council, alignment, or one improvement lane
+  → return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
 else:
   → resolve workflowMode from the hint / classified intent (or the /deep:* command / advisor alias)
   → find registry[mode]; if missing, return UNKNOWN_FALLBACK instead of loading a guessed path

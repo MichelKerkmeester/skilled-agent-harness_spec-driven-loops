@@ -157,7 +157,23 @@ describe('compiled-routing-parity: qualifiedIdToLeaf bijection', () => {
     const bridged = parity.translateTargetsToObserved([target('quality', 'code-quality', 'surface-router')], loader);
     expect(bridged.unresolved).toEqual([]);
     expect(bridged.observedIntents).toContain('quality');
-    expect(bridged.observedResources).toContain('references/config/quick-reference.md');
+    // Packet-qualified (`<packet>/<leaf>`), matching legacy's own hub-relative
+    // addressing -- a leaf-manifest's native packet-root-relative form would
+    // never string-match legacy's observedResources or a scenario's gold.
+    expect(bridged.observedResources).toContain('code-quality/references/config/quick-reference.md');
+  });
+
+  it('translateTargetsToObserved packet-qualifies leaves to match legacy addressing', () => {
+    const loader = (hub: string) => (hub === 'sk-code'
+      ? { 'code-webflow': { workflowMode: 'code-webflow', packet: 'code-webflow', leaves: ['references/animation/quick-start.md'] } }
+      : {});
+    const bridged = parity.translateTargetsToObserved(
+      [target('code-webflow', 'code-webflow', 'evidence-base')], loader,
+    );
+    // The leaf-manifest-native (unqualified) form must NOT survive -- it is a
+    // different string space than legacy's hub-relative, packet-prefixed one.
+    expect(bridged.observedResources).not.toContain('references/animation/quick-start.md');
+    expect(bridged.observedResources).toContain('code-webflow/references/animation/quick-start.md');
   });
 
   it('translateTargetsToObserved fails closed on an unknown workflow mode', () => {
@@ -327,17 +343,168 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
     expect(res.reason).toBe('manifest-invalid-or-unreadable');
   });
 
-  it('mutual equality cannot pass when both observations fail route gold', () => {
+  it('both sides failing the same pre-existing gold gap, under matching routing, is parity not drift', () => {
+    // Parity is "compiled behaves identically to legacy" (same routing AND the
+    // same gold outcome), decoupled from gold-achievability. Both compiled and
+    // legacy route to 'quality' (matching projection) and both fail the SAME
+    // authored gold (which expects 'code-review') -- compiled tracked legacy
+    // exactly, so this is match, not drift.
     const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['code-review'] };
     const wrongLegacy = { observedIntents: ['quality'], observedResources: [] };
     const res = parity.compiledParity(
       { scenario: wrongScenario, legacyObserved: wrongLegacy, skillRoot, skillId: 'sk-code' },
       { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }) },
     );
-    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+    expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
     expect(res.compiledGoldPass).toBe(false);
     expect(res.legacyGoldPass).toBe(false);
     expect(res.firstDifference).toBeNull();
+  });
+
+  it('adversarial: a real misroute still drifts even when both sides fail gold identically', () => {
+    // compiledGoldPass === legacyGoldPass (both false) alone must never be
+    // sufficient for match -- firstDifference===null is a mandatory, separate
+    // conjunct. Compiled routes to 'code-review'; legacy routed to 'quality';
+    // neither matches the authored gold ('some-other-mode'), so the gold axis
+    // trivially agrees (both fail) while the routing axis genuinely disagrees.
+    const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['some-other-mode'] };
+    const legacyObserved = { observedIntents: ['quality'], observedResources: [] };
+    const res = parity.compiledParity(
+      { scenario: wrongScenario, legacyObserved, skillRoot, skillId: 'sk-code' },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('code-review', 'code-review', 'review-cache')] }) },
+    );
+    expect(res.compiledGoldPass).toBe(false);
+    expect(res.legacyGoldPass).toBe(false);
+    expect(res.firstDifference).not.toBeNull();
+    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+  });
+
+  it('adversarial: a real compiled leaf-manifest gap still drifts even with apples-to-apples resource granularity', () => {
+    // Targets match (both route to 'code-webflow' alone) and the resource
+    // comparison is granularity-corrected, but compiled's own declared leaves
+    // for that target are genuinely missing one legacy selected and gold
+    // requires. The projection filter must not be able to manufacture a leaf
+    // compiled never declared -- this is a real compiled-only regression, not
+    // a granularity artifact, and must still fail gold and report drift.
+    const scenario = {
+      scenarioId: 'ADV-leaf-gap', classKind: 'routing', hasResourceGold: true,
+      expectedResources: [
+        'code-webflow/references/animation/quick-start.md',
+        'code-webflow/references/animation/decision-matrix.md',
+      ],
+      forbiddenResources: [],
+      source: { shape: 'sk-code' },
+    };
+    const legacyObserved = {
+      observedIntents: ['code-webflow'],
+      observedResources: [
+        'code-webflow/references/animation/quick-start.md',
+        'code-webflow/references/animation/decision-matrix.md',
+      ],
+    };
+    // Compiled's manifest declares ONLY quick-start.md for code-webflow --
+    // decision-matrix.md is a genuine gap, never resolvable via intersection.
+    const loader = (hub: string) => (hub === 'sk-code'
+      ? { 'code-webflow': { workflowMode: 'code-webflow', packet: 'code-webflow', leaves: ['references/animation/quick-start.md'] } }
+      : {});
+    const res = parity.compiledParity(
+      { scenario, legacyObserved, skillRoot, skillId: 'sk-code' },
+      {
+        readServingAuthority: () => 'compiled',
+        compiledDecision: () => ({ action: 'route', targets: [target('code-webflow', 'code-webflow', 'evidence-base')] }),
+        loadModeIndex: loader,
+      },
+    );
+    expect(res.firstDifference).toBeNull();
+    expect(res.legacyGoldPass).toBe(true);
+    expect(res.compiledGoldPass).toBe(false);
+    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+  });
+
+  it('a coarse compiled declaration, once projected to legacy granularity, matches when compiled truly has no gap', () => {
+    // The positive twin of the leaf-gap adversarial test: compiled's manifest
+    // declares the FULL mode (a superset including resources this task never
+    // needed), legacy's replay selected only a task-scoped subset. Once
+    // projected to legacy's granularity, compiled has no real gap, so this is
+    // match -- proving the fix narrows over-broad declarations rather than
+    // failing them outright.
+    const scenario = {
+      scenarioId: 'POS-coarse', classKind: 'routing', hasResourceGold: true,
+      expectedResources: ['code-webflow/references/animation/quick-start.md'],
+      forbiddenResources: ['code-webflow/references/implementation/'],
+      source: { shape: 'sk-code' },
+    };
+    const legacyObserved = {
+      observedIntents: ['code-webflow'],
+      observedResources: ['references/universal/code-quality-standards.md', 'code-webflow/references/animation/quick-start.md'],
+    };
+    // Compiled's FULL declaration for code-webflow spans far more than this
+    // task needs (including a forbidden-prefixed implementation leaf).
+    const loader = (hub: string) => (hub === 'sk-code'
+      ? {
+        'code-webflow': {
+          workflowMode: 'code-webflow', packet: 'code-webflow',
+          leaves: [
+            'references/animation/quick-start.md',
+            'references/implementation/webflow-patterns/overview-limits-and-collection-lists.md',
+          ],
+        },
+      }
+      : {});
+    const res = parity.compiledParity(
+      { scenario, legacyObserved, skillRoot, skillId: 'sk-code' },
+      {
+        readServingAuthority: () => 'compiled',
+        compiledDecision: () => ({ action: 'route', targets: [target('code-webflow', 'code-webflow', 'evidence-base')] }),
+        loadModeIndex: loader,
+      },
+    );
+    expect(res.firstDifference).toBeNull();
+    expect(res.legacyGoldPass).toBe(true);
+    expect(res.compiledGoldPass).toBe(true);
+    expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
+  });
+});
+
+describe('compiled-routing-parity: resource-granularity projection', () => {
+  it('packetIdsForModeIndex collects declared packet ids, ignoring entries without one', () => {
+    const ids = parity.packetIdsForModeIndex({ a: { packet: 'pkg-a' }, b: { packet: 'pkg-b' }, c: {} });
+    expect([...ids].sort()).toEqual(['pkg-a', 'pkg-b']);
+  });
+
+  it('packetIdsForModeIndex accepts a Map-shaped mode index', () => {
+    const ids = parity.packetIdsForModeIndex(new Map([['a', { packet: 'pkg-a' }]]));
+    expect([...ids]).toEqual(['pkg-a']);
+  });
+
+  it('keeps hub-level (unqualified) legacy resources unconditionally', () => {
+    const projected = parity.projectCompiledResourcesToLegacyGranularity({
+      legacyResources: ['references/stack-detection.md', 'references/universal/code-quality-standards.md'],
+      compiledResources: [],
+      hubPacketIds: new Set(['code-webflow', 'code-opencode']),
+    });
+    expect(projected).toEqual(['references/stack-detection.md', 'references/universal/code-quality-standards.md']);
+  });
+
+  it('narrows packet-qualified legacy resources to what compiled actually declared', () => {
+    const projected = parity.projectCompiledResourcesToLegacyGranularity({
+      legacyResources: ['references/universal/x.md', 'code-webflow/references/a.md', 'code-webflow/references/b.md'],
+      compiledResources: ['code-webflow/references/a.md'],
+      hubPacketIds: new Set(['code-webflow', 'code-opencode']),
+    });
+    expect(projected).toEqual(['references/universal/x.md', 'code-webflow/references/a.md']);
+  });
+
+  it('drops nothing when compiled declares a superset of legacy (the healthy case)', () => {
+    const projected = parity.projectCompiledResourcesToLegacyGranularity({
+      legacyResources: ['code-opencode/references/typescript/quick-reference.md'],
+      compiledResources: [
+        'code-opencode/references/typescript/quick-reference.md',
+        'code-opencode/references/python/quick-reference.md',
+      ],
+      hubPacketIds: new Set(['code-opencode']),
+    });
+    expect(projected).toEqual(['code-opencode/references/typescript/quick-reference.md']);
   });
 });
 
@@ -356,6 +523,57 @@ describe('compiled-routing-parity: routing projection shapes', () => {
     expect(ordered.selectionKind).toBe('orderedBundle');
     expect(ordered.targets.map((item: any) => item.workflowMode)).toEqual(['review', 'quality']);
     expect(surface.selectionKind).toBe('surfaceBundle');
+  });
+
+  it('selectionKindForTargets: surfaceBundle requires exactly one actor, per decision-contract assertComposition', () => {
+    // Contract (002-decision-evaluator/lib/decision-contract.cjs assertComposition):
+    // surfaceBundle requires actors.length === 1 AND every other target is
+    // evidence. Any other shape is orderedBundle, which carries no role
+    // restriction. Mirrors registry-compiler.cjs's bundleKindForModes exactly.
+    const oneActorOneEvidence = parity.selectionKindForTargets([
+      { packetKind: 'workflow' }, { packetKind: 'surface' },
+    ]);
+    expect(oneActorOneEvidence).toBe('surfaceBundle');
+
+    const oneActorTwoEvidence = parity.selectionKindForTargets([
+      { packetKind: 'workflow' }, { packetKind: 'surface' }, { packetKind: 'surface' },
+    ]);
+    expect(oneActorTwoEvidence).toBe('surfaceBundle');
+
+    // Two actors alongside evidence: NOT surfaceBundle (multi-actor ties are
+    // legitimately orderedBundle) -- this was the RD-002-style bug: labeling
+    // any tie containing a surface target surfaceBundle regardless of actor
+    // count.
+    const twoActorsOneEvidence = parity.selectionKindForTargets([
+      { packetKind: 'workflow' }, { packetKind: 'workflow' }, { packetKind: 'surface' },
+    ]);
+    expect(twoActorsOneEvidence).toBe('orderedBundle');
+
+    // Zero actors, only evidence: NOT surfaceBundle either (no actor at all)
+    // -- the RD-001-style bug: two surface-only targets tied together were
+    // also mislabeled surfaceBundle by the old "any surface present" check.
+    const zeroActorsTwoEvidence = parity.selectionKindForTargets([
+      { packetKind: 'surface' }, { packetKind: 'surface' },
+    ]);
+    expect(zeroActorsTwoEvidence).toBe('orderedBundle');
+  });
+
+  it('normalizeLegacyProjection: multi-actor and zero-actor surface ties both classify orderedBundle', () => {
+    const loader = () => ({
+      quality: { workflowMode: 'quality', packetKind: 'workflow' },
+      'code-review': { workflowMode: 'code-review', packetKind: 'workflow' },
+      'code-webflow': { workflowMode: 'code-webflow', packetKind: 'surface' },
+      'code-opencode': { workflowMode: 'code-opencode', packetKind: 'surface' },
+    });
+    const twoActors = parity.normalizeLegacyProjection(
+      { observedIntents: ['quality', 'code-review', 'code-webflow', 'code-opencode'] }, 'hub', loader,
+    );
+    expect(twoActors.selectionKind).toBe('orderedBundle');
+
+    const zeroActors = parity.normalizeLegacyProjection(
+      { observedIntents: ['code-webflow', 'code-opencode'] }, 'hub', loader,
+    );
+    expect(zeroActors.selectionKind).toBe('orderedBundle');
   });
 
   it('normalizes defer and reject outcomes explicitly', () => {

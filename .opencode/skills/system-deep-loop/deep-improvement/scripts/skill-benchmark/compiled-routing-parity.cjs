@@ -24,6 +24,14 @@
  *      incompatible without translation, so every target is resolved through the
  *      shared `qualifiedIdToLeaf` boundary before the frozen evaluator runs. A
  *      target that resolves to no manifest mode fails closed, never a silent skip.
+ *      A resolved leaf is packet-qualified to match legacy's own hub-relative
+ *      convention, then projected down to legacy's own observed granularity for
+ *      the gold comparison -- a leaf-manifest declares a whole mode's possible
+ *      leaves, legacy's replay selects a task-scoped subset of them, and an
+ *      unconditional hub-level resource belongs to no packet's declaration at
+ *      all -- so a compiled target's declared breadth is never mistaken for
+ *      task-scoped precision, and a genuine compiled declaration gap still
+ *      fails closed.
  *   3. Frozen-scorer pin. The three shared scorer files are re-hashed against
  *      pinned digests before any comparison; drift aborts before evidence is
  *      written, so a scorer edited out from under a run never produces a report.
@@ -274,8 +282,15 @@ function qualifiedIdOf(target) {
  * Translate compiled decision targets into a legacy-shaped observed decision by
  * resolving each qualified id through the shared contract. The observed intents
  * are the resolved workflow modes; the observed resources are the manifest
- * leaves those modes declare. A target that resolves to no manifest mode is
- * collected as unresolved (a broken bridge), never silently dropped.
+ * leaves those modes declare, packet-qualified (`<packet>/<leaf>`) to match
+ * legacy's own hub-relative addressing -- a leaf-manifest records leaves
+ * packet-root-relative (`references/...`), but every router resource map in
+ * this codebase (hub-router.json pointers, a retained smart-routing.md
+ * RESOURCE_MAP) addresses the same leaf hub-relative with the packet name as a
+ * literal prefix, so an unqualified leaf would never string-match legacy's own
+ * observed resources or a scenario's authored gold. A target that resolves to
+ * no manifest mode is collected as unresolved (a broken bridge), never
+ * silently dropped.
  *
  * @param {Array<(string|Object)>} targets - Compiled decision targets.
  * @param {function(string): Object<string,Object>} loadModeIndex - hubId -> mode index.
@@ -308,7 +323,9 @@ function translateTargetsToObserved(targets, loadModeIndex) {
       packetKind: resolved.mode.packetKind || resolved.kind,
     });
     const leaves = resolved.mode && Array.isArray(resolved.mode.leaves) ? resolved.mode.leaves : [];
-    for (const leaf of leaves) resources.add(leaf);
+    const packet = resolved.mode && typeof resolved.mode.packet === 'string' ? resolved.mode.packet : '';
+    const packetPrefix = packet ? `${packet}/` : '';
+    for (const leaf of leaves) resources.add(`${packetPrefix}${leaf}`);
   }
   return {
     observedIntents,
@@ -318,12 +335,82 @@ function translateTargetsToObserved(targets, loadModeIndex) {
   };
 }
 
+/**
+ * Collect the set of packet ids a hub's mode index declares. Used to classify
+ * a legacy-observed resource as packet-qualified (subject to compiled's own
+ * per-target leaf declaration) versus hub-level/unconditional (belongs to no
+ * packet at all, e.g. the always-loaded routing preamble) -- a distinction the
+ * shared `<packet>/<leaf>` string convention makes purely lexical: a
+ * packet-qualified resource's first path segment names a declared packet, a
+ * hub-level resource's does not.
+ *
+ * @param {Map<string,Object>|Object<string,Object>} modeIndex - workflowMode -> mode entry ({ packet, ... }).
+ * @returns {Set<string>} Declared packet ids.
+ */
+function packetIdsForModeIndex(modeIndex) {
+  const ids = new Set();
+  const entries = modeIndex instanceof Map ? modeIndex.values() : Object.values(modeIndex || {});
+  for (const mode of entries) {
+    if (mode && typeof mode.packet === 'string' && mode.packet) ids.add(mode.packet);
+  }
+  return ids;
+}
+
+/**
+ * Project compiled's per-target leaf declaration down to legacy's own observed
+ * granularity for the route-gold comparison. A leaf-manifest declares the FULL
+ * leaf set a workflow mode could ever serve (mode granularity, every
+ * language/surface it could ever need); legacy's own observed resources are
+ * the finer, task-scoped subset the retained surface router actually replayed
+ * for THIS scenario -- a layer compiled routing does not replace, so it is
+ * byte-identical regardless of which engine picked the mode. An unconditional
+ * hub-level resource (the always-loaded routing preamble) belongs to no
+ * packet's leaf declaration at all, so it could never appear in ANY per-target
+ * leaf set even when correctly declared. Comparing compiled's raw, unfiltered
+ * declaration straight against a task-scoped, hub-level-inclusive gold is
+ * apples-to-oranges.
+ *
+ * The fix is NOT to trust compiled's claim wholesale (that would make a real
+ * compiled leaf-manifest gap unobservable) and NOT to trust legacy's claim
+ * wholesale either (same reason, inverted): legacy's own observed set is kept
+ * ONLY for the resources compiled's declared leaves confirm (packet-qualified)
+ * or that sit outside any packet's declaration entirely (hub-level,
+ * unconditional, hence never gated by which target was selected). A genuine
+ * compiled per-target leaf gap -- a packet-qualified resource legacy selected
+ * that compiled's manifest never declares for that target -- cannot survive
+ * this filter, so it still fails the must-include/forbidden-prefix gold check
+ * and still reports as drift.
+ *
+ * @param {Object} args - Projection inputs.
+ * @param {string[]} args.legacyResources - Legacy's own observed resources for this scenario.
+ * @param {string[]} args.compiledResources - Compiled's declared, packet-qualified resources.
+ * @param {Set<string>} args.hubPacketIds - Packet ids the benchmarked hub declares.
+ * @returns {string[]} Legacy's observed resources, narrowed to what compiled's declaration can support.
+ */
+function projectCompiledResourcesToLegacyGranularity({ legacyResources, compiledResources, hubPacketIds }) {
+  const compiledSet = new Set(compiledResources || []);
+  const packetIds = hubPacketIds || new Set();
+  return (legacyResources || []).filter((resource) => {
+    const firstSegment = String(resource).split('/')[0];
+    const packetQualified = packetIds.has(firstSegment);
+    return !packetQualified || compiledSet.has(resource);
+  });
+}
+
 function selectionKindForTargets(targets) {
   if (!targets.length) return null;
   if (targets.length === 1) return 'single';
-  return targets.some((target) => target.packetKind === 'surface')
-    ? 'surfaceBundle'
-    : 'orderedBundle';
+  // Mirrors registry-compiler.cjs's bundleKindForModes (the compiler's own
+  // authority for this classification) and decision-contract.cjs's
+  // assertComposition: surfaceBundle requires EXACTLY one actor-role target
+  // plus one-or-more evidence-role targets. `packetKind === 'surface'` is the
+  // evidence marker (PACKET_AUTHORITY); every other packetKind is actor. Any
+  // other tie shape -- two-or-more actors (even alongside a surface target),
+  // or evidence with no actor at all -- is orderedBundle, which carries no
+  // role restriction.
+  const actors = targets.filter((target) => target.packetKind !== 'surface').length;
+  const evidence = targets.length - actors;
+  return (actors === 1 && evidence === targets.length - 1) ? 'surfaceBundle' : 'orderedBundle';
 }
 
 function normalizeLegacyProjection(legacyObserved, hubId, loadModeIndex) {
@@ -579,7 +666,23 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
 
   // Both observations must independently pass the frozen route-gold evaluator,
   // then their routing-only projections must compare equal in authored order.
-  const compiledObserved = { observedIntents: bridged.observedIntents, observedResources: bridged.observedResources };
+  //
+  // Resource-granularity bridge (see projectCompiledResourcesToLegacyGranularity):
+  // compiled's declared leaves are mode-wide, legacy's observed resources are
+  // task-scoped. Projecting legacy's own set down to what compiled's
+  // declaration can support makes the gold comparison apples-to-apples without
+  // trusting compiled blindly.
+  const hubModeIndex = (typeof loadModeIndex === 'function' ? loadModeIndex(hubId) : loadModeIndex) || {};
+  const hubPacketIds = packetIdsForModeIndex(hubModeIndex);
+  const legacyResources = (legacyObserved && legacyObserved.observedResources) || [];
+  const compiledObserved = {
+    observedIntents: bridged.observedIntents,
+    observedResources: projectCompiledResourcesToLegacyGranularity({
+      legacyResources,
+      compiledResources: bridged.observedResources,
+      hubPacketIds,
+    }),
+  };
   const compiledResult = evaluate({ scenario, observed: compiledObserved });
   const legacyResult = legacyObserved && legacyObserved.routeGold
     ? legacyObserved.routeGold
@@ -590,7 +693,14 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
   const firstDifference = firstProjectionDifference(legacyProjection, compiledProjection);
   const compiledGoldPass = Boolean(compiledResult && compiledResult.pass);
   const legacyGoldPass = Boolean(legacyResult && legacyResult.pass);
-  const match = compiledGoldPass && legacyGoldPass && firstDifference === null;
+  // Parity is "compiled behaves identically to legacy" -- same routing AND the
+  // same gold outcome -- decoupled from gold achievability. Both sides failing
+  // the SAME pre-existing scenario-gold gap under matching routing is parity,
+  // not drift; only an outcome DIFFERENCE (one side passes, the other fails)
+  // is drift. The old `compiledGoldPass && legacyGoldPass` formula wrongly
+  // required both to pass, so a shared, pre-existing gold gap misclassified as
+  // drift even when compiled tracked legacy exactly.
+  const match = firstDifference === null && compiledGoldPass === legacyGoldPass;
   return {
     ...base,
     status: match ? PARITY_STATUS.MATCH : PARITY_STATUS.DRIFT,
@@ -699,9 +809,12 @@ module.exports = {
   classifyFlagState,
   assertFrozenScorerDigests,
   translateTargetsToObserved,
+  packetIdsForModeIndex,
+  projectCompiledResourcesToLegacyGranularity,
   normalizeLegacyProjection,
   normalizeCompiledProjection,
   firstProjectionDifference,
+  selectionKindForTargets,
   runJsonChild,
   defaultCompiledDecision,
   defaultProbeStatus,

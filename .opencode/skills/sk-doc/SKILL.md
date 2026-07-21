@@ -64,6 +64,13 @@ SKILL_ROOT = path containing this SKILL.md
 REGISTRY = SKILL_ROOT / "mode-registry.json"
 HUB_ROUTER = SKILL_ROOT / "hub-router.json"
 
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this is create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-diff, or create-quality-control work",
+    "Confirm the target document or component being authored, scaffolded, or reviewed",
+    "Provide the available inputs: existing doc, source material, or scaffold parameters",
+    "Confirm the validation expectations before completion (DQI/HVR scoring, validate.sh, or packet-specific checks)",
+]
+
 def _guard_in_skill(relative_path):
   resolved = (SKILL_ROOT / relative_path).resolve()
   resolved.relative_to(SKILL_ROOT)
@@ -89,7 +96,7 @@ classify the request to one or more workflowMode values using hub-router.json
 
 if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
   load_if_available("shared/references/quick-reference.md", seen)
-  return UNKNOWN_FALLBACK with a checklist to confirm workflowMode, target document/component, inputs, and validation expectations
+  return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
 
 for each resolved workflowMode:
   entry = the matching mode-registry.json modes[] item
