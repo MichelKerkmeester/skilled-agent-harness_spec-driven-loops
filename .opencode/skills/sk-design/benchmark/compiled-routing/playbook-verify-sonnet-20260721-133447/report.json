@@ -1,0 +1,1989 @@
+{
+  "hub": "sk-design",
+  "executor": "Claude Sonnet 5 (Claude Code agent), headless read-only sweep",
+  "capturedAtUtc": "2026-07-21T13:36:34.677Z",
+  "worktree": ".worktrees/0089-sk-doc-default-routing-cutover",
+  "compiledRoutingDefaultOn": {
+    "flagPermitsCompiled": true,
+    "servingAuthority": "compiled",
+    "defaultOnHubs": [
+      "sk-code",
+      "system-deep-loop",
+      "mcp-tooling",
+      "cli-external-orchestration",
+      "sk-prompt",
+      "sk-design",
+      "sk-doc"
+    ],
+    "defaultOnHubCount": 7
+  },
+  "method": {
+    "compiledCommand": "env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub sk-design --prompt \"<prompt>\"",
+    "legacyCommand": "node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-design --task \"<same>\"",
+    "note": "Both tools were required (and used) directly, in-process via a single Node driver script requiring resolveRoute()/routeSkillResources() rather than 53 separate subprocess spawns, then spot-verified against the literal CLI commands for the interesting/mismatching cases."
+  },
+  "playbookEnumeration": {
+    "rootContract": ".opencode/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md (v1.3.0.0, declares 42 scenarios across 9 categories)",
+    "categoryFiles": 42,
+    "extraScenario": "compiled-routing/bundle-rules-compiled-routing.md (SDG-CR-001) -- present under manual-testing-playbook/ but NOT listed in the root doc's v1.3.0.0 \"Canonical package artifacts\" list (created 2026-07-21, after the root doc's last bump); included because it is a real scenario file with its own contract, and the task directive covers everything under manual-testing-playbook/.",
+    "totalScenarioFiles": 43,
+    "routingScenarios": 38,
+    "nonRoutingScenarios": 5,
+    "nonRoutingReason": "styles-library-utilization/SLU-001..005 carry no expected_workflow_mode frontmatter and test the styles-library engine directly via their own dedicated Node/vitest scripts, not hub mode routing."
+  },
+  "totals": {
+    "totalScenarios": 43,
+    "routingScenarios": 38,
+    "slugScenarios": 5,
+    "totalPromptsRun": 53,
+    "compiledLegacyDriftCount": 1,
+    "verdicts": {
+      "PASS": 42,
+      "FAIL": 1,
+      "SKIP": 0
+    }
+  },
+  "laneCCrossCheck": {
+    "archivedSources": [
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md (CHK-022: \"Route-gold parity run shows compiled-serving for sk-design with TV-003 resolved -- Verified, 38/0\")",
+      ".opencode/skills/sk-doc/benchmark/compiled-routing/r3-benchmark-sweep-20260721-131432/hub-reports/sk-design.{json,md} (compiledRouting: scored=38, match=38, drift=0, subVerdict=compiled-serving, all 38 rows status=match/firstDifference=null)"
+    ],
+    "figure": "38/0 (100% compiled==legacy parity across the 38 canonical playbook scenario IDs)",
+    "reconciliation": "CORROBORATED, with one precise addendum. 4 of the official 38 rows (AI-001, TV-001, TV-002, SR-002) are VACUOUS defer/defer matches -- confirmed directly from sk-design.json: routeTelemetry.workflowMode:null, deferReason:\"no-mode-scored\", both legacyProjection and compiledProjection = {action:\"defer\",targets:[]} for all 4. Root cause: these 4 scenario files specify their content as a multi-row probe/variant table (no single top-level \"**Exact prompt**:\\n```text...```\" block), so load-playbook-scenarios.cjs extracted prompt:null for each, and the harness graded a trivial empty-prompt agreement rather than testing any of the 17 real probe/variant texts those 4 files actually document. This sweep ran all 17 of those real sub-prompts individually (plus every other scenario's real prompt) via direct resolve.cjs/router-replay.cjs invocation -- a strict superset of the official harness's coverage for those 4 IDs -- and found 16/17 clean parity plus exactly 1 genuine drift (AI-001 probe P5), root-caused to the compiled engine's clearlySeparateAxes() bundling heuristic (router.cjs lines 187-189, 234-241) which router-replay.cjs does not implement. Net: 52/53 individually-tested prompts show exact compiled==legacy parity (including 0 drift on every one of the 34 non-vacuous official rows), corroborating the 38/0 claim and extending it with one newly-surfaced, narrow, reproducible, non-blocking finding the official sweep structurally could not see."
+  },
+  "guardrails": {
+    "frozenScorerFiles": [
+      {
+        "file": "router-replay.cjs",
+        "sha256": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47"
+      },
+      {
+        "file": "score-skill-benchmark.cjs",
+        "sha256": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c"
+      },
+      {
+        "file": "load-playbook-scenarios.cjs",
+        "sha256": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      }
+    ],
+    "defaultOnHubsCount": 7,
+    "straysUntouched": [
+      "mcp-tooling/008-mcp-aside",
+      "system-deep-loop/032-deep-alignment-mode"
+    ],
+    "noCommit": true,
+    "noManifestOrSkillMdEdits": true
+  },
+  "routingScenarioResults": [
+    {
+      "id": "MDR-001",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match on every axis.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make this SaaS pricing page look less generic and give it a distinctive visual direction.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "less generic",
+            "visual direction"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-002",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Create an OKLCH color token system, typography scale, spacing rhythm, and responsive grid for this dashboard.",
+          "expectedModes": [
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "color token system",
+            "typography scale",
+            "grid",
+            "oklch",
+            "typography"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-003",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Design the hover micro-interactions and reduced-motion fallback for this command menu.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "motion"
+          ],
+          "legacyIntents": [
+            "motion"
+          ],
+          "matchedAliases": [
+            "micro-interactions",
+            "reduced-motion"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-004",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "wcag contrast"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-005",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Extract the design system from https://example.com into a DESIGN.md style reference.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "style reference",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-006",
+      "category": "mode-routing",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy parity holds (both resolve interface via the \"bolder\" alias), but neither headless tool implements the literal `motion:` mode-hint-prefix override this scenario documents -- confirmed no motion keyword substring exists anywhere else in the sentence (checked full motion-aliases/motion-temporal vocabulary). This is a pre-existing shared limitation of both the compiled scorer and router-replay.cjs (neither parses a `<mode>: ` prefix specially), not a cutover regression -- the official Lane C row for MDR-006 shows the identical `interface` outcome and still grades it `status:match`. Validating the true hint-override behavior requires a live model reading SKILL.md, out of reach for a headless keyword-substring comparison.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "motion: make the menu transition feel bolder and more deliberate.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "bolder"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md",
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MDR-007",
+      "category": "mode-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match; correctly distinguishes the transport packet from the external mcp-figma sibling and from all 5 design-judgment modes.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.",
+          "expectedModes": [
+            "design-mcp-open-design"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "design-mcp-open-design"
+          ],
+          "legacyIntents": [
+            "design-mcp-open-design"
+          ],
+          "matchedAliases": [
+            "open design",
+            "od cli",
+            "wire open design"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-mcp-open-design/references/mcp-wiring.md",
+            "design-mcp-open-design/references/od-cli-reference.md",
+            "design-mcp-open-design/references/tool-surface.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AI-001",
+      "category": "advisor-integration",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "FAIL",
+      "notes": "5/6 probes (P1-P4, P6) are clean 3-way matches (compiled==legacy==expected). P5 (\"Extract design tokens from https://example.com and generate DESIGN.md.\") shows genuine compiled != legacy drift: compiled returns action=route/selectionKind=orderedBundle/targets=[foundations,md-generator]; legacy top-level intents=[md-generator] only (though its separate surface-router pass also silently leaks foundations resources). Root cause confirmed by reading .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/router.cjs lines 187-189 + 234-241: the compiled engine has a `clearlySeparateAxes()` heuristic (exactly 2 modes score >0 AND the prompt contains a bare \"and\"/\"plus\"/\"then\") that bundles both modes even when the ambiguity-delta gate alone would keep only the top scorer -- router-replay.cjs (legacy) has no equivalent heuristic. This is a real, narrow, reproducible drift the official Lane C sweep could not have caught: its AI-001 row is a VACUOUS defer/defer match because load-playbook-scenarios.cjs found no single top-level \"Exact prompt\" block in AI-001.md (it uses a 6-row probe table instead) and extracted prompt:null -- confirmed directly from .opencode/skills/sk-doc/benchmark/compiled-routing/r3-benchmark-sweep-20260721-131432/hub-reports/sk-design.json (AI-001 row: routeTelemetry.workflowMode:null, deferReason:\"no-mode-scored\", both legacyProjection and compiledProjection = {action:\"defer\",targets:[]}).",
+      "subResults": [
+        {
+          "sub": "P1",
+          "prompt": "Make this onboarding page look less generic and give it a distinctive interface direction.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "less generic"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        },
+        {
+          "sub": "P2",
+          "prompt": "Create an OKLCH palette, typography scale, and spacing system for this analytics dashboard.",
+          "expectedModes": [
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "oklch palette",
+            "typography scale",
+            "spacing system",
+            "palette",
+            "oklch",
+            "typography"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md"
+          ]
+        },
+        {
+          "sub": "P3",
+          "prompt": "Design the transition choreography and reduced-motion fallback for this modal.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "motion"
+          ],
+          "legacyIntents": [
+            "motion"
+          ],
+          "matchedAliases": [
+            "choreography",
+            "reduced-motion"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        },
+        {
+          "sub": "P4",
+          "prompt": "Audit this settings screen for WCAG contrast, keyboard focus, and design slop.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "wcag contrast"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        },
+        {
+          "sub": "P5",
+          "prompt": "Extract design tokens from https://example.com and generate DESIGN.md.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations",
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "generate design.md",
+            "extract design tokens",
+            "design.md"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": false,
+          "resources": [
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md",
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        },
+        {
+          "sub": "P6",
+          "prompt": "Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.",
+          "expectedModes": [
+            "design-mcp-open-design"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "design-mcp-open-design"
+          ],
+          "legacyIntents": [
+            "design-mcp-open-design"
+          ],
+          "matchedAliases": [
+            "open design",
+            "od cli",
+            "wire open design"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-mcp-open-design/references/mcp-wiring.md",
+            "design-mcp-open-design/references/od-cli-reference.md",
+            "design-mcp-open-design/references/tool-surface.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AI-002",
+      "category": "advisor-integration",
+      "critical": true,
+      "negative": true,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Negative scenario. Both compiled and legacy correctly return zero intents / defer for this pure-code TypeScript-refactor prompt -- no sk-design mode false-fires. (The scenario's real pass bar -- \"sk-code wins the cross-skill advisor vote\" -- is an outer advisor-layer property this hub-scoped headless router cannot exercise; what IS in scope, whether the hub-internal router spuriously grabs a mode, is clean.)",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.",
+          "expectedModes": [],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "AI-003",
+      "category": "advisor-integration",
+      "critical": false,
+      "negative": true,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Negative scenario. Both compiled and legacy correctly defer for this documentation-authoring prompt. Same advisor-layer caveat as AI-002.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Write a README section explaining how the sk-design hub routes its six modes.",
+          "expectedModes": [],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "AI-004",
+      "category": "advisor-integration",
+      "critical": false,
+      "negative": true,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy (both resolve \"audit\", matchedAliases:[\"design review\"]). This IS a real false-positive at the hub-internal-router layer: the prompt says \"not a...design review\" but the substring scorer is negation-blind and fires on the literal \"design review\" substring regardless. Shared identically by both engines -- confirmed via matchedAliases -- so it is a pre-existing router characteristic, not a cutover regression. The scenario's real safeguard (skill-advisor semantic classification choosing sk-code over sk-design) is outside what a hub-scoped headless router can prove either way.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Review this checkout API handler for SQL-injection risk and missing input validation. This is a code-correctness review, not a visual or UI design review.",
+          "expectedModes": [],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "design review"
+          ],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TV-001",
+      "category": "transform-verb-framing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "2/4 variants (V1 bolder, V4 delight) are clean interface-only matches. 2/4 (V2 \"...same layout\", V3 \"...visual hierarchy...\") additionally co-match foundations on both compiled AND legacy identically -- confirmed via hub-router.json vocabularyClasses.foundations-layout, which literally lists bare \"layout\" and \"hierarchy\" as standalone keywords (not compound phrases), so these two words trigger a real, shared, non-cutover-specific vocabulary overlap. Compiled==legacy on all 4 variants (0 drift). Official Lane C row for TV-001 is a vacuous defer/defer match (multi-row variant table, no single top-level Exact-prompt block => prompt:null) so it never tested any of these 4 variants; this sweep is a strict superset of that coverage.",
+      "subResults": [
+        {
+          "sub": "V1",
+          "prompt": "Make it bolder without changing the product copy.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "bolder"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        },
+        {
+          "sub": "V2",
+          "prompt": "Make it quieter while keeping the same layout.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface",
+            "foundations"
+          ],
+          "legacyIntents": [
+            "interface",
+            "foundations"
+          ],
+          "matchedAliases": [
+            "quieter",
+            "layout"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        },
+        {
+          "sub": "V3",
+          "prompt": "Make it distill the visual hierarchy down to fewer competing elements.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface",
+            "foundations"
+          ],
+          "legacyIntents": [
+            "interface",
+            "foundations"
+          ],
+          "matchedAliases": [
+            "distill",
+            "hierarchy"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        },
+        {
+          "sub": "V4",
+          "prompt": "Make it delight users with one memorable interface detail.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "delight"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TV-002",
+      "category": "transform-verb-framing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "All 4 variants clean audit-only matches, compiled==legacy==expected. Official Lane C row is a vacuous defer/defer match (same missing-exact-prompt-block cause as TV-001); this sweep independently exercised all 4 real variants.",
+      "subResults": [
+        {
+          "sub": "V1",
+          "prompt": "Should it be bolder, or is the current hierarchy already strong enough?",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "should it be",
+            "should it be bolder"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        },
+        {
+          "sub": "V2",
+          "prompt": "Should it be quieter, or would that reduce conversion clarity?",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "should it be",
+            "should it be quieter"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        },
+        {
+          "sub": "V3",
+          "prompt": "Should it be distill the interface to fewer elements before launch?",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "should it be",
+            "should it be distill"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        },
+        {
+          "sub": "V4",
+          "prompt": "Should it be delight users more, or would that feel gratuitous?",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "should it be",
+            "should it be delight"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TV-003",
+      "category": "transform-verb-framing",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Clarify this hero section's visual hierarchy without changing its content.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "hero section",
+            "clarify"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TV-004",
+      "category": "transform-verb-framing",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy (both defer, 0 intents). The scenario's own \"why\" section and MDR-001's both assert \"hub-router.json sets routerPolicy.defaultMode to interface\" -- directly checked: hub-router.json literally has `\"defaultMode\": null`. That prose claim is stale/incorrect relative to the current config; both engines correctly reflect the real (null) policy identically, so there is no fallback-to-interface behavior to observe. Not a cutover artifact -- legacy exhibits the identical null-default behavior.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make it typeset and colorize, but do not create a full token system.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md",
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TV-005",
+      "category": "transform-verb-framing",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match; excludedAliases.audit correctly keeps harden/polish out of audit routing on both engines.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make this card feel polished and visually hardened without running an audit report.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "polish"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MG-001",
+      "category": "md-generator-pipeline",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md with tokens.json evidence.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "tokens.json",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MG-002",
+      "category": "md-generator-pipeline",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex accuracy and section completeness.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "tokens.json",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MG-003",
+      "category": "md-generator-pipeline",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, then render the preview report.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "tokens.json",
+            "design fidelity check",
+            "design.md",
+            "design fidelity"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MG-004",
+      "category": "md-generator-pipeline",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match; brief-only authoring-boundary prompt still resolves md-generator on both engines (routing layer only -- the authoring-boundary refusal itself is AI/prose behavior, out of headless-router scope).",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Generate a DESIGN.md style reference for our new checkout product from this brief: primary blue #1a73e8, Inter font family, 8px spacing scale, and 12px rounded cards. We do not have a live site to crawl yet -- just the brief.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "style reference",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SR-001",
+      "category": "shared-reference-base",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make this landing page look less generic and state the register before recommending colors.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "less generic"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SR-002",
+      "category": "shared-reference-base",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "P1 (foundations) and P2 (motion) clean matches. P3 (\"Audit this page for design slop and give severity-ranked findings.\") returns zero intents on both engines -- confirmed via hub-router.json audit vocabulary dump: neither \"design slop\" nor \"severity-ranked findings\" is a substring of any audit-aliases/audit-quality keyword (which require \"anti-slop-detection\"/\"anti-slop detection\" and \"p0-p1-design-findings\", not this exact phrasing), and bare \"audit\" is never itself a standalone keyword. Compiled==legacy (0 drift); the gap is a prompt-wording-vs-vocabulary-coverage gap shared identically by both engines. Official Lane C row is a vacuous defer/defer match (same missing-exact-prompt-block cause); this sweep independently exercised all 3 real probes.",
+      "subResults": [
+        {
+          "sub": "P1",
+          "prompt": "Create a responsive spacing system and token starter for this product dashboard.",
+          "expectedModes": [
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "spacing system",
+            "token starter"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md"
+          ]
+        },
+        {
+          "sub": "P2",
+          "prompt": "Design the motion budget and reduced-motion alternative for this onboarding flow.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "motion"
+          ],
+          "legacyIntents": [
+            "motion"
+          ],
+          "matchedAliases": [
+            "motion budget",
+            "reduced-motion"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        },
+        {
+          "sub": "P3",
+          "prompt": "Audit this page for design slop and give severity-ranked findings.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SR-003",
+      "category": "shared-reference-base",
+      "critical": true,
+      "negative": true,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Negative scenario. Both engines correctly defer -- no `workflowMode: shared` is ever invented (structurally impossible; \"shared\" is not a registered mode).",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Use the shared design reference base as the workflow for this task.",
+          "expectedModes": [],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "SR-004",
+      "category": "shared-reference-base",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "For a design audit, show which packet owns the scoring logic and which hub file only routes.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "design audit"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-001",
+      "category": "parity-behavior",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make this fintech dashboard feel premium and less generic. Before giving direction, state the public sk-design mode, the internal procedure card you selected, and why that card fits the available context.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "less generic"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-002",
+      "category": "parity-behavior",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Review the supplied dashboard screenshot description for hierarchy and spacing rhythm. Before recommendations, list the context you used, what is confirmed, what is inferred, and what proof would be required before calling the design ready.",
+          "expectedModes": [
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "hierarchy"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-foundations/references/corpus-map.md",
+            "design-foundations/references/color/oklch-workflow.md",
+            "design-foundations/references/color/palette-theming.md",
+            "design-foundations/references/type/typography-system.md",
+            "design-foundations/references/layout/layout-responsive.md",
+            "design-foundations/assets/token-starter.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-003",
+      "category": "parity-behavior",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md, preserve measured CSS evidence, and confirm that md-generator is the only mode allowed to write the output.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-004",
+      "category": "parity-behavior",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match; the `motion:` hint prompt here also carries independent motion vocabulary (\"hover, focus, active, loading, disabled...reduced-motion\"), so it succeeds without relying on hint-prefix parsing (unlike MDR-006).",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "motion: define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "motion"
+          ],
+          "legacyIntents": [
+            "motion"
+          ],
+          "matchedAliases": [
+            "reduced-motion"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-005",
+      "category": "parity-behavior",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Primary probe (WCAG/contrast/keyboard/forms) clean audit match on both engines. Negative-control variant (\"...generic AI-template visual language and model-tell decoration.\") resolves interface on both engines instead of audit -- same root cause as MDR-006 (the `audit:` hint prefix is not specially parsed, and the rest of the sentence carries no audit-aliases/audit-quality substring: \"model-tell\" != the registered \"ai tell\" keyword). Compiled==legacy on both probes (0 drift); this task verifies routing (mode selection), not which of the two private procedure cards (accessibility-audit.md vs ai-slop-check.md) a live model would narrate -- that is out of headless-router scope either way.",
+      "subResults": [
+        {
+          "sub": "primary",
+          "prompt": "audit: review this checkout screen for WCAG contrast, keyboard focus, and form accessibility. State the public sk-design mode, the internal procedure card you selected, and why it is not the AI-slop card.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "audit"
+          ],
+          "legacyIntents": [
+            "audit"
+          ],
+          "matchedAliases": [
+            "wcag contrast"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        },
+        {
+          "sub": "negative-control",
+          "prompt": "audit: review this hero section for generic AI-template visual language and model-tell decoration.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "hero section"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-006",
+      "category": "parity-behavior",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy (both resolve interface+foundations via the ui-build-bundle rule, deferReason:\"ambiguous-multi-axis\", matchedAliases:[\"polish\",\"foundations\"]). The prompt literally lists \"audit, foundations, motion, interface\" as plain words; only bare \"foundations\" (a registered foundations-aliases keyword) and \"polish\" (interface-taste) score >0 -- bare \"audit\" and \"motion\" are never standalone keywords in this vocabulary, so the audit-as-owning-reviewer outcome the scenario narrates is a prose/AI-judgment result, not something the keyword router computes. Shared identically by both engines -- not a cutover artifact.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Run the final design polish gate for this nearly finished checkout UI. State the public sk-design mode, the shared internal procedure card you selected, the owning reviewer, and how findings route across audit, foundations, motion, interface, and sk-code.",
+          "expectedModes": [
+            "audit"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface",
+            "foundations"
+          ],
+          "legacyIntents": [
+            "interface",
+            "foundations"
+          ],
+          "matchedAliases": [
+            "polish",
+            "foundations"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-audit/references/corpus-map.md",
+            "design-audit/references/audit-contract.md",
+            "design-audit/references/accessibility-performance.md",
+            "design-audit/references/anti-patterns-production.md",
+            "design-audit/references/critique-hardening.md",
+            "design-audit/references/transform-remediation.md",
+            "design-audit/assets/audit-report-template.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PB-007",
+      "category": "parity-behavior",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Give me three genuinely distinct visual directions for this fintech onboarding flow, not three safe variations of the same idea. Before giving the directions, state the public sk-design mode, the internal procedure card you selected, and why it is not the single-direction aesthetic_direction card.",
+          "expectedModes": [
+            "interface"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "visual direction",
+            "aesthetic"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FR-001",
+      "category": "fallback-and-resilience",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "The foundations-primary prompt is the only variant with a machine-quotable single Exact-prompt block in the file; clean single-mode match. The other 4 mode variants (interface/motion/audit/md-generator) are described only as \"one narrow advisory variant for each remaining mode\" with no literal quoted prompt text in the file, so they are not independently re-runnable without fabricating wording -- not attempted, and not counted as a compiled-vs-legacy check (would be fabrication, not verification).",
+      "subResults": [
+        {
+          "sub": "foundations-primary",
+          "prompt": "foundations: explain whether this existing neutral token name should be semantic or surface-level. Keep it advisory and state whether a procedure card applies before answering.",
+          "expectedModes": [
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "foundations"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "FR-002",
+      "category": "fallback-and-resilience",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Both named variants (motion-primary, md-generator-variant) are clean matches, compiled==legacy==expected on both.",
+      "subResults": [
+        {
+          "sub": "motion-primary",
+          "prompt": "Subagents are unavailable. motion: define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.",
+          "expectedModes": [
+            "motion"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "motion"
+          ],
+          "legacyIntents": [
+            "motion"
+          ],
+          "matchedAliases": [
+            "reduced-motion"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-motion/references/corpus-map.md",
+            "design-motion/references/animation-decision-framework.md",
+            "design-motion/references/micro-interactions.md",
+            "design-motion/references/motion-strategy.md",
+            "design-motion/references/performance-reduced-motion.md",
+            "design-motion/assets/motion-pattern-cards.md"
+          ]
+        },
+        {
+          "sub": "md-generator-variant",
+          "prompt": "Subagents are unavailable. md-generator: validate this DESIGN.md against tokens.json directly in the current session and show the selected procedure or fallback, backend entrypoint, provenance proof, and validation result.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "tokens.json",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HM-001",
+      "category": "hub-manager-intake",
+      "critical": false,
+      "negative": false,
+      "behavioral": true,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Behavioral/intake scenario (no fixed expected_workflow_mode -- the hub is meant to ask a clarifying question or state assumptions, not a keyword-scoring test). Compiled==legacy (both resolve foundations, from \"production-ready\"/\"premium\" plus incidental vocabulary); routing-layer parity holds. The actual intake-question behavior is AI/prose-level and out of headless-router scope.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, foundations, motion, or audit.",
+          "expectedModes": [],
+          "compiledAction": "route",
+          "compiledModes": [
+            "foundations"
+          ],
+          "legacyIntents": [
+            "foundations"
+          ],
+          "matchedAliases": [
+            "foundations"
+          ],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "HM-002",
+      "category": "hub-manager-intake",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": true,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy (both resolve interface only). The scenario's own doc asserts an interface+foundations bundle, but \"operations dashboard\"/\"implementation handoff\" carries no foundations-vocabulary substring, so ui-build-bundle never co-fires foundations -- the bundle claim is an AI-judgment/prose expectation the keyword router does not implement. Not a cutover artifact (both engines agree).",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Design the visual direction for a dense operations dashboard and prepare the implementation handoff. Before any design recommendation, show the selected mode or bundle, context loaded, intended design moves, proof required, and handoff target.",
+          "expectedModes": [
+            "interface",
+            "foundations"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "interface"
+          ],
+          "legacyIntents": [
+            "interface"
+          ],
+          "matchedAliases": [
+            "visual direction"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-interface/references/design-process/design-principles.md",
+            "design-interface/references/design-process/brief-to-dials.md",
+            "design-interface/assets/interface-preflight-card.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HM-003",
+      "category": "hub-manager-intake",
+      "critical": false,
+      "negative": false,
+      "behavioral": true,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Behavioral/proof-gate scenario. Both engines defer (0 intents) on this readiness-question prompt -- routing-layer parity holds. The proof-gate-pause behavior itself is AI/prose-level, out of headless-router scope.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "I only have a Figma export and no rendered responsive checks. Tell me whether this design is ready to ship, and if any proof field is missing, pause the ready claim and name the missing proof.",
+          "expectedModes": [],
+          "compiledAction": "defer",
+          "compiledModes": [],
+          "legacyIntents": [],
+          "matchedAliases": [],
+          "compiledMatchesExpected": null,
+          "compiledEqualsLegacy": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "HM-004",
+      "category": "hub-manager-intake",
+      "critical": false,
+      "negative": false,
+      "behavioral": false,
+      "bundle": true,
+      "verdict": "PASS",
+      "notes": "Compiled==legacy (both resolve design-mcp-open-design only, no interface pairing). This is a KNOWN, scenario-documented gap: hub-router.json's only declared bundleRules entry (ui-build-bundle) pairs interface+foundations and does not reference design-mcp-open-design at all -- confirmed directly from hub-router.json. The mandated design-judgment-mode pairing is hub-manager prose behavior, not a machine-encoded bundle rule, so the router tools can only show the base single-mode signal. Not a cutover artifact.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Commission an Open Design generation run for a new settings page, grounding it in one of Open Design's local design systems, and start the run now.",
+          "expectedModes": [
+            "interface",
+            "design-mcp-open-design"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "design-mcp-open-design"
+          ],
+          "legacyIntents": [
+            "design-mcp-open-design"
+          ],
+          "matchedAliases": [
+            "open design"
+          ],
+          "compiledMatchesExpected": false,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-mcp-open-design/references/mcp-wiring.md",
+            "design-mcp-open-design/references/od-cli-reference.md",
+            "design-mcp-open-design/references/tool-surface.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SDG-CR-001",
+      "category": "compiled-routing",
+      "critical": true,
+      "negative": false,
+      "behavioral": false,
+      "bundle": false,
+      "verdict": "PASS",
+      "notes": "Clean single-mode match; servingAuthority is genuinely compiled (real route object returned, not the {servingAuthority:\"legacy\"} fallback sentinel) with SPECKIT_COMPILED_ROUTING unset, confirming true default-on behavior for this hub.",
+      "subResults": [
+        {
+          "sub": null,
+          "prompt": "Extract the design system from https://example.com into /tmp/skd-compiled-routing/DESIGN.md with tokens.json evidence.",
+          "expectedModes": [
+            "md-generator"
+          ],
+          "compiledAction": "route",
+          "compiledModes": [
+            "md-generator"
+          ],
+          "legacyIntents": [
+            "md-generator"
+          ],
+          "matchedAliases": [
+            "tokens.json",
+            "design.md"
+          ],
+          "compiledMatchesExpected": true,
+          "compiledEqualsLegacy": true,
+          "resources": [
+            "design-md-generator/references/design-md-format.md",
+            "design-md-generator/references/writing-style-guide.md",
+            "design-md-generator/references/color-role-taxonomy.md",
+            "design-md-generator/references/component-taxonomy.md",
+            "design-md-generator/references/anti-patterns.md",
+            "design-md-generator/references/extraction-workflow.md",
+            "design-md-generator/references/troubleshooting.md",
+            "design-md-generator/references/quality-checklist.md",
+            "design-md-generator/references/authoring-boundary.md",
+            "design-md-generator/assets/design-md-prompt-template.md",
+            "design-md-generator/assets/cardinal-rules-card.md",
+            "design-md-generator/assets/source-of-truth-router-card.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "stylesLibraryUtilizationResults": [
+    {
+      "id": "SLU-001",
+      "verdict": "PASS",
+      "command": "node .opencode/skills/sk-design/styles/_engine/style-library.mjs query --request '{\"text\":\"product interface restrained motion compact controls\",\"useFts\":false,\"limit\":2}'",
+      "observed": "{ok:true, degraded:true, rankingMode:\"source-scan\", eligibility:{eligibleCount:1290,rejectedCount:0}, cards:[2 cards each with generationHash+contentHash]}",
+      "notes": "Not a routing scenario (no expected_workflow_mode in frontmatter) -- tests the styles-library retrieval engine directly. Exit 0, ok:true, 2 bounded eligible+generation-bound cards. Matches documented PASS criteria exactly."
+    },
+    {
+      "id": "SLU-002",
+      "verdict": "PASS",
+      "command": "node --input-type=module -e \"...runQuery...runHydrate({generationHash:'sha256:'+'0'.repeat(64)...})...\"",
+      "observed": "{\"ok\":false,\"error\":\"generation-mismatch\"}",
+      "notes": "Not a routing scenario. Exact documented refusal shape, no hydrated artifact leaked. Exit 0."
+    },
+    {
+      "id": "SLU-003",
+      "verdict": "PASS",
+      "command": "node --input-type=module -e \"...validateCorpusContextPlan(POSITIVE_FIXTURE.plan)...\"",
+      "observed": "{\"hydratedStyleCount\":0,\"valid\":true,\"errors\":[]}",
+      "notes": "Not a routing scenario. Exact documented signals. Exit 0."
+    },
+    {
+      "id": "SLU-004",
+      "verdict": "PASS",
+      "command": "node --input-type=module -e \"...plan.corpusVerdict='accept'; validateCorpusContextPlan(plan)...\"",
+      "observed": "{\"valid\":false,\"errors\":[\"plan.corpusVerdict:unexpected\"]}",
+      "notes": "Not a routing scenario. Exact documented refusal. Exit 0."
+    },
+    {
+      "id": "SLU-005",
+      "verdict": "PASS",
+      "command": "npx vitest run tests/study-exemplars.test.ts -t \"trips independently...|runs the production author command...\"",
+      "observed": "2 passed | 13 skipped (15) -- the 2 selected/named tests both pass",
+      "notes": "Not a routing scenario. Exit 0, both named regression tests pass."
+    }
+  ]
+}
