@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
     last_updated_at: "2026-07-15T13:59:12Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned hierarchical typed budget contract and verifier gates"
-    next_safe_action: "Implement typed reservations and fail-closed dispatch admission"
+    recent_action: "Implemented and verified the additive-dark hierarchical typed budget service"
+    next_safe_action: "Commit the path-scoped candidate when authorized"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented and verified in the working tree; commit pending |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fourth child of the phase-007 shared evidence and control services parent |

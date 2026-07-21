@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:32:18Z"
     last_updated_by: "codex"
-    recent_action: "Defined the planned immutable artifact and digest-reference contract"
-    next_safe_action: "Implement sealing, verified reads, and retention from the approved plan"
+    recent_action: "Implemented and verified the additive-dark sealed reference artifact service"
+    next_safe_action: "Consume the verified reference-set contract from later dark replay and parity phases"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Second child of the phase-007 shared evidence and control services parent |
@@ -167,9 +170,9 @@ weaken immutable content identity, verified reads, replay binding, or additive-d
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must select the registered digest algorithm, canonicalization profiles, storage
-backend, retention horizons, and access-control integration after checking runtime support and the phase-003 state
-census. Those choices must preserve algorithm-qualified references, deterministic canonical bytes, atomic
-publication, verification before release, append-only lifecycle evidence, conservative retention, and restoration
-only from byte-identical content.
+None blocking. The initial runtime registry selects SHA-256, `deep-loop-json@1`, `application/json`, and a dedicated
+filesystem-backed store for prompt sets, fixtures, prior-run outputs, and configuration. Later artifact kinds may add
+registered profiles without weakening algorithm-qualified references, deterministic canonical bytes, atomic
+publication, verification before release, append-only lifecycle evidence, conservative retention, or byte-identical
+restoration.
 <!-- /ANCHOR:questions -->

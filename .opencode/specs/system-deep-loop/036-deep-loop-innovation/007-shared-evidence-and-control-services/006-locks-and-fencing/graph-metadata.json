@@ -19,7 +19,10 @@
       "locks and fencing tasks",
       "deep-loop fencing token tasks",
       "locks and fencing checklist",
-      "deep-loop stale writer verification"
+      "deep-loop stale writer verification",
+      "locks and fencing implementation",
+      "deep-loop fencing verification",
+      "stale writer rejection evidence"
     ],
     "key_topics": [
       "locks",
@@ -36,14 +39,35 @@
       "writer"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "locks-and-fencing.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -123,13 +147,13 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "fenced",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "fenced",
+        "name": "an",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -153,7 +177,7 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "legacy",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -165,47 +189,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
     "created_at": "2026-07-16T03:43:47.704Z",
-    "last_save_at": "2026-07-19T18:01:25.508Z",
+    "last_save_at": "2026-07-21T00:35:59.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ac9648d611bf08be85cccc036eda1161215382820d12068d266715dba22e031",
+    "source_fingerprint": "sha256:b31bfe6688d812046e6777f54444780d81386c51151d30a8167d99c700f6b742",
     "source_doc_hashes": {
-      "spec.md": "afc5d4b625756d27e3820893447d2152dc8ed4db40337a8b4c32f89c8c1ba024",
-      "plan.md": "13e7d11abd9969e3dfea82ba0a8f3831e065f5ec457c21d6c82a726c66ebf3a7",
-      "tasks.md": "e21c8f0f230be2edc6d613ddf3f3f60512c08045704fff51b5d1a8a69052480f",
-      "checklist.md": "2a347d002fbc5396464994009a5eb5e17d4f7cf40e9608b2dac17d1440ab938f"
+      "spec.md": "db6d0f9de7a32cfab6040fe68efb5ab8bf06ab8da7f9046cc2185a6d0862af4a",
+      "plan.md": "478745d8c60521e719ef0140e1bec8c0103af0a435b99dd0a0a4e5a4dc2f6a3a",
+      "tasks.md": "b3e5b71af395260a5f45bd4e7cc05c464886cefedaa9c88a6b57ffebad185afa",
+      "checklist.md": "81594f6ee89df2d2496ca3782e2655e5638bf2c2b81b2a87b1d0e05e72b06b9e",
+      "implementation-summary.md": "258b853ac35d14af315c339a5f8dc62d10715e675fed84a9d624831c73b36d6e"
     },
     "last_active_child_id": null,
     "last_active_at": null

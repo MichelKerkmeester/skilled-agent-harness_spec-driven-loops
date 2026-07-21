@@ -19,7 +19,9 @@
       "stream-fold gauges tasks",
       "deterministic gauge reducer tasks",
       "stream-fold gauges checklist",
-      "deterministic gauge replay checklist"
+      "deterministic gauge replay checklist",
+      "stream-fold gauges implementation summary",
+      "stream-fold gauge verification evidence"
     ],
     "key_topics": [
       "stream-fold",
@@ -36,8 +38,11 @@
       "reducer"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
       "spec.md",
       "plan.md",
@@ -45,6 +50,24 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stream-fold-gauges.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "fanout-pool.cjs",
         "kind": "file",
@@ -170,43 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and health values; disposable incremental checkpoints; and byte-identical full-replay verification.",
     "created_at": "2026-07-16T03:43:47.442Z",
-    "last_save_at": "2026-07-19T18:01:25.085Z",
+    "last_save_at": "2026-07-21T00:38:48.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdd621dcbf882765bde25d263ede2fa3c4aac7a5e2ac42a44d353a2d3ac5b9f4",
+    "source_fingerprint": "sha256:7c201bfcadd96d18cc1fc0394da52f43d9f402c8e8af04a740de88d505d4a79d",
     "source_doc_hashes": {
-      "spec.md": "95aa60ee2924ed0e9726e937f2ab3a2cc38a97972e31b0cd3713c5d0ba4b2640",
-      "plan.md": "ba9e2b642d870c4efcaec6754284fd3d075667f5780a093c154a65cf69bf9eb1",
-      "tasks.md": "41e59bce3e2974dcdbfb49099db567c6a8bc05e91a9d824d404a0d43e0b91bfb",
-      "checklist.md": "8fa8d967c3250afdc8a1d24ae7209514a915d374571e8e024bee91082cf2819a"
+      "spec.md": "cb727498e38e2b43d0c0f7193db08776e0d8731b7a9d38958daabb0e3ce1b4e2",
+      "plan.md": "d05186a3f2154491bad3fcac5914bec8fb976b44ed19449ce06e40847ee93119",
+      "tasks.md": "64e5796732cad8fc10b1429ce33349ab97d7de44cbeb5c7edb872772d9ec8f98",
+      "checklist.md": "891d92e55a8fcca7a47133bf8c481a59b9a9ea1d4d281c6a310505b41cdbe25f",
+      "implementation-summary.md": "027f2d021214e221b28bbd3d965fe6d9545eec7b44a8952382018022581e8a84"
     },
     "last_active_child_id": null,
     "last_active_at": null

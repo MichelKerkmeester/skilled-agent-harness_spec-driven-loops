@@ -19,7 +19,10 @@
       "sealed reference artifacts tasks",
       "deep-loop artifact sealing tasks",
       "sealed reference artifacts checklist",
-      "deep-loop artifact verification checklist"
+      "deep-loop artifact verification checklist",
+      "sealed reference artifacts implementation",
+      "sealed artifact verification evidence",
+      "deep-loop artifact retention implementation"
     ],
     "key_topics": [
       "sealed",
@@ -36,14 +39,35 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sealed-reference-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -147,19 +171,19 @@
         "source": "derived"
       },
       {
+        "name": "Completion Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Git",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "phase-006",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -169,43 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence.",
     "created_at": "2026-07-16T03:43:46.678Z",
-    "last_save_at": "2026-07-19T18:01:21.820Z",
+    "last_save_at": "2026-07-21T00:40:23.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3f29846ed41febe91641b773060e39f55781fe235a14bc827152f288ebff743",
+    "source_fingerprint": "sha256:a1df8dd507ae842dda5db13815a91cad38b32810c394f7926962c4e465d3c1dc",
     "source_doc_hashes": {
-      "spec.md": "ed4e4f6cd5a38c7dc85338c03c93f7974f5074e71a6bf6c7447508f3bee2d10e",
-      "plan.md": "4389fccba56b8b49140e0e77ad3d3e6bc3aa29b4519c8587d63588ec385f8aa6",
-      "tasks.md": "018f59478330ab0febf8fccea29f2f45d9b104ce06e03b750db9e8628981ff24",
-      "checklist.md": "4a81e10370d21a7bd5e0cb13bf6e72dbf03dbf24f199f9cdaf2dfe34d34cdc05"
+      "spec.md": "98eb845c4e2cecac6924527065384733b129b3836b173d3a3d7538fcaaf5a370",
+      "plan.md": "96701137bc51403fc07b907c4a089b2288688b9afa1c2642c4c14b9b85a3fbd4",
+      "tasks.md": "1f4475f1a8ca1b12371e5725e85b50a026e59952725cb23907fcd90838a8269f",
+      "checklist.md": "ad0022547a00d5b60456f82854fbad333ae1004ff0d7864c193fe8bc9c2bd067",
+      "implementation-summary.md": "880d0f2423290e266eddf7c35c006ead9dddb2f730ea999fcc19bd1905acd670"
     },
     "last_active_child_id": null,
     "last_active_at": null

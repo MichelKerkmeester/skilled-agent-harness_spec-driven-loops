@@ -19,7 +19,9 @@
       "blinded adjudication tasks",
       "counterfactual adjudication implementation tasks",
       "blinded adjudication checklist",
-      "counterfactual adjudication verification"
+      "counterfactual adjudication verification",
+      "blinded adjudication implementation summary",
+      "blinded adjudication verification evidence"
     ],
     "key_topics": [
       "blinded",
@@ -36,17 +38,39 @@
       "verification"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/implementation-summary.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "blinded-adjudication.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "phase-tree.json",
         "kind": "config",
@@ -162,53 +186,37 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "producer",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "pairwise",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
     "created_at": "2026-07-16T03:43:46.917Z",
-    "last_save_at": "2026-07-19T18:01:20.864Z",
+    "last_save_at": "2026-07-21T00:39:35.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9187e4d9e3f0a29555d463c0bcdd181811cc9875bb8a1ac23a86e9def7fe294",
+    "source_fingerprint": "sha256:1d3c3dd58951fbbde7b15803c684d5b80df95cc61d88bcdafea3cbf526bebca6",
     "source_doc_hashes": {
-      "spec.md": "6cf76dedf97f77ee8d99458518a789813060485aed6af9fd4c3cd7f91ca9bfa2",
-      "plan.md": "55169bfcc7aac5457a4866e796c064da44ae096f78eecd6357aad943ac1eab5e",
-      "tasks.md": "ac233a0f791c2ff43d04699b9dd89a1441fe72b523ac7bddba48d4706a01ccdf",
-      "checklist.md": "69f5c368c6625ee6c6cc2bb6a404cd3d9b0a177ecabf7f4674df2a2c92f31d2b"
+      "spec.md": "c4849592ac4dc7e44b000dbe49d0a3b6a877f914d07c7bc2fa88efe26e13cca1",
+      "plan.md": "e2f0d2f4850ae3fb12f8495caea048539efc7e107221cbff02e5f8d1fe1d3eef",
+      "tasks.md": "8a1e47efe39c12fc2b3cc022fecc11d351d79e7f2c9aa7152b733eb2daa6265f",
+      "checklist.md": "63c3f26f041dcf99aea8476e35f5c1c30878cb1aa94afc65942f438daa75d63b",
+      "implementation-summary.md": "cc90667800db287ea0b15a2383eb9ec523dd266578c5ac0b2375b6163d5bcf23"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:39:00Z"
     last_updated_by: "codex"
-    recent_action: "Planned the blinded registrar, adjudicator, reducer, and mode adapters"
-    next_safe_action: "Implement typed requests and identity-leakage fixtures on the ledger envelope"
+    recent_action: "Completed additive-dark adjudication runtime and verification"
+    next_safe_action: "Consume the dark adapter in the later shadow-parity phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,16 +49,16 @@ envelope, while the phase-004 ADR's scoring separation and raw-evidence retentio
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 event envelope, transition authorization, and replay-fingerprint contracts are available for typed event integration
-- [ ] The request, blinded-presentation, raw-score, counterfactual, reduction, verdict, invalidation, and deblinding event schemas are reviewed
-- [ ] Identity-bearing fields and permitted presentation transformations are enumerated with fail-closed defaults
-- [ ] A/B and B/A policy, tie/cycle handling, probe matrix, and stable/unstable/inconclusive semantics are frozen
-- [ ] Judge eligibility forbids self-scoring and defines effective-independence evidence without assuming configured seats are independent
-- [ ] Each consuming mode has an adapter mapping and may not directly re-reduce raw service scores
+- [x] The phase-006 event envelope, transition authorization, and replay-fingerprint contracts are available for typed event integration
+- [x] The request, blinded-presentation, raw-score, counterfactual, reduction, verdict, invalidation, and deblinding event schemas are reviewed
+- [x] Identity-bearing fields and permitted presentation transformations are enumerated with fail-closed defaults
+- [x] A/B and B/A policy, tie/cycle handling, probe matrix, and stable/unstable/inconclusive semantics are frozen
+- [x] Judge eligibility forbids self-scoring and defines effective-independence evidence without assuming configured seats are independent
+- [x] Each consuming mode has an adapter mapping and may not directly re-reduce raw service scores
 
 ### Definition of Done
-- [ ] Blinded mirrored-order adjudication and configured counterfactual probes pass identity-leakage, replay, correlation, tie, cycle, and failure fixtures
-- [ ] Every service verdict retains addressable raw evidence and no legacy scoring or convergence authority changes
+- [x] Blinded mirrored-order adjudication and configured counterfactual probes pass identity-leakage, replay, correlation, tie, cycle, and failure fixtures
+- [x] Every service verdict retains addressable raw evidence and no legacy scoring or convergence authority changes
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

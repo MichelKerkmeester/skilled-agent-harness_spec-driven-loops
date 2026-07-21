@@ -13,11 +13,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing"
     last_updated_at: "2026-07-15T14:01:58Z"
     last_updated_by: "codex"
-    recent_action: "Defined lock scope, lease lifecycle, fencing, and timeout policy"
-    next_safe_action: "Implement the fenced coordinator and guarded mutation adapters"
+    recent_action: "Implemented and verified the additive-dark fenced coordinator and guarded mutation adapters"
+    next_safe_action: "Consume the additive adapters from later dark-path wiring without changing legacy authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented and verified (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Sixth child of the phase-007 shared evidence-and-control-services parent |

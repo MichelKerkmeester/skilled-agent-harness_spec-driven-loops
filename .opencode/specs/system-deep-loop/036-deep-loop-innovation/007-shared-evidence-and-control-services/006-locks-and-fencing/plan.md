@@ -12,11 +12,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing"
     last_updated_at: "2026-07-15T14:01:58Z"
     last_updated_by: "codex"
-    recent_action: "Sequenced fenced-writer implementation and split-brain verification"
-    next_safe_action: "Implement durable token allocation before wiring protected writers"
+    recent_action: "Completed the additive-dark fenced-writer implementation and focused verification"
+    next_safe_action: "Wire the new adapters only when a later authority phase explicitly changes legacy call sites"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,20 +45,20 @@ Build one fenced-lease contract for every shared mutable deep-loop resource. Sta
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Every protected writer/recovery surface has one canonical resource key and declared atomicity domain
-- [ ] The phase-006 append/head/receipt interfaces needed for fence enforcement are pinned
-- [ ] Lease metadata, token allocation, typed errors, timeout values, and lock-order rules are specified
-- [ ] Legacy and dark write entry points that must share one epoch are identified
-- [ ] Fault-injection points cover acquire, renew, pre-commit, commit, fsync, release, expiry, and stale resume
-- [ ] Unsupported multi-host/storage topologies are explicit and fail closed
+- [x] Every protected writer/recovery surface has one canonical resource key and declared atomicity domain
+- [x] The phase-006 append/head/receipt interfaces needed for fence enforcement are pinned
+- [x] Lease metadata, token allocation, typed errors, timeout values, and lock-order rules are specified
+- [x] Legacy and dark write entry points that must share one epoch are identified
+- [x] Fault-injection and deterministic fixtures cover grant persistence, commit guards, expiry, takeover, release, and stale resume
+- [x] Unsupported multi-host/storage topologies are explicit and fail closed
 
 ### Definition of Done
-- [ ] Tokens are strictly monotonic and never reused for each canonical resource
-- [ ] Every protected mutation validates the current token atomically with its write
-- [ ] Stale live, expired, resumed, and duplicate fan-out writers are rejected at commit
-- [ ] Legacy/dark coexistence has one guarded mutation epoch without moving authority
-- [ ] Deadlock, timeout, crash, corruption, PID-reuse, and clock-skew gates pass deterministically
-- [ ] No inventoried protected writer remains reachable through an unfenced public path
+- [x] Tokens are strictly monotonic and never reused for each canonical resource
+- [x] Every additive protected mutation validates the current token inside the same coordinator mutex as its write
+- [x] Stale live, expired, resumed, and duplicate fan-out writers are rejected at commit
+- [x] Legacy/dark coexistence has one guarded adapter epoch without moving authority
+- [x] Deadlock, timeout, crash, corruption, PID-reuse, and clock-skew gates pass deterministically
+- [x] The dark public API exposes guarded adapters only; legacy writers remain canonical and intentionally untouched
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

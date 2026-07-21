@@ -12,11 +12,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
     last_updated_at: "2026-07-15T13:59:12Z"
     last_updated_by: "codex"
-    recent_action: "Planned typed budget architecture, reservation semantics, and ledger settlement"
-    next_safe_action: "Implement the schema and atomic ancestor-chain reservation reducer"
+    recent_action: "Delivered the typed budget architecture, ledger lifecycle, adapters, and focused verification"
+    next_safe_action: "Commit the path-scoped candidate when authorized"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,20 +47,20 @@ their migration gates authorize it.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 event envelope, transition vocabulary, replay fingerprint, and dark-writer contract are frozen
-- [ ] Receipt normalization defines actual token, cost, attempt, and elapsed-time evidence plus pinned pricing identity
-- [ ] Scope identities for program, mode, lineage, and iteration are stable and replayable
-- [ ] The current council guard, lineage cap, aggregate cap, retry estimate, and timeout behavior are captured as baseline fixtures
-- [ ] Atomic ledger mutation and fencing interfaces are available or represented by a test double with the same conflict semantics
-- [ ] Program phase 009 and phase 011 caller contracts identify required reservation and denial fields
+- [x] The phase-006 event envelope, transition vocabulary, replay fingerprint, and dark-writer contract are frozen
+- [x] Receipt normalization defines actual token, cost, attempt, and elapsed-time evidence plus pinned pricing identity
+- [x] Scope identities for program, mode, lineage, and iteration are stable and replayable
+- [x] The current council guard, lineage cap, aggregate cap, retry estimate, and timeout behavior are captured as baseline fixtures
+- [x] Atomic ledger mutation and fencing interfaces are available or represented by a test double with the same conflict semantics
+- [x] Program phase 009 and phase 011 caller contracts identify required reservation and denial fields
 
 ### Definition of Done
-- [ ] All four budget types validate, serialize, and reject cross-unit operations
-- [ ] Child allocation and dispatch reservation never exceed any ancestor's remaining typed allotment
-- [ ] Reservation, commit, release, expiry, cancellation, retry, and reconciliation are idempotent and replay-deterministic
-- [ ] Exhaustion, unknown spend, stale pricing, conflict, and ledger failure deny dispatch before executor spawn
-- [ ] Fan-out and value-of-computation adapters use the shared admission result without reimplementing balance arithmetic
-- [ ] Shadow parity, concurrency, crash/replay, and receipt-settlement fixtures pass on the pinned BASE
+- [x] All four budget types validate, serialize, and reject cross-unit operations
+- [x] Child allocation and dispatch reservation never exceed any ancestor's remaining typed allotment
+- [x] Reservation, commit, release, expiry, cancellation, retry, and reconciliation are idempotent and replay-deterministic
+- [x] Exhaustion, unknown spend, stale pricing, conflict, and ledger failure deny dispatch before executor spawn
+- [x] Fan-out and value-of-computation adapters use the shared admission result without reimplementing balance arithmetic
+- [x] Shadow parity, concurrency, crash/replay, and receipt-settlement fixtures pass on the pinned BASE
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

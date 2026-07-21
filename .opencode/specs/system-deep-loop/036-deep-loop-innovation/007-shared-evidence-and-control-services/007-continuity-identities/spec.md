@@ -6,18 +6,21 @@ trigger_phrases:
   - "stable deep-loop identity"
   - "resume handover identity threading"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:31:56Z"
     last_updated_by: "codex"
-    recent_action: "Planned stable continuity identities across resume, handover, and mode boundaries"
-    next_safe_action: "Implement identity minting and ledger references behind the dark runtime path"
+    recent_action: "Implemented stable continuity identities across resume, handover, and mode boundaries"
+    next_safe_action: "Keep the service dark until the planned authority-cutover phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop runtime |
 | **Origin** | Run-2 continuity-threading finding: one claim, lineage, candidate, or mode session must retain one identity across the whole loop |

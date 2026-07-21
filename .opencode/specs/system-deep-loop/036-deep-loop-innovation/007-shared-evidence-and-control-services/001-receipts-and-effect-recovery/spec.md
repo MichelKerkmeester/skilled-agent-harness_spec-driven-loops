@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:42:48Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 receipts and effect-recovery planning contract"
-    next_safe_action: "Implement boundary receipts and the effect gateway behind the phase 006 substrate"
+    recent_action: "Implemented and verified the additive-dark receipt and effect-recovery service"
+    next_safe_action: "Consume the service only from a later authority-migration phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-007 shared evidence-and-control-services parent |

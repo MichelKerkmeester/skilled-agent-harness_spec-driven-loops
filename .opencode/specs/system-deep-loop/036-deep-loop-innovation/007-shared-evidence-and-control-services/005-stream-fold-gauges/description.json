@@ -1,22 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges",
-  "description": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and",
+  "description": "Deterministic ledger-derived progress, novelty, cost, and health gauges with disposable checkpoint replay and additive-dark evidence.",
   "keywords": [
-    "plan",
-    "versioned",
-    "observability",
-    "gauges",
     "deterministic",
-    "folds",
-    "transition-authorized",
-    "ledger",
-    "reproducible",
+    "ledger-derived",
     "progress",
     "novelty",
-    "cost"
+    "cost",
+    "health",
+    "gauges",
+    "disposable",
+    "checkpoint",
+    "replay",
+    "additive-dark",
+    "evidence"
   ],
-  "lastUpdated": "2026-07-18T03:48:55.912Z",
+  "lastUpdated": "2026-07-21T00:34:18.848Z",
   "specId": "005",
   "folderSlug": "stream-fold-gauges",
   "parentChain": [

@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:42:48Z"
     last_updated_by: "codex"
-    recent_action: "Defined receipt issuance and intent-confirm-recover implementation phases"
-    next_safe_action: "Freeze phase 006 interfaces and build the crash-injection adapter harness"
+    recent_action: "Implemented and verified receipt issuance plus intent-confirm-recover execution"
+    next_safe_action: "Consume the service only from a later authority-migration phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,20 +46,22 @@ Implement a receipt issuer/verifier over canonical phase-006 ledger events and a
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 envelope, ledger append/receipt, replay-fingerprint, and authorization interfaces are frozen for consumption
-- [ ] Registered phase/mode boundary points and result codes are mapped to canonical boundary-event types
-- [ ] Receipt certification profiles distinguish durable cross-resume verification from advisory same-process HMAC
-- [ ] Effect adapter matrix names idempotency propagation, reconciliation evidence, and `in_doubt` behavior for subprocess, file, and API effects
-- [ ] Crash-injection fixtures cover every cut point from pre-intent through post-confirmation response loss
-- [ ] Additive-dark wiring proves no real irreversible external effect is shadow-executed
+- [x] Phase-006 envelope, ledger append/receipt, replay-fingerprint, and authorization interfaces are frozen for consumption
+- [x] Registered phase/mode boundary points and result codes are mapped to canonical boundary-event types
+- [x] Receipt certification profiles distinguish durable cross-resume verification from advisory same-process HMAC
+- [x] Effect adapter matrix names idempotency propagation, reconciliation evidence, and `in_doubt` behavior for subprocess, file, and API effects
+- [x] Crash-injection fixtures cover every cut point from pre-intent through post-confirmation response loss
+- [x] Additive-dark wiring proves no real irreversible external effect is shadow-executed
 
 ### Definition of Done
-- [ ] Registered phase/mode boundaries emit one conflict-detecting certified receipt bound to the durable result
-- [ ] Every gateway effect has durable intent before execution and confirmation or explicit recovery state afterward
-- [ ] Concurrent retry and crash-resume tests show no duplicate mutation for every replay-safe adapter
-- [ ] Ambiguous, mismatched, stale, tampered, or unsupported cases fail closed with auditable ledger evidence
-- [ ] Shipped receipt, wait-resume, salvage, JSONL recovery, and atomic-write regression suites remain green
-- [ ] The phase remains additive-dark and changes no legacy authority or production effect selection
+- [x] Registered phase/mode boundaries emit one conflict-detecting certified receipt bound to the durable result
+- [x] Every gateway effect has durable intent before execution and confirmation or explicit recovery state afterward
+- [x] Concurrent retry and crash-resume tests show no duplicate mutation for every replay-safe adapter
+- [x] Ambiguous, mismatched, stale, tampered, or unsupported cases fail closed with auditable ledger evidence
+- [x] Shipped receipt, wait-resume, salvage, JSONL recovery, and atomic-write regression suites remain green
+- [x] The phase remains additive-dark and changes no legacy authority or production effect selection
+
+Verification evidence and the excluded missing-`better-sqlite3` baseline are recorded in `implementation-summary.md`.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

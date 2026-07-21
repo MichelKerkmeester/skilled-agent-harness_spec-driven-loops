@@ -19,7 +19,9 @@
       "hierarchical typed budgets tasks",
       "deep-loop budget authority tasks",
       "hierarchical typed budgets checklist",
-      "deep-loop budget verifier"
+      "deep-loop budget verifier",
+      "hierarchical typed budgets implementation",
+      "typed budget verification evidence"
     ],
     "key_topics": [
       "hierarchical",
@@ -36,7 +38,7 @@
       "authority"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -44,6 +46,7 @@
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -78,6 +81,12 @@
         "name": "phase-tree.json",
         "kind": "config",
         "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,31 +196,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan token, cost, iteration, and wall-time budgets that nest from program to iteration, reserve atomically, settle against ledgered spend, and fail closed before dispatch when any governing scope is exhausted.",
     "created_at": "2026-07-16T03:43:47.182Z",
-    "last_save_at": "2026-07-19T18:01:21.689Z",
+    "last_save_at": "2026-07-21T00:35:17.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64ffcdcfd967c9372dd29d24c9bf0f876824ff76b141944474809ca25cb3df67",
+    "source_fingerprint": "sha256:02af8d1e01699c10d13da70d65997e639063c9a9c5bb85fdc7642a3824c7684a",
     "source_doc_hashes": {
-      "spec.md": "3b801670018f11e9368f5ccd50cb0ed9023fe2f95f0f28225f6f607e8d6f23fc",
-      "plan.md": "f85b7f108fbe31dff230f6128a9cda1ae92a89a71fc00c0359f91d8edc181bf4",
-      "tasks.md": "a44a95a848f1caf36a6139bb2453d067fd1272148afb75c6f27e8d11aef726ed",
-      "checklist.md": "fa6dcbdfb840f0f8f7865495041861cb049c13596dfcb9da52c1214204e4c99f"
+      "spec.md": "52ccbabafec895751dc122d6c7c5a826b1b1606962fc19ecab2f59f974c7c9be",
+      "plan.md": "334e40ca53942b7c524738ae1f6de78384e1a6eff4efd72ea78e2babc8721faf",
+      "tasks.md": "76c2b7d5987df8f74be76b07c787fc53e6da38d07952c03072e6fd6b058caf64",
+      "checklist.md": "842a99ce609f0aeee4baaa8df68849969d84dfc12d93c0865bddea221a22e2cd",
+      "implementation-summary.md": "05b1c8e2e0430f7ec8b8103336fbfd72991e4211358115827045bfa44f300082"
     },
     "last_active_child_id": null,
     "last_active_at": null

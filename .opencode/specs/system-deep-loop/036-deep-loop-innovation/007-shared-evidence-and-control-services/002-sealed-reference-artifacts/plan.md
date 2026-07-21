@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:32:18Z"
     last_updated_by: "codex"
-    recent_action: "Planned sealing, verified reads, replay binding, and retention"
-    next_safe_action: "Implement the seal descriptor and atomic content-addressed publication"
+    recent_action: "Delivered sealing, verified reads, replay binding, and conservative retention"
+    next_safe_action: "Keep the service dark until later replay and parity consumers adopt it"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,17 +52,17 @@ phase 008 may compare legacy and dark outputs only when both cite the same set. 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Artifact kinds and canonicalization profiles are inventoried from the phase-003 census and later mode contracts
-- [ ] The seal descriptor has explicit identity, algorithm, canonicalization, media, size, and provenance fields
-- [ ] Atomic publication and immutable storage semantics are selected for the supported runtime
-- [ ] Run/event schemas reject path-only, alias-only, tag-only, or `latest` references
-- [ ] Verified-read failures are typed and release no unverified bytes
-- [ ] Replay fingerprints define an ordered artifact-reference input and phase 008 defines input-equivalence gating
-- [ ] Retention roots, horizons, holds, quarantine, tombstones, and deletion receipts have explicit ownership
+- [x] Artifact kinds and canonicalization profiles are inventoried from the phase-003 census and later mode contracts
+- [x] The seal descriptor has explicit identity, algorithm, canonicalization, media, size, and provenance fields
+- [x] Atomic publication and immutable storage semantics are selected for the supported runtime
+- [x] Run/event schemas reject path-only, alias-only, tag-only, or `latest` references
+- [x] Verified-read failures are typed and release no unverified bytes
+- [x] Replay fingerprints define an ordered artifact-reference input and phase 008 defines input-equivalence gating
+- [x] Retention roots, horizons, holds, quarantine, tombstones, and deletion receipts have explicit ownership
 
 ### Definition of Done
-- [ ] Sealing, digest references, verified reads, replay/parity integration, and lifecycle retention pass their P0 fixtures
-- [ ] The service remains additive-dark; legacy execution stays authoritative and unchanged
+- [x] Sealing, digest references, verified reads, replay/parity integration, and lifecycle retention pass their P0 fixtures
+- [x] The service remains additive-dark; legacy execution stays authoritative and unchanged
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
