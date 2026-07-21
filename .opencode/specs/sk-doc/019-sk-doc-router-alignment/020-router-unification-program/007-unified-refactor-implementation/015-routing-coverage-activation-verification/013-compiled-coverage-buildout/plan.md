@@ -329,6 +329,46 @@ Phase 3 (TV-003 fix + re-mint) ────────────────�
 
 ---
 
+<!-- ANCHOR:ai-execution -->
+## L3: AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm the worktree is `.worktrees/0089-sk-doc-default-routing-cutover` before touching any per-hub compiler, router, or fixture file.
+- Capture the frozen-scorer digests (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) and each hub's route-gold baseline before starting its phase.
+- Read the target hub's `SKILL.md`, `mode-registry.json`, and sk-design's reference compiler before growing detectors.
+- Confirm `DEFAULT_ON_HUBS` stays empty in both resolver copies until a hub's own parity run is 100% `compiled-serving`.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| Ordered steps | Do not flip a hub's default-on directive until that hub's own route-gold parity run is 100% `compiled-serving` |
+| Scope lock | Modify only the per-hub compiler/router/fixture files and the shared resolver/manifest/sync surfaces named in this plan's AFFECTED SURFACES table |
+| Frozen scorer | Treat the three pinned scorer files as read-only; fail on any digest drift |
+| Subset invariant | Compiled routes must stay a subset of what legacy routes for the same prompt — never add, never drop |
+| Reversibility | Every hub keeps a byte-exact rollback (cohort removal) and the fleet keeps `SPECKIT_COMPILED_ROUTING=0` as kill-switch |
+| Evidence | Keep checklist/task items unchecked until the named parity command or artifact exists |
+
+### Status Reporting Format
+
+```text
+Hub: [sk-code|cli-external-orchestration|mcp-tooling|sk-prompt|sk-design|sk-doc|system-deep-loop|fleet]
+Phase: [1-pilot|2-replicate|3-fix-and-remint|4-coverage|5-flip|6-verify]
+Status: [planned|in-progress|blocked|verified]
+Route-gold parity: [command + result]
+Frozen scorer pin: [SHA-256 check result]
+Rollback evidence: [command or artifact]
+Next safe action: [single phase-local action]
+```
+
+### Blocked Task Protocol
+
+If a hub's route-gold parity finds a new unsafe-misroute, a frozen scorer digest changes, a manifest re-mint fails freshness, or a hub is flipped before its own parity run is 100% `compiled-serving`, stop the current phase. Preserve the failing evidence and report the exact command, exit code, affected hub, and last verified rollback point before proposing a narrower remediation.
+<!-- /ANCHOR:ai-execution -->
+
+---
+
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 See `decision-record.md` for the full ADR:

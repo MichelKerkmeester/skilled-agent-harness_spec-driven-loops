@@ -2,6 +2,22 @@
 
 > The standing goal for the **final phase** of packet 015: make the compiled skill-router *genuinely serve* every hub == legacy, then enable it by default. Supersedes the "flip the cohort" framing after the coverage finding. Companions: `goal.md` (the original program goal, 002–012, accurate history), `handover.md` (resume state), `compiled-routing-coverage-diagnosis.md` (the verified technical diagnosis + key files), `001-research/{synthesis,verification}-v1.md` (evidence base).
 
+## 0. Current status + remaining work (updated 2026-07-21)
+
+**SHIPPED (committed in the worktree, checkpoints `f19ee17179` → `85a5876dc8`):** all 7 hubs `compiled-serving` == legacy; **enabled by default** (`DEFAULT_ON_HUBS` = all 7, both resolver copies byte-identical); `SPECKIT_COMPILED_ROUTING=0` fleet kill-switch + per-hub reversibility proven; verified via automated tests (258/258), the compiled Lane C parity (7/7), and a compiled-routing LUNA-HIGH sweep (14/14); `011`+`013` packet docs reconciled (`validate --strict` Errors:0). Frozen scorer SHAs untouched throughout; no legacy routing decision changed; **v4 merge NOT done (operator-gated).**
+
+**REMAINING WORK — to reach true END-TO-END:**
+
+- **R1 — `sk-code:code-opencode` alignment gate** (explicit goal criterion): run the RESOURCE_MAP alignment / drift-guard gate (`verify_alignment_drift.py` + `run-all-drift-guards.sh`); confirm PASS or fix any drift the coverage build-out introduced (never touching frozen files or what legacy routes).
+- **R2 — every MD via the right sk-doc mode** (explicit goal criterion): audit + conform every Markdown this program created/edited (7 `feature-catalog/.../compiled-routing-and-legacy-fallback.md` leaves → create-feature-catalog; 2 create-skill parent templates; `013` spec docs → system-spec-kit templates) against its governing sk-doc-mode validator.
+- **R3 — EXHAUSTIVE MANUAL VERIFICATION** (operator directive: *"every related testing playbook scenario manually run and verified, every benchmark, EVERYTHING"*):
+  - **Every manual-testing-playbook scenario, every hub** — NOT just the compiled-routing subset. For each scenario in each hub's `manual-testing-playbook/`, run it against the now-default-on compiled router and verify all four: routing target, expected detection markers, exact resource-loading paths, and user-visible outcome match the playbook's contract. Cover all 7 flipped hubs; confirm the 5 non-hubs still route legacy.
+  - **Every benchmark** — run + verify + archive: the full skill-benchmark (Lane A/B/C per hub, all modes), the compiled Lane C parity (all 7), the FULL LUNA-HIGH manual-playbook sweep (all hubs, both planes — not only the compiled-routing scenarios), route-gold, and any other benchmark in the tree.
+  - **EVERYTHING** — leave no related scenario or benchmark unrun; record each result PASS/SKIP/FAIL with durable evidence; SKIP only on genuine transport unavailability, never to skip work. Bar: frozen scorers unchanged, `DEFAULT_ON_HUBS` still 7, legacy byte-identical, `validate --strict` Errors:0.
+- **R4 — non-blocking follow-ups:** advisor-enrichment cohort (`system-skill-advisor/.../compiled-routing-flag.ts` — decide flip-vs-document); SD-015 non-route-clause lock-in test; manifest provenance quirk (SKILL.md prose feeding `effectivePolicyHash`).
+
+_Resume anchor: `013-compiled-coverage-buildout/handover.md`. Best run FRESH (prior session context exhausted)._
+
 ## 1. The destination
 
 All seven hubs' compiled routers reach **production routing coverage** — compiled routes **byte-identical to legacy on their full scenario set** (no deferring real prompts) — and are then **enabled by default**, verified end to end.

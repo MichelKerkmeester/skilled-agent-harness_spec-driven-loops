@@ -8,16 +8,15 @@ trigger_phrases:
   - "sk-code compiled router coverage"
 importance_tier: "critical"
 contextType: "implementation"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
-    last_updated_at: "2026-07-21T12:00:00.000Z"
+    last_updated_at: "2026-07-21T12:49:16Z"
     last_updated_by: "claude"
-    recent_action: "Authored the coverage build-out spec from the verified diagnosis."
-    next_safe_action: "Start the sk-code pilot coverage build-out per plan.md Phase 1."
-    blockers:
-      - "Coverage build-out has not started for any thin or stale hub."
+    recent_action: "Reconciled spec.md status to Complete (matches implementation-summary.md; 7dfffa0c93)"
+    next_safe_action: "None; 011-activation-cutover-p4 (P4, operator-gated) consumes this coverage"
+    blockers: []
     key_files:
       - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
       - ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-013-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the safe defer-to-legacy contract (root cause 4) need a fix before Path 1, or is it a Path-2-only concern?"
     answered_questions:
@@ -62,7 +61,7 @@ The compiled skill-router mechanism is byte-identical to legacy where it has cov
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete. All 7 hubs (sk-code, sk-design, sk-doc, sk-prompt, mcp-tooling, system-deep-loop, cli-external-orchestration) reached `compiled-serving` parity (0 drift each) and the staged default-on flip landed — `DEFAULT_ON_HUBS` populated in both resolver copies, commit `7dfffa0c93`. See `implementation-summary.md` for the full 6-commit delivery record. |
 | **Created** | 2026-07-21 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 <!-- /ANCHOR:metadata -->
