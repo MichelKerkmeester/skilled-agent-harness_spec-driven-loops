@@ -494,7 +494,15 @@ def main() -> None:
         '--compiled-routing',
         choices=['legacy', 'ready'],
         default=None,
-        help="Parent-hub compiled routing state (default: legacy)",
+        help=(
+            "Parent-hub compiled routing state (default: legacy). 'ready' only mints "
+            "a fresh activation manifest (generation 1, servingAuthority='legacy', "
+            "shadowOnly=true) as onboarding evidence -- it does NOT make the hub "
+            "compiled-serving. The hub still needs its own shadow-child router built "
+            "to route == legacy and pass Lane C parity before it can join the "
+            "runtime's compiled-serving cohort; see "
+            "references/parent-skill/compiled-routing-architecture.md."
+        ),
     )
     args = parser.parse_args()
 

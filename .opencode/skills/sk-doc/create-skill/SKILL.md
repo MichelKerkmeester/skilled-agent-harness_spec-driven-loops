@@ -363,6 +363,7 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `references/shared/common-pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
 - `references/parent-skill/parent-skills-nested-packets.md` - detailed parent-hub and nested-packet model.
 - `references/parent-skill/parent-hub-router-schema.md` - full router and registry schema.
+- `references/parent-skill/compiled-routing-architecture.md` - which hubs the compiled router serves, the shadow-child-to-cohort chain, and why `--compiled-routing ready` mints onboarding evidence, not compiled-serving.
 - `assets/skill/skill-md-template.md` - standalone skill SKILL.md template.
 - `assets/skill/skill-readme-template.md` - skill README template.
 - `assets/skill/skill-reference-template.md` - reference markdown template.

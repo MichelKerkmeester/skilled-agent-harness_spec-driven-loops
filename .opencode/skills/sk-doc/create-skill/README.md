@@ -30,6 +30,7 @@ Use another `sk-doc` packet for agents, commands, READMEs, benchmarks, feature c
 - `references/shared/validation-and-packaging.md`: validation and packaging gates.
 - `references/parent-skill/parent-skills-nested-packets.md`: parent-hub and nested-packet model.
 - `references/parent-skill/parent-hub-router-schema.md`: registry and router schema.
+- `references/parent-skill/compiled-routing-architecture.md`: compiled-router scope, the shadow-child-to-cohort chain, and the `ready`-manifest-vs-compiled-serving boundary.
 - `assets/skill/skill-md-template.md`: standalone `SKILL.md` template.
 - `assets/skill/skill-readme-template.md`: standalone skill README template.
 - `assets/skill/skill-reference-template.md`: reference-file template.
