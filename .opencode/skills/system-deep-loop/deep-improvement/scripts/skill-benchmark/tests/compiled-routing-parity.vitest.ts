@@ -464,6 +464,77 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
     expect(res.compiledGoldPass).toBe(true);
     expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
   });
+
+  it('SD-015 clause: a matched non-route decision is parity even when a surface-layer resource gold disagrees', () => {
+    // Lock-in for the SD-015 fix (commit 6ba5f2957f): a non-route decision
+    // (defer/clarify/reject) carries no resources by schema -- route-gold
+    // resources ride only on route.targets. Mirrors the real sk-doc SD-015 case:
+    // compiled and legacy both correctly defer (firstDifference null), but
+    // legacy's own resource gold reflects the retained legacy surface layer
+    // (smart-routing.md) that a defer's legacy fallback reaches and the
+    // compiled router never replaces. That must still be parity, not drift.
+    const scenario = {
+      scenarioId: 'FIX-SD015-defer-match', classKind: 'routing', hasResourceGold: true,
+      expectedResources: ['code-quality/references/config/quick-reference.md'],
+      source: { shape: 'generic' },
+    };
+    const legacyObserved = {
+      observedIntents: [],
+      observedResources: ['code-quality/references/config/quick-reference.md'],
+    };
+    const loader = () => ({ quality: { workflowMode: 'quality', packet: 'code-quality', leaves: [] } });
+    const res = parity.compiledParity(
+      { scenario, legacyObserved, skillRoot, skillId: 'sk-code' },
+      {
+        readServingAuthority: () => 'compiled',
+        compiledDecision: () => ({ action: 'defer', targets: [] }),
+        loadModeIndex: loader,
+      },
+    );
+    expect(res.firstDifference).toBeNull();
+    expect(res.compiledAction).toBe('defer');
+    expect(res.legacyGoldPass).toBe(true);
+    expect(res.compiledGoldPass).toBe(false);
+    expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
+    expect(res.reason).toBe('routing-parity-match');
+  });
+
+  it('adversarial: the SD-015 exemption does not leak to a served route with a real compiled resource gap', () => {
+    // Twin of the SD-015-match test above with exactly one axis flipped:
+    // compiled SERVES the same target legacy does (action: 'route', matching
+    // workflowMode) instead of deferring. `decision.action !== 'route'` is now
+    // false, so the SD-015 disjunct cannot apply -- a genuine
+    // compiledGoldPass/legacyGoldPass disagreement on a route compiled actually
+    // serves must still drift, proving the exemption is scoped to non-route
+    // decisions only and never leaks to a served route.
+    const scenario = {
+      scenarioId: 'FIX-SD015-route-drift', classKind: 'routing', hasResourceGold: true,
+      expectedResources: ['code-quality/references/config/quick-reference.md'],
+      source: { shape: 'generic' },
+    };
+    const legacyObserved = {
+      observedIntents: ['quality'],
+      observedResources: ['code-quality/references/config/quick-reference.md'],
+    };
+    // Compiled's manifest declares the 'quality' mode with NO leaves -- a
+    // genuine compiled-only gap the granularity projection can only narrow,
+    // never manufacture.
+    const loader = () => ({ quality: { workflowMode: 'quality', packet: 'code-quality', leaves: [] } });
+    const res = parity.compiledParity(
+      { scenario, legacyObserved, skillRoot, skillId: 'sk-code' },
+      {
+        readServingAuthority: () => 'compiled',
+        compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }),
+        loadModeIndex: loader,
+      },
+    );
+    expect(res.firstDifference).toBeNull();
+    expect(res.compiledAction).toBe('route');
+    expect(res.legacyGoldPass).toBe(true);
+    expect(res.compiledGoldPass).toBe(false);
+    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+    expect(res.reason).toBe('route-gold-failure');
+  });
 });
 
 describe('compiled-routing-parity: resource-granularity projection', () => {
