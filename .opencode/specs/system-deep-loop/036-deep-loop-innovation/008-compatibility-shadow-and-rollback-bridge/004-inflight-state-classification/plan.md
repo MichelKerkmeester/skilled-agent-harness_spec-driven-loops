@@ -5,18 +5,22 @@ trigger_phrases:
   - "in-flight state classification implementation plan"
   - "deep-loop state disposition manifest plan"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
+status: "complete"
 parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
-    last_updated_at: "2026-07-15T14:32:45Z"
+    last_updated_at: "2026-07-21T03:35:32Z"
     last_updated_by: "codex"
-    recent_action: "Planned the row-level classification manifest and cutover handoff"
-    next_safe_action: "Freeze the phase-003 census before assigning row dispositions"
+    recent_action: "Implemented the row-level classification manifest and read-only cutover handoff"
+    next_safe_action: "Retain legacy authority until governed phase-014 consumption"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/inflight-state-classification.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -31,7 +35,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop compatibility and phase-014 cutover handoff |
-| **Change class** | Planning contract and future classification manifest |
+| **Change class** | Runtime classifier, immutable manifest, and read-only handling gate |
 | **Execution** | Legacy-authoritative, additive, dark, and fail closed |
 
 ### Overview
@@ -46,18 +50,18 @@ default is `BLOCK`.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The executed phase-003 census is frozen with stable row IDs, state-family ownership, paths, lifecycle data, and evidence digests
-- [ ] The phase-004 upcaster, authority, rollback, and cutover-certificate policy is ratified
-- [ ] The five classes, precedence order, reason codes, required fields, and freshness invalidators are schema-defined
-- [ ] The classification runner reads snapshots or fixtures and cannot mutate live authoritative state
-- [ ] Every mode/workstream has an owner for census gaps and blocking dispositions
+- [x] The executed phase-003 census is frozen with stable row IDs, state-family ownership, paths, lifecycle data, and evidence digests
+- [x] The phase-004 upcaster, authority, rollback, and cutover-certificate policy is ratified
+- [x] The five classes, precedence order, reason codes, required fields, and freshness invalidators are schema-defined
+- [x] The classification runner reads snapshots or fixtures and cannot mutate live authoritative state
+- [x] Every mode/workstream has an owner for census gaps and blocking dispositions
 
 ### Definition of Done
-- [ ] Every frozen census row has exactly one evidence-backed class and zero rows are missing or duplicated
-- [ ] Every `UPCAST`, `PIN`, `FORK`, and `MIGRATE` row passes its class-specific verifier
-- [ ] Every unresolved or unsafe row is `BLOCK`, and each mode gate refuses cutover while any live block remains
-- [ ] The manifest digest, row evidence, rollback anchors, and freshness contract are consumable by phase 014
-- [ ] Legacy authority remains unchanged and no live state is mutated by classification
+- [x] Every frozen census row has exactly one evidence-backed class and zero rows are missing or duplicated
+- [x] Every `UPCAST`, `PIN`, `FORK`, and `MIGRATE` row passes its class-specific verifier
+- [x] Every unresolved or unsafe row is `BLOCK`, and each mode gate refuses cutover while any live block remains
+- [x] The manifest digest, row evidence, rollback anchors, and freshness contract are consumable by phase 014
+- [x] Legacy authority remains unchanged and no live state is mutated by classification
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/002-legacy-projections"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T02:54:06Z"
     last_updated_by: "codex"
-    recent_action: "Authored the legacy projection contract for byte-identical dark-ledger folds"
-    next_safe_action: "Execute the phase-003 projection manifest and byte-parity fixtures"
+    recent_action: "Implemented and verified the additive-dark legacy projection bridge"
+    next_safe_action: "Commit the path-scoped candidate when authorized"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/002-legacy-projections |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented and verified in the working tree; commit pending |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Legacy-projection child of the phase-008 compatibility, shadow, and rollback bridge |
@@ -157,7 +159,7 @@ letting shadow output collide with a live legacy target. The controlling sources
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must resolve the exact manifest rows, writer boundaries, and permitted snapshot
-coalescing from the frozen phase-003 census. Any artifact whose serializer, authority, or refresh semantics remain
-ambiguous is blocked from projection rather than assigned a guessed compatibility contract.
+None. The implemented manifest closes the frozen census with 22 projectable rows and six explicit retained-input
+dispositions. Concrete folds remain blocked unless their serializer, writer boundary, BASE oracle, and refresh
+semantics match the manifest contract.
 <!-- /ANCHOR:questions -->

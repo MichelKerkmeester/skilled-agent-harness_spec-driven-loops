@@ -19,7 +19,9 @@
       "upcaster and dual-read adapter tasks",
       "deep-loop compatibility shadow tasks",
       "upcaster and dual-read adapter checklist",
-      "deep-loop compatibility shadow verification"
+      "deep-loop compatibility shadow verification",
+      "upcaster dual read adapter implementation",
+      "compatibility shadow runtime evidence"
     ],
     "key_topics": [
       "deep-loop",
@@ -36,8 +38,11 @@
       "upcaster"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope/spec.md",
@@ -45,11 +50,27 @@
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "atomic-state.ts",
         "kind": "code",
@@ -72,18 +93,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "input",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,37 +196,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger while legacy remains canonical and every compatibility action stays reversible.",
     "created_at": "2026-07-16T03:43:48.404Z",
-    "last_save_at": "2026-07-19T18:01:16.775Z",
+    "last_save_at": "2026-07-21T02:48:46.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57cf138b809ffd2d0cb2e21f30c63b726d07a44bfbf1917be535ba4c8c84eb0a",
+    "source_fingerprint": "sha256:1f55932c8f9fb7b78e05646398f5ea6023982044e3315abd220dcf1e5cefe8b2",
     "source_doc_hashes": {
-      "spec.md": "f72f3b7ff6019bcf7804a7901b5fbb997b243d96bb152fac0b946253eec2c7e1",
-      "plan.md": "e1e6022d431008112927bdedf36c0aa68bf3db9eeda6b1f135c1bb94622d21df",
-      "tasks.md": "485aeaa03b598a850f16bc1ae3fa62908aa9812565f31b100d40dc0885e011be",
-      "checklist.md": "866cc4d17c2d6992053200900c1a14848d9a42699cee2be0cfcab2755887e4f0"
+      "spec.md": "0861df5cc634498646c510eaa8b87abf2eca1a91bba528fa658868a560bb6474",
+      "plan.md": "7670be8a35f987f64c84675ea30232d4145e7d2dfe656ce1a1ff7424162742fe",
+      "tasks.md": "8997d633348b0cb6b7da2c0d6d241f28e16921caeaac14b7d914f0c149c9c046",
+      "checklist.md": "4701be9bb7062a53c0866e94b80328b73f81b4bdb1dfd27e545c3ccdeb5b613a",
+      "implementation-summary.md": "d6feaf13a7d0a3e6c26237f6955b60e7838e258df33be09ee1b66f77db502da6"
     },
     "last_active_child_id": null,
     "last_active_at": null

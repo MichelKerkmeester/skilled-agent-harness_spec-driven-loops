@@ -12,11 +12,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters"
     last_updated_at: "2026-07-15T14:17:04Z"
     last_updated_by: "codex"
-    recent_action: "Planned registry, reconciliation, and reversible shadow-write implementation"
-    next_safe_action: "Inventory legacy families and bind each to explicit version fixtures"
+    recent_action: "Delivered and verified the additive compatibility seam"
+    next_safe_action: "Hand the stable read and mirror contracts to successor leaves"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,25 +38,25 @@ _memory:
 | **Execution** | Additive behind compatibility gates; legacy remains authoritative |
 
 ### Overview
-Implement one deterministic compatibility layer between the current producer-native state shapes and the phase-006 current envelope/ledger contracts. The layer has three separable responsibilities: validate and chain registered event/state upcasters; obtain comparable legacy and dark observations and reconcile their normalized current models; and preserve one authoritative legacy mutation while appending at most one idempotent, non-authoritative dark mirror. The implementation must not rewrite historical data, infer versions from arbitrary JSON, fail over from legacy to dark, repair either store during reads, or expose an authority switch. Detailed module names are selected against the pinned state census, but behavior is fixed by the phase-004 policy, phase-006 envelope and ledger specs, `atomic-state.ts`, and `manifest/phase-tree.json`.
+Implement one deterministic compatibility layer between the current producer-native state shapes and the phase-006 current envelope/ledger contracts. The layer has three separable responsibilities: validate and chain registered event/state upcasters; obtain comparable legacy and dark observations and reconcile their normalized current models; and accept proof of one finalized authoritative legacy mutation while appending at most one idempotent, non-authoritative dark mirror. The implementation must not expose a legacy writer, rewrite historical data, infer versions from arbitrary JSON, fail over from legacy to dark, repair either store during reads, or expose an authority switch. Detailed module names are selected against the pinned state census, but behavior is fixed by the phase-004 policy, phase-006 envelope and ledger specs, `atomic-state.ts`, and `manifest/phase-tree.json`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The pinned state census identifies every legacy event/snapshot/JSONL family, reader, writer, version discriminator, and rollback anchor in scope
-- [ ] The phase-004 transition/versioning policy and phase-006 envelope, ledger, authorization, and replay contracts are frozen at exact revisions
-- [ ] Each admitted historical version has canonical input/output fixtures and an explicit adjacent transform path to current
-- [ ] The comparison token binds logical identity, authority epoch, legacy position, verified dark head, and correlation identity
-- [ ] The legacy direct path and its value/error/retry semantics are captured before adapter insertion
+- [x] The pinned state census identifies every legacy event/snapshot/JSONL family, reader, writer, version discriminator, and rollback anchor in scope
+- [x] The frozen transition/versioning policy and envelope, ledger, authorization, and replay contracts are recorded at exact revisions
+- [x] Each admitted historical version has canonical input/output fixtures and an explicit adjacent transform path to current
+- [x] The comparison token binds logical identity, authority epoch, legacy position, verified dark head, and correlation identity
+- [x] The legacy direct path and its value/error/retry semantics are captured before adapter insertion
 
 ### Definition of Done
-- [ ] Registry startup validation rejects every incomplete or non-deterministic version graph
-- [ ] Dual-read reconciliation implements every matrix row without dark fallback or read-repair
-- [ ] Write instrumentation proves one legacy mutation and zero-or-one idempotent dark mirror per accepted transition
-- [ ] Dark read/append failures are observable and block parity evidence without changing legacy behavior
-- [ ] Disabling compatibility gates reproduces the pinned direct-legacy baseline with no storage migration
+- [x] Registry startup validation rejects every incomplete or non-deterministic version graph
+- [x] Dual-read reconciliation implements every matrix row without dark fallback or read-repair
+- [x] Write instrumentation proves the adapter performs zero legacy mutations and at most one idempotent dark mirror per accepted transition
+- [x] Dark read/append failures are observable and block parity evidence without changing legacy behavior
+- [x] Disabling compatibility gates reproduces the pinned direct-legacy baseline with no storage migration
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -64,7 +67,7 @@ Implement one deterministic compatibility layer between the current producer-nat
 - **Legacy codec boundary**: explicit codecs wrap inventoried call sites that currently pass arbitrary `unknown` shapes to `writeStateAtomic`, `writeStateIfChangedAtomic`, `appendJsonlIfChangedAtomic`, or deferred writers. The atomic utility remains a persistence primitive, not a schema or version detector.
 - **Dual-read sampler**: reads legacy and verified dark sources under one comparison token. It does not race arbitrary latest values; it records exact positions and classifies causal skew before semantic comparison.
 - **Reconciler**: compares normalized current models using the phase-006 canonical/replay fingerprint inputs. It returns the legacy operational value or error plus typed evidence: `parity`, `divergence`, `dark_lagging`, `dark_missing`, `dark_failure`, `legacy_failure_dark_success`, or `not_comparable`.
-- **Single-authoritative-write adapter**: calls the legacy writer once. After accepted legacy mutation, it constructs the current canonical envelope and requests one idempotent authorized dark append. The dark receipt or failure is diagnostic; neither changes the legacy command result.
+- **Single-authoritative-write adapter**: accepts proof of an already accepted legacy mutation and exposes no legacy writer. It constructs the current canonical envelope and requests at most one idempotent authorized dark append. The dark receipt or failure is diagnostic; neither changes the legacy command result.
 - **Compatibility controls**: independent gates for upcasting, dual reads, and dark mirroring permit a direct legacy-only rollback. No gate selects dark authority, and no read path performs repair or writeback.
 - **Evidence boundary**: reconciliation and mirror-failure records are bounded, correlation-safe, and do not copy sensitive payloads. They feed later shadow-parity and cutover evidence but are not domain events that advance operational state.
 <!-- /ANCHOR:architecture -->
@@ -79,15 +82,15 @@ Implement one deterministic compatibility layer between the current producer-nat
 
 ### Phase 2: Implementation
 - Implement the immutable registry, adjacent-chain validator, per-hop validators, and auditable upcast result for events and explicitly versioned state families.
-- Add explicit legacy codecs at inventoried persistence call boundaries without changing `atomic-state.ts` serialization, fsync, debounce, or diff-gating semantics.
+- Add explicit legacy codec contracts mapped to inventoried persistence boundaries without modifying those live call sites or changing `atomic-state.ts` serialization, fsync, debounce, or diff-gating semantics.
 - Implement causal-positioned dual reads, independent source validation/upcasting, deterministic reconciliation, and bounded divergence evidence.
-- Implement the one-legacy-call write wrapper and the current-version, authorized, idempotent dark mirror; prohibit dark fallback, retries that repeat legacy mutation, and all read-repair/writeback paths.
+- Implement a dark-only wrapper over an already accepted legacy result and the current-version, authorized, idempotent dark mirror; prohibit legacy-write capability, dark fallback, retries, and all read-repair/writeback paths.
 - Add independent disablement gates that restore direct legacy reads/writes and leave existing legacy and dark records untouched.
 
 ### Phase 3: Verification
 - Prove registry determinism and multi-hop output stability; reject gaps, cycles, duplicates, forks, future versions, ambiguous shapes, invalid hops, and identity mutation.
 - Exercise every dual-read matrix row at matching and mismatched causal points; confirm the legacy result or error is always operational.
-- Instrument success, retry, duplicate, legacy failure, dark failure, and crash boundaries; confirm one legacy mutation and at most one idempotent dark append.
+- Instrument success, duplicate, gate, dark failure, and crash boundaries; confirm zero legacy-write capability and at most one idempotent dark append.
 - Compare enabled-then-disabled behavior with the pinned direct-legacy baseline; confirm no storage rewrite, repair, deletion, authority flip, or changed legacy error semantics.
 - Produce evidence consumable by successor legacy projections and later shadow-parity/rollback children without claiming cutover readiness.
 <!-- /ANCHOR:phases -->
@@ -103,7 +106,7 @@ Implement one deterministic compatibility layer between the current producer-nat
 | REQ-004 | Unknown, future, ambiguous, missing-edge, invalid-hop, and lossy fixtures return typed failures with no partial effective model |
 | REQ-005 | Comparison-token fixtures distinguish equal causal positions from lagging or unrelated snapshots before semantic fingerprint comparison |
 | REQ-006 | Table-driven reconciliation covers every legacy/dark success, divergence, lag, miss, invalid, and failure combination |
-| REQ-007 | Spies and durable idempotency fixtures prove one legacy invocation and zero-or-one dark append per accepted command |
+| REQ-007 | Spies and durable idempotency fixtures prove the adapter exposes no legacy writer and performs zero-or-one dark append per accepted command |
 | REQ-008 | Fault injection at dark read/verify/append boundaries preserves the legacy value/error and produces bounded diagnostic evidence |
 | REQ-009 | Mutation guards assert no adapter read opens either source for write and no reconciliation result reaches a persistence API |
 | REQ-010 | Gate-off comparison replays the pinned legacy corpus and matches values, errors, retry counts, and stored bytes |
