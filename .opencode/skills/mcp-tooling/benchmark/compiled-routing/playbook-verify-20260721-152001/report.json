@@ -1,0 +1,1344 @@
+{
+  "hub": "mcp-tooling",
+  "generatedAt": "2026-07-21T13:21:52.263Z",
+  "compiledEngine": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+  "legacyEngine": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+  "flagState": "unset (env -u SPECKIT_COMPILED_ROUTING) -> per-hub DEFAULT_ON_HUBS cohort decides; mcp-tooling is in DEFAULT_ON_HUBS",
+  "totalScenarios": 14,
+  "passCount": 14,
+  "failCount": 0,
+  "skipCount": 0,
+  "results": [
+    {
+      "id": "MT-001",
+      "file": "hub-routing/chrome-devtools-browser-debug.md",
+      "group": "primary",
+      "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging.",
+      "expectedMode": "mcp-chrome-devtools",
+      "expectedResources": [
+        "mcp-chrome-devtools/references/cdp-patterns.md",
+        "mcp-chrome-devtools/references/session-management.md"
+      ],
+      "signalNote": "chrome-devtools-aliases / browser-debug (Chrome DevTools, HAR capture)",
+      "compiled": {
+        "mode": "mcp-chrome-devtools",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-chrome-devtools",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-chrome-devtools",
+        "resources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "matchedAliases": [
+          "chrome devtools"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-chrome-devtools"
+          ],
+          "surfaceIntents": [
+            "CHROME_DEVTOOLS"
+          ],
+          "resources": [
+            "mcp-chrome-devtools/references/cdp-patterns.md",
+            "mcp-chrome-devtools/references/session-management.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-chrome-devtools",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-chrome-devtools"
+            ],
+            "matchedAliases": [
+              "chrome devtools"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-chrome-devtools"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-chrome-devtools",
+                "leafResourceId": "references/cdp-patterns.md"
+              },
+              {
+                "workflowMode": "mcp-chrome-devtools",
+                "leafResourceId": "references/session-management.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-002",
+      "file": "hub-routing/clickup-task-management.md",
+      "group": "primary",
+      "prompt": "Mark the ClickUp task done and add a note that it shipped.",
+      "expectedMode": "mcp-click-up",
+      "expectedResources": [
+        "mcp-click-up/references/cupt-commands.md",
+        "mcp-click-up/references/mcp-tools.md"
+      ],
+      "signalNote": "clickup-aliases / task-management (ClickUp, mark done)",
+      "compiled": {
+        "mode": "mcp-click-up",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-click-up",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-click-up"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-click-up",
+        "resources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "matchedAliases": [
+          "clickup",
+          "clickup task"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-click-up"
+          ],
+          "surfaceIntents": [
+            "CLICK_UP"
+          ],
+          "resources": [
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-click-up",
+              "score": 8
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-click-up"
+            ],
+            "matchedAliases": [
+              "clickup",
+              "clickup task"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-click-up"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-click-up",
+                "leafResourceId": "references/cupt-commands.md"
+              },
+              {
+                "workflowMode": "mcp-click-up",
+                "leafResourceId": "references/mcp-tools.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-003",
+      "file": "hub-routing/figma-transport.md",
+      "group": "primary",
+      "prompt": "Render this component in Figma and export the design tokens.",
+      "expectedMode": "mcp-figma",
+      "expectedResources": [
+        "mcp-figma/references/figma-cli-reference.md",
+        "mcp-figma/references/mcp-wiring.md"
+      ],
+      "signalNote": "figma-aliases / design-transport (Figma, render, export)",
+      "compiled": {
+        "mode": "mcp-figma",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "figma-desktop-transport",
+              "packetId": "mcp-figma",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-figma"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-figma",
+        "resources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "figma",
+          "design tokens"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-figma"
+          ],
+          "surfaceIntents": [
+            "FIGMA"
+          ],
+          "resources": [
+            "mcp-figma/references/figma-cli-reference.md",
+            "mcp-figma/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-figma",
+              "score": 8
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-figma"
+            ],
+            "matchedAliases": [
+              "figma",
+              "design tokens"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "figma-desktop-transport"
+            ],
+            "packet": [
+              "mcp-figma"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-figma",
+                "leafResourceId": "references/figma-cli-reference.md"
+              },
+              {
+                "workflowMode": "mcp-figma",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-004",
+      "file": "hub-routing/ambiguous-defer.md",
+      "group": "primary",
+      "prompt": "Use the MCP tool bridge for this.",
+      "expectedMode": "defer",
+      "expectedResources": [],
+      "signalNote": "hub-identity vocabulary only (discovery-only, scores no mode) -> defer, fallback-only contract",
+      "compiled": {
+        "mode": "defer",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "defer",
+          "selectionKind": null,
+          "targets": [],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "defer",
+        "resources": [],
+        "matchedAliases": [],
+        "raw": {
+          "parseable": true,
+          "intents": [],
+          "surfaceIntents": [],
+          "resources": [],
+          "missingResources": [],
+          "scores": [],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": null,
+            "matchedAliases": [],
+            "defaultApplied": false,
+            "deferReason": "no-mode-scored",
+            "backendKind": [],
+            "packet": []
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-007",
+      "file": "hub-routing/aside-browser-automation.md",
+      "group": "primary",
+      "prompt": "Use the Aside browser to sign into the staging dashboard, capture REPL evidence of the console errors, and screenshot the failing widget.",
+      "expectedMode": "mcp-aside-devtools",
+      "expectedResources": [
+        "mcp-aside-devtools/references/aside-cli-reference.md",
+        "mcp-aside-devtools/references/mcp-wiring.md"
+      ],
+      "signalNote": "aside-devtools-aliases / agentic-browser (Aside browser, REPL evidence)",
+      "compiled": {
+        "mode": "mcp-aside-devtools",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-aside-devtools",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-aside-devtools",
+        "resources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "aside",
+          "aside browser"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-aside-devtools"
+          ],
+          "surfaceIntents": [
+            "ASIDE_DEVTOOLS"
+          ],
+          "resources": [
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-aside-devtools",
+              "score": 8
+            },
+            {
+              "intent": "mcp-chrome-devtools",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-aside-devtools"
+            ],
+            "matchedAliases": [
+              "aside",
+              "aside browser"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-aside-devtools"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-aside-devtools",
+                "leafResourceId": "references/aside-cli-reference.md"
+              },
+              {
+                "workflowMode": "mcp-aside-devtools",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-008",
+      "file": "hub-routing/refero-design-reference.md",
+      "group": "primary",
+      "prompt": "Search Refero for real-app checkout flow screens and pull style references for the redesign.",
+      "expectedMode": "mcp-refero",
+      "expectedResources": [
+        "mcp-refero/references/tool-surface.md",
+        "mcp-refero/references/mcp-wiring.md"
+      ],
+      "signalNote": "refero-aliases / design-reference-research (Refero, real-app screens, style references)",
+      "compiled": {
+        "mode": "mcp-refero",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "code-mode-remote-mcp",
+              "packetId": "mcp-refero",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-refero"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-refero",
+        "resources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "refero"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-refero"
+          ],
+          "surfaceIntents": [
+            "REFERO"
+          ],
+          "resources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-refero",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-refero"
+            ],
+            "matchedAliases": [
+              "refero"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "code-mode-remote-mcp"
+            ],
+            "packet": [
+              "mcp-refero"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/tool-surface.md"
+              },
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-009",
+      "file": "hub-routing/mobbin-app-research.md",
+      "group": "primary",
+      "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin and collect screen examples for the signup redesign.",
+      "expectedMode": "mcp-mobbin",
+      "expectedResources": [
+        "mcp-mobbin/references/tool-surface.md",
+        "mcp-mobbin/references/mcp-wiring.md"
+      ],
+      "signalNote": "mobbin-aliases / app-design-research (Mobbin, real-app screens, onboarding flow patterns)",
+      "compiled": {
+        "mode": "mcp-mobbin",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "code-mode-remote-mcp",
+              "packetId": "mcp-mobbin",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-mobbin",
+        "resources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "mobbin"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-mobbin"
+          ],
+          "surfaceIntents": [
+            "MOBBIN"
+          ],
+          "resources": [
+            "mcp-mobbin/references/tool-surface.md",
+            "mcp-mobbin/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-mobbin",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-mobbin"
+            ],
+            "matchedAliases": [
+              "mobbin"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "code-mode-remote-mcp"
+            ],
+            "packet": [
+              "mcp-mobbin"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-mobbin",
+                "leafResourceId": "references/tool-surface.md"
+              },
+              {
+                "workflowMode": "mcp-mobbin",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-CR-001",
+      "file": "compiled-routing/ordered-bundle-figma-refero-compiled-routing.md",
+      "group": "compiled-routing-primary",
+      "prompt": "Pull real shipped-app UI references from Refero and Mobbin for this checkout screen.",
+      "expectedMode": "mcp-refero",
+      "expectedResources": [
+        "mcp-refero/references/tool-surface.md",
+        "mcp-refero/references/mcp-wiring.md"
+      ],
+      "signalNote": "design-transport ordered-bundle family; refero leg (route_shape: orderedBundle); mobbin scores secondary but single dominant mode wins (selectionKind: single)",
+      "compiled": {
+        "mode": "mcp-refero",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "code-mode-remote-mcp",
+              "packetId": "mcp-refero",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-refero"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-refero",
+        "resources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "refero",
+          "ui reference"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-refero"
+          ],
+          "surfaceIntents": [
+            "REFERO"
+          ],
+          "resources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-refero",
+              "score": 8
+            },
+            {
+              "intent": "mcp-mobbin",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-refero"
+            ],
+            "matchedAliases": [
+              "refero",
+              "ui reference"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "code-mode-remote-mcp"
+            ],
+            "packet": [
+              "mcp-refero"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/tool-surface.md"
+              },
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H01",
+      "file": "hub-routing/holdout-browser-inspect.md",
+      "group": "holdout",
+      "prompt": "The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.",
+      "expectedMode": "mcp-chrome-devtools",
+      "expectedResources": [
+        "mcp-chrome-devtools/references/cdp-patterns.md",
+        "mcp-chrome-devtools/references/session-management.md"
+      ],
+      "signalNote": "blind holdout, chrome-vs-aside boundary case: developer-driven inspection primitives, no agentic vocabulary -> must stay mcp-chrome-devtools, not mcp-aside-devtools/defer",
+      "compiled": {
+        "mode": "mcp-chrome-devtools",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-chrome-devtools",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-chrome-devtools",
+        "resources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "matchedAliases": [
+          "network requests"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-chrome-devtools"
+          ],
+          "surfaceIntents": [
+            "CHROME_DEVTOOLS"
+          ],
+          "resources": [
+            "mcp-chrome-devtools/references/cdp-patterns.md",
+            "mcp-chrome-devtools/references/session-management.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-chrome-devtools",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-chrome-devtools"
+            ],
+            "matchedAliases": [
+              "network requests"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-chrome-devtools"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-chrome-devtools",
+                "leafResourceId": "references/cdp-patterns.md"
+              },
+              {
+                "workflowMode": "mcp-chrome-devtools",
+                "leafResourceId": "references/session-management.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H02",
+      "file": "hub-routing/holdout-design-tokens.md",
+      "group": "holdout",
+      "prompt": "Pull the button component's colors and spacing values out of our shared design file and hand them to the build.",
+      "expectedMode": "mcp-figma",
+      "expectedResources": [
+        "mcp-figma/references/figma-cli-reference.md",
+        "mcp-figma/references/mcp-wiring.md"
+      ],
+      "signalNote": "blind holdout, bound via blindException \"design file\"",
+      "compiled": {
+        "mode": "mcp-figma",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "figma-desktop-transport",
+              "packetId": "mcp-figma",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-figma"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-figma",
+        "resources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "design file"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-figma"
+          ],
+          "surfaceIntents": [
+            "FIGMA"
+          ],
+          "resources": [
+            "mcp-figma/references/figma-cli-reference.md",
+            "mcp-figma/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-figma",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-figma"
+            ],
+            "matchedAliases": [
+              "design file"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "figma-desktop-transport"
+            ],
+            "packet": [
+              "mcp-figma"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-figma",
+                "leafResourceId": "references/figma-cli-reference.md"
+              },
+              {
+                "workflowMode": "mcp-figma",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H03",
+      "file": "hub-routing/holdout-task-tracking.md",
+      "group": "holdout",
+      "prompt": "Close out yesterday's two open items in our project tracker, add a short note on what shipped, and log the hour I spent.",
+      "expectedMode": "mcp-click-up",
+      "expectedResources": [
+        "mcp-click-up/references/cupt-commands.md",
+        "mcp-click-up/references/mcp-tools.md"
+      ],
+      "signalNote": "blind holdout, bound via blindException \"project tracker\"",
+      "compiled": {
+        "mode": "mcp-click-up",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-click-up",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-click-up"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-click-up",
+        "resources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "matchedAliases": [
+          "project tracker"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-click-up"
+          ],
+          "surfaceIntents": [
+            "CLICK_UP"
+          ],
+          "resources": [
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-click-up",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-click-up"
+            ],
+            "matchedAliases": [
+              "project tracker"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-click-up"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-click-up",
+                "leafResourceId": "references/cupt-commands.md"
+              },
+              {
+                "workflowMode": "mcp-click-up",
+                "leafResourceId": "references/mcp-tools.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H04",
+      "file": "hub-routing/holdout-agentic-browser.md",
+      "group": "holdout",
+      "prompt": "Have the browser sign into the staging portal on its own, click through the checkout flow, and save proof screenshots of every step it takes.",
+      "expectedMode": "mcp-aside-devtools",
+      "expectedResources": [
+        "mcp-aside-devtools/references/aside-cli-reference.md",
+        "mcp-aside-devtools/references/mcp-wiring.md"
+      ],
+      "signalNote": "blind holdout, inverse of MT-H01 boundary; bound via blindExceptions \"click through\" / \"on its own\"",
+      "compiled": {
+        "mode": "mcp-aside-devtools",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "cli-plus-mcp",
+              "packetId": "mcp-aside-devtools",
+              "packetKind": "workflow",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-aside-devtools",
+        "resources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "click through",
+          "on its own"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-aside-devtools"
+          ],
+          "surfaceIntents": [
+            "ASIDE_DEVTOOLS"
+          ],
+          "resources": [
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-aside-devtools",
+              "score": 8
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-aside-devtools"
+            ],
+            "matchedAliases": [
+              "click through",
+              "on its own"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "cli-plus-mcp"
+            ],
+            "packet": [
+              "mcp-aside-devtools"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-aside-devtools",
+                "leafResourceId": "references/aside-cli-reference.md"
+              },
+              {
+                "workflowMode": "mcp-aside-devtools",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H05",
+      "file": "hub-routing/holdout-web-design-reference.md",
+      "group": "holdout",
+      "prompt": "Show me how shipped web products design their checkout pages — concrete screenshots and the styles they use — so I can compare against our redesign.",
+      "expectedMode": "mcp-refero",
+      "expectedResources": [
+        "mcp-refero/references/tool-surface.md",
+        "mcp-refero/references/mcp-wiring.md"
+      ],
+      "signalNote": "blind holdout, bound via blindException \"web products\"",
+      "compiled": {
+        "mode": "mcp-refero",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "code-mode-remote-mcp",
+              "packetId": "mcp-refero",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-refero"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-refero",
+        "resources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "web products"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-refero"
+          ],
+          "surfaceIntents": [
+            "REFERO"
+          ],
+          "resources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-refero",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-refero"
+            ],
+            "matchedAliases": [
+              "web products"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "code-mode-remote-mcp"
+            ],
+            "packet": [
+              "mcp-refero"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/tool-surface.md"
+              },
+              {
+                "workflowMode": "mcp-refero",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    },
+    {
+      "id": "MT-H06",
+      "file": "hub-routing/holdout-mobile-pattern-research.md",
+      "group": "holdout",
+      "prompt": "Collect how popular phone apps welcome first-time users — real product walkthroughs, not mockups — so we can rework our signup.",
+      "expectedMode": "mcp-mobbin",
+      "expectedResources": [
+        "mcp-mobbin/references/tool-surface.md",
+        "mcp-mobbin/references/mcp-wiring.md"
+      ],
+      "signalNote": "blind holdout, bound via blindException \"phone apps\"",
+      "compiled": {
+        "mode": "mcp-mobbin",
+        "raw": {
+          "hubId": "mcp-tooling",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "code-mode-remote-mcp",
+              "packetId": "mcp-mobbin",
+              "packetKind": "transport",
+              "skillId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin"
+            }
+          ],
+          "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+          "generation": 4
+        }
+      },
+      "legacy": {
+        "mode": "mcp-mobbin",
+        "resources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "matchedAliases": [
+          "phone apps"
+        ],
+        "raw": {
+          "parseable": true,
+          "intents": [
+            "mcp-mobbin"
+          ],
+          "surfaceIntents": [
+            "MOBBIN"
+          ],
+          "resources": [
+            "mcp-mobbin/references/tool-surface.md",
+            "mcp-mobbin/references/mcp-wiring.md"
+          ],
+          "missingResources": [],
+          "scores": [
+            {
+              "intent": "mcp-mobbin",
+              "score": 4
+            }
+          ],
+          "routeTelemetry": {
+            "observed": true,
+            "source": "hub-router",
+            "workflowMode": [
+              "mcp-mobbin"
+            ],
+            "matchedAliases": [
+              "phone apps"
+            ],
+            "defaultApplied": false,
+            "deferReason": null,
+            "backendKind": [
+              "code-mode-remote-mcp"
+            ],
+            "packet": [
+              "mcp-mobbin"
+            ]
+          },
+          "resourceContract": {
+            "resourceContractVersion": 1,
+            "pairs": [
+              {
+                "workflowMode": "mcp-mobbin",
+                "leafResourceId": "references/tool-surface.md"
+              },
+              {
+                "workflowMode": "mcp-mobbin",
+                "leafResourceId": "references/mcp-wiring.md"
+              }
+            ],
+            "unresolved": []
+          }
+        }
+      },
+      "verdict": "PASS",
+      "notes": [
+        "compiled == expected == legacy; resources match; markers consistent"
+      ]
+    }
+  ]
+}
