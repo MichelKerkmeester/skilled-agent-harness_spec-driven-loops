@@ -700,7 +700,16 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
   // is drift. The old `compiledGoldPass && legacyGoldPass` formula wrongly
   // required both to pass, so a shared, pre-existing gold gap misclassified as
   // drift even when compiled tracked legacy exactly.
-  const match = firstDifference === null && compiledGoldPass === legacyGoldPass;
+  // A non-route decision (defer/clarify/reject) carries no resources by schema --
+  // route-gold resources ride only on `route.targets`. When compiled and legacy
+  // agree on such a non-route decision (firstDifference null), any resource gold
+  // is delivered by the retained legacy surface layer (smart-routing.md), which
+  // the compiled router does not replace and which the runtime reaches via the
+  // legacy fallback a defer triggers; scoring that surface gold against an
+  // empty-by-design decision would misread identical routing as drift. A served
+  // `route` still compares gold, so a real compiled resource gap on a route drifts.
+  const match = firstDifference === null
+    && (decision.action !== 'route' || compiledGoldPass === legacyGoldPass);
   return {
     ...base,
     status: match ? PARITY_STATUS.MATCH : PARITY_STATUS.DRIFT,
