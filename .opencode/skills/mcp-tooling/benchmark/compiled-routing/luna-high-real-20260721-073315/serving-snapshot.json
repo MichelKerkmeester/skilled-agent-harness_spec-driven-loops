@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "serving-snapshot/V1",
+  "hubId": "mcp-tooling",
+  "capturedAt": "2026-07-21T07:44:16.367Z",
+  "flag": {
+    "raw": null,
+    "state": "unset",
+    "flagMode": "default",
+    "permitsCompiledWhenEligible": false
+  },
+  "manifest": {
+    "selectedPolicyHash": "afe102ea655e81025a471e6b33479b3d84fa2bb990a533da21467294e38a9ff0",
+    "generation": 4,
+    "fenceEpoch": 4,
+    "servingAuthority": "compiled",
+    "shadowOnly": false
+  },
+  "liveConfigHash": "9fe2ef64d5c9c89bac195af5016f80fb1b027fdb5a2065019eea3e211579f0b5",
+  "freshness": {
+    "state": "fresh",
+    "manifestPresent": true,
+    "manifestStableDuringCapture": true,
+    "engineResolverPresent": true
+  },
+  "engineResolverPath": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+  "parityBaseline": {
+    "label": "router-compiled-parity-baseline",
+    "present": false,
+    "reportDigest": null,
+    "capturedAt": null,
+    "verdict": null
+  },
+  "realModelLast": {
+    "label": "luna-high-real-20260721-073315",
+    "capturedAt": "2026-07-21T07:44:16.353Z",
+    "verdict": "FAIL",
+    "executor": "codex",
+    "model": "openai/gpt-5.6-luna",
+    "variant": "high"
+  }
+}

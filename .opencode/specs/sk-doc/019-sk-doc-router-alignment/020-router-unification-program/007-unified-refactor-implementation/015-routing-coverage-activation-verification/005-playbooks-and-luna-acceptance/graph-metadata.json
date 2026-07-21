@@ -40,6 +40,15 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-design/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-doc/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-prompt/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/mcp-tooling/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/cli-external-orchestration/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
       ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
       ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
@@ -49,11 +58,27 @@
       ".opencode/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+        "source": "derived"
+      },
       {
         "name": "validate-playbook-topology.cjs",
         "kind": "file",
@@ -100,18 +125,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -191,17 +204,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-07-21T01:36:56.275Z",
+    "last_save_at": "2026-07-21T07:57:09.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:299304449d283c4f1315c246c94b1c5821973d15f9db69ab24c1fd88932edd33",
+    "source_fingerprint": "sha256:b3c468aa07f84c319d0b884b58e08e1d0bc19c70f2d8147b98144df426db8edc",
     "source_doc_hashes": {
-      "spec.md": "553f703e7a7881e348812bb0e12163b12b33a2028225cff25d15e4a41117ba67",
-      "plan.md": "c9d6cd893cbef5eda0c6b9c383eda09339d96bf27c35be51a219493a460db778",
-      "tasks.md": "173ffe834db1c1dc8df6dd30c637b7b0a7d778f0de33e12b7286f36999927f6f",
-      "checklist.md": "cb2891ae4a52db4172d353fc5d95c50d82accb9e5530d20e9fa955b06ee06422",
-      "implementation-summary.md": "6e92d3ac54b90d69a8163db7f1a7647cd6ec23a3dcceaaecfd52392b27d9af74"
+      "spec.md": "0fc9e5030fef4404272363f51d48450b674eca586550aa34b63219f8e5331c99",
+      "plan.md": "fa8497d27fc743fdfe8fb6e84139ca234fe96c7c12a5f84b42305721d5916746",
+      "tasks.md": "d4f4400181b5fe3f838ae1e66c97e55c64e15af689263900b16ba0375ba96442",
+      "checklist.md": "4bd9df0bfdce07da8cbd185aa2b8a68a8c19578a0cea71ed582e5a7b7a8238dd",
+      "implementation-summary.md": "46473bf7a70798e57f59bb8a7d3505eae0b9d20b1a2c8bb4acdb75b0d32113d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

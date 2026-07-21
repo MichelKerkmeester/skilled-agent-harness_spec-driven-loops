@@ -1,11 +1,22 @@
 ---
 title: "Checklist: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance"
-description: "QA gate for the 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen validators/executor, and the two-plane LUNA-High acceptance stage. Verified against real runs."
+description: "QA gate for the 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen validators/executor, and the two-plane LUNA-High acceptance stage. Verified against the bounded real-model run plus the archived real full-sweep evidence (13/14 PASS, 1 honest FAIL, 0 SKIP)."
 trigger_phrases:
   - "compiled routing playbook checklist"
   - "luna high acceptance QA gate"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance"
+    last_updated_at: "2026-07-21T07:50:27Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Reran 7-hub LUNA-HIGH sweep with real dispatch: 13/14 PASS, 1 FAIL, 0 SKIP"
+    next_safe_action: "Use archived real evidence (luna-high-real-20260721-073315) at next cutover review"
+    blockers: []
+    key_files:
+      - "checklist.md"
+      - "implementation-summary.md"
 ---
 # Checklist: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance
 
@@ -69,9 +80,25 @@ contextType: "implementation"
 - [x] CHK-024 [P0] The LUNA-HIGH stage classifies a seeded transport timeout as `SKIP`, never `PASS`/`FAIL`.
   - **Verification**: [evidence: seeded-timeout fixture yields `SKIP` with distinct stdout/stderr fields.]
 - [x] CHK-025 [P1] Every hub has >= 1 gold-bearing held-out paraphrase with its route withheld from the prompt.
-  - **Verification**: [evidence: all 7 map holdouts audit `withheld=true`; live holdouts (sk-code, sk-doc) routed-to-gold.]
+  - **Verification**: [evidence: all 7 map holdouts audit `withheld=true`; the earlier bounded live holdouts (`sk-code`, `sk-doc`) routed-to-gold; the real full seven-hub follow-up (`luna-high-real-20260721-073315`) obtained a real model response for all 7 holdouts — 6/7 routed-to-gold (generalized correctly), `mcp-tooling` did not (stated `mcp-mobbin`, gold `mcp-refero`), reported as an observed FAIL, not an unresolved SKIP.]
 
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:step-4-full-sweep -->
+## Full Seven-Hub LUNA-HIGH Sweep
+
+- [x] CHK-070 [P0] The complete 7-hub × {routing, holdout} scenario map was exercised with `providerModel=openai/gpt-5.6-luna`, variant `high`, and distinct transport `stdout`/`stderr` fields.
+  - **Verification**: [evidence: run label `luna-high-real-20260721-073315`, dispatched from a Claude Code parent runtime (no `cli-codex` self-invocation guard applies to a direct, non-nested `codex exec` child process) — all 14 rows returned a real model response in 21s-129s each; 13/14 PASS, 1 FAIL (`mcp-tooling` holdout), 0 SKIP, 0 fabricated responses.]
+- [x] CHK-071 [P1] Every held-out prompt remains a valid generalization probe, and the absence of a model result is reported without a routing claim.
+  - **Verification**: [evidence: 7/7 archived holdout rows record `holdoutAudit.withheld=true`; 6/7 resolved correctly to gold via a real stated model routing (not empty/unobserved); `mcp-tooling`'s holdout resolved to a real but incorrect stated route (`mcp-mobbin`, not gold `mcp-refero`) and is reported as `verdict=FAIL` — an observed miss, not an absence of a result.]
+- [x] CHK-072 [P0] Every hub's follow-up result is archived durably with repo-relative provenance and a validated serving snapshot.
+  - **Verification**: [evidence: `.opencode/skills/<hub>/benchmark/compiled-routing/luna-high-real-20260721-073315/` exists for all seven hubs with `skill-benchmark-report.json`, renderer-derived `skill-benchmark-report.md`, schema-valid `serving-snapshot.json` (validated via `validateServingSnapshot`), and renderer-derived `serving-snapshot.md`; archived reports contain no absolute skill root; the superseded `luna-high-step4-20260721-070659` SKIP-only archive was removed.]
+- [x] CHK-073 [P0] The live transport result is separated from deterministic routing correctness.
+  - **Verification**: [evidence: `validate-compiled-routing-scenarios.cjs --strict` passes 7/7 hub scenarios, and `cutover-playbook-executor.cjs` reports 7/7 join-gate PASS (deterministic layer, unaffected by the live LUNA plane); six compiled decisions match legacy and `sk-code` conservatively defers to legacy. The live LUNA-HIGH plane's one real FAIL (`mcp-tooling` holdout) is a model-routing observation, not a deterministic cutover regression.]
+
+<!-- /ANCHOR:step-4-full-sweep -->
 
 ---
 
@@ -109,7 +136,7 @@ contextType: "implementation"
 - [x] CHK-050 [P0] spec, plan, tasks, checklist, and summary agree on status.
   - **Verification**: [evidence: `validate.sh --strict` STATUS_CROSS_DOC_CONSISTENCY passes; all docs reconciled to Implemented; the consumed siblings noted as on-disk despite their stale "Planned" summaries.]
 - [x] CHK-051 [P1] No item is marked verified without an actual command or run.
-  - **Verification**: [evidence: every completed item above carries an `[evidence: …]` marker citing a run, fixture, or hash — 23/23 checklist items.]
+  - **Verification**: [evidence: every completed item above carries an `[evidence: …]` marker citing a run, fixture, archive, or hash — 27/27 checklist items.]
 - [x] CHK-052 [P0] Strict Level-2 packet validation passes on this phase folder.
   - **Verification**: [evidence: `bash .../scripts/spec/validate.sh 005-playbooks-and-luna-acceptance --strict` → Errors: 0.]
 
@@ -134,12 +161,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 16/16 |
-| P1 Items | 7 | 7/7 |
+| P0 Items | 19 | 19/19 |
+| P1 Items | 8 | 8/8 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-21.
-**Verification Scope**: 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen content/topology validators, the evidence-gated cutover executor, and the two-plane LUNA-High acceptance stage (bounded live run).
-**Completion Boundary**: Implemented and verified. The full 7-hub LUNA-High live sweep is a documented bounded follow-up; the mechanism is proven on a 3-scenario live sample.
+**Verification Scope**: 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen content/topology validators, the evidence-gated cutover executor, the earlier bounded real-model sample, and the archived full 7-hub two-plane follow-up.
+**Completion Boundary**: Implemented and verified. The full follow-up is real and conclusive: all 14 live rows returned a real `gpt-5.6-luna-high` response (run label `luna-high-real-20260721-073315`, dispatched from a Claude Code parent runtime) — 13/14 PASS, 1 honest FAIL (`mcp-tooling` holdout routed to `mcp-mobbin` instead of gold `mcp-refero`), 0 SKIP. The earlier 3-scenario bounded run and this full sweep are now both positive real-model evidence.
 
 <!-- /ANCHOR:summary -->
