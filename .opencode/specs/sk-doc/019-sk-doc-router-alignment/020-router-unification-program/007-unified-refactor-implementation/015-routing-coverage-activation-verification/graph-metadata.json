@@ -14,7 +14,8 @@
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
     "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4"
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
   ],
   "manual": {
     "depends_on": [],
@@ -47,6 +48,7 @@
       "spec.md",
       "001-research/synthesis-v1.md",
       "001-research/review-v1.md",
+      "011-activation-cutover-p4/controller/cutover-controller.cjs",
       "handover.md"
     ],
     "entities": [
@@ -66,6 +68,12 @@
         "name": "review-v1.md",
         "kind": "doc",
         "path": "001-research/review-v1.md",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-controller.cjs",
+        "kind": "file",
+        "path": "011-activation-cutover-p4/controller/cutover-controller.cjs",
         "source": "derived"
       },
       {
@@ -129,13 +137,13 @@
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "What this session did",
+        "kind": "heading",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "What this session did",
+        "name": "The verified spine (do NOT re-litigate — CONFIRMED against live source)",
         "kind": "heading",
         "path": "handover.md",
         "source": "derived"
@@ -143,17 +151,17 @@
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-07-21T02:24:55.215Z",
+    "last_save_at": "2026-07-21T05:02:00.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b97813587faf51c63fd604e0556c521cdd76aee631c92c4101adb8c95e867e8b",
+    "source_fingerprint": "sha256:8c72045b3ce1a7e4814f7d221bd9dad6dfd27b3edea574188aa4d3f6506d8687",
     "source_doc_hashes": {
-      "spec.md": "0f98fec8037f61fb0b251eb96234c104cf257b0565dfdd7e95ec8d2056e5151b",
-      "handover.md": "c67106edef6ea2822490cbd2d1188ff44b4a85eb0b1a254261bf70875ec92217"
+      "spec.md": "360adf3d1d674d2b559e4b19cc613558793d8d41722667a1cc9d65320cc22649",
+      "handover.md": "fa81b0e88dd1534c0fe7607bb98b265e8efb013d65b8ea84473f7e32485a8ac6"
     },
     "last_active_child_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
     "last_active_at": "2026-07-21T02:24:55.215Z"
