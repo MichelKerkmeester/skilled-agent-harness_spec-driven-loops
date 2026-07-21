@@ -5,24 +5,24 @@ trigger_phrases:
   - "cycle detection implementation plan"
   - "deep-loop repeated-state detector plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/002-cycle-detection"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/002-cycle-detection"
-    last_updated_at: "2026-07-15T15:19:57Z"
+    last_updated_at: "2026-07-21T11:31:40Z"
     last_updated_by: "codex"
-    recent_action: "Defined the ledger-window detector, threshold policy, and stopping-clock handoff"
-    next_safe_action: "Implement canonical observations and replay fixtures before enabling shadow signals"
+    recent_action: "Verified repetition and watermark hardening"
+    next_safe_action: "Keep cycle evidence dark until stopping-clock arbitration"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 # Implementation Plan: Cycle Detection
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- ANCHOR:summary -->
@@ -47,18 +47,18 @@ snapshot-only council convergence path.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The ledger exposes an authorized, committed iteration boundary with monotonic cursor and replay fingerprint
-- [ ] Phase-010 claim-continuity projections expose stable claim IDs, lifecycle/epistemic state, fold version, and unresolved work
-- [ ] Phase-010 next-focus events expose stable candidate/region identity, policy version, projection watermark, and candidate-set fingerprint
-- [ ] Coverage, blocker, contradiction, and independent-evidence progress inputs are typed at the same projection watermark
-- [ ] Sibling `003-stopping-clocks` accepts a typed cycle contribution without granting this detector direct stop authority
+- [x] The ledger exposes an authorized, committed iteration boundary with monotonic cursor and replay fingerprint
+- [x] Phase-010 claim-continuity projections expose stable claim IDs, lifecycle/epistemic state, fold version, and unresolved work
+- [x] Phase-010 next-focus events expose stable candidate/region identity, policy version, projection watermark, and candidate-set fingerprint
+- [x] Coverage, blocker, contradiction, and independent-evidence progress inputs are typed at the same projection watermark
+- [x] The sibling-clock boundary is represented by typed evidence with `stop_decision: null`
 
 ### Definition of Done
-- [ ] Period-one-to-four cycles and repeated focus/claim degeneration satisfy deterministic replay fixtures
-- [ ] Productive revisitation fixtures clear or suppress cycle confirmation through the progress gate
-- [ ] History gaps, stale watermarks, cursor drift, fingerprint conflicts, and unknown versions fail closed
-- [ ] Suspected, confirmed, and cleared health events are idempotent, traceable, and transition-authorized
-- [ ] Shadow integration changes no legacy convergence decision before the staged authority cutover
+- [x] Period-one-to-four cycles and repeated focus/claim degeneration satisfy deterministic replay fixtures
+- [x] Productive revisitation fixtures clear or suppress cycle confirmation through the progress gate
+- [x] History gaps, stale watermarks, cursor drift, fingerprint conflicts, and unknown versions fail closed
+- [x] Suspected, confirmed, and cleared health events are idempotent, traceable, and transition-authorized
+- [x] Shadow integration returns the legacy authoritative result by identity and cannot emit a stop decision
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -68,7 +68,7 @@ snapshot-only council convergence path.
 - **Canonical fingerprinting**: sorts stable typed identities, excludes presentation text and collection order, includes schema/reducer/policy versions, and verifies stored fingerprints on replay.
 - **Bounded history**: retains the latest 12 completed observations plus an eviction-chain hash; incremental fold and full replay must produce identical order and boundary identity.
 - **Sequence detector**: evaluates periods one through four, confirms after three complete identical traversals, and separately counts focus/claim signature occurrences in the latest eight observations.
-- **Progress gate**: treats independent evidence, material claim changes, contradiction/blocker resolution, and versioned coverage gain as cycle-breaking; missing progress data makes evaluation unknown.
+- **Progress gate**: treats independent evidence, material claim changes, contradiction/blocker resolution, and versioned net end-versus-start coverage gain as cycle-breaking; missing progress data makes evaluation unknown.
 - **Health-event emitter**: appends idempotent suspected/confirmed/cleared events with the repeated-period trace, source cursors, fingerprints, progress verdict, and policy version.
 - **Stopping-clock adapter**: projects confirmed severity into sibling 003's typed input while preventing direct `STOP_ALLOWED` authority in this phase.
 - **Legacy bridge**: compares dark cycle output beside `.opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs` without changing its threshold decisions or snapshot persistence.
@@ -101,11 +101,11 @@ snapshot-only council convergence path.
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Canonicalization matrix reorders claims/evidence and varies display text while preserving semantic state; mixed-watermark and unknown-version cases fail |
+| REQ-001 | Canonicalization matrix reorders claims/evidence and varies display text while preserving semantic state; null or mismatched claim watermarks and unknown versions fail closed |
 | REQ-002 | Incremental, resumed, and full-replay histories match entry-for-entry, including 12-entry eviction and chain hash |
 | REQ-003 | Table-driven fixed-point and period-two-to-four fixtures assert no confirmation before three traversals and exact confirmation afterward |
-| REQ-004 | Focus-only and claim-frontier-only repetition fixtures exercise the three-in-eight suspicion threshold with composite-state churn |
-| REQ-005 | Independent evidence, claim transition, contradiction/blocker resolution, and coverage-gain fixtures each break the same candidate cycle |
+| REQ-004 | Focus-only, claim-only, and co-occurring repetition fixtures exercise the three-in-eight threshold; the co-occurrence fixture proves both ordered signals are reported before the claim match leaves the next window |
+| REQ-005 | Independent evidence, claim transition, contradiction/blocker resolution, and net coverage-gain fixtures each break the same candidate cycle; a transient coverage peak that returns to baseline does not |
 | REQ-006 | Policy-schema fixtures pin all initial thresholds and reject silent threshold changes under an existing policy version |
 | REQ-007 | Event fixtures verify authorization, idempotent retry, conflicting replay refusal, trace completeness, and clearing behavior |
 | REQ-008 | Integration fixture proves confirmed health reaches the clock input while direct stop authority is rejected |
@@ -134,3 +134,58 @@ clock adapter to restore the prior authoritative behavior; retain typed ledger h
 audit. If a policy or reducer is defective, pin readers to the prior version and rebuild the bounded history from the last
 compatible ledger cursor. No rollback deletes claim, focus, progress, or cycle events, and no direct state migration is required.
 <!-- /ANCHOR:rollback -->
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+`CycleObservation` reads committed phase-010 claim and focus projections plus coverage, blocker, and progress snapshots. The
+bounded reducer consumes only verified observations. Detection consumes that reducer output, health events consume typed
+detection evidence, and the shadow adapter exposes evidence beside an opaque authoritative result. No edge points back into
+the frozen source modules.
+<!-- /ANCHOR:dependency-graph -->
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. Verify one committed watermark across every source.
+2. Project canonical typed observations and fold the bounded history.
+3. Apply exact period detection, secondary repetition, and progress gating.
+4. Prepare authorized health evidence and expose the evidence-only clock input.
+5. Prove legacy authority identity, replay equality, and strict documentation validity.
+<!-- /ANCHOR:critical-path -->
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Exit evidence | Status |
+|-----------|---------------|--------|
+| Canonical projector | Reordering, paraphrase, mixed-watermark, and version fixtures | Complete |
+| Detection and progress | Period-one-to-four, three-in-eight, progress, and missing-data fixtures | Complete |
+| Replay and health | Identical 12-entry hash, resume, authorization, and idempotency fixtures | Complete |
+| Authority isolation | Opaque authoritative result retained by identity; stop decision remains null | Complete |
+
+### AI EXECUTION Protocol
+
+#### Pre-Task Checklist
+
+- Read every frozen source contract before writing.
+- Confirm the approved leaf write set and additive-dark authority boundary.
+- Pin the verification commands and fail-closed cases.
+
+#### Execution Rules
+
+| Rule | Enforcement |
+|------|-------------|
+| TASK-SEQ | Projector and policy precede history, detector, events, and shadow adapter |
+| TASK-SCOPE | Write only the cycle module, its test, and this leaf documentation |
+| TASK-VERIFY | Run the leaf suite, TypeScript compiler, and strict packet validator |
+
+#### Status Reporting
+
+Report the current milestone, last passing command, any typed blocker, and the exact next verification action.
+
+#### Blocked Task Protocol
+
+Stop on a frozen-contract conflict, missing source, failing test, or scope mismatch. Record the observed evidence and do not
+reinterpret missing data as successful execution.
+<!-- /ANCHOR:milestones -->

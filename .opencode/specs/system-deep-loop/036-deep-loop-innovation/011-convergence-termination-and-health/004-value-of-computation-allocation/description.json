@@ -1,24 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/004-value-of-computation-allocation",
-  "description": "Plan replay-stable value-of-computation scoring and adaptive allocation that directs remaining typed budget toward regions and modes with the highest",
+  "description": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
   "keywords": [
-    "plan",
     "replay-stable",
     "value-of-computation",
     "scoring",
+    "additive-dark",
     "adaptive",
     "allocation",
-    "directs",
-    "remaining",
     "typed",
     "budget",
-    "toward",
-    "regions",
-    "modes",
-    "highest"
+    "pressure"
   ],
-  "lastUpdated": "2026-07-18T03:48:55.933Z",
+  "lastUpdated": "2026-07-21T10:50:51.725Z",
   "specId": "004",
   "folderSlug": "value-of-computation-allocation",
   "parentChain": [

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Value-of-Computation Allocation"
-description: "Plan replay-stable value-of-computation scoring and adaptive allocation that directs remaining typed budget toward regions and modes with the highest expected marginal evidence value."
+description: "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure."
 trigger_phrases:
   - "value of computation allocation"
   - "adaptive deep-loop allocation"
@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/004-value-of-computation-allocation"
-    last_updated_at: "2026-07-15T16:00:00Z"
+    last_updated_at: "2026-07-21T12:46:24Z"
     last_updated_by: "codex"
-    recent_action: "Planned VOC scoring, adaptive allocation, fairness, and decision evidence"
-    next_safe_action: "Implement replay-stable VOC allocation behind typed budget admission"
+    recent_action: "Implemented and verified additive-dark VOC scoring, allocation, admission, and fan-in handoff"
+    next_safe_action: "Keep uniform/static allocation authoritative until a later cutover gate"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/004-value-of-computation-allocation |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fourth child of the phase-011 convergence, termination, and health parent |

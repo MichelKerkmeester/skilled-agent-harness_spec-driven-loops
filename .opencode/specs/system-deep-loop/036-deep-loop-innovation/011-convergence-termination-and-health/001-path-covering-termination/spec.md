@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/001-path-covering-termination"
-    last_updated_at: "2026-07-15T15:19:24Z"
+    last_updated_at: "2026-07-21T12:31:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the path-covering termination planning contract"
-    next_safe_action: "Implement mode coverage profiles and the blocker-aware stop predicate"
+    recent_action: "Closed projection-content trust gaps in the termination evaluator"
+    next_safe_action: "Keep the hardened evaluator additive-dark until staged authority cutover"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/001-path-covering-termination |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of phase 011; the program manifest assigns path-covering termination to convergence, termination, and health |
@@ -106,7 +106,7 @@ does not relabel resource exhaustion as convergence.
 | REQ-004 | Make the termination predicate blocker-aware and fail closed | `STOP_ALLOWED` is impossible with an invalid/stale universe, any required open path, unresolved critical contradiction, ambiguous major community, or STOP blocker |
 | REQ-005 | Separate proven convergence from resource exhaustion | A time, budget, or iteration limit reached below full required coverage returns `INCOMPLETE_LIMIT` with the triggering limit and uncovered paths, never `STOP_ALLOWED` |
 | REQ-006 | Report partial coverage as an actionable artifact | Every non-stop decision returns addressed/total regions, weighted and unweighted ratios, uncovered and blocked path IDs, required evidence, contradiction IDs, projection versions, and ranked next paths |
-| REQ-007 | Preserve evidence and exclusion provenance | Each closed path cites ledger events or projection rows; each exclusion records an authorized reason and policy version; aggregate ratios alone cannot close a path |
+| REQ-007 | Preserve evidence and exclusion provenance | Each closed path cites independently validated ledger events or current projection rows; each exclusion matches a verified authorization-audit entry and versioned policy; aggregate ratios or self-consistent projection hashes alone cannot close a path |
 | REQ-008 | Integrate additively with current convergence surfaces | Shadow evaluation emits the existing decision/trace bridge plus a path-coverage certificate; legacy authority and thresholds remain unchanged until the later cutover contract authorizes them |
 | REQ-009 | Prove deterministic behavior under path and projection change | Complete, partial, blocked, exclusion, late-discovery, community-drift, contradiction, empty, replay, and limit-exhaustion fixtures produce stable decisions and certificates |
 <!-- /ANCHOR:requirements -->
@@ -145,7 +145,8 @@ largest phase-specific risk is denominator gaming: an underspecified profile can
 region. Other risks are premature universe freeze, path explosion, authorized-exclusion abuse, semantic-community merge/split
 drift, stale contradiction projections, small denominators producing misleading ratios, and a late major-region discovery after
 a provisional stop. Mitigations are versioned mode profiles, mandatory-region fixtures, fail-closed unknown profiles, explicit
-exclusion provenance, universe supersession, projection freshness checks, and certificate replay.
+exclusion provenance cross-checked against the verified authorization audit, cartesian-universe completeness checks, universe
+supersession, projection freshness checks, and certificate replay.
 
 This child declares no sibling `depends_on`. It still consumes program prerequisites from phases 003, 004, 006, and 007 through
 the phase-011 parent; the manifest explicitly sequences fan-in and novelty before convergence

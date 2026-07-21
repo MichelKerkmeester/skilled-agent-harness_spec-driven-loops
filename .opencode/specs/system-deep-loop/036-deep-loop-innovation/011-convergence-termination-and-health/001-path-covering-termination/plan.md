@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/001-path-covering-termination"
-    last_updated_at: "2026-07-15T15:19:24Z"
+    last_updated_at: "2026-07-21T12:31:00Z"
     last_updated_by: "codex"
-    recent_action: "Planned coverage certificates, termination evaluation, and shadow integration"
-    next_safe_action: "Implement the mode profiles and replay-stable coverage reducer"
+    recent_action: "Hardened path closure against forged projection content"
+    next_safe_action: "Use the shadow certificates for staged calibration without changing legacy authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,28 +47,28 @@ convergence. Exact profile thresholds and evidence sufficiency are calibrated du
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The supported mode inventory and owner for each `ModeCoverageProfile` are frozen against the phase-012 shared-mode boundary
-- [ ] Phase-010 community, contradiction, claim-continuity, and projection schemas have stable version fields consumable by the evaluator
-- [ ] Existing coverage-signal and council decision outputs are captured as shadow-parity baselines
-- [ ] Mandatory-region, authorized-exclusion, evidence-sufficiency, and universe-expansion policies are explicit per mode
-- [ ] Complete, partial, blocked, late-expanding, paraphrase-heavy, contradiction-heavy, empty, replay, and limit-exhausted fixtures are frozen
+- [x] The supported mode inventory is frozen in `profiles.ts` for all seven supported modes [EVIDENCE: `profiles.ts` exports seven exact versioned profiles and the registry test discovers all seven.]
+- [x] Phase-010 semantic-community and contradiction projection versions are bound into each universe and certificate [EVIDENCE: `universe.ts` freezes both versions and `evaluator.ts` includes them in the certificate hash.]
+- [x] The legacy council decision and trace bridge is preserved as the authoritative shadow baseline [EVIDENCE: the shadow-bridge unit fixture asserts the unchanged legacy reference, decision, and graph fields.]
+- [x] Mandatory regions, evidence classes, contradiction policy, closeable states, and authorized exclusions are explicit [EVIDENCE: `profiles.ts`, `types.ts`, `reducer.ts`, and `evaluator.ts` encode each contract; exclusion closure now requires a matching verified audit entry.]
+- [x] Complete, partial, blocked, excluded, late-expanding, paraphrase-heavy, contradiction-heavy, empty, replay, limit-exhausted, and projection-tamper fixtures are covered [EVIDENCE: the focused Vitest suite passes 88 tests across the seven profile rows and adversarial fixtures.]
 
 ### Definition of Done
-- [ ] Every supported mode compiles a deterministic, versioned coverage universe and rejects unknown or incomplete profiles
-- [ ] The path reducer and full replay produce identical path states, coverage ratios, projection versions, and certificate hashes
-- [ ] `STOP_ALLOWED` occurs only on complete mandatory coverage with fresh projections, resolved critical contradictions, and zero blockers
-- [ ] Non-stop outcomes emit actionable partial coverage; resource exhaustion is `INCOMPLETE_LIMIT`
-- [ ] Shadow integration preserves legacy authority and exposes decision/certificate parity without changing production thresholds
+- [x] Every supported mode compiles a deterministic, versioned coverage universe and rejects unknown or incomplete profiles [EVIDENCE: per-mode compile fixtures pass and registry rejection fixtures cover unknown and altered profiles.]
+- [x] The path reducer and full replay produce identical path states, coverage ratios, projection versions, and certificate hashes [EVIDENCE: shuffled event replays produce identical projection and certificate hashes for every mode.]
+- [x] `STOP_ALLOWED` occurs only on complete mandatory coverage with fresh projections, resolved critical contradictions, independently valid locator content, verified exclusion authority, and zero blockers [EVIDENCE: complete, gap, blocked, stale, locator-forgery, wrong-version, exclusion-forgery, denominator-shrinkage, ambiguity, contradiction, and STOP-blocker fixtures pass.]
+- [x] Non-stop outcomes emit actionable partial coverage; resource exhaustion is `INCOMPLETE_LIMIT` [EVIDENCE: iteration, time, and budget rows assert `INCOMPLETE_LIMIT` below full coverage, while full coverage remains `STOP_ALLOWED` when a limit fires simultaneously.]
+- [x] Shadow integration preserves legacy authority and exposes decision/certificate parity without changing production thresholds [EVIDENCE: `shadow.ts` returns `authority: legacy-convergence`; the bridge fixture asserts the authoritative legacy decision.]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 - **Mode coverage profile**: a versioned declarative contract keyed by supported mode. It defines path dimensions, deterministic ID derivation, major/mandatory rules, evidence obligations, contradiction policy, exclusion authority, weighting, and closeable states. Profiles are intentionally mode-specific; the shared evaluator does not invent a universal convergence formula.
-- **Coverage-universe compiler**: expands the mode profile plus immutable run inputs into a frozen `CoverageUniverse`. The snapshot binds profile version, input fingerprint, namespace, run ID, ledger position, and phase-010 projection versions. Late major-region discovery creates a successor universe and invalidates older stop candidates.
+- **Coverage-universe compiler**: expands the mode profile plus immutable run inputs into a frozen `CoverageUniverse`. The snapshot binds profile version, input fingerprint, namespace, run ID, ledger position, and phase-010 projection versions. Structural validation independently reconstructs the complete cartesian path set from `dimensionValues`; late major-region discovery creates a successor universe and invalidates older stop candidates.
 - **Path-state reducer**: folds ledger and projection events into `unvisited`, `active`, `addressed`, `blocked`, or `excluded` records with evidence locators and transition provenance. Incremental reduction must equal a full replay; ambiguous communities and stale projections stay open.
 - **Coverage certificate**: records the full denominator, addressed/total major regions, weighted and unweighted coverage, mandatory gaps, blocker and contradiction IDs, exclusions, community/projection versions, evidence references, and replay fingerprint. The certificate hash is the auditable stop proof.
-- **Termination evaluator**: a pure decision function over the frozen universe, current path projection, blockers, contradiction state, and clock outcome. Precedence is fail-closed: invalid/stale input or STOP blocker → `STOP_BLOCKED`; full mandatory coverage → `STOP_ALLOWED`; remaining work with capacity → `CONTINUE`; remaining work after a safety clock fires → `INCOMPLETE_LIMIT`.
+- **Termination evaluator**: a pure decision function over the frozen universe, current path projection, verified authorization-audit snapshot, blockers, contradiction state, and clock outcome. It revalidates locator contents and exclusion references independently of the projection checksum. Precedence is fail-closed: invalid/stale input or STOP blocker → `STOP_BLOCKED`; full mandatory coverage → `STOP_ALLOWED`; remaining work with capacity → `CONTINUE`; remaining work after a safety clock fires → `INCOMPLETE_LIMIT`.
 - **Partial-coverage reporter**: serializes every open or blocked path, closure evidence still required, applicable contradiction, and ranked next focus. Weighting directs attention but cannot erase a mandatory gap.
 - **Compatibility bridge**: maps the new decision, trace, blockers, and certificate reference into the existing council/coverage observability shape. Shadow mode compares decisions and records disagreements while leaving the legacy predicate authoritative until phase 014.
 <!-- /ANCHOR:architecture -->
@@ -94,6 +94,7 @@ convergence. Exact profile thresholds and evidence sufficiency are calibrated du
 - Prove incremental/full-replay parity and stable certificate hashes across event order, process restart, and mixed-version fixtures.
 - Prove paraphrases do not inflate concept coverage, evidence novelty stays visible, and community drift supersedes stale certificates.
 - Prove every mandatory gap, critical contradiction, ambiguous major community, and STOP blocker prevents `STOP_ALLOWED`.
+- Prove forged ledger locators, stale projection-row versions, forged exclusion references, and cartesian denominator shrinkage prevent `STOP_ALLOWED` even after recomputing affected hashes.
 - Prove iteration, time, or budget exhaustion below complete coverage returns `INCOMPLETE_LIMIT` with the exact remaining paths.
 - Compare shadow outcomes with legacy council and coverage signals; classify every disagreement without moving authority.
 <!-- /ANCHOR:phases -->
@@ -104,12 +105,12 @@ convergence. Exact profile thresholds and evidence sufficiency are calibrated du
 | Requirement | Verification |
 |-------------|--------------|
 | REQ-001 | Profile-schema and per-mode golden fixtures prove every supported mode declares dimensions, mandatory regions, evidence, contradictions, exclusions, and a version |
-| REQ-002 | Golden universe fixtures and replay tests produce identical path IDs, denominators, versions, and fingerprints from identical inputs |
+| REQ-002 | Golden universe fixtures and replay tests produce identical path IDs, denominators, versions, and fingerprints from identical inputs; a self-consistent universe missing an implied cartesian path fails closed |
 | REQ-003 | Paraphrase, distinct-neighbor, ambiguous-community, and evidence-only fixtures prove concept coverage follows committed phase-010 membership |
 | REQ-004 | Truth-table/property tests cover every validity, freshness, mandatory-path, contradiction, ambiguity, and blocker combination; no forbidden state returns `STOP_ALLOWED` |
 | REQ-005 | Iteration, time, and budget exhaustion fixtures below full coverage return `INCOMPLETE_LIMIT`; complete coverage remains independently provable |
 | REQ-006 | Partial-report snapshots contain denominator, ratios, open/blocked IDs, required evidence, contradiction IDs, versions, and deterministic next-path ranking |
-| REQ-007 | Evidence and exclusion provenance tests reject aggregate-only closure, unauthorized exclusion, missing policy version, and dangling ledger references |
+| REQ-007 | Evidence and exclusion provenance tests reject aggregate-only closure, forged ledger locators, wrong projection versions, unauthorized or forged exclusions, missing policy versions, and dangling ledger references |
 | REQ-008 | Shadow integration tests preserve legacy authority and bridge fields while recording old/new decision disagreements and certificate references |
 | REQ-009 | Incremental-vs-replay, restart, event-order, late-discovery, community-drift, mixed-version, empty, and limit-exhaustion suites produce stable outcomes |
 <!-- /ANCHOR:testing -->

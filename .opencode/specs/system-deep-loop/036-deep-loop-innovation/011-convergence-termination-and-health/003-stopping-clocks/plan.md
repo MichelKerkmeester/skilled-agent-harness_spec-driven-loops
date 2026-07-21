@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/003-stopping-clocks"
-    last_updated_at: "2026-07-15T15:24:30Z"
+    last_updated_at: "2026-07-21T11:37:00Z"
     last_updated_by: "codex"
-    recent_action: "Planned clock inputs, composition, mode profiles, and verification gates"
-    next_safe_action: "Implement versioned mode profiles and deterministic earliest-fire arbitration"
+    recent_action: "Delivered and strictly validated the typed clocks, arbitration, terminal event, and mode matrix"
+    next_safe_action: "Keep the module shadow-only until the separate program cutover gates pass"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,25 +46,25 @@ run state. Detailed thresholds remain per-mode, versioned configuration rather t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-007 budget event/projection boundary exposes typed exhaustion, scope ancestry, balances, and reconciliation state
-- [ ] Phase-010 novelty inputs distinguish concept novelty from evidence novelty at one committed watermark
-- [ ] Sibling 001 exposes a replay-stable coverage certificate and sibling 002 exposes confirmed/cleared cycle events
-- [ ] The mode inventory and authoritative evaluation boundaries are frozen from the phase-003 baseline and phase-012 contract inputs
-- [ ] Clock/profile schemas, termination classes, event namespace, and replay fingerprint policy are frozen against the phase-006 ledger contract
+- [x] The phase-007 budget event/projection boundary exposes typed exhaustion, scope ancestry, balances, and reconciliation state [EVIDENCE: `BudgetDecision`, `BudgetReasonCodes`, and typed budget values are consumed directly by `stopping-clock-adapters.ts`.]
+- [x] Phase-010 novelty inputs distinguish concept novelty from evidence novelty at one committed watermark [EVIDENCE: `SemanticNoveltyResult` drives separate integer concept and evidence tails.]
+- [x] Sibling 001 exposes a replay-stable coverage certificate and sibling 002 exposes confirmed/cleared cycle events [EVIDENCE: the adapters consume the shipped `CoverageCertificate`, `CoverageUniverse`, `CycleHealthEventPayload`, and `CycleStoppingClockInput` exports.]
+- [x] The mode inventory and authoritative evaluation boundaries are frozen from the existing runtime contracts [EVIDENCE: seven exact profiles bind all five clocks to pre-dispatch, committed-iteration, or post-receipt evaluation.]
+- [x] Clock/profile schemas, termination classes, event namespace, and replay fingerprint policy are frozen against the ledger contract [EVIDENCE: the module exports closed vocabularies, exact profile validation, one event type, and canonical replay hashes.]
 
 ### Definition of Done
-- [ ] All five clocks evaluate independently and publish versioned observations without sharing mutable source logic
-- [ ] Earliest-fire and same-boundary tie fixtures reproduce the primary cause, co-causes, comparator trace, and event hash
-- [ ] Every supported mode has a complete profile and fail-closed unknown/stale-input behavior
-- [ ] New dispatch is denied after firing while in-flight effects remain receipt-linked and recoverable
-- [ ] Shadow parity preserves current `convergence.cjs` authority and bridge outputs until staged cutover
+- [x] All five clocks evaluate independently and publish versioned observations without sharing mutable source logic [EVIDENCE: five exported adapters produce separate self-hashed observations.]
+- [x] Earliest-fire and same-boundary tie fixtures reproduce the primary cause, co-causes, comparator trace, and event hash [EVIDENCE: 32 focused tests include all ordered pairs, pair ties, all-clock ties, reverse order, resume, and replay for seven profiles.]
+- [x] Every supported mode has a complete profile and fail-closed unknown/stale-input behavior [EVIDENCE: exact seven-mode registry plus altered/unknown profile and source-version rejection fixtures.]
+- [x] New dispatch is denied after firing while in-flight effects remain receipt-linked and recoverable [EVIDENCE: terminal events reject admission and retain settle, salvage, cancel, gap, blocker, and last-authorized-work evidence.]
+- [x] Shadow parity preserves current `convergence.cjs` authority and bridge outputs until staged cutover [EVIDENCE: the bridge preserves the legacy object by identity and the frozen council module is neither imported nor modified.]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 - **Source adapters** convert committed owner outputs into `StoppingClockObservation` records. They validate versions and watermarks but do not reimplement budget, novelty, coverage, or cycle semantics.
-- **Clock projection** retains the latest state and complete firing history per `(runLineage, clockKind, profileVersion)`, rebuilt deterministically from authorized ledger events.
+- **Immutable arbitration snapshot** carries exactly one self-hashed observation for each required clock at one authorized ledger prefix. Terminal traces retain every state and fired ordering without introducing a second source-of-truth projection.
 - **Mode profile registry** supplies all five adapter bindings, novelty-tail parameters, coverage-profile reference, cycle action policy, hard deadline, evaluation boundaries, shadow/authority state, and tie-rank version.
 - **Earliest-fire arbiter** reads one immutable ledger prefix. It orders by effective monotonic elapsed time, then ledger cursor, then the same-batch rank `budget > wall_time > cycle > novelty_decay > coverage`; it records every tied fired candidate.
 - **Termination writer** appends one idempotent `LoopTerminationDeclared` event through the phase-006 transition gateway. The event stores primary/co-causes, class, traces, source IDs, watermarks, fingerprint, remaining coverage/blockers, and in-flight settlement references.

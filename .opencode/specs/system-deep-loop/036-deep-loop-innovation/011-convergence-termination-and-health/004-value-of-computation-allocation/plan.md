@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/004-value-of-computation-allocation"
-    last_updated_at: "2026-07-15T16:00:00Z"
+    last_updated_at: "2026-07-21T12:46:24Z"
     last_updated_by: "codex"
-    recent_action: "Planned the VOC architecture, allocation policies, and verification strategy"
-    next_safe_action: "Freeze upstream schemas and implement the shadow allocator"
+    recent_action: "Delivered the replay-stable VOC shadow allocator and verifier fixtures"
+    next_safe_action: "Preserve additive-dark authority until an explicit cutover packet"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,19 +48,19 @@ weights and thresholds are frozen during execution against upstream schema versi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Typed-budget snapshots, reservations, denials, and settlement references have frozen versioned interfaces
-- [ ] Durable result, coverage, contradiction, blocker, health, and conditional-fan-in identities are stable
-- [ ] VOC assessment and allocation-decision schemas define event cuts, policy/calibration versions, and replay fingerprints
-- [ ] Greedy/proportional policy, fairness bounds, cold-start prior, and staleness rules are explicit
-- [ ] Shadow baseline records current uniform/static allocation and realized spend/value outcomes
+- [x] Typed-budget snapshots, reservations, denials, and settlement references have frozen versioned interfaces
+- [x] Durable result, coverage, contradiction, blocker, health, and conditional-fan-in identities are stable
+- [x] VOC assessment and allocation-decision schemas define event cuts, policy/calibration versions, and replay fingerprints
+- [x] Greedy/proportional policy, fairness bounds, cold-start prior, and staleness rules are explicit
+- [x] Shadow baseline records current uniform/static allocation and expected spend/value evidence
 
 ### Definition of Done
-- [ ] VOC assessments preserve typed costs, expose uncertainty, and calibrate predicted value against durable outcomes
-- [ ] Greedy and proportional allocation replay deterministically with stable tie-breaking and rounding
-- [ ] Fairness prevents starvation within declared bounds and never bypasses value, health, fan-in, or budget gates
-- [ ] Every dispatchable selection has one complete phase-007 reservation; exhaustion remains incomplete/budget-exhausted
-- [ ] Conditional fan-in consumes VOC usefulness without changing finalized decisions or reducer-input digests
-- [ ] Shadow comparisons and strict validation are green on the exact candidate SHA
+- [x] VOC assessments preserve typed costs, expose uncertainty, and retain predicted-versus-observed calibration evidence
+- [x] Greedy and proportional allocation replay deterministically with stable tie-breaking and rounding
+- [x] Fairness prevents starvation within declared bounds and never bypasses value, health, fan-in, or budget gates
+- [x] Every admitted selection has one complete phase-007 reservation; exhaustion remains incomplete/budget-exhausted
+- [x] Conditional fan-in consumes VOC usefulness without changing finalized decisions or reducer-input digests
+- [x] Shadow comparisons and strict validation are green on the path-scoped working-tree candidate
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -67,12 +69,12 @@ weights and thresholds are frozen during execution against upstream schema versi
 - **Signal adapter**: reads reducer-derived coverage, contradiction, blocker, uncertainty, result, budget, fan-in, and health state at one ordered event cut.
 - **VOC estimator**: emits marginal benefit components, typed cost estimates, per-type pressure ratios, diminishing-return adjustment, confidence, and calibration provenance for one quantum.
 - **Eligibility gate**: rejects stale, malformed, unhealthy, fan-in-ineligible, identity-ambiguous, or budget-inadmissible candidates before policy selection becomes dispatchable.
-- **Policy reducer**: applies versioned greedy or proportional allocation with stable tie-breaking, deterministic largest-remainder rounding, allocation quanta, and hysteresis.
+- **Policy reducer**: applies versioned greedy or proportional allocation with stable tie-breaking, deterministic largest-remainder rounding, allocation quanta, and diminishing returns.
 - **Fairness controller**: applies bounded exploration reserve, cold-start prior, capped aging, skip limit, minimum service, and share ceilings without manufacturing value or capacity.
 - **Budget adapter**: requests an atomic multi-dimensional reservation across the full ancestor chain and preserves typed denial/exhaustion semantics.
-- **Decision recorder**: appends assessment and allocation events containing all candidates, exclusions, score components, policy effects, reservation references, fan-in handoff, and replay fingerprint.
-- **Calibration projection**: joins predicted value to later durable coverage, contradiction, blocker, and receipt outcomes without mutating historical assessments.
-- **Shadow comparator**: compares adaptive decisions with the authoritative uniform/static path by realized value, spend, starvation, and stop/fan-in invariants.
+- **Decision recorder**: appends a lossless allocation event containing all assessments, exclusions, score components, policy effects, reservation references, fan-in handoff, and replay fingerprint.
+- **Calibration evidence**: binds predicted and observed values plus durable evidence links without mutating historical assessments.
+- **Shadow comparator**: compares adaptive proposals with the authoritative uniform/static path by expected value, typed spend, starvation, and allocation parity.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -84,13 +86,13 @@ weights and thresholds are frozen during execution against upstream schema versi
 - Freeze estimator, policy, calibration, pricing, and event-schema version identifiers before generating shadow decisions.
 
 ### Phase 2: Implementation
-- Add versioned `VocAssessment` and `AllocationDecision` events plus deterministic reducers and replay fingerprints.
+- Add versioned `VocAssessment` values and a lossless ledgered `AllocationDecision` event with deterministic replay fingerprints.
 - Implement benefit components, typed cost envelopes, same-dimension pressure ratios, diminishing returns, confidence, calibration provenance, and staleness handling.
-- Implement greedy and proportional integer-quantum policies with stable tie-breaking, deterministic rounding, ceilings, and hysteresis.
+- Implement greedy and proportional integer-quantum policies with stable tie-breaking, deterministic rounding, ceilings, and diminishing returns.
 - Implement bounded exploration, cold-start, aging, minimum-service, maximum-skip, and share-cap behavior.
 - Gate every dispatchable selection through one complete hierarchical typed-budget reservation and preserve every exclusion or denial reason.
 - Populate conditional fan-in's versioned usefulness slot for future eligible work while retaining immutable finalized fan-in decisions.
-- Join observed evidence gain and receipt-backed spend to earlier assessments for append-only calibration and emit shadow comparisons.
+- Retain observed-versus-predicted evidence links for append-only calibration and emit shadow comparisons.
 
 ### Phase 3: Verification
 - Replay identical ordered events and verify byte-stable eligibility, assessments, ordering, quanta, policy trace, and decision digest.
