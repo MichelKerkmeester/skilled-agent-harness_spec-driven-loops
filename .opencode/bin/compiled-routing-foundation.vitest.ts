@@ -1,7 +1,8 @@
 // Foundation invariants for compiled skill-routing:
 //   - eligibility (advisor hub set) never diverges from the engine-dispatch map
 //   - the tri-state flag is parsed identically at both runtime read sites
-//   - the per-hub default-on cohort ships empty (unset => legacy for every hub)
+//   - the resolver's per-hub default-on cohort covers all 7 promoted hubs (unset
+//     => compiled for those); the advisor's cohort still ships empty
 //   - the status probe's causeCode separates drift from breakage
 //   - the promoted serving path reads nothing under .opencode/specs
 //   - a future spec-tree import is blocked by the durable guard
@@ -65,15 +66,17 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     });
   }
 
-  it('default-on cohort ships empty at both read sites', () => {
-    expect(resolver.DEFAULT_ON_HUBS.size).toBe(0);
+  it('resolver default-on cohort covers all 7 promoted hubs; advisor cohort still ships empty', () => {
+    expect(resolver.DEFAULT_ON_HUBS.size).toBe(7);
     expect(ADVISOR_DEFAULT_ON_HUBS.size).toBe(0);
   });
 
-  it('unset resolves to legacy (null) for every hub — byte-identical default', () => {
+  it('unset resolves to a compiled decision for every default-on hub — promoted-cohort default', () => {
     clearFlag();
     for (const hub of Object.keys(engine.HUB_CHILD)) {
-      expect(resolver.resolveRoute(hub, 'do the thing')).toBeNull();
+      const route = resolver.resolveRoute(hub, 'do the thing');
+      expect(route).not.toBeNull();
+      expect(route.hubId).toBe(hub);
     }
   });
 
@@ -148,11 +151,11 @@ describe('status causeCode matrix (drift vs breakage)', () => {
     expect(r.selectedPolicy).toHaveProperty('generation');
   });
 
-  it('--all default state reports every hub as flag-off drift, none broken', () => {
+  it('--all default state reports every hub as compiled-serving, none broken', () => {
     clearFlag();
     const rows = status.computeAllStatus({ probeEngine: false });
     expect(rows.length).toBe(Object.keys(engine.HUB_CHILD).length);
-    expect(rows.every((r: { causeCode: string }) => r.causeCode === 'flag-off')).toBe(true);
+    expect(rows.every((r: { causeCode: string }) => r.causeCode === 'compiled-serving')).toBe(true);
     expect(rows.some((r: { causeCode: string }) => r.causeCode === 'engine-throw')).toBe(false);
   });
 });

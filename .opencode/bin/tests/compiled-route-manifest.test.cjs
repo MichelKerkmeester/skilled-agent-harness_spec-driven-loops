@@ -484,16 +484,16 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.deepEqual(fs.readFileSync(manifestPath), beforeBytes);
   });
 
-  test('keeps fixed routing maps, defaults, and serving causes unchanged', () => {
+  test('keeps fixed routing maps unchanged; default cohort now serves the 7 promoted hubs compiled', () => {
     delete process.env.SPECKIT_COMPILED_ROUTING;
-    assert.equal(resolver.DEFAULT_ON_HUBS.size, 0);
+    assert.equal(resolver.DEFAULT_ON_HUBS.size, 7);
     assert.equal(Object.prototype.hasOwnProperty.call(engine.HUB_CHILD, PRIMARY_HUB), false);
     assert.equal(resolver.resolveRoute(PRIMARY_HUB, 'quality review'), null);
     const records = status.computeAllStatus({ probeEngine: false });
     for (const hubId of FIXED_HUBS) {
       const record = records.find((candidate) => candidate.hubId === hubId);
       assert.ok(record, hubId);
-      assert.equal(record.causeCode, 'flag-off', hubId);
+      assert.equal(record.causeCode, 'compiled-serving', hubId);
       assert.equal(typeof record.manifestFreshness, 'object', hubId);
     }
   });
