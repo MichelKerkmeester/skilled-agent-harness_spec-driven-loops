@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "serving-snapshot/V1",
+  "hubId": "sk-prompt",
+  "capturedAt": "2026-07-21T12:04:07.089Z",
+  "flag": {
+    "raw": null,
+    "state": "unset",
+    "flagMode": "default",
+    "permitsCompiledWhenEligible": false
+  },
+  "manifest": {
+    "selectedPolicyHash": "814cfed8654bb46cc58c4519e2e1e71377f25850e3a11a26a35afe788d5e313b",
+    "generation": 5,
+    "fenceEpoch": 4,
+    "servingAuthority": "compiled",
+    "shadowOnly": false
+  },
+  "liveConfigHash": "8238184470b70c3d66f628efd6c4d6644c0c9efa1a1f54cb017d76473574597a",
+  "freshness": {
+    "state": "fresh",
+    "manifestPresent": true,
+    "manifestStableDuringCapture": true,
+    "engineResolverPresent": true
+  },
+  "engineResolverPath": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+  "parityBaseline": {
+    "label": "router-compiled-parity-baseline",
+    "present": false,
+    "reportDigest": null,
+    "capturedAt": null,
+    "verdict": null
+  },
+  "realModelLast": {
+    "label": "luna-high-verify-20260721-120348",
+    "capturedAt": "2026-07-21T12:04:07.044Z",
+    "verdict": "PASS",
+    "executor": "codex",
+    "model": "openai/gpt-5.6-luna",
+    "variant": "high"
+  }
+}
