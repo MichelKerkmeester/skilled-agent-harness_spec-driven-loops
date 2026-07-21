@@ -21,10 +21,23 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
   'sk-doc',
 ]);
 
-// Per-hub default-on cohort. Ships empty and stays empty until the staged
-// cutover adds hubs one at a time, so an unset flag resolves to legacy for every
-// hub — byte-identical to the bi-state default this replaces.
-export const DEFAULT_ON_HUBS: ReadonlySet<string> = new Set<string>();
+// Per-hub default-on cohort. Mirrors the runtime resolver's own default-on
+// cohort (all 7 hubs verified compiled-serving, 0 drift — see
+// `011-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
+// public front door (`.opencode/bin/compiled-route.cjs`), which delegates to
+// that identical resolver, so surfacing it here attaches only additive
+// metadata and never changes which skill is recommended. An unset flag now
+// attaches `compiledRoute` for these hubs; SPECKIT_COMPILED_ROUTING=0 remains
+// the explicit fleet-wide kill-switch (no field attached, legacy shape).
+export const DEFAULT_ON_HUBS: ReadonlySet<string> = new Set([
+  'sk-code',
+  'mcp-tooling',
+  'system-deep-loop',
+  'cli-external-orchestration',
+  'sk-prompt',
+  'sk-design',
+  'sk-doc',
+]);
 
 export type CompiledRoutingFlagMode = 'force-on' | 'force-legacy' | 'default' | 'invalid';
 

@@ -378,10 +378,12 @@ function enrichCompiledRoutes(
       `ignoring invalid SPECKIT_COMPILED_ROUTING=${JSON.stringify(process.env.SPECKIT_COMPILED_ROUTING)}; serving legacy`,
     );
   }
-  // Only enrich hubs the flag permits. The default cohort ships empty, so unset,
-  // the kill-switch ('0'|'false'|'off'), and invalid values all skip enrichment
-  // — byte-identical to the prior bi-state gate. Skip the schema re-parse
-  // entirely when nothing is eligible so the output is returned unchanged.
+  // Only enrich hubs the flag permits. The default cohort now covers all 7
+  // compiled-eligible hubs (mirrors the runtime resolver's own default-on
+  // cohort), so unset attaches compiledRoute for those hubs; the kill-switch
+  // ('0'|'false'|'off') and invalid values still skip enrichment for every hub.
+  // Skip the schema re-parse entirely when nothing is eligible so the output is
+  // returned unchanged.
   const anyEligible = output.recommendations.some((r) => compiledRoutingEnabledForHub(r.skillId));
   if (!anyEligible) return output;
   return AdvisorRecommendOutputSchema.parse({

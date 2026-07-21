@@ -2,7 +2,8 @@
 //   - eligibility (advisor hub set) never diverges from the engine-dispatch map
 //   - the tri-state flag is parsed identically at both runtime read sites
 //   - the resolver's per-hub default-on cohort covers all 7 promoted hubs (unset
-//     => compiled for those); the advisor's cohort still ships empty
+//     => compiled for those); the advisor's own enrichment cohort mirrors it
+//     exactly (same 7 hubs, unset => compiledRoute attached for those)
 //   - the status probe's causeCode separates drift from breakage
 //   - the promoted serving path reads nothing under .opencode/specs
 //   - a future spec-tree import is blocked by the durable guard
@@ -66,9 +67,10 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     });
   }
 
-  it('resolver default-on cohort covers all 7 promoted hubs; advisor cohort still ships empty', () => {
+  it('resolver default-on cohort covers all 7 promoted hubs; advisor cohort mirrors it exactly', () => {
     expect(resolver.DEFAULT_ON_HUBS.size).toBe(7);
-    expect(ADVISOR_DEFAULT_ON_HUBS.size).toBe(0);
+    expect(ADVISOR_DEFAULT_ON_HUBS.size).toBe(7);
+    expect([...ADVISOR_DEFAULT_ON_HUBS].sort()).toEqual([...resolver.DEFAULT_ON_HUBS].sort());
   });
 
   it('unset resolves to a compiled decision for every default-on hub — promoted-cohort default', () => {
