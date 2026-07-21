@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/018-post-review-remediation"
-    last_updated_at: "2026-07-21T18:25:00Z"
+    last_updated_at: "2026-07-21T18:50:00Z"
     last_updated_by: "remediation"
     recent_action: "Fixed stale _db/_engine doc + pointer refs; refuted P1-006; history preserved."
     next_safe_action: "Operator decides the P1-006 post-query-drift design question."
@@ -47,18 +47,13 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Done
+## What Was Built
 
-Remediated the four verified doc/metadata findings from the `017` review and refuted the one code finding after checking it against the code and tests.
+Remediated the four verified doc/metadata findings from the `017` review and refuted the one code finding.
 
 - **P1-002 / P1-004 (docs):** rewrote every `_db`/`_engine` reference in `manual-testing-playbook.md` and `styles/lib/database/README.md` to the restructured `lib/database`/`lib/engine`/`tests/*`/`database/` paths. Zero residual refs; all rewritten module paths resolve on disk.
-- **P1-003 (phase-map):** corrected the `015` parent phase-map — shipped `001-foundation`/`005-library-restructure`/`006-persistent-db-activation` now read `Complete` (006 flagged cutover-human-gated); the unbuilt `002`/`003`/`004` stay `Planned`. Refreshed the parent continuity (recent/next action, the dead `_db` `key_files` pointer, `completion_pct` 0→50).
+- **P1-003 (phase-map):** corrected the `015` parent phase-map — shipped `001`/`005`/`006` now read `Complete` (006 flagged cutover-human-gated); the unbuilt `002`/`003`/`004` stay `Planned`. Refreshed the parent continuity (recent/next action, the dead `_db` `key_files` pointer, `completion_pct` 0→50).
 - **P1-005 (dead paths):** fixed the `key_files` continuity pointers in `001`/`004` docs, then regenerated graph-metadata + descriptions for `012`/`015`/`001`/`004` — **0 dead `_db`/`_engine` paths** remain in the flagged graph-metadata.
-
-### Two deliberate non-changes
-
-- **P1-005 status half:** the `derived.status` values (`012` "planned", `004` "in_progress") are generator-owned (derived from checklist-completeness + impl-summary presence). They misfire on phase-parent rollup + scaffold children — a generator-derivation concern, not durably hand-fixable. Left as-is.
-- **P1-006 REFUTED:** the claim that `design-audit/comparison-lane.mjs` suppresses `requery-required` is false — that path is reachable and tested (`comparison-lane.test.mjs:227-241` via a plan-level `generation-mismatch`). The flagged line handles a distinct post-query race and deliberately degrades to `no-fit` (tested, `:169`) with the diagnostic preserved. No code change; whether post-query drift should also requery is an operator design decision.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,8 +61,25 @@ Remediated the four verified doc/metadata findings from the `017` review and ref
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Worked on a fresh worktree at origin tip `ed8f3e20d0` (the primary tree was concurrently dirty + behind). Path edits were scoped to current-state pointers and user-facing docs; historical "Files Changed" tables, scope statements, and evidence citations across the `003`/`001`/`004` docs were deliberately preserved as accurate records. Every finding was checked against the actual code before acting — which is what converted P1-006 from a code change into a documented refutation.
+Worked on a fresh worktree at origin tip `ed8f3e20d0` (the primary tree was concurrently dirty + behind).
+Path edits were scoped to current-state pointers and user-facing docs; historical "Files Changed" tables,
+scope statements, and evidence citations across the `003`/`001`/`004` docs were deliberately preserved as
+accurate records. Every finding was checked against the actual code before acting — which converted P1-006
+from a code change into a documented refutation.
 <!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Fix only current-state pointers, preserve historical prose | Rewriting Files-Changed tables would falsify what each packet did at its time |
+| Leave `derived.status` untouched | It is generator-owned (derived from checklist state); hand-edits are non-durable and regeneration reverts them |
+| Refute P1-006 rather than change code | The `requery-required` path is reachable and tested; the flagged line is a deliberate safe-degradation of a post-query race |
+| Work on a fresh worktree at origin tip | The primary tree was concurrently dirty + behind; the packet is add-only and conflict-free |
+<!-- /ANCHOR:decisions -->
 
 ---
 
@@ -79,8 +91,9 @@ Worked on a fresh worktree at origin tip `ed8f3e20d0` (the primary tree was conc
 | Residual dead `_db`/`_engine` in playbook + README | PASS — 0 |
 | Rewritten module paths resolve on disk | PASS — 5/5 |
 | Dead `_db`/`_engine` paths in the 3 flagged graph-metadata | PASS — 0 |
+| The four edited packets validate `--strict` | PASS — `012`/`015`/`015-001`/`015-004` all Errors:0 |
 | Historical prose preserved | PASS — `003` impl-summary `_db/schema.mjs` intact |
-| Shipped code modified | NONE — docs + metadata only |
+| Shipped code modified | NONE — docs + metadata only (no `.mjs`/`.ts`/`.js` staged) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -90,11 +103,5 @@ Worked on a fresh worktree at origin tip `ed8f3e20d0` (the primary tree was conc
 
 - `derived.status` staleness on `012`/`004` is a generator-derivation issue, not fixed here.
 - The P1-006 post-query-drift → requery-required design question is left to the operator.
-- **Packet-doc validation:** the four edited packets (`012`, `015`, `015/001`, `015/004`) validate `--strict` with 0 errors. This `018` packet's own hand-authored docs carry `TEMPLATE_HEADERS`/`ANCHORS_VALID` conformance errors (non-canonical anchor names), the same tolerated class the `016` review packet committed with. A full canonical-template rewrite of the packet docs is deferred.
+- **Correction to the sibling `017` record:** an earlier `017` checklist claimed "0 substantive errors" — inaccurate; `017` was subsequently reconformed to the `review-record` template and now validates at `Errors: 0`.
 <!-- /ANCHOR:limitations -->
-
-<!-- ANCHOR:correction -->
-## Correction
-
-The sibling `017` review packet's `CHK-030` claimed "0 substantive errors"; that was inaccurate — `017` also carries `TEMPLATE_HEADERS`/`ANCHORS_VALID`/`GENERATED_METADATA_INTEGRITY` errors (missed because only warning-level lines were grepped). The remediation work and the four edited target packets are unaffected and validate clean.
-<!-- /ANCHOR:correction -->

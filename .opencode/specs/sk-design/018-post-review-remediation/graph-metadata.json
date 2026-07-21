@@ -100,44 +100,50 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Remediate",
+        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Approach Apply",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "ordered",
-        "kind": "key_phrase",
-        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "wrong",
         "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
@@ -172,13 +178,7 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Done Remediated",
+        "name": "What Was Built Remediated",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Remediate the findings the `017` GPT-5.6-SOL deep review confirmed against the code",
+    "causal_summary": "Remediate the verified findings from the 017 GPT-5.6-SOL review: fix stale _db/_engine path references in the styles playbook, the database README, the 015 parent phase-map, and the graph-metadata key_files pointers left behind by the 005 restructure. Documentation/metadata only; no shipped code behavior changes.",
     "created_at": "2026-07-21T18:23:49.821Z",
-    "last_save_at": "2026-07-21T18:23:49.821Z",
+    "last_save_at": "2026-07-21T18:57:19.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34b2342e0849bed5ec1fe78d7f3809c05a9159bfa188776c7a60ae7142db5046",
+    "source_fingerprint": "sha256:778fa4b625fcf02c9356f56b4f9a0eabf250b93bb00678911a488b2ec2ab7b17",
     "source_doc_hashes": {
-      "spec.md": "f5c0078d30c69db768bac5347779ca19fd60aa1be5f76f895e715cc5a3d0cf46",
-      "plan.md": "16dd3514f4d15b64e43ecc0b8ff02bdecb9d54941e56baeba715f23b575bd990",
-      "tasks.md": "3f4b9049bd1bd82932148770bf2348bcd7f7b08f261afed61941917f045df7b8",
-      "implementation-summary.md": "8647012196c029962db0c2f9d5a91b2590dfc5bf9ecaa9c2d54167fc9e5e5fb8"
+      "spec.md": "be504de08c95c28f0b43524c49ab7b37024ceeeac6f20fde51b13ca564e70fa3",
+      "plan.md": "783bf9cc660455c8f17068c3007aa103981698b3eb539ae4132630ad97003688",
+      "tasks.md": "84719044f79a88649a593ce24707687e00c704054fbb9492418b447963181fd4",
+      "implementation-summary.md": "09276dc8630793e19babc8ab151abd89f804865d5c7f785b3065085a21fab818"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,24 +1,28 @@
 {
+  "level": "1",
   "specFolder": "sk-design/018-post-review-remediation",
-  "description": "Remediate the findings the `017` GPT-5.6-SOL deep review confirmed against the code",
+  "description": "Remediate the verified findings from the 017 GPT-5.6-SOL review: fix stale _db/_engine path references in the styles playbook, the database README,",
   "keywords": [
     "remediate",
+    "verified",
     "findings",
     "gpt-5",
     "6-sol",
-    "deep",
     "review",
-    "confirmed",
-    "against",
-    "code"
+    "stale",
+    "path",
+    "references",
+    "styles",
+    "playbook",
+    "database",
+    "readme"
   ],
-  "lastUpdated": "2026-07-21T18:23:33.062Z",
+  "lastUpdated": "2026-07-21T18:57:10.987Z",
   "specId": "018",
   "folderSlug": "post-review-remediation",
   "parentChain": [
     "sk-design"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

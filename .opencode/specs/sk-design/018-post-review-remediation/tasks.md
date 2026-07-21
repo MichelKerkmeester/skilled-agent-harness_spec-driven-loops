@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/018-post-review-remediation"
-    last_updated_at: "2026-07-21T18:25:00Z"
+    last_updated_at: "2026-07-21T18:50:00Z"
     last_updated_by: "remediation"
     recent_action: "Completed the pointer + doc fixes; refuted P1-006."
     next_safe_action: "Validate + commit."
@@ -74,3 +74,12 @@ current-state references with every rewritten path resolving, and no shipped cod
 - [x] P1-006 verified + refuted without altering shipped behavior (T005)
 - [x] History preserved; no code changed (T006)
 <!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- Findings source: `../017-remediation-program-review/review/review-report.md`.
+- Edited packets: `../015-styles-database-evolution/` (+ `001-foundation`, `004-growth`), `../012-style-database-and-interface-commands/`.
+<!-- /ANCHOR:cross-refs -->
