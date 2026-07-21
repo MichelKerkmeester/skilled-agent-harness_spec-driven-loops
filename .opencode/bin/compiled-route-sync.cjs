@@ -357,10 +357,28 @@ function check() {
   process.stdout.write(unresolved.length ? `UNRESOLVED: ${unresolved.join(', ')}\n` : `all ${HUBS.length} hubs resolve\n`);
 }
 
+const USAGE = `Usage: compiled-route-sync.cjs [--verify|--check|--help]
+
+Modes:
+  (no args)    trace the authored closure and (re)build the promoted mirror
+  --verify     trace the PROMOTED closure and assert no path reads under
+               .opencode/specs while every hub still resolves
+  --check      print the traced closure without writing anything
+  --help, -h   show this usage message and exit (no build)
+`;
+
 function main() {
   const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    process.stdout.write(USAGE);
+    process.exit(0);
+  }
   if (args.includes('--verify')) return verify();
   if (args.includes('--check')) return check();
+  if (args.length > 0) {
+    process.stderr.write(`unknown argument(s): ${args.join(' ')}\n\n${USAGE}`);
+    process.exit(2);
+  }
   return build();
 }
 
