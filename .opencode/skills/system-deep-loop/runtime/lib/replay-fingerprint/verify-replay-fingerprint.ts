@@ -380,7 +380,6 @@ function compareDescriptors(
     || expected.terminal_head_hash !== actual.terminal_head_hash
     || recordDifference !== null
     || expected.stored_bytes_digest !== actual.stored_bytes_digest
-    || expected.authorization_linkage_digest !== actual.authorization_linkage_digest
   ) {
     mismatch(
       ReplayFingerprintErrorCodes.STORED_MISMATCH,
@@ -391,14 +390,12 @@ function compareDescriptors(
         head: expected.terminal_head_hash,
         records: expected.ordered_record_hashes,
         bytes: expected.stored_bytes_digest,
-        authorization: expected.authorization_linkage_digest,
       }),
       componentDigest({
         genesis: actual.genesis_record_hash,
         head: actual.terminal_head_hash,
         records: actual.ordered_record_hashes,
         bytes: actual.stored_bytes_digest,
-        authorization: actual.authorization_linkage_digest,
       }),
       {
         sequence: recordDifference === null
@@ -406,6 +403,16 @@ function compareDescriptors(
           : expected.range_start_sequence + recordDifference,
         stage: 'stored-sequence',
       },
+    );
+  }
+  if (expected.authorization_linkage_digest !== actual.authorization_linkage_digest) {
+    mismatch(
+      ReplayFingerprintErrorCodes.STORED_MISMATCH,
+      'authorization_linkage',
+      'Authorization linkage differs from the immutable attestation',
+      expected.authorization_linkage_digest,
+      actual.authorization_linkage_digest,
+      { stage: 'authorization-linkage' },
     );
   }
 

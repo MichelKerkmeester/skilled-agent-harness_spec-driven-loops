@@ -1,3 +1,6 @@
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
 import { describe, expect, it } from 'vitest';
 
 import * as eventEnvelopeApi from '../../lib/event-envelope/index.js';
@@ -30,6 +33,8 @@ import type {
 
 const TYPE = 'deep-loop.execution.status-recorded';
 const TIMESTAMP = '2026-01-01T00:00:00.000Z';
+const HOSTILE_LOCALE_TEST_NAME =
+  'keeps the registry digest stable across a hostile-collation child process';
 
 function baseEnvelope(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
@@ -123,6 +128,32 @@ function primaryDefinition(): EventTypeDefinition {
 
 function primaryRegistry(): EventTypeRegistry {
   return new EventTypeRegistry([primaryDefinition()]);
+}
+
+function validateLocaleProbePayload(payload: Readonly<JsonObject>): boolean {
+  return typeof payload.value === 'string';
+}
+
+function localeProbeDefinition(eventType: string): EventTypeDefinition {
+  return {
+    eventType,
+    currentVersion: 1,
+    versions: [{
+      version: 1,
+      payload: {
+        requiredFields: ['value'],
+        validate: validateLocaleProbePayload,
+      },
+    }],
+    upcasters: [],
+  };
+}
+
+function localeProbeRegistry(): EventTypeRegistry {
+  return new EventTypeRegistry([
+    localeProbeDefinition('deep-loop.fixture.aa'),
+    localeProbeDefinition('deep-loop.fixture.a-a'),
+  ]);
 }
 
 function twoVersionDefinition(upcast: EventUpcasterDefinition): EventTypeDefinition {
@@ -250,6 +281,54 @@ describe('canonical event envelope', () => {
 });
 
 describe('deterministic type and version registry', () => {
+  it(HOSTILE_LOCALE_TEST_NAME, () => {
+    const childMode = process.env.DEEP_LOOP_HOSTILE_LOCALE_CHILD === '1';
+    const originalLocaleCompare = String.prototype.localeCompare;
+    if (childMode) {
+      String.prototype.localeCompare = function hostileLocaleCompare(
+        this: string,
+        other: string,
+      ): number {
+        return this < other ? 1 : this > other ? -1 : 0;
+      } as typeof String.prototype.localeCompare;
+    }
+    try {
+      const registry = localeProbeRegistry();
+      expect(registry.inspect().map(({ eventType }) => eventType)).toEqual([
+        'deep-loop.fixture.a-a',
+        'deep-loop.fixture.aa',
+      ]);
+      if (childMode) {
+        expect(registry.digest).toBe(process.env.DEEP_LOOP_EXPECTED_REGISTRY_DIGEST);
+        return;
+      }
+
+      const vitestBin = fileURLToPath(new URL(
+        '../../../../system-spec-kit/mcp-server/node_modules/.bin/vitest',
+        import.meta.url,
+      ));
+      const child = spawnSync(vitestBin, [
+        'run',
+        '--no-coverage',
+        fileURLToPath(import.meta.url),
+        '-t',
+        HOSTILE_LOCALE_TEST_NAME,
+      ], {
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          LANG: 'tr_TR.UTF-8',
+          LC_ALL: 'tr_TR.UTF-8',
+          DEEP_LOOP_HOSTILE_LOCALE_CHILD: '1',
+          DEEP_LOOP_EXPECTED_REGISTRY_DIGEST: registry.digest,
+        },
+      });
+      expect(child.status, child.stdout + child.stderr).toBe(0);
+    } finally {
+      String.prototype.localeCompare = originalLocaleCompare;
+    }
+  });
+
   it('enumerates every payload contract and stable adjacent chain', () => {
     const registry = primaryRegistry();
     const [entry] = registry.inspect();

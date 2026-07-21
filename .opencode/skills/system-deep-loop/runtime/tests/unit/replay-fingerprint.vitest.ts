@@ -2,6 +2,7 @@
 // MODULE: Replay Fingerprint Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { spawnSync } from 'node:child_process';
 import {
   cpSync,
   mkdtempSync,
@@ -13,6 +14,7 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -37,6 +39,7 @@ import {
   ReplayFingerprintErrorCodes,
   createReplayFingerprintVersionRegistry,
   deriveReplayFingerprint,
+  parseReplayFingerprintAttestationPayload,
   prepareReplayFingerprintAttestation,
   recordReplayFingerprintAttestation,
   replayFingerprintAttestationEventDefinition,
@@ -66,6 +69,7 @@ import type {
   EventTypeRegistry as EventTypeRegistryType,
   EventWritePreflight,
   JsonObject,
+  JsonValue,
   UpcastOutcome,
 } from '../../lib/event-envelope/index.js';
 import type {
@@ -104,6 +108,8 @@ interface RegistryOptions {
 
 const AUXILIARY_EVENT_TYPE = 'deep-loop.fixture.auxiliary-recorded';
 const RUN_ID = 'fixture-run';
+const HOSTILE_LOCALE_FINGERPRINT_TEST_NAME =
+  'keeps the fingerprint stable across a hostile-collation child process';
 const INITIAL_STATE: CountProjection = Object.freeze({
   count: 0,
   labels: Object.freeze([]) as unknown as string[],
@@ -324,27 +330,40 @@ function createComponentRegistry(
     reducerVersion?: string;
     projectionSchemaVersion?: string;
     scale?: number;
+    projectionOffset?: number;
   }> = {},
 ): ReplayComponentRegistry<CountProjection> {
   const reducerVersion = options.reducerVersion ?? '1';
-  const scale = options.scale ?? 1;
-  const reducerRegistry = new TypedReducerRegistry<CountProjection>([{
-    eventType: FIXTURE_EVENT_TYPE,
-    reducerVersion,
-    reduce: (state, event) => ({
-      count: state.count + Number(event.effective.envelope.payload.value) * scale,
-      labels: [
-        ...state.labels,
-        String(event.effective.envelope.payload.label),
-      ],
-    }),
-  }]);
+  const config = Object.freeze({ scale: options.scale ?? 1 });
+  const bindReplayInputs = (inputs: Readonly<Record<string, JsonValue>>) => {
+    const supplied = inputs.fixture_config as Readonly<{ scale?: unknown }>;
+    const scale = Number(supplied?.scale);
+    if (!Number.isSafeInteger(scale)) throw new Error('Invalid fixture scale');
+    return new TypedReducerRegistry<CountProjection>([{
+      eventType: FIXTURE_EVENT_TYPE,
+      reducerVersion,
+      reduce: (state, event) => ({
+        count: state.count
+          + Number(event.effective.envelope.payload.value) * scale
+          + (options.projectionOffset ?? 0),
+        labels: [
+          ...state.labels,
+          String(event.effective.envelope.payload.label),
+        ],
+      }),
+    }]);
+  };
+  const reducerRegistry = bindReplayInputs({ fixture_config: config });
   return new ReplayComponentRegistry([{
     reducerId: options.reducerId ?? 'fixture-reducer',
     reducerVersion,
     projectionSchemaVersion: options.projectionSchemaVersion ?? '1',
     requiredReplayInputKeys: ['initial_state', 'fixture_config'],
     reducerRegistry,
+    replayInputSources: {
+      fixture_config: { kind: 'content-addressed', value: config },
+    },
+    bindReplayInputs,
   }]);
 }
 
@@ -434,6 +453,28 @@ async function deriveAndRecord(
   return { derived, event, proof, write, versionRegistry };
 }
 
+async function appendRawAttestation(
+  harness: Harness,
+  derived: DerivedReplayFingerprint<CountProjection>,
+  versionRegistry: FingerprintVersionRegistry,
+  mutate: (payload: JsonObject) => void,
+): Promise<void> {
+  const prepared = prepareReplayFingerprintAttestation(
+    derived,
+    harness.registry,
+    versionRegistry,
+    attestationEnvelope(1),
+  );
+  const payload = JSON.parse(JSON.stringify(prepared.envelope.payload)) as JsonObject;
+  mutate(payload);
+  const event = prepareEventWrite({
+    ...prepared.envelope,
+    payload,
+  }, harness.registry);
+  const proof = await authorize(harness, event, 'raw-fingerprint-attestation-request');
+  await harness.ledger.appendAuthorized(event, proof);
+}
+
 function verificationInput(
   harness: Harness,
   options: Readonly<{
@@ -516,6 +557,69 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('replay fingerprint determinism and consumer gate', () => {
+  it(HOSTILE_LOCALE_FINGERPRINT_TEST_NAME, async () => {
+    const childMode = process.env.DEEP_LOOP_HOSTILE_FINGERPRINT_CHILD === '1';
+    const originalLocaleCompare = String.prototype.localeCompare;
+    if (childMode) {
+      String.prototype.localeCompare = function hostileLocaleCompare(
+        this: string,
+        other: string,
+      ): number {
+        return this < other ? 1 : this > other ? -1 : 0;
+      } as typeof String.prototype.localeCompare;
+    }
+    try {
+      const harness = childMode
+        ? createHarness(
+          createEventRegistry(),
+          String(process.env.DEEP_LOOP_HOSTILE_FINGERPRINT_LEDGER_ROOT),
+        )
+        : await committedHarness();
+      const derived = await derive(harness);
+      if (childMode) {
+        expect(harness.registry.digest).toBe(
+          process.env.DEEP_LOOP_EXPECTED_FINGERPRINT_REGISTRY_DIGEST,
+        );
+        expect(derived.descriptor).toEqual(
+          JSON.parse(Buffer.from(
+            String(process.env.DEEP_LOOP_EXPECTED_FINGERPRINT_DESCRIPTOR),
+            'base64',
+          ).toString('utf8')),
+        );
+        return;
+      }
+
+      const vitestBin = fileURLToPath(new URL(
+        '../../../../system-spec-kit/mcp-server/node_modules/.bin/vitest',
+        import.meta.url,
+      ));
+      const child = spawnSync(vitestBin, [
+        'run',
+        '--no-coverage',
+        fileURLToPath(import.meta.url),
+        '-t',
+        HOSTILE_LOCALE_FINGERPRINT_TEST_NAME,
+      ], {
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          LANG: 'tr_TR.UTF-8',
+          LC_ALL: 'tr_TR.UTF-8',
+          DEEP_LOOP_HOSTILE_FINGERPRINT_CHILD: '1',
+          DEEP_LOOP_HOSTILE_FINGERPRINT_LEDGER_ROOT: harness.rootDirectory,
+          DEEP_LOOP_EXPECTED_FINGERPRINT_REGISTRY_DIGEST: harness.registry.digest,
+          DEEP_LOOP_EXPECTED_FINGERPRINT_DESCRIPTOR: Buffer.from(
+            JSON.stringify(derived.descriptor),
+            'utf8',
+          ).toString('base64'),
+        },
+      });
+      expect(child.status, child.stdout + child.stderr).toBe(0);
+    } finally {
+      String.prototype.localeCompare = originalLocaleCompare;
+    }
+  });
+
   it('emits byte-identical descriptors and final digests across repeated derivations', async () => {
     const harness = await committedHarness();
     const first = await derive(harness);
@@ -665,10 +769,27 @@ describe('replay contract and result drift', () => {
     expectFailure(result, 'projection_schema');
   });
 
-  it('surfaces projection byte drift under the same registered identities', async () => {
+  it('rejects a claimed config digest that differs from the content supplied to reducers', async () => {
+    const harness = await committedHarness();
+    const components = createComponentRegistry({ scale: 2 });
+    const claimed = sha256Bytes(canonicalBytes({ scale: 1 }));
+    const resolved = sha256Bytes(canonicalBytes({ scale: 2 }));
+
+    await expect(derive(harness, {
+      componentRegistry: components,
+    })).rejects.toMatchObject({
+      code: ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+      component: 'replay_input',
+      expectedDigest: resolved,
+      actualDigest: claimed,
+      stage: 'replay-input-provenance-fixture_config',
+    });
+  });
+
+  it('surfaces projection byte drift under the same registered identities and inputs', async () => {
     const harness = await committedHarness();
     await deriveAndRecord(harness);
-    const components = createComponentRegistry({ scale: 2 });
+    const components = createComponentRegistry({ projectionOffset: 1 });
     const result = await verifyReplayFingerprint(verificationInput(harness, {
       componentRegistry: components,
     }));
@@ -730,6 +851,13 @@ describe('replay contract and result drift', () => {
       projectionSchemaVersion: '1',
       requiredReplayInputKeys: ['initial_state', 'fixture_config'],
       reducerRegistry,
+      replayInputSources: {
+        fixture_config: {
+          kind: 'content-addressed',
+          value: { scale: 1 },
+        },
+      },
+      bindReplayInputs: () => reducerRegistry,
     }]);
     const result = await verifyReplayFingerprint(verificationInput(harness, {
       componentRegistry: components,
@@ -738,11 +866,113 @@ describe('replay contract and result drift', () => {
   });
 });
 
+describe('fingerprint field mutation ownership', () => {
+  it.each([
+    ['authorization linkage', 'authorization_linkage'],
+    ['observed versions', 'observed_event_versions'],
+    ['chain identities', 'upcaster_chain'],
+    ['replay input', 'replay_input'],
+    ['canonicalization', 'canonicalization'],
+    ['final commitment', 'final_digest'],
+  ] as const)('surfaces %s mutation in %s', async (mutation, component) => {
+    const harness = await committedHarness();
+    const versionRegistry = createReplayFingerprintVersionRegistry();
+    const derived = await derive(harness, { versionRegistry });
+
+    if (mutation === 'canonicalization' || mutation === 'final commitment') {
+      await appendRawAttestation(harness, derived, versionRegistry, (payload) => {
+        const descriptor = payload.descriptor as JsonObject;
+        if (mutation === 'canonicalization') {
+          descriptor.canonicalization_algorithm =
+            String(descriptor.canonicalization_algorithm) + '-mutated';
+        } else {
+          descriptor.final_digest = sha256Bytes(canonicalBytes('mutated-final-commitment'));
+        }
+      });
+    } else {
+      let overrides: Readonly<Partial<ReplayFingerprintDescriptor>>;
+      if (mutation === 'authorization linkage') {
+        overrides = {
+          authorization_linkage_digest: sha256Bytes(canonicalBytes('mutated-authorization')),
+        };
+      } else if (mutation === 'observed versions') {
+        overrides = {
+          observed_event_type_versions: ['deep-loop.fixture.mutated@1'],
+        };
+      } else if (mutation === 'chain identities') {
+        overrides = {
+          ordered_chain_identities: ['sequence=1|event=mutated@1|chain=mutated|hop=none'],
+        };
+      } else {
+        overrides = {
+          replay_input_digests: {
+            ...derived.descriptor.replay_input_digests,
+            fixture_config: sha256Bytes(canonicalBytes({ scale: 9 })),
+          },
+        };
+      }
+      const falseClaim = descriptorOverride(derived, overrides, versionRegistry);
+      await deriveAndRecord(harness, { derived: falseClaim, versionRegistry });
+    }
+
+    const result = await verifyReplayFingerprint(verificationInput(harness, {
+      versionRegistry,
+    }));
+    expectFailure(result, component);
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 8. VERSION AND ATTESTATION RULES
 // ───────────────────────────────────────────────────────────────────
 
 describe('fingerprint version and attestation rules', () => {
+  it.each([
+    ['descriptor bytes', 'attestation', 'descriptor-bytes-binding'],
+    ['metadata', 'attestation', 'attestation-metadata-binding'],
+    ['digest', 'final_digest', 'attestation-digest-binding'],
+  ] as const)('reports an accurate %s binding mismatch', async (
+    mismatchKind,
+    component,
+    stage,
+  ) => {
+    const harness = await committedHarness();
+    const versionRegistry = createReplayFingerprintVersionRegistry();
+    const implementation = versionRegistry.resolve(1);
+    const derived = await derive(harness, { versionRegistry });
+    const event = prepareReplayFingerprintAttestation(
+      derived,
+      harness.registry,
+      versionRegistry,
+      attestationEnvelope(1),
+    );
+    const payload = JSON.parse(JSON.stringify(event.envelope.payload)) as JsonObject;
+    if (mismatchKind === 'descriptor bytes') {
+      const bytes = Buffer.from(String(payload.descriptor_bytes_base64), 'base64');
+      bytes[bytes.length - 1] ^= 0x01;
+      payload.descriptor_bytes_base64 = bytes.toString('base64');
+    } else if (mismatchKind === 'metadata') {
+      payload.run_id = String(payload.run_id) + '-mutated';
+    } else {
+      payload.final_digest = sha256Bytes(canonicalBytes('mutated-attestation-digest'));
+    }
+
+    let caught: unknown;
+    try {
+      parseReplayFingerprintAttestationPayload(payload, implementation);
+    } catch (error: unknown) {
+      caught = error;
+    }
+    expect(caught).toMatchObject({ component, stage });
+    const diagnostic = caught as {
+      expectedDigest: string | null;
+      actualDigest: string | null;
+    };
+    expect(diagnostic.expectedDigest).not.toBeNull();
+    expect(diagnostic.actualDigest).not.toBeNull();
+    expect(diagnostic.expectedDigest).not.toBe(diagnostic.actualDigest);
+  });
+
   it('fails closed when the required attestation is missing', async () => {
     const harness = await committedHarness();
     const result = await verifyReplayFingerprint(verificationInput(harness));
@@ -826,6 +1056,42 @@ describe('fingerprint version and attestation rules', () => {
     expect(current.descriptor.fingerprint_version).toBe(2);
   });
 
+  it('rejects a fingerprint serializer that omits committed fields', () => {
+    const registered = createReplayFingerprintVersionRegistry().resolve(1) as unknown as {
+      implementationIdentity: string;
+    };
+    expect(registered.implementationIdentity).toMatch(/^[a-f0-9]{64}$/);
+    expect(() => new FingerprintVersionRegistry([{
+      fingerprintVersion: 1,
+      hashAlgorithm: FINGERPRINT_HASH_ALGORITHM,
+      canonicalizationAlgorithm: FINGERPRINT_CANONICALIZATION_ALGORITHM,
+      serializeDescriptor: () => Uint8Array.from([1]),
+    }])).toThrowError(expect.objectContaining({
+      code: ReplayFingerprintErrorCodes.INVALID_INPUT,
+      component: 'fingerprint_version',
+      stage: 'fingerprint-registry-probe',
+    }));
+  });
+
+  it('rejects non-initial replay inputs without a registered source and binding', () => {
+    const reducerRegistry = new TypedReducerRegistry<CountProjection>([{
+      eventType: FIXTURE_EVENT_TYPE,
+      reducerVersion: '1',
+      reduce: (state) => ({ ...state }),
+    }]);
+    expect(() => new ReplayComponentRegistry([{
+      reducerId: 'fixture-reducer',
+      reducerVersion: '1',
+      projectionSchemaVersion: '1',
+      requiredReplayInputKeys: ['initial_state', 'fixture_config'],
+      reducerRegistry,
+    }])).toThrowError(expect.objectContaining({
+      code: ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+      component: 'replay_input',
+      stage: 'replay-input-provenance',
+    }));
+  });
+
   it('appends after the range, excludes itself, and makes exact duplicates idempotent', async () => {
     const harness = await committedHarness();
     const recorded = await deriveAndRecord(harness);
@@ -853,7 +1119,7 @@ describe('fingerprint version and attestation rules', () => {
     const harness = await committedHarness();
     const recorded = await deriveAndRecord(harness);
     const conflicting = await derive(harness, {
-      componentRegistry: createComponentRegistry({ scale: 2 }),
+      componentRegistry: createComponentRegistry({ projectionOffset: 1 }),
     });
     const event = prepareReplayFingerprintAttestation(
       conflicting,
@@ -900,13 +1166,33 @@ describe('fingerprint version and attestation rules', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('non-rebaselining verification', () => {
+  it('leaves legacy authority unchanged when dark fingerprint verification fails', async () => {
+    const harness = await committedHarness();
+    await deriveAndRecord(harness);
+    const legacyAuthority = Object.freeze({
+      authority: 'legacy',
+      result: 'committed',
+      state: { completedTransitions: 3 },
+    });
+    const legacyBytesBefore = Buffer.from(canonicalBytes(legacyAuthority));
+    const headBefore = await harness.ledger.getVerifiedHead();
+
+    const result = await verifyReplayFingerprint(verificationInput(harness, {
+      componentRegistry: createComponentRegistry({ projectionOffset: 1 }),
+    }));
+
+    expectFailure(result, 'projection');
+    expect(Buffer.from(canonicalBytes(legacyAuthority))).toEqual(legacyBytesBefore);
+    expect(await harness.ledger.getVerifiedHead()).toEqual(headBefore);
+  });
+
   it('never rewrites or promotes a mismatched actual digest', async () => {
     const harness = await committedHarness();
     await deriveAndRecord(harness);
     const attestationPath = framePath(harness.rootDirectory, 4);
     const beforeBytes = readFileSync(attestationPath);
     const beforeHead = await harness.ledger.getVerifiedHead();
-    const components = createComponentRegistry({ scale: 2 });
+    const components = createComponentRegistry({ projectionOffset: 1 });
 
     const first = await verifyReplayFingerprint(verificationInput(harness, {
       componentRegistry: components,

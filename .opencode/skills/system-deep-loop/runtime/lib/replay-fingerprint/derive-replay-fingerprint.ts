@@ -7,12 +7,14 @@ import { createHash } from 'node:crypto';
 import {
   AppendOnlyLedger,
   AuthorizedLedgerError,
+  TypedReducerRegistry,
   rebuildProjection,
 } from '../authorized-ledger/index.js';
 import {
   canonicalBytes,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { immutableJsonClone } from '../event-envelope/canonical-json.js';
 import {
   INITIAL_STATE_REPLAY_INPUT,
   assertDeterministicReplayInputKey,
@@ -43,9 +45,11 @@ import type { ReplayComponentRegistry } from './replay-component-registry.js';
 import type {
   DerivedReplayFingerprint,
   FingerprintVersionDefinition,
+  ReplayComponentDefinition,
   ReplayExecutionInput,
   ReplayFingerprintDescriptor,
   ReplayFingerprintDescriptorCore,
+  ReplayInputSource,
 } from './replay-fingerprint-types.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -189,7 +193,7 @@ async function readClosedRange(
   return Object.freeze(range);
 }
 
-function normalizedReplayInputs<TState extends JsonObject>(
+function claimedReplayInputDigests<TState extends JsonObject>(
   replay: ReplayExecutionInput<TState>,
   requiredKeys: readonly string[],
 ): Readonly<Record<string, string>> {
@@ -220,20 +224,115 @@ function normalizedReplayInputs<TState extends JsonObject>(
     }
     normalized[key] = digest;
   }
-  const initialStateDigest = sha256Bytes(canonicalBytes(replay.initialState));
-  if (normalized[INITIAL_STATE_REPLAY_INPUT] !== initialStateDigest) {
+  return Object.freeze(normalized);
+}
+
+function ledgerReplayInputValue(
+  key: string,
+  source: ReplayInputSource,
+  range: readonly VerifiedLedgerEvent[],
+): JsonValue {
+  if (source.kind === 'content-addressed') {
+    return immutableJsonClone(source.value);
+  }
+  const verified = range.find(({ frame }) => frame.sequence === source.sequence);
+  if (
+    !verified
+    || verified.event.effective.envelope.event_type !== source.eventType
+    || !Object.prototype.hasOwnProperty.call(
+      verified.event.effective.envelope.payload,
+      source.payloadField,
+    )
+  ) {
     throw new ReplayFingerprintError(
       ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
       'replay_input',
-      'Initial state bytes do not match their registered replay-input digest',
-      {
-        expectedDigest: normalized[INITIAL_STATE_REPLAY_INPUT] ?? null,
-        actualDigest: initialStateDigest,
-        stage: 'initial-state-digest',
-      },
+      'Ledger-addressed replay input does not resolve inside the verified range',
+      { sequence: source.sequence, stage: 'replay-input-source-' + key },
     );
   }
-  return Object.freeze(normalized);
+  return immutableJsonClone(
+    verified.event.effective.envelope.payload[source.payloadField],
+  );
+}
+
+function resolveReplayInputs<TState extends JsonObject>(
+  replay: ReplayExecutionInput<TState>,
+  component: ReplayComponentDefinition<TState>,
+  claimedDigests: Readonly<Record<string, string>>,
+  range: readonly VerifiedLedgerEvent[],
+): Readonly<{
+  digests: Readonly<Record<string, string>>;
+  reducerRegistry: TypedReducerRegistry<TState>;
+}> {
+  const values: Record<string, JsonValue> = Object.create(null);
+  values[INITIAL_STATE_REPLAY_INPUT] = immutableJsonClone(replay.initialState);
+  for (const key of component.requiredReplayInputKeys) {
+    if (key === INITIAL_STATE_REPLAY_INPUT) continue;
+    const source = component.replayInputSources?.[key];
+    if (!source) {
+      throw new ReplayFingerprintError(
+        ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+        'replay_input',
+        'Replay input has no registered ledger or content address',
+        { stage: 'replay-input-source-' + key },
+      );
+    }
+    values[key] = ledgerReplayInputValue(
+      key,
+      source,
+      range,
+    );
+  }
+
+  const digests: Record<string, string> = Object.create(null);
+  for (const key of component.requiredReplayInputKeys) {
+    const sourceDigest = sha256Bytes(canonicalBytes(values[key]));
+    const claimedDigest = claimedDigests[key];
+    if (claimedDigest !== sourceDigest) {
+      throw new ReplayFingerprintError(
+        ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+        'replay_input',
+        'Claimed replay input digest does not match its resolved immutable source',
+        {
+          expectedDigest: sourceDigest,
+          actualDigest: claimedDigest ?? null,
+          stage: key === INITIAL_STATE_REPLAY_INPUT
+            ? 'initial-state-digest'
+            : 'replay-input-provenance-' + key,
+        },
+      );
+    }
+    digests[key] = sourceDigest;
+  }
+
+  let reducerRegistry = component.reducerRegistry;
+  if (component.requiredReplayInputKeys.length > 1) {
+    try {
+      reducerRegistry = component.bindReplayInputs?.(
+        Object.freeze(values),
+      ) as TypedReducerRegistry<TState>;
+    } catch {
+      throw new ReplayFingerprintError(
+        ReplayFingerprintErrorCodes.REPLAY_COMPONENT_UNREGISTERED,
+        'reducer',
+        'Registered reducer could not bind the resolved replay inputs',
+        { stage: 'replay-input-binding' },
+      );
+    }
+    if (!(reducerRegistry instanceof TypedReducerRegistry)) {
+      throw new ReplayFingerprintError(
+        ReplayFingerprintErrorCodes.REPLAY_COMPONENT_UNREGISTERED,
+        'reducer',
+        'Registered replay-input binding did not return a reducer registry',
+        { stage: 'replay-input-binding' },
+      );
+    }
+  }
+  return Object.freeze({
+    digests: Object.freeze(digests),
+    reducerRegistry,
+  });
 }
 
 function upcasterRegistryDigest(eventRegistry: EventTypeRegistry): string {
@@ -307,7 +406,7 @@ export async function deriveReplayFingerprintAtVersion<TState extends JsonObject
     input.replay.reducerVersion,
     input.replay.projectionSchemaVersion,
   );
-  const replayInputDigests = normalizedReplayInputs(
+  const claimedDigests = claimedReplayInputDigests(
     input.replay,
     component.requiredReplayInputKeys,
   );
@@ -328,6 +427,12 @@ export async function deriveReplayFingerprintAtVersion<TState extends JsonObject
     input.ledger,
     input.rangeStartSequence,
     input.rangeEndSequence,
+  );
+  const replayInputs = resolveReplayInputs(
+    input.replay,
+    component,
+    claimedDigests,
+    range,
   );
   const storedHash = createComponentHash('deep-loop.replay.stored.v1');
   const authorizationHash = createComponentHash('deep-loop.replay.authorization.v1');
@@ -405,7 +510,7 @@ export async function deriveReplayFingerprintAtVersion<TState extends JsonObject
       input.replay.initialState,
       component.reducerVersion,
       rangeHead,
-      component.reducerRegistry,
+      replayInputs.reducerRegistry,
     );
   } catch (error: unknown) {
     if (error instanceof AuthorizedLedgerError) {
@@ -445,7 +550,7 @@ export async function deriveReplayFingerprintAtVersion<TState extends JsonObject
     reducer_id: component.reducerId,
     reducer_version: component.reducerVersion,
     projection_schema_version: component.projectionSchemaVersion,
-    replay_input_digests: replayInputDigests,
+    replay_input_digests: replayInputs.digests,
     projection_digest: projection.digest,
   });
   assertReplayFingerprintCoreShape(descriptorCore);

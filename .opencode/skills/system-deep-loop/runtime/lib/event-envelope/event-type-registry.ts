@@ -179,6 +179,10 @@ function functionDigest(implementation: Function): string {
   return sha256Bytes(canonicalBytes(Function.prototype.toString.call(implementation)));
 }
 
+function compareCodeUnits(left: string, right: string): number {
+  return left < right ? -1 : left > right ? 1 : 0;
+}
+
 function validatePayloadContract(
   eventType: string,
   candidate: unknown,
@@ -609,7 +613,7 @@ export class EventTypeRegistry {
     REGISTRY_STATE.set(this, state);
     this.digest = sha256Bytes(canonicalBytes(
       Object.values(state)
-        .sort((a, b) => a.eventType.localeCompare(b.eventType))
+        .sort((a, b) => compareCodeUnits(a.eventType, b.eventType))
         .map(inspectionFor),
     ));
     Object.freeze(this);
@@ -619,7 +623,7 @@ export class EventTypeRegistry {
   public inspect(): readonly RegistryInspectionEntry[] {
     return Object.freeze(
       Object.values(stateFor(this))
-        .sort((a, b) => a.eventType.localeCompare(b.eventType))
+        .sort((a, b) => compareCodeUnits(a.eventType, b.eventType))
         .map(inspectionFor),
     );
   }

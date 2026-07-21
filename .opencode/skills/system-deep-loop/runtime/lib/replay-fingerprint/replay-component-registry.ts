@@ -3,6 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
+  validateEventTypeNamespace,
+} from '../event-envelope/index.js';
+import { immutableJsonClone } from '../event-envelope/canonical-json.js';
+import {
   TypedReducerRegistry,
 } from '../authorized-ledger/index.js';
 import {
@@ -15,8 +19,11 @@ import {
   ReplayFingerprintErrorCodes,
 } from './replay-fingerprint-types.js';
 
-import type { JsonObject } from '../event-envelope/index.js';
-import type { ReplayComponentDefinition } from './replay-fingerprint-types.js';
+import type { JsonObject, JsonValue } from '../event-envelope/index.js';
+import type {
+  ReplayComponentDefinition,
+  ReplayInputSource,
+} from './replay-fingerprint-types.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. HELPERS
@@ -28,6 +35,60 @@ function componentKey(
   projectionSchemaVersion: string,
 ): string {
   return [reducerId, reducerVersion, projectionSchemaVersion].join('\u0000');
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && !Array.isArray(value) && typeof value === 'object';
+}
+
+function normalizeReplayInputSource(
+  key: string,
+  source: unknown,
+): ReplayInputSource {
+  if (!isRecord(source)) {
+    throw new ReplayFingerprintError(
+      ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+      'replay_input',
+      'Replay input sources must be registered content or ledger addresses',
+      { stage: 'replay-input-source' },
+    );
+  }
+  if (source.kind === 'content-addressed') {
+    try {
+      return Object.freeze({
+        kind: 'content-addressed',
+        value: immutableJsonClone(source.value as JsonValue),
+      });
+    } catch {
+      throw new ReplayFingerprintError(
+        ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+        'replay_input',
+        'Content-addressed replay input is not canonical JSON content',
+        { stage: 'replay-input-source-' + key },
+      );
+    }
+  }
+  if (
+    source.kind === 'ledger-event'
+    && Number.isSafeInteger(source.sequence)
+    && (source.sequence as number) > 0
+    && typeof source.eventType === 'string'
+    && typeof source.payloadField === 'string'
+  ) {
+    assertDeterministicReplayInputKey(source.payloadField);
+    return Object.freeze({
+      kind: 'ledger-event',
+      sequence: source.sequence as number,
+      eventType: validateEventTypeNamespace(source.eventType),
+      payloadField: source.payloadField,
+    });
+  }
+  throw new ReplayFingerprintError(
+    ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+    'replay_input',
+    'Replay input source is incomplete or is not ledger/content-addressed',
+    { stage: 'replay-input-source-' + key },
+  );
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -85,6 +146,28 @@ export class ReplayComponentRegistry<TState extends JsonObject> {
           { stage: 'required-replay-inputs' },
         );
       }
+      const externalReplayInputKeys = requiredReplayInputKeys.filter(
+        (key) => key !== INITIAL_STATE_REPLAY_INPUT,
+      );
+      const candidateSources = definition.replayInputSources ?? {};
+      const sourceKeys = Object.keys(candidateSources);
+      if (
+        sourceKeys.length !== externalReplayInputKeys.length
+        || sourceKeys.some((key) => !externalReplayInputKeys.includes(key))
+        || externalReplayInputKeys.some((key) => !sourceKeys.includes(key))
+        || (externalReplayInputKeys.length > 0 && typeof definition.bindReplayInputs !== 'function')
+      ) {
+        throw new ReplayFingerprintError(
+          ReplayFingerprintErrorCodes.NONDETERMINISTIC_INPUT,
+          'replay_input',
+          'Every non-initial replay input requires one registered source and reducer binding',
+          { stage: 'replay-input-provenance' },
+        );
+      }
+      const replayInputSources: Record<string, ReplayInputSource> = Object.create(null);
+      for (const key of externalReplayInputKeys) {
+        replayInputSources[key] = normalizeReplayInputSource(key, candidateSources[key]);
+      }
       const key = componentKey(reducerId, reducerVersion, projectionSchemaVersion);
       if (registered.has(key)) {
         throw new ReplayFingerprintError(
@@ -100,6 +183,10 @@ export class ReplayComponentRegistry<TState extends JsonObject> {
         projectionSchemaVersion,
         requiredReplayInputKeys: Object.freeze(requiredReplayInputKeys),
         reducerRegistry: definition.reducerRegistry,
+        replayInputSources: Object.freeze(replayInputSources),
+        ...(definition.bindReplayInputs
+          ? { bindReplayInputs: definition.bindReplayInputs }
+          : {}),
       }));
     }
     this.#definitions = registered;

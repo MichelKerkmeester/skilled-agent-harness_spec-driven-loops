@@ -8,7 +8,9 @@ import {
 } from '../authorized-ledger/index.js';
 import {
   CURRENT_ENVELOPE_VERSION,
+  canonicalBytes,
   prepareEventWrite,
+  sha256Bytes,
 } from '../event-envelope/index.js';
 import {
   parseReplayFingerprintDescriptor,
@@ -157,8 +159,20 @@ export function parseReplayFingerprintAttestationPayload(
   const calculatedBytes = implementation.serializeDescriptor(descriptor, true);
   if (
     Buffer.compare(Buffer.from(descriptorBytes), Buffer.from(calculatedBytes)) !== 0
-    || input.final_digest !== descriptor.final_digest
-    || input.ledger_id !== descriptor.ledger_id
+  ) {
+    throw new ReplayFingerprintError(
+      ReplayFingerprintErrorCodes.ATTESTATION_INVALID,
+      'attestation',
+      'Attested descriptor bytes do not match the canonical descriptor',
+      {
+        expectedDigest: sha256Bytes(calculatedBytes),
+        actualDigest: sha256Bytes(descriptorBytes),
+        stage: 'descriptor-bytes-binding',
+      },
+    );
+  }
+  if (
+    input.ledger_id !== descriptor.ledger_id
     || input.run_id !== descriptor.run_id
     || input.range_start_sequence !== descriptor.range_start_sequence
     || input.range_end_sequence !== descriptor.range_end_sequence
@@ -166,11 +180,33 @@ export function parseReplayFingerprintAttestationPayload(
     throw new ReplayFingerprintError(
       ReplayFingerprintErrorCodes.ATTESTATION_INVALID,
       'attestation',
-      'Attestation metadata or bytes do not match its canonical descriptor',
+      'Attestation lookup metadata does not match its canonical descriptor',
       {
-        expectedDigest: typeof input.final_digest === 'string' ? input.final_digest : null,
-        actualDigest: descriptor.final_digest,
-        stage: 'attestation-binding',
+        expectedDigest: sha256Bytes(canonicalBytes({
+          ledger_id: descriptor.ledger_id,
+          run_id: descriptor.run_id,
+          range_start_sequence: descriptor.range_start_sequence,
+          range_end_sequence: descriptor.range_end_sequence,
+        })),
+        actualDigest: sha256Bytes(canonicalBytes({
+          ledger_id: String(input.ledger_id),
+          run_id: String(input.run_id),
+          range_start_sequence: String(input.range_start_sequence),
+          range_end_sequence: String(input.range_end_sequence),
+        })),
+        stage: 'attestation-metadata-binding',
+      },
+    );
+  }
+  if (input.final_digest !== descriptor.final_digest) {
+    throw new ReplayFingerprintError(
+      ReplayFingerprintErrorCodes.ATTESTATION_INVALID,
+      'final_digest',
+      'Attestation final digest does not match its canonical descriptor',
+      {
+        expectedDigest: descriptor.final_digest,
+        actualDigest: typeof input.final_digest === 'string' ? input.final_digest : null,
+        stage: 'attestation-digest-binding',
       },
     );
   }

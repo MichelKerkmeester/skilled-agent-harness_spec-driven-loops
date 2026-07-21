@@ -11,6 +11,7 @@ import type {
   EventProducer,
   EventWritePreflight,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -61,7 +62,15 @@ export interface DerivedReplayFingerprint<TState extends JsonObject> {
 // 2. VERSION AND REPLAY COMPONENT REGISTRIES
 // ───────────────────────────────────────────────────────────────────
 
-/** One immutable historical descriptor implementation. */
+/**
+ * One immutable historical descriptor implementation.
+ *
+ * Registration derives an implementation identity and probes repeated bytes,
+ * field coverage, final-commitment separation, and map-order neutrality. The
+ * extension point remains controlled code: serializers must not consult I/O,
+ * locale, timezone, process state, or mutable environment state because those
+ * closure capabilities cannot be proven absent by JavaScript at runtime.
+ */
 export interface FingerprintVersionDefinition {
   readonly fingerprintVersion: number;
   readonly hashAlgorithm: 'sha256';
@@ -72,6 +81,25 @@ export interface FingerprintVersionDefinition {
   ) => Uint8Array;
 }
 
+/** Immutable inline content whose canonical bytes define its replay-input digest. */
+export interface ContentAddressedReplayInputSource {
+  readonly kind: 'content-addressed';
+  readonly value: JsonValue;
+}
+
+/** Exact verified ledger payload field that supplies a replay input. */
+export interface LedgerEventReplayInputSource {
+  readonly kind: 'ledger-event';
+  readonly sequence: number;
+  readonly eventType: string;
+  readonly payloadField: string;
+}
+
+/** Proven source forms from which derivation computes replay-input digests. */
+export type ReplayInputSource =
+  | ContentAddressedReplayInputSource
+  | LedgerEventReplayInputSource;
+
 /** Registered reducer identity and its exact replay-input contract. */
 export interface ReplayComponentDefinition<TState extends JsonObject> {
   readonly reducerId: string;
@@ -79,6 +107,16 @@ export interface ReplayComponentDefinition<TState extends JsonObject> {
   readonly projectionSchemaVersion: string;
   readonly requiredReplayInputKeys: readonly string[];
   readonly reducerRegistry: TypedReducerRegistry<TState>;
+  readonly replayInputSources?: Readonly<Record<string, ReplayInputSource>>;
+  /**
+   * Construct reducers from the exact immutable values resolved by derivation.
+   * Registered reducers must be pure functions of verified events and these
+   * provided values. Unregistered closure state is a controlled-registration
+   * and code-review trust boundary because JavaScript cannot inspect closures.
+   */
+  readonly bindReplayInputs?: (
+    replayInputs: Readonly<Record<string, JsonValue>>,
+  ) => TypedReducerRegistry<TState>;
 }
 
 /** Caller values accepted only after exact component-registry resolution. */
@@ -147,6 +185,7 @@ export type ReplayFingerprintComponent =
   | 'ledger'
   | 'range'
   | 'stored'
+  | 'authorization_linkage'
   | 'envelope_registry'
   | 'observed_event_versions'
   | 'upcaster_registry'

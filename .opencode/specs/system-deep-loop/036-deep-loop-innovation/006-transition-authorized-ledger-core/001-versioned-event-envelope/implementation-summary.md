@@ -12,9 +12,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-led
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope"
-    last_updated_at: "2026-07-20T22:48:33Z"
+    last_updated_at: "2026-07-20T23:57:37Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the additive-dark versioned event envelope"
+    recent_action: "Hardened registry digest ordering against host locale drift"
     next_safe_action: "Let the typed-ledger and authorization siblings consume the frozen preflight contracts"
     blockers: []
     key_files:
@@ -113,7 +113,7 @@ UPCAST_AMBIGUOUS_DEFAULT
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation is additive and dark. Six new runtime-library modules and two new test/fixture files were added; existing runtime code, JSONL writers, producer schemas, authorization code, ledger code, and fingerprint code were not edited. The public API has no reference from the authoritative legacy runtime path.
+The implementation remains additive and dark. The adversarial hardening replaced both registry `localeCompare` calls with an explicit code-unit total order, leaving the public envelope API, stored bytes, authorized-ledger core, legacy writers, and authority paths unchanged. A child-process fixture reverses `String.prototype.localeCompare`, sets a hostile locale environment, and still reproduces the parent registry digest and inspection order.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -127,6 +127,7 @@ The implementation is additive and dark. Six new runtime-library modules and two
 | Probe each upcaster at registration and retain read-time repeat checks | Registration rejects input mutation and byte-unstable output on deep-frozen inputs; the read boundary repeats execution as defense in depth |
 | Keep callable upcasters outside the public registry surface | `resolve()` and `inspect()` return deep-frozen function-free clones, and the public `chain()` bypass no longer exists |
 | Bind validator implementation source into schema identity | Each payload contract exposes a validator digest and schema digest, and the registry digest changes when validator semantics change |
+| Order registry entries by explicit code units | Registry digest and inspection order are independent of the host's default collation and remain byte-identical when locale collation is reversed |
 | Enforce non-empty `correlation_id` and nullable `causation_id` | This follows the stricter ratified transition policy when its correlation rule conflicts with the leaf's earlier nullable wording |
 <!-- /ANCHOR:decisions -->
 
@@ -135,19 +136,20 @@ The implementation is additive and dark. Six new runtime-library modules and two
 
 | Check | Result |
 |-------|--------|
-| Targeted runtime Vitest | PASS: 1 file, 56 tests passed, 0 failed |
+| Targeted runtime Vitest | PASS: 1 file, 57 tests passed, 0 failed |
+| Hostile-locale child process | PASS: reversed `localeCompare` plus `LANG`/`LC_ALL=tr_TR.UTF-8` reproduced the parent inspection order and registry digest |
+| Envelope + ledger + fingerprint matrix | PASS: 3 files, 115 tests passed, 0 failed |
 | Runtime TypeScript typecheck | PASS: exit 0 |
-| Alignment drift | PASS: 6 files scanned, 0 findings, 0 warnings |
-| Comment hygiene | PASS: 8 new TypeScript files, exit 0 |
+| Alignment drift | PASS: 14 scoped envelope/fingerprint source and test files scanned, 0 findings, 0 warnings |
+| Comment hygiene | PASS: all 10 modified TypeScript source/test files, exit 0 |
 | Node syntax check | N/A: this leaf added no `.cjs` files |
-| Full runtime suite | OUT OF SCOPE: 100 failures are pre-existing at BASE from the missing `better-sqlite3` dependency and kebab-rename fixture mismatches; baseline hygiene and the phase-016 gate own them |
-| Additive-dark check | PASS: finalization modifies only the event-envelope surface, its focused test, and the three authorized leaf-doc packets; the sibling ledger/gateway core and legacy writers remain unchanged |
+| Additive-dark check | PASS: the authorized-ledger core and existing writers are unchanged; the replay-fingerprint sibling consumes the corrected digest without moving authority |
 | Strict packet validation | PASS: exit 0, Errors 0, Warnings 0 |
 
 Commands:
 
 ```bash
-.opencode/skills/system-spec-kit/mcp-server/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts .opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts
+(cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts ../../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts ../../system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts)
 .opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
 python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/event-envelope --root .opencode/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts --root .opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope --strict
@@ -159,5 +161,5 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/s
 
 1. **Dark by design.** No authoritative legacy writer uses the API. The authorization gateway and typed ledger must integrate it in their own scoped leaves.
 2. **Upcaster no-I/O/no-emission is a trust-boundary contract.** JavaScript cannot prove the purity of closure-captured capabilities. Registration enforces deterministic canonical output on repeated deep-frozen inputs and rejects input mutation; controlled-module review owns the remaining capability restriction.
-3. **Full-suite environment debt remains.** The runtime baseline has 100 unrelated failures from absent `better-sqlite3`, generated command assets, and kebab-rename fixture mismatches. The accepted focused gate is unaffected and the baseline debt remains owned by the phase-016 gate.
+3. **Cross-platform scope.** The determinism proof crosses a real child process and hostile collation/locale settings on the supported Node runtime; it does not claim a second operating-system execution.
 <!-- /ANCHOR:limitations -->

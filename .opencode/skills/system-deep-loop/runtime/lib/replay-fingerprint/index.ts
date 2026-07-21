@@ -35,8 +35,10 @@ export {
 export type { DeriveReplayFingerprintInput } from './derive-replay-fingerprint.js';
 export type { VerifyReplayFingerprintInput } from './verify-replay-fingerprint.js';
 export type {
+  ContentAddressedReplayInputSource,
   DerivedReplayFingerprint,
   FingerprintVersionDefinition,
+  LedgerEventReplayInputSource,
   ReplayComponentDefinition,
   ReplayExecutionInput,
   ReplayFingerprintAttestationEnvelopeInput,
@@ -50,5 +52,6 @@ export type {
   ReplayFingerprintErrorCode,
   ReplayFingerprintFailure,
   ReplayFingerprintVerificationResult,
+  ReplayInputSource,
   VerifiedReplayFingerprint,
 } from './replay-fingerprint-types.js';
