@@ -10,9 +10,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service"
-    last_updated_at: "2026-07-21T00:39:00Z"
+    last_updated_at: "2026-07-21T02:07:00Z"
     last_updated_by: "codex"
-    recent_action: "Completed additive-dark adjudication runtime and verification"
+    recent_action: "Completed adversarial hardening and focused verification"
     next_safe_action: "Consume the dark adapter in the later shadow-parity phase"
     blockers: []
     key_files:
@@ -66,12 +66,12 @@ envelope, while the phase-004 ADR's scoring separation and raw-evidence retentio
 
 - **Request gateway**: validates `AdjudicationRequest`, candidate/reference digests, judge and counterfactual policy versions, quorum/tie rules, and replay fingerprint before authorizing an event.
 - **Identity vault boundary**: stores the candidate-to-opaque-label map separately; routine judge, reducer, and mode-adapter capabilities cannot read it.
-- **Blinding registrar**: emits per-assignment opaque labels, randomized order, masked provenance/confidence/authority cues, and a transformation manifest constrained to content-preserving rules.
-- **Assignment planner**: creates mirrored A/B and B/A comparisons plus policy-declared counterfactual probes; assignment IDs are stable for replay while presentation labels are scoped to prevent cross-assignment inference.
-- **Judge gateway**: enforces producer/judge separation, captures raw preference or rubric scores, rationale/evidence locators, uncertainty, tie/abstention/invalid states, and immutable judge-policy identity.
-- **Counterfactual evaluator**: links baseline and intervention judgments, classifies flip/no-flip/indeterminate, and refuses stability when a required probe is absent or invalid.
+- **Blinding registrar**: emits randomized assignment-local opaque labels and normalized merit content only; stable run/pair/order/counterfactual linkage remains sealed, and unsafe provenance/confidence/instruction prose fails closed.
+- **Assignment planner**: creates mirrored A/B and B/A comparisons plus mode-mandated counterfactual probes; cryptographic nonces and randomized return order prevent judges from decoding a deterministic forward/reverse sequence while internal events retain replay linkage.
+- **Judge gateway**: binds the complete planned profile and producer-equivalence eligibility basis, rechecks both at submission, and captures immutable raw preference, rationale/evidence locators, uncertainty, and explicit non-preference states.
+- **Counterfactual evaluator**: links baseline and intervention judgments internally, classifies flip/no-flip/indeterminate, and refuses stability until every pair has the decision kind's complete mandated probe set.
 - **Versioned reducer**: folds ordered ledger events into pairwise graph, ties, cycles, vetoes, minority evidence, effective-independence evidence, and stable/unstable/inconclusive verdict without deleting component scores.
-- **Audit/deblinding gateway**: permits separately authorized post-verdict identity resolution and records purpose, actor, scope, and result as events.
+- **Audit/deblinding gateway**: delegates authentication and authorization to a trusted injected boundary, accepts only its authenticated principal/capability proof, and records the caller claim, principal, capability, method, purpose, scope, and result before post-verdict identity resolution.
 - **Mode adapters**: translate typed mode decisions into requests and translate service verdicts into mode-owned transition inputs; adapters cannot weaken blinding or recompute winners.
 <!-- /ANCHOR:architecture -->
 

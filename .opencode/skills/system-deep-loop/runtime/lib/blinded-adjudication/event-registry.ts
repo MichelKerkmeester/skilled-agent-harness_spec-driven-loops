@@ -210,15 +210,18 @@ function validateTransformation(value: unknown, field: string): void {
     'presentedContentDigest',
   ], field);
   requireIdentity(value.policyVersion, `${field}.policyVersion`);
-  if (value.transformation !== 'identity') throw new TypeError('unsupported transformation');
-  const source = requireDigest(value.sourceContentDigest, `${field}.sourceContentDigest`);
-  const presented = requireDigest(value.presentedContentDigest, `${field}.presentedContentDigest`);
-  if (source !== presented) throw new TypeError('presentation changed candidate content');
+  if (value.transformation !== 'merit-content-normalization') {
+    throw new TypeError('unsupported transformation');
+  }
+  requireDigest(value.sourceContentDigest, `${field}.sourceContentDigest`);
+  requireDigest(value.presentedContentDigest, `${field}.presentedContentDigest`);
 }
 
 function validatePresentationData(data: Record<string, unknown>): void {
   assertClosedKeys(data, [
+    'adjudication_id',
     'assignment_id',
+    'judge_assignment_id',
     'pair_id',
     'order',
     'opaque_labels',
@@ -228,7 +231,9 @@ function validatePresentationData(data: Record<string, unknown>): void {
     'baseline_assignment_id',
     'counterfactual_token_digest',
   ], 'data');
+  requireIdentity(data.adjudication_id, 'data.adjudication_id');
   requireIdentity(data.assignment_id, 'data.assignment_id');
+  requireIdentity(data.judge_assignment_id, 'data.judge_assignment_id');
   requireIdentity(data.pair_id, 'data.pair_id');
   if (typeof data.order !== 'string' || !ORDER_SET.has(data.order)) throw new TypeError('bad order');
   const labels = requireArray(data.opaque_labels, 'data.opaque_labels');
@@ -486,6 +491,7 @@ function validateReductionData(data: Record<string, unknown>): void {
 
 function validateVerdictData(data: Record<string, unknown>): void {
   assertClosedKeys(data, [
+    'verdict_evidence_id',
     'decision_kind',
     'status',
     'preferred_candidate_digest',
@@ -498,8 +504,11 @@ function validateVerdictData(data: Record<string, unknown>): void {
     'cycles',
     'veto_evidence_ids',
     'independence',
+    'replay_fingerprint',
+    'legacy_authority',
     'service_authority',
   ], 'data');
+  requireIdentity(data.verdict_evidence_id, 'data.verdict_evidence_id');
   if (typeof data.decision_kind !== 'string' || !DECISION_KIND_SET.has(data.decision_kind)) {
     throw new TypeError('unsupported decision kind');
   }
@@ -526,6 +535,8 @@ function validateVerdictData(data: Record<string, unknown>): void {
     throw new TypeError('only stable verdicts may carry a preferred candidate');
   }
   validateIndependence(data.independence);
+  requireDigest(data.replay_fingerprint, 'data.replay_fingerprint');
+  if (data.legacy_authority !== 'canonical') throw new TypeError('legacy authority changed');
   if (data.service_authority !== 'shadow-only') throw new TypeError('service cannot be authoritative');
 }
 
@@ -537,13 +548,19 @@ function validateInvalidationData(data: Record<string, unknown>): void {
 
 function validateDeblindingData(data: Record<string, unknown>): void {
   assertClosedKeys(data, [
-    'actor_id',
+    'caller_claim',
+    'authenticated_principal_id',
+    'authorization_capability_id',
+    'authentication_method',
     'purpose',
     'scope_candidate_digests',
     'identity_map_version',
     'result',
   ], 'data');
-  requireIdentity(data.actor_id, 'data.actor_id');
+  requireIdentity(data.caller_claim, 'data.caller_claim');
+  requireNullableIdentity(data.authenticated_principal_id, 'data.authenticated_principal_id');
+  requireNullableIdentity(data.authorization_capability_id, 'data.authorization_capability_id');
+  requireNullableIdentity(data.authentication_method, 'data.authentication_method');
   requireString(data.purpose, 'data.purpose');
   requireArray(data.scope_candidate_digests, 'data.scope_candidate_digests')
     .forEach((digest, index) => requireDigest(digest, `data.scope_candidate_digests[${index}]`));
@@ -595,7 +612,14 @@ function validateRequestPayload(payload: Readonly<JsonObject>): void {
 
 function validatePresentationPayload(payload: Readonly<JsonObject>): void {
   if (payload.judge_assignment_id === null) throw new TypeError('presentation requires assignment');
-  validatePresentationData(validateCommon(payload));
+  const data = validateCommon(payload);
+  validatePresentationData(data);
+  if (
+    data.adjudication_id !== payload.adjudication_id
+    || data.judge_assignment_id !== payload.judge_assignment_id
+  ) {
+    throw new TypeError('presentation data does not match its common linkage fields');
+  }
 }
 
 function validateRawScorePayload(payload: Readonly<JsonObject>): void {
@@ -620,7 +644,15 @@ function validateReductionPayload(payload: Readonly<JsonObject>): void {
 
 function validateVerdictPayload(payload: Readonly<JsonObject>): void {
   if (payload.judge_assignment_id !== null) throw new TypeError('verdict cannot impersonate a judge');
-  validateVerdictData(validateCommon(payload));
+  const data = validateCommon(payload);
+  validateVerdictData(data);
+  if (
+    data.verdict_evidence_id !== payload.evidence_id
+    || data.replay_fingerprint !== payload.replay_fingerprint
+    || data.legacy_authority !== payload.legacy_authority
+  ) {
+    throw new TypeError('verdict data does not match its common evidence fields');
+  }
 }
 
 function validateInvalidationPayload(payload: Readonly<JsonObject>): void {

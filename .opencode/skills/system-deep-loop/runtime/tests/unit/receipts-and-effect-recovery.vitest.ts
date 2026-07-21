@@ -35,6 +35,12 @@ import {
   deriveReplayFingerprint,
 } from '../../lib/replay-fingerprint/index.js';
 import {
+  AtomicityDomains,
+  FencedLeaseCoordinator,
+  FencedLedgerWriter,
+  ProtectedResourceKinds,
+} from '../../lib/locks-and-fencing/index.js';
+import {
   AuthorizedEvidenceWriter,
   BoundaryReceiptIssuer,
   CertificationProviderRegistry,
@@ -74,21 +80,27 @@ import type {
   AuthoritySnapshot,
   PolicyEvaluationInput,
   PolicyEvaluationResult,
+  VerifiedLedgerEvent,
 } from '../../lib/authorized-ledger/index.js';
 import type {
   EventTypeRegistry,
   JsonObject,
+  JsonValue,
 } from '../../lib/event-envelope/index.js';
+import type { FencedLease } from '../../lib/locks-and-fencing/index.js';
 import type {
   AtomicFileEffectRequest,
   BoundaryKind,
   BoundaryReceiptPayload,
   CertificationProfile,
   EffectAdapter,
+  EffectConfirmationPayload,
   EffectExecutionInput,
+  EffectIntentPayload,
   EffectObservation,
   EffectRecoveryClaim,
   EffectReconciliationObservation,
+  EffectReconciledPayload,
   RecoveryVerdict,
 } from '../../lib/receipts-and-effect-recovery/index.js';
 
@@ -116,6 +128,7 @@ interface Harness {
   readonly registry: EventTypeRegistry;
   readonly policies: TransitionPolicyRegistry;
   readonly ledger: AppendOnlyLedger;
+  readonly ledgerLease: Promise<FencedLease>;
   readonly writer: AuthorizedEvidenceWriter;
 }
 
@@ -171,8 +184,27 @@ function createHarness(
     auditLedgerId: 'dark-evidence-authorization',
     authorityProvider: () => AUTHORITY,
   }, ledger, policies);
+  const coordinator = new FencedLeaseCoordinator({
+    rootDirectory,
+    operationTimeoutMs: 5_000,
+  });
+  const ledgerLease = coordinator.acquire({
+    resource: {
+      kind: ProtectedResourceKinds.LEDGER,
+      components: { ledgerId: ledger.ledgerId },
+      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+    },
+    ownerId: 'receipt-effect-writer',
+    correlationId: `receipt-effect-${label}`,
+    ttlMs: 300_000,
+    acquireTimeoutMs: 5_000,
+  });
   const writer = new AuthorizedEvidenceWriter({
     ledger,
+    ledgerFence: {
+      writer: new FencedLedgerWriter(coordinator),
+      currentLease: () => ledgerLease,
+    },
     gateway,
     policies,
     registry,
@@ -188,7 +220,94 @@ function createHarness(
       evidenceDigest: event.canonicalDigest,
     }),
   });
-  return { rootDirectory, registry, policies, ledger, writer };
+  return { rootDirectory, registry, policies, ledger, ledgerLease, writer };
+}
+
+function createIndependentWriter(harness: Harness): AuthorizedEvidenceWriter {
+  const coordinator = new FencedLeaseCoordinator({
+    rootDirectory: harness.rootDirectory,
+    operationTimeoutMs: 5_000,
+  });
+  const gateway = new TransitionAuthorizationGateway({
+    rootDirectory: harness.rootDirectory,
+    auditLedgerId: 'dark-evidence-authorization',
+    authorityProvider: () => AUTHORITY,
+  }, harness.ledger, harness.policies);
+  return new AuthorizedEvidenceWriter({
+    ledger: harness.ledger,
+    ledgerFence: {
+      writer: new FencedLedgerWriter(coordinator),
+      currentLease: () => harness.ledgerLease,
+    },
+    gateway,
+    policies: harness.policies,
+    registry: harness.registry,
+    authorizationContext: (event) => ({
+      mode: 'research',
+      priorStateVersion: 'dark-state@1',
+      priorStateFingerprint: STATE_FINGERPRINT,
+      actorId: 'dark-service',
+      capabilityId: 'write',
+      authorityEpoch: event.identity.authorityEpoch,
+      policyId: 'dark-evidence-policy',
+      policyVersion: 1,
+      evidenceDigest: event.canonicalDigest,
+    }),
+  });
+}
+
+function effectEventId(prefix: string, value: JsonValue): string {
+  return `${prefix}-${sha256Bytes(canonicalBytes(value))}`;
+}
+
+async function appendConfirmationFixture(
+  harness: Harness,
+  payload: EffectConfirmationPayload,
+  options: Readonly<{
+    eventId?: string;
+    streamId?: string;
+    streamSequence?: number;
+  }> = {},
+): Promise<void> {
+  const event = prepareEventWrite({
+    envelope_version: CURRENT_ENVELOPE_VERSION,
+    event_id: options.eventId ?? payload.confirmation_id,
+    event_type: EFFECT_CONFIRMATION_EVENT_TYPE,
+    event_version: 1,
+    stream_id: options.streamId ?? 'recoverable-effect:run-1:logical-effect-1',
+    stream_sequence: options.streamSequence ?? 2,
+    occurred_at: payload.observed_at,
+    recorded_at: payload.observed_at,
+    producer: PRODUCER,
+    authority_epoch: 1,
+    correlation_id: 'effect-correlation',
+    causation_id: payload.intent_event_id,
+    idempotency_key: `${payload.idempotency_key}:confirmation:fixture`,
+    payload,
+  }, harness.registry);
+  await harness.writer.append(event);
+}
+
+function confirmationFixture(
+  key: string,
+  adapter: EffectAdapter['descriptor'],
+  overrides: Readonly<Partial<EffectConfirmationPayload>> = {},
+): EffectConfirmationPayload {
+  return Object.freeze({
+    confirmation_id: effectEventId('effect-confirmation', key),
+    effect_id: effectEventId('effect', key),
+    intent_event_id: effectEventId('effect-intent', key),
+    intent_event_digest: EVIDENCE_DIGEST,
+    idempotency_key: key,
+    adapter,
+    external_receipt_digest: sha256Bytes(canonicalBytes({ key, receipt: true })),
+    postcondition_digest: POSTCONDITION_DIGEST,
+    output_digest: sha256Bytes(canonicalBytes({ output: 'fixture' })),
+    completion_class: 'executed',
+    observed_at: T2,
+    safe_result_metadata: Object.freeze({ result_kind: 'fixture' }),
+    ...overrides,
+  });
 }
 
 function durableProfile(keyId = 'receipt-key-1'): CertificationProfile {
@@ -305,7 +424,6 @@ function observation(
   observedAt = T2,
 ): EffectObservation {
   return Object.freeze({
-    durability: 'verified',
     external_receipt_digest: sha256Bytes(canonicalBytes({ intentKey })),
     postcondition_digest: POSTCONDITION_DIGEST,
     output_digest: sha256Bytes(canonicalBytes({ output: 'fixture' })),
@@ -366,14 +484,17 @@ function effectGateway(
     afterEffectBeforeConfirmation?: () => void;
     maxRecoveryAttempts?: number;
     validateClaim?: (candidate: Readonly<EffectRecoveryClaim>) => boolean;
+    writer?: AuthorizedEvidenceWriter;
+    intentRaceWaitMs?: number;
   }> = {},
 ): EffectRecoveryGateway {
   return new EffectRecoveryGateway({
-    writer: harness.writer,
+    writer: options.writer ?? harness.writer,
     registry: harness.registry,
     producer: PRODUCER,
     now: () => new Date(T3),
     maxRecoveryAttempts: options.maxRecoveryAttempts,
+    intentRaceWaitMs: options.intentRaceWaitMs,
     validateRecoveryClaim: (candidate) =>
       options.validateClaim?.(candidate) ?? candidate.fence_token === 'fence-1',
     faultInjection: {
@@ -400,11 +521,7 @@ function fileFixture(label: string, relativePath = 'published.txt'): FileFixture
       operation: 'publish-file',
       targetIdentity: atomicFileTargetIdentity(request.relativePath),
       request,
-      canonicalInput: {
-        relative_path: request.relativePath,
-        content: request.content,
-        expected_prior_digest: request.expectedPriorDigest,
-      },
+      canonicalInput: { ...request },
       expectedPostconditionDigest: contentDigest,
       safeMetadata: { publication_kind: 'fixture' },
     },
@@ -702,6 +819,114 @@ describe('effect ordering and idempotency', () => {
     ]);
   });
 
+  it('elects one subprocess execution owner across independent gateway processes', async () => {
+    const harness = createHarness('subprocess-process-race');
+    const secondWriter = createIndependentWriter(harness);
+    let dispatches = 0;
+    let applied: EffectObservation | null = null;
+    const createAdapter = (): EffectAdapter<ApiRequest> => createSubprocessEffectAdapter<ApiRequest>({
+      adapterId: 'process-race-subprocess',
+      adapterVersion: '1',
+      hasDurableOutcomeQuery: true,
+      async dispatch(_request, logicalInvocationId): Promise<EffectObservation> {
+        dispatches += 1;
+        applied = observation(logicalInvocationId);
+        return applied;
+      },
+      async queryOutcome(_request, logicalInvocationId): Promise<EffectReconciliationObservation> {
+        return {
+          verdict: applied ? 'applied' : 'not_applied',
+          reason_code: applied ? 'artifact_present' : 'artifact_absent',
+          evidence_digest: sha256Bytes(canonicalBytes({ logicalInvocationId, applied: !!applied })),
+          observed_at: T3,
+          observation: applied,
+        };
+      },
+    });
+    const execution = effectInput({
+      logicalEffectId: 'cross-process-subprocess',
+      targetIdentity: 'subprocess:cross-process-fixture',
+    });
+    const [first, second] = await Promise.all([
+      effectGateway(harness).execute(execution, createAdapter()),
+      effectGateway(harness, { writer: secondWriter }).execute(execution, createAdapter()),
+    ]);
+
+    expect(dispatches).toBe(1);
+    expect([first.status, second.status].sort()).toEqual(['confirmed', 'idempotent']);
+  });
+
+  it('elects one atomic-file execution owner across independent gateway processes', async () => {
+    const harness = createHarness('file-process-race');
+    const secondWriter = createIndependentWriter(harness);
+    const fixture = fileFixture('file-process-race-target');
+    let executions = 0;
+    const createAdapter = (): EffectAdapter<AtomicFileEffectRequest> => {
+      const adapter = createAtomicFileEffectAdapter({
+        rootDirectory: fixture.targetRoot,
+        now: () => new Date(T2),
+      });
+      return Object.freeze({
+        descriptor: adapter.descriptor,
+        execute(intent, request, key): Promise<EffectObservation> {
+          executions += 1;
+          return adapter.execute(intent, request, key);
+        },
+        reconcile: (intent, request) => adapter.reconcile(intent, request),
+      });
+    };
+    const [first, second] = await Promise.all([
+      effectGateway(harness).execute(fixture.execution, createAdapter()),
+      effectGateway(harness, { writer: secondWriter })
+        .execute(fixture.execution, createAdapter()),
+    ]);
+
+    expect(executions).toBe(1);
+    expect([first.status, second.status].sort()).toEqual(['confirmed', 'idempotent']);
+    expect(readFileSync(join(fixture.targetRoot, fixture.request.relativePath), 'utf8'))
+      .toBe(fixture.request.content);
+  });
+
+  it('fails closed when request bytes differ from the committed canonical input', async () => {
+    const harness = createHarness('request-canonical-mismatch');
+    const target = apiTarget();
+    await expect(effectGateway(harness).execute(effectInput({
+      request: { mutation: 'request-b' },
+      canonicalInput: { mutation: 'request-a' },
+    }), target.adapter)).rejects.toMatchObject({ code: ReceiptEffectErrorCodes.INVALID_INPUT });
+
+    expect(target.mutations()).toBe(0);
+    expect(await eventTypes(harness)).toEqual([]);
+  });
+
+  it('refuses an adapter-returned success that has no external status proof', async () => {
+    const harness = createHarness('lying-adapter');
+    let executions = 0;
+    const adapter = createSubprocessEffectAdapter<ApiRequest>({
+      adapterId: 'lying-subprocess',
+      adapterVersion: '1',
+      hasDurableOutcomeQuery: true,
+      async dispatch(): Promise<EffectObservation> {
+        executions += 1;
+        return observation('fabricated-success');
+      },
+      async queryOutcome(): Promise<EffectReconciliationObservation> {
+        return {
+          verdict: 'in_doubt',
+          reason_code: 'no_external_status',
+          evidence_digest: EVIDENCE_DIGEST,
+          observed_at: T3,
+          observation: null,
+        };
+      },
+    });
+
+    await expect(effectGateway(harness).execute(effectInput(), adapter))
+      .rejects.toMatchObject({ code: ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED });
+    expect(executions).toBe(1);
+    expect(await eventTypes(harness)).toEqual([EFFECT_INTENT_EVENT_TYPE]);
+  });
+
   it('records changed logical-effect facts as conflict without another mutation', async () => {
     const harness = createHarness('effect-conflict');
     const target = apiTarget();
@@ -751,6 +976,63 @@ describe('effect ordering and idempotency', () => {
     await expect(effectGateway(harness).execute(effectInput(), unsupported))
       .rejects.toMatchObject({ code: ReceiptEffectErrorCodes.ADAPTER_UNSUPPORTED });
     expect(await eventTypes(harness)).toEqual([]);
+  });
+
+  it('rejects an orphan confirmation before it can certify any effect', async () => {
+    const harness = createHarness('orphan-confirmation');
+    const target = apiTarget();
+    const key = deriveEffectIdempotencyKey(effectInput());
+    await appendConfirmationFixture(
+      harness,
+      confirmationFixture(key, target.adapter.descriptor),
+      { streamSequence: 1 },
+    );
+
+    await expect(effectGateway(harness).execute(effectInput(), target.adapter))
+      .rejects.toMatchObject({ code: ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED });
+    expect(target.mutations()).toBe(0);
+  });
+
+  it('rejects confirmation reuse when adapter facts do not match the intent', async () => {
+    const harness = createHarness('mismatched-confirmation');
+    const target = apiTarget();
+    const execution = effectInput();
+    await expect(effectGateway(harness, {
+      afterIntent: () => { throw new Error('stop after intent'); },
+    }).execute(execution, target.adapter)).rejects.toThrow('stop after intent');
+    const intentEvent = (await harness.writer.readVerifiedEvents()).find((event) =>
+      event.event.effective.envelope.event_type === EFFECT_INTENT_EVENT_TYPE) as VerifiedLedgerEvent;
+    const key = deriveEffectIdempotencyKey(execution);
+    await appendConfirmationFixture(harness, confirmationFixture(
+      key,
+      Object.freeze({ ...target.adapter.descriptor, adapter_id: 'reused-adapter-identity' }),
+      { intent_event_digest: intentEvent.event.stored.digest },
+    ), {
+      streamId: intentEvent.event.effective.envelope.stream_id,
+      streamSequence: 2,
+    });
+
+    await expect(effectGateway(harness).execute(execution, target.adapter))
+      .rejects.toMatchObject({ code: ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED });
+    expect(target.mutations()).toBe(0);
+  });
+
+  it('rejects duplicate confirmations instead of accepting the first match', async () => {
+    const harness = createHarness('duplicate-confirmation');
+    const target = apiTarget();
+    await effectGateway(harness).execute(effectInput(), target.adapter);
+    const confirmationEvent = (await harness.writer.readVerifiedEvents()).find((event) =>
+      event.event.effective.envelope.event_type === EFFECT_CONFIRMATION_EVENT_TYPE) as VerifiedLedgerEvent;
+    const payload = confirmationEvent.event.effective.envelope.payload as EffectConfirmationPayload;
+    await appendConfirmationFixture(harness, payload, {
+      eventId: `duplicate-${payload.confirmation_id}`,
+      streamId: confirmationEvent.event.effective.envelope.stream_id,
+      streamSequence: 3,
+    });
+
+    await expect(effectGateway(harness).execute(effectInput(), target.adapter))
+      .rejects.toMatchObject({ code: ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED });
+    expect(target.mutations()).toBe(1);
   });
 });
 
@@ -871,6 +1153,36 @@ describe('crash and recovery', () => {
     expect(target.mutations()).toBe(1);
   });
 
+  it.each(['not_applied', 'applied'] as const)(
+    'records successful %s recovery with confirmed terminal status',
+    async (initialVerdict) => {
+      const harness = createHarness(`terminal-${initialVerdict}`);
+      const target = apiTarget();
+      const crash = initialVerdict === 'applied'
+        ? effectGateway(harness, {
+          afterEffectBeforeConfirmation: () => { throw new Error('stop after application'); },
+        })
+        : effectGateway(harness, {
+          afterIntent: () => { throw new Error('stop after intent'); },
+        });
+      await expect(crash.execute(effectInput(), target.adapter)).rejects.toThrow();
+
+      const recovered = await effectGateway(harness).recover({
+        execution: effectInput(),
+        claim: claim(),
+        reasonCode: 'verify_terminal_transition',
+        startedAt: T2,
+      }, target.adapter);
+      expect(recovered.recovery.terminal_status).toBe('confirmed');
+      const durableRecovery = (await harness.writer.readVerifiedEvents()).find((event) =>
+        event.event.effective.envelope.event_type === EFFECT_RECONCILED_EVENT_TYPE
+        && (event.event.effective.envelope.payload as EffectReconciledPayload).recovery_id
+          === recovered.recovery.recovery_id);
+      expect(durableRecovery?.event.effective.envelope.payload)
+        .toMatchObject({ terminal_status: 'confirmed' });
+    },
+  );
+
   it('records in_doubt and requires operator action without replay or confirmation', async () => {
     const harness = createHarness('recover-in-doubt');
     const target = apiTarget('in_doubt');
@@ -898,6 +1210,69 @@ describe('crash and recovery', () => {
       resolvedAt: T3,
     })).resolves.toBeNull();
     expect(await eventTypes(harness)).toContain(EFFECT_OPERATOR_RESOLVED_EVENT_TYPE);
+  });
+
+  it('reconciles a repeated operator resolution after a post-execution crash', async () => {
+    const harness = createHarness('operator-resolution-retry');
+    let externalState: 'in_doubt' | 'not_applied' | 'applied' = 'in_doubt';
+    let executions = 0;
+    const adapter = createSubprocessEffectAdapter<ApiRequest>({
+      adapterId: 'operator-retry-subprocess',
+      adapterVersion: '1',
+      hasDurableOutcomeQuery: true,
+      async dispatch(_request, logicalInvocationId): Promise<EffectObservation> {
+        executions += 1;
+        externalState = 'applied';
+        return observation(logicalInvocationId);
+      },
+      async queryOutcome(_request, logicalInvocationId): Promise<EffectReconciliationObservation> {
+        return {
+          verdict: externalState,
+          reason_code: `operator_${externalState}`,
+          evidence_digest: sha256Bytes(canonicalBytes({ logicalInvocationId, externalState })),
+          observed_at: T3,
+          observation: externalState === 'applied'
+            ? observation(logicalInvocationId, T3)
+            : null,
+        };
+      },
+    });
+    const execution = effectInput({
+      logicalEffectId: 'operator-resolution-effect',
+      targetIdentity: 'subprocess:operator-resolution',
+    });
+    await expect(effectGateway(harness, {
+      afterIntent: () => { throw new Error('stop after intent'); },
+    }).execute(execution, adapter)).rejects.toThrow('stop after intent');
+    const recovered = await effectGateway(harness).recover({
+      execution,
+      claim: claim(),
+      reasonCode: 'operator_resolution_required',
+      startedAt: T2,
+    }, adapter);
+    expect(recovered.status).toBe('operator_required');
+    externalState = 'not_applied';
+    const resolution = {
+      execution,
+      adapter,
+      recoveryId: recovered.recovery.recovery_id,
+      operatorId: 'operator-1',
+      resolution: 'confirmed_not_applied' as const,
+      evidenceDigest: EVIDENCE_DIGEST,
+      resolvedAt: T3,
+    };
+    await expect(effectGateway(harness, {
+      afterEffectBeforeConfirmation: () => { throw new Error('stop after recovery execution'); },
+    }).resolveOperatorDecision(resolution)).rejects.toThrow('stop after recovery execution');
+    expect(executions).toBe(1);
+
+    await expect(effectGateway(harness, { intentRaceWaitMs: 0 })
+      .resolveOperatorDecision(resolution)).resolves.toMatchObject({
+        effect_id: effectEventId('effect', deriveEffectIdempotencyKey(execution)),
+      });
+    expect(executions).toBe(1);
+    expect((await eventTypes(harness)).filter((type) =>
+      type === EFFECT_OPERATOR_RESOLVED_EVENT_TYPE)).toHaveLength(1);
   });
 
   it('records conflicting target evidence and performs no mutation', async () => {
@@ -937,12 +1312,17 @@ describe('crash and recovery', () => {
           return observation(logicalInvocationId);
         },
         async queryOutcome(_request, logicalInvocationId): Promise<EffectReconciliationObservation> {
+          const observedVerdict = verdict === 'not_applied' && dispatches > 0
+            ? 'applied'
+            : verdict;
           return {
-            verdict,
-            reason_code: `subprocess_${verdict}`,
-            evidence_digest: sha256Bytes(canonicalBytes({ logicalInvocationId, verdict })),
+            verdict: observedVerdict,
+            reason_code: `subprocess_${observedVerdict}`,
+            evidence_digest: sha256Bytes(canonicalBytes({ logicalInvocationId, observedVerdict })),
             observed_at: T3,
-            observation: verdict === 'applied' ? observation(logicalInvocationId, T3) : null,
+            observation: observedVerdict === 'applied'
+              ? observation(logicalInvocationId, T3)
+              : null,
           };
         },
       });
@@ -1096,11 +1476,7 @@ describe('adapter conformance and replay', () => {
       operation: 'publish-file',
       targetIdentity: atomicFileTargetIdentity(request.relativePath),
       request,
-      canonicalInput: {
-        relative_path: request.relativePath,
-        content: request.content,
-        expected_prior_digest: request.expectedPriorDigest,
-      },
+      canonicalInput: { ...request },
       expectedPostconditionDigest: contentDigest,
       safeMetadata: { publication_kind: 'fixture' },
     };

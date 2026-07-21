@@ -92,6 +92,14 @@ export interface FencedMutationContext {
   readonly fenceTokens: readonly number[];
 }
 
+/** Side effect executed only after the coordinator revalidates the current fence. */
+export type FencedCommit<TResult> = () => TResult | Promise<TResult>;
+
+/** Side-effect-free preparation that returns the operation's fenced commit. */
+export type FencedMutationPreparation<TResult> = (
+  context: FencedMutationContext,
+) => FencedCommit<TResult> | Promise<FencedCommit<TResult>>;
+
 export interface CoordinatorFaultInjection {
   readonly afterJournalFsyncBeforeStateCommit?: () => void;
 }
@@ -103,7 +111,6 @@ export interface FencedLeaseCoordinatorOptions {
   readonly sleep?: (durationMs: number) => Promise<void>;
   readonly retryIntervalMs?: number;
   readonly operationTimeoutMs?: number;
-  readonly mutexTtlMs?: number;
   readonly telemetryCapacity?: number;
   readonly faultInjection?: CoordinatorFaultInjection;
 }
@@ -152,4 +159,3 @@ export interface ReplayIdentity {
 export type ReplayFingerprintSource<TState extends JsonObject = JsonObject> =
   | DerivedReplayFingerprint<TState>
   | VerifiedReplayFingerprint<TState>;
-

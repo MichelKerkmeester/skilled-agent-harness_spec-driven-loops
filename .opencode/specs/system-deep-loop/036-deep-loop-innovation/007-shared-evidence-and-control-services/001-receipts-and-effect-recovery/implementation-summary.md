@@ -10,9 +10,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
-    last_updated_at: "2026-07-21T00:42:48Z"
+    last_updated_at: "2026-07-21T02:08:42Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified dark boundary receipts and the effect-recovery gateway"
+    recent_action: "Closed execution-ownership and confirmation-integrity failures with adversarial coverage"
     next_safe_action: "Consume the dark service from a later authority-migration phase"
     blockers: []
     key_files:
@@ -55,13 +55,13 @@ The runtime can now certify every registered phase and mode boundary after its e
 | Module | Contract |
 |---|---|
 | `errors.ts` | Stable typed fail-closed error codes and phases. |
-| `types.ts` | Closed receipt, certification, intent, confirmation, adapter, claim, recovery, and operator-resolution contracts. |
-| `event-contracts.ts` | Twelve registered phase/mode boundaries plus seven validator-bound ledger event types. |
-| `authorized-writer.ts` | The single service-owned route from transition authorization to single-use authorized append and verified read-back. |
+| `types.ts` | Closed receipt, certification, intent, confirmation, adapter, claim, recovery, operator-resolution, and fenced-writer contracts. |
+| `event-contracts.ts` | Twelve registered phase/mode boundaries plus seven validator-bound ledger event types and full intent-to-confirmation binding. |
+| `authorized-writer.ts` | The single service-owned route from transition authorization through fenced expected-head append to verified read-back. |
 | `certification.ts` | Immutable exact-profile provider registry and provider-owned restart-verifiable HMAC certification. |
 | `boundary-receipts.ts` | Post-result issuance, stable identity, exact-repeat deduplication, fact conflict detection, and full receipt verification. |
 | `effect-adapters.ts` | Logical subprocess, atomic file, and provider-idempotent API adapters with explicit reconciliation capabilities. |
-| `effect-gateway.ts` | Authorization, intent-before-effect, verified confirmation, bounded recovery, claim/fence validation, and operator resolution. |
+| `effect-gateway.ts` | CAS-winner execution ownership, committed-request execution, externally reconciled confirmation, bounded recovery, and replay-safe operator resolution. |
 | `legacy-compatibility.ts` | Observe-only legacy surface manifest and advisory-only assessment of process-local dispatch MACs. |
 | `replay-projection.ts` | Typed reducers and replay-fingerprint components for results, receipts, effects, recovery, conflicts, and operator evidence. |
 | `index.ts` | Public service boundary. |
@@ -89,11 +89,13 @@ Every receipt follows its exact verified result, binds the prior and resulting l
 
 | Adapter | Idempotency and reconciliation | Positive, failure, and recovery evidence |
 |---|---|---|
-| Subprocess | Logical invocation identity and durable outcome query; PID state is never accepted | Normal confirmation, missing-query refusal, and all four recovery verdicts |
-| Atomic file | Target identity, expected prior digest, desired content digest, stable staging, fsync, atomic rename, and read-back | Normal publication plus all four recovery verdicts |
-| API | Provider idempotency key plus status/read-after-write query | Ordering, independent-gateway race, response loss, changed-input conflict, capability refusal, and all four verdicts |
+| Subprocess | Logical invocation identity and durable outcome query; PID state is never accepted | Independent-writer contention proves one dispatch without provider deduplication, plus all four recovery verdicts |
+| Atomic file | Target identity, expected prior digest, desired content digest, stable staging, fsync, atomic rename, and read-back | Independent-writer contention proves one adapter execution, plus all four recovery verdicts |
+| API | Provider idempotency key plus status/read-after-write query | Ordering, response loss, request-binding conflict, capability refusal, and all four verdicts |
 
-The gateway verifies authorization before intent append, makes intent visible before invoking an adapter, and returns success only after durable confirmation. Crash fixtures cover before intent, after intent, interrupted execution, after target application, after confirmation, and bounded recovery retry. `in_doubt` never auto-replays; `applied` synthesizes confirmation; `not_applied` executes once with the original key; `conflict` performs no gateway mutation.
+The gateway verifies authorization before intent append and treats the fenced expected-head append result as execution ownership. Only the append winner invokes the adapter; an idempotent-race caller waits for the winner's confirmation. The adapter receives the exact canonical request bytes committed by the intent, and every confirmation binds the actual intent event digest, effect ID, idempotency key, adapter identity, and declared postcondition. Confirmation creation and replay both require a conclusive external status query; a returned `verified` flag or digest tuple is not evidence by itself.
+
+Crash fixtures cover before intent, after intent, interrupted execution, after target application, after confirmation, and bounded recovery retry. Operator resolution reconciles before any `confirmed_not_applied` execution, so a crash after recovery execution is repaired by status query rather than a second invocation. Successful `applied` and `not_applied` recovery records `terminal_status: confirmed`; `in_doubt` never auto-replays and `conflict` performs no gateway mutation.
 
 ### Security, Replay, and Legacy Authority
 
@@ -115,7 +117,7 @@ Typed reducers reproduce the same final replay fingerprint for the same ledger r
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The service composes the frozen phase-006 event envelope, authorized ledger, transition gateway, and replay fingerprint without changing them. Every durable service event goes through `AuthorizedEvidenceWriter`; no convenience path calls the ledger directly.
+The service composes the event envelope, authorized ledger, transition gateway, replay fingerprint, and the locks-and-fencing expected-head writer without changing those substrates. Every durable service event goes through `AuthorizedEvidenceWriter`; no convenience path calls the ledger directly.
 
 ### Frozen Candidate Evidence
 
@@ -139,18 +141,18 @@ The key-free manifest fixture uses fixed UTC timestamps from `2026-07-21T10:00:0
 
 ### Additive-Dark Proof
 
-- The leaf adds only the new service directory, one focused test, and leaf documentation changes.
-- Path-scoped diffs for the consumed substrate and five legacy recovery surfaces are empty.
-- Existing writers and production selection points do not import the new public index.
-- Unrelated untracked sibling-leaf files appeared concurrently after the clean starting snapshot. This leaf neither modified nor consumed them; path-scoped evidence excludes them.
+- This hardening changes only the receipt/effect-recovery runtime directory, its focused unit test, and this leaf's documentation.
+- It consumes the public fenced expected-head append from the locks-and-fencing substrate; this change does not modify that substrate or any existing writer.
+- Existing writers and production selection points do not import the receipt/effect-recovery public index.
+- The worktree already contained tracked sibling-service and substrate edits at baseline. Global `git status` is therefore not a leaf-scope proof; the before/after path delta and path-scoped diff are the authoritative scope evidence.
 
 ### Manual Test Playbook
 
 1. Build a temporary ledger with the frozen event and policy registries. Issue all 12 boundary results and verify one following certified receipt per result.
 2. Reconstruct the certification registry, verify the stored receipt, mutate a bound fact, and confirm fail-closed rejection.
-3. Execute each hermetic adapter through the gateway and inspect verified event order: intent before invocation, confirmation before response.
-4. Inject each crash cut, resume with a current claim/fence, and confirm the recovery verdict precedes retry or confirmation synthesis.
-5. Present changed canonical input under the same logical effect identity and confirm a typed conflict with no second mutation.
+3. Race independent gateway, writer, and coordinator instances against one shared ledger; confirm one subprocess/file adapter execution and one canonical confirmation.
+4. Inject each crash cut, including after operator-resolution execution, then confirm recovery queries external state before any replay.
+5. Present request bytes that differ from `canonicalInput`, and inject orphan, duplicate, or fact-mismatched confirmations; confirm fail-closed rejection.
 6. Inspect ledger payloads for credentials, raw tokens, signing keys, unrestricted subprocess input, and API payloads. Only digests, bounded metadata, and secret references are permitted.
 7. Confirm the legacy surface manifest remains `legacy-authoritative` and `observe-only`, and no production selection point imports the service.
 <!-- /ANCHOR:how-delivered -->
@@ -162,9 +164,11 @@ The key-free manifest fixture uses fixed UTC timestamps from `2026-07-21T10:00:0
 
 | Decision | Why |
 |---|---|
-| Keep all service events behind one authorized writer | Authorization and single-use append proof must remain inseparable. |
-| Require conclusive reconciliation for replay-safe adapters | A local intent cannot prove whether an opaque external mutation committed. |
-| Record recovery verdict before retry action | A second crash must reveal why a retry or confirmation synthesis was allowed. |
+| Make the fenced intent-append winner the execution owner | Process-local locks cannot prevent independent processes from invoking the same logical effect. |
+| Execute the committed canonical request | An idempotency key for request A must never authorize execution of request B. |
+| Require conclusive reconciliation before confirmation | Adapter-returned flags and digest strings do not prove external truth. |
+| Validate the full intent-to-confirmation binding | A structurally valid orphan, duplicate, or reused confirmation must not certify another effect. |
+| Reconcile operator retries before execution | A crash after recovery execution must converge through external state instead of re-executing blindly. |
 | Treat process-local dispatch HMAC as advisory | Its secret is not a durable cross-resume trust root. |
 | Keep legacy authority unchanged | This leaf is evidence and recovery infrastructure, not a production cutover. |
 <!-- /ANCHOR:decisions -->
@@ -176,15 +180,11 @@ The key-free manifest fixture uses fixed UTC timestamps from `2026-07-21T10:00:0
 
 | Check | Result |
 |---|---|
-| Focused Vitest contract | PASS, exit `0`; 1 file and 46 tests |
-| Runtime TypeScript project | PASS, exit `0`; `tsc --noEmit -p runtime/tsconfig.json` |
-| Leaf-focused strict TypeScript | PASS, exit `0`; public index plus focused test |
+| Focused Vitest contract | PASS, exit `0`; 1 file and 56 tests, including 10 new adversarial cases |
+| Runtime TypeScript project | PASS, exit `0`; `tsc --noEmit --composite false -p runtime/tsconfig.json` |
 | Comment hygiene | PASS, exit `0`; all 11 service files and the focused test |
 | OpenCode alignment drift | PASS, exit `0`; 11 files and 0 findings |
-| Related shipped recovery slice | BASELINE, 5 files pass and 143/144 tests pass |
-| Strict spec validation | PASS, exit `0` |
-
-The related shipped slice has one known baseline failure: `fanout-salvage.vitest.ts` cannot import `better-sqlite3`. The operator assigned that dependency and the broader approximately 100-test runtime baseline to the phase-016 gate; this leaf's blocking test gate is the focused contract. No baseline dependency or fixture-name repair was attempted.
+| Strict spec validation | PASS, exit `0`; Errors `0`, Warnings `0` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -193,8 +193,8 @@ The related shipped slice has one known baseline failure: `fanout-salvage.vitest
 ## Known Limitations
 
 1. **Dark only.** No production effect path calls the service; a later migration phase must explicitly move authority.
-2. **External guarantees depend on the adapter.** Opaque outcomes become `in_doubt`; the gateway does not promise exactly-once behavior without target idempotency or conclusive reconciliation.
-3. **Runtime baseline remains externally blocked.** The missing `better-sqlite3` dependency still fails one related shipped test and remains owned by the phase-016 gate.
+2. **External guarantees depend on the adapter.** Winning the ledger CAS guarantees at-most-once logical gateway invocation. True external at-most-once additionally requires the adapter's own idempotency and conclusive external status/postcondition query; opaque outcomes remain `in_doubt`.
+3. **Contention wait is bounded.** A losing caller waits for the winner's confirmation and fails as unresolved if the owner crashes before confirming; recovery must then reconcile the durable intent.
 
 Rollback removes or disables dark service registration. Immutable dark evidence may remain; no legacy authority change needs reversal.
 <!-- /ANCHOR:limitations -->

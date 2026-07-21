@@ -56,7 +56,7 @@ export class FencedLedgerWriter {
         },
       );
     }
-    return this.#coordinator.withFence(request.lease, async () => {
+    return this.#coordinator.withFence(request.lease, () => async () => {
       const currentHead = await request.ledger.getVerifiedHead();
       if (
         currentHead.sequence !== request.expectedHead.sequence
@@ -77,4 +77,3 @@ export class FencedLedgerWriter {
     });
   }
 }
-

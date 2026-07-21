@@ -12,6 +12,10 @@ import {
   sha256Bytes,
 } from '../event-envelope/index.js';
 import {
+  LocksAndFencingError,
+  LocksAndFencingErrorCodes,
+} from '../locks-and-fencing/index.js';
+import {
   ReceiptEffectError,
   ReceiptEffectErrorCodes,
 } from './errors.js';
@@ -158,7 +162,13 @@ export class AuthorizedEvidenceWriter {
       }
 
       try {
-        const receipt = await this.#options.ledger.appendAuthorized(event, result.proof);
+        const receipt = await this.#options.ledgerFence.writer.append({
+          lease: await this.#options.ledgerFence.currentLease(),
+          ledger: this.#options.ledger,
+          event,
+          proof: result.proof,
+          expectedHead: priorHead,
+        });
         const verified = await this.findEvent(event.identity.eventId);
         if (!verified || verified.event.stored.digest !== event.canonicalDigest) {
           throw new ReceiptEffectError(
@@ -170,6 +180,23 @@ export class AuthorizedEvidenceWriter {
         }
         return Object.freeze({ status: 'appended', receipt, verified });
       } catch (error: unknown) {
+        if (
+          error instanceof LocksAndFencingError
+          && error.code === LocksAndFencingErrorCodes.HEAD_CONFLICT
+        ) {
+          const raced = await this.findEvent(event.identity.eventId);
+          if (raced) {
+            if (raced.event.stored.digest !== event.canonicalDigest) {
+              throw appendConflict(event.identity.eventId);
+            }
+            return Object.freeze({
+              status: 'idempotent',
+              receipt: receiptFromFrame(raced.frame),
+              verified: raced,
+            });
+          }
+          if (attempt < this.#maxHeadRetries) continue;
+        }
         if (
           error instanceof AuthorizedLedgerError
           && error.code === AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID

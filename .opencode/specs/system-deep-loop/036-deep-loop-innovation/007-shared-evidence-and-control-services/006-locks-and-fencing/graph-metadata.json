@@ -171,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "independent-process",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "one",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -187,17 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
     "created_at": "2026-07-16T03:43:47.704Z",
-    "last_save_at": "2026-07-21T00:35:59.630Z",
+    "last_save_at": "2026-07-21T01:48:03.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b31bfe6688d812046e6777f54444780d81386c51151d30a8167d99c700f6b742",
+    "source_fingerprint": "sha256:eb3e75656f12764cd37d25627a8fa1e43f26f1881c2045acfc16892e57002f0e",
     "source_doc_hashes": {
       "spec.md": "db6d0f9de7a32cfab6040fe68efb5ab8bf06ab8da7f9046cc2185a6d0862af4a",
       "plan.md": "478745d8c60521e719ef0140e1bec8c0103af0a435b99dd0a0a4e5a4dc2f6a3a",
-      "tasks.md": "b3e5b71af395260a5f45bd4e7cc05c464886cefedaa9c88a6b57ffebad185afa",
-      "checklist.md": "81594f6ee89df2d2496ca3782e2655e5638bf2c2b81b2a87b1d0e05e72b06b9e",
-      "implementation-summary.md": "258b853ac35d14af315c339a5f8dc62d10715e675fed84a9d624831c73b36d6e"
+      "tasks.md": "754713302d02075332ac0656aa999fd6811b9a43f57cd2fef6b8173d3d5bb963",
+      "checklist.md": "f4c7206a6687682553c304c3197b976e1848f09c62ef14e5eeb058fdd2541218",
+      "implementation-summary.md": "58985965d9df2f9ecc0d66a285b0cd5b4feeb334ba5536642eebfaf87352064e"
     },
     "last_active_child_id": null,
     "last_active_at": null

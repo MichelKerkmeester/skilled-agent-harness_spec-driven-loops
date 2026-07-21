@@ -28,7 +28,10 @@ import type {
 // ───────────────────────────────────────────────────────────────────
 
 const IDENTITY_PATTERN = /^[a-z][a-z0-9]*(?:[._@-][a-z0-9]+)*$/;
-const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
+const FIXED_DIGEST_DEFINITION: ArtifactDigestDefinition = Object.freeze({
+  algorithm: DEFAULT_ARTIFACT_DIGEST_ALGORITHM,
+  implementationIdentity: 'node-crypto-sha256-v1',
+});
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
@@ -289,54 +292,28 @@ export function createArtifactCanonicalizerRegistry(): ArtifactCanonicalizerRegi
 // 3. DIGEST REGISTRY
 // ───────────────────────────────────────────────────────────────────
 
-/** Frozen algorithm registry used for both publication and verified reads. */
+/** Fixed SHA-256 identity used for both publication and verified reads. */
 export class ArtifactDigestRegistry {
   public readonly digest: string;
-  readonly #definitions: ReadonlyMap<string, ArtifactDigestDefinition>;
 
-  public constructor(definitions: readonly ArtifactDigestDefinition[]) {
-    if (!Array.isArray(definitions) || definitions.length === 0) {
+  public constructor(callerDefinitions?: readonly unknown[]) {
+    if (callerDefinitions !== undefined) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.INVALID_INPUT,
         'descriptor',
-        'Digest registry requires at least one definition',
+        'Caller-provided digest implementations are not permitted',
       );
     }
-    const registered = new Map<string, ArtifactDigestDefinition>();
-    const inspection: Record<string, JsonValue>[] = [];
-    for (const definition of definitions) {
-      const algorithm = requireIdentity(definition.algorithm, 'algorithm');
-      const implementationIdentity = requireIdentity(
-        definition.implementationIdentity,
-        'implementationIdentity',
-      );
-      if (typeof definition.digest !== 'function' || registered.has(algorithm)) {
-        throw new SealedArtifactError(
-          SealedArtifactErrorCodes.INVALID_INPUT,
-          'descriptor',
-          'Digest registry definition is incomplete or duplicated',
-          { algorithm },
-        );
-      }
-      registered.set(algorithm, Object.freeze({
-        algorithm,
-        implementationIdentity,
-        digest: definition.digest,
-      }));
-      inspection.push({
-        algorithm,
-        implementation_identity: implementationIdentity,
-      });
-    }
-    this.#definitions = registered;
-    this.digest = sha256Bytes(canonicalBytes(inspection));
+    this.digest = sha256Bytes(canonicalBytes([{
+      algorithm: FIXED_DIGEST_DEFINITION.algorithm,
+      implementation_identity: FIXED_DIGEST_DEFINITION.implementationIdentity,
+    }]));
     Object.freeze(this);
   }
 
-  /** Compute and validate one registered lowercase digest. */
+  /** Compute the fixed strong commitment without caller-provided executable code. */
   public calculate(algorithm: string, bytes: Uint8Array): string {
-    const definition = this.#definitions.get(algorithm);
-    if (!definition) {
+    if (algorithm !== FIXED_DIGEST_DEFINITION.algorithm) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.UNSUPPORTED_DIGEST_ALGORITHM,
         'descriptor',
@@ -344,24 +321,14 @@ export class ArtifactDigestRegistry {
         { algorithm },
       );
     }
-    const digest = definition.digest(Uint8Array.from(bytes));
-    if (!DIGEST_PATTERN.test(digest)) {
-      throw new SealedArtifactError(
-        SealedArtifactErrorCodes.INVALID_INPUT,
-        'descriptor',
-        'Registered digest implementation returned an invalid commitment',
-        { algorithm },
-      );
-    }
-    return digest;
+    return sha256Bytes(Uint8Array.from(bytes));
   }
 
   /** Resolve registered algorithm identity without accepting content bytes. */
   public describe(
     algorithm: string,
   ): Readonly<Pick<ArtifactDigestDefinition, 'algorithm' | 'implementationIdentity'>> {
-    const definition = this.#definitions.get(algorithm);
-    if (!definition) {
+    if (algorithm !== FIXED_DIGEST_DEFINITION.algorithm) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.UNSUPPORTED_DIGEST_ALGORITHM,
         'descriptor',
@@ -370,17 +337,13 @@ export class ArtifactDigestRegistry {
       );
     }
     return Object.freeze({
-      algorithm: definition.algorithm,
-      implementationIdentity: definition.implementationIdentity,
+      algorithm: FIXED_DIGEST_DEFINITION.algorithm,
+      implementationIdentity: FIXED_DIGEST_DEFINITION.implementationIdentity,
     });
   }
 }
 
 /** Create the runtime's default SHA-256 content identity registry. */
 export function createArtifactDigestRegistry(): ArtifactDigestRegistry {
-  return new ArtifactDigestRegistry([{
-    algorithm: DEFAULT_ARTIFACT_DIGEST_ALGORITHM,
-    implementationIdentity: 'node-crypto-sha256-v1',
-    digest: (bytes) => sha256Bytes(bytes),
-  }]);
+  return new ArtifactDigestRegistry();
 }

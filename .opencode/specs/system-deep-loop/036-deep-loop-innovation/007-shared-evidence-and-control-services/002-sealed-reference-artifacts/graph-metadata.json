@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Scoped Git",
-        "kind": "proper_noun",
+        "name": "phase-006",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "phase-006",
+        "name": "fixed",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence.",
     "created_at": "2026-07-16T03:43:46.678Z",
-    "last_save_at": "2026-07-21T00:40:23.028Z",
+    "last_save_at": "2026-07-21T01:42:15.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1df8dd507ae842dda5db13815a91cad38b32810c394f7926962c4e465d3c1dc",
+    "source_fingerprint": "sha256:ec5cdc91bcd726306b9ce2860b9df4e2a85ffc653442d10913164478818ae6d8",
     "source_doc_hashes": {
-      "spec.md": "98eb845c4e2cecac6924527065384733b129b3836b173d3a3d7538fcaaf5a370",
-      "plan.md": "96701137bc51403fc07b907c4a089b2288688b9afa1c2642c4c14b9b85a3fbd4",
-      "tasks.md": "1f4475f1a8ca1b12371e5725e85b50a026e59952725cb23907fcd90838a8269f",
-      "checklist.md": "ad0022547a00d5b60456f82854fbad333ae1004ff0d7864c193fe8bc9c2bd067",
-      "implementation-summary.md": "880d0f2423290e266eddf7c35c006ead9dddb2f730ea999fcc19bd1905acd670"
+      "spec.md": "65ea78116ee89d7aa1bde93a5485680766816e1ad9c5c9ad0480176abaf2dc3d",
+      "plan.md": "7d714bbc33f570fe8925fcf939d02763e130d4fa239b4a699aabbd527e502467",
+      "tasks.md": "e3f45bcd364329d87a90d1b9d521b43a8614f62a499d3cefdf98ee0b81e7b38e",
+      "checklist.md": "454d816ed99649589ec9a188434547a06dcfafd970c3598e9e8154b85c8201d5",
+      "implementation-summary.md": "82e32e39a45ead5d882c183f94941b27407fa9026450a238c4b88a28e17cecda"
     },
     "last_active_child_id": null,
     "last_active_at": null

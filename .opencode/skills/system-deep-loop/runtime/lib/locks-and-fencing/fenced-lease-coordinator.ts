@@ -4,14 +4,22 @@
 
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { randomUUID } from 'node:crypto';
-import { mkdirSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-
 import {
-  acquireLoopLock,
-  refreshLoopLock,
-  releaseLoopLock,
-} from '../deep-loop/loop-lock.js';
+  closeSync,
+  constants,
+  existsSync,
+  fsyncSync,
+  linkSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { appendUtf8Durable, readUtf8IfExists, writeCanonicalJsonAtomic } from './durable-file.js';
 import {
@@ -31,9 +39,11 @@ import type { JsonObject } from '../event-envelope/index.js';
 import type {
   AcquireLeaseRequest,
   CanonicalProtectedResource,
+  FencedCommit,
   FencedLease,
   FencedLeaseCoordinatorOptions,
   FencedMutationContext,
+  FencedMutationPreparation,
   FencingCoordinatorSnapshot,
   LeaseGrant,
   LockLifecycleDecision,
@@ -72,6 +82,14 @@ interface GrantJournalRecord extends GrantJournalRecordCore {
   readonly recordHash: string;
 }
 
+interface StoredCoordinatorMutex {
+  readonly schemaVersion: 1;
+  readonly acquireNonce: string;
+  readonly ownerPid: number;
+  readonly acquiredAt: string;
+  readonly resourceDigest: string;
+}
+
 interface AcquisitionAttemptGranted {
   readonly status: 'granted';
   readonly grant: LeaseGrant;
@@ -102,8 +120,9 @@ const GENESIS_HASH = '0'.repeat(64);
 const HASH_PATTERN = /^[a-f0-9]{64}$/u;
 const DEFAULT_RETRY_INTERVAL_MS = 10;
 const DEFAULT_OPERATION_TIMEOUT_MS = 1_000;
-const DEFAULT_MUTEX_TTL_MS = 60_000;
 const DEFAULT_TELEMETRY_CAPACITY = 256;
+const FILE_MODE = 0o600;
+const MUTEX_NONCE_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
@@ -174,6 +193,30 @@ function freezeLease(lease: FencedLease): FencedLease {
   });
 }
 
+function errorCode(error: unknown): string | undefined {
+  return error && typeof error === 'object' && 'code' in error
+    ? (error as NodeJS.ErrnoException).code
+    : undefined;
+}
+
+function isProcessAlive(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error: unknown) {
+    return errorCode(error) !== 'ESRCH';
+  }
+}
+
+function fsyncDirectory(path: string): void {
+  const descriptor = openSync(path, 'r');
+  try {
+    fsyncSync(descriptor);
+  } finally {
+    closeSync(descriptor);
+  }
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. COORDINATOR
 // ───────────────────────────────────────────────────────────────────
@@ -186,7 +229,6 @@ export class FencedLeaseCoordinator {
   readonly #sleep: (durationMs: number) => Promise<void>;
   readonly #retryIntervalMs: number;
   readonly #operationTimeoutMs: number;
-  readonly #mutexTtlMs: number;
   readonly #telemetryCapacity: number;
   readonly #faultInjection: FencedLeaseCoordinatorOptions['faultInjection'];
   readonly #guardContext = new AsyncLocalStorage<readonly string[]>();
@@ -211,11 +253,6 @@ export class FencedLeaseCoordinator {
       options.operationTimeoutMs ?? DEFAULT_OPERATION_TIMEOUT_MS,
       'operationTimeoutMs',
       true,
-    );
-    this.#mutexTtlMs = requireDuration(
-      options.mutexTtlMs ?? DEFAULT_MUTEX_TTL_MS,
-      'mutexTtlMs',
-      false,
     );
     this.#telemetryCapacity = requireDuration(
       options.telemetryCapacity ?? DEFAULT_TELEMETRY_CAPACITY,
@@ -390,18 +427,18 @@ export class FencedLeaseCoordinator {
     }
   }
 
-  /** Run one mutation while fence validation and takeover exclusion share one mutex. */
+  /** Prepare without side effects, then commit only after current-fence revalidation. */
   public async withFence<TResult>(
     lease: FencedLease,
-    mutation: (context: FencedMutationContext) => TResult | Promise<TResult>,
+    prepare: FencedMutationPreparation<TResult>,
   ): Promise<TResult> {
-    return this.withFences([lease], mutation);
+    return this.withFences([lease], prepare);
   }
 
-  /** Enforce canonical multi-resource order and hold every fence through commit. */
+  /** Enforce canonical order and run the returned commit under every current fence. */
   public async withFences<TResult>(
     leases: readonly FencedLease[],
-    mutation: (context: FencedMutationContext) => TResult | Promise<TResult>,
+    prepare: FencedMutationPreparation<TResult>,
   ): Promise<TResult> {
     this.#assertOutsideGuard('withFences');
     if (leases.length === 0) throw new TypeError('withFences requires at least one lease');
@@ -422,15 +459,20 @@ export class FencedLeaseCoordinator {
     const startedAtMs = Date.now();
     return this.#guardContext.run(keys, async () => {
       try {
+        const context: FencedMutationContext = Object.freeze({
+          resources: Object.freeze(leases.map((lease) => lease.resource)),
+          fenceTokens: Object.freeze(leases.map((lease) => lease.fenceToken)),
+        });
+        const commit: FencedCommit<TResult> = await prepare(context);
+        if (typeof commit !== 'function') {
+          throw new TypeError('Fenced mutation preparation must return a commit function');
+        }
         return await this.#withLeaseMutexes(leases, 0, async () => {
           for (const lease of leases) {
             const state = this.#loadState(lease.resource);
             this.#assertCurrentLease(state, lease, 'guard');
           }
-          return mutation(Object.freeze({
-            resources: Object.freeze(leases.map((lease) => lease.resource)),
-            fenceTokens: Object.freeze(leases.map((lease) => lease.fenceToken)),
-          }));
+          return commit();
         });
       } catch (error: unknown) {
         this.#recordLeaseFailure(leases[0], error, startedAtMs);
@@ -568,44 +610,29 @@ export class FencedLeaseCoordinator {
     mkdirSync(paths.resourceDirectory, { recursive: true });
     const deadlineMs = Date.now() + timeoutMs;
     while (true) {
-      const mutexNow = new Date();
-      const result = acquireLoopLock(paths.mutexPath, {
-        ownerPid: process.pid,
-        startedAtIso: mutexNow.toISOString(),
-        ttlMs: this.#mutexTtlMs,
-        lastHeartbeatIso: mutexNow.toISOString(),
-        packetId: resource.resourceDigest,
-        runtimeKind: 'main',
-        phase: 'fenced-mutation',
-      });
-      if (result.acquired) {
+      const mutex = this.#tryAcquireMutex(paths, resource);
+      if (mutex) {
         let didThrow = false;
-        const heartbeat = setInterval(() => {
-          refreshLoopLock(paths.mutexPath, result.lock.ownerPid, new Date(), {
-            acquireNonce: result.lock.acquireNonce,
-            phase: 'fenced-mutation',
-          });
-        }, Math.max(1, Math.floor(this.#mutexTtlMs / 2)));
-        heartbeat.unref?.();
         try {
           return await operation();
         } catch (error: unknown) {
           didThrow = true;
           throw error;
         } finally {
-          clearInterval(heartbeat);
-          const didRelease = releaseLoopLock(
-            paths.mutexPath,
-            result.lock.ownerPid,
-            result.lock.acquireNonce,
-          );
-          if (!didRelease && !didThrow) {
-            throw new LocksAndFencingError(
-              LocksAndFencingErrorCodes.LEASE_LOST,
-              'storage',
-              'Coordinator mutex ownership changed before release',
-              { resourceDigest: resource.resourceDigest },
-            );
+          try {
+            this.#releaseMutex(paths.mutexPath, mutex);
+          } catch (error: unknown) {
+            if (!didThrow) {
+              throw new LocksAndFencingError(
+                LocksAndFencingErrorCodes.LEASE_LOST,
+                'storage',
+                'Coordinator mutex ownership changed before release',
+                {
+                  cause: error instanceof Error ? error.message : String(error),
+                  resourceDigest: resource.resourceDigest,
+                },
+              );
+            }
           }
         }
       }
@@ -619,6 +646,161 @@ export class FencedLeaseCoordinator {
       }
       await this.#sleep(this.#retryDelay(deadlineMs - Date.now()));
     }
+  }
+
+  #tryAcquireMutex(
+    paths: CoordinatorStoragePaths,
+    resource: CanonicalProtectedResource,
+  ): StoredCoordinatorMutex | null {
+    const acquiredAt = new Date().toISOString();
+    const mutex: StoredCoordinatorMutex = Object.freeze({
+      schemaVersion: SCHEMA_VERSION,
+      acquireNonce: randomUUID(),
+      ownerPid: process.pid,
+      acquiredAt,
+      resourceDigest: resource.resourceDigest,
+    });
+    if (this.#publishMutex(paths.mutexPath, mutex)) return mutex;
+
+    const holder = this.#readMutex(paths.mutexPath, resource.resourceDigest);
+    if (holder === null || isProcessAlive(holder.ownerPid)) return null;
+    if (!this.#claimDeadMutexRecovery(paths, holder)) return null;
+
+    const stalePath = join(
+      paths.resourceDirectory,
+      `.coordinator-lock-${holder.acquireNonce}.${randomUUID()}.stale`,
+    );
+    try {
+      renameSync(paths.mutexPath, stalePath);
+      fsyncDirectory(paths.resourceDirectory);
+    } catch (error: unknown) {
+      if (errorCode(error) === 'ENOENT') return null;
+      throw error;
+    }
+    try {
+      return this.#publishMutex(paths.mutexPath, mutex) ? mutex : null;
+    } finally {
+      rmSync(stalePath, { force: true });
+      fsyncDirectory(paths.resourceDirectory);
+    }
+  }
+
+  /** Persist one recovery winner so a delayed reclaimer cannot move a successor's claim. */
+  #claimDeadMutexRecovery(
+    paths: CoordinatorStoragePaths,
+    holder: StoredCoordinatorMutex,
+  ): boolean {
+    const recoveryPath = join(
+      paths.resourceDirectory,
+      `.coordinator-lock-${holder.acquireNonce}.reclaimed`,
+    );
+    let descriptor: number;
+    try {
+      descriptor = openSync(
+        recoveryPath,
+        constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY | constants.O_NOFOLLOW,
+        FILE_MODE,
+      );
+    } catch (error: unknown) {
+      if (errorCode(error) === 'EEXIST') return false;
+      throw error;
+    }
+    try {
+      writeFileSync(descriptor, Buffer.concat([
+        Buffer.from(canonicalBytes({
+          schemaVersion: SCHEMA_VERSION,
+          reclaimedAcquireNonce: holder.acquireNonce,
+          reclaimerPid: process.pid,
+          reclaimedAt: new Date().toISOString(),
+        })),
+        Buffer.from('\n'),
+      ]));
+      fsyncSync(descriptor);
+    } finally {
+      closeSync(descriptor);
+    }
+    fsyncDirectory(paths.resourceDirectory);
+    return true;
+  }
+
+  #publishMutex(path: string, mutex: StoredCoordinatorMutex): boolean {
+    const candidatePath = `${path}.${mutex.acquireNonce}.candidate`;
+    const descriptor = openSync(
+      candidatePath,
+      constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY | constants.O_NOFOLLOW,
+      FILE_MODE,
+    );
+    try {
+      writeFileSync(descriptor, Buffer.concat([
+        Buffer.from(canonicalBytes(mutex as unknown as JsonObject)),
+        Buffer.from('\n'),
+      ]));
+      fsyncSync(descriptor);
+    } finally {
+      closeSync(descriptor);
+    }
+    try {
+      linkSync(candidatePath, path);
+      fsyncDirectory(dirname(path));
+      return true;
+    } catch (error: unknown) {
+      if (errorCode(error) === 'EEXIST') return false;
+      throw error;
+    } finally {
+      unlinkSync(candidatePath);
+      fsyncDirectory(dirname(candidatePath));
+    }
+  }
+
+  #readMutex(
+    path: string,
+    resourceDigest: string,
+  ): StoredCoordinatorMutex | null {
+    if (!existsSync(path)) return null;
+    let raw: unknown;
+    try {
+      raw = JSON.parse(readFileSync(path, 'utf8'));
+    } catch (error: unknown) {
+      if (errorCode(error) === 'ENOENT') return null;
+      throw malformedState('Coordinator mutex is unreadable and cannot be reclaimed safely', {
+        resourceDigest,
+      });
+    }
+    if (
+      !isRecord(raw)
+      || Object.keys(raw).length !== 5
+      || raw.schemaVersion !== SCHEMA_VERSION
+      || typeof raw.acquireNonce !== 'string'
+      || !MUTEX_NONCE_PATTERN.test(raw.acquireNonce)
+      || !isSafePositiveInteger(raw.ownerPid)
+      || typeof raw.acquiredAt !== 'string'
+      || !Number.isFinite(Date.parse(raw.acquiredAt))
+      || raw.resourceDigest !== resourceDigest
+    ) {
+      throw malformedState('Coordinator mutex fields are invalid and cannot be reclaimed safely', {
+        resourceDigest,
+      });
+    }
+    return Object.freeze({
+      schemaVersion: SCHEMA_VERSION,
+      acquireNonce: raw.acquireNonce,
+      ownerPid: raw.ownerPid,
+      acquiredAt: raw.acquiredAt,
+      resourceDigest: raw.resourceDigest,
+    });
+  }
+
+  #releaseMutex(path: string, mutex: StoredCoordinatorMutex): void {
+    const current = this.#readMutex(path, mutex.resourceDigest);
+    if (
+      current === null
+      || current.acquireNonce !== mutex.acquireNonce
+      || current.ownerPid !== mutex.ownerPid
+    ) {
+      throw new Error('Coordinator mutex identity changed');
+    }
+    unlinkSync(path);
+    fsyncDirectory(dirname(path));
   }
 
   #loadState(resource: CanonicalProtectedResource): StoredCoordinatorState {

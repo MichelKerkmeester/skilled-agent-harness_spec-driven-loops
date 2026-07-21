@@ -16,6 +16,7 @@ import {
   EFFECT_OPERATOR_RESOLVED_EVENT_TYPE,
   EFFECT_RECONCILED_EVENT_TYPE,
   EFFECT_RECOVERY_STARTED_EVENT_TYPE,
+  effectConfirmationBindsIntent,
 } from './event-contracts.js';
 import {
   ReceiptEffectError,
@@ -41,6 +42,7 @@ import type {
   EffectRecoveryInput,
   EffectRecoveryResult,
   EffectRecoveryStartedPayload,
+  EffectReconciliationObservation,
   EffectReconciledPayload,
   EffectRetryDecision,
   OperatorResolutionPayload,
@@ -59,10 +61,11 @@ export interface OperatorResolutionInput<TRequest> {
   readonly resolution: 'confirmed_applied' | 'confirmed_not_applied' | 'terminal_failed';
   readonly evidenceDigest: string;
   readonly resolvedAt: string;
-  readonly observation?: EffectObservation;
 }
 
 const DEFAULT_MAX_RECOVERY_ATTEMPTS = 3;
+const DEFAULT_INTENT_RACE_WAIT_MS = 2_000;
+const DEFAULT_INTENT_RACE_POLL_MS = 10;
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/u;
 const SECRET_KEY_PATTERN = /(authorization|credential|password|private[-_]?key|secret|token|api[-_]?key)/iu;
 const SECRET_VALUE_PATTERNS = [
@@ -186,6 +189,22 @@ function validateExecutionInput<TRequest>(
   assertDigest(input.replayFingerprint, 'replayFingerprint');
   assertSafeEvidence(input.safeMetadata);
   assertSecretReferences(input.secretReferences);
+  try {
+    if (canonicalJson(input.request as unknown as JsonValue) !== canonicalJson(input.canonicalInput)) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.INVALID_INPUT,
+        'input',
+        'Adapter request must equal the canonical input committed by the durable intent',
+      );
+    }
+  } catch (error: unknown) {
+    if (error instanceof ReceiptEffectError) throw error;
+    throw new ReceiptEffectError(
+      ReceiptEffectErrorCodes.INVALID_INPUT,
+      'input',
+      'Adapter request must be representable by the canonical event encoding',
+    );
+  }
   if (
     input.runId.trim() === ''
     || input.logicalEffectId.trim() === ''
@@ -204,14 +223,6 @@ function validateObservation(
   intent: Readonly<EffectIntentPayload>,
   observation: Readonly<EffectObservation>,
 ): void {
-  if (observation.durability !== 'verified') {
-    throw new ReceiptEffectError(
-      ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
-      'effect',
-      'Adapter return is not a verified durable outcome',
-      { effectId: intent.effect_id },
-    );
-  }
   assertDigest(observation.external_receipt_digest, 'external_receipt_digest');
   assertDigest(observation.postcondition_digest, 'postcondition_digest');
   assertDigest(observation.output_digest, 'output_digest');
@@ -224,6 +235,21 @@ function validateObservation(
       { effectId: intent.effect_id },
     );
   }
+}
+
+function committedRequest<TRequest>(input: Readonly<EffectExecutionInput<TRequest>>): TRequest {
+  return input.canonicalInput as unknown as TRequest;
+}
+
+function sameAdapterObservation(
+  observation: Readonly<EffectObservation>,
+  confirmation: Readonly<EffectConfirmationPayload>,
+): boolean {
+  return observation.external_receipt_digest === confirmation.external_receipt_digest
+    && observation.postcondition_digest === confirmation.postcondition_digest
+    && observation.output_digest === confirmation.output_digest
+    && canonicalJson(observation.safe_result_metadata)
+      === canonicalJson(confirmation.safe_result_metadata);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -329,6 +355,8 @@ export class EffectRecoveryGateway {
   readonly #options: EffectRecoveryGatewayOptions;
   readonly #now: () => Date;
   readonly #maxRecoveryAttempts: number;
+  readonly #intentRaceWaitMs: number;
+  readonly #intentRacePollMs: number;
   readonly #faults: EffectGatewayFaultInjection;
   readonly #locks = new Map<string, Promise<void>>();
 
@@ -336,6 +364,8 @@ export class EffectRecoveryGateway {
     this.#options = options;
     this.#now = options.now ?? (() => new Date());
     this.#maxRecoveryAttempts = options.maxRecoveryAttempts ?? DEFAULT_MAX_RECOVERY_ATTEMPTS;
+    this.#intentRaceWaitMs = options.intentRaceWaitMs ?? DEFAULT_INTENT_RACE_WAIT_MS;
+    this.#intentRacePollMs = options.intentRacePollMs ?? DEFAULT_INTENT_RACE_POLL_MS;
     this.#faults = options.faultInjection ?? {};
     if (!Number.isSafeInteger(this.#maxRecoveryAttempts) || this.#maxRecoveryAttempts <= 0) {
       throw new ReceiptEffectError(
@@ -343,6 +373,18 @@ export class EffectRecoveryGateway {
         'input',
         'Recovery attempt limit must be a positive safe integer',
         { maxRecoveryAttempts: this.#maxRecoveryAttempts },
+      );
+    }
+    if (
+      !Number.isSafeInteger(this.#intentRaceWaitMs)
+      || this.#intentRaceWaitMs < 0
+      || !Number.isSafeInteger(this.#intentRacePollMs)
+      || this.#intentRacePollMs <= 0
+    ) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.INVALID_INPUT,
+        'input',
+        'Intent-race wait and poll durations must be bounded safe integers',
       );
     }
   }
@@ -364,6 +406,7 @@ export class EffectRecoveryGateway {
     key: string,
   ): Promise<EffectExecutionResult> {
     const events = await this.#options.writer.readVerifiedEvents();
+    const confirmations = this.#confirmationIndex(events);
     const logicalIntent = events.find((event) => {
       if (event.event.effective.envelope.event_type !== EFFECT_INTENT_EVENT_TYPE) return false;
       const payload = payloadOf<EffectIntentPayload>(event);
@@ -381,13 +424,20 @@ export class EffectRecoveryGateway {
           { logicalEffectId: input.logicalEffectId },
         );
       }
-      const confirmation = this.#findConfirmation(events, logicalIntent.event.effective.envelope.event_id);
+      const confirmation = confirmations.get(logicalIntent.event.effective.envelope.event_id);
       if (confirmation) {
+        const payload = payloadOf<EffectConfirmationPayload>(confirmation);
+        await this.#verifyConfirmationExternalTruth(
+          existingIntent,
+          payload,
+          adapter,
+          committedRequest(input),
+        );
         return Object.freeze({
           status: 'idempotent',
           idempotencyKey: key,
           intent: existingIntent,
-          confirmation: payloadOf<EffectConfirmationPayload>(confirmation),
+          confirmation: payload,
         });
       }
       throw new ReceiptEffectError(
@@ -422,25 +472,26 @@ export class EffectRecoveryGateway {
         { effectId: intent.effect_id },
       );
     }
-    this.#faults.afterIntent?.();
-
-    let observation: EffectObservation;
-    try {
-      observation = await adapter.execute(intent, input.request, key);
-    } catch (error: unknown) {
-      if (error instanceof ReceiptEffectError) throw error;
-      throw new ReceiptEffectError(
-        ReceiptEffectErrorCodes.EFFECT_EXECUTION_FAILED,
-        'effect',
-        'Adapter execution failed after durable intent',
-        { effectId: intent.effect_id, adapterId: adapter.descriptor.adapter_id },
+    if (appendedIntent.status === 'idempotent') {
+      return this.#waitForIntentWinner(
+        appendedIntent.verified,
+        input,
+        adapter,
+        key,
       );
     }
-    validateObservation(intent, observation);
+    this.#faults.afterIntent?.();
+
+    await this.#executeAdapter(intent, adapter, committedRequest(input), key);
+    const observation = await this.#requireAppliedExternalObservation(
+      intent,
+      adapter,
+      committedRequest(input),
+    );
     this.#faults.afterEffectBeforeConfirmation?.();
     const confirmation = await this.#appendConfirmation(
       input,
-      intentEvent.canonicalDigest,
+      appendedIntent.verified,
       intent,
       observation,
       'executed',
@@ -472,6 +523,7 @@ export class EffectRecoveryGateway {
     key: string,
   ): Promise<EffectRecoveryResult> {
     const events = await this.#options.writer.readVerifiedEvents();
+    const confirmations = this.#confirmationIndex(events);
     const intentEvent = this.#findIntent(events, input.execution.runId, input.execution.logicalEffectId);
     if (!intentEvent) {
       throw new ReceiptEffectError(
@@ -491,7 +543,14 @@ export class EffectRecoveryGateway {
         { logicalEffectId: input.execution.logicalEffectId },
       );
     }
-    if (this.#findConfirmation(events, intentEvent.event.effective.envelope.event_id)) {
+    const existingConfirmation = confirmations.get(intentEvent.event.effective.envelope.event_id);
+    if (existingConfirmation) {
+      await this.#verifyConfirmationExternalTruth(
+        intent,
+        payloadOf<EffectConfirmationPayload>(existingConfirmation),
+        adapter,
+        committedRequest(input.execution),
+      );
       throw new ReceiptEffectError(
         ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
         'recovery',
@@ -555,73 +614,28 @@ export class EffectRecoveryGateway {
     );
     await this.#options.writer.append(startedEvent);
 
-    let reconciliation;
-    try {
-      reconciliation = await adapter.reconcile(intent, input.execution.request);
-    } catch {
-      reconciliation = Object.freeze({
-        verdict: 'in_doubt' as const,
-        reason_code: 'reconciliation_unavailable',
-        evidence_digest: sha256Bytes(canonicalBytes({ available: false })),
-        observed_at: this.#now().toISOString(),
-        observation: null,
-      });
-    }
-    assertDigest(reconciliation.evidence_digest, 'reconciliation.evidence_digest');
-    if (
-      !['not_applied', 'applied', 'in_doubt', 'conflict'].includes(reconciliation.verdict)
-    ) {
-      throw new ReceiptEffectError(
-        ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
-        'recovery',
-        'Adapter returned an unknown reconciliation verdict',
-        { effectId: intent.effect_id },
-      );
-    }
-    if (reconciliation.verdict === 'applied' && reconciliation.observation === null) {
-      throw new ReceiptEffectError(
-        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
-        'recovery',
-        'Applied reconciliation requires a durable target observation',
-        { effectId: intent.effect_id },
-      );
-    }
-    if (reconciliation.observation !== null) {
-      validateObservation(intent, reconciliation.observation);
-    }
-
-    const decision = retryDecision(reconciliation.verdict);
-    const reconciled: EffectReconciledPayload = Object.freeze({
-      recovery_id: recoveryId,
-      intent_event_id: intentEvent.event.effective.envelope.event_id,
-      verdict: reconciliation.verdict,
-      reason_code: reconciliation.reason_code,
-      evidence_digest: reconciliation.evidence_digest,
-      attempt,
-      claim: input.claim,
-      retry_decision: decision,
-      terminal_status: reconciliation.verdict === 'in_doubt'
-        ? 'operator_required'
-        : reconciliation.verdict === 'conflict'
-          ? 'conflict'
-          : 'retrying',
-      observed_at: reconciliation.observed_at,
-    });
-    const reconciledEvent = envelopeEvent(
-      this.#options,
-      input.execution,
-      EFFECT_RECONCILED_EVENT_TYPE,
-      `${recoveryId}-reconciled`,
-      streamId(intent),
-      sequence + 1,
-      reconciled.observed_at,
-      startedEvent.identity.eventId,
-      `${key}:recovery:${attempt}:reconciled`,
-      reconciled,
+    const reconciliation = await this.#queryExternalOutcome(
+      intent,
+      adapter,
+      committedRequest(input.execution),
     );
-    await this.#options.writer.append(reconciledEvent);
+    this.#validateReconciliation(intent, reconciliation);
 
     if (reconciliation.verdict === 'in_doubt' || reconciliation.verdict === 'conflict') {
+      const reconciled = this.#reconciledPayload(
+        startPayload,
+        reconciliation,
+        retryDecision(reconciliation.verdict),
+        reconciliation.verdict === 'in_doubt' ? 'operator_required' : 'conflict',
+      );
+      await this.#appendReconciled(
+        input.execution,
+        intent,
+        reconciled,
+        startedEvent.identity.eventId,
+        key,
+        sequence + 1,
+      );
       return Object.freeze({
         status: reconciliation.verdict === 'in_doubt' ? 'operator_required' : 'conflict',
         verdict: reconciliation.verdict,
@@ -635,12 +649,31 @@ export class EffectRecoveryGateway {
     if (reconciliation.verdict === 'applied') {
       observation = reconciliation.observation as EffectObservation;
     } else {
-      observation = await adapter.execute(intent, input.execution.request, key);
-      validateObservation(intent, observation);
+      await this.#executeAdapter(intent, adapter, committedRequest(input.execution), key);
+      observation = await this.#requireAppliedExternalObservation(
+        intent,
+        adapter,
+        committedRequest(input.execution),
+      );
     }
+    this.#faults.afterEffectBeforeConfirmation?.();
+    const reconciled = this.#reconciledPayload(
+      startPayload,
+      reconciliation,
+      retryDecision(reconciliation.verdict),
+      'confirmed',
+    );
+    await this.#appendReconciled(
+      input.execution,
+      intent,
+      reconciled,
+      startedEvent.identity.eventId,
+      key,
+      sequence + 1,
+    );
     const confirmation = await this.#appendConfirmation(
       input.execution,
-      intentEvent.event.stored.digest,
+      intentEvent,
       intent,
       observation,
       'reconciled',
@@ -665,12 +698,13 @@ export class EffectRecoveryGateway {
     const logicalLock = `${input.execution.runId}\u0000${input.execution.logicalEffectId}`;
     return this.#withLock(logicalLock, async () => {
       const events = await this.#options.writer.readVerifiedEvents();
+      const confirmations = this.#confirmationIndex(events);
       const intentEvent = this.#findIntent(
         events,
         input.execution.runId,
         input.execution.logicalEffectId,
       );
-      if (!intentEvent || this.#findConfirmation(events, intentEvent.event.effective.envelope.event_id)) {
+      if (!intentEvent) {
         throw new ReceiptEffectError(
           ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
           'recovery',
@@ -678,9 +712,42 @@ export class EffectRecoveryGateway {
         );
       }
       const intent = payloadOf<EffectIntentPayload>(intentEvent);
+      if (
+        canonicalJson(intentCore(intent))
+        !== canonicalJson(expectedIntentCore(input.execution, input.adapter, key))
+      ) {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.EFFECT_CONFLICT,
+          'recovery',
+          'Operator resolution request does not reproduce the durable intent',
+          { recoveryId: input.recoveryId },
+        );
+      }
+      const existingConfirmation = confirmations.get(
+        intentEvent.event.effective.envelope.event_id,
+      );
+      if (existingConfirmation) {
+        if (input.resolution === 'terminal_failed') {
+          throw new ReceiptEffectError(
+            ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
+            'recovery',
+            'A confirmed effect cannot be resolved as terminal failure',
+          );
+        }
+        const payload = payloadOf<EffectConfirmationPayload>(existingConfirmation);
+        await this.#verifyConfirmationExternalTruth(
+          intent,
+          payload,
+          input.adapter,
+          committedRequest(input.execution),
+        );
+        return payload;
+      }
       const inDoubt = events.find((event) =>
         event.event.effective.envelope.event_type === EFFECT_RECONCILED_EVENT_TYPE
         && payloadOf<EffectReconciledPayload>(event).recovery_id === input.recoveryId
+        && payloadOf<EffectReconciledPayload>(event).intent_event_id
+          === intentEvent.event.effective.envelope.event_id
         && payloadOf<EffectReconciledPayload>(event).verdict === 'in_doubt');
       if (!inDoubt) {
         throw new ReceiptEffectError(
@@ -703,41 +770,101 @@ export class EffectRecoveryGateway {
         evidence_digest: input.evidenceDigest,
         resolved_at: input.resolvedAt,
       });
-      const sequence = this.#nextStreamSequence(events, streamId(intent));
-      const resolutionEvent = envelopeEvent(
-        this.#options,
-        input.execution,
-        EFFECT_OPERATOR_RESOLVED_EVENT_TYPE,
-        resolution.resolution_id,
-        streamId(intent),
-        sequence,
-        resolution.resolved_at,
-        inDoubt.event.effective.envelope.event_id,
-        `${key}:operator:${input.recoveryId}`,
-        resolution,
-      );
-      await this.#options.writer.append(resolutionEvent);
-      if (input.resolution === 'terminal_failed') return null;
-
-      const observation = input.resolution === 'confirmed_applied'
-        ? input.observation
-        : await input.adapter.execute(intent, input.execution.request, key);
-      if (!observation) {
+      const priorResolutions = events.filter((event) =>
+        event.event.effective.envelope.event_type === EFFECT_OPERATOR_RESOLVED_EVENT_TYPE
+        && payloadOf<OperatorResolutionPayload>(event).recovery_id === input.recoveryId);
+      if (priorResolutions.length > 1) {
         throw new ReceiptEffectError(
-          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
           'recovery',
-          'Operator-confirmed application requires a durable target observation',
+          'Recovery contains duplicate operator resolutions',
           { recoveryId: input.recoveryId },
         );
       }
-      validateObservation(intent, observation);
+      let resolutionWon = false;
+      const priorResolution = priorResolutions[0];
+      if (priorResolution) {
+        if (
+          canonicalJson(payloadOf<OperatorResolutionPayload>(priorResolution))
+          !== canonicalJson(resolution)
+        ) {
+          throw new ReceiptEffectError(
+            ReceiptEffectErrorCodes.EFFECT_CONFLICT,
+            'recovery',
+            'Recovery is already bound to different operator-resolution facts',
+            { recoveryId: input.recoveryId },
+          );
+        }
+      } else {
+        const sequence = this.#nextStreamSequence(events, streamId(intent));
+        const resolutionEvent = envelopeEvent(
+          this.#options,
+          input.execution,
+          EFFECT_OPERATOR_RESOLVED_EVENT_TYPE,
+          resolution.resolution_id,
+          streamId(intent),
+          sequence,
+          resolution.resolved_at,
+          inDoubt.event.effective.envelope.event_id,
+          `${key}:operator:${input.recoveryId}`,
+          resolution,
+        );
+        resolutionWon = (await this.#options.writer.append(resolutionEvent)).status === 'appended';
+      }
+      if (input.resolution === 'terminal_failed') return null;
+
+      if (!resolutionWon) {
+        const winner = await this.#waitForBoundConfirmation(
+          intentEvent,
+          intent,
+          input.adapter,
+          committedRequest(input.execution),
+        );
+        if (winner) return winner;
+      }
+
+      const reconciliation = await this.#queryExternalOutcome(
+        intent,
+        input.adapter,
+        committedRequest(input.execution),
+      );
+      this.#validateReconciliation(intent, reconciliation);
+      let observation: EffectObservation;
+      if (reconciliation.verdict === 'applied') {
+        observation = reconciliation.observation as EffectObservation;
+      } else if (
+        input.resolution === 'confirmed_not_applied'
+        && reconciliation.verdict === 'not_applied'
+      ) {
+        await this.#executeAdapter(
+          intent,
+          input.adapter,
+          committedRequest(input.execution),
+          key,
+        );
+        observation = await this.#requireAppliedExternalObservation(
+          intent,
+          input.adapter,
+          committedRequest(input.execution),
+        );
+      } else {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          'recovery',
+          'Operator resolution requires a conclusive external postcondition',
+          { recoveryId: input.recoveryId },
+        );
+      }
+      this.#faults.afterEffectBeforeConfirmation?.();
+      const currentEvents = await this.#options.writer.readVerifiedEvents();
+      this.#confirmationIndex(currentEvents);
       return this.#appendConfirmation(
         input.execution,
-        intentEvent.event.stored.digest,
+        intentEvent,
         intent,
         observation,
         'reconciled',
-        sequence + 1,
+        this.#nextStreamSequence(currentEvents, streamId(intent)),
       );
     });
   }
@@ -768,7 +895,7 @@ export class EffectRecoveryGateway {
 
   async #appendConfirmation(
     input: EffectExecutionInput,
-    intentEventDigest: string,
+    intentEvent: VerifiedLedgerEvent,
     intent: EffectIntentPayload,
     observation: EffectObservation,
     completionClass: 'executed' | 'reconciled',
@@ -779,8 +906,8 @@ export class EffectRecoveryGateway {
     const payload: EffectConfirmationPayload = Object.freeze({
       confirmation_id: confirmationId,
       effect_id: intent.effect_id,
-      intent_event_id: eventId('effect-intent', intent.idempotency_key),
-      intent_event_digest: intentEventDigest,
+      intent_event_id: intentEvent.event.effective.envelope.event_id,
+      intent_event_digest: intentEvent.event.stored.digest,
       idempotency_key: intent.idempotency_key,
       adapter: intent.adapter,
       external_receipt_digest: observation.external_receipt_digest,
@@ -790,6 +917,19 @@ export class EffectRecoveryGateway {
       observed_at: observation.observed_at,
       safe_result_metadata: observation.safe_result_metadata,
     });
+    if (!effectConfirmationBindsIntent(
+      payload,
+      intent,
+      intentEvent.event.effective.envelope.event_id,
+      intentEvent.event.stored.digest,
+    )) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+        'effect',
+        'Confirmation facts do not bind to the durable intent',
+        { effectId: intent.effect_id },
+      );
+    }
     const event = envelopeEvent(
       this.#options,
       input,
@@ -802,8 +942,289 @@ export class EffectRecoveryGateway {
       `${intent.idempotency_key}:confirmation`,
       payload,
     );
+    const appended = await this.#options.writer.append(event);
+    const durablePayload = payloadOf<EffectConfirmationPayload>(appended.verified);
+    if (!effectConfirmationBindsIntent(
+      durablePayload,
+      intent,
+      intentEvent.event.effective.envelope.event_id,
+      intentEvent.event.stored.digest,
+    )) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+        'effect',
+        'Durable confirmation does not bind to the executed intent',
+        { effectId: intent.effect_id },
+      );
+    }
+    return durablePayload;
+  }
+
+  async #executeAdapter<TRequest>(
+    intent: Readonly<EffectIntentPayload>,
+    adapter: EffectAdapter<TRequest>,
+    request: TRequest,
+    key: string,
+  ): Promise<void> {
+    try {
+      await adapter.execute(intent, request, key);
+    } catch (error: unknown) {
+      if (error instanceof ReceiptEffectError) throw error;
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.EFFECT_EXECUTION_FAILED,
+        'effect',
+        'Adapter execution failed after durable intent',
+        { effectId: intent.effect_id, adapterId: adapter.descriptor.adapter_id },
+      );
+    }
+  }
+
+  async #queryExternalOutcome<TRequest>(
+    intent: Readonly<EffectIntentPayload>,
+    adapter: EffectAdapter<TRequest>,
+    request: TRequest,
+  ): Promise<EffectReconciliationObservation> {
+    try {
+      return await adapter.reconcile(intent, request);
+    } catch {
+      return Object.freeze({
+        verdict: 'in_doubt',
+        reason_code: 'reconciliation_unavailable',
+        evidence_digest: sha256Bytes(canonicalBytes({ available: false })),
+        observed_at: this.#now().toISOString(),
+        observation: null,
+      });
+    }
+  }
+
+  #validateReconciliation(
+    intent: Readonly<EffectIntentPayload>,
+    reconciliation: Readonly<EffectReconciliationObservation>,
+  ): void {
+    assertDigest(reconciliation.evidence_digest, 'reconciliation.evidence_digest');
+    if (!['not_applied', 'applied', 'in_doubt', 'conflict'].includes(reconciliation.verdict)) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID,
+        'recovery',
+        'Adapter returned an unknown reconciliation verdict',
+        { effectId: intent.effect_id },
+      );
+    }
+    if (reconciliation.verdict === 'applied') {
+      if (reconciliation.observation === null) {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          'recovery',
+          'Applied reconciliation requires an external target observation',
+          { effectId: intent.effect_id },
+        );
+      }
+      validateObservation(intent, reconciliation.observation);
+      return;
+    }
+    if (reconciliation.observation !== null) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+        'recovery',
+        'Non-applied reconciliation cannot carry applied-outcome evidence',
+        { effectId: intent.effect_id },
+      );
+    }
+  }
+
+  async #requireAppliedExternalObservation<TRequest>(
+    intent: Readonly<EffectIntentPayload>,
+    adapter: EffectAdapter<TRequest>,
+    request: TRequest,
+  ): Promise<EffectObservation> {
+    const reconciliation = await this.#queryExternalOutcome(intent, adapter, request);
+    this.#validateReconciliation(intent, reconciliation);
+    if (reconciliation.verdict !== 'applied' || reconciliation.observation === null) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+        'effect',
+        'Effect confirmation requires a conclusive external postcondition query',
+        { effectId: intent.effect_id },
+      );
+    }
+    return reconciliation.observation;
+  }
+
+  async #verifyConfirmationExternalTruth<TRequest>(
+    intent: Readonly<EffectIntentPayload>,
+    confirmation: Readonly<EffectConfirmationPayload>,
+    adapter: EffectAdapter<TRequest>,
+    request: TRequest,
+  ): Promise<void> {
+    const observation = await this.#requireAppliedExternalObservation(intent, adapter, request);
+    if (!sameAdapterObservation(observation, confirmation)) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+        'effect',
+        'External target facts do not match the durable confirmation',
+        { effectId: intent.effect_id },
+      );
+    }
+  }
+
+  #confirmationIndex(
+    events: readonly VerifiedLedgerEvent[],
+  ): ReadonlyMap<string, VerifiedLedgerEvent> {
+    const intents = new Map<string, VerifiedLedgerEvent>();
+    for (const event of events) {
+      if (event.event.effective.envelope.event_type === EFFECT_INTENT_EVENT_TYPE) {
+        intents.set(event.event.effective.envelope.event_id, event);
+      }
+    }
+
+    const confirmations = new Map<string, VerifiedLedgerEvent>();
+    for (const event of events) {
+      if (event.event.effective.envelope.event_type !== EFFECT_CONFIRMATION_EVENT_TYPE) continue;
+      const payload = payloadOf<EffectConfirmationPayload>(event);
+      const intentEvent = intents.get(payload.intent_event_id);
+      if (!intentEvent) {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          'effect',
+          'Confirmation is orphaned from its durable intent',
+          { confirmationId: payload.confirmation_id },
+        );
+      }
+      const intent = payloadOf<EffectIntentPayload>(intentEvent);
+      if (
+        event.event.effective.envelope.event_id !== payload.confirmation_id
+        || event.event.effective.envelope.causation_id !== payload.intent_event_id
+        || event.event.effective.envelope.stream_id
+          !== intentEvent.event.effective.envelope.stream_id
+        || !effectConfirmationBindsIntent(
+          payload,
+          intent,
+          intentEvent.event.effective.envelope.event_id,
+          intentEvent.event.stored.digest,
+        )
+      ) {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          'effect',
+          'Confirmation facts do not match the referenced durable intent',
+          { confirmationId: payload.confirmation_id },
+        );
+      }
+      if (confirmations.has(payload.intent_event_id)) {
+        throw new ReceiptEffectError(
+          ReceiptEffectErrorCodes.OUTCOME_UNVERIFIED,
+          'effect',
+          'Durable intent has duplicate confirmations',
+          { effectId: intent.effect_id },
+        );
+      }
+      confirmations.set(payload.intent_event_id, event);
+    }
+    return confirmations;
+  }
+
+  async #waitForBoundConfirmation<TRequest>(
+    intentEvent: VerifiedLedgerEvent,
+    intent: Readonly<EffectIntentPayload>,
+    adapter: EffectAdapter<TRequest>,
+    request: TRequest,
+  ): Promise<EffectConfirmationPayload | null> {
+    const deadline = Date.now() + this.#intentRaceWaitMs;
+    while (true) {
+      const events = await this.#options.writer.readVerifiedEvents();
+      const confirmation = this.#confirmationIndex(events).get(
+        intentEvent.event.effective.envelope.event_id,
+      );
+      if (confirmation) {
+        const payload = payloadOf<EffectConfirmationPayload>(confirmation);
+        await this.#verifyConfirmationExternalTruth(intent, payload, adapter, request);
+        return payload;
+      }
+      if (Date.now() >= deadline) return null;
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, this.#intentRacePollMs);
+      });
+    }
+  }
+
+  async #waitForIntentWinner<TRequest>(
+    intentEvent: VerifiedLedgerEvent,
+    input: EffectExecutionInput<TRequest>,
+    adapter: EffectAdapter<TRequest>,
+    key: string,
+  ): Promise<EffectExecutionResult> {
+    const intent = payloadOf<EffectIntentPayload>(intentEvent);
+    if (canonicalJson(intentCore(intent)) !== canonicalJson(expectedIntentCore(input, adapter, key))) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.EFFECT_CONFLICT,
+        'effect',
+        'Winning durable intent does not match the presented logical effect',
+        { logicalEffectId: input.logicalEffectId },
+      );
+    }
+    const confirmation = await this.#waitForBoundConfirmation(
+      intentEvent,
+      intent,
+      adapter,
+      committedRequest(input),
+    );
+    if (!confirmation) {
+      throw new ReceiptEffectError(
+        ReceiptEffectErrorCodes.EFFECT_INTENT_UNRESOLVED,
+        'effect',
+        'Another process owns execution and has not durably confirmed it',
+        { logicalEffectId: input.logicalEffectId },
+      );
+    }
+    return Object.freeze({
+      status: 'idempotent',
+      idempotencyKey: key,
+      intent,
+      confirmation,
+    });
+  }
+
+  #reconciledPayload(
+    started: Readonly<EffectRecoveryStartedPayload>,
+    reconciliation: Readonly<EffectReconciliationObservation>,
+    retryDecisionValue: EffectRetryDecision,
+    terminalStatus: EffectReconciledPayload['terminal_status'],
+  ): EffectReconciledPayload {
+    return Object.freeze({
+      recovery_id: started.recovery_id,
+      intent_event_id: started.intent_event_id,
+      verdict: reconciliation.verdict,
+      reason_code: reconciliation.reason_code,
+      evidence_digest: reconciliation.evidence_digest,
+      attempt: started.attempt,
+      claim: started.claim,
+      retry_decision: retryDecisionValue,
+      terminal_status: terminalStatus,
+      observed_at: reconciliation.observed_at,
+    });
+  }
+
+  async #appendReconciled(
+    input: EffectExecutionInput,
+    intent: Readonly<EffectIntentPayload>,
+    reconciled: EffectReconciledPayload,
+    causationId: string,
+    key: string,
+    streamSequence: number,
+  ): Promise<void> {
+    const event = envelopeEvent(
+      this.#options,
+      input,
+      EFFECT_RECONCILED_EVENT_TYPE,
+      `${reconciled.recovery_id}-reconciled`,
+      streamId(intent),
+      streamSequence,
+      reconciled.observed_at,
+      causationId,
+      `${key}:recovery:${reconciled.attempt}:reconciled`,
+      reconciled,
+    );
     await this.#options.writer.append(event);
-    return payload;
   }
 
   async #recordConflict<TRequest>(
@@ -853,15 +1274,6 @@ export class EffectRecoveryGateway {
       const payload = payloadOf<EffectIntentPayload>(event);
       return payload.run_id === runId && payload.logical_effect_id === logicalEffectId;
     }) ?? null;
-  }
-
-  #findConfirmation(
-    events: readonly VerifiedLedgerEvent[],
-    intentEventId: string,
-  ): VerifiedLedgerEvent | null {
-    return events.find((event) =>
-      event.event.effective.envelope.event_type === EFFECT_CONFIRMATION_EVENT_TYPE
-      && payloadOf<EffectConfirmationPayload>(event).intent_event_id === intentEventId) ?? null;
   }
 
   #nextStreamSequence(events: readonly VerifiedLedgerEvent[], identity: string): number {

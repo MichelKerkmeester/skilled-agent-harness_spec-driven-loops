@@ -75,7 +75,7 @@ export interface SubprocessAdapterOptions<TRequest> {
   ) => Promise<EffectReconciliationObservation>;
 }
 
-export interface AtomicFileEffectRequest {
+export interface AtomicFileEffectRequest extends JsonObject {
   readonly relativePath: string;
   readonly content: string;
   readonly expectedPriorDigest: string | null;
@@ -161,7 +161,6 @@ function fileObservation(
   const contentBytes = Buffer.from(content, 'utf8');
   const contentDigest = digestBuffer(contentBytes);
   return Object.freeze({
-    durability: 'verified',
     external_receipt_digest: sha256Bytes(canonicalBytes({
       idempotency_key: intent.idempotency_key,
       target_identity: intent.target_identity,

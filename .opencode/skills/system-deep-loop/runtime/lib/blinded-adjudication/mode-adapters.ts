@@ -9,9 +9,9 @@ import {
   AdjudicationDecisionKinds,
   AdjudicationError,
   AdjudicationErrorCodes,
-  CounterfactualKinds,
+  REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND,
 } from './contracts.js';
-import { validateAdjudicationRequest, requireDigest } from './validation.js';
+import { requireDigest, validateAdjudicationRequest } from './validation.js';
 
 import type {
   AdjudicationDecisionKind,
@@ -64,61 +64,55 @@ function buildRequest(
 export function createDeepReviewAdjudicationRequest(
   input: ModeRequestInput,
 ): AdjudicationRequest {
-  return buildRequest(AdjudicationDecisionKinds.DEEP_REVIEW, input, [
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.POLICY_SPECIFIC,
-  ]);
+  return buildRequest(
+    AdjudicationDecisionKinds.DEEP_REVIEW,
+    input,
+    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_REVIEW],
+  );
 }
 
 /** Bind council ranking and convergence to the full independence-sensitive probe set. */
 export function createCouncilAdjudicationRequest(
   input: ModeRequestInput,
 ): AdjudicationRequest {
-  return buildRequest(AdjudicationDecisionKinds.DEEP_AI_COUNCIL, input, [
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.CLAIMED_EXPERTISE,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.MAJORITY_SIGNAL,
-  ]);
+  return buildRequest(
+    AdjudicationDecisionKinds.DEEP_AI_COUNCIL,
+    input,
+    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_AI_COUNCIL],
+  );
 }
 
 /** Bind improvement candidates to generator-blind and style-controlled scoring. */
 export function createImprovementAdjudicationRequest(
   input: ModeRequestInput,
 ): AdjudicationRequest {
-  return buildRequest(AdjudicationDecisionKinds.DEEP_IMPROVEMENT, input, [
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.POLICY_SPECIFIC,
-  ]);
+  return buildRequest(
+    AdjudicationDecisionKinds.DEEP_IMPROVEMENT,
+    input,
+    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_IMPROVEMENT],
+  );
 }
 
 /** Bind model outputs to quality-first provider-blind pairwise scoring. */
 export function createModelBenchmarkAdjudicationRequest(
   input: ModeRequestInput,
 ): AdjudicationRequest {
-  return buildRequest(AdjudicationDecisionKinds.MODEL_BENCHMARK, input, [
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.POLICY_SPECIFIC,
-  ]);
+  return buildRequest(
+    AdjudicationDecisionKinds.MODEL_BENCHMARK,
+    input,
+    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.MODEL_BENCHMARK],
+  );
 }
 
 /** Bind treatment/control outputs to executor- and treatment-blind scoring. */
 export function createSkillBenchmarkAdjudicationRequest(
   input: ModeRequestInput,
 ): AdjudicationRequest {
-  return buildRequest(AdjudicationDecisionKinds.SKILL_BENCHMARK, input, [
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.POLICY_SPECIFIC,
-  ]);
+  return buildRequest(
+    AdjudicationDecisionKinds.SKILL_BENCHMARK,
+    input,
+    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.SKILL_BENCHMARK],
+  );
 }
 
 // ───────────────────────────────────────────────────────────────────

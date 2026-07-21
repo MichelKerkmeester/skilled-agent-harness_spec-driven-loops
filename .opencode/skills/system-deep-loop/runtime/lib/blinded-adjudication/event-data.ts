@@ -2,6 +2,8 @@
 // MODULE: Blinded Adjudication Event Data
 // ───────────────────────────────────────────────────────────────────
 
+import { adjudicationEvidenceId } from './contracts.js';
+
 import type { JsonObject } from '../event-envelope/index.js';
 import type {
   AdjudicationReduction,
@@ -15,6 +17,8 @@ import type {
 // ───────────────────────────────────────────────────────────────────
 // 1. SERIALIZERS
 // ───────────────────────────────────────────────────────────────────
+
+type VerdictWithoutEvidenceId = Omit<AdjudicationVerdict, 'verdictEvidenceId'>;
 
 /** Serialize a validated request without changing its field vocabulary. */
 export function requestEventData(request: AdjudicationRequest): JsonObject {
@@ -105,8 +109,7 @@ export function reductionEventData(reduction: AdjudicationReduction): JsonObject
   };
 }
 
-/** Serialize the mode-facing verdict without adding transition authority. */
-export function verdictEventData(verdict: AdjudicationVerdict): JsonObject {
+function verdictEvidenceMaterial(verdict: VerdictWithoutEvidenceId): JsonObject {
   return {
     decision_kind: verdict.decisionKind,
     status: verdict.status,
@@ -136,6 +139,24 @@ export function verdictEventData(verdict: AdjudicationVerdict): JsonObject {
       competenceEstimatesAdvisory: { ...verdict.independence.competenceEstimatesAdvisory },
       competenceWeightsCorrectCorrelation: false,
     },
-    service_authority: 'shadow-only',
+    replay_fingerprint: verdict.replayFingerprint,
+    legacy_authority: verdict.legacyAuthority,
+    service_authority: verdict.serviceAuthority,
+  };
+}
+
+/** Bind the verdict identity to every mode-facing evidence and authority field. */
+export function adjudicationVerdictEvidenceId(verdict: VerdictWithoutEvidenceId): string {
+  return adjudicationEvidenceId('verdict', {
+    adjudicationId: verdict.adjudicationId,
+    verdict: verdictEvidenceMaterial(verdict),
+  });
+}
+
+/** Serialize the complete mode-facing verdict without adding transition authority. */
+export function verdictEventData(verdict: AdjudicationVerdict): JsonObject {
+  return {
+    verdict_evidence_id: verdict.verdictEvidenceId,
+    ...verdictEvidenceMaterial(verdict),
   };
 }

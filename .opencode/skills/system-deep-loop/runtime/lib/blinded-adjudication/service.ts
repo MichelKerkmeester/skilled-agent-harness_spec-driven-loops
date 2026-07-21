@@ -36,6 +36,7 @@ import {
   createAdjudicationTransitionPolicyRegistry,
 } from './event-registry.js';
 import {
+  adjudicationVerdictEvidenceId,
   counterfactualEventData,
   rawJudgmentEventData,
   reductionEventData,
@@ -86,9 +87,15 @@ import type { DeblindedIdentity } from './blinding.js';
 
 export interface DeblindingAuthorizationRequest {
   readonly adjudicationId: string;
-  readonly actorId: string;
+  readonly actorClaim: string;
   readonly purpose: string;
   readonly candidateDigests: readonly string[];
+}
+
+export interface AuthenticatedDeblindingAuthorization {
+  readonly principalId: string;
+  readonly capabilityId: string;
+  readonly authenticationMethod: string;
 }
 
 export interface BlindedAdjudicationServiceOptions {
@@ -98,9 +105,11 @@ export interface BlindedAdjudicationServiceOptions {
   readonly authorityProvider: (
     mode: string,
   ) => AuthoritySnapshot | Promise<AuthoritySnapshot>;
+  /** This boundary authenticates the caller claim and authorizes the exact requested scope. */
   readonly deblindingAuthorizer: (
     request: Readonly<DeblindingAuthorizationRequest>,
-  ) => boolean | Promise<boolean>;
+  ) => AuthenticatedDeblindingAuthorization | null
+  | Promise<AuthenticatedDeblindingAuthorization | null>;
   readonly producer?: EventProducer;
   readonly now?: () => Date;
 }
@@ -246,7 +255,7 @@ export class BlindedAdjudicationService {
   /** Plan and ledger a targeted merit-irrelevant intervention. */
   public async planCounterfactualAssignment(
     adjudicationId: string,
-    baselineAssignmentId: string,
+    baselineAssignment: JudgeAssignment,
     kind: CounterfactualKind,
     judgeInput: JudgeProfile,
     interventionToken?: string,
@@ -255,7 +264,7 @@ export class BlindedAdjudicationService {
     const session = this.#session(adjudicationId);
     this.#assertOpen(session);
     const assignment = session.registrar.planCounterfactualAssignment(
-      baselineAssignmentId,
+      baselineAssignment,
       kind,
       validateJudgeProfile(judgeInput),
       interventionToken,
@@ -293,22 +302,16 @@ export class BlindedAdjudicationService {
         'Judge independence metadata changed during adjudication',
       );
     }
-    const evidenceId = adjudicationEvidenceId('raw-score', {
-      adjudicationId,
-      assignmentId: assignment.assignmentId,
-      judgmentId: submission.judgmentId,
-    });
     const judgment = session.registrar.acceptSubmission(
       assignment,
       judge,
       submission,
-      evidenceId,
     );
     await this.#appendEvidence(
       adjudicationId,
       session.request,
       AdjudicationEventTypes.SCORE_RECORDED,
-      evidenceId,
+      judgment.evidenceId,
       judgment.judgeAssignmentId,
       rawJudgmentEventData(judgment, judge),
       requireIdentity(actorId, '$.actorId'),
@@ -405,19 +408,12 @@ export class BlindedAdjudicationService {
       reductionData,
       requireIdentity(actorId, '$.actorId'),
     );
-    const verdictEvidenceId = adjudicationEvidenceId('verdict', {
-      adjudicationId,
-      reductionEvidenceId,
-      status: reduction.status,
-      preferredCandidateDigest: reduction.preferredCandidateDigest,
-    });
-    const verdict: AdjudicationVerdict = Object.freeze({
+    const verdictWithoutEvidenceId: Omit<AdjudicationVerdict, 'verdictEvidenceId'> = Object.freeze({
       adjudicationId,
       decisionKind: session.request.decisionKind,
       status: reduction.status,
       preferredCandidateDigest: reduction.preferredCandidateDigest,
       reductionEvidenceId,
-      verdictEvidenceId,
       rawScoreEvidenceIds: reduction.rawScoreEvidenceIds,
       counterfactualEvidenceIds: reduction.counterfactualEvidenceIds,
       minorityEvidenceIds: reduction.minorityEvidenceIds,
@@ -429,6 +425,11 @@ export class BlindedAdjudicationService {
       replayFingerprint: session.request.replayFingerprint,
       legacyAuthority: 'canonical',
       serviceAuthority: 'shadow-only',
+    });
+    const verdictEvidenceId = adjudicationVerdictEvidenceId(verdictWithoutEvidenceId);
+    const verdict: AdjudicationVerdict = Object.freeze({
+      ...verdictWithoutEvidenceId,
+      verdictEvidenceId,
     });
     await this.#appendEvidence(
       adjudicationId,
@@ -480,12 +481,12 @@ export class BlindedAdjudicationService {
   /** Audit authorization before releasing any scoped identity-map result. */
   public async requestDeblinding(
     adjudicationId: string,
-    actorIdInput: string,
+    actorClaimInput: string,
     purpose: string,
     candidateDigestInputs: readonly string[],
   ): Promise<readonly DeblindedIdentity[]> {
     const session = this.#session(adjudicationId);
-    const actorId = requireIdentity(actorIdInput, '$.actorId');
+    const actorClaim = requireIdentity(actorClaimInput, '$.actorClaim');
     if (purpose.trim() === '' || purpose.length > 1_000) {
       throw new AdjudicationError(
         AdjudicationErrorCodes.INVALID_INPUT,
@@ -505,16 +506,43 @@ export class BlindedAdjudicationService {
       );
     }
     const isVerdictFinal = session.verdict !== null && !session.isInvalidated;
-    const isAuthorized = isVerdictFinal && await this.#deblindingAuthorizer({
-      adjudicationId,
-      actorId,
-      purpose,
-      candidateDigests,
-    });
+    let authorization: AuthenticatedDeblindingAuthorization | null = null;
+    if (isVerdictFinal) {
+      const authorizerResult = await this.#deblindingAuthorizer({
+        adjudicationId,
+        actorClaim,
+        purpose,
+        candidateDigests,
+      });
+      if (authorizerResult !== null) {
+        try {
+          authorization = Object.freeze({
+            principalId: requireIdentity(
+              authorizerResult.principalId,
+              '$.authorization.principalId',
+            ),
+            capabilityId: requireIdentity(
+              authorizerResult.capabilityId,
+              '$.authorization.capabilityId',
+            ),
+            authenticationMethod: requireIdentity(
+              authorizerResult.authenticationMethod,
+              '$.authorization.authenticationMethod',
+            ),
+          });
+        } catch {
+          authorization = null;
+        }
+      }
+    }
+    const isAuthorized = isVerdictFinal && authorization !== null;
     const result = isAuthorized ? 'authorized' : 'denied';
     const evidenceId = adjudicationEvidenceId('deblinding-audit', {
       adjudicationId,
-      actorId,
+      actorClaim,
+      authenticatedPrincipalId: authorization?.principalId ?? null,
+      authorizationCapabilityId: authorization?.capabilityId ?? null,
+      authenticationMethod: authorization?.authenticationMethod ?? null,
       purpose,
       candidateDigests,
       result,
@@ -526,13 +554,16 @@ export class BlindedAdjudicationService {
       evidenceId,
       null,
       {
-        actor_id: actorId,
+        caller_claim: actorClaim,
+        authenticated_principal_id: authorization?.principalId ?? null,
+        authorization_capability_id: authorization?.capabilityId ?? null,
+        authentication_method: authorization?.authenticationMethod ?? null,
         purpose,
         scope_candidate_digests: candidateDigests,
         identity_map_version: 'identity-map@1',
         result,
       },
-      actorId,
+      authorization?.principalId ?? 'adjudication-deblinding-gateway',
     );
     const capability = session.vault.mintDeblindingCapability(isVerdictFinal, isAuthorized);
     return session.vault.deblind(capability, candidateDigests);
@@ -588,16 +619,16 @@ export class BlindedAdjudicationService {
   ): Promise<void> {
     const data = session.registrar.presentationEvidence(assignment);
     const evidenceId = adjudicationEvidenceId('presentation', {
-      adjudicationId: assignment.adjudicationId,
-      assignmentId: assignment.assignmentId,
+      adjudicationId: data.adjudication_id,
+      assignmentId: data.assignment_id,
       presentation: data,
     });
     await this.#appendEvidence(
-      assignment.adjudicationId,
+      data.adjudication_id,
       session.request,
       AdjudicationEventTypes.PRESENTATION_BLINDED,
       evidenceId,
-      assignment.judgeAssignmentId,
+      data.judge_assignment_id,
       data,
       requireIdentity(actorId, '$.actorId'),
     );

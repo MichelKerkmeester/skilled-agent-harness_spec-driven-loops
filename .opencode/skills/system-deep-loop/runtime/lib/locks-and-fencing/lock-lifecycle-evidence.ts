@@ -214,7 +214,13 @@ export function prepareLockLifecycleEvidence(
 // 2. AUTHORIZED RECORDING AND READING
 // ───────────────────────────────────────────────────────────────────
 
-/** Authorize and append durable lock evidence without exposing a raw append shortcut. */
+/**
+ * Authorize and append observational evidence without a lease requirement.
+ *
+ * This path can only append a canonical event through the authorization gateway and the
+ * ledger's atomic head check. It has no coordinator-state or protected-state capability,
+ * so recording evidence cannot grant, renew, release, or mutate a fenced resource.
+ */
 export async function recordLockLifecycleEvidence(
   ledger: AppendOnlyLedger,
   gateway: TransitionAuthorizationGateway,
@@ -330,4 +336,3 @@ function reduceLockLifecycleEvidence(
     }),
   });
 }
-

@@ -36,10 +36,7 @@ import {
   sha256Bytes,
 } from '../event-envelope/index.js';
 import {
-  ArtifactCanonicalizerRegistry,
-  ArtifactDigestRegistry,
   createArtifactCanonicalizerRegistry,
-  createArtifactDigestRegistry,
 } from './artifact-registries.js';
 import {
   ARTIFACT_DESCRIPTOR_VERSION,
@@ -52,6 +49,10 @@ import {
 } from './sealed-artifact-types.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
+import type {
+  ArtifactCanonicalizerRegistry,
+  ArtifactDigestRegistry,
+} from './artifact-registries.js';
 import type {
   ArtifactDeletionAuthorization,
   ArtifactStoreOptions,
@@ -170,6 +171,10 @@ function requireCanonicalEncoding(bytes: Uint8Array, value: unknown, subject: st
 
 function qualifiedDigest(algorithm: string, digest: string): string {
   return `${algorithm}:${digest}`;
+}
+
+function immutableBytes(bytes: Uint8Array): readonly number[] {
+  return Object.freeze(Array.from(bytes));
 }
 
 /** Validate a closed, algorithm-qualified reference without resolving storage. */
@@ -443,15 +448,21 @@ export class SealedArtifactStore {
   readonly #options: ArtifactStoreOptions;
   readonly #rootDirectory: string;
   readonly #canonicalizers: ArtifactCanonicalizerRegistry;
-  readonly #digests: ArtifactDigestRegistry;
   readonly #now: () => Date;
   readonly #lockTimeoutMs: number;
 
   public constructor(
     options: ArtifactStoreOptions,
     canonicalizers = createArtifactCanonicalizerRegistry(),
-    digests = createArtifactDigestRegistry(),
+    callerDigestRegistry?: ArtifactDigestRegistry,
   ) {
+    if (callerDigestRegistry !== undefined) {
+      throw new SealedArtifactError(
+        SealedArtifactErrorCodes.INVALID_INPUT,
+        'descriptor',
+        'Artifact stores do not accept caller-provided digest implementations',
+      );
+    }
     if (!isBoundedString(options.rootDirectory, 8_192)) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.INVALID_INPUT,
@@ -471,7 +482,6 @@ export class SealedArtifactStore {
     this.#options = options;
     this.#rootDirectory = realpathSync(requestedRoot);
     this.#canonicalizers = canonicalizers;
-    this.#digests = digests;
     this.#now = options.now ?? (() => new Date());
     this.#lockTimeoutMs = options.lockTimeoutMs ?? DEFAULT_LOCK_TIMEOUT_MS;
   }
@@ -485,6 +495,14 @@ export class SealedArtifactStore {
     const canonicalizationVersion = options.canonicalizationVersion
       ?? DEFAULT_ARTIFACT_CANONICALIZATION_VERSION;
     const digestAlgorithm = options.digestAlgorithm ?? DEFAULT_ARTIFACT_DIGEST_ALGORITHM;
+    if (digestAlgorithm !== DEFAULT_ARTIFACT_DIGEST_ALGORITHM) {
+      throw new SealedArtifactError(
+        SealedArtifactErrorCodes.UNSUPPORTED_DIGEST_ALGORITHM,
+        'descriptor',
+        'Sealed artifacts require the fixed SHA-256 digest algorithm',
+        { algorithm: digestAlgorithm },
+      );
+    }
     const canonicalized = this.#canonicalizers.canonicalize(
       artifactKind,
       canonicalizationVersion,
@@ -509,7 +527,7 @@ export class SealedArtifactStore {
         'Source provenance digest must be a lowercase SHA-256 commitment',
       );
     }
-    const contentDigest = this.#digests.calculate(digestAlgorithm, canonicalized.bytes);
+    const contentDigest = sha256Bytes(canonicalized.bytes);
     const descriptor: SealDescriptor = Object.freeze({
       descriptor_version: ARTIFACT_DESCRIPTOR_VERSION,
       artifact_kind: artifactKind,
@@ -534,9 +552,9 @@ export class SealedArtifactStore {
     return Object.freeze({
       reference,
       descriptor,
-      bytes: Uint8Array.from(canonicalized.bytes),
-      descriptorBytes,
-      referenceBytes: Uint8Array.from(canonicalBytes(reference)),
+      bytes: immutableBytes(canonicalized.bytes),
+      descriptorBytes: immutableBytes(descriptorBytes),
+      referenceBytes: immutableBytes(Uint8Array.from(canonicalBytes(reference))),
     });
   }
 
@@ -606,7 +624,18 @@ export class SealedArtifactStore {
         );
       }
       if (existsSync(paths.referencePath)) {
-        const existing = this.#readVerifiedUnlocked(derived.reference);
+        let existing: VerifiedSealedArtifact;
+        try {
+          existing = this.#readVerifiedUnlocked(derived.reference);
+        } catch (error: unknown) {
+          if (
+            error instanceof SealedArtifactError
+            && QUARANTINE_ERROR_CODES.has(error.code)
+          ) {
+            this.#quarantineUnlocked(derived.reference, error.code);
+          }
+          throw error;
+        }
         if (Buffer.compare(Buffer.from(existing.bytes), Buffer.from(derived.bytes)) !== 0) {
           this.#quarantineUnlocked(derived.reference, SealedArtifactErrorCodes.DIGEST_CONFLICT);
           throw new SealedArtifactError(
@@ -730,9 +759,9 @@ export class SealedArtifactStore {
     ensureDirectory(stagingDirectory);
     try {
       this.#options.faultInjection?.beforeBlobWrite?.();
-      writeDurable(stagedBlob, derived.bytes);
+      writeDurable(stagedBlob, Uint8Array.from(derived.bytes));
       this.#options.faultInjection?.beforeDescriptorWrite?.();
-      writeDurable(stagedDescriptor, derived.descriptorBytes);
+      writeDurable(stagedDescriptor, Uint8Array.from(derived.descriptorBytes));
       this.#options.faultInjection?.beforePersistenceVerification?.();
       const persistedBlob = Uint8Array.from(readFileSync(stagedBlob));
       const persistedDescriptor = Uint8Array.from(readFileSync(stagedDescriptor));
@@ -756,7 +785,7 @@ export class SealedArtifactStore {
         derived.reference,
       );
       this.#options.faultInjection?.beforeReferencePublication?.();
-      writeAtomic(paths.referencePath, derived.referenceBytes);
+      writeAtomic(paths.referencePath, Uint8Array.from(derived.referenceBytes));
       chmodSync(paths.referencePath, IMMUTABLE_FILE_MODE);
       if (restoring && !existsSync(paths.referencePath)) {
         throw new SealedArtifactError(
@@ -773,7 +802,7 @@ export class SealedArtifactStore {
   #commitImmutableFile(
     stagedPath: string,
     finalPath: string,
-    expectedBytes: Uint8Array,
+    expectedBytes: readonly number[],
     reference: SealedArtifactReference,
   ): void {
     if (existsSync(finalPath)) {
@@ -798,7 +827,14 @@ export class SealedArtifactStore {
     expectedArtifactKind?: string,
   ): VerifiedSealedArtifact {
     const reference = parseSealedArtifactReference(input);
-    this.#digests.describe(reference.digest_algorithm);
+    if (reference.digest_algorithm !== DEFAULT_ARTIFACT_DIGEST_ALGORITHM) {
+      throw new SealedArtifactError(
+        SealedArtifactErrorCodes.UNSUPPORTED_DIGEST_ALGORITHM,
+        'descriptor',
+        'Sealed artifacts require the fixed SHA-256 digest algorithm',
+        { algorithm: reference.digest_algorithm },
+      );
+    }
     this.#canonicalizers.describe(
       reference.artifact_kind,
       reference.canonicalization_version,
@@ -890,7 +926,7 @@ export class SealedArtifactStore {
     const bytes = readBoundedFile(paths.blobPath);
     if (
       bytes.byteLength !== descriptor.byte_length
-      || this.#digests.calculate(descriptor.digest_algorithm, bytes) !== descriptor.content_digest
+      || sha256Bytes(bytes) !== descriptor.content_digest
     ) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
@@ -899,7 +935,7 @@ export class SealedArtifactStore {
         { qualifiedDigest: reference.qualified_digest },
       );
     }
-    return Object.freeze({ reference, descriptor, bytes: Uint8Array.from(bytes) });
+    return Object.freeze({ reference, descriptor, bytes: immutableBytes(bytes) });
   }
 
   #restorationCandidateUnlocked(

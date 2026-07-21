@@ -20,6 +20,8 @@ import type {
   BoundaryDefinition,
   BoundaryKind,
   CertificationTrustScope,
+  EffectConfirmationPayload,
+  EffectIntentPayload,
   EffectRetryDecision,
   EffectType,
   RecoveryVerdict,
@@ -210,6 +212,28 @@ function isDigest(value: unknown): value is string {
   return typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value);
 }
 
+function derivedEventId(prefix: string, value: string): string {
+  return `${prefix}-${sha256Bytes(canonicalBytes(value))}`;
+}
+
+/** Verify every confirmation fact that is derivable from its durable intent. */
+export function effectConfirmationBindsIntent(
+  confirmation: Readonly<EffectConfirmationPayload>,
+  intent: Readonly<EffectIntentPayload>,
+  intentEventId: string,
+  intentEventDigest: string,
+): boolean {
+  return confirmation.confirmation_id
+      === derivedEventId('effect-confirmation', intent.idempotency_key)
+    && confirmation.effect_id === intent.effect_id
+    && confirmation.intent_event_id === intentEventId
+    && confirmation.intent_event_digest === intentEventDigest
+    && confirmation.idempotency_key === intent.idempotency_key
+    && sha256Bytes(canonicalBytes(confirmation.adapter))
+      === sha256Bytes(canonicalBytes(intent.adapter))
+    && confirmation.postcondition_digest === intent.expected_postcondition_digest;
+}
+
 function isTimestamp(value: unknown): value is string {
   return typeof value === 'string'
     && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/u.test(value)
@@ -397,6 +421,7 @@ function validateEffectIntent(payload: Readonly<JsonObject>): boolean {
     && isStringArray(payload.secret_references)
     && isAdapter(payload.adapter)
     && isBoundedString(payload.idempotency_key)
+    && payload.effect_id === derivedEventId('effect', payload.idempotency_key)
     && isBoundedString(payload.recovery_policy)
     && isDigest(payload.expected_postcondition_digest)
     && isDigest(payload.replay_fingerprint)
@@ -424,6 +449,10 @@ function validateEffectConfirmation(payload: Readonly<JsonObject>): boolean {
     && isBoundedString(payload.intent_event_id)
     && isDigest(payload.intent_event_digest)
     && isBoundedString(payload.idempotency_key)
+    && payload.confirmation_id
+      === derivedEventId('effect-confirmation', payload.idempotency_key)
+    && payload.intent_event_id === derivedEventId('effect-intent', payload.idempotency_key)
+    && payload.effect_id === derivedEventId('effect', payload.idempotency_key)
     && isAdapter(payload.adapter)
     && isDigest(payload.external_receipt_digest)
     && isDigest(payload.postcondition_digest)

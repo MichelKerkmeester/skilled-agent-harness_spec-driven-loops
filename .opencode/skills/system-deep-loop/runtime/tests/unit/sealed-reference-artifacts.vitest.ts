@@ -359,32 +359,37 @@ describe('sealed reference artifacts', () => {
     expect(Buffer.from(second.artifact.bytes)).toEqual(Buffer.from(first.artifact.bytes));
   });
 
-  it('quarantines a forced digest collision instead of selecting either candidate', async () => {
-    const digest = 'a'.repeat(64);
-    const digests = new ArtifactDigestRegistry([{
-      algorithm: 'collision-test',
-      implementationIdentity: 'collision-test-v1',
-      digest: () => digest,
-    }]);
-    const store = new SealedArtifactStore(
-      { rootDirectory: temporaryRoot('collision') },
+  it('rejects caller-provided digest implementations before sealing', () => {
+    const constantDigest = 'a'.repeat(64);
+    expect(() => new ArtifactDigestRegistry([{
+      algorithm: 'sha256',
+      implementationIdentity: 'constant-digest-v1',
+      digest: (): string => constantDigest,
+    }])).toThrowError(expect.objectContaining({
+      code: SealedArtifactErrorCodes.INVALID_INPUT,
+    }));
+    const callerDigest = {
+      calculate: (): string => constantDigest,
+    } as unknown as ArtifactDigestRegistry;
+    expect(() => new SealedArtifactStore(
+      { rootDirectory: temporaryRoot('caller-digest') },
       undefined,
-      digests,
-    );
-    const first = await store.seal(
-      InitialArtifactKinds.FIXTURE,
-      { value: 'a' },
-      { digestAlgorithm: 'collision-test' },
-    );
-    await expectArtifactFailure(
-      store.seal(
-        InitialArtifactKinds.FIXTURE,
-        { value: 'b' },
-        { digestAlgorithm: 'collision-test' },
-      ),
-      SealedArtifactErrorCodes.DIGEST_CONFLICT,
-    );
+      callerDigest,
+    )).toThrowError(expect.objectContaining({
+      code: SealedArtifactErrorCodes.INVALID_INPUT,
+    }));
+  });
+
+  it('quarantines re-sealing when one content id stores different bytes', async () => {
+    const store = new SealedArtifactStore({ rootDirectory: temporaryRoot('digest-conflict') });
+    const source = { value: 'a' };
+    const first = await store.seal(InitialArtifactKinds.FIXTURE, source);
     const paths = store.inspectPaths(first.artifact.reference);
+    overwrite(paths.blobPath, Uint8Array.from(canonicalBytes({ value: 'b' })));
+    await expectArtifactFailure(
+      store.seal(InitialArtifactKinds.FIXTURE, source),
+      SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
+    );
     expect(existsSync(paths.quarantineMarkerPath)).toBe(true);
     expect(existsSync(paths.referencePath)).toBe(false);
   });
@@ -533,15 +538,21 @@ describe('sealed reference artifacts', () => {
     });
   });
 
-  it('returns a copy of the exact bytes that were hashed', async () => {
+  it('returns frozen exact bytes that cannot diverge after verification', async () => {
     const store = new SealedArtifactStore({ rootDirectory: temporaryRoot('returned-bytes') });
     const sealed = await store.seal(InitialArtifactKinds.FIXTURE, { value: 'stable' });
     const first = await store.readVerified(sealed.artifact.reference);
     const original = Buffer.from(first.bytes);
-    first.bytes[0] = first.bytes[0] === 0 ? 1 : 0;
+    expect(Array.isArray(first.bytes)).toBe(true);
+    expect(Object.isFrozen(first.bytes)).toBe(true);
+    expect(() => {
+      const mutableView = first.bytes as number[];
+      mutableView[0] = mutableView[0] === 0 ? 1 : 0;
+    }).toThrow(TypeError);
+    expect(Buffer.from(first.bytes)).toEqual(original);
     const second = await store.readVerified(sealed.artifact.reference);
     expect(Buffer.from(second.bytes)).toEqual(original);
-    expect(sha256Bytes(second.bytes)).toBe(second.descriptor.content_digest);
+    expect(sha256Bytes(Uint8Array.from(second.bytes))).toBe(second.descriptor.content_digest);
   });
 
   // ─────────────────────────────────────────────────────────────────
@@ -612,10 +623,24 @@ describe('sealed reference artifacts', () => {
     );
     const forward = bindVerifiedArtifactReferences([first, second]);
     const reverse = bindVerifiedArtifactReferences([second, first]);
-    expect(forward.reference_set_digest).not.toBe(reverse.reference_set_digest);
-    expect(artifactReferenceSetReplayInput(forward).digest).not.toBe(
-      artifactReferenceSetReplayInput(reverse).digest,
+    const forwardInput = await artifactReferenceSetReplayInput(
+      harness.ledger,
+      harness.store,
+      forward,
     );
+    const reverseInput = await artifactReferenceSetReplayInput(
+      harness.ledger,
+      harness.store,
+      reverse,
+    );
+    expect(forward.reference_set_digest).not.toBe(reverse.reference_set_digest);
+    expect(forwardInput.digest).not.toBe(reverseInput.digest);
+    expect(forwardInput.source.value).toMatchObject({
+      ordered_digests: [
+        { qualified_digest: first.artifact.reference.qualified_digest },
+        { qualified_digest: second.artifact.reference.qualified_digest },
+      ],
+    });
     expect(compareArtifactReferenceSets(forward, forward)).toEqual({
       ok: true,
       referenceSetDigest: forward.reference_set_digest,
@@ -624,6 +649,77 @@ describe('sealed reference artifacts', () => {
       ok: false,
       code: SealedArtifactErrorCodes.INPUT_EQUIVALENCE_FAILURE,
     });
+  });
+
+  it('rejects a missing artifact before producing replay fingerprint input', async () => {
+    const harness = createHarness();
+    const evidence = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.FIXTURE,
+      { value: 'missing' },
+    );
+    const referenceSet = bindVerifiedArtifactReferences([evidence]);
+    rmSync(harness.store.inspectPaths(evidence.artifact.reference).referencePath);
+    await expectArtifactFailure(
+      artifactReferenceSetReplayInput(harness.ledger, harness.store, referenceSet),
+      SealedArtifactErrorCodes.ARTIFACT_MISSING,
+    );
+  });
+
+  it('rejects a fabricated verification field before replay fingerprint input', async () => {
+    const harness = createHarness();
+    const evidence = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.FIXTURE,
+      { value: 'verification-field' },
+    );
+    const referenceSet = bindVerifiedArtifactReferences([evidence]);
+    const entry = referenceSet.ordered_artifacts[0];
+    if (!entry) throw new Error('Expected one reference-set entry');
+    const forged = {
+      ...referenceSet,
+      ordered_artifacts: [{ ...entry, verification_result: 'fabricated' }],
+    } as unknown as ArtifactReferenceSet;
+    await expectArtifactFailure(
+      artifactReferenceSetReplayInput(harness.ledger, harness.store, forged),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+  });
+
+  it('rejects a fabricated ledger field before replay fingerprint input', async () => {
+    const harness = createHarness();
+    const evidence = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.FIXTURE,
+      { value: 'ledger-field' },
+    );
+    const referenceSet = bindVerifiedArtifactReferences([evidence]);
+    const entry = referenceSet.ordered_artifacts[0];
+    if (!entry) throw new Error('Expected one reference-set entry');
+    const forged = {
+      ...referenceSet,
+      ordered_artifacts: [{ ...entry, sealed_record_hash: '0'.repeat(64) }],
+    } as ArtifactReferenceSet;
+    await expectArtifactFailure(
+      artifactReferenceSetReplayInput(harness.ledger, harness.store, forged),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+  });
+
+  it('rejects substituted bytes before producing replay fingerprint input', async () => {
+    const harness = createHarness();
+    const evidence = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.FIXTURE,
+      { value: 'original' },
+    );
+    const referenceSet = bindVerifiedArtifactReferences([evidence]);
+    const paths = harness.store.inspectPaths(evidence.artifact.reference);
+    overwrite(paths.blobPath, Uint8Array.from(canonicalBytes({ value: 'forged' })));
+    await expectArtifactFailure(
+      artifactReferenceSetReplayInput(harness.ledger, harness.store, referenceSet),
+      SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
+    );
   });
 
   it('changes the phase fingerprint when the verified artifact order changes', async () => {
@@ -645,7 +741,11 @@ describe('sealed reference artifacts', () => {
     const initialState: ArtifactProjection = { count: 0, referenceSetDigest: '' };
 
     const derive = async (referenceSet: ArtifactReferenceSet): Promise<string> => {
-      const replayInput = artifactReferenceSetReplayInput(referenceSet);
+      const replayInput = await artifactReferenceSetReplayInput(
+        harness.ledger,
+        harness.store,
+        referenceSet,
+      );
       const baseReducers = new TypedReducerRegistry<ArtifactProjection>([{
         eventType: 'deep-loop.artifact.sealed',
         reducerVersion: 'artifact-reducer@1',

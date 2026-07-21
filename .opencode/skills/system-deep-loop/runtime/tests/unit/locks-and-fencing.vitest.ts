@@ -2,13 +2,19 @@
 // MODULE: Locks and Fencing Contract Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { spawn } from 'node:child_process';
 import {
   appendFileSync,
+  existsSync,
   mkdtempSync,
+  mkdirSync,
+  readFileSync,
   rmSync,
+  writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -81,12 +87,77 @@ interface LedgerHarness {
   readonly policies: TransitionPolicyRegistry;
 }
 
+interface ChildProcessResult {
+  readonly exitCode: number | null;
+  readonly stdout: string;
+  readonly stderr: string;
+}
+
+interface ProcessAcquireResult {
+  readonly status: 'granted' | 'rejected';
+  readonly fenceToken?: number;
+  readonly errorCode?: string;
+  readonly errorMessage?: string;
+}
+
 const temporaryRoots: string[] = [];
 
 function temporaryRoot(label: string): string {
   const root = mkdtempSync(join(tmpdir(), `locks-and-fencing-${label}-`));
   temporaryRoots.push(root);
   return root;
+}
+
+async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promise<void> {
+  const deadlineMs = Date.now() + timeoutMs;
+  while (!paths.every((path) => existsSync(path))) {
+    if (Date.now() >= deadlineMs) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
+    await new Promise((resolveWait) => setTimeout(resolveWait, 5));
+  }
+}
+
+function runAcquireProcess(
+  rootDirectory: string,
+  workerId: string,
+  readyPath: string,
+  startPath: string,
+  resultPath: string,
+  peerResultPath: string,
+): Promise<ChildProcessResult> {
+  const testPath = fileURLToPath(import.meta.url);
+  const testDirectory = dirname(testPath);
+  const mcpServerDirectory = resolve(testDirectory, '../../../../system-spec-kit/mcp-server');
+  const vitestCli = join(mcpServerDirectory, 'node_modules/vitest/vitest.mjs');
+  return new Promise((resolveProcess, rejectProcess) => {
+    const child = spawn(process.execPath, [
+      vitestCli,
+      'run',
+      '--no-coverage',
+      testPath,
+      '-t',
+      'independent process acquisition worker',
+    ], {
+      cwd: mcpServerDirectory,
+      env: {
+        ...process.env,
+        LOCKS_FENCING_PROCESS_ROOT: rootDirectory,
+        LOCKS_FENCING_PROCESS_WORKER: workerId,
+        LOCKS_FENCING_PROCESS_READY: readyPath,
+        LOCKS_FENCING_PROCESS_START: startPath,
+        LOCKS_FENCING_PROCESS_RESULT: resultPath,
+        LOCKS_FENCING_PROCESS_PEER_RESULT: peerResultPath,
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => { stdout += chunk; });
+    child.stderr.on('data', (chunk: string) => { stderr += chunk; });
+    child.once('error', rejectProcess);
+    child.once('close', (exitCode) => resolveProcess({ exitCode, stdout, stderr }));
+  });
 }
 
 function createClock(): TestClock {
@@ -282,6 +353,45 @@ afterEach(() => {
   for (const root of temporaryRoots.splice(0)) rmSync(root, { recursive: true, force: true });
 });
 
+if (process.env.LOCKS_FENCING_PROCESS_ROOT) {
+  describe('independent process helper', () => {
+    it('independent process acquisition worker', async () => {
+      const rootDirectory = process.env.LOCKS_FENCING_PROCESS_ROOT as string;
+      const workerId = process.env.LOCKS_FENCING_PROCESS_WORKER as string;
+      const readyPath = process.env.LOCKS_FENCING_PROCESS_READY as string;
+      const startPath = process.env.LOCKS_FENCING_PROCESS_START as string;
+      const resultPath = process.env.LOCKS_FENCING_PROCESS_RESULT as string;
+      const peerResultPath = process.env.LOCKS_FENCING_PROCESS_PEER_RESULT as string;
+      const coordinator = new FencedLeaseCoordinator({
+        rootDirectory,
+        retryIntervalMs: 1,
+        operationTimeoutMs: 100,
+      });
+      writeFileSync(readyPath, workerId, 'utf8');
+      await waitForFiles([startPath]);
+      let result: ProcessAcquireResult;
+      try {
+        const lease = await coordinator.acquire(acquireRequest(
+          lineageResource('process-race'),
+          `worker-${workerId}`,
+          { ttlMs: 5_000 },
+        ));
+        result = { status: 'granted', fenceToken: lease.fenceToken };
+      } catch (error: unknown) {
+        result = {
+          status: 'rejected',
+          errorCode: error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'UNEXPECTED_FAILURE',
+          errorMessage: error instanceof Error ? error.message : String(error),
+        };
+      }
+      writeFileSync(resultPath, JSON.stringify(result), 'utf8');
+      await waitForFiles([peerResultPath]);
+    });
+  });
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. RESOURCE AND LEASE CONTRACTS
 // ───────────────────────────────────────────────────────────────────
@@ -385,7 +495,7 @@ describe('durable fencing leases', () => {
     clock.advance(21);
     const successor = await coordinator.acquire(acquireRequest(resource, 'shared-owner'));
     expect(successor.fenceToken).toBe(2);
-    await expect(coordinator.withFence(oldLease, () => 'stale')).rejects.toMatchObject({
+    await expect(coordinator.withFence(oldLease, () => () => 'stale')).rejects.toMatchObject({
       code: LocksAndFencingErrorCodes.STALE_FENCE,
     });
     clock.rewind(1_000);
@@ -454,6 +564,138 @@ describe('durable fencing leases', () => {
     }))).rejects.toMatchObject({ code: LocksAndFencingErrorCodes.FENCE_OVERFLOW });
   });
 
+  it('admits only one holder across two independent operating-system processes', async () => {
+    const root = temporaryRoot('process-winner');
+    const staleResource = canonicalizeProtectedResource(lineageResource('process-race'));
+    const staleCoordinator = new FencedLeaseCoordinator({ rootDirectory: root });
+    const stalePaths = staleCoordinator.storagePaths(staleResource);
+    const exitedChild = spawn(process.execPath, ['-e', ''], { stdio: 'ignore' });
+    const exitedPid = exitedChild.pid;
+    if (exitedPid === undefined) throw new Error('Failed to start exited-process fixture');
+    await new Promise<void>((resolveExit, rejectExit) => {
+      exitedChild.once('error', rejectExit);
+      exitedChild.once('close', (exitCode) => {
+        if (exitCode === 0) resolveExit();
+        else rejectExit(new Error(`Exited-process fixture returned ${String(exitCode)}`));
+      });
+    });
+    mkdirSync(stalePaths.resourceDirectory, { recursive: true });
+    writeFileSync(stalePaths.mutexPath, `${JSON.stringify({
+      schemaVersion: 1,
+      acquireNonce: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      ownerPid: exitedPid,
+      acquiredAt: new Date().toISOString(),
+      resourceDigest: staleResource.resourceDigest,
+    })}\n`, 'utf8');
+    const readyA = join(root, 'worker-a.ready');
+    const readyB = join(root, 'worker-b.ready');
+    const startPath = join(root, 'start');
+    const resultA = join(root, 'worker-a.json');
+    const resultB = join(root, 'worker-b.json');
+    const first = runAcquireProcess(root, 'a', readyA, startPath, resultA, resultB);
+    const second = runAcquireProcess(root, 'b', readyB, startPath, resultB, resultA);
+    await waitForFiles([readyA, readyB]);
+    writeFileSync(startPath, 'start', 'utf8');
+    const processes = await Promise.all([first, second]);
+    expect(processes).toEqual([
+      expect.objectContaining({ exitCode: 0 }),
+      expect.objectContaining({ exitCode: 0 }),
+    ]);
+    const results = [resultA, resultB].map((path) => (
+      JSON.parse(readFileSync(path, 'utf8')) as ProcessAcquireResult
+    ));
+    const processEvidence = JSON.stringify({ processes, results });
+    expect(results.filter((result) => result.status === 'granted'), processEvidence).toEqual([{
+      status: 'granted',
+      fenceToken: 1,
+    }]);
+    expect(results.filter((result) => result.status === 'rejected'), processEvidence).toEqual([
+      expect.objectContaining({
+        status: 'rejected',
+        errorCode: LocksAndFencingErrorCodes.LOCK_TIMEOUT,
+      }),
+    ]);
+  }, 20_000);
+
+  it('rejects a resumed stale commit before its side effect executes', async () => {
+    const root = temporaryRoot('stale-commit');
+    const clock = createClock();
+    const firstCoordinator = createCoordinator(root, clock, 'first');
+    const secondCoordinator = createCoordinator(root, clock, 'second');
+    const resource = lineageResource('stale-commit');
+    const oldLease = await firstCoordinator.acquire(acquireRequest(resource, 'worker-a', {
+      ttlMs: 5,
+    }));
+    let signalPrepared: () => void = () => undefined;
+    let resumePreparation: () => void = () => undefined;
+    const prepared = new Promise<void>((resolvePrepared) => { signalPrepared = resolvePrepared; });
+    const pause = new Promise<void>((resolvePause) => { resumePreparation = resolvePause; });
+    const committed: string[] = [];
+    const staleCommit = firstCoordinator.withFence(oldLease, async () => {
+      signalPrepared();
+      await pause;
+      return () => {
+        committed.push('stale');
+        return 'stale';
+      };
+    });
+    await prepared;
+    clock.advance(6);
+    const successor = await secondCoordinator.acquire(acquireRequest(resource, 'worker-b'));
+    await secondCoordinator.withFence(successor, () => () => {
+      committed.push('successor');
+      return 'successor';
+    });
+    resumePreparation();
+    await expect(staleCommit).rejects.toMatchObject({
+      code: LocksAndFencingErrorCodes.STALE_FENCE,
+    });
+    expect(committed).toEqual(['successor']);
+  });
+
+  it('preserves the successor through a release and takeover race', async () => {
+    const root = temporaryRoot('release-takeover');
+    const clock = createClock();
+    const firstCoordinator = createCoordinator(root, clock, 'first');
+    const secondCoordinator = createCoordinator(root, clock, 'second');
+    const resource = lineageResource('release-takeover');
+    const expired = await firstCoordinator.acquire(acquireRequest(resource, 'worker-a', {
+      ttlMs: 5,
+    }));
+    clock.advance(6);
+    const [release, takeover] = await Promise.allSettled([
+      firstCoordinator.release(expired),
+      secondCoordinator.acquire(acquireRequest(resource, 'worker-b', { acquireTimeoutMs: 100 })),
+    ]);
+    expect(takeover.status).toBe('fulfilled');
+    const successor = (takeover as PromiseFulfilledResult<FencedLease>).value;
+    expect(successor.fenceToken).toBe(2);
+    if (release.status === 'rejected') {
+      expect(release.reason).toMatchObject({ code: LocksAndFencingErrorCodes.STALE_FENCE });
+    }
+    expect(await secondCoordinator.inspect(resource)).toMatchObject({
+      lastFenceToken: 2,
+      activeLease: {
+        fenceToken: 2,
+        leaseId: successor.leaseId,
+      },
+    });
+  });
+
+  it('fails closed without reclaiming a partial mutex record', async () => {
+    const root = temporaryRoot('partial-mutex');
+    const clock = createClock();
+    const coordinator = createCoordinator(root, clock);
+    const resource = lineageResource('partial-mutex');
+    const paths = coordinator.storagePaths(resource);
+    mkdirSync(paths.resourceDirectory, { recursive: true });
+    writeFileSync(paths.mutexPath, '{"schemaVersion":1', 'utf8');
+    await expect(coordinator.acquire(acquireRequest(resource, 'worker-a'))).rejects.toMatchObject({
+      code: LocksAndFencingErrorCodes.MALFORMED_STATE,
+    });
+    expect(readFileSync(paths.mutexPath, 'utf8')).toBe('{"schemaVersion":1');
+  });
+
   it('rejects inverted and re-entrant guards before blocking', async () => {
     const root = temporaryRoot('order');
     const clock = createClock();
@@ -463,12 +705,14 @@ describe('durable fencing leases', () => {
     const ordered = [first, second].sort((left, right) => (
       left.resource.orderKey < right.resource.orderKey ? -1 : 1
     ));
-    await expect(coordinator.withFences([...ordered].reverse(), () => undefined)).rejects.toMatchObject({
+    await expect(coordinator.withFences([...ordered].reverse(), () => () => undefined))
+      .rejects.toMatchObject({
       code: LocksAndFencingErrorCodes.LOCK_ORDER_VIOLATION,
     });
-    await expect(coordinator.withFence(ordered[0], () => (
-      coordinator.withFence(ordered[0], () => undefined)
-    ))).rejects.toMatchObject({ code: LocksAndFencingErrorCodes.LOCK_ORDER_VIOLATION });
+    await expect(coordinator.withFence(ordered[0], async () => {
+      await coordinator.withFence(ordered[0], () => () => undefined);
+      return () => undefined;
+    })).rejects.toMatchObject({ code: LocksAndFencingErrorCodes.LOCK_ORDER_VIOLATION });
   });
 
   it('allows distinct lineages to overlap while retaining per-lineage exclusion', async () => {
@@ -489,6 +733,7 @@ describe('durable fencing leases', () => {
       if (active === 2) enteredBoth();
       await gate;
       active -= 1;
+      return () => undefined;
     });
     const operations = [run(first), run(second)];
     await both;
@@ -509,7 +754,7 @@ describe('durable fencing leases', () => {
     clock.advance(11);
     const successor = await coordinator.acquire(acquireRequest(resource, 'worker-b'));
     const renewed = await coordinator.renew(successor, 100);
-    await expect(coordinator.withFence(oldLease, () => undefined)).rejects.toMatchObject({
+    await expect(coordinator.withFence(oldLease, () => () => undefined)).rejects.toMatchObject({
       code: LocksAndFencingErrorCodes.STALE_FENCE,
     });
     await coordinator.release(renewed);
@@ -706,6 +951,7 @@ describe('lock lifecycle evidence', () => {
       authorityProvider,
     }, ledger, policies);
     const occurredAt = clock.now().toISOString();
+    const coordinatorStateBeforeEvidence = await coordinator.inspect(lineageResource('lineage-1'));
     const event = prepareLockLifecycleEvidence(decision, registry, {
       eventId: 'lock-evidence-1',
       streamId: 'lock-resource-stream',
@@ -745,6 +991,9 @@ describe('lock lifecycle evidence', () => {
       actionCounts: { acquired: 1 },
       latestFenceByResource: { [decision.resourceDigest]: 1 },
     });
+    expect(await coordinator.inspect(lineageResource('lineage-1'))).toEqual(
+      coordinatorStateBeforeEvidence,
+    );
   });
 
   it('fails closed when the gateway denies the evidence capability', async () => {

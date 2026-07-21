@@ -129,7 +129,7 @@ export class FencedStateStore {
     );
     canonicalBytes(request.nextState);
 
-    return this.#coordinator.withFence(request.lease, () => {
+    return this.#coordinator.withFence(request.lease, () => () => {
       const current = this.#readStored<TState>(resource);
       const priorVersion = current?.stateVersion ?? 0;
       if (priorVersion !== request.expectedVersion) {

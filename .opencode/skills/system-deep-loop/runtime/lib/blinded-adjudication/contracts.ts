@@ -33,6 +33,42 @@ export const CounterfactualKinds = {
 export type CounterfactualKind =
   typeof CounterfactualKinds[keyof typeof CounterfactualKinds];
 
+export const REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND: Readonly<
+Record<AdjudicationDecisionKind, readonly CounterfactualKind[]>
+> = Object.freeze({
+  [AdjudicationDecisionKinds.DEEP_REVIEW]: Object.freeze([
+    CounterfactualKinds.ORDER,
+    CounterfactualKinds.IDENTITY_LABEL,
+    CounterfactualKinds.DECLARED_CONFIDENCE,
+    CounterfactualKinds.POLICY_SPECIFIC,
+  ]),
+  [AdjudicationDecisionKinds.DEEP_AI_COUNCIL]: Object.freeze([
+    CounterfactualKinds.ORDER,
+    CounterfactualKinds.IDENTITY_LABEL,
+    CounterfactualKinds.CLAIMED_EXPERTISE,
+    CounterfactualKinds.DECLARED_CONFIDENCE,
+    CounterfactualKinds.MAJORITY_SIGNAL,
+  ]),
+  [AdjudicationDecisionKinds.DEEP_IMPROVEMENT]: Object.freeze([
+    CounterfactualKinds.ORDER,
+    CounterfactualKinds.IDENTITY_LABEL,
+    CounterfactualKinds.DECLARED_CONFIDENCE,
+    CounterfactualKinds.POLICY_SPECIFIC,
+  ]),
+  [AdjudicationDecisionKinds.MODEL_BENCHMARK]: Object.freeze([
+    CounterfactualKinds.ORDER,
+    CounterfactualKinds.IDENTITY_LABEL,
+    CounterfactualKinds.DECLARED_CONFIDENCE,
+    CounterfactualKinds.POLICY_SPECIFIC,
+  ]),
+  [AdjudicationDecisionKinds.SKILL_BENCHMARK]: Object.freeze([
+    CounterfactualKinds.ORDER,
+    CounterfactualKinds.IDENTITY_LABEL,
+    CounterfactualKinds.DECLARED_CONFIDENCE,
+    CounterfactualKinds.POLICY_SPECIFIC,
+  ]),
+});
+
 export const JudgmentOutcomes = {
   PREFERENCE: 'preference',
   TIE: 'tie',
@@ -71,7 +107,7 @@ export type AssignmentOrder =
   typeof AssignmentOrders[keyof typeof AssignmentOrders];
 
 export const ADJUDICATION_REQUEST_VERSION = 1;
-export const ADJUDICATION_PRESENTATION_POLICY_VERSION = 'exact-content@1';
+export const ADJUDICATION_PRESENTATION_POLICY_VERSION = 'merit-content@2';
 export const ADJUDICATION_REDUCER_VERSION = 'blinded-adjudication@1';
 export const ADJUDICATION_PROJECTION_SCHEMA_VERSION = '1';
 export const ADJUDICATION_TRANSITION_POLICY_ID = 'blinded-adjudication-dark-writes';
@@ -125,10 +161,10 @@ export interface JudgeProfile {
   readonly competenceEstimate: number | null;
 }
 
-/** Exact transformation record; content cannot change under the supported policy. */
+/** Digest-linked record of presentation-only normalization applied before judging. */
 export interface PresentationTransformation extends JsonObject {
   readonly policyVersion: string;
-  readonly transformation: 'identity';
+  readonly transformation: 'merit-content-normalization';
   readonly sourceContentDigest: string;
   readonly presentedContentDigest: string;
 }
@@ -136,7 +172,7 @@ export interface PresentationTransformation extends JsonObject {
 /** Judge-visible transform identity without source-addressable digests. */
 export interface JudgePresentationTransformation {
   readonly policyVersion: string;
-  readonly transformation: 'identity';
+  readonly transformation: 'merit-content-normalization';
 }
 
 /** Candidate view exposed to a judge without stable identity or provenance fields. */
@@ -149,25 +185,17 @@ export interface BlindedCandidateView {
 
 /** Optional policy-controlled cue used only for a targeted counterfactual. */
 export interface CounterfactualCue {
-  readonly kind: Exclude<CounterfactualKind, 'identity-label' | 'order'>;
   readonly token: string;
   readonly targetOpaqueLabel: string;
 }
 
-/** Opaque pairwise assignment consumed by a routine judge. */
+/** Merit-only pairwise payload consumed by a routine judge. */
 export interface JudgeAssignment {
-  readonly assignmentId: string;
-  readonly adjudicationId: string;
-  readonly pairId: string;
-  readonly judgeAssignmentId: string;
-  readonly order: AssignmentOrder;
   readonly candidates: readonly [BlindedCandidateView, BlindedCandidateView];
   readonly rubricDigest: string;
   readonly referenceDigest: string;
   readonly judgePolicyVersion: string;
-  readonly counterfactualKind: CounterfactualKind | null;
-  readonly baselineAssignmentId: string | null;
-  readonly counterfactualCue: CounterfactualCue | null;
+  readonly contextCue: CounterfactualCue | null;
 }
 
 // ───────────────────────────────────────────────────────────────────

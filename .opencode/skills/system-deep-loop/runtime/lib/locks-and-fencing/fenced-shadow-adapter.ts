@@ -54,7 +54,7 @@ export class FencedShadowAdapter {
       context: FencedMutationContext,
     ) => unknown | Promise<unknown>,
   ): Promise<TLegacy> {
-    return this.#coordinator.withFence(lease, async (context) => {
+    return this.#coordinator.withFence(lease, (context) => async () => {
       const legacyResult = await legacyMutation(context);
       try {
         await darkObservation(legacyResult, context);
@@ -88,4 +88,3 @@ export class FencedShadowAdapter {
     if (this.#telemetry.length > this.#telemetryCapacity) this.#telemetry.shift();
   }
 }
-

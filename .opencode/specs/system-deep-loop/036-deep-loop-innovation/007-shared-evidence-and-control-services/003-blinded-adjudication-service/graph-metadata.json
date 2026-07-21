@@ -132,7 +132,7 @@
         "source": "derived"
       },
       {
-        "name": "per-assignment",
+        "name": "randomized",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
     "created_at": "2026-07-16T03:43:46.917Z",
-    "last_save_at": "2026-07-21T00:39:35.182Z",
+    "last_save_at": "2026-07-21T02:08:25.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d3c3dd58951fbbde7b15803c684d5b80df95cc61d88bcdafea3cbf526bebca6",
+    "source_fingerprint": "sha256:000dcbd863ded50a06ed44f4ec35a9febdcfe4770b38c10f2651cb20403a6528",
     "source_doc_hashes": {
-      "spec.md": "c4849592ac4dc7e44b000dbe49d0a3b6a877f914d07c7bc2fa88efe26e13cca1",
-      "plan.md": "e2f0d2f4850ae3fb12f8495caea048539efc7e107221cbff02e5f8d1fe1d3eef",
-      "tasks.md": "8a1e47efe39c12fc2b3cc022fecc11d351d79e7f2c9aa7152b733eb2daa6265f",
-      "checklist.md": "63c3f26f041dcf99aea8476e35f5c1c30878cb1aa94afc65942f438daa75d63b",
-      "implementation-summary.md": "cc90667800db287ea0b15a2383eb9ec523dd266578c5ac0b2375b6163d5bcf23"
+      "spec.md": "b496ebdc1c42a322d6956a35704db6158c0744e0b49301c0e5f2dc47b25a2bf9",
+      "plan.md": "1c1afa052c44918b6240b4d3636012d7fdb9fe9b98ec96e0af354c63f2f9e62a",
+      "tasks.md": "db9366fa3ef756cb74afd1855f5e08ff62ad4b2a1648a098c9c73f2996fca2b6",
+      "checklist.md": "b5103717bb3cb4f6e2acf2d303cd93a9e81bbdb40f70be0ee5367dd593acb994",
+      "implementation-summary.md": "235c4630ea52bdd3a14367a53166dfdd58f88583a5f8b209a8c5ae249ea037da"
     },
     "last_active_child_id": null,
     "last_active_at": null

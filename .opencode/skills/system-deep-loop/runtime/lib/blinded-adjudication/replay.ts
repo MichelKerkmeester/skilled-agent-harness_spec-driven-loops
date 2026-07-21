@@ -20,11 +20,16 @@ import {
   ADJUDICATION_REDUCER_VERSION,
   AdjudicationError,
   AdjudicationErrorCodes,
+  adjudicationEvidenceId,
 } from './contracts.js';
 import {
   AdjudicationEventTypes,
 } from './event-registry.js';
-import { reductionEventData } from './event-data.js';
+import {
+  adjudicationVerdictEvidenceId,
+  reductionEventData,
+  verdictEventData,
+} from './event-data.js';
 import { reduceAdjudication } from './reducer.js';
 import {
   isPlainRecord,
@@ -48,6 +53,7 @@ import type {
 import type {
   AdjudicationReduction,
   AdjudicationRequest,
+  AdjudicationVerdict,
   CounterfactualResult,
   JudgeProfile,
   RawJudgment,
@@ -297,17 +303,47 @@ export async function verifyAdjudicationVerdictReplay(
     );
   }
   const recordedReduction = reductionEvents[0].payload.data;
-  if (canonicalJson(recordedReduction) !== canonicalJson(reductionEventData(computed))) {
+  const computedReductionData = reductionEventData(computed);
+  const reductionEvidenceId = adjudicationEvidenceId('reduction', {
+    adjudicationId,
+    reduction: computedReductionData,
+  });
+  if (
+    canonicalJson(recordedReduction) !== canonicalJson(computedReductionData)
+    || reductionEvents[0].payload.evidence_id !== reductionEvidenceId
+  ) {
     throw new AdjudicationError(
       AdjudicationErrorCodes.REPLAY_MISMATCH,
       'Recorded reduction does not match raw-event replay',
     );
   }
-  const verdict = verdictEvents[0].payload.data;
+  const verdictWithoutEvidenceId: Omit<AdjudicationVerdict, 'verdictEvidenceId'> = Object.freeze({
+    adjudicationId,
+    decisionKind: request.decisionKind,
+    status: computed.status,
+    preferredCandidateDigest: computed.preferredCandidateDigest,
+    reductionEvidenceId,
+    rawScoreEvidenceIds: computed.rawScoreEvidenceIds,
+    counterfactualEvidenceIds: computed.counterfactualEvidenceIds,
+    minorityEvidenceIds: computed.minorityEvidenceIds,
+    pairwiseGraph: computed.pairwiseGraph,
+    tiePairIds: computed.tiePairIds,
+    cycles: computed.cycles,
+    vetoEvidenceIds: computed.vetoEvidenceIds,
+    independence: computed.independence,
+    replayFingerprint: request.replayFingerprint,
+    legacyAuthority: 'canonical',
+    serviceAuthority: 'shadow-only',
+  });
+  const replayedVerdict: AdjudicationVerdict = Object.freeze({
+    ...verdictWithoutEvidenceId,
+    verdictEvidenceId: adjudicationVerdictEvidenceId(verdictWithoutEvidenceId),
+  });
   if (
-    verdict.status !== computed.status
-    || verdict.preferred_candidate_digest !== computed.preferredCandidateDigest
-    || verdict.reduction_evidence_id !== reductionEvents[0].payload.evidence_id
+    verdictEvents[0].payload.evidence_id !== replayedVerdict.verdictEvidenceId
+    || canonicalJson(verdictEvents[0].payload.data) !== canonicalJson(
+      verdictEventData(replayedVerdict),
+    )
   ) {
     throw new AdjudicationError(
       AdjudicationErrorCodes.REPLAY_MISMATCH,

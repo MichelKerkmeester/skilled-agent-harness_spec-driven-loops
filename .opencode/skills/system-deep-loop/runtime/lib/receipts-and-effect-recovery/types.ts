@@ -16,6 +16,10 @@ import type {
   JsonObject,
   JsonValue,
 } from '../event-envelope/index.js';
+import type {
+  FencedLease,
+  FencedLedgerWriter,
+} from '../locks-and-fencing/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. BOUNDARY RECEIPTS
@@ -136,6 +140,10 @@ export interface EvidenceAuthorizationContext {
 
 export interface AuthorizedEvidenceWriterOptions {
   readonly ledger: AppendOnlyLedger;
+  readonly ledgerFence: {
+    readonly writer: FencedLedgerWriter;
+    currentLease(): FencedLease | Promise<FencedLease>;
+  };
   readonly gateway: TransitionAuthorizationGateway;
   readonly policies: TransitionPolicyRegistry;
   readonly registry: EventTypeRegistry;
@@ -191,7 +199,6 @@ export interface EffectIntentPayload extends JsonObject {
 }
 
 export interface EffectObservation extends JsonObject {
-  readonly durability: 'verified';
   readonly external_receipt_digest: string;
   readonly postcondition_digest: string;
   readonly output_digest: string;
@@ -209,6 +216,10 @@ export interface EffectReconciliationObservation extends JsonObject {
 
 export interface EffectAdapter<TRequest = unknown> {
   readonly descriptor: EffectAdapterDescriptor;
+  /**
+   * The ledger elects one logical invocation owner. External at-most-once also
+   * depends on this adapter making retries idempotent or conclusively observable.
+   */
   execute(
     intent: Readonly<EffectIntentPayload>,
     request: TRequest,
@@ -322,6 +333,8 @@ export interface EffectRecoveryGatewayOptions {
   readonly producer: EventProducer;
   readonly now?: () => Date;
   readonly maxRecoveryAttempts?: number;
+  readonly intentRaceWaitMs?: number;
+  readonly intentRacePollMs?: number;
   readonly validateRecoveryClaim: (
     claim: Readonly<EffectRecoveryClaim>,
     intent: Readonly<EffectIntentPayload>,

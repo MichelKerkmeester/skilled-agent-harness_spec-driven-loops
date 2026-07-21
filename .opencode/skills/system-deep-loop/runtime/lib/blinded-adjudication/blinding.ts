@@ -2,6 +2,8 @@
 // MODULE: Blinded Assignment Registrar
 // ───────────────────────────────────────────────────────────────────
 
+import { randomBytes, randomInt } from 'node:crypto';
+
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import {
   ADJUDICATION_PRESENTATION_POLICY_VERSION,
@@ -14,6 +16,7 @@ import {
 } from './contracts.js';
 import {
   requireCounterfactualToken,
+  normalizeCandidateContentForJudging,
   validateCandidateRegistration,
   validateJudgeProfile,
   validateJudgeSubmission,
@@ -48,21 +51,30 @@ interface CandidateIdentityRecord {
 }
 
 interface AssignmentSecret {
+  readonly assignmentId: string;
   readonly adjudicationId: string;
   readonly pairId: string;
+  readonly judgeAssignmentId: string;
   readonly judgeId: string;
+  readonly order: AssignmentOrder;
+  readonly counterfactualKind: CounterfactualKind | null;
+  readonly baselineAssignmentId: string | null;
+  readonly plannedProfileDigest: string;
+  readonly plannedEligibilityBasisDigest: string;
   readonly candidateDigests: readonly [string, string];
   readonly labelToDigest: ReadonlyMap<string, string>;
   readonly transformationByDigest: ReadonlyMap<string, PresentationTransformation>;
 }
 
 interface CounterfactualCueInput {
-  readonly kind: CounterfactualCue['kind'];
+  readonly kind: Exclude<CounterfactualKind, 'identity-label' | 'order'>;
   readonly token: string;
 }
 
 export interface BlindedPresentationEvidence extends JsonObject {
+  readonly adjudication_id: string;
   readonly assignment_id: string;
+  readonly judge_assignment_id: string;
   readonly pair_id: string;
   readonly order: AssignmentOrder;
   readonly opaque_labels: string[];
@@ -254,7 +266,31 @@ function assignmentIdentity(
 }
 
 function opaqueLabel(assignmentId: string, candidateDigest: string): string {
-  return `candidate-${sha256Bytes(canonicalBytes({ assignmentId, candidateDigest })).slice(0, 16)}`;
+  return `candidate-${sha256Bytes(canonicalBytes({
+    assignmentId,
+    candidateDigest,
+    nonce: randomBytes(32).toString('hex'),
+  })).slice(0, 16)}`;
+}
+
+function judgeProfileDigest(judge: JudgeProfile): string {
+  return sha256Bytes(canonicalBytes(judge as unknown as JsonObject));
+}
+
+function eligibilityBasisDigest(judge: JudgeProfile): string {
+  return sha256Bytes(canonicalBytes({
+    equivalentIdentities: Array.from(new Set([
+      judge.judgeId,
+      ...judge.equivalentIdentityIds,
+    ])).sort(compareCodeUnits),
+  }));
+}
+
+function shuffleAssignments(assignments: JudgeAssignment[]): void {
+  for (let index = assignments.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomInt(index + 1);
+    [assignments[index], assignments[swapIndex]] = [assignments[swapIndex], assignments[index]];
+  }
 }
 
 function freezeAssignment(assignment: JudgeAssignment): JudgeAssignment {
@@ -263,7 +299,7 @@ function freezeAssignment(assignment: JudgeAssignment): JudgeAssignment {
   Object.freeze(assignment.candidates[0]);
   Object.freeze(assignment.candidates[1]);
   Object.freeze(assignment.candidates);
-  if (assignment.counterfactualCue) Object.freeze(assignment.counterfactualCue);
+  if (assignment.contextCue) Object.freeze(assignment.contextCue);
   return Object.freeze(assignment);
 }
 
@@ -271,7 +307,8 @@ function freezeAssignment(assignment: JudgeAssignment): JudgeAssignment {
 export class BlindingRegistrar {
   readonly #request: AdjudicationRequest;
   readonly #vault: CandidateIdentityVault;
-  readonly #contentByDigest: ReadonlyMap<string, string>;
+  readonly #sourceContentByDigest: ReadonlyMap<string, string>;
+  readonly #presentedContentByDigest: ReadonlyMap<string, string>;
   readonly #assignments = new Map<string, JudgeAssignment>();
 
   public constructor(
@@ -281,12 +318,18 @@ export class BlindingRegistrar {
   ) {
     this.#request = request;
     this.#vault = vault;
-    const contentByDigest = new Map<string, string>();
+    const sourceContentByDigest = new Map<string, string>();
+    const presentedContentByDigest = new Map<string, string>();
     for (const candidateInput of candidates) {
       const candidate = validateCandidateRegistration(candidateInput);
-      contentByDigest.set(candidate.candidateDigest, candidate.content);
+      sourceContentByDigest.set(candidate.candidateDigest, candidate.content);
+      presentedContentByDigest.set(
+        candidate.candidateDigest,
+        normalizeCandidateContentForJudging(candidate.content),
+      );
     }
-    this.#contentByDigest = contentByDigest;
+    this.#sourceContentByDigest = sourceContentByDigest;
+    this.#presentedContentByDigest = presentedContentByDigest;
   }
 
   /** Plan all unordered pairs in both presentation orders for every eligible judge. */
@@ -310,11 +353,17 @@ export class BlindingRegistrar {
         ];
         for (const judge of validatedJudges) {
           this.#vault.assertJudgeEligible(pair, judge);
+          const firstOrder = randomInt(2) === 0
+            ? AssignmentOrders.FORWARD
+            : AssignmentOrders.REVERSE;
+          const secondOrder = firstOrder === AssignmentOrders.FORWARD
+            ? AssignmentOrders.REVERSE
+            : AssignmentOrders.FORWARD;
           assignments.push(this.#createAssignment(
             adjudicationId,
             pair,
             judge,
-            AssignmentOrders.FORWARD,
+            firstOrder,
             null,
             null,
             null,
@@ -323,7 +372,7 @@ export class BlindingRegistrar {
             adjudicationId,
             pair,
             judge,
-            AssignmentOrders.REVERSE,
+            secondOrder,
             null,
             null,
             null,
@@ -331,12 +380,13 @@ export class BlindingRegistrar {
         }
       }
     }
+    shuffleAssignments(assignments);
     return Object.freeze(assignments);
   }
 
   /** Create a targeted intervention linked to one existing baseline assignment. */
   public planCounterfactualAssignment(
-    baselineAssignmentId: string,
+    baselineAssignment: JudgeAssignment,
     kind: CounterfactualKind,
     judgeInput: JudgeProfile,
     interventionToken?: string,
@@ -348,27 +398,30 @@ export class BlindingRegistrar {
         { kind },
       );
     }
-    const baseline = this.#assignments.get(baselineAssignmentId);
-    const secret = baseline ? ASSIGNMENT_SECRETS.get(baseline) : undefined;
-    if (!baseline || !secret || baseline.counterfactualKind !== null) {
+    const secret = this.#resolveAssignment(baselineAssignment);
+    if (secret.counterfactualKind !== null) {
       throw new AdjudicationError(
         AdjudicationErrorCodes.UNKNOWN_ASSIGNMENT,
         'Counterfactual baseline assignment is unknown or not a baseline',
       );
     }
     const judge = validateJudgeProfile(judgeInput);
-    if (judge.judgeId !== secret.judgeId) {
+    if (
+      judge.judgeId !== secret.judgeId
+      || judgeProfileDigest(judge) !== secret.plannedProfileDigest
+      || eligibilityBasisDigest(judge) !== secret.plannedEligibilityBasisDigest
+    ) {
       throw new AdjudicationError(
         AdjudicationErrorCodes.INVALID_COUNTERFACTUAL,
-        'Counterfactual must retain the baseline judge identity',
+        'Counterfactual must retain the complete planned judge profile',
       );
     }
     this.#vault.assertJudgeEligible(secret.candidateDigests, judge);
     const order = kind === CounterfactualKinds.ORDER
-      ? (baseline.order === AssignmentOrders.FORWARD
+      ? (secret.order === AssignmentOrders.FORWARD
         ? AssignmentOrders.REVERSE
         : AssignmentOrders.FORWARD)
-      : baseline.order;
+      : secret.order;
     let cue: CounterfactualCueInput | null = null;
     if (kind !== CounterfactualKinds.IDENTITY_LABEL && kind !== CounterfactualKinds.ORDER) {
       const token = requireCounterfactualToken(
@@ -386,12 +439,12 @@ export class BlindingRegistrar {
       );
     }
     return this.#createAssignment(
-      baseline.adjudicationId,
+      secret.adjudicationId,
       secret.candidateDigests,
       judge,
       order,
       kind,
-      baseline.assignmentId,
+      secret.assignmentId,
       cue,
     );
   }
@@ -399,7 +452,11 @@ export class BlindingRegistrar {
   /** Create ledger-safe presentation evidence that is never handed to the judge. */
   public presentationEvidence(assignment: JudgeAssignment): BlindedPresentationEvidence {
     const secret = this.#resolveAssignment(assignment);
-    const transformations = secret.candidateDigests.map((digest) => {
+    const presentedCandidateDigests: readonly [string, string] =
+      secret.order === AssignmentOrders.FORWARD
+        ? secret.candidateDigests
+        : [secret.candidateDigests[1], secret.candidateDigests[0]];
+    const transformations = presentedCandidateDigests.map((digest) => {
       const transformation = secret.transformationByDigest.get(digest);
       if (!transformation) {
         throw new AdjudicationError(
@@ -410,19 +467,21 @@ export class BlindingRegistrar {
       return transformation;
     });
     return Object.freeze({
-      assignment_id: assignment.assignmentId,
-      pair_id: assignment.pairId,
-      order: assignment.order,
+      adjudication_id: secret.adjudicationId,
+      assignment_id: secret.assignmentId,
+      judge_assignment_id: secret.judgeAssignmentId,
+      pair_id: secret.pairId,
+      order: secret.order,
       opaque_labels: Object.freeze(
         assignment.candidates.map((candidate) => candidate.opaqueLabel),
       ) as unknown as string[],
       presented_content_digests: Object.freeze(assignment.candidates.map((candidate) =>
         digestCandidateContent(candidate.content))) as unknown as string[],
       transformations: Object.freeze(transformations) as unknown as PresentationTransformation[],
-      counterfactual_kind: assignment.counterfactualKind,
-      baseline_assignment_id: assignment.baselineAssignmentId,
-      counterfactual_token_digest: assignment.counterfactualCue
-        ? sha256Bytes(canonicalBytes({ token: assignment.counterfactualCue.token }))
+      counterfactual_kind: secret.counterfactualKind,
+      baseline_assignment_id: secret.baselineAssignmentId,
+      counterfactual_token_digest: assignment.contextCue
+        ? sha256Bytes(canonicalBytes({ token: assignment.contextCue.token }))
         : null,
     });
   }
@@ -432,15 +491,19 @@ export class BlindingRegistrar {
     assignment: JudgeAssignment,
     judgeInput: JudgeProfile,
     submissionInput: JudgeSubmission,
-    evidenceId: string,
   ): RawJudgment {
     const secret = this.#resolveAssignment(assignment);
     const judge = validateJudgeProfile(judgeInput);
     const submission = validateJudgeSubmission(submissionInput);
-    if (judge.judgeId !== secret.judgeId) {
+    this.#vault.assertJudgeEligible(secret.candidateDigests, judge);
+    if (
+      judge.judgeId !== secret.judgeId
+      || judgeProfileDigest(judge) !== secret.plannedProfileDigest
+      || eligibilityBasisDigest(judge) !== secret.plannedEligibilityBasisDigest
+    ) {
       throw new AdjudicationError(
         AdjudicationErrorCodes.INVALID_JUDGMENT,
-        'Submission judge does not own the blinded assignment',
+        'Submission judge profile differs from the planned eligibility basis',
       );
     }
     const preferredCandidateDigest = submission.preferredOpaqueLabel === null
@@ -452,16 +515,21 @@ export class BlindingRegistrar {
         'Preferred opaque label is not part of the assignment',
       );
     }
+    const evidenceId = adjudicationEvidenceId('raw-score', {
+      adjudicationId: secret.adjudicationId,
+      assignmentId: secret.assignmentId,
+      judgmentId: submission.judgmentId,
+    });
     return Object.freeze({
       judgmentId: submission.judgmentId,
-      adjudicationId: assignment.adjudicationId,
-      assignmentId: assignment.assignmentId,
-      pairId: assignment.pairId,
-      judgeAssignmentId: assignment.judgeAssignmentId,
+      adjudicationId: secret.adjudicationId,
+      assignmentId: secret.assignmentId,
+      pairId: secret.pairId,
+      judgeAssignmentId: secret.judgeAssignmentId,
       judgeId: judge.judgeId,
-      order: assignment.order,
-      counterfactualKind: assignment.counterfactualKind,
-      baselineAssignmentId: assignment.baselineAssignmentId,
+      order: secret.order,
+      counterfactualKind: secret.counterfactualKind,
+      baselineAssignmentId: secret.baselineAssignmentId,
       candidateDigests: secret.candidateDigests,
       outcome: submission.outcome,
       preferredCandidateDigest: preferredCandidateDigest ?? null,
@@ -474,7 +542,10 @@ export class BlindingRegistrar {
   }
 
   #resolveAssignment(assignment: JudgeAssignment): AssignmentSecret {
-    const registered = this.#assignments.get(assignment.assignmentId);
+    const knownSecret = ASSIGNMENT_SECRETS.get(assignment);
+    const registered = knownSecret
+      ? this.#assignments.get(knownSecret.assignmentId)
+      : undefined;
     const secret = registered === assignment ? ASSIGNMENT_SECRETS.get(assignment) : undefined;
     if (!secret) {
       throw new AdjudicationError(
@@ -516,8 +587,9 @@ export class BlindingRegistrar {
     const labelToDigest = new Map<string, string>();
     const transformationByDigest = new Map<string, PresentationTransformation>();
     const candidates = orderedDigests.map((candidateDigest) => {
-      const content = this.#contentByDigest.get(candidateDigest);
-      if (content === undefined) {
+      const sourceContent = this.#sourceContentByDigest.get(candidateDigest);
+      const presentedContent = this.#presentedContentByDigest.get(candidateDigest);
+      if (sourceContent === undefined || presentedContent === undefined) {
         throw new AdjudicationError(
           AdjudicationErrorCodes.INVALID_INPUT,
           'Assignment references unregistered candidate content',
@@ -526,17 +598,18 @@ export class BlindingRegistrar {
       }
       const label = opaqueLabel(assignmentId, candidateDigest);
       labelToDigest.set(label, candidateDigest);
-      const contentDigest = digestCandidateContent(content);
+      const sourceContentDigest = digestCandidateContent(sourceContent);
+      const presentedContentDigest = digestCandidateContent(presentedContent);
       const transformation: PresentationTransformation = Object.freeze({
         policyVersion: ADJUDICATION_PRESENTATION_POLICY_VERSION,
-        transformation: 'identity',
-        sourceContentDigest: contentDigest,
-        presentedContentDigest: contentDigest,
+        transformation: 'merit-content-normalization',
+        sourceContentDigest,
+        presentedContentDigest,
       });
       transformationByDigest.set(candidateDigest, transformation);
       return {
         opaqueLabel: label,
-        content,
+        content: presentedContent,
         contentBoundary: 'untrusted-candidate-content',
         transformation: {
           policyVersion: transformation.policyVersion,
@@ -548,30 +621,30 @@ export class BlindingRegistrar {
       assignmentId,
       judgeDigest: sha256Bytes(canonicalBytes({ judgeId: judge.judgeId })),
     });
-    const counterfactualCue: CounterfactualCue | null = counterfactualCueInput
+    const contextCue: CounterfactualCue | null = counterfactualCueInput
       ? Object.freeze({
-        ...counterfactualCueInput,
+        token: counterfactualCueInput.token,
         targetOpaqueLabel: candidates[0].opaqueLabel,
       })
       : null;
     const assignment = freezeAssignment({
-      assignmentId,
-      adjudicationId,
-      pairId: pair,
-      judgeAssignmentId,
-      order,
       candidates,
       rubricDigest: this.#request.rubricDigest,
       referenceDigest: this.#request.referenceDigest,
       judgePolicyVersion: this.#request.judgePolicyVersion,
-      counterfactualKind,
-      baselineAssignmentId,
-      counterfactualCue,
+      contextCue,
     });
     ASSIGNMENT_SECRETS.set(assignment, Object.freeze({
+      assignmentId,
       adjudicationId,
       pairId: pair,
+      judgeAssignmentId,
       judgeId: judge.judgeId,
+      order,
+      counterfactualKind,
+      baselineAssignmentId,
+      plannedProfileDigest: judgeProfileDigest(judge),
+      plannedEligibilityBasisDigest: eligibilityBasisDigest(judge),
       candidateDigests: sourcePair,
       labelToDigest,
       transformationByDigest,

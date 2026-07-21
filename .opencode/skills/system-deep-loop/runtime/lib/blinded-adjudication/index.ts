@@ -22,6 +22,7 @@ export {
   CounterfactualKinds,
   CounterfactualOutcomes,
   JudgmentOutcomes,
+  REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND,
   adjudicationEvidenceId,
   digestCandidateContent,
 } from './contracts.js';
@@ -40,6 +41,7 @@ export {
 } from './event-registry.js';
 export {
   counterfactualEventData,
+  adjudicationVerdictEvidenceId,
   judgeProfileEventData,
   rawJudgmentEventData,
   reductionEventData,
@@ -81,6 +83,7 @@ export {
   requireDigest,
   requireFiniteUnitInterval,
   requireIdentity,
+  normalizeCandidateContentForJudging,
   validateAdjudicationRequest,
   validateCandidateRegistration,
   validateJudgeProfile,
@@ -131,6 +134,7 @@ export type {
   ModeRequestInput,
 } from './mode-adapters.js';
 export type {
+  AuthenticatedDeblindingAuthorization,
   BlindedAdjudicationServiceOptions,
   DeblindingAuthorizationRequest,
 } from './service.js';

@@ -67,9 +67,11 @@ export type {
   AtomicityDomain,
   CanonicalProtectedResource,
   CoordinatorFaultInjection,
+  FencedCommit,
   FencedLease,
   FencedLeaseCoordinatorOptions,
   FencedMutationContext,
+  FencedMutationPreparation,
   FencingCoordinatorSnapshot,
   LeaseAcquisition,
   LeaseGrant,
@@ -81,4 +83,3 @@ export type {
   ReplayIdentity,
 } from './locks-and-fencing-types.js';
 export type { ProtectedWriteSurfaceManifestEntry } from './protected-resource-registry.js';
-

@@ -10,9 +10,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service"
-    last_updated_at: "2026-07-21T00:39:00Z"
+    last_updated_at: "2026-07-21T02:07:00Z"
     last_updated_by: "codex"
-    recent_action: "Completed additive-dark adjudication runtime and verification"
+    recent_action: "Closed adversarial P0/P1 gaps and completed focused verification"
     next_safe_action: "Consume the dark adapter in the later shadow-parity phase"
     blockers: []
     key_files:
@@ -52,15 +52,15 @@ reduces the verdict to unstable/inconclusive rather than manufacturing a winner.
 | Module | Contract owned |
 |--------|----------------|
 | `contracts.ts` | Closed request, candidate, judge, assignment, raw evidence, reduction, verdict, deblinding, and adapter types |
-| `validation.ts` | Exact-field validation, closed vocabularies, digest checks, and fail-closed request/submission boundaries |
-| `blinding.ts` | Private identity vault, single-use audit capability, per-assignment opaque labels, exact-content presentations, and mirrored/counterfactual planning |
+| `validation.ts` | Exact-field validation, decision-kind probe-set enforcement, digest checks, presentation normalization, and fail-closed prose/request/submission boundaries |
+| `blinding.ts` | Private identity vault, single-use audit capability, randomized assignment-local labels/order, sealed linkage/profile bindings, normalized presentations, and mirrored/counterfactual planning |
 | `judging.ts` | Self-scoring eligibility, raw submission normalization, counterfactual classification, and conservative independence clustering |
 | `reducer.ts` | Deterministic stable/unstable/inconclusive reduction with graph, tie, cycle, veto, minority, probe, and independence retention |
 | `event-registry.ts` | Immutable validator-bound nine-event registry and default-deny transition policy registry |
 | `event-data.ts` | Typed event-data projection helpers for the canonical envelope boundary |
-| `replay.ts` | Typed ledger reader/reducers, replay components, fingerprint derivation, and exact verdict replay verification |
-| `mode-adapters.ts` | Five request/result adapters that preserve service status and mode-owned transition authority |
-| `service.ts` | Authorized append orchestration, state guards, audit-before-deblind, invalidation, verdict, and shadow comparison |
+| `replay.ts` | Typed ledger reader/reducers, fingerprint derivation, and complete verdict-field replay verification |
+| `mode-adapters.ts` | Five request/result adapters bound to the same mode-required probe-set policy as the service gateway |
+| `service.ts` | Authorized append orchestration, state guards, authenticated-principal deblinding boundary, invalidation, verdict, and shadow comparison |
 | `index.ts` | Public package surface |
 <!-- /ANCHOR:what-built -->
 
@@ -73,11 +73,11 @@ from the existing event-envelope, authorized-ledger, and replay-fingerprint pack
 
 ### Additive-Dark and Scope Proof
 
-The baseline was clean before this implementation. Scoped repository status contains only the new
-`runtime/lib/blinded-adjudication/` package, the new focused test, and this leaf's documentation changes. Explicit
-`git diff --name-only` checks return no paths under `runtime/lib/event-envelope/`, `runtime/lib/authorized-ledger/`, or
-`runtime/lib/replay-fingerprint/`. No existing runtime writer or legacy decision path was edited. Other leaf work that
-appeared concurrently in the shared worktree is outside this leaf and was preserved without modification.
+The captured baseline already contained unrelated dirty changes under `runtime/lib/locks-and-fencing/`,
+`runtime/lib/sealed-reference-artifacts/`, their focused tests, and sibling `002`/`006` packet docs. This hardening
+pass preserved that set and added changes only under `runtime/lib/blinded-adjudication/`, its focused unit test, and
+this leaf's documentation. Explicit path-delta checks show no edits to `runtime/lib/event-envelope/`,
+`runtime/lib/authorized-ledger/`, `runtime/lib/replay-fingerprint/`, existing writers, or the legacy decision path.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -88,12 +88,12 @@ appeared concurrently in the shared worktree is outside this leaf and was preser
 | Contract | Implementation evidence | Focused fixture evidence |
 |----------|-------------------------|--------------------------|
 | Typed, fingerprint-bound request and event vocabulary | `contracts.ts`, `validation.ts`, `event-registry.ts`, `replay.ts` | Unknown-field/policy rejection, validator digest binding, bad replay fingerprint rejection, and no proof-free append path |
-| Identity separation and exact-content blinding | `blinding.ts`, `service.ts` | Identity canaries are absent, labels differ by assignment, and only the recorded `exact-content@1` transform is accepted |
-| Mirrored and counterfactual judging | `blinding.ts`, `judging.ts` | A/B plus B/A coverage and parameterized identity/order/confidence/expertise/majority/policy-specific probe outcomes |
-| Fail-closed reduction | `reducer.ts` | Order flip, missing probe/mirror, invalid assignment, abstention, tie, veto, cycle, quorum, and independence fixtures do not create a stable winner |
-| Raw evidence and replay | `event-data.ts`, `event-registry.ts`, `replay.ts`, `service.ts` | Authorized raw events remain ledger-addressable; ordered typed replay reproduces the exact reduction and verdict |
+| Complete judge-payload blinding | `contracts.ts`, `validation.ts`, `blinding.ts`, `service.ts` | Exact payload-key assertions exclude order, counterfactual/baseline, stable pair/assignment/run IDs, caller adjudication IDs, and provenance; cryptographic nonces/randomized planning prevent sequence decoding; four embedded-prose attacks fail closed; safe Unicode/whitespace normalization records `merit-content@2` transformations |
+| Mirrored and mode-required counterfactual judging | `contracts.ts`, `validation.ts`, `blinding.ts`, `judging.ts`, `mode-adapters.ts` | A/B plus B/A coverage and the exact per-mode identity/order/confidence/expertise/majority/policy set are gateway-bound; council order-only coverage remains inconclusive |
+| Fail-closed reduction | `reducer.ts` | Order flip, missing mandated probe/mirror, invalid assignment, abstention, tie, veto, cycle, quorum, and independence fixtures do not create a stable winner |
+| Raw evidence and complete replay | `event-data.ts`, `event-registry.ts`, `replay.ts`, `service.ts` | Authorized raw events remain ledger-addressable; replay verifies every evidence list, graph, tie/cycle/veto field, independence structure, authority field, evidence ID, and fingerprint; forged evidence/graph/authority mutations reject |
 | Independence is not competence | `judging.ts`, `reducer.ts` | Cloned/shared-provider judges collapse into correlated clusters; competence remains advisory and never claims correlation correction |
-| Self-scoring and controlled deblinding | `blinding.ts`, `judging.ts`, `service.ts` | Producer/equivalent identity, forged assignment/labels, premature deblinding, and unauthorized deblinding fail closed; authorized post-verdict deblinding audits first |
+| Profile-bound eligibility and controlled deblinding | `blinding.ts`, `judging.ts`, `service.ts`, `event-registry.ts` | Assignment secrets bind the planned producer-equivalence basis and full profile; producer-equivalent submission substitution rejects before score append; deblinding trusts only an injected authenticator/authorizer's principal and capability, and complete denied/authorized audit payloads are asserted |
 | Five mode adapters | `mode-adapters.ts` | Deep-review, deep-ai-council, deep-improvement, model-benchmark, and skill-benchmark preserve status/evidence and do not re-reduce; model cost joins after blind quality |
 | Additive-dark authority | `service.ts`, `mode-adapters.ts` | Shadow comparison returns the exact legacy result, records typed evidence, and exposes no adjudication authority |
 <!-- /ANCHOR:decisions -->
@@ -103,9 +103,9 @@ appeared concurrently in the shared worktree is outside this leaf and was preser
 
 | Gate | Command | Result |
 |------|---------|--------|
-| Focused Vitest | `.opencode/skills/system-spec-kit/mcp-server/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts .opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts` | Exit 0; 1 file passed; 31 tests passed |
-| TypeScript | `.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json` | Exit 0 |
-| Comment hygiene | `check-comment-hygiene.sh` over all 12 new TypeScript files | Exit 0 |
+| Focused Vitest | From `system-spec-kit/mcp-server`: `node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts` | Exit 0; 1 file passed; 39 tests passed (8 added from 31-test baseline) |
+| TypeScript | From `system-deep-loop/runtime`: `../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.json --noEmit` | Exit 0 |
+| Comment hygiene | `check-comment-hygiene.sh` over all 9 modified service files and the focused test | Exit 0 |
 | Alignment drift | `verify_alignment_drift.py --fail-on-warn` over the package and focused test | Exit 0; 11 source files scanned; 0 findings |
 | Strict packet validation | `validate.sh <leaf> --strict` | Exit 0; Errors 0; Warnings 0 |
 <!-- /ANCHOR:verification -->
@@ -121,6 +121,6 @@ appeared concurrently in the shared worktree is outside this leaf and was preser
 3. Rollback disables or removes the new dark admission/adapters while retaining already-appended evidence. The
    unchanged legacy decision path remains canonical.
 
-The runtime implementation is complete. Its 31 focused contract tests, TypeScript gate, comment hygiene, alignment
-verification, and strict packet validation are green, and legacy authority is unchanged.
+The hardened runtime is complete. Its 39 focused contract tests, TypeScript gate, comment hygiene, alignment
+verification, and strict packet validation are green; legacy authority and existing writers remain unchanged.
 <!-- /ANCHOR:limitations -->

@@ -97,13 +97,13 @@ export interface SealedArtifactReference extends JsonObject {
 export interface VerifiedSealedArtifact {
   readonly reference: SealedArtifactReference;
   readonly descriptor: SealDescriptor;
-  readonly bytes: Uint8Array;
+  readonly bytes: readonly number[];
 }
 
 /** Pure derivation result including canonical descriptor and reference bytes. */
 export interface DerivedSealedArtifact extends VerifiedSealedArtifact {
-  readonly descriptorBytes: Uint8Array;
-  readonly referenceBytes: Uint8Array;
+  readonly descriptorBytes: readonly number[];
+  readonly referenceBytes: readonly number[];
 }
 
 /** Optional registered identities included during artifact derivation. */
@@ -184,11 +184,10 @@ export interface ArtifactCanonicalizerDefinition {
   readonly canonicalize: (input: unknown) => Uint8Array;
 }
 
-/** Controlled implementation registered for one qualified digest algorithm. */
+/** Fixed digest metadata exposed without accepting executable integrity code. */
 export interface ArtifactDigestDefinition {
   readonly algorithm: string;
   readonly implementationIdentity: string;
-  readonly digest: (bytes: Uint8Array) => string;
 }
 
 /** One ordered, verified, ledger-addressed replay input entry. */
