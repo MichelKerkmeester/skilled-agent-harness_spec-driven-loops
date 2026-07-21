@@ -6,11 +6,11 @@ version: 1.8.0.14
 
 # sk-doc: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-doc skill — no mocks, no stubs. Scenarios verify the AI's actual routing behavior: which intent the smart router picks (per `SKILL.md` §2 RESOURCE_MAP / INTENT_MODEL), which resources it loads, and how it behaves under ambiguous, large, or multi-step inputs. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-doc skill — no mocks, no stubs. Scenarios verify the AI's actual routing behavior: which `workflowMode` the smart router picks (per `SKILL.md` §2 Smart Routing, resolved through `mode-registry.json` / `hub-router.json`), which resources it loads, and how it behaves under ambiguous, large, or multi-step inputs. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
 
 This document is the operator directory for the sk-doc manual testing playbook. Per-scenario execution detail lives in the category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources, token ranges) plus setup, expected behavior, cross-CLI variants, and success criteria.
 
-Source of truth for routing behavior: `.opencode/skills/sk-doc/SKILL.md` §2 Smart Routing (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
+Source of truth for routing behavior: `.opencode/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` (the retired flat RESOURCE_MAP is no longer the source of record), plus UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, and ON_DEMAND_KEYWORDS.
 
 ---
 
@@ -71,7 +71,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ## Global Preconditions
 
-1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
+1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block resolved through `mode-registry.json` / `hub-router.json` (UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS), and both `mode-registry.json` and `hub-router.json` resolve on disk.
 2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent-template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
@@ -84,7 +84,7 @@ For every scenario:
 
 - **PASS** iff: intent picked matches expected, false_positive_resource_load_count ≤ scenario tolerance, response references at least one expected_resource.
 - **PARTIAL** iff: intent correct but extra resources loaded above tolerance, OR response references resources but is incomplete.
-- **FAIL** iff: wrong intent, OR no expected_resource referenced, OR (for SD-008) any RESOURCE_MAP load.
+- **FAIL** iff: wrong intent, OR no expected_resource referenced, OR (for SD-008) any mode-registry-mapped resource load.
 - **SKIP** iff: a Global Precondition is unmet — document the blocker.
 
 ## Evidence Capture

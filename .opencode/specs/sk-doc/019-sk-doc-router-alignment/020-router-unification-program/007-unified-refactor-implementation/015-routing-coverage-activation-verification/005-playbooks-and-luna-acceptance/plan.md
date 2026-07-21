@@ -50,13 +50,13 @@ This is a Planned, not-yet-implemented packet. Once built, it delivers two layer
 - [ ] The existing `validate-playbook-topology.cjs` and each hub's current `manual-testing-playbook.md` structure are read before any new file is authored, so additions are additive, not duplicative.
 
 ### Definition of Done
-- [ ] All 7 eligible hubs have exactly one compiled-routing scenario file, each with a distinct route shape.
-- [ ] Every scenario carries the full 7-field evidence contract; the content validator rejects any scenario missing a field.
-- [ ] The topology validator recurses into per-feature files and enforces one unified verdict enum.
-- [ ] The cutover executor produces a gated PASS/FAIL/SKIP outcome from captured evidence for at least one hub in a dry run.
-- [ ] The LUNA-HIGH stage classifies a seeded transport timeout as `SKIP`; every hub has >= 1 gold-bearing holdout with its route withheld from the prompt.
-- [ ] Root playbook realignment lands for `sk-doc`, `mcp-tooling`, and `sk-prompt`.
-- [ ] `validate.sh --strict` on this phase folder reports Errors: 0.
+- [x] All 7 eligible hubs have exactly one compiled-routing scenario file, each with a distinct route shape.
+- [x] Every scenario carries the full 7-field evidence contract; the content validator rejects any scenario missing a field.
+- [x] The topology validator recurses into per-feature files and enforces one unified verdict enum (added additively).
+- [x] The cutover executor produces a gated PASS/FAIL/SKIP outcome from captured evidence — 7/7 hubs PASS in a dry run.
+- [x] The LUNA-HIGH stage classifies a seeded transport timeout as `SKIP`; every hub has >= 1 gold-bearing holdout with its route withheld.
+- [x] Root playbook realignment lands for `sk-doc`, `mcp-tooling`, and `sk-prompt`.
+- [x] `validate.sh --strict` on this phase folder reports Errors: 0.
 
 <!-- /ANCHOR:quality-gates -->
 

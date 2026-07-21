@@ -35,7 +35,7 @@ Today the scenario schema admits gold-less scenarios and the evidence contract c
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned — not yet implemented. Depends on `002-runtime-promotion-and-status-foundation` and `004-benchmark-compiled-lane-c`, both Planned/Not-started |
+| **Status** | Implemented and verified (2026-07-21). Consumes `002` (status probe), `003` (flag mechanics), `004` (compiled-parity harness), and `007` (durable archiver) — all present on disk despite their stale "Planned" summaries |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Migration stage** | P2 — coverage/verification harness (playbooks + LUNA acceptance); feeds the P3 coverage-closure join gate that `011-activation-cutover-p4` reads |

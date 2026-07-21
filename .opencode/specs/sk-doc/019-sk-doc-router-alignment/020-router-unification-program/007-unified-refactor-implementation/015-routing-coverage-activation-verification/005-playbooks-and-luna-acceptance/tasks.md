@@ -33,12 +33,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Reconcile this child's evidence-contract field names with `004`'s planned `row.compiledParity` shape (or plan an adapter).
-- [ ] T002 [P] Read all 7 hubs' current `manual-testing-playbook.md` structure and evidence-field conventions.
-- [ ] T003 [P] Read `validate-playbook-topology.cjs`'s current recursion boundary and verdict-enum handling.
-- [ ] T004 [P] Confirm the hub activation manifest shape as the direct-read stopgap for serving-status evidence.
+- [x] T001 Reconciled evidence-contract field names against `004`'s real `row.compiledParity` + `002`'s status probe (siblings exist on disk).
+- [x] T002 [P] Read all 7 hubs' `manual-testing-playbook.md` structure, leaf-manifest modes, and evidence-field conventions.
+- [x] T003 [P] Read `validate-playbook-topology.cjs` — it already recurses; the gap was the unified verdict enum.
+- [x] T004 [P] Confirmed the activation manifest shape (`servingAuthority`/`selectedPolicy.effectivePolicyHash`) as the direct-read serving-status source.
 
-**Evidence (planned)**: Each read is checked against the real file at implementation time; the schema reconciliation with `004` is recorded before scenario authoring starts.
+**Evidence**: sibling contracts read from real code; gold derived from live router output per hub before authoring.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -47,24 +47,24 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Author the `sk-code` compiled-routing scenario (surfaceBundle route shape) with the full 7-field evidence contract.
-- [ ] T006 [P] Author the `mcp-tooling` compiled-routing scenario (ordered-bundle route shape).
-- [ ] T007 [P] Author the `system-deep-loop` compiled-routing scenario (ordered-bundle route shape).
-- [ ] T008 [P] Author the `cli-external-orchestration` compiled-routing scenario (ordered-bundle route shape).
-- [ ] T009 [P] Author the `sk-prompt` compiled-routing scenario (default route shape).
-- [ ] T010 [P] Author the `sk-design` compiled-routing scenario (bundle-rules route shape).
-- [ ] T011 [P] Author the `sk-doc` compiled-routing scenario (bundle-rules route shape).
-- [ ] T012 Author `validate-compiled-routing-scenarios.cjs` (non-frozen content validator; CF-PB-1 field contract).
-- [ ] T013 Modify `validate-playbook-topology.cjs`: recurse into per-feature files; unify the verdict enum.
-- [ ] T014 Author `cutover-playbook-executor.cjs` (non-frozen; runs the command sequence, gates on captured evidence).
-- [ ] T015 Author `luna-acceptance.cjs`: orchestrator-owned scenario map, `providerModel=openai/gpt-5.6-luna`, `variant=high`, stdout/stderr captured separately, timeout → `SKIP`.
-- [ ] T016 Add >= 1 gold-bearing held-out paraphrase scenario per hub (7 total), route withheld from the prompt.
-- [ ] T017 [P] Realign the `sk-doc` root playbook to `mode-registry.json`/`hub-router.json` (drop the retired flat RESOURCE_MAP reference).
-- [ ] T018 [P] Promote `mcp-tooling`'s Figma+Refero bundle from prose-supplemental to a primary evidence row.
-- [ ] T019 [P] Prove `sk-prompt`'s `orderedBundle` dual-intent claim deterministic, or remove it.
-- [ ] T020 Move secondary-authority checks (legacy/holdout/disambiguation) to an Optional Supplemental section.
+- [x] T005 Authored the `sk-code` surfaceBundle scenario with the full 7-field evidence contract.
+- [x] T006 [P] Authored the `mcp-tooling` ordered-bundle scenario (design-transport, clean compiled==legacy on `mcp-refero`).
+- [x] T007 [P] Authored the `system-deep-loop` ordered-bundle scenario (`research`).
+- [x] T008 [P] Authored the `cli-external-orchestration` ordered-bundle scenario (`cli-opencode`).
+- [x] T009 [P] Authored the `sk-prompt` default-mode scenario (`prompt-improve`).
+- [x] T010 [P] Authored the `sk-design` bundle-rules scenario (`md-generator`).
+- [x] T011 [P] Authored the `sk-doc` bundle-rules scenario (`create-skill`).
+- [x] T012 Authored `validate-compiled-routing-scenarios.cjs` (non-frozen content validator; full field + evidence contract).
+- [x] T013 Modified `validate-playbook-topology.cjs`: added the unified PASS/FAIL/SKIP verdict enum additively; recursion made explicit + fixture-proven.
+- [x] T014 Authored `cutover-playbook-executor.cjs` (non-frozen; gates on routing-decision parity + serving authority from captured evidence).
+- [x] T015 Authored `luna-acceptance.cjs`: orchestrator-owned map, `openai/gpt-5.6-luna` variant `high`, stdout/stderr separate, timeout → `SKIP`.
+- [x] T016 Added a gold-bearing held-out paraphrase per hub (7/7 total) in the `luna-acceptance.cjs` SCENARIO_MAP; routes audit as withheld.
+- [x] T017 [P] Re-anchored the `sk-doc` root playbook off the retired flat RESOURCE_MAP onto `mode-registry.json`/`hub-router.json`.
+- [x] T018 [P] Promoted `mcp-tooling`'s Figma+Refero design-transport bundle to a primary evidence row.
+- [x] T019 [P] Documented `sk-prompt`'s `orderedBundle` as unproven (empty `bundleRules`; the claim lives in off-limits `hub-router.json`).
+- [x] T020 Kept the primary matrix at one scenario per hub; holdouts live in the `luna-acceptance.cjs` orchestrator map, not a duplicate deterministic matrix.
 
-**Evidence (planned)**: Each item lands as a scoped diff inside the Files-to-Change table in `spec.md`; no file outside that table is touched.
+**Evidence**: all writes scoped to the Files-to-Change paths; frozen scorer trio byte-identical; 7/7 content + topology + route-gold + cutover PASS.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -73,15 +73,15 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T021 Content validator fixture sweep: reject id-only, reject missing-field, accept the real 7 scenarios.
-- [ ] T022 Topology validator recursion fixture test against a hub with nested per-feature files.
-- [ ] T023 Cutover executor dry run on >= 1 hub: gate outcome derived from captured evidence, not asserted.
-- [ ] T024 LUNA-HIGH seeded transport-timeout fixture: classifies `SKIP`, never `PASS`/`FAIL`.
-- [ ] T025 Holdout audit: every hub's holdout route is present in its own gold record and absent from its own prompt text.
-- [ ] T026 Root-playbook realignment check across `sk-doc`, `mcp-tooling`, `sk-prompt`.
-- [ ] T027 `validate.sh --strict` on this phase folder → Errors: 0.
+- [x] T021 Content validator fixture sweep PASS: id-only rejected, missing-field rejected, holdout-leak flagged, complete accepted; 7/7 real scenarios PASS.
+- [x] T022 Topology recursion fixture in `compiled-routing-cutover-luna.test.cjs` PASSES: a nested per-feature defect fails the run verdict while the clean root leaf passes.
+- [x] T023 Cutover executor dry run: 7/7 hubs `join-gate: PASS`, evidence-derived; branch fixtures cover match/drift/vacuous/defer/skip/throw.
+- [x] T024 LUNA-HIGH seeded-timeout fixture PASS: classifies `SKIP`, stdout/stderr distinct.
+- [x] T025 Holdout audit: all 7 map holdouts audit `withheld=true`; live sk-code + sk-doc holdouts routed-to-gold.
+- [x] T026 Root-playbook realignment verified across `sk-doc`, `mcp-tooling`, `sk-prompt`; the 3 hubs still load unchanged.
+- [x] T027 `validate.sh --strict` on this phase folder → Errors: 0.
 
-**Evidence (planned)**: None of the above has run yet. This phase defines the acceptance bar; `implementation-summary.md` will be updated with real results once implementation starts.
+**Evidence**: bounded LUNA-High live run `luna-high-acceptance-1784596615522` (sk-code routing+holdout, sk-doc holdout) all PASS, archived via `007`; frozen trio byte-identical; ephemeral-id scan 0.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -90,14 +90,14 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All 7 eligible hubs have exactly one compiled-routing scenario file with the full evidence contract.
-- [ ] Content and topology validators pass their fixture sweeps.
-- [ ] The cutover executor's gating is evidence-derived, proven on a dry run.
-- [ ] The LUNA-HIGH stage classifies timeout as `SKIP` and every hub has a gold-bearing holdout.
-- [ ] Root-playbook realignment lands for `sk-doc`, `mcp-tooling`, `sk-prompt`.
-- [ ] Strict Level-2 packet validation passes on this phase folder.
+- [x] All 7 eligible hubs have exactly one compiled-routing scenario file with the full evidence contract.
+- [x] Content and topology validators pass their fixture sweeps.
+- [x] The cutover executor's gating is evidence-derived, proven on a 7/7 dry run.
+- [x] The LUNA-HIGH stage classifies timeout as `SKIP` (fixture) and every hub has a gold-bearing holdout.
+- [x] Root-playbook realignment lands for `sk-doc`, `mcp-tooling`, `sk-prompt`.
+- [x] Strict Level-2 packet validation passes on this phase folder.
 
-**Evidence**: Not yet executed — Planned. This packet has not been implemented; the criteria above define what MUST be proven before `implementation-summary.md` can honestly claim completion.
+**Evidence**: Implemented and verified 2026-07-21; the full 7-hub LUNA-High live sweep is a documented bounded follow-up on top of the proven 3-scenario live sample.
 
 <!-- /ANCHOR:completion -->
 

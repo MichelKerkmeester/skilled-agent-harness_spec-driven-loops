@@ -21,7 +21,7 @@
       "compiled routing playbook checklist",
       "luna high acceptance QA gate",
       "compiled routing playbook implementation summary",
-      "luna high acceptance planned build record"
+      "luna high acceptance build record"
     ],
     "key_topics": [
       "compiled",
@@ -38,23 +38,50 @@
       "vacuous"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/luna-acceptance.cjs",
+      ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
-      ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-compiled-routing-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-playbook-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "luna-acceptance.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/luna-acceptance.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -82,15 +109,9 @@
         "source": "derived"
       },
       {
-        "name": "validate-playbook-topology.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -160,7 +181,7 @@
         "source": "derived"
       },
       {
-        "name": "Optional Supplemental",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-07-20T21:51:32.363Z",
+    "last_save_at": "2026-07-21T01:36:56.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dca19708c33fd8757906423c6d67d08d08de46886b632cbfb66d34ff996020b",
+    "source_fingerprint": "sha256:299304449d283c4f1315c246c94b1c5821973d15f9db69ab24c1fd88932edd33",
     "source_doc_hashes": {
-      "spec.md": "7dfb4a9cb4b537c55077853871888be484ba6133f4799c8bf1f4c25566f52008",
-      "plan.md": "fa55cdd0bd3c791275b5513e943716a967caa4703296bd0040cae00beec1c1f0",
-      "tasks.md": "2e988d454e0b256edc2ed34ab85cb77c302e21287ef003987ecc14686bc20c43",
-      "checklist.md": "66bd5f2044e611c7685ac520d3fcf6f8c046d71d6c7106027b2c095c9fb6ae3e",
-      "implementation-summary.md": "78e8bef75198e690e5573e0018125705fc2b84aef2ba1ff4b46572a2c6ad0217"
+      "spec.md": "553f703e7a7881e348812bb0e12163b12b33a2028225cff25d15e4a41117ba67",
+      "plan.md": "c9d6cd893cbef5eda0c6b9c383eda09339d96bf27c35be51a219493a460db778",
+      "tasks.md": "173ffe834db1c1dc8df6dd30c637b7b0a7d778f0de33e12b7286f36999927f6f",
+      "checklist.md": "cb2891ae4a52db4172d353fc5d95c50d82accb9e5530d20e9fa955b06ee06422",
+      "implementation-summary.md": "6e92d3ac54b90d69a8163db7f1a7647cd6ec23a3dcceaaecfd52392b27d9af74"
     },
     "last_active_child_id": null,
     "last_active_at": null

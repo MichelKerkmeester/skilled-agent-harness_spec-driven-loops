@@ -54,6 +54,23 @@ const CLASS_SCHEMA = 'fixture_schema_error';
 const CLASS_TOPOLOGY = 'fixture_topology_error';
 const CLASS_SELECTION = 'fixture_selection_error';
 
+// The single unified verdict enum shared across the compiled-routing coverage
+// surface (this topology gate, the scenario-content validator, the cutover
+// executor, and the LUNA acceptance stage). The manual-testing-playbook
+// template's older PARTIAL/READY vocabulary collapses into this set: a valid
+// oracle is PASS, a blocked oracle is FAIL, and a scenario intentionally outside
+// the typed-gold contract is SKIP. The internal valid/blocked status is retained
+// alongside it so existing consumers stay byte-compatible.
+const VERDICT = Object.freeze({ PASS: 'PASS', FAIL: 'FAIL', SKIP: 'SKIP' });
+
+// Map the internal per-fixture status onto the unified verdict enum. A blocked
+// fixture is a FAIL; a valid one is a PASS. SKIP is reserved for a caller that
+// marks a fixture non-applicable; this gate never invents a SKIP on its own.
+function statusToVerdict(status) {
+  if (status === 'valid') return VERDICT.PASS;
+  return VERDICT.FAIL;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FRONTMATTER PARSING (typed gold only; legacy fields are read elsewhere)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -130,6 +147,10 @@ function parseFixture(absPath, playbookDir) {
   };
 }
 
+// Recurse into every nested per-feature directory, not just the playbook root:
+// a hub whose scenarios live under per-feature subfolders (or a nested
+// compiled-routing/ subtree) must have every leaf inspected, so a defect in a
+// deep per-feature file is never missed because the root directory looked clean.
 function walkFixtureFiles(playbookDir) {
   const out = [];
   const stack = [playbookDir];
@@ -306,6 +327,7 @@ function runValidation({ playbookDir, skillDir }) {
         id: null,
         relPath: path.relative(playbookDir, absPath),
         status: 'blocked',
+        verdict: statusToVerdict('blocked'),
         errorClass: CLASS_SCHEMA,
         problems: [fixture.error],
       });
@@ -318,6 +340,7 @@ function runValidation({ playbookDir, skillDir }) {
       expectedWorkflowMode: fixture.expectedWorkflowMode,
       pairCount: fixture.pairs.length,
       status: verdict.status,
+      verdict: statusToVerdict(verdict.status),
       errorClass: verdict.errorClass,
       problems: verdict.problems,
     });
@@ -325,7 +348,13 @@ function runValidation({ playbookDir, skillDir }) {
 
   const validCount = results.filter((r) => r.status === 'valid').length;
   const blockedCount = results.length - validCount;
-  return { results, validCount, blockedCount };
+  // Unified run-level verdict over every recursively-walked leaf: any blocked
+  // leaf fails the whole surface, so a per-feature-file defect can never pass
+  // because the root looked clean. An empty tree is SKIP, not a false PASS.
+  const runVerdict = results.length === 0
+    ? VERDICT.SKIP
+    : (blockedCount > 0 ? VERDICT.FAIL : VERDICT.PASS);
+  return { results, validCount, blockedCount, verdict: runVerdict };
 }
 
 function formatReport(report) {
@@ -340,7 +369,7 @@ function formatReport(report) {
     }
   }
   lines.push('');
-  lines.push(`valid=${report.validCount} blocked=${report.blockedCount} total=${report.results.length}`);
+  lines.push(`verdict=${report.verdict} valid=${report.validCount} blocked=${report.blockedCount} total=${report.results.length}`);
   return lines.join('\n');
 }
 
@@ -370,6 +399,8 @@ module.exports = {
   CLASS_SCHEMA,
   CLASS_TOPOLOGY,
   CLASS_SELECTION,
+  VERDICT,
+  statusToVerdict,
   parseFixture,
   walkFixtureFiles,
   loadManifestLeaves,
