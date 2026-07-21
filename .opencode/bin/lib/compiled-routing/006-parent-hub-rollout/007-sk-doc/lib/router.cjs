@@ -184,6 +184,16 @@ function scoreModes(routingModel, text) {
   })).filter((entry) => entry.score > 0);
 }
 
+// Mirrors router-replay.cjs's selectIntents (the legacy replay's own ambiguity
+// gate): keep only the modes within ambiguityDelta of the top score. `scores`
+// is already sorted (score desc, tie-break sub-order) by the caller, so the
+// filtered result preserves that same order.
+function contendingModes(scores, ambiguityDelta) {
+  if (scores.length === 0) return [];
+  const top = scores[0].score;
+  return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);
+}
+
 function evaluateCanary(snapshot, input) {
   const built = buildRequest(snapshot, input);
   const text = normalize(input.prompt || '');
@@ -214,13 +224,26 @@ function evaluateCanary(snapshot, input) {
         ? negative('defer', { reason: 'no-match', recovery: [] })
         : route(snapshot, 'single', [snapshot.routingModel.defaultMode]);
     } else {
-      const bundle = exactBundle(snapshot.routingModel, modes);
+      const contending = contendingModes(scores, snapshot.routingModel.ambiguityDelta);
+      const bundle = exactBundle(snapshot.routingModel, contending);
       if (bundle) {
         decision = route(snapshot, 'orderedBundle', bundle.targetWorkflowModes);
       } else if (scores.length === 1
         || scores[0].score - scores[1].score > snapshot.routingModel.ambiguityDelta) {
         decision = route(snapshot, 'single', [scores[0].mode]);
       } else {
+        // Legacy's replay (router-replay.cjs's selectIntents) has no concept of
+        // a "known" bundle combination -- every near-tied (ambiguity-delta)
+        // multi-intent match is unconditionally unioned into one route. The
+        // compiled decision contract disagrees: assertComposition hard-fails
+        // any multi-target route whose exact target sequence is not already a
+        // declared entry in policy.compositionRules (BUNDLE_NOT_IN_POLICY), so
+        // an undeclared near-tie cannot route here without a schema change
+        // outside this hub's own files. It stays a clarify -- registry-compiler
+        // .cjs's SUPPLEMENTAL_BUNDLE_RULES is where a genuinely near-tied
+        // combination gets declared once it is known to occur, closing this
+        // gap without ever risking a decision-contract throw for an
+        // undeclared one.
         decision = clarify(snapshot, built.request, modes);
       }
     }

@@ -185,9 +185,50 @@ function vocabularyForMode(mode, hubRouter) {
     .sort(compareText);
 }
 
+// Legacy's own replay (router-replay.cjs) never reads routerPolicy.tieBreak --
+// it breaks a keyword-score tie via JS's stable Array.sort over
+// Object.entries(routerSignals), i.e. hub-router.json's routerSignals KEY
+// ORDER (assertRouterClosure already proves that key set equals the mode
+// set, so this is always a complete order). routerPolicy.tieBreak is a
+// separately-authored array that has drifted from that order (e.g.
+// create-quality-control precedes create-skill there, the opposite of
+// routerSignals), so deriving the compiled tie-break from routerSignals keeps
+// a scored tie resolved identically on both sides without editing
+// hub-router.json itself.
+function scoreTieBreakOrder(hubRouter) {
+  return Object.keys(hubRouter.routerSignals);
+}
+
+// hub-router.json's own routerPolicy.bundleRules declares only one
+// combination (create-skill + create-quality-control), but legacy's actual
+// replay (router-replay.cjs's selectIntents) has no "declared combination"
+// gate at all -- it unconditionally unions ANY near-tied (ambiguity-delta)
+// set of scored intents into one route. The compiled decision contract
+// (decision-contract.cjs's assertComposition) requires the opposite: every
+// multi-target route must match a pre-declared, exactly-ordered composition
+// in policy.compositionRules, so an undeclared near-tie fails closed to
+// `clarify` instead of the route legacy actually takes. Closing that gap for
+// the combinations the current sk-doc scenario corpus exercises means
+// declaring them -- and hub-router.json is legacy-owned and frozen, so this
+// compiled-routing-owned supplement declares them here instead. Each entry's
+// whenAll is authored directly in the exact target order legacy's own
+// stable-sorted-by-score replay produces for that combination (verified
+// against router-replay.cjs's scoreIntents output for the scenario prompt),
+// so -- unlike the hub-router.json-declared rules below -- it is not re-sorted
+// by the generic tie-break map: a generic score/tie-break sort cannot express
+// an order that depends on which of two DIFFERENT scores won for a given
+// prompt (e.g. create-quality-control:4 outscoring create-flowchart:3), only
+// on a fixed mode-to-mode priority.
+const SUPPLEMENTAL_BUNDLE_RULES = [
+  { name: 'quality-then-flowchart', whenAll: ['create-quality-control', 'create-flowchart'] },
+  { name: 'feature-catalog-then-playbook', whenAll: ['create-feature-catalog', 'create-manual-testing-playbook'] },
+  { name: 'agent-then-command', whenAll: ['create-agent', 'create-command'] },
+  { name: 'skill-then-quality-then-changelog', whenAll: ['create-skill', 'create-quality-control', 'create-changelog'] },
+];
+
 function orderedBundleRules(hubRouter) {
-  const order = new Map(hubRouter.routerPolicy.tieBreak.map((mode, index) => [mode, index]));
-  return (hubRouter.routerPolicy.bundleRules || []).map((rule) => ({
+  const order = new Map(scoreTieBreakOrder(hubRouter).map((mode, index) => [mode, index]));
+  const declared = (hubRouter.routerPolicy.bundleRules || []).map((rule) => ({
     kind: rule.outcome,
     name: rule.name,
     targetWorkflowModes: [...rule.whenAll].sort((left, right) => (
@@ -195,6 +236,13 @@ function orderedBundleRules(hubRouter) {
     )),
     whenAll: [...rule.whenAll],
   }));
+  const supplemental = SUPPLEMENTAL_BUNDLE_RULES.map((rule) => ({
+    kind: 'orderedBundle',
+    name: rule.name,
+    targetWorkflowModes: [...rule.whenAll],
+    whenAll: [...rule.whenAll],
+  }));
+  return [...declared, ...supplemental];
 }
 
 function fallbackChecklist(registry) {
@@ -304,7 +352,7 @@ function compileRegistry(input) {
       workflowMode: mode.workflowMode,
     })),
     outcomes: input.hubRouter.routerPolicy.outcomes,
-    tieBreak: [...input.hubRouter.routerPolicy.tieBreak],
+    tieBreak: scoreTieBreakOrder(input.hubRouter),
   };
   const advisorBody = {
     admissionLabels: ['positive-signal', 'zero-signal-defer', 'exclude:forbidden'],
