@@ -34,6 +34,7 @@ const { scoreScenario, aggregate, evaluateRouteGold } = require('./score-skill-b
 const { probeAdvisor } = require('./advisor-probe.cjs');
 const { renderReport } = require('./build-report.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
+const { expandMultiProbeScenarios } = require('./multi-probe-scenarios.cjs');
 const { dispatchScenario } = require('./executor-dispatch.cjs');
 const {
   compiledParity, rollupCompiledParity, applyCompiledDriftVerdict, classifyFlagState,
@@ -217,6 +218,19 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
     warnings = [];
   }
   if (warningsOut) warningsOut.push(...warnings);
+  // Table-shaped scenarios (a "Probe set" / "Prompt variants" battery instead
+  // of a single `**Exact prompt**` block) load from the frozen loader above as
+  // a single vacuous prompt:null row. Expand each into its real per-row
+  // sub-prompts here, in this non-frozen orchestrator, before any scenario
+  // reaches dispatch/scoring — the frozen loader and scorers are never edited.
+  const multiProbe = expandMultiProbeScenarios({ scenarios, skillRoot, playbookDir });
+  scenarios = multiProbe.scenarios;
+  if (warningsOut && multiProbe.stats.scenariosExpanded) {
+    warningsOut.push(
+      `multi-probe-expansion: ${multiProbe.stats.scenariosExpanded} table-shaped scenario(s) `
+      + `(${multiProbe.stats.expandedIds.join(', ')}) expanded into ${multiProbe.stats.rowsAdded} real sub-prompt row(s)`,
+    );
+  }
   for (const sc of filterScenarios(scenarios, scenariosFilter)) {
     const observed = dispatchScenario({ scenario: sc, skillRoot, traceMode, executor });
     if (sc.classKind === 'browser') {
