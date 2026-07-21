@@ -1,19 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-design/017-remediation-program-review",
-  "description": "Independent, multi-iteration review of the three implementation packets shipped this session under the",
+  "description": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library",
   "keywords": [
     "independent",
-    "multi-iteration",
+    "10-iteration",
+    "gpt-5",
+    "6-sol",
     "review",
     "three",
     "implementation",
     "packets",
     "shipped",
-    "session"
+    "session",
+    "interface-command",
+    "rewrite",
+    "styles",
+    "library"
   ],
-  "lastUpdated": "2026-07-21T17:54:37.434Z",
+  "lastUpdated": "2026-07-21T18:46:28.093Z",
   "specId": "017",
-  "level": 1,
   "folderSlug": "remediation-program-review",
   "parentChain": [
     "sk-design"

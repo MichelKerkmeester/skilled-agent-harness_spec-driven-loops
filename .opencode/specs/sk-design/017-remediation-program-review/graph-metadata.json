@@ -20,9 +20,9 @@
       "sk-design remediation review tasks",
       "gpt-5.6-sol review task ledger",
       "packet A B C review verification tasks",
-      "sk-design remediation review checklist",
-      "gpt-5.6-sol review verification checklist",
-      "packet A B C review findings checklist"
+      "sk-design remediation program review summary",
+      "gpt-5.6-sol 10 iteration review verified verdict",
+      "packet A B C deep review findings confirmed refuted"
     ],
     "key_topics": [
       "sk-design",
@@ -41,33 +41,26 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/sk-design/017-remediation-program-review/review/review-report.md",
       ".opencode/specs/sk-design/017-remediation-program-review/goal-file-manifest.txt",
-      ".opencode/specs/sk-design/017-remediation-program-review/review/fanout-config.json",
       "review/review-report.md",
       "spec.md",
       "review/lineages/gpt-56-sol-high/review-report.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/017-remediation-program-review/review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "goal-file-manifest.txt",
         "kind": "file",
         "path": ".opencode/specs/sk-design/017-remediation-program-review/goal-file-manifest.txt",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-config.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/017-remediation-program-review/review/fanout-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -89,15 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -113,26 +106,20 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Independent",
+        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Review Target",
-        "kind": "proper_noun",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "What Shipped",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Scenarios",
-        "kind": "proper_noun",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -185,36 +172,40 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Mark",
+        "name": "What Was Done",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Independent, multi-iteration review of the three implementation packets shipped this session under the",
+    "causal_summary": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 7b9d3b6b71. Read-only; verdict CONDITIONAL, 0 P0.",
     "created_at": "2026-07-21T17:55:36.529Z",
-    "last_save_at": "2026-07-21T17:57:39.072Z",
+    "last_save_at": "2026-07-21T18:54:03.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfe79dded92b83a4352442e218582ffbadb38b6ea8e0c4935f970569f34fcb42",
+    "source_fingerprint": "sha256:edbe1c3b9425ab9603d7bb2a89ca57d55694d99cc3216bdec583a663e34c6813",
     "source_doc_hashes": {
-      "spec.md": "0ecf420d1da8cf45f5eab64831b4e870bbe90c0c912ce230ae378375e2463015",
+      "spec.md": "72965db3816e59e4e0c89bb3c52412e38d690fa842e430b7c40330f922948963",
       "plan.md": "ee413a50acb5e3bab9170b6990ec759a4bbade9b1daadb412b72973902afa7d9",
       "tasks.md": "5a3192f0d0b3e7c01a4c575d1a9f2625ecdf9527fff4bf7afceffb4d4b37893c",
-      "checklist.md": "51fb28d69f36e2d25c27f51f011d2e0c70b98368960d872ae4fbbd910c57b278",
       "implementation-summary.md": "8f407e5cba7d2997237f2db11dfcce98849864f4a12974f3349cd7b8d289b23c"
     },
     "last_active_child_id": null,
