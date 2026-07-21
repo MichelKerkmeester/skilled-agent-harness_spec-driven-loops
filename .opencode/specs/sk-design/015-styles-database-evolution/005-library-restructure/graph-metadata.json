@@ -39,34 +39,17 @@
       "mjs"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
-      ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
       ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "database/README.md",
-      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-      ".opencode/skills/sk-design/styles/_manifest.json",
-      ".opencode/skills/sk-design/styles/_retrieval-manifest.json"
+      "database/README.md"
     ],
     "entities": [
-      {
-        "name": "style-library.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "persistent-adapter.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -104,31 +87,7 @@
         "source": "derived"
       },
       {
-        "name": "extract-refero.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "_manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "_retrieval-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_retrieval-manifest.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -158,7 +117,19 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -198,11 +169,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/skills/sk-design/styles/` root mixes three unrelated lifecycles under one flat, underscore-prefixed layout: 1,290 committed style bundles (7,740 files across six-file units), importable engine and database source, extraction tooling, two committed manifests, and documentation — a confirmed 7,800 tracked files with 60 non-bundle backend files",
     "created_at": "2026-07-21T11:27:45.852Z",
-    "last_save_at": "2026-07-21T11:32:45.187Z",
+    "last_save_at": "2026-07-21T14:01:16.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7945e1dbcc4508035810aef6ddec6f5fc67ddcb47e95bd6c9c0a76bddd97c03a",
+    "source_fingerprint": "sha256:f941078ff195bbf56768409d03484edc44d52b6c61389e92406384696a800878",
     "source_doc_hashes": {
-      "spec.md": "2f9b1a5a80209ebfcfa0e890924ee90614b05c64ff1deac21fd577ff28b556a9",
+      "spec.md": "53e0c807986944e7b5e757cc38ccdddb45f3a044cdabf7ef1d4602c594087b8f",
       "plan.md": "db8097e4a905d2df18d4ccec9e8caf8bdfd941ef3dd944facb7156e60fe0803e",
-      "tasks.md": "81f90fcc0899907ce67abc17b97de76ef2fb352e2374c8730542f7074ffdfdcd",
-      "checklist.md": "709e69bd31a8982717b480d48026121fb669a43e27ff86af29dc80fe3cf150a0",
-      "implementation-summary.md": "1153b0af41b889ff5ef0e6e19138565ebd7595b4fd69e6d1d8d6f6c3b6146efd"
+      "tasks.md": "331aa9251a4ebc5a26db1f7c2b387fe80bc5633cc1e34e190f6e5caab8892395",
+      "checklist.md": "8dab0f7525855640a0629c2f56e54d3ff595db6f16a28e8a34adfeb9167dde33",
+      "implementation-summary.md": "0d8c1d7d03fe59c0072d19c067d526a27945b278a9fdc79b581856f6ff746918"
     },
     "last_active_child_id": null,
     "last_active_at": null

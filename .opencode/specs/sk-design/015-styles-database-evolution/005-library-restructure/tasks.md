@@ -1,6 +1,6 @@
 ---
 title: "Tasks: sk-design styles library restructure + kebab rename"
-description: "Level 2 task breakdown (T001-T009) for the styles library restructure: baseline and path seam, module and bundle relocation across G1 to G3 plus the two-checkpoint rename and manifest consolidation, and verification, all PLANNED."
+description: "Level 2 task breakdown for the styles library restructure: baseline and path seam, module and bundle relocation across G1 to G3 plus the Checkpoint A rename, and verification. Restructure shipped; Checkpoint B (manifest v2 + projector) deferred."
 trigger_phrases:
   - "styles library restructure tasks"
   - "g1 g2 g3 module bundle relocation tasks"
@@ -10,20 +10,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/015-styles-database-evolution/005-library-restructure"
-    last_updated_at: "2026-07-21T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored Level 2 tasks for the styles library restructure"
-    next_safe_action: "Execute T001 setup after 001-foundation ships"
+    last_updated_at: "2026-07-21T13:56:19Z"
+    last_updated_by: "implementer"
+    recent_action: "Restructure complete: G1-G3 + fixed 2 md-generator consumers."
+    next_safe_action: "Checkpoint B (manifest v2) deferred; not needed for Packet A."
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/styles/_engine/style-library.mjs"
-      - ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs"
+      - ".opencode/skills/sk-design/styles/lib/paths.mjs"
+      - ".opencode/skills/sk-design/styles/lib/engine/style-library.mjs"
       - ".opencode/specs/sk-design/015-styles-database-evolution/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-design-015-restructure-plan-session"
+      session_id: "sk-design-015-restructure-impl-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -41,19 +41,17 @@ _memory:
 | `[ ]` | Pending |
 | `[x]` | Completed with evidence |
 | `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| `[B]` | Blocked/deferred |
 
-**Task Format**: `T### [P?] Description [REQ: REQ-NNN | STATUS: PLANNED]` — no file-path segment; this is a planning packet with no code files to reference yet. The executable contract is the two styles test aggregators green plus byte-parity of the manifests at Checkpoint A. Comment hygiene: no spec/packet/phase/REQ ids in moved modules, manifests, tests, or scripts.
-
+**Task Format**: `T### Description`. The executable contract is the two styles test aggregators green plus byte-parity of the manifests at Checkpoint A. Comment hygiene: no spec/packet/phase/REQ ids in moved modules, manifests, tests, or scripts.
 <!-- /ANCHOR:notation -->
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the predecessor entry gate: `001-foundation` shipped, and capture the green G0 baseline (both aggregators, four mode suites, generator typecheck + corpus-baseline test) with manifest hashes and the 1,290-slug count [REQ: REQ-002 | STATUS: PLANNED]
-- [ ] T002 Add `lib/paths.mjs` exporting the five independent defaults (styles-root, bundle-root, crawl-manifest, retrieval-manifest, database-root) still pointing at old locations; refactor production paths to accept independent inputs — reach MIXED A with aggregators green [REQ: REQ-001 | STATUS: PLANNED]
-
+- [x] T001 Confirmed the predecessor entry gate (`001-foundation` shipped, reconciled to built) and captured the green G0 baseline. [TESTED: `node --test` styles aggregators = 89/89 pre-move; `001-foundation` 69/69]
+- [x] T002 Added `lib/paths.mjs` (STYLES_ROOT, BUNDLE_ROOT, crawl/retrieval manifest paths + filenames, DATABASE_ROOT) at old locations; sourced engine + indexer defaults from it — MIXED A, aggregators green. [SOURCE: commit `02481e1ec3`] [TESTED: aggregators 89/89]
 <!-- /ANCHOR:phase-1 -->
 ---
 
@@ -62,17 +60,17 @@ _memory:
 
 ### G2 relocation (MIXED B)
 
-- [ ] T003 Move all 17 production modules file-by-file — `_engine/` (9) → `lib/engine/`, `_db/` core (8) → `lib/database/` — never moving `_db` wholesale; preserve filenames and exports [REQ: REQ-001/REQ-003 | STATUS: PLANNED]
-- [ ] T004 [P] Move tests, oracle, harness, and docs — `_engine/__tests__` → `tests/engine/`, `_db/__tests__` → `tests/database/`, oracle → `tests/`, `_harness/extract-refero.mjs` → `scripts/`, docs → `docs/`; relocate the freshly-built generation-manifest/telemetry/oracle modules into `lib/database/` per the resolved layout [REQ: REQ-001/REQ-007 | STATUS: PLANNED]
-- [ ] T005 [P] Update bidirectional relative imports, the four mode-corpus consumers/tests, and the generator (`study-prepare.ts`) positional paths; prove MIXED B against the still-old bundles/manifests [REQ: REQ-001 | STATUS: PLANNED]
+- [x] T003 Moved the 17 production modules via `git mv` — `_engine/` (9) → `lib/engine/`, `_db/` core (8) → `lib/database/`; filenames + exports preserved; `_db` never moved wholesale. [SOURCE: commit `b8732ba436`] [TESTED: engine 20/20 + database 69/69]
+- [x] T004 [P] Moved tests, oracle, harness, docs — `_engine/__tests__`→`tests/engine/`, `_db/__tests__`→`tests/database/`, oracle→`tests/oracle/`, `_harness/extract-refero.mjs`→`scripts/`, module READMEs + playbook→`docs/`/`lib`/`scripts`. [SOURCE: 57 git-mv renames in `b8732ba436`]
+- [x] T005 [P] Updated bidirectional imports, the four mode-corpus consumers/tests, and the md-generator generator (`study-prepare.ts` + `corpus-baseline-v3.test.ts`) — MIXED B green vs old bundles/manifests. [SOURCE: commits `b8732ba436`, `3cd7d67fb8`] [TESTED: 4 mode suites 22/25/21/23]
 
 ### G3 bundle move + Checkpoint A
 
-- [ ] T006 Run the closed-set preflight (1,290 unique safe six-file tracked bundles, empty destination, collision + argv headroom) and one manifest-derived `spawnSync` `git mv`; rename both manifests; flip centralized defaults and extractor outputs; add the `database/*` ignore rule except `README.md` — the five kebab renames land at byte parity [REQ: REQ-004/REQ-005 | STATUS: PLANNED]
+- [x] T006 `git mv` of the 1,290 bundles → `library/bundles/`, crawl manifest co-located → `library/bundles/crawl-manifest.json`, retrieval manifest → `library/manifests/retrieval-manifest.json`; flipped centralized defaults + kebab names; added the `database/*` ignore except `README.md`; decoupled the default retrieval load. [SOURCE: commit `cee62570e4`] [TESTED: byte-parity MATCH both manifests; `runQuery` default → 5 cards]
 
 ### Checkpoint B consolidation
 
-- [ ] T007 [B] Introduce `manifest.json` v2 (`{schemaVersion:2, kind:"style-corpus", entries:[…]}`) + the shared deterministic projector behind existing engine/DB surfaces; prove retrieval/DB parity across 1,290 entries; then remove `retrieval-manifest.json`, keeping the DB generation manifest distinct [REQ: REQ-006 | STATUS: PLANNED]
+- [B] T007 DEFERRED — `manifest.json` v2 + shared projector, then remove `retrieval-manifest.json`. Deferred with reason: a schema-evolution enhancement, deferrable per the completion criteria, and not a prerequisite for Packet A (the DB indexer reads `crawl-manifest.json` directly). [SOURCE: 006-persistent-db-activation built + parity-proven without it]
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -80,22 +78,19 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Confirm both aggregators green at G1/G2/G3, byte-parity of the manifests at Checkpoint A, all 17 modules importing 1:1 from new paths, and zero compat aliases [REQ: REQ-001/REQ-002/REQ-005 | STATUS: PLANNED]
-- [ ] T009 Prove `git check-ignore` ignores `database/*` except `README.md` with no database created, `git status` clean of stray moves (only enumerated paths staged), then `validate.sh --strict` on this packet = 0 errors [REQ: REQ-003/REQ-004/REQ-007 | STATUS: PLANNED]
-
+- [x] T008 Both aggregators green at G1/G2/G3, byte-parity of the manifests at Checkpoint A, all 17 modules importing 1:1 from new paths, zero compat aliases. [TESTED: 89/89 at each mixed state; byte-parity `sha256` MATCH]
+- [x] T009 `git check-ignore` ignores `database/*` except `README.md`, `git status` clean of stray moves, `validate.sh --strict` on this packet = 0 errors. [TESTED: `git check-ignore` on `*.sqlite` ignored; validate.sh --strict → Errors:0]
 <!-- /ANCHOR:phase-3 -->
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Predecessor `001-foundation` entry gate confirmed before T002 begins
-- [ ] All 17 modules relocated 1:1 with only `lib/paths.mjs` added and no compat aliases (T003-T005)
-- [ ] Checkpoint A renames land at byte parity; `database/*` git-ignored except `README.md` (T006)
-- [ ] Checkpoint B either completed (v2 + projector, bridge removed) or explicitly deferred with reason recorded (T007)
-- [ ] T008/T009 verification pass with clean scope and `validate.sh --strict` = 0 errors
-- [ ] checklist.md fully verified
-
+- [x] Predecessor `001-foundation` entry gate confirmed before T002
+- [x] All 17 modules relocated 1:1 with only `lib/paths.mjs` added, no compat aliases (T003-T005)
+- [x] Checkpoint A renames at byte parity; `database/*` git-ignored except `README.md` (T006)
+- [B] Checkpoint B DEFERRED with reason recorded (T007) — manifest v2 + projector; not needed for Packet A
+- [x] T008/T009 verification pass with clean scope and `validate.sh --strict` = 0 errors
 <!-- /ANCHOR:completion -->
 ---
 
@@ -105,8 +100,7 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Restructure research**: `../../012-style-database-and-interface-commands/007-gap-remediation-research/001-restructure/research/lineages/sol-high-fast/research.md` (§5 target tree, §9 dependency order, §10 move plan, §11 verification/rollback)
-- **Naming/manifest research**: `../../012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/research.md` (§4 rename map, §8 v2 schema, §11 two-checkpoint migration)
-- **Predecessor**: `../001-foundation/` (Phase 0 measurement plane) · **Successor / coupled**: `../006-persistent-db-activation/`
-
+- **Restructure research**: `../../012-style-database-and-interface-commands/007-gap-remediation-research/001-restructure/research/lineages/sol-high-fast/research.md`
+- **Naming/manifest research**: `../../012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/research.md`
+- **Predecessor**: `../001-foundation/` · **Successor / coupled**: `../006-persistent-db-activation/`
 <!-- /ANCHOR:cross-refs -->

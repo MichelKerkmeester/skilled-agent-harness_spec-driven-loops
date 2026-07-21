@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/015-styles-database-evolution/005-library-restructure",
   "description": "The `.opencode/skills/sk-design/styles/` root mixes three unrelated lifecycles under one flat, underscore-prefixed layout: 1,290 committed style",
   "keywords": [
@@ -18,7 +19,7 @@
     "committed",
     "style"
   ],
-  "lastUpdated": "2026-07-21T11:25:45.047Z",
+  "lastUpdated": "2026-07-21T14:01:04.341Z",
   "specId": "005",
   "folderSlug": "library-restructure",
   "parentChain": [
@@ -26,6 +27,5 @@
     "015-styles-database-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

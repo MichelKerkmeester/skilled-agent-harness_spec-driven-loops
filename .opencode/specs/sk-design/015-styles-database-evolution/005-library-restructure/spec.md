@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/015-styles-database-evolution/005-library-restructure"
-    last_updated_at: "2026-07-21T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored Level 2 spec for the styles library restructure"
-    next_safe_action: "Plan and build 001-foundation first; keep 005 PLANNED until then"
+    last_updated_at: "2026-07-21T13:56:19Z"
+    last_updated_by: "implementer"
+    recent_action: "Restructure complete: G1-G3 + fixed 2 md-generator consumers."
+    next_safe_action: "Checkpoint B (manifest v2) deferred; not needed for Packet A."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_engine/style-library.mjs"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-design-015-restructure-plan-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 - **Predecessor:** 004-growth
 - **Successor:** 006-persistent-db-activation
 - **Level:** 2
-- **Status:** PLANNED
+- **Status:** COMPLETE (restructure G1-G3; Checkpoint B deferred)
 - **Created:** 2026-07-21
 - **Source research:** `sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/00{1,2}`
 
@@ -83,7 +83,7 @@ This is Packet B — the styles library restructure covering gaps 001 (restructu
 
 ### Out of Scope
 
-- Building or executing any move, rename, or reference update — this packet is planning-only (Status: PLANNED).
+- Checkpoint B (versioned `manifest.json` v2 + shared projector, then drop `retrieval-manifest.json`) — deferred as a follow-on; not a prerequisite for Packet A.
 - The persistent DB build/activation — owned by the coupled sibling `006-persistent-db-activation`.
 - Phase-0 foundation work (manifest/telemetry/oracle/fixtures) — owned by predecessor `001-foundation`.
 - Any retrieval-algorithm, schema-semantics, or default-mode change (`legacy` stays default; flat bundle files stay authoritative).

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/015-styles-database-evolution/006-persistent-db-activation",
   "description": "The `003-db-fate` gap research recommended shelving the SQLite styles database: the JS math is tiny and parity-sensitive over 1,290 style bundles, and",
   "keywords": [
@@ -16,7 +17,7 @@
     "style",
     "bundles"
   ],
-  "lastUpdated": "2026-07-21T11:25:08.612Z",
+  "lastUpdated": "2026-07-21T14:05:41.376Z",
   "specId": "006",
   "folderSlug": "persistent-db-activation",
   "parentChain": [
@@ -24,6 +25,5 @@
     "015-styles-database-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/015-styles-database-evolution/006-persistent-db-activation"
-    last_updated_at: "2026-07-21T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Author Level 2 spec for the persistent DB activation build."
-    next_safe_action: "Freeze the facade, then build the first full-corpus generation."
+    last_updated_at: "2026-07-21T14:07:56Z"
+    last_updated_by: "implementer"
+    recent_action: "Built + published the first generation; shadow parity 10/10."
+    next_safe_action: "Wire install-time prewarm; operator decides the default flip."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_engine/style-library.mjs"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-design-015-dbbuild-plan-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 75
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | IMPLEMENTED — build + parity + perf proven; cutover human-gated |
 | **Created** | 2026-07-21 |
 | **Track** | sk-design |
 | **Packet** | `015-styles-database-evolution / 006-persistent-db-activation` |
