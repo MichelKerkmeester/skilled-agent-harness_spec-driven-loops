@@ -4,15 +4,12 @@
 
 import { DatabaseSync } from 'node:sqlite';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { resolvePublishedTarget } from './generation-manifest.mjs';
+import { DATABASE_ROOT } from '../paths.mjs';
 
 export const STYLE_DB_SCHEMA_VERSION = 2;
-export const DEFAULT_STYLE_DATABASE_PATH = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  'style-library.sqlite',
-);
+export const DEFAULT_STYLE_DATABASE_PATH = path.join(DATABASE_ROOT, 'style-library.sqlite');
 export const STYLE_DATABASE_POINTER_SUFFIX = '.current.json';
 
 // The published pointer is a versioned multi-artifact manifest; legacy

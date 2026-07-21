@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/015-styles-database-evolution/006-persistent-db-activation"
     last_updated_at: "2026-07-21T00:00:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Author the planning-only Level 2 docs for the DB activation build."
-    next_safe_action: "Build after plan review: facade freeze then first-generation publish."
+    recent_action: "Built + published the first generation; shadow parity 10/10."
+    next_safe_action: "Wire install-time prewarm; operator decides the default flip."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_engine/style-library.mjs"
