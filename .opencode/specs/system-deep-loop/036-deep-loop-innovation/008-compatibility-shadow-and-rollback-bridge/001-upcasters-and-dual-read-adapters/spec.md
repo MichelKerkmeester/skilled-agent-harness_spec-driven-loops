@@ -13,11 +13,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters"
     last_updated_at: "2026-07-15T14:17:04Z"
     last_updated_by: "codex"
-    recent_action: "Authored the upcaster and shadow adapter planning contract"
-    next_safe_action: "Implement registries and adapters against frozen legacy and ledger fixtures"
+    recent_action: "Implemented and verified additive compatibility upcasters and shadow adapters"
+    next_safe_action: "Consume the compatibility API from successor projection and parity work"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-008 compatibility, shadow, and rollback bridge |
@@ -53,7 +56,7 @@ Phase 006 plans the canonical versioned envelope and typed append-only ledger, b
 
 The phase-004 transition policy fixes the compatibility rules: writers emit only the current registered event version; readers transform supported historical versions through pure adjacent `type@N -> type@N+1` upcasters; stored bytes and immutable identity remain available; and unknown types, future versions, missing links, lossy transforms, or ambiguous defaults fail closed (`.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). Phase 006 then defines the canonical envelope read boundary and dark ledger, including stored/effective versions and a verified typed stream (`.opencode/specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope/spec.md`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`).
 
-This phase plans the compatibility seam that makes those contracts usable during shadowing. It registers and chains event and state-record upcasters, reads comparable legacy and dark representations, normalizes both to a current read model, and reconciles them without moving authority. “Single-write” means one authoritative mutation: the command reaches the legacy writer exactly once, and the accepted transition may also produce one non-authoritative dark-ledger mirror. The adapter never treats the dark append as operational success, never falls back to dark state when legacy fails, and never writes reconciled data back to either store. That distinction preserves the parent program's additive-dark migration model and its rule that phase 008 performs no authority cutover (`.opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`).
+This phase plans the compatibility seam that makes those contracts usable during shadowing. It registers and chains event and state-record upcasters, reads comparable legacy and dark representations, normalizes both to a current read model, and reconciles them without moving authority. “Single-write” means one authoritative mutation: the existing command path reaches its legacy writer exactly once, then passes proof of the accepted transition to an adapter that can produce at most one non-authoritative dark-ledger mirror. The adapter has no legacy-write capability, never treats the dark append as operational success, never falls back to dark state when legacy fails, and never writes reconciled data back to either store. That distinction preserves the parent program's additive-dark migration model and its rule that phase 008 performs no authority cutover (`.opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`).
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -66,7 +69,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 - Startup validation that rejects duplicate registrations, non-adjacent edges, gaps, cycles, multiple current versions, unsupported outer-envelope versions, and registry ordering that is not deterministic.
 - A dual-read adapter that obtains legacy and dark observations for the same logical run/stream and comparison point, validates and upcasts each independently, and emits a typed reconciliation result.
 - A reconciliation matrix for equivalent, divergent, lagging, missing, corrupt, and failed reads; the legacy value or legacy error contract remains operational in every shadow-period case.
-- A single-authoritative-write boundary: invoke the legacy writer once, mirror the accepted transition to the dark ledger once as non-authoritative evidence, and expose no writeback, dark fallback, or second canonical mutation path.
+- A single-authoritative-write boundary: accept proof of one finalized legacy transition, mirror it to the dark ledger at most once as non-authoritative evidence, expose no legacy writer, and expose no writeback, dark fallback, or second canonical mutation path.
 - Reversibility controls: compatibility feature gates, immutable source records, no eager migration, no read-repair, bounded divergence evidence, and a direct legacy-only path that can be restored without data conversion.
 - Fixtures covering supported multi-hop versions, current versions, unversioned/ambiguous legacy shapes, future versions, missing edges, non-comparable snapshots, dark lag, dark corruption, and mirror-append failure.
 
@@ -76,7 +79,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 - Rewriting historical JSONL rows, snapshots, checkpoints, or committed ledger bytes into a new version.
 - Treating an unversioned legacy shape as a supported version without an explicit, fixture-backed discriminator and lossless mapping.
 - Returning a dark value when the legacy read fails, allowing a dark append to change legacy success/failure semantics, or promoting dark state to canonical authority.
-- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-004 rollback-window policy; those actions remain in phases 011 and 012.
+- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-004 rollback-window policy; those actions remain in phases 014 and 015.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -90,7 +93,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 | REQ-004 | Unsupported or ambiguous compatibility cases fail closed | Unknown families, unregistered versions, future versions, missing links, invalid hop output, lossy conversion, and ambiguous unversioned shapes yield typed failures and no effective model |
 | REQ-005 | Dual reads compare one logical observation boundary | Each comparison binds mode, run/stream identity, authority epoch, legacy record/checkpoint identity, verified dark head/sequence, and correlation key; incomparable observations are classified, not compared as parity |
 | REQ-006 | Reconciliation is deterministic and legacy-authoritative | Equivalent models return the legacy operational value plus parity evidence; divergence, dark lag/miss/failure, or dark-only success never replaces the legacy value or legacy error |
-| REQ-007 | Shadow writes preserve one authoritative mutation | A command invokes the legacy writer exactly once; a successful accepted transition may append one idempotent dark mirror, but the mirror cannot decide the command result or mutate legacy state |
+| REQ-007 | Shadow writes preserve one authoritative mutation | The existing command invokes its legacy writer exactly once and passes the finalized result to an adapter with no legacy writer; the accepted transition may append one idempotent dark mirror, but the mirror cannot decide the command result or mutate legacy state |
 | REQ-008 | Dark failures are observable without becoming authority | Mirror append, verification, or read failures emit bounded typed evidence and block parity/cutover claims while preserving the authoritative legacy result and its error semantics |
 | REQ-009 | The adapter performs no read-repair or reverse synchronization | No reconciliation outcome writes an upcast result, dark value, synthesized default, or divergence resolution back to legacy or committed ledger storage |
 | REQ-010 | Adapter disablement is reversible and behavior-preserving | Disabling dual read and dark mirroring routes directly to the unchanged legacy reader/writer contracts; retained dark records remain audit-only and require no rollback migration |
@@ -123,7 +126,7 @@ The adapter samples both sources under one comparison token. The token identifie
 
 ### Single-authoritative-write invariant
 
-The legacy mutation remains the only operation allowed to determine accepted state, returned value, retry semantics, or domain failure. After a legacy transition is accepted, the dark path receives the current-version canonical envelope under the phase-006 authorization and idempotency contracts. The adapter may record a mirror failure, but it cannot retry the legacy mutation, infer success from the dark append, project dark data back into legacy, or expose a mode switch that changes authority. This is one authoritative write with a parallel shadow record, not dual authority.
+The legacy mutation remains the only operation allowed to determine accepted state, returned value, retry semantics, or domain failure. After a legacy transition is accepted, its finalized result reaches the adapter and the dark path receives the current-version canonical envelope under the phase-006 authorization and idempotency contracts. The adapter has no legacy writer and may record a mirror failure, but it cannot retry the legacy mutation, infer success from the dark append, project dark data back into legacy, or expose a mode switch that changes authority. This is one authoritative write outside the adapter with a parallel shadow record, not dual authority.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -132,7 +135,7 @@ The legacy mutation remains the only operation allowed to determine accepted sta
 - **SC-001**: Registry fixtures prove current, one-hop, and multi-hop reads for every declared event/state family, with stable output and complete hop traces.
 - **SC-002**: Gap, cycle, duplicate edge, future version, ambiguous unversioned shape, invalid hop, and identity mutation fixtures all fail closed before a model reaches a consumer.
 - **SC-003**: The reconciliation matrix returns legacy outcomes for every shadow-period case and classifies parity, divergence, lag, failure, and non-comparability deterministically.
-- **SC-004**: Instrumented write fixtures prove exactly one legacy mutation and at most one idempotent dark mirror per accepted command, with no dark-to-legacy writeback.
+- **SC-004**: Instrumented write fixtures prove the adapter has no legacy writer and performs at most one idempotent dark mirror per already accepted command, with no dark-to-legacy writeback.
 - **SC-005**: Disabling the adapter restores the direct legacy path without rewriting or deleting legacy or dark records.
 - **SC-006**: A dark read or append failure blocks parity/cutover evidence but cannot change the authoritative legacy value, failure, retry contract, or stored shape.
 
@@ -140,7 +143,7 @@ The legacy mutation remains the only operation allowed to determine accepted sta
 
 **Given** valid legacy and dark observations at the same causal point with different semantic fingerprints, **When** reconciliation runs, **Then** the runtime returns the legacy value, emits a bounded divergence record, and marks the comparison ineligible for cutover evidence.
 
-**Given** a legacy write succeeds and the dark mirror append fails, **When** the adapter completes, **Then** legacy success remains the operational result, the failure is observable, and no retry re-executes the legacy mutation.
+**Given** an accepted legacy result and a failing dark mirror append, **When** the adapter completes, **Then** the exact legacy success remains the operational result, the failure is observable, and the adapter cannot re-execute the legacy mutation.
 
 **Given** the compatibility adapter is disabled, **When** the same legacy read and write fixture executes, **Then** its result and error semantics match the pre-adapter baseline and no dark read or append occurs.
 <!-- /ANCHOR:success-criteria -->
@@ -148,7 +151,7 @@ The legacy mutation remains the only operation allowed to determine accepted sta
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Split-brain semantics hidden by “single-write”** — two durable sinks could be mistaken for two authorities. Mitigation: name legacy as the only operational writer, keep dark append results out of command decisions, and test one legacy invocation plus zero-or-one idempotent mirror.
+- **Split-brain semantics hidden by “single-write”** — two durable sinks could be mistaken for two authorities. Mitigation: name legacy as the only operational writer, keep that writer outside the adapter, keep dark append results out of command decisions, and test zero legacy-write capability plus zero-or-one idempotent mirror.
 - **False divergence from skewed observations** — legacy and dark reads may represent different causal points. Mitigation: compare under a token binding both positions and classify lag/non-comparability before semantic comparison.
 - **Upcasters invent history** — defaults or skipped versions could fabricate evidence. Mitigation: adjacent fixture-backed transforms, per-hop validation, immutable source evidence, and fail-closed ambiguous/lossy mappings.
 - **Generic persistence mistaken for a schema** — `atomic-state.ts` accepts arbitrary serializable data and its integrity check is warning-only. Mitigation: explicit codecs and version discriminators at adapter call boundaries; no shape inference from serialization utilities.

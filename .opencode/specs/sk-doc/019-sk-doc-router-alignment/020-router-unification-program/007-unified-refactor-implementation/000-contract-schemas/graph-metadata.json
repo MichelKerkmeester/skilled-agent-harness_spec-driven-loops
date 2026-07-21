@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on content-addressed identity: a request pins one `effectivePolicyHash`, replay recompiles to byte-identical policy bodies, and rollback swaps to a byte-identical prior manifest [synthesis §1, §9]",
     "created_at": "2026-07-18T13:13:16.347Z",
-    "last_save_at": "2026-07-18T17:17:44.020Z",
+    "last_save_at": "2026-07-20T12:59:48.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +217,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:667ee344c9e19c8cb4fa38294cff74668faabed28e481a908db4b1e72ec0ab9d",
+    "source_fingerprint": "sha256:10771e4a414eb6e03988be06a945ef95261df6a9be74cd2c0dae61b7dd8807ee",
     "source_doc_hashes": {
-      "spec.md": "9f58dfa6c993f7b983b0235538a547503b277c83b908de7613e23e70610339ab",
-      "plan.md": "ab9f73d05e726fc5789b6a3f7f3f898001f4e6eada814fedd09af597558631ba",
-      "tasks.md": "a64b5304be1034612ffadea6600cc36894fa57607993da6454f5330596d45963",
+      "spec.md": "9155db2ec1a7327e6e19c2b700004cfecaaf99e6160bb7b62fee54727f7256ab",
+      "plan.md": "edcf7c0dd72591787a322cc3788332642530aba07b77c4dffafe1c06b78f6f63",
+      "tasks.md": "892b7e1424798d15f0ecc715ceceefdb292112cfcc2eae78c0a2a4b2dc783253",
       "checklist.md": "d8ace5e4aad0ffb7e7460b0e6478ba225d04625c5a3acdf8d38d134856bf3220",
       "implementation-summary.md": "e6bc330717163f7b1f6c98ba0e94953ffc440ec4e583113e27fdc064694cd23e"
     },

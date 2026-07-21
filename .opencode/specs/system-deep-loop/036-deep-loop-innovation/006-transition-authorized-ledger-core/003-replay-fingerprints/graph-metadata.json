@@ -19,7 +19,9 @@
       "replay fingerprints tasks",
       "deep-loop replay digest tasks",
       "replay fingerprints checklist",
-      "deep-loop replay digest verification"
+      "deep-loop replay digest verification",
+      "replay fingerprints implementation summary",
+      "replay fingerprint verification receipts"
     ],
     "key_topics": [
       "replay",
@@ -36,14 +38,35 @@
       "checklist"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "replay-fingerprint.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -147,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Runtime Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -159,31 +188,7 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,21 +196,23 @@
     ],
     "causal_summary": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with immutable attestation storage and fail-closed mismatch detection for shadow parity and whole-system verification.",
     "created_at": "2026-07-16T03:43:45.873Z",
-    "last_save_at": "2026-07-17T13:21:10.040Z",
+    "last_save_at": "2026-07-21T00:01:32.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a55bb83281faed53185e9334886d8f7cd21c6b87cde755c9d529f5a689159496",
+    "source_fingerprint": "sha256:141a75a9cc2cbd384de7f7569a4f492878aa94a5bce368efff0e56139e83f11e",
     "source_doc_hashes": {
-      "spec.md": "43cc7bfbf570d80081eb236fd7bef29a081217dda8fa6a1d94d390a6c7dde1c0",
-      "plan.md": "7ffbfd284d058367421959b7352e733f0de5637ee11fd290d727468e8120ee8d",
-      "tasks.md": "3237c2d7169d1f06d650638ff3534ea6a8444b944a541522a49c7011096bf5ec",
-      "checklist.md": "19fc5e2c42aba6442e4bca33f8a0bc01cf2614e0595938d124a6f7dc8d7cabf9"
+      "spec.md": "8665aa0eb0ce83741d10dbde06c4c2337c5829f52a43d7f8c49da2f7e7922340",
+      "plan.md": "a961d08358714174a60947496930791223c351a19ba39075a951434873e1ddd8",
+      "tasks.md": "59f1d66599e3bb2e7075a8857b603291a312a4f9806224381e84982e171f437f",
+      "checklist.md": "5f3857db166ded961264178e8fee00ca54423a15d301655aa56d01cf52078385",
+      "implementation-summary.md": "930cb892be7e33888da826018763fa36a8c3646a350efec3954cd32099aeeab2"
     },
     "last_active_child_id": null,
     "last_active_at": null

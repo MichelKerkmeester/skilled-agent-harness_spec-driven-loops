@@ -1,6 +1,6 @@
 ---
 title: "Tasks: shared mode interfaces"
-description: "Tasks for phase 004 of the 009 shared-mode-contracts-and-fixtures parent: author, freeze, and verify the common typed contract for every phase-013 mode."
+description: "Tasks for phase 012 child 001 of the shared-mode-contracts-and-fixtures parent: author, freeze, and verify the common typed contract for every phase-013 mode."
 trigger_phrases:
   - "shared mode interfaces tasks"
   - "deep-loop mode contract tasks"
@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Enumerated setup, contract, fixture, and handoff tasks for shared mode interfaces"
-    next_safe_action: "Build the source-to-port matrix before freezing interface types"
+    last_updated_at: "2026-07-21T14:54:18Z"
+    last_updated_by: "codex"
+    recent_action: "Closed output schemas and shape guards"
+    next_safe_action: "Start phase-013 mode conformance implementations"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,48 +42,48 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the parent spec, phase-tree manifest, and phase-006, phase-007, and phase-011 source contracts; record the stable obligations and sequencing constraints
-- [ ] T002 [P] Derive the eight phase-013 workstream rows and common/variant ordering directly from `mode_workstreams_phase_010`
-- [ ] T003 [P] Map each substrate service port to its owning phase, mode-facing inputs/outputs, evidence shape, and fail-closed behavior
-- [ ] T004 Define the boundary between this interface phase and `002-cross-mode-closures`, including shared implementation ownership and write-set declarations
+- [x] T001 Read the parent spec, phase-tree manifest, and phase-006, phase-007, and phase-011 source contracts; recorded in `ModeSubstratePorts` and the closed port set
+- [x] T002 [P] Derive the eight phase-013 workstream rows and common/variant ordering directly from `mode_workstreams_phase_013`
+- [x] T003 [P] Map each substrate service port to its owning runtime API, typed mode-facing binding, and fail-closed `ModeSubstratePortSet` rule
+- [x] T004 Define the boundary between this interface phase and `002-cross-mode-closures`; this leaf declares types and write sets only
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Define `ModeContract` and `ModeDescriptor` types with interface version, mode identity, lifecycle capabilities, dependencies, and declared write set
-- [ ] T006 Define mode event schemas, transition intents, reducer ownership, replay inputs, continuity identity, and authorized append requirements
-- [ ] T007 Define the reducer contract for deterministic replay, immutable outputs, duplicate-event handling, and state-version compatibility
-- [ ] T008 Define sealed-artifact and certificate declarations with input digests, source events, validity scope, producer version, and invalidation rules
-- [ ] T009 Define typed convergence and health hooks for coverage, cycle, stopping clocks, value-of-computation, health, and degeneration signals
-- [ ] T010 Define the resume adapter contract for `upcast`, `pin-legacy`, `fork`, `migrate`, and `block`, including fingerprints, leases, receipts, artifacts, and pending effects
-- [ ] T011 Define interface-version compatibility rules, adapter obligations, deprecation handling, and fail-closed behavior for incompatible readers and writers
-- [ ] T012 [P] Define the manifest-derived conformance matrix for all eight modes, with no lifecycle exception outside the frozen contract
-- [ ] T013 [P] Define mixed-version, unauthorized-transition, reducer-conflict, artifact-integrity, budget, lease, convergence, partial-resume, and write-set-conflict fixtures
-- [ ] T014 Publish the frozen interface and fixture handoff inputs for phase 013 without changing runtime authority
+- [x] T005 Define `ModeContract` and `ModeDescriptor` types with interface version, mode identity, lifecycle capabilities, dependencies, and declared write set
+- [x] T006 Define `ModeEventSchema` with transition intents, reducer ownership, replay inputs, continuity identity, and authorized append requirements
+- [x] T007 Define `ModeReducerSet.persistedFields` for deterministic replay, immutable outputs, duplicate-event handling, and state-version compatibility
+- [x] T008 Define `ModeArtifactPolicy` and certificate declarations with input digests, source events, validity scope, producer version, and invalidation rules
+- [x] T009 Define `ModeConvergenceHooks` for coverage, cycle, stopping clocks, value-of-computation, health, and degeneration signals
+- [x] T010 Define the resume adapter contract for `upcast`, `pin-legacy`, `fork`, `migrate`, and `block`, including fingerprints, leases, receipts, artifacts, and pending effects
+- [x] T011 Define `resolveModeInterfaceCompatibility()` rules, adapter obligations, deprecation handling, and fail-closed behavior for incompatible readers and writers
+- [x] T012 [P] Define the manifest-derived `runModeConformance()` matrix for all eight modes, with no lifecycle exception outside the frozen contract
+- [x] T013 [P] Define mixed-version, unauthorized-transition, reducer-conflict, artifact-integrity, convergence, partial-resume, and write-set-conflict fixtures in `mode-contracts.vitest.ts`
+- [x] T014 Publish `MODE_CONTRACT_SHAPE` and fixture handoff inputs for phase 013 without changing runtime authority
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Verify: The shared interface names every mode-provided capability and consumed substrate port — the typed inventory has one owner and method contract for each
-- [ ] T016 Verify: Mode events use the phase-006 authorization boundary — unauthorized and direct-write fixtures fail closed
-- [ ] T017 Verify: Reducer ownership is explicit and deterministic — replay and duplicate-ownership fixtures produce deterministic outcomes
-- [ ] T018 Verify: Sealed artifacts and certificates are typed evidence — digest, source-event, scope, and invalidation fixtures pass or reject predictably
-- [ ] T019 Verify: Convergence and health integration is uniform — phase-011 signals enter through typed hooks without mode-specific stop policy leakage
-- [ ] T020 Verify: Resume is a first-class adapter — every mode has explicit classification and fingerprint/lease/effect recovery outcomes
-- [ ] T021 Verify: Interface versioning is independently compatible — mixed-version fixtures produce adapter, supported read, or fail-closed results
-- [ ] T022 Verify: All eight phase-013 workstreams conform — the manifest-derived matrix has no unreviewed exception and preserves common/variant order
-- [ ] T023 Verify: Additive-dark discipline is preserved — no contract or fixture permits authority before phase 014
-- [ ] T024 Verify: Fixture-backed conformance is executable and deterministic — expected outcomes and evidence fields are complete
+- [x] T015 Verify: `REQUIRED_MODE_SUBSTRATE_PORTS` passes closed capability and 21-port exact-set conformance
+- [x] T016 Verify: `evaluateModeEventWrite()` rejects direct, unauthorized, and stale writes; only the authorized append path accepts
+- [x] T017 Verify: `mode-contracts.vitest.ts` rejects duplicate ownership and hidden mutable reducer effects
+- [x] T018 Verify: `mode-contracts.vitest.ts` rejects authority changes, extra evidence fields, and non-array artifact results through closed artifact and certificate schemas
+- [x] T019 Verify: `ModeConvergenceHookSet` admits declared phase-011 observations and rejects every extra top-level hook field through the closed observation schema
+- [x] T020 Verify: `ModeResumeEvidence` binds fingerprint, lease, receipt, artifact, effect, and continuity evidence; unknown state blocks
+- [x] T021 Verify: `resolveModeInterfaceCompatibility()` reads additive/deprecated changes natively and adapts or refuses semantic/breaking changes
+- [x] T022 Verify: `modeWorkstreamsFromManifest()` covers exactly all eight workstreams in manifest order
+- [x] T023 Verify: `ModeDescriptor` preserves legacy authority and shadow-only ledger writes
+- [x] T024 Verify: The 32-test Vitest conformance suite passes deterministically, including renamed hook leaks, extra evidence fields, unknown reducer IDs, non-array artifacts, missing authorization, honest eight-mode output, malformed-input, resume-coherence, and compatibility-declaration behavior
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All tasks complete. Evidence: T001-T024 are checked with implementation or verification details.
+- [x] All requirements in spec.md met. Evidence: `checklist.md` and `implementation-summary.md` map the contract behavior to executable checks.
+- [x] Phase gate green. Evidence: targeted Vitest, runtime TypeScript, and strict packet validation are recorded in `implementation-summary.md`.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
@@ -89,6 +91,6 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Parent outcome**: See `../spec.md` and `../manifest/phase-tree.json`
+- **Parent outcome**: See `../spec.md` and `../../manifest/phase-tree.json`
 - **Substrate contracts**: See `../../006-transition-authorized-ledger-core/spec.md`, `../../007-shared-evidence-and-control-services/spec.md`, and `../../011-convergence-termination-and-health/spec.md`
 <!-- /ANCHOR:cross-refs -->

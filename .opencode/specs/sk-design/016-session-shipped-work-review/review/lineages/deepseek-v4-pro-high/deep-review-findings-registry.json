@@ -1,0 +1,36 @@
+{
+  "sessionId": "fanout-deepseek-v4-pro-high-1784606267078-bpkeoi",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"writeManifestPointer atomicity gap on afterRename failure","file":"generation-manifest.mjs","line":259,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}]},
+    {"findingId":"F002","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Stale feature-catalog docs reference deleted commands/design/","file":"feature-catalog/creation-command-surface/interface-creation-commands.md","line":43,"firstSeen":1,"lastSeen":3,"transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Initial discovery"}]},
+    {"findingId":"F003","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Playbook scenario references deleted commands/design/ path","file":"styles/manual-testing-playbook.md","line":29,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F004","severity":"P1","category":"security","status":"active","dimension":"security","title":"Temp-file naming uses process.pid, collision-prone under PID reuse","file":"generation-manifest.mjs","line":251,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P1","reason":"Initial discovery"}]},
+    {"findingId":"F005","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"changelog v1.6.0.0 claims /design:* aliases remain but commands are deleted","file":"changelog/v1.6.0.0.md","line":26,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery; changelog is historical record"}]},
+    {"findingId":"F006","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"isContained duplicated identically in generation-manifest.mjs and indexer.mjs","file":"generation-manifest.mjs","line":42,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery; advisory only"}]}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 4
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

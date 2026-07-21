@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T03:37:31Z"
     last_updated_by: "codex"
-    recent_action: "Planned the rollback runner, integrity checks, and cutover evidence"
-    next_safe_action: "Implement the isolated drill runner and mode certificate verifier"
+    recent_action: "Completed the rollback runner, integrity checks, and certificate verifier"
+    next_safe_action: "Keep the runtime dark until the later cutover phase consumes current evidence"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/rollback-drills.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,20 +49,20 @@ bound input remains current.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-004 rollback policy and `../../manifest/phase-tree.json` are pinned by digest and policy version
-- [ ] The mode has a current sibling-003 parity certificate with zero unresolved divergences
-- [ ] Every in-flight shape in the drill capsule has one predecessor-004 disposition
-- [ ] The rollback anchor, legacy writer, adapters, projections, fingerprint verifier, and authority epochs are available
-- [ ] Phase-007 receipt/effect adapters have hermetic targets or cassettes and no unresolved intent
-- [ ] The runner can prove its authority store, state roots, effect sinks, clock, and evidence paths are test-only
+- [x] The phase-004 rollback policy and `../../manifest/phase-tree.json` are pinned by digest and policy version
+- [x] The mode has a current sibling-003 parity certificate with zero unresolved divergences
+- [x] Every in-flight shape in the drill capsule has one predecessor-004 disposition
+- [x] The rollback anchor, legacy writer, adapters, projections, fingerprint verifier, and authority epochs are available
+- [x] Phase-007 receipt/effect adapters have hermetic targets or cassettes and no unresolved intent
+- [x] The runner can prove its authority store, state roots, effect sinks, clock, and evidence paths are test-only
 
 ### Definition of Done
-- [ ] The complete forward-detect-rollback-resume sequence executes for every cutover-eligible mode
-- [ ] Rollback finishes within the phase-004 window and any stricter declared mode deadline
-- [ ] Fingerprint components and legacy projections match the control after legacy resumes
-- [ ] State, artifacts, events, effects, receipts, epochs, and stale-writer denials reconcile without ambiguity
-- [ ] A current mode-scoped drill certificate is machine-verifiable by the phase-014 cutover preflight
-- [ ] No drill changes real authority, live packet state, or an irreversible external effect
+- [x] The complete forward-detect-rollback-resume sequence executes for every cutover-eligible mode
+- [x] Rollback finishes within the phase-004 window and any stricter declared mode deadline
+- [x] Fingerprint components and legacy projections match the control after legacy resumes
+- [x] State, artifacts, events, effects, receipts, epochs, and stale-writer denials reconcile without ambiguity
+- [x] A current mode-scoped drill certificate is machine-verifiable by the phase-014 cutover preflight
+- [x] No drill changes real authority, live packet state, or an irreversible external effect
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -71,19 +73,20 @@ bound input remains current.
   evidence destination. Unknown fields affecting replay or authority are rejected rather than ignored.
 - **Isolation preflight** resolves every target path and authority endpoint, proves they are drill-owned, verifies the
   synthetic clock and hermetic effect adapters, and snapshots real authority identifiers for an unchanged post-check.
-- **Lane coordinator** forks one immutable capsule into an untouched legacy control lane and a cutover lane. Mutable
-  outputs, caches, leases, authority state, receipts, and effect sinks are independent between lanes.
+- **Lane coordinator** keeps the expected reconstruction separate from the cutover store, then forks the verified
+  cutover/recovery ledger tail immediately before restoration proof. The shared immutable prefix removes random
+  authorization-decision noise so the comparison isolates expected versus actually persisted restoration state.
 - **Test authority controller** exercises the production authority state machine against an isolated store: advance to
   `new_authoritative_reversible`, fence stale legacy authority in that lane, then restore `legacy_authoritative` at a
   new monotonic epoch during rollback. It cannot address the real authority record.
 - **Fault injector and detector adapter** places one declared fault after a durable cut point and requires the named
   production-shaped detector to emit a typed trigger. Missing or mismatched detection is a drill failure.
-- **Rollback executor** freezes admission, fences the spine writer, drains or classifies in-flight work using only the
-  predecessor-004 disposition, reconciles unresolved effect intents, restores legacy authority by compare-and-swap,
-  denies stale writers, and resumes from the rollback anchor without deleting cutover-lane events.
-- **Integrity verifier** uses sibling-003 replay comparison semantics, sibling-002 legacy projection rules, phase-007
-  receipts/effect recovery, and exact state/artifact accounting. It compares verified observable components rather
-  than requiring run-specific final descriptor digests to be equal.
+- **Rollback executor** freezes admission, fences the spine writer, applies every declared predecessor-004 disposition
+  into the reconstruction, reconciles unresolved effect intents, restores legacy authority and durable state by
+  compare-and-swap plus atomic persistence, denies stale writers, and reads the state back before resume verification.
+- **Integrity verifier** uses sibling-003 replay comparison semantics over the full post-divergence tail, raw persisted
+  byte comparison, phase-007 receipts/effect recovery, and exact state/artifact/applied-disposition accounting. It
+  compares verified observable components rather than requiring run-specific final descriptor digests to be equal.
 - **Certificate issuer** writes an immutable pass/fail record bound to all inputs and evidence. The phase-014 verifier
   recomputes freshness and refuses partial, failed, stale, wrong-mode, or unverifiable evidence.
 <!-- /ANCHOR:architecture -->
@@ -102,8 +105,8 @@ bound input remains current.
   durable evidence capture at each authority and effect boundary.
 - Implement declared fault injection plus detector adapters for fingerprint, projection, epoch, receipt/effect, and
   crash/timeout regressions; require exact fault-to-detector matching.
-- Implement admission freeze, spine fencing, disposition-driven reconciliation, legacy compare-and-swap restoration,
-  stale-writer denial, and resumed legacy continuation.
+- Implement admission freeze, spine fencing, disposition-driven reconstruction, legacy compare-and-swap restoration,
+  durable state replacement and readback, stale-writer denial, and resumed legacy continuation.
 - Implement fingerprint-component, projection-byte/reader, state/artifact/event, receipt/effect, epoch, timing, and
   isolation verifiers plus immutable drill-certificate issuance.
 - Implement the phase-014 consumer that checks certificate signature/receipt chain, complete evidence, mode identity,
@@ -127,10 +130,10 @@ bound input remains current.
 | REQ-001 | Feed valid and cross-mode/stale/production-target manifests; only the complete isolated mode manifest starts |
 | REQ-002 | Assert the evidence timeline contains every forward, detection, rollback, and resumed-legacy transition in order |
 | REQ-003 | Inject each registered fault and require the exact detector class and durable trigger receipt; wrong or missing detection fails |
-| REQ-004 | Verify admission freeze, spine fence, declared dispositions, new legacy epoch, preserved events, and stale-writer denial |
+| REQ-004 | Vary one declared disposition and prove reconstructed state changes; reject `BLOCK` and unknown dispositions before mutation; verify real applied counts, fences, epochs, preserved events, and stale-writer denial |
 | REQ-005 | Exercise normal and synthetic near-closure clocks; rollback must complete before the policy window and stricter deadline |
-| REQ-006 | Verify both transcripts, then compare declared effective-event and canonical-projection component digests |
-| REQ-007 | Compare legacy bytes, ordering, formatting, watermarks, integrity fields, and unchanged-reader results to control |
+| REQ-006 | Verify both transcripts through bounded work, effects, forward cutover, rollback transitions, and restored state; assert the range end exceeds the sealed head and compare effective-event/canonical-projection digests |
+| REQ-007 | Corrupt the durable post-restore record and short-circuit restoration independently; both must fail raw-byte, reader, state, or replay integrity against control |
 | REQ-008 | Reconcile state/artifact/event counts and every effect intent to one confirmed/reconciled result; reject conflict or `in_doubt` |
 | REQ-009 | Verify certificate bindings, evidence receipts, immutable ranges, reason codes, and verifier identity; tampering fails verification |
 | REQ-010 | Drift code, BASE, policy, parity, classification, adapter, projection, comparator, or rollback assets and require phase-014 refusal |

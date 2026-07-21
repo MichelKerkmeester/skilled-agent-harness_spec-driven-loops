@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-live-tools-unblock
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-live-tools-unblock"
-    last_updated_at: "2026-07-15T13:07:03Z"
+    last_updated_at: "2026-07-20T19:48:41Z"
     last_updated_by: "codex"
-    recent_action: "Defined blocking live-dispatch, fail-closed, legacy-parity, and persistence checks"
-    next_safe_action: "Capture baseline evidence and execute the matrix against hermetic spawn sentinels"
+    recent_action: "Verified live dispatch, fail-closed preflight, legacy parity, and the persistence boundary"
+    next_safe_action: "Keep durable fingerprint persistence deferred to the later receipt phase"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,65 +34,65 @@ This checklist is the blocking verifier contract for phase 005. Every item remai
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 004 is complete and the executor/transition vocabulary used by this phase is pinned to its exact SHA
-- [ ] CHK-002 [P0] Current `executor-config.vitest.ts` and `fanout-run.vitest.ts` baselines pass before implementation
-- [ ] CHK-003 [P1] Baseline evidence captures legacy config normalization, count expansion, cli-codex argv, pool events, summary shape, and lineage artifact paths
+- [x] CHK-001 [P0] Phase 004 is complete and the executor/transition vocabulary used by this phase is pinned to its exact SHA [Evidence: implementation-summary.md Metadata records `2429f4c`, `64eb3a9`, `9520601`]
+- [x] CHK-002 [P0] Current `executor-config.vitest.ts` and `fanout-run.vitest.ts` baselines pass before implementation [Test: 2 files, 126 tests, exit 0]
+- [x] CHK-003 [P1] Baseline evidence captures legacy config normalization, count expansion, cli-codex argv, pool events, summary shape, and lineage artifact paths [Evidence: `implementation-summary.md` Legacy-Parity Evidence]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] `liveTools.webSearch` is a four-value typed enum and omission normalizes to `inherit`
-- [ ] CHK-005 [P0] The capability matrix is exhaustive across all shipped executor kinds and every search-policy value
-- [ ] CHK-006 [P0] Each executor kind resolves through a named adapter returning command, args, input, effective config, and invocation fingerprint
-- [ ] CHK-007 [P1] The manifest compiler uses explicit directory-safe IDs and deterministic model → branch → replica expansion order
-- [ ] CHK-008 [P1] New logic is additive; `runCappedPool`, retry, budget, timeout, sandbox, recursion-guard, and artifact-validation semantics are unchanged
+- [x] CHK-004 [P0] `liveTools.webSearch` is a four-value typed enum and omission normalizes to `inherit` [Test: policy enum/default fixture]
+- [x] CHK-005 [P0] The capability matrix is exhaustive across all shipped executor kinds and every search-policy value [Test: `declares every executor-kind by policy cell explicitly`]
+- [x] CHK-006 [P0] Each executor kind resolves through a named adapter returning command, args, input, effective config, and invocation fingerprint [Test: `returns the complete adapter contract for every executor kind`]
+- [x] CHK-007 [P1] The manifest compiler uses explicit directory-safe IDs and deterministic model → branch → replica expansion order [Test: `expands models by branches by replicas in stable model-first order`]
+- [x] CHK-008 [P1] New logic is additive; `runCappedPool`, retry, budget, timeout, sandbox, recursion-guard, and artifact-validation semantics are unchanged [Evidence: implementation-summary.md Legacy-Parity Evidence; final 141-test suite]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] A live `cli-codex` adapter fixture proves argv index 0 is `--search` and index 1 is `exec`
-- [ ] CHK-010 [P0] A live or hermetic cli-codex lineage completes through the existing pool with the top-level search form
-- [ ] CHK-011 [P0] Every unsupported kind × requested search-policy row throws before a pool-worker or subprocess-spawn sentinel is touched
-- [ ] CHK-012 [P0] Legacy configs with omitted `liveTools` retain exact command argv and input behavior for every executor kind
-- [ ] CHK-013 [P0] Existing `executors[]` + `count` expansion retains its labels, order, uniqueness checks, and hard ceilings
-- [ ] CHK-014 [P0] A 2-model × 3-branch × 2-replica manifest emits exactly 12 stable logical branch IDs in deterministic order
-- [ ] CHK-015 [P0] Duplicate/invalid model or branch IDs and cross-product ID collisions fail during config validation
-- [ ] CHK-016 [P1] Fingerprints are stable for equal effective launches and change when kind, model, effort, search mode, CLI version, argv, or prompt digest changes
-- [ ] CHK-017 [P1] Fingerprint fixtures prove no credential, raw environment map, or raw prompt content enters the fingerprint payload
-- [ ] CHK-018 [P0] Existing fan-out pool concurrency, retry, aggregate/per-lineage budget, timeout, salvage, heartbeat, and artifact tests stay green
-- [ ] CHK-019 [P0] Persisted orchestration status, summary, checkpoint, lineage-state, and fan-in artifact schemas match the baseline; no new canonical receipt/event is emitted
+- [x] CHK-009 [P0] A live `cli-codex` adapter fixture proves argv index 0 is `--search` and index 1 is `exec` [Test: direct live Codex adapter fixture]
+- [x] CHK-010 [P0] A live or hermetic cli-codex lineage completes through the existing pool with the top-level search form [Test: hermetic pooled leaf, exit 0, summary 1/1 succeeded]
+- [x] CHK-011 [P0] Every unsupported kind × requested search-policy row throws before a pool-worker or subprocess-spawn sentinel is touched [Test: `rejects an unsupported policy before the pool or executor spawn is touched`]
+- [x] CHK-012 [P0] Legacy configs with omitted `liveTools` retain exact command argv and input behavior for every executor kind [Test: omitted-versus-inherit parity plus existing adapter/prompt fixtures]
+- [x] CHK-013 [P0] Existing `executors[]` + `count` expansion retains its labels, order, uniqueness checks, and hard ceilings [Test: legacy expansion and ceiling fixtures]
+- [x] CHK-014 [P0] A 2-model × 3-branch × 2-replica manifest emits exactly 12 stable logical branch IDs in deterministic order [Test: `feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool`]
+- [x] CHK-015 [P0] Duplicate/invalid model or branch IDs and cross-product ID collisions fail during config validation [Test: `rejects mixed forms, duplicate or invalid ids, compiled collisions, and oversized products`]
+- [x] CHK-016 [P1] Fingerprints are stable for equal effective launches and change when kind, model, effort, search mode, CLI version, argv, or prompt digest changes [Test: `fingerprints only the effective allowlist and prompt digest`]
+- [x] CHK-017 [P1] Fingerprint fixtures prove no credential, raw environment map, or raw prompt content enters the fingerprint payload [Test: `fingerprints only the effective allowlist and prompt digest` credential-invariance assertions]
+- [x] CHK-018 [P0] Existing fan-out pool concurrency, retry, aggregate/per-lineage budget, timeout, salvage, heartbeat, and artifact tests stay green [Test: final targeted suites, 141/141]
+- [x] CHK-019 [P0] Persisted orchestration status, summary, checkpoint, lineage-state, and fan-in artifact schemas match the baseline; no new canonical receipt/event is emitted [Evidence: `implementation-summary.md` Persistence-Shape Diff]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-020 [P0] Consumer inventory covers config parsing, lineage expansion, command construction, dispatch environment, pool input, tests, and runtime feature documentation
-- [ ] CHK-021 [P0] The implementation changes only the missing live-tools and manifest dispatch path; it does not rewrite the scheduler or reducer
-- [ ] CHK-022 [P1] Phase 009 handoff records the returned invocation fingerprint and stable logical IDs without prematurely adding durable state here
+- [x] CHK-020 [P0] Consumer inventory covers config parsing, lineage expansion, command construction, dispatch environment, pool input, tests, and runtime feature documentation [Evidence: `implementation-summary.md` How It Was Delivered and Files Changed]
+- [x] CHK-021 [P0] The implementation changes only the missing live-tools and manifest dispatch path; it does not rewrite the scheduler or reducer [Evidence: `git diff --name-only`; no fanout-pool or reducer file changed]
+- [x] CHK-022 [P1] Phase 009 handoff records the returned invocation fingerprint and stable logical IDs without prematurely adding durable state here [Evidence: `implementation-summary.md` continuity next action and persistence boundary]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-023 [P0] Capability validation fails closed; no unsupported search request silently falls back to training data
-- [ ] CHK-024 [P0] Sandbox, permission, approval-policy, recursion-guard, and dispatch-environment allowlists retain baseline behavior
-- [ ] CHK-025 [P1] Command/fingerprint diagnostics redact prompts and credentials and do not widen executor permissions
+- [x] CHK-023 [P0] Capability validation fails closed; no unsupported search request silently falls back to training data [Test: `rejects an unsupported policy before the pool or executor spawn is touched`]
+- [x] CHK-024 [P0] Sandbox, permission, approval-policy, recursion-guard, and dispatch-environment allowlists retain baseline behavior [Test: existing `permission/recursion/env` tests remain green; legacy Codex argv retains approval and sandbox flags]
+- [x] CHK-025 [P1] Command/fingerprint diagnostics redact prompts and credentials and do not widen executor permissions [Test: `fingerprints only the effective allowlist and prompt digest`]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-026 [P1] Runtime config/feature documentation describes all four policies, the capability matrix, manifest form, and explicit rejection behavior
-- [ ] CHK-027 [P2] The 065/005 prototype remains cited as design evidence and is not promoted into shipped runtime code
+- [x] CHK-026 [P1] Runtime config/feature documentation describes all four policies, the capability matrix, manifest form, and explicit rejection behavior [Evidence: exported schemas/matrix in `executor-config.ts` and implementation-summary What Was Built]
+- [x] CHK-027 [P2] The 036/002 prototype remains cited as design evidence and is not promoted into shipped runtime code [Evidence: spec.md and plan.md retain the reference; prototype file unchanged]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Production changes stay in the executor-config/fanout dispatch surfaces and their focused tests; unrelated runtime cleanup is absent
-- [ ] CHK-029 [P1] No generated results, credentials, temporary manifests, or live-search outputs are committed outside approved test fixtures
+- [x] CHK-028 [P1] Production changes stay in the executor-config/fanout dispatch surfaces and their focused tests; unrelated runtime cleanup is absent [Evidence: `git diff --name-only` names only the four scoped runtime files plus this leaf's docs]
+- [x] CHK-029 [P1] No generated results, credentials, temporary manifests, or live-search outputs are committed outside approved test fixtures [Evidence: `git status --short` and diff inspection; hermetic artifacts remained under temporary directories]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

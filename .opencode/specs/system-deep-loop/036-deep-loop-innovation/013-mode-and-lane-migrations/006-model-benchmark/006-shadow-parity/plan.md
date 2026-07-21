@@ -178,7 +178,7 @@ conflict graph, phase-012 shared contract freeze, the parent compatibility bridg
 promotion, health, budget, receipt, veto, and generic parity contracts. `007-rollback-and-mode-gate` consumes the passing report
 without inheriting authority from this child.
 
-The 065/002 findings require task-conditioned rather than global model strength, explicit difficulty and coverage, frozen and
+The 036/002 findings require task-conditioned rather than global model strength, explicit difficulty and coverage, frozen and
 testable judge/rubric configuration, sealed counterfactual task lineage, private and fresh evaluation data, workload-shaped
 operational metrics, paired and clustered inference, contamination evidence, adaptive allocation with retained coverage, and
 versioned benchmark signatures. Those findings shape parity fields and fixtures; they do not authorize a new scoring policy or

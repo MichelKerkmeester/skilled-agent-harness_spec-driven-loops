@@ -21,6 +21,7 @@ The controller is *selective* in the statistical sense: it may **abstain** rathe
 
 This is a design/planning artifact. It authors the controller contract, the friction-budget assertions, and the promotion-metric gate. It modifies **no live routing config, registry, scorer, or skill**.
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -32,7 +33,9 @@ This is a design/planning artifact. It authors the controller contract, the fric
 | **Branch** | `005-calibration/003-selective-controller` |
 | **Phase** | 5 (calibration), child 003 of 3 |
 | **Depends on** | `005/001` (held-out corpus), `005/002` (rank-vs-calibrated contract), `002` (evaluator + 4-action algebra), `004` (recovery ladder + shared budget) |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -42,7 +45,9 @@ The evaluator (`002`) can already emit the closed four-action algebra, and the r
 ### Purpose
 
 Ship a controller whose auto-route branch is *gated on a per-slice calibration certificate* and whose abstention paths are *bounded by a replayable friction budget*, so that the terminal decision is deterministic, reversible, and provably honest about its own uncertainty — and whose threshold is only ever promoted from held-out risk/coverage evidence, never from a hand-picked constant.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -72,7 +77,9 @@ Ship a controller whose auto-route branch is *gated on a per-slice calibration c
 | `005-calibration/003-selective-controller/tasks.md` | Create | Ordered, checkable task list |
 
 > Design-only phase. No source, config, registry, scorer, or skill file is in scope. The contracts named below (`SelectiveControllerV1`, the assertion set, the metric set) are *authored as specification*, not implemented against the live tree.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers (MUST complete)
@@ -94,7 +101,9 @@ Ship a controller whose auto-route branch is *gated on a per-slice calibration c
 | REQ-008 | Specify the bounded **rescore** that precedes `defer`/`reject`: it is read-only, visible before it runs, non-cached, and names the evidence it re-reads. | Spec describes rescore as a single re-evaluation on the pinned policy tuple that cannot mint calibrated certainty; mirrors the `degraded-fallback` discipline (synthesis §2.3). |
 | REQ-009 | Specify controller behavior under the N=1 degeneracy (`mcp-code-mode`): with one candidate there is nothing to calibrate, so the certified auto-route branch constant-folds away and the controller reduces to `signal`/`clarify`/`defer` with no threshold. | Spec states the controller calls no calibration/threshold machinery at N=1 and that a singular evaluation invoking ranking/threshold logic is a hard-block (synthesis §5.1, §9). |
 | REQ-010 | Map controller decisions onto the advisor evidence contract: advisor rank is one evidence record, never probability; absent/stale advisor degrades to deterministic policy routing. | Spec states advisor `live`+identity-match may rank, `stale` annotates only, `absent` contributes zero evidence and the controller still decides on the compiled policy (synthesis §8.1). |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The `SelectiveControllerV1` contract is fully specified — inputs, output, purity, and the exact terminal ladder — such that an implementation agent could build it with no architectural guessing beyond the synthesis.
@@ -103,6 +112,20 @@ Ship a controller whose auto-route branch is *gated on a per-slice calibration c
 - **SC-004**: All seven promotion metrics are defined with a counting rule and a corpus slice, and the spec states no threshold ships except from held-out `005/001` evidence.
 - **SC-005**: The spec names its migration gate (see below), preserves route-gold determinism, and asserts the shared scorer is never edited.
 - **SC-006**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` is clean once the phase's sibling metadata (`description.json`, `graph-metadata.json`) is backfilled by the parent orchestration.
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | `005/001` held-out corpus + `005/002` rank-vs-calibrated contract (certificate) | The controller cannot certify auto-route without them | The auto-route branch is gated on a per-(policy, risk-slice) certificate handle; absent/stale/mismatched ⇒ auto-route is structurally unavailable |
+| Dependency | Phase 2 evaluator (four-action algebra) + Phase 4 recovery ladder (shared `UncertaintyBudgetV1`) | The controller sits on top of both | Consumed read-only; abstention routes into the one-turn `clarify` / typed `defer`/`reject` rungs on the single budget |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + route-gold | A required scorer edit would be a migration failure | Fixtures map through the existing compatibility projector; the scorer stays byte-identical [synthesis §8.2] |
+| Risk | Auto-routing on an uncalibrated rank margin (rank-as-probability) | Converts a recommendation into a capability | Auto-route requires a validated per-slice certificate; `rankScore`/`scoreMargin` stay evidence, never a probability [synthesis §2.3, §6] |
+| Risk | Shipping a fleet-wide confidence constant right for no hub/slice | Wrong-everywhere threshold | The threshold is promoted only from held-out risk/coverage metrics on the `005/001` corpus, never a hand-picked constant |
+| Risk | Unbounded negotiation (friction) on uncertainty | Degraded UX / over-emission | The friction budget (1 user turn, ≤3 options + `none_of_these`, ≤2 attempts, ≤256-token card) is enforced as replayable assertions |
+<!-- /ANCHOR:risks -->
 
 ## 6. MIGRATION GATE
 
@@ -112,6 +135,14 @@ This phase rides one shared gate from the master plan's **SHARED MIGRATION-GATE 
 - **Evidence this phase must publish for the downstream gate — Stage 4 (Per-hub canary, owned by `006/*`):** the per-(policy, risk-slice) **calibration certificate** (coverage/selectiveRisk on the `005/001` held-out corpus, contract from `005/002`). Stage 4 consumes this certificate to permit calibrated auto-route on a given hub; **no hub may activate calibrated auto-route without it, and no score-to-risk threshold ships as a fleet-wide constant** (synthesis §8.1, §11 Q2, §12).
 
 **Non-negotiable constraints (apply to this and every phase):** deterministic offline route-gold replay preserved; NEVER touch the shared benchmark scorer (`router-replay.cjs`); authority stays destination-local (a proof/recommendation is never a capability); reversible + gated (fenced CAS activation, retained prior generation); no over-emission. This phase is planning/design only — it modifies no live routing config, registry, scorer, or skill.
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The concrete per-slice score-to-risk threshold values are promoted from held-out metrics (coverage, selectiveRisk, optionRecall, clarificationResolution, added-turns, card size) on the real `005/001` corpus; the numeric thresholds are intentionally unclaimed here [synthesis §11 Q2, §12].
+- Which calibration method (temperature scaling vs selective-classification threshold fitting, per the `005/002` envelope) actually validates per hub/risk slice is resolved when a real corpus is fit.
+- The certified low-`T` corner in which `route{basis: bounded-default}` is permitted is defined structurally; its exact per-slice extent awaits held-out evidence.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

@@ -8,45 +8,161 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "research"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: templates/spec.md -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Deep-Dive: No-Wrong-Door Bounded Handoff
 
-## EXECUTIVE SUMMARY
+---
 
-Iteration 4 of `sol-oob` designed a bounded handoff protocol that can replace one-shot classification on the ambiguous path only. It fuses four protocols — SIP REFER (acknowledged referral), A2A (typed task lifecycle), MCP elicitation (schema-bound clarification), and OAuth token exchange (scoped delegation) — into one small state machine where transfer, dialogue, execution, and authority stay distinct. This lineage hardens that protocol and tests its cost model.
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-## 3. RESEARCH CONTEXT
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | Important |
+| **Status** | Research complete; protocol implementation and empirical cost validation remain outside this packet |
+| **Created** | 2026-07-18 |
+| **Packet** | `004-no-wrong-door-handoff` |
+<!-- /ANCHOR:metadata -->
 
-Seed evidence (do NOT re-derive): `../../002-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-004.md` (includes the proposed state machine + minimum offer envelope) and lineage `research.md` §11(5). Cross-domain sources already gathered: RFC 3515, RFC 3261 (Max-Forwards), A2A, MCP elicitation, RFC 8693.
+---
 
-<!-- BEGIN GENERATED: deep-research/spec-findings -->
-The five-iteration run recommends a durable, versioned transfer lineage only for an explicit ambiguous/defer result with a viable candidate. Confident single routes, ordered and surface bundles, idle/no-match outcomes, dependency failures, and unsafe degraded outcomes remain structurally outside the handoff subsystem and create no transfer, context fetch, lease, state write, or handoff event.
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-Acceptance is the atomic ownership commit, not completion or activation. The destination transaction records the owner, exact offer decision, acceptance receipt, and a narrowed destination-local lease with a monotonically increasing fence. The source may observe after acceptance but cannot resume execution authority. A strict default hop budget of one is the only profile that supports the literal one-candidate-round-trip claim; at most one schema-bound clarification yields at most two semantic revisions, four candidate control messages, and one added user reply.
+### Problem Statement
 
-The final protocol separates transfer, attempt, revision, delivery, trace, lease, fence, and effect identities. Closed-schema I-JSON offers are canonicalized with RFC 8785 JCS and hashed; same idempotency key with changed content fails closed. Context uses authorized, content-addressed, size-capped references rather than raw prompts or answers. Every effect revalidates holder, state, scope, tool, policy pins, expiry, fence, and effect id. Structural bounds are proven, while acceptable latency, byte caps, recovery yield, and failure amplification remain corpus-backed empirical decisions. See `research/research.md` for the canonical synthesis and `research/resource-map.md` for evidence coverage.
-<!-- END GENERATED: deep-research/spec-findings -->
+One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode. Without explicit states, a transfer can widen authority, loop, duplicate effects, or be mistaken for completed work merely because a destination accepted it.
 
-### Idea-specific agenda (deepen, do not survey)
-1. **State machine.** Harden `INTAKE→OFFERED→ACCEPTED→ACTIVE→terminal` with `REJECTED`/`NEEDS_INPUT`/`TIMED_OUT` transitions and required effects per state.
-2. **Offer envelope.** Finalize `{transferId, sourceMode, candidateMode, requestDigest, intentSummary, requiredCapability, operationClass, contextRefs, policyHashes, visitedModes, hopBudget, deadline}`; idempotency and loop bounds.
-3. **Authority.** Destination validates registry membership + `toolSurface` then acquires a short-lived scoped lease; acceptance ≠ completion; no widening of the destination's declared tools.
-4. **Cost model.** Prove structural bounds (one offer round trip + at most one clarification) and define the empirical measurements (acceptance rate, clarification frequency, added turns, transferred bytes, cycle rejections, wrong-authority prevention).
-5. **Boundary with confident routes.** Confident routes stay one-shot; only ambiguous/low-confidence routes enter the protocol.
+### Purpose
 
-### MANDATORY cross-cutting evaluation (every iteration MUST address all three)
+Define a bounded handoff protocol for an explicit ambiguous/defer result with a viable candidate, while keeping confident routes one-shot. Transfer, clarification, ownership, activation, completion, authority, and effect identity remain distinct.
 
-Beyond the idea-specific agenda, each iteration must explicitly evaluate this idea along three separated dimensions:
+### Research Outcome
 
-1. **System skill advisor integration** — how the idea interacts with, depends on, or changes the Layer-0 advisor (`system-skill-advisor`): its recommendation, scoring/fusion, mode projections, and calibration/telemetry. State what the advisor must expose or consume for the idea to work, and what degrades if the advisor is absent or stale.
-2. **Benchmark integration** — how the idea interacts with the deterministic route-gold / skill-benchmark machinery: replay determinism, typed gold, the offline oracle, and drift guards. State the new fixtures or scorer contracts it needs and whether it preserves byte-identical deterministic replay.
-3. **Standalone effectiveness on documents alone** — how effective the idea is with NEITHER the advisor NOR the benchmark present: purely an AI reading the `SKILL.md` + skill docs (the INTENT_SIGNALS / RESOURCE_MAP prose, hub/mode docs) and routing by hand. Does the idea still help, degrade gracefully, or become inert at the pure-document level? This is the primary lens the operator flagged — do not skip it.
+The five-iteration run converged on a durable versioned transfer lineage with an atomic acceptance transaction, destination-local fenced lease, closed and hashed envelopes, authorized context references, idempotent retries, and a strict default hop budget of one. Structural message and clarification bounds are defined, while acceptable latency, byte caps, recovery yield, and failure amplification remain empirical questions that require a real corpus. The retained `presentation.md` records the complete synthesis.
+<!-- /ANCHOR:problem -->
 
-### Deliverable
-Per-iteration narrative in `research/`; findings feed this packet's `presentation.md` and the parent's combined synthesis.
+---
 
-## 4. SCOPE
-- In: 5-iteration SOL xhigh-fast research on the state machine, envelope, authority, cost model, and boundary.
-- Out: implementation; a request corpus (measurement is flagged, not performed); re-deriving the shipped `defaultMode` answer.
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Five-iteration research on the state machine, offer envelope, destination authority, cost bounds, and confident-route boundary.
+- Explicit evaluation of advisor evidence, deterministic benchmark replay, and document-only operation.
+- A retained plain-language synthesis in `presentation.md`.
+
+### Out of Scope
+
+- Implementing a transactional store, canonicalizer, lease mediator, broker, or protocol runtime.
+- Measuring latency, byte caps, recovery yield, or failure amplification on a request corpus.
+- Re-deriving the shipped `defaultMode` answer.
+
+### Packet Artifacts
+
+| File | Role |
+|------|------|
+| `spec.md` | Research charter and bounded-handoff requirements |
+| `presentation.md` | Retained five-iteration synthesis |
+| `plan.md`, `tasks.md`, `checklist.md` | Canonical planning and verification surfaces |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Research Contract
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Define a durable versioned handoff state machine. | `presentation.md` separates intake, offer, acceptance, active work, terminal states, rejection, clarification, and timeout. |
+| REQ-002 | Define closed, canonical, idempotent envelopes. | The synthesis defines fixed envelope families, canonical digest identity, and conflict on same key with changed content. |
+| REQ-003 | Keep authority destination-local and fenced. | Acceptance atomically transfers ownership and grants only a narrowed lease revalidated on every effect. |
+| REQ-004 | Prove structural bounds and preserve confident routes. | The synthesis defaults to one candidate, at most one clarification, bounded messages, and zero handoff artifacts for confident routes. |
+
+### P1 - Cross-Cutting Evaluation
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Evaluate system-skill-advisor integration. | `presentation.md` treats advisor candidates and scores as evidence, not authority or protocol state. |
+| REQ-006 | Evaluate benchmark integration. | `presentation.md` defines direct-versus-ambiguous fixtures and frozen replay state. |
+| REQ-007 | Evaluate standalone document-only routing. | `presentation.md` allows safe conversational handoff behavior but not transactional guarantees or mutation. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- Handoff begins only from an explicit ambiguous/defer outcome with a viable candidate.
+- Acceptance is an atomic ownership commit and never means activation or completion.
+- Retries, loops, clarification, context transfer, lease scope, and effects have explicit identities and bounds.
+- Structural bounds are distinguished from unmeasured empirical latency and recovery quality.
+- Advisor, benchmark, and document-only behavior are separately bounded without implementation claims.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Transactional state and fenced effect mediation | Message order alone cannot guarantee one winner or stop stale workers | Use compare-and-set state versions and revalidate the fence on every effect |
+| Risk | Acceptance is treated as completion | Work could be reported done before execution begins | Keep `ACCEPTED` distinct from `ACTIVE` and terminal states |
+| Risk | External systems ignore idempotency or fencing | Exactly-once claims become false | Require a serialized broker, disclose at-least-once behavior, or exclude the integration |
+| Risk | Structural bounds are mistaken for acceptable latency | A terminating protocol may still be too slow or costly | Require paired corpus measurement before operational adoption |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+- **Safety**: every effect revalidates holder, state, scope, tool, policy pins, expiry, fence, and effect identity.
+- **Determinism**: closed envelopes use canonical content identity and replay freezes policy, registry, schema, clock, candidate availability, and byte caps.
+- **Boundedness**: the default one-candidate profile allows at most one clarification and a finite control-message count.
+- **Privacy**: context travels through authorized, content-addressed, size-capped references rather than raw prompts or answers.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+- Confident single routes, bundles, idle, no-match, dependency failure, and unsafe degradation create no handoff state or lease.
+- Same idempotency key with different content fails as a conflict rather than overwriting prior meaning.
+- Concurrent accept, reject, timeout, or cancel attempts have one compare-and-set winner.
+- A stale source or worker may observe state but cannot regain or exercise execution authority after acceptance.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+The packet retains its declared Level 2 classification because it coordinates state, identity, authority, privacy, replay, and bounded-cost concerns. No numeric score is reconstructed from the retained artifacts.
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- What measured latency, byte cap, recovery yield, and failure amplification are acceptable on a real paired corpus?
+- Which external integrations can honor fencing and idempotency, and which require a broker or explicit downgrade?
+- What exact destination-local lease scope and expiry policy should become normative?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Five-iteration synthesis**: `presentation.md`
+- **Parent phase map**: `../spec.md`
+- **Source lineage**: `../../002-default-mode-policy-research/research/lineages/sol-oob/`

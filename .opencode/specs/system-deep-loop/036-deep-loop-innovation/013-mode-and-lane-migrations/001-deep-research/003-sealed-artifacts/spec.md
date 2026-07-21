@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third Deep Research child in the phase-013 mode migration fan-out |
 | **Depends on** | None (`[]`); sibling planning contracts compose at the Deep Research mode gate |
-| **Consumes** | Shared phase-006 sealing primitives, typed replay references, and the phase-012 mode contracts |
+| **Consumes** | Shared phase-007 sealing primitives, typed replay references, and the phase-012 mode contracts |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,7 +65,7 @@ digest-bound typed statements for source captures and synthesis checkpoints, whi
 alone replays only the control plane and cannot reconstruct web results, page contents, prompts, models, or stochastic
 reasoning.
 
-This phase plans the Deep Research binding to the shared phase-006 sealing primitives. It registers mode artifact kinds,
+This phase plans the Deep Research binding to the shared phase-007 sealing primitives. It registers mode artifact kinds,
 seals the exact bytes at each lifecycle boundary, carries only shared algorithm-qualified digest references through the
 typed event and replay paths, and verifies every read before gather, analyze, convergence, synthesis, resume, or memory
 save consumes it. It does not invent a mode-local hash, blob store, descriptor, or tamper check. Sealing failures block
@@ -137,7 +137,7 @@ new dark evidence and remain observable without changing legacy authority.
 ## 6. RISKS & DEPENDENCIES
 
 The highest risk is a second mode-local sealing scheme that hashes a path, report, or JSONL control record differently from
-the shared primitive. The mode adapter must consume the phase-006 sealing interface, use its descriptor and verified-read
+the shared primitive. The mode adapter must consume the phase-007 sealing interface, use its descriptor and verified-read
 errors, and expose only digest references to the ledger and replay layers. The phase-012 mode contract and write-set
 conflict graph are required before parallel lane execution so source capture, claim updates, convergence snapshots, and
 synthesis cannot race on an unowned reference set.
@@ -153,7 +153,7 @@ ordering must use the shared canonical ordering and stable logical branch/sequen
 completion order. A failed or corrupted read must block dark evidence and handoff without changing the legacy path; the
 rollback switch disables new mode binding while preserving already sealed data for audit and later replay.
 
-Dependencies are the shared phase-006 sealing, event, and replay contracts, the phase-012 mode interfaces and conflict
+Dependencies are the shared phase-007 sealing contract, the phase-006 event and replay contracts, the phase-012 mode interfaces and conflict
 graph, predecessor `002-reducers-and-projections`, and the existing compatibility/shadow bridge. Successor
 `004-certificates-and-receipts` consumes the sealed reference set for boundary evidence; it does not change this phase's
 seal identity.

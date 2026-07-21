@@ -9,20 +9,32 @@
 //   - the hub is already P4a-bound (selectedPolicy is the compiled generation),
 //   - the shadow canary is green,
 //   - the three frozen scorer digests are unchanged,
-//   - the compiled engine actually routes at least one designed scenario.
-// Reversible: `--rollback` restores the byte-identical pre-flip manifest.
+//   - the compiled engine actually routes at least one designed scenario,
+//   - the loaded snapshot identity equals the manifest's selectedPolicy.
+// The whole operation runs under the shared exclusive per-hub lock (the SAME lock
+// the activation driver takes), and is crash-safe via a write-ahead journal: the
+// intended end state (selectedPolicy + the advanced fence epoch) is recorded BEFORE
+// the tuple is mutated and cleared only AFTER every tuple member is written. A run
+// that finds a journal completes the interrupted flip deterministically — to the
+// intended fence, not a stale one — before doing anything else. Reversible:
+// `--rollback` restores the byte-identical pre-flip manifest under the same lock.
 //
 // This never edits a live SKILL.md, hub-router.json, or the frozen scorer; the
 // runtime only honors the flip when SPECKIT_COMPILED_ROUTING=1 (see resolve.cjs).
 
 const fs = require('fs');
-const path = require('path');
 const crypto = require('crypto');
+const path = require('path');
 const { execFileSync } = require('child_process');
 const { compiledRoute, loadHubEngine, HUB_CHILD } = require('./compiled-route.cjs');
+const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
+const { withHubLock } = require('../../shared/hub-lock.cjs');
 
 const IMPL_ROOT = path.resolve(__dirname, '..', '..');
-const ACTIVATION_ROOT = path.join(IMPL_ROOT, '010-live-activation', 'activation');
+// Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
+// copy so the harness never mutates live committed state (see verify-runtime-engine).
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.join(IMPL_ROOT, '010-live-activation', 'activation');
 
 function findRepoRoot(start) {
   let dir = start;
@@ -34,16 +46,6 @@ function findRepoRoot(start) {
   }
   throw new Error('could not locate repo root (no .opencode ancestor)');
 }
-const SCORER_DIR = path.join(
-  findRepoRoot(IMPL_ROOT),
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark',
-);
-const PINNED_SCORER_DIGESTS = {
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-};
-
 function sha256(buf) { return crypto.createHash('sha256').update(buf).digest('hex'); }
 function fileHash(p) { return sha256(fs.readFileSync(p)); }
 function readJson(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
@@ -53,11 +55,45 @@ function stableStringify(v) {
   return JSON.stringify(s(v));
 }
 
-function assertScorerFrozen() {
-  for (const [name, pinned] of Object.entries(PINNED_SCORER_DIGESTS)) {
-    const actual = fileHash(path.join(SCORER_DIR, name));
-    if (actual !== pinned) throw new Error(`FROZEN SCORER DRIFT: ${name} (${actual} != ${pinned})`);
-  }
+// Atomic single-file replace: write a sibling temp then rename over the target,
+// so a crash mid-write never leaves a truncated authority file.
+function atomicWrite(targetPath, bytes) {
+  const tmp = `${targetPath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmp, bytes);
+  fs.renameSync(tmp, targetPath);
+}
+
+function tuplePaths(hubDir) {
+  return {
+    manifestPath: path.join(hubDir, 'manifest.json'),
+    servingPriorPath: path.join(hubDir, 'manifest.serving-prior.json'),
+    fencePath: path.join(hubDir, 'fence-state.json'),
+    recordPath: path.join(hubDir, 'serving-flip-record.json'),
+    journalPath: path.join(hubDir, '.flip-journal.json'),
+  };
+}
+
+// Crash recovery. A journal is present ONLY between the start and end of a tuple
+// mutation, so its presence means the last flip was interrupted. Re-apply the
+// journal's intended end state deterministically — manifest compiled at the
+// journal's selectedPolicy, fence advanced to the journal's target epoch, record
+// rebuilt — then clear the journal. Idempotent (safe to re-run). Caller holds the
+// lock. Returns the journal if one was recovered, else null.
+function recoverFromJournal(hubDir) {
+  const { manifestPath, fencePath, recordPath, journalPath } = tuplePaths(hubDir);
+  if (!fs.existsSync(journalPath)) return null;
+  const j = readJson(journalPath);
+  const manifest = readJson(manifestPath);
+  const flipped = { ...manifest, selectedPolicy: j.selectedPolicy, servingAuthority: 'compiled', shadowOnly: false };
+  atomicWrite(manifestPath, `${stableStringify(flipped)}\n`);
+  atomicWrite(fencePath, `${stableStringify({ fencingEpoch: j.after, schemaVersion: 'V1' })}\n`);
+  atomicWrite(recordPath, `${stableStringify({
+    hubId: j.hubId, servingAuthority: 'compiled', shadowOnly: false,
+    selectedPolicy: j.selectedPolicy, fenceEpoch: { before: j.before, after: j.after },
+    gate: { recovered: true }, rollbackTo: 'manifest.serving-prior.json',
+  })}\n`);
+  fs.rmSync(journalPath, { force: true });
+  return j;
 }
 
 function assertCanaryGreen(hubId) {
@@ -66,7 +102,9 @@ function assertCanaryGreen(hubId) {
 }
 
 // The engine must route at least one designed scenario (proves the compiled
-// contract is live-routable for this hub before we make it authoritative).
+// contract is live-routable for this hub before we make it authoritative), and
+// returns the loaded snapshot's identity so the caller can bind it to the
+// manifest's selectedPolicy before flipping.
 function assertEngineRoutes(hubId) {
   const { snapshot } = loadHubEngine(hubId);
   const child = path.join(IMPL_ROOT, HUB_CHILD[hubId]);
@@ -79,7 +117,12 @@ function assertEngineRoutes(hubId) {
     if (prompt && compiledRoute(hubId, prompt).action === 'route') routed += 1;
   }
   if (routed < 1) throw new Error(`engine routed 0 scenarios for ${hubId}; refusing to make it authoritative`);
-  return { routedScenarios: routed, totalScenarios: cases.length, effectivePolicyHash: snapshot.policy.effectivePolicyHash };
+  return {
+    routedScenarios: routed,
+    totalScenarios: cases.length,
+    effectivePolicyHash: snapshot.policy.effectivePolicyHash,
+    generation: snapshot.policy.activationGeneration,
+  };
 }
 
 // Append-only per-hub audit ledger. Same file and same shape emitted by
@@ -142,53 +185,91 @@ function main() {
   if (!hubId || !HUB_CHILD[hubId]) throw new Error('usage: flip-serving.cjs --hub <hubId> [--rollback] [--json]');
 
   const hubDir = path.join(ACTIVATION_ROOT, hubId);
-  const manifestPath = path.join(hubDir, 'manifest.json');
-  const fencePath = path.join(hubDir, 'fence-state.json');
+  const { manifestPath, servingPriorPath, fencePath, recordPath, journalPath } = tuplePaths(hubDir);
   if (!fs.existsSync(manifestPath)) throw new Error(`hub not P4a-activated (no manifest): ${hubId}`);
 
-  const manifest = readJson(manifestPath);
-  const fence = readJson(fencePath).fencingEpoch;
+  const out = withHubLock(hubDir, rollback ? 'serving-rollback' : 'serving-flip', () => {
+    // Complete any interrupted flip FIRST, so every branch sees a consistent tuple.
+    const recovered = recoverFromJournal(hubDir);
+    const manifest = readJson(manifestPath);
+    const fence = readJson(fencePath).fencingEpoch;
 
-  if (rollback) {
-    const out = performServingRollback(hubDir, hubId);
-    process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
-      : `ROLLBACK hub=${hubId} serving=${out.servingAuthority} shadowOnly=${out.shadowOnly} `
-        + `fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} direction=rollback\n`);
-    return;
-  }
+    if (rollback) {
+      if (!fs.existsSync(servingPriorPath)) throw new Error(`no serving-prior to roll back to for ${hubId}`);
+      atomicWrite(manifestPath, fs.readFileSync(servingPriorPath));
+      const nextFence = fence + 1;
+      atomicWrite(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+      const restored = readJson(manifestPath);
+      return { kind: 'rollback', hubId, servingAuthority: restored.servingAuthority, shadowOnly: restored.shadowOnly, fenceEpoch: { before: fence, after: nextFence } };
+    }
 
-  // Idempotent: already compiled-serving.
-  if (manifest.servingAuthority === 'compiled') {
-    process.stdout.write(`ALREADY-COMPILED hub=${hubId} (no-op)\n`);
-    return;
-  }
-  // Preconditions.
-  if (manifest.selectedPolicy.effectivePolicyHash == null) throw new Error(`${hubId} is not P4a-bound (selectedPolicy is legacy)`);
-  assertScorerFrozen();
-  assertCanaryGreen(hubId);
-  const routeProof = assertEngineRoutes(hubId);
+    // Idempotent: already compiled-serving (recovery above already completed any
+    // interrupted flip, so a compiled manifest here means a whole tuple). Self-heal a
+    // serving-flip record removed after a clean flip: it is a non-serving audit
+    // artifact (the manifest stays the authority), so rebuild it from the live
+    // manifest + fence rather than leave an audit gap. The exact original fence
+    // transition is unrecoverable once the record is gone, so mark the rebuild and
+    // bind only the current epoch.
+    if (manifest.servingAuthority === 'compiled') {
+      let recordRebuilt = false;
+      if (!fs.existsSync(recordPath)) {
+        atomicWrite(recordPath, `${stableStringify({
+          hubId, servingAuthority: 'compiled', shadowOnly: false,
+          selectedPolicy: manifest.selectedPolicy, fenceEpoch: { before: null, after: fence },
+          gate: { reconstructed: true }, rollbackTo: 'manifest.serving-prior.json',
+        })}\n`);
+        recordRebuilt = true;
+      }
+      return { kind: 'idempotent', hubId, recovered: recovered ? recovered.after : null, recordRebuilt };
+    }
 
-  // Retain the byte-identical pre-flip manifest (unconditional), then flip.
-  resaveServingPrior(hubDir);
-  const flipped = { ...manifest, servingAuthority: 'compiled', shadowOnly: false };
-  fs.writeFileSync(manifestPath, `${stableStringify(flipped)}\n`);
-  const nextFence = fence + 1;
-  writeFence(hubDir, nextFence, 'forward');
+    // Preconditions.
+    if (manifest.selectedPolicy.effectivePolicyHash == null) throw new Error(`${hubId} is not P4a-bound (selectedPolicy is legacy)`);
+    assertScorerFrozen(findRepoRoot(IMPL_ROOT), 'the serving flip');
+    assertCanaryGreen(hubId);
+    const routeProof = assertEngineRoutes(hubId);
 
-  const out = {
-    hubId, servingAuthority: 'compiled', shadowOnly: false,
-    selectedPolicy: flipped.selectedPolicy, fenceEpoch: { before: fence, after: nextFence },
-    gate: { canaryGreen: true, scorerFrozen: true, ...routeProof },
-    rollbackTo: 'manifest.serving-prior.json',
-  };
-  fs.writeFileSync(path.join(hubDir, 'serving-flip-record.json'), `${stableStringify(out)}\n`);
-  appendFlipEvent(hubDir, {
-    hubId, driver: 'flip-serving', event: 'serving-flip', direction: 'forward',
-    servingAuthority: 'compiled', shadowOnly: false, selectedGeneration: flipped.selectedPolicy.generation,
-    fenceEpoch: { before: fence, after: nextFence }, manifestHash: fileHash(manifestPath), restoredHash: null,
+    // Identity binding: the snapshot we are about to make authoritative MUST be the
+    // exact generation P4a selected — else refuse to certify a drifted contract.
+    if (routeProof.effectivePolicyHash !== manifest.selectedPolicy.effectivePolicyHash) {
+      throw new Error(`${hubId}: loaded snapshot hash ${routeProof.effectivePolicyHash} != selectedPolicy ${manifest.selectedPolicy.effectivePolicyHash}`);
+    }
+    if (routeProof.generation !== manifest.selectedPolicy.generation) {
+      throw new Error(`${hubId}: loaded snapshot generation ${routeProof.generation} != selectedPolicy ${manifest.selectedPolicy.generation}`);
+    }
+
+    // Compare: re-read the fence after the long gates; abort if it moved (it can't,
+    // under the lock, but this keeps the CAS invariant explicit).
+    if (readJson(fencePath).fencingEpoch !== fence) throw new Error(`fence advanced during flip; aborting`);
+    const nextFence = fence + 1;
+    // Write-ahead journal: record the intended end state BEFORE mutating the tuple.
+    atomicWrite(journalPath, `${stableStringify({ intent: 'flip', hubId, selectedPolicy: manifest.selectedPolicy, before: fence, after: nextFence })}\n`);
+    if (!fs.existsSync(servingPriorPath)) atomicWrite(servingPriorPath, fs.readFileSync(manifestPath));
+    const flipped = { ...manifest, servingAuthority: 'compiled', shadowOnly: false };
+    atomicWrite(manifestPath, `${stableStringify(flipped)}\n`);
+    atomicWrite(fencePath, `${stableStringify({ fencingEpoch: nextFence, schemaVersion: 'V1' })}\n`);
+    const record = {
+      hubId, servingAuthority: 'compiled', shadowOnly: false,
+      selectedPolicy: flipped.selectedPolicy, fenceEpoch: { before: fence, after: nextFence },
+      gate: { canaryGreen: true, scorerFrozen: true, ...routeProof },
+      rollbackTo: 'manifest.serving-prior.json',
+    };
+    atomicWrite(recordPath, `${stableStringify(record)}\n`);
+    fs.rmSync(journalPath, { force: true }); // clear the journal LAST -> a lingering journal means "interrupted"
+    return { kind: 'flip', ...record, routeProof };
   });
-  process.stdout.write(asJson ? `${JSON.stringify(out, null, 2)}\n`
-    : `FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${flipped.selectedPolicy.generation} fence=${fence}->${nextFence} routed=${routeProof.routedScenarios}/${routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
+
+  if (asJson) { process.stdout.write(`${JSON.stringify(out, null, 2)}\n`); return; }
+  if (out.kind === 'rollback') {
+    process.stdout.write(`ROLLBACK hub=${hubId} serving=${out.servingAuthority} shadowOnly=${out.shadowOnly} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after}\n`);
+  } else if (out.kind === 'idempotent') {
+    const note = out.recovered != null ? `recovered interrupted flip to fence ${out.recovered}`
+      : out.recordRebuilt ? 'rebuilt a missing serving-flip audit record'
+      : 'no-op';
+    process.stdout.write(`ALREADY-COMPILED hub=${hubId} (${note})\n`);
+  } else {
+    process.stdout.write(`FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${out.selectedPolicy.generation} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} routed=${out.routeProof.routedScenarios}/${out.routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
+  }
 }
 
 if (require.main === module) {

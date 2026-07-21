@@ -49,7 +49,7 @@ contextType: "implementation"
 
 - [x] T005 Fenced CAS ship for `sk-code` (compiled generation 2) — `activated`, `servingAuthority: legacy`, fence `0 → 1`.
 - [x] T006 Fenced CAS ship for `mcp-tooling` (generation 4).
-- [x] T007 Fenced CAS ship for `system-deep-loop` (generation 3).
+- [x] T007 Fenced CAS ship for `system-deep-loop` (generation 4; re-bound from the superseded gen-3 pointer the P4b flip left behind).
 - [x] T008 Fenced CAS ship for `cli-external-orchestration` (generation 5).
 - [x] T009 Fenced CAS ship for `sk-prompt` (generation 5).
 - [x] T010 Fenced CAS ship for `sk-design` (generation 6).

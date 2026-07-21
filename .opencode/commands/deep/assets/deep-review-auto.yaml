@@ -902,7 +902,7 @@ workflow:
                     next_dimension: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                     saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                   log: "Divergent review pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_normalize_pause_events
                 if_failed:
@@ -1502,7 +1502,10 @@ workflow:
           action: "Mark iteration as 'error', continue to next"
           # Canonical iteration record: include sessionId, generation, durationMs so the reducer can persist
           # the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
-          append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}'
+          command: |
+            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
+            {"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}
+            DEEP_LOOP_STATE_RECORD
 
       step_post_iteration_claim_adjudication:
         action: "Validate typed claim-adjudication packets for any new P0/P1 findings and persist the result to state.jsonl so the next iteration's claimAdjudicationGate can read it"
@@ -1513,18 +1516,27 @@ workflow:
         on_pass:
           set:
             claim_adjudication_passed: true
-          append_jsonl: '{"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          # Append via the deterministic stdin helper, never an edit/patch tool:
+          # the state log holds multi-KB single-line records that a context-matched
+          # apply_patch cannot anchor on (it halts the loop). See append-state-record.cjs.
+          command: |
+            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
+            {"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}
+            DEEP_LOOP_STATE_RECORD
           log: "Claim adjudication passed for iteration {current_iteration}. All new P0/P1 findings have typed packets."
         on_fail:
           action: "Mark the iteration as invalid for convergence. The next iteration's claimAdjudicationGate (step_check_convergence step 0) reads the persisted `passed: false` event and vetoes STOP until a follow-up iteration rewrites the packets."
           set:
             claim_adjudication_passed: false
-          append_jsonl: '{"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          command: |
+            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
+            {"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}
+            DEEP_LOOP_STATE_RECORD
           log: "Claim adjudication incomplete for new P0/P1 findings. Event persisted. The next iteration's step_check_convergence claim-adjudication pre-check will veto STOP while `passed: false` remains the latest event and active P0/P1 > 0."
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1736,7 +1748,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"

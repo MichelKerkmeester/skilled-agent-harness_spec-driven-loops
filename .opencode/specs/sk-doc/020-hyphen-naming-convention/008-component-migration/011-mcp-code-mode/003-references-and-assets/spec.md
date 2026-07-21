@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-code-mode references and assets
+> Phase adjacency — predecessor `002-scripts`; successor `004-runtime`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

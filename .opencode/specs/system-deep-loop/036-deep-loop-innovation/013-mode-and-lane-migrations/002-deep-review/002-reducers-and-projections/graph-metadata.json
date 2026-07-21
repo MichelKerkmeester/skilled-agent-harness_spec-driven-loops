@@ -87,6 +87,12 @@
         "source": "derived"
       },
       {
+        "name": "Second Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -94,12 +100,6 @@
       },
       {
         "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Deep Review",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment.",
     "created_at": "2026-07-16T03:43:32.465Z",
-    "last_save_at": "2026-07-17T13:21:28.135Z",
+    "last_save_at": "2026-07-19T18:09:53.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +188,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:9c49f8126e25ecdaecd117ff51064cc884425fa541a2ab1ba8f72ee2306d262c",
+    "source_fingerprint": "sha256:4b4c8889fe58e8cb1cc9ee0e34e4069e77ce68204c953e1cdf352745d39af84c",
     "source_doc_hashes": {
-      "spec.md": "b36a308ee0d8d454ed3381daf86833e3c04c89a8b183fcf10782d799a922f63e",
+      "spec.md": "39435cff58eef466813c829e79d3d508054376b93a9026abf102a4d5974288db",
       "plan.md": "56971b9e985da8ab2abd71f8b1a06d2a43ec479cbc17ccc0c1fa47c931f1a71b",
       "tasks.md": "9968db148cd98203bb19550086c079f35c9a37f7351188a9f908b8d33011c82c",
-      "checklist.md": "936bbe4036c187f3b0bdedd473253f20c0c6a002a64528a0c21a973194331512"
+      "checklist.md": "08c4a9e71093ba135f4623750c008273cdb221e906bd65e33e805631630ec79d"
     },
     "last_active_child_id": null,
     "last_active_at": null

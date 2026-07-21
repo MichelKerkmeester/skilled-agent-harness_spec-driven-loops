@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
-| **Origin** | Phase 009 of the Deep Alignment mode migration: shadow parity before authority cutover |
+| **Origin** | Phase 013 of the Deep Alignment mode migration: shadow parity before authority cutover |
 | **Inputs** | Parent program spec; phase tree; phase-014 shadow framework; shared review-loop contract frozen in phase 012; mode research registries for authority capsules, proof-carrying findings, applicability, deviations, receipts, and cross-epoch replay |
 <!-- /ANCHOR:metadata -->
 

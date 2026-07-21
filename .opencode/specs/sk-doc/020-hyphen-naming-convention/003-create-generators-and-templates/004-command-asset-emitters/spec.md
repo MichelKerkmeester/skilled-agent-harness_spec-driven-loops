@@ -30,6 +30,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Command Asset Emitters
+> Phase adjacency — predecessor `003-readme-agent-command-changelog-flowchart-diff-benchmark`.
 
 > Parallel child under `003-create-generators-and-templates`; this child changes emitter instructions only, not the current asset filenames or repository-wide rename state.
 

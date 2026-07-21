@@ -1,0 +1,199 @@
+{
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "projections": {
+    "research-state": {
+      "oracle": "deep-research.parseJsonlDetailed",
+      "recordCount": 1,
+      "corruptionCount": 0,
+      "runs": [
+        1
+      ]
+    },
+    "research-deltas": {
+      "oracle": "deep-research.parseJsonlDetailed",
+      "recordCount": 2,
+      "corruptionCount": 0,
+      "types": [
+        "iteration",
+        "finding"
+      ]
+    },
+    "research-inbox": {
+      "oracle": "deep-research inbox reader contract",
+      "questionCount": 1,
+      "texts": [
+        "Which invariant is load-bearing?"
+      ]
+    },
+    "review-state": {
+      "oracle": "runtime reduce-state.parseJsonlDetailed+validateReviewRecordFields",
+      "recordCount": 1,
+      "corruptionCount": 0,
+      "validationWarnings": 0,
+      "runs": [
+        1
+      ]
+    },
+    "review-deltas": {
+      "oracle": "runtime reduce-state.deltaRecordToFinding",
+      "findingId": "fixture-review-finding",
+      "severity": "P1",
+      "file": "fixture.js",
+      "line": 1
+    },
+    "alignment-state": {
+      "oracle": "runtime reduce-alignment-state.parseJsonlDetailed+buildLaneEntry",
+      "recordCount": 1,
+      "artifactsChecked": 1,
+      "iterationCount": 1
+    },
+    "alignment-deltas": {
+      "oracle": "runtime reduce-alignment-state.buildLaneEntry",
+      "findingCount": 1,
+      "findingSeverity": {
+        "P0": 0,
+        "P1": 1,
+        "P2": 0
+      }
+    },
+    "council-state": {
+      "oracle": "persist-artifacts.parseStateLog",
+      "recordCount": 1,
+      "events": [
+        "round_start"
+      ]
+    },
+    "council-session-state": {
+      "oracle": "round-state-jsonl.readRoundStateRecords",
+      "recordCount": 1,
+      "types": [
+        "topic_completed"
+      ]
+    },
+    "council-round-state": {
+      "oracle": "round-state-jsonl.readRoundStateRecords",
+      "recordCount": 1,
+      "roundIds": [
+        "round-001"
+      ]
+    },
+    "improvement-state": {
+      "oracle": "deep-improvement.buildRegistry",
+      "totalRecords": 1,
+      "acceptedCount": 1,
+      "modes": {
+        "agent-improvement": 1,
+        "model-benchmark": 0
+      }
+    },
+    "improvement-journal": {
+      "oracle": "improvement-journal.validateEvent",
+      "validEvents": 1,
+      "invalidEvents": 0
+    },
+    "fanout-status-ledger": {
+      "oracle": "fanout-pool.detectOrphanedLineages",
+      "recordCount": 2,
+      "orphanCount": 0,
+      "labels": [
+        "fixture-a"
+      ]
+    },
+    "observability-events": {
+      "oracle": "observability-events.normalizeObservabilityEvent",
+      "recordCount": 1,
+      "eventIds": [
+        "fixture-observation"
+      ]
+    },
+    "behavior-transcript": {
+      "oracle": "behavior-bench-run transcript serializer",
+      "recordCount": 1,
+      "sources": [
+        "out"
+      ]
+    },
+    "model-grader-cache": {
+      "oracle": "model benchmark cache index contract",
+      "recordCount": 1,
+      "keys": [
+        "fixture-cache-key"
+      ]
+    },
+    "compiled-command-manifest": {
+      "oracle": "render-command-contract.buildManifestRow",
+      "recordCount": 1,
+      "rows": [
+        {
+          "command": "deep/review",
+          "mode": "fix",
+          "argsSha256": "8cc9876d090b9516c62e985183cfcef8ca1cc62fd5e0673f6122cfd126483259",
+          "legacyBodySha256": "6855de61c146888ad16398c8fa9084e02b7e40fd8f4b48cc5629742a998c5b30",
+          "compiledContractSha256": "184be12f2649c191d3865fca838422a3a0dc35287f2bb2fbf991040247914994",
+          "renderedSha256": "ec245a03026f9ab8b7d84ef365a467628788a3adc7e0b16ae97c01df4b03445a"
+        }
+      ]
+    },
+    "dispatch-failure": {
+      "oracle": "executor-audit writer + post-dispatch validator",
+      "recordCount": 1,
+      "reasons": [
+        "timeout"
+      ]
+    },
+    "dispatch-receipt-write-failed": {
+      "oracle": "executor-audit emitReceiptWriteFailure + generic state-log readers",
+      "recordCount": 1,
+      "phases": [
+        "intent"
+      ],
+      "reasons": [
+        "dispatch_receipt_write_failed"
+      ]
+    },
+    "verification-degraded": {
+      "oracle": "post-dispatch-validate buildVerificationDegradedEvent + review state reader",
+      "recordCount": 1,
+      "statuses": [
+        "degraded"
+      ],
+      "reasons": [
+        "verification_degraded"
+      ]
+    },
+    "divergent-pivot-state": {
+      "oracle": "divergent-pivot appendEvent + readEventStore contract",
+      "recordCount": 1,
+      "events": [
+        "pivot_started"
+      ],
+      "pivotIds": [
+        "pivot-1-0123456789ab"
+      ]
+    },
+    "progress-record": {
+      "oracle": "progress-record.validateProgressRecordPair",
+      "recordCount": 2,
+      "pairValid": true
+    }
+  },
+  "repair": {
+    "validRowsBefore": 1,
+    "validRowsAfter": 1,
+    "discardedTailRows": 1
+  },
+  "crashBoundary": {
+    "durableRows": 1,
+    "resumedRows": 2,
+    "lastEvent": "completed",
+    "labels": [
+      "fixture-a"
+    ]
+  },
+  "mixedReader": {
+    "legacyRows": 1,
+    "modernRows": 1,
+    "totalRecords": 2,
+    "acceptedCount": 2
+  }
+}

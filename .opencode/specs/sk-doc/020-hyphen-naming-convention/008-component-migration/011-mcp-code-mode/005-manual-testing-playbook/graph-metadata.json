@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The mcp-code-mode manual-testing tree uses snake_case for its root, eight category directories, the index, and 27 scenario files. This phase renames that filesystem tree to kebab-case and updates every active link and pointer while preserving scenario IDs, tool names, content keys, Python exemptions, and frozen changelog history.",
     "created_at": "2026-07-14T15:18:23Z",
-    "last_save_at": "2026-07-17T20:26:17.296Z",
+    "last_save_at": "2026-07-20T11:09:44.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:85861b8f402f55d2d36836ee6cdc9ffeb133258e23c75f6e2b24a04b3a1fb455",
+    "source_fingerprint": "sha256:f864aad9a60e28a8b43bbdbf23464df9497ba989daddfdc45e74869938e45be7",
     "source_doc_hashes": {
-      "spec.md": "dde433fe30ceb4026a39a9972ebff8f9f93ef2eff2f901929e8a76e1700a863a",
+      "spec.md": "60d6f9c7a49bc910ea16223ac289d5733547dd1326c8f40104261bc7757cc161",
       "plan.md": "38cba70e0d27f62f7e9397118f127a2a7b04b177f7aae68a5a69be8cba7a1046",
       "tasks.md": "a388e7724bdf02d927e18554aafced86a8a335fc8155d0135083057211e942f2",
       "checklist.md": "e8307a22bef33ab815e167dd5dedf5214614753793cdaf0bc415d94ba99aee17"

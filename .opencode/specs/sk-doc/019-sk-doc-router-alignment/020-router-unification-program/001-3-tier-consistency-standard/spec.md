@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/001-3-tier-consistency-standard"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), each SOL-agent output independently verified honest; committed + pushed to v4"
-    next_safe_action: "REQ-001 (de-skill-specific the shared harness) + REQ-002 full shape convergence, then REQ-006 fleet verification (mutation + blind holdout + live-mode)"
+    recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), pushed to v4"
+    next_safe_action: "REQ-001 harness de-skill-specific + REQ-002 convergence, then REQ-006 fleet verification"
     blockers: []
     key_files:
       - "spec.md"
@@ -188,10 +188,39 @@ Fleet-wide: per-unit `SKILL.md` routers, `leaf-manifest.json`/`leaf-manifest.con
 | Coordination | 14/15 | Many units, per-tier phases, fleet re-verify gates, concurrently-active shared harness |
 | **Total** | **64/100** | **Level 3** |
 
-## 10. OPEN QUESTIONS
+<!-- ANCHOR:risk-matrix -->
+## 10. RISK MATRIX
+
+| # | Risk | Likelihood | Impact | Severity | Mitigation |
+|---|------|------------|--------|----------|------------|
+| R1 | Harness de-skill-specifying regresses the 6 already-typed skills | Medium | High | High | Fleet re-verify after every shared change (byte-stable manifests + unchanged benchmarks) |
+| R2 | Converging 49 units propagates a circular/hollow gold pattern | Medium | High | High | Fleet verification (mutation + blind holdout + live) is a hard gate before "done" |
+| R3 | Scale (49 units) exhausts one context | High | Medium | Medium | Per-tier / per-parent-family fresh agents with strong per-unit verification |
+| R4 | A non-router "skill" is forced into a false typed surface | Medium | Medium | Medium | Allow a minimal/empty surface where a unit is genuinely not a router; document it |
+
+<!-- /ANCHOR:risk-matrix -->
+
+---
+
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+- **As a skill author**, I want one canonical router shape and a documented per-tier delta so I can add a new unit without copying a neighbour's idiosyncratic config.
+- **As the benchmark harness**, I need every tier to expose the same typed-gold shape so I can score parent, child, and normal units identically without skill-specific branches.
+- **As the skill advisor**, I want uniform `skill-graph.json` coverage of every unit so routing decisions stay comparable across the fleet.
+- **As a maintainer**, I want a CI freshness gate so committed manifests can never silently drift from the current routing config.
+
+<!-- /ANCHOR:user-stories -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
 
 - Whether sk-code (currently index-table body-gold) converts to frontmatter like the rest, or the body-gold path is retained as a second sanctioned shape — resolved in Phase 1 when the harness is de-skill-specified.
 - The exact live-mode sample size + who authors the blind holdout (independence is the point) — resolved before REQ-006.
+
+<!-- /ANCHOR:questions -->
 
 ---
 

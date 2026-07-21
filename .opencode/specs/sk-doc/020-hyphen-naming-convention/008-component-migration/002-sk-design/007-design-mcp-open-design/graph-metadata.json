@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-07-17T20:26:04.849Z",
+    "last_save_at": "2026-07-20T11:43:44.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d741cb7b9b75e5753e1671acdf94f894d2717379daa833e4db38fed169e987e0",
+    "source_fingerprint": "sha256:060e6e6e1e299cb909d83162de4798d75fd4c7983c2203c156e95935ac8659b3",
     "source_doc_hashes": {
-      "spec.md": "ece24f1db87e92a9f5d34a7f57a0fdfc1f52097fb01a109f380d615b586e6123",
+      "spec.md": "d5b06daa06646a807c2224486d8c98133da4e0b47729fb7a22c9b23719d2ca16",
       "plan.md": "ff6f5ac2cf812b0c7d82060b3d4c175498159f55ba4042b7386cf68edf0c2a22",
       "tasks.md": "ab4832c05eb32bb07f9232f7e6350aabe135f4c117b6e1cdddc238d08b7a531f",
       "checklist.md": "2c370f6bf1623c15a5bd51e0ca77cd51c92b122aa884b61bc7389471fa8901c0",

@@ -19,7 +19,10 @@
       "partial-failure policy tasks",
       "durable fan-in failure tasks",
       "partial-failure policy checklist",
-      "durable fan-in failure checklist"
+      "durable fan-in failure checklist",
+      "partial-failure policy implementation",
+      "durable fan-in verdict evidence",
+      "degraded fanout result implementation"
     ],
     "key_topics": [
       "partial-failure",
@@ -36,15 +39,27 @@
       "tasks"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "spec.md",
       "plan.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/evaluator.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/ledger-events.ts",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "partial-failure-policy.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "fanout-run.cjs",
         "kind": "file",
@@ -61,6 +76,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "evaluator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/evaluator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ledger-events.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/ledger-events.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -118,14 +163,8 @@
         "source": "derived"
       },
       {
-        "name": "Overview Replace",
+        "name": "Overview Add",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -142,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -152,61 +197,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "counts",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures.",
     "created_at": "2026-07-16T03:43:50.882Z",
-    "last_save_at": "2026-07-17T13:21:17.527Z",
+    "last_save_at": "2026-07-21T06:11:12.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a5a6975c23a2cf3e16beaf329dc8bd2445087244e7b59bd9310ffd04d6a23d9",
+    "source_fingerprint": "sha256:b0ffb7648ec9a2c8b824c67e248a763f9d30ec68aba17a0ceb16245d378f62c9",
     "source_doc_hashes": {
-      "spec.md": "627832ca6b13a6d9228d13fcd92d9755963811984c87562f2c960da354c72b4a",
-      "plan.md": "16f3cd12295e2d46155dbbb13ee2460a039d9f9eb425ba1e406deda71807bf66",
-      "tasks.md": "c099e27f70eea2648d2f50cad52aeb2c758a436bd2a5ebd0849deaed7662e62a",
-      "checklist.md": "ba1448d8987075e0e5ac71c33868a8fcb24373c084fbfd4271f6482b9e13a684"
+      "spec.md": "a7362cfce02860f938b4002a56fe752ed7f018a5ff3d2379046920c5650756f7",
+      "plan.md": "4c789f24a54f5670e494aee2bb1b63dd91c1908a031eff4634500a6fbcfe2d1e",
+      "tasks.md": "6dfdfee6faabff97a3a91b8ca9b0c7934fe4d00ccdcbfd61e6a093aeb34746cd",
+      "checklist.md": "410fff139622b447996f96fd3fcc3ec4ecf53a3b6611a8492d096a36ac18ae7d",
+      "implementation-summary.md": "263c8d6f61f9a155d8853e825284030bb1ca9f93ebd6c2e857b2c1125bbf78ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

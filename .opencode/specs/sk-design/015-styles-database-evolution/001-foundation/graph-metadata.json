@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/001-foundation",
+  "spec_folder": "sk-design/015-styles-database-evolution/001-foundation",
+  "parent_id": "sk-design/015-styles-database-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles database phase 0 foundation",
+      "generation manifest stage telemetry oracle",
+      "roadmap phase 0 evidence and contract",
+      "phase 0 foundation implementation plan",
+      "generation manifest telemetry oracle rollout",
+      "styles db phase A B C D sequencing",
+      "phase 0 foundation task breakdown",
+      "generation manifest telemetry oracle tasks",
+      "styles database phase 0 setup implementation verification",
+      "phase 0 foundation verification checklist",
+      "generation manifest telemetry oracle checklist",
+      "styles database phase 0 checklist evidence"
+    ],
+    "key_topics": [
+      "styles",
+      "database",
+      "phase",
+      "foundation",
+      "generation",
+      "manifest",
+      "stage",
+      "telemetry",
+      "oracle",
+      "roadmap",
+      "evidence",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vectors.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roadmap Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roadmap Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The styles database evolution roadmap (015) has no measurement plane",
+    "created_at": "2026-07-20T09:21:22.622Z",
+    "last_save_at": "2026-07-21T12:29:55.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f709c16b3fa4c7618dd44d8033702bdb90be1a756a633b08a4d337645d3311ed",
+    "source_doc_hashes": {
+      "spec.md": "d10216dd1ae6e4af550601e444086e1bd9d9c079f994b25e5f6769de73951703",
+      "plan.md": "ea21bf9c2fb76ba3725a21466ce81463c88f373ce494d4f7a7b60b4920e1787e",
+      "tasks.md": "3ffe5aef59473195bed711184cb07c3528b9b332c226c64da6e4700869348823",
+      "checklist.md": "b90c695e4f6024c1113f76c49b369ecb4c335d662b6cf149fa1af05f4b323e26",
+      "implementation-summary.md": "f77faa4a1a3f44e692f4b24b6011c03b8f6813f8c48ad709227f9d228eb107b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

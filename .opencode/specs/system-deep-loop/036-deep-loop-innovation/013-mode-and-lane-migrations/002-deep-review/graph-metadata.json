@@ -95,15 +95,15 @@
     ],
     "causal_summary": "Migrate Deep Review from its legacy scope, dimension-pass, convergence, and review-report loop to the shared typed event-ledger substrate through seven independently gated concern children.",
     "created_at": "2026-07-16T03:43:55.261Z",
-    "last_save_at": "2026-07-17T13:21:27.620Z",
+    "last_save_at": "2026-07-19T18:01:26.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:289707cb5ecf9213d5de5faea92a725713888c74cd8d17ee0d39c1ff79cc44c3",
+    "source_fingerprint": "sha256:dd9e1d6c9b45de1e764f97a64c32291f61844dfcb8d482c5ce398eb165430dfe",
     "source_doc_hashes": {
-      "spec.md": "dc26fe1694f510897e29d3c79903dce13c9dccba81da30c5e6203ec14c6461c7"
+      "spec.md": "b5132982bdc3f21e14ae16ccde0a801c34bc765f7962164c404c77ff30ac3833"
     },
     "last_active_child_id": null,
     "last_active_at": null

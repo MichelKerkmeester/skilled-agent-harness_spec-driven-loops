@@ -1,0 +1,173 @@
+{
+  "mergedFrom": [
+    "glm",
+    "sol"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-1-1-c4cd1680ca39",
+      "title": "Commit-range triage 0ce43ff589..739b85ac57 + positive-control reproduction for phase 003",
+      "summary": "Commit-range triage 0ce43ff589..739b85ac57 + positive-control reproduction for phase 003",
+      "text": "Commit-range triage 0ce43ff589..739b85ac57 + positive-control reproduction for phase 003",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-eb37a44b0c85",
+      "title": "Independently reproduce phase 003 runtime-reference and behavior-benchmark path drift, then resolve the packet-033 renumber dependency.",
+      "summary": "Independently reproduce phase 003 runtime-reference and behavior-benchmark path drift, then resolve the packet-033 renumber dependency.",
+      "text": "Independently reproduce phase 003 runtime-reference and behavior-benchmark path drift, then resolve the packet-033 renumber dependency.",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-e4e31fc5021f",
+      "title": "Inspect current runtime authority selectors/state migration, legacy writers and archival readers, whole-system gate/benchmark inventory, and phase 017's moving-HEAD premise to finalize phases 014-017.",
+      "summary": "Inspect current runtime authority selectors/state migration, legacy writers and archival readers, whole-system gate/benchmark inventory, and phase 017's moving-HEAD premise to finalize phases 014-017.",
+      "text": "Inspect current runtime authority selectors/state migration, legacy writers and archival readers, whole-system gate/benchmark inventory, and phase 017's moving-HEAD premise to finalize phases 014-017.",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-f7c2bc28f817",
+      "title": "Inspect the current system-deep-loop runtime and map shipped event/ledger, evidence/control, compatibility, orchestration, intelligence, convergence, and shared-contract capabilities onto phases 006-012.",
+      "summary": "Inspect the current system-deep-loop runtime and map shipped event/ledger, evidence/control, compatibility, orchestration, intelligence, convergence, and shared-contract capabilities onto phases 006-012.",
+      "text": "Inspect the current system-deep-loop runtime and map shipped event/ledger, evidence/control, compatibility, orchestration, intelligence, convergence, and shared-contract capabilities onto phases 006-012.",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-b3617a1478b1",
+      "title": "Phase 013 + OPEN QUESTION A: did 6cd8ab14e4e/708d25acf04/908efde8d8f change the registered-mode count",
+      "summary": "Phase 013 + OPEN QUESTION A: did 6cd8ab14e4e/708d25acf04/908efde8d8f change the registered-mode count",
+      "text": "Phase 013 + OPEN QUESTION A: did 6cd8ab14e4e/708d25acf04/908efde8d8f change the registered-mode count",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-888d915ff3ce",
+      "title": "Phases 004-006 drift (architecture coverage, fanout unblock, ledger core)",
+      "summary": "Phases 004-006 drift (architecture coverage, fanout unblock, ledger core)",
+      "text": "Phases 004-006 drift (architecture coverage, fanout unblock, ledger core)",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-4173f781b257",
+      "title": "Phases 007-009 drift (shared services, shadow/rollback bridge, fanout fan-in)",
+      "summary": "Phases 007-009 drift (shared services, shadow/rollback bridge, fanout fan-in)",
+      "text": "Phases 007-009 drift (shared services, shadow/rollback bridge, fanout fan-in)",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-6f2f2dd5f075",
+      "title": "Phases 010-012 drift (novelty/continuity, convergence/health, shared mode contracts)",
+      "summary": "Phases 010-012 drift (novelty/continuity, convergence/health, shared mode contracts)",
+      "text": "Phases 010-012 drift (novelty/continuity, convergence/health, shared mode contracts)",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-9886f402d631",
+      "title": "Phases 014-015 drift (authority cutover, legacy writer retirement)",
+      "summary": "Phases 014-015 drift (authority cutover, legacy writer retirement)",
+      "text": "Phases 014-015 drift (authority cutover, legacy writer retirement)",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-b0797bedace6",
+      "title": "Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber)",
+      "summary": "Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber)",
+      "text": "Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber)",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-c72085877819",
+      "title": "Produce a complete provisional 15-row verdict matrix for phases 003-017 by reconciling iterations 1-3 with each phase's current purpose.",
+      "summary": "Produce a complete provisional 15-row verdict matrix for phases 003-017 by reconciling iterations 1-3 with each phase's current purpose.",
+      "text": "Produce a complete provisional 15-row verdict matrix for phases 003-017 by reconciling iterations 1-3 with each phase's current purpose.",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-826d3120bb12",
+      "title": "Reconcile iterations 1-6 into one final evidence table for all phases 003-017, verify live range/count triage and internal consistency, and close all formal questions.",
+      "summary": "Reconcile iterations 1-6 into one final evidence table for all phases 003-017, verify live range/count triage and internal consistency, and close all formal questions.",
+      "text": "Reconcile iterations 1-6 into one final evidence table for all phases 003-017, verify live range/count triage and internal consistency, and close all formal questions.",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-e1bcb5321c39",
+      "title": "Resolve phase 013's registered-mode/workstream taxonomy and test whether phase 005's exact top-level live-web-search propagation capability already shipped.",
+      "summary": "Resolve phase 013's registered-mode/workstream taxonomy and test whether phase 005's exact top-level live-web-search propagation capability already shipped.",
+      "text": "Resolve phase 013's registered-mode/workstream taxonomy and test whether phase 005's exact top-level live-web-search propagation capability already shipped.",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-26d5ab700074",
+      "title": "Run a first-order path/file/symbol/glob resolution census over phases 004-017 and identify a genuinely clean negative-control phase.",
+      "summary": "Run a first-order path/file/symbol/glob resolution census over phases 004-017 and identify a genuinely clean negative-control phase.",
+      "text": "Run a first-order path/file/symbol/glob resolution census over phases 004-017 and identify a genuinely clean negative-control phase.",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 14,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 14,
+    "convergenceScore": 0.485,
+    "coverageBySources": {}
+  }
+}

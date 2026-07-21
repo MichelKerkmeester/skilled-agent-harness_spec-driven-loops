@@ -16,13 +16,36 @@ contextType: "implementation"
 **Implementation status**: Executed. Phase-local verification is green; orchestrator-owned strict
 spec validation remains intentionally unrun in this worktree.
 
-## APPROACH
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
 Build the decision plane **type-first, then evaluator, then projector, then fixtures** — because the whole value of this phase is that the dangerous states are unrepresentable, and that guarantee lives in the type/guard layer, not in runtime checks (synthesis §2.3, §4 seam A). The evaluator is a pure total function; every capability, effect, and budget belongs to a sibling phase. The benchmark seam is treated as an inviolable boundary: the shared scorer `router-replay.cjs` is a fixed dependency the projector adapts *to*, never a file this phase edits (synthesis §8.2, §6).
 
 The sequence is deliberately staged so each step is independently replayable and the Stage 3 shadow-evaluate gate can be exercised the moment the projector exists. Legacy stays serving-authoritative; the evaluator runs with zero live authority throughout (master plan shared-gate model; synthesis §9 stage 3). This is planning/design only — no live routing config, registry, scorer, or skill is modified.
+<!-- /ANCHOR:summary -->
 
-## BUILD SEQUENCE
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Upstream contracts pinned: `RouteRequestV1`, `CompiledPolicyV1`, `Target` from Phase 0/1.
+- [x] Benchmark seam understood: the shared scorer `router-replay.cjs` is a read-only fixed dependency.
+
+### Definition of Done
+- [x] `evaluate()` is pure and deterministic across repeated runs and processes.
+- [x] The four dangerous states are unrepresentable at the type/guard layer (not runtime asserts).
+- [x] `router-replay.cjs` shows a zero-byte diff; the route-gold gate stays green via the projector.
+- [x] The Stage 3 shadow-evaluate gate passes: deterministic replay, projection matches gold, mismatches classified, gold untouched.
+<!-- /ANCHOR:quality-gates -->
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+The decision plane is built type-first: a closed `RouteDecisionV1` discriminated union (`route | clarify | defer | reject`, with `selectionKind` an interior field of `route`), a structural guard layer that makes the dangerous states unrepresentable, the pure total `evaluate(request, policy)` function, and a compatibility projector `projectToRouteGold(decision) → {observedIntents, observedResources}` that is the only bridge to the frozen shared scorer. Typed route-gold fixtures plus a shadow-evaluate replay harness supply the Stage 3 gate evidence. The consumed contracts (Phase 0/1) and `router-replay.cjs` are read-only inputs.
+<!-- /ANCHOR:architecture -->
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
 
 1. **Pin the consumed contracts.** Import `RouteRequestV1`, `CompiledPolicyV1`, and the `Target`/identity types from Phase 0 (`../000-contract-schemas/`) and the compiled artifact + projections from Phase 1 (`../001-compiler-n1-shadow/`). Confirm the request's `pinnedActivationGeneration` and the policy's `effectivePolicyHash` are both present and comparable (synthesis §2.1).
 
@@ -39,6 +62,7 @@ The sequence is deliberately staged so each step is independently replayable and
 7. **Author the typed route-gold fixture families** (synthesis §8.2): exact single route; ordered + surface bundles; zero-signal idle `defer` with no default union; one-turn clarification; forbidden rejection; direct route with **no** recovery artifacts; singular omission + zero rank-call assertion; stale/mixed-generation refusal. Each fixture is a `RouteRequestV1` + expected `RouteDecisionV1` + expected projection.
 
 8. **Wire the shadow-evaluate replay harness.** Run every fixture through `evaluate()` → `projectToRouteGold()` → the existing scorer, compare against frozen gold, and emit a **classified mismatch report** without ever writing back to the gold (synthesis §9 stage 3). This is the Stage 3 gate artifact.
+<!-- /ANCHOR:phases -->
 
 ## KEY FILES & CONTRACTS
 
@@ -54,7 +78,8 @@ The sequence is deliberately staged so each step is independently replayable and
 | `router-replay.cjs` (shared scorer) | Fixed dependency the projector adapts to | **NEVER edited — a required edit is a migration failure** |
 | Existing route-gold rows | Frozen comparison baseline | Read-only; never auto-updated |
 
-## VERIFICATION
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
 
 - **Purity + determinism:** static scan for I/O/clock/RNG imports; N-run cross-process replay yields byte-identical decisions (SC-001).
 - **Unrepresentability:** negative-with-target, negative-with-authority, top-level `selectionKind`, and route-with-recovery-artifact fixtures all fail the type/guard, not a runtime assert (SC-002).
@@ -66,10 +91,21 @@ The sequence is deliberately staged so each step is independently replayable and
 driver reports 11/11 shared-scorer matches, fixed hashes across 25 in-process repetitions and three
 child processes, 12 exact structural rejection codes, an `intent-mismatch` falsifier result, and
 zero N=1 rank/bundle/handoff calls.
+<!-- /ANCHOR:testing -->
 
-## ROLLBACK
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+- **Upstream (read-only):** Phase 0 `../000-contract-schemas/` (schemas + `Target` identity) and Phase 1 `../001-compiler-n1-shadow/` (`CompiledPolicyV1` + projections).
+- **Fixed boundary:** the shared benchmark scorer `router-replay.cjs` and the existing route-gold rows — consumed, never edited; a required scorer edit is a migration failure.
+- **Downstream consumers:** Phases 3 (execution), 4 (recovery), 5 (calibration), 6 (rollout) bind to this decision type.
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
 
 The evaluator holds no authority and mutates nothing, so rollback is disabling the shadow lane — the prior serving behavior is restored exactly, with no external effect to undo (synthesis §9; master plan shared-gate model).
+<!-- /ANCHOR:rollback -->
 
 ## CROSS-REFERENCES
 - **Specification**: `spec.md`

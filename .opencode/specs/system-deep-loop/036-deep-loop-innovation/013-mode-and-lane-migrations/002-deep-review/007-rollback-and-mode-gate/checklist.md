@@ -39,7 +39,7 @@ unexpected tracked mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, the parent 065 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, and phase-006 authorization digest are pinned in the candidate report
+- [ ] CHK-001 [P0] BASE, the parent 036 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, and phase-006 authorization digest are pinned in the candidate report
 - [ ] CHK-002 [P0] The six Deep Review sibling contracts and their evidence ownership boundaries are present; no sibling responsibility is redefined in this phase
 - [ ] CHK-003 [P0] The legacy Deep Review lifecycle is inventoried for scope, each dimension pass, candidate/evidence/adjudication, convergence, blocked stop, synthesis, report, resume, and continuity handoff
 - [ ] CHK-004 [P1] The authority-control schema, rollback trigger matrix, healthy anchor, dual window bounds, expiry rule, and phase-014 handoff fields are frozen before fixture execution

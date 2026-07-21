@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-07-17T13:21:45.666Z",
+    "last_save_at": "2026-07-19T18:01:22.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,12 +185,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d81a0b4ccce3695d68114287e715c1f52810fe8ae275b39bda72b0361b69125b",
+    "source_fingerprint": "sha256:40343a20a36dbb183c3163a1d3e5f8dbf8d8b046fc4441cb6c21595b6bffd525",
     "source_doc_hashes": {
-      "spec.md": "0e66ed061b480e2c5bcbedd1e6f5d59f022d91cbd71f058622140bf562ade956",
-      "plan.md": "133472c6faf77ec34641f54a75769ace15e737265ef955122839f5d6d10ef72c",
-      "tasks.md": "4cdb39548d0785b1e48dea2441137a436d288a414ec61355d4c3303e8d8549d1",
-      "checklist.md": "a310874f09441745bee2b78385a9c726338ae1817e1d9b5069807c696ca9c15a"
+      "spec.md": "885719d602849439f3513177fda45d1d35f61aa0382b8b6172dd2d916058a95a",
+      "plan.md": "f9f1f7791e8b25b7eb7085a9e42eae76e66d34b80c8f0b618ea0a7e2f18d654c",
+      "tasks.md": "07f21d9bb861146c0a267dfec9bd5120a8e0401e69315a25cc47cb7f9f05cc5a",
+      "checklist.md": "c154d94b08dbe241db906b03ce2e6994d282eee41874a09f1bdffd91c8be3a88"
     },
     "last_active_child_id": null,
     "last_active_at": null

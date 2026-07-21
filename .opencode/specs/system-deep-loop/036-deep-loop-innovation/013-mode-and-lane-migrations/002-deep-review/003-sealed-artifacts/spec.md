@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third Deep Review child in the phase-013 mode migration fan-out |
 | **Depends on** | None (`[]`); sibling planning contracts compose at the Deep Review mode gate |
-| **Consumes** | Shared phase-006 sealing primitives, typed replay references, and the phase-012 shared review-loop contract used by deep-alignment |
+| **Consumes** | Shared phase-007 sealing primitives, phase-006 typed replay references, and the phase-012 shared review-loop contract used by deep-alignment |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -52,7 +52,7 @@ _memory:
 Deep Review is a four-phase longitudinal loop: it resolves a review scope, runs one fresh-context pass per dimension,
 checks convergence and legal-stop gates, synthesizes `review-report.md`, and saves continuity. The current contract stores
 the control plane in `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, the findings registry,
-dashboard, iteration files, and report outputs (`deep-review/SKILL.md:289-329`; `deep-review/references/protocol/loop_protocol.md:70-156`).
+dashboard, iteration files, and report outputs (`deep-review/SKILL.md:289-329`; `deep-review/references/protocol/loop-protocol.md:70-156`).
 Those records can name a target path, mutable worktree, prompt, rubric, graph result, or report without committing the exact
 bytes that produced a candidate, a P0/P1/P2 finding, a blocked stop, or the final report.
 
@@ -64,7 +64,7 @@ output, or changed rubric and appear to continue the same lineage while producin
 append-only, but append-only control records alone cannot reconstruct target bytes, context snapshots, diagnostic output,
 adjudication inputs, or report materialization.
 
-This phase plans the Deep Review binding to the shared phase-006 sealing primitives. It registers the mode artifact kinds,
+This phase plans the Deep Review binding to the shared phase-007 sealing primitives. It registers the mode artifact kinds,
 seals the exact canonical bytes at each lifecycle boundary, carries only algorithm-qualified digest references through the
 typed event, reducer, replay, convergence, and report paths, and verifies every read before a consumer receives bytes. The
 same shared review-loop contract frozen in phase 012 is consumed by Deep Review and deep-alignment; this phase adds only
@@ -140,7 +140,7 @@ trusted report or handoff promotion without changing legacy authority.
 
 The highest risk is a second mode-local sealing scheme that hashes a path, JSONL line, iteration markdown file, or report
 without committing the exact canonical bytes consumed by the next review stage. The mode adapter must consume the shared
-phase-006 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and expose
+phase-007 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and expose
 only digest references to the phase-012 review-loop, ledger, reducer, replay, and report layers.
 
 Sealing only the control plane leaves target source, diff context, prompt/rubric inputs, deterministic diagnostics, raw
@@ -156,7 +156,7 @@ discovery or subprocess completion order. A failed or corrupted read must block 
 the legacy path. The phase-012 conflict graph is required before parallel lane execution so target snapshots, pass outputs,
 candidate evidence, convergence snapshots, and report references have explicit write ownership.
 
-Dependencies are the shared phase-006 sealing, event, and replay contracts; the phase-012 shared review-loop contract and
+Dependencies are the shared phase-007 sealing contract, the phase-006 event and replay contracts, the phase-012 shared review-loop contract and
 write-set conflict graph; predecessor `002-reducers-and-projections`; the existing Deep Review state, convergence, and report
 references; and the compatibility/shadow bridge. Successor `004-certificates-and-receipts` consumes this phase's verified
 reference set for boundary evidence. Deep-alignment consumes the same shared review-loop contract and must not receive a

@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-led
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/003-replay-fingerprints"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T23:18:42Z"
     last_updated_by: "codex"
-    recent_action: "Planned fingerprint derivation, attestation storage, and mismatch verification"
-    next_safe_action: "Implement the registry and verifier against the typed ledger contract"
+    recent_action: "Executed the replay-fingerprint plan and verified its runtime boundary"
+    next_safe_action: "Consume the shared verifier in later dark integration phases"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,18 +44,18 @@ Implement one versioned replay-fingerprint registry and canonical descriptor pip
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The sibling envelope contract exposes canonical stored/effective bytes and registry/upcaster identities
-- [ ] The sibling ledger contract exposes a verified ordered range with stable ledger ID, sequence, record hashes, and head hash
-- [ ] The upstream transition/versioning policy remains normative for historical-version refusal and registered evolution
-- [ ] The fingerprint descriptor, version registry, serializer, attestation range rule, and typed mismatch vocabulary are frozen
-- [ ] Every replay-affecting reducer, schema, configuration, policy, and artifact input has a registered or ledger-addressed identity
+- [x] The sibling envelope contract exposes canonical stored/effective bytes and registry/upcaster identities
+- [x] The sibling ledger contract exposes a verified ordered range with stable ledger ID, sequence, record hashes, and head hash
+- [x] The upstream transition/versioning policy remains normative for historical-version refusal and registered evolution
+- [x] The fingerprint descriptor, version registry, serializer, attestation range rule, and typed mismatch vocabulary are frozen
+- [x] Every replay-affecting reducer, schema, configuration, policy, and artifact input has a registered or ledger-addressed identity
 
 ### Definition of Done
-- [ ] Identical verified inputs reproduce byte-identical component and final digests across supported platforms
-- [ ] The typed attestation is immutable, idempotent, after-range, and excluded from its own fingerprint
-- [ ] Every corruption, version, contract, effective-event, and projection mismatch fails closed with bounded diagnostics
-- [ ] Phase 008 and phase 016 fixtures consume the same verifier and cannot rebaseline during comparison
-- [ ] Dark-path failure changes no legacy output, state, schema, or authority
+- [x] Identical verified inputs reproduce byte-identical component and final digests across supported platforms
+- [x] The typed attestation is immutable, idempotent, after-range, and excluded from its own fingerprint
+- [x] Every corruption, version, contract, effective-event, and projection mismatch fails closed with bounded diagnostics
+- [x] Phase 008 and phase 016 fixtures consume the same verifier and cannot rebaseline during comparison
+- [x] Dark-path failure changes no legacy output, state, schema, or authority
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

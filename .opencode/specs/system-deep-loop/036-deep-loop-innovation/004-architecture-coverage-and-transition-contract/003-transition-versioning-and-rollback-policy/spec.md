@@ -11,15 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T19:09:21Z"
     last_updated_by: "codex"
-    recent_action: "Authored the transition, versioning, cutover, and rollback policy contract"
-    next_safe_action: "Ratify this contract before phase 006 builds the first typed event writer"
+    recent_action: "Ratified the frozen transition and rollback policy"
+    next_safe_action: "Phase 006 implements the first writer against the ratified policy"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "transition-versioning-and-rollback-policy.md"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Rollback remains open until both 14 calendar days and five successful authoritative runs are complete."
+      - "Denied requests produce bounded non-domain rejection receipts."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Child 003 of the architecture, coverage, and transition planning gate |
@@ -52,7 +56,7 @@ The parent program's Sequencing Invariants require the transition-authority and 
 
 Without one policy fixed before those phases begin, each writer could invent its own version field, compatibility behavior, authorization evidence, cutover switch, or rollback clock. That would make mixed-version replay non-deterministic, permit unknown transitions to slip through permissive fallbacks, and create split-brain risk during mode migration.
 
-This phase writes the governing contract only; it implements no runtime code. Phases 003-012 inherit the event-envelope, upcaster, authorization, authority, and rollback rules below. A later phase may add a stricter constraint, but it may not weaken or redefine this contract without an explicit amendment that identifies every affected writer, reader, adapter, fixture, cutover certificate, and rollback anchor.
+This phase writes the governing contract only; it implements no runtime code. Phases 006-015 inherit the event-envelope, upcaster, authorization, authority, and rollback rules below. A later phase may add a stricter constraint, but it may not weaken or redefine this contract without an explicit amendment that identifies every affected writer, reader, adapter, fixture, cutover certificate, and rollback anchor.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -65,10 +69,10 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 - A deny-by-default transition-authorization gateway, the complete authorization-decision record, and a non-domain rejection receipt for every denied request.
 - A per-mode authority state machine with exactly one authoritative writer, shadow-parity prerequisites, compare-and-swap authority epochs, and cutover certificates consumed by phase 014.
 - A rollback window that remains open for at least 14 calendar days and five successful authoritative executions, whichever completes later, with explicit flip evidence, rollback triggers, execution steps, and closure evidence.
-- A downstream conformance matrix binding phases 003-012 to the parts of this contract they implement, exercise, consume, or prove.
+- A downstream conformance matrix binding phases 006-015 to the parts of this contract they implement, exercise, consume, or prove.
 
 ### Out of Scope
-- Implementing the ledger, gateway, upcasters, adapters, parity harness, cutover switch, or retirement logic; those belong to program phases 003-012.
+- Implementing the ledger, gateway, upcasters, adapters, parity harness, cutover switch, or retirement logic; those belong to program phases 006-015.
 - Choosing per-event payload schemas beyond the mandatory envelope and version-registration rules.
 - Moving authority in this phase. Phase 008 proves compatibility and shadow parity without cutover; phase 014 alone changes authority.
 - Removing legacy writers or archival readers. Phase 015 owns retirement after the rollback window and zero-use evidence.
@@ -90,7 +94,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 | REQ-008 | Shadow parity is a hard cutover precondition | No mode enters `new_authoritative_reversible` until its certificate binds the exact candidate SHA, supported version range, classified in-flight state, mixed-version replay, live shadow window, zero unresolved divergences, mode gate, and successful rollback rehearsal |
 | REQ-009 | Every cutover remains reversibly governed | The legacy rollback path, adapters, rollback anchor, and retained state remain usable for at least 14 days and five successful authoritative runs, whichever completes later |
 | REQ-010 | Rollback is non-destructive and certificate-backed | Rollback freezes admission, fences the spine writer, reconciles in-flight work under the declared policy, restores legacy authority at a new epoch, preserves all events, and emits a rollback certificate |
-| REQ-011 | Contract ownership is traceable through retirement | A conformance matrix shows how phases 003-012 consume this policy and blocks phase 015 until every mode exits its rollback window with zero-use telemetry and archival-read evidence |
+| REQ-011 | Contract ownership is traceable through retirement | A conformance matrix shows how phases 006-015 consume this policy and blocks phase 015 until every mode exits its rollback window with zero-use telemetry and archival-read evidence |
 <!-- /ANCHOR:requirements -->
 
 ### Frozen contract vocabulary
@@ -109,13 +113,13 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 
 | Program phase | Contract obligation inherited from this phase |
 |---------------|----------------------------------------------|
-| 003 | Implement the canonical envelope, version registry, append boundary, replay fingerprint inputs, authorization gateway, decision log, and rejection receipt together; remain dark and legacy-authoritative. |
-| 004 | Ensure effect receipts, budgets, locks, and continuity identities consume authorized event identity and authority epochs without bypassing the gateway. |
-| 005 | Implement registered upcasters, dual-read/single-write adapters, mixed-version replay, state classification, shadow parity, and rollback rehearsal; move no authority. |
-| 006-008 | Emit only registered current event versions and prove deterministic replay through orchestration, projections, and convergence consumers. |
-| 009-010 | Freeze shared and per-mode schemas, fixtures, mode gates, adapters, rollback switches, and write ownership against this policy. |
-| 011 | Execute the per-mode cutover state machine, issue cutover and rollback certificates, and enforce the full rollback window. |
-| 012 | Retire legacy live writers only after window closure, zero-use telemetry, rollback evidence, and retained archival-reader verification. |
+| 006 | Implement the canonical envelope, version registry, append boundary, replay fingerprint inputs, authorization gateway, decision log, and rejection receipt together; remain dark and legacy-authoritative. |
+| 007 | Ensure effect receipts, budgets, locks, and continuity identities consume authorized event identity and authority epochs without bypassing the gateway. |
+| 008 | Implement registered upcasters, dual-read/single-write adapters, mixed-version replay, state classification, shadow parity, and rollback rehearsal; move no authority. |
+| 009-011 | Emit only registered current event versions and prove deterministic replay through orchestration, projections, and convergence consumers. |
+| 012-013 | Freeze shared and per-mode schemas, fixtures, mode gates, adapters, rollback switches, and write ownership against this policy. |
+| 014 | Execute the per-mode cutover state machine, issue cutover and rollback certificates, and enforce the full rollback window. |
+| 015 | Retire legacy live writers only after window closure, zero-use telemetry, rollback evidence, and retained archival-reader verification. |
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
@@ -124,7 +128,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 - **SC-002**: One deny-by-default decision contract covers allow, deny, stale epoch, unknown type/version, and gateway-failure paths.
 - **SC-003**: One per-mode authority state machine names every legal transition, precondition, certificate, and rollback edge.
 - **SC-004**: One rollback policy fixes the minimum reversible duration, retained assets, trigger evidence, runbook, and closure gate.
-- **SC-005**: Phases 003-012 have explicit conformance obligations and no downstream phase owns a conflicting policy definition.
+- **SC-005**: Phases 006-015 have explicit conformance obligations and no downstream phase owns a conflicting policy definition.
 
 **Given** a stored supported `event_type@1`, **When** current code replays it through a complete registered upcaster chain, **Then** the effective current event is deterministic and the stored bytes remain available for audit.
 
@@ -145,12 +149,11 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 - **Authorization/audit recursion** — recording a denial as a domain event could itself mutate the protected stream. Mitigation: rejection receipts live in a non-domain decision log and never advance domain state.
 - **Split-brain authority** — legacy and spine writers could both accept. Mitigation: one per-mode authority record, monotonic epochs, compare-and-swap flips, and stale-epoch rejection at the gateway.
 - **Rollback in name only** — a timer could expire without enough real executions. Mitigation: the window closes on the later of 14 days and five successful authoritative runs and extends for unresolved evidence.
-- **Dependencies**: no predecessor dependency is declared for this planning child. Its normative inputs are the parent program Sequencing Invariants and the phase-tree `migration_model` plus phases 003, 005, and 011 outcomes. Its consumers are phases 003-012.
+- **Dependencies**: no predecessor dependency is declared for this planning child. Its normative inputs are the parent program Sequencing Invariants and the phase-tree `migration_model` plus phases 003, 005, and 011 outcomes. Its consumers are phases 006-015.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking. Ratification must confirm the 14-day/five-run minimum and the exact rejection-receipt storage boundary before the phase is marked complete; changing either value after a writer exists requires a governed amendment and downstream impact review.
+None. Ratification fixed the 14-day/five-run minimum and the non-domain rejection-receipt storage boundary. Changing either value after a writer exists requires a governed amendment and downstream impact review.
 <!-- /ANCHOR:questions -->
-

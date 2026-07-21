@@ -34,6 +34,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: system-skill-advisor hooks
+> Phase adjacency — predecessor `003-references`; successor `005-feature-catalog`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

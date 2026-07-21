@@ -19,7 +19,9 @@
       "conditional budget-aware fan-in tasks",
       "dynamic fan-in tasks",
       "conditional budget-aware fan-in checklist",
-      "dynamic fan-in verifier"
+      "dynamic fan-in verifier",
+      "conditional fan-in implementation",
+      "budget-aware fan-in evidence"
     ],
     "key_topics": [
       "conditional",
@@ -38,18 +40,13 @@
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,6 +63,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -111,7 +120,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Replace",
+        "name": "Overview Add",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -123,7 +132,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "provenance-aware",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -141,8 +150,8 @@
         "source": "derived"
       },
       {
-        "name": "baseline",
-        "kind": "key_phrase",
+        "name": "Leaf Vitest",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -175,25 +184,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision.",
     "created_at": "2026-07-16T03:43:50.574Z",
-    "last_save_at": "2026-07-17T13:21:17.163Z",
+    "last_save_at": "2026-07-21T05:26:26.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:816dc40eb914df610efcc1c7d229ad137c3c928487c99e05afc75cd5f7501280",
+    "source_fingerprint": "sha256:fc24149119aa4853e1a6a921944e2f021aec496cfa1de4b46b343b7dff75c6f6",
     "source_doc_hashes": {
       "spec.md": "f245930901e3cd17be683f82d559c749848dcaff47b5f8897329352620037576",
-      "plan.md": "ba4030f168d2e301404f350442e0ed80a633d029f0ae1e8a1430baee9d6f3b02",
-      "tasks.md": "c79ec31167a5d1906eff3e2298e568df5a329718c43178e0dc6acd81feb6ccb8",
-      "checklist.md": "18d034243316e202df30fbe8e8a6f4d8cf0d2d1315b9aafd8bb4e15f8e90ab68"
+      "plan.md": "b3b87a179e5045f6e80dec2cd02b27aac47a6f61f986edd715245197469032eb",
+      "tasks.md": "4c347e0e03ada8822793827a0adde3d06bd67a4c894c8609453c8ac45ed24180",
+      "checklist.md": "bc6c11564cbb11e6713b1151cf2b24275651b1b90937cebc09be01f318610e73",
+      "implementation-summary.md": "283efac372c94cd7125ba5dc3f8a6659526e94d069eb3b113b8e64da0cfc3f3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

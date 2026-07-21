@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent runs
+This checklist is the blocking SOL verifier contract for phase 013's `006-model-benchmark/004-certificates-and-receipts` child. Every item is a check the paired verify agent runs
 against the pinned candidate, shared-service contract, and sealed model-benchmark inputs before implementation is accepted.
 Each report records the candidate SHA, BASE SHA, sealed recipe and artifact digests, model/executor matrix identity,
 workload profile, replay-fingerprint inputs, commands, exit codes, fixture counts, verifier version, and unexpected tracked
@@ -42,7 +42,7 @@ unsupported result; it must never silently become a passing score or a selected 
 - [ ] CHK-006 [P0] The `003-sealed-artifacts` primitives and their digest, dependency, visibility, and tamper-evident read contract are available to the phase implementation
 - [ ] CHK-007 [P2] Candidate SHA, BASE SHA, typed-ledger version, reducer version, sealed recipe digest, matrix identity, workload digest, evaluator-capsule digest, and verifier version are recorded in the verifier report
 - [ ] CHK-008 [P0] Deep-improvement-common shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto ownership is agreed before model-benchmark fields are implemented
-- [ ] CHK-009 [P1] The phase-012 shared-contract freeze and write-set conflict graph handoff are recorded before the later 010 migration fan-out accepts this contract
+- [ ] CHK-009 [P1] The phase-012 shared-contract freeze and write-set conflict graph handoff are recorded before the later 013 migration fan-out accepts this contract
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -88,7 +88,7 @@ unsupported result; it must never silently become a passing score or a selected 
 ## Documentation
 
 - [ ] CHK-024 [P1] The phase docs define the model-benchmark-specific matrix and scoring adapter while reusing deep-improvement-common certificate, receipt, fingerprint, evaluator, canary, and promotion semantics
-- [ ] CHK-025 [P2] The phase-006 primitive consumption, `depends_on: []` planning posture, phase-012 freeze and 010 fan-out handoff, and phase-008 resume boundary are reflected consistently in packet docs
+- [ ] CHK-025 [P2] The phase-006 primitive consumption, `depends_on: []` planning posture, phase-012 freeze and 013 fan-out handoff, and phase-008 resume boundary are reflected consistently in packet docs
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

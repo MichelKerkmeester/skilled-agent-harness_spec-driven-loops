@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation. This phase renames those non-exempt resources to kebab-case and updates packet-local links while preserving validator behavior and flowchart notation.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-07-17T14:30:15.719Z",
+    "last_save_at": "2026-07-20T11:43:47.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b2cd2ce49af36ce055be2ef29f9f822fea0f9b60f5caf249f4cb869b0151262e",
+    "source_fingerprint": "sha256:5081eec5a9f988483f8aff8da1472ecd40b8090fc1fcd7131847692aa21a100e",
     "source_doc_hashes": {
-      "spec.md": "e585ada259239d1842c2bd8e0c520df35c3bcf785c67e38a04d50755b8c617fe",
+      "spec.md": "97294e2f528d5303747ffd3755a00d17f4d9b0ec4a22c3364361d1a3940d7a97",
       "plan.md": "d053a921a4484645390ce5e27df2ba21e5fc6ac4c8a149e1b2679b70169740c3",
       "tasks.md": "52ad2c3053b14c1fa5475d9bb0a00e8a14f1a585789d57055ee3b300079ca878",
       "checklist.md": "15ca23f8eb0e5aee3cd8467609ca43d8f174ab49b070a59d8c159a4777c06bc9"

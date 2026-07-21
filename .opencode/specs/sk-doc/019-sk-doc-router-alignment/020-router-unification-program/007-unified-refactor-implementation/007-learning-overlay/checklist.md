@@ -4,10 +4,13 @@ description: "Level-2 evidence for immutable vocabulary assignment, real scorer 
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Verification Checklist
+# Verification Checklist: Offline Correction Overlay
+
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 <!-- ANCHOR:protocol -->
-## Protocol
+## Verification Protocol
 
 - [x] CHK-001 [P1] Learning is one-directional and offline-only.
   - **Evidence**: `lib/correction-overlay.cjs` exposes batch ingestion, candidate compilation, replay, shadow promotion, and rollback; the activation manifest remains `servingAuthority:legacy` and `shadowOnly:true`.
@@ -121,7 +124,7 @@ contextType: "implementation"
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
-## Summary
+## Verification Summary
 
 - [x] CHK-060 [P1] Targeted executable verification covers every requested success criterion.
   - **Evidence**: `node harness/validate-learning-overlay.cjs` exits 0, reports immutable-base/effective-combine/replay-promotion agreement true, and reports all eight existing gates true for route-gold, no-op equivalence, immutable scorer, hard gates, authenticated CAS, corpus partitioning, locale independence, and producer parity.

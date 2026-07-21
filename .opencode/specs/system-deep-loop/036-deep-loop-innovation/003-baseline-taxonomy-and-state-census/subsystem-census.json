@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "subsystemCount": 8,
+  "subsystems": [
+    {
+      "id": "convergence",
+      "owner": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "entryPoints": ["runtime/scripts/convergence.cjs", "runtime/references/integration-points.md", "deep-research/references/convergence/convergence.md", "deep-review/references/convergence/convergence.md", "deep-alignment/scripts/check-convergence.cjs"],
+      "callers": ["research loop", "review loop", "alignment loop", "improvement loop host"],
+      "state": ["mode state JSONL", "iteration deltas", "finding registries", "gauge samples"],
+      "tests": ["runtime/tests/unit/convergence-score-delta.vitest.ts", "runtime/tests/integration/convergence-script.vitest.ts"],
+      "invariants": ["A stop decision is evidence-derived.", "Hard caps remain independent of semantic convergence.", "Two consecutive qualifying iterations are required where configured."],
+      "defectCandidate": "Stop predicates and threshold names diverge by family.",
+      "disposition": "011-convergence-policy-and-stop-service",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs"]
+    },
+    {
+      "id": "state-checkpointing",
+      "owner": ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
+      "entryPoints": ["runtime/lib/deep-loop/jsonl-repair.ts", "deep-research/scripts/reduce-state.cjs", "runtime/scripts/reduce-state.cjs", "deep-alignment/references/state-machine-wiring.md", "runtime/lib/council/round-state-jsonl.cjs", "deep-improvement/scripts/shared/reduce-state.cjs"],
+      "callers": ["all five workflow families", "fanout lineages", "behavior benchmark runner"],
+      "state": ["append-only JSONL", "derived dashboards and registries", "SQLite projections", "wait checkpoints"],
+      "tests": ["runtime/tests/unit/deep-research-reduce-state.vitest.ts", "runtime/tests/unit/atomic-state.vitest.ts", "runtime/tests/unit/jsonl-repair.vitest.ts"],
+      "invariants": ["JSONL is replayable after trailing-row repair.", "Derived state can be recreated from authoritative records.", "Writes are append or atomic replace according to surface."],
+      "defectCandidate": "Checkpoint schemas and write helpers are heterogeneous.",
+      "disposition": "006-canonical-ledger-and-snapshot-substrate",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/references/state-format.md", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts"]
+    },
+    {
+      "id": "fan-out-fan-in",
+      "owner": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "entryPoints": ["runtime/scripts/fanout-run.cjs", "runtime/scripts/fanout-pool.cjs", "runtime/scripts/fanout-merge.cjs", "runtime/scripts/fanout-salvage.cjs"],
+      "callers": ["deep-research", "deep-review", "deep-ai-council", "deep-improvement", "deep-alignment"],
+      "state": ["orchestration-status.log", "orchestration-summary.json", "orchestration-wait-checkpoint.json", "lineages/<label>/", "logs/fanout-lineage.out"],
+      "tests": ["runtime/tests/unit/fanout-run.vitest.ts", "runtime/tests/unit/fanout-merge.vitest.ts", "runtime/tests/unit/fanout-pool.vitest.ts"],
+      "invariants": ["Each lineage has an isolated artifact root.", "Fan-in records attribution before merge.", "Wait/resume observes a durable checkpoint."],
+      "defectCandidate": "Path isolation is prompt-enforced and the scheduler persists a flat pool rather than durable waves.",
+      "disposition": "009-fan-out-fan-in-and-wait-resume",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"]
+    },
+    {
+      "id": "dedup-novelty",
+      "owner": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+      "entryPoints": ["runtime/lib/deep-loop/pivot-candidates.ts", "runtime/lib/coverage-graph/coverage-graph-signals.ts", "deep-improvement/scripts/shared/mutation-coverage.cjs", "runtime/scripts/fanout-merge.cjs"],
+      "callers": ["research reducer", "review reducer", "alignment reducer", "improvement reducer", "fan-in merge"],
+      "state": ["finding fingerprints", "novelty windows", "mutation signatures", "merged registries"],
+      "tests": ["runtime/tests/unit/pivot-candidates.vitest.ts", "runtime/tests/unit/coverage-graph-signals.vitest.ts", "runtime/tests/unit/fanout-merge.vitest.ts"],
+      "invariants": ["Exact duplicates never count as novel.", "Mode-specific semantic thresholds remain observable.", "Attribution survives deduplication."],
+      "defectCandidate": "Fingerprint and fuzzy-match semantics diverge across families.",
+      "disposition": "010-novelty-dedup-projections-and-modeling",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts", ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts"]
+    },
+    {
+      "id": "gauges-observability",
+      "owner": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      "entryPoints": ["runtime/lib/deep-loop/observability-events.cjs", "runtime/scripts/fanout-pool.cjs", "runtime/scripts/fanout-run.cjs", "runtime/database/observability-events.jsonl"],
+      "callers": ["loop host", "reducers", "fanout pool", "council scripts"],
+      "state": ["observability-events.jsonl", "derived gauge registry", "dashboards"],
+      "tests": ["runtime/tests/unit/observability-events.vitest.ts", "runtime/tests/unit/fanout-pool.vitest.ts", "runtime/tests/unit/fanout-run.vitest.ts"],
+      "invariants": ["Telemetry failure does not corrupt canonical state.", "Every emitted gauge carries mode and timestamp.", "Projection can be rebuilt from events."],
+      "defectCandidate": "Best-effort emitters and family-local gauge names prevent one stable projection.",
+      "disposition": "007-runtime-kernel-services",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs", ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"]
+    },
+    {
+      "id": "budget-cost",
+      "owner": ".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs",
+      "entryPoints": ["runtime/lib/council/cost-guards.cjs", "runtime/lib/deep-loop/executor-config.ts", "runtime/scripts/fanout-pool.cjs", "deep-improvement/scripts/shared/loop-host.cjs"],
+      "callers": ["all loop hosts", "fanout scheduler", "benchmark runners"],
+      "state": ["budget envelopes", "iteration usage", "estimated and observed cost", "stop reasons"],
+      "tests": ["runtime/tests/council/cost-guards.vitest.ts", "runtime/tests/unit/executor-config.vitest.ts", "runtime/tests/unit/fanout-pool.vitest.ts"],
+      "invariants": ["Hard caps cannot be exceeded by another iteration.", "Reservations and settlements are distinguishable.", "Unknown price data remains explicit."],
+      "defectCandidate": "Token, time, call, and currency units are only partially normalized and actual cost is not universal.",
+      "disposition": "007-runtime-kernel-services",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"]
+    },
+    {
+      "id": "locks-recovery",
+      "owner": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      "entryPoints": ["runtime/lib/deep-loop/loop-lock.ts", "runtime/lib/deep-loop/jsonl-repair.ts", "runtime/lib/council/round-state-jsonl.cjs", "runtime/scripts/upsert.cjs", "runtime/lib/council/council-graph-db.ts"],
+      "callers": ["packet loops", "JSONL writers", "SQLite writers", "council rounds"],
+      "state": ["packet lock files", "per-round JSONL locks", "SQLite writer locks", "pause sentinels", "repair receipts"],
+      "tests": ["runtime/tests/unit/loop-lock.vitest.ts", "runtime/tests/unit/jsonl-repair.vitest.ts", "runtime/tests/council/round-state-jsonl.vitest.ts"],
+      "invariants": ["A live owner excludes concurrent mutation.", "Stale ownership is recoverable with evidence.", "Repair never rewrites a valid prefix."],
+      "defectCandidate": "Locks are advisory, use multiple record shapes, and lack a shared fencing token.",
+      "disposition": "007-runtime-kernel-services",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts", ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"]
+    },
+    {
+      "id": "continuity-threading",
+      "owner": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+      "entryPoints": ["runtime/lib/deep-loop/continuity-thread.cjs", "runtime/references/integration-points.md", "runtime/scripts/fanout-pool.cjs", "runtime/lib/council/session-state-hierarchy.cjs"],
+      "callers": ["command routers", "loop hosts", "fanout wait/resume", "council session controller"],
+      "state": ["session identifiers", "run identifiers", "thread identifiers", "lineage identifiers", "continuation receipts"],
+      "tests": ["runtime/tests/unit/continuity-thread.vitest.ts", "runtime/tests/unit/fanout-pool.vitest.ts", "runtime/tests/council/session-state-hierarchy.vitest.ts"],
+      "invariants": ["Resume binds to the same logical run.", "Lineage identity survives fan-in.", "Fresh-only modes reject resume explicitly."],
+      "defectCandidate": "Identity fields vary by family and improvement lanes only support fresh sessions.",
+      "disposition": "013-per-mode-migrations",
+      "evidence": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs", ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"]
+    }
+  ],
+  "closure": {"unowned": 0, "missingEntryPoint": 0, "missingCaller": 0, "missingState": 0, "missingTest": 0, "missingInvariant": 0, "unclassifiedCandidate": 0}
+}

@@ -93,8 +93,8 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Verification**: See `checklist.md`
-- **Program source**: See `../../../spec.md` and `../../../manifest/phase-tree.json`
-- **Rollback policy**: See `../../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
-- **Receipt contract**: See `../../../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`
+- **Program source**: See `../../spec.md` and `../../manifest/phase-tree.json`
+- **Rollback policy**: See `../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
+- **Receipt contract**: See `../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`
 - **Flip sibling**: See `../002-per-mode-authority-flip/spec.md`
 <!-- /ANCHOR:cross-refs -->

@@ -1,0 +1,527 @@
+{
+  "sessionId": "fanout-sol-1784463720850-qpa2w1",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 7,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-19T13:27:08.697Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "q-path-drift",
+      "inboxId": null,
+      "text": "Which paths, files, globs, symbols, and dependencies named by phases 003-017 no longer resolve, including phase 003's required positive controls?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "q-premise-drift",
+      "inboxId": null,
+      "text": "Which phase premises are now false because registered-mode counts, routing defaults, taxonomy, or planned capabilities changed or already shipped?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "q-benchmark-renumber",
+      "inboxId": null,
+      "text": "Does the packet-033 benchmark dependency survive its renumber, and what exact benchmark location should phases 003 and 016 use now?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "q-verdicts-003-010",
+      "inboxId": null,
+      "text": "What is the explicit verdict for each phase 003-010, with commit SHA and path:line evidence?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "q-verdicts-011-017",
+      "inboxId": null,
+      "text": "What is the explicit verdict for each phase 011-017, including at least one genuinely clean negative control, with commit SHA and path:line evidence?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-path-drift",
+      "inboxId": null,
+      "text": "Which paths, files, globs, symbols, and dependencies named by phases 003-017 no longer resolve, including phase 003's required positive controls?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "q-premise-drift",
+      "inboxId": null,
+      "text": "Which phase premises are now false because registered-mode counts, routing defaults, taxonomy, or planned capabilities changed or already shipped?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "q-benchmark-renumber",
+      "inboxId": null,
+      "text": "Does the packet-033 benchmark dependency survive its renumber, and what exact benchmark location should phases 003 and 016 use now?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "q-verdicts-003-010",
+      "inboxId": null,
+      "text": "What is the explicit verdict for each phase 003-010, with commit SHA and path:line evidence?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "q-verdicts-011-017",
+      "inboxId": null,
+      "text": "What is the explicit verdict for each phase 011-017, including at least one genuinely clean negative control, with commit SHA and path:line evidence?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which additional paths, globs, symbols, and dependencies in phases 004-017 no longer resolve?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the explicit final verdict for every phase 004-017?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which phase premises changed because mode counts, routing defaults, taxonomy, or capabilities changed or shipped?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which phase can serve as a genuinely clean negative control?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the explicit evidence-backed verdict for every phase 003-010 after combining first-order and second-order findings?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining phases besides 005 and 013 have second-order premise drift from shipped capabilities, routing semantics, or authority changes?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the explicit evidence-backed verdict for every phase 011-017, carrying phase 004 as the clean negative control?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which phase-006 through phase-012 capabilities already shipped partially or completely?",
+      "addedAtIteration": 4,
+      "source": "iteration-record"
+    },
+    {
+      "text": "Does phase 016 require only benchmark-path and taxonomy refinement?",
+      "addedAtIteration": 4,
+      "source": "iteration-record"
+    },
+    {
+      "text": "Which phase-006 through phase-012 capabilities have already shipped partially or completely in the current runtime?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Have phase-014 authority semantics or phase-015 retirements already landed?",
+      "addedAtIteration": 4,
+      "source": "iteration-record"
+    },
+    {
+      "text": "Have any phase-014 authority semantics or phase-015 legacy retirements already landed?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does phase 016's executable gate inventory need only path/taxonomy refinement, or broader contract changes?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Have phase-014 authority semantics or phase-015 legacy-writer retirements already landed?",
+      "addedAtIteration": 5,
+      "source": "iteration-record"
+    },
+    {
+      "text": "Does phase 016 require only benchmark-path and taxonomy refinement, or broader gate changes?",
+      "addedAtIteration": 5,
+      "source": "iteration-record"
+    },
+    {
+      "text": "Does the reconciled final 003-017 matrix consistently carry every final verdict, refinement, commit, confidence, and path:line citation?",
+      "addedAtIteration": 6,
+      "source": "iteration-record"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-opencode-skills-system-deep-loop-runtime-references-integration-points-md",
+      "text": "`.opencode/skills/system-deep-loop/runtime/references/integration-points.md`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-1-2-opencode-skills-system-deep-loop-runtime-references-state-format-md",
+      "text": "`.opencode/skills/system-deep-loop/runtime/references/state-format.md`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-1-1-f-001-both-phase-003-runtime-reference-seed-paths-are-stale",
+      "text": "F-001: Both phase-003 runtime-reference seed paths are stale",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-1-4-f-002-the-required-behavior-benchmark-positive-control-independently-reproduces",
+      "text": "F-002: The required `behavior_benchmark/` positive control independently reproduces",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-1-5-f-003-packet-033-survives-as-archived-packet-027-but-the-old-identifier-path-is-",
+      "text": "F-003: Packet 033 survives as archived packet 027, but the old identifier/path is stale",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-1-6-f-004-phases-003-and-016-should-consume-active-benchmark-surfaces-not-execute-fr",
+      "text": "F-004: Phases 003 and 016 should consume active benchmark surfaces, not execute from the archive",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/{spec.md,plan.md}`",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/{spec.md,plan.md,checklist.md,tasks.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/references/{state-format.md,integration-points.md}`",
+        "`.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/spec.md`",
+        "`.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness/{spec.md,plan.md,decision-record.md}`",
+        "Git range `0ce43ff589..739b85ac57907bad2defb941d91098222ec4e6fd`, especially `cc77a1e550a8dcd45c3b287ac604138987aea94e` and `7f3216fc502420cb8aade4bbb639f9efe78b1ada`"
+      ]
+    },
+    {
+      "id": "finding-2-1-f-005-phase-004-is-a-genuinely-clean-negative-control",
+      "text": "F-005: Phase 004 is a genuinely clean negative control",
+      "addedAtIteration": 2,
+      "sources": [
+        "Phase 004-017 `spec.md`, plus implementation plans/checklists/tasks where present",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`",
+        "Current phase child trees and runtime source/test paths",
+        "Git history and rename-aware range `0ce43ff589..e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `3022e02d6b62a4121d00a1b8f62932aca5ada257`, `fcade7e2cd58238d52fc5c56d3347d7868362c8a`, `7f3216fc502420cb8aade4bbb639f9efe78b1ada`, `8d3b5b21d571153b92dfb02c04c231509d36c9b2`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`"
+      ]
+    },
+    {
+      "id": "finding-2-2-f-006-phases-007-014-have-no-genuinely-missing-planned-target-in-the-current-tre",
+      "text": "F-006: Phases 007-014 have no genuinely missing planned target in the current tree",
+      "addedAtIteration": 2,
+      "sources": [
+        "Phase 004-017 `spec.md`, plus implementation plans/checklists/tasks where present",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`",
+        "Current phase child trees and runtime source/test paths",
+        "Git history and rename-aware range `0ce43ff589..e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `3022e02d6b62a4121d00a1b8f62932aca5ada257`, `fcade7e2cd58238d52fc5c56d3347d7868362c8a`, `7f3216fc502420cb8aade4bbb639f9efe78b1ada`, `8d3b5b21d571153b92dfb02c04c231509d36c9b2`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`"
+      ]
+    },
+    {
+      "id": "finding-2-3-f-007-phase-006-contains-a-malformed-research-reference-but-it-is-not-post-basel",
+      "text": "F-007: Phase 006 contains a malformed research reference, but it is not post-baseline drift",
+      "addedAtIteration": 2,
+      "sources": [
+        "Phase 004-017 `spec.md`, plus implementation plans/checklists/tasks where present",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`",
+        "Current phase child trees and runtime source/test paths",
+        "Git history and rename-aware range `0ce43ff589..e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `3022e02d6b62a4121d00a1b8f62932aca5ada257`, `fcade7e2cd58238d52fc5c56d3347d7868362c8a`, `7f3216fc502420cb8aade4bbb639f9efe78b1ada`, `8d3b5b21d571153b92dfb02c04c231509d36c9b2`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`"
+      ]
+    },
+    {
+      "id": "finding-2-4-f-008-phase-005-s-named-files-still-resolve-despite-post-baseline-runtime-edits",
+      "text": "F-008: Phase 005's named files still resolve despite post-baseline runtime edits",
+      "addedAtIteration": 2,
+      "sources": [
+        "Phase 004-017 `spec.md`, plus implementation plans/checklists/tasks where present",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`",
+        "Current phase child trees and runtime source/test paths",
+        "Git history and rename-aware range `0ce43ff589..e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `3022e02d6b62a4121d00a1b8f62932aca5ada257`, `fcade7e2cd58238d52fc5c56d3347d7868362c8a`, `7f3216fc502420cb8aade4bbb639f9efe78b1ada`, `8d3b5b21d571153b92dfb02c04c231509d36c9b2`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`"
+      ]
+    },
+    {
+      "id": "finding-2-5-f-009-phases-015-017-use-resolvable-packet-root-dependencies-not-missing-current",
+      "text": "F-009: Phases 015-017 use resolvable packet-root dependencies, not missing current files",
+      "addedAtIteration": 2,
+      "sources": [
+        "Phase 004-017 `spec.md`, plus implementation plans/checklists/tasks where present",
+        "`.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json`",
+        "Current phase child trees and runtime source/test paths",
+        "Git history and rename-aware range `0ce43ff589..e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `3022e02d6b62a4121d00a1b8f62932aca5ada257`, `fcade7e2cd58238d52fc5c56d3347d7868362c8a`, `7f3216fc502420cb8aade4bbb639f9efe78b1ada`, `8d3b5b21d571153b92dfb02c04c231509d36c9b2`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`"
+      ]
+    },
+    {
+      "id": "finding-3-5-eight-phase-013-migration-workstreams-the-seven-public-modes-plus-the-non-public",
+      "text": "**Eight phase-013 migration workstreams**: the seven public modes plus the non-public `deep-improvement-common` shared-services workstream. [SOURCE: commit `537ab78671cee7ad0233c950797c42a3d4e9e2a9`; .opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/spec.md:60-71]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-3-five-implementation-workflow-families-packets-deep-research-deep-review-deep-ai-",
+      "text": "**Five implementation workflow families/packets**: deep-research, deep-review, deep-ai-council, deep-improvement, and deep-alignment; the hub describes five active workflow families. [SOURCE: commit `0ce43ff589`; .opencode/skills/system-deep-loop/SKILL.md:12-20]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-2-seven-public-registered-workflow-modes-the-seven-workflowmode-keys-in-mode-regis",
+      "text": "**Seven public registered workflow modes**: the seven `workflowMode` keys in `mode-registry.json`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-4-three-improvement-variants-lanes-agent-improvement-model-benchmark-and-skill-ben",
+      "text": "**Three improvement variants/lanes**: agent-improvement, model-benchmark, and skill-benchmark, multiplexed onto the one deep-improvement packet; only the latter two are benchmark-named variants. [SOURCE: commit `0ce43ff589`; .opencode/skills/system-deep-loop/mode-registry.json:103-174]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-010-phase-013-s-eight-items-are-workstreams-not-eight-public-registered-modes",
+      "text": "F-010: Phase 013's eight items are workstreams, not eight public registered modes",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-011-the-named-commits-changed-routing-semantics-not-the-seven-mode-inventory",
+      "text": "F-011: The named commits changed routing semantics, not the seven-mode inventory",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-7-f-012-phase-005-s-exact-top-level-live-web-search-capability-has-not-shipped",
+      "text": "F-012: Phase 005's exact top-level live-web-search capability has not shipped",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    },
+    {
+      "id": "finding-3-8-f-013-newer-fan-out-support-is-partial-infrastructure-not-phase-005-completion",
+      "text": "F-013: Newer fan-out support is partial infrastructure, not phase 005 completion",
+      "addedAtIteration": 3,
+      "sources": [
+        "Baseline `0ce43ff589` and current HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "Commits `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`, `708d25acf04a240a5afbe7d43bf7b403549f4b85`, `908efde8d8f4316d89b9929743d32e2ed1848258`, and `e4b242c3940c26b47950534e1a149c7e037e71fd`",
+        "`.opencode/skills/system-deep-loop/{mode-registry.json,hub-router.json,SKILL.md}`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`",
+        "Phase 005 and phase 013 specifications"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 16,
+    "keyFindings": 19,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.12,
+    "coverageBySources": {
+      "other": 74
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/research/lineages/sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

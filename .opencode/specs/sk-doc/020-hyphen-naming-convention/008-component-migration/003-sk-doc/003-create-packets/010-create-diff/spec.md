@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-diff naming audit
+> Phase adjacency — predecessor `009-create-changelog`; successor `011-create-quality-control`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -83,6 +84,7 @@ The outcome is an evidence-pinned zero-row rename audit with no implementation r
 | REQ-002 | Zero-row status is proven, not assumed | The candidate report records the discovery command, count, and baseline path listing |
 | REQ-003 | Path references remain valid | No stale or unresolved create-diff path is found |
 | REQ-004 | Content underscores are not treated as filesystem debt | Diff/content audit shows no non-path identifier rewrite |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

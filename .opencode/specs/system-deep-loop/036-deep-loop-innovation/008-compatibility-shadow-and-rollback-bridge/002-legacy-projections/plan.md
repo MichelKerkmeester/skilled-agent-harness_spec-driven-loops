@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/002-legacy-projections"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T02:54:06Z"
     last_updated_by: "codex"
-    recent_action: "Planned census-driven folds, refresh timing, and byte-parity gates"
-    next_safe_action: "Build the projection manifest from the frozen phase-003 census"
+    recent_action: "Delivered census-driven folds, durable shadow publication, and byte-parity evidence"
+    next_safe_action: "Commit the path-scoped candidate when authorized"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,19 +48,19 @@ artifact/digest pairs.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 census is frozen and every candidate JSONL/JSON surface has writer and reader traceability
-- [ ] Phase-006 fixtures expose a verified ledger head, typed events, authorization linkage, and deterministic ordering
-- [ ] BASE fixtures capture exact legacy bytes and publication behavior for every projection-manifest row
-- [ ] Shadow-root path isolation and live-target rejection are defined before any projector opens an output
-- [ ] Projection and reducer versions have a stable identifier included in watermarks and parity reports
+- [x] The phase-003 census is frozen and every candidate JSONL/JSON surface has writer and reader traceability
+- [x] Phase-006 fixtures expose a verified ledger head, typed events, authorization linkage, and deterministic ordering
+- [x] BASE fixtures capture exact legacy bytes and publication behavior for every projection-manifest row
+- [x] Shadow-root path isolation and live-target rejection are defined before any projector opens an output
+- [x] Projection and reducer versions have a stable identifier included in watermarks and parity reports
 
 ### Definition of Done
-- [ ] Every census-owned legacy surface has one projection contract or a disposition with an owning later phase
-- [ ] Full and incremental folds are byte-identical at every tested ledger head
-- [ ] JSONL immediate append and snapshot atomic/coalesced refresh semantics match their legacy writers
-- [ ] Restart, duplicate, corruption, and crash fixtures advance no invalid watermark and mutate no live path
-- [ ] Existing readers pass unchanged against the complete projected fixture tree
-- [ ] The successor parity harness receives deterministic evidence bound to BASE and exact ledger heads
+- [x] Every census-owned legacy surface has one projection contract or a disposition with an owning later phase
+- [x] Full and incremental folds are byte-identical at every tested ledger head
+- [x] JSONL immediate append and snapshot atomic/coalesced refresh semantics match their legacy writers
+- [x] Restart, duplicate, corruption, and crash fixtures advance no invalid watermark and mutate no live path
+- [x] Existing readers pass unchanged against the complete projected fixture tree
+- [x] The successor parity harness receives deterministic evidence bound to BASE and exact ledger heads
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

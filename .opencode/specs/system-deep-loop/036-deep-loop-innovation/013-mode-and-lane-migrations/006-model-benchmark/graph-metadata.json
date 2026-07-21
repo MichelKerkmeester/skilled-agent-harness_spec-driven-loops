@@ -96,15 +96,15 @@
     ],
     "causal_summary": "Migrate the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate through seven concern children, reusing the deep-improvement-common backbone and ending in an independent mode gate.",
     "created_at": "2026-07-16T03:43:56.321Z",
-    "last_save_at": "2026-07-17T13:21:39.111Z",
+    "last_save_at": "2026-07-19T18:01:26.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6dc065e5137de0d18a8c1cd8726a00a0268b042217dcae0d001ae095ce9f015a",
+    "source_fingerprint": "sha256:ea7387a215626f99245c2f5dc4bf23c75df5ec07329a413f372840c7717e9c2b",
     "source_doc_hashes": {
-      "spec.md": "0fec5d3e2842b67bce2574a6a002cfff716248b2f0778a5069f3c4f5205004ff"
+      "spec.md": "0c7e9fed4e36eeb3bb3af97e6ed8c0f54eacf0e44c86b5e9a1d8ad92052aeff5"
     },
     "last_active_child_id": null,
     "last_active_at": null

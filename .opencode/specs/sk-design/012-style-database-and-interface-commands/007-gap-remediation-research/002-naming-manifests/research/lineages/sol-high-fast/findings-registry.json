@@ -1,0 +1,1307 @@
+{
+  "sessionId": "fanout-sol-high-fast-1784619539276-ffno9q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-exact-directory-and-file-rename-map-follows-the-naming-canon-including-ever",
+      "inboxId": "q-rename-map",
+      "text": "What exact directory and file rename map follows the naming canon, including every path named by the brief?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-imports-path-literals-scripts-tests-documentation-configuration-and-genera",
+      "inboxId": "q-reference-plan",
+      "text": "Which imports, path literals, scripts, tests, documentation, configuration, and generated references must change, and in what safe sequence?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-fields-invariants-and-lifecycle-roles-differ-between-the-crawl-manifest-and",
+      "inboxId": "q-schema-diff",
+      "text": "What fields, invariants, and lifecycle roles differ between the crawl manifest and retrieval manifest schemas?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-manifest-should-be-canonical-which-data-should-be-derived-and-how-should-h",
+      "inboxId": "q-canonical-design",
+      "text": "Which manifest should be canonical, which data should be derived, and how should hashes, provenance, and deterministic regeneration work?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-validation-rollback-and-cutover-plan-proves-the-rename-and-consolidation-do",
+      "inboxId": "q-cutover-proof",
+      "text": "What validation, rollback, and cutover plan proves the rename and consolidation do not break existing retrieval or generation paths?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-exact-directory-and-file-rename-map-follows-the-naming-canon-including-ever",
+      "inboxId": "q-rename-map",
+      "text": "What exact directory and file rename map follows the naming canon, including every path named by the brief?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-imports-path-literals-scripts-tests-documentation-configuration-and-genera",
+      "inboxId": "q-reference-plan",
+      "text": "Which imports, path literals, scripts, tests, documentation, configuration, and generated references must change, and in what safe sequence?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-3-what-fields-invariants-and-lifecycle-roles-differ-between-the-crawl-manifest-and",
+      "inboxId": "q-schema-diff",
+      "text": "What fields, invariants, and lifecycle roles differ between the crawl manifest and retrieval manifest schemas?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-which-manifest-should-be-canonical-which-data-should-be-derived-and-how-should-h",
+      "inboxId": "q-canonical-design",
+      "text": "Which manifest should be canonical, which data should be derived, and how should hashes, provenance, and deterministic regeneration work?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-what-validation-rollback-and-cutover-plan-proves-the-rename-and-consolidation-do",
+      "inboxId": "q-cutover-proof",
+      "text": "What validation, rollback, and cutover plan proves the rename and consolidation do not break existing retrieval or generation paths?",
+      "origin": "operator",
+      "source": "initial-research-charter",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Confirm indirect/runtime-computed path construction and the exact baseline/post-cutover validation command set.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Decide which data is canonical versus derived, and specify hash/provenance/deterministic-regeneration semantics.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Define rollback and cutover proof for both naming and later consolidation, including stale generated artifacts.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Map every field, invariant, and lifecycle role in both manifest schemas, including writer ownership and ordering guarantees.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Choose the canonical input model and derived projection boundary without losing resumable crawl lifecycle or artifact-derived retrieval data.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Complete the mutable/indirect reference sequence with executable validation commands.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Define two-stage cutover, stale-artifact detection, rollback, and proof obligations for naming first and consolidation second.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which indirect/runtime-computed consumers, imports, mutable references, and generated paths must change, and what exact executable sequence updates them safely?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What baseline, cutover, stale-detection, rollback, and post-cutover proof demonstrates parity for naming first and consolidation second?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No original key question remains unanswered. Iteration 5 must challenge every prior conclusion for internal inconsistency, untested assumptions, omitted consumers, rollback asymmetry, and conflicts between name-only parity and v2 semantic migration; it must not synthesize early. [SOURCE: .opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:3-10]",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation proof prerequisite: run and record the corrected engine/database glob commands; research confirms source ownership but not their exit status.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual external unknown: repository search cannot prove there are no installed or out-of-tree consumers; release notes must state the path/schema break or provide an explicitly time-bounded compatibility policy if such consumers exist. [INFERENCE: local exact search covers the repository, not external installations]",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation proof prerequisite: define and test the exact v2 validator/transition table, ID-to-slug migration, acquisition-bound projector reuse, and v2-to-v1 downgrade bytes.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No original reducer key question remains unanswered.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-exact-rename-map-the-dependency-closure-rename-is",
+      "text": "**Exact rename map.** The dependency-closure rename is:",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-3-exhaustive-live-surface-direct-reference-inventory-140-occurrences-in-46-files-t",
+      "text": "**Exhaustive live-surface direct-reference inventory: 140 occurrences in 46 files.** The files are grouped by migration responsibility; every listed mutable reference must be updated in the same dependency-closure cutover unless explicitly identified as frozen history. [INFERENCE: repository-scoped exact-token inventory, grouped from `rg --count-matches` output]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-1-naming-authority-and-exemption-result-the-canon-states-that-directory-names-and-",
+      "text": "**Naming authority and exemption result.** The canon states that directory names and filenames use kebab-case; exemptions cover Python source/package names, generated/tool-mandated names, runner magic, vendored trees, and frozen history. The three JavaScript backend directories and two authored JSON manifests match none of those exemptions. [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18] [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:24] [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:34]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-20-repository-wide-references-need-scope-classification-not-blind-replacement-activ",
+      "text": "**Repository-wide references need scope classification, not blind replacement.** Active external consumers such as the styles Rust-opportunity packet point at `_db/retrieval.mjs`, but completed spec history is explicitly frozen; those paths should be recorded as historical rather than rewritten. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:19] [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:56]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-21-safe-rename-sequence-capture-a-baseline-on-all-current-engine-database-mode-corp",
+      "text": "**Safe rename sequence.** Capture a baseline on all current engine/database/mode-corpus tests; perform all five moves and all mutable references as one dependency-closure change; update cross-directory imports and runtime path constants first, then fixtures/tests, scripts, and mutable docs; run the same complete gates; only after name-only parity should manifest consolidation change schema or remove a file. Do not leave compatibility symlinks or duplicate manifests after the atomic cutover, because coordinated consumers are fully inventoried. [INFERENCE: the direct-reference closure above makes a single atomic cutover smaller and safer than prolonged dual paths, while a separate schema phase isolates behavioral failures]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-22-the-manifests-overlap-in-membership-but-are-not-schema-equivalent-the-crawl-file",
+      "text": "**The manifests overlap in membership but are not schema-equivalent.** The crawl file is a top-level array of capture lifecycle records (`uuid`, source URL/time, slug, capture status/time, error); the retrieval file is a versioned generation object with `generationHash`, `crawlManifestHash`, `recordCount`, and enriched searchable `styles` records. The retrieval schema already declares its derivation relationship through `crawlManifestHash`. [SOURCE: .opencode/skills/sk-design/styles/_manifest.json:1] [SOURCE: .opencode/skills/sk-design/styles/_manifest.json:3] [SOURCE: .opencode/skills/sk-design/styles/_retrieval-manifest.json:1] [SOURCE: .opencode/skills/sk-design/styles/_retrieval-manifest.json:3]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-23-this-iteration-does-not-choose-the-canonical-manifest-renaming-both-files-is-mec",
+      "text": "**This iteration does not choose the canonical manifest.** Renaming both files is mechanically resolved, but choosing one physical source of truth requires tracing generation code, hash construction, writer ownership, invalidation behavior, and deterministic regeneration. Treating the richer retrieval manifest as automatically canonical would invert its current declared dependency on the crawl hash. [INFERENCE: `_retrieval-manifest.json` includes `crawlManifestHash`, so canonicality cannot be inferred from schema richness alone]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-19-changelog-v1-6-0-0-md-records-the-paths-as-shipped-and-remains-unchanged-under-t",
+      "text": "`changelog/v1.6.0.0.md` records the paths as shipped and remains unchanged under the canon's frozen-history exception. [SOURCE: .opencode/skills/sk-design/changelog/v1.6.0.0.md:14] [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:56]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-4-design-md-generator-backend-scripts-study-prepare-ts-excludes-legacy-backend-man",
+      "text": "`design-md-generator/backend/scripts/study-prepare.ts` excludes legacy backend/manifest names and must use the renamed entries. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:60]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-5-design-motion-corpus-motion-evidence-mjs-design-foundations-corpus-relationship-",
+      "text": "`design-motion/corpus/motion-evidence.mjs`, `design-foundations/corpus/relationship-blueprint.mjs`, `design-interface/corpus/relational-exemplar.mjs`, and `design-audit/corpus/comparison-lane.mjs` import the engine facade. [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:24] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:28] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:28] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:28]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-10-styles-db-oracle-replay-fixtures-mjs-imports-engine-fixtures-across-the-director",
+      "text": "`styles/_db/oracle/replay-fixtures.mjs` imports engine fixtures across the directory boundary. [SOURCE: .opencode/skills/sk-design/styles/_db/oracle/replay-fixtures.mjs:19]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-9-styles-db-retrieval-mjs-imports-engine-cards-while-styles-db-indexer-mjs-reads-t",
+      "text": "`styles/_db/retrieval.mjs` imports engine cards, while `styles/_db/indexer.mjs` reads the crawl manifest. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:5] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:649]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-7-styles-engine-persistent-adapter-mjs-imports-database-modules-across-the-directo",
+      "text": "`styles/_engine/persistent-adapter.mjs` imports database modules across the directory boundary. [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-6-styles-engine-style-library-mjs-and-styles-engine-manifest-mjs-hard-code-both-ma",
+      "text": "`styles/_engine/style-library.mjs` and `styles/_engine/manifest.mjs` hard-code both manifest filenames. [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:36] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:30]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-8-styles-harness-extract-refero-mjs-writes-the-crawl-manifest-source-opencode-skil",
+      "text": "`styles/_harness/extract-refero.mjs` writes the crawl manifest. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-18-backend-docs-styles-harness-readme-md-styles-readme-md-and-styles-db-readme-md-i",
+      "text": "Backend docs: `styles/_harness/README.md`, `styles/README.md`, and `styles/_db/README.md`, including copy-pasteable CLI paths. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:58] [SOURCE: .opencode/skills/sk-design/styles/README.md:17] [SOURCE: .opencode/skills/sk-design/styles/_db/README.md:75]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-14-database-tests-helpers-styles-db-tests-operator-test-mjs-oracle-test-mjs-fixture",
+      "text": "Database tests/helpers: `styles/_db/__tests__/operator.test.mjs`, `oracle.test.mjs`, `fixtures.mjs`, `manifest.test.mjs`, `indexer.test.mjs`, `schema.test.mjs`, `telemetry.test.mjs`, and `adapter.test.mjs`. [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/operator.test.mjs:12] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/manifest.test.mjs:12] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:14] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs:9]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-13-engine-tests-helpers-styles-engine-tests-invalidation-test-mjs-hydrate-guard-tes",
+      "text": "Engine tests/helpers: `styles/_engine/__tests__/invalidation.test.mjs`, `hydrate-guard.test.mjs`, `fixtures.mjs`, `check-stable.test.mjs`, and `eligibility-first.test.mjs`. [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:65] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/hydrate-guard.test.mjs:85] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/fixtures.mjs:109] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:17] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/eligibility-first.test.mjs:37]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-17-feature-catalog-feature-catalog-styles-library-utilization-style-database-backen",
+      "text": "Feature catalog: `feature-catalog/styles-library-utilization/style-database-backend.md` and `feature-catalog/styles-library-utilization/retrieval-engine.md`. [SOURCE: .opencode/skills/sk-design/feature-catalog/styles-library-utilization/style-database-backend.md:18] [SOURCE: .opencode/skills/sk-design/feature-catalog/styles-library-utilization/retrieval-engine.md:42]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-12-generator-baseline-design-md-generator-backend-tests-corpus-baseline-v3-test-ts-",
+      "text": "Generator baseline: `design-md-generator/backend/tests/corpus-baseline-v3.test.ts`. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tests/corpus-baseline-v3.test.ts:19]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-16-manual-testing-docs-manual-testing-playbook-manual-testing-playbook-md-manual-te",
+      "text": "Manual-testing docs: `manual-testing-playbook/manual-testing-playbook.md`, `manual-testing-playbook/styles-library-utilization/generation-guarded-hydration-mismatch.md`, `manual-testing-playbook/styles-library-utilization/retrieval-query-eligible-cards.md`, and `styles/manual-testing-playbook.md`. [SOURCE: .opencode/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md:290] [SOURCE: .opencode/skills/sk-design/manual-testing-playbook/styles-library-utilization/generation-guarded-hydration-mismatch.md:42] [SOURCE: .opencode/skills/sk-design/manual-testing-playbook/styles-library-utilization/retrieval-query-eligible-cards.md:46] [SOURCE: .opencode/skills/sk-design/styles/manual-testing-playbook.md:13]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-11-mode-corpus-tests-fixtures-design-motion-corpus-tests-motion-evidence-test-mjs-d",
+      "text": "Mode-corpus tests/fixtures: `design-motion/corpus/__tests__/motion-evidence.test.mjs`, `design-motion/corpus/__tests__/fixtures.mjs`, `design-foundations/corpus/__tests__/relationship-blueprint.test.mjs`, `design-foundations/corpus/__tests__/fixtures.mjs`, `design-interface/corpus/__tests__/relational-exemplar.test.mjs`, `design-interface/corpus/__tests__/fixtures.mjs`, `design-audit/corpus/__tests__/comparison-lane.test.mjs`, and `design-audit/corpus/__tests__/fixtures.mjs`. [SOURCE: .opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/__tests__/relationship-blueprint.test.mjs:16] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/__tests__/relational-exemplar.test.mjs:16] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/__tests__/comparison-lane.test.mjs:16]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-1-15-root-contract-docs-readme-md-and-skill-md-source-opencode-skills-sk-design-readm",
+      "text": "Root contract docs: `README.md` and `SKILL.md`. [SOURCE: .opencode/skills/sk-design/README.md:74] [SOURCE: .opencode/skills/sk-design/SKILL.md:215]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:18-88`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/gap-analysis.md:22-105`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-10`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-100`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:30-32`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:36-172`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:44`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:649`",
+        "Exact-reference Grep/`rg --count-matches` inventory across `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-2-2-crawl-ownership-ordering-and-durability-are-intentionally-operational-but-weakly",
+      "text": "**Crawl ownership, ordering, and durability are intentionally operational but weakly canonicalized.** `extract-refero.mjs` is the sole live writer found: sitemap enumeration preserves source order after first-seen UUID de-duplication, existing rows retain their positions, and new rows append. `saveManifest()` performs a direct pretty-printed `writeFile`, not temporary-file publication, while `loadManifest()` turns any read or parse failure into an empty array. The committed 1,290 rows are unique by UUID and slug but are sorted by neither, so current bytes depend on accumulated crawl history rather than a declared order. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:314-315] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-399] [INFERENCE: bounded invariant check reported `orderedByUuid=false`, `orderedBySlug=false`, and 1,290 unique UUIDs/slugs]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-9-current-canonicality-is-split-by-field-ownership-despite-exact-membership-parity",
+      "text": "**Current canonicality is split by field ownership, despite exact membership parity.** The committed files both contain 1,290 unique slugs with identical slug membership, but crawl state is authoritative for acquisition lifecycle while artifact files are authoritative for enriched searchable content; retrieval JSON is a reproducible publication over both. A consolidated design therefore needs a canonical input model plus derived projections, not a literal choice between the two current JSON shapes. [SOURCE: .opencode/skills/sk-design/styles/_retrieval-manifest.json:1-6] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-435] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:434-513] [INFERENCE: bounded invariant check confirmed equal 1,290-slug membership, while the writer trace assigns different field authorities]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-4-retrieval-fields-have-mixed-ownership-so-they-cannot-all-be-copied-from-either-c",
+      "text": "**Retrieval fields have mixed ownership, so they cannot all be copied from either current manifest.** Crawl state supplies fallback identity, status, source URL, and capture time. Corpus artifacts supply title, thesis, theme, token axes, capabilities, facets, sections, detailed provenance, artifact metadata, hydration size, and content identity. Unchanged artifact content may reuse the previous retrieval record, but crawl-owned `id` and `status` are refreshed during reuse. This makes retrieval a deterministic projection of two inputs: crawl state plus the style artifact tree. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:434-513] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:584-621]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-5-retrieval-ordering-is-explicit-and-byte-stable-artifact-filenames-and-artifact-r",
+      "text": "**Retrieval ordering is explicit and byte-stable.** Artifact filenames and artifact records use raw-string path order; style directories are scanned in raw-string slug order; final style records are sorted by `id`; token axes, capabilities, and facets are sorted; and serialization fixes object insertion order, two-space indentation, and a terminal newline. Section pointers preserve `DESIGN.md` heading order, and `availableSections` is the corresponding name projection rather than an independently sorted set. The committed corpus satisfies all these ordering/alignment invariants. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:332-405] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:552-580] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:597-628] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:718-725] [INFERENCE: bounded invariant check confirmed ID, token-axis, capability, facet, and artifact ordering plus section-name alignment across all 1,290 records]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-7-retrieval-publication-and-use-form-a-guarded-derived-cache-lifecycle-the-build-c",
+      "text": "**Retrieval publication and use form a guarded derived-cache lifecycle.** The build command loads the committed file, regenerates from current inputs, computes a deterministic diff, and either atomically publishes through an adjacent exclusive temporary file plus rename or compares exact serialized bytes in check mode. Legacy query reloads the committed manifest and regenerates a live manifest before use, rejecting stale bytes; hydration binds the selected generation before reading artifacts. Missing retrieval output is recoverable by `build --write`, whereas missing or malformed crawl input prevents generation. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:685-743] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:746-782] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:73-109] [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:123-177]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-1-the-crawl-schema-is-a-mutable-capture-state-array-not-a-versioned-closed-documen",
+      "text": "**The crawl schema is a mutable capture-state array, not a versioned closed document.** Each row currently has exactly seven observed fields: `uuid`, `url`, `lastmod`, `slug`, `status`, `capturedAt`, and `error`. The harness creates rows with nullable `slug`/`capturedAt`, drives `pending -> captured` or `error`, and changes a captured row to `stale` when sitemap `lastmod` changes. There is no schema-version field, exact-key validator, record-count field, or document-level hash in the crawl file. [SOURCE: .opencode/skills/sk-design/styles/_manifest.json:1-10] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-399] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:417-435]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-8-the-database-pipeline-does-not-read-the-retrieval-manifest-indexstylecorpus-read",
+      "text": "**The database pipeline does not read the retrieval manifest.** `indexStyleCorpus()` reads and hashes `_manifest.json` directly, joins crawl rows to a separately parsed artifact projection, and computes its own generation hash from DB schema/version, crawl hash, active style ID/aggregate-hash pairs, and inactive lifecycle states. It then publishes active/quarantined/tombstoned generation state transactionally in SQLite. Consequently, making the current retrieval JSON the sole input would require a deliberate DB contract change; deleting crawl state after merely redirecting engine readers would break indexing. [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:187-206] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:623-662] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:740-753] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:808-850] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:954-982]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-3-the-retrieval-schema-is-closed-versioned-and-recursively-validated-its-top-level",
+      "text": "**The retrieval schema is closed, versioned, and recursively validated.** Its top level must contain exactly `schemaVersion`, `generationHash`, `crawlManifestHash`, `recordCount`, and `styles`; version must be `1`; both hashes must match `sha256:<64 hex>`; `recordCount` must equal `styles.length`; and IDs and slugs must each be unique. Every style must contain exactly 16 fields: `id`, `slug`, `status`, `title`, `thesis`, `theme`, `tokenAxes`, `capabilities`, `facets`, `availableSections`, `sectionPointers`, `provenance`, `artifacts`, `estimatedHydrationBytes`, and `contentHash`. Nested token-axis, section-pointer, provenance, and artifact objects also reject extra or missing keys and enforce scalar types, non-negative counts/bytes, positive section lines, and hash syntax. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:29-73] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:185-266] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:288-315]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-2-6-the-three-retrieval-hash-layers-have-distinct-contracts-crawlmanifesthash-is-sha",
+      "text": "**The three retrieval hash layers have distinct contracts.** `crawlManifestHash` is SHA-256 over the crawl file's exact bytes, so whitespace or row-order changes invalidate the generation even when row meaning is unchanged. Each style `contentHash` hashes ordered artifact path plus raw artifact bytes, excluding file metadata. `generationHash` hashes schema version, the crawl byte hash, and each ID/content-hash pair in final ID order; it therefore binds schema, operational crawl bytes, membership/identity, and artifact content, but not derived field serialization independently. The committed `crawlManifestHash` and `generationHash` both reproduce exactly under these algorithms. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:552-591] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:623-635] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:694-712] [INFERENCE: bounded invariant check returned `crawlHashMatches=true` and `generationHashMatches=true`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-70`",
+        "`.opencode/skills/sk-design/styles/_retrieval-manifest.json:1-190`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115,310-315,388-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:29-809`",
+        "`.opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-753,808-982`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-170`",
+        "Bounded Node invariant check over both committed manifests."
+      ]
+    },
+    {
+      "id": "finding-3-4-derived-projection-and-provenance-boundary-the-in-memory-retrieval-projection-sh",
+      "text": "**Derived projection and provenance boundary.** The in-memory retrieval projection should advance to schema version 2 and retain the current `styles` records, deterministic ordering, and artifact-derived provenance, but replace `crawlManifestHash` with `sourceManifest: {schemaVersion: 2, semanticHash: \"sha256:...\"}`. Do not include timestamps or byte hashes in generation identity. `provenance.sourceUrl`, `uuid`, and `capturedAt` continue to prefer canonical artifact values and fall back to canonical-manifest acquisition data; derived facets, rights signals, section pointers, and artifact metadata remain projector-owned. Staleness means either the recomputed semantic source hash or any artifact content hash differs from the generation token. Regeneration remains deterministic by sorting entries/styles and set-like arrays with raw code-unit comparison and preserving document heading order only where order is content. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:448-513] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:552-580] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:623-635] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:29-79]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-5-design-b-one-envelope-with-separately-written-acquisition-and-retrieval-sections",
+      "text": "**Design B—one envelope with separately written `acquisition` and `retrieval` sections—is technically viable but weaker and should be eliminated.** It would require every writer to read/validate the whole document, compare-and-swap an expected semantic hash, lock across processes, merge only its owned section, and atomically replace the file. Even then, a harness save could race an engine projection save, and the file could expose acquisition version N with retrieval derived from N-1 unless both sections carry and verify a source hash. The current harness does direct whole-file writes and saves after every capture, while engine publication also replaces a whole file; sharing a path would therefore introduce lost-update and stale-section hazards absent from the recommended one-writer design. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:314-315] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:423-435] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:728-743] [INFERENCE: two independent whole-document replacement writers cannot safely share one file without new locking/CAS machinery and cross-section consistency rules]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-6-design-c-keep-a-canonical-acquisition-manifest-and-a-committed-retrieval-cache-i",
+      "text": "**Design C—keep a canonical acquisition manifest and a committed retrieval cache—is viable as a transition but weaker as the target.** It preserves today's engine's committed-versus-live stale guard and atomic byte-stable `--write/--check` workflow, so it is the lowest-risk bridge while consumers migrate. It nevertheless leaves two manifest-shaped files with identical membership and requires permanent stale-cache policy; poisoned derived fields can retain unchanged source/content hashes and must be detected by full regeneration. Therefore use it only during cutover, then delete the derived file once engine readers build through the shared projector. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:685-743] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-26] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:54-79] [INFERENCE: a reproducible materialized cache is operationally valid but does not satisfy the target's one-physical-manifest simplification]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-7-engine-database-compatibility-requires-shared-source-normalization-but-not-a-mer",
+      "text": "**Engine/database compatibility requires shared source normalization but not a merged generation identity.** Preserve the engine's retrieval record/API shape during the bridge, then change its generation token to projection-v2 semantics and remove mandatory loading of a committed retrieval file. Change the DB indexer to consume the same normalized v2 entries and `sourceSemanticHash`, but retain DB-specific hashing over DB schema version, active aggregate hashes, and inactive lifecycle states; bump `GENERATION_HASH_VERSION` because its input contract changes, while SQLite schema version can remain 2 if no table/column changes. The DB generation-pointer manifest must remain separate: it is an atomic pointer to immutable SQLite and optional model/index artifacts, not a competing corpus manifest, and it already supports legacy pointer normalization. [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:194-206] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:740-753] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-32] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:121-153] [INFERENCE: source identity can be shared while engine and DB generation identities remain purpose-specific and versioned]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-2-exact-target-canonical-schema-the-write-once-shape-should-be-a-closed-version-2-",
+      "text": "**Exact target canonical schema.** The write-once shape should be a closed version-2 envelope, normalized and serialized in raw-string `id` order:",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-1-recommended-ownership-model-one-writer-owned-canonical-corpus-manifest-plus-arti",
+      "text": "**Recommended ownership model: one writer-owned canonical corpus manifest plus artifact-owned content; no second committed retrieval manifest.** `styles/manifest.json` should be the only corpus manifest and the harness should be its only writer. It owns membership, source identity, and acquisition lifecycle. Per-style artifact files remain canonical for enriched content. A shared pure projector reads those two authorities and supplies the same deterministic in-memory retrieval projection to both the legacy engine and DB indexer; neither consumer writes back to `manifest.json`. This is a single source of manifest truth without falsely moving artifact-derived title, theme, facets, sections, or content provenance into acquisition state. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-435] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:434-513] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:649-710] [INFERENCE: assigning one physical file to the sole acquisition writer preserves proven field authority while a shared projector removes duplicate manifest publications]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-3-3-use-semantic-source-identity-for-invalidation-and-retain-byte-identity-only-for-",
+      "text": "**Use semantic source identity for invalidation and retain byte identity only for diagnostics.** Define `sourceSemanticHash = sha256(lengthFrame(\"style-corpus-manifest-v2\") + lengthFrame(stableJson(normalizedEnvelope)))`; normalization validates the schema and orders entries by `id`, while `stableJson` sorts object keys. Define `sourceByteHash = sha256(raw manifest bytes)` only for audit/debug output, never as a cache key. Keep each style's existing artifact-content hash over ordered `path + NUL + raw bytes + NUL`. Define retrieval `generationHash` from projection schema version, `sourceSemanticHash`, and sorted `id/contentHash` pairs. This prevents whitespace and historical row-order changes from invalidating products while preserving meaningful lifecycle/provenance changes; the repository already has the required locale-free key sorting and unambiguous length framing. [SOURCE: .opencode/skills/sk-design/styles/_db/canonical.mjs:21-69] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:149-176] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:187-206] [INFERENCE: replacing current exact-byte crawl identity with validated canonical semantics removes false staleness without weakening content binding]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-config.json:1-67`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:15-170`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-001.md:1-123`",
+        "`.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/iterations/iteration-002.md:1-83`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:310-435`",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:141-176,434-637,685-782`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79`",
+        "`.opencode/skills/sk-design/styles/_engine/__tests__/invalidation.test.mjs:92-138`",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:187-206,623-853`",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-185`",
+        "`.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-259`"
+      ]
+    },
+    {
+      "id": "finding-4-7-bridge-deletion-and-reference-updates-have-explicit-finish-criteria-and-document",
+      "text": "**Bridge deletion and reference updates have explicit finish criteria, and documentation is status-classified.** Delete `retrieval-manifest.json` only when no runtime/code/test source loads it, the computed-path search and exact-token search are clean, engine and DB both consume the shared projector, missing/stale bridge tests have passed, a clean rebuild creates no bridge, and mutable docs no longer instruct operators to check/write it. Update current `README.md`, `SKILL.md`, feature-catalog entries, backend READMEs, manual-testing playbooks, active specs, and generated-reference source inputs in that order after code/tests stabilize. Preserve changelogs and completed-spec narratives verbatim; if current docs need to explain the migration, link to or name the historical path rather than rewriting historical statements. [SOURCE: .opencode/skills/sk-design/README.md:74] [SOURCE: .opencode/skills/sk-design/SKILL.md:215-261] [SOURCE: .opencode/skills/sk-design/feature-catalog/styles-library-utilization/retrieval-engine.md:42-54] [SOURCE: .opencode/skills/sk-design/manual-testing-playbook/styles-library-utilization/generation-guarded-hydration-mismatch.md:56] [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:56]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-3-checkpoint-a-is-an-atomic-name-only-dependency-closure-cutover-first-record-base",
+      "text": "**Checkpoint A is an atomic name-only dependency-closure cutover.** First record baseline command exits and stable observable fixtures: byte hashes and counts for both current manifests, representative legacy query/hydration results, database status/current-generation pointer, and the exact legacy-token inventory. Then move all five paths; update runtime imports and manifest constants first, computed `path.resolve`/`path.join` consumers second, test fixtures third, source scripts and generated-output inputs fourth, and mutable docs/operator commands last. Run the identical command matrix, require old/new manifest bytes to match across renamed paths, require retrieval/query/hydration and DB status snapshots to match, and require a scoped search to find no legacy tokens outside frozen history. Rollback A is one reversal of the five moves plus the same reference patch; schema and hash behavior remain untouched, so any behavioral delta is a naming regression. [SOURCE: .opencode/skills/sk-design/styles/_engine/style-library.mjs:73-177] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:121-153] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66] [INFERENCE: preserving bytes and observable outputs across a name-only move isolates path-resolution failures from later schema behavior]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-4-checkpoint-b-must-introduce-compatibility-in-five-ordered-gates-before-deleting-",
+      "text": "**Checkpoint B must introduce compatibility in five ordered gates before deleting the bridge.** Gate B1 adds a pure normalizer that accepts the current v1 array and target v2 envelope and proves normalized acquisition-record equality over all 1,290 entries. Gate B2 adds the shared pure projector behind existing engine and DB call surfaces while continuing to publish/read `retrieval-manifest.json` as a bridge. Gate B3 proves projection parity record-for-record and DB parity for active/quarantined/tombstoned membership and representative ranked results; generation hashes may differ only where their versioned input contracts deliberately change. Gate B4 switches the harness writer to validated, canonical v2 and changes engine/DB source identity to the semantic hash, with purpose-specific generation-version bumps. Gate B5 deletes the bridge only after all readers use the projector and stale-cache tests pass. Rollback B restores the v1 writer/normalizer branch and bridge publication while the DB's independent current/rollback generation pointer remains available. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-435] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:434-637] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:623-753] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:121-153]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-5-parity-must-compare-semantics-where-identities-intentionally-change-the-v1-to-v2",
+      "text": "**Parity must compare semantics where identities intentionally change.** The v1-to-v2 gate compares normalized IDs, slugs, source fields, acquisition states, nullability, uniqueness, and 1,290-entry membership. Projection parity compares every enriched style record and deterministic ordering. DB parity compares active/inactive sets, row counts, aggregate content identities, and query results. The old retrieval `generationHash` and DB generation hash are not required to equal their v2 successors because source-hash and version contracts intentionally change; requiring byte/hash equality here would misclassify the planned migration as failure. Instead, each new hash must reproduce deterministically from its documented inputs, and rerunning the projector/indexer must be idempotent. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:552-637] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:187-206] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:740-753] [SOURCE: .opencode/skills/sk-design/styles/_db/canonical.mjs:21-69]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-6-stale-cache-proof-needs-four-asymmetric-mutations-reformatting-the-v2-manifest-o",
+      "text": "**Stale-cache proof needs four asymmetric mutations.** Reformatting the v2 manifest or permuting entries must preserve `sourceSemanticHash`; changing acquisition status/source data must change it; changing an artifact must preserve source identity but change that style's content hash and both purpose-specific generation identities; and poisoning only the bridge retrieval payload must be rejected by live projection/check logic even when its stored source/content hashes are unchanged. Before bridge deletion, also test missing bridge recovery and a stale bridge from the immediately previous source generation. These cases distinguish semantic source invalidation, artifact invalidation, and derived-cache corruption. [SOURCE: .opencode/skills/sk-design/styles/_db/canonical.mjs:21-69] [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:14-79] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:685-782] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:141-243]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-2-the-executable-baseline-is-a-command-matrix-not-one-package-level-test-command-r",
+      "text": "**The executable baseline is a command matrix, not one package-level test command.** Repository-confirmed commands are `npm run typecheck`, `npm run build`, and `npm test` from `.opencode/skills/sk-design/design-md-generator/backend/`, plus `node --test .opencode/skills/sk-design/design-motion/corpus/__tests__/*.test.mjs`, `node --test .opencode/skills/sk-design/design-foundations/corpus/__tests__/*.test.mjs`, `node --test .opencode/skills/sk-design/design-interface/corpus/__tests__/*.test.mjs`, and `node --test .opencode/skills/sk-design/design-audit/corpus/__tests__/*.test.mjs` from the repository root. No styles-level `package.json` was found, so `node --test .opencode/skills/sk-design/styles/_engine/__tests__/*.test.mjs` and the corresponding `_db` command are **inferred commands**, not repository-declared scripts; implementation must either confirm them by successful baseline execution or add an explicit documented runner before relying on them as gates. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/package.json:13-20] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/README.md:18] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/README.md:17] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/README.md:29] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/README.md:32] [INFERENCE: the only package manifest found under `.opencode/skills/sk-design/**/package.json` is the backend package, while engine/database `.test.mjs` files are inventoried in iteration 1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-4-1-the-indirect-consumer-closure-adds-computed-paths-fixture-joins-and-generated-ty",
+      "text": "**The indirect consumer closure adds computed paths, fixture joins, and generated TypeScript output to the direct-reference inventory.** `study-prepare.ts` computes both the style-library CLI and retrieval-manifest locations with `path.resolve`, so changing imports alone would leave its runtime path stale. Mode-corpus fixtures construct `_manifest.json` and `_retrieval-manifest.json` with `path.join`, so those strings must change even when their source imports resolve after the directory move. The backend build compiles TypeScript to `dist`; source is authoritative, then `npm run build` regenerates output, and generated output must not be hand-edited. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/package.json:14-20]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,77-94,169-195,197-313`",
+        "Detached config, state, strategy, registry, and iterations 1-3 under `research/lineages/sol-high-fast/`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/package.json:1-35`",
+        "`.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66`",
+        "`.opencode/skills/sk-design/design-motion/corpus/README.md:18`",
+        "`.opencode/skills/sk-design/design-foundations/corpus/README.md:17`",
+        "`.opencode/skills/sk-design/design-interface/corpus/README.md:29`",
+        "`.opencode/skills/sk-design/design-audit/corpus/README.md:32`",
+        "`.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:16-68`",
+        "Prior writer/projector/database/stale-cache sources cited in iterations 2-3."
+      ]
+    },
+    {
+      "id": "finding-5-3-confirmed-correction-frozen-history-does-not-cover-all-references-outside-the-li",
+      "text": "**Confirmed correction: “frozen history” does not cover all references outside the live skill.** Packet 013 still declares itself `In progress` and uses `_db/retrieval.mjs` as a key file and current problem anchor; packet 015 and its children are planned at 0% and carry `_db` paths in continuity, file tables, tasks, checklists, and generated graph metadata. These are active planning/resume consumers and must be patched or regenerated during Checkpoint A. Completed implementation summaries, completed extraction packets, and changelogs remain frozen evidence and should not be rewritten. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:10-25] [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:35-53] [SOURCE: .opencode/specs/sk-design/015-styles-database-evolution/spec.md:10-25] [SOURCE: .opencode/specs/sk-design/015-styles-database-evolution/spec.md:52-63] [SOURCE: .opencode/specs/sk-design/015-styles-database-evolution/004-growth/spec.md:10-29] [SOURCE: .opencode/specs/sk-design/015-styles-database-evolution/004-growth/spec.md:85-93]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-5-confirmed-correction-one-writer-is-necessary-but-not-sufficient-for-safe-v2-auth",
+      "text": "**Confirmed correction: one writer is necessary but not sufficient for safe v2 authority.** The current harness converts every read/parse failure into `[]` and writes the whole manifest directly; carrying either behavior into v2 could erase state after corruption or expose torn bytes. The v2 writer must fail closed, validate before mutation, publish atomically with directory durability, and enforce cross-field/lifecycle rules in addition to exact keys/types/uniqueness: `captured` requires non-null slug/captured time and null error; new `pending` rows have null capture fields; `stale` preserves captured identity; `error` preserves any prior slug/capture and requires an error; IDs and non-null slugs are unique; and only the harness performs declared transitions. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:314-315] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-435] [INFERENCE: iteration 3's exact-key/type/uniqueness validator did not specify these corruption, publication, cross-field, or transition invariants]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-2-confirmed-correction-the-46-file-140-reference-closure-is-stale-and-cannot-be-us",
+      "text": "**Confirmed correction: the 46-file/140-reference closure is stale and cannot be used as the implementation baseline.** The same bounded live-skill count now returns **144 occurrences in 47 files**. The safe plan must regenerate and retain a machine-readable pre-cutover inventory at implementation time rather than hard-code iteration 1's count; success is zero mutable legacy matches after classified frozen exceptions, not equality to 46/140. [INFERENCE: current bounded `rg --count-matches` output contains 47 file rows whose counts sum to 144] [SOURCE: .opencode/skills/sk-design/styles/manual-testing-playbook.md:13-25]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-4-confirmed-correction-the-command-matrix-needs-an-executable-fixture-gate-backend",
+      "text": "**Confirmed correction: the command matrix needs an executable-fixture gate.** Backend `typecheck`, `build`, and `test` are package-declared, and the four mode-corpus `node --test` commands are README-declared. The database test glob is also documented, contrary to iteration 4's “inferred only” wording, but the same playbook requires repo-root execution while spelling `node --test styles/_db/__tests__/*.test.mjs`, a path that exists only relative to the skill root. The fully rooted DB command is therefore inferred until run; the engine playbook names `styles/_engine/__tests__/*` without an exact executable command. Checkpoint A must record successful baseline exits for both corrected full paths before treating them as gates. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/package.json:13-20] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/README.md:18] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/README.md:17] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/README.md:29] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/README.md:32] [SOURCE: .opencode/skills/sk-design/styles/manual-testing-playbook.md:13-39]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-6-confirmed-correction-the-shared-projector-needs-explicit-id-slug-and-provenance-",
+      "text": "**Confirmed correction: the shared projector needs explicit ID/slug and provenance-refresh rules.** Current records prefer artifact UUID over crawl UUID, join acquisition state by slug, and reuse an unchanged-content record while refreshing only `id` and `status`; source URL, captured time, and provenance status can therefore remain stale after acquisition-only changes. A recapture also recomputes slug from the current name and can create a new directory without deleting the old one, after which directory scanning can expose two artifacts for one UUID. V2 must require artifact UUID equals entry `id`, map by stable ID before slug, define atomic slug-directory rename/orphan rejection, and either rebuild provenance on every acquisition change or bind reuse to a per-entry acquisition hash. Provenance `status` must explicitly say whether a manifest fallback counts as known. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:251-272] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:323-332] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:448-513] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:584-621] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:656-722]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-1-confirmed-prior-finding-the-five-name-map-and-name-first-schema-second-boundary-",
+      "text": "**Confirmed prior finding: the five-name map and name-first/schema-second boundary remain correct.** `_db`, `_engine`, `_harness`, `_manifest.json`, and `_retrieval-manifest.json` are authored path names, and the environment-selected `SK_DESIGN_STYLE_DB_MODE` changes adapter behavior rather than dynamically selecting a filesystem module path; the adapter's database imports are still static and belong in Checkpoint A. [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:97-110] [SOURCE: .opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:9-13] [INFERENCE: no evidence invalidates the five moves or the separate name-only parity checkpoint]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    },
+    {
+      "id": "finding-5-7-partially-confirmed-with-rollback-correction-db-pointers-remain-distinct-but-che",
+      "text": "**Partially confirmed with rollback correction: DB pointers remain distinct, but Checkpoint B is not symmetric as written.** The DB generation manifest is correctly separate corpus-external publication state and accepts legacy pointer shapes. However, restoring old code after the canonical file has been overwritten with v2 also requires a validated v2-to-v1 downgrade (or retained exact v1 snapshot) before the old harness/engine runs; the current harness expects an array and does not normalize v2. Likewise, DB retention keeps only current plus one rollback target, so the pre-v2 generation can be pruned after another v2 build. B4/B5 must pin the pre-v2 corpus snapshot, retrieval bridge bytes or deterministic regeneration recipe, and pre-v2 DB generation artifacts until final acceptance; rollback then flips/downgrades in the reverse order before old readers start. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:314-315] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-399] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:121-185] [SOURCE: .opencode/skills/sk-design/styles/_db/operator.mjs:123-185]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Detached config, state, strategy, registry, and iterations 1, 3, and 4 under `research/lineages/sol-high-fast/`.",
+        "Exact legacy-token `Grep` and bounded `rg --count-matches` over `.opencode/skills/sk-design` and active `sk-design` specs.",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:240-435`.",
+        "`.opencode/skills/sk-design/styles/_engine/manifest.mjs:420-649`.",
+        "`.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs:90-139`.",
+        "`.opencode/skills/sk-design/styles/_db/indexer.mjs:620-764`.",
+        "`.opencode/skills/sk-design/styles/_db/canonical.mjs:1-70`.",
+        "`.opencode/skills/sk-design/styles/_db/generation-manifest.mjs:1-308`.",
+        "`.opencode/skills/sk-design/styles/_db/operator.mjs:120-185`.",
+        "`.opencode/skills/sk-design/styles/manual-testing-playbook.md:1-49` and backend/mode package/README command sources.",
+        "`.opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:1-70`.",
+        "`.opencode/specs/sk-design/015-styles-database-evolution/spec.md:1-73` and `004-growth/spec.md:1-110`."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1c5114d30b17",
+      "text": "Assuming the retrieval manifest is canonical because it is richer: its `crawlManifestHash` explicitly signals derivation from crawl state. [SOURCE: .opencode/skills/sk-design/styles/_retrieval-manifest.json:4]",
+      "contentHash": "1c5114d30b17",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b08e2b15c327",
+      "text": "Blindly rewriting changelogs and completed spec history: the canon requires those surfaces to retain historical names. [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:56]",
+      "contentHash": "b08e2b15c327",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9fe95c841c50",
+      "text": "Combining naming moves and manifest-schema consolidation into one cutover: doing so would remove the name-only parity boundary and make regressions harder to attribute. [INFERENCE: two independent change dimensions require separate verification boundaries]",
+      "contentHash": "9fe95c841c50",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fcf921f2a1d5",
+      "text": "No exhausted approach should be promoted after this first pass; the narrowed exact-path search was productive.",
+      "contentHash": "fcf921f2a1d5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c8ba752de83d",
+      "text": "The initial repository-wide search for bare `_db`, `_engine`, and `_harness` produced unrelated identifiers outside `sk-design`; narrowing to filesystem-shaped tokens and the owning skill removed that noise. [INFERENCE: bare underscore identifiers are code identifiers outside the filesystem-naming scope]",
+      "contentHash": "c8ba752de83d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1936315e23f4",
+      "text": "Treating leading-underscore backend paths as exempt: they are authored JavaScript/JSON filesystem names, not Python packages, tool-mandated names, generated output names, or frozen history. [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:34]",
+      "contentHash": "1936315e23f4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-23a0d13a53e0",
+      "text": "Consolidating by taking a union of the two JSON schemas: field ownership spans mutable crawl state and independently canonical artifact content, so a union alone would create two writers for one document or force one subsystem to own data it does not produce. [INFERENCE: writer traces in `extract-refero.mjs` and `manifest.mjs` establish separate authorities]",
+      "contentHash": "23a0d13a53e0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-976c7aa7873c",
+      "text": "No new approach was exhausted. Reading sample JSON alone would not have established ordering, validation, or lifecycle guarantees; tracing writers/readers and checking the full corpus closed those gaps. [INFERENCE: code-level contracts and corpus-wide checks supplied facts absent from samples]",
+      "contentHash": "976c7aa7873c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1ee4e7bb7656",
+      "text": "Treating crawl row order as semantic or deterministic: the writer preserves sitemap/history order and the committed array is sorted by neither UUID nor slug. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:103-115] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:392-399] [INFERENCE: bounded invariant check found both ordering predicates false]",
+      "contentHash": "1ee4e7bb7656",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fa176c901407",
+      "text": "Treating retrieval JSON as the database indexer's current source: the indexer reads crawl bytes and artifacts independently. [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:645-695]",
+      "contentHash": "fa176c901407",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-76c7a4cd25bb",
+      "text": "A permanent committed retrieval-manifest cache: viable as a migration bridge, but it preserves the duplicated physical manifest and stale-derived-file surface the consolidation is intended to remove. [SOURCE: .opencode/skills/sk-design/styles/_engine/__tests__/check-stable.test.mjs:54-79]",
+      "contentHash": "76c7a4cd25bb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-342b61473877",
+      "text": "A permanently multi-writer physical manifest with writer-owned sections: viable only with locks, compare-and-swap, whole-document validation, and source-version binding, all of which add race and torn-generation failure modes without eliminating derived state. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:314-315] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:735-743]",
+      "contentHash": "342b61473877",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-aad7608061ad",
+      "text": "No productive architecture path was exhausted. The two weaker designs remain valid transitional/defensive patterns, but repository write and stale-guard behavior makes them inferior as the final ownership model. [INFERENCE: the comparison eliminated target designs by concrete concurrency and duplication costs rather than by assuming they are impossible]",
+      "contentHash": "aad7608061ad",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7ba9baf912e4",
+      "text": "Reusing current exact-byte `crawlManifestHash` as target semantic identity: current bytes reflect formatting and non-semantic row history; stable canonical JSON and length-framed hashes already exist in the DB subsystem. [SOURCE: .opencode/skills/sk-design/styles/_db/canonical.mjs:25-69] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:584-592]",
+      "contentHash": "7ba9baf912e4",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3b22725e8bd6",
+      "text": "Treating the DB generation-pointer manifest as duplicate corpus truth: it points to immutable published DB artifacts and has independent rollback/legacy-reader responsibilities. [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:5-10] [SOURCE: .opencode/skills/sk-design/styles/_db/generation-manifest.mjs:121-153]",
+      "contentHash": "3b22725e8bd6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e2cd30acfcc9",
+      "text": "A broad styles-tree documentation search for generic words such as `status` was dominated by the 1,290 style artifacts and did not improve backend command discovery. Restricting command discovery to package manifests, backend/mode READMEs, and exact CLI tokens is the productive implementation-time method. [INFERENCE: the broad scoped Grep returned style-content matches before backend README commands]",
+      "contentHash": "e2cd30acfcc9",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-202d494aecc5",
+      "text": "Deleting the retrieval bridge when the v2 writer lands: consumers must first move behind the shared projector and pass stale/missing bridge and DB parity gates. [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:685-782] [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:623-753]",
+      "contentHash": "202d494aecc5",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-24e0bc4a0078",
+      "text": "No architecture design was retried; permanent multi-writer and permanent retrieval-cache targets remain blocked by iteration 3. [SOURCE: .opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:63-71]",
+      "contentHash": "24e0bc4a0078",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-96514e4b6c3c",
+      "text": "Requiring old and new generation-hash equality across the schema cutover: versioned input contracts intentionally change, so reproducibility and semantic parity are the valid proofs. [SOURCE: .opencode/skills/sk-design/styles/_db/indexer.mjs:194-206] [SOURCE: .opencode/skills/sk-design/styles/_engine/manifest.mjs:623-635]",
+      "contentHash": "96514e4b6c3c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1fd909cbb527",
+      "text": "Treating successful import resolution as sufficient name-only proof: computed manifest paths, fixture joins, operator docs, and retrieval/DB outputs can remain stale after imports resolve. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-66] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs:47-68]",
+      "contentHash": "1fd909cbb527",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3bf43dc6945d",
+      "text": "Updating frozen history to make exact-token searches globally clean: the naming canon requires historical surfaces to retain shipped names, so searches must classify allowed historical matches. [SOURCE: .opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md:56]",
+      "contentHash": "3bf43dc6945d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ef3f9027ec7b",
+      "text": "Assuming DB legacy-pointer normalization preserves an arbitrarily old rollback generation; retention is current plus one rollback target. [SOURCE: .opencode/skills/sk-design/styles/_db/operator.mjs:123-185]",
+      "contentHash": "ef3f9027ec7b",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a3b5126bb2af",
+      "text": "Calling the DB command either fully confirmed or wholly absent: it is documented but inconsistent with its declared working directory. [SOURCE: .opencode/skills/sk-design/styles/manual-testing-playbook.md:13-39]",
+      "contentHash": "a3b5126bb2af",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-31dd36f6e5f5",
+      "text": "Classifying every spec-folder hit as frozen history; packets 013 and 015 expose active continuity/planning references. [SOURCE: .opencode/specs/sk-design/013-styles-database-rust-opportunities/spec.md:35-42] [SOURCE: .opencode/specs/sk-design/015-styles-database-evolution/spec.md:52-63]",
+      "contentHash": "31dd36f6e5f5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ca018af47a15",
+      "text": "No broad generic styles-tree documentation search was retried; exact legacy paths and current packet status supplied the needed classification without corpus prose noise. [SOURCE: .opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:64-69]",
+      "contentHash": "ca018af47a15",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5311a1e9c173",
+      "text": "No permanent multi-writer or permanent retrieval-cache target was reconsidered; the adversarial evidence strengthens the need for one fail-closed writer and a temporary bridge. [SOURCE: .opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/deep-research-strategy.md:71-79]",
+      "contentHash": "5311a1e9c173",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a0fbbefd1e3b",
+      "text": "Treating the old 46-file/140-reference number as a stable acceptance fixture; the live closure has already changed. [INFERENCE: current bounded count is 47/144]",
+      "contentHash": "a0fbbefd1e3b",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.89,
+    "coverageBySources": {
+      "code": 53,
+      "other": 43
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0093-sk-design-012-gap-research/.opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/002-naming-manifests/research/lineages/sol-high-fast/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

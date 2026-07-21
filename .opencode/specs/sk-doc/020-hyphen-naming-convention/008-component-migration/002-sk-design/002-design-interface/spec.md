@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-interface (020 phase 002)
+> Phase adjacency — predecessor `001-hub-root-and-shared`; successor `003-design-foundations`.
 
 > Phase 002 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -85,6 +86,7 @@ The design-interface mode has underscore-bearing procedure, asset, and reference
 | REQ-002 | Mode-local references are updated in lockstep. | SKILL.md, README.md, and all affected Markdown path links point to the target names. |
 | REQ-003 | The mode contract is behaviorally unchanged. | The registry route, procedure selection, shared handoff, and resource-loading semantics remain identical. |
 | REQ-004 | Sibling ownership is respected. | Catalog/playbook names are handed to phases 008/009 rather than partially renamed here. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

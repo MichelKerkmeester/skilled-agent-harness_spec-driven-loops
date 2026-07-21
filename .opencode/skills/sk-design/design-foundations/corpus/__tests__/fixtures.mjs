@@ -15,7 +15,7 @@ import {
   CORPUS_EVIDENCE_SCOPE,
   CORPUS_PROOF_HANDOFF_VERSION,
 } from '../../../shared/corpus-context/corpus-context-plan.mjs';
-import { STYLE_ALPHA, STYLE_BETA } from '../../../styles/_engine/__tests__/fixtures.mjs';
+import { STYLE_ALPHA, STYLE_BETA } from '../../../styles/tests/engine/fixtures.mjs';
 import {
   FOUNDATIONS_AXIS_COMPATIBILITY_VERSION,
   FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION,

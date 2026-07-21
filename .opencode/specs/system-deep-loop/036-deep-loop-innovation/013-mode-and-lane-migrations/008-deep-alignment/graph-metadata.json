@@ -95,15 +95,15 @@
     ],
     "causal_summary": "Migrate Deep Alignment's verify-first, named-authority conformance loop to the shared typed event-ledger substrate through seven independently gated concern children. Preserve authority and evidence provenance, replayable findings, explicit non-pass outcomes, and the rollback-guarded mode handoff.",
     "created_at": "2026-07-16T03:43:56.850Z",
-    "last_save_at": "2026-07-17T13:21:44.551Z",
+    "last_save_at": "2026-07-19T18:01:26.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fce6b330fd722afc767a8287423896042b2cd861ab59821777a939d7b6296351",
+    "source_fingerprint": "sha256:1eabb09f4620d1f2d8109cba4242a6fbe364b860c65c2236c9e331d8805fd94b",
     "source_doc_hashes": {
-      "spec.md": "ad5a99fe4cceac6a22ff83dc5a620859202085720bcaa74a6c0cf5d6af540d38"
+      "spec.md": "440c5e0b0bdc1d7d5333eb5dbf5174f842444e1cc58d0d2a965b15ed1ec76a1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

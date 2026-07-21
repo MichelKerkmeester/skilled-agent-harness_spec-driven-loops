@@ -4,7 +4,7 @@ Local, Git-free before/after review of an edited document — text, Markdown, HT
 
 ## 1. OVERVIEW
 
-This workflow packet reviews what changed in a locally edited document without Git and without a hosted service. It captures a baseline before an edit, then compares the before and after versions and produces one self-contained HTML report (inlined CSS, zero JavaScript, no network). The comparison engine ships here as `scripts/create_diff.py`; everything runs on the machine and the source file is never modified.
+This workflow packet reviews what changed in a locally edited document without Git and without a hosted service. It captures a baseline before an edit, then compares the before and after versions and produces one self-contained HTML report (inlined CSS, zero JavaScript, no network). Pre-composed aggregate pairs can carry two or more files; validated file markers render as explicit start/end bands instead of disappearing into collapsed context. The comparison engine ships here as `scripts/create_diff.py`; everything runs on the machine and the source file is never modified.
 
 ## 2. WHEN TO USE
 
@@ -14,6 +14,7 @@ Use this packet when you need to:
 - Produce a before/after report for a Markdown, text, HTML, DOCX, or PDF file outside Git.
 - Capture a baseline of a document before editing it.
 - Compare two explicit versions of a document (old file vs. new file).
+- Review a pre-composed before/after bundle while keeping each file transition visible.
 
 Do not use it for code or Git-tracked files (use `git`/`sk-git`), for visual/design comparison (use `sk-design`), or for auditing a single existing document (use `create-quality-control`).
 
@@ -23,7 +24,7 @@ Do not use it for code or Git-tracked files (use `git`/`sk-git`), for visual/des
   The authoritative packet contract: activation triggers, routing, the diff workflow, capability tiers, rules, and success criteria.
 
 - `scripts/create_diff.py`
-  The comparison engine: format extraction (text, Markdown, HTML, DOCX, text PDF), deterministic line + inline word diff, content-addressed baseline snapshots, and the self-contained HTML report renderer. Python 3 standard library only (PDF optionally uses `pdftotext`/`pypdf`/`pdfplumber` when present).
+  The comparison engine: format extraction (text, Markdown, HTML, DOCX, text PDF), deterministic line + inline word diff, validated aggregate-file boundaries, content-addressed baseline snapshots, and the self-contained HTML report renderer. Python 3 standard library only (PDF optionally uses `pdftotext`/`pypdf`/`pdfplumber` when present).
 
 - `scripts/validate_report.py`
   Asserts a generated report is safe and self-contained: correct doctype, `lang`, a Content-Security-Policy meta tag, zero `<script>`, no inline event handlers, and no remote resource references.
@@ -62,6 +63,12 @@ python3 scripts/create_diff.py compare-pair --before old.md --after new.md --rep
 # Verify the report is safe/self-contained before handoff
 python3 scripts/validate_report.py review.html
 ```
+
+For multiple files, pre-compose both Markdown inputs with matching ordered
+`===== BEGIN FILE: <path> =====` and `===== END FILE: <path> =====` pairs.
+The report shows each transition as a full-width boundary band in either view,
+with a 32px canvas gap separating each later file from the preceding diff.
+The CLI still receives one before document and one after document.
 
 If `--report` is omitted, the engine derives `<after-slug>.diff.html` with a lowercase kebab-case slug. Explicit report basenames must already be lowercase kebab-case, and an existing report is never overwritten.
 

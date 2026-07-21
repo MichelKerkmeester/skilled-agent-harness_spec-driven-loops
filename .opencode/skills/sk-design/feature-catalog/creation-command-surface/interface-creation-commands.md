@@ -1,10 +1,10 @@
 ---
 title: "Interface Creation Commands"
-description: "Five canonical /interface:* creation commands, one shared nine-stage contract, and additive /design:* compatibility aliases."
+description: "Five canonical /interface:* creation commands sharing one nine-stage contract. The former /design:* alias namespace is retired — /interface:* is the sole creation surface."
 trigger_phrases:
   - "Interface Creation Commands"
   - "interface command surface"
-  - "design command aliases"
+  - "design command retirement"
   - "shared creation contract"
 version: 1.0.0.0
 ---
@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 The canonical creation-command surface is `/interface:{design,foundations,motion,audit,design-reference}`. These commands map to the existing `interface`, `foundations`, `motion`, `audit` and `md-generator` workflow modes without renaming the internal IDs.
 
-The former `/design:{interface,foundations,motion,audit,md-generator}` commands remain thin compatibility aliases. The aliases are additive and preserve arguments while executing the canonical contracts in place.
+The former `/design:{interface,foundations,motion,audit,md-generator}` alias namespace is retired: `/interface:*` is the sole public creation surface. The alias wrappers, their assets, and the registry alias plumbing have been removed end-to-end; the alias era is preserved only in the historical changelog.
 
 ---
 
@@ -27,7 +27,7 @@ Each canonical command has an auto workflow, a confirm workflow and a presentati
 
 The shared contract keeps responsibilities separate: commands own intake and lifecycle, the selected stable mode owns judgment and proof definition, transports own retrieval, rendering or extraction, and `sk-code` owns application-code mutation and stack verification.
 
-Compatibility metadata maps each `/design:*` alias one-to-one to a canonical `/interface:*` command. The alias layer does not create new modes, remove old consumers or change the stable mode roster.
+The command registries record only the canonical `/interface:*` commands, each mapped one-to-one to its stable mode. There is no alias layer — the retirement removed the alias-reconciliation machinery so the surface carries exactly one namespace.
 
 ---
 
@@ -40,16 +40,15 @@ Compatibility metadata maps each `/design:*` alias one-to-one to a canonical `/i
 | `.opencode/skills/sk-design/shared/creation-contract.md` | Shared contract | Defines the nine-stage creation lifecycle and responsibility boundaries. |
 | `.opencode/commands/interface/*.md` | Canonical routers | Exposes the five `/interface:*` creation commands. |
 | `.opencode/commands/interface/assets/*` | Workflow assets | Supplies auto, confirm and presentation contracts per command. |
-| `.opencode/commands/design/*.md` | Compatibility routers | Preserves the five `/design:*` aliases. |
-| `.opencode/skills/sk-design/command-metadata.json` | Metadata | Registers canonical commands and compatibility aliases per stable mode. |
-| `.opencode/skills/sk-design/hub-router.json` | Router map | Records canonical-by-mode and compatibility-alias mappings. |
+| `.opencode/skills/sk-design/command-metadata.json` | Metadata | Registers the canonical `/interface:*` commands per stable mode. |
+| `.opencode/skills/sk-design/hub-router.json` | Router map | Records the canonical-by-mode command mappings. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs` | Test harness | Validates canonical command packages, aliases, metadata and mode parity. |
-| `.opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs` | Automated test | Covers routes, outputs, aliases, trust, evidence and amendment behavior. |
+| `.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs` | Test harness | Validates the canonical command packages, metadata and mode parity. |
+| `.opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs` | Automated test | Covers routes, outputs, trust, evidence and amendment behavior. |
 
 ---
 

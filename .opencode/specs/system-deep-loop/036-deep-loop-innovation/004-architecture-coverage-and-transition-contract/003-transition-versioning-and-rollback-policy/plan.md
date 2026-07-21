@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T19:09:21Z"
     last_updated_by: "codex"
-    recent_action: "Planned the policy freeze and downstream conformance gates"
-    next_safe_action: "Run the policy review matrix and ratify the frozen contract"
+    recent_action: "Completed the policy freeze and conformance review"
+    next_safe_action: "Phase 006 implements the first conforming typed writer"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "transition-versioning-and-rollback-policy.md"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,18 +45,18 @@ This phase converts the parent program's sequencing invariants and manifest migr
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent program Sequencing Invariants 2, 3, 7, and 8 are cited and translated into testable policy statements.
-- [ ] The manifest `migration_model` and phases 003, 005, and 011 outcomes are cited without changing their ownership boundaries.
-- [ ] The phase remains planning-only and declares `depends_on: []`.
-- [ ] The event, transition, authority, certificate, and rollback vocabulary is unambiguous.
+- [x] The parent program Sequencing Invariants 2, 3, 7, and 8 are cited and translated into testable policy statements.
+- [x] The manifest `migration_model` and phases 003, 005, and 011 outcomes are cited without changing their ownership boundaries.
+- [x] The phase remains planning-only and declares `depends_on: []`.
+- [x] The event, transition, authority, certificate, and rollback vocabulary is unambiguous.
 
 ### Definition of Done
-- [ ] The envelope requires a stable type discriminator and positive per-type version, with a registered current writer version.
-- [ ] The upcaster contract covers deterministic adjacent transforms, supported history, future-version refusal, missing links, and source-byte preservation.
-- [ ] The authorization contract defaults to deny and defines complete allow/deny inputs, outputs, atomicity, and rejection receipts.
-- [ ] The per-mode authority state machine enforces one writer, shadow-parity readiness, monotonic epochs, and certificate-backed flips.
-- [ ] The rollback window remains open for at least 14 days and five successful authoritative executions, whichever completes later.
-- [ ] The downstream conformance matrix covers phases 003-012 and assigns no conflicting policy ownership.
+- [x] The envelope requires a stable type discriminator and positive per-type version, with a registered current writer version.
+- [x] The upcaster contract covers deterministic adjacent transforms, supported history, future-version refusal, missing links, and source-byte preservation.
+- [x] The authorization contract defaults to deny and defines complete allow/deny inputs, outputs, atomicity, and rejection receipts.
+- [x] The per-mode authority state machine enforces one writer, shadow-parity readiness, monotonic epochs, and certificate-backed flips.
+- [x] The rollback window remains open for at least 14 days and five successful authoritative executions, whichever completes later.
+- [x] The downstream conformance matrix covers phases 006-015 and assigns no conflicting policy ownership.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -66,7 +68,7 @@ The deliverable is one policy contract with four coupled domains and one traceab
 2. **Transition authorization.** The append boundary asks one gateway to decide the exact requested transition against current state, actor capability, invariant evidence, policy version, and authority epoch. Missing or stale inputs deny. An allow decision and the domain append share one atomic boundary; a denial creates only a bounded rejection receipt.
 3. **Per-mode authority cutover.** Each mode owns one authority record with a monotonic epoch and the states `legacy_authoritative`, `shadowing`, `cutover_ready`, `new_authoritative_reversible`, `new_authoritative_final`, and `rollback_pending`. Compare-and-swap transitions and gateway epoch checks prevent split brain.
 4. **Rollback window.** The flip opens a window lasting until both 14 days and five successful authoritative executions are satisfied. Required assets remain live; defined safety failures trigger admission freeze, spine fencing, state reconciliation, legacy restoration at a new epoch, and a rollback certificate.
-5. **Conformance traceability.** A phase matrix maps requirements to the writers, readers, adapters, fixtures, certificates, and retirement evidence that phases 003-012 must deliver.
+5. **Conformance traceability.** A phase matrix maps requirements to the writers, readers, adapters, fixtures, certificates, and retirement evidence that phases 006-015 must deliver.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -83,13 +85,13 @@ The deliverable is one policy contract with four coupled domains and one traceab
 - Write the deny-by-default gateway request, decision, atomicity, stale-state, idempotency, outage, and rejection-receipt rules.
 - Write the per-mode authority state machine, allowed edges, compare-and-swap epoch rules, single-writer invariant, readiness evidence, and cutover certificate schema.
 - Write the 14-day/five-run rollback window, extension conditions, trigger classes, retained assets, execution runbook, rollback certificate, and closure evidence.
-- Map phases 003-012 to the exact clauses they implement, consume, test, certify, or use as retirement gates.
+- Map phases 006-015 to the exact clauses they implement, consume, test, certify, or use as retirement gates.
 
 ### Phase 3: Verification
 - Challenge the contract with supported-old, unknown-future, missing-upcaster, lossy-upcaster, stale-epoch, gateway-outage, duplicate-request, split-brain, unresolved-parity, low-traffic, and mid-window rollback cases.
 - Verify every failure path denies mutation and yields bounded audit evidence without becoming domain history.
 - Verify phase 008 cannot cut authority, phase 014 cannot bypass parity or shorten the window, and phase 015 cannot retire a writer inside an open window.
-- Run strict spec-kit validation and preserve only the expected missing deterministic-metadata findings.
+- Run strict spec-kit validation and require Errors 0 with no strict-mode warning.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -107,18 +109,17 @@ The deliverable is one policy contract with four coupled domains and one traceab
 | REQ-008 | Cutover-certificate review requires exact SHA, version range, classified state, mixed replay, live parity, mode gate, and rollback rehearsal |
 | REQ-009 | Window-clock cases prove closure waits for both 14 elapsed days and five successful authoritative executions |
 | REQ-010 | Rollback tabletop preserves events, fences the spine, restores legacy at a new epoch, reconciles state, and emits a certificate |
-| REQ-011 | Traceability review maps phases 003-012 and blocks retirement while any rollback or archival-read gate is incomplete |
+| REQ-011 | Traceability review maps phases 006-015 and blocks retirement while any rollback or archival-read gate is incomplete |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This planning child has no predecessor dependency. It consumes two normative sources: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md` for sequencing invariants and `.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json` for the migration model and phase outcomes. The immediate architecture parent joins this policy with the spine ADR and 178-row recommendation ledger before program phase 006 begins. Downstream phases 003-012 depend on the frozen clauses, but they do not redefine them.
+This planning child has no predecessor dependency. It consumes two normative sources: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md` for sequencing invariants and `.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json` for the migration model and phase outcomes. The immediate architecture parent joins this policy with the spine ADR and 178-row recommendation ledger before program phase 006 begins. Downstream phases 006-015 depend on the frozen clauses, but they do not redefine them.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase changes policy documents only. Before a runtime writer lands, rollback is a path-scoped revert of this phase's four authored files followed by re-ratification of the architecture-parent gate. After any downstream writer consumes the contract, the policy is no longer silently reversible: an amendment must identify the changed clause, explain its compatibility effect, enumerate every affected phase and artifact, reopen completed consumer gates where evidence is stale, and rerun mixed-version, authorization, cutover, and rollback reviews. Historical policy text and event data are never rewritten to make a new rule appear retroactive.
+This phase changes policy documents only. Before a runtime writer lands, rollback is a path-scoped revert of this leaf's ratification documents followed by re-ratification of the architecture-parent gate. After any downstream writer consumes the contract, the policy is no longer silently reversible: an amendment must identify the changed clause, explain its compatibility effect, enumerate every affected phase and artifact, reopen completed consumer gates where evidence is stale, and rerun mixed-version, authorization, cutover, and rollback reviews. Historical policy text and event data are never rewritten to make a new rule appear retroactive.
 <!-- /ANCHOR:rollback -->
-

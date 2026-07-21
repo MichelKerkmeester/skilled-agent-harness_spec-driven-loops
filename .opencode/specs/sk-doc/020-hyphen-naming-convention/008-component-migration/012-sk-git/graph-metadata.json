@@ -94,15 +94,15 @@
     ],
     "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-07-17T20:26:17.774Z",
+    "last_save_at": "2026-07-20T11:09:41.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:154d0f4cbf1cc3e2d9c423f43b50dab299251d0c46a4d91c90097e0fbaab866b",
+    "source_fingerprint": "sha256:06c1c3196d0d4d03c3b2239b812a978dcf2bcbd9f428dc43d29b075872076997",
     "source_doc_hashes": {
-      "spec.md": "7717d2ebffc44cf21000b668182bed236f2d3106953784e9d6d9b43d1888f503"
+      "spec.md": "64110c339c464fe69db770c93701022290cd09f4ea205b979be0b71834e7bc8f"
     },
     "last_active_child_id": null,
     "last_active_at": null

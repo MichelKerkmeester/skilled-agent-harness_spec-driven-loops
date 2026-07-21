@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 005. The verifier replays the exact typed council event
+This checklist is the blocking verifier contract for phase 013's `003-deep-ai-council/002-reducers-and-projections` child. The verifier replays the exact typed council event
 sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints,
 checks independence and stance lineage, and reports field-level parity against the legacy Deep AI Council path. It must
 fail on hidden side effects, invalid transitions, unsupported calibration, erased minority evidence, unstable

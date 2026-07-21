@@ -59,7 +59,7 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-020 [P0] The engine returns a normalized decision and defers on off-signal prompts.
-  - **Evidence**: `compiledRoute(hubId, taskText)` returns `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}`; `action` is one of route/clarify/defer/reject, and an off-signal prompt returns `defer`.
+  - **Evidence**: `compiledRoute(hubId, taskText)` returns a discriminated union keyed on `action` (route/clarify/defer/reject): the route-only fields (`selectionKind`, `targets`) are present only when `action === 'route'`, so a negative decision never carries a target; an off-signal prompt returns `defer`. Exercised by `harness/verify-runtime-engine.cjs`.
 - [x] CHK-021 [P0] The resolver is inert unless both gates hold.
   - **Evidence**: `resolveRoute` returns null unless `SPECKIT_COMPILED_ROUTING=1` AND the manifest reads `servingAuthority: compiled`; the flag-off CLI prints the legacy sentinel `{servingAuthority: legacy, hubId}`.
 - [x] CHK-022 [P0] The resolver fails safe on error.
@@ -70,6 +70,8 @@ contextType: "implementation"
   - **Evidence**: `--rollback` restores `manifest.serving-prior.json` byte-for-byte (the retained serving-prior reads `servingAuthority: legacy`, `shadowOnly: true`); the mechanism was exercised and proven. `sk-code` was then flipped for the production cutover and is currently `servingAuthority: compiled` at fence epoch 4, with the byte-identical serving-prior retained so the same byte-exact rollback remains available.
 - [x] CHK-025 [P1] The flip is idempotent.
   - **Evidence**: A hub already `compiled`-serving is an `ALREADY-COMPILED` no-op; the monotonic fence is never reused across flip or rollback.
+- [x] CHK-026 [P0] The security-sensitive runtime branches have committed executable regression coverage.
+  - **Evidence**: `harness/verify-runtime-engine.cjs` (non-destructive; it snapshots the activation state and restores it in a `finally`) exercises the discriminated-union decision shape, flag-off inertness, serve-time identity binding across all seven compiled hubs, the fenced serving CAS (byte-exact rollback + byte-identical reflip), the exclusive-lock refusal of a concurrent flip, and flip-time refusal of a tampered `selectedPolicy` hash. 6/6 checks pass; the suite is idempotent and leaves no committed-state drift.
 
 <!-- /ANCHOR:testing -->
 

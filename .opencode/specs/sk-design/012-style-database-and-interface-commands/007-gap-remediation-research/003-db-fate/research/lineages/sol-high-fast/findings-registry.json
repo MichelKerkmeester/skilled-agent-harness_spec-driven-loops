@@ -1,0 +1,51 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"q-consumers","text":"What contract and workload do the four design-mode corpus consumers require?","status":"resolved","resolvedAtIteration":1,"answer":"A bounded generation-safe query/hydration facade; no consumer requires SQLite specifically."},
+    {"id":"q-readiness","text":"How complete is the persistent implementation and what remains to make it default?","status":"resolved","resolvedAtIteration":2,"answer":"Technically mature, but missing a published artifact and an owned build/distribution/refresh/repair lifecycle plus live cutover evidence."},
+    {"id":"q-economics","text":"What measurable benefits and recurring costs does SQLite introduce at current scale?","status":"resolved","resolvedAtIteration":3,"answer":"It credibly removes repeat-query corpus I/O, but current-scale materiality and demand are unmeasured while defaulting introduces permanent publication, freshness, migration, monitoring, and repair ownership."},
+    {"id":"q-criteria","text":"Which decision criteria and thresholds govern keep versus shelve?","status":"resolved","resolvedAtIteration":4,"answer":"A weighted current-fit/materiality/operations/integrity/future/reversibility framework favors shelf 85/100 over wire 54/100; reactivation requires all evidence gates."},
+    {"id":"q-plans","text":"What are the safe wiring and deprecation plans?","status":"resolved","resolvedAtIteration":5,"answer":"Wire only through distribution/build/refresh/shadow/relevance/cutover gates; shelf by removing live DB modes/code and superseding its roadmap while preserving flat-manifest safety and design evidence."}
+  ],
+  "keyFindings": [
+    {"id":"f-consumer-facade","iteration":1,"summary":"All four corpus modules use the storage-neutral runQuery/runHydrate facade.","sources":["style-library.mjs:181-207","four corpus modules"]},
+    {"id":"f-content-authority","iteration":1,"summary":"Flat artifacts remain authoritative content under persistent selection.","sources":["consumer hydration calls"]},
+    {"id":"f-legacy-freshness-cost","iteration":1,"summary":"Legacy queries rebuild and compare the live corpus manifest on every call.","sources":["style-library.mjs:123-159"]},
+    {"id":"f-db-mature","iteration":2,"summary":"The persistent projection and operator machinery are technically mature.","sources":["schema.mjs:35-269","retrieval.mjs:364-510","operator.mjs:75-247"]},
+    {"id":"f-lifecycle-unowned","iteration":2,"summary":"No default build, distribution, refresh, or repair owner exists.","sources":["README.md:40-49","operator.mjs:213-226"]},
+    {"id":"f-shadow-bounded","iteration":2,"summary":"Shadow parity tolerates ranking and identity differences and is not a sufficient cutover gate alone.","sources":["persistent-adapter.mjs:113-141"]},
+    {"id":"f-benefit-directional","iteration":3,"summary":"Persistent selection is directionally faster, but current-scale materiality is unmeasured.","sources":["adapter.test.mjs:107-132","rank-fts.mjs:81-184"]},
+    {"id":"f-evidence-gap","iteration":3,"summary":"No published generation, active profile, workload trace, full-corpus timing, or human relevance set exists.","sources":["013 research.md:38-44","foundation implementation-summary.md:117-123"]},
+    {"id":"f-default-not-cleared","iteration":3,"summary":"Present evidence does not clear a threshold for permanent default-path ownership.","sources":["iteration-003.md"]},
+    {"id":"f-score-shelf","iteration":4,"summary":"Weighted present-state score favors shelving 85/100 over wiring 54/100.","sources":["iteration-004.md"]},
+    {"id":"f-formal-shelf","iteration":4,"summary":"Formal shelving removes the supported runtime surface rather than preserving undocumented dormant modes.","sources":["gap-analysis.md:168-171","iteration-004.md"]},
+    {"id":"f-reactivation-gates","iteration":4,"summary":"Reactivation requires conjunctive evidence gates.","sources":["iteration-004.md","015 roadmap specs"]},
+    {"id":"f-blast-radius","iteration":5,"summary":"Executable DB coupling outside the DB tree is isolated to the adapter, facade, and adapter tests.","sources":["scoped dependency Grep"]},
+    {"id":"f-wire-plan","iteration":5,"summary":"A safe wire plan begins with distribution, measurement, refresh ownership, and shadow/relevance gates.","sources":["iteration-005.md"]},
+    {"id":"f-shelf-plan","iteration":5,"summary":"A formal shelf removes live DB modes/code and supersedes the roadmap while retaining the flat manifest and design evidence.","sources":["iteration-005.md"]}
+  ],
+  "ruledOutDirections": [
+    {"approach":"Rewrite consumers for a database API","reason":"The existing facade already isolates backend selection.","iterations":[1]},
+    {"approach":"Move authoritative content into SQLite","reason":"Consumer hydration semantics rely on bounded flat artifacts.","iterations":[1]},
+    {"approach":"Flip the adapter default without publishing and owning the database lifecycle","reason":"Clean checkouts have no generation pointer and reads correctly fail closed.","iterations":[2]},
+    {"approach":"Use feature richness as proof of value","reason":"Implemented supply does not establish observed consumer demand.","iterations":[2]},
+    {"approach":"Promote based on the 20-style timing assertion","reason":"It proves directionality but records no current-scale materiality.","iterations":[3]},
+    {"approach":"Treat correctness coverage as product demand","reason":"Safety evidence does not establish workload value.","iterations":[3]},
+    {"approach":"Keep dormant modes indefinitely for optionality","reason":"Git history preserves recovery without active maintenance ownership.","iterations":[4]},
+    {"approach":"Promote from sunk cost or one benchmark","reason":"Promotion requires all materiality, quality, and operational gates.","iterations":[4]},
+    {"approach":"Leave DB switches live after shelving","reason":"That preserves the current dormant ambiguity.","iterations":[5]},
+    {"approach":"Lazy query-time database build","reason":"Integrity-sensitive reads should not trigger corpus mutation.","iterations":[5]},
+    {"approach":"Delete the flat retrieval manifest","reason":"It is the canonical flat-engine freshness and generation guard.","iterations":[5]}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 15,
+    "convergenceScore": 0.35,
+    "coverageBySources": {"code":16,"spec":7,"tests":5,"measurement":1}
+  },
+  "status": "complete",
+  "sessionId": "fanout-sol-high-fast-1784622756165-kgdopz",
+  "generation": 1
+}

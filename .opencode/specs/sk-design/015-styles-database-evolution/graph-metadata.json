@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution",
+  "spec_folder": "sk-design/015-styles-database-evolution",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/015-styles-database-evolution/001-foundation",
+    "sk-design/015-styles-database-evolution/002-js-capabilities",
+    "sk-design/015-styles-database-evolution/003-measured-native",
+    "sk-design/015-styles-database-evolution/004-growth",
+    "sk-design/015-styles-database-evolution/005-library-restructure",
+    "sk-design/015-styles-database-evolution/006-persistent-db-activation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles database evolution roadmap parent",
+      "styles db phased plan foundation js native growth",
+      "rust conditional late phase styles"
+    ],
+    "key_topics": [
+      "styles",
+      "database",
+      "evolution",
+      "roadmap",
+      "parent",
+      "phased",
+      "plan",
+      "foundation",
+      "native",
+      "growth",
+      "rust",
+      "conditional"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-codex/research.md",
+      ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restructure Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Which Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase-parent packet: the measurement-gated roadmap that turns the 013 Rust-opportunities research into a phased, JS-first evolution of the styles database, with Rust as a conditional late phase.",
+    "created_at": "2026-07-20T06:33:30.329Z",
+    "last_save_at": "2026-07-21T11:29:31.488Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:79432160f965171b385ae78428f670cf498e5473f555465564cf98b760ce2ebd",
+    "source_doc_hashes": {
+      "spec.md": "7158d717005f07ffadb24137eaefbff739a26d9db94c57d985167a0b7ce72fc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

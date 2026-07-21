@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council per-run certificate and per-transition receipt profiles over the typed event-ledger substrate: attestation boundaries, replay-fingerprint inputs, lifecycle coverage, recovery dispositions, and independent offline verification for seats, critique rounds, convergence, council artifacts, and the council test gate.",
     "created_at": "2026-07-16T03:43:34.752Z",
-    "last_save_at": "2026-07-17T13:21:31.663Z",
+    "last_save_at": "2026-07-19T18:01:17.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f69111cc866ed0da0312f455b8dc1a4657888b11ebc6515a8cc0e6adcb33b639",
+    "source_fingerprint": "sha256:2ea1e06f3e2225fdadc1c348d3eab746db2bbb58894ae6627998e0a324bc63f3",
     "source_doc_hashes": {
-      "spec.md": "5154494bb01be0e7101d47da11ba570b809e8893549df83dc2793a03d006ee37",
-      "plan.md": "f699e61ce3ac0cec1a397592e205cd86b7d90b349b6caeaad4d78921f629254b",
-      "tasks.md": "1f4798eca1933c70d753453de922cb1752784b3036c68c3b9085cc8c8e60d9d0",
-      "checklist.md": "9a8b88889a010872a1a2264001ed99cd128609d0b150cdf586d443d9ad8a4ab9"
+      "spec.md": "d8830e98c8f1eec7293332ad5ba636047577a2ea63026861227706beedd8ddd8",
+      "plan.md": "0949811f5f61ddbb4780baf52d08df1ace96fce5fe90a550aa68bdb8999cffd7",
+      "tasks.md": "a0f4b626b15edefdcfc8437a717127c3579ddabc9a84857f9373b859c9cf7ed3",
+      "checklist.md": "665d3c29abc37d9ddb8dab8c548ae75a179e027cb37629ffd81499b6268343da"
     },
     "last_active_child_id": null,
     "last_active_at": null

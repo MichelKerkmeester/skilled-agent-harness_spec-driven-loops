@@ -15,6 +15,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -25,10 +26,14 @@ contextType: "implementation"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase 1: Preconditions and inventory
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Preconditions and inventory
 
 - [x] T001 Confirm upstream phases landed and frozen: schemas (`000`), shadow compiler + fenced selector (`001`), evaluator + compatibility projector (`002`)
 - [x] T002 Record the frozen legacy route-gold baseline for `sk-code` (Stage 0)
@@ -36,8 +41,12 @@ contextType: "implementation"
 - [x] T004 [P] Enumerate the dual-read alias set and confirm each entry has a target mode (Stage 2 precondition)
 
 **Evidence**: Upstream harnesses exited 0; the compiler binds the live authored bytes, emits four destinations, and resolves all 29 aliases.
+<!-- /ANCHOR:phase-1 -->
 
-## Phase 2: Compile sk-code into the contract
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Compile sk-code into the contract
 
 - [x] T005 Compile the `sk-code` destination graph: `workflow` modes → `actor` (`mutatesWorkspace=true`); `surface` packets → `evidence` (`mutatesWorkspace=false`, `routingClass: metadata`) — REQ-001
 - [x] T006 Assign destination identity `(skillId, workflowMode, packetId, packetKind, backendKind)` + role per destination (synthesis §2.2)
@@ -49,7 +58,7 @@ contextType: "implementation"
 
 **Evidence**: Canonical base/effective hashes are `54bdc95a…cc06` and `77bf5a97…b31c`; independent recompile is byte-identical and a self-declared mismatch is rejected.
 
-## Phase 3: Fixtures and parity (scorer untouched)
+### Fixtures and parity (scorer untouched)
 
 - [x] T012 Add surfaceBundle route fixture: `"review my webflow animation for jank"` → `route(surfaceBundle, [code-review(actor), code-webflow(evidence)])` — REQ-002
 - [x] T013 Add single-mode degenerate fixture: workflow mode + zero surfaces → `route(single, [actor])`
@@ -63,7 +72,7 @@ contextType: "implementation"
 
 **Evidence**: Real `evaluateRouteGold` passes 5/5 independently authored rows; corrupted observation fails, all hard blocks name exact refusal codes, and planted document divergence is rejected.
 
-## Phase 4: Fenced activation and rollback drill
+### Fenced activation and rollback drill
 
 - [x] T021 Add the sk-code candidate generation to the fenced activation manifest; keep legacy serving-authoritative — REQ-005
 - [x] T022 Prove one-generation pinning per request; assert no request observes mixed generations (NFR-D02)
@@ -71,8 +80,12 @@ contextType: "implementation"
 - [x] T024 Verify the rollback restores byte-identical prior manifest bytes and passes the preimage drift check — SC-003, NFR-R01
 
 **Evidence**: The phase-local drill rejects a wrong preimage and mixed request pins, advances fencing epoch 0→1→2, and restores exact retained bytes with matching SHA-256.
+<!-- /ANCHOR:phase-2 -->
 
-## Phase 5: Stage-4 gate reconciliation and handoff
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Stage-4 gate reconciliation and handoff
 
 - [x] T025 Reconcile the Stage-4 per-hub canary gate: zero hard mismatch, advisor identity matches-or-ignored, document parity, rollback drill proven — MIGRATION GATE
 - [x] T026 Confirm no hard-block condition present (evidence commit, negative-with-authority, hash mismatch, mixed generation, clarify/handoff on exact route, COMMIT without VERIFY, scorer edit) — synthesis §9
@@ -82,9 +95,11 @@ contextType: "implementation"
 - [x] T030 Prove valid-certificate routing, absent/stale/mismatched abstention, N=1 constant folding, external decision-oracle acceptance, and the direct-evaluator bypass falsifier
 
 **Evidence**: Validator reports `status: GREEN` and `certificateGate: pass`; the valid certificate emits the bundle, all four invalid certificate cases clarify, the N=1 case makes zero rank/threshold calls, and the accepted candidate remains `legacy`/`shadowOnly`.
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]` (no deferrals)
@@ -95,12 +110,15 @@ contextType: "implementation"
 - [ ] Strict Level-2 packet validation passes within the phase-only edit boundary
 
 **Evidence**: `checklist.md` records the certificate-gate and external-oracle proof with command-backed evidence. Strict validation was run and remains blocked by baseline package-runtime and legacy-template failures outside this fix's authorized edits.
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Source design**: `../../../006-unified-refactor-research/unified-refactor-synthesis.md` (§7, §9, §2.3, §8.1–§8.3, §10)
 - **Master plan gate model**: `../../spec.md` (Shared Migration-Gate Model, Stage 4)
+<!-- /ANCHOR:cross-refs -->

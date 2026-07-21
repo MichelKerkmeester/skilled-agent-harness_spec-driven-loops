@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the Deep AI Council workflow, typed runtime migration, and shadow evidence) |
-| **Origin** | Phase 009 of the Deep AI Council migration: prove ledger projection parity before any authority cutover |
+| **Origin** | Phase 013 Deep AI Council migration, `006-shadow-parity` child: prove ledger projection parity before any authority cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

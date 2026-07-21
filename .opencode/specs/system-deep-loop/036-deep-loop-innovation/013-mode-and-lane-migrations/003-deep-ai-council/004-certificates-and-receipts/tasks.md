@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the candidate SHA and shared phase-006 receipt, certificate, authorization, certification-provider, ledger, and replay-contract digests
+- [ ] T001 Pin the candidate SHA and shared phase-007 receipt, certificate, and certification-provider digests and phase-006 authorization, ledger, and replay-contract digests
 - [ ] T002 Read the Deep AI Council `001-typed-ledger-schema`, `002-reducers-and-projections`, and predecessor `003-sealed-artifacts` contracts as read-only inputs
 - [ ] T003 Freeze the lifecycle transition registry, logical-operation identity, attempt identity, idempotency-key grammar, result dispositions, and receipt-chain order
 - [ ] T004 Freeze the run-certificate body, sealed-reference manifest, final-head rules, replay-fingerprint input projection, explicit exclusions, and offline-bundle shape
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 Register council receipt and certificate profiles through the shared phase-006 registry without adding a mode-local digest, signature, verifier, key, or trust root
+- [ ] T006 Register council receipt and certificate profiles through the shared phase-007 registry without adding a mode-local digest, signature, verifier, key, or trust root
 - [ ] T007 Add initialization receipts for target, strategy, protocol, seat bounds, capability commitments, configuration, lineage, and initial ledger head
 - [ ] T008 Add seat selection, dispatch, return, and proposal receipts for logical branch identity, independence group, evidence, output, cost, lease, and attempts
 - [ ] T009 Add critique receipts for visible-information policy, source proposal IDs, cited claims, challenge disposition, and critique output

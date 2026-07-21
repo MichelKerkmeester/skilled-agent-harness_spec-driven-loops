@@ -20,7 +20,7 @@ import {
 const scriptUrl = new URL(import.meta.url);
 const skillRootUrl = new URL("../../", scriptUrl);
 const opencodeRootUrl = new URL("../../", skillRootUrl);
-const assetsRootUrl = new URL("commands/design/assets/", opencodeRootUrl);
+const assetsRootUrl = new URL("commands/interface/assets/", opencodeRootUrl);
 
 const [metadata, registry, interfaceSkillSource] = await Promise.all([
   readJson(new URL("command-metadata.json", skillRootUrl)),
@@ -34,10 +34,10 @@ const interfaceIntentLanes = parseInterfaceIntentSignalKeys(interfaceSkillSource
 const surfacesByCommand = new Map(
   await Promise.all(
     metadata.map(async (record) => {
-      const name = record.command.replace("/design:", "");
+      const name = record.command.replace("/interface:", "");
       const [auto, confirm] = await Promise.all([
-        readFile(new URL(`design-${name}-auto.yaml`, assetsRootUrl), "utf8"),
-        readFile(new URL(`design-${name}-confirm.yaml`, assetsRootUrl), "utf8")
+        readFile(new URL(`interface-${name}-auto.yaml`, assetsRootUrl), "utf8"),
+        readFile(new URL(`interface-${name}-confirm.yaml`, assetsRootUrl), "utf8")
       ]);
       return [record.command, { auto, confirm }];
     })
@@ -63,28 +63,28 @@ test("current live metadata and choreography assets pass", () => {
   assert.deepEqual(
     [...allowedSiblingTokens].sort(),
     [
-      "/design:audit",
-      "/design:foundations",
-      "/design:interface",
-      "/design:md-generator",
-      "/design:motion",
+      "/interface:audit",
+      "/interface:design",
+      "/interface:design-reference",
+      "/interface:foundations",
+      "/interface:motion",
       "design-mcp-open-design"
     ]
   );
-  assert.equal(allowedSiblingTokens.has("/design:design-mcp-open-design"), false);
+  assert.equal(allowedSiblingTokens.has("/interface:design-mcp-open-design"), false);
   assert.equal(invalid.length, 0, invalid.join("\n"));
   assert.equal(drift.length, 0, JSON.stringify(drift, null, 2));
 });
 
 test("mistyped real-command sibling fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/design:foundations"));
-  record.discriminator.preferSiblingWhen[0].sibling = "/design:auditt";
+  const record = cloneRecord(findRecord("/interface:foundations"));
+  record.discriminator.preferSiblingWhen[0].sibling = "/interface:auditt";
 
   const errors = validateDiscriminator(record, record.command, workflowModes, registry);
 
   assert.ok(errors.some((error) => error.includes("sibling token must be one of")), errors.join("\n"));
 
-  record.discriminator.preferSiblingWhen[0].sibling = "/design:audit (not allowed)";
+  record.discriminator.preferSiblingWhen[0].sibling = "/interface:audit (not allowed)";
   const trailingNoteErrors = validateDiscriminator(record, record.command, workflowModes, registry);
   assert.ok(
     trailingNoteErrors.some((error) => error.includes("only a no-command token may add one parenthetical note")),
@@ -93,7 +93,7 @@ test("mistyped real-command sibling fails exact-token validation", () => {
 });
 
 test("renamed transport token fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/design:audit"));
+  const record = cloneRecord(findRecord("/interface:audit"));
   const transport = record.discriminator.preferSiblingWhen.find((entry) =>
     entry.sibling.startsWith("design-mcp-open-design")
   );
@@ -105,25 +105,25 @@ test("renamed transport token fails exact-token validation", () => {
 });
 
 test("renamed YAML step_N key fails structural validation", () => {
-  const record = findRecord("/design:audit");
+  const record = findRecord("/interface:audit");
   const surface = cloneSurface(record.command);
-  surface.auto = replaceRequired(surface.auto, "  step_2_load_mode:", "  stage_2_load_mode:");
+  surface.auto = replaceRequired(surface.auto, "  step_7_load_mode:", "  stage_7_load_mode:");
 
   const drift = expectedChoreographyDrift(record, surface);
 
   assert.ok(
-    drift.some((item) => String(item.actual).includes("workflow key stage_2_load_mode must match step_N_<name>")),
+    drift.some((item) => String(item.actual).includes("workflow key stage_7_load_mode must match step_N_<name>")),
     JSON.stringify(drift, null, 2)
   );
 });
 
 test("auto and confirm business-step drift fails parity validation", () => {
-  const record = findRecord("/design:foundations");
+  const record = findRecord("/interface:foundations");
   const surface = cloneSurface(record.command);
   surface.confirm = replaceRequired(
     surface.confirm,
-    "  step_3_set_register:",
-    "  step_3_set_register_variant:"
+    "  step_3_route_proof:",
+    "  step_3_route_proof_variant:"
   );
 
   const drift = expectedChoreographyDrift(record, surface);
@@ -135,7 +135,7 @@ test("auto and confirm business-step drift fails parity validation", () => {
 });
 
 test("choreography resource and action mutations fail exact structural validation", () => {
-  const liveRecord = findRecord("/design:audit");
+  const liveRecord = findRecord("/interface:audit");
   const resourceRecord = cloneRecord(liveRecord);
   resourceRecord.choreography[0].resource = ".opencode/skills/sk-design/missing-hub/SKILL.md";
   const resourceDrift = expectedChoreographyDrift(resourceRecord, cloneSurface(liveRecord.command));
@@ -156,7 +156,7 @@ test("choreography resource and action mutations fail exact structural validatio
 });
 
 test("confirm-only step_0_show_prompt is accepted", () => {
-  const record = findRecord("/design:motion");
+  const record = findRecord("/interface:motion");
   const surface = cloneSurface(record.command);
 
   assert.match(surface.confirm, /^  step_0_show_prompt:$/m);

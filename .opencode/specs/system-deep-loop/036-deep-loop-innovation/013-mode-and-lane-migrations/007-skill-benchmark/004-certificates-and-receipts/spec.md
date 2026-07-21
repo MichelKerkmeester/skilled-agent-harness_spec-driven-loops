@@ -64,7 +64,7 @@ predecessor evidence, effect identity, replay fingerprint, and outcome.
 
 The implementation builds on deep-improvement-common services from mode 004 for run identity, executor descriptors, sealed
 references, evaluator/canary/promotion behavior, budgets, effect recovery, receipt persistence, and offline verification.
-Only Skill Benchmark scenario and scoring logic is added here. This is planning only: the 010 migrations are the per-mode
+Only Skill Benchmark scenario and scoring logic is added here. This is planning only: the 013 migrations are the per-mode
 fan-out after phase 012 freezes shared contracts and emits the executable dependency and write-set conflict graph.
 <!-- /ANCHOR:problem -->
 
@@ -83,9 +83,9 @@ fan-out after phase 012 freezes shared contracts and emits the executable depend
 ### Out of Scope
 - Reimplementing deep-improvement-common run identity, dispatch, evaluator, canary, promotion, budget, lock, effect-recovery, receipt storage, sealed-artifact, fingerprint serialization, or offline-verifier services.
 - Defining the typed event envelope, reducers, projections, treatment event vocabulary, or canonical score reducers owned by Skill Benchmark siblings `001-typed-ledger-schema` and `002-reducers-and-projections`.
-- Creating or changing the phase-006 sealing primitive; this phase consumes `003-sealed-artifacts` references and its certificate/receipt primitive bindings.
+- Creating or changing the phase-007 sealing primitive; this phase consumes `003-sealed-artifacts` references and its certificate/receipt primitive bindings.
 - New benchmark tasks, executor providers, authority cutover, legacy-writer retirement, in-flight state migration, or live promotion.
-- The 010 per-mode implementation fan-out before phase 012 freezes shared contracts and publishes the write-set conflict graph.
+- The 013 per-mode implementation fan-out before phase 012 freezes shared contracts and publishes the write-set conflict graph.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -103,7 +103,7 @@ fan-out after phase 012 freezes shared contracts and emits the executable depend
 | REQ-008 | Mode replay uses the shared fingerprint contract plus explicit Skill Benchmark inputs | The same canonical semantic inputs reproduce the same fingerprint; changes to treatment, evidence ordering, gold, scoring, bundle, capability, dependency, environment, budget, policy, or predecessor evidence produce a mismatch; storage-local values are excluded |
 | REQ-009 | An independent verifier re-checks the mode result offline | The verifier resolves content-addressed references, recomputes hashes and score derivations, checks receipt-chain continuity and hard vetoes, validates paired coverage and gold mutation sensitivity, and returns typed pass/fail/incomplete/unsupported outcomes without live execution |
 | REQ-010 | Common services remain single-sourced and dark | Skill Benchmark supplies only scenario/scoring adapters; shared certificate fields, receipt vocabulary, fingerprint rules, verifier stages, hard-veto ordering, and effect recovery have one owner and do not change authority before the later cutover |
-| REQ-011 | The 010 fan-out consumes a frozen, conflict-safe contract | The phase records the 009 contract-freeze and write-set-graph gate; no per-mode implementation is accepted while shared field ownership or conflicting writes remain unresolved |
+| REQ-011 | The 013 fan-out consumes a frozen, conflict-safe contract | The phase records the 012 contract-freeze and write-set-graph gate; no per-mode implementation is accepted while shared field ownership or conflicting writes remain unresolved |
 <!-- /ANCHOR:requirements -->
 
 ### Certificate and receipt evidence boundary
@@ -145,7 +145,7 @@ emits a verifier receipt bound to the certificate fingerprint, verifier version,
 - **SC-002**: The certificate distinguishes skill integrity from causal efficacy and reports invocation, constraint coverage, component, compatibility, cost, security, and negative-transfer evidence within a declared validity domain.
 - **SC-003**: Identical semantic inputs reproduce the same mode replay fingerprint and an independent verifier accepts only when gold integrity, raw evidence, receipt continuity, reducers, hard vetoes, and validity checks match.
 - **SC-004**: Skill Benchmark consumes deep-improvement-common services through adapters, shares their certificate/receipt/fingerprint/verifier semantics, and adds no duplicate dispatch, evaluator, budget, sealing, or recovery implementation.
-- **SC-005**: The contract remains additive and dark, consumes `003-sealed-artifacts` primitives, hands explicit uncertain-effect and verification cases to `005-resume-adapter`, and is ready for the post-009 010 migration fan-out.
+- **SC-005**: The contract remains additive and dark, consumes `003-sealed-artifacts` primitives, hands explicit uncertain-effect and verification cases to `005-resume-adapter`, and is ready for the post-012 013 migration fan-out.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->

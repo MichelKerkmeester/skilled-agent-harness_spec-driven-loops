@@ -28,6 +28,7 @@ This is the **first parent-hub activation** of the compiled router contract, app
 
 The authored shape is now compiled into a `surfaceBundle` route inside the closed decision algebra (synthesis §2.3): a `route` decision whose `selectionKind = surfaceBundle` carries one `actor` target (`mutatesWorkspace = true`) followed by N `evidence` targets (`mutatesWorkspace = false`). The load-bearing invariant is proven: **an evidence target can never COMMIT**, and **evidence ordering is order-of-loading, not effect order** (synthesis §7). The phase-local activation drill uses a fenced compare-and-swap, legacy stays serving-authoritative, and rollback swaps to the byte-identical prior generation. No live routing config, registry, scorer, or skill was modified.
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -39,7 +40,9 @@ The authored shape is now compiled into a `surfaceBundle` route inside the close
 | **Branch** | `006-parent-hub-rollout/001-sk-code` |
 | **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
 | **Blast radius** | Evidence composition (surfaceBundle) — reversible, gated |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -49,7 +52,9 @@ The authored shape is now compiled into a `surfaceBundle` route inside the close
 ### Purpose
 
 Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surfaceBundle` route on the shared contract with **zero hard route-gold mismatch**, that the actor-only-commits invariant is structurally enforced, and that the activation is fully reversible via a fenced CAS to the retained prior generation — so `system-deep-loop` (the next, higher-blast-radius hub) can activate on a proven foundation.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -83,7 +88,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 | `006-parent-hub-rollout/001-sk-code/checklist.md`, `implementation-summary.md` | Create | Level-2 verification evidence and completion record |
 
 > All implementation files are phase-local. Live runtime files remain read-only; the accepted candidate is shadow-only and legacy remains serving-authoritative.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -104,7 +111,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 | REQ-007 | No over-emission: zero-leaf-signal yields a typed `defer(no-match)` with no default union, and ambiguous leaf evidence yields exactly one `clarify` (≤3 options + `none_of_these`), never an invented mode (synthesis §2.3, §10; `SKILL.md:64-69` fallback checklist). | Zero-signal fixture → `defer(no-match)` carrying no targets/authority; ambiguous fixture → one `clarify` sourced from the `UNKNOWN_FALLBACK_CHECKLIST`; neither unions the registry. |
 | REQ-008 | Document parity: a generated `PolicyCardV1.md` for `sk-code` lets a document-only agent reproduce the same typed decisions, clarify once, defer, reject, and emit `PREPARED_DRAFT` — without claiming live freshness or committed effects (synthesis §8.3). | Document-only replay lane matches the machine policy on the `sk-code` fixture set and never silently falls back to the machine policy; the card is generated from the same compiled snapshot (not a hand-hashed view). |
 | REQ-009 | Dual-read (Stage 2) for `sk-code`: every legacy `sk-code` routing input resolves through a declared mode/alias; unmapped inputs fail closed (synthesis §9 stage 2; master plan gate model, Stage 2 owned by `001, 006`). | Every entry in the legacy `sk-code` alias set resolves to a compiled destination; an unmapped alias fails closed (never silently self-routes); the alias array is a compatibility projection with a hash-drift guard. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `sk-code` runs behind the fenced typed evaluator in canary with **zero hard route-gold mismatch** against the frozen baseline, `router-replay.cjs` unmodified.
@@ -112,7 +121,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 - **SC-003**: The rollback drill restores the byte-identical prior generation and is demonstrated end to end (accept → ship → rollback), with drift checks passing (synthesis §9).
 - **SC-004**: Advisor identity matches or is ignored across `live`/`stale`/`absent` fixtures, and document parity passes for the `sk-code` policy card — the two remaining Stage-4 sub-gates.
 - **SC-005**: The phase leaves `system-deep-loop` (`006/002`) unblocked: the compiled `sk-code` slice, its typed fixtures, and its rollback proof are recorded and reproducible.
+<!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -123,7 +134,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 | Risk | A scorer edit appears necessary to pass a `sk-code` fixture | Would violate the hard constraint and invalidate baseline comparability | Treat any required scorer edit as a **migration failure**; fix the projector or the compiled data, never the scorer (synthesis §8.2, §10) |
 | Risk | Advisor projection drifts from the compiled generation mid-canary | Mixed-generation routing; advisor smuggles authority | Projection-hash drift-guard downgrades advisor to annotation; requests pin one generation (synthesis §8.1, §9) |
 | Risk | Evidence surface silently acquires effect authority | Breaks destination-local authority; an evidence read commits | Structural hard-gate: `mutatesWorkspace = false` targets cannot reach COMMIT; VERIFY refuses (synthesis §7, §9) |
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Determinism
@@ -137,7 +150,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 ### Reversibility
 - **NFR-R01**: Activation is a fenced CAS with a retained prior generation; rollback is byte-exact and drift-checked (synthesis §9).
 - **NFR-R02**: Rollback cannot undo an external COMMITted effect; for this evidence-composition phase the canary is pre-effect, so rollback is clean (synthesis §9).
+<!-- /ANCHOR:nfr -->
 
+<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 ### Bundle boundaries
@@ -153,7 +168,9 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 ### Degradation
 - Advisor absent/unavailable: deterministic routing on last-known-good compiled policy (synthesis §8.1).
 - Advisor stale (projection-hash mismatch): advisor downgraded to annotation only.
+<!-- /ANCHOR:edge-cases -->
 
+<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -162,6 +179,7 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 | Risk | 18/25 | First parent-hub canary; actor/evidence authority boundary; route-gold parity must hold exactly |
 | Research | 8/20 | Design fully specified by synthesis §7/§9; residual work is fixture + rollback-drill construction |
 | **Total** | **40/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
 
 ## 7. MIGRATION GATE
 
@@ -193,6 +211,14 @@ This phase must satisfy the shared migration model's **Stage 4 — Per-hub canar
 | REQ-008, SC-004 | Pass | Five document-only decisions match; planted divergence is rejected with no machine fallback. |
 | REQ-009 | Pass | All 29 authored aliases resolve and an unknown alias fails closed. |
 | SC-005 | Pass | Compiled snapshot, fixtures, validator, rollback proof, checklist, and summary are reproducible inputs for the next hub phase. |
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The production authorization for the first live `legacy → compiled` serving flip (which green thresholds on route-gold plus real models, and who signs off) is owned by the runtime-engine/cutover phases; this canary proves the mechanism under legacy-authoritative serving only.
+- Post-canary real-model re-verification breadth per hub before a hub is left compiled-serving is bounded downstream, not fixed here.
+- Whether any `sk-code` surface should ever carry `mutatesWorkspace = true` (become an actor) is a design decision left to the hub's own policy; this phase compiles the current one-actor + N-evidence shape.
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

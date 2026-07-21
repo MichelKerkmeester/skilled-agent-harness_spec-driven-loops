@@ -151,7 +151,7 @@
     ],
     "causal_summary": "Plan the typed append-only event vocabulary for Deep Alignment: per-lane conformance checks against a named authority, verify-first findings, authority epochs, applicability, proof witnesses, adjudication, and versioned envelope/upcaster hooks over the shared review-loop contract. Reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:42.891Z",
-    "last_save_at": "2026-07-17T13:21:44.917Z",
+    "last_save_at": "2026-07-19T18:09:54.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -160,9 +160,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f415de5459facfc55dd0aa8079fe5462c063ee73c07d5fffa2b760cf3231a247",
+    "source_fingerprint": "sha256:ad83138497fcdf697af07dbc597c735acbcc8e4b271100a9dcdbabed7a00c630",
     "source_doc_hashes": {
-      "spec.md": "ce8604df879b4cdf2041ba0a1af8766498d56b354db792c872cd6939bac58634",
+      "spec.md": "5cb9a88a06a7c1484f819c3276ce2d4390a24bb7c12c006330d0323aea4d4c0d",
       "plan.md": "64f9e5e273795cc07512067e1fedf2dd3cb50ef3ae3304333f90f65e8cbdecb9",
       "tasks.md": "05875c29de9cedb9332a9dd5b7bd9656574617cdfe07b9195c693c70bb11769c",
       "checklist.md": "624156bb0f9839fbd87a048e85ed4797ea72f5ae694fe624a0a177280ca87ee4"

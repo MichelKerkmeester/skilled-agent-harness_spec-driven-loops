@@ -144,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Unified Router Refactor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -186,8 +186,8 @@
         "source": "derived"
       },
       {
-        "name": "NO",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The synthesis named \"two ways to handle uncertainty\" as an open seam: Idea 4 (bounded handoff to a better destination) and Idea 5 (a calibrated one-turn clarification) each independently proposed a recovery mechanism with its own budget (synthesis §4, Seam B)",
     "created_at": "2026-07-18T13:13:17.719Z",
-    "last_save_at": "2026-07-18T20:34:33.804Z",
+    "last_save_at": "2026-07-20T13:13:11.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1038ea2f97e25c76293ab8ba9a9439c34177593c42a9c2751eba27a82f197b03",
+    "source_fingerprint": "sha256:f38d4c64229bcdee23a0eb2adecc2db6262fca0b6afa5f22bab2e12e97de7a28",
     "source_doc_hashes": {
-      "spec.md": "289fafa1375a89929af3ef7a97fc9855fa9ff883190c5b4ae30a5ad64d898770",
-      "plan.md": "1a45c68b06709cdfe7442ad4cf02055ee7718d3b4807afec26c2be50c5f30a2c",
-      "tasks.md": "f56823bb34f47791233c926cb56aac003cda6182f2301924c2776eeac13ab3ac",
+      "spec.md": "00a69a713166ea2899df202f16ae69fe44df7c15fd567a106621a652faa3447b",
+      "plan.md": "893c4cb2fb266b736743d7db2415fc70f869828e04ab0c5aa92d73c29be99a55",
+      "tasks.md": "09f6d3dce15587aaa4f9d1127734a51a05f221b76596abfc8d3c344ecdd1fb82",
       "checklist.md": "df6053fcdaf334e000f6fde7a7e7112f04432fdcae694a904426d7a638077632",
-      "implementation-summary.md": "ccfb549663528dec78fe273ebbfbfee56b9903ae6b1b813d543eb89eec0f2964"
+      "implementation-summary.md": "37d07b9b0a93be3fe63e1ea06a00d2a93645204bf89b18ab1e22f5b5a3b42b2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,7 @@
 # Interface Design Reference Presentation Contract
 
+Consolidated-question and display fixtures for `/interface:design-reference`; the command body is the normative prompt.
+
 ## 1. Progressive Intake
 
 Resolve canonical URL, allowed origin, representative routes/states/viewports/themes, private access, dynamic loading, output, overwrite policy, coverage, and validation bar. Private access, overwrite, and missing canonical source always require confirmation.

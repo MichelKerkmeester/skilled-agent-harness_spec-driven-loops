@@ -14,6 +14,7 @@ status: "executed; execution-plane idempotency alignment and teeth fixtures GREE
 
 # Implementation Plan: Activate the Compiled Contract on mcp-tooling (Phase 006/003)
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -30,7 +31,9 @@ status: "executed; execution-plane idempotency alignment and teeth fixtures GREE
 The build is **additive semantic data + a fenced activation**, not a rewrite [synthesis §9]. `mcp-tooling` is the fleet's only archetype with effect-ordered composition and a cross-hub judgment dependency, so the whole plan turns on getting two edge kinds and one authority discipline into *compiled data* such that the dangerous states are unrepresentable rather than merely checked [synthesis §7]. The approach mirrors the earlier hub activations but adds the destination-rollout discipline (read-only legs before mutating legs) because this is where routing produces real external effects [master plan Stage 6].
 
 The plan proceeds in the order: (1) confirm the activation-order precondition and blast-radius data; (2) author the destination graph + roles; (3) author the two composition edge kinds + authority graph; (4) specify the fenced selector; (5) define fixtures via the compatibility projector; (6) define the Stage 4 canary and Stage 6 destination-rollout gates; (7) specify the rollback drill and its explicit limit.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -46,7 +49,9 @@ The plan proceeds in the order: (1) confirm the activation-order precondition an
 - [x] Fixture families enumerated against the existing compatibility projector; scorer untouched
 - [x] Rollback drill defined, including the explicit "cannot undo external COMMIT" limit
 - [x] Composition idempotency binds request facts, the full target, and effective policy through the frozen `RouteProofV1` derivation; teeth prove policy sensitivity and execution-plane parity [synthesis §3 Idea 7, §8.2]
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Where this phase sits
@@ -77,7 +82,9 @@ Authority is destination-local: a proof/recommendation is evidence, never a capa
 3. `sk-design/<mode>` runs PREPARE→VERIFY→COMMIT for the judgment leg, producing an approving `RouteProofV1` scoped to the intent [synthesis §2.1].
 4. `mcp-tooling/mcp-figma` PREPARE reads that proof as evidence; its VERIFY checks the `requiresAuthorityFrom` edge is satisfied for the pinned intent and epoch; only then may COMMIT run once (idempotency key), emitting a receipt [synthesis §7, §2.1, §9].
 5. Any deviation — transport-first, transport-without-approval, COMMIT-without-VERIFY, duplicate-key second effect — is a hard gate block [synthesis §9].
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: Preconditions
@@ -105,7 +112,9 @@ Authority is destination-local: a proof/recommendation is evidence, never a capa
 - [x] Define the Stage 4 per-hub canary acceptance (zero hard mismatch; advisor match-or-ignore; document parity; rollback proven) [master plan Stage 4]
 - [x] Define the Stage 6 destination rollout acceptance with read-only legs proven before any mutating leg [master plan Stage 6]
 - [x] Define rollback = CAS to byte-identical prior manifest; state explicitly it cannot undo an external COMMIT; post-effect recovery is destination-owned [synthesis §9]
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Mechanism |
@@ -115,7 +124,9 @@ Authority is destination-local: a proof/recommendation is evidence, never a capa
 | Hard-gate assertions | Transport-supplies-judgment, missing authority edge, COMMIT-without-VERIFY, duplicate-key, exact-route-with-handoff-artifacts | Each hard-blocks activation [synthesis §9] |
 | Canary parity | Advisor identity match-or-ignore; document-only `PolicyCardV1.md` parity | `effectivePolicyHash` match; `PREPARED_DRAFT` terminal only [synthesis §8.1, §8.3] |
 | Rollback drill | Fenced CAS to prior manifest | Byte-identical restore proven; external-COMMIT limit documented [synthesis §9] |
+<!-- /ANCHOR:testing -->
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -125,9 +136,12 @@ Authority is destination-local: a proof/recommendation is evidence, never a capa
 | Blast-radius data (Q1) | Internal | Open | Ordering `mcp-tooling`-last is disputed by Terra lineage; resolve before Stage 4 [synthesis §11 Q1] |
 | Cross-process authority representation (Q8) | Internal | Open | `sk-design → mcp-figma` approval spans process/machine boundaries; canary must exercise the real boundary [synthesis §11 Q8] |
 | `router-replay.cjs` | External (frozen) | Do-not-touch | Any required edit = migration failure [synthesis §8.2, §10] |
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Any hard-gate trip on the canary, hash mismatch against the pinned tuple, mixed-generation observation, or a transport reaching COMMIT without a satisfied authority edge [synthesis §9].
 - **Procedure**: Fenced CAS swap of the activation manifest to the byte-identical prior generation (retained during the window); requests continue to pin one generation.
 - **Hard limit**: Rollback **cannot** undo an external COMMITted effect (a committed Figma mutation). This is why read-only legs are proven before any mutating leg is enabled, and post-effect recovery is destination-owned [synthesis §9, master plan Stage 6].
+<!-- /ANCHOR:rollback -->

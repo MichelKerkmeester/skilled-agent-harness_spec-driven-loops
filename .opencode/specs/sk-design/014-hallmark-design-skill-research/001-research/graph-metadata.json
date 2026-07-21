@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-hallmark-design-skill-research/001-research",
+  "spec_folder": "sk-design/014-hallmark-design-skill-research/001-research",
+  "parent_id": "sk-design/014-hallmark-design-skill-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hallmark reuse research",
+      "hallmark sk-design modes learnings",
+      "hallmark slop gates design.md study"
+    ],
+    "key_topics": [
+      "hallmark",
+      "reuse",
+      "research",
+      "sk-design",
+      "modes",
+      "learnings",
+      "slop",
+      "gates",
+      "design",
+      "study",
+      "shipped",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/SKILL.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/skills/hallmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Hallmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Determine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redistributing Hallmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hallmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "COPY",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hallmark is a shipped design skill for AI coding assistants (\"refuses to look AI-generated\") whose four verbs — build, `audit`, `redesign`, `study` (design DNA → portable `design.md`) — plus ~29 reference docs (slop-test with 57 gates, anti-patterns, macrostructures, motion, microinteractions, color, typography, component-cookbook, design-md, study, export-formats, …) overlap heavily with sk-design's five modes (interface, foundations, motion, audit, md-generator/design-reference) and its styles database",
+    "created_at": "2026-07-20T09:21:27.020Z",
+    "last_save_at": "2026-07-20T09:28:31.774Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b9157d4835009992021f7ac5c23f7613b0b96a71a9ff594b05f2529611b98701",
+    "source_doc_hashes": {
+      "spec.md": "0fb71557e211f47a5c89adb7c4b59ab705496ea59e56b4fac71b4d87e431ca15",
+      "plan.md": "f3fa98fb76736e6f6a6e3a72a397771de51923df21e8ddcfaa51e9c1610c7210",
+      "tasks.md": "196f5a0b4b693cf5a3fe64dd032cd49d64cc97df7deed3013b287fc90d33fab7",
+      "checklist.md": "93b0d7470f8aed079c239e440e675e31bdd2e9a315dba2e1dfef4c02807e73ab",
+      "implementation-summary.md": "0d1004b0110cbd00bd7cec3f572ae4374df96c03a9013973d6140fad1e336cb1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

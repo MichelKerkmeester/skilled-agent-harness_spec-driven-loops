@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-benchmark resource names
+> Phase adjacency — predecessor `006-create-manual-testing-playbook`; successor `008-create-flowchart`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

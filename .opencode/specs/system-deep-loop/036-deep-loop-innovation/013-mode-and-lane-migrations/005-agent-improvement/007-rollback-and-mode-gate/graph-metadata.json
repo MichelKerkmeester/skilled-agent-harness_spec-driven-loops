@@ -158,7 +158,7 @@
     ],
     "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
     "created_at": "2026-07-16T03:43:39.029Z",
-    "last_save_at": "2026-07-17T13:21:38.728Z",
+    "last_save_at": "2026-07-19T18:09:51.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,12 +167,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:89aa83863d3d39e52abb7297b5466d54bdc3b3569f5b737f531a15557f27bae9",
+    "source_fingerprint": "sha256:bbbf3e95535ab610f8f6d17ffc34ffc9e60ff7b20dabb8dbaaf44b27b10ff108",
     "source_doc_hashes": {
-      "spec.md": "cac776feeedc29ae9c9fbc0c45aa78e93695b5efcf7defcba35a620cf7a31e36",
+      "spec.md": "53be90069864d5077302bdd8b40a7ef3102a917e054d2b9ea688d1d0e47ed384",
       "plan.md": "c6b96f9cd3d13c90bad9f10a69148469c469f4a04d936b34932b8bd5bd2554c3",
       "tasks.md": "ef7c58a08748b42d7a666b6ba0ca6fe53be585b8fc64dd1d92fe1f31f1241390",
-      "checklist.md": "432c5e6279578dc55ab2be3ab26a6b915fe93e94f073bacb8d1160696df8baaa"
+      "checklist.md": "eeeed8fc1d1d6e83aa2adc0dfbb57153c7ce06ea83f70f3d80f6729fb3f2aaee"
     },
     "last_active_child_id": null,
     "last_active_at": null

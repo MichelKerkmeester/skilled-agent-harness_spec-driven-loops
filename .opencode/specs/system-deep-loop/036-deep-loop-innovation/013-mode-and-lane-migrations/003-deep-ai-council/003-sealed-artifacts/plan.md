@@ -36,7 +36,7 @@ _memory:
 | **Execution** | Contract-first planning; typed path remains additive, dark, and non-authoritative |
 
 ### Overview
-The phase will define one Deep AI Council sealing adapter over the phase-006 primitives and phase-012 shared contracts. It
+The phase will define one Deep AI Council sealing adapter over the phase-007 primitives and phase-012 shared contracts. It
 will inventory the immutable inputs and outputs for isolated seats, critique rounds, blinded adjudication, convergence,
 synthesis, minority preservation, and the council test gate. Each item is canonicalized, content-addressed, sealed on write,
 and read back only through digest and manifest verification. Reuse and resume are allowed only when the shared replay contract
@@ -48,7 +48,7 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs.
+- [ ] Phase-007 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs.
 - [ ] The predecessor `002-reducers-and-projections` artifact-index boundary is explicit; this phase seals objects and does not own projection folds.
 - [ ] The council lifecycle and artifact inventory identify immutable inputs, derived outputs, private scopes, blinded scopes, and required gate evidence.
 - [ ] Legacy `ai-council/**` artifacts, state rows, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
@@ -65,7 +65,7 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared primitive boundary**: consume the phase-006 sealing primitive for canonical content digest, immutable object creation,
+- **Shared primitive boundary**: consume the phase-007 sealing primitive for canonical content digest, immutable object creation,
   seal record, and verification result. Consume phase-012 shared artifact-reference, logical identity, replay, receipt,
   authorization, and write-set fields. The mode adapter may configure artifact kinds and scope, but it cannot redefine the seal.
 - **Input manifest**: create one digest-bound manifest for target snapshot, task class, strategy/protocol, prompt and tool
@@ -93,7 +93,7 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm phase-006 sealing primitives and phase-012 shared contracts are present, frozen, and compatible with the pinned
+- Confirm phase-007 sealing primitives and phase-012 shared contracts are present, frozen, and compatible with the pinned
   migration sequence.
 - Read the predecessor reducer/index contract, the Deep AI Council typed event schema, council findings registries, legacy
   artifact layout, and replay fixtures.
@@ -102,7 +102,7 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 ### Phase 2: Implementation
 - Define the input manifest and output inventory for every lifecycle stage from run initialization through the council test gate;
   identify required, optional, private, blinded, diagnostic, and superseding entries.
-- Map each inventory row to the phase-006 seal primitive and phase-012 shared reference, authorization, receipt, replay, and
+- Map each inventory row to the phase-007 seal primitive and phase-012 shared reference, authorization, receipt, replay, and
   write-set fields; reject mode-local aliases and report unresolved shared fields.
 - Specify canonicalization, digest, atomic create, seal record, idempotence, and supersession behavior for seal-on-write, including
   concurrent duplicate writes and failed writes.
@@ -131,7 +131,7 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract diff lists phase-006 and phase-012 inherited seal, digest, identity, replay, receipt, authorization, and write-set fields; duplicate local fields fail review |
+| REQ-001 | Contract diff lists phase-007 and phase-012 inherited seal, digest, identity, replay, receipt, authorization, and write-set fields; duplicate local fields fail review |
 | REQ-002 | Inventory fixtures cover target, strategy, prompt/tool/model capabilities, roster, budgets, contracts, control arms, and test fixtures with scope and visibility metadata |
 | REQ-003 | Lifecycle fixtures create sealed references for proposals, critiques, blinded candidates, judgments, convergence, synthesis, minority, council, and test-gate outputs |
 | REQ-004 | Repeated identical writes are idempotent; changed canonical bytes produce a new digest and append-only supersession record without overwriting the first object |
@@ -146,10 +146,10 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the phase-006 sealing and transition-authorized ledger primitives, phase-012 shared event/reference/replay/
+The plan consumes the phase-007 sealing and phase-006 transition-authorized ledger primitives, phase-012 shared event/reference/replay/
 receipt/write-set contracts, `001-typed-ledger-schema`, `002-reducers-and-projections`, the Deep AI Council findings in
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`, cross-cutting council entries in
-`findings-registry.json`, the 065 parent `spec.md`, and `manifest/phase-tree.json`.
+`findings-registry.json`, the 036 parent `spec.md`, and `manifest/phase-tree.json`.
 
 The legacy `ai-council/**` artifact layout and state fixtures are comparison inputs only. The successor
 `004-certificates-and-receipts` consumes the sealed manifest but does not redefine its digest or read semantics. The typed path

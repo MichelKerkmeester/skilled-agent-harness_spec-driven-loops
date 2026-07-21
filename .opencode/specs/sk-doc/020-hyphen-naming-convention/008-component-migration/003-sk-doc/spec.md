@@ -27,6 +27,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT -->
 
 # Feature Specification: sk-doc surface component migration
+> Phase adjacency — predecessor `002-sk-design`; successor `004-sk-prompt`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

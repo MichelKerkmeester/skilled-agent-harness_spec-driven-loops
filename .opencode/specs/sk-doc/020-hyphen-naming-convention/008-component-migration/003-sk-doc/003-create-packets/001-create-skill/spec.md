@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-skill resource names
+> Phase adjacency — successor `002-create-readme`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

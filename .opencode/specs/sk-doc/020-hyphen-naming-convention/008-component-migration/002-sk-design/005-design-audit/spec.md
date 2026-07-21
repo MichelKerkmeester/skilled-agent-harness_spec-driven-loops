@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-audit (020 phase 005)
+> Phase adjacency — predecessor `004-design-motion`; successor `006-design-md-generator`.
 
 > Phase 005 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -85,6 +86,7 @@ The design-audit mode has a broad underscore-bearing fixture and evidence surfac
 | REQ-002 | Audit paths remain resolvable. | All fixture links, registry path values, SKILL.md resources, and reference links point to existing hyphenated targets. |
 | REQ-003 | Semantic audit data is preserved. | Fixture IDs, JSON keys, rule names, HTML filenames, and Python script paths are unchanged. |
 | REQ-004 | The phase does not absorb catalog/playbook work. | Those roots and their contents are listed as deferred sibling ownership. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T01:33:45Z"
     last_updated_by: "codex"
-    recent_action: "Defined the planned immutable artifact and digest-reference contract"
-    next_safe_action: "Implement sealing, verified reads, and retention from the approved plan"
+    recent_action: "Hardened fixed hashing, immutable reads, and replay reference resolution"
+    next_safe_action: "Carry the ordered-digest durability dependency into replay-fingerprint follow-up"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Second child of the phase-007 shared evidence and control services parent |
@@ -57,12 +60,12 @@ equivalent because their reference inputs were never pinned.
 
 The phase-004 spine ADR ratifies sealed reference artifacts addressed by digest as one of the shared primitives and
 requires mutable or unversioned inputs to fail the replay contract
-(`../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-006
+(`../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-006
 replay-fingerprint contract requires every replay-affecting artifact or configuration value to be ledger-addressable
 by immutable digest and refuses trusted output when an input cannot be reconstructed
-(`../../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`). The parent program and phase
+(`../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`). The parent program and phase
 manifest place this mechanism in the additive-dark shared-services layer before compatibility and shadow parity
-(`../../../spec.md`, `../../../manifest/phase-tree.json`).
+(`../../spec.md`, `../../manifest/phase-tree.json`).
 
 This phase plans one mechanism that canonicalizes an input, computes and records its content digest, freezes the exact
 bytes, references the artifact only by that digest, recomputes the commitment on every read, and fails closed on
@@ -77,6 +80,7 @@ effective events and projection bytes; a difference is a typed verification fail
 ### In Scope
 - A typed seal descriptor for prompt sets, fixtures, prior-run outputs, configuration, evaluator capsules, authority capsules, sealed canaries, independence batches, and later registered artifact kinds.
 - Deterministic byte canonicalization with a registered canonicalization version, media type, byte length, digest algorithm identifier, content digest, artifact kind, and optional source-provenance digest.
+- Fixed internal SHA-256 derivation over complete canonical bytes; caller-supplied digest functions or values cannot define artifact identity.
 - Atomic sealing: stage bytes, canonicalize once, compute the digest, persist an immutable blob and descriptor, verify the persisted object, then publish the digest reference; partial seals remain unreachable.
 - Reference-by-digest in run, event, receipt, certificate, replay, and shadow-parity records; mutable paths, aliases, tags, or `latest` selectors may aid discovery but cannot authorize consumption.
 - A verified-read API that resolves the digest, reads the immutable object, recomputes length and digest over the returned bytes, validates descriptor compatibility, and yields either a verified handle or a typed failure with no bytes released to the consumer.
@@ -86,9 +90,9 @@ effective events and projection bytes; a difference is a typed verification fail
 - Integration with phase-006 replay fingerprints and phase-008 shadow parity: ordered artifact-reference sets and verification results become fingerprint inputs and parity evidence.
 
 ### Out of Scope
-- Choosing the concrete hash primitive, storage backend, compression format, encryption scheme, or access-control provider before runtime constraints are measured; implementations must register these choices without weakening content identity.
+- Choosing the storage backend, compression format, encryption scheme, or access-control provider before runtime constraints are measured; none may weaken the fixed SHA-256 content identity.
 - Defining the replay descriptor, ledger frame, event envelope, or transition-authorization vocabulary owned by phase 006.
-- Implementing shadow comparison, upcasters, compatibility adapters, rollback orchestration, or authority cutover owned by phases 005 and 011.
+- Implementing shadow comparison, upcasters, compatibility adapters, rollback orchestration, or authority cutover owned by phases 008 and 014.
 - Defining mode-specific artifact schemas or certificate semantics; phase 013 mode children specialize the shared descriptor without replacing its seal and verified-read invariants.
 - Treating a signature, filename, object-store version, database row ID, timestamp, or access-control decision as a substitute for the canonical content digest.
 - Mutating, overwriting, auto-repairing, or silently re-sealing bytes under an existing digest after publication.
@@ -100,11 +104,11 @@ effective events and projection bytes; a difference is a typed verification fail
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Sealing commits deterministic canonical bytes | The registered canonicalization version produces one byte sequence for an artifact kind; repeated sealing of equivalent input emits the same descriptor bytes and content digest |
-| REQ-002 | Publication is atomic and immutable | A digest reference becomes discoverable only after blob and descriptor persistence plus post-write verification; published bytes cannot be overwritten or mutated |
+| REQ-002 | Publication is atomic and publish-once | A digest reference becomes discoverable only after blob and descriptor persistence plus post-write verification; the service never overwrites an identity, and out-of-band mutation is detected and quarantined before use |
 | REQ-003 | Every consumable reference is content-addressed | Run and ledger records carry an algorithm-qualified content digest and artifact kind; a mutable path, alias, tag, or `latest` selector alone is rejected before execution |
-| REQ-004 | Every read verifies before release | The reader recomputes byte length and digest, validates descriptor and artifact-kind compatibility, and returns no consumable bytes on missing data, corruption, mismatch, unsupported algorithm, or unsupported canonicalization version |
+| REQ-004 | Every read verifies before release | The reader recomputes byte length and fixed SHA-256, validates descriptor and artifact-kind compatibility, and returns a frozen byte copy or no consumable bytes on failure |
 | REQ-005 | Duplicate and conflicting seals are explicit | Identical canonical bytes are idempotent; an existing digest with different bytes or incompatible identity metadata is quarantined and reported as a typed collision/conflict |
-| REQ-006 | Replay fingerprints bind the exact artifact set | The ordered algorithm-qualified artifact digests, descriptor versions, and verified-read results are committed as phase-006 replay inputs; an unsealed or unverifiable input blocks a trusted fingerprint |
+| REQ-006 | Replay fingerprints bind the exact artifact set | Before replay input exists, every ordered reference is resolved through the store and authorized ledger, rehashed with SHA-256, and matched to its claimed verification and ledger fields; unresolved or forged input blocks a trusted fingerprint |
 | REQ-007 | Shadow parity compares equivalent sealed inputs | Legacy and dark executions must cite the same verified artifact-reference set before parity is evaluated; differing, missing, or unverifiable seals produce an input-equivalence failure rather than a behavior comparison |
 | REQ-008 | Lifecycle changes never rewrite artifact identity | Retention, holds, quarantine, deletion eligibility, and restoration are append-only lifecycle records separate from the immutable blob and seal descriptor |
 | REQ-009 | Retention preserves every protected replay root | Garbage collection marks references from live runs, replay attestations, receipts/certificates, rollback windows, archival requirements, and explicit holds; any reachable or indeterminate digest is retained |
@@ -167,9 +171,9 @@ weaken immutable content identity, verified reads, replay binding, or additive-d
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must select the registered digest algorithm, canonicalization profiles, storage
-backend, retention horizons, and access-control integration after checking runtime support and the phase-003 state
-census. Those choices must preserve algorithm-qualified references, deterministic canonical bytes, atomic
-publication, verification before release, append-only lifecycle evidence, conservative retention, and restoration
-only from byte-identical content.
+None blocking. The runtime fixes SHA-256 internally, registers `deep-loop-json@1`, `application/json`, and a dedicated
+filesystem-backed store for prompt sets, fixtures, prior-run outputs, and configuration. Later artifact kinds may add
+canonicalization profiles without weakening fixed SHA-256 references, deterministic canonical bytes, atomic
+publication, verification before release, append-only lifecycle evidence, conservative retention, or byte-identical
+restoration.
 <!-- /ANCHOR:questions -->

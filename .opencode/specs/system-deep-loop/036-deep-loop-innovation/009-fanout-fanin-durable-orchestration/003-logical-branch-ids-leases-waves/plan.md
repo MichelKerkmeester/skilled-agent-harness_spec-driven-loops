@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves"
-    last_updated_at: "2026-07-15T14:44:21Z"
+    last_updated_at: "2026-07-21T04:54:46Z"
     last_updated_by: "codex"
-    recent_action: "Mapped branch, lease, and wave contracts onto the capped pool and ledger"
-    next_safe_action: "Implement deterministic branch registration before enabling leased wave dispatch"
+    recent_action: "Delivered the additive-dark registry, lease adapter, wave scheduler, and resume fold"
+    next_safe_action: "Preserve legacy authority until a later packet performs cutover"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,19 +44,19 @@ Implement one durable orchestration layer around `.opencode/skills/system-deep-l
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 005's normalized expansion coordinates and invocation-fingerprint contract are pinned
-- [ ] The canonical ledger event namespace and transition gateway expose branch/wave record types
-- [ ] The phase-007 lease API proves monotonic fencing and mutation-side token validation
-- [ ] Predecessor result envelopes and salvage records carry a stable branch-reference field
-- [ ] The write-surface manifest lists every dispatch, status, retry, result, salvage, and terminal mutation
-- [ ] Wave policy inputs and later advance/stop authorization boundaries are explicit
+- [x] Phase 005's normalized expansion coordinates and invocation-fingerprint contract are pinned
+- [x] The canonical ledger event namespace and transition gateway expose branch/wave record types
+- [x] The phase-007 lease API proves monotonic fencing and mutation-side token validation
+- [x] Predecessor result envelopes and salvage records carry a stable branch-reference field
+- [x] The write-surface manifest lists every dispatch, status, retry, result, salvage, and terminal mutation
+- [x] Wave policy inputs and later advance/stop authorization boundaries are explicit
 
 ### Definition of Done
-- [ ] Logical branch IDs and registrations are stable, directory-safe, collision-checked, and idempotent
-- [ ] Lease acquire/renew/expire/release/takeover rejects stale workers at every protected mutation
-- [ ] Wave plans replay deterministically and submit only the admitted wave to the unchanged capped pool
-- [ ] Resume preserves terminal branches, safely reclaims expired work, and reconstructs the next wave from ledger state
-- [ ] Crash, reorder, collision, duplicate-worker, stale-fence, wave-drift, and replay gates pass
+- [x] Logical branch IDs and registrations are stable, directory-safe, collision-checked, and idempotent
+- [x] Lease acquire/renew/expire/release/takeover rejects stale workers at every protected mutation
+- [x] Wave plans replay deterministically and submit only the admitted wave to the unchanged capped pool
+- [x] Resume preserves terminal branches, safely reclaims expired work, and reconstructs the next wave from ledger state
+- [x] Crash, reorder, collision, duplicate-worker, stale-fence, wave-drift, and replay gates pass
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

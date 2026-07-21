@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the final whole-system acceptance gate for the 006 recommendations-implementation program: freeze an exact candidate SHA, run every mode and cross-system parity gate, exercise mixed-version replay and crash recovery, test counterfactual adjudication and degeneration health, obtain a blocking SOL review, and recursively strict-validate the complete packet before closeout.",
     "created_at": "2026-07-16T03:44:01.219Z",
-    "last_save_at": "2026-07-17T13:21:48.490Z",
+    "last_save_at": "2026-07-19T18:10:01.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1d9025c1e5e184f748cc35ceb7775a40bda45c52b45161e68aa04e4625766541",
+    "source_fingerprint": "sha256:049df949193b9dbba24bb45e11d5003998027e1b58dd9cca1abd071dc9d142d0",
     "source_doc_hashes": {
-      "spec.md": "a64d4a6911cc70e2a3a8197ec806fc9d3399580afb6e39d6d9d052acb8222045",
+      "spec.md": "7cb8e9801b9b02e8d4aed513f92aeab66bd74bfed41495de94590ab96e0d4b82",
       "plan.md": "3eb4e922224c7c595cbbe2149c8d9dc54c09d5f112ead8f2df71c59ec35970da",
-      "tasks.md": "c53804b3da27b6418480ee4918a6a7cbacafad60eb4c3f20cc619d5b8ea14ba5",
+      "tasks.md": "657eb3bffa67f2c401721d03ea7f2039c9e4cc012cdd3940f6e1356d7fe5356d",
       "checklist.md": "0dde9b7faafd3ae0b5e55caa255fb2adebd1d214a0aa97e4508b9f1f222725a6"
     },
     "last_active_child_id": null,

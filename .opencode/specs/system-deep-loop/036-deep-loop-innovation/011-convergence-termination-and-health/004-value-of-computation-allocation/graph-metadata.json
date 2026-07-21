@@ -19,7 +19,10 @@
       "value of computation allocation tasks",
       "adaptive deep-loop allocation tasks",
       "value of computation allocation checklist",
-      "adaptive deep-loop allocation checklist"
+      "adaptive deep-loop allocation checklist",
+      "value of computation allocation implementation",
+      "voc allocation shadow evidence",
+      "rank-only fan-in usefulness"
     ],
     "key_topics": [
       "value",
@@ -33,31 +36,34 @@
       "plan",
       "tasks",
       "checklist",
-      "replay-stable"
+      "voc"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
     ],
     "entities": [
       {
-        "name": "research-modes.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts",
         "source": "derived"
       },
       {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "name": "voc-allocation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts",
         "source": "derived"
       },
       {
@@ -85,6 +91,24 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,13 +133,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "pricing",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "pricing",
+        "name": "deterministic",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -145,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -157,59 +187,37 @@
         "source": "derived"
       },
       {
-        "name": "largest-remainder",
+        "name": "cost",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "largest-remainder",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan replay-stable value-of-computation scoring and adaptive allocation that directs remaining typed budget toward regions and modes with the highest expected marginal evidence value.",
+    "causal_summary": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
     "created_at": "2026-07-16T03:43:53.514Z",
-    "last_save_at": "2026-07-17T13:21:21.779Z",
+    "last_save_at": "2026-07-21T10:52:59.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3b36d34165f2f84fe866ed9c0780ec9a58776fb06ac62be478490edb6620a49",
+    "source_fingerprint": "sha256:8486802d9ae784a65b034f2bc9acc5d15895a53409596d1f9ec85a0cb1afb791",
     "source_doc_hashes": {
-      "spec.md": "ae9068e093aee9c35c5ffa2dd956687447769823f7ae0aca36dbdaa572221920",
-      "plan.md": "396067b5279acaf828e945940775528614dd03843381355bdf00b6e8397b1555",
-      "tasks.md": "13edc160fd4b8dfc3267c344dab82c7ea054d7ac5c3d26869e0736b95c699e35",
-      "checklist.md": "36a69536cfa52838d5ec7da270faf54bff506ebd5acb12234c25fabee40b17aa"
+      "spec.md": "a68ade4fda7ee14a894d19edff0614420f0a45179db5959992c5a586c755d567",
+      "plan.md": "89b52099935afc2b2ba216bf9f806d6ca388ef97a9f296b312d1e666600465db",
+      "tasks.md": "778b38020fa8871d27a3034358ae27a538a87a4344c79f1225f860353f683d2e",
+      "checklist.md": "d2b1904b6a05839f7f5f74f9f88753f86c9229d0fd8a34608d555dbf269f0ae5",
+      "implementation-summary.md": "be1055f1132851f7069921445c631dbde8536b780d668654d9f815e70bc51446"
     },
     "last_active_child_id": null,
     "last_active_at": null

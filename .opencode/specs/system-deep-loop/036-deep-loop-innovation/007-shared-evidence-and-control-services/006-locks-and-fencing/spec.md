@@ -13,11 +13,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing"
     last_updated_at: "2026-07-15T14:01:58Z"
     last_updated_by: "codex"
-    recent_action: "Defined lock scope, lease lifecycle, fencing, and timeout policy"
-    next_safe_action: "Implement the fenced coordinator and guarded mutation adapters"
+    recent_action: "Implemented and verified the additive-dark fenced coordinator and guarded mutation adapters"
+    next_safe_action: "Consume the additive adapters from later dark-path wiring without changing legacy authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented and verified (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Sixth child of the phase-007 shared evidence-and-control-services parent |
@@ -74,7 +77,7 @@ The phase-006 typed-ledger contract requires an exclusive append, expected-head 
 ### Out of Scope
 - Defining the event envelope, ledger frame, replay fingerprint, or transition vocabulary owned by phase 006.
 - Implementing continuity-identity semantics owned by successor `007-continuity-identities`; this phase consumes an opaque canonical lineage/resource identity.
-- Upcasters, shadow-parity policy, in-flight-state classification, rollback drills, or authority cutover owned by phases 005 and 011.
+- Upcasters, shadow-parity policy, in-flight-state classification, rollback drills, or authority cutover owned by phases 008 and 014.
 - Replacing the legacy path as authority, retiring legacy writers, or allowing a dark-path failure to change the legacy operational result.
 - A general multi-host consensus system. A backend is valid only inside its declared atomicity domain; unsupported storage/topology combinations fail closed instead of claiming a distributed lock.
 - Using wall-clock timestamps, PIDs, random nonces, file mtimes, or process-local mutexes as fencing tokens.

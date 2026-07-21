@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-a
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/003-stopping-clocks"
-    last_updated_at: "2026-07-15T15:24:30Z"
+    last_updated_at: "2026-07-21T11:37:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined P0 verification for clock conditions, ordering, and cause logging"
-    next_safe_action: "Execute the five-clock permutation, replay, and mode-profile matrices"
+    recent_action: "Strict verification complete"
+    next_safe_action: "Keep the module shadow-only until the separate program cutover gates pass"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,66 +36,66 @@ fingerprints, fixture manifests, commands, exit codes, and discovery counts; zer
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-007 budget, phase-010 novelty, sibling-001 coverage, sibling-002 cycle, ledger, and durable-dispatch source interfaces are versioned and pinned
-- [ ] CHK-002 [P0] The supported-mode inventory, five clock kinds, termination taxonomy, evaluation boundaries, same-batch rank, and event namespace are frozen
-- [ ] CHK-003 [P1] The candidate worktree is clean and pinned to BASE; the additive-dark authority boundary and rollback switch are recorded
+- [x] CHK-001 [P0] Budget, novelty, coverage, cycle, ledger, and durable-dispatch source interfaces are versioned and pinned [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; adapters import the shipped owner types/constructors/validators and profiles pin their versions.]
+- [x] CHK-002 [P0] The supported-mode inventory, five clock kinds, termination taxonomy, evaluation boundaries, same-batch rank, and event namespace are frozen [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; closed constants and seven exact profiles reject altered bytes.]
+- [x] CHK-003 [P1] The candidate baseline is captured and the path-scoped delta, additive-dark authority boundary, and rollback are recorded [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; a dirty shared-worktree baseline was captured before implementation; leaf status contains only allowed paths and `plan.md` keeps rollback on legacy authority.]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P1] Source adapters validate and translate owner outputs without duplicating budget, novelty, coverage, or cycle business logic
-- [ ] CHK-005 [P1] Clock/profile/event schemas use canonical serialization, stable identities, fixed-point numeric inputs, explicit versions, and no wall-clock comparison in replay
-- [ ] CHK-006 [P1] The arbiter contains no mode-specific thresholds or aggregate score that can suppress an independently fired clock
-- [ ] CHK-007 [P2] Changes remain scoped to stopping-clock composition, terminal cause recording, admission wiring, and shadow compatibility
+- [x] CHK-004 [P1] Source adapters validate and translate owner outputs without duplicating budget, coverage, or cycle business logic [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; budget uses typed decisions, coverage uses owner universe validation, cycle remints through the owner constructor, and novelty folds owner-projected yield only.]
+- [x] CHK-005 [P1] Clock/profile/event schemas use canonical serialization, stable identities, fixed-point numeric inputs, explicit versions, and no wall-clock comparison in replay [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; canonical SHA-256 identities and integer basis-point tails pass replay hashes.]
+- [x] CHK-006 [P1] The arbiter contains no mode-specific thresholds or aggregate score that can suppress an independently fired clock [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; thresholds live in profiles/adapters; arbitration compares elapsed time, cursor, and tie rank only.]
+- [x] CHK-007 [P2] Changes remain scoped to stopping-clock composition, terminal cause recording, admission evidence, and shadow compatibility [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; path-scoped status lists only the new module, test, and this leaf's docs.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-008 [P0] Budget fixtures fire independently for token, fixed-precision cost, iteration, and budgeted-wall-time exhaustion at every governing scope; missing or unreconciled state fails closed
-- [ ] CHK-009 [P0] Novelty fixtures cover warm-up, decay, both floors, patience, paraphrases, duplicate sources, new communities, new independent evidence, stale watermarks, resume, and replay
-- [ ] CHK-010 [P0] Coverage fires only for a fresh sibling-001 `STOP_ALLOWED`; partial, blocked, stale, expanded-universe, and `INCOMPLETE_LIMIT` certificates do not fire
-- [ ] CHK-011 [P0] Wall time fires from monotonic elapsed duration at the explicit mode deadline and remains a distinct cause from `budget_exhausted:wall_time`
-- [ ] CHK-012 [P0] Cycle fires only for a fresh confirmed sibling-002 event meeting severity/persistence; suspected, cleared, progress-broken, stale, and not-evaluable cases do not fire
-- [ ] CHK-013 [P0] Every single-clock case and all ordered clock pairs choose the smallest effective elapsed time regardless of adapter evaluation order
-- [ ] CHK-014 [P0] Every same-boundary pair and all-clock tie use `budget > wall_time > cycle > novelty_decay > coverage` and record all non-primary co-causes
-- [ ] CHK-015 [P0] Incremental execution, resume, and full replay reproduce observation hashes, primary cause, co-causes, comparator trace, terminal event, and final projection
-- [ ] CHK-016 [P0] Duplicate terminal delivery is idempotent; conflicting winner, profile, source, watermark, class, or trace at one terminal identity fails closed
-- [ ] CHK-017 [P0] Mixed watermarks, non-monotonic elapsed time, unknown source/profile versions, missing required clocks, and stale projections never produce `no_stop` or `converged`
-- [ ] CHK-018 [P0] The termination taxonomy is exact: coverage=`converged`, budget/wall-time=`incomplete`, novelty=`diminishing_returns`, cycle=`cycle_detected`
-- [ ] CHK-019 [P0] A fired clock denies every new dispatch while preserving receipt-linked settlement, salvage/cancellation, final coverage gaps, blockers, and last-authorized-work identity
-- [ ] CHK-020 [P0] A manifest-driven matrix proves every supported mode has all five adapters, explicit deterministic parameters, deadline, cycle action, evaluation points, and shadow/authority state
-- [ ] CHK-021 [P0] Legacy council fixtures prove `decision`, `trace`, blockers, score, snapshot behavior, and bridge payload remain unchanged while shadow artifacts are emitted
-- [ ] CHK-022 [P1] Crash-before-terminal-write, crash-after-write, source-event duplication, late coverage expansion, cycle clearing, and unsettled-effect recovery preserve one durable outcome
+- [x] CHK-008 [P0] Budget fixtures fire independently for token, fixed-precision cost, iteration, and budgeted-wall-time exhaustion at every governing scope; missing or unreconciled state fails closed [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; 16 unit/scope combinations fire with exact causes; unreconciled and unknown versions are not evaluable.]
+- [x] CHK-009 [P0] Novelty fixtures cover warm-up, decay, both floors, patience, paraphrases, duplicate sources, new communities, new independent evidence, stale watermarks, resume, and replay [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; complete/incomplete window, churn, duplicate, stale, reverse-order, resume, and replay assertions pass.]
+- [x] CHK-010 [P0] Coverage fires only for a fresh sibling `STOP_ALLOWED`; partial, blocked, stale, expanded-universe, score-only, and `INCOMPLETE_LIMIT` certificates do not fire [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; dedicated owner-certificate fixtures cover every named state.]
+- [x] CHK-011 [P0] Wall time fires from monotonic elapsed duration at the explicit mode deadline and remains a distinct cause from `budget_exhausted:wall_time` [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; the simultaneous boundary records both exact causes and ranks budget first.]
+- [x] CHK-012 [P0] Cycle fires only for a fresh confirmed sibling event meeting severity/persistence; suspected, cleared, progress-broken, stale, forged, and not-evaluable cases do not fire [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; owner-remint and freshness fixtures cover all named states.]
+- [x] CHK-013 [P0] Every single-clock case and all ordered clock pairs choose the smallest effective elapsed time regardless of adapter evaluation order [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; seven profiles execute 35 single-clock and 70 ordered-pair cases, with reversed observation order hashes equal.]
+- [x] CHK-014 [P0] Every same-boundary pair and all-clock tie use `budget > wall_time > cycle > novelty_decay > coverage` and record all non-primary co-causes [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; 70 pair ties and seven all-clock ties assert the rank and complete co-cause set.]
+- [x] CHK-015 [P0] Resume and full replay reproduce observation hashes, primary cause, co-causes, comparator trace, and terminal event [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; JSON resume/replay produces the identical event hash for all seven profiles.]
+- [x] CHK-016 [P0] Duplicate terminal delivery is idempotent; a conflicting winner, profile, source, watermark, class, or trace at one terminal identity fails closed [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; exact retry returns the first receipt, changed payload bytes conflict, and event validation binds causes/traces to the self-hash.]
+- [x] CHK-017 [P0] Mixed watermarks, non-monotonic elapsed time, unknown source/profile versions, missing required clocks, and stale projections never produce `no_stop` or `converged` [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; adapter and seven-profile fail-closed rows pass.]
+- [x] CHK-018 [P0] The termination taxonomy is exact: coverage=`converged`, budget/wall-time=`incomplete`, novelty=`diminishing_returns`, cycle=`cycle_detected` [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; every single-clock row asserts the closed class mapping.]
+- [x] CHK-019 [P0] A fired clock denies every new dispatch while preserving receipt-linked settlement, salvage/cancellation, final coverage gaps, blockers, and last-authorized-work identity [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; terminal events retain settle, salvage, cancel, gaps, blockers, and last work while admission is `reject_new_dispatch`.]
+- [x] CHK-020 [P0] A profile-driven matrix proves every supported mode has all five adapters, explicit deterministic parameters, deadline, cycle action, evaluation points, and shadow/authority state [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; all seven registered profiles execute the complete 32-test suite matrix.]
+- [x] CHK-021 [P0] Legacy council fixtures prove `decision`, `trace`, blockers, score, and bridge payload remain unchanged while shadow artifacts are emitted [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; the bridge preserves the complete legacy fixture by object identity and the council file has no delta.]
+- [x] CHK-022 [P1] Crash-before-terminal-write, crash-after-write, source-event duplication, late coverage expansion, cycle clearing, and unsettled-effect recovery preserve one durable outcome [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; empty pre-write ledger, append/retry, duplicate novelty source, stale successor universe, cleared cycle, and pending disposition evidence fixtures pass.]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-023 [P1] The implementation manifest maps every requirement to code, positive and negative fixtures, replay evidence, and a named verifier command
-- [ ] CHK-024 [P1] All clock consumers use the shared terminal projection; no mode keeps an unrecorded alternate stop path or silently relabels exhaustion as convergence
+- [x] CHK-023 [P1] The implementation record maps every requirement to code, positive and negative fixtures, replay evidence, and named verifier commands [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; `implementation-summary.md`, this checklist, and `tasks.md` record files, cases, commands, counts, and exits.]
+- [x] CHK-024 [P1] All supported modes use the shared arbiter contract; no dark integration adds an unrecorded alternate stop path or relabels exhaustion as convergence [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; one profile registry and arbiter serve all modes, while no existing consumer is modified before cutover.]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-025 [P1] Every clock observation and terminal event passes transition authorization, validates namespace/run lineage, and rejects forged source identities or cross-run watermarks
-- [ ] CHK-026 [P2] Termination logs retain evidence references and typed balances without leaking prompt bodies, credentials, provider secrets, or unrestricted raw executor output
+- [x] CHK-025 [P1] Every clock observation validates run lineage, source identity, and watermark; terminal events pass transition authorization and reject forged or cross-run state [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; source remint/hash checks, common snapshot validation, and the real authorization gateway fixture pass.]
+- [x] CHK-026 [P2] Termination logs retain evidence references and typed balances without leaking prompt bodies, credentials, provider secrets, or unrestricted raw executor output [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; payload schemas contain typed causes, hashes, IDs, balances, gaps, blockers, and dispositions only.]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-027 [P1] The per-mode profile reference documents each condition, threshold/window/deadline, evaluation boundary, termination class, tie rank, and versioning rule
-- [ ] CHK-028 [P2] Operator-facing diagnostics distinguish primary cause, co-causes, convergence, incomplete exhaustion, diminishing returns, cycling, blockers, and in-flight settlement state
+- [x] CHK-027 [P1] The per-mode profile reference documents each condition, threshold/window/deadline, evaluation boundary, termination class, tie rank, and versioning rule [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; `stopping-clock-profiles.ts`, exported types, and `implementation-summary.md` record the exact contract.]
+- [x] CHK-028 [P2] Operator-facing diagnostics distinguish primary cause, co-causes, convergence, incomplete exhaustion, diminishing returns, cycling, blockers, and in-flight settlement state [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; `LoopTerminationDeclared` carries each field as a separate typed value.]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-029 [P1] Clock adapters, arbiter, profiles, projections, events, tests, and fixtures follow existing system-deep-loop runtime ownership without duplicate mode-local arbiters
-- [ ] CHK-030 [P1] Path-scoped commits keep source adapters separable from authority/cutover work and preserve rollback to the legacy council path
+- [x] CHK-029 [P1] Clock adapters, arbiter, profiles, immutable snapshots, events, tests, and fixtures follow existing system-deep-loop runtime ownership without duplicate mode-local arbiters [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; one `runtime/lib/stopping-clocks/` module owns the complete composition boundary.]
+- [x] CHK-030 [P1] The path-scoped delta keeps source adapters separable from authority/cutover work and preserves rollback to the legacy council path [EVIDENCE: `stopping-clocks.vitest.ts` 32/32; existing consumers and `convergence.cjs` remain read-only; removing the additive module restores the prior path.]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

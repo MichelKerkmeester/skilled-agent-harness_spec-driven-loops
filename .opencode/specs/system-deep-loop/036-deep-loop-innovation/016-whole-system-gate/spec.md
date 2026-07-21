@@ -29,7 +29,7 @@ _memory:
 
 # Feature Specification: Whole-System Gate
 
-> Phase adjacency under the 006 parent (grouping order, not a runtime dependency): predecessor `015-legacy-writer-retirement`; successor `017-integrate-latest-and-closeout`.
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `015-legacy-writer-retirement`; successor `017-integrate-latest-and-closeout`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -101,7 +101,7 @@ error.
   acceptance threshold to make a candidate pass.
 - Integrating later origin changes, reconciling packet metadata, or closing the parent program; phase 017 owns those
   actions and must rerun this gate after integration.
-- Re-running the 065 research or adding `ai-system-improvement`, which the phase tree explicitly excludes.
+- Re-running the 036 research or adding `ai-system-improvement`, which the phase tree explicitly excludes.
 - Treating a count-only comparison, a non-blocking review, a skipped mode, or a validation warning as acceptance.
 <!-- /ANCHOR:scope -->
 
@@ -119,7 +119,7 @@ error.
 | REQ-007 | Degeneration and health controls detect unsafe continuation | Phase-011 cases cover repetition, cycle signals, mode collapse, quality decay, stopping-clock interaction, and recovery; health results are recorded without suppressing a declared failure |
 | REQ-008 | Full-system parity holds against phase-003 | The phase-008 harness reports parity by scenario ID and semantics for protected behavior, including budget accounting, receipt/certificate presence, terminal state, replay fingerprints, sealed artifacts, and archival reads |
 | REQ-009 | The gate is reviewed as a blocking SOL contract | The SOL report is bound to the candidate SHA and BASE SHA, includes commands and exit codes, lists all findings, and records an approval verdict with no unresolved blocking finding |
-| REQ-010 | The complete packet passes recursive strict validation | `validate.sh --strict --recursive` reports `Errors: 0` and `Warnings: 0` for the 006 parent tree, including every phase child and generated metadata available at gate time |
+| REQ-010 | The complete packet passes recursive strict validation | `validate.sh --strict --recursive` reports `Errors: 0` and `Warnings: 0` for the 036 parent tree, including every phase child and generated metadata available at gate time |
 | REQ-011 | Verification cannot hide tracked mutation | Gate execution uses disposable backends and sanitized fixtures, then proves the tracked worktree and index are unchanged except for explicitly pre-approved gate evidence |
 | REQ-012 | Failures reopen the correct contract | Each failed assertion maps to an owning phase; phase 017 remains blocked until the owner is corrected, downstream gates are rerun on a new exact SHA, and the SOL report is renewed |
 <!-- /ANCHOR:requirements -->

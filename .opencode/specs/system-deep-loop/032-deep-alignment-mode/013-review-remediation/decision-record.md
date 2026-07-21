@@ -100,3 +100,7 @@ The correctness half of F010's setup-misbind — the unbound `resolved_lanes` on
 ### Rationale
 
 A fabricated "termination fixed" claim without a fresh, multi-sample, contention-controlled capture would violate the honesty mandate. The tractable source defect (F003) is fixed here; the empirical termination-repeatability proof is recorded as an explicit, honest deferral for a follow-up benchmark capture rather than asserted.
+
+<!-- /ANCHOR: adr-001 -->
+<!-- /ANCHOR: adr-002 -->
+<!-- /ANCHOR: adr-003 -->

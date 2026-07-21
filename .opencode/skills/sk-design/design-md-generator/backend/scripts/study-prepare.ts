@@ -57,13 +57,17 @@ const STYLE_LIBRARY_CLI = path.resolve(
   '..',
   '..',
   'styles',
-  '_engine',
+  'lib',
+  'engine',
   'style-library.mjs',
 );
 const STYLE_LIBRARY_MANIFEST = path.resolve(
   path.dirname(STYLE_LIBRARY_CLI),
   '..',
-  '_retrieval-manifest.json',
+  '..',
+  'library',
+  'manifests',
+  'retrieval-manifest.json',
 );
 const RETRIEVAL_TIMEOUT_MS = 120_000;
 const RETRIEVAL_BUFFER_BYTES = 16 * 1024 * 1024;

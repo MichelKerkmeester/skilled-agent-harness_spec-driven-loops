@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T02:07:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned blinded adjudication contract and verifier gates"
-    next_safe_action: "Implement the blinding envelope and mirrored-order adjudication fixtures"
+    recent_action: "Closed adversarial blinding, eligibility, coverage, authorization, and replay gaps"
+    next_safe_action: "Consume the dark adapter in the later shadow-parity phase"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts"
+      - ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third child of the phase-007 shared evidence and control services parent |
@@ -72,8 +75,8 @@ Sources: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architec
 
 ### In Scope
 - A typed `AdjudicationRequest` contract covering decision kind, candidate digests, rubric/reference digest, judge policy version, required counterfactuals, quorum, tie behavior, and replay fingerprint.
-- A blinding registrar that replaces candidate identity and initial position with per-assignment opaque labels, masks provider/author/confidence metadata, and retains a separately controlled identity map for audit and deblinding.
-- Content-preserving presentation controls that randomize order and may normalize declared length/style features only under an explicit versioned policy; candidate meaning may not be rewritten by the blinding layer.
+- A blinding registrar that replaces candidate identity and initial position with randomized per-assignment opaque labels, keeps every pair/run/order/linkage identifier outside the judge payload, masks provider/author/confidence metadata, and retains a separately controlled identity map for audit and deblinding.
+- Fail-closed presentation controls that normalize bounded style features and reject candidate prose containing identity/provenance/confidence claims, hidden text controls, or judge instructions before judging; candidate meaning may not be rewritten by the blinding layer.
 - Pairwise judging in both A/B and B/A order, with explicit tie, abstention, invalid, and insufficient-evidence results rather than forced preference.
 - Counterfactual probes for identity label, order, claimed expertise, confidence, majority signal, and other policy-declared merit-irrelevant attributes, each linked to the original comparison.
 - A reduction contract that reports stable, unstable, or inconclusive verdicts and preserves minority evidence, vetoes, cycles, and per-judge uncertainty.
@@ -96,18 +99,18 @@ Sources: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architec
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Register each decision through a versioned typed request | The request binds decision kind, candidate and reference digests, rubric, counterfactual policy, judge policy, quorum/tie rules, and replay fingerprint before scoring starts |
-| REQ-002 | Keep identity-bearing registration separate from blinded judging | Judges receive opaque per-assignment labels and no provider, author, original position, confidence, or identity-map fields; access tests reject identity leakage |
-| REQ-003 | Preserve candidate meaning while controlling presentation bias | The presentation policy is versioned, its transformations are recorded, and digest-linked fixtures prove it changes only allowed merit-irrelevant presentation fields |
+| REQ-002 | Keep identity-bearing registration separate from blinded judging | Judges receive randomized assignment-local labels and normalized merit content without run, assignment, pair, order, counterfactual, baseline, provider, author, original-position, confidence, or identity-map fields; structural access tests reject identity and linkage leakage |
+| REQ-003 | Preserve candidate meaning while controlling presentation bias | The presentation policy is versioned, transformations are recorded, safe style normalization is digest-linked, and embedded identity/provenance/confidence claims or judge instructions fail closed before presentation |
 | REQ-004 | Run mirrored pairwise adjudication | Every required comparison records A/B and B/A judgments or an explicit policy-authorized exemption; order disagreement cannot reduce to a stable preference |
-| REQ-005 | Probe configured merit-irrelevant counterfactuals | Identity, order, confidence, expertise, majority, and other declared probes record flip/no-flip/indeterminate results linked to the baseline judgment |
+| REQ-005 | Probe mode-required merit-irrelevant counterfactuals | Every decision kind binds its complete mandated identity/order/confidence/expertise/majority/policy probe set at admission, and each probe records flip/no-flip/indeterminate evidence linked internally to the baseline judgment |
 | REQ-006 | Fail closed on bias sensitivity or insufficient evidence | Required probe flips, missing mirrored judgments, invalid assignments, unresolved cycles, or insufficient independence produce unstable/inconclusive outcomes rather than a winning candidate |
 | REQ-007 | Retain raw evidence before reduction | Immutable raw scores, rationales/evidence locators, abstentions, uncertainty, and probe results are ledger events addressable from the final verdict |
-| REQ-008 | Make reduction replayable and non-destructive | A versioned reducer reproduces the verdict from the same ordered events and fingerprint while retaining ties, minority evidence, vetoes, cycles, and all component scores |
+| REQ-008 | Make reduction replayable and non-destructive | A versioned reducer reproduces and verifies the complete verdict—evidence lists, graph, ties, cycles, vetoes, independence, authority, and replay fingerprint—from the same ordered events while retaining all component scores |
 | REQ-009 | Measure effective independence without overstating aggregation | Independence metadata and residual-correlation gauges are reported separately; Dawid-Skene-style competence weights cannot be presented as correlation correction or independent-vote count |
-| REQ-010 | Prevent self-scoring and identity-derived authority | Candidate producers cannot adjudicate their own candidate, and no hidden identity field may affect weight, eligibility, tie-break, or convergence status |
+| REQ-010 | Prevent self-scoring and identity-derived authority | Assignment secrets bind the complete planned judge profile and producer-equivalence eligibility basis; submission rechecks both so profile substitution, producers, and equivalent identities cannot score related candidates or affect weight, tie-break, or convergence |
 | REQ-011 | Provide typed mode-consumption contracts | Deep-review, deep-ai-council, and improvement/benchmark adapters map their domain inputs and outcomes without bypassing blinding, counterfactual, raw-score, or fail-closed rules |
 | REQ-012 | Keep the service dark and non-authoritative during migration | Adjudication events may be shadow-compared, but no legacy decision authority changes until later compatibility, parity, and cutover phases authorize it |
-| REQ-013 | Preserve audit-controlled deblinding | Deblinding is a separately authorized ledgered action after verdict finalization; routine scorers and reducers cannot access the identity map |
+| REQ-013 | Preserve audit-controlled deblinding | Deblinding is a separately authorized ledgered action after verdict finalization; a trusted injected boundary authenticates the caller claim and returns an authorized principal/capability before access, while routine scorers and reducers cannot read the identity map |
 | REQ-014 | Maintain source traceability | The service contract cites run-2 synthesis, the phase-004 ADR, and the phase manifest for every load-bearing architecture invariant |
 <!-- /ANCHOR:requirements -->
 
@@ -135,7 +138,7 @@ transition and must reference the service verdict rather than copy or re-reduce 
 - **SC-005**: Effective-independence evidence remains distinct from seat count and competence weighting; correlated panels cannot claim synthetic certainty.
 - **SC-006**: Deep-review, deep-ai-council, deep-improvement, model-benchmark, and skill-benchmark have explicit adapter and evidence contracts.
 - **SC-007**: The dark service changes no legacy authority and is ready for phase-008 shadow parity and later per-mode migration.
-- **SC-008**: Strict validation reports no errors other than the intentionally deferred generated metadata files.
+- **SC-008**: Strict validation reports zero errors.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -159,7 +162,7 @@ equivalence fixtures, cloned-seat correlation cases, cycle/tie cases, event repl
 ## 7. OPEN QUESTIONS
 
 None blocking for the planning contract. Implementation may choose the opaque-label format, identity-map custody
-mechanism, pair-selection optimizer, and reducer family after the phase-006 envelope and phase-005 sealed-artifact
+mechanism, pair-selection optimizer, and reducer family after the phase-006 envelope and sibling `002-sealed-reference-artifacts`
 interfaces are fixed. Those choices may not expose provenance during scoring, force a winner from unstable evidence,
 discard raw scores, equate competence weighting with independence, or let a consuming mode bypass typed verdict events.
 <!-- /ANCHOR:questions -->

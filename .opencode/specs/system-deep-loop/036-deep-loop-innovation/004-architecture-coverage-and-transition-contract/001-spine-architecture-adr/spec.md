@@ -13,11 +13,13 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
     last_updated_at: "2026-07-15T18:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined the planned ADR scope and six-primitive ratification contract"
-    next_safe_action: "Ratify the spine before phase 006 introduces any typed writer"
+    recent_action: "Ratified the six-primitive spine as the binding architecture contract"
+    next_safe_action: "Apply the accepted decision in phases 006, 007, and 008"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "decision-record.md"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-004 architecture, coverage, and transition-contract parent |
@@ -49,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The 006 parent program states that the 178 recommendations are not independent patches: they converge on one shared
+The 036 parent program states that the 178 recommendations are not independent patches: they converge on one shared
 runtime architecture. Run-2 research section 12 identifies five recurring mode-level primitives; the parent program
 and `manifest/phase-tree.json` add the fail-closed transition-authorization gateway required to make event persistence
 safe. Without a ratified decision, later phases could implement compatible-sounding but structurally different stores,
@@ -71,7 +73,7 @@ compatibility adapters, shadow parity, rollback evidence, and later per-mode cut
 - Record the rejected alternatives: per-mode JSONL, mutable state, unversioned events, ungated writers, mutable reference inputs, optional receipts, self-scoring, and big-bang replacement.
 - Record positive, negative, and operational consequences of the decision.
 - Bind phase 006 to the ledger, replay, and authorization core; phase 007 to seals, receipts, and adjudication; and phase 008 to compatibility, shadow-parity, and rollback preservation of the spine.
-- Ground the decision in the 006 parent `spec.md`, `manifest/phase-tree.json` architecture and migration-model fields, and run-2 `research/research-modes.md` section 12.
+- Ground the decision in the 036 parent `spec.md`, `manifest/phase-tree.json` architecture and migration-model fields, and run-2 `research/research-modes.md` section 12.
 
 ### Out of Scope
 - Event-envelope field names, storage engine selection, serialization format, or schema-registry implementation details owned by phase 006.
@@ -93,7 +95,7 @@ compatibility adapters, shadow parity, rollback evidence, and later per-mode cut
 | REQ-005 | Preserve independently checkable boundary evidence | Phase and mode boundaries emit typed receipts or certificates linked to the governing events, fingerprints, and sealed inputs |
 | REQ-006 | Separate scoring authority from the candidate or process being scored | Adjudication supports blinded provenance, mirrored-order or equivalent counterfactual checks, and retention of raw pre-reduction evidence |
 | REQ-007 | Record alternatives and consequences | Each rejected alternative has a concrete failure mode, and the accepted decision records costs, constraints, and migration consequences |
-| REQ-008 | Establish downstream ownership without duplicating implementation | Phase 006, 004, and 005 responsibilities are explicit and collectively preserve the complete spine |
+| REQ-008 | Establish downstream ownership without duplicating implementation | Phase 006, 007, and 008 responsibilities are explicit and collectively preserve the complete spine |
 | REQ-009 | Remain consistent with the program migration model | The ADR prohibits big-bang authority transfer and preserves additive-dark, compatibility, shadow-parity, rollback-window, and gated-retirement sequencing |
 | REQ-010 | Maintain source traceability | Each load-bearing decision cites the parent spec, phase-tree manifest, or run-2 synthesis section 12 |
 <!-- /ANCHOR:requirements -->
@@ -105,28 +107,28 @@ compatibility adapters, shadow parity, rollback evidence, and later per-mode cut
 - **SC-002**: Every primitive has a named problem, invariant, downstream owner, and ratification check.
 - **SC-003**: The alternatives analysis rejects ad-hoc per-mode JSONL, mutable state, unversioned events, ungated writes, mutable references, optional proof, self-scoring, and big-bang migration.
 - **SC-004**: Consequences distinguish architectural benefits from implementation cost, operational constraints, and migration obligations.
-- **SC-005**: Phases 003, 004, and 005 can derive their contracts without reopening the topology decision.
+- **SC-005**: Phases 006, 007, and 008 can derive their contracts without reopening the topology decision.
 - **SC-006**: Strict validation reports no errors other than the intentionally deferred generated metadata files.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase has no execution-phase predecessor, but its evidence inputs are the approved 006 parent specification, the
+The phase has no execution-phase predecessor, but its evidence inputs are the approved 036 parent specification, the
 phase-tree manifest, and run-2 synthesis section 12. The primary risk is ratifying labels without enforceable
 invariants; the plan therefore defines default-deny behavior, digest binding, version binding, boundary evidence, and
 adjudication separation explicitly. A second risk is allowing implementation detail to leak into this decision and
-prematurely constrain phases 003-005; storage, cryptography, transport, and adapter mechanics remain delegated.
+prematurely constrain phases 006-008; storage, cryptography, transport, and adapter mechanics remain delegated.
 
 Downstream risk is asymmetric: phase 006 cannot safely introduce a typed writer without authorization, while phases
-004 and 005 may elaborate services and migration mechanics without weakening the ratified primitives. Any later need
+007 and 008 may elaborate services and migration mechanics without weakening the ratified primitives. Any later need
 to change the topology requires an explicit superseding ADR and consumer impact analysis, not an implicit schema edit.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for ratification. The decision fixes the architecture topology and invariants, while phases 003-005
+None blocking for ratification. The decision fixes the architecture topology and invariants, while phases 006-008
 retain bounded design choices for event fields, persistence, seal enforcement, receipt recovery, adjudicator
 implementation, upcasting, shadow comparison, and rollback mechanics. Those choices may not weaken default-deny
 authorization, immutability, replay versioning, proof emission, blinded adjudication, or additive-dark migration.

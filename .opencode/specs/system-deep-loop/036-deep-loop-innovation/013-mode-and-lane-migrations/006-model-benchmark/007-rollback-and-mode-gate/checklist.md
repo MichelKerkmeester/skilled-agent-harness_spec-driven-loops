@@ -103,7 +103,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 
 - [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, and later authority-cutover certificate
 - [ ] CHK-037 [P1] The shared-service reuse boundary names Deep Improvement Common Services and records that Model Benchmark consumes its evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source
-- [ ] CHK-038 [P2] Research traceability cites the 065/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims
+- [ ] CHK-038 [P2] Research traceability cites the 036/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

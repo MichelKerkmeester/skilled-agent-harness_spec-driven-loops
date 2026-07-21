@@ -12,15 +12,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined mixed-version fixture scenarios and replay sealing boundaries"
-    next_safe_action: "Freeze old-new event-state fixtures against upcaster and parity contracts"
+    last_updated_at: "2026-07-21T14:35:00Z"
+    last_updated_by: "codex"
+    recent_action: "Grounded resume classification in sealed restart evidence"
+    next_safe_action: "Consume the sealed corpus in phase-013 mode migrations"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The corpus uses one shared event and state family across every manifest workstream."
+      - "The interrupted fixture supplies real restart evidence and expects a bounded legacy pin."
+      - "Every trusted execution performs two deterministic runs from one verified capsule."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -39,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third child of the phase-012 shared mode contracts and fixtures parent |
@@ -58,7 +61,7 @@ record at the same causal time. Testing only a fully old or fully new stream hid
 bridge must handle.
 
 The phase-008 upcaster and dual-read contract requires adjacent, deterministic, lossless transforms, immutable source
-evidence, and fail-closed handling of future, ambiguous, or unsupported versions (`../../005-compatibility-shadow-and-
+evidence, and fail-closed handling of future, ambiguous, or unsupported versions (`../../008-compatibility-shadow-and-
 rollback-bridge/001-upcasters-and-dual-read-adapters/spec.md`). Its shadow-parity child requires both legacy and dark
 paths to consume one identical sealed case capsule, compare verified replay components and legacy projections, and keep
 authority on the legacy path (`../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md`).
@@ -210,26 +213,25 @@ phase-007 verified read fails before either path executes and the case is classi
 - **Interrupted restart duplicates effects** - A restart can replay an accepted effect without its receipt. Mitigation:
   seal receipt, lease/fencing, pending-effect, and continuity evidence and expect the phase-008 resume classification.
 - **Mode-specific fixture drift** - Eight workstreams may invent private version combinations. Mitigation: derive the
-  matrix from `mode_workstreams_phase_010`, use one fixture envelope, and reject unregistered exceptions.
+  matrix from `mode_workstreams_phase_013`, use one fixture envelope, and reject unregistered exceptions.
 - **Dependencies**: the child declares `depends_on: []` in `manifest/phase-tree.json`, but its implementation consumes
   the phase-007 sealed-reference-artifact contract, phase-008 upcaster and shadow-parity contracts, the phase-012
   shared-mode interface, and the parent sequencing rules. The phase-013 mode migrations consume this fixture set; phase
-  011 consumes its parity evidence but remains the sole authority-cutover owner.
+  014 consumes its parity evidence but remains the sole authority-cutover owner.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which concrete event and state families from the phase-003 census require mixed cases for every mode, and which shared
-  families can use one cross-mode fixture row?
-- What exact causal boundary fields are mandatory for each mode's event stream, snapshot, lease, receipt, and continuity
-  identity in an interrupted-migration case?
-- Which phase-008 resume classifications can be asserted by a fixture without importing mode-specific migration policy?
-- Which legacy projection fields are observable for each mode when the dark path has upcast old records into a current
-  effective model?
-- What rerun count and supported process/platform matrix is required before a mixed case can contribute to a parity
-  certificate?
-
-These decisions are resolved while freezing the fixture schema and manifest-derived matrix. They do not authorize
-implementation, state rewrite, authority movement, or a waiver for an unsupported version in this Planned phase.
+- One governed fixture event family and one governed state family cover every manifest workstream; each workstream still
+  receives its own four-case identity and sealed capsule.
+- The causal boundary binds run, stream, authority epoch, correlation, sequence, and continuity identity. Interrupted
+  inputs also seal pending effects, receipts, leases, fencing tokens, and the stop sequence.
+- The interrupted scenario invokes the frozen in-flight classifier with its sealed quiescent lease, receipt-backed
+  pending effect, continuity boundary, and the census row's real mutability. The `fanout-checkpoints` policy returns
+  `pin-legacy`; missing receipt coverage still returns `block`.
+  The fixture does not invent mode-specific migration policy.
+- The declared legacy projection is `legacy-mode-output`; both paths must return identical authored observations while
+  authority remains `legacy_authoritative` and `authorityMutation` remains false.
+- Two byte-identical deterministic runs are required by the shipped parity harness minimum and by the fixture oracle.
 <!-- /ANCHOR:questions -->

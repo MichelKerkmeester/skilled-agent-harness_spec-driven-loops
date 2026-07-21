@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "name": "structured-only",
+      "sha256": "sha256:857d93b769410fa9f011a3a1850758dbfb05b655c9b87cd9847174baee80e724"
+    },
+    {
+      "name": "fts-text",
+      "sha256": "sha256:1aba97ee2cfe801388cace45683df78b535f1c595016b6116925cea5a07cefd8"
+    },
+    {
+      "name": "facet-filter",
+      "sha256": "sha256:937ccfe96f382525c4780b6bbd594241c04e309d346ae0e20ea5097326d20563"
+    },
+    {
+      "name": "exclusions",
+      "sha256": "sha256:f78dfdc4377aea319e95b97c61ae4c4edac8ec111ed6f9113797f794388ee850"
+    },
+    {
+      "name": "vector-only",
+      "sha256": "sha256:3da0ce04a9d875837e051f053ec4b71be7d8f62930b449546b989d185fd4bade"
+    },
+    {
+      "name": "hybrid",
+      "sha256": "sha256:7a5f16980adad67be1d148a01c389fef9b5738f5e31ab1208c6d11997e53773c"
+    },
+    {
+      "name": "degraded-disable-fts",
+      "sha256": "sha256:92b5c2d87be9867499c5cc24d6352e9f5285afb42daa8812ec2d2c7123d63370"
+    },
+    {
+      "name": "exact-reuse",
+      "sha256": "sha256:027103460c661c8fbe080ae561dc844ad8a9ee261435d3b2d93e7039d5fc1e88"
+    },
+    {
+      "name": "paged",
+      "sha256": "sha256:cba726f14095bf33ca506db1ccc05b5742cab9b375edd357ccbdd29c3d45d2f8"
+    }
+  ]
+}

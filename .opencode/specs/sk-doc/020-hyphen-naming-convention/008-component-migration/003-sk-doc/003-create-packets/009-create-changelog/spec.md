@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-changelog resource names
+> Phase adjacency — predecessor `008-create-flowchart`; successor `010-create-diff`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -82,6 +83,7 @@ The outcome is a kebab-case guidance resource set with intact changelog authorin
 | REQ-002 | Changelog guidance links resolve | Every old packet-local reference points to the target file |
 | REQ-003 | Version/changelog semantics remain stable | No version field, release filename, topology rule, or content key changes outside path tokens |
 | REQ-004 | The phase boundary remains clear | Global changelog evidence belongs to phase 006, not this component phase |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

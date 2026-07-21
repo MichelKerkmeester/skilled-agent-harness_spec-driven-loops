@@ -147,7 +147,7 @@ legacy source before post-verification, and retrying a partially committed impor
 coordinator must therefore keep source authority and rollback evidence until a durable commit marker exists, use the
 phase-007 fence at every mutation boundary, and classify any uncertainty as `BLOCK`.
 
-The existing [`atomic-state.ts`](../../../../../../skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts)
+The existing [`atomic-state.ts`](../../../../../skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts)
 implementation supplies deterministic hashing at `computeIntegrityHash` (`:210-213`), warning-only verification at
 `verifyIntegrity` (`:242-259`), and single-file atomic replacement at `writeTextAtomic` (`:483-500`). The migration
 must treat warning-only integrity failure as a hard migration failure and must add bundle-level transaction evidence

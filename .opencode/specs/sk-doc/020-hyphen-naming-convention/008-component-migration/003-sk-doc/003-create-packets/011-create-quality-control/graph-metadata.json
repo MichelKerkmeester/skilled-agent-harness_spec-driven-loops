@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-07-17T14:30:16.701Z",
+    "last_save_at": "2026-07-20T11:43:48.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a3aa2807c1c6ede17b08f8271017a80a02a924b65f735e81e6479a2e945ed00e",
+    "source_fingerprint": "sha256:97071ccbec2ed776e88a424a151d0fed0c6e64ab9467dbed0e476e3099279d12",
     "source_doc_hashes": {
-      "spec.md": "bd77cffe860fcf51d333d25f4ef1da2d497ba20122c3334c72391aa5b6166c29",
+      "spec.md": "a4613bc89381b3d1b2a8d75d4354f4da321d3beff5a24b5705a8837b1ebe8270",
       "plan.md": "1186ecdfa68151dd8d7a1ffb2f230565e21f199b9134d9560aca3e775f45ad16",
       "tasks.md": "8d9f0a4786bde0a76e49864ef0d9f37fcbc6c86d09b24911ba7047525830ef19",
       "checklist.md": "f67a347b97cabb6bc58cf59865a40d8a762083608330a2c8298373f91ffc6294"

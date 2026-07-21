@@ -73,6 +73,8 @@ STATE_DIR_NAME = ".create-diff"
 CONTEXT_LINES = 3           # lines of unchanged context kept around each change
 COLLAPSE_THRESHOLD = 7      # runs of equal lines longer than this get collapsed
 _MD_HEADING_RE = re.compile(r"#{1,6} \S")  # ATX heading at line start (needs "# " + text)
+_FILE_START_RE = re.compile(r"^===== BEGIN FILE: (.+) =====$")
+_FILE_END_RE = re.compile(r"^===== END FILE: (.+) =====$")
 _KEBAB_FILE_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*(?:\.diff)?$")
 
 
@@ -483,6 +485,8 @@ class Row:
     note: str = ""            # for 'collapse': hidden-count text
     sec: bool = False         # document section heading — rendered as a divider band
     section: str = ""         # name of the document section this row falls in
+    boundary: str = ""        # validated aggregate marker: 'start' | 'end'
+    file_path: str = ""       # unescaped path carried by a validated boundary
 
 
 @dataclass
@@ -563,8 +567,61 @@ def _logical_lines(text: str) -> List[str]:
     return lines
 
 
+def _parse_file_boundary(line: str) -> Optional[Tuple[str, str]]:
+    """Return an exact aggregate marker's kind and path, or None.
+
+    Paths are kept as source text and escaped only when rendered. Leading or
+    trailing whitespace is rejected so visually ambiguous marker variants cannot
+    activate report chrome.
+    """
+    for kind, pattern in (("start", _FILE_START_RE), ("end", _FILE_END_RE)):
+        match = pattern.match(line)
+        if match:
+            path = match.group(1)
+            return (kind, path) if path == path.strip() else None
+    return None
+
+
+def _aggregate_file_sequence(text: str) -> Optional[List[str]]:
+    """Validate one pre-composed aggregate bundle and return its file order.
+
+    Boundary mode is intentionally strict and all-or-nothing. Non-blank content
+    outside a file pair, nested starts, mismatched ends, duplicate paths, or fewer
+    than two files make the input an ordinary document instead.
+    """
+    files: List[str] = []
+    seen = set()
+    open_path: Optional[str] = None
+    for line in _logical_lines(text):
+        marker = _parse_file_boundary(line)
+        if marker is None:
+            if open_path is None and line.strip():
+                return None
+            continue
+        kind, path = marker
+        if kind == "start":
+            if open_path is not None or path in seen:
+                return None
+            open_path = path
+            seen.add(path)
+            files.append(path)
+        elif open_path != path:
+            return None
+        else:
+            open_path = None
+    return files if open_path is None and len(files) >= 2 else None
+
+
+def _matching_aggregate_files(a_text: str, b_text: str) -> Optional[List[str]]:
+    """Return the shared file order when both inputs are valid matching bundles."""
+    a_files = _aggregate_file_sequence(a_text)
+    b_files = _aggregate_file_sequence(b_text)
+    return a_files if a_files is not None and a_files == b_files else None
+
+
 def diff_lines(a_text: str, b_text: str,
-               section_re: Optional[re.Pattern] = None) -> DiffResult:
+               section_re: Optional[re.Pattern] = None,
+               file_boundaries: bool = False) -> DiffResult:
     """Compute a line-level diff with inline word highlighting and move detection.
 
     Args:
@@ -574,6 +631,8 @@ def diff_lines(a_text: str, b_text: str,
             lines are flagged as section rows, every row is stamped with the
             section it falls in, and each collapsed run surfaces the nearest
             heading above the following change as a navigable divider.
+        file_boundaries: Treat exact aggregate file markers as semantic rows. The
+            caller must first validate both inputs with `_matching_aggregate_files`.
 
     Returns:
         A DiffResult with rendered rows and aggregate add/remove/change counts.
@@ -606,6 +665,12 @@ def diff_lines(a_text: str, b_text: str,
             def _ctx(k: int, _i1=i1, _j1=j1) -> Row:
                 nonlocal cur_section
                 line = b_lines[_j1 + k]
+                boundary = _parse_file_boundary(line) if file_boundaries else None
+                if boundary:
+                    cur_section = ""
+                    return Row("context", _i1 + k + 1, _j1 + k + 1,
+                               html.escape(a_lines[_i1 + k]), html.escape(line),
+                               boundary=boundary[0], file_path=boundary[1])
                 s = _is_sec(line)
                 if s:
                     cur_section = _section_label(line)
@@ -613,7 +678,7 @@ def diff_lines(a_text: str, b_text: str,
                            html.escape(a_lines[_i1 + k]), html.escape(line),
                            sec=s, section=cur_section)
 
-            if length > COLLAPSE_THRESHOLD and not (first and last):
+            if length > COLLAPSE_THRESHOLD and (file_boundaries or not (first and last)):
                 head = 0 if first else CONTEXT_LINES
                 tail = 0 if last else CONTEXT_LINES
                 for k in range(head):
@@ -623,22 +688,25 @@ def diff_lines(a_text: str, b_text: str,
                 if hidden > 0:
                     sec_ks = ([k for k in range(hidden_lo, hidden_hi)
                                if _is_sec(b_lines[j1 + k])] if section_re else [])
+                    boundary_ks = ([k for k in range(hidden_lo, hidden_hi)
+                                    if _parse_file_boundary(b_lines[j1 + k])]
+                                   if file_boundaries else [])
                     # Surface only the nearest heading above the following change:
                     # it names the section the next hunk lives in. Headings deep in
                     # fully-unchanged territory stay collapsed — outline chrome with
                     # no nearby change is noise, not navigation.
-                    show = sec_ks[-1] if (sec_ks and not last) else None
-                    if show is None:
-                        if sec_ks:
-                            cur_section = _section_label(b_lines[j1 + sec_ks[-1]])
-                        _gap(hidden)
-                    else:
-                        if show > hidden_lo:
-                            _gap(show - hidden_lo)
-                        rows.append(_ctx(show))
-                        rest = hidden_hi - show - 1
-                        if rest:
-                            _gap(rest)
+                    last_boundary = boundary_ks[-1] if boundary_ks else hidden_lo - 1
+                    eligible_secs = [k for k in sec_ks if k > last_boundary]
+                    show = eligible_secs[-1] if (eligible_secs and not last) else None
+                    visible = sorted(set(boundary_ks + ([show] if show is not None else [])))
+                    cursor = hidden_lo
+                    for special in visible:
+                        if special > cursor:
+                            _gap(special - cursor)
+                        rows.append(_ctx(special))
+                        cursor = special + 1
+                    if cursor < hidden_hi:
+                        _gap(hidden_hi - cursor)
                 for k in range(length - tail, length):
                     rows.append(_ctx(k))
             else:
@@ -796,6 +864,20 @@ td.is-empty{background:var(--empty-bg)}
 tr.hunk-head th{background:var(--hunk-bg);color:var(--hunk-text);text-align:left;
 font-family:var(--font-code);font-weight:600;padding:var(--sp-1) var(--sp-2);
 border-block:1px solid var(--hunk-border)}
+tbody.file-boundary th{text-align:left;padding:var(--sp-3) var(--sp-4);
+font-family:var(--font-ui);overflow-wrap:anywhere}
+tbody.file-gap td{height:var(--sp-8);padding:0;background:var(--canvas);border:0;position:relative}
+tbody.file-gap td::before,tbody.file-gap td::after{content:"";position:absolute;inset-block:0;
+width:2px;background:var(--canvas)}
+tbody.file-gap td::before{left:-1px}tbody.file-gap td::after{right:-1px}
+tbody.file-start th{background:var(--text);color:var(--canvas);
+border-block:3px solid var(--text)}
+tbody.file-end th{background:var(--surface);color:var(--text-muted);
+border-block:2px solid var(--border-strong)}
+.file-boundary-label{display:block;font-size:var(--text-caption);font-weight:700;
+letter-spacing:.08em;text-transform:uppercase}
+.file-boundary-path{display:block;margin-top:var(--sp-1);font-family:var(--font-code);
+font-size:var(--fs-code);font-weight:600}
 tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
 padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
 tr.sec td{padding-block:4px}
@@ -892,9 +974,13 @@ def render_report(diff: DiffResult, *, label_before: str, label_after: str,
         table = _render_unified(diff)
 
     no_change = diff.total_changes == 0
+    no_change_status = ('<p role="status"><strong>No textual differences detected.</strong> '
+                        'The two versions are identical after normalization.</p>')
     if no_change:
-        table = ('<p role="status"><strong>No textual differences detected.</strong> '
-                 'The two versions are identical after normalization.</p>')
+        # Aggregate boundaries remain useful navigation even when every file is
+        # unchanged; single-document reports keep the compact status-only view.
+        table = (no_change_status + table if any(r.boundary for r in diff.rows)
+                 else no_change_status)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -950,15 +1036,19 @@ def _section_label(raw: str) -> str:
 def _hunks(rows: List[Row]) -> List[Tuple[str, object]]:
     """Split diff rows into contiguous change hunks separated by collapsed-context gaps.
 
-    Returns ('hunk', (rows, section_label)) and ('gap', note) segments, so each hunk can
-    carry its own @@ header annotated with the document section it falls in, and the
-    omitted-context markers read as real breaks rather than generic status rows.
+    Returns hunk, gap, and boundary segments so each hunk can carry its own @@
+    header while validated file transitions remain outside ordinary row groups.
     """
     segments = []
     current: List[Row] = []
     hunk_label = ""
     for r in rows:
-        if r.kind == "collapse":
+        if r.boundary:
+            if current:
+                segments.append(("hunk", (current, hunk_label)))
+                current = []
+            segments.append(("boundary", r))
+        elif r.kind == "collapse":
             if current:
                 segments.append(("hunk", (current, hunk_label)))
                 current = []
@@ -984,6 +1074,22 @@ def _hunk_header(hunk: List[Row], label: str = "") -> str:
     return f"{base} · § {label}" if label else base
 
 
+def _render_file_boundary(row: Row, colspan: int) -> str:
+    """Render a validated file transition as a semantic full-width row group."""
+    label = "START FILE" if row.boundary == "start" else "END FILE"
+    return (f'<tbody class="file-boundary file-{row.boundary}"><tr>'
+            f'<th scope="rowgroup" colspan="{colspan}">'
+            f'<span class="file-boundary-label">{label}</span>'
+            f'<span class="file-boundary-path">{_esc(row.file_path)}</span>'
+            '</th></tr></tbody>')
+
+
+def _render_file_gap(colspan: int) -> str:
+    """Separate adjacent file groups with inert canvas whitespace."""
+    return (f'<tbody class="file-gap" aria-hidden="true"><tr>'
+            f'<td colspan="{colspan}"></td></tr></tbody>')
+
+
 def _render_unified(diff: DiffResult) -> str:
     out = ['<table class="diff">',
            '<colgroup><col class="col-no"><col class="col-no">'
@@ -994,7 +1100,15 @@ def _render_unified(diff: DiffResult) -> str:
            '<th scope="col" class="no">New</th>',
            '<th scope="col" class="mark"><span class="skip">Change</span></th>',
            '<th scope="col">Content</th></tr></thead>']
+    seen_file = False
     for kind, payload in _hunks(diff.rows):
+        if kind == "boundary":
+            if payload.boundary == "start":
+                if seen_file:
+                    out.append(_render_file_gap(4))
+                seen_file = True
+            out.append(_render_file_boundary(payload, 4))
+            continue
         if kind == "gap":
             out.append('<tbody class="gap"><tr class="collapse">'
                        f'<td colspan="4">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
@@ -1077,7 +1191,15 @@ def _render_side_by_side(diff: DiffResult, label_before: str, label_after: str) 
            '<th scope="col" class="no">#</th>',
            '<th scope="col" class="mark"><span class="skip">Change (after)</span></th>',
            f'<th scope="col">{_esc(label_after)}</th></tr></thead>']
+    seen_file = False
     for kind, payload in _hunks(diff.rows):
+        if kind == "boundary":
+            if payload.boundary == "start":
+                if seen_file:
+                    out.append(_render_file_gap(6))
+                seen_file = True
+            out.append(_render_file_boundary(payload, 6))
+            continue
         if kind == "gap":
             out.append('<tbody class="gap"><tr class="collapse">'
                        f'<td colspan="6">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
@@ -1350,7 +1472,9 @@ def _compare_and_report(ext_a: Extraction, ext_b: Extraction, *, label_before: s
     # Markdown documents get heading-aware sectioning: the diff is divided by the
     # document's own outline, so long reports stay scannable by structure.
     section_re = _MD_HEADING_RE if ext_b.fmt == "markdown" else None
-    diff = diff_lines(a_norm, b_norm, section_re=section_re)
+    aggregate_files = _matching_aggregate_files(a_norm, b_norm)
+    diff = diff_lines(a_norm, b_norm, section_re=section_re,
+                      file_boundaries=aggregate_files is not None)
     report_html = render_report(diff, label_before=label_before, label_after=label_after,
                                 extraction_before=ext_a, extraction_after=ext_b,
                                 view=view, title=title)

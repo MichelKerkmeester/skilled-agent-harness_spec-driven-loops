@@ -44,7 +44,7 @@ _memory:
 | **Origin** | Final child concern in the phase-013 Agent Improvement migration |
 | **Depends on** | `[]` in the approved phase definition; sibling adjacency is navigation only |
 | **Outcome** | Plan the Agent Improvement rollback switch and independent mode gate for the typed event-ledger migration |
-| **Inputs** | Parent 065 spec, phase-tree manifest, 065/002 findings registries, Agent Improvement siblings `001` through `006`, and the shared transition/versioning/rollback policy |
+| **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, Agent Improvement siblings `001` through `006`, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -186,7 +186,7 @@ typed evidence remains readable.
   Mitigation: use the mode-004 ownership matrix, shared fixtures, namespaced adapters, and one common certificate subject.
 - **Dependencies**: Agent Improvement siblings `001-typed-ledger-schema` through `006-shadow-parity`; the
   `004-deep-improvement-common` evaluator/canary/promotion and rollback contract; phase 012 shared mode interfaces and
-  write-set conflict graph; phase 014 readiness consumer; phase 014 authority-cutover contract; the 065/002 findings
+  write-set conflict graph; phase 014 readiness consumer; phase 014 authority-cutover contract; the 036/002 findings
   registries; existing Agent Improvement scripts and fixtures; and the spec-kit validator. Phase manifest `depends_on: []`
   remains the planning authority; implementation readiness is established by the parent handoff.
 <!-- /ANCHOR:risks -->

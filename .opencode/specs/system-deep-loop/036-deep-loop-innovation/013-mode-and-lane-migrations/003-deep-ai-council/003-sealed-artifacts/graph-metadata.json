@@ -179,9 +179,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-006 sealing primitives and phase-012 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme.",
+    "causal_summary": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-007 sealing primitives and phase-012 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme.",
     "created_at": "2026-07-16T03:43:34.470Z",
-    "last_save_at": "2026-07-17T13:21:31.267Z",
+    "last_save_at": "2026-07-19T18:09:56.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,12 +190,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:6ffa51bcfb01f0b2f1255c183da151618feba83d0779d19eacc236d6479f03d1",
+    "source_fingerprint": "sha256:9ae0aace1c20749acdb2cfc6d08ad225b0869f9d1259e71d05122c4a0ec2ef30",
     "source_doc_hashes": {
-      "spec.md": "e1370e3ab640b0a4b5ab781f4b87e015447906470e087cdad977a42a7bca1bc5",
-      "plan.md": "6cb33123b11846fc124ece233706b49a46d1decfd36be2535a4061a29b06490c",
-      "tasks.md": "fe2ab5e6593a7848eea3339919f9d5ac10748eeaaa45ab305f607c03322be057",
-      "checklist.md": "0a0a741ecdb252ed6666488c19110be663e8a6366218b5c0c12cf7fb4a0c9969"
+      "spec.md": "b048de6139793b87d52fd7e854186442887b922ad5bb49425e4a8d7e7090d16e",
+      "plan.md": "cb5f95bb8ac3227bd5641a0c103142513deaab17b2631d60ceee60cc593cf225",
+      "tasks.md": "236d03be344fc851e48bf7a486b7e827230ee3af921b397d90dceaf84c8593f7",
+      "checklist.md": "f0cd86c1d9e4508a551f7ef88f448577da96e639620f5aee22840bef70210f9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

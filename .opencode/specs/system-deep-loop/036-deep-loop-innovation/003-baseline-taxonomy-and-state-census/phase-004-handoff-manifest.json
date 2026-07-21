@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "consumer": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+  "artifacts": [
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/base-manifest.json",
+      "sha256": "a19baf8a08485eff71e10b91db1381faa76ac544559963493a8178504eae809a"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/taxonomy-census.json",
+      "sha256": "d2292873df9cc32c7ac2aa185d28871ffb1ab4b9a87553aa69952cb74dc59736"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/subsystem-census.json",
+      "sha256": "4d367cb3fff90268ea607e1f52fc5c09cee747334994a539d1eb7ca2bc081ffd"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/event-schema-census.json",
+      "sha256": "ba865f9286ddfabf8a9c9a1eddf96d47365f7e5dd3fab5ee3018ff68ab2d5755"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+      "sha256": "e35a707bc969f075e1e4fb0558a9b211f48c526a47d7d0a121e8712d54bb9441"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/contract-defect-ledger.json",
+      "sha256": "a5c668ef86866237827ca0a4ac5bb7a49b83d6c58e2b2d60f7e42fc6ac3b998e"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/behavior-baseline.json",
+      "sha256": "f934f5a689b9a72df63f37480381824c29761085c33ffe1771558d11cd4802c2"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/replay-rollback-manifest.json",
+      "sha256": "ee38f460cf048d14f462ea096861bbd1d6cc280b4ed6c21a2168e807eb85ba11"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/pre-existing-kebab-renames.json",
+      "sha256": "92371204c11e5302848c499d69b5083568f9d29fd69a03e150d800220f62ed7d"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/validate-evidence.cjs",
+      "sha256": "ec2097378f887c619d3568164ba668bfbd59184b7701b1a59f42f9e641d1950f"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/event-streams.json",
+      "sha256": "2187aca49c5ef8f50d2d5115aec98adda3451930f62391d125cb94b088a19b9d"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/expected-projections.json",
+      "sha256": "3ec6cc6ba99fbd3ed3db0e3ddc2a42f846b55f4244e2bad463303f2cf7a61531"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/coverage-graph.sql",
+      "sha256": "27a92559d95f1f0612475cc79adb5d2b39275dcee3934f322c801a25b2be9cbf"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/council-graph.sql",
+      "sha256": "cf02bb5087f689937bc3edd2c88e6b48f65f37b6129cf4754ddbbf61bf125eba"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/control-surfaces.json",
+      "sha256": "689e8baa3385dbf77653b2343d42b2cbccc0422936a32c8818344c4eeb810d2f"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md",
+      "sha256": "a14403828164ca8ec3c9160af9cb141769310471c0ddf61b1d556e478895191c"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md",
+      "sha256": "b4c374f64e40055cab6742f5411c73173c1c782c43f3329e98ac367c3359e56e"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md",
+      "sha256": "0e5bf53df3df2f9ccecaf96aaf917e67b0afae0ad7cea2d0ac5e5741908e86c0"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-006-gpt-fast-high.result.json",
+      "sha256": "5bed3a931b6e872d4a6c6229b85e64d0daa5150a2d9cf5fd05bde4a46f66b549"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-006-gpt-fast-high.transcript.jsonl",
+      "sha256": "aaa90f557e989e77dcb24e1deb26d9a6c61b15660768e655be0feffc3502e55b"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-007-gpt-fast-high.result.json",
+      "sha256": "9af16f3aaab0f1dfcc4d628c6c9288c0c3e137c4eb5cdd7c5e1555f20b64fe5d"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-007-gpt-fast-high.transcript.jsonl",
+      "sha256": "bde4af31bb767e0eca46919fd2c10726922553c71167cd10f374fa899b573ac2"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-008-gpt-fast-high.result.json",
+      "sha256": "ae0c08cadc27b931c027a788d1a66f1e4cfe6ab11f4892dcc15219104bd14fdf"
+    },
+    {
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-008-gpt-fast-high.transcript.jsonl",
+      "sha256": "ac84de8b621ef114b15dcd3b4be582e9d44f78cd879583454dce6ef996288f5f"
+    }
+  ],
+  "artifactCount": 24,
+  "selfHashPolicy": "This manifest is excluded from its own artifact array because a self-contained cryptographic self-hash has no stable fixed point; its digest is supplied by downstream consumers.",
+  "closure": {
+    "unresolvedTaxonomyRows": 0,
+    "unresolvedSchemaRows": 0,
+    "unresolvedStateRows": 0,
+    "unownedPersistence": 0,
+    "contractDefectUnknownRows": 0,
+    "eventProducerOnly": 1,
+    "eventUnjustifiedProducerOnly": 0,
+    "eventConsumerOnly": 0,
+    "eventUnclassified": 0,
+    "subsystemRows": 8,
+    "existingBehaviorScenarios": 53,
+    "addedBehaviorScenarios": 3,
+    "workstreamsWithIndependentBaseAssertion": 8,
+    "independentlyDiscoveredProducerOrphans": 0,
+    "independentlyDiscoveredConsumerOrphans": 0,
+    "independentlyDiscoveredBackendOrphans": 0,
+    "backendsWithoutMutability": 0
+  },
+  "handoffRules": [
+    "Treat every listed digest as evidence pinned to BASE, not as current-worktree discovery.",
+    "Preserve the five-family and seven-mode taxonomy; do not introduce ai-system-improvement.",
+    "Use defect rows as later-phase candidates, not authorization to change runtime behavior in this leaf.",
+    "Exercise replay, restore, and recreate commands only on temporary copies."
+  ]
+}

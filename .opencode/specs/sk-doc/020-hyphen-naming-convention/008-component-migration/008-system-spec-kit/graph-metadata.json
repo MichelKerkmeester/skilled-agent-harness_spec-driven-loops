@@ -100,15 +100,15 @@
     ],
     "causal_summary": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate.",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-07-17T20:26:13.483Z",
+    "last_save_at": "2026-07-20T11:09:52.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f4bace0b5a16e16d8b905512ddffb7f178871b3252ac3aec5abf6f00a6e0bae6",
+    "source_fingerprint": "sha256:e13487b35fab1f6a81fbb616d8abb40d4b7aac0810309d23e7dea046b7f150c9",
     "source_doc_hashes": {
-      "spec.md": "b2b45591e2254a89ad0459dc99df72cc0b2b8a95694740c86f89483e20d22695"
+      "spec.md": "15b86cc6778ad80df574d05e94f0cf033436f1c65c4ec93b92d27f1989536a1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

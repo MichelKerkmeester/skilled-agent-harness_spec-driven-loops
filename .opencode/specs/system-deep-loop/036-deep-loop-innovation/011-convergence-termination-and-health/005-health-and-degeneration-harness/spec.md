@@ -1,23 +1,25 @@
 ---
 title: "Feature Specification: Health & Degeneration Harness"
-description: "Plan a generic, mode-agnostic health and degeneration harness that turns mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable telemetry into typed signals and bounded pause, re-seed, or stop requests without taking stop authority."
+description: "Defines the delivered mode-agnostic health harness that turns degeneration and unusable telemetry into typed signals and bounded requests without taking stop authority."
 trigger_phrases:
   - "deep-loop health degeneration harness"
   - "mode collapse health signals"
   - "generic loop degeneration monitor"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness"
-    last_updated_at: "2026-07-15T16:30:00Z"
+    last_updated_at: "2026-07-21T12:01:05Z"
     last_updated_by: "codex"
-    recent_action: "Authored the generic health and degeneration signal contract"
-    next_safe_action: "Implement shadow health observations and action-request fixtures"
+    recent_action: "Hardened recovery evidence and scope isolation"
+    next_safe_action: "Keep health requests dark until a shared gateway grants authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/health-degeneration-harness.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fifth and final child of phase 011; the phase parent assigns the generic cross-mode degeneration safety net here |
@@ -142,10 +144,10 @@ transition gateway and the stopping contract decide whether an action is authori
 | REQ-008 | Thresholds are explicit, bounded, and versioned | Observation windows, minimum samples, floors, concentration limits, decay deltas, thrash ratios, severity mapping, hysteresis, cooldown, and policy digest are recorded; unsupported policy versions fail closed |
 | REQ-009 | Signals include sufficient audit evidence | Every signal carries source event IDs/cursors, input gauges, threshold comparisons, missing-data verdicts, policy and adapter digests, prior active signal, and a deterministic trace of the decision |
 | REQ-010 | Responses are typed requests, not hidden authority | Pause, re-seed, quarantine, telemetry-repair, and stop requests include requested scope and authorization state; a request cannot dispatch, cancel, or stop without the shared gateway/control contract |
-| REQ-011 | Recovery has hysteresis and preserves history | Qualifying progress can clear an active signal only after the configured healthy window; clearing is a new event and does not rewrite the signal that caused the degradation |
+| REQ-011 | Recovery has hysteresis and preserves history | An active signal clears only after the configured consecutive windows in the same run/mode/lineage/region provide present, improving evidence for that signal's own dimension; optional-field silence is `not_evaluable`, and clearing is a new event that does not rewrite the original signal |
 | REQ-012 | Health remains additive-dark and cross-mode neutral | Shadow outputs are observable beside legacy behavior, no current stop/dispatch decision changes, and all mode-specific fields arrive through registered adapters |
 | REQ-013 | Insufficient or inconsistent inputs fail closed | Missing gauges, stale watermarks, sequence gaps, conflicting event hashes, unknown reducer/adapter versions, non-monotonic cursors, or mixed baselines emit `telemetry_gap`/`not_evaluable` or a typed error, never `healthy` |
-| REQ-014 | Simultaneous signals have deterministic aggregation | Multiple active signals retain individual evidence and resolve to a versioned aggregate health state using severity ordering, scope precedence, and stable tie-breaking |
+| REQ-014 | Simultaneous signals have deterministic aggregation | Multiple active signals retain individual evidence and resolve to a versioned aggregate health state using exact run/mode/lineage/region windows, per-scope recovery streaks, severity ordering, and stable tie-breaking |
 | REQ-015 | The harness is bounded and idempotent | History, active-signal state, trace payloads, and deduplication records have explicit retention/size limits; duplicate boundary delivery produces one observation and one signal identity |
 | REQ-016 | Source traceability is preserved | The implementation and verifier contract cite sibling 002, the phase-010 gauges spec, `research-modes.md`, the phase-011 parent, and `manifest/phase-tree.json` |
 
@@ -162,7 +164,10 @@ at least 30 percent of attempts consumed by retry pressure, and also requires ev
 These values are shadow defaults, not hidden constants: every comparison records them in the policy digest, and calibration may
 replace them only by minting a new policy version with fixture evidence.
 
-The detector applies two consecutive healthy windows before clearing a warning or degraded state. A confirmed repetition from
+Every detector window is filtered to the exact run, mode, lineage, and region of the current boundary. The detector applies
+two consecutive verified recovery windows within that scope before clearing a warning or degraded state, and it clears only
+signals in that scope. A recovery window must carry present, improving evidence for every active signal's own dimension;
+silence from an optional field emits `not_evaluable` and cannot advance the streak. A confirmed repetition from
 sibling 002, a simultaneous quality-decay and novelty-starvation signal, or a telemetry gap at the required watermark may
 escalate immediately to the higher configured severity. A data gap never clears through elapsed time. The policy records
 cooldown and deduplication keys so a persistent fault does not flood the ledger while each materially new evidence boundary
@@ -176,7 +181,7 @@ remains auditable.
 | `quality_decay` | Comparable normalized quality decline with evaluator/verifier provenance | `degraded` | `quarantine_candidate`, `pause_mode`, or `reseed_frontier` |
 | `budget_thrash` | Typed retry/cancel/reallocation pressure plus low realized yield | `degraded` | `pause_mode`, `repair_telemetry`, or `request_stop` after budget settlement |
 | `telemetry_gap` | Missing, stale, conflicting, or unsupported required input | `critical` for required control input | `repair_telemetry` and `pause_mode`; never `healthy` |
-| `health_recovered` | Two healthy windows with coherent inputs and qualifying progress | `info` | `observe` and release a bounded pause request through authorization |
+| `health_recovered` | Two same-scope windows with coherent inputs, qualifying progress, and present improvement evidence for each active signal dimension | `info` | `observe` and release a bounded pause request through authorization |
 | `not_evaluable` | Insufficient sample, frontier, baseline, or version compatibility | `warning` | `observe` or `repair_telemetry`; no positive health claim |
 
 An action request carries the aggregate health state, signal IDs, requested scope, safe-point requirement, re-seed source or
@@ -199,8 +204,8 @@ current lineage. `pause_mode` and `pause_region` preserve in-flight state and wa
   telemetry are never relabeled as convergence or health.
 - **SC-005**: Pause, re-seed, quarantine, repair, and stop requests are explicit non-authoritative events that preserve the
   append-only history and require the shared authorization or stopping-clock contract before action.
-- **SC-006**: Two healthy windows clear an active signal deterministically, while persistent or simultaneous degeneration
-  escalates according to a versioned severity policy without event flooding.
+- **SC-006**: Two verified same-scope windows clear only that scope's active signals deterministically; optional telemetry
+  silence never advances recovery, while persistent or simultaneous degeneration escalates without event flooding.
 - **SC-007**: Shadow comparison shows the harness can observe degeneration across every registered mode adapter without changing
   legacy stop, fan-in, allocation, budget, or dispatch behavior.
 <!-- /ANCHOR:success-criteria -->
@@ -230,9 +235,8 @@ the append-only evidence for diagnosis.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must freeze the semantic-community concentration basis, the normalized quality
-adapter contract, the exact independent-evidence and progress floors, the retry/cancellation cost ratio, severity escalation,
-cooldown, retention, and the stopping-clock weight for `request_stop` against shadow fixtures. Those choices may mint a new
-health-policy version; they cannot make missing data healthy, merge unlike budget units, duplicate sibling cycle detection, or
-turn a health event into direct stop or dispatch authority.
+None. Policy version `health-shadow-v1` freezes the typed concentration basis, normalized quality provenance, progress floors,
+budget-pressure ratio, two-observation cooldown, two-window recovery hysteresis, and bounded retention. Future calibration
+must mint a new policy version and cannot make missing data healthy, merge unlike budget units, duplicate sibling cycle
+detection, or turn a health event into direct stop or dispatch authority.
 <!-- /ANCHOR:questions -->

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:06:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the partial-failure policy planning contract"
-    next_safe_action: "Implement typed failure evaluation and ledger verdicts"
+    recent_action: "Completed the partial-failure policy contract"
+    next_safe_action: "Keep the typed policy dark until compatibility activation"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Child 005 of durable fan-out/fan-in orchestration in `manifest/phase-tree.json` |
@@ -135,7 +135,7 @@ and replay fingerprint, making the verdict reproducible without reading process-
 
 This child has no hard sibling dependency in `manifest/phase-tree.json`, but its contract composes with child 004's
 await-set and decision-boundary output and child 006's reduction input. It also consumes the phase-006 canonical ledger
-and transition authorization, phase-007 budget/receipt services, and phase-008 compatibility bridge named by the 006
+and transition authorization, phase-007 budget/receipt services, and phase-008 compatibility bridge named by the 009
 program parent. The main risks are counting retries as separate failed leaves, changing the denominator after dispatch,
 mistaking a pre-admission budget omission for executor failure, letting one integrity failure hide inside a quorum,
 finalizing progressive output too early, leaking unbounded executor error text, and preserving current ad-hoc `partial`

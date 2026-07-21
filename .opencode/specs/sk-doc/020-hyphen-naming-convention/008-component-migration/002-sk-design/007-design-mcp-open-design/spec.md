@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-mcp-open-design (020 phase 007)
+> Phase adjacency — predecessor `006-design-md-generator`; successor `008-feature-catalog`.
 
 > Phase 007 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -84,6 +85,7 @@ The nested Open Design transport packet contains underscore-bearing install, tra
 | REQ-002 | The shell helper remains sourceable. | doctor.sh and install.sh source common.sh, shellcheck points to common.sh, and mode/executable behavior is preserved. |
 | REQ-003 | The target naming decision is documented. | The phase decision record explains why common.sh is the valid target and why -common.sh is rejected. |
 | REQ-004 | Transport references remain resolvable. | README.md, reference links, and script-adjacent path values contain no stale old path. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

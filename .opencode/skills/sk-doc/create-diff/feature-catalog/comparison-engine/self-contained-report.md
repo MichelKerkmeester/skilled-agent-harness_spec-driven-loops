@@ -6,7 +6,7 @@ trigger_phrases:
   - "single-file HTML diff report"
   - "zero-JavaScript diff report"
   - "self-contained report renderer"
-version: 1.0.0.0
+version: 1.1.1.0
 ---
 
 # Self-contained report
@@ -19,6 +19,12 @@ Renders the diff as a single self-contained HTML file — inlined CSS, zero Java
 
 The report is the only artifact a human actually opens, so it is built to be trustworthy offline: it loads from a `file://` path with no network access and cannot execute any script. Callers choose the layout with `--view unified` or `--view side-by-side`. The main safety concern the renderer defends against is hostile document content, which it neutralizes by escaping every source character before it reaches the page, and the main reproducibility concern is byte-stable output, which it guarantees under `SOURCE_DATE_EPOCH`.
 
+For pre-composed aggregate pairs, a balanced matching marker envelope promotes
+file transitions into explicit row groups. Start and end bands remain visible
+even when surrounding unchanged lines collapse. A 32px inert canvas gap separates
+each later file from the preceding diff, and each boundary clears the current
+Markdown section label before the next file's hunks render.
+
 ---
 
 ## 2. HOW IT WORKS
@@ -26,6 +32,11 @@ The report is the only artifact a human actually opens, so it is built to be tru
 ### Core behavior
 
 The renderer emits one HTML document with all CSS inlined and no JavaScript whatsoever. A restrictive Content-Security-Policy meta tag (`default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'`) locks the page down so that even if markup leaked in, nothing could load or run. Every character of source content is HTML-escaped, so a `<script>` in a document body renders as literal text rather than live markup. Two layouts are available — unified and side-by-side — selected by the `--view` flag.
+
+Aggregate boundary recognition is all-or-nothing. Both inputs must contain at
+least two unique files with ordered, path-matched `BEGIN FILE`/`END FILE`
+markers. Any malformed envelope falls back to the ordinary document renderer,
+which prevents incidental source text from acquiring misleading file chrome.
 
 ### Accessibility and reproducibility
 
@@ -39,7 +50,7 @@ The report is built to an accessibility contract: a skip link, semantic landmark
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/create_diff.py` | Script | HTML report renderer: inlined CSS, zero JS, restrictive CSP meta tag, HTML-escaping of all source content, unified/side-by-side views, and `SOURCE_DATE_EPOCH` reproducibility |
+| `scripts/create_diff.py` | Script | HTML report renderer: inlined CSS, zero JS, restrictive CSP meta tag, HTML-escaping of all source content, aggregate boundary bands, unified/side-by-side views, and `SOURCE_DATE_EPOCH` reproducibility |
 | `references/accessibility-contract.md` | Shared | The self-containment and accessibility guarantees the report must satisfy and what the validator enforces |
 
 ### Validation And Tests

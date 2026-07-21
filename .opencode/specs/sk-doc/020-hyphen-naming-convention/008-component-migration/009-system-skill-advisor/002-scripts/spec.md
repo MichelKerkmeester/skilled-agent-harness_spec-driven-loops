@@ -34,6 +34,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: system-skill-advisor scripts
+> Phase adjacency — predecessor `001-mcp-server-dir-and-manifest-closure`; successor `003-references`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

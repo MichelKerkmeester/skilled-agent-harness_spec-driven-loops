@@ -19,7 +19,10 @@
       "baseline taxonomy and state census tasks",
       "deep-loop recommendations phase 003 tasks",
       "baseline taxonomy and state census checklist",
-      "deep-loop recommendations phase 003 checklist"
+      "deep-loop recommendations phase 003 checklist",
+      "baseline taxonomy state census implementation",
+      "deep-loop baseline evidence bundle",
+      "phase 004 census handoff"
     ],
     "key_topics": [
       "baseline",
@@ -36,19 +39,46 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/references/state_format.md",
+      "fixtures/event-streams.json",
+      "fixtures/expected-projections.json",
+      ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
+      "tasks.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md"
     ],
     "entities": [
       {
-        "name": "state_format.md",
+        "name": "event-streams.json",
+        "kind": "config",
+        "path": "fixtures/event-streams.json",
+        "source": "derived"
+      },
+      {
+        "name": "expected-projections.json",
+        "kind": "config",
+        "path": "fixtures/expected-projections.json",
+        "source": "derived"
+      },
+      {
+        "name": "state-format.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/runtime/references/state_format.md",
+        "path": ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -61,12 +91,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -170,43 +194,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 006 phase must preserve.",
+    "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-07-17T13:21:06.983Z",
+    "last_save_at": "2026-07-20T20:33:57.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2a9bf6ddccd7a88a371ced463cd0df3141315d57d91b8994dbe960971f13fe8",
+    "source_fingerprint": "sha256:977ff7de432537780b92dd4ef58c7e8e7aad020a59b5288a6ecf291b6167a73c",
     "source_doc_hashes": {
-      "spec.md": "10d221b8fc5b2476a8ae7f715604b871a4d4606e9d0ba2a4d28c7d009ba68cb7",
-      "plan.md": "6eb624f3abe0069b15c425c7056f0fb4727bc6756cad2fa1321c944031b5f556",
-      "tasks.md": "e573aeabcd678bc271a14190d4c5330f5eba3e20878a4e1f1e2e9b75ae14dcbd",
-      "checklist.md": "398810313d12226080689454844ceb76d882eeb1cf08f3f3efd824046dea24e8"
+      "spec.md": "1d68027e6a7048fb4876bf4b5f97fbf3d5967da5ad2e1f8bc4fbdc98b4e8dd1c",
+      "plan.md": "a0f0c18ac42ebc8ebff6b9f30ca08fdc349e0de08b6f11697e1104eec91e03b2",
+      "tasks.md": "73c3a9353c5bf90b83b677ab2b91763cb17325d1cd6cc38a14f508f11d4315c6",
+      "checklist.md": "c8f12a051a240d5cfbdd9e68557992f7bd343b53797d0eae8e7b0c3fb7053c23",
+      "implementation-summary.md": "d102545d203d3788d2c65a01a23550f92376e84864f0bd8ae9d172044d48d00f"
     },
     "last_active_child_id": null,
     "last_active_at": null

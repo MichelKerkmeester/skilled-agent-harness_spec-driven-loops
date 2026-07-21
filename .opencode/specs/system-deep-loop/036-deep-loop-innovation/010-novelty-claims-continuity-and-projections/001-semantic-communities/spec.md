@@ -1,34 +1,51 @@
 ---
 title: "Feature Specification: semantic communities"
-description: "Plan a deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept and novelty measures new ideas rather than new strings."
+description: "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative."
 trigger_phrases:
   - "semantic communities"
   - "concept-level novelty"
   - "semantic claim deduplication"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities"
-    last_updated_at: "2026-07-15T17:00:00Z"
+    last_updated_at: "2026-07-21T08:33:34Z"
     last_updated_by: "codex"
-    recent_action: "Authored the semantic-community planning contract and concept-level novelty boundary"
-    next_safe_action: "Implement claim similarity edges and the incremental community projection"
+    recent_action: "Hardened edge provenance and arrival-order replay parity"
+    next_safe_action: "Use the shadow output for calibration without changing legacy novelty authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Semantic Communities
 
-> Phase adjacency under the 007 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-contradiction-and-supersession-events`.
+> Phase adjacency under the 010 parent (grouping order, not a runtime dependency): predecessor none (first sibling); successor `002-contradiction-and-supersession-events`.
+
+<!-- ANCHOR:executive-summary -->
+## EXECUTIVE SUMMARY
+
+This leaf adds deterministic semantic communities as an additive sidecar over existing claim nodes. Versioned exact-equivalence
+edges form replay-stable communities, failed cross-community cohesion remains explicit ambiguity, and concept novelty is emitted
+beside unchanged authoritative graph-growth novelty.
+
+**Key Decision**: Use a config-addressed sidecar so semantic projection can be rebuilt or removed without modifying coverage
+writers, relation unions, or convergence authority.
+
+**Critical Dependencies**: Existing coverage graph boundaries, versioned event envelopes, typed authorized ledger, and replay
+fingerprints.
+<!-- /ANCHOR:executive-summary -->
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,9 +53,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities |
-| **Level** | 2 |
+| **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of phase 010; the program manifest assigns semantic communities to novelty, claims, continuity, and projections |
@@ -91,9 +108,9 @@ separate observation.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Define claim-node inputs without destroying source wording or stable identity | Each community member retains claim ID, raw text, normalized fingerprint, evidence links, namespace, and originating ledger event |
-| REQ-002 | Admit only versioned semantic-equivalence edges | Every edge records model/version, metric, score, threshold policy, candidate provenance, and deterministic endpoint ordering; topical-only fixtures remain disconnected |
-| REQ-003 | Form replayable communities with stable lineage | Fixed inputs and configuration produce identical memberships, representatives, IDs, and membership-version hashes across replay |
-| REQ-004 | Update communities incrementally as claims arrive | A new claim rescans only its candidate neighborhood and affected components; the committed incremental result matches a full deterministic rebuild |
+| REQ-002 | Admit only versioned semantic-equivalence edges | Every edge records model/version, metric, score, threshold policy, canonical pair-local candidate provenance, and deterministic endpoint ordering; the directional candidate bundle remains in the ledger observation and topical-only fixtures remain disconnected |
+| REQ-003 | Form replayable communities with stable lineage | Fixed claim content and configuration produce byte-identical edges, memberships, representatives, IDs, and membership-version hashes across arrival permutations; a fixed ledger replay also preserves lineage |
+| REQ-004 | Update communities incrementally as claims arrive | A new claim rescans only its candidate neighborhood and affected components; the committed incremental result matches an independently constructed whole-graph rebuild |
 | REQ-005 | Prevent semantic chaining and unsafe merges | A bridge claim cannot merge established communities unless the declared cross-community cohesion rule passes; ambiguous membership stays explicit |
 | REQ-006 | Feed community membership into novelty without erasing evidence novelty | Novelty output distinguishes `new_community`, `existing_community_member`, `ambiguous`, and `new_evidence`; paraphrases do not increment concept novelty |
 | REQ-007 | Extend rather than duplicate the shipped coverage graph | Community edges and membership projections use the existing namespace, node, edge, snapshot, and replay boundaries; legacy novelty remains shadow-comparable |
@@ -133,10 +150,82 @@ evidence attached to an old concept. Mitigations and verification gates are enum
 sibling `depends_on`; it still consumes the parent program's ledger, stable logical identities, and durable fan-in prerequisites.
 <!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+- **NFR-001 Determinism**: Canonical replay produces byte-identical semantic edges, community IDs, representatives, membership versions, and hashes across arrival permutations.
+- **NFR-002 Bounded work**: Candidate count cannot exceed the config cap and incremental recomputation stays inside the affected connected component.
+- **NFR-003 Isolation**: Namespace, session, and projection version are exact admission boundaries.
+- **NFR-004 Compatibility**: Legacy coverage-graph novelty remains authoritative and its implementation is called directly.
+- **NFR-005 Safety**: Malformed Unicode, oversized content, non-finite scores, forged candidate sets, and version conflicts fail before projection commit.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- High similarity with a `topical_only` decision never admits an edge.
+- One claim touching two established communities remains ambiguous when cross-community cohesion fails.
+- A distinct new claim remains a new concept even when candidate retrieval returns older claims.
+- A model or threshold change creates a new retained projection version.
+- A foreign namespace claim is excluded during retrieval and rejected during direct admission.
+- Re-observed claim identity, invalid score, duplicate or malformed candidate-rank permutations, conflicting edge provenance, and projection-version/config-digest collisions fail explicitly without mutating committed projection bytes.
+<!-- /ANCHOR:edge-cases -->
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Trigger |
+|-----------|-------|---------|
+| Scope | 18/25 | Six runtime modules plus an adversarial suite |
+| Risk | 22/25 | Replay drift, false merges, novelty suppression, namespace leakage |
+| Research | 10/20 | Existing graph, envelope, ledger, and fingerprint contracts |
+| Multi-Agent | 0/15 | Single autonomous implementation stream |
+| Coordination | 8/15 | Additive integration across four frozen boundaries |
+| **Total** | **58/100** | **Level 3 documentation** |
+
+<!-- ANCHOR:risk-matrix -->
+## 10. RISK MATRIX
+
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|------------|------------|
+| Topical false merge | High | Medium | Exact evaluator decision plus threshold and precision fixtures |
+| Bridge chaining | High | Medium | Declared cohesion rule, explicit ambiguity, and bridge-first/middle/last permutation fixtures |
+| Replay or arrival-order drift | High | Medium | Canonical pair-local edge provenance, independent rebuild, hashes, replay, and six arrival permutations |
+| Evidence novelty suppression | High | Medium | Separate concept and evidence classifications |
+| Cross-namespace leakage | High | Low | Exact namespace checks at retrieval and admission |
+| Model drift rewrite | High | Medium | Digest-derived versions and immutable history |
+<!-- /ANCHOR:risk-matrix -->
+
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+### US-001: Deduplicate paraphrased concepts
+
+As a convergence consumer, I need paraphrased claims to share one concept so repeated wording does not look novel.
+
+### US-002: Preserve evidentiary growth
+
+As a research consumer, I need new evidence on an old concept to remain visible even when concept novelty is zero.
+
+### US-003: Audit semantic decisions
+
+As a replay verifier, I need every edge and membership version bound to the exact model, policy, canonical endpoint candidates,
+and canonically selected endpoint ledger event, while the directional retrieval bundle remains auditable in the observation ledger.
+<!-- /ANCHOR:user-stories -->
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 12. OPEN QUESTIONS
 
 None blocking for planning. Execution must calibrate the equivalence threshold, cohesion rule, candidate-neighborhood size,
 embedding provider, and acceptable precision/recall on frozen fixtures before concept novelty can leave shadow mode. Those are
 configuration and evidence decisions inside this contract, not permission to weaken replay, lineage, or ambiguity handling.
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:related-docs -->
+## RELATED DOCUMENTS
+
+- **Implementation plan**: `plan.md`
+- **Task evidence**: `tasks.md`
+- **Verification checklist**: `checklist.md`
+- **Architecture decision**: `decision-record.md`
+- **Completion record**: `implementation-summary.md`
+<!-- /ANCHOR:related-docs -->

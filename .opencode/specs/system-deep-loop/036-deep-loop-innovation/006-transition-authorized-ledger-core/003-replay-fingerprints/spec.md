@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-led
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/003-replay-fingerprints"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T23:18:42Z"
     last_updated_by: "codex"
-    recent_action: "Defined the replay-fingerprint contract for deterministic ledger verification"
-    next_safe_action: "Implement derivation, attestation storage, and fail-closed mismatch checks"
+    recent_action: "Implemented and verified deterministic replay fingerprints over closed ledger ranges"
+    next_safe_action: "Integrate the shared verified-result API in later dark consumers"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/003-replay-fingerprints |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third child of the phase-006 transition-authorized ledger-core parent |

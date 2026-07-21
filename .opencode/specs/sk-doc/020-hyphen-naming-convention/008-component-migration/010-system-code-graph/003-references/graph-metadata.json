@@ -44,7 +44,6 @@
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-code-graph/README.md",
       ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The system-code-graph references tree has seven snakecase Markdown filenames: databasepathpolicy.md,",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-07-17T14:30:36.757Z",
+    "last_save_at": "2026-07-20T11:09:45.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +206,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b254da0f46307ad0fabcd79599fa1509d3d05edfe3e573672557db6d19c3a429",
+    "source_fingerprint": "sha256:e27880c4377a437e3393c1b61d2672881b54e6f7b7fcf400aaf0fc2ff640d659",
     "source_doc_hashes": {
-      "spec.md": "75f507826a95eefde213df354f2031770dad483b7f2a8424b7b36613e97a6edf",
+      "spec.md": "0dee4113c641f3d60a2e891df7d348ec49234459da0612ec8d6078208bee622a",
       "plan.md": "8067209c53a7427243a8b0e2ae479c11dc6ff6c1fb046c9c0a26828c8c4e0bbb",
       "tasks.md": "3eb1492410418956d459f08b17cda9bce5d8ba9a058659e38dab22d4b9f72786",
       "checklist.md": "e1f102597e679fa55cc906ddfc81a48d3468beb8af052b38cf6d46f974cdf23c"

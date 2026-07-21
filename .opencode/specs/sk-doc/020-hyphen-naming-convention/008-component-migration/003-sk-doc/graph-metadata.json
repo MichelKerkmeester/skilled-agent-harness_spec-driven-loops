@@ -88,15 +88,15 @@
     ],
     "causal_summary": "The sk-doc surface uses snakecase in several directory and filename families, while the 020 program defines kebab-case as the sole canonical form for in-scope filesystem names",
     "created_at": "2026-07-14T15:16:56Z",
-    "last_save_at": "2026-07-17T20:26:05.857Z",
+    "last_save_at": "2026-07-20T11:09:42.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:eb1b4e4dd8aa368639b52b3ce594c0ea6af8b02553f3d520827ccd2e7312d9bf",
+    "source_fingerprint": "sha256:4b5deae0f929c367574c4bec5c845ab8a478d25a336d6dc2267c8ed397569278",
     "source_doc_hashes": {
-      "spec.md": "0651b65d0a8abea4f86b457b7487525b615a0a47955ddfbbbab3b960258623a8"
+      "spec.md": "ef95c66d2bd66a0237aff67b91d5519a893b27f1a8001a059b2867084691d040"
     },
     "last_active_child_id": null,
     "last_active_at": null

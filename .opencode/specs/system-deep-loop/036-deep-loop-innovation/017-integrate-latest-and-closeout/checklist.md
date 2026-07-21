@@ -54,7 +54,7 @@ This checklist is the blocking SOL verifier contract for phase 017. Every item i
 - [ ] CHK-004 [P0] The complete phase-016 gate runs on the exact final SHA, including behavior and mode baselines, mixed-version replay, crash injection, counterfactual and degeneration tests, and parity against 000
 - [ ] CHK-013 [P0] A blocking SOL receipt is bound to the final SHA and records gate commands, exit codes, and evidence paths
 - [ ] CHK-014 [P0] Recursive `validate.sh --strict` passes on the final candidate and no pre-integration receipt is presented as final evidence
-- [ ] CHK-015 [P0] Every 065 open item has an append-only disposition, owner, or explicit carry-forward next action
+- [ ] CHK-015 [P0] Every 036 open item has an append-only disposition, owner, or explicit carry-forward next action
 - [ ] CHK-016 [P0] Parent and child statuses, phase-map state, completion percentages, and gate results reconcile after verification
 - [ ] CHK-017 [P0] Deterministic metadata tooling regenerates `description.json` and `graph-metadata.json` across the affected packet tree without hand-written generated content
 - [ ] CHK-018 [P1] Final changelog entries identify the integration target, final SHA, gate outcome, reopened phases, and remaining approved deferrals

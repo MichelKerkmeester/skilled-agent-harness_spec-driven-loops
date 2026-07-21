@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin BASE, the parent 065 invariants, `manifest/phase-tree.json`, phase-012 shared review-loop and write-set digests, phase-014 handoff contract, and the phase-006 authorization boundary
+- [ ] T001 Pin BASE, the parent 036 invariants, `manifest/phase-tree.json`, phase-012 shared review-loop and write-set digests, phase-014 handoff contract, and the phase-006 authorization boundary
 - [ ] T002 Read the six Deep Alignment sibling contracts and record ownership for typed events, reducers, seals, certificates, resume, and shadow parity
 - [ ] T003 Inventory the legacy Deep Alignment lifecycle, lane resolver, authority adapters, applicability path, known-deviation handling, convergence, report, resume, continuity, and remediation boundary
 - [ ] T004 Freeze the authority-control vocabulary, gate result states, rollback trigger classes, dual window bounds, lane fixture IDs, certificate fields, and phase-014 handoff fields

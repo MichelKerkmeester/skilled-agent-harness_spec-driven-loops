@@ -12,13 +12,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T14:10:24Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the planned typed contract for all eight mode workstreams"
-    next_safe_action: "Freeze the interface matrix against the substrate and convergence specs"
+    recent_action: "Froze and verified the shared mode contract"
+    next_safe_action: "Begin phase-013 mode implementations against interface 1.0.0"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -29,7 +31,7 @@ _memory:
 
 # Feature Specification: Shared Mode Interfaces
 
-> Phase adjacency under the 009 parent (grouping order, not a runtime dependency): predecessor: none (first sibling); successor: `002-cross-mode-closures`.
+> Phase adjacency under the 012 parent (grouping order, not a runtime dependency): predecessor: none (first sibling); successor: `002-cross-mode-closures`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -39,10 +41,10 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 004 of the 009 shared-mode-contracts-and-fixtures parent |
+| **Origin** | Phase 012 child 001 of the shared-mode-contracts-and-fixtures parent |
 | **Parent outcome** | Freeze shared mode interfaces before the eight phase-013 migrations |
 <!-- /ANCHOR:metadata -->
 
@@ -51,7 +53,7 @@ _memory:
 
 The recommendations program has one shared runtime spine, but the eight phase-013 workstreams still need a single typed boundary for using it. Without that boundary, deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, and deep-alignment can each invent different event shapes, reducer ownership, artifact semantics, certificate inputs, convergence callbacks, and resume behavior. That would turn the fan-out into eight bespoke rewrites and make shared write conflicts difficult to detect before execution.
 
-Phase 006 defines the versioned event envelope, append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway. Phase 007 makes that ledger usable through receipts/effect recovery, sealed reference artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks/fencing, and continuity identities. Phase 011 adds path-covering termination, cycle detection, stopping clocks, value-of-computation allocation, and generic health signals. This phase freezes how a mode declares and consumes those contracts, while preserving the parent invariant that the substrate remains additive-dark and non-authoritative until phase 014 (`../spec.md`, `../manifest/phase-tree.json`).
+Phase 006 defines the versioned event envelope, append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway. Phase 007 makes that ledger usable through receipts/effect recovery, sealed reference artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks/fencing, and continuity identities. Phase 011 adds path-covering termination, cycle detection, stopping clocks, value-of-computation allocation, and generic health signals. This phase freezes how a mode declares and consumes those contracts, while preserving the parent invariant that the substrate remains additive-dark and non-authoritative until phase 014 (`../spec.md`, `../../manifest/phase-tree.json`).
 
 The purpose is a versioned, conformance-testable mode interface that makes every phase-013 migration a uniform variation on the same lifecycle. The contract must describe the mode's event schema, reducers, sealed artifacts, certificates, convergence hooks, resume adapter, service dependencies, and write ownership without implementing any mode or moving authority from the legacy path.
 <!-- /ANCHOR:problem -->
@@ -60,7 +62,7 @@ The purpose is a versioned, conformance-testable mode interface that makes every
 ## 3. SCOPE
 
 ### In Scope
-- A canonical typed `ModeContract` and `ModeDescriptor` surface for all eight entries in `manifest/phase-tree.json` `mode_workstreams_phase_010`.
+- A canonical typed `ModeContract` and `ModeDescriptor` surface for all eight entries in `manifest/phase-tree.json` `mode_workstreams_phase_013`.
 - Provided mode capabilities: event-type declarations, state/reducer definitions, sealed-artifact declarations, certificate builders, convergence and health hooks, resume classification/upcast/restore adapters, and declared write-set ownership.
 - Consumed substrate ports: authorized ledger append/replay, replay fingerprints, receipts and effect recovery, sealed artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks/fencing, continuity identities, fan-out/fan-in envelopes, and convergence signals.
 - Interface versioning, compatibility rules, mixed-version fixtures, and a conformance matrix that distinguishes additive fields, required-field changes, semantic changes, and incompatible transitions.
@@ -71,7 +73,7 @@ The purpose is a versioned, conformance-testable mode interface that makes every
 - Implementing the shared ledger or any phase-006 or phase-007 service.
 - Implementing convergence algorithms owned by phase 011 or choosing their production thresholds.
 - Hoisting deep-improvement common services or the shared review/alignment loop; those cross-mode closures are the successor phase `002-cross-mode-closures`.
-- Migrating any of the eight modes, removing legacy writers, or changing authority; those belong to phases 010-012.
+- Migrating any of the eight modes, removing legacy writers, or changing authority; those belong to phases 013-015.
 - Creating or hand-writing generated `description.json` or `graph-metadata.json` metadata for this folder.
 <!-- /ANCHOR:scope -->
 
@@ -106,7 +108,7 @@ The purpose is a versioned, conformance-testable mode interface that makes every
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Interface overreach** — freezing implementation details from phases 003, 004, or 008 could couple the modes to unfinished service internals. Mitigation: define stable ports, invariants, and evidence shapes; keep service algorithms and thresholds behind their owning phases.
+- **Interface overreach** — freezing implementation details from phases 006, 007, or 011 could couple the modes to unfinished service internals. Mitigation: define stable ports, invariants, and evidence shapes; keep service algorithms and thresholds behind their owning phases.
 - **Hidden mode exceptions** — a mode may appear to conform while bypassing the ledger, reducer, or resume adapter. Mitigation: require manifest-derived conformance fixtures, explicit write sets, and fail-closed checks for missing ports.
 - **Version drift during phase 013** — independent mode workstreams may evolve the contract after it is frozen. Mitigation: require an interface version bump, compatibility fixture update, and parent handoff review before any contract change.
 - **Cross-mode coupling remains implicit** — shared deep-improvement and review/alignment behavior may be encoded in individual contracts. Mitigation: reserve implementation hoisting for `002-cross-mode-closures` and require the contract to expose dependencies and write sets without duplicating them.
@@ -123,5 +125,10 @@ The purpose is a versioned, conformance-testable mode interface that makes every
 - Which convergence hook outputs are observations only, and which may request a stop or allocation decision through the phase-011 gateway?
 - Which resume classifications can be safely automated for each of the eight modes, and which must remain explicit `block` outcomes until phase 008 state-classification evidence exists?
 
-These decisions are resolved while authoring the frozen interface and its fixtures. They do not authorize implementation or authority movement in this Planned phase.
+Resolved in interface `1.0.0`: the contract is a TypeScript library under
+`runtime/lib/mode-contracts/`; interface compatibility is independent from event
+schema versions; evidence products carry `authorityEffect: none`; convergence
+hooks return observations only; and resume classification blocks unknown evidence.
+The conformance matrix derives its rows from the manifest and does not authorize
+runtime cutover.
 <!-- /ANCHOR:questions -->

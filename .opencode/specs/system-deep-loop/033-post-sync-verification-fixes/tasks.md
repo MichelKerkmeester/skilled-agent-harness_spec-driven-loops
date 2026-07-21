@@ -98,6 +98,16 @@ _memory:
 <!-- /ANCHOR:phase-4 -->
 ---
 
+<!-- ANCHOR:amendment -->
+## Amendment (2026-07-20): deep-review state-append robustness
+
+- [x] T022 Root-cause the deep-review loop halt: the `append_jsonl` directive is fulfilled via an edit/patch tool that must context-match the multi-KB single-line iteration record and fails - [evidence: two `/deep:review` runs halt at `step_post_iteration_claim_adjudication` with `apply_patch verification failed: expected deep-review-state.jsonl line not found`]
+- [x] T023 Add `append-state-record.cjs` (deterministic stdin→append helper) and unit-test it - [evidence: appends a small record after a 3944-char giant line, rejects invalid JSON with exit 1, heredoc path appends cleanly]
+- [x] T024 Convert the 3 crash-path `append_jsonl` directives to heredoc `command:` calls; YAML parses; a deep-review loop advances past the append - [evidence: YAML `safe_load` OK; a fresh `/deep:review` run recorded `claim_adjudication run 1 passed=true` (the previously-fatal step), the reducer bootstrapped the registry/dashboard, and it advanced to iteration 2 — 0 apply_patch/halt markers in the log, vs two prior runs that halted at exactly this step]
+
+<!-- /ANCHOR:amendment -->
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

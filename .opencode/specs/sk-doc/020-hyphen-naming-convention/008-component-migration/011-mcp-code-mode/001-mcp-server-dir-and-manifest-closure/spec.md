@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: mcp-server directory and manifest closure
+> Phase adjacency — successor `002-scripts`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

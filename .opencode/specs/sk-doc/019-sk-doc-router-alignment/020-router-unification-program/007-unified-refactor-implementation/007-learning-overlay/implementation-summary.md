@@ -7,6 +7,9 @@ status: "implemented-dormant"
 ---
 # Implementation Summary
 
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
 <!-- ANCHOR:metadata -->
 ## Metadata
 
@@ -23,7 +26,7 @@ status: "implemented-dormant"
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
-## What Built
+## What Was Built
 
 The phase contains an offline pipeline from raw correction/handoff records to a
 frozen candidate vocabulary assignment table. Raw records pass a content-based
@@ -57,7 +60,7 @@ by synthesis §6.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
-## How Delivered
+## How It Was Delivered
 
 `runRouteGoldReplay()` materializes candidate vocabulary as additive compiled
 detectors/selectors without changing the base identity. Those execution-only
@@ -91,7 +94,7 @@ optional posture from synthesis §5.3 and §12, not unfinished base behavior.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
-## Decisions
+## Key Decisions
 
 - Canonical serialization, overlay hashing, effective hashing, decision closure,
   compatibility projection, read-only scoring, and fenced CAS all come from

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "IMB-007",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-20T19:57:28.637Z",
+  "endedAt": "2026-07-20T19:58:02.455Z",
+  "checkpoints": {
+    "tFirstOutputMs": 33790,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 33818
+  },
+  "renderedBlock": null,
+  "budgetEdge": {
+    "budgetMs": 180000,
+    "watchdogMs": 90000,
+    "tFirstArtifactMs": null,
+    "firstArtifactDeadlineRemainingMs": null,
+    "progressCadence": {
+      "eventCount": 1,
+      "firstProgressMs": 33790,
+      "lastProgressMs": 33790,
+      "gapsMs": [
+        33790,
+        28
+      ],
+      "maxGapMs": 33790
+    },
+    "preCapFinalizerRemainingMs": 146182
+  },
+  "vagueAskOutcome": null,
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 1,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "primaryCause": "partial",
+  "secondaryCause": null,
+  "multiCauseLocked": false,
+  "stuckNoProgressRate": {
+    "mode": "improvement",
+    "stalled": false,
+    "numerator": 0,
+    "denominator": 1,
+    "value": 0
+  },
+  "dimensions": {
+    "d1": 0,
+    "d2": 0,
+    "d3": null,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "fixtures/behavior-results/IMB-007-gpt-fast-high.transcript.jsonl",
+  "capture": {
+    "command": "env XDG_DATA_HOME=/tmp/deep-loop-census-opencode-data XDG_STATE_HOME=/tmp/deep-loop-census-opencode-state node .opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs --scenario .opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md --leg gpt-fast-high --out-dir .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results --repo-root . --timeout-ms 180000 --watchdog-ms 90000",
+    "harnessExitCode": 0,
+    "rawResultSha256": "fc1527ef5c05014ff1030d5cea8fe4fc3d99866c885cb3853df73afe3d91e953",
+    "rawTranscriptSha256": "4ff0f924a8e80753aa70240fc003cb350273e66ab204a5713f242f8b02ea25d5",
+    "normalizedAbsolutePaths": 1,
+    "normalizedRuntimeIdentifiers": 2
+  }
+}

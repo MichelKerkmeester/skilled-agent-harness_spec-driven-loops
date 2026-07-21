@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:38:15Z"
     last_updated_by: "codex"
-    recent_action: "Authored the deterministic stream-fold gauge planning contract"
-    next_safe_action: "Implement versioned gauge reducers and prove replay parity"
+    recent_action: "Completed deterministic stream-fold gauges and verification"
+    next_safe_action: "Keep the service dark until an owning cutover phase integrates it"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fifth child of the phase-007 shared evidence and control services parent |
@@ -72,8 +75,8 @@ cutoff must produce byte-identical output whether replayed from genesis or resum
 The standard set covers progress, novelty, cost, and health inputs while retaining mode-specific extension points.
 This follows the program outcome and phase placement in `../../spec.md` and `../../manifest/phase-tree.json`, and it
 grounds cross-mode metric needs in the run-2 synthesis and registry at
-`../../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md` and
-`../../../002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`. Gauge values remain derived,
+`../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md` and
+`../../002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`. Gauge values remain derived,
 non-authoritative projections during the additive-dark period; later convergence and mode phases may consume them only
 through their own authority and cutover contracts.
 <!-- /ANCHOR:problem -->
@@ -98,8 +101,8 @@ through their own authority and cutover contracts.
 - Defining or implementing the phase-006 envelope, ledger writer, authorization proof, sequence allocator, integrity chain, or replay fingerprint.
 - Owning hierarchical budget authorization or exhaustion policy; this phase folds budget events emitted under sibling `004-hierarchical-typed-budgets`.
 - Defining novelty semantics, continuity identities, or claim supersession policy owned by later phase 010; this phase defines how their typed events are reduced once available.
-- Choosing convergence thresholds, stop policy, degeneration policy, or promotion decisions owned by phases 008 and 010.
-- Upcasters, dual-read compatibility, shadow-parity orchestration, rollback drills, authority cutover, or legacy-writer retirement owned by phases 005, 011, and 012.
+- Choosing convergence thresholds, stop policy, degeneration policy, or promotion decisions owned by phases 011 and 013.
+- Upcasters, dual-read compatibility, shadow-parity orchestration, rollback drills, authority cutover, or legacy-writer retirement owned by phases 008, 014, and 015.
 - Treating gauge snapshots, dashboards, wall-clock reads, process memory, or mutable database rows as source events or canonical state.
 <!-- /ANCHOR:scope -->
 

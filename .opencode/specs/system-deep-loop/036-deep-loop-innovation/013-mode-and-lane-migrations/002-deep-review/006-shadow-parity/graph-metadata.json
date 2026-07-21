@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green.",
     "created_at": "2026-07-16T03:43:33.437Z",
-    "last_save_at": "2026-07-17T13:21:29.473Z",
+    "last_save_at": "2026-07-19T18:09:58.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,10 +188,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:88921a025e40bca48ed1ebf3dda5893ce147627e1f80cb814a854aa00717805f",
+    "source_fingerprint": "sha256:22bdd0473b5f79476c13f1e6749acf5abace089d2b9bda8c4527e5f930ce47cf",
     "source_doc_hashes": {
-      "spec.md": "0fc9aa6bf47b6cbdead4c0d5793a98d5fb8601d8a6b22ff0c154054de9e10795",
-      "plan.md": "1f9f14b3e2148f350e82914ec61a204217617e7dfa9b69a07c164eec319c2d6a",
+      "spec.md": "81f596ec88a0add728afc2fcf4fe14f64b532bb267029d27fe4451b929fec859",
+      "plan.md": "b86b3566a89f0cf595d425f5e93dfc5381795811b6cd616c849e6295a51534ec",
       "tasks.md": "772dde3845e32fb2c6a6990e042369ce4e5be17144cc3d7d989dd274defff178",
       "checklist.md": "dbb37b9cba3f85be184be43ad19c6fded6740057134f7392392a84f59ab98eb8"
     },

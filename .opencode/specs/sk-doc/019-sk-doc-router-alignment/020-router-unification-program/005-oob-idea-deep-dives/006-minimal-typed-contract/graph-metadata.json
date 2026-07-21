@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "minimal typed router contract deep dive",
       "route request compiled policy route decision",
-      "defaultMode commitment smell"
+      "defaultMode commitment smell",
+      "minimal typed contract plan",
+      "route decision research plan",
+      "minimal typed contract tasks",
+      "route decision task list"
     ],
     "key_topics": [
       "minimal",
@@ -30,15 +34,43 @@
       "defaultmode"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -54,41 +86,127 @@
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "every",
-        "kind": "key_phrase",
+        "name": "Purpose Define",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "NEITHER",
-        "kind": "key_phrase",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Minimal Typed Router Contract Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Preserve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Typed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Supporting Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pending Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on the smallest information-preserving router contract — RouteRequest facts + content-addressed CompiledPolicy + typed RouteDecision (single/orderedBundle/surfaceBundle/clarify/defer/reject) — that collapses the parallel INTENT_SIGNALS and RESOURCE_MAP declarations into compiled detectors and registry/leaf selectors while a policy-pinned modeId derives packet, backend, authority, and default resources, falsified against dissimilar hubs so no field can be removed without losing bundle roles, same-packet public modes, or the evidence-producing",
+    "causal_summary": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
     "created_at": "2026-07-18T04:39:05.620Z",
-    "last_save_at": "2026-07-18T14:47:41.952Z",
+    "last_save_at": "2026-07-20T14:46:15.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:389978969e3ba690f8f96b39aedf1c6d5b0cb4e086a8d38e250bd84b8710ce6c",
+    "source_fingerprint": "sha256:fb252952fd7453a17dbbde638ecb2e15e2ac2be6ca165a2cc31f8191db325739",
     "source_doc_hashes": {
-      "spec.md": "62d6081ffed9e68c08e0a67309bce61b67e1df8aba75f624a4a4041c183d33a7"
+      "spec.md": "d1e410e2b07ad732b7162d82224e09bf7e89f291184e9df21ecfaa3cb96a2f3e",
+      "plan.md": "ec539e3d1305cc7e17eb0b56fe2fd8bf2d261128b6754e8ccdf02cf71eb67d02",
+      "tasks.md": "1870f9532e44399ca9f83f47bbeb8032f423f19231f6f0ef26a18eec20723978",
+      "checklist.md": "a39a508bea3956044b22744ad7ea9badb33b4665d97bcacb7f88d2f4eeb8f166",
+      "implementation-summary.md": "f18250f9eb0d3f5a37531546ab8ca3d043e9ed5a239ab0fc8441566d671a1553"
     },
     "last_active_child_id": null,
     "last_active_at": null

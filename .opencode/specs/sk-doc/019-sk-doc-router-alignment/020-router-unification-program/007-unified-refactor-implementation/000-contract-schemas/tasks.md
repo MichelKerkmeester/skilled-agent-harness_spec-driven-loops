@@ -13,6 +13,7 @@ contextType: "implementation"
 
 # Tasks: Contract Schemas
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -23,10 +24,14 @@ contextType: "implementation"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase A: Serialization & hashing rules (resolve open-q 4) — do first
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Phase A: Serialization & hashing rules (resolve open-q 4) — do first
 
 - [x] T001 Read the named synthesis sections and confirm `hash(base, overlay|null, schema, generation)` (`spec.md`)
   - **Evidence**: `serialization-hashing.md` §§1–5 cite synthesis §§2, 4, 8, 9, and 11.4 and freeze the tuple.
@@ -38,10 +43,14 @@ contextType: "implementation"
   - **Evidence**: §4 defines base, overlay, effective, request, proof, advisor/gold projection, and human-view hashes with exact exclusion sets.
 - [x] T005 Record schema versioning (`serialization-hashing.md`)
   - **Evidence**: §5 requires V2 for any hashed-field, canonicalization, algorithm, exclusion-set, or tag change and includes a worked field-addition example.
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
-## Phase B: Author the `V1` schema family (binds to Phase A)
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Phase B: Author the `V1` schema family (binds to Phase A)
 
 - [x] T006 [P] Author `CompiledPolicyV1` (`schemas/compiled-policy.v1.schema.json`)
   - **Evidence**: compound six-part identity shape, role/authority/mutation fields, evidence read-only/no-COMMIT conditional, duplicate-ID rejection, selector/composition/authority referential closure, all graph collections, posture objects, and identity digests are enforced.
@@ -58,7 +67,7 @@ contextType: "implementation"
 
 ---
 
-## Phase C: Golden + N=1 fixtures
+### Phase C: Golden + N=1 fixtures
 
 - [x] T012 Author the multi-mode compiled-policy fixture (`fixtures/compiled-policy.multimode.json`)
   - **Evidence**: three roles, two bundle kinds, authority edges, calibrated posture, active overlay, and real computed hashes validate.
@@ -71,7 +80,7 @@ contextType: "implementation"
 
 ---
 
-## Phase D: Offline validation harness
+### Phase D: Offline validation harness
 
 - [x] T016 Build the targeted zero-dependency validator (`harness/validate-contracts.cjs`)
   - **Evidence**: all 20 golden fixtures validate through authoritative type-specific allow-lists tied to nine loaded schema artifacts; named references are trim-checked and graph references resolve against a unique destination inventory.
@@ -83,10 +92,14 @@ contextType: "implementation"
   - **Evidence**: empty bundle/authority collections, no handoff rung, zero rank calls, no rank fields, no overlay, dynamic inventory of all three executable `.cjs` files, multiline-if/switch/ternary detector self-tests, and recursive advisor omit-list pass.
 - [x] T020 [P] Verify isolation and offline operation (`harness/validate-contracts.cjs`)
   - **Evidence**: `rg` returned no matches for scorer/loader/registry/skill imports, network built-ins/fetch, skill-name branches, or forbidden code-comment metadata.
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
-## Phase E: Verify + close the migration gate
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Phase E: Verify + close the migration gate
 
 - [x] T021 Run the harness green over the full golden + adversarial set
   - **Evidence**: `node harness/validate-contracts.cjs` exits 0; 11/11 groups pass, 20/20 golden accepted, 17/17 adversarial rejected for the expected rule, and 5/5 external canonical vectors match.
@@ -99,9 +112,34 @@ contextType: "implementation"
 
 ---
 
-## Dependency Notes
+### Dependency Notes
 
 - Phase A (T002–T005) is a hard prerequisite for Phase B — schema identity fields are defined in terms of the serialization/hashing rules.
 - Phase B tasks T006–T011 are mutually parallelizable once Phase A is frozen.
 - Phase C depends on the schemas (Phase B); Phase D depends on schemas + fixtures.
 - T024 is the gate-closure task: it must not be marked `[x]` until T021–T023 pass.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [x] Phase A: the canonical-JSON serialization rule and the domain-separated `SHA-256` hashing rule are frozen with external byte vectors and a closed ten-tag registry (T001–T005).
+- [x] Phase B: the full `V1` schema family is authored and each schema validates its golden + N=1 fixture with no skill-name branch (T006–T011).
+- [x] Phase C/D: 20 golden + 17 adversarial fixtures exist and the offline harness rejects every must-fail fixture for its rule-specific reason (T012–T020).
+- [x] Phase E: the harness is green end-to-end (`node harness/validate-contracts.cjs` exits 0); typed-gold maps into the compatibility shape without importing the scorer; strict packet validation is delegated to the orchestrator (T021–T024).
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Verification checklist**: See `checklist.md`
+- **Completion record**: See `implementation-summary.md`
+- **Design source**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Phase parent**: `../spec.md`
+<!-- /ANCHOR:cross-refs -->

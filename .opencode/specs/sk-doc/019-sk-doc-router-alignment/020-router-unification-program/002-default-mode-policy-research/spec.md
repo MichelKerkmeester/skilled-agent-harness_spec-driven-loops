@@ -22,6 +22,21 @@ A parent hub is a pure router: its `SKILL.md` never handles a request itself, it
 
 ---
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Research — run 1 (4 iters) answered keep-1/flip-4; runs 2-3 (divergent + OOB agendas) open |
+| **Created** | 2026-07-18 |
+| **Track** | sk-doc |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment/020-router-unification-program` |
+<!-- /ANCHOR:metadata -->
+
+---
+
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
@@ -80,6 +95,58 @@ Should a parent hub's `routerPolicy.defaultMode` point at a child mode, or shoul
 - Actually flipping any shipped `defaultMode` (that is a follow-on decision per hub).
 - Layer-0 advisor (skill selection) — this is about Layer-1 mode selection only.
 <!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## REQUIREMENTS
+
+| ID | Requirement | Acceptance |
+|----|-------------|------------|
+| REQ-1 | Per-hub defaultMode verdict (keep vs flip to null) | A table for the 5 default-to-child hubs with dominant-case evidence + mis-default cost |
+| REQ-2 | The principled decision rule | A stated rule distinguishing "default to the dominant child" from "null / defer" |
+| REQ-3 | Router-replay semantics on zero signal | Confirmed behaviour of `defaultMode` set vs null against `router-replay.cjs`, not assumption |
+| REQ-4 | Benchmark implication | Whether the route-gold gate should assert defer-vs-default (a "defer / disambiguate" gold outcome) |
+| REQ-5 | Encoding in the create-skill canon | The exact `parent_hub_router_template.json` + schema change so a new hub picks defaultMode deliberately |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## SUCCESS CRITERIA
+
+- **SC-1**: `research/research.md` carries a per-hub verdict table with evidence and the mis-default cost.
+- **SC-2**: The decision rule is articulated and directly encodable in the canon.
+- **SC-3**: The benchmark defer-gold implication is stated (assert or not, with rationale).
+- **SC-4**: The exact create-skill canon change is specified.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## RISKS & DEPENDENCIES
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| A recommendation silently becomes a live-routing change | Medium | High | Treat each shipped-defaultMode change as a proposal with a stated tradeoff, not an auto-applied fix |
+| Reasoning drifts outside the benchmark's inert `ambiguityDelta` model | Low | Medium | Reason about defaulting within the hard-coded `AMBIGUITY_DELTA=1` scoring model |
+
+### Dependencies
+
+| Dependency | Status |
+|------------|--------|
+| `router-replay.cjs` zero-signal behaviour (ground truth) | Available; confirm, do not assume |
+| The 7-hub router inventory (5 default-to-child, 2 null) | Captured |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## OPEN QUESTIONS
+
+- Does loading the mode-map fallback actually help a live model route better, or just add tokens — and what is its ideal shape (full registry vs compressed disambiguation card)?
+- Does a null hub push disambiguation cost up to Layer 0 (the advisor), and should the advisor pre-resolve more so hubs never hit zero signal?
+<!-- /ANCHOR:questions -->
 
 ---
 

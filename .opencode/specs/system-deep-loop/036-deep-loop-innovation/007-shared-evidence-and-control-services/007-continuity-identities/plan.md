@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:31:56Z"
     last_updated_by: "codex"
-    recent_action: "Defined identity minting, persistence, cross-mode reference, and replay gates"
-    next_safe_action: "Build the shared identity module and ledger event contract"
+    recent_action: "Delivered identity minting, persistence, cross-mode reference, and replay gates"
+    next_safe_action: "Preserve dark authority until the planned cutover"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +35,7 @@ _memory:
 |--------|-------|
 | **Surface** | `.opencode/skills/system-deep-loop/runtime/` shared identity, state-reduction, ledger, and mode-boundary adapters |
 | **Change class** | Additive dark runtime service + typed ledger contract |
-| **Execution** | Isolated worktree pinned to the phase-003 BASE; legacy paths remain authoritative |
+| **Execution** | Isolated worktree pinned to `d1a3f0323c3635f24c3560feaeda839522ececf0`; legacy paths remain authoritative |
 
 ### Overview
 Add one shared continuity-identity service that mints opaque typed IDs for lineages, claims, candidates, and logical mode sessions, persists identity events through the transition-authorized ledger, and restores the same references from resume and handover state. The service separates stable logical identity from attempts, iterations, labels, paths, timestamps, and content fingerprints. Existing identifiers are observed as namespaced aliases in the dark path. Cross-mode consumers carry typed references to the original entity instead of generating a local replacement. Design evidence comes from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts`, `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`, the parent program `spec.md`, `manifest/phase-tree.json`, and the run-2 `research-modes.md`.
@@ -42,19 +45,19 @@ Add one shared continuity-identity service that mints opaque typed IDs for linea
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 ledger envelope, transition gate, event-version field, and replay cursor are pinned to exact source contracts
-- [ ] Current lineage, claim/finding, candidate, session, resume, handover, and graph identifier producers are inventoried with fixtures
-- [ ] Identity kinds, mint request shape, alias namespaces, relationship vocabulary, and fail-closed errors are frozen
-- [ ] Retry versus resume versus restart/fork semantics are explicit for every identity kind
-- [ ] Downstream program phases 007 and 011 accept the same typed-reference contract
+- [x] The phase-006 ledger envelope, transition gate, event-version field, and replay cursor are pinned to exact source contracts
+- [x] Current lineage, claim/finding, candidate, session, resume, handover, and graph identifier producers are inventoried with fixtures
+- [x] Identity kinds, mint request shape, alias namespaces, relationship vocabulary, and fail-closed errors are frozen
+- [x] Retry versus resume versus restart/fork semantics are explicit for every identity kind
+- [x] Downstream program phases 010 and 014 accept the same typed-reference contract
 
 ### Definition of Done
-- [ ] Minting is idempotent, authorized, collision-safe, and replay deterministic
-- [ ] Resume and handover restore the same logical IDs and reject missing, ambiguous, or wrong-kind references
-- [ ] Cross-mode references preserve the original ID while recording a typed boundary relationship
-- [ ] Reorder, rename, path change, text change, and timestamp change cannot mutate an existing identity
-- [ ] Dark compatibility events bind existing IDs as aliases without changing legacy authority or output
-- [ ] All targeted tests, replay fixtures, build/typecheck gates, and strict spec validation pass on the candidate SHA
+- [x] Minting is idempotent, authorized, collision-safe, and replay deterministic
+- [x] Resume and handover restore the same logical IDs and reject missing, ambiguous, or wrong-kind references
+- [x] Cross-mode references preserve the original ID while recording a typed boundary relationship
+- [x] Reorder, rename, path change, text change, and timestamp change cannot mutate an existing identity
+- [x] Dark compatibility events bind existing IDs as aliases without changing legacy authority or output
+- [x] All targeted tests, replay fixtures, build/typecheck gates, and strict spec validation pass on the candidate overlay
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -81,7 +84,7 @@ Add one shared continuity-identity service that mints opaque typed IDs for linea
 ### Phase 2: Implementation
 - Add the versioned identity kind registry, parser/validator, cryptographic minting, durable mint-request idempotency, and explicit error taxonomy.
 - Add transition-authorized identity ledger events and a deterministic replay fold for registry, aliases, and relationships.
-- Thread typed identity refs through state reduction, continuity threading, logical mode-session state, resume payloads, handover frontiers, fan-out lineage state, and cross-mode invocation contracts without changing legacy authority.
+- Thread typed identity refs through the new deterministic identity reduction, logical mode-session attempts, resume/handover frontiers, and cross-mode invocation contracts without wiring or changing legacy authority.
 - Add the dark legacy alias observer and diagnostics for collisions, ambiguous aliases, wrong-kind references, missing ledger subjects, and forbidden remint attempts.
 - Publish the downstream typed-reference contract consumed by program phase 010 claim continuity and phase 014 per-mode cutover.
 
@@ -107,7 +110,7 @@ Add one shared continuity-identity service that mints opaque typed IDs for linea
 | REQ-007 | Ledger schema, transition-authorization, append, and replay tests prove complete provenance and relationship reconstruction |
 | REQ-008 | Shadow fixtures map shipped legacy keys to aliases and compare outputs while asserting the legacy path remains authoritative |
 | REQ-009 | Repeat replay, prefix replay, mixed-version replay, and tamper fixtures produce deterministic state or an explicit incompatibility error |
-| REQ-010 | Contract fixtures for program phases 007 and 011 consume typed refs without index-, path-, label-, or mode-local regeneration |
+| REQ-010 | Contract fixtures for program phases 010 and 014 consume typed refs without index-, path-, label-, or mode-local regeneration |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->

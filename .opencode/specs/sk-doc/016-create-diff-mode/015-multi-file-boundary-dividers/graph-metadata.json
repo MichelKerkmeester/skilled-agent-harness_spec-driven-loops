@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
+  "spec_folder": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
+  "parent_id": "sk-doc/016-create-diff-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create diff multi file divider",
+      "diff report file boundary",
+      "begin file end file band",
+      "aggregate document diff",
+      "multi file boundary plan",
+      "create diff file divider implementation",
+      "aggregate diff report plan",
+      "multi file boundary tasks",
+      "create diff divider tasks",
+      "multi file boundary checklist",
+      "create diff divider verification",
+      "multi file boundary implementation"
+    ],
+    "key_topics": [
+      "diff",
+      "multi",
+      "file",
+      "divider",
+      "report",
+      "boundary",
+      "begin",
+      "end",
+      "band",
+      "aggregate",
+      "document",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+      ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+      ".opencode/skills/sk-doc/create-diff/SKILL.md",
+      ".opencode/skills/sk-doc/create-diff/README.md",
+      ".opencode/skills/sk-doc/create-diff/references/workflow.md",
+      ".opencode/skills/sk-doc/create-diff/references/accessibility-contract.md",
+      ".opencode/skills/sk-doc/create-diff/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-doc/create-diff/feature-catalog/comparison-engine/self-contained-report.md",
+      ".opencode/skills/sk-doc/create-diff/changelog/v1.1.1.0.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_diff.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/references/workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/references/accessibility-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "self-contained-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/feature-catalog/comparison-engine/self-contained-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/changelog/v1.1.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Validate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When multiple files are combined into one explicit before/after pair, lines such as `===== BEGIN FILE: path =====` and `===== END FILE: path =====` are diffed as ordinary document text",
+    "created_at": "2026-07-20T09:08:16Z",
+    "last_save_at": "2026-07-20T12:18:16.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8704d92506f6afc16f5ba53351b2b2a3a5a2ec541940c0da5597f49b36116422",
+    "source_doc_hashes": {
+      "spec.md": "ac3697871551ebac4d9536559dbb6eeaca1480e015296c77a4654dd5c8ce7412",
+      "plan.md": "5779b4ca8217038d79863568b7089cf6c4b53a79f08d82894aad6fe2a8f596bd",
+      "tasks.md": "d4c04095466148551d52cb02b1860e290c2ddc98dc301092648a6d669cbd8ff7",
+      "checklist.md": "9889f62363d1903c4401a617931dda5a2e2a13f101cd7d5f389d8bb46fb84334",
+      "implementation-summary.md": "0a3c5fa523a9a8f0b316088e82a8dfd4830a1656f9a35bb1bb91c136226ed442"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

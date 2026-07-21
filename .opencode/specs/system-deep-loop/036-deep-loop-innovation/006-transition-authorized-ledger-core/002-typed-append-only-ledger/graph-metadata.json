@@ -19,7 +19,10 @@
       "typed append-only ledger tasks",
       "deep-loop dark ledger tasks",
       "typed append-only ledger checklist",
-      "deep-loop ledger verification checklist"
+      "deep-loop ledger verification checklist",
+      "typed append-only ledger implementation",
+      "authorized ledger verification",
+      "dark ledger core"
     ],
     "key_topics": [
       "typed",
@@ -36,9 +39,10 @@
       "reader"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -48,6 +52,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -175,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define the immutable typed ledger writer and reader over versioned envelope events, including monotonic ordering, idempotent append, hash-chain integrity, deterministic reduction, and additive-dark coexistence with the authoritative legacy JSONL path.",
     "created_at": "2026-07-16T03:43:45.608Z",
-    "last_save_at": "2026-07-17T13:21:09.698Z",
+    "last_save_at": "2026-07-20T22:50:33.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96102697b83424b3af0fad763b92b911fce10fc91768086ba0f3ea710190d785",
+    "source_fingerprint": "sha256:68ffea714fdc2c2386a7486ddeb4e8626b0aed98109f7d0726eae886804c0c3f",
     "source_doc_hashes": {
-      "spec.md": "5781180828b23eca955f142e7d33f0ee2b7709e05a08dddc32f2ee50ab05201a",
-      "plan.md": "15c94d01bbdd8701c28cca21476501ce988536cedbeab924c747319e640348c3",
-      "tasks.md": "ca4b401825e0449a1ab6c3e3f87cb528e1a436c63c845e60d744e87c3c177e78",
-      "checklist.md": "5eaafeb55c91201719f33f28b2cd16099b410a00e30a5d6063c1ac7e972b2b5d"
+      "spec.md": "bf11a1a93c41906e6ff0e66d7bcd740d666f66cf6d7fd6019764887c686a9aa5",
+      "plan.md": "6520a6b0df0f01859d07f41d75f42c65014cf84ff71678e1ed44c0976dcfd97e",
+      "tasks.md": "f7171c3b7e4e84df412b326b572c6a9db74c936efbd6fbcabfe616224ec07433",
+      "checklist.md": "b750b64d87c44f255768539e9a312dc91dbe8c586820a14d5e8c04b337f678d0",
+      "implementation-summary.md": "dd7aff39f6087c4b20f8d36a69acabae801639797e6d21cb1cff41c8e8eae812"
     },
     "last_active_child_id": null,
     "last_active_at": null

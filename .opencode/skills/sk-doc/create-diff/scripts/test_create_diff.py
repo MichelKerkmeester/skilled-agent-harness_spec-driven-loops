@@ -63,6 +63,15 @@ def _report(tmp: Path, a: str, b: str, *, view: str = "side-by-side") -> str:
                             extraction_before=ea, extraction_after=eb, view=view)
 
 
+def _bundle(*files: tuple[str, str]) -> str:
+    """Build the canonical pre-composed aggregate format used by create-diff."""
+    lines = []
+    for path, body in files:
+        lines.extend((f"===== BEGIN FILE: {path} =====", body,
+                      f"===== END FILE: {path} ====="))
+    return "\n".join(lines) + "\n"
+
+
 def _validate_html(html: str) -> list:
     """Validate an in-memory HTML string, returning the list of safety problems."""
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False,
@@ -450,6 +459,150 @@ class ReportInvariants(unittest.TestCase):
         hidden = int(re.search(r"(\d+)", collapses[0].note).group(1))
         # 20 equal lines, minus CONTEXT_LINES kept on each side.
         self.assertEqual(hidden, 20 - 2 * cd.CONTEXT_LINES)
+
+
+class MultiFileBoundaries(unittest.TestCase):
+    """Aggregate file transitions stay explicit without affecting normal documents."""
+
+    def _render_bundle(self, base: Path, before: str, after: str,
+                       view: str = "unified") -> tuple[int, Path, str]:
+        a = _write(base, "aggregate-before.md", before)
+        b = _write(base, "aggregate-after.md", after)
+        report = base / f"aggregate-{view}.html"
+        rc, _ = _run_cli(
+            "compare-pair", "--before", str(a), "--after", str(b),
+            "--report", str(report), "--view", view,
+        )
+        html_out = report.read_text(encoding="utf-8") if report.exists() else ""
+        return rc, report, html_out
+
+    def test_boundaries_survive_collapsed_context_in_both_views(self):
+        filler = "\n".join(f"unchanged {i}" for i in range(18))
+        before = _bundle(
+            ("docs/one.md", f"# One\n{filler}\nold one"),
+            ("docs/two.md", f"# Two\n{filler}\nold two"),
+        )
+        after = _bundle(
+            ("docs/one.md", f"# One\n{filler}\nnew one"),
+            ("docs/two.md", f"# Two\n{filler}\nnew two"),
+        )
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            for view, colspan in (("unified", 4), ("side-by-side", 6)):
+                with self.subTest(view=view):
+                    rc, report, html_out = self._render_bundle(base, before, after, view)
+                    self.assertEqual(rc, cd.EXIT_OK)
+                    self.assertEqual(vr.validate(report), [])
+                    self.assertEqual(html_out.count('class="file-boundary file-start"'), 2)
+                    self.assertEqual(html_out.count('class="file-boundary file-end"'), 2)
+                    self.assertEqual(
+                        len(re.findall(
+                            rf'class="file-boundary file-(?:start|end)"><tr><th '
+                            rf'scope="rowgroup" colspan="{colspan}"', html_out)),
+                        4,
+                    )
+                    self.assertIn("START FILE", html_out)
+                    self.assertIn("END FILE", html_out)
+                    self.assertNotIn("===== BEGIN FILE", html_out)
+                    self.assertIn('class="collapse"', html_out)
+                    self.assertIn("unchanged lines", html_out)
+                    self.assertEqual(html_out.count('class="file-gap"'), 1)
+                    first_start = html_out.find('class="file-boundary file-start"')
+                    file_gap = html_out.find('class="file-gap"')
+                    second_start = html_out.find(
+                        'class="file-boundary file-start"', first_start + 1)
+                    self.assertLess(first_start, file_gap)
+                    self.assertLess(file_gap, second_start)
+                    self.assertIn(f'<td colspan="{colspan}"></td>', html_out)
+                    self.assertIn(
+                        'tbody.file-gap td::before,tbody.file-gap td::after', html_out)
+                    self.assertIn('width:2px;background:var(--canvas)', html_out)
+
+    def test_identical_aggregate_keeps_boundaries_and_no_change_status(self):
+        body = "\n".join(f"unchanged {i}" for i in range(100))
+        bundle = _bundle(("one.md", body), ("two.md", body))
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            for view in ("unified", "side-by-side"):
+                with self.subTest(view=view):
+                    rc, report, html_out = self._render_bundle(base, bundle, bundle, view)
+                    self.assertEqual(rc, cd.EXIT_OK)
+                    self.assertEqual(vr.validate(report), [])
+                    self.assertIn("No textual differences detected", html_out)
+                    self.assertEqual(html_out.count('class="file-boundary file-start"'), 2)
+                    self.assertEqual(html_out.count('class="file-boundary file-end"'), 2)
+                    self.assertIn('class="collapse"', html_out)
+                    self.assertNotIn("unchanged 50", html_out)
+
+    def test_envelope_validation_rejects_partial_or_ambiguous_inputs(self):
+        valid = _bundle(("one.md", "one"), ("two.md", "two"))
+        invalid = {
+            "one file": _bundle(("one.md", "one")),
+            "missing end": "===== BEGIN FILE: one.md =====\none\n",
+            "mismatched end": "===== BEGIN FILE: one.md =====\none\n"
+                              "===== END FILE: two.md =====\n",
+            "nested start": "===== BEGIN FILE: one.md =====\n"
+                            "===== BEGIN FILE: two.md =====\n"
+                            "===== END FILE: two.md =====\n"
+                            "===== END FILE: one.md =====\n",
+            "duplicate path": _bundle(("one.md", "one"), ("one.md", "again")),
+            "outside content": f"not enveloped\n{valid}",
+        }
+        self.assertEqual(cd._aggregate_file_sequence(valid), ["one.md", "two.md"])
+        for name, content in invalid.items():
+            with self.subTest(case=name):
+                self.assertIsNone(cd._aggregate_file_sequence(content))
+
+    def test_invalid_envelope_remains_ordinary_document_text(self):
+        before = _bundle(("only.md", "old"))
+        after = _bundle(("only.md", "new"))
+        with tempfile.TemporaryDirectory() as d:
+            rc, report, html_out = self._render_bundle(Path(d), before, after)
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertEqual(vr.validate(report), [])
+        self.assertNotIn('class="file-boundary', html_out)
+        self.assertIn("===== BEGIN FILE: only.md =====", html_out)
+
+    def test_pair_mismatch_disables_boundary_mode_for_the_whole_report(self):
+        before = _bundle(("one.md", "old"), ("two.md", "same"))
+        mismatched = {
+            "different path": _bundle(("one.md", "new"), ("three.md", "same")),
+            "different order": _bundle(("two.md", "same"), ("one.md", "new")),
+            "one invalid side": _bundle(("one.md", "new")),
+        }
+        for name, after in mismatched.items():
+            with self.subTest(case=name), tempfile.TemporaryDirectory() as d:
+                base = Path(d)
+                rc, report, html_out = self._render_bundle(base, before, after)
+                self.assertEqual(rc, cd.EXIT_OK)
+                self.assertEqual(vr.validate(report), [])
+                self.assertNotIn('class="file-boundary', html_out)
+
+    def test_markdown_section_context_resets_at_next_file(self):
+        before = _bundle(
+            ("one.md", "# Alpha\nold alpha"),
+            ("two.md", "plain intro\nold beta"),
+        )
+        after = _bundle(
+            ("one.md", "# Alpha\nnew alpha"),
+            ("two.md", "plain intro\nnew beta"),
+        )
+        with tempfile.TemporaryDirectory() as d:
+            rc, _, html_out = self._render_bundle(Path(d), before, after)
+            self.assertEqual(rc, cd.EXIT_OK)
+        second_file = html_out.split('file-boundary-path">two.md', 1)[1]
+        self.assertNotIn("§ Alpha", second_file)
+
+    def test_hostile_file_path_is_escaped_and_report_stays_safe(self):
+        hostile = "docs/<script>alert(1)</script>.md"
+        before = _bundle((hostile, "old"), ("safe.md", "same"))
+        after = _bundle((hostile, "new"), ("safe.md", "same"))
+        with tempfile.TemporaryDirectory() as d:
+            rc, report, html_out = self._render_bundle(Path(d), before, after)
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertEqual(vr.validate(report), [])
+        self.assertNotIn("<script>alert", html_out)
+        self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;", html_out)
 
 
 class SnapshotCleanupContainment(unittest.TestCase):

@@ -19,7 +19,10 @@
       "continuity identities tasks",
       "stable deep-loop identity tasks",
       "continuity identities checklist",
-      "stable deep-loop identity checklist"
+      "stable deep-loop identity checklist",
+      "continuity identities implementation",
+      "stable deep-loop identity evidence",
+      "continuity identity verification"
     ],
     "key_topics": [
       "continuity",
@@ -36,8 +39,11 @@
       "checklist"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs",
@@ -53,6 +59,24 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-identities.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "continuity-thread.cjs",
         "kind": "file",
@@ -178,43 +202,27 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "different",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "source",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are recorded on the typed event ledger.",
     "created_at": "2026-07-16T03:43:48.003Z",
-    "last_save_at": "2026-07-17T13:21:13.486Z",
+    "last_save_at": "2026-07-21T00:39:06.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e62380e0a96276778549b127f0918dc36e4a18e3e99be05d220b12bca3b805c6",
+    "source_fingerprint": "sha256:8177f7f9fcede59fcda54f2390e25bce8a8b0e182c135158c6e2adf64f8016d0",
     "source_doc_hashes": {
-      "spec.md": "8099fecad82ace5ef3c02184667c9559a2420f82cde96d136dd10fce9bfd7bab",
-      "plan.md": "dd61bb829f42109179547e3604b8fe875691bc4721165c5927245325c08a608f",
-      "tasks.md": "e7e5f03cd02b7efc6cca970bfea6cc69b99677e124d9e971d33bc022906922fa",
-      "checklist.md": "0fb7a0eb8864c674a3981cf5f0841a22690c6b7d18a3ca13fbcdd4b9aece69a5"
+      "spec.md": "81f86d5607899342211ee6e424a29b012e832dbb099c9b02f3b4a5179a6ae9b8",
+      "plan.md": "0111db425499ef11e4ecd5c96de8e9f5eae430823e20f473a0e4b98381fcfa5f",
+      "tasks.md": "4d9f1c392d51bb32d1e5221bf3a4756988e78cbbdb3132fb24f285f13480b27f",
+      "checklist.md": "251f97e7b3b6782fe770b23804f3a7fd8748400e3c836bec49774d6cd9a7708c",
+      "implementation-summary.md": "5e727eac5e5f80f83cafe664e5d71fccfc277fe316a737e0c94b586d82e57651"
     },
     "last_active_child_id": null,
     "last_active_at": null

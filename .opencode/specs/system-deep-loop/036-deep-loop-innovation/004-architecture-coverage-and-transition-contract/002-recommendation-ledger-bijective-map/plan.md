@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map"
-    last_updated_at: "2026-07-15T13:25:45Z"
+    last_updated_at: "2026-07-20T18:39:30Z"
     last_updated_by: "codex"
-    recent_action: "Planned source extraction, classification, artifact emission, and validation"
-    next_safe_action: "Freeze source digests and extract the 8, 59, and 111 recommendation sets"
+    recent_action: "Completed source extraction, classification, artifact emission, and strict validation"
+    next_safe_action: "Use the immutable ledger as the downstream phase ownership source"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "recommendation-ledger.json"
+      - "recommendation-ledger-validation.json"
+      - "validate-ledger.cjs"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,16 +51,16 @@ coverage of every disposition bucket and manifest phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and all three source-run inputs are pinned by path and digest
-- [ ] Source adapters define run-a rank locators and run-b/run-c JSON-pointer locators without mutating the research packets
-- [ ] The stable-ID ranges, normalized-target enum, disposition grammar, and phase manifest enum are frozen before classification
-- [ ] Reviewers agree that raw compound targets remain preserved while one primary normalized target drives ownership
+- [x] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and all three source-run inputs are pinned by path and digest
+- [x] Source adapters define run-a rank locators and run-b/run-c JSON-pointer locators without mutating the research packets
+- [x] The stable-ID ranges, normalized-target enum, disposition grammar, and phase manifest enum are frozen before classification
+- [x] Raw compound targets remain preserved while one primary normalized target drives ownership
 
 ### Definition of Done
-- [ ] Canonical JSON contains exactly 178 rows with 8/59/111 source counts, unique stable IDs, and unique source locators
-- [ ] Every row has one allowed normalized target and exactly one allowed disposition with required reasons and valid references
-- [ ] All four disposition buckets and all manifest phases are explicitly represented in the coverage report
-- [ ] JSON schema, CSV parity, source-digest reproduction, and the fail-closed validator are green
+- [x] Canonical JSON contains exactly 178 rows with 8/59/111 source counts, unique stable IDs, and unique source locators
+- [x] Every row has one allowed normalized target and exactly one allowed disposition with required reasons and valid references
+- [x] All four disposition buckets and all manifest phases are explicitly represented in the coverage report
+- [x] JSON schema, CSV parity, source-digest reproduction, and the fail-closed validator are green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -78,7 +81,7 @@ coverage of every disposition bucket and manifest phase.
 
 ### Phase 1: Setup
 - Pin the source paths and SHA-256 digests; confirm extraction counts 8, 59, and 111 and total 178.
-- Freeze the run-specific locator schemes, stable-ID ranges, phase-003 taxonomy enum, and manifest phase IDs `000..014`.
+- Freeze the run-specific locator schemes, stable-ID ranges, phase-003 taxonomy enum, and manifest phase IDs `003..017`.
 - Record the run-a source-shape exception and verify its eight ranked entries against the 001 research synthesis.
 
 ### Phase 2: Implementation
@@ -90,7 +93,7 @@ coverage of every disposition bucket and manifest phase.
 ### Phase 3: Verification
 - Re-extract from frozen inputs and prove exactly 178 source locators map one-to-one onto 178 ledger rows and 178 unique stable IDs.
 - Prove each row has one normalized target and one disposition; reject unknowns, multiple flags, missing reasons, invalid phases, self-merges, missing merge targets, and cycles.
-- Prove all four disposition buckets and all 15 manifest phases appear explicitly, with reasoned zero counts where applicable.
+- Prove all four disposition buckets and all 15 implementation phases (`003..017`) appear explicitly, with reasoned zero counts where applicable.
 - Rebuild the CSV and validation report twice and compare hashes; run this packet's strict spec-kit validation.
 <!-- /ANCHOR:phases -->
 
@@ -107,14 +110,14 @@ coverage of every disposition bucket and manifest phase.
 | REQ-006 | Reason/reference tests reject blank rationales, missing/self merge targets, and merge cycles |
 | REQ-007 | Adoption test derives allowed `NNN` values from `manifest/phase-tree.json` and rejects non-manifest phases |
 | REQ-008 | Bucket-coverage test requires all four bucket keys, counts, row-ID lists, and reasons for zero counts |
-| REQ-009 | Phase-coverage test requires every manifest phase `000..014`, adopted-row IDs, counts, and reasons for zero-adoption phases |
+| REQ-009 | Phase-coverage test requires every manifest phase `003..017`, adopted-row IDs, counts, and reasons for zero-adoption phases |
 | REQ-010 | JSON-schema validation, regenerated CSV equality, repeated-build hash parity, and non-zero negative fixtures prove fail-closed behavior |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The child dependency list is empty. Inputs are the 006 parent `spec.md`, `manifest/phase-tree.json`, phase 003's frozen
+The child dependency list is empty. Inputs are the 036 parent `spec.md`, `manifest/phase-tree.json`, phase 003's frozen
 taxonomy contract, the 001 research packet's ranked §17 recommendations and companion `findings-registry.json`, and
 the 005 packet's run-b `findings-registry.json` plus run-c `findings-registry-modes.json`. The parent phase-004 gate
 coordinates this output with sibling 001's architecture ADR and sibling 003's transition policy; neither sibling is a

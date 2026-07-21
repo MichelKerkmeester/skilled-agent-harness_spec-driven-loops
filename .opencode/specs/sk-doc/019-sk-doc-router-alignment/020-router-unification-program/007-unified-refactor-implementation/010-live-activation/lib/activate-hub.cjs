@@ -19,9 +19,12 @@ const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
+const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
+const { withHubLock } = require('../../shared/hub-lock.cjs');
 
 const PHASE_ROOT = path.resolve(__dirname, '..'); // .../010-live-activation
-const ACTIVATION_ROOT = path.join(PHASE_ROOT, 'activation');
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.join(PHASE_ROOT, 'activation');
 
 function findRepoRoot(start) {
   let dir = start;
@@ -35,18 +38,10 @@ function findRepoRoot(start) {
 }
 const REPO_ROOT = findRepoRoot(PHASE_ROOT);
 
-// The shared benchmark scorer is FROZEN. Activation refuses to proceed if any
-// of these files drift from their pinned digests — a changed scorer would
-// invalidate every route-gold green this program relies on.
-const SCORER_DIR = path.join(
-  REPO_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark',
-);
-const PINNED_SCORER_DIGESTS = {
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-};
+// The shared benchmark scorer is FROZEN: a changed scorer would invalidate every
+// route-gold green this program relies on. The pinned digests and the drift check
+// live in one shared contract module (imported above); activation invokes it with
+// this phase's repo root so drift aborts before any manifest write.
 
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
@@ -95,19 +90,27 @@ function parseArgs(argv) {
   return out;
 }
 
-function assertScorerFrozen() {
-  const observed = {};
-  for (const [name, pinned] of Object.entries(PINNED_SCORER_DIGESTS)) {
-    const actual = fileHash(path.join(SCORER_DIR, name));
-    observed[name] = actual;
-    if (actual !== pinned) {
-      throw new Error(
-        `FROZEN SCORER DRIFT: ${name}\n  pinned:   ${pinned}\n  observed: ${actual}\n` +
-          'The shared benchmark scorer must never change during activation.',
-      );
-    }
+// Confinement gate — runs BEFORE any side effect (canary exec, seed writes). The
+// hub id must be a safe slug, the target activation dir must resolve inside
+// ACTIVATION_ROOT, and the rollout child must resolve inside the repo. Closes the
+// pre-validation window where a traversal --hub or an out-of-tree --child could
+// write outside the sandbox or execute an arbitrary program. Returns the confined
+// hub dir.
+function confineArgs(hub, childRoot) {
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(hub)) {
+    throw new Error(`unsafe hub id (must match ^[a-z0-9][a-z0-9-]*$): ${hub}`);
   }
-  return observed;
+  const rootResolved = path.resolve(ACTIVATION_ROOT);
+  const hubDir = path.resolve(ACTIVATION_ROOT, hub);
+  if (hubDir !== rootResolved && !hubDir.startsWith(rootResolved + path.sep)) {
+    throw new Error(`hub dir escapes the activation root: ${hubDir}`);
+  }
+  const repoResolved = path.resolve(REPO_ROOT);
+  const childResolved = path.resolve(childRoot);
+  if (childResolved !== repoResolved && !childResolved.startsWith(repoResolved + path.sep)) {
+    throw new Error(`rollout child escapes the repo root: ${childResolved}`);
+  }
+  return hubDir;
 }
 
 function assertCanaryGreen(childRoot) {
@@ -304,9 +307,11 @@ function main() {
   }
 
   const childRoot = path.isAbsolute(args.child) ? args.child : path.join(REPO_ROOT, args.child);
+  // Confinement BEFORE any side effect (canary exec, seed writes).
+  const confinedHubDir = confineArgs(args.hub, childRoot);
   if (!fs.existsSync(childRoot)) throw new Error(`rollout child not found: ${childRoot}`);
 
-  const scorerDigests = assertScorerFrozen();
+  const scorerDigests = assertScorerFrozen(REPO_ROOT, 'activation');
   const canary = assertCanaryGreen(childRoot);
   const acceptance = readJson(path.join(childRoot, 'activation', 'acceptance.json'));
   // Some rollout children omit hubId from their compiled acceptance record; when
@@ -315,65 +320,67 @@ function main() {
     throw new Error(`hub mismatch: acceptance.hubId=${acceptance.hubId} != --hub ${args.hub}`);
   }
 
-  const paths = seedActivation(args.hub, childRoot, acceptance);
-  const fenceBefore = readJson(paths.fenceDst).fencingEpoch;
-  const serving = readJson(paths.servingDst);
-  const alreadyShipped = sameSelectedPolicy(serving.selectedPolicy, acceptance.candidatePolicy);
+  // Ensure the hub dir exists so the shared lock file can be created inside it, then
+  // serialize every manifest/fence write through the SAME per-hub lock the serving
+  // flip takes — activation and flip can never consume one fence epoch concurrently.
+  fs.mkdirSync(confinedHubDir, { recursive: true });
+  const result = withHubLock(confinedHubDir, 'activation', () => {
+    const paths = seedActivation(args.hub, childRoot, acceptance);
+    const fenceBefore = readJson(paths.fenceDst).fencingEpoch;
+    const serving = readJson(paths.servingDst);
+    const alreadyShipped = sameSelectedPolicy(serving.selectedPolicy, acceptance.candidatePolicy);
 
-  let fenceAfter = fenceBefore;
-  let shipped = false;
-  if (args.mode === 'activate' && !alreadyShipped) {
-    // Fenced CAS ship. Precondition: serving == prior generation at the
-    // expected fence epoch.
-    if (!sameSelectedPolicy(serving.selectedPolicy, acceptance.expectedCurrent)) {
-      throw new Error('CAS precondition failed: serving selectedPolicy is not the expected prior generation');
+    let fenceAfter = fenceBefore;
+    let shipped = false;
+    if (args.mode === 'activate' && !alreadyShipped) {
+      // Fenced CAS ship. Precondition: serving == prior generation at the
+      // expected fence epoch.
+      if (!sameSelectedPolicy(serving.selectedPolicy, acceptance.expectedCurrent)) {
+        throw new Error('CAS precondition failed: serving selectedPolicy is not the expected prior generation');
+      }
+      if (fenceBefore !== acceptance.expectedFencingEpoch) {
+        throw new Error(
+          `CAS precondition failed: fence epoch ${fenceBefore} != expected ${acceptance.expectedFencingEpoch}`,
+        );
+      }
+      fs.writeFileSync(paths.servingDst, fs.readFileSync(paths.candidateDst)); // swap
+      fenceAfter = fenceBefore + 1;
+      fs.writeFileSync(paths.fenceDst, `${stableStringify({ fencingEpoch: fenceAfter, schemaVersion: 'V1' })}\n`);
+      shipped = true;
     }
-    if (fenceBefore !== acceptance.expectedFencingEpoch) {
-      throw new Error(
-        `CAS precondition failed: fence epoch ${fenceBefore} != expected ${acceptance.expectedFencingEpoch}`,
-      );
-    }
-    fs.writeFileSync(paths.servingDst, fs.readFileSync(paths.candidateDst)); // swap
-    fenceAfter = fenceBefore + 1;
-    fs.writeFileSync(paths.fenceDst, `${stableStringify({ fencingEpoch: fenceAfter, direction: 'forward', schemaVersion: 'V1' })}\n`);
-    shipped = true;
-  }
 
-  const rollback = proveRollback(paths, acceptance);
-  const servingNow = readJson(paths.servingDst);
-  const activated = sameSelectedPolicy(servingNow.selectedPolicy, acceptance.candidatePolicy);
+    const rollback = proveRollback(paths, acceptance);
+    const servingNow = readJson(paths.servingDst);
+    const activated = sameSelectedPolicy(servingNow.selectedPolicy, acceptance.candidatePolicy);
 
-  const record = {
-    hubId: args.hub,
-    schemaVersion: 'V1',
-    activated,
-    shippedThisRun: shipped,
-    servingAuthority: servingNow.servingAuthority,
-    shadowOnly: servingNow.shadowOnly === true,
-    selectedPolicy: servingNow.selectedPolicy,
-    candidatePolicy: acceptance.candidatePolicy,
-    priorManifestHash: acceptance.priorManifestHash,
-    fenceEpoch: { before: fenceBefore, after: fenceAfter },
-    sourceHashes: acceptance.sourceHashes,
-    eligibility: {
-      canaryGreen: canary.canaryGreen,
-      scorerDigestsPinned: true,
-      scorerDigests,
-    },
-    rollbackProof: { byteExact: rollback.byteExact, restoredHash: rollback.restoredHash },
-    realModelVerification: readExistingRealModel(args.hub),
-  };
-  fs.writeFileSync(
-    path.join(paths.hubDir, 'activation-record.json'),
-    `${stableStringify(record)}\n`,
-  );
-  appendFlipEvent(paths.hubDir, {
-    hubId: args.hub, driver: 'activate-hub', event: shipped ? 'activate' : 'activate-noop', direction: 'forward',
-    servingAuthority: servingNow.servingAuthority, shadowOnly: servingNow.shadowOnly === true,
-    selectedGeneration: servingNow.selectedPolicy.generation,
-    fenceEpoch: { before: fenceBefore, after: fenceAfter }, manifestHash: fileHash(paths.servingDst), restoredHash: null,
+    const record = {
+      hubId: args.hub,
+      schemaVersion: 'V1',
+      activated,
+      shippedThisRun: shipped,
+      servingAuthority: servingNow.servingAuthority,
+      shadowOnly: servingNow.shadowOnly === true,
+      selectedPolicy: servingNow.selectedPolicy,
+      candidatePolicy: acceptance.candidatePolicy,
+      priorManifestHash: acceptance.priorManifestHash,
+      fenceEpoch: { before: fenceBefore, after: fenceAfter },
+      sourceHashes: acceptance.sourceHashes,
+      eligibility: {
+        canaryGreen: canary.canaryGreen,
+        scorerDigestsPinned: true,
+        scorerDigests,
+      },
+      rollbackProof: { byteExact: rollback.byteExact, restoredHash: rollback.restoredHash },
+      realModelVerification: readExistingRealModel(args.hub),
+    };
+    fs.writeFileSync(
+      path.join(paths.hubDir, 'activation-record.json'),
+      `${stableStringify(record)}\n`,
+    );
+    return { record, servingNow, activated, fenceBefore, fenceAfter, rollback };
   });
 
+  const { record, servingNow, activated, fenceBefore, fenceAfter, rollback } = result;
   if (args.json) {
     process.stdout.write(`${JSON.stringify(record, null, 2)}\n`);
   } else {

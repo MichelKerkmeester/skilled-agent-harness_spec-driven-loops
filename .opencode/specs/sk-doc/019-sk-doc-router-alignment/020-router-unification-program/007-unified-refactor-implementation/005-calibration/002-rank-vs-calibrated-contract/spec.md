@@ -28,6 +28,21 @@ The governing rule is the one all four research lineages converged on: **rank is
 
 This is **design and contract work only.** This phase specifies the field shapes, the certificate schema, the legality rule, the calibration method envelope, and the fixture families. It does **not** fit thresholds, mint live certificates, or touch any live routing config, registry, scorer, or skill — threshold fitting and certificate issuance are the next child, `005/003` (master plan Phase 5 map).
 
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Shadow-partial — packet-local `CalibrationCertificateV1` + route-evidence contract schemas, lifecycle logic, typed fixtures, compatibility projection, and validation harness delivered; live fitting/issuance/activation remain downstream; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `002-rank-vs-calibrated-contract` |
+| **Parent** | `../spec.md` (Calibration phase parent) |
+| **Design source** | `../../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §8.1, §11 open-q 2, §3 Idea 5) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## 1. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -37,7 +52,9 @@ The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evid
 ### Purpose
 
 Define a typed, byte-stable route contract in which ranking evidence is unconditional and calibrated confidence is admissible **only** behind a validated, policy/risk-slice-bound certificate — so calibrated auto-route can ship as a real, gated, reversible capability while every un-certified path stays honest (rank-only evidence, and clarify/defer instead of invented probability).
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 ### In Scope
@@ -57,6 +74,7 @@ Define a typed, byte-stable route contract in which ranking evidence is uncondit
 - **Editing the shared scorer `router-replay.cjs`** — hard constraint (synthesis §8.2, §10); a scorer edit to pass is a migration failure, not a license.
 - **Modifying any live routing config, mode registry, activation manifest, or skill** — planning/design only.
 - **Per-hub activation of calibrated auto-route** — that is gated separately at Stage 4 per-hub canary, owned by `006/*` (master plan gate model).
+<!-- /ANCHOR:scope -->
 
 ## 3. CONTRACT DESIGN
 
@@ -140,6 +158,7 @@ Two method families are admissible; `005/003` picks and fits per slice. This pha
 
 A certified, high-confidence calibrated route is still just **evidence**. It does not grant commit authority: the route's `authority` stays `WithheldUntilVerify` and the effect still flows through destination-local PREPARE → VERIFY → COMMIT (synthesis §2.3, §7). A proof/recommendation is never a capability. Calibration also never widens the candidate set — `estimatedError` is per-decision evidence, never a fallback union — preserving the no-over-emission constraint (synthesis §10).
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -160,7 +179,9 @@ A certified, high-confidence calibrated route is still just **evidence**. It doe
 | REQ-007 | `estimatedError` and the `calibration` object are projection-invisible through the compatibility projector; deterministic route-gold replay is byte-identical with/without a cert. | Fixture: same input replayed with and without a validated cert projects to identical `observedIntents`/`observedResources`; scorer untouched. |
 | REQ-008 | Certificate lifecycle (candidate → validated → expired/revoked) is bound to a policy generation and rotated by fenced CAS with a retained prior generation. | Contract text + a rollback fixture: revoking the active cert reverts to `unvalidated` (rank-only → clarify/defer) with no byte change to the serving policy. |
 | REQ-009 | The two admissible method families (temperature scaling; selective-classification threshold) and their per-slice validation metrics (ECE; selective risk at coverage) are specified as a contract for `005/003` to satisfy. | §3.5 present; `005/003` can consume it without re-deriving method semantics. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: A route decision can carry calibrated `estimatedError` **only** when a validated certificate is bound to the request's exact `(policyHash, riskSlice)`; every other path is rank-only. (REQ-002, REQ-003, REQ-004)
@@ -168,6 +189,19 @@ A certified, high-confidence calibrated route is still just **evidence**. It doe
 - **SC-003**: The new field is invisible to the shared scorer and to deterministic route-gold replay — parity holds byte-for-byte and `router-replay.cjs` is never edited. (REQ-007)
 - **SC-004**: A certificate is evidence only: it never grants commit authority, never widens candidates, and is reversible by fenced CAS to a retained prior generation. (REQ-006, REQ-008)
 - **SC-005**: `005/003` (the selective-classification controller) can fit thresholds and issue certificates against this contract with zero contract ambiguity. (REQ-009)
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | `005/001` held-out corpus (`corpusId`/`corpusHash`) | A certificate cannot be validated without it | The contract references the corpus id; a certificate with a missing/stale corpus binding is inadmissible |
+| Dependency | Phase 2 evaluator carrying `rankScore`/`scoreMargin` as evidence | The contract extends that decision shape | Consumed read-only; `estimatedError` is an optional sub-object, projection-invisible through the compatibility projector |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + route-gold | A required scorer edit would be a migration failure | `estimatedError` is projection-invisible so replay + scorer stay byte-identical [synthesis §8.2] |
+| Risk | A consumer reading `rankScore` as `P(correct)` and auto-routing on it | Converts uncalibrated rank into a capability | The legality rule forbids probability language anywhere without a validated, policy/risk-slice-bound certificate; the safe action degrades to one-turn `clarify` or typed `defer` |
+| Risk | Advisor recommendation strength leaking into a projection/policy card | Dishonest confidence | No probability language is admitted in the decision or any of the three projections absent a validated certificate |
+<!-- /ANCHOR:risks -->
 
 ## 6. NON-NEGOTIABLE CONSTRAINTS (every phase)
 
@@ -186,6 +220,14 @@ A certified, high-confidence calibrated route is still just **evidence**. It doe
 The gate is: *full typed replay deterministic; compatibility projection matches route-gold; gold never auto-updates.* Introducing `calibration`/`estimatedError` into the route contract must **not** perturb that gate — the enriched decision must project back to byte-identical `observedIntents`/`observedResources` (REQ-007), and the gold is never auto-updated to accommodate the new field. This contract phase must pass Stage 3 **before `005/003`** (the selective-classification controller that fits thresholds and issues live certificates) activates; `005/003` cannot mint a certificate against a contract whose shadow-evaluate parity is unproven.
 
 Downstream note: the *actual per-hub flip* of calibrated auto-route (turning a validated certificate into live auto-routing behaviour) is gated further at **Stage 4 — Per-hub canary** (owned by `006/*`): zero hard mismatch, advisor identity matches or is ignored, document parity, rollback drill proven. This phase only defines the contract those later gates enforce.
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The two admissible calibration-method families (temperature scaling; selective-classification threshold fitting) are fixed as an envelope here; which method actually validates per hub/risk slice is fit and issued downstream in `005/003` [synthesis §11 open-q 2].
+- The numeric per-slice error tolerance that makes `status = validated` is deferred to `005/003`'s threshold fitting against the real `005/001` corpus; this phase fixes only the contract, not the fitted values.
+- Certificate expiry/rotation cadence (how long a validated certificate stays admissible before re-fit) is defined structurally (candidate → validated → expired/revoked); its operational window is a downstream calibration decision.
+<!-- /ANCHOR:questions -->
 
 ## 8. DEPENDENCIES & RELATED DOCUMENTS
 

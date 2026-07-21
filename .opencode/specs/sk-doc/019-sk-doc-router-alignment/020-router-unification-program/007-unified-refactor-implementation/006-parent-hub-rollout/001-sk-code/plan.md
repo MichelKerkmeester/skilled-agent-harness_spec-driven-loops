@@ -22,6 +22,7 @@ FAILURE MODES:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -37,9 +38,11 @@ FAILURE MODES:
 ### Overview
 
 `sk-code`'s authored routing is compiled into the shared contract and its bundle outcome is modeled as a `surfaceBundle` route (one `actor` + N `evidence`). The **first parent-hub canary** is phase-locally proven behind the fenced selector — the second link in the blast-radius order after `mcp-code-mode` (synthesis §9). The work is additive: a compiled snapshot, typed fixtures, real-scorer replay, and rollback drill, with legacy serving-authoritative and the scorer untouched.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -59,9 +62,11 @@ FAILURE MODES:
 - [ ] Strict Level-2 packet validation passes without out-of-scope package rebuilds or structural rewrites.
 
 **Evidence**: `validate-canary.cjs` reports `status: GREEN`, `certificateGate: pass`, `routeGold: GREEN`, document/advisor/rollback pass, and `servingAuthority: legacy`. Strict validation remains blocked by missing generated package runtime files, missing local `tsx`, and legacy packet structure that predates this scoped fix.
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -81,9 +86,11 @@ Shadow compile + additive semantic gate behind a fenced selector (synthesis §9)
 ### Data flow
 
 Authored `sk-code` registry → pure compiler → `CompiledPolicyV1` (sk-code slice) + `AdvisorProjectionV1` + `PolicyCardV1.md` → fenced selector pins one generation per request → evidence adapters build `RouteRequestV1` (advisor as one trust-tagged evidence record) → pure evaluator emits `RouteDecisionV1` (`surfaceBundle` for bundle intents) → compatibility projector → route-gold replay (scorer read-only). Rollback = CAS back to the retained prior generation.
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 This phase touches shared policy and route composition, so the surface inventory is required before any implementation lands.
@@ -101,9 +108,11 @@ Required inventories before implementation:
 - Legacy `sk-code` alias set (dual-read Stage 2): `rg -n 'alias|legacy|route' <sk-code registry + hub>` — every alias must resolve or fail closed.
 - Consumers of the changed decision shape: confirm nothing downstream reads a flat six-value outcome enum; `selectionKind` stays inside `route`.
 - Authority invariant: evidence targets (`mutatesWorkspace=false`) have no COMMIT path; adversarial fixture proves VERIFY refusal.
+<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Compile and shape
@@ -128,9 +137,11 @@ Required inventories before implementation:
 - [x] Reconcile the Stage-4 gate checklist; record evidence for `006/002` handoff.
 
 **Evidence**: Actual phase-local CAS reaches generation 2, rejects mixed pins, and restores the retained generation at fencing epoch 2 with byte-exact prior/restored hashes.
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -140,9 +151,11 @@ Required inventories before implementation:
 | Degradation | advisor live/stale/absent; projection-hash drift | advisor-evidence fixtures |
 | Document parity | doc-only routing off the policy card | document-only replay lane (no machine fallback) |
 | Reversibility | accept/ship/rollback CAS; byte-exact prior generation | rollback-drill fixture + drift check |
+<!-- /ANCHOR:testing -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -152,10 +165,13 @@ Required inventories before implementation:
 | Pure evaluator + compatibility projector (`002`) | Internal | Green | Typed evaluator and scorer-safe projector reused |
 | Frozen legacy route-gold baseline (Stage 0) | Internal | Green | Three scorer digests pinned and rechecked |
 | `sk-code` registry stability during canary | Internal | Green | Raw authored bytes hash-bound before compilation; drift fails closed |
+<!-- /ANCHOR:dependencies -->
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Any Stage-4 hard block — an evidence target reaching COMMIT, a hash mismatch against the pinned tuple, a mixed-generation observation, a surfaceBundle route emitting clarify/handoff artifacts, a required scorer edit, or a route-gold hard mismatch.
 - **Procedure**: Fenced CAS on the activation manifest back to the retained prior/legacy generation; verify the restored bytes match the retained preimage (drift check); confirm legacy resumes serving-authoritative. Because this canary is evidence composition (pre-effect), rollback is clean — no external COMMITted effect exists to undo (synthesis §9, §10). Retain the prior generation for the full bake window before any cleanup (deferred to phase `008`).
+<!-- /ANCHOR:rollback -->

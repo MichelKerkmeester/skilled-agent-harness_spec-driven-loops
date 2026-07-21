@@ -11,7 +11,7 @@ parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/00
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
-    last_updated_at: "2026-07-18T07:35:59Z"
+    last_updated_at: "2026-07-20T11:09:35Z"
     last_updated_by: "codex"
     recent_action: "Built and verified the semantic rename engine"
     next_safe_action: "Consume the dry-run report in the reference checker child"

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
     "created_at": "2026-07-14T15:18:13Z",
-    "last_save_at": "2026-07-17T14:30:36.126Z",
+    "last_save_at": "2026-07-20T11:09:51.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:585c2cd6ca5f501affed56e9c08afd764ff0ab1c26dd07b2d5845ea1a439754c",
+    "source_fingerprint": "sha256:48585cc738bc2884a9c9b3c6c602144a0a27f6611c50f6cb961b1ea90b743dd9",
     "source_doc_hashes": {
-      "spec.md": "f6a24db6d2fbf877883ed1e2012e840e3d1f6b0db730943803133927f68192f2",
+      "spec.md": "f40f5a5b34ae04ad312d6f0633785b2165fdb176f7f86ec23bf9f87f41456f9d",
       "plan.md": "dce0c9f1eefce1c003e2ef0d1973f6a48b1c93ac45e58c281461311aa8460a2b",
       "tasks.md": "d696913bd6cf5d1569c1625c678d932abf574ce32fb0f73d7e4c9186aae5eac7",
       "checklist.md": "5bd90599bd278c10b22baa5313fc9b0716cb317c2cf9ab34eba2d56ad51c66e1",

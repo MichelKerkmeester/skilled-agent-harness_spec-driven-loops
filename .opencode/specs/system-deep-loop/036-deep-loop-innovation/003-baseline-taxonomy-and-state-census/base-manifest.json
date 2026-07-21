@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "base": {
+    "commit": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+    "parent": "bf0986cecd33f8cb48feb9d433fdd2e26e7b9b0f",
+    "authoredAt": "2026-07-20T19:53:07+02:00",
+    "committedAt": "2026-07-20T19:53:07+02:00",
+    "subject": "docs(deep-loop): add execution goal.md + rewrite handover for parallel execution start",
+    "rootTreeOid": "5284ab7b70434eb58d0aaf3da4e1ed00dae6f9ce",
+    "skillTreeOid": "ea8bbb83077f06f46a465efe88b4e40f3f66bea4",
+    "leafTreeOid": "9405bbe56bc79533f48e348332b03cd98c95f559",
+    "cleanObjectSnapshot": true
+  },
+  "refProvenance": {
+    "declaredRef": "origin/skilled/v4.0.0.0",
+    "declaredBase": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+    "localRefAtCapture": "9a42aedae498924a5c8f0019a208e015946d941e",
+    "baseIsAncestorOfLocalRef": true,
+    "executionHead": "401c7c0ac35bd81c2fdb75a63e30beb8da579593",
+    "baseIsAncestorOfExecutionHead": true,
+    "executionHeadSkillTreeOid": "ea8bbb83077f06f46a465efe88b4e40f3f66bea4",
+    "executionHeadLeafTreeOid": "9405bbe56bc79533f48e348332b03cd98c95f559",
+    "provenanceMethod": "All census reads and semantic digests use git object fe6ca3030917073f3b478bc044e10034dcc4394b or its deterministic archive, not the descendant worktree HEAD."
+  },
+  "worktreeStatus": {
+    "initialBeforeLeafWrites": {
+      "status": "clean",
+      "porcelainSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "atManifestSeal": {
+      "status": "dirty",
+      "authorizedDirtyScopes": [
+        "003-baseline-taxonomy-and-state-census evidence bundle",
+        "three additive deep-improvement behavior scenarios"
+      ],
+      "unrelatedDirtyScopeObserved": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+      "unrelatedScopeTreatment": "preserved and excluded from every artifact digest"
+    }
+  },
+  "tools": {
+    "git": "2.50.1 (Apple Git-155)",
+    "node": "v22.23.1",
+    "npm": "10.9.8",
+    "python": "3.9.6",
+    "sqlite": "3.51.0",
+    "jq": "jq-1.7.1-apple",
+    "ripgrep": "15.1.0",
+    "bash": "3.2.57(1)-release",
+    "shasum": "6.02"
+  },
+  "sourceDigests": {
+    "skillArchiveSha256": "ae51725ca1ef135f776498ed3f0e0a5e9799d9337ba945c96743ae7782359903",
+    "modeRegistrySha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
+    "hubRouterSha256": "835e0a90a258bcfd995553f0ccc27f9332dcb5db1011a65ce79c452c9af5fd67",
+    "runtimeStateFormatSha256": "be7336f98f7457cf401d74f3d66adcb9b9422e0cf163eb31c2cc058f22d4ad2d",
+    "coverageGraphSqliteSha256": "aee7321b9ce70f8d3ff7934556dfdbc63d23b16405fdcbf7b774d35b46e44c44",
+    "councilGraphSqliteSha256": "fde42c3bc5ccc2678cfe7e73adaaba35589b56c2c5a0cb6f935ffebf57a11c8a",
+    "existingBehaviorCorpusSha256": "94999f67fe32cd7c9902d2be618accafba7ed51c9627191fe3228baf59018215"
+  },
+  "sqliteBaseline": {
+    "coverageGraph": {
+      "integrity": "ok",
+      "nodes": 2193,
+      "edges": 2654,
+      "snapshots": 96
+    },
+    "councilGraph": {
+      "integrity": "ok",
+      "nodes": 17,
+      "edges": 11,
+      "snapshots": 0
+    }
+  },
+  "preExistingBaseline": {
+    "classification": "inside BASE; not a 036 delta",
+    "registeredModeCountAfterRouterUnification": 7,
+    "routerUnificationCommits": [
+      {
+        "commit": "908efde8d8f4316d89b9929743d32e2ed1848258",
+        "subject": "feat(routing): flip four hubs to defaultMode null + fix sk-design over-emission",
+        "insideBase": true
+      },
+      {
+        "commit": "6cd8ab14e4e7d757baf48fa67ec795ed5624514f",
+        "subject": "fix(system-deep-loop): correct mode routing + reconcile stale route gold",
+        "insideBase": true
+      },
+      {
+        "commit": "708d25acf04a240a5afbe7d43bf7b403549f4b85",
+        "subject": "feat(system-deep-loop): implement typed-pair routing surface + manifest + gold",
+        "insideBase": true
+      }
+    ],
+    "kebabRenames": {
+      "commit": "cc77a1e550a8dcd45c3b287ac604138987aea94e",
+      "insideBase": true,
+      "count": 869,
+      "manifest": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/pre-existing-kebab-renames.json",
+      "manifestSha256": "92371204c11e5302848c499d69b5083568f9d29fd69a03e150d800220f62ed7d",
+      "closure": "The manifest enumerates every rename in the commit under .opencode/skills/system-deep-loop and .opencode/commands/deep."
+    }
+  },
+  "artifactDigests": {
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/taxonomy-census.json": "d2292873df9cc32c7ac2aa185d28871ffb1ab4b9a87553aa69952cb74dc59736",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/subsystem-census.json": "4d367cb3fff90268ea607e1f52fc5c09cee747334994a539d1eb7ca2bc081ffd",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/event-schema-census.json": "ba865f9286ddfabf8a9c9a1eddf96d47365f7e5dd3fab5ee3018ff68ab2d5755",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/state-backend-census.json": "e35a707bc969f075e1e4fb0558a9b211f48c526a47d7d0a121e8712d54bb9441",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/contract-defect-ledger.json": "a5c668ef86866237827ca0a4ac5bb7a49b83d6c58e2b2d60f7e42fc6ac3b998e",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/behavior-baseline.json": "f934f5a689b9a72df63f37480381824c29761085c33ffe1771558d11cd4802c2",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/replay-rollback-manifest.json": "ee38f460cf048d14f462ea096861bbd1d6cc280b4ed6c21a2168e807eb85ba11",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/pre-existing-kebab-renames.json": "92371204c11e5302848c499d69b5083568f9d29fd69a03e150d800220f62ed7d",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/validate-evidence.cjs": "ec2097378f887c619d3568164ba668bfbd59184b7701b1a59f42f9e641d1950f",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/event-streams.json": "2187aca49c5ef8f50d2d5115aec98adda3451930f62391d125cb94b088a19b9d",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/expected-projections.json": "3ec6cc6ba99fbd3ed3db0e3ddc2a42f846b55f4244e2bad463303f2cf7a61531",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/coverage-graph.sql": "27a92559d95f1f0612475cc79adb5d2b39275dcee3934f322c801a25b2be9cbf",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/council-graph.sql": "cf02bb5087f689937bc3edd2c88e6b48f65f37b6129cf4754ddbbf61bf125eba",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/control-surfaces.json": "689e8baa3385dbf77653b2343d42b2cbccc0422936a32c8818344c4eeb810d2f",
+    ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md": "a14403828164ca8ec3c9160af9cb141769310471c0ddf61b1d556e478895191c",
+    ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md": "b4c374f64e40055cab6742f5411c73173c1c782c43f3329e98ac367c3359e56e",
+    ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md": "0e5bf53df3df2f9ccecaf96aaf917e67b0afae0ad7cea2d0ac5e5741908e86c0",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-006-gpt-fast-high.result.json": "5bed3a931b6e872d4a6c6229b85e64d0daa5150a2d9cf5fd05bde4a46f66b549",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-006-gpt-fast-high.transcript.jsonl": "aaa90f557e989e77dcb24e1deb26d9a6c61b15660768e655be0feffc3502e55b",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-007-gpt-fast-high.result.json": "9af16f3aaab0f1dfcc4d628c6c9288c0c3e137c4eb5cdd7c5e1555f20b64fe5d",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-007-gpt-fast-high.transcript.jsonl": "bde4af31bb767e0eca46919fd2c10726922553c71167cd10f374fa899b573ac2",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-008-gpt-fast-high.result.json": "ae0c08cadc27b931c027a788d1a66f1e4cfe6ab11f4892dcc15219104bd14fdf",
+    ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/fixtures/behavior-results/IMB-008-gpt-fast-high.transcript.jsonl": "ac84de8b621ef114b15dcd3b4be582e9d44f78cd879583454dce6ef996288f5f"
+  },
+  "verification": {
+    "baselineCommandFindings": [
+      {
+        "command": "node --test .opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
+        "exitCode": 0,
+        "result": "1 pass"
+      },
+      {
+        "command": "npm test --prefix .opencode/skills/system-deep-loop/runtime -- --run",
+        "exitCode": 254,
+        "result": "ENOENT: runtime/package.json does not exist; classified as ledger-018"
+      },
+      {
+        "command": "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <leaf> --strict",
+        "exitCode": 2,
+        "result": "Pre-write baseline: GENERATED_METADATA_INTEGRITY was the sole error."
+      }
+    ]
+  },
+  "closure": {
+    "baseShaUniform": true,
+    "sourceDigestsPresent": true,
+    "artifactDigestsPresent": true,
+    "routerCommitsPreExisting": true,
+    "kebabRenamesPreExisting": true,
+    "registeredModeCount": 7
+  },
+  "submodules": {
+    "state": "EMPTY",
+    "count": 0,
+    "gitlinks": [],
+    "discoveryCommand": "git ls-tree -r fe6ca3030917073f3b478bc044e10034dcc4394b (mode 160000)"
+  }
+}

@@ -39,12 +39,14 @@
       "migration"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -178,31 +192,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift.",
     "created_at": "2026-07-16T03:43:54.525Z",
-    "last_save_at": "2026-07-17T13:21:23.553Z",
+    "last_save_at": "2026-07-21T14:36:28.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de80a799ad5e61e7f811efaa043af44f1d5c690268e7ef9475c37b25b48cffde",
+    "source_fingerprint": "sha256:54958abe250f27487133fdde3a034aa5530b5c31778a2caa31aeda357372d949",
     "source_doc_hashes": {
-      "spec.md": "8348404001c8a569101cc9cdbd08a73a397b709fd825ce08eada2a1ef38de106",
-      "plan.md": "5aff4d0643203634c5e14e133e2f67d707dc9885370a024760acd9a4bd328cf0",
-      "tasks.md": "8b32898955c95ea6edf832114cbe0d33554d707bd987ba81953cc3d862b25a1c",
-      "checklist.md": "0f782143d76007cdbc283ad996c6018018a4804b8a61ed1e7977a7e078591a4a"
+      "spec.md": "db22274428b5fae5fa6f1dafbbb6dc02511effd7263dc9537c8de958ed96eaef",
+      "plan.md": "9cc1befd81344b91d03d4af86ea46894703fa454c83154cf07bb7d92805d009a",
+      "tasks.md": "f50dafbb7baf16468432a9ceb15232958e0d047489c8854e3a422e2d59da9fb5",
+      "checklist.md": "b3e12fdc791fce49a1dc5ec2ad6c6e3bc29423847f5c9025b33e6b9838d3f6e1",
+      "decision-record.md": "66c3df91e743572238b04aa46846433aa31bd78516d56a02e6a3a2963ed0f9b1",
+      "implementation-summary.md": "41108c612238bcddb51b1bc040d2e9d95ccf29cc8543660610491ef7d8b96eec"
     },
     "last_active_child_id": null,
     "last_active_at": null

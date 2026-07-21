@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin BASE, the parent 065 invariants, `manifest/phase-tree.json`, phase-012 shared mode-contract and write-set digests, and the phase-006 authorization boundary
+- [ ] T001 Pin BASE, the parent 036 invariants, `manifest/phase-tree.json`, phase-012 shared mode-contract and write-set digests, and the phase-006 authorization boundary
 - [ ] T002 Read the six Deep Review sibling contracts and record ownership for typed events, reducers, seals, certificates, resume, and shadow parity
 - [ ] T003 Inventory the legacy Deep Review lifecycle, authority selector, blocked-stop path, report synthesis, resume path, and existing rollback anchors
 - [ ] T004 Freeze the authority-control vocabulary, gate result states, rollback trigger classes, dual window bounds, fixture IDs, and phase-014 handoff fields

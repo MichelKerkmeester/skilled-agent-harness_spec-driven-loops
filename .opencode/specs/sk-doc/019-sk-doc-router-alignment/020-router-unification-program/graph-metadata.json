@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The fleet router-unification program: from making every skill's router consistent (3-tier standard), through the defaultMode policy question and its shipped fix, through two parallel out-of-box exploration lineages, to the unified router refactor — one compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation, and an optional offline correction overlay — and its phased implementation plan.",
     "created_at": "2026-07-18T04:39:04.759Z",
-    "last_save_at": "2026-07-18T14:58:37.618Z",
+    "last_save_at": "2026-07-19T16:09:54.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -107,6 +107,6 @@
       "spec.md": "ab796bddd466744f07c773c1421325fb81b1961fe8c3561f60afab2033716d37"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-07-19T16:09:54.603Z"
   }
 }

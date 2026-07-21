@@ -13,14 +13,14 @@ import test from 'node:test';
 
 import { COMMON_PROOF_HANDOFF_FIELDS } from '../../../shared/corpus-context/corpus-context-plan.mjs';
 import { validateProofHandoffRecord } from '../../../shared/corpus-context/validate-context-plan.mjs';
-import { loadManifest } from '../../../styles/_engine/manifest.mjs';
-import { runBuild } from '../../../styles/_engine/style-library.mjs';
+import { loadManifest } from '../../../styles/lib/engine/manifest.mjs';
+import { runBuild } from '../../../styles/lib/engine/style-library.mjs';
 import {
   STYLE_ALPHA,
   STYLE_BETA,
   appendDesignText,
   createFixtureCorpus,
-} from '../../../styles/_engine/__tests__/fixtures.mjs';
+} from '../../../styles/tests/engine/fixtures.mjs';
 import {
   buildFoundationsRelationshipPlan,
   foundationsProofHandoffFields,
@@ -77,7 +77,7 @@ function hasSourceLiteralPayload(value) {
 
 async function runDuringCorpusMutation(corpusRoot, operation) {
   let active = true;
-  const crawlManifestPath = path.join(corpusRoot, '_manifest.json');
+  const crawlManifestPath = path.join(corpusRoot, 'crawl-manifest.json');
   const mutationLoop = (async () => {
     while (active) {
       await appendFile(crawlManifestPath, ' ');

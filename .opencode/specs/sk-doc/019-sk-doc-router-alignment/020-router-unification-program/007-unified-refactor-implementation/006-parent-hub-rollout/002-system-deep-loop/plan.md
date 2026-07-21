@@ -13,6 +13,7 @@ contextType: "implementation"
 
 # Implementation Plan: Unified Router Rollout — system-deep-loop (Phase 006/002)
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -27,7 +28,9 @@ contextType: "implementation"
 
 ### Overview
 Compile the seven authored `system-deep-loop` public modes into seven content-addressed destinations, each carrying the four explicit projections (`qualifiedPublicMode -> packetRef -> backendKind -> optional runtimeLoopType`) and the full identity tuple from synthesis §2.2. Prove the compiled slice against the existing deterministic route-gold through a compatibility projector so the shared scorer stays byte-unchanged, then activate behind a fenced selector with a demonstrated byte-exact rollback. The build is additive: legacy routing serves until the CAS swap; every step is reversible.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -40,7 +43,9 @@ Compile the seven authored `system-deep-loop` public modes into seven content-ad
 - [x] Deep-loop route-gold green under shadow replay; all 11 rows are `real-green`, 0 are `shadow-partial`, and `router-replay.cjs` remains unmodified.
 - [x] Stage-4 canary passed with document parity, rollback, and compiled-resource route-gold green; serving authority remains legacy/shadow-only.
 - [x] `spec.md` / `plan.md` / `tasks.md` reconciled; no completion claim without the canary evidence.
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -56,6 +61,7 @@ Shadow compiler + additive semantic gates behind a fenced activation selector (s
 
 ### Data Flow
 `mode-registry.json` (+ `SKILL.md` three-tier discriminator, `smart_routing.md`) -> projection extractor -> no-collapse compiler -> `CompiledPolicyV1` deep-loop slice (content-addressed) -> three read-only projections (advisor / typed route-gold / policy card) -> shadow replay (zero live authority) -> fenced canary -> CAS activation (or byte-exact rollback).
+<!-- /ANCHOR:architecture -->
 
 ## 4. AFFECTED SURFACES
 
@@ -75,6 +81,7 @@ Required inventories:
 - Runtime-key sharing: `rg -n '"runtimeLoopType"' mode-registry.json` (expect `review` under both `review` and `alignment`; `null` under the three improvement lanes).
 - Alias classes: `rg -n '"routingClass"' mode-registry.json` (expect `lexical`/`alias-fold`/`command-bridge`).
 
+<!-- ANCHOR:phases -->
 ## 5. IMPLEMENTATION PHASES
 
 ### Phase A: Extract + compile projections (REQ-001..004, 006)
@@ -106,14 +113,32 @@ Required inventories:
 | Document parity | Pass | `15/15` full-request machine/document decisions match, including constraint-only `reject(forbidden)`; planted divergence fails closed. |
 | Activation | Pass, shadow-only | Nine aggregate hard blocks, the route-gold subgate, and rollback mechanics pass; serving authority intentionally remains legacy and shadow-only. |
 | Strict packet validation | Pending | Run after final documentation reconciliation. |
+<!-- /ANCHOR:phases -->
 
-## 6. VERIFICATION
+<!-- ANCHOR:testing -->
+## 6. TESTING STRATEGY
 
 - **Compile correctness**: `count(destinations)==7`, `count(packets)==5`; injectivity assertion green; no-collapse assertions green (both hazards).
 - **Scorer untouched**: byte-diff of `router-replay.cjs` == 0; deep-loop route-gold green under the compatibility projector.
 - **Authority locality**: fixtures prove every non-`route` decision withholds authority; advisor output is evidence-only.
 - **Reversibility**: rollback drill produces the byte-identical prior manifest; mixed-generation request hard-blocks; prior generation retained through the bake window.
 - **Doc reconciliation**: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` before any completion claim; reconcile `spec.md`/`plan.md`/`tasks.md`.
+<!-- /ANCHOR:testing -->
+
+<!-- ANCHOR:dependencies -->
+## 7. DEPENDENCIES
+
+- **Upstream (read-only):** Phases 0–2 compiled contract + evaluator + compatibility projector; `006/001` (`sk-code`) canary green (this hub activates after it).
+- **Hub inputs:** `system-deep-loop/mode-registry.json` (the authored runtime-loop discriminator, never inferred) and its `SKILL.md`.
+- **Fixed boundary:** the shared benchmark scorer `router-replay.cjs` and the existing route-gold — proven through the compatibility projector, never edited [synthesis §8.2].
+- **Downstream:** hands a green Stage-4 gate to `006/003` (`mcp-tooling`).
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## 8. ROLLBACK PLAN
+
+Legacy stays serving-authoritative throughout; activation is a fenced compare-and-swap that binds the compiled tuple with the byte-identical prior generation retained. Rollback swaps back to that prior generation (byte-exact); a mixed-generation request is refused. The canary commits no external effect, so this hub's rollback is byte-clean (synthesis §9).
+<!-- /ANCHOR:rollback -->
 
 ## RELATED DOCUMENTS
 - **Specification**: See `spec.md`

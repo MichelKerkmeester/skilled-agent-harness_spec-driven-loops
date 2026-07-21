@@ -3,20 +3,26 @@
 
 // Serving-authority resolver — the safety gate around the compiled engine.
 //
-// The compiled route is authoritative for a hub ONLY when both hold:
-//   1. the runtime flag SPECKIT_COMPILED_ROUTING=1 is set (default off), and
-//   2. the hub's activation manifest has serving authority flipped to 'compiled'.
+// The compiled route is authoritative for a hub ONLY when all three hold:
+//   1. the runtime flag permits it — SPECKIT_COMPILED_ROUTING=1 forces compiled,
+//      unset lets the per-hub default-on cohort decide, and 0/false/off is the
+//      explicit fleet-wide kill-switch back to legacy;
+//   2. the hub's activation manifest has serving authority flipped to 'compiled';
+//   3. the routed snapshot's identity (effectivePolicyHash + generation) matches
+//      the manifest's selected policy — a drifted rollout artifact fails safe.
 //
 // Otherwise `resolveRoute` returns null and the caller keeps legacy routing.
-// This makes the cutover reversible two ways — unset the flag (fleet-wide) or
-// flip a hub's serving authority back to 'legacy' (per hub) — and inert by
-// default, so merely shipping this code changes nothing at runtime.
+// The cutover stays reversible two ways — set the flag to 0 (fleet-wide) or flip
+// a hub's serving authority back to 'legacy' (per hub).
 
 const fs = require('fs');
 const path = require('path');
 const { compiledRoute } = require('./compiled-route.cjs');
 
-const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
+// Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
+// copy so the harness never reads or mutates live committed state.
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
@@ -75,14 +81,19 @@ function flagEnabled() {
   return parseFlagMode(process.env[FLAG]) === 'force-on';
 }
 
-function servingAuthority(hubId) {
+function readManifest(hubId) {
   const manifest = path.join(ACTIVATION_ROOT, hubId, 'manifest.json');
-  if (!fs.existsSync(manifest)) return 'legacy';
+  if (!fs.existsSync(manifest)) return null;
   try {
-    return JSON.parse(fs.readFileSync(manifest, 'utf8')).servingAuthority || 'legacy';
+    return JSON.parse(fs.readFileSync(manifest, 'utf8'));
   } catch {
-    return 'legacy';
+    return null;
   }
+}
+
+function servingAuthority(hubId) {
+  const manifest = readManifest(hubId);
+  return (manifest && manifest.servingAuthority) || 'legacy';
 }
 
 // Returns a normalized compiled decision when this hub is served by the compiled
@@ -91,9 +102,20 @@ function servingAuthority(hubId) {
 // a routing hot path.
 function resolveRoute(hubId, taskText) {
   if (!flagPermitsCompiled(hubId)) return null;
-  if (servingAuthority(hubId) !== 'compiled') return null;
+  const manifest = readManifest(hubId);
+  if (!manifest || manifest.servingAuthority !== 'compiled') return null;
   try {
-    return compiledRoute(hubId, taskText);
+    const route = compiledRoute(hubId, taskText);
+    // Serve-time identity binding: the snapshot we routed through MUST be the
+    // exact generation the manifest selected. If a rollout artifact drifted after
+    // the flip, the identities diverge — fail safe to legacy rather than serve an
+    // unselected policy on the routing hot path.
+    const selected = manifest.selectedPolicy || {};
+    if (route.effectivePolicyHash !== selected.effectivePolicyHash
+      || route.generation !== selected.generation) {
+      return null;
+    }
+    return route;
   } catch (err) {
     breadcrumb(`resolveRoute fell back to legacy for hub=${hubId}: ${err && err.message}`);
     return null;

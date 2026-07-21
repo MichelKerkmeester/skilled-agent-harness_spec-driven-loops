@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-quality-control resource names
+> Phase adjacency — predecessor `010-create-diff`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -82,6 +83,7 @@ The outcome is a kebab-case reference surface with the quality-control workflow 
 | REQ-002 | Quality-control links and indexes resolve | Every old packet-local path points to its target |
 | REQ-003 | The workflow contract remains stable | `workflows.md`, score fields, validation terms, and identifiers are unchanged |
 | REQ-004 | Shared backbone ownership remains clear | Shared resources are referenced but not renamed by this packet phase |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

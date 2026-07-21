@@ -19,7 +19,9 @@
       "result envelope resume tasks",
       "fanout salvage implementation tasks",
       "result envelope resume checklist",
-      "fanout salvage verification checklist"
+      "fanout salvage verification checklist",
+      "result envelope implementation",
+      "fanout resume salvage evidence"
     ],
     "key_topics": [
       "result",
@@ -36,42 +38,19 @@
       "tasks"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
     ],
     "entities": [
-      {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-salvage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,6 +73,36 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
         "source": "derived"
       },
       {
@@ -121,13 +130,13 @@
         "source": "derived"
       },
       {
-        "name": "crash",
+        "name": "unmatched",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "unmatched",
+        "name": "different",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -157,7 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "legacy",
+        "name": "exported",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -175,41 +184,37 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan typed per-leaf result envelopes and ledger-fold resume/salvage that preserves completed work, recovers partial evidence, and never re-runs a durably completed leaf.",
     "created_at": "2026-07-16T03:43:50.033Z",
-    "last_save_at": "2026-07-17T13:21:16.404Z",
+    "last_save_at": "2026-07-21T05:10:01.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbec5be2784f74f43e2c16a581b995000825ef27d828598c5d18ab89383f42eb",
+    "source_fingerprint": "sha256:10a705e1d81e1f16cb3b2a1b3cab324271aa65e4a032facf6fbffc1450d21b3d",
     "source_doc_hashes": {
-      "spec.md": "b1eb2d6d712d71a7831cbb9ecb7b847d2e0dd116d0939e0abf2ca5b12740d3e9",
-      "plan.md": "d9f7631b9dd543b1edda618049012d3b20d4d1c74f4f007f2bb36a87920ce532",
-      "tasks.md": "840a4d35e2f992c4c8622a570462671aaaa6921a74cf012101118ea343a40020",
-      "checklist.md": "e83fb5b467ff3420a88be464d67bc6a1264df89a23bb894085c24f375074aa9e"
+      "spec.md": "c9b1ae20f40239501f2a127321557cba1ee530cf578c64d4e1a343c8aa63d77d",
+      "plan.md": "83a24d963977d81e9ed90a689a2baf0441f9af4af365b3f50f91cdc36b5f99e6",
+      "tasks.md": "ee1e32aff8d690e2d771bdc00f7b22a83943387c592ff8128cb26a583fb1e94e",
+      "checklist.md": "0f4fe0c3eb3bfd526556b072dc7eba349f78d984d66b8736b1450b2e229f26c7",
+      "implementation-summary.md": "d042de689e18fec3216a4a50a447f3c35bdbc3f3c2e493b8b9b84f79348ad3d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,12 +59,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
     "created_at": "2026-07-14T15:18:11Z",
-    "last_save_at": "2026-07-17T14:30:35.184Z",
+    "last_save_at": "2026-07-20T11:09:37.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:bd0f82d80e57b36ab1f8f4396f9c32bd2fe2f003bf9568b2acad68f16504a73d",
+    "source_fingerprint": "sha256:c2ddab23fec6f5cc45eb0d28182325722a685f8bd526e0fbeda40d04d39805fb",
     "source_doc_hashes": {
-      "spec.md": "c8c68fb87389ddbac9c0f2f1c5e4f09a0d539f0d4b5f27e351cf9ef8e91b2584",
+      "spec.md": "78ab5ea203ee8d17cbbf3c4ce42e208bea44c8733b4e9a9c38b01a3ac1b3feb9",
       "plan.md": "5338b1d5489778279707d76ac106a542d1f7f782006b3710cda42a0faea14754",
       "tasks.md": "85fe06b58d2ad153a4fc8e58f0f8a969243af0b1c4b41b096152b61b48739adf",
       "checklist.md": "9c3db7debb56bdaac89dcb407bcf6d04580327881cd41888124960941dbe0ee7"

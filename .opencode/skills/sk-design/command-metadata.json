@@ -1,8 +1,6 @@
 [
   {
-    "command": "/design:audit",
-    "canonicalCommand": "/interface:audit",
-    "compatibilityAliases": ["/design:audit"],
+    "command": "/interface:audit",
     "ownerMode": "audit",
     "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -19,7 +17,7 @@
     "returns": "a findings-first design quality report with evidence, scores, owners, and verification notes",
     "examples": [
       {
-        "invocation": "/design:audit src/components/Checkout.tsx --scope a11y --score",
+        "invocation": "/interface:audit src/components/Checkout.tsx --scope a11y --score",
         "returnsArtifact": "a findings-first design quality report with evidence, scores, owners, and verification notes"
       }
     ],
@@ -66,19 +64,19 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/design:foundations", "/design:interface", "/design:motion"],
+    "next": ["/interface:foundations", "/interface:design", "/interface:motion"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/design:foundations",
+          "command": "/interface:foundations",
           "when": "audit findings need static token, contrast, or system decisions before another pass"
         },
         {
-          "command": "/design:interface",
+          "command": "/interface:design",
           "when": "findings point to a changed interface direction rather than local fixes"
         },
         {
-          "command": "/design:motion",
+          "command": "/interface:motion",
           "when": "findings involve animation, timing, state feedback, or reduced-motion behavior"
         }
       ],
@@ -129,19 +127,19 @@
       "whenToUse": "Use this command when the request is to review, score, or harden an existing design surface.",
       "preferSiblingWhen": [
         {
-          "sibling": "/design:foundations",
+          "sibling": "/interface:foundations",
           "when": "Prefer foundations when the request is to create or repair a static token system, palette, typography, layout, or spacing plan."
         },
         {
-          "sibling": "/design:interface",
+          "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent a new visual direction, interface concept, or signature surface."
         },
         {
-          "sibling": "/design:md-generator",
+          "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is to extract measured CSS from a live site into a Style Reference DESIGN.md."
         },
         {
-          "sibling": "/design:motion",
+          "sibling": "/interface:motion",
           "when": "Prefer motion when the request is to create animation choreography, transitions, or micro-interaction behavior."
         },
         {
@@ -151,8 +149,8 @@
       ],
       "pairWithHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
       "sequence": {
-        "typicallyAfter": ["/design:interface", "/design:foundations", "/design:motion"],
-        "typicallyBefore": ["/design:foundations", "/design:interface", "/design:motion"]
+        "typicallyAfter": ["/interface:design", "/interface:foundations", "/interface:motion"],
+        "typicallyBefore": ["/interface:foundations", "/interface:design", "/interface:motion"]
       }
     },
     "toolPolicy": {
@@ -166,16 +164,14 @@
     },
     "pipeline": {
       "stage": "review",
-      "acceptsFrom": ["/design:foundations", "/design:interface", "/design:md-generator", "/design:motion"],
+      "acceptsFrom": ["/interface:foundations", "/interface:design", "/interface:design-reference", "/interface:motion"],
       "produces": "Design Quality Audit Report",
-      "nextCommands": ["/design:foundations", "/design:interface", "/design:motion"],
+      "nextCommands": ["/interface:foundations", "/interface:design", "/interface:motion"],
       "proofRequired": ["target", "evidenceInventory", "severityFindings", "qualityScore"]
     }
   },
   {
-    "command": "/design:foundations",
-    "canonicalCommand": "/interface:foundations",
-    "compatibilityAliases": ["/design:foundations"],
+    "command": "/interface:foundations",
     "ownerMode": "foundations",
     "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -192,7 +188,7 @@
     "returns": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable",
     "examples": [
       {
-        "invocation": "/design:foundations color marketing-site",
+        "invocation": "/interface:foundations color marketing-site",
         "returnsArtifact": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable"
       }
     ],
@@ -238,19 +234,19 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/design:interface", "/design:motion", "/design:audit"],
+    "next": ["/interface:design", "/interface:motion", "/interface:audit"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/design:interface",
+          "command": "/interface:design",
           "when": "static system decisions are ready to become a concrete interface direction or screen treatment"
         },
         {
-          "command": "/design:motion",
+          "command": "/interface:motion",
           "when": "tokens or layout decisions need temporal behavior, transitions, or state choreography"
         },
         {
-          "command": "/design:audit",
+          "command": "/interface:audit",
           "when": "the static system is ready for quality review, contrast evidence, or hardening"
         }
       ],
@@ -301,19 +297,19 @@
       "whenToUse": "Use this command when the request is to design or correct the static visual system.",
       "preferSiblingWhen": [
         {
-          "sibling": "/design:audit",
+          "sibling": "/interface:audit",
           "when": "Prefer audit when the request is to review, score, accessibility-check, or harden a design surface."
         },
         {
-          "sibling": "/design:interface",
+          "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent the overall interface direction, voice, or signature visual concept first."
         },
         {
-          "sibling": "/design:md-generator",
+          "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is to extract measured tokens from a live site into DESIGN.md."
         },
         {
-          "sibling": "/design:motion",
+          "sibling": "/interface:motion",
           "when": "Prefer motion when the request is animation, transition choreography, micro-interactions, or reduced-motion behavior."
         },
         {
@@ -323,8 +319,8 @@
       ],
       "pairWithHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
       "sequence": {
-        "typicallyAfter": ["/design:interface"],
-        "typicallyBefore": ["/design:motion", "/design:audit"]
+        "typicallyAfter": ["/interface:design"],
+        "typicallyBefore": ["/interface:motion", "/interface:audit"]
       }
     },
     "toolPolicy": {
@@ -338,16 +334,14 @@
     },
     "pipeline": {
       "stage": "system",
-      "acceptsFrom": ["/design:audit", "/design:interface", "/design:md-generator", "/design:motion"],
+      "acceptsFrom": ["/interface:audit", "/interface:design", "/interface:design-reference", "/interface:motion"],
       "produces": "Visual System Foundations Plan",
-      "nextCommands": ["/design:interface", "/design:motion", "/design:audit"],
+      "nextCommands": ["/interface:design", "/interface:motion", "/interface:audit"],
       "proofRequired": ["axis", "target", "tokenDecisions", "contrastEvidence"]
     }
   },
   {
-    "command": "/design:interface",
-    "canonicalCommand": "/interface:design",
-    "compatibilityAliases": ["/design:interface"],
+    "command": "/interface:design",
     "ownerMode": "interface",
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -364,7 +358,7 @@
     "returns": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes",
     "examples": [
       {
-        "invocation": "/design:interface dashboard-shell --mode redesign",
+        "invocation": "/interface:design dashboard-shell --mode redesign",
         "returnsArtifact": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes"
       }
     ],
@@ -410,19 +404,19 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/design:foundations", "/design:motion", "/design:audit"],
+    "next": ["/interface:foundations", "/interface:motion", "/interface:audit"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/design:foundations",
+          "command": "/interface:foundations",
           "when": "the direction needs a static token, type, spacing, or theming system"
         },
         {
-          "command": "/design:motion",
+          "command": "/interface:motion",
           "when": "the direction needs purposeful animation, transitions, or micro-interactions"
         },
         {
-          "command": "/design:audit",
+          "command": "/interface:audit",
           "when": "the interface direction is ready for findings-first review and scoring"
         }
       ],
@@ -573,19 +567,19 @@
       "whenToUse": "Use this command when the request is to invent or reshape a distinctive interface direction.",
       "preferSiblingWhen": [
         {
-          "sibling": "/design:audit",
+          "sibling": "/interface:audit",
           "when": "Prefer audit when the request is findings-first review, accessibility, performance, scoring, or production hardening."
         },
         {
-          "sibling": "/design:foundations",
+          "sibling": "/interface:foundations",
           "when": "Prefer foundations when the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming."
         },
         {
-          "sibling": "/design:md-generator",
+          "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is extracting a live site's measured CSS into DESIGN.md."
         },
         {
-          "sibling": "/design:motion",
+          "sibling": "/interface:motion",
           "when": "Prefer motion when the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior."
         },
         {
@@ -596,7 +590,7 @@
       "pairWithHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/design:foundations", "/design:motion", "/design:audit"]
+        "typicallyBefore": ["/interface:foundations", "/interface:motion", "/interface:audit"]
       }
     },
     "toolPolicy": {
@@ -610,16 +604,14 @@
     },
     "pipeline": {
       "stage": "direction",
-      "acceptsFrom": ["/design:audit", "/design:foundations", "/design:md-generator", "/design:motion"],
+      "acceptsFrom": ["/interface:audit", "/interface:foundations", "/interface:design-reference", "/interface:motion"],
       "produces": "Interface Direction Spec",
-      "nextCommands": ["/design:foundations", "/design:motion", "/design:audit"],
+      "nextCommands": ["/interface:foundations", "/interface:motion", "/interface:audit"],
       "proofRequired": ["target", "register", "designDials", "preflightResult"]
     }
   },
   {
-    "command": "/design:md-generator",
-    "canonicalCommand": "/interface:design-reference",
-    "compatibilityAliases": ["/design:md-generator"],
+    "command": "/interface:design-reference",
     "ownerMode": "md-generator",
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -636,7 +628,7 @@
     "returns": "a Style Reference DESIGN.md and extracted token data under the output directory",
     "examples": [
       {
-        "invocation": "/design:md-generator https://stripe.com --output design/reference",
+        "invocation": "/interface:design-reference https://stripe.com --output design/reference",
         "returnsArtifact": "a Style Reference DESIGN.md and extracted token data under the output directory"
       }
     ],
@@ -682,19 +674,19 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/design:foundations", "/design:interface", "/design:audit"],
+    "next": ["/interface:foundations", "/interface:design", "/interface:audit"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/design:foundations",
+          "command": "/interface:foundations",
           "when": "measured CSS should be distilled into a static visual-system plan"
         },
         {
-          "command": "/design:interface",
+          "command": "/interface:design",
           "when": "measured evidence should inform a new or reshaped interface direction"
         },
         {
-          "command": "/design:audit",
+          "command": "/interface:audit",
           "when": "the captured surface needs quality review or hardening based on measured evidence"
         }
       ],
@@ -722,19 +714,19 @@
       "whenToUse": "Use this command when the request is to extract a live site's real measured CSS into DESIGN.md.",
       "preferSiblingWhen": [
         {
-          "sibling": "/design:audit",
+          "sibling": "/interface:audit",
           "when": "Prefer audit when the request is to review or score an existing design rather than extract its measured CSS."
         },
         {
-          "sibling": "/design:foundations",
+          "sibling": "/interface:foundations",
           "when": "Prefer foundations when the request is to author a static token or visual system from judgment rather than measurement."
         },
         {
-          "sibling": "/design:interface",
+          "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent a new design direction instead of capturing what already exists."
         },
         {
-          "sibling": "/design:motion",
+          "sibling": "/interface:motion",
           "when": "Prefer motion when the request is to design animation, transitions, or micro-interaction behavior."
         },
         {
@@ -745,7 +737,7 @@
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/design:foundations", "/design:interface", "/design:audit"]
+        "typicallyBefore": ["/interface:foundations", "/interface:design", "/interface:audit"]
       }
     },
     "toolPolicy": {
@@ -761,14 +753,12 @@
       "stage": "extract",
       "acceptsFrom": [],
       "produces": "Style Reference DESIGN.md",
-      "nextCommands": ["/design:foundations", "/design:interface", "/design:audit"],
+      "nextCommands": ["/interface:foundations", "/interface:design", "/interface:audit"],
       "proofRequired": ["sourceUrl", "extractedTokensDigest", "fidelityScore"]
     }
   },
   {
-    "command": "/design:motion",
-    "canonicalCommand": "/interface:motion",
-    "compatibilityAliases": ["/design:motion"],
+    "command": "/interface:motion",
     "ownerMode": "motion",
     "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
     "descriptionRole": "hub-keyword-projection",
@@ -785,7 +775,7 @@
     "returns": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior",
     "examples": [
       {
-        "invocation": "/design:motion modal-open-close --library framer-motion",
+        "invocation": "/interface:motion modal-open-close --library framer-motion",
         "returnsArtifact": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior"
       }
     ],
@@ -831,19 +821,19 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/design:interface", "/design:foundations", "/design:audit"],
+    "next": ["/interface:design", "/interface:foundations", "/interface:audit"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/design:interface",
+          "command": "/interface:design",
           "when": "motion choices change or depend on the overall interface direction"
         },
         {
-          "command": "/design:foundations",
+          "command": "/interface:foundations",
           "when": "motion constraints affect static layout, token, or responsive decisions"
         },
         {
-          "command": "/design:audit",
+          "command": "/interface:audit",
           "when": "the motion spec is ready for performance, accessibility, or quality review"
         }
       ],
@@ -871,19 +861,19 @@
       "whenToUse": "Use this command when the request is to design purposeful animation, transitions, or reduced-motion behavior.",
       "preferSiblingWhen": [
         {
-          "sibling": "/design:audit",
+          "sibling": "/interface:audit",
           "when": "Prefer audit when the request is findings-first quality review, release scoring, or motion-performance assessment."
         },
         {
-          "sibling": "/design:foundations",
+          "sibling": "/interface:foundations",
           "when": "Prefer foundations when the request is static color, type, layout, responsive, or theme-token work."
         },
         {
-          "sibling": "/design:interface",
+          "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent the full visual direction or interface concept first."
         },
         {
-          "sibling": "/design:md-generator",
+          "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is to capture measured CSS or tokens from a live site."
         },
         {
@@ -893,8 +883,8 @@
       ],
       "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
       "sequence": {
-        "typicallyAfter": ["/design:interface", "/design:foundations"],
-        "typicallyBefore": ["/design:audit"]
+        "typicallyAfter": ["/interface:design", "/interface:foundations"],
+        "typicallyBefore": ["/interface:audit"]
       }
     },
     "toolPolicy": {
@@ -908,9 +898,9 @@
     },
     "pipeline": {
       "stage": "behavior",
-      "acceptsFrom": ["/design:audit", "/design:foundations", "/design:interface"],
+      "acceptsFrom": ["/interface:audit", "/interface:foundations", "/interface:design"],
       "produces": "Motion Design Spec",
-      "nextCommands": ["/design:interface", "/design:foundations", "/design:audit"],
+      "nextCommands": ["/interface:design", "/interface:foundations", "/interface:audit"],
       "proofRequired": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"]
     }
   }

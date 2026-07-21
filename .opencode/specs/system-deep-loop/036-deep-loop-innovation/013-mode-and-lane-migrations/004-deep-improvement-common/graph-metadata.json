@@ -96,15 +96,15 @@
     ],
     "causal_summary": "Migrate the shared deep-improvement evaluator-first loop, candidate generation, scoring, canary, and guarded promotion services onto the typed event-ledger substrate before the agent-improvement, model-benchmark, and skill-benchmark variants consume them.",
     "created_at": "2026-07-16T03:43:55.766Z",
-    "last_save_at": "2026-07-17T13:21:33.308Z",
+    "last_save_at": "2026-07-19T18:01:25.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:17d3bca117a47bf1aab02473fdfa35af5a79fd72070ed2f3abbaa8213fe5a3e1",
+    "source_fingerprint": "sha256:80b1c7e76991ef409067b21501b9bf87a8ef6e8967c077eb02f3d73cd15d504a",
     "source_doc_hashes": {
-      "spec.md": "2edf2150b693b58bb21cad422287d313671fef9a244fc37e4130fe8dcc14e9a6"
+      "spec.md": "b9a93f198f6874afd841c621264c693a31c21a5d83bd1d3ee7347f617220a800"
     },
     "last_active_child_id": null,
     "last_active_at": null

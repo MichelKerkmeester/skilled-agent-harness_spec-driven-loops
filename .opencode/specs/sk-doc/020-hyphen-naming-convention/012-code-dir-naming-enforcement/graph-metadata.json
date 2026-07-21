@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code directory naming enforcement",
+      "leading underscore db engine tests naming",
+      "naming checker code dirs scope gap"
+    ],
+    "key_topics": [
+      "code",
+      "directory",
+      "naming",
+      "enforcement",
+      "leading",
+      "underscore",
+      "engine",
+      "tests",
+      "checker",
+      "dirs",
+      "scope",
+      "gap"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "filesystem-naming-convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Consolidate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Performance Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Canon",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exemption-boundary",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "green",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canonical rule (`shared/references/filesystem-naming-convention.md`) says kebab-case is the sole in-scope form, but three enforcement gaps let non-canonical code directories ship — as seen in `sk-design/styles/{db,engine,harness,tests}`:",
+    "created_at": "2026-07-20T10:44:42.471Z",
+    "last_save_at": "2026-07-20T10:44:42.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b129885092980a2e4ccc8560a2aac10d74e6e4d0713bfde0f3f974b193f1e78",
+    "source_doc_hashes": {
+      "spec.md": "60c76f06547f62ac360c26e18a2a75b4fba8441bfc3b3f8439b7b35cccc57f7e",
+      "plan.md": "55b591c6b697a63965dee116569e1c3cb74d0f2ce45b451a6ff9dbec3a3cdd3f",
+      "tasks.md": "666b83da1fb7a69b8edf3a4e2cfd1407e04898e5a582287bc31bc67fef675448",
+      "checklist.md": "c3d4b269de448415d544642f00db9be19fe8f97146c7c2ec78db226b5cfb70b9",
+      "implementation-summary.md": "76733216ca1ead1c16807ec13f4c74429106a232585cd621fc637fa57cd9c38a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

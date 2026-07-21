@@ -15,6 +15,7 @@ import {
 import { tmpdir } from 'node:os';
 import { isAbsolute, join, relative, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -704,14 +705,21 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
 });
 
 describe('fanout-run.cjs — cli-codex adapter', () => {
-  const { buildLineageCommand, isCodexBinaryAvailable } = requireCjs(fanoutRunScript) as {
+  const { buildLineageCommand, buildInvocationFingerprintPayload, isCodexBinaryAvailable } = requireCjs(fanoutRunScript) as {
     buildLineageCommand: (
       lineage: Record<string, unknown>,
       prompt: string,
       resolvedSandbox: string,
       resolvedPermission: string,
-      options?: { env?: NodeJS.ProcessEnv },
-    ) => { command: string; args: string[]; input: string };
+      options?: { env?: NodeJS.ProcessEnv; executableVersion?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      effectiveConfig: Record<string, unknown>;
+      invocationFingerprint: string;
+    };
+    buildInvocationFingerprintPayload: (input: Record<string, unknown>) => Record<string, unknown>;
     isCodexBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
   };
 
@@ -722,7 +730,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       'workspace-write',
       'default',
     );
-    expect(command).toEqual({
+    expect({ command: command.command, args: command.args, input: command.input }).toEqual({
       command: 'codex',
       args: [
         'exec', '--model', 'gpt-5.6-codex',
@@ -734,6 +742,214 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       ],
       input: 'bounded prompt',
     });
+    expect(command.effectiveConfig).toMatchObject({
+      kind: 'cli-codex',
+      executable: 'codex',
+      model: 'gpt-5.6-codex',
+      reasoningEffort: 'xhigh',
+      serviceTier: 'fast',
+      sandboxMode: 'workspace-write',
+      webSearch: 'inherit',
+    });
+    expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
+  });
+
+  it('places the live-search flag before the exec subcommand', () => {
+    const binDir = makeTempDir('fanout-run-live-codex-');
+    writeStubBinary(binDir, 'codex');
+    const command = buildLineageCommand(
+      {
+        kind: 'cli-codex',
+        model: 'gpt-5.6-sol',
+        reasoningEffort: 'ultra',
+        liveTools: { webSearch: 'live' },
+      },
+      'live prompt',
+      'read-only',
+      'plan',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` }, executableVersion: 'codex 9.9.9' },
+    );
+    expect(command.args.slice(0, 2)).toEqual(['--search', 'exec']);
+    expect(command.effectiveConfig).toMatchObject({
+      executableVersion: 'codex 9.9.9',
+      webSearch: 'live',
+    });
+  });
+
+  it('keeps omitted liveTools byte-equivalent to explicit inherit for legacy dispatch', () => {
+    const omitted = buildLineageCommand(
+      { kind: 'cli-codex', model: 'gpt-5.6-codex', reasoningEffort: 'xhigh', serviceTier: 'fast' },
+      'legacy prompt',
+      'workspace-write',
+      'acceptEdits',
+      { executableVersion: 'codex legacy' },
+    );
+    const inherited = buildLineageCommand(
+      {
+        kind: 'cli-codex',
+        model: 'gpt-5.6-codex',
+        reasoningEffort: 'xhigh',
+        serviceTier: 'fast',
+        liveTools: { webSearch: 'inherit' },
+      },
+      'legacy prompt',
+      'workspace-write',
+      'acceptEdits',
+      { executableVersion: 'codex legacy' },
+    );
+    expect({ command: omitted.command, args: omitted.args, input: omitted.input }).toEqual({
+      command: inherited.command,
+      args: inherited.args,
+      input: inherited.input,
+    });
+    expect(omitted.invocationFingerprint).toBe(inherited.invocationFingerprint);
+  });
+
+  it('returns the complete adapter contract for every executor kind', () => {
+    const binDir = makeTempDir('fanout-run-adapter-contract-');
+    writeStubBinary(binDir, 'codex');
+    const cases = [
+      { kind: 'native', label: 'native' },
+      { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol' },
+      { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5' },
+      { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1' },
+    ];
+    for (const lineage of cases) {
+      const command = buildLineageCommand(
+        lineage,
+        'contract prompt',
+        'workspace-write',
+        'acceptEdits',
+        {
+          env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+          executableVersion: 'fixture 1.0.0',
+          loopType: 'research',
+          specFolder: 'specs/adapter-contract',
+          lineageDir: '/tmp/adapter-contract',
+        } as never,
+      );
+      expect(command).toEqual(expect.objectContaining({
+        command: expect.any(String),
+        args: expect.any(Array),
+        effectiveConfig: expect.objectContaining({
+          kind: lineage.kind,
+          executableVersion: 'fixture 1.0.0',
+          webSearch: 'inherit',
+        }),
+        invocationFingerprint: expect.stringMatching(/^inv:[a-f0-9]{64}$/),
+      }));
+      expect(Object.prototype.hasOwnProperty.call(command, 'input')).toBe(true);
+    }
+  });
+
+  it('fingerprints only the effective allowlist and prompt digest', () => {
+    const binDir = makeTempDir('fanout-run-fingerprint-codex-');
+    writeStubBinary(binDir, 'codex');
+    const pathValue = `${binDir}:${process.env.PATH ?? ''}`;
+    const baseLineage = {
+      kind: 'cli-codex',
+      model: 'gpt-5.6-sol',
+      reasoningEffort: 'xhigh',
+      serviceTier: 'fast',
+      liveTools: { webSearch: 'live' },
+    };
+    const build = (
+      lineage: Record<string, unknown> = baseLineage,
+      prompt = 'secret raw prompt',
+      sandbox = 'read-only',
+      version = 'codex 1.2.3',
+      credential = 'credential-a',
+    ) => buildLineageCommand(
+      lineage,
+      prompt,
+      sandbox,
+      'plan',
+      {
+        executableVersion: version,
+        env: { ...process.env, PATH: pathValue, OPENAI_API_KEY: credential },
+      },
+    );
+
+    const baseline = build();
+    expect(build().invocationFingerprint).toBe(baseline.invocationFingerprint);
+    expect(build(baseLineage, 'secret raw prompt', 'read-only', 'codex 1.2.3', 'credential-b').invocationFingerprint)
+      .toBe(baseline.invocationFingerprint);
+    expect(build({ ...baseLineage, model: 'gpt-5.6-luna' }).invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build({ ...baseLineage, reasoningEffort: 'ultra' }).invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build({ ...baseLineage, serviceTier: 'priority' }).invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build({ ...baseLineage, liveTools: { webSearch: 'disabled' } }).invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build(baseLineage, 'different prompt').invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build(baseLineage, 'secret raw prompt', 'workspace-write').invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    expect(build(baseLineage, 'secret raw prompt', 'read-only', 'codex 2.0.0').invocationFingerprint)
+      .not.toBe(baseline.invocationFingerprint);
+    const otherKind = buildLineageCommand(
+      { kind: 'cli-opencode', model: 'gpt-5.6-sol', reasoningEffort: 'xhigh', liveTools: { webSearch: 'live' } },
+      'secret raw prompt',
+      'read-only',
+      'plan',
+      { executableVersion: 'codex 1.2.3' },
+    );
+    expect(otherKind.invocationFingerprint).not.toBe(baseline.invocationFingerprint);
+
+    const payload = buildInvocationFingerprintPayload({
+      kind: 'cli-opencode',
+      command: 'opencode',
+      args: ['run', '--model', 'model', 'secret raw prompt'],
+      prompt: 'secret raw prompt',
+      promptArgIndexes: [3],
+      executableVersion: 'opencode 1.0.0',
+      model: 'model',
+      reasoningEffort: null,
+      serviceTier: null,
+      resolvedSandbox: 'workspace-write',
+      resolvedPermission: 'acceptEdits',
+      webSearch: 'live',
+    });
+    expect(JSON.stringify(payload)).not.toContain('secret raw prompt');
+    expect(JSON.stringify(payload)).not.toContain('OPENAI_API_KEY');
+    expect(payload).toMatchObject({ promptDigest: expect.stringMatching(/^[a-f0-9]{64}$/) });
+
+    const native = buildLineageCommand(
+      { kind: 'native', label: 'native-fingerprint', iterations: 1 },
+      'generic loop prompt',
+      'workspace-write',
+      'acceptEdits',
+      {
+        executableVersion: 'opencode 1.0.0',
+        loopType: 'review',
+        specFolder: 'specs/sensitive-native-input',
+        lineageDir: '/tmp/sensitive-native-lineage',
+        sessionId: 'sensitive-native-session',
+      } as never,
+    );
+    const nativePromptIndex = native.args.length - 1;
+    const nativePrompt = native.args[nativePromptIndex];
+    const nativePayload = buildInvocationFingerprintPayload({
+      kind: 'native',
+      command: native.command,
+      args: native.args,
+      prompt: nativePrompt,
+      promptArgIndexes: [nativePromptIndex],
+      executableVersion: 'opencode 1.0.0',
+      model: null,
+      reasoningEffort: null,
+      serviceTier: null,
+      resolvedSandbox: 'workspace-write',
+      resolvedPermission: 'acceptEdits',
+      webSearch: 'inherit',
+    });
+    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-input');
+    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-lineage');
+    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-session');
+    expect(native.invocationFingerprint).toBe(
+      `inv:${createHash('sha256').update(JSON.stringify(nativePayload)).digest('hex')}`,
+    );
   });
 
   it('fails closed before command construction when codex is absent', () => {
@@ -746,6 +962,151 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       'default',
       { env },
     )).toThrow(/command -v codex failed/);
+  });
+});
+
+describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatch', () => {
+  it('completes a hermetic live cli-codex leaf with top-level search argv', async () => {
+    const binDir = makeTempDir('fanout-run-live-codex-leaf-bin-');
+    writeFileSync(
+      join(binDir, 'codex'),
+      [
+        '#!/bin/sh',
+        'lineage_dir=$(dirname "$SPECKIT_CODEX_STATE_DIR")',
+        'mkdir -p "$lineage_dir"',
+        'printf "%s\\n" "$@" > "$lineage_dir/codex-argv.txt"',
+        'cat > "$lineage_dir/codex-stdin.txt"',
+        'printf "ok\\n" > "$lineage_dir/research.md"',
+        'printf "ok\\n" > "$lineage_dir/review-report.md"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+    const baseDir = makeTempDir('fanout-run-live-codex-leaf-base-');
+    const fanoutConfig = JSON.stringify({
+      executors: [{
+        label: 'live-codex',
+        kind: 'cli-codex',
+        model: 'gpt-5.6-sol',
+        reasoningEffort: 'ultra',
+        liveTools: { webSearch: 'live' },
+        iterations: 1,
+      }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const { result } = await spawnFanout('live-codex-leaf', [
+      '--spec-folder',
+      'specs/test-fanout-live-codex',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      baseDir,
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(result.exitCode).toBe(0);
+    const argv = readFileSync(join(baseDir, 'lineages', 'live-codex', 'codex-argv.txt'), 'utf8')
+      .trim()
+      .split('\n');
+    expect(argv.slice(0, 2)).toEqual(['--search', 'exec']);
+    expect(readFileSync(join(baseDir, 'lineages', 'live-codex', 'codex-stdin.txt'), 'utf8'))
+      .toContain('FANOUT_LINEAGE_COMPLETE:live-codex');
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      summary?: { total?: number; succeeded?: number; failed?: number };
+    };
+    expect(payload.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
+  });
+
+  it('rejects an unsupported policy before the pool or executor spawn is touched', async () => {
+    const binDir = makeTempDir('fanout-run-policy-preflight-bin-');
+    const baseDir = makeTempDir('fanout-run-policy-preflight-base-');
+    const markerPath = join(baseDir, 'spawned.marker');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      `#!/bin/sh\n: > ${shellQuote(markerPath)}\nexit 0\n`,
+      { mode: 0o755 },
+    );
+    const fanoutConfig = JSON.stringify({
+      executors: [{
+        label: 'cached-opencode',
+        kind: 'cli-opencode',
+        model: 'opencode-go/glm-5.1',
+        liveTools: { webSearch: 'cached' },
+      }],
+      concurrency: 1,
+    });
+
+    const { result } = await spawnFanout('unsupported-policy-preflight', [
+      '--spec-folder',
+      'specs/test-fanout-policy-preflight',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      baseDir,
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain("policy 'cached' is not supported by executor kind 'cli-opencode'");
+    expect(existsSync(markerPath)).toBe(false);
+    expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
+    expect(existsSync(join(baseDir, 'orchestration-status.log'))).toBe(false);
+    expect(existsSync(join(baseDir, 'orchestration-summary.json'))).toBe(false);
+  });
+
+  it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
+    const binDir = makeTempDir('fanout-run-manifest-bin-');
+    writeStubBinary(binDir, 'opencode');
+    const baseDir = makeTempDir('fanout-run-manifest-base-');
+    const expectedLabels = [
+      'discover-sol-r1', 'discover-sol-r2',
+      'challenge-sol-r1', 'challenge-sol-r2',
+      'synthesize-sol-r1', 'synthesize-sol-r2',
+      'discover-glm-r1', 'discover-glm-r2',
+      'challenge-glm-r1', 'challenge-glm-r2',
+      'synthesize-glm-r1', 'synthesize-glm-r2',
+    ];
+    const fanoutConfig = JSON.stringify({
+      models: [
+        { id: 'sol', kind: 'cli-opencode', model: 'opencode-go/sol', liveTools: { webSearch: 'live' } },
+        { id: 'glm', kind: 'cli-opencode', model: 'opencode-go/glm', liveTools: { webSearch: 'live' } },
+      ],
+      branches: [
+        { id: 'discover', iterations: 1 },
+        { id: 'challenge', iterations: 1 },
+        { id: 'synthesize', iterations: 1 },
+      ],
+      replicas: 2,
+      concurrency: 2,
+      maxRetries: 0,
+    });
+
+    const { result } = await spawnFanout('cartesian-manifest-dispatch', [
+      '--spec-folder',
+      'specs/test-fanout-manifest',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      baseDir,
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` }, timeoutMs: 30_000 });
+
+    expect(result.exitCode).toBe(0);
+    for (const label of expectedLabels) {
+      expect(existsSync(join(baseDir, 'lineages', label, 'research.md'))).toBe(true);
+    }
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ output?: { label?: string } }>;
+      summary?: { total?: number; succeeded?: number; failed?: number };
+    };
+    expect(payload.summary).toMatchObject({ total: 12, succeeded: 12, failed: 0 });
+    expect(payload.results?.map((entry) => entry.output?.label)).toEqual(expectedLabels);
   });
 });
 

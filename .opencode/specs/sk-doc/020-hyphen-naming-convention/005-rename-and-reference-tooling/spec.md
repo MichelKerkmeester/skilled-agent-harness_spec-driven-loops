@@ -30,6 +30,7 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; detailed mechanics live in child documents. -->
 
 # Feature Specification: Rename and Reference Tooling
+> Phase adjacency — predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

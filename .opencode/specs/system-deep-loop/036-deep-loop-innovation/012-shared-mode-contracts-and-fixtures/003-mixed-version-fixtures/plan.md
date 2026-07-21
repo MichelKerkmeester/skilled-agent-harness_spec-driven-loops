@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped scenario corpus, sealing boundary, and replay outcome matrix"
-    next_safe_action: "Freeze fixture schema and sealed replay inputs for implementation"
+    last_updated_at: "2026-07-21T15:50:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the corpus, compiler, adapters, oracle, and adversarial suite"
+    next_safe_action: "Consume the sealed corpus in phase-013 mode migrations"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,23 +47,23 @@ outcomes. The fixture runner is a consumer of phase-008 contracts, not a second 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent `012-shared-mode-contracts-and-fixtures` outcome, phase adjacency, and phase-tree outcome are recorded.
-- [ ] The phase-008 upcaster/dual-read contract and shadow-parity contract are reconciled into fixture inputs, expected
+- [x] The parent `012-shared-mode-contracts-and-fixtures` outcome, phase adjacency, and phase-tree outcome are recorded. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] The phase-008 upcaster/dual-read contract and shadow-parity contract are reconciled into fixture inputs, expected Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
   outcomes, and fail-closed classifications.
-- [ ] The phase-007 sealed-reference-artifact contract is available for canonical bytes, verified reads, retention roots,
+- [x] The phase-007 sealed-reference-artifact contract is available for canonical bytes, verified reads, retention roots, Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
   and ordered digest references.
-- [ ] The four scenario families and independent event/state version matrix are frozen before fixture generation.
-- [ ] The eight phase-013 workstream rows and deep-improvement-common ordering are derived from `manifest/phase-tree.json`.
-- [ ] The fixture envelope distinguishes authored expected outcomes from implementation-produced observations.
+- [x] The four scenario families and independent event/state version matrix are frozen before fixture generation. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] The eight phase-013 workstream rows and deep-improvement-common ordering are derived from `manifest/phase-tree.json`. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] The fixture envelope distinguishes authored expected outcomes from implementation-produced observations. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 
 ### Definition of Done
-- [ ] Pure-old, pure-new, mid-upgrade, and interrupted-migration fixtures exist for every required workstream or carry a
+- [x] Pure-old, pure-new, mid-upgrade, and interrupted-migration fixtures exist for every required workstream or carry a Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
   named contract-backed reason for a shared row.
-- [ ] Every case has an immutable sealed capsule, exact causal boundary, version/hop metadata, and expected outcome.
-- [ ] Reducer, replay, resume, projection, and shadow-parity checks consume the same capsule without live inputs.
-- [ ] Negative cases fail closed for unsupported versions, seal drift, causal mismatch, missing observations, and
+- [x] Every case has an immutable sealed capsule, exact causal boundary, version/hop metadata, and expected outcome. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] Reducer, replay, resume, projection, and shadow-parity checks consume the same capsule without live inputs. Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] Negative cases fail closed for unsupported versions, seal drift, causal mismatch, missing observations, and Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
   nondeterministic reruns.
-- [ ] The phase handoff gives phase 013 the fixture namespace and phase 008 the parity-ready case identities without
+- [x] The phase handoff gives phase 013 the fixture namespace and phase 008 the parity-ready case identities without Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
   moving authority.
 <!-- /ANCHOR:quality-gates -->
 
@@ -85,9 +85,9 @@ outcomes. The fixture runner is a consumer of phase-008 contracts, not a second 
   terminal result, pending effects, receipt set, continuity identity, and resume classification. The oracle is fixture data
   and contract evidence, not a second production reducer.
 - **Replay and parity coordinator**: Run legacy and dark paths from isolated clones of one verified capsule, verify phase-
-  003 replay components, compare declared projections, and route input inequality, divergence, or nondeterminism as
+  006 replay components, compare declared projections, and route input inequality, divergence, or nondeterminism as
   blocking evidence. Phase-008 remains responsible for the harness and certificate semantics.
-- **Manifest-derived matrix**: Expand the case rows from `mode_workstreams_phase_010`; preserve
+- **Manifest-derived matrix**: Expand the case rows from `mode_workstreams_phase_013`; preserve
   `004-deep-improvement-common` before its three variants and keep the fixture namespace stable across reruns.
 
 The verification order is fixed: manifest closure -> fixture-schema validation -> seal and digest verification -> causal

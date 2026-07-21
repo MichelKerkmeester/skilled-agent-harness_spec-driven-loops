@@ -21,7 +21,7 @@ import {
   immutableSnapshot,
   isRetrievalUnavailableError,
 } from '../../shared/corpus-context/corpus-runtime.mjs';
-import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
+import { runHydrate, runQuery } from '../../styles/lib/engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

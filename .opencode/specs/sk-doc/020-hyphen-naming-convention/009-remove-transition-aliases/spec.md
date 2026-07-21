@@ -33,6 +33,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Remove transition aliases
+> Phase adjacency — predecessor `008-component-migration`.
 
 > Phase adjacency under the 020 parent: prerequisite `002-root-name-consumer-migration` with its coexistence window closed and the physical catalog/playbook migration complete; successor `010-whole-repo-gate`.
 

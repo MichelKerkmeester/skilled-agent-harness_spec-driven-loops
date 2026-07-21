@@ -15,6 +15,7 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -25,10 +26,14 @@ contextType: "implementation"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase 1: Contract Intake
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Contract Intake
 
 - [x] T001 Pin the consumed contracts — import `RouteRequestV1`, `CompiledPolicyV1`, `Target`/identity types from `../000-contract-schemas/` and the compiled artifact + projections from `../001-compiler-n1-shadow/` (REQ-005, REQ-013)
 - [x] T002 Confirm `pinnedActivationGeneration` and `effectivePolicyHash` are present and comparable on the pinned request/policy (REQ-013; synthesis §2.1)
@@ -37,10 +42,14 @@ contextType: "implementation"
 compiled-policy fixtures. It validates policy base/effective hashes and binds the request's integer
 generation pin to `activationGeneration`; live tuple claims bind and cross-check
 `effectivePolicyHash`.
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
-## Phase 2: Decision Type & Guards
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Decision Type & Guards
 
 - [x] T003 Define `RouteDecisionV1` as a closed discriminated union `route | clarify | defer | reject`, with `selectionKind ∈ {single, orderedBundle, surfaceBundle}` as an interior field of `route` only (REQ-002; synthesis §2.3, §4 seam A)
 - [x] T004 Encode reason/basis vocabularies: `defer.reason ∈ {idle, no-match, dependency-failure, handoff-required, stale-policy, evidence-unavailable}`; `route.basis ∈ {signal, bounded-default, degraded-fallback}` (REQ-002, REQ-007)
@@ -52,7 +61,7 @@ asserts 12 exact rejection codes rather than bare throws.
 
 ---
 
-## Phase 3: Evaluator & Projector
+### Evaluator & Projector
 
 - [x] T007 Implement `evaluate(request, policy) -> RouteDecisionV1` as a pure total function — no I/O, clock, RNG, advisor call, or mutation (REQ-001; synthesis §2 decision plane)
 - [x] T008 Encode the branch order at the decision boundary: generation/authority admission → exact route → one-answer `clarify` → named `defer(handoff-required)` → recoverable `defer` → `reject`; confident routes emit no recovery artifacts (REQ-011; synthesis §4)
@@ -67,7 +76,7 @@ pairs only through a supplied frozen manifest projection. The rank-only fixture 
 
 ---
 
-## Phase 4: Fixtures & Shadow-Evaluate Gate
+### Fixtures & Shadow-Evaluate Gate
 
 - [x] T013 Author the typed fixture families: exact single route; ordered + surface bundles; zero-signal idle `defer` with no default union; one-turn clarify; forbidden reject; direct route with no recovery artifacts; singular omission + zero rank-call; stale/mixed-generation refusal (REQ-011; synthesis §8.2)
 - [x] T014 Wire the shadow-evaluate replay harness: `evaluate()` → `projectToRouteGold()` → existing scorer → compare to frozen gold; emit a classified mismatch report; never write back to gold (REQ-009; synthesis §9 stage 3)
@@ -75,10 +84,12 @@ pairs only through a supplied frozen manifest projection. The rank-only fixture 
 **Evidence**: `fixtures/evaluator-cases.v1.json` contains 11 typed cases. The replay driver
 invokes the unchanged shared scorer, classifies an injected mismatch, and hashes protected gold
 before and after without writing it.
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
-## Phase 5: Verification
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
 
 - [x] T015 Static scan confirms no I/O/clock/RNG imports; N-run cross-process replay is byte-identical (SC-001)
 - [x] T016 Assert unrepresentability: negative-with-target, negative-with-authority, top-level `selectionKind`, route-with-recovery-artifact all fail the type/guard (SC-002)
@@ -89,20 +100,25 @@ before and after without writing it.
 **Evidence**: Unit tests report 112 assertions. Replay reports 11/11 route-gold matches,
 25 identical runs per fixture, three matching child processes, protected-byte equality, and zero
 N=1 rank/bundle/handoff calls.
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Stage 3 (Shadow evaluate) gate passes before Phase 3 activates
 - [x] `router-replay.cjs` byte-unchanged (a required scorer edit = migration failure)
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+<!-- /ANCHOR:cross-refs -->

@@ -1,23 +1,27 @@
 ---
 title: "Feature Specification: In-Flight State Classification"
-description: "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover."
+description: "Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover."
 trigger_phrases:
   - "in-flight state classification"
   - "deep-loop cutover state disposition"
   - "upcast pin fork migrate block"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
+status: "complete"
 parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
-    last_updated_at: "2026-07-15T14:32:45Z"
+    last_updated_at: "2026-07-21T03:35:32Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned five-way in-flight state classification contract"
-    next_safe_action: "Classify each frozen phase-003 census row before phase-014 cutover"
+    recent_action: "Implemented and verified the total five-way in-flight state classifier"
+    next_safe_action: "Consume the immutable classification and freshness gate during governed phase-014 cutover work"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/inflight-state-classification.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | In-flight-state child of the phase-008 compatibility, shadow, and rollback bridge |
@@ -55,15 +59,14 @@ authority, or make rollback reconstruct a state that never existed.
 The [phase-003 census specification](../../003-baseline-taxonomy-and-state-census/spec.md) requires a row-addressable
 inventory of packet state logs, iteration deltas, inboxes, council and improvement state, fan-out and failure records,
 observability events, JSON/JSONL projections, locks and pause markers, packet-local directories, benchmark outputs, and
-SQLite backends. That census is currently a planned input rather than executed row evidence, so this phase defines the
-binding decision contract and family baselines without pretending that undiscovered row IDs already exist. Execution
-must consume the frozen census and close every concrete row.
+SQLite backends. That census is now frozen at 46 concrete rows and is consumed by exact bytes, SHA-256 digest, BASE
+identity, and row closure. The implemented decision contract closes every row against one explicit policy entry.
 
 The [phase-004 transition and rollback policy](../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md)
 requires deterministic adjacent-version upcasters, exactly one authoritative writer, non-destructive rollback, and a
 cutover certificate that binds classified in-flight state. The [program phase tree](../../manifest/phase-tree.json)
 places this classification in the dark compatibility bridge and reserves state migration and authority movement for
-phase 014. This phase therefore plans one exhaustive five-way disposition: `UPCAST`, `PIN`, `FORK`, `MIGRATE`, or
+phase 014. This phase therefore implements one exhaustive five-way disposition: `UPCAST`, `PIN`, `FORK`, `MIGRATE`, or
 `BLOCK`. Missing, stale, ambiguous, corrupt, or unsafe evidence defaults to `BLOCK`; legacy remains authoritative.
 <!-- /ANCHOR:problem -->
 
@@ -187,8 +190,7 @@ snapshots, terminal receipts, and immediate pre-cutover freshness checks are man
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must resolve the exact census row IDs, manifest storage path, bounded pin
-timeouts, class-specific verifier commands, and phase-014 receipt schemas from the executed census and registered
-runtime contracts. Those choices may not weaken one-row/one-class totality, `BLOCK` as the default, non-authoritative
-forking, source preservation, or the rule that phase 008 moves no authority.
+None. The frozen row IDs, immutable manifest bytes, bounded pin proof, class-specific receipts, rollback anchors, and
+read-only phase-014 handling plan are implemented. Persisting a manifest through an authorized dark-ledger consumer
+and executing authority compare-and-swap remain owned by later phases.
 <!-- /ANCHOR:questions -->

@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-review mode migration) |
 | **Origin** | Phase 013 deep-review fan-out; resume-adapter concern from the typed ledger migration |
-| **Planning authority** | Phase 012 shared review-loop contract, phase 015 mode contracts and write-set conflict graph |
+| **Planning authority** | Phase 012 shared review-loop contract, phase 012 mode contracts and write-set conflict graph |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -52,7 +52,7 @@ Deep Review runs a structured loop: establish review scope, execute per-dimensio
 
 This phase plans a **resume adapter** whose only authoritative input is the sealed event-ledger frontier. It must fold the accepted ledger through the shared reducers, rebuild the Deep Review continuity ladder, and return an explicit re-entry decision for the next safe operation. The adapter must preserve raw `FindingCandidate`, challenge, proof, disposition, convergence, and report events while keeping P0/P1/P2 as a derived presentation projection over orthogonal evidence fields. It must also distinguish compatible reuse from re-execution, compensation, or rejection when the replay fingerprint or artifact receipt does not match.
 
-The adapter consumes the review-loop backbone frozen in phase 012 and the shared mode contract emitted by phase 015. It does not fork the loop for Deep Review, move authority, or solve the other six sibling concerns.
+The adapter consumes the review-loop backbone frozen in phase 012 and the shared mode contract emitted by phase 012. It does not fork the loop for Deep Review, move authority, or solve the other six sibling concerns.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -64,7 +64,7 @@ The adapter consumes the review-loop backbone frozen in phase 012 and the shared
 - A continuity-ladder mapping from `scope` to active dimension/cell, candidate and proof obligations, convergence, and `review-report`, including explicit incomplete, contested, blocked, and terminal states.
 - An idempotent re-entry planner keyed by manifest revision and stable logical pass or effect identity, with no double-apply, lost event, or automatic replay of an already committed external effect.
 - Crash-boundary behavior for interruption before append, after append, during reducer application, after proof receipt, during convergence, and during report projection.
-- Compatibility with the shared review-loop contract from phase 012 and the phase-015 dependency/write-set conflict graph; this phase consumes those contracts rather than defining a Deep Review fork.
+- Compatibility with the shared review-loop contract from phase 012 and the phase-012 dependency/write-set conflict graph; this phase consumes those contracts rather than defining a Deep Review fork.
 
 ### Out of Scope
 - The Deep Review typed ledger schema, reducer implementation, sealed artifacts, certificates, shadow parity, or mode gate owned by sibling concerns `001-typed-ledger-schema` through `004-certificates-and-receipts` and `006-shadow-parity`.
@@ -114,10 +114,10 @@ The adapter consumes the review-loop backbone frozen in phase 012 and the shared
 - **False exactly-once claims** — a remote verifier may have run before its receipt was appended. Mitigation: preserve `unknown` effect state, require receipt lookup or compensation policy, and never infer completion from process position.
 - **Cursor ambiguity** — a last-pass marker can hide partially committed cells or late proof events. Mitigation: derive the cursor from ordered logical IDs, event sequence, and the sealed frontier, not from a mutable summary.
 - **Finding identity drift** — line movement, renames, or paraphrased descriptions can create duplicates or unsafe merges. Mitigation: consume reducer-owned versioned partial fingerprints and explicit introduced/fixed/preexisting lineage.
-- **Backbone fork** — a mode-local resume state machine could diverge from shared loop semantics. Mitigation: phase 012 is the lifecycle authority and phase 015 owns interface and write-set boundaries.
+- **Backbone fork** — a mode-local resume state machine could diverge from shared loop semantics. Mitigation: phase 012 is the lifecycle authority and owns interface and write-set boundaries.
 - **Report mismatch** — a report projection may be materialized before all required evidence is admitted. Mitigation: make report state a derived terminal projection with a sealed input frontier and a report idempotency key.
 
-Dependencies are contract-level rather than sibling runtime dependencies: phase 012 must freeze the shared review-loop contract, phase 015 must publish mode interfaces and the conflict graph, and the Deep Review sibling concerns must expose the typed events, reducers, and certificates consumed by this adapter. The required adjacency to `004-certificates-and-receipts` and `006-shadow-parity` is navigation and ordering only.
+Dependencies are contract-level rather than sibling runtime dependencies: phase 012 must freeze the shared review-loop contract, publish mode interfaces, and publish the conflict graph, and the Deep Review sibling concerns must expose the typed events, reducers, and certificates consumed by this adapter. The required adjacency to `004-certificates-and-receipts` and `006-shadow-parity` is navigation and ordering only.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

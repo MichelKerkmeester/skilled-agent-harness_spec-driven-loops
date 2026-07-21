@@ -32,10 +32,10 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop Deep Research mode migration |
 | **Change class** | Mode-specific receipt/certificate binding and offline verification |
-| **Execution** | Shared phase-006 primitives over sealed references; additive-dark and non-authoritative |
+| **Execution** | Shared phase-007 primitives over sealed references; additive-dark and non-authoritative |
 
 ### Overview
-Plan one Deep Research certificate adapter over the shared phase-006 receipt and certificate primitives. The adapter
+Plan one Deep Research certificate adapter over the shared phase-007 receipt and certificate primitives. The adapter
 defines a single per-run certificate and a typed receipt profile for every logical transition from initialization through
 gather, analyze, convergence, synthesis, memory-save, and resume reconciliation. Each receipt binds the authorized
 transition, logical operation, attempt history, ordered verified inputs, output digests, resulting ledger head, replay
@@ -50,7 +50,7 @@ cutover.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 receipt, certificate, event, ledger, authorization, and replay interfaces are frozen for consumption
+- [ ] Phase-007 receipt and certificate interfaces and phase-006 event, ledger, authorization, and replay interfaces are frozen for consumption
 - [ ] The `003-sealed-artifacts` reference matrix and verified-read outcomes are available to the receipt binder
 - [ ] The Deep Research transition matrix names logical operation identity, attempt identity, input/output references, and result dispositions
 - [ ] The replay-fingerprint input projection and explicit exclusions are contract-tested against schema, reducer, projection, and policy versions
@@ -96,7 +96,7 @@ cutover.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the candidate SHA and the phase-006 receipt/certificate, ledger, authorization, and replay-contract digests.
+- Pin the candidate SHA and the phase-007 receipt/certificate digests and the phase-006 ledger, authorization, and replay-contract digests.
 - Inventory Deep Research event stems and lifecycle outputs from `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`.
 - Freeze the transition registry, receipt body fields, result dispositions, logical-operation and idempotency-key grammar, and receipt-chain ordering.
 - Freeze the run-certificate body, ordered artifact/reference-set rules, replay-fingerprint input projection, exclusions, and certificate status semantics.
@@ -104,7 +104,7 @@ cutover.
 - Build local fixtures for source mutation, claim supersession, stale heads, missing links, unknown effects, and memory-save response loss.
 
 ### Phase 2: Implementation
-- Register Deep Research transition kinds through the shared phase-006 receipt/certificate registry; reject unregistered or ambiguous transitions before emission.
+- Register Deep Research transition kinds through the shared phase-007 receipt/certificate registry; reject unregistered or ambiguous transitions before emission.
 - Add the `init` receipt binding the frozen objective, plan/frontier, recipes, capabilities, configuration, and initial head.
 - Add per-logical-branch `gather` and `analyze` receipts binding source/evidence/claim references, admission outcomes,
   cross-validation, contradictions, abstentions, branch identity, and attempt/recovery evidence.
@@ -144,7 +144,7 @@ cutover.
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract fixture proves every mode receipt and the run certificate delegate to the shared phase-006 primitive and no local verifier or digest exists |
+| REQ-001 | Contract fixture proves every mode receipt and the run certificate delegate to the shared phase-007 primitive and no local verifier or digest exists |
 | REQ-002 | Positive run fixture verifies identity, heads, receipt-chain digest, artifact-set digest, replay fingerprint, output references, obligations, status, and certification metadata |
 | REQ-003 | Transition matrix exercises `init`, `gather`, `analyze`, convergence, synthesis, memory-save, and resume/recovery with stable logical IDs and separate attempts |
 | REQ-004 / REQ-005 | Fingerprint fixture changes one semantic input at a time and varies excluded process/timing values; only registered semantic changes alter the fingerprint |
@@ -160,7 +160,7 @@ cutover.
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` because the eight mode-lane planning contracts are independent and compose at the
-mode gate. Implementation still consumes the phase-006 receipt/certificate, event-envelope, typed-ledger,
+mode gate. Implementation still consumes the phase-007 receipt/certificate interfaces and the phase-006 event-envelope, typed-ledger,
 authorization, and replay-fingerprint interfaces, plus the shared certification-provider policy. The predecessor
 `003-sealed-artifacts` owns mode artifact registration, canonicalization, sealed publication, and verified reads.
 `001-typed-ledger-schema` owns event identity and lifecycle references; `002-reducers-and-projections` owns pure folds,

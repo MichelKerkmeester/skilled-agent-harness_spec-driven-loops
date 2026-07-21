@@ -19,7 +19,9 @@
       "blinded adjudication tasks",
       "counterfactual adjudication implementation tasks",
       "blinded adjudication checklist",
-      "counterfactual adjudication verification"
+      "counterfactual adjudication verification",
+      "blinded adjudication implementation summary",
+      "blinded adjudication verification evidence"
     ],
     "key_topics": [
       "blinded",
@@ -36,17 +38,39 @@
       "verification"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/implementation-summary.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "blinded-adjudication.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "phase-tree.json",
         "kind": "config",
@@ -108,7 +132,7 @@
         "source": "derived"
       },
       {
-        "name": "per-assignment",
+        "name": "randomized",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -162,53 +186,37 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "producer",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "pairwise",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
     "created_at": "2026-07-16T03:43:46.917Z",
-    "last_save_at": "2026-07-17T13:21:11.825Z",
+    "last_save_at": "2026-07-21T02:08:25.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4df2f03991a8d7529be2060e3c0b869dfc12d10f81b79c0d772299e62a304314",
+    "source_fingerprint": "sha256:000dcbd863ded50a06ed44f4ec35a9febdcfe4770b38c10f2651cb20403a6528",
     "source_doc_hashes": {
-      "spec.md": "3322e171b4482bf51289096a7a35ccafede4b2e08af21de49457760a8030f9d5",
-      "plan.md": "55169bfcc7aac5457a4866e796c064da44ae096f78eecd6357aad943ac1eab5e",
-      "tasks.md": "ac233a0f791c2ff43d04699b9dd89a1441fe72b523ac7bddba48d4706a01ccdf",
-      "checklist.md": "69f5c368c6625ee6c6cc2bb6a404cd3d9b0a177ecabf7f4674df2a2c92f31d2b"
+      "spec.md": "b496ebdc1c42a322d6956a35704db6158c0744e0b49301c0e5f2dc47b25a2bf9",
+      "plan.md": "1c1afa052c44918b6240b4d3636012d7fdb9fe9b98ec96e0af354c63f2f9e62a",
+      "tasks.md": "db9366fa3ef756cb74afd1855f5e08ff62ad4b2a1648a098c9c73f2996fca2b6",
+      "checklist.md": "b5103717bb3cb4f6e2acf2d303cd93a9e81bbdb40f70be0ee5367dd593acb994",
+      "implementation-summary.md": "235c4630ea52bdd3a14367a53166dfdd58f88583a5f8b209a8c5ae249ea037da"
     },
     "last_active_child_id": null,
     "last_active_at": null

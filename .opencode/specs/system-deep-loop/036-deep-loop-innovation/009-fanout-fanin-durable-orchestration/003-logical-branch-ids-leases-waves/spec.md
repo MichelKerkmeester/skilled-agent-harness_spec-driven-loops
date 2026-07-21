@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Logical Branch IDs, Leases & Waves"
-description: "Plan stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable."
+description: "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable."
 trigger_phrases:
   - "logical branch ids leases waves"
   - "durable fanout branch leases"
@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves"
-    last_updated_at: "2026-07-15T14:44:21Z"
+    last_updated_at: "2026-07-21T04:54:46Z"
     last_updated_by: "codex"
-    recent_action: "Defined stable branch identities, fenced leases, wave ordering, and ledger resume state"
-    next_safe_action: "Implement the branch registry, lease adapter, wave scheduler, and replay fixtures"
+    recent_action: "Completed durable fan-out leaf"
+    next_safe_action: "Keep the durable path dark until an authorized cutover adopts it"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third child of the phase-009 fan-out / fan-in durable-orchestration parent |
@@ -127,5 +129,5 @@ Resume can also drift if a changed manifest silently reuses an existing run. The
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation must pin the logical-ID encoder and digest length, lease duration/renewal margin, canonical per-branch resource-key format, wave-policy version, and exact event names against the phase-004 vocabulary before writing production state. The defaults must preserve the contracts above: IDs are coordinate-derived rather than index-derived, token checks are mutation-atomic, and later policy phases authorize wave advance without rewriting wave history.
+Resolved in the implementation. Logical IDs use derivation version 1 and a 128-bit lowercase SHA-256 prefix over canonical coordinate bytes; branch ownership uses the canonical lineage-state resource for `(packet_id, run_id, logical_branch_id)`; wave policy and plan versions are 1; and one closed orchestration event type carries discriminated registration, wave, lease, mutation, rejection, and resume records. Lease TTL remains caller-supplied because execution duration is workload-specific.
 <!-- /ANCHOR:questions -->

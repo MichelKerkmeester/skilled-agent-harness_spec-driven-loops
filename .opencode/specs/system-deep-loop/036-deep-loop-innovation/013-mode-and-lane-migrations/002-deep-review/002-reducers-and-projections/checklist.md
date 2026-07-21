@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 005. The verifier replays the exact typed event sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Review path. It must fail on hidden side effects, invalid transitions, missing required coverage, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
+This checklist is the blocking verifier contract for the Deep Review reducers-and-projections child. The verifier replays the exact typed event sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Review path. It must fail on hidden side effects, invalid transitions, missing required coverage, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

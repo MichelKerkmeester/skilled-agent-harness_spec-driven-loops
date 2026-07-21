@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-agent resource names
+> Phase adjacency — predecessor `002-create-readme`; successor `004-create-command`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -84,6 +85,7 @@ The outcome is a kebab-case create-agent resource tree with unchanged agent perm
 | REQ-002 | Agent scaffold and guidance links resolve | Every old path consumer points to the correct new file |
 | REQ-003 | Agent permission semantics remain unchanged | No frontmatter field, permission value, or identifier changes outside path tokens |
 | REQ-004 | Already-canonical resources remain stable | `agent-vs-skill-vs-command.md` and changelog names are not rewritten |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

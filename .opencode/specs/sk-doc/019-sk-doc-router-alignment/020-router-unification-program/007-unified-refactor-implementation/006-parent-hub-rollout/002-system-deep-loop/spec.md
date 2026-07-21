@@ -23,6 +23,21 @@ The work is therefore **not** a router rewrite. It is: compile the four explicit
 
 **Implementation status (2026-07-19):** Stage-4 route-gold is fully `real-green`: all 11 rows, including all 7 positive routes, pass the real read-only scorer with 0 `shadow-partial`. Seven mode selections compile to 19 typed leaf pairs validated against 584 manifest identities; the compatibility projector resolves their packet-qualified resources without legacy backfill. Document parity, fencing, mixed-generation refusal, and byte-exact rollback pass. Legacy remains serving-authoritative and the candidate remains shadow-only; strict packet validation is pending the final documentation reconciliation.
 
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Implemented (2026-07-19) — Stage-4 route-gold fully `real-green` (11/11 rows, 7/7 positive routes, 0 `shadow-partial`); seven modes compile to 19 typed leaf pairs against 584 manifest identities; document parity, fencing, mixed-generation refusal, and byte-exact rollback pass; legacy remains serving-authoritative and the candidate shadow-only; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `006-parent-hub-rollout/002-system-deep-loop` |
+| **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
+| **Blast radius** | Shared packet/backend projections (public-mode / packet / backend / runtime archetype) — reversible, gated |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -30,7 +45,9 @@ Under the pre-refactor model, a destination is addressed by `workflowMode` name 
 
 ### Purpose
 Activate the compiled contract on `system-deep-loop` such that every qualified public mode compiles to exactly one destination identity — never one-per-packet — with route-gold green, advisor identity matched-or-ignored, document parity proven, and a demonstrated byte-exact rollback, so the Stage-4 per-hub canary gate opens for `mcp-tooling`.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -47,7 +64,9 @@ Activate the compiled contract on `system-deep-loop` such that every qualified p
 - The `mcp-code-mode` (001) singular case, `sk-code` (006/001) evidence-bundle rollout, and `mcp-tooling` (006/003) transport/judgment rollout — separate phases.
 - The learning overlay (007) and calibrated auto-route corpus (005) — deep-loop ships with `overlay=null` and `basis: signal` (synthesis §5.3); calibration and overlay are additive later corners.
 - Re-deriving the eight ideas or the synthesis; this phase consumes the approved design.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -69,7 +88,9 @@ Activate the compiled contract on `system-deep-loop` such that every qualified p
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-010 | Generate a deep-loop `PolicyCardV1.md` document-parity projection from the same compiled snapshot (§8.3). | The card enumerates the seven qualified modes with their packet/backend/runtime discriminators, negative reasons, and the honest terminal (`DOCUMENT_ONLY_UNATTESTED`/`PREPARED_DRAFT`); a document-only replay lane matches the machine policy on the deep-loop fixture set (a matching `humanViewHash` alone is insufficient). |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: All seven registered `system-deep-loop` public modes compile to **seven distinct destination identities** — asserted as `count(destinations) == count(publicModes)`, explicitly `!= count(packets)`; zero collapses.
@@ -77,6 +98,19 @@ Activate the compiled contract on `system-deep-loop` such that every qualified p
 - **SC-003**: The Stage-4 per-hub canary on `system-deep-loop` shows zero hard mismatch vs legacy, advisor identity matches or is ignored, document-parity passes, and the rollback drill is proven byte-exact.
 - **SC-004**: Ambiguous / zero-signal deep-loop requests emit typed `defer`/`clarify` with **no default union** (no over-emission).
 - **SC-005**: Activation is reversible — the prior generation is retained and a CAS swap + rollback drill is demonstrated **before** `mcp-tooling` (006/003) is allowed to activate.
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phases 0–2 compiled contract + evaluator + compatibility projector; 006/001 (`sk-code`) canary green | Activation runs after sk-code and before mcp-tooling | Consumed read-only; the compiled `system-deep-loop` policy is proven against the existing route-gold before the fenced CAS binds it |
+| Dependency | The hub's `mode-registry.json` runtime-loop discriminator (authored, never inferred) | A wrong identity key corrupts benchmark attribution + advisor routing | The compiler emits four explicit projections per mode (qualified mode → packetRef → backendKind → optional runtimeLoopType); the discriminator is read from the registry, never inferred from `workflowMode` |
+| Dependency | Shared benchmark scorer `router-replay.cjs` + route-gold | A required scorer edit would be a migration failure | Proven through the compatibility projector; the scorer stays byte-identical [synthesis §8.2] |
+| Risk | Collapsing the three modes sharing `packet=deep-improvement`, or the two sharing `runtimeLoopType=review` across different packets | Erases distinct public identity + advisor routing | The compiled identity is one-per-qualified-mode, never one-per-packet; both confirmed collapse hazards are covered by typed leaf pairs |
+| Risk | A live activation before the canary is green | Would change real routing prematurely | Legacy stays serving-authoritative; activation is a fenced CAS with a byte-exact rollback to the retained prior generation |
+<!-- /ANCHOR:risks -->
 
 ## MIGRATION GATE
 
@@ -116,6 +150,14 @@ These apply to this phase and all sibling rollout phases (synthesis §10; master
 | REQ-009, SC-002 | Pass | Real read-only `evaluateRouteGold` scores all 11 projector observations `real-green` with 0 `shadow-partial`. Seven selections compile to 19 manifest-validated leaf pairs; `single-research` proves byte-identical compiled resources, projector resources, and scored resources. `legacyBackfillUsed` is false, a coherently corrupted persisted resource fails `resource-mismatch`, and scorer digests remain pinned. |
 | REQ-010 | Pass | Generated card enumerates seven projections; `15/15` full-request document decisions match, constraint-only reject is covered, and a planted divergence fails. |
 | Packet strict validation | Pending | Run after the final status/evidence reconciliation; no completion claim is made before it passes. |
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- The production go-ahead for the `legacy → compiled` serving flip (green thresholds + sign-off) is owned by the runtime-engine/cutover phases; this canary proves the mechanism under legacy-authoritative serving.
+- Post-canary real-model re-verification breadth before the hub is left compiled-serving is bounded downstream, not fixed here.
+- Advisor/command aliases are kept as compatibility projections with hash-drift guards; whether any alias is retired is deferred to fleet cleanup (phase 008).
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

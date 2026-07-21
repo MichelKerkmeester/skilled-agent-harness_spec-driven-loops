@@ -42,7 +42,7 @@ _memory:
 
 - [ ] T001 Pin BASE and read the phase-012 shared contracts, write-set conflict graph, shared rollback policy, and phase-014 cutover handoff
 - [ ] T002 [P] Inventory Deep Research sibling outputs `001` through `006` and bind their event, reducer, seal, certificate, receipt, resume, and parity digests
-- [ ] T003 [P] Mark the authority boundary and record that phase 009 is non-authoritative, this phase gates readiness, and phase 014 owns cutover
+- [ ] T003 [P] Mark the authority boundary and record that `006-shadow-parity` is non-authoritative, this phase gates readiness, and phase 014 owns cutover
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -62,7 +62,7 @@ _memory:
 ## Phase 3: Verification
 
 - [ ] T012 Verify the switch denies unknown, stale, incomplete, and gateway-failed requests without authority change, projection change, or semantic append
-- [ ] T013 Verify the gate cannot pass without phase-009 green shadow parity across lifecycle, failure, resume, synthesis, and memory-save fixtures
+- [ ] T013 Verify the gate cannot pass without green `006-shadow-parity` results across lifecycle, failure, resume, synthesis, and memory-save fixtures
 - [ ] T014 Verify all required Deep Research seals, certificates, receipts, fingerprints, and artifact references are present, current, and internally consistent
 - [ ] T015 Verify deterministic replay, resume identity, source-refresh invalidation, evidence quarantine, contradiction, and incomplete-run behavior remain fail-closed
 - [ ] T016 Verify rollback rehearsal freezes admission, fences stale writers, changes the epoch, preserves events and artifacts, restores legacy, and emits a rollback certificate
@@ -86,6 +86,6 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Predecessor**: See `../006-shadow-parity/spec.md`
-- **Shared rollback policy**: See `../../../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
+- **Shared rollback policy**: See `../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
 - **Authority cutover consumer**: See the phase-014 staged state migration and authority cutover contract
 <!-- /ANCHOR:cross-refs -->

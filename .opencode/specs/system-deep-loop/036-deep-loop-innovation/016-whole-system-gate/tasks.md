@@ -67,7 +67,7 @@ _memory:
 - [ ] T015 Verify counterfactual adjudication remains blinded and degeneration/health checks preserve their controls and expected outcomes
 - [ ] T016 Verify full parity against phase-003 is green by semantic scenario assertion rather than package or scenario count
 - [ ] T017 Run the blocking SOL verifier review against the exact candidate commit and record commands, exit codes, findings, mutation checks, and approval verdict
-- [ ] T018 Run `validate.sh --strict --recursive` over the 006 parent tree and require `Errors: 0` and `Warnings: 0`
+- [ ] T018 Run `validate.sh --strict --recursive` over the 036 parent tree and require `Errors: 0` and `Warnings: 0`
 - [ ] T019 Verify the tracked worktree and index are unchanged after verification and no gate result depends on live tracked state
 - [ ] T020 If any check fails, reopen its mapped owner phase, produce a new candidate SHA after correction, and rerun affected and dependent checks before phase 017
 <!-- /ANCHOR:phase-3 -->

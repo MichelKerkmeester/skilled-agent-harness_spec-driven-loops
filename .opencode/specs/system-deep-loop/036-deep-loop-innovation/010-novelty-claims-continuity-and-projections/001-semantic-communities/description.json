@@ -1,9 +1,8 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities",
-  "description": "Plan a deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept and novelty measures new ideas rather than",
+  "description": "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative.",
   "keywords": [
-    "plan",
     "deterministic",
     "semantic-community",
     "projection",
@@ -13,13 +12,14 @@
     "resolve",
     "one",
     "concept",
+    "while",
+    "legacy",
+    "graph",
     "novelty",
-    "measures",
-    "new",
-    "ideas",
-    "rather"
+    "remains",
+    "authoritative"
   ],
-  "lastUpdated": "2026-07-18T03:48:55.925Z",
+  "lastUpdated": "2026-07-21T08:01:24.608Z",
   "specId": "001",
   "folderSlug": "semantic-communities",
   "parentChain": [

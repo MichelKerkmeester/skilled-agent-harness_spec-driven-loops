@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation. This phase converts those non-exempt names to kebab-case and updates packet-local references without changing agent permission fields, SKILL.md, or other tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-07-17T14:30:14.273Z",
+    "last_save_at": "2026-07-20T11:43:46.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:fa8b838590402ff8b374ae7f8d132bd524d8bc6bc2a691464ff1c947926a783e",
+    "source_fingerprint": "sha256:9aa5de124ceac7b517218a4798e993d277e0bf0d35f65eb7246921e6f0e5eaab",
     "source_doc_hashes": {
-      "spec.md": "2bf7a9d7b3f227cbee7ea437219050db6c5d413e88551a1a785ef651e9189993",
+      "spec.md": "64492db6ae65b03f0bbce0f1e5993a3835654913b78f65a6c91b366e0a44ed5b",
       "plan.md": "758e7d3e7b42165b196471e9cde0765b504f089e427849666d0e69193a7a8d76",
       "tasks.md": "a457859225c5421729e0adb532b26fc3db3efe1c0b2cf24e0cbec5d6563584a8",
       "checklist.md": "45bc48e6984dade86895045767673c9deb64933189ee216a8ba363e3b7d971e9"

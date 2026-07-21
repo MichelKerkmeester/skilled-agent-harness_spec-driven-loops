@@ -20,7 +20,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
+      - "Which exact phase-007 certificate primitive signs or seals the run certificate?"
       - "Which phase-012 transition result fields are inherited by each receipt?"
       - "Does the offline verifier consume a finalized frontier or a certificate-pinned event range?"
     answered_questions:
@@ -154,7 +154,7 @@ The offline verifier follows this order: load the trusted contract and certifica
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-006 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
+- Which exact phase-007 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
 - Which phase-012 transition result, authorization, event-tail, and effect fields are inherited directly by Deep Review receipts?
 - Is the certificate pinned to a finalized ledger frontier, a contiguous event range, or both when late receipts exist after report publication?
 - Which receipt states and compatibility outcomes are canonical for a report that is complete in scope but contains unresolved or blocked findings?

@@ -7,6 +7,9 @@ status: "shadow-partial"
 ---
 # Implementation Summary
 
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
 <!-- ANCHOR:metadata -->
 ## Metadata
 
@@ -21,7 +24,7 @@ status: "shadow-partial"
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
-## What Built
+## What Was Built
 
 The phase now contains a separately hashed `CalibrationCertificateV1`, an
 out-of-band `CalibrationEvidenceEnvelopeV1`, and the unchanged frozen
@@ -59,7 +62,7 @@ a new authority surface (synthesis §3 Idea 5, §8.1).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
-## How Delivered
+## How It Was Delivered
 
 `evaluateCalibratedRoute()` validates three distinct authorities. The request
 pins the effective policy generation and risk slice; the external registry
@@ -94,7 +97,7 @@ the N=1 degeneracy as data rather than a special implementation (synthesis
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
-## Decisions
+## Key Decisions
 
 - The frozen domain-tag registry has no certificate entry and was not edited.
   Both certificate digests call its `hashArtifact` with an immutable

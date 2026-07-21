@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T04:08:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined the pre-spawn receipt architecture and verification gates"
-    next_safe_action: "Implement the receipt writer, projection, and crash-cut tests"
+    recent_action: "Completed the pre-spawn receipt architecture, runtime modules, and crash-cut verification"
+    next_safe_action: "Keep adoption additive-dark until a later integration leaf authorizes production use"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,20 +42,20 @@ Promote the phase-005 executor adapter's resolved launch contract and invocation
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-005 adapter return contract and invocation-fingerprint inputs are pinned by tests
-- [ ] The phase-006 envelope registry, authorization proof, ledger append, and append-receipt interfaces are available
-- [ ] The phase-007 intent-before-effect and durable-verifier profiles are available or represented by hermetic interfaces
-- [ ] The `lineage_dispatch_resolved` event version and canonical field allowlist are registered
-- [ ] Dispatch identity, attempt identity, and idempotency-key derivation are stable across resume
-- [ ] Legacy phase-005 command/pool/retry/budget baselines are captured before integration
+- [x] The phase-005 adapter return contract and invocation-fingerprint inputs are pinned by tests [Evidence: `implementation-summary.md` 11-input mutation matrix and all four executor-kind fixtures]
+- [x] The phase-006 envelope registry, authorization proof, ledger append, and append-receipt interfaces are available [Evidence: `implementation-summary.md` real substrate composition in `dispatch-receipts.vitest.ts`]
+- [x] The phase-007 intent-before-effect and durable-verifier profiles are available or represented by hermetic interfaces [Evidence: `implementation-summary.md` concrete `AuthorizedEvidenceWriter` plus typed recovery/salvage handoff]
+- [x] The `lineage_dispatch_resolved` event version and canonical field allowlist are registered [Evidence: `event-contract.ts`, version 1]
+- [x] Dispatch identity, attempt identity, and idempotency-key derivation are stable across resume [Evidence: `implementation-summary.md` sequential and concurrent exact-retry fixtures]
+- [x] Legacy phase-005 command/pool/retry/budget baselines are captured before integration [Evidence: `implementation-summary.md` frozen phase-005 completed packet; this change modifies no legacy runtime path]
 
 ### Definition of Done
-- [ ] Every leaf spawn is preceded by a durable authorized receipt carrying the exact adapter fingerprint
-- [ ] Exact receipt retry is idempotent; changed facts under one dispatch identity fail closed before spawn
-- [ ] Resume distinguishes never-dispatched, receipt-only unresolved, result-recorded, conflict, and corrupt states
-- [ ] Crash-cut tests prove no unreceipted spawn and no blind duplicate spawn
-- [ ] Secret-exclusion and honest HMAC/durable-verifier labeling tests pass
-- [ ] Legacy phase-005 behavior remains unchanged in additive-dark mode
+- [x] Every leaf spawn is preceded by a durable authorized receipt carrying the exact adapter fingerprint [Evidence: `dispatch-receipts.vitest.ts` four-kind spawn-sentinel matrix]
+- [x] Exact receipt retry is idempotent; changed facts under one dispatch identity fail closed before spawn [Evidence: `dispatch-receipts.vitest.ts` sequential/concurrent retry and changed-model conflict]
+- [x] Resume distinguishes never-dispatched, receipt-only unresolved, result-recorded, conflict, and corrupt states [Evidence: `dispatch-receipts.vitest.ts` verified three-valued resume and corrupt-evidence groups]
+- [x] Crash-cut tests prove no unreceipted spawn and no blind duplicate spawn [Evidence: `dispatch-receipts.vitest.ts` append, post-append, spawn, and missing-result cuts]
+- [x] Secret-exclusion and honest HMAC/durable-verifier labeling tests pass [Evidence: `dispatch-receipts.vitest.ts` canary and restart-provider fixtures]
+- [x] Legacy phase-005 behavior remains unchanged in additive-dark mode [Evidence: `implementation-summary.md` only new library/test files; barrier results remain `legacy-authoritative`]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -65,7 +65,7 @@ Promote the phase-005 executor adapter's resolved launch contract and invocation
 - **Canonical event builder**: normalize stable dispatch identities, effective executor facts, safe digests, fingerprint metadata, causality, authority epoch, and idempotency key into `lineage_dispatch_resolved`; reject raw secrets, prompt bodies, and unrestricted environment material.
 - **Integrity profile**: serialize with the registered canonical JSON profile. Reuse `canonicalReceiptJson`, `deriveReceiptKey`, `signReceipt`, and `verifyReceipt` for the dispatch-receipt MAC profile; persist no run-master secret and label MAC evidence advisory unless the phase-007 durable verifier can re-derive it across restart.
 - **Authorization + append barrier**: obtain the phase-006 transition authorization proof, append under the ledger's exclusive lock and expected-head check, wait for the durable sequence/hash append receipt, and only then invoke the pool worker/spawn callback.
-- **Idempotency**: derive one stable key from the event version, run ID, dispatch/leaf slot, attempt identity, and invocation fingerprint. An exact canonical repeat returns the original append receipt; same identity with different facts is a typed conflict.
+- **Idempotency**: derive one stable receipt/event ID and idempotency key from the dispatch identity. Canonical bytes bind run, leaf, attempt, fingerprint, and launch facts to that slot. An exact canonical repeat returns the original append receipt; same identity with different facts is a typed conflict.
 - **Resume projection**: fold only verified ledger events into a dispatch index keyed by stable dispatch slot. Compare the stored fingerprint with the desired resolved fingerprint and combine it with successor result evidence; mutable wait/checkpoint state is diagnostic, not authority.
 - **Crash semantics**: receipt absence permits first dispatch; receipt plus result is resolved; receipt without result is unresolved. The last state enters phase-007 reconciliation and successor salvage/result logic, never automatic success or blind respawn.
 - **Rollout boundary**: emit receipts and exercise projections in hermetic/shadow paths while legacy remains authoritative. Production resume authority changes only under the later staged cutover contract.
@@ -118,14 +118,20 @@ Promote the phase-005 executor adapter's resolved launch contract and invocation
 | REQ-014 | Contract tests expose stable receipt/dispatch/leaf IDs, fingerprint, ledger sequence/hash, and unresolved state to successor interfaces |
 <!-- /ANCHOR:testing -->
 
-<!-- ANCHOR:dependencies -->
-## 6. DEPENDENCIES
+<!-- ANCHOR:outcome -->
+## 6. IMPLEMENTATION OUTCOME
 
-The child has no sibling planning dependency (`depends_on: []`). Program implementation inherits phase 009's prerequisites from `../../../manifest/phase-tree.json`: phase 005 supplies adapter resolution and the invocation fingerprint; phase 006 supplies the canonical envelope, authorization gateway, immutable typed ledger, append receipt, and replay verification; phase 007 supplies semantic receipt integrity and intent-before-effect recovery; phase 008 supplies compatibility/shadow/rollback posture. The concrete sources are `../../../005-fanout-live-tools-unblock/spec.md`, `../../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`, `../../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`, and `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts`.
+All three implementation phases are complete. The leaf suite passes 26 tests, the leaf plus frozen receipt-crypto vectors pass 37 tests, TypeScript exits 0, and strict packet validation reports Errors 0 and Warnings 0. `implementation-summary.md` records the exact commands and load-bearing proofs.
+<!-- /ANCHOR:outcome -->
+
+<!-- ANCHOR:dependencies -->
+## 7. DEPENDENCIES
+
+The child has no sibling planning dependency (`depends_on: []`). Program implementation inherits phase 009's prerequisites from `../../manifest/phase-tree.json`: phase 005 supplies adapter resolution and the invocation fingerprint; phase 006 supplies the canonical envelope, authorization gateway, immutable typed ledger, append receipt, and replay verification; phase 007 supplies semantic receipt integrity and intent-before-effect recovery; phase 008 supplies compatibility/shadow/rollback posture. The concrete sources are `../../005-fanout-live-tools-unblock/spec.md`, `../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`, `../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`, and `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts`.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
-## 7. ROLLBACK PLAN
+## 8. ROLLBACK PLAN
 
 The implementation is additive-dark. Rollback disables canonical receipt emission/consumption at the compatibility boundary and returns resume decisions to the unchanged legacy path; it never deletes, truncates, rewrites, or re-signs committed ledger events. Existing dark receipts remain immutable historical evidence and are ignored by the legacy-authoritative projection. If rollback follows partial rollout, verify phase-005 command/pool/retry/budget parity and retain receipt schema readers so historical events remain replayable. A production authority rollback is owned by phase 014 and cannot be improvised here.
 <!-- /ANCHOR:rollback -->

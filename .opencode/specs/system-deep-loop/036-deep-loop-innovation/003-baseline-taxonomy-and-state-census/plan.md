@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-sta
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-20T20:33:41Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-003 execution plan"
-    next_safe_action: "Pin BASE before collecting census or benchmark evidence"
+    recent_action: "Executed census, replay, and rollback plan"
+    next_safe_action: "Consume the hashed architecture handoff"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "base-manifest.json"
+      - "validate-evidence.cjs"
+      - "phase-004-handoff-manifest.json"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,14 +75,14 @@ the logical artifacts and their relationships are fixed:
 | BASE manifest | Full SHA, ref provenance, clean/dirty status, tool/submodule versions, source and artifact digests | One SHA across every row and fixture |
 | Taxonomy census | Five families, seven registry keys, eight research workstreams, aliases, packet/backend/runtime-loop mappings, exclusion list | No conflated layer; improvement many-to-one mapping explicit |
 | Subsystem census | The eight required subsystem lenses with entry points, owners, callers, state, tests, invariants, defects | Exactly 8 complete subsystem rows |
-| Event-schema census | JSONL path/pattern, event discriminator/version, required fields, writers, readers, reducers, validators, repair/order rules | Zero producer-only, consumer-only, or unclassified schema rows |
+| Event-schema census | JSONL path/pattern, event discriminator/version, required fields, writers, readers, reducers, validators, repair/order rules | Zero unjustified producer-only, consumer-only, or unclassified schema rows; actual producer-only rows remain explicit |
 | State/backend census | JSON/JSONL/SQLite/lock/pause/directory/output shape, resolved path, authority, lifecycle, recovery, archival reader | Zero persisted surfaces without owner and recovery policy |
 | Contract/defect ledger | Observed behavior, evidence, classification, rationale, scenario/fixture, later-phase owner | Binary classification; no `unknown` |
 | Behavior baseline | Existing and added scenario IDs, workstream mapping, semantic oracle, BASE result, evidence digest | Eight-workstream coverage; semantic parity, not count parity |
 | Replay/rollback manifest | Sanitized fixtures, expected projections, snapshots, restore/recreate commands, hashes and checks | Clean-temp replay and rollback pass |
 
-The census starts from `.opencode/skills/system-deep-loop/runtime/references/state_format.md` and
-`integration_points.md`, then verifies implementation truth in `runtime/lib/`, `runtime/scripts/`, command YAML,
+The census starts from `.opencode/skills/system-deep-loop/runtime/references/state-format.md` and
+`integration-points.md`, then verifies implementation truth in `runtime/lib/`, `runtime/scripts/`, command YAML,
 and mode-owned reducers. Seeded JSONL families include `deep-{research,review,alignment}-state.jsonl`, iteration
 `deltas/*.jsonl`, research `inbox.jsonl`, council session/round state, improvement
 `agent-improvement-state.jsonl` and `improvement-journal.jsonl`, fan-out state events, dispatch failures, and
@@ -109,8 +112,8 @@ surface not named here; this list is a starting set, not an allowlist.
   packet projections, SQLite stores, lock/pause state, iteration/delta/log trees, and benchmark outputs.
 - Classify each observed behavior using executable evidence. Freeze protected contracts as scenario/fixture assertions;
   assign each known defect to its later owning phase without fixing it here.
-- Run all current behavior scenarios at BASE, retain their IDs and semantic oracles, and add the missing independent
-  workstream coverage until the eight research workstreams can be compared separately.
+- Bind all 53 current scenario contracts to their real semantic oracles and retained BASE result evidence, then run
+  the three additive scenarios needed for separate eight-workstream assertions.
 - Capture sanitized minimal and corrupt-tail/crash-boundary fixtures where applicable; record expected reducers,
   projections, graph state, exit behavior, and integrity digests.
 - Define rollback per backend: restore snapshot, rebuild derived projection, reclaim stale lock, or return to BASE.
@@ -122,7 +125,8 @@ surface not named here; this list is a starting set, not an allowlist.
 - Verify the subsystem count is exactly eight and reader/writer plus state/backend orphan scans return zero unresolved rows.
 - Verify the current 53 scenario IDs remain present and semantically unchanged, while all eight workstreams have
   independent BASE evidence.
-- Replay every fixture twice from clean temporary state and compare normalized outputs, reducer projections, and hashes.
+- Replay every fixture through the shipped pure reducer/validator where exported; run temp-backed materialization and
+  rollback twice and compare normalized outputs, projections, integrity results, and hashes.
 - Execute every rollback procedure against temporary copies and prove live tracked runtime/database state is unchanged.
 - Freeze the phase-004 handoff manifest only after the contract/defect ledger contains no unknown classification.
 <!-- /ANCHOR:phases -->
@@ -147,10 +151,10 @@ surface not named here; this list is a starting set, not an allowlist.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase has no predecessor (`depends_on: []`). It depends on read access to the 006 parent and phase tree, the
+This phase has no predecessor (`depends_on: []`). It depends on read access to the 036 parent and phase tree, the
 shipped `.opencode/skills/system-deep-loop/runtime/` implementation and integration consumers, the hub
 `mode-registry.json`, the five current mode packets, and all five behavior-benchmark packages under
-`.opencode/skills/system-deep-loop/*/behavior_benchmark/`. Research truth for the eight-workstream layer comes from
+`.opencode/skills/system-deep-loop/*/behavior-benchmark/`. Research truth for the eight-workstream layer comes from
 `002-deep-loop-effectiveness-and-fanout/research/research-modes.md`. Phase 004 is blocked until this phase's BASE,
 taxonomy, census, behavior baseline, fixtures, and rollback anchors are frozen.
 <!-- /ANCHOR:dependencies -->

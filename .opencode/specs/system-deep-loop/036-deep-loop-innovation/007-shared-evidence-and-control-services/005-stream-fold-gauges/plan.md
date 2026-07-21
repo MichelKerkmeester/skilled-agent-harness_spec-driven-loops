@@ -10,13 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T00:38:15Z"
     last_updated_by: "codex"
-    recent_action: "Planned gauge registry, checkpoints, and full-replay verification"
-    next_safe_action: "Implement the registry and pure reducers against ledger fixtures"
+    recent_action: "Completed the registry, folds, checkpoint replay, and dark evidence"
+    next_safe_action: "Keep the service dark until an owning cutover phase integrates it"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,18 +51,18 @@ changing legacy control decisions.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 envelope and typed-ledger reader expose verified sequence, canonical event bytes, ledger identity, record hash, and typed schema/version information
-- [ ] The standard gauge manifest maps progress, novelty, cost, and health outputs to owned typed event contracts without inventing sibling-domain transitions
-- [ ] Gauge versioning, configuration digests, exact numeric units, unknown-event policy, and canonical serialization are frozen before reducer implementation
-- [ ] Shipped fan-out, convergence, coverage-signal, metrics-snapshot, and observability-event behaviors have pinned dark-comparison fixtures
-- [ ] The additive-dark boundary is explicit: gauge mismatches produce evidence and never change legacy authority in this phase
+- [x] The phase-006 envelope and typed-ledger reader expose verified sequence, canonical event bytes, ledger identity, record hash, and typed schema/version information [Evidence: `implementation-summary.md` verified-stream contract proof]
+- [x] The standard gauge manifest maps progress, novelty, cost, and health outputs to owned typed event contracts without inventing sibling-domain transitions [Evidence: `implementation-summary.md` standard-family proof]
+- [x] Gauge versioning, configuration digests, exact numeric units, unknown-event policy, and canonical serialization are frozen before reducer implementation [Evidence: `gauge-registry.ts` and `standard-gauges.ts`]
+- [x] Shipped fan-out, convergence, coverage-signal, metrics-snapshot, and observability-event behaviors have pinned dark-comparison fixtures [Evidence: `stream-fold-gauges.vitest.ts` legacy fixture matrix]
+- [x] The additive-dark boundary is explicit: gauge mismatches produce evidence and never change legacy authority in this phase [Evidence: `implementation-summary.md` authority posture]
 
 ### Definition of Done
-- [ ] Every registered gauge rebuilds from the verified ledger and publishes complete replay provenance
-- [ ] Full and incremental recomputation are byte-identical across prefix/suffix, restart, batch, and supported-platform fixtures
-- [ ] Invalid checkpoints and unsupported or corrupt event streams fail closed or rebuild from genesis without returning stale trusted values
-- [ ] The standard gauge set covers the four required families with typed units, missing-value semantics, and downstream ownership
-- [ ] Dark adapters observe shipped runtime surfaces without changing their outputs, schemas, failure behavior, or authority
+- [x] Every registered gauge rebuilds from the verified ledger and publishes complete replay provenance [Evidence: `gauge-replay.ts` and focused Vitest]
+- [x] Full and incremental recomputation are byte-identical across prefix/suffix, restart, batch, and supported-platform fixtures [Evidence: focused Vitest 37/37]
+- [x] Invalid checkpoints and unsupported or corrupt event streams fail closed or rebuild from genesis without returning stale trusted values [Evidence: focused checkpoint/refusal matrix]
+- [x] The standard gauge set covers the four required families with typed units, missing-value semantics, and downstream ownership [Evidence: registry digest and manifest proof in `implementation-summary.md`]
+- [x] Dark adapters observe shipped runtime surfaces without changing their outputs, schemas, failure behavior, or authority [Evidence: scoped git diff and dark fixture matrix]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

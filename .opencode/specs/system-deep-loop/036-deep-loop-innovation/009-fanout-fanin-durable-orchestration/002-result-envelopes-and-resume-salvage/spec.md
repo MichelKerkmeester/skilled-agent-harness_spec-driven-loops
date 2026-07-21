@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
-    last_updated_at: "2026-07-15T14:42:33Z"
+    last_updated_at: "2026-07-21T05:09:43Z"
     last_updated_by: "codex"
-    recent_action: "Authored the Level 2 result-envelope and resume-salvage planning contract"
-    next_safe_action: "Implement typed leaf results and ledger-fold resume with crash fixtures"
+    recent_action: "Implemented and verified additive-dark result, salvage, recovery, and resume contracts"
+    next_safe_action: "Preserve legacy authority until a later cutover packet adopts the shadow projection"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Second child of the phase-009 durable fan-out/fan-in parent |
@@ -83,7 +83,7 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 - Replacing the phase-006 envelope, ledger append, hash chain, authorization proof, replay fingerprint, or verified reader.
 - Replacing phase-007 effect reconciliation, inventing exactly-once guarantees for opaque executors, or re-dispatching an `in_doubt` external effect.
 - Treating recovered stdout as equivalent to independently persisted iteration content without a typed parser, digest, source record, and explicit completeness status.
-- Authority cutover, per-mode migration, or legacy-writer retirement, owned by phases 010, 011, and 012.
+- Authority cutover, per-mode migration, or legacy-writer retirement, owned by phases 013, 014, and 015.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -128,8 +128,16 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 **Given** a legacy lineage has no registry file but contains structured state-log findings, **When** the compatibility merge runs, **Then** the typed salvage projection retains those findings and lineage attribution without claiming independently persisted source content.
 <!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:implementation-evidence -->
+## 6. IMPLEMENTATION EVIDENCE
+
+The implementation lives entirely in `runtime/lib/result-envelopes/` with one adversarial suite at `runtime/tests/unit/result-envelopes.vitest.ts`. The logical event name is `orchestration.leaf_result_recorded`; its valid phase-006 wire type is `orchestration.leaf.result-recorded`, version 1. Companion version-one events record salvage provenance and verified phase-007 recovery links. The resume reducer is `result-resume-reducer@1`; the composed registry digest for the verified candidate is `4a91f98466577639d7cd2c188d315dcad7c6a91c640b8d9a2ef34172db8a5844`.
+
+The suite proves one receipt/result slot, exact-repeat receipt reuse, changed-fact conflicts, evidence-based success, present-but-wrong digest rejection, unknown-cost rejection, completed-leaf exclusion, dispatch-only reconciliation blocking, byte-identical repeated folds, fault-injected torn-tail recovery, corrupt-ledger fail-closed behavior, all four recovery verdicts, retry-policy gating, recovery-source correlation binding, append-only salvage provenance, reconstructed-content honesty for every source kind, and legacy parity for iteration recreation, failed markers, registry reconstruction, attribution, and failure classification. The shipped fan-out scripts remain byte-untouched and authoritative.
+<!-- /ANCHOR:implementation-evidence -->
+
 <!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
+## 7. RISKS & DEPENDENCIES
 
 The highest risk is equating process completion with durable semantic completion. The current runtime can observe exit zero and top-level artifacts while iteration evidence remains unrecoverable; its explicit rejection of `salvage.failed > 0` is the behavior to preserve. The generalized contract therefore marks success only from a verified receipt/result pair plus required evidence, and it records partial salvage separately from terminal success.
 
@@ -141,7 +149,7 @@ This child declares `depends_on: []` because sibling phase documents are indepen
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 8. OPEN QUESTIONS
 
 None blocking for planning. Implementation may choose exact event-type names, module boundaries, bounded inline-result limits, and parser identifiers after the sibling-001 receipt schema and phase-006 registry APIs materialize. It may not weaken one-pair-per-attempt identity, evidence-based completion, deterministic ledger folding, no-rerun of completed leaves, effect reconciliation before retry, append-only salvage provenance, explicit unknown cost, or fail-closed ambiguity.
 <!-- /ANCHOR:questions -->

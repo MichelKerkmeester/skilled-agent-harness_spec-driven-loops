@@ -1,0 +1,23 @@
+{
+  "executors": [
+    {
+      "kind": "cli-opencode",
+      "model": "deepseek/deepseek-v4-pro",
+      "reasoningEffort": "high",
+      "label": "deepseek-v4-pro-high",
+      "iterations": 5
+    },
+    {
+      "kind": "cli-opencode",
+      "model": "minimax/MiniMax-M3",
+      "reasoningEffort": "high",
+      "label": "minimax-m3-high",
+      "iterations": 5
+    }
+  ],
+  "assignment_model": "flat_pool",
+  "concurrency": 2,
+  "maxRetries": 5,
+  "lagCeilingMs": 300000,
+  "progressHeartbeatSeconds": 60
+}

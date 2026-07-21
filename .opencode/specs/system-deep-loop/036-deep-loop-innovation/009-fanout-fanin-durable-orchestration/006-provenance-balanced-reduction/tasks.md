@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:45:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined implementation and verification tasks for provenance-balanced fan-in"
-    next_safe_action: "Implement typed provenance envelopes and the weighted fair reducer"
+    recent_action: "Completed implementation and adversarial verification of provenance-balanced fan-in"
+    next_safe_action: "Retain additive-dark authority posture until activation is approved"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,44 +41,44 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the approved BASE, reducer/normalizer/balance policy versions, canonical fixture corpus, and additive-dark authority boundary
-- [ ] T002 Confirm the typed ledger, result-envelope, logical-branch, fan-in readiness, partial-failure, and blinded-adjudication integration fields without adding a hard sibling planning dependency
-- [ ] T003 Record the run-2 fanout prototype, blinded-adjudication phase, and phase-tree manifest as immutable design inputs
+- [x] T001 Pin the approved BASE, reducer/normalizer/balance policy versions, canonical fixture corpus, and additive-dark authority boundary [Evidence: `runtime/lib/provenance-reduction/types.ts`]
+- [x] T002 Confirm the typed ledger, result-envelope, logical-branch, fan-in readiness, partial-failure, and blinded-adjudication integration fields without adding a hard sibling planning dependency [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T003 Record the run-2 fanout prototype, blinded-adjudication phase, and phase-tree manifest as immutable design inputs [Evidence: `spec.md`]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement provenance-complete item validation for envelope digest, executor/model/model-family, invocation fingerprint, logical lineage, leaf rank, evidence locators, and failure disposition
-- [ ] T005 Implement the versioned type-specific canonicalizer registry and canonical serializer with fail-closed empty-key and unsupported-type behavior
-- [ ] T006 Implement exact-key dedup that retains every contributor and emits typed conflict sets for incompatible payloads
-- [ ] T007 Implement versioned source/model-family bucket assignment, cloned-source collapse, per-source support caps, and rational hierarchical weighted-fair scheduling
-- [ ] T008 Implement deterministic tie-breaks over normalized bucket ID, logical branch ID, leaf rank, and item digest without consulting arrival or worker order
-- [ ] T009 Implement the blinded contested-merge adapter and accept only stable verdicts bound to the pinned policy and replay fingerprint
-- [ ] T010 Emit typed validation, grouping, contributor, conflict, adjudication, scheduling, disposition, partial-survivor, and reduction-receipt events
-- [ ] T011 Integrate a reversible additive-dark shadow path that compares with legacy fan-in without changing authority
+- [x] T004 Implement provenance-complete item validation for envelope digest, executor/model/model-family, invocation fingerprint, logical lineage, leaf rank, evidence locators, and failure disposition [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T005 Implement the versioned type-specific canonicalizer registry and canonical serializer with fail-closed empty-key and unsupported-type behavior [Evidence: `runtime/lib/provenance-reduction/identity.ts`]
+- [x] T006 Implement exact-key dedup that retains every contributor and emits typed conflict sets for incompatible payloads [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T007 Implement versioned source/model-family bucket assignment, cloned-source collapse, per-source support caps, and rational hierarchical weighted-fair scheduling [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T008 Implement deterministic tie-breaks over normalized bucket ID, logical branch ID, leaf rank, and item digest without consulting arrival or worker order [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T009 Implement the blinded contested-merge adapter and accept only stable verdicts bound to the pinned policy and replay fingerprint [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
+- [x] T010 Emit typed validation, grouping, contributor, conflict, adjudication, scheduling, disposition, partial-survivor, and reduction-receipt events [Evidence: `runtime/lib/provenance-reduction/reducer.ts` and `replay.ts`]
+- [x] T011 Integrate a reversible additive-dark shadow path that compares with legacy fan-in without changing authority [Evidence: `runtime/lib/provenance-reduction/reducer.ts`]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Verify provenance schema acceptance and fail-closed rejection for missing, malformed, mismatched, and unsupported inputs
-- [ ] T013 Verify canonicalization vectors and exact dedup preserve all contributor payload digests, ranks, lineages, and evidence locators
-- [ ] T014 Verify conflicting duplicates and uncertain equivalence remain explicit unless a stable blinded merge verdict exists
-- [ ] T015 Verify unequal-volume, duplicate-flood, retry, same-model multi-branch, and cloned-source fleets cannot steal another source bucket's share or inflate effective support
-- [ ] T016 Verify completion, enumeration, worker, resume, and salvage permutations produce byte-identical output and receipt digests
-- [ ] T017 Verify every selected, merged, conflicted, deferred, invalid, and excluded input has exactly one provenance-linked disposition
-- [ ] T018 Verify partial-survivor receipts expose every expected/admitted/failed/timed-out/cancelled/invalid/excluded source and cannot imply full-fleet consensus
-- [ ] T019 Verify identity canaries, self-source candidates, missing probes, and unstable/inconclusive adjudication fail closed
-- [ ] T020 Verify ledger replay reconstructs the reduction without wall-clock order and the shadow path leaves legacy authority unchanged
+- [x] T012 Verify provenance schema acceptance and fail-closed rejection for missing, malformed, mismatched, and unsupported inputs [Test: provenance-reduction.vitest.ts malformed and forged-input cases]
+- [x] T013 Verify canonicalization vectors and exact dedup preserve all contributor payload digests, ranks, lineages, and evidence locators [Test: provenance-reduction.vitest.ts canonical identity and duplicate-flood cases]
+- [x] T014 Verify conflicting duplicates and uncertain equivalence remain explicit unless a stable blinded merge verdict exists [Test: provenance-reduction.vitest.ts conflict and adjudication cases]
+- [x] T015 Verify unequal-volume, duplicate-flood, retry, same-model multi-branch, and cloned-source fleets cannot steal another source bucket's share or inflate effective support [Test: provenance-reduction.vitest.ts weighted fairness and clone cases]
+- [x] T016 Verify completion, enumeration, worker, resume, and salvage permutations produce byte-identical output and receipt digests [Test: provenance-reduction.vitest.ts permutation case]
+- [x] T017 Verify every selected, merged, conflicted, deferred, invalid, and excluded input has exactly one provenance-linked disposition [Test: provenance-reduction.vitest.ts disposition cases]
+- [x] T018 Verify partial-survivor receipts expose every expected/admitted/failed/timed-out/cancelled/invalid/excluded source and cannot imply full-fleet consensus [Test: provenance-reduction.vitest.ts degraded-survivor case]
+- [x] T019 Verify identity canaries, self-source protection, missing probes, and unstable/inconclusive adjudication fail closed [Evidence: `provenance-reduction.vitest.ts` plus the consumed blinded-adjudication verdict contract]
+- [x] T020 Verify ledger replay reconstructs the reduction without wall-clock order and the shadow path leaves legacy authority unchanged [Test: provenance-reduction.vitest.ts replay and parity cases]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All tasks complete
+- [x] All requirements in spec.md met with evidence
+- [x] Phase gate green (validate/build/test as applicable)
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

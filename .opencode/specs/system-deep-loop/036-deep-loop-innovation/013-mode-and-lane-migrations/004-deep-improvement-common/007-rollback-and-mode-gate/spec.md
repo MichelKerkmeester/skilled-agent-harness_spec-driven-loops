@@ -44,7 +44,7 @@ _memory:
 | **Origin** | Final child concern in the phase-013 deep-improvement-common migration |
 | **Depends on** | `[]` in the approved phase definition; sibling adjacency is navigation only |
 | **Outcome** | Plan the shared-service rollback switch and independent mode gate for the typed event-ledger migration |
-| **Inputs** | Parent 065 spec, phase-tree manifest, 065/002 findings registries, siblings `001` through `006`, and the shared transition/versioning/rollback policy |
+| **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, siblings `001` through `006`, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,7 +65,7 @@ executions, whichever completes later, and a certificate-backed restoration that
 those rules for the shared evaluator, canary, and promotion services. It defines the rollback switch and the independent
 gate; it does not execute a cutover, retire a legacy writer, or create a second ledger or verifier.
 
-The 065/002 findings make the evidence boundary load-bearing. Rich evaluator traces and per-case fitness vectors must remain
+The 036/002 findings make the evidence boundary load-bearing. Rich evaluator traces and per-case fitness vectors must remain
 available after score-policy changes; mutation operators and quality-diverse lineages must not collapse into one winner;
 reward and evaluator-integrity oversight must remain separate; canary epochs must rotate and detect semantic leakage; salted
 candidate aliases and order-swapped judging reduce identity and position bias; and shadow/canary/ship/abort/restore stages
@@ -213,9 +213,9 @@ soft aggregate score.
 - **Certificate freshness drift** - A changed reducer, evaluator capsule, canary epoch, policy, write-set graph, or shared
   contract could invalidate a previously green gate. Mitigation: bind every result to exact digests and reopen on relevant
   drift.
-- **Dependencies**: the parent 065 migration invariants; shared transition/versioning/rollback policy; common-service
+- **Dependencies**: the parent 036 migration invariants; shared transition/versioning/rollback policy; common-service
   siblings `001-typed-ledger-schema` through `006-shadow-parity`; phase 012 shared mode contracts and write-set conflict
-  graph; phase 014 handoff; and the 065/002 findings registries. Sibling `depends_on: []` remains the planning manifest
+  graph; phase 014 handoff; and the 036/002 findings registries. Sibling `depends_on: []` remains the planning manifest
   authority; implementation readiness is established by the parent handoff.
 <!-- /ANCHOR:risks -->
 

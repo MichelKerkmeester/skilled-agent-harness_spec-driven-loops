@@ -1,0 +1,71 @@
+{
+  "run_id": "1784463720850-qpa2w1",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
+  "base_artifact_dir": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm",
+      "state_log": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/research/lineages/glm/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-19T12:22:00.856Z",
+        "end_at_iso": "2026-07-19T13:15:52.697Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 9,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-19T14:26:00Z",
+          "deltaMs": 4087303
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-19T14:30:00Z",
+          "deltaMs": 4327303
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-19T14:38:00Z",
+          "deltaMs": 4807303
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-19T14:46:00Z",
+          "deltaMs": 5287303
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-19T14:52:00Z",
+          "deltaMs": 5647303
+        }
+      ]
+    }
+  ]
+}

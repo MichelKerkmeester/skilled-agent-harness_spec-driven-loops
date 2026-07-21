@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the candidate SHA and phase-006 receipt/certificate, ledger, authorization, certification, and replay-contract digests
+- [ ] T001 Pin the candidate SHA, the phase-007 receipt/certificate and certification digests, and the phase-006 ledger, authorization, and replay-contract digests
 - [ ] T002 Inventory Deep Research init, gather, analyze, convergence, synthesis, memory-save, and resume/recovery transitions against the pinned mode contracts
 - [ ] T003 Map each logical transition to its shared receipt kind, prior/result event, input/output references, result dispositions, and ledger-head rule
 - [ ] T004 Freeze logical operation IDs, attempt IDs, idempotency keys, receipt ordering, duplicate behavior, and same-key/different-facts conflict behavior
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T008 Register Deep Research transition receipt and run-certificate profiles through the shared phase-006 primitives
+- [ ] T008 Register Deep Research transition receipt and run-certificate profiles through the shared phase-007 primitives
 - [ ] T009 Add the `init` receipt for the frozen objective, plan/frontier, recipes, capabilities, configuration, and initial ledger head
 - [ ] T010 Add per-logical-branch `gather` and `analyze` receipts for source/evidence/claim references, admission, validation, contradictions, abstentions, and attempt history
 - [ ] T011 Add convergence receipts for one verified frontier snapshot, raw/trusted signals, blockers, policy versions, budget/lease state, and typed decision

@@ -19,7 +19,10 @@
       "cycle detection tasks",
       "deep-loop fingerprint history tasks",
       "cycle detection checklist",
-      "deep-loop cycle verifier contract"
+      "deep-loop cycle verifier contract",
+      "cycle detection decision record",
+      "canonical cycle signatures",
+      "additive-dark cycle evidence"
     ],
     "key_topics": [
       "deep-loop",
@@ -36,17 +39,19 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -59,12 +64,6 @@
         "name": "phase-tree.json",
         "kind": "config",
         "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -83,6 +82,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -134,20 +151,20 @@
         "source": "derived"
       },
       {
-        "name": "three",
-        "kind": "key_phrase",
+        "name": "Task Checklist",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "monotonic",
-        "kind": "key_phrase",
+        "name": "Execution Rules",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "every",
-        "kind": "key_phrase",
+        "name": "Status Reporting Report",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -180,37 +197,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface degeneration as a health signal and stopping-clock input.",
+    "causal_summary": "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop authority.",
     "created_at": "2026-07-16T03:43:53.009Z",
-    "last_save_at": "2026-07-17T13:21:21.054Z",
+    "last_save_at": "2026-07-21T11:35:21.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2474b88b467ae5681f39b01175a63751f3269d017814e1567cdfef10c4d561f6",
+    "source_fingerprint": "sha256:a1e41503887a06fad417f75e0c6f567528b6b1a79b69d2034892b669cffd00d8",
     "source_doc_hashes": {
-      "spec.md": "a9068ee7e8ad9de276947c8dc2be27a15771adccc8ef46f167e87fa07f0f6a54",
-      "plan.md": "3f2f4f67c5d16aa4edba7b9874c7507714695fa1ed802a6c8b2d9a40ce7e4952",
-      "tasks.md": "30f65444aa3fcdc25f8cf0b738b4702e966559d7908cc03f55f47ffa88e74034",
-      "checklist.md": "b2adf154f5a926d0a353e300c069955bbe874bec0342fcc3cda11e06c3537c74"
+      "spec.md": "36d322903eac170f43e7573ac34643c9224e9400a28eff961424b8437b049b91",
+      "plan.md": "05d9a04ee555fca12cc8382940d9389210f156c35bb82edfc9b701e4a75f587b",
+      "tasks.md": "7628690058458e63fd6645b7539a3677693d7e54bfaa141e7d9640e0e000e3a7",
+      "checklist.md": "886609374a83d449d614ddb5a66879a620459bf417e7aeb0104e4d2ec72ae007",
+      "decision-record.md": "1e57a070bc53555cbe9eaee4f87a0138d83edd7f9ab53f38a6fc32c5a9fee51d",
+      "implementation-summary.md": "665119e773a7b0320bcf54bdf4c03287063693bbd871412b4504c038bc27f67e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -40,7 +40,7 @@ mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never auth
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, the parent 065 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, phase-014 handoff revision, and phase-006 authorization digest are pinned in the candidate report
+- [ ] CHK-001 [P0] BASE, the parent 036 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, phase-014 handoff revision, and phase-006 authorization digest are pinned in the candidate report
 - [ ] CHK-002 [P0] The six Deep Alignment sibling contracts and their evidence ownership boundaries are present; no sibling responsibility is redefined in this phase
 - [ ] CHK-003 [P0] The legacy Deep Alignment lifecycle is inventoried for lane resolution, discovery, applicability, each artifact check, live re-probe, known deviation, convergence, report, resume, continuity, and remediation exclusion
 - [ ] CHK-004 [P1] The authority-control schema, rollback trigger matrix, healthy anchor, dual window bounds, expiry rule, lane evidence rows, and phase-014 handoff fields are frozen before fixture execution

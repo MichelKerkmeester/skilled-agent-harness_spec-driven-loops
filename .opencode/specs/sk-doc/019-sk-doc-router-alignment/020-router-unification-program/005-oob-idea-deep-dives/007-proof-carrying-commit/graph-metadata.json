@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "proof carrying route plan deep dive",
       "prepare verify commit routing",
-      "route proof is not authority"
+      "route proof is not authority",
+      "proof carrying route plan",
+      "prepare verify commit research plan",
+      "proof carrying route tasks",
+      "prepare verify commit task list"
     ],
     "key_topics": [
       "proof",
@@ -27,18 +31,46 @@
       "commit",
       "routing",
       "authority",
-      "five-iteration"
+      "research"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -54,41 +86,127 @@
         "source": "derived"
       },
       {
-        "name": "Deliverable Per",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "three",
-        "kind": "key_phrase",
+        "name": "Purpose Define",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "NEITHER",
-        "kind": "key_phrase",
+        "name": "File Path",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Preserve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Optimistic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Supporting Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pending Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on a proof-carrying route lifecycle that splits one opaque commitment into PREPARE (read-only planning that emits a short-lived RouteProofV1 binding request/policy/registry hashes, a versioned read-set, ordered targets, authority class, preconditions, expiry, and idempotency key), destination-local VERIFY (recompute digests and current authority immediately before the first side effect, returning READY/STALE_PROOF/NEEDS_INPUT/DEFER/REJECT), and a narrow COMMIT where a proof is evidence not authority, a mutating leg invalidates later prepared",
+    "causal_summary": "A route decision can blur classification, authority acquisition, and execution",
     "created_at": "2026-07-18T04:39:05.757Z",
-    "last_save_at": "2026-07-18T14:47:41.635Z",
+    "last_save_at": "2026-07-20T14:46:15.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c0b99f181661c1e44896d77b18748843016c6ae4330ad67b148a4bc38f7aa06",
+    "source_fingerprint": "sha256:418d512af5d338ce9a0fe18d357e0729927ae7b5ddac92791a9a86f656d6ae98",
     "source_doc_hashes": {
-      "spec.md": "4bfd344be4a2d1b99dfbdb32b226003d9d172eb85ab5604994af17b3a61e37c8"
+      "spec.md": "0e7508ee8abad8633bb69c9591fabb00baf5260afbf8a71a03197a45ed341381",
+      "plan.md": "db5d2f60652365d6d8baaf4a614b018354289ffa8e42316ed77f9c4ac3aa9292",
+      "tasks.md": "97034e264b6bd9cd9b2d1dc2c11e189827721a515b7303e10be07b61b7e42155",
+      "checklist.md": "da3391b08973f0ee9e8f1a57513a29527b7c2eb37747aa8812f2a5b96fc326de",
+      "implementation-summary.md": "b069807d72a46ff935a54d4b13571929114a1e5d75b3f0602d8ffeda833263b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

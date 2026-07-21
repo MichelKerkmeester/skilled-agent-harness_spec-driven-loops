@@ -11,7 +11,7 @@ parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
-    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_at: "2026-07-20T10:42:52Z"
     last_updated_by: "codex"
     recent_action: "Authored the final integration, gate rerun, and parent-rollup contract"
     next_safe_action: "Execute after phase 010 has a green candidate report"
@@ -34,7 +34,7 @@ _memory:
 
 # Feature Specification: Integrate and close out
 
-> Phase adjacency under the 020 parent: predecessor `010-whole-repo-gate`; no successor. Integration and closeout are allowed only after the post-rebase gate passes.
+> Phase adjacency under the 020 parent: predecessor `010-whole-repo-gate`; successor `012-code-dir-naming-enforcement` (a follow-on extension registered after this closeout). Integration and closeout are allowed only after the post-rebase gate passes.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

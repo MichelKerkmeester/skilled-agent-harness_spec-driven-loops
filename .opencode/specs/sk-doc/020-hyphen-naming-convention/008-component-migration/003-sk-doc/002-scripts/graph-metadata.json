@@ -38,26 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/scripts/tests/command/auto_detect_command.md",
-      ".opencode/skills/sk-doc/scripts/tests/specs/auto_detect_spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "auto_detect_command.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/scripts/tests/command/auto_detect_command.md",
-        "source": "derived"
-      },
-      {
-        "name": "auto_detect_spec.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/scripts/tests/specs/auto_detect_spec.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +175,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly.",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-07-17T20:26:06.185Z",
+    "last_save_at": "2026-07-20T11:09:49.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e0c6c1b550e458c4eeda613bd4134c2d04f2bb86825e96c82ad8d3c089c77cb7",
+    "source_fingerprint": "sha256:c5cb7017511314ea72ec57f1a0ed6a235a20a3219432ea28d91b553892cc121a",
     "source_doc_hashes": {
-      "spec.md": "d5f613b7dbb013366056ec3c6e3ba067ad145ef4e2bb00bf0047d77aabc5c11c",
+      "spec.md": "f0ea9e74858ac14c2de093892759e2c4e602716cabc2413ed8d3c1bb6dba527f",
       "plan.md": "bb908d61385c06585c782263c5d571735ef0a71797c23b94a0d28ad7a8e19c09",
       "tasks.md": "0dce5839050c8e00f5f71f2268c1b55693f247f882630381f1d3a5874745a253",
       "checklist.md": "9e0353a9690351dbfc707f98fc9dafba57808a113dc7c91bbe53b7ae0325a3c5"

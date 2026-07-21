@@ -18,6 +18,14 @@ export type ReasoningEffort = typeof REASONING_EFFORTS[number];
 export const SERVICE_TIERS = ['priority', 'standard', 'fast'] as const;
 export type ServiceTier = typeof SERVICE_TIERS[number];
 
+export const WEB_SEARCH_POLICIES = ['inherit', 'disabled', 'cached', 'live'] as const;
+export type WebSearchPolicy = typeof WEB_SEARCH_POLICIES[number];
+
+/** Live-tool policies resolved for one executor invocation. */
+export interface LiveToolsConfig {
+  readonly webSearch: WebSearchPolicy;
+}
+
 /** Fan-out assignment models accepted by the schema. */
 export const FANOUT_ASSIGNMENT_MODELS = ['flat_pool', 'wave'] as const;
 
@@ -31,6 +39,10 @@ export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
+
+export const liveToolsSchema = z.object({
+  webSearch: z.enum(WEB_SEARCH_POLICIES).default('inherit'),
+}).default({ webSearch: 'inherit' });
 
 export const executorConfigSchema = z.object({
   kind: z.enum(EXECUTOR_KINDS).default('native'),
@@ -46,16 +58,45 @@ export const executorConfigSchema = z.object({
   // kind-agnostic on purpose: intentionally absent from EXECUTOR_KIND_FLAG_SUPPORT
   // and the unsupported-field scan, so any executor kind may carry it. null = none.
   governor: z.string().min(1).nullable().default(null),
+  liveTools: liveToolsSchema,
 });
 
 export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
-  native: [],
-  'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
-  'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
-  'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
+  native: ['liveTools'],
+  'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
+  'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
+  'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
 };
+
+/** Proven web-search policies for every shipped executor kind. */
+export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
+  native: {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
+  'cli-codex': {
+    inherit: true,
+    disabled: true,
+    cached: false,
+    live: true,
+  },
+  'cli-claude-code': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
+  'cli-opencode': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: true,
+  },
+} as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. DOMAIN ERRORS
@@ -193,6 +234,7 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
     'serviceTier',
     'sandboxMode',
     'timeoutSeconds',
+    'liveTools',
   ];
 
   for (const field of allOptionalFields) {
@@ -213,6 +255,30 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   }
 
   return config;
+}
+
+/**
+ * Reject an executor policy unless its adapter has a proven implementation.
+ *
+ * @param config - Validated executor configuration.
+ * @param path - Error path prefix for nested fan-out entries.
+ * @throws {@link ExecutorConfigError} If the requested policy is unsupported.
+ */
+export function assertExecutorWebSearchCapability(
+  config: ExecutorConfig,
+  path: PropertyKey[] = [],
+): void {
+  const policy = config.liveTools.webSearch;
+  if (EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX[config.kind][policy]) {
+    return;
+  }
+
+  throw new ExecutorConfigError({
+    issues: [{
+      path: [...path, 'liveTools', 'webSearch'],
+      message: `web-search policy '${policy}' is not supported by executor kind '${config.kind}'`,
+    }],
+  });
 }
 
 /**
@@ -243,6 +309,18 @@ export function resolveExecutorConfig(sources: {
 // default; callers use EITHER a single `executor` OR a `fanout` block, never both.
 
 const LINEAGE_LABEL_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+const MAX_FANOUT_MODELS = 16;
+const MAX_FANOUT_BRANCHES = 16;
+const MAX_FANOUT_REPLICAS = 16;
+const MAX_EXPANDED_LINEAGES = 256;
+
+const lineageMetadataShape = {
+  iterations: z.number().int().positive().nullable().default(null),
+  promptFramework: z.string().min(1).nullable().default(null),
+  assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
+  depends_on: z.array(z.string().trim().min(1)).default([]),
+  touches: z.array(z.string().trim().min(1)).default([]),
+};
 
 /**
  * One fan-out lineage: a single executor config plus fan-out metadata.
@@ -263,21 +341,26 @@ export const lineageExecutorSchema = executorConfigSchema.extend({
   label: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
     message: "label must match /^[a-z0-9][a-z0-9-]*$/ (lowercase, digits, hyphens; dir-safe)",
   }),
-  count: z.number().int().positive().max(16).default(1),
-  iterations: z.number().int().positive().nullable().default(null),
-  promptFramework: z.string().min(1).nullable().default(null),
-  assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
-  depends_on: z.array(z.string().trim().min(1)).default([]),
-  touches: z.array(z.string().trim().min(1)).default([]),
+  count: z.number().int().positive().max(MAX_FANOUT_REPLICAS).default(1),
+  ...lineageMetadataShape,
 });
 
 export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
 
-export const fanoutConfigSchema = z.object({
-  // Ceiling of 16 lineages per fan-out block; combined with the per-lineage `count`
-  // ceiling (also 16) this bounds the maximum expanded lineage count a single
-  // autonomous run can reach.
-  executors: z.array(lineageExecutorSchema).min(1).max(16),
+export const fanoutModelSchema = executorConfigSchema.extend({
+  id: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
+    message: "id must match /^[a-z0-9][a-z0-9-]*$/ (lowercase, digits, hyphens; dir-safe)",
+  }),
+});
+
+export const fanoutBranchSchema = z.object({
+  id: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
+    message: "id must match /^[a-z0-9][a-z0-9-]*$/ (lowercase, digits, hyphens; dir-safe)",
+  }),
+  ...lineageMetadataShape,
+});
+
+const fanoutControlShape = {
   assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
   concurrency: z.number().int().positive().max(8).default(2),
   maxRetries: z.number().int().nonnegative().max(5).default(5),
@@ -287,9 +370,111 @@ export const fanoutConfigSchema = z.object({
   // timeout. Capped at 5 minutes; zero (the old opt-out) is now rejected, not accepted.
   lagCeilingMs: z.number().int().positive().max(300000).default(300000),
   progressHeartbeatSeconds: z.number().nonnegative().default(60),
+};
+
+export const legacyFanoutConfigSchema = z.object({
+  executors: z.array(lineageExecutorSchema).min(1).max(MAX_FANOUT_BRANCHES),
+  models: z.never().optional(),
+  branches: z.never().optional(),
+  replicas: z.never().optional(),
+  ...fanoutControlShape,
 });
 
-export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;
+export const fanoutManifestSchema = z.object({
+  executors: z.never().optional(),
+  models: z.array(fanoutModelSchema).min(1).max(MAX_FANOUT_MODELS),
+  branches: z.array(fanoutBranchSchema).min(1).max(MAX_FANOUT_BRANCHES),
+  replicas: z.number().int().positive().max(MAX_FANOUT_REPLICAS),
+  ...fanoutControlShape,
+});
+
+/** Legacy executor lists and Cartesian manifests are intentionally exclusive. */
+export const fanoutConfigSchema = z.union([
+  legacyFanoutConfigSchema,
+  fanoutManifestSchema,
+]);
+
+export type FanoutManifest = z.infer<typeof fanoutManifestSchema>;
+type ParsedFanoutConfig = z.infer<typeof fanoutConfigSchema>;
+
+/** Normalized fan-out config consumed by the existing scheduler. */
+export interface FanoutConfig {
+  readonly executors: LineageExecutor[];
+  readonly assignment_model: FanoutAssignmentModel;
+  readonly concurrency: number;
+  readonly maxRetries: number;
+  readonly lagCeilingMs: number;
+  readonly progressHeartbeatSeconds: number;
+}
+
+function isFanoutManifest(config: ParsedFanoutConfig): config is FanoutManifest {
+  return Array.isArray(config.models);
+}
+
+function assertUniqueManifestIds(
+  values: readonly { id: string }[],
+  field: 'models' | 'branches',
+): void {
+  const seen = new Set<string>();
+  values.forEach((value, index) => {
+    if (seen.has(value.id)) {
+      throw new ExecutorConfigError({
+        issues: [{ path: [field, index, 'id'], message: `duplicate ${field.slice(0, -1)} id '${value.id}'` }],
+      });
+    }
+    seen.add(value.id);
+  });
+}
+
+/**
+ * Compile a Cartesian manifest into the scheduler's existing lineage shape.
+ *
+ * @param manifest - Validated models-by-branches manifest.
+ * @returns Deterministically ordered single-replica lineages.
+ * @throws {@link ExecutorConfigError} If identifiers collide or exceed the legacy ceiling.
+ */
+export function compileFanoutManifest(manifest: FanoutManifest): LineageExecutor[] {
+  assertUniqueManifestIds(manifest.models, 'models');
+  assertUniqueManifestIds(manifest.branches, 'branches');
+
+  const expandedCount = manifest.models.length * manifest.branches.length * manifest.replicas;
+  if (expandedCount > MAX_EXPANDED_LINEAGES) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: ['replicas'],
+        message: `manifest expands to ${expandedCount} lineages; maximum is ${MAX_EXPANDED_LINEAGES}`,
+      }],
+    });
+  }
+
+  const lineages: LineageExecutor[] = [];
+  const seenLabels = new Set<string>();
+  for (const modelEntry of manifest.models) {
+    const { id: modelId, ...executor } = modelEntry;
+    for (const branchEntry of manifest.branches) {
+      const { id: branchId, ...branch } = branchEntry;
+      for (let replica = 1; replica <= manifest.replicas; replica += 1) {
+        const label = `${branchId}-${modelId}-r${replica}`;
+        if (seenLabels.has(label)) {
+          throw new ExecutorConfigError({
+            issues: [{
+              path: ['branches'],
+              message: `compiled lineage label '${label}' collides; choose unambiguous model and branch ids`,
+            }],
+          });
+        }
+        seenLabels.add(label);
+        lineages.push({
+          ...executor,
+          ...branch,
+          label,
+          count: 1,
+        });
+      }
+    }
+  }
+  return lineages;
+}
 
 /**
  * Parse and validate a raw fan-out configuration.
@@ -308,31 +493,62 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
     throw new ExecutorConfigError({ issues: parsed.error.issues.map((issue) => ({ path: issue.path, message: issue.message })) });
   }
 
-  const config = parsed.data;
+  const parsedConfig = parsed.data;
+  const hasManifest = isFanoutManifest(parsedConfig);
+
+  if (hasManifest) {
+    parsedConfig.models.forEach((entry, index) => {
+      const { id: _id, ...executorSubset } = entry;
+      try {
+        parseExecutorConfig(executorSubset);
+      } catch (err: unknown) {
+        if (err instanceof ExecutorConfigError) {
+          throw new ExecutorConfigError({
+            issues: err.issues.map((issue) => ({ path: ['models', index, ...issue.path], message: issue.message })),
+          });
+        }
+        throw err;
+      }
+    });
+  }
+
+  const executors = hasManifest
+    ? compileFanoutManifest(parsedConfig)
+    : parsedConfig.executors;
+  const config: FanoutConfig = {
+    executors,
+    assignment_model: parsedConfig.assignment_model,
+    concurrency: parsedConfig.concurrency,
+    maxRetries: parsedConfig.maxRetries,
+    lagCeilingMs: parsedConfig.lagCeilingMs,
+    progressHeartbeatSeconds: parsedConfig.progressHeartbeatSeconds,
+  };
 
   // Reuse the canonical single-executor validator per entry (kind/model/flags).
-  config.executors.forEach((entry, index) => {
-    const {
-      label: _label,
-      count: _count,
-      iterations: _iterations,
-      promptFramework: _promptFramework,
-      assignment_model: _assignmentModel,
-      depends_on: _dependsOn,
-      touches: _touches,
-      ...executorSubset
-    } = entry;
-    try {
-      parseExecutorConfig(executorSubset);
-    } catch (err: unknown) {
-      if (err instanceof ExecutorConfigError) {
-        throw new ExecutorConfigError({
-          issues: err.issues.map((issue) => ({ path: ['executors', index, ...issue.path], message: issue.message })),
-        });
+  if (!hasManifest) {
+    config.executors.forEach((entry, index) => {
+      const {
+        label: _label,
+        count: _count,
+        iterations: _iterations,
+        promptFramework: _promptFramework,
+        assignment_model: _assignmentModel,
+        depends_on: _dependsOn,
+        touches: _touches,
+        ...executorSubset
+      } = entry;
+      try {
+        parseExecutorConfig(executorSubset);
+      } catch (err: unknown) {
+        if (err instanceof ExecutorConfigError) {
+          throw new ExecutorConfigError({
+            issues: err.issues.map((issue) => ({ path: ['executors', index, ...issue.path], message: issue.message })),
+          });
+        }
+        throw err;
       }
-      throw err;
-    }
-  });
+    });
+  }
 
   // Labels must be unique among the declared lineages.
   const seenLabels = new Set<string>();
@@ -357,6 +573,18 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
   }
 
   return config;
+}
+
+/**
+ * Validate every expanded lineage before the scheduler or a subprocess can run.
+ *
+ * @param lineages - Concrete scheduler inputs after replica expansion.
+ * @throws {@link ExecutorConfigError} If any kind-policy combination is unsupported.
+ */
+export function preflightFanoutCapabilities(lineages: readonly LineageExecutor[]): void {
+  lineages.forEach((lineage, index) => {
+    assertExecutorWebSearchCapability(lineage, ['lineages', index]);
+  });
 }
 
 /**

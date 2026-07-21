@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "scales": {
+    "1x": {
+      "count": 13,
+      "corpusContentHash": "sha256:115d63a8f4275c489bf65db8c170dee92eab6af24509f996f11837c0682dee40",
+      "oracleHash": "sha256:77be79b280c1ddf26c53b05aea74c01fd4c9748c0374e1b8d86e05bd8beca53e"
+    },
+    "10x": {
+      "count": 130,
+      "corpusContentHash": "sha256:f04d90306c4e48746c9ccb87ab7bac940de9cfb338b6fb63d85563a88e6cc62e",
+      "oracleHash": "sha256:73b8aee79e4caf9123a1ebba308f7d5eee2d656d5a0f8f0f0f97ba1057a2de82"
+    },
+    "100x": {
+      "count": 1300,
+      "corpusContentHash": "sha256:cabb08563b859158589688c5692c280e2d613d2cf417194623fd4af0afbba600",
+      "oracleHash": "sha256:f17370deef0ca9a71158f40ce22b5293705a632d05786af08ef184e72beb113a"
+    }
+  }
+}

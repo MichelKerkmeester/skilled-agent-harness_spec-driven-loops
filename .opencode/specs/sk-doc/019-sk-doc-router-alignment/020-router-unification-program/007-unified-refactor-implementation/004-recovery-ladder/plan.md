@@ -17,6 +17,7 @@ contextType: "implementation"
 budget-finiteness, authority-withholding, bypass, and protected-byte checks pass; route-gold status
 is intentionally `shadow-partial` until per-hub activation exercises real hub scenarios.
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -34,8 +35,30 @@ is intentionally `shadow-partial` until per-hub activation exercises real hub sc
 Implement the recovery plane as the **ordered negative-branch behavior** of the phase-002 evaluator, not as a new decision shape. The evaluator already emits the closed four-action algebra `route | clarify | defer | reject` with the authority-withheld invariant (synthesis §2.3). This phase adds (a) the fixed rung order that decides *which* negative branch fires and in what sequence, (b) the single shared `UncertaintyBudgetV1 { userTurns: 1 }` that clarify and handoff both draw from, and (c) the guard predicates that admit each rung. Everything is expressed as typed fixtures that replay deterministically; a scorer edit to make them pass is a migration failure, not licence (synthesis §8.2, §10).
 
 The approach follows the synthesis's "recommended first slice" discipline (synthesis §9): build the base shape correct with `overlay = null` and no calibration, prove it in shadow with zero live authority, and leave the certificate-gated auto-route inert until phase 005 ships it.
+<!-- /ANCHOR:summary -->
 
-## 2. APPROACH
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Upstream present: phase 000 `UncertaintyBudgetV1` + phase 002 evaluator/compatibility projector.
+- [x] Seam B closure understood: clarify and handoff share ONE budget (no independent budgets).
+
+### Definition of Done
+- [x] All ladder fixtures replay deterministically; route-gold stays byte-green with the scorer untouched.
+- [x] Budget-finiteness proven: ≤1 user turn across clarify+handoff, `H=1`, no visited-set revisit.
+- [x] No negative decision (`clarify | defer | reject`) carries a target or authority.
+- [x] Confident-route fixtures invoke zero ladder rungs (bypass measured, not assumed).
+<!-- /ANCHOR:quality-gates -->
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+The recovery plane is the **ordered negative-branch behavior** of the phase-002 evaluator, not a new decision shape. It adds three things over the closed four-action algebra: (a) the fixed six-rung order that decides which negative branch fires and in what sequence, (b) the single shared `UncertaintyBudgetV1 { userTurns: 1 }` that clarify (rung 3) and handoff (rung 4) both draw from — so recovery is provably finite — and (c) the guard predicates that admit each rung. A handed-off destination returning `NEEDS_INPUT` does not reopen a user turn. Everything is expressed as typed route-gold fixtures produced through the phase-002 compatibility projector; the shared scorer `router-replay.cjs` is a read-only fixed dependency.
+<!-- /ANCHOR:architecture -->
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
 
 ### 2.1 Design the shared budget contract seam (rungs 3 + 4 share one budget)
 
@@ -78,8 +101,10 @@ Fixtures are produced through the **phase-002 compatibility projector** only (sy
 
 - Confident-route fixtures assert **zero** ladder-rung invocation (SC-004) — the bypass is measured, not assumed.
 - Budget fixtures assert no request consumes >1 user turn across clarify+handoff, no handoff exceeds `H=1`, and no visited destination is revisited (SC-002).
+<!-- /ANCHOR:phases -->
 
-## 3. VERIFICATION
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
 
 | Check | How | Evidence |
 |-------|-----|----------|
@@ -89,14 +114,10 @@ Fixtures are produced through the **phase-002 compatibility projector** only (sy
 | Bypass | Assert confident-route fixtures invoke zero rungs | SC-004 fixtures pass |
 | Scorer untouched | `router-replay.cjs` hash compared before/after | Hash-identical (REQ-010) |
 | Spec-kit validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` | Exit 0 on the planning docs |
+<!-- /ANCHOR:testing -->
 
-## 4. STAGING & ROLLBACK
-
-- **Stage.** Ships behind the fenced CAS activation selector with the prior generation retained; requests pin one policy generation (synthesis §9, §10).
-- **Migration gate.** Must satisfy **Stage 3 — Shadow evaluate** (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (see `spec.md` MIGRATION GATE).
-- **Rollback.** Swap to the byte-identical prior manifest. The ladder commits no external effect (authority is destination-local), so ladder rollback is byte-exact; there is no external COMMIT to unwind here (synthesis §9, §10).
-
-## 5. RISKS & DEPENDENCIES
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -104,6 +125,15 @@ Fixtures are produced through the **phase-002 compatibility projector** only (sy
 | Dependency | Phase 005 risk certificate | Rung 2 auto-route stays inert until 005 ships | Encode the "no certificate ⇒ no auto-route" fall-through now; keep auto-route unreachable until 005 (synthesis §11 open-q 2) |
 | Risk | Fixture drift widening scope into the scorer | High — would break the hard constraint | Route all fixtures through the compatibility projector; treat any required scorer edit as a migration failure (synthesis §8.2) |
 | Risk | A negative branch leaking a target/authority | High — smuggles a destination through a fallback field | Assert authority-withheld on every negative fixture (SC-003); §9 hard gate blocks activation |
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Stage.** Ships behind the fenced CAS activation selector with the prior generation retained; requests pin one policy generation (synthesis §9, §10).
+- **Migration gate.** Must satisfy **Stage 3 — Shadow evaluate** (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (see `spec.md` MIGRATION GATE).
+- **Rollback.** Swap to the byte-identical prior manifest. The ladder commits no external effect (authority is destination-local), so ladder rollback is byte-exact; there is no external COMMIT to unwind here (synthesis §9, §10).
+<!-- /ANCHOR:rollback -->
 
 ## RELATED DOCUMENTS
 

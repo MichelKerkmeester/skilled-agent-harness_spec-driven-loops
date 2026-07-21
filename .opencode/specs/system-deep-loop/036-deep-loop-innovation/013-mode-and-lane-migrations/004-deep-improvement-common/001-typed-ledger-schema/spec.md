@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; first child of the shared Deep Improvement Common Services migration |
-| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; 065/002 findings registries |
+| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; 036/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -132,7 +132,7 @@ with a later score or treat a successful target-task score as sufficient promoti
 
 The primary dependency is the phase-006 transition-authorized ledger core and its fail-closed append boundary, plus the
 phase-012 shared event contracts that define common identity, causation, sequence, receipt, and replay fields. The
-phase also depends on the 065/002 mode findings: preserve raw evaluator artifacts, use a versioned evaluator capsule,
+phase also depends on the 036/002 mode findings: preserve raw evaluator artifacts, use a versioned evaluator capsule,
 rotate and seal canary epochs, keep optimization reward separate from oversight, and make promotion uncertainty-aware.
 
 Phase-specific risks are schema drift between the common service and its three consumers, accidental reducer logic

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Benchmark - Sealed Reference Artifacts"
-description: "Plan the sealed reference artifacts for the Skill Benchmark migration: immutable treatment designs, skill bundles, task and gold manifests, scenario assignments, exposure evidence, scoring observations, and contribution-certificate inputs over the deep-improvement-common backbone. The phase consumes the shared phase-006 sealing primitives and common evaluator, canary, replay, budget, and read-verification services without introducing a second sealing scheme."
+description: "Plan the sealed reference artifacts for the Skill Benchmark migration: immutable treatment designs, skill bundles, task and gold manifests, scenario assignments, exposure evidence, scoring observations, and contribution-certificate inputs over the deep-improvement-common backbone. The phase consumes the shared phase-007 sealing primitives and common evaluator, canary, replay, budget, and read-verification services without introducing a second sealing scheme."
 trigger_phrases:
   - "Skill Benchmark sealed reference artifacts"
   - "skill benchmark artifact sealing"
@@ -54,7 +54,7 @@ the benchmark name remains constant. The research therefore requires paired with
 separate discovery/loading/invocation/trajectory/outcome evidence, resource-specific canaries, constraint coverage, and a
 versioned effect certificate with a validity domain.
 
-This phase plans the Skill Benchmark specialization of the sealed reference-artifact contract. It consumes the phase-006
+This phase plans the Skill Benchmark specialization of the sealed reference-artifact contract. It consumes the phase-007
 sealing primitives and the deep-improvement-common services from mode 004: evaluator capsules, canary epochs, replay
 fingerprints, budgets, common read verification, and promotion-input boundaries are shared services, not mode-local
 reimplementations. Skill Benchmark adds only the scenario-design, treatment-assignment, skill-resource, exposure, gold,
@@ -74,7 +74,7 @@ cutover, or a private sealing protocol.
 
 ### In Scope
 
-- One Skill Benchmark adapter over the existing phase-006 sealing primitives. It reuses shared canonicalization, digest,
+- One Skill Benchmark adapter over the existing phase-007 sealing primitives. It reuses shared canonicalization, digest,
   dependency-closure, seal-on-write, publication, and tamper-evident read behavior rather than defining another hash,
   signature, manifest, chain, or storage path.
 - A sealed benchmark-design reference for the randomized treatment lattice: no-skill, full-skill, auto-route,
@@ -101,7 +101,7 @@ cutover, or a private sealing protocol.
 ### Out of Scope
 
 - A new digest, signature, hash chain, canonicalization, seal publication, storage, or verification algorithm outside the
-  phase-006 sealing primitives.
+  phase-007 sealing primitives.
 - Reimplementation of deep-improvement-common evaluator capsules, canary lifecycle, replay fingerprints, budgets, locks,
   receipts, effect recovery, promotion inputs, or shared read-verification services.
 - The typed event envelope, transition authorization, reducers, projections, attribution estimator implementation, ranking,
@@ -119,7 +119,7 @@ cutover, or a private sealing protocol.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every Skill Benchmark artifact uses the shared phase-006 sealing adapter | The artifact registry names one adapter and rejects a mode-local digest, seal, manifest, chain, storage, or verification path |
+| REQ-001 | Every Skill Benchmark artifact uses the shared phase-007 sealing adapter | The artifact registry names one adapter and rejects a mode-local digest, seal, manifest, chain, storage, or verification path |
 | REQ-002 | Artifact identity is content-addressed and dependency-closed | Canonical bytes, artifact kind, schema version, and ordered dependency digests define identity; changing any bundle, task, gold, evaluator, executor, environment, tool, permission, registry, or workload dependency creates a new reference |
 | REQ-003 | Seal-on-write is atomic and immutable | A writer validates, canonicalizes, seals, publishes, and read-verifies before making a reference visible; interrupted writes are unusable and existing sealed bytes cannot be overwritten |
 | REQ-004 | Reads are tamper-evident and fail closed | Digest, schema, dependency, lifecycle, common epoch, gold policy, visibility, and compatibility mismatches return typed refusal rather than stale, partial, or guessed content |
@@ -146,7 +146,7 @@ cutover, or a private sealing protocol.
 
 Every artifact has a closed required-field set and a registered extension map. The artifact reference is the only portable
 handle passed across service boundaries; consumers must re-read through the shared verifier before dereferencing bytes.
-Operational timestamps and access traces remain audit evidence unless the phase-006 primitive declares them part of content
+Operational timestamps and access traces remain audit evidence unless the phase-007 primitive declares them part of content
 identity. A changed evaluator, gold recipe, bundle, dependency, workload, or environment creates a new artifact or expires a
 derived certificate input; it never mutates an earlier sealed reference.
 <!-- /ANCHOR:requirements -->
@@ -154,7 +154,7 @@ derived certificate input; it never mutates an earlier sealed reference.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: One phase-006-backed adapter produces deterministic, dependency-closed references for benchmark design, skill
+- **SC-001**: One phase-007-backed adapter produces deterministic, dependency-closed references for benchmark design, skill
   bundle, scenario/gold, assignment, exposure, scoring, and certificate-input artifacts without a parallel sealing scheme.
 - **SC-002**: A valid paired treatment cell reproduces the same task, skill, executor, environment, evaluator, gold, tool,
   permission, dependency, workload, seed, and registry inputs from sealed references.
@@ -174,7 +174,7 @@ derived certificate input; it never mutates an earlier sealed reference.
 ## 6. RISKS & DEPENDENCIES
 
 - **Second sealing scheme** - A skill-local digest or manifest would make an intact bundle incomparable with common
-  evaluator and certificate evidence. Mitigation: route every artifact through the phase-006 adapter and add a contract test
+  evaluator and certificate evidence. Mitigation: route every artifact through the phase-007 adapter and add a contract test
   that rejects alternate seal metadata.
 - **Incomplete dependency closure** - Omitting gold, evaluator, registry, environment, tool, permission, or workload inputs
   permits a changed experiment to inherit old evidence. Mitigation: require an explicit ordered dependency manifest and
@@ -194,7 +194,7 @@ derived certificate input; it never mutates an earlier sealed reference.
 - **Composition and security blind spots** - Isolated skill success can hide capability-flow or authorization-confusion risks.
   Mitigation: seal composition-depth, hard-negative, permission, and controlled-security treatment cells with independent
   observations.
-- **Dependencies**: `002-reducers-and-projections` for artifact references and projections; shared phase-006 sealing
+- **Dependencies**: `002-reducers-and-projections` for artifact references and projections; shared phase-007 sealing
   primitives; deep-improvement-common mode 004 for evaluator, canary, replay, budget, receipt, and read services;
   `004-certificates-and-receipts` for certificate binding; phase 012 shared mode contracts and write-set conflict graph; the
   existing benchmark harness and skill scenario fixtures; and the spec-kit validator.
@@ -203,9 +203,9 @@ derived certificate input; it never mutates an earlier sealed reference.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen reducer, common-service, and phase-006 sealing contracts:
+Deferred to execution against the frozen reducer, common-service, and phase-007 sealing contracts:
 
-- Which phase-006 seal metadata is inside each artifact digest, and which access or storage fields remain external audit
+- Which phase-007 seal metadata is inside each artifact digest, and which access or storage fields remain external audit
   evidence while still being tamper-evident?
 - Which canonical treatment-arm labels and design-cell identifiers are shared with the typed event vocabulary, and which are
   only artifact metadata consumed by reducers?

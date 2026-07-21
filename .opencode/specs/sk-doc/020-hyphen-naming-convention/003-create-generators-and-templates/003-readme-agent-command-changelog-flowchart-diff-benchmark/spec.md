@@ -32,6 +32,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
+> Phase adjacency — predecessor `002-catalog-and-playbook-generators`; successor `004-command-asset-emitters`.
 
 > Parallel child under `003-create-generators-and-templates`; the command asset emission layer is covered separately by child 004.
 

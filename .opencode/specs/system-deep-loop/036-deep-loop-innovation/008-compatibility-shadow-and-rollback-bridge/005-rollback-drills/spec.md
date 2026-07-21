@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T03:37:31Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned mode-scoped rollback-drill contract"
-    next_safe_action: "Implement hermetic drills before any phase-014 authority flip"
+    recent_action: "Implemented and verified hermetic mode-scoped rollback drills"
+    next_safe_action: "Supply current passing certificates to the later cutover preflight; keep legacy authoritative"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/rollback-drills.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Final child of the phase-008 compatibility, shadow, and rollback bridge |
@@ -91,9 +93,9 @@ of a later phase-014 cutover certificate.
 - Regression fixtures covering at least replay-fingerprint mismatch, legacy-projection mismatch, stale authority epoch,
   missing or conflicting receipt, unresolved effect intent, and crash/timeout at a declared cut point. Each invocation
   selects one fixture and proves the matching detector initiates or blocks rollback as specified.
-- Post-rollback integrity checks over verified effective-event and canonical-projection fingerprint components,
-  byte-exact legacy projection output and reader results, preserved ledger/event ranges, state and artifact counts,
-  monotonic authority epochs, stale-writer denial, and receipt/effect lifecycle closure.
+- Post-rollback integrity checks over a replay range that crosses the divergence boundary and ends after bounded work,
+  effects, cutover, rollback, and restored-state evidence; raw persisted restoration bytes and reader results;
+  preserved ledger/event ranges; state and artifact counts; monotonic epochs; stale-writer denial; and effect closure.
 - A pass/fail bar requiring rollback completion before the declared phase-004 window closes, successful legacy resume
   from the rollback anchor, zero lost or duplicated durable facts, zero unresolved `in_doubt` effects, and no residual
   writer with authority under the superseded epoch.
@@ -121,10 +123,10 @@ of a later phase-014 cutover certificate.
 | REQ-001 | Every drill is mode-scoped, reproducible, and isolated from real authority | The manifest binds all code, contract, state, parity, policy, and evidence inputs; preflight rejects mutable, missing, stale, cross-mode, or production-targeted inputs before any simulated flip |
 | REQ-002 | The drill exercises the complete forward-detect-rollback-resume path | One invocation records a legal test-lane forward epoch change, bounded spine work, declared regression, detector result, admission freeze, spine fence, state reconciliation, legacy restoration, and resumed legacy step |
 | REQ-003 | Regression detection is real and fail closed | The selected fault enters through a declared injection point, the expected production-shaped detector observes it, and a missing, late, wrong-class, or manually asserted detection fails the drill |
-| REQ-004 | Rollback follows the phase-004 authority contract | The runner freezes admission, fences the spine writer, applies only predeclared state dispositions, restores legacy authority by compare-and-swap at a new monotonic epoch, preserves all ledger evidence, and denies stale writers |
+| REQ-004 | Rollback follows the phase-004 authority contract | The runner freezes admission, fences the spine writer, applies every predeclared state disposition to reconstruction, persists the applied-row evidence and real counts, rejects `BLOCK` or unknown dispositions before mutation, restores legacy authority by compare-and-swap at a new monotonic epoch, preserves all ledger evidence, and denies stale writers |
 | REQ-005 | Rollback completes inside the governed window | The certificate records window-open and rollback-complete instants plus the governing policy version; completion precedes closure under the later-of-14-days-and-five-runs rule and any stricter declared mode deadline |
-| REQ-006 | Replay integrity survives rollback | Both control and resumed-legacy transcripts verify under the registered replay contract and match on the declared effective-event and canonical-projection component digests; stored cutover-lane events remain preserved and auditable |
-| REQ-007 | Legacy projection integrity survives rollback | The resumed legacy artifacts and unchanged-reader results match the control lane under the sibling projection serializer, ordering, newline, suppression, watermark, and integrity contract |
+| REQ-006 | Replay integrity survives rollback | Both control and resumed-legacy transcripts verify under the registered replay contract across a range whose end includes bounded spine work, effect events, forward-cutover evidence, rollback transitions, and restored-state evidence; their declared effective-event and canonical-projection component digests match, and stored cutover-lane events remain preserved and auditable |
+| REQ-007 | Legacy projection integrity survives rollback | The runner reads the actual post-rollback persisted reconstruction and raw bytes from the sandbox authority store; those bytes, restored state, applied dispositions, and unchanged-reader results match the pinned control reconstruction under the declared integrity contract |
 | REQ-008 | State and effects are neither lost nor duplicated | Durable fact, artifact, and state counts reconcile to the control plus explicitly retained shadow evidence; every effect has one intent and one confirmed/reconciled terminal outcome, with no conflict or unresolved `in_doubt` result |
 | REQ-009 | Drill evidence is complete, immutable, and freshness-bound | The certificate binds the manifest, injected fault, timeline, epoch transitions, fences, state reconciliation, fingerprint/projection results, receipt IDs, preserved ranges, pass/fail decision, and verifier identity; any bound-input drift invalidates it |
 | REQ-010 | Phase 014 cannot cut over without current drill evidence | A missing, failed, partial, wrong-mode, stale, unverifiable, or policy-incompatible drill certificate blocks the real authority flip while legacy remains authoritative |
@@ -148,7 +150,7 @@ of a later phase-014 cutover certificate.
 - **SC-001**: Every cutover-eligible mode has an executable drill manifest and a current passing drill certificate.
 - **SC-002**: The runner performs a simulated forward flip, detects the declared regression, and restores legacy authority at a new epoch without touching real authority.
 - **SC-003**: Rollback completes before the governed window closes and any stricter mode deadline expires.
-- **SC-004**: Verified replay components and byte-exact legacy projections match the isolated control continuation after legacy resume.
+- **SC-004**: Verified replay components cover the post-divergence tail, and the actual persisted post-rollback bytes and reader result match the pinned control reconstruction after legacy resume.
 - **SC-005**: State, artifacts, event ranges, receipts, and effects reconcile with zero loss, duplication, conflict, or unresolved ambiguity.
 - **SC-006**: Phase 014 rejects absent, failed, stale, wrong-mode, or unverifiable drill evidence.
 
@@ -178,11 +180,12 @@ are evidence inputs, not graph-level planning dependencies, and every consumed i
 manifest and certificate.
 
 The highest risk is a theatrical rollback: toggling a flag back while leaving new writes, unresolved effects, divergent
-projections, or stranded state behind. The drill therefore requires a control continuation, production-shaped failure
-detection, admission freeze, writer fencing, monotonic authority epochs, state reconciliation, stale-writer rejection,
-and component-level integrity comparisons. A second risk is a dangerous rehearsal that touches real authority or live
-effects; hermetic roots, a dedicated test authority store, synthetic clock, effect cassettes, and post-run cleanup
-attestation are hard preconditions.
+projections, or stranded state behind. The drill therefore reads restoration bytes back from the durable sandbox store,
+compares them with a separately built control reconstruction, and fingerprints through the restored-state tail. A
+storage-layer corruption and a no-op restore must both fail the drill. Production-shaped detection, admission freeze,
+writer fencing, monotonic authority epochs, applied dispositions, and stale-writer rejection remain mandatory. A second
+risk is a dangerous rehearsal that touches real authority or live effects; hermetic roots, a dedicated test authority
+store, synthetic clock, effect cassettes, and post-run cleanup attestation are hard preconditions.
 
 Other risks are stale parity evidence, an incomplete state classification, rollback assets that no longer match the
 candidate, false equality from comparing only final state, hidden duplicate effects, and a certificate that survives

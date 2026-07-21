@@ -19,7 +19,10 @@
       "in-flight state classification tasks",
       "deep-loop state disposition tasks",
       "in-flight state classification checklist",
-      "deep-loop cutover state verification"
+      "deep-loop cutover state verification",
+      "in-flight state classification implementation",
+      "in-flight classification verification receipts",
+      "deep-loop state disposition manifest"
     ],
     "key_topics": [
       "in-flight",
@@ -36,14 +39,35 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/inflight-state-classification.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inflight-state-classification.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/inflight-state-classification.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,13 +117,13 @@
         "source": "derived"
       },
       {
-        "name": "complete",
+        "name": "one",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "complete",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -147,20 +171,20 @@
         "source": "derived"
       },
       {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "missing-row",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -169,43 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
+    "causal_summary": "Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.300Z",
-    "last_save_at": "2026-07-17T13:21:14.985Z",
+    "last_save_at": "2026-07-21T03:40:30.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5981b113b1d4487d363f84ab60119b0918891c62c86192b4ed64f38e92785ab",
+    "source_fingerprint": "sha256:fda6bd498149f31db033b3b5d0775bac138438e4786bd198ed1b0a760f476868",
     "source_doc_hashes": {
-      "spec.md": "5f9e708bf4dd4c199d0322dfd5e17a3e7c65426ab00a127afb9b02c797418bea",
-      "plan.md": "0d59003919c34bf2661ec6c68b4e42241f6298e17080d49410bbdea130f35d07",
-      "tasks.md": "7c6621f74c1fbb41a9ebe1b059fc2098d86f11995492ff93e322d308f2c5bf0e",
-      "checklist.md": "92c65b5854a99c21c09574171533c3188ef6a4159136ea48e5783fe82add8708"
+      "spec.md": "54c3969e946321501a7f12e5ebad01e5f364837fe9bb90a16d0d2043493e4d66",
+      "plan.md": "a52f53468331826d2dcaa0fd5ae548335edfab7a7882a3e4d79d35f4dd433953",
+      "tasks.md": "6fe165fd034182a2c9fd6f4245061b4600e7775d080864aa3c0da405b595e40c",
+      "checklist.md": "63b9e2d6415f25819944402fbe276cf5f4e75d73935001874985019638fe5618",
+      "implementation-summary.md": "4847876926f766401beff4eded452ca23712afa26b941f09be95dbc0f7af0523"
     },
     "last_active_child_id": null,
     "last_active_at": null

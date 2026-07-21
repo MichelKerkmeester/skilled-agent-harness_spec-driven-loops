@@ -83,6 +83,7 @@ The sibling phases need one blocking rollup gate that proves their evidence is c
 | REQ-002 | The whole sk-design filesystem is kebab-clean. | The inventory has zero in-scope underscore-bearing names outside the exemption set and no unknown bucket. |
 | REQ-003 | References resolve across the whole surface. | Markdown, JSON/YAML/TOML path values, and shell source/link consumers contain no stale or broken path. |
 | REQ-004 | The exemption boundary is proven. | Tool-mandated names, Python scripts/package dirs, identifiers, keys, and frontmatter fields are unchanged. |
+| REQ-005 | The gate records its rollup evidence. | The rollup report aggregates the sibling clean-reference and exemption results and introduces no new changes. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

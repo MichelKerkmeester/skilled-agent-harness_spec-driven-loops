@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:40.285Z",
-    "last_save_at": "2026-07-17T13:21:40.929Z",
+    "last_save_at": "2026-07-19T18:09:56.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:957bdbb6ef4e0c45c1bd428875d41954e71ffc23c7be49f5fdff1125e9c9782b",
+    "source_fingerprint": "sha256:bdc7b655f4c13e8a3cb48592b6098ce56554fccc24fd4c1d4ec1e7d5d8212540",
     "source_doc_hashes": {
-      "spec.md": "9669d246d7cf9055e2cdada79a723199822636c9df244478d349b15eed4d32a9",
-      "plan.md": "62ecdb221661b836472f241e5f1b9511fa903b0f60b22fa3aac444796a81f7c3",
+      "spec.md": "75aeb4f247406548dd35c8fda70c6d8db3832551c00d02098c7509349dc2d870",
+      "plan.md": "5d84a0fb680a4817972374b0913224d1d6ef60516ca6f632660a6ceab603801c",
       "tasks.md": "c0558381196649c6d58cb604ba9003c1b07e601713083ab66dcb1cc675bfd63b",
-      "checklist.md": "817cd3c86d04f00773be36c88f4ce02ca05006eb02182e4c16a08386792428c2"
+      "checklist.md": "b210484748d87d9c3b4e807b8bd5f0a2b13607c313e761cb4c04f3e3f21531ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

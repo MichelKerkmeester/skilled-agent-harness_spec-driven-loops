@@ -4,13 +4,13 @@ description: "Level-2 evidence checklist for the compiled tooling destination gr
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Checklist: mcp-tooling Unified Router Canary
+# Verification Checklist: mcp-tooling Unified Router Canary
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
 
 <!-- ANCHOR:protocol -->
-## Protocol
+## Verification Protocol
 
 - [x] CHK-001 [P1] Validation is phase-local, zero-dependency, and read-only outside this folder.
   - **Evidence**: `harness/validate-canary.cjs` reports zero external dependencies and re-hashes every authored input and frozen scorer before and after execution.
@@ -106,7 +106,7 @@ contextType: "implementation"
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
-## Summary
+## Verification Summary
 
 The execution-plane idempotency teeth, Stage 4, and Stage 6 are GREEN with legacy still serving-authoritative. Strict packet validation was attempted and failed with 11 errors and 3 warnings from the packet's legacy template shape plus unavailable validator runtime artifacts; it is not claimed as passing.
 

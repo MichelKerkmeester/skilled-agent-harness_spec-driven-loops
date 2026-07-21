@@ -101,7 +101,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 
 - [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Agent Improvement mode gate, mode-migration certificate, phase-014 readiness handoff, and later phase-014 authority-cutover certificate
 - [ ] CHK-036 [P1] The common-service reuse matrix names `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` and records that they consume the mode-004 source
-- [ ] CHK-037 [P2] Research traceability cites the 065/002 findings on AgentIR, first-divergent traces, Pareto lineage, frozen evaluator capsules, raw observations, behavior-family coverage, evaluator leakage, transfer, and reversible promotion
+- [ ] CHK-037 [P2] Research traceability cites the 036/002 findings on AgentIR, first-divergent traces, Pareto lineage, frozen evaluator capsules, raw observations, behavior-family coverage, evaluator leakage, transfer, and reversible promotion
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

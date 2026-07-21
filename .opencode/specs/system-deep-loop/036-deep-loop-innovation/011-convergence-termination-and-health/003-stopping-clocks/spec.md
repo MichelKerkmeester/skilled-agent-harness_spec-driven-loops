@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Stopping Clocks
 
-> Phase adjacency under the 008 parent (grouping order, not a runtime dependency): predecessor `002-cycle-detection`; successor `004-value-of-computation-allocation`.
+> Phase adjacency under the 011 parent (grouping order, not a runtime dependency): predecessor `002-cycle-detection`; successor `004-value-of-computation-allocation`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

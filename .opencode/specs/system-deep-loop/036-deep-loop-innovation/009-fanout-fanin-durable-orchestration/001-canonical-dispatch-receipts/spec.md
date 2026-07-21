@@ -11,13 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T04:08:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the canonical dispatch-receipt planning contract"
-    next_safe_action: "Implement pre-spawn ledger append and resume duplicate detection"
+    recent_action: "Implemented and verified the additive-dark dispatch-receipt barrier and resume projection"
+    next_safe_action: "Integrate through a later authorized leaf"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,22 +42,22 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented and verified (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-009 durable fan-out/fan-in parent; promotes the phase-005 adapter fingerprint into durable state |
-| **Depends on** | None (`[]`); sibling planning contracts are independent, while phase-009 implementation inherits phases 002-005 as program prerequisites |
+| **Depends on** | None (`[]`); sibling planning contracts are independent, while phase-009 implementation inherits phases 005-008 as program prerequisites |
 | **Authority posture** | Additive-dark until the program's staged authority cutover; legacy execution remains authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Phase 005 deliberately stops at the dispatch boundary. Its executor adapters resolve `{ command, args, input, effectiveConfig, invocationFingerprint }`, including executor kind, model, effort, web-search policy, executable version, and prompt digest, but its specification states that the fingerprint is an adapter return value rather than a ledger event. A process crash therefore loses the durable fact that a particular leaf launch contract was resolved, and resume cannot distinguish a leaf that was never planned from one whose launch crossed the persistence boundary (`../../../005-fanout-live-tools-unblock/spec.md`).
+Phase 005 deliberately stops at the dispatch boundary. Its executor adapters resolve `{ command, args, input, effectiveConfig, invocationFingerprint }`, including executor kind, model, effort, web-search policy, executable version, and prompt digest, but its specification states that the fingerprint is an adapter return value rather than a ledger event. A process crash therefore loses the durable fact that a particular leaf launch contract was resolved, and resume cannot distinguish a leaf that was never planned from one whose launch crossed the persistence boundary (`../../005-fanout-live-tools-unblock/spec.md`).
 
-The phase-006 typed ledger already plans immutable, conflict-detecting idempotent append, authorized event linkage, monotonic sequence, and a durable append receipt (`../../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`). Phase 007 adds semantic receipts and intent-before-effect recovery, including the rule that an unresolved external effect must be reconciled rather than replayed speculatively (`../../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`). The shipped `runtime/lib/deep-loop/receipt-crypto.ts` supplies deterministic per-dispatch key derivation, recursively canonical JSON, HMAC signing that excludes the `mac` field, and constant-time verification, but its run-master secret remains outside the receipt and its process-local MAC cannot by itself establish restart-verifiable authority.
+The phase-006 typed ledger already plans immutable, conflict-detecting idempotent append, authorized event linkage, monotonic sequence, and a durable append receipt (`../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`). Phase 007 adds semantic receipts and intent-before-effect recovery, including the rule that an unresolved external effect must be reconciled rather than replayed speculatively (`../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`). The shipped `runtime/lib/deep-loop/receipt-crypto.ts` supplies deterministic per-dispatch key derivation, recursively canonical JSON, HMAC signing that excludes the `mac` field, and constant-time verification, but its run-master secret remains outside the receipt and its process-local MAC cannot by itself establish restart-verifiable authority.
 
-This phase composes those contracts into one canonical pre-spawn event, `lineage_dispatch_resolved`, for every leaf launch. The event records the stable dispatch identity, resolved executor contract, phase-005 invocation fingerprint, safe input/config digests, authorization linkage, and idempotency facts before the subprocess starts. Spawn is forbidden until the phase-006 ledger returns a durable append receipt. On resume, a verified exact receipt marks the dispatch slot as already resolved and prevents a second blind launch; receipt-without-result is explicitly unresolved and must flow to the phase-007 recovery contract and the successor result-envelope/salvage phase. The program phase tree assigns this outcome to phase 009 after phases 002-005 (`../../../manifest/phase-tree.json`).
+This phase composes those contracts into one canonical pre-spawn event, `lineage_dispatch_resolved`, for every leaf launch. The event records the stable dispatch identity, resolved executor contract, phase-005 invocation fingerprint, safe input/config digests, authorization linkage, and idempotency facts before the subprocess starts. Spawn is forbidden until the phase-006 ledger returns a durable append receipt. On resume, a verified exact receipt marks the dispatch slot as already resolved and prevents a second blind launch; receipt-without-result is explicitly unresolved and must flow to the phase-007 recovery contract and the successor result-envelope/salvage phase. The program phase tree assigns this outcome to phase 009 after phases 005-008 (`../../manifest/phase-tree.json`).
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -114,6 +118,17 @@ This phase composes those contracts into one canonical pre-spawn event, `lineage
 | Append evidence | ledger ID, committed sequence, event hash, resulting head, authorization proof reference | Returned by the ledger append receipt and exposed with, not self-embedded inside, the pre-append payload |
 <!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:implementation-evidence -->
+### Implementation Evidence
+
+- The closed version-one event definition and builder live in `runtime/lib/dispatch-receipts/event-contract.ts`.
+- The ordered durable spawn barrier lives in `runtime/lib/dispatch-receipts/dispatch-barrier.ts` and requires the phase-007 authorized evidence writer.
+- Exact phase-005 fingerprint verification lives in `runtime/lib/dispatch-receipts/fingerprint.ts`; no second invocation fingerprint is stored.
+- Ledger-only, advisory HMAC, and durable-provider integrity profiles live in `runtime/lib/dispatch-receipts/integrity.ts`.
+- Verified replay and explicit absent, result-recorded, unresolved, conflict, and corrupt decisions live in `runtime/lib/dispatch-receipts/resume-projection.ts`.
+- `runtime/tests/unit/dispatch-receipts.vitest.ts` passes 26 tests covering all four executor kinds, durable ordering, exact and concurrent retry, changed-fact conflicts, canonicalization, secret canaries, honest crypto labeling, resume state, crash cuts, and corrupt evidence.
+<!-- /ANCHOR:implementation-evidence -->
+
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
@@ -140,11 +155,11 @@ The highest risk is collapsing durable intent into proof of execution. The recei
 
 The next risk is split fingerprint authority. Phase 005 owns adapter resolution and the invocation fingerprint; this phase stores that exact value and the normalized effective facts but does not invent a second competing fingerprint. A mismatch between the stored fingerprint, the reconstructed desired contract, and the event facts is a conflict. The phase-006 ledger supplies durable integrity and idempotent append; the phase-007 receipt/effect service supplies intent-before-effect and reconciliation policy; `receipt-crypto.ts` supplies canonical HMAC primitives without authorizing a false cross-resume trust claim.
 
-This child declares `depends_on: []` because the phase-009 sibling planning contracts are independent. Program execution still inherits phase 009's dependencies on phases 002, 003, 004, and 005 as recorded in `../../../manifest/phase-tree.json`. The implementation remains additive-dark and cannot move production resume authority before phase 014. Later result, salvage, lease, and fan-in children depend on the typed evidence boundary defined here but may not reinterpret a dispatch receipt as a terminal outcome.
+This child declares `depends_on: []` because the phase-009 sibling planning contracts are independent. Program execution still inherits phase 009's dependencies on phases 005, 006, 007, and 008 as recorded in `../../manifest/phase-tree.json`. The implementation remains additive-dark and cannot move production resume authority before phase 014. Later result, salvage, lease, and fan-in children depend on the typed evidence boundary defined here but may not reinterpret a dispatch receipt as a terminal outcome.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may finalize module names, the registered event-version number, and the durable MAC provider after phase-006/004 interfaces materialize. It may not weaken pre-spawn durability, exact fingerprint promotion, idempotent conflict detection, secret exclusion, honest verifier labeling, unresolved receipt recovery, or the additive-dark authority boundary.
+None. The implementation finalized the module as `runtime/lib/dispatch-receipts/`, registered event version 1, and kept durable MAC verification provider-driven. Process-local HMAC remains advisory, and the ledger remains the durable integrity authority.
 <!-- /ANCHOR:questions -->

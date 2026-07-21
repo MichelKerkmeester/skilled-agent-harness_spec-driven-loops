@@ -22,6 +22,21 @@ The mechanism is a one-directional, gated pipeline: **sanitized handoff/correcti
 
 Crucially, the phase is **gated on a demonstrated routing gain from real correction-telemetry volume**. At `N=1` there is nothing to learn (one destination, inert weights, no handoff signal), and most parent hubs may run `P = static` forever (synthesis §12). This spec therefore specifies a subsystem that may be built, may sit dormant, and may never be promoted — and that is a correct outcome, not a failure. This document is **planning/design only**: it defines the contract and gates, and does not modify any live routing config, registry, scorer, or skill.
 
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Implemented and shadow-validated (`implemented-dormant`) — the offline `CorrectionOverlayV1` pipeline (sanitized ingestion → candidate compile → real-scorer replay → hard-gated shadow promotion → fenced rollback) is built; serving authority stays legacy/shadow-only and the overlay is dormant (`overlay=null` / `P=static`) until a demonstrated routing gain; repository-level strict validation reserved for the orchestrator |
+| **Created** | 2026-07-18 |
+| **Branch** | `007-learning-overlay` |
+| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
+| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2 learning plane, §4 seam D, §9 stage 5, §12) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -29,7 +44,9 @@ The refactor's route decisions are compiled from authored sources and are static
 
 ### Purpose
 Provide a **safe, reversible, offline-only** learning channel: a candidate `CorrectionOverlayV1` that learns *only* the vocabulary→destination assignment, is proven byte-stable and route-gold-green before it can serve, requires independent human promotion, and is activated (and rolled back) by a fenced pointer CAS — never by editing a live policy.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SCOPE
 
 ### In Scope
@@ -56,7 +73,9 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 | `007-learning-overlay/spec.md` | Create | This specification (planning/design only) |
 | `007-learning-overlay/plan.md` | Create | Build approach for the offline overlay plane |
 | `007-learning-overlay/tasks.md` | Create | Ordered, checkable task list |
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -78,7 +97,9 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 | REQ-008 | The training corpus is **sanitized** — a privacy filter + retention policy govern the shadow-evaluation traffic sample (synthesis open-q 7). | No raw or unfiltered record reaches the overlay compiler; retention/partition policy is declared and enforced by the ingestion stage. |
 | REQ-009 | The base contract remains **complete and correct with `overlay = null` / `P = static`**; the overlay must not become load-bearing for the base (synthesis §5.3, §12). | Removing the overlay entirely changes no base-route behavior; an `overlay = null` equivalence test passes; the base route-gold is unaffected by the overlay subsystem's presence. |
 | REQ-010 | The phase is **gated on a demonstrated routing gain from real correction-telemetry volume** and may run `P = static` forever (synthesis §12). | A documented meta-gate blocks any promotion until a measured routing gain over a real telemetry corpus is recorded; absent that evidence, the subsystem stays dormant and unpromoted. |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: A candidate overlay compiles **offline** from sanitized correction records into a byte-stable `EffectivePolicy` tuple whose identity is `hash(base, overlay, schema, generation)` with the base bytes unchanged (REQ-001, REQ-006).
@@ -88,6 +109,19 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 - **SC-005**: The base contract is unaffected by the overlay: with `overlay = null` / `P = static` all base behavior is identical, proving the overlay is **not load-bearing** (REQ-009).
 - **SC-006**: Promotion requires an **independent human approval record** and passes all safety/parity hard gates; no aggregate score alone activates an overlay (REQ-005).
 - **SC-007**: The phase's **meta-gate** is documented and enforced: no overlay is promoted absent a demonstrated routing gain from real correction-telemetry volume (REQ-010).
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Phase 0 `CorrectionOverlayV1` schema + canonical serialization; Phase 1 effective-identity contract | The overlay cannot be hashed or bound without them | Consumed read-only from the frozen upstream `canonical.cjs`; the overlay defines no serializer of its own |
+| Dependency | Phase 2 evaluator + compatibility projector; Phase 3/4 receipts + handoff records | Replay and the training corpus depend on them | Replay reuses the imported phase-002 `evaluate()`/`projectToRouteGold()`; the shared scorer stays byte-unchanged [synthesis §8.2] |
+| Dependency | Real correction-telemetry volume + independent human approval | Promotion is impossible without both | Meta-gate blocks promotion until a measured routing gain exists; the plane stays dormant (`overlay=null` / `P=static`) — a correct terminal state [synthesis §12] |
+| Risk | A mutable online overlay breaking deterministic replay + request-pinned identity | Would break the route-gold safety net | Eliminated by design: learning is offline-only and flips WHICH frozen overlay is active via a fenced pointer CAS; the serving policy is never edited online [synthesis §6] |
+| Risk | The overlay becoming load-bearing for the base contract | Base correctness would depend on an optional plane | `overlay=null` equivalence is asserted; removing the overlay changes no base-route behavior (REQ-009) |
+<!-- /ANCHOR:risks -->
 
 ## MIGRATION GATE
 
@@ -102,6 +136,14 @@ Because this phase is **OPTIONAL / OFFLINE / LAST**, "before the next activates"
 - **Downstream (before phase `008-fleet-cleanup` retires legacy dual-read):** any overlay in service must already sit behind the fenced CAS with a proven rollback, so that fleet cleanup (Stage 7) never inherits an un-reversible learned generation.
 
 **Non-negotiable constraints (apply to every phase of the refactor):** deterministic offline route-gold replay is preserved; the shared benchmark scorer `router-replay.cjs` is **never** touched; authority stays destination-local (a proof/recommendation is never a capability); every activation is reversible and gated (fenced CAS activation with a retained prior generation); and there is no over-emission. This phase adds one further self-imposed constraint from synthesis §12: **the overlay must never become load-bearing for the base contract.**
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Whether any field beyond vocabulary→destination is learnable per hub is synthesis open-question 3 and needs live validation first; this phase learns only the vocab→destination assignment (weights stay a uniform inert `4`) [synthesis open-q 3].
+- The production privacy/retention program (reviewed classification rules, deletion operations, access controls, a retention owner) is open-question 7; this phase implements only a bounded structural privacy filter + retention policy [synthesis open-q 7].
+- Whether any parent hub ever accrues enough real correction-telemetry volume to justify promotion is unresolved; `P = static` forever is an expected outcome for most hubs [synthesis §12].
+<!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 

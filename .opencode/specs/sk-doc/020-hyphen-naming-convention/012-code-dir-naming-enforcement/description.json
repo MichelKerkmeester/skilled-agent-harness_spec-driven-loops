@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+  "description": "The canonical rule (`shared/references/filesystem-naming-convention.md`) says kebab-case is the sole in-scope form, but three enforcement gaps let",
+  "keywords": [
+    "canonical",
+    "rule",
+    "shared",
+    "references",
+    "filesystem-naming-convention",
+    "says",
+    "kebab-case",
+    "sole",
+    "in-scope",
+    "form",
+    "three",
+    "enforcement",
+    "gaps",
+    "let"
+  ],
+  "lastUpdated": "2026-07-20T10:42:52.483Z",
+  "specId": "012",
+  "folderSlug": "code-dir-naming-enforcement",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

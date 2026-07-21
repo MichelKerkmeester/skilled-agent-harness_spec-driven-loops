@@ -14,6 +14,7 @@ status: "blocked-shadow"
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -24,10 +25,14 @@ status: "blocked-shadow"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (artifact/contract)`
+<!-- /ANCHOR:notation -->
 
 ---
 
-## Phase 1: Readiness Preflight
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+### Readiness Preflight
 
 - [ ] T001 [B] Read the `ActivationManifestV1` selector and confirm all four hubs (`mcp-code-mode`, `sk-code`, `system-deep-loop`, `mcp-tooling`) are on the compiled generation with zero open Stage-4 canary mismatch (REQ-001).
   - **Evidence**: all four committed selectors are legacy/shadow-only at generation 0; `system-deep-loop` also has an open `shadow-partial` route-gold gate.
@@ -39,10 +44,14 @@ status: "blocked-shadow"
   - **Evidence**: blocked before real retained-generation creation; only the implementation and isolated positive control exist.
 - [ ] T005 [B] Capture route-gold + drift-check baselines for delta comparison.
   - **Evidence**: fleet baseline is not green; `system-deep-loop` currently has seven resource mismatches.
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
-## Phase 2: Per-Skill Deletion (activation order)
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+### Per-Skill Deletion (activation order)
 
 - [x] T006 Confirm the deletion driver is parameterized by `skillId` only; `rg -n 'SingularRouter\|skillId == .mcp-code-mode.\|if.*mcp-code-mode'` over the cleanup surface returns zero matches (REQ-002, SC-002).
   - **Evidence**: the validator reports `nameConditionalBranches:0`; the driver remains parameterized by `skillId`.
@@ -60,10 +69,14 @@ status: "blocked-shadow"
   - **Evidence**: blocked by committed readiness and `shadow-partial` candidate route-gold.
 - [ ] T013 [B] `mcp-tooling`: repeat T007–T010 (highest blast radius — last).
   - **Evidence**: blocked by the committed legacy/shadow-only selector.
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
-## Phase 3: Hot-Card & Final State
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+### Hot-Card & Final State
 
 - [ ] T014 [B] Strip the compatibility alias array from the hot card by regenerating `PolicyCardV1.md` from the compiled snapshot (no hand-edit) (REQ-004, §5.3).
   - **Evidence**: blocked; no real terminal cleanup state exists.
@@ -77,9 +90,11 @@ status: "blocked-shadow"
   - **Evidence**: blocked before real deletion; stale CAS still rejects without changing target bytes.
 - [x] T019 Confirm `git diff --stat -- '**/router-replay.cjs'` is empty — scorer untouched across the whole cleanup (REQ-007, SC-005).
   - **Evidence**: no git command was run; before/after SHA-256 values remain `b039b8dd...`, `d5a9cc72...`, and `249be7c1...`.
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`.
@@ -88,12 +103,15 @@ status: "blocked-shadow"
   - **Evidence**: committed selectors remain legacy/shadow-only and `system-deep-loop` remains `shadow-partial`.
 - [ ] SC-001..SC-005 satisfied with evidence: sole compiled resolver, N=1 via identical path, drift + rollback proven, hot card alias-free, scorer unchanged.
   - **Evidence**: the harness exits 0 with the honest current-state result `status:"PREFLIGHT_BLOCKED"`; no real cleanup occurred.
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)
 - **Shared gate model**: `../spec.md`
+<!-- /ANCHOR:cross-refs -->

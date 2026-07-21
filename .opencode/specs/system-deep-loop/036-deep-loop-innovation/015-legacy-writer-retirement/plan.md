@@ -142,7 +142,7 @@ reversible until the first delete operation and preserves the evidence required 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The controlling dependencies are the 006 parent sequencing invariants and success criteria, `manifest/phase-tree.json`,
+The controlling dependencies are the 036 parent sequencing invariants and success criteria, `manifest/phase-tree.json`,
 the phase-003 baseline/census contract, phase-014 `002-per-mode-authority-flip` for per-mode authority and ordering,
 phase-014 `003-cutover-certificate-and-rollback-window` for clean closure and retained rollback assets, phase-007
 receipt semantics for durable evidence, and the phase-016 whole-system gate. The spec-kit validator and isolated git

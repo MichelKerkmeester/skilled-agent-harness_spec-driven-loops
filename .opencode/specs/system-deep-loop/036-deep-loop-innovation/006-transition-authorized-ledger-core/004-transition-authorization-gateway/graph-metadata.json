@@ -19,7 +19,9 @@
       "transition authorization gateway tasks",
       "default deny gateway tasks",
       "transition authorization gateway checklist",
-      "default deny gateway verification"
+      "default deny gateway verification",
+      "transition authorization gateway implementation",
+      "authorization decision replay"
     ],
     "key_topics": [
       "transition",
@@ -36,14 +38,21 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,31 +190,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 014.",
     "created_at": "2026-07-16T03:43:46.139Z",
-    "last_save_at": "2026-07-17T13:21:10.352Z",
+    "last_save_at": "2026-07-20T22:50:34.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24918a9711fd4462666ee617b919ec4545644dc6940498da742c6d74b95a9fa4",
+    "source_fingerprint": "sha256:4c65907923cf86f9439eae1583f8f0f1e0fda1092a3cdcb6fdddb4160ea82310",
     "source_doc_hashes": {
-      "spec.md": "5d40ac1c336ef6a4a10320146bbc3b39913abbfae283ab9b3b19aab9a70ff891",
-      "plan.md": "2e3b77a46579aea2a74cb08a8687f7c45f2252457ec86378de99c83afa487987",
-      "tasks.md": "5c4d4f2a6de5141903a5067f0c3750a8c909a88344db4155564ad5a7d517a5a4",
-      "checklist.md": "14731a9c4b1dc848702e42c15476d98ec89ddd22d0c99976443513fdd16c25c5"
+      "spec.md": "b3305df81959b043d2cbad19d1e0525105302a4a15e55e624ec8f2318d0a262b",
+      "plan.md": "3eb299a3b7819035ccf5e3be69d14cdc5497fe51a289fbd4284d7c58a2eba1d4",
+      "tasks.md": "a0b20da7ab3b8925c39ece0551b88ffc7d9dc5060f4f362238e5d88c7e3a8280",
+      "checklist.md": "ba0ac35de4f30e29ab3affff4b3a9d85885fd3a48d455f4ff71b5e9f097d87d3",
+      "implementation-summary.md": "b3b60317493c1c921203feaa2c9739a9ad18b85bd6d08f0736d01a5bb0e5d946"
     },
     "last_active_child_id": null,
     "last_active_at": null

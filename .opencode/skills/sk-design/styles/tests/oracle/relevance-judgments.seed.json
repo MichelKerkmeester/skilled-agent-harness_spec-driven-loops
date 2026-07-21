@@ -1,0 +1,167 @@
+{
+  "seedVersion": 1,
+  "humanLabelingRequired": true,
+  "warning": "No row here is human-authored gold. authored-similar rows trace to designSystem.similar[] authorship resolved against the corpus; silver-heuristic rows are retrieval-derived pseudo-labels from cross-lane agreement. A true judged qrels set still requires human relevance labeling.",
+  "labelSources": [
+    "authored-similar",
+    "silver-heuristic"
+  ],
+  "method": {
+    "authored-similar": "Resolved style_relationships parsed from each style's designSystem.similar[] similarity claims.",
+    "silver-heuristic": "Candidates appearing in two or more independent retrieval lanes for a fixed exact-facet probe query; weak positive at confidence 0.4."
+  },
+  "judgments": [
+    {
+      "query": {
+        "styleId": "aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa"
+      },
+      "relevant": [
+        "bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb"
+      ],
+      "label_source": "authored-similar",
+      "confidence": 1,
+      "provenance": {
+        "table": "style_relationships",
+        "resolutionState": "resolved",
+        "rawTargetLabel": "Beta Product"
+      }
+    },
+    {
+      "query": {
+        "styleId": "bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb"
+      },
+      "relevant": [
+        "aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa"
+      ],
+      "label_source": "authored-similar",
+      "confidence": 1,
+      "provenance": {
+        "table": "style_relationships",
+        "resolutionState": "resolved",
+        "rawTargetLabel": "Alpha Editorial"
+      }
+    },
+    {
+      "query": {
+        "styleId": "cccccccc-3333-4333-8333-cccccccccccc"
+      },
+      "relevant": [
+        "aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa"
+      ],
+      "label_source": "authored-similar",
+      "confidence": 1,
+      "provenance": {
+        "table": "style_relationships",
+        "resolutionState": "resolved",
+        "rawTargetLabel": "Alpha Editorial"
+      }
+    },
+    {
+      "query": {
+        "styleId": "dddddddd-4444-4444-8444-dddddddddddd"
+      },
+      "relevant": [
+        "bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb"
+      ],
+      "label_source": "authored-similar",
+      "confidence": 1,
+      "provenance": {
+        "table": "style_relationships",
+        "resolutionState": "resolved",
+        "rawTargetLabel": "Beta Product"
+      }
+    },
+    {
+      "query": {
+        "text": "motion animation product interface",
+        "requiredFacets": [
+          "motion"
+        ]
+      },
+      "relevant": [
+        "bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb"
+      ],
+      "label_source": "silver-heuristic",
+      "confidence": 0.4,
+      "provenance": {
+        "method": "cross-lane-agreement",
+        "agreeingChannels": [
+          "fts",
+          "structured"
+        ],
+        "requiredFacets": [
+          "motion"
+        ]
+      }
+    },
+    {
+      "query": {
+        "text": "motion animation product interface",
+        "requiredFacets": [
+          "motion"
+        ]
+      },
+      "relevant": [
+        "dddddddd-4444-4444-8444-dddddddddddd"
+      ],
+      "label_source": "silver-heuristic",
+      "confidence": 0.4,
+      "provenance": {
+        "method": "cross-lane-agreement",
+        "agreeingChannels": [
+          "fts",
+          "structured"
+        ],
+        "requiredFacets": [
+          "motion"
+        ]
+      }
+    },
+    {
+      "query": {
+        "text": "warm cream serif typography",
+        "requiredFacets": [
+          "warm-surface"
+        ]
+      },
+      "relevant": [
+        "aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa"
+      ],
+      "label_source": "silver-heuristic",
+      "confidence": 0.4,
+      "provenance": {
+        "method": "cross-lane-agreement",
+        "agreeingChannels": [
+          "fts",
+          "structured"
+        ],
+        "requiredFacets": [
+          "warm-surface"
+        ]
+      }
+    },
+    {
+      "query": {
+        "text": "warm cream serif typography",
+        "requiredFacets": [
+          "warm-surface"
+        ]
+      },
+      "relevant": [
+        "cccccccc-3333-4333-8333-cccccccccccc"
+      ],
+      "label_source": "silver-heuristic",
+      "confidence": 0.4,
+      "provenance": {
+        "method": "cross-lane-agreement",
+        "agreeingChannels": [
+          "fts",
+          "structured"
+        ],
+        "requiredFacets": [
+          "warm-surface"
+        ]
+      }
+    }
+  ]
+}

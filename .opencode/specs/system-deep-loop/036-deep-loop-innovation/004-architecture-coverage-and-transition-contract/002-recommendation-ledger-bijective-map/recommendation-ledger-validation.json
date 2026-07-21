@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0.0",
+  "base_commit": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "verdict": "PASS",
+  "source_bijection": {
+    "expected": {
+      "run-a": 8,
+      "run-b": 59,
+      "run-c": 111,
+      "total": 178
+    },
+    "actual": {
+      "run-a": 8,
+      "run-b": 59,
+      "run-c": 111,
+      "total": 178
+    },
+    "unique_source_locators": 178,
+    "unique_composite_source_locators": 178,
+    "source_locator_sha256": "b6bcf2dcd058ccc825e9eeb3c782ada2d8379a4f889a1e3026bee70f80488aa3",
+    "composite_source_locator_sha256": "d0e83437e43a1ea9562aaa9d2d27f8a59136594068b54ec4aa289c093ac4a5ce",
+    "run_c_empty_uniqueness_zero_based_ordinals": [
+      53,
+      82,
+      88,
+      94
+    ]
+  },
+  "stable_ids": {
+    "count": 178,
+    "unique": 178,
+    "first": "DLR-A-001",
+    "last": "DLR-C-111"
+  },
+  "disposition_buckets": {
+    "adopted": {
+      "count": 112,
+      "row_ids": [
+        "DLR-A-001",
+        "DLR-A-002",
+        "DLR-A-003",
+        "DLR-A-004",
+        "DLR-A-005",
+        "DLR-A-006",
+        "DLR-A-007",
+        "DLR-A-008",
+        "DLR-B-001",
+        "DLR-B-002",
+        "DLR-B-003",
+        "DLR-B-005",
+        "DLR-B-007",
+        "DLR-B-008",
+        "DLR-B-010",
+        "DLR-B-013",
+        "DLR-B-014",
+        "DLR-B-016",
+        "DLR-B-018",
+        "DLR-B-019",
+        "DLR-B-020",
+        "DLR-B-021",
+        "DLR-B-022",
+        "DLR-B-023",
+        "DLR-B-025",
+        "DLR-B-026",
+        "DLR-B-027",
+        "DLR-B-028",
+        "DLR-B-031",
+        "DLR-B-032",
+        "DLR-B-034",
+        "DLR-B-035",
+        "DLR-B-036",
+        "DLR-B-037",
+        "DLR-B-039",
+        "DLR-B-040",
+        "DLR-B-041",
+        "DLR-B-043",
+        "DLR-B-044",
+        "DLR-B-045",
+        "DLR-B-048",
+        "DLR-B-049",
+        "DLR-B-051",
+        "DLR-B-052",
+        "DLR-B-053",
+        "DLR-B-055",
+        "DLR-B-056",
+        "DLR-B-057",
+        "DLR-B-059",
+        "DLR-C-001",
+        "DLR-C-003",
+        "DLR-C-004",
+        "DLR-C-005",
+        "DLR-C-006",
+        "DLR-C-007",
+        "DLR-C-008",
+        "DLR-C-011",
+        "DLR-C-012",
+        "DLR-C-014",
+        "DLR-C-015",
+        "DLR-C-016",
+        "DLR-C-020",
+        "DLR-C-023",
+        "DLR-C-024",
+        "DLR-C-025",
+        "DLR-C-028",
+        "DLR-C-039",
+        "DLR-C-040",
+        "DLR-C-041",
+        "DLR-C-042",
+        "DLR-C-045",
+        "DLR-C-046",
+        "DLR-C-047",
+        "DLR-C-048",
+        "DLR-C-049",
+        "DLR-C-050",
+        "DLR-C-054",
+        "DLR-C-056",
+        "DLR-C-057",
+        "DLR-C-058",
+        "DLR-C-062",
+        "DLR-C-063",
+        "DLR-C-069",
+        "DLR-C-070",
+        "DLR-C-071",
+        "DLR-C-072",
+        "DLR-C-073",
+        "DLR-C-074",
+        "DLR-C-078",
+        "DLR-C-079",
+        "DLR-C-080",
+        "DLR-C-082",
+        "DLR-C-083",
+        "DLR-C-084",
+        "DLR-C-085",
+        "DLR-C-087",
+        "DLR-C-088",
+        "DLR-C-089",
+        "DLR-C-090",
+        "DLR-C-091",
+        "DLR-C-093",
+        "DLR-C-097",
+        "DLR-C-099",
+        "DLR-C-100",
+        "DLR-C-102",
+        "DLR-C-104",
+        "DLR-C-106",
+        "DLR-C-107",
+        "DLR-C-108",
+        "DLR-C-109",
+        "DLR-C-110",
+        "DLR-C-111"
+      ],
+      "zero_reason": null
+    },
+    "merged": {
+      "count": 58,
+      "row_ids": [
+        "DLR-B-004",
+        "DLR-B-006",
+        "DLR-B-011",
+        "DLR-B-012",
+        "DLR-B-017",
+        "DLR-B-024",
+        "DLR-B-029",
+        "DLR-B-030",
+        "DLR-B-033",
+        "DLR-B-038",
+        "DLR-B-042",
+        "DLR-B-046",
+        "DLR-B-050",
+        "DLR-B-054",
+        "DLR-C-002",
+        "DLR-C-009",
+        "DLR-C-010",
+        "DLR-C-013",
+        "DLR-C-017",
+        "DLR-C-018",
+        "DLR-C-019",
+        "DLR-C-021",
+        "DLR-C-022",
+        "DLR-C-026",
+        "DLR-C-027",
+        "DLR-C-029",
+        "DLR-C-030",
+        "DLR-C-031",
+        "DLR-C-032",
+        "DLR-C-033",
+        "DLR-C-034",
+        "DLR-C-035",
+        "DLR-C-036",
+        "DLR-C-037",
+        "DLR-C-038",
+        "DLR-C-043",
+        "DLR-C-044",
+        "DLR-C-051",
+        "DLR-C-052",
+        "DLR-C-055",
+        "DLR-C-059",
+        "DLR-C-060",
+        "DLR-C-061",
+        "DLR-C-064",
+        "DLR-C-065",
+        "DLR-C-066",
+        "DLR-C-067",
+        "DLR-C-068",
+        "DLR-C-076",
+        "DLR-C-077",
+        "DLR-C-081",
+        "DLR-C-092",
+        "DLR-C-094",
+        "DLR-C-095",
+        "DLR-C-096",
+        "DLR-C-098",
+        "DLR-C-103",
+        "DLR-C-105"
+      ],
+      "zero_reason": null
+    },
+    "deferred": {
+      "count": 8,
+      "row_ids": [
+        "DLR-B-009",
+        "DLR-B-015",
+        "DLR-B-047",
+        "DLR-B-058",
+        "DLR-C-053",
+        "DLR-C-075",
+        "DLR-C-086",
+        "DLR-C-101"
+      ],
+      "zero_reason": null
+    },
+    "rejected": {
+      "count": 0,
+      "row_ids": [],
+      "zero_reason": "No source row is clearly contradicted by shipped behavior; the excluded ai-system-improvement mode produced no row."
+    }
+  },
+  "adopted_per_phase": {
+    "003": {
+      "count": 0,
+      "row_ids": [],
+      "zero_reason": "No source recommendation is a baseline-census deliverable; source and taxonomy freezing are prerequisite evidence."
+    },
+    "004": {
+      "count": 0,
+      "row_ids": [],
+      "zero_reason": "This phase classifies the corpus and freezes contracts; the source recommendations describe owned downstream behavior."
+    },
+    "005": {
+      "count": 3,
+      "row_ids": [
+        "DLR-B-001",
+        "DLR-B-002",
+        "DLR-B-014"
+      ],
+      "zero_reason": null
+    },
+    "006": {
+      "count": 5,
+      "row_ids": [
+        "DLR-A-002",
+        "DLR-B-003",
+        "DLR-B-019",
+        "DLR-B-035",
+        "DLR-B-057"
+      ],
+      "zero_reason": null
+    },
+    "007": {
+      "count": 7,
+      "row_ids": [
+        "DLR-A-007",
+        "DLR-A-008",
+        "DLR-B-020",
+        "DLR-B-034",
+        "DLR-B-036",
+        "DLR-B-037",
+        "DLR-B-039"
+      ],
+      "zero_reason": null
+    },
+    "008": {
+      "count": 1,
+      "row_ids": [
+        "DLR-B-021"
+      ],
+      "zero_reason": null
+    },
+    "009": {
+      "count": 10,
+      "row_ids": [
+        "DLR-A-004",
+        "DLR-B-005",
+        "DLR-B-008",
+        "DLR-B-010",
+        "DLR-B-013",
+        "DLR-B-025",
+        "DLR-B-026",
+        "DLR-B-027",
+        "DLR-B-041",
+        "DLR-B-043"
+      ],
+      "zero_reason": null
+    },
+    "010": {
+      "count": 4,
+      "row_ids": [
+        "DLR-A-006",
+        "DLR-B-007",
+        "DLR-B-031",
+        "DLR-B-032"
+      ],
+      "zero_reason": null
+    },
+    "011": {
+      "count": 6,
+      "row_ids": [
+        "DLR-A-001",
+        "DLR-B-016",
+        "DLR-B-018",
+        "DLR-B-040",
+        "DLR-B-045",
+        "DLR-B-059"
+      ],
+      "zero_reason": null
+    },
+    "012": {
+      "count": 1,
+      "row_ids": [
+        "DLR-B-056"
+      ],
+      "zero_reason": null
+    },
+    "013": {
+      "count": 72,
+      "row_ids": [
+        "DLR-A-003",
+        "DLR-A-005",
+        "DLR-B-022",
+        "DLR-B-023",
+        "DLR-B-028",
+        "DLR-B-048",
+        "DLR-B-049",
+        "DLR-B-051",
+        "DLR-B-052",
+        "DLR-B-053",
+        "DLR-B-055",
+        "DLR-C-001",
+        "DLR-C-003",
+        "DLR-C-004",
+        "DLR-C-005",
+        "DLR-C-006",
+        "DLR-C-007",
+        "DLR-C-008",
+        "DLR-C-011",
+        "DLR-C-012",
+        "DLR-C-014",
+        "DLR-C-015",
+        "DLR-C-016",
+        "DLR-C-020",
+        "DLR-C-023",
+        "DLR-C-024",
+        "DLR-C-025",
+        "DLR-C-028",
+        "DLR-C-039",
+        "DLR-C-040",
+        "DLR-C-041",
+        "DLR-C-042",
+        "DLR-C-045",
+        "DLR-C-046",
+        "DLR-C-047",
+        "DLR-C-049",
+        "DLR-C-050",
+        "DLR-C-054",
+        "DLR-C-056",
+        "DLR-C-057",
+        "DLR-C-058",
+        "DLR-C-062",
+        "DLR-C-063",
+        "DLR-C-069",
+        "DLR-C-070",
+        "DLR-C-071",
+        "DLR-C-072",
+        "DLR-C-073",
+        "DLR-C-074",
+        "DLR-C-079",
+        "DLR-C-080",
+        "DLR-C-082",
+        "DLR-C-083",
+        "DLR-C-084",
+        "DLR-C-085",
+        "DLR-C-087",
+        "DLR-C-088",
+        "DLR-C-089",
+        "DLR-C-090",
+        "DLR-C-091",
+        "DLR-C-093",
+        "DLR-C-097",
+        "DLR-C-099",
+        "DLR-C-100",
+        "DLR-C-102",
+        "DLR-C-104",
+        "DLR-C-106",
+        "DLR-C-107",
+        "DLR-C-108",
+        "DLR-C-109",
+        "DLR-C-110",
+        "DLR-C-111"
+      ],
+      "zero_reason": null
+    },
+    "014": {
+      "count": 2,
+      "row_ids": [
+        "DLR-C-048",
+        "DLR-C-078"
+      ],
+      "zero_reason": null
+    },
+    "015": {
+      "count": 0,
+      "row_ids": [],
+      "zero_reason": "No source recommendation independently calls for legacy-writer removal; retirement remains gated by cutover telemetry."
+    },
+    "016": {
+      "count": 1,
+      "row_ids": [
+        "DLR-B-044"
+      ],
+      "zero_reason": null
+    },
+    "017": {
+      "count": 0,
+      "row_ids": [],
+      "zero_reason": "No source recommendation independently targets repository integration or closeout; that work remains an operational gate."
+    }
+  },
+  "borderline_for_review": [
+    "DLR-B-040",
+    "DLR-B-045",
+    "DLR-C-023",
+    "DLR-C-024",
+    "DLR-C-111"
+  ],
+  "csv_parity": {
+    "rows": 178,
+    "columns": [
+      "id",
+      "source_run",
+      "source_path",
+      "source_locator",
+      "source_sha256",
+      "source_rank",
+      "source_iteration",
+      "original_recommendation",
+      "original_target",
+      "source_rationale",
+      "source_evidence",
+      "source_effort",
+      "source_impact",
+      "source_thread",
+      "source_mode",
+      "source_angle",
+      "source_uniqueness",
+      "taxonomy_layer",
+      "taxonomy_key",
+      "primary_rationale",
+      "disposition",
+      "disposition_rationale"
+    ],
+    "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+    "csv_sha256": "14c67a8bc09e40016453b063f44848354669827445782786ddf5fa0f7c3e6df2",
+    "verdict": "PASS"
+  },
+  "deterministic_rebuild": {
+    "builds": 2,
+    "verdict": "PASS",
+    "build_1": {
+      "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+      "csv_sha256": "14c67a8bc09e40016453b063f44848354669827445782786ddf5fa0f7c3e6df2",
+      "schema_sha256": "c83beec809586d44d4104ab90aea3268d25841b6ed3b1cba3c18218baf1f3211"
+    },
+    "build_2": {
+      "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+      "csv_sha256": "14c67a8bc09e40016453b063f44848354669827445782786ddf5fa0f7c3e6df2",
+      "schema_sha256": "c83beec809586d44d4104ab90aea3268d25841b6ed3b1cba3c18218baf1f3211"
+    }
+  },
+  "negative_fixtures": {
+    "count": 11,
+    "verdict": "PASS",
+    "cases": [
+      {
+        "name": "missing-row",
+        "verdict": "rejected",
+        "error": "Ledger row count is not 178"
+      },
+      {
+        "name": "extra-row",
+        "verdict": "rejected",
+        "error": "Ledger row count is not 178"
+      },
+      {
+        "name": "duplicate-id",
+        "verdict": "rejected",
+        "error": "Stable IDs are not unique, ordered, and gap-free"
+      },
+      {
+        "name": "duplicate-locator",
+        "verdict": "rejected",
+        "error": "Duplicate literal source locators"
+      },
+      {
+        "name": "invalid-target",
+        "verdict": "rejected",
+        "error": "Invalid taxonomy key for DLR-A-001"
+      },
+      {
+        "name": "parallel-disposition-field",
+        "verdict": "rejected",
+        "error": "Row DLR-A-001 keys differ: expected [\"companion_evidence\",\"disposition\",\"disposition_rationale\",\"id\",\"original_recommendation\",\"original_target\",\"primary_rationale\",\"source_angle\",\"source_effort\",\"source_evidence\",\"source_impact\",\"source_iteration\",\"source_locator\",\"source_mode\",\"source_path\",\"source_rank\",\"source_rationale\",\"source_run\",\"source_sha256\",\"source_thread\",\"source_uniqueness\",\"taxonomy_key\",\"taxonomy_layer\"], got [\"adopt_phase\",\"companion_evidence\",\"disposition\",\"disposition_rationale\",\"id\",\"original_recommendation\",\"original_target\",\"primary_rationale\",\"source_angle\",\"source_effort\",\"source_evidence\",\"source_impact\",\"source_iteration\",\"source_locator\",\"source_mode\",\"source_path\",\"source_rank\",\"source_rationale\",\"source_run\",\"source_sha256\",\"source_thread\",\"source_uniqueness\",\"taxonomy_key\",\"taxonomy_layer\"]"
+      },
+      {
+        "name": "blank-reason",
+        "verdict": "rejected",
+        "error": "Blank disposition rationale for DLR-B-004"
+      },
+      {
+        "name": "invalid-phase",
+        "verdict": "rejected",
+        "error": "Invalid disposition for DLR-A-001"
+      },
+      {
+        "name": "self-merge",
+        "verdict": "rejected",
+        "error": "Self merge for DLR-A-001"
+      },
+      {
+        "name": "missing-merge-target",
+        "verdict": "rejected",
+        "error": "Missing merge target DLR-A-999 for DLR-A-001"
+      },
+      {
+        "name": "merge-cycle",
+        "verdict": "rejected",
+        "error": "Merge cycle detected from DLR-A-001"
+      }
+    ]
+  },
+  "hashes": {
+    "sources": {
+      "run-a-primary": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/research.md",
+        "sha256": "86b0e4a7a6702053149a4c06a3f607102edc58cb364d6493be5350bb10f14016"
+      },
+      "run-a-companion-evidence": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json",
+        "sha256": "111d4c67c7e10da127b0df528cc4c19eb682d2aceafaddb79f25456037511e4a"
+      },
+      "run-b-primary": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        "sha256": "3557433baaebceaf53b01f21ca4ca02807c9f093c3f4285e3a6558c451f59912"
+      },
+      "run-c-primary": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        "sha256": "5ff96cbaf7638d2ff8d48199de976b90a118384a89b42a5e126543dd8b9ec30c"
+      },
+      "taxonomy-enum": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/spec.md",
+        "sha256": "99dbbd9f6156bc0f1e3ce6261ba5e92ca97077ada778d1c8820651b3c1f4d17d"
+      },
+      "phase-manifest": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "sha256": "363da601d45c5eacd90d4ce02adc2af14f80f21d62df6edaf9afa49f6efda50d"
+      },
+      "program-phase-map": {
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "sha256": "d5cb19392cfec58a51869de37e1f8c546f9db3669d703ad0174a6fec6923d634"
+      }
+    },
+    "artifacts": {
+      "recommendation-ledger.json": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+      "recommendation-ledger.csv": "14c67a8bc09e40016453b063f44848354669827445782786ddf5fa0f7c3e6df2",
+      "recommendation-ledger.schema.json": "c83beec809586d44d4104ab90aea3268d25841b6ed3b1cba3c18218baf1f3211",
+      "validate-ledger.cjs": "19646191f7986aa417601aef4a8141a8de7af4e7afa17f11005d5918ceeeff41"
+    }
+  }
+}

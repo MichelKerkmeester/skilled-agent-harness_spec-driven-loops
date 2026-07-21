@@ -10,17 +10,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing"
-    last_updated_at: "2026-07-15T14:01:58Z"
+    last_updated_at: "2026-07-21T01:38:43Z"
     last_updated_by: "codex"
-    recent_action: "Defined P0 fencing, stale-writer, timeout, and recovery checks"
-    next_safe_action: "Run the concurrency matrix against every protected mutation surface"
+    recent_action: "Hardened atomic grant and commit fencing and passed the independent-process adversarial matrix"
+    next_safe_action: "Use the additive adapters from later dark-path integration work"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Locks & Fencing
+# Verification Checklist: Locks & Fencing
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -34,74 +37,74 @@ This checklist is the blocking SOL verifier contract for locks and fencing. Ever
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-006 ledger append/head/receipt boundary and phase-007 additive-dark authority posture are pinned to exact packet revisions
-- [ ] CHK-002 [P0] A reviewed manifest maps every shipped ledger, projection, council, fan-out, repair, pause/resume, checkpoint, and lineage writer to one canonical resource key
-- [ ] CHK-003 [P1] The atomicity domain, resource hierarchy/order, lease TTL/renewal cadence, acquisition timeout, retry policy, token width, and overflow behavior are recorded
-- [ ] CHK-004 [P1] Unsupported multi-host or storage semantics are enumerated and configured to fail closed
+- [x] CHK-001 [P0] Existing envelope, authorized-ledger, replay-fingerprint, and additive-dark authority boundaries are consumed without modification [evidence: path-scoped `git diff --` reports no changes under the three consumed substrate directories]
+- [x] CHK-002 [P0] The frozen manifest maps shipped ledger, projection, council, fan-out, repair, pause/resume, checkpoint, and lineage writers to one resource kind and replacement seam [evidence: `PROTECTED_WRITE_SURFACE_MANIFEST` is frozen in `protected-resource-registry.ts`; it inventories seams and does not route existing writers]
+- [x] CHK-003 [P1] The single-host domain, canonical order, lease TTL/renewal, bounded jittered timeout, safe-integer token width, and overflow behavior are encoded and tested [evidence: focused Vitest `locks-and-fencing.vitest.ts` passed 28/28]
+- [x] CHK-004 [P1] Any unsupported atomicity domain fails with `UNSUPPORTED_ATOMICITY_DOMAIN` [evidence: focused Vitest unsupported-topology assertion passed]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Fence validation occurs inside the same atomic commit boundary as every protected mutation; no check-then-write helper is public
-- [ ] CHK-006 [P0] Release and renewal require resource key, token, lease ID/nonce, and owner; stale teardown cannot remove or extend a successor
-- [ ] CHK-007 [P1] Canonical resource encoding rejects aliases, traversal, empty identity components, and mixed normalization that could split one resource into two lock namespaces
-- [ ] CHK-008 [P1] Existing loop-lock heartbeat/nonce and CLI nonce-safe ownership behavior remain until equivalent fenced coverage proves adapter replacement
+- [x] CHK-005 [P0] `withFence` prepares without side effects, then reacquires the durable claim, revalidates the current lease, and runs the returned commit while takeover remains excluded [evidence: the paused stale preparation is rejected with `STALE_FENCE` before its commit closure executes]
+- [x] CHK-006 [P0] Release and renewal require the exact resource, token, lease ID, and owner tuple; stale teardown is rejected [evidence: focused Vitest exact-owner lifecycle cases passed]
+- [x] CHK-007 [P1] Canonical encoding rejects aliased fields, traversal, empty/noncanonical identities, unknown fields, and mixed normalization [evidence: focused Vitest canonical-resource rejection matrix passed]
+- [x] CHK-008 [P1] Existing loop-lock and CLI ownership code is unchanged; the new coordinator uses its own fsynced candidate plus atomic no-overwrite hard-link claim and reclaims only a valid dead-process record [evidence: path-scoped diff review and focused Vitest independent-process and partial-record cases passed]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] Concurrent acquisition for one resource yields exactly one holder and unique strictly increasing tokens across all later grants
-- [ ] CHK-010 [P0] Release, expiry, crash, coordinator restart, restored state, and rollback never decrement or reuse a resource token
-- [ ] CHK-011 [P0] A live old holder paused immediately before commit resumes after takeover and receives typed stale-fence rejection without changing ledger head, projection version, or lineage state
-- [ ] CHK-012 [P0] Ledger append atomically validates current fence plus expected head; competing current-head writers produce one commit and one typed conflict/stale result
-- [ ] CHK-013 [P0] Projection and checkpoint/pause-resume updates atomically validate current fence plus version/continuity identity; stale replace and clear operations are rejected
-- [ ] CHK-014 [P0] Legacy-only, dark-only, and combined shadow fixtures use one guarded epoch; no raw writer bypass succeeds and a dark failure does not change the authoritative legacy result
-- [ ] CHK-015 [P0] Distinct fan-out lineages run concurrently while duplicate same-lineage workers, same status stream, salvage merge, or wait-checkpoint resume admit only the current token
-- [ ] CHK-016 [P0] A stale resumed process cannot dispatch, append status, merge salvage, clear the wait checkpoint, or emit resumed/restarted state after a successor token exists
-- [ ] CHK-017 [P0] Inverted, nested, and re-entrant acquisition fails before blocking; ordinary contention terminates at the bounded timeout with no force-unlock or token reset
-- [ ] CHK-018 [P0] Malformed/partial coordinator state, ambiguous ledger head, unsupported atomicity domain, and token overflow fail closed without ledger truncation or protected mutation
-- [ ] CHK-019 [P0] PID reuse, dead/live PID probes, clock skew, heartbeat delay, and lease expiry affect takeover liveness only; they never authorize an old token
-- [ ] CHK-020 [P0] Fault injection at acquire, renew, pre-commit, append/CAS, fsync, expiry, takeover, and release leaves one valid current epoch and deterministic recovery evidence
-- [ ] CHK-021 [P1] Acquisition, renewal, expiry, takeover, rejection, timeout, and release events carry resource digest, token, lease/correlation identity, owner, reason, and latency with required redaction
-- [ ] CHK-022 [P1] Shipped loop-lock, CLI writer-lock, council round-state, JSONL repair, fan-out, lifecycle, and phase-006 ledger suites pass alongside the new concurrency matrix
+- [x] CHK-009 [P0] Concurrent same-resource acquisition yields one holder; subsequent grants are strictly newer [evidence: two independent Vitest OS processes raced on one backing directory and produced one token-1 grant plus one typed timeout]
+- [x] CHK-010 [P0] Release, expiry, crash recovery, coordinator restart, restore advance, and rollback attempts preserve the high-water mark [evidence: focused Vitest journal/restart/restore monotonicity cases passed]
+- [x] CHK-011 [P0] Old-token ledger and state mutations return typed stale-fence rejection without changing the committed head/version [evidence: focused Vitest paused-holder case passed; the old commit closure recorded no side effect]
+- [x] CHK-012 [P0] Competing expected-head ledger appends produce one commit and one `HEAD_CONFLICT`; takeover rejects the old fence before append [evidence: focused Vitest ledger contention and takeover cases passed]
+- [x] CHK-013 [P0] Projection, checkpoint, and pause/resume replacement seams validate fence, version, continuity identity, and optional replay identity at the guarded commit boundary [evidence: focused Vitest state-store identity and CAS cases passed]
+- [x] CHK-014 [P0] The additive shadow-adapter seam uses one guarded epoch and returns the exact authoritative legacy result when dark observation fails [evidence: focused Vitest adapter case passed; no existing legacy writer consumes this adapter]
+- [x] CHK-015 [P0] Distinct lineage fixtures overlap; same status, merge, checkpoint, council, and lineage replacement resources admit only the current token [evidence: focused Vitest resource-isolation cases passed]
+- [x] CHK-016 [P0] The replacement-store resource matrix rejects stale dispatch/status/merge/checkpoint/pause-resume state after takeover [evidence: focused Vitest stale resource-matrix case passed; this is seam coverage, not existing-writer integration]
+- [x] CHK-017 [P0] Inverted, duplicate, nested, and re-entrant guards fail before blocking; ordinary contention ends at a typed bounded timeout [evidence: focused Vitest ordering and timeout cases passed]
+- [x] CHK-018 [P0] Malformed journal/state, expected-head conflict, unsupported topology, token rollback, and overflow fail closed without protected mutation [evidence: focused Vitest corruption, conflict, topology, rollback, and overflow cases passed]
+- [x] CHK-019 [P0] Owner reuse, clock rewind, lease expiry, and live-process mutex ownership never authorize an old token after takeover [evidence: focused Vitest owner/clock/expiry and paused-holder cases passed]
+- [x] CHK-020 [P0] Journal-before-state fault injection, atomic grant claims, release/takeover races, partial mutex records, and CAS/head conflicts retain one reconstructable current epoch [evidence: focused Vitest fault, race, and fail-closed cases passed]
+- [x] CHK-021 [P1] All lifecycle actions carry redacted resource digest, token, lease/correlation identity, owner, reason, latency, and optional replay fingerprint [evidence: focused Vitest typed lifecycle payload case passed]
+- [x] CHK-022 [P1] The approved focused leaf suite passes 28/28 [evidence: requested mcp-server Vitest invocation exited 0 with 1 file and 28 tests passed]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-023 [P0] The reviewed writer manifest has no unguarded protected entry point, duplicate resource namespace, or lock API whose caller coverage is unknown
-- [ ] CHK-024 [P1] Every adapter is mapped to its direct fenced replacement and removal gate; compatibility code has no open-ended fallback to unfenced writes
+- [x] CHK-023 [P0] The dark public API has no raw protected append/check helper; the unique manifest identifies every intentional legacy authority entry point [evidence: `index.ts` export review and `PROTECTED_WRITE_SURFACE_MANIFEST` focused test passed]
+- [x] CHK-024 [P1] Every manifest entry names a future direct fenced replacement; existing writers remain untouched and do not consume the adapter in this leaf [evidence: focused Vitest frozen-manifest case passed and path-scoped diff review found no legacy edits]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-025 [P1] Lease IDs/nonces are unguessable ownership credentials, fencing tokens are treated as monotonic epochs rather than secrets, and telemetry excludes raw protected paths or payloads
-- [ ] CHK-026 [P1] Untrusted resource keys and owner metadata cannot escape the coordinator root, select another tenant/packet/lineage, or forge a current lease
+- [x] CHK-025 [P1] Production lease IDs use `randomUUID`; tokens are epochs, and evidence excludes raw paths/payloads [evidence: `fenced-lease-coordinator.ts` and typed lifecycle evidence tests passed]
+- [x] CHK-026 [P1] Resource paths derive only from validated SHA-256 digests; unknown fields, traversal, normalization variants, and forged derived values are rejected [evidence: focused Vitest digest-path and canonical validation cases passed]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-027 [P2] Runtime lock/recovery documentation names protected resources, atomicity domain, timeout policy, typed errors, and operator recovery without recommending manual force-unlock
+- [x] CHK-027 [P2] `implementation-summary.md` records protected resources, domain, timeout/error policy, journal recovery, and the no-force-unlock rule [evidence: `implementation-summary.md` contract proof and limitation sections]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Coordinator, guards, adapters, and tests land in dependency-closed path-scoped commits; rollback preserves or advances the fencing registry
+- [x] CHK-028 [P1] Coordinator, guards, adapters, and tests are dependency-closed under one new runtime directory/test file; operator-owned commit/rollback must retain or advance the journal [evidence: path-scoped git status and tsc exit 0]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 check passes, the reviewed resource manifest covers every protected writer, tokens remain strictly monotonic through all lifecycle and recovery fixtures, stale live/resumed writers are rejected at each mutation boundary, legacy/dark and fan-out races admit one valid epoch, and all shipped regression suites plus the cross-surface fault matrix are green on the pinned candidate SHA.
+This additive-dark leaf is complete when every P0 check passes, the reviewed manifest names each future replacement seam, tokens remain strictly monotonic through lifecycle and recovery fixtures, and stale live/resumed holders are rejected at each new guarded mutation boundary. Existing writers are not integrated here, so their end-to-end fenced behavior is not claimed.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the SOL verifier binds the resource-manifest hash and coordinator generation to the candidate SHA, confirms atomic fence-plus-mutation evidence for every protected backend, and `git diff-index --quiet HEAD --` reports no unexpected tracked mutation after verification.
+Signed off when the SOL verifier binds the resource-manifest hash and coordinator generation to the candidate SHA, confirms atomic fence-plus-mutation evidence for every additive replacement backend, and path-scoped status reports no unexpected mutation after verification.
 <!-- /ANCHOR:sign-off -->

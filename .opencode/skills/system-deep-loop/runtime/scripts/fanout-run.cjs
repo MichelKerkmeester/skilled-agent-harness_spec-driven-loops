@@ -19,6 +19,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { spawn, spawnSync } = require('node:child_process');
+const { createHash } = require('node:crypto');
 
 const {
   classifyExitCode,
@@ -1375,111 +1376,258 @@ function runLineageProcess(command, cmdArgs, opts) {
   });
 }
 
+function digestText(value) {
+  return createHash('sha256').update(String(value)).digest('hex');
+}
+
+const executableIdentityCache = new Map();
+
+function resolveExecutableVersion(command, options = {}) {
+  if (typeof options.executableVersion === 'string' && options.executableVersion.trim()) {
+    return options.executableVersion.trim();
+  }
+  const env = options.env || process.env;
+  const pathEntries = String(env.PATH || '').split(path.delimiter).filter(Boolean);
+  for (const entry of pathEntries) {
+    const candidate = path.join(entry, command);
+    try {
+      const executablePath = fs.realpathSync(candidate);
+      const stat = fs.statSync(executablePath);
+      if (!stat.isFile()) continue;
+      const cacheKey = `${executablePath}:${stat.size}:${stat.mtimeMs}`;
+      const cached = executableIdentityCache.get(cacheKey);
+      if (cached) return cached;
+      const identity = `sha256:${createHash('sha256').update(fs.readFileSync(executablePath)).digest('hex')}`;
+      executableIdentityCache.set(cacheKey, identity);
+      return identity;
+    } catch {}
+  }
+  return 'unknown';
+}
+
+function effectiveWebSearchPolicy(lineage) {
+  return lineage.liveTools?.webSearch || 'inherit';
+}
+
 /**
- * Build the subprocess command for a fan-out lineage.
- * Returns { command, args, input?, env } where input is stdin content when applicable.
+ * Build the allowlisted fingerprint payload without raw prompts or environment maps.
+ *
+ * @param {Object} input - Resolved invocation fields.
+ * @returns {Object} Canonical JSON-safe payload.
+ */
+function buildInvocationFingerprintPayload(input) {
+  const promptDigest = digestText(input.prompt);
+  const promptArgIndexes = new Set(input.promptArgIndexes || []);
+  const argv = input.args.map((arg, index) => (
+    promptArgIndexes.has(index) ? `<prompt:${promptDigest}>` : arg
+  ));
+  return {
+    kind: input.kind,
+    executable: input.command,
+    executableVersion: input.executableVersion || 'unknown',
+    model: input.model,
+    effort: input.reasoningEffort,
+    tier: input.serviceTier,
+    sandboxPosture: {
+      sandboxMode: input.resolvedSandbox,
+      permissionMode: input.resolvedPermission,
+    },
+    webSearch: input.webSearch,
+    argv,
+    promptDigest,
+  };
+}
+
+function finalizeLineageCommand(input) {
+  const effectiveConfig = {
+    kind: input.kind,
+    executable: input.command,
+    executableVersion: input.executableVersion || 'unknown',
+    model: input.model,
+    reasoningEffort: input.reasoningEffort,
+    serviceTier: input.serviceTier,
+    sandboxMode: input.resolvedSandbox,
+    permissionMode: input.resolvedPermission,
+    webSearch: input.webSearch,
+  };
+  const fingerprintPayload = buildInvocationFingerprintPayload(input);
+  const invocationFingerprint = `inv:${digestText(JSON.stringify(fingerprintPayload))}`;
+  return {
+    command: input.command,
+    args: input.args,
+    ...(Object.prototype.hasOwnProperty.call(input, 'input') ? { input: input.input } : {}),
+    effectiveConfig,
+    invocationFingerprint,
+  };
+}
+
+function buildCodexLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isCodexBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-codex executor unavailable: command -v codex failed');
+  }
+  const webSearch = effectiveWebSearchPolicy(lineage);
+  const model = lineage.model || 'o4-mini';
+  const reasoningEffort = lineage.reasoningEffort || 'medium';
+  const args = [];
+  if (webSearch === 'live') {
+    args.push('--search');
+  }
+  args.push(
+    'exec',
+    '--model',
+    model,
+    '-c',
+    `model_reasoning_effort=${reasoningEffort}`,
+  );
+  if (lineage.serviceTier) {
+    args.push('-c', `service_tier=${lineage.serviceTier}`);
+  }
+  args.push('-c', 'approval_policy=never', '--sandbox', resolvedSandbox, '-');
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'codex',
+    args,
+    input: prompt,
+    prompt,
+    promptArgIndexes: [],
+    executableVersion: resolveExecutableVersion('codex', options),
+    model,
+    reasoningEffort,
+    serviceTier: lineage.serviceTier || null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch,
+  });
+}
+
+function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  const model = lineage.model || 'claude-opus-4-8';
+  const args = [
+    '-p',
+    prompt,
+    '--model',
+    model,
+    '--permission-mode',
+    resolvedPermission,
+    '--output-format',
+    'text',
+  ];
+  if (lineage.reasoningEffort) {
+    args.push('--effort', lineage.reasoningEffort);
+  }
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'claude',
+    args,
+    input: undefined,
+    prompt,
+    promptArgIndexes: [1],
+    executableVersion: resolveExecutableVersion('claude', options),
+    model,
+    reasoningEffort: lineage.reasoningEffort || null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
+}
+
+function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  // Native fan-out uses the command host so the workflow owns init, loop, and synthesis.
+  const args = [
+    'run',
+    '--format',
+    'json',
+    '--dangerously-skip-permissions',
+    '--dir',
+    process.cwd(),
+    '--command',
+    `deep/${options.loopType || 'review'}`,
+  ];
+  const commandInput = buildNativeCommandInput(
+    options.loopType || 'review',
+    options.specFolder || '',
+    options.lineageDir || '',
+    lineage,
+    options,
+  );
+  args.push(commandInput);
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'opencode',
+    args,
+    input: '',
+    prompt: commandInput,
+    promptArgIndexes: [args.length - 1],
+    executableVersion: resolveExecutableVersion('opencode', options),
+    model: null,
+    reasoningEffort: null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
+}
+
+function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  const model = lineage.model || 'anthropic/claude-opus-4-8';
+  const args = [
+    'run',
+    '--model',
+    model,
+    '--format',
+    'json',
+    // The full runtime is required because the workflow writes isolated lineage state.
+    '--dir',
+    process.cwd(),
+  ];
+  const useDangerousBypass = resolvedSandbox === 'danger-full-access';
+  if (useDangerousBypass) {
+    args.push('--dangerously-skip-permissions');
+    process.stderr.write(
+      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --dangerously-skip-permissions. `
+        + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
+    );
+  }
+  if (lineage.reasoningEffort) {
+    args.push('--variant', lineage.reasoningEffort);
+  }
+  args.push(prompt);
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'opencode',
+    args,
+    input: '',
+    prompt,
+    promptArgIndexes: [args.length - 1],
+    executableVersion: resolveExecutableVersion('opencode', options),
+    model,
+    reasoningEffort: lineage.reasoningEffort || null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
+}
+
+const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
+  native: buildNativeLineageCommand,
+  'cli-codex': buildCodexLineageCommand,
+  'cli-claude-code': buildClaudeLineageCommand,
+  'cli-opencode': buildOpencodeLineageCommand,
+});
+
+/**
+ * Build the subprocess command and deterministic invocation identity for a lineage.
+ *
+ * @returns {{command:string,args:string[],input?:string,effectiveConfig:Object,invocationFingerprint:string}}
  */
 function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options = {}) {
-  const kind = lineage.kind;
-
-  if (kind === 'cli-codex') {
-    if (!isCodexBinaryAvailable(options.env || process.env)) {
-      throw inputError('cli-codex executor unavailable: command -v codex failed');
-    }
-    const args = [
-      'exec',
-      '--model',
-      lineage.model || 'o4-mini',
-      '-c',
-      `model_reasoning_effort=${lineage.reasoningEffort || 'medium'}`,
-    ];
-    if (lineage.serviceTier) {
-      args.push('-c', `service_tier=${lineage.serviceTier}`);
-    }
-    args.push('-c', 'approval_policy=never', '--sandbox', resolvedSandbox, '-');
-    return { command: 'codex', args, input: prompt };
+  const adapter = LINEAGE_COMMAND_ADAPTERS[lineage.kind];
+  if (!adapter) {
+    throw inputError(`Unknown fan-out executor kind: ${lineage.kind}`);
   }
-
-  if (kind === 'cli-claude-code') {
-    const args = [
-      '-p',
-      prompt,
-      '--model',
-      lineage.model || 'claude-opus-4-8',
-      '--permission-mode',
-      resolvedPermission,
-      '--output-format',
-      'text',
-    ];
-    if (lineage.reasoningEffort) {
-      args.push('--effort', lineage.reasoningEffort);
-    }
-    return { command: 'claude', args };
-  }
-
-  if (kind === 'native') {
-    // Native fan-out cannot call the LEAF @deep-review agent with a full-loop prompt.
-    // For review runs this is the real deep/review command surface with a lineage
-    // artifact override, so the command YAML owns init, loop, and synthesis.
-    const args = [
-      'run',
-      '--format',
-      'json',
-      '--dangerously-skip-permissions',
-      '--dir',
-      process.cwd(),
-      '--command',
-      `deep/${options.loopType || 'review'}`,
-    ];
-    args.push(buildNativeCommandInput(
-      options.loopType || 'review',
-      options.specFolder || '',
-      options.lineageDir || '',
-      lineage,
-      options,
-    ));
-    return { command: 'opencode', args, input: '' };
-  }
-
-  if (kind === 'cli-opencode') {
-    // No --agent: current opencode treats `general` as a subagent and rejects it
-    // on a top-level `run`. The default agent runs when none is named, and a
-    // specific agent profile can be requested in the prompt body instead.
-    const args = [
-      'run',
-      '--model',
-      lineage.model || 'anthropic/claude-opus-4-8',
-      '--format',
-      'json',
-      // No --pure: a deep-loop lineage needs the full plugin/skill/MCP runtime to run
-      // the workflow AND write its state, and the spec-gate hook that honors
-      // MK_SPEC_GATE_ENFORCE lives in that runtime. --pure strips the tools and the hook,
-      // leaving the lineage stuck at an unanswerable Gate-3 prompt with nothing to research.
-      '--dir',
-      process.cwd(),
-    ];
-    // Permission bypass is opt-in: only detach the sandbox for lineages that explicitly
-    // request danger-full-access. workspace-write/read-only lineages run WITHOUT
-    // --dangerously-skip-permissions so their writes are subject to the CLI permission
-    // boundary. opencode has no path-scoped write flag, so a workspace-write review
-    // lineage's lineageDir-only boundary still relies on the prompt — but the operator
-    // must now opt into full bypass rather than getting it silently by default.
-    const useDangerousBypass = resolvedSandbox === 'danger-full-access';
-    if (useDangerousBypass) {
-      args.push('--dangerously-skip-permissions');
-      process.stderr.write(
-        `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --dangerously-skip-permissions. `
-          + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
-      );
-    }
-    if (lineage.reasoningEffort) {
-      args.push('--variant', lineage.reasoningEffort);
-    }
-    args.push(prompt);
-    return { command: 'opencode', args, input: '' };
-  }
-
-  throw inputError(`Unknown fan-out executor kind: ${kind}`);
+  return adapter(lineage, prompt, resolvedSandbox, resolvedPermission, options);
 }
 
 function isCodexBinaryAvailable(env = process.env) {
@@ -1514,6 +1662,7 @@ async function main() {
   const {
     parseFanoutConfig,
     expandLineages,
+    preflightFanoutCapabilities,
     resolveSandboxMode,
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
@@ -1543,6 +1692,11 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+  try {
+    preflightFanoutCapabilities(allLineages);
+  } catch (error) {
+    throw inputError(error instanceof Error ? error.message : String(error));
+  }
 
   // Aggregate budget is a SEPARATE ceiling from the per-lineage cap enforced inside the
   // worker below — both must pass, neither replaces the other. Checked upfront (before any
@@ -2009,6 +2163,7 @@ if (require.main === module && isTsxLoaded) {
 
 module.exports = {
   buildLineageCommand,
+  buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,

@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the Deep Review sealed-artifact child. Execution evidence must pin
-the candidate SHA, shared phase-006 descriptor and canonicalization versions, digest algorithm, mode artifact-kind matrix,
+the candidate SHA, shared phase-007 descriptor and canonicalization versions, digest algorithm, mode artifact-kind matrix,
 lifecycle fixture corpus, ordered reference sets, commands and exit codes, and dark-versus-legacy results. Verification
 fails on zero fixtures, unverified byte release, mutable-only input acceptance, silent rebaseline, mixed reference
 watermarks, changed legacy behavior, or unexpected tracked mutation.
@@ -40,7 +40,7 @@ watermarks, changed legacy behavior, or unexpected tracked mutation.
 
 - [ ] CHK-001 [P0] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Review
 - [ ] CHK-002 [P0] The lifecycle artifact matrix covers scope/init, dimension-pass, candidate/adjudication, convergence, synthesis, resume, and save boundaries
-- [ ] CHK-003 [P0] The mode consumes the shared phase-006 sealing primitives and names no alternate digest, descriptor, store, or verifier
+- [ ] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier
 - [ ] CHK-004 [P1] Predecessor `002-reducers-and-projections` owns findings, dashboard, strategy, and report projection semantics, while this phase owns only artifact binding
 <!-- /ANCHOR:pre-impl -->
 

@@ -42,7 +42,7 @@
     "status": "planned",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,9 +56,9 @@
         "source": "derived"
       },
       {
-        "name": "deep_research_auto.yaml",
+        "name": "deep-research-auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
     "created_at": "2026-07-16T03:43:30.675Z",
-    "last_save_at": "2026-07-17T13:21:25.562Z",
+    "last_save_at": "2026-07-19T14:47:13.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a4e7273083c96ced7058339e9c2ca07c43a5ef7dafa05e12f02f16a0f3961dfe",
+    "source_fingerprint": "sha256:4f75b0527ac37cb7936de2b9cba95f746ac83fc061f04ad94ea2066eefc580d3",
     "source_doc_hashes": {
-      "spec.md": "a7af65203237d06ccbaea752b9a55d1eb50b4704a3f027a5ed6fcdbe330d5b02",
+      "spec.md": "86901ddb96ded1d907a4215e4ab4fe33bb35eb8b9f74e714e5a21b2e5ca9f50a",
       "plan.md": "db0d59d1c190e45a6e209c846ac9b3aebeba717b00a9e8e39a4d1c22b92e7a40",
-      "tasks.md": "04d79614289d19b8f559a56eccd04d04b2178638ab0bf9c668b560bbf17f28e6",
+      "tasks.md": "e2a67f717e14e478ae96740afa49ece91b8f1f56328ca11f02b75a431875eb4d",
       "checklist.md": "ef7784bf808e142b6bdb13656b72da1def7773cf832457b0ea1928f90a441798"
     },
     "last_active_child_id": null,

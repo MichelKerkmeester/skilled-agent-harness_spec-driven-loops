@@ -19,7 +19,9 @@
       "receipts and effect recovery tasks",
       "effect recovery gateway tasks",
       "receipts and effect recovery checklist",
-      "effect recovery verification"
+      "effect recovery verification",
+      "receipts and effect recovery implementation",
+      "receipt effect candidate report"
     ],
     "key_topics": [
       "receipts",
@@ -36,8 +38,11 @@
       "gateway"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts",
+      "implementation-summary.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -47,6 +52,24 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "receipts-and-effect-recovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "phase-tree.json",
         "kind": "config",
@@ -162,53 +185,37 @@
         "source": "derived"
       },
       {
+        "name": "Completion Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "deterministic",
         "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "secret-safe",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "logical",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan durable boundary receipts and an effect-recovery gateway that records intent before execution, confirms observed outcomes, and reconciles interrupted external effects without unsafe replay.",
     "created_at": "2026-07-16T03:43:46.431Z",
-    "last_save_at": "2026-07-17T13:21:11.078Z",
+    "last_save_at": "2026-07-21T02:14:56.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:566c8d6ffab1f86a02e088225893b71046e0ed407096c3fab5698e0a2823ae69",
+    "source_fingerprint": "sha256:6dc49a5fa306052b497db7816ad10d6f08a214e2a36bc350c587c71c51f992f7",
     "source_doc_hashes": {
-      "spec.md": "6a98cbfdd474ae64ed7a717ffb22aac7dfcabe28d994dfbe6481ca023ace2b35",
-      "plan.md": "c843a4b498cb6406354510419a00965767b5bea0ff8f5ebd0493b90f163532e5",
-      "tasks.md": "b538287cbead73615e7c86c0782e5725711e1826a1ee325974f67c24e639578b",
-      "checklist.md": "2a4de7b48e8c46666be9d928b5782c8f3c30b9bce6503cf937fbf42f0913e249"
+      "spec.md": "78c6521c5eaa18366b2575336b7496e85a6f633d46e55c17c995d4faef8524e8",
+      "plan.md": "561926299313723201ba4471813d5b6d46809a5a4512ab6e3b5a906fe0a51c6d",
+      "tasks.md": "042988235ea37ddfe69d2f958a532dbe5947e4b98986d633d20b51571f0c74a1",
+      "checklist.md": "e8ab2147fc8bcf894392e7c01fb545a336952ca021d99ef9a9bf4bae12c13337",
+      "implementation-summary.md": "a547b77aca943f25e019ed0f823053b937b3a5dfbf7b5023c34f6071c4812ccb"
     },
     "last_active_child_id": null,
     "last_active_at": null

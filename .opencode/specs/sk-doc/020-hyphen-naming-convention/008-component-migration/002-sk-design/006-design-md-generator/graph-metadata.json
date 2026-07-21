@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure.",
     "created_at": "2026-07-14T15:17:18Z",
-    "last_save_at": "2026-07-17T20:26:04.675Z",
+    "last_save_at": "2026-07-20T11:43:43.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b2d9c45187e45c82e613e5c84b203ff3178a2688f881ec1e7e76b13edccf5eab",
+    "source_fingerprint": "sha256:a8432303e058d22e8cc4a5afe8cd77c0c6774227ac07fc61c759f3ee8157d02b",
     "source_doc_hashes": {
-      "spec.md": "faec5378b197de25cd5cbb974ee3e0cb53d2c2012878864a8eea8db591325018",
+      "spec.md": "88f1148b038fed6f9ec95cf0c27c980a2d387cbf46e91f937374f6a38ecd2361",
       "plan.md": "32649586b82ac75c1a4e577d10fdccd2497a652ba68f253c7ea3020165aedceb",
       "tasks.md": "4052b1e9a413c0597d2211e9935499171eecd164d9e2fcbb4da1a27dae3af02f",
       "checklist.md": "c8bd03a40aeccf190ca8b7b1fa756ad497f5c0e6f430b1a1804cfec3a4a7840f"

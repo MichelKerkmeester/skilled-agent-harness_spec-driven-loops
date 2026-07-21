@@ -30,6 +30,13 @@ const HUB_CHILD = Object.freeze({
   'sk-doc': '006-parent-hub-rollout/007-sk-doc',
 });
 
+// Process-lifetime engine cache. A hub's compiled snapshot + evaluate fn are
+// loaded once and reused for the life of the process; a mid-process policy change
+// is NOT picked up until the process is replaced. This is a deliberate contract,
+// not a leak: it is safe because the resolver binds each served decision's identity
+// (effectivePolicyHash + generation) to the activation manifest, so a snapshot that
+// has drifted from the manifest fails the hub safe to legacy rather than serving a
+// stale policy (see resolve.cjs). Long-running hosts pick up a new policy on restart.
 const engineCache = new Map();
 
 function loadHubEngine(hubId) {
@@ -69,19 +76,26 @@ function normalizeTargets(route) {
 }
 
 // Route `taskText` through hub `hubId`'s compiled contract. Returns a normalized,
-// serializable decision; `action` is one of route/clarify/defer/reject.
+// serializable decision as a discriminated union keyed on `action`: the route-only
+// fields (`selectionKind`, `targets`) are present ONLY on a `route` decision. The
+// negative decisions (clarify/defer/reject) carry no target and no selection kind,
+// so a negative decision bearing a target is unrepresentable — matching the closed
+// decision algebra the shadow canary validates.
 function compiledRoute(hubId, taskText) {
   const { snapshot, evaluate } = loadHubEngine(hubId);
   const evaluated = evaluate(snapshot, { prompt: taskText });
-  const route = evaluated.decision.route || null;
-  return {
+  const decision = {
     hubId,
     action: evaluated.decision.action,
-    selectionKind: route ? route.selectionKind : null,
-    targets: normalizeTargets(route),
     effectivePolicyHash: snapshot.policy.effectivePolicyHash,
     generation: snapshot.policy.activationGeneration,
   };
+  if (decision.action === 'route') {
+    const route = evaluated.decision.route || null;
+    decision.selectionKind = route ? route.selectionKind : null;
+    decision.targets = normalizeTargets(route);
+  }
+  return decision;
 }
 
 module.exports = { compiledRoute, loadHubEngine, HUB_CHILD };

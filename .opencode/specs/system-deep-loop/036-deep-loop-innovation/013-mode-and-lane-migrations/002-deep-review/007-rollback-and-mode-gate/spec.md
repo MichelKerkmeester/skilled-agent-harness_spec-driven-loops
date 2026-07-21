@@ -179,7 +179,7 @@ disposition, owner, reason, expiry, and proof of non-interference; it cannot be 
   Mitigation: consume the frozen phase-012 shared review-loop contract and the write-set fence rather than defining local lifecycle rules.
 - **Cutover scope leakage** - a mode gate could accidentally flip authority, close rollback, or remove legacy writers.
   Mitigation: constrain the output to `MIGRATED_SHADOW_READY`; reserve authority and retirement for later phases.
-- **Dependencies**: the 065 parent and phase tree; phase-012 shared mode interfaces, cross-mode closures, mixed-version fixtures,
+- **Dependencies**: the 036 parent and phase tree; phase-012 shared mode interfaces, cross-mode closures, mixed-version fixtures,
   and write-set conflict graph; the phase-006 ledger and authorization spine; the six Deep Review siblings; the existing Deep Review
   lifecycle and blocked-stop fixtures; the mode research registries; and the spec-kit validator.
 <!-- /ANCHOR:risks -->

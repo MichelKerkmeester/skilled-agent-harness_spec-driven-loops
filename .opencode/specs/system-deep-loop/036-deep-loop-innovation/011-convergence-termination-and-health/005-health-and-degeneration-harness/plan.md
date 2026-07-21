@@ -6,18 +6,20 @@ trigger_phrases:
   - "deep-loop health signal implementation"
   - "mode collapse detection plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness"
-    last_updated_at: "2026-07-15T16:30:00Z"
+    last_updated_at: "2026-07-21T12:01:05Z"
     last_updated_by: "codex"
-    recent_action: "Defined threshold, aggregation, and response-request planning gates"
-    next_safe_action: "Build the registered adapter matrix and shadow degeneration fixtures"
+    recent_action: "Hardened recovery evidence and scope isolation"
+    next_safe_action: "Keep health requests dark until a shared gateway grants authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/health-degeneration-harness.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,18 +53,18 @@ shadow calibration, and the shared mode contract are complete.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The authorized event/projection boundary and phase-010 gauge versions are available at one coherent watermark
-- [ ] Sibling `002-cycle-detection` event schema and progress verdict are registered as an input, not reimplemented
-- [ ] Every supported mode has an adapter manifest for novelty, independent evidence, quality, frontier eligibility, and cost/yield fields
-- [ ] The initial health policy records windows, minimum samples, thresholds, hysteresis, cooldown, and a policy digest
-- [ ] Response actions are defined as requests with authorization state, safe-point behavior, scope, and rollback handling
-- [ ] Shadow fixtures cover healthy progress and each degeneration class before any runtime consumer changes
+- [x] The authorized event/projection boundary and phase-010 gauge versions are available at one coherent watermark
+- [x] Sibling `002-cycle-detection` event schema and progress verdict are registered as an input, not reimplemented
+- [x] Every registered mode has an adapter manifest for novelty, independent evidence, quality, frontier eligibility, and cost/yield fields
+- [x] The initial health policy records windows, minimum samples, thresholds, hysteresis, cooldown, and a policy digest
+- [x] Response actions are defined as requests with authorization state, safe-point behavior, scope, and rollback handling
+- [x] Shadow fixtures cover healthy progress and each degeneration class before any runtime consumer changes
 
 ### Definition of Done
-- [ ] Health observations and signals replay identically from incremental and full ledger input
-- [ ] Mode collapse, repetition, novelty starvation, quality decay, budget thrash, telemetry gaps, and recovery are typed and auditable
-- [ ] Aggregate state and response requests are deterministic, bounded, idempotent, and fail closed on missing or inconsistent evidence
-- [ ] Shadow integration proves no legacy stop, dispatch, budget, fan-in, or allocation authority changed
+- [x] Health observations and signals replay identically from incremental and full ledger input
+- [x] Mode collapse, repetition, novelty starvation, quality decay, budget thrash, telemetry gaps, and recovery are typed and auditable
+- [x] Aggregate state and response requests are deterministic, bounded, idempotent, and fail closed on missing or inconsistent evidence
+- [x] Shadow integration proves no legacy stop, dispatch, budget, fan-in, or allocation authority changed
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -84,9 +86,10 @@ shadow calibration, and the shared mode contract are complete.
 - **Threshold policy**: register the provisional shadow defaults from spec.md as a versioned policy. Keep window sizes,
   floors, concentration counts, decay delta, thrash ratio, severity mapping, healthy-window count, cooldown, retention, and
   dedupe keys explicit in every trace. Calibration creates a new policy version instead of mutating historical conclusions.
-- **Aggregation**: retain every individual signal and compute a deterministic aggregate by scope, severity, data validity,
-  and stable signal ordering. Required-input gaps outrank positive health. A recovered state requires two coherent healthy
-  windows and qualifying progress.
+- **Aggregation**: retain every individual signal and compute a deterministic aggregate from the exact run/mode/lineage/region
+  scope, severity, data validity, and stable signal ordering. Detector windows and recovery streaks use that same scope.
+  Required-input gaps outrank positive health. A recovered state requires two coherent windows with qualifying progress and
+  present improvement evidence for every active signal's own dimension; optional silence is `not_evaluable`.
 - **Action-request boundary**: map aggregate state to `observe`, `pause_region`, `pause_mode`, `reseed_frontier`,
   `quarantine_candidate`, `repair_telemetry`, or `request_stop`. Requests carry safe-point, scope, evidence, and authorization
   fields. The transition gateway and stopping-clock contract decide whether any request executes.
@@ -105,7 +108,7 @@ shadow calibration, and the shared mode contract are complete.
 | Novelty starvation | 4 low-independent-evidence results in 6 eligible attempts with non-empty frontier | Empty or unknown frontier emits `not_evaluable` |
 | Quality decay | Lower-confidence bound falls by 0.10 from baseline across 3 comparable observations | Baseline, evaluator, or verifier digest must match |
 | Budget thrash | 3 retry/cancel/reallocation events in 8 decisions or 30% retry pressure plus low yield | Compute ratios within typed dimensions; settle before escalation |
-| Recovery hysteresis | 2 consecutive healthy windows | Missing data cannot satisfy recovery |
+| Recovery hysteresis | 2 consecutive verified windows per exact signal scope | Missing or unrelated-dimension data cannot satisfy recovery, and clearing affects only that scope |
 | Cooldown and dedupe | Policy-defined bounded cooldown keyed to evidence boundary | New material evidence still emits a new signal |
 
 The exact policy representation, numeric precision, and storage backend are implementation decisions after the event and gauge
@@ -168,10 +171,10 @@ and separation between signal evidence and action authority.
 | REQ-008 | Policy-version and threshold-boundary fixtures prove exact windows, minimum samples, hysteresis, cooldown, and unsupported-version refusal |
 | REQ-009 | Signal traces contain event IDs/cursors, gauge values, threshold results, policy/adapter digests, missing-data verdicts, and deterministic evidence ordering |
 | REQ-010 | Pause, re-seed, quarantine, repair, and stop requests are recorded as unauthorized or pending until the shared gateway/clock contract accepts them |
-| REQ-011 | Two healthy windows clear an active signal; duplicate boundaries do not duplicate observations, signals, requests, or clear events |
+| REQ-011 | Two same-scope windows with signal-specific improvement clear only that scope; optional silence cannot advance recovery, and duplicate boundaries do not duplicate observations, signals, requests, or clear events |
 | REQ-012 | Shadow integration proves legacy stop, fan-in, allocation, budget, and dispatch outputs remain byte/semantic equivalent |
 | REQ-013 | Watermark gaps, stale generations, unknown reducers, conflicting hashes, missing baselines, and non-monotonic cursors never return `healthy` |
-| REQ-014 | Simultaneous signal fixtures produce stable individual records and aggregate state under input reordering |
+| REQ-014 | Simultaneous and cross-lineage fixtures produce stable individual records and scope-local aggregate state under input reordering |
 | REQ-015 | Retention and trace-size limits bound state without changing the replay result for the retained decision window |
 | REQ-016 | Verifier output cites sibling 002, phase-010 gauges, `research-modes.md`, and `manifest/phase-tree.json` |
 <!-- /ANCHOR:testing -->

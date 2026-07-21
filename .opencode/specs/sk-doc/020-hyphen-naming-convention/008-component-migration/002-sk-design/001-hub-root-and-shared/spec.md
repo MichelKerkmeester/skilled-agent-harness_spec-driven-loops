@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Hub root and shared (020 phase 001)
+> Phase adjacency — successor `002-design-interface`.
 
 > Phase 001 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -85,6 +86,7 @@ The sk-design hub and shared reference base still contain snake_case Markdown as
 | REQ-002 | Shared Markdown names use kebab-case after execution. | No in-scope shared Markdown file retains an underscore in its filesystem name. |
 | REQ-003 | Hub and shared references remain resolvable. | The reference sweep finds no stale old shared path and no broken new path. |
 | REQ-004 | The exemption boundary is preserved. | SKILL.md, tool-mandated names, Python scripts, package dirs, identifiers, and data keys are unchanged. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

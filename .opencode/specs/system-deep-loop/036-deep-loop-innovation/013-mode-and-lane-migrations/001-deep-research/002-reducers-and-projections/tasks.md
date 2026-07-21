@@ -43,7 +43,7 @@ _memory:
 - [ ] T001 Confirm the frozen typed-ledger event contract, phase-012 mode interface, and phase-013 write-set boundary before implementation
 - [ ] T002 Build the deep-research event inventory for plan, branch, evidence, claim, community, convergence, artifact, receipt, and status families
 - [ ] T003 Define the field-level reducer ownership matrix, canonical ordering tuple, reducer/version fingerprint inputs, and invalid-event policy
-- [ ] T004 Capture legacy reducer and heartbeat output fixtures from `deep-research/scripts/reduce-state.cjs` and `deep_research_auto.yaml` for shadow comparison
+- [ ] T004 Capture legacy reducer and heartbeat output fixtures from `deep-research/scripts/reduce-state.cjs` and `deep-research-auto.yaml` for shadow comparison
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

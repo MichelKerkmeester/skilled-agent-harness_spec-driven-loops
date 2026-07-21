@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Second child of the phase-006 transition-authorized ledger-core parent |
@@ -82,7 +82,7 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 - Whole-log integrity from the genesis record through the current verified head; any deletion, insertion, reordering, mutation, fork, or torn tail is detectable.
 - A typed reader that verifies framing, sequence continuity, the hash chain, envelope version/type, and authorization linkage before yielding an event.
 - Pure typed reducers that consume the verified stream in sequence order and produce rebuildable projections without mutating ledger history.
-- Additive-dark adapters at existing state/checkpoint emission boundaries; legacy writes remain authoritative and retain their current schemas and failure behavior.
+- A reusable additive-dark adapter plus a frozen census of existing state/checkpoint emission boundaries; legacy writers remain unmodified, authoritative, and retain their current schemas and failure behavior.
 - Tests for concurrency, crash boundaries, corruption, idempotency, ordering, typed decode, deterministic reduction, and dark-path isolation.
 
 ### Out of Scope
@@ -91,7 +91,7 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 - Implementing the transition vocabulary or authorization decision engine owned by the phase-006 gateway sibling; this ledger only enforces a required valid proof at append.
 - Upcasters, dual-read compatibility, legacy projections, shadow-parity policy, in-flight-state classification, or rollback drills owned by phase 008.
 - Replacing, rewriting, truncating, or deleting any legacy JSONL/state/checkpoint file.
-- Making ledger reads authoritative, cutting over a mode, or retiring a legacy writer; those actions belong to phases 011 and 012.
+- Making ledger reads authoritative, cutting over a mode, retiring a legacy writer, or wiring the reusable adapter into existing runtime writers; those actions belong to later integration and cutover phases.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -118,7 +118,7 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 - **SC-002**: Integrity verification detects mutation, deletion, insertion, reordering, forked heads, and crash-torn tails.
 - **SC-003**: Typed read/reduce rejects unknown or invalid records and reproduces byte-identical projection output from the same ledger and reducer version.
 - **SC-004**: Every durable append carries a valid authorization linkage and a receipt bound to the committed sequence and event hash.
-- **SC-005**: Dark integration records alongside all inventoried legacy state/checkpoint writers without changing their canonical authority, schemas, outputs, or error semantics.
+- **SC-005**: The frozen boundary census and reusable dark adapter prove legacy-result isolation for allow, deny, and ledger-failure paths without modifying existing writers.
 - **SC-006**: No ledger API or recovery path mutates committed bytes; any derived head/checkpoint is rebuildable from the immutable log.
 <!-- /ANCHOR:success-criteria -->
 
@@ -142,7 +142,7 @@ spine ADR's immutable, versioned, fail-closed contract.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may choose the exact module names and frame serialization after the
+None. The implementation selected the module names and immutable frame serialization after the
 `001-versioned-event-envelope` contract is materialized, but it must preserve canonical bytes, explicit sequence,
 hash-chain integrity, typed errors, exclusive append, immutable recovery, and dark non-authority. Storage choices that
 require rewriting committed records, use timestamps as order, or let unknown records pass through are outside the

@@ -172,7 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Evidence shape (unconditional ranking)",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -184,7 +184,7 @@
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
     "created_at": "2026-07-18T13:13:18.421Z",
-    "last_save_at": "2026-07-19T03:43:40.932Z",
+    "last_save_at": "2026-07-20T13:37:37.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acfc8b9d7f455dae9c91c74bc40f7fcb4666edc02a278ff4e466e8d43c7333fe",
+    "source_fingerprint": "sha256:8e1062e6112a7bf81bd2dc10b66d18ad7052251583177d0a65df38e13079e692",
     "source_doc_hashes": {
-      "spec.md": "6bcb04df377b6f134337298638afab8a18db2de870a96ad2b4466fbdc3156bbf",
-      "plan.md": "04f0042988d183d1fe47cb858a727c4e01532bc1b346d45aa8302ddf583e6521",
-      "tasks.md": "769aa4b6315a2e1d75fe58a92f1b139ef33345a82bebad0339fea093dc0a015f",
-      "checklist.md": "ca397eb6e4c05224a129bf94dd8d5f32ddcfd739de301ab53019eae671cb901c",
-      "implementation-summary.md": "e288c4c668bd274d9e62ad3e533d678527433a602dc7f067e944e1c57212a556"
+      "spec.md": "5daa71921594bd940f2fb39d264a7c4be6fc39f26b3022f4f46ce6226101dcc0",
+      "plan.md": "98b19a1596961d04a3ece05a8611113d86956e834130d672ef50131451270985",
+      "tasks.md": "4ec3622b6651ea7eeb2194b3bc94e1506c86dda7531a2999e97947b8450f29fa",
+      "checklist.md": "c4b0a193ae086ace7df8bab33206eb8ebca109792a31caae2267d212b87f3ab6",
+      "implementation-summary.md": "28d92657676251503d0b2de07e377b28e46b77739317a81c1be4b703872d34c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

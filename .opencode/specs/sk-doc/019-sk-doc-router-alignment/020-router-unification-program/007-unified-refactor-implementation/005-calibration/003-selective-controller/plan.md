@@ -14,6 +14,7 @@ status: "shadow-partial"
 
 # Implementation Plan: Selective-Classification Controller
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -29,7 +30,9 @@ status: "shadow-partial"
 ### Overview
 
 Specify `SelectiveControllerV1` as the terminal arbiter that consumes ranked candidates plus the upstream calibration certificate and emits exactly one `RouteDecisionV1`. The build is a **contract-first** effort: define the pure function, its certificate gate, its abstention ladder, its friction-budget assertions, and its held-out promotion metrics — then encode the whole thing as typed route-gold fixtures that replay deterministically. Auto-route is unavailable unless a per-slice certificate validates; abstention is bounded by one shared uncertainty budget; the threshold value is never chosen here, only the gate a value must pass (synthesis §5, §8.1, §11 Q2).
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -50,7 +53,9 @@ Specify `SelectiveControllerV1` as the terminal arbiter that consumes ranked can
 route-gold rows, five new edge falsifiers, byte-invisible projection, and the
 three frozen scorer digests unchanged. Strict packet validation was run and
 exited 2 on current-template structural checks plus missing validator dependencies.
+<!-- /ANCHOR:quality-gates -->
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -86,7 +91,9 @@ RouteRequestV1 (pinned generation)
 ```
 
 Every non-`route` branch is target-free and authority-withheld (synthesis §2.3). Zero-signal never unions the registry — it yields a typed `defer` (synthesis §10, "no over-emission").
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 Design-only phase; no runtime surface is mutated. The table records the *contract* surfaces the specification must stay consistent with, and how consistency is verified by reading (not editing).
@@ -99,7 +106,9 @@ Design-only phase; no runtime surface is mutated. The table records the *contrac
 | Held-out corpus (`005/001`) | Promotion-metric measurement substrate | Measure against | Cross-read `../001-*`; metrics defined over its slices only |
 | `router-replay.cjs` (shared scorer) | Deterministic route-gold gate | **Not a consumer — never edited** | Confirm no fixture requires a scorer change; a required edit = migration failure (synthesis §8.2, §10) |
 | Compatibility projector (`002`/`006`) | Maps typed decisions → legacy intent/resource shape | Reuse | Author fixtures that project cleanly; positive routes → intents/resources, `clarify\|defer\|reject` → empty-intent convention |
+<!-- /ANCHOR:affected-surfaces -->
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Contract definition
@@ -135,7 +144,9 @@ certificate abstention with branch-specific reasons.
 **Evidence:** Targeted Stage-3 validation is green; strict packet validation was
 run and exited 2 on current-template structural checks plus missing validator
 dependencies, so this checkbox remains open.
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -147,7 +158,9 @@ dependencies, so this checkbox remains open.
 | Degeneracy check | N=1 emits no calibration/threshold call | Fixture: singular manifest, zero rank-call assertion (synthesis §5.1, §8.2) |
 
 > All "tests" here are design-level: fixtures and assertions are *authored*, not executed against live routing. No production route is exercised.
+<!-- /ANCHOR:testing -->
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -157,13 +170,17 @@ dependencies, so this checkbox remains open.
 | `002` decision evaluator + algebra | Internal (upstream) | Contract | No `RouteDecisionV1` shape to emit |
 | `004` recovery ladder + `UncertaintyBudgetV1` | Internal (upstream) | Contract | No shared budget to draw from |
 | Compatibility projector + route-gold | Internal (shared) | Stable | Cannot verify deterministic replay parity |
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Design contradiction with the synthesis or an upstream sibling contract (logic-sync), or a fixture that can only pass by editing the shared scorer.
 - **Procedure**: This phase writes only three docs into its own folder. Rollback is deletion/revert of `spec.md`, `plan.md`, `tasks.md` in `005-calibration/003-selective-controller/` — no live artifact is touched, so there is nothing else to unwind.
 - **Reversibility note (design invariant carried into build)**: the eventual controller activation is a fenced CAS with the prior generation retained; a rollback swaps to the byte-identical prior manifest and cannot undo an already-COMMITted external effect — post-effect recovery is destination-owned (synthesis §9, §10).
+<!-- /ANCHOR:rollback -->
 
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -179,7 +196,9 @@ Phase 3 (Friction budget + metrics) ─┘────────────�
 | 3 Friction budget + metrics | 1 | 4 |
 | 4 Fixtures + degeneracy | 2, 3 | 5 |
 | 5 Verify + gate closeout | 4 | none |
+<!-- /ANCHOR:phase-deps -->
 
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-authoring checklist
@@ -191,3 +210,4 @@ Phase 3 (Friction budget + metrics) ─┘────────────�
 1. Revert the three authored docs in this folder.
 2. Re-run parent metadata backfill so the phase folder returns to its prior state.
 3. No live routing config, registry, scorer, or skill was modified — no further reversal required.
+<!-- /ANCHOR:enhanced-rollback -->

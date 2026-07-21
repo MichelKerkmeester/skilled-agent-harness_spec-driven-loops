@@ -87,15 +87,15 @@
     ],
     "causal_summary": "The last planning gate before implementation ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition ledger, and fixes the transition, versioning, compatibility, cutover, and rollback contract that governs later writers.",
     "created_at": "2026-07-16T03:43:58.126Z",
-    "last_save_at": "2026-07-17T13:21:07.297Z",
+    "last_save_at": "2026-07-19T18:01:26.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:da4e93f5f0c3d7d54ba7813eceeae5921febc61ae5791ee68afaa9addc36cd4d",
+    "source_fingerprint": "sha256:a55fac94846f7541129fc2305f76a22d0415407d43458c7978001057c5567899",
     "source_doc_hashes": {
-      "spec.md": "840ea3224fc005b45c32477aef0dd0a8350ea45a74407cd0d1ac273c35eae875"
+      "spec.md": "5724d7bea1c08105768888f6b20fe294e1f5615bc2fc5ebe50a191abaa22045c"
     },
     "last_active_child_id": null,
     "last_active_at": null

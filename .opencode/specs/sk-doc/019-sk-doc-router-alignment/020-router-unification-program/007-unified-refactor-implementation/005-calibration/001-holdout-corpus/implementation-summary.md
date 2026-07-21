@@ -7,6 +7,9 @@ status: "shadow-partial"
 ---
 # Implementation Summary
 
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
 <!-- ANCHOR:metadata -->
 ## Metadata
 
@@ -21,7 +24,7 @@ status: "shadow-partial"
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
-## What Built
+## What Was Built
 
 The phase contains strict JSON contracts, an executable validator library, a
 zero-dependency scorer-backed harness, protocol/governance documents, three
@@ -41,7 +44,7 @@ content-addressed identity (synthesis §2.2, §2.3, §5.3, §9, §10).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
-## How Delivered
+## How It Was Delivered
 
 The harness validates each sealed corpus, recomputes its content address from
 the frozen canonical helper, checks source-policy snapshots, and runs the
@@ -64,7 +67,7 @@ fenced-CAS operation with prior-generation retention (synthesis §8.2, §9, §10
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
-## Decisions
+## Key Decisions
 
 - The frozen domain-tag registry was not extended. `corpusHash` uses the frozen
   canonical byte serializer directly and covers every corpus field except its

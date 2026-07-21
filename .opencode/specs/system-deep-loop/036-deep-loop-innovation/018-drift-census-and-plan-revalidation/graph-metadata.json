@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "036 drift census",
+      "deep-loop plan revalidation",
+      "has the deep-loop plan decayed",
+      "commits since 036 was published",
+      "revalidate deep-loop phases against HEAD",
+      "036 drift census plan",
+      "deep-loop revalidation plan",
+      "drift census execution",
+      "036 drift census tasks",
+      "drift census task list",
+      "drift census checklist",
+      "036 revalidation verification"
+    ],
+    "key_topics": [
+      "drift",
+      "census",
+      "deep-loop",
+      "plan",
+      "revalidation",
+      "decayed",
+      "commits",
+      "since",
+      "published",
+      "revalidate",
+      "phases",
+      "against"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/research.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decide Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Census",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Revalidation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "respect",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "output",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
+    "created_at": "2026-07-19T12:13:37.963Z",
+    "last_save_at": "2026-07-20T17:23:25.083Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:dc3397be10b2ae982531444bfe3fc55b7a8d8275f178cb689d4759d434894b7a",
+    "source_doc_hashes": {
+      "spec.md": "9e34f2f59e157ef31aa31418c556f7815661d87a88009f62459b67bbf785ea3f",
+      "plan.md": "9021825aca6430264906d2e378bea370e76f2877106bee58d53523f5436da7f3",
+      "tasks.md": "5650ddeaed434418baac234a80abbacb7fe55e21d1694373fa5d7591154f72b7",
+      "checklist.md": "47afeb081e5addc6984a30beee4dadc6b3c4c94b45a2370a74d074689dd67805",
+      "implementation-summary.md": "c94ccb3ddfbaf7ca460ccfb83a020d1c76ebd86ed2da5772452f70112ff98187",
+      "research/research.md": "8073db4c48fe39ab285c07c591112032f6f95342b8e12641f8e5ac940cff0b1f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

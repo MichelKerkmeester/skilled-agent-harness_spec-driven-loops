@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 2,
+  "baseSha": "fe6ca3030917073f3b478bc044e10034dcc4394b",
+  "sanitization": {
+    "credentials": 0,
+    "absoluteUserPaths": 0,
+    "realRunIdentifiers": 0,
+    "policy": "Synthetic identifiers, fixed timestamps, and packet-relative paths only."
+  },
+  "fixtures": [
+    {
+      "path": "fixtures/event-streams.json",
+      "sha256": "2187aca49c5ef8f50d2d5115aec98adda3451930f62391d125cb94b088a19b9d",
+      "covers": [
+        "research",
+        "review",
+        "alignment",
+        "council",
+        "improvement",
+        "fanout",
+        "observability",
+        "behavior transcript",
+        "dispatch receipt write failure",
+        "verification degradation",
+        "divergent pivot lifecycle",
+        "malformed JSONL tail",
+        "crash boundary",
+        "mixed legacy and modern readers"
+      ]
+    },
+    {
+      "path": "fixtures/expected-projections.json",
+      "sha256": "3ec6cc6ba99fbd3ed3db0e3ddc2a42f846b55f4244e2bad463303f2cf7a61531",
+      "covers": [
+        "expected reducer projections",
+        "repair receipt",
+        "crash resume",
+        "mixed-reader projection"
+      ]
+    },
+    {
+      "path": "fixtures/coverage-graph.sql",
+      "sha256": "27a92559d95f1f0612475cc79adb5d2b39275dcee3934f322c801a25b2be9cbf",
+      "covers": [
+        "coverage SQLite schema",
+        "snapshot",
+        "restore",
+        "recreate"
+      ]
+    },
+    {
+      "path": "fixtures/council-graph.sql",
+      "sha256": "cf02bb5087f689937bc3edd2c88e6b48f65f37b6129cf4754ddbbf61bf125eba",
+      "covers": [
+        "council SQLite schema",
+        "snapshot",
+        "restore",
+        "recreate"
+      ]
+    },
+    {
+      "path": "fixtures/control-surfaces.json",
+      "sha256": "689e8baa3385dbf77653b2343d42b2cbccc0422936a32c8818344c4eeb810d2f",
+      "covers": [
+        "lock",
+        "pause",
+        "directory",
+        "output recreate"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-006-gpt-fast-high.result.json",
+      "sha256": "5bed3a931b6e872d4a6c6229b85e64d0daa5150a2d9cf5fd05bde4a46f66b549",
+      "covers": [
+        "IMB-006 shipped harness result"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-006-gpt-fast-high.transcript.jsonl",
+      "sha256": "aaa90f557e989e77dcb24e1deb26d9a6c61b15660768e655be0feffc3502e55b",
+      "covers": [
+        "IMB-006 shipped harness transcript"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-007-gpt-fast-high.result.json",
+      "sha256": "9af16f3aaab0f1dfcc4d628c6c9288c0c3e137c4eb5cdd7c5e1555f20b64fe5d",
+      "covers": [
+        "IMB-007 shipped harness result"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-007-gpt-fast-high.transcript.jsonl",
+      "sha256": "bde4af31bb767e0eca46919fd2c10726922553c71167cd10f374fa899b573ac2",
+      "covers": [
+        "IMB-007 shipped harness transcript"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-008-gpt-fast-high.result.json",
+      "sha256": "ae0c08cadc27b931c027a788d1a66f1e4cfe6ab11f4892dcc15219104bd14fdf",
+      "covers": [
+        "IMB-008 shipped harness result"
+      ]
+    },
+    {
+      "path": "fixtures/behavior-results/IMB-008-gpt-fast-high.transcript.jsonl",
+      "sha256": "ac84de8b621ef114b15dcd3b4be582e9d44f78cd879583454dce6ef996288f5f",
+      "covers": [
+        "IMB-008 shipped harness transcript"
+      ]
+    }
+  ],
+  "commands": {
+    "static": "node .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/validate-evidence.cjs --static",
+    "execute": "node .opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/validate-evidence.cjs --execute"
+  },
+  "temporaryExecution": {
+    "mode": "--execute only",
+    "root": "os.tmpdir()/deep-loop-evidence-*",
+    "trackedRuntimeStateWrites": 0,
+    "liveDatabaseOpens": 0,
+    "cleanup": "recursive temporary-directory removal in finally"
+  },
+  "expected": {
+    "replay": {
+      "eventFamilies": 22,
+      "projectionMismatches": 0,
+      "validRowsPreserved": 1,
+      "discardedTailRows": 1,
+      "crashBoundaryRows": 2,
+      "mixedReaderRows": 2,
+      "sqliteIntegrity": "ok"
+    },
+    "rollback": {
+      "sqliteSnapshotsRestored": 2,
+      "sqliteDatabasesRecreated": 2,
+      "controlSurfacesRecreated": 3,
+      "loopGuardSurfacesMaterialized": 4,
+      "trackedScopeDigestChanged": false
+    }
+  },
+  "liveStatePolicy": "Never open, copy over, mutate, lock, pause, truncate, or vacuum a tracked runtime database or packet runtime surface. Source schemas are represented by sanitized SQL fixtures and all execution occurs on new temporary paths."
+}

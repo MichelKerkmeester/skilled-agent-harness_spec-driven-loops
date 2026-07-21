@@ -39,15 +39,40 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/cross-mode-closures.vitest.ts",
       ".opencode/skills/system-deep-loop/README.md",
       "spec.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/catalog.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/parity.ts",
       "plan.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/evidence.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/receipts-effects.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/adjudication.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/budgets.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/projections.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/internal.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/deep-improvement-common.ts",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cross-mode-closures.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/cross-mode-closures.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -61,9 +86,75 @@
         "source": "derived"
       },
       {
+        "name": "catalog.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/catalog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "parity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/parity.ts",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/evidence.ts",
+        "source": "derived"
+      },
+      {
+        "name": "receipts-effects.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/receipts-effects.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adjudication.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/adjudication.ts",
+        "source": "derived"
+      },
+      {
+        "name": "budgets.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/budgets.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projections.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/projections.ts",
+        "source": "derived"
+      },
+      {
+        "name": "internal.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/internal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/deep-improvement-common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -103,113 +194,37 @@
         "source": "derived"
       },
       {
+        "name": "service",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "shipped",
         "kind": "key_phrase",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "typed",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "interface",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
     "created_at": "2026-07-16T03:43:54.270Z",
-    "last_save_at": "2026-07-17T13:21:23.198Z",
+    "last_save_at": "2026-07-21T14:11:39.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b84701c6545fed119a350c7fba2c0ed5357b1a0e5f3b9709b080749d0462c4a5",
+    "source_fingerprint": "sha256:963aafa62681f5e394589fa531dd0d46c717bcb0bed5b6aae926a0950da805b8",
     "source_doc_hashes": {
-      "spec.md": "400ab4284956defc73bf85829d60904f84e70295775674293873b31724d72956",
-      "plan.md": "6ee02efba7b33e389823409d74224663b67dbf9fc1b399a32679df12f01f4dd9",
-      "tasks.md": "2d17f235c8a3310d616d1d54b9fde2fbda73d83bc9b53dc85c9ee382be1bedca",
-      "checklist.md": "6bf0de2e2955cb4af48d516f19d7ac7439771e7494d59a5fc1173c49cb5f7c18"
+      "spec.md": "92b544511704b781a1d51221290e8ccf3d3f1c95de1e7c324b0f76d37d192855",
+      "plan.md": "98ead2df9038758eeea214b6e2ae50f0829f27b116b5268224b7dca2ec64bdf3",
+      "tasks.md": "fe533620e59389b30e53f3c491e035527f4639f3c40a0f8304cd83afb391401c",
+      "checklist.md": "32d228a979db6afd73f4e64b0ec3485e55f5adb9feaa3a60efb28509b6128760",
+      "implementation-summary.md": "bc5a664c7d6a3a823e1a8e5a271fff7774f3ebc71df1f4273d445c11650859a5"
     },
     "last_active_child_id": null,
     "last_active_at": null

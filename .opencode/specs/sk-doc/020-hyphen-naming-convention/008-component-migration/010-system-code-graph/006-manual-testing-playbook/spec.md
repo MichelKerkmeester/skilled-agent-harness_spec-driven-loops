@@ -36,6 +36,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: system-code-graph manual testing playbook
+> Phase adjacency — predecessor `005-feature-catalog`; successor `007-changelog-verify`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

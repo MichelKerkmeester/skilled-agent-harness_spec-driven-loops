@@ -31,6 +31,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: Semantic Rename Engine
+> Phase adjacency — successor `002-reference-checker-and-disposition-ledger`.
 
 > Phase adjacency under the 020 parent (grouping order, not a runtime dependency): predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
 

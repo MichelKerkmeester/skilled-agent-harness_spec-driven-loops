@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+  "description": "The five `/interface:` command bodies (`design`, `foundations`, `motion`, `audit`, `design-reference`) are substantive thin routers: each carries a",
+  "keywords": [
+    "five",
+    "interface",
+    "command",
+    "bodies",
+    "design",
+    "foundations",
+    "motion",
+    "audit",
+    "design-reference",
+    "substantive",
+    "thin",
+    "routers",
+    "carries"
+  ],
+  "lastUpdated": "2026-07-21T12:21:17.937Z",
+  "specId": "008",
+  "folderSlug": "interface-command-rewrite",
+  "parentChain": [
+    "sk-design",
+    "012-style-database-and-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

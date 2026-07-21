@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014.",
     "created_at": "2026-07-16T03:43:42.643Z",
-    "last_save_at": "2026-07-17T13:21:44.266Z",
+    "last_save_at": "2026-07-19T18:09:52.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,10 +179,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:bf37340b916b44d01f473cbd7fe9f40454b6d8fc81787dc28404a26504fa0811",
+    "source_fingerprint": "sha256:ca673217aaa7c99b5fee7084235c4b65656a4afa03647e6272310f0bb7981709",
     "source_doc_hashes": {
-      "spec.md": "0356ce235a87a8731d2d007ab2e038a74cf34a11bb3fe503e638712c92d04c33",
-      "plan.md": "6a919b662a414e6ac8e2c758d23c8e0952eb181575111f15ddc33f15eb3e9d6d",
+      "spec.md": "412ff7aba4e72fb4e224291d6f9e2868e3088a14bd99248d981fb965ad1768e3",
+      "plan.md": "eb36fefdb664d325bf52ab734f211d0a6c8d1ec571a6150877dc74829e55d32b",
       "tasks.md": "561b1ea706adf92a447a124a47ae572b18dfffcbcd59ae2c4f2bb7472d43919e",
       "checklist.md": "56ce2bdf2e296e203e7241e7efd1b911fee9c40c5cd7688a67786a88e9cb8d25"
     },

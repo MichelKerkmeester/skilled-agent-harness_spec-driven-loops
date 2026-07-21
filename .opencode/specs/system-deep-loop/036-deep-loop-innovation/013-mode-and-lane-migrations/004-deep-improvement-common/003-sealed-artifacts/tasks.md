@@ -40,7 +40,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm `002-reducers-and-projections` publishes artifact-reference, evaluator-epoch, canary-status, promotion-status, and projection-fingerprint inputs
-- [ ] T002 Read the phase-006 sealing primitive contract and record canonicalization, digest, dependency, seal-on-write, publication, verification, and failure semantics
+- [ ] T002 Read the phase-007 sealing primitive contract and record canonicalization, digest, dependency, seal-on-write, publication, verification, and failure semantics
 - [ ] T003 Build the artifact field and dependency matrix for evaluator capsules, candidate/baseline inputs, raw trials, canary epochs, promotion inputs, and redacted views
 - [ ] T004 Define ownership boundaries with `004-certificates-and-receipts`, the three downstream variants, the shared reducer, and the transition-authorized ledger
 - [ ] T005 Pin valid, mutated, partial-write, missing-dependency, stale-epoch, stale-canary, leak, and mixed-version fixtures
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 [P] Define the single phase-006-backed sealing adapter and typed artifact reference, dependency manifest, lifecycle, verification result, and failure vocabulary
+- [ ] T006 [P] Define the single phase-007-backed sealing adapter and typed artifact reference, dependency manifest, lifecycle, verification result, and failure vocabulary
 - [ ] T007 [P] Define canonical serialization and digest coverage for each artifact kind, including schema version, ordered dependency closure, and producer/reducer/evaluator fingerprints
 - [ ] T008 Define seal-on-write validation, atomic publication, read-back verification, incomplete-write handling, and immutable overwrite refusal
 - [ ] T009 Define the evaluator capsule and epoch matcher for fixtures, hidden commitments, rubric, calibration, normalization, environment, capability, visibility, and budget policy

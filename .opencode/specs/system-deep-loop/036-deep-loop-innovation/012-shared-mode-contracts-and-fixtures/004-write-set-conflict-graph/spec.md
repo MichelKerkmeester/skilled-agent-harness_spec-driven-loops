@@ -83,7 +83,7 @@ three inputs in its provenance record.
 ### In Scope
 - A versioned graph envelope with schema version, source digests, policy, node records, conflict edges, hard-order
   edges, explicit independence assertions, and a deterministic schedule result.
-- One node for each exact entry in `mode_workstreams_phase_010`: `001-deep-research`, `002-deep-review`,
+- One node for each exact entry in `mode_workstreams_phase_013`: `001-deep-research`, `002-deep-review`,
   `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`,
   `007-skill-benchmark`, and `008-deep-alignment`.
 - Canonical resource records for files, persisted state, shared packets, scoring backends, review-loop services,
@@ -121,7 +121,7 @@ three inputs in its provenance record.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The graph covers the manifest-defined phase-013 workstreams exactly | The node set equals the eight strings in `mode_workstreams_phase_010`; missing, duplicate, renamed, or extra nodes fail validation |
+| REQ-001 | The graph covers the manifest-defined phase-013 workstreams exactly | The node set equals the eight strings in `mode_workstreams_phase_013`; missing, duplicate, renamed, or extra nodes fail validation |
 | REQ-002 | Every node declares canonical reads and writes | Each node has reviewed resource records for files/state/backends/locks/fixtures, with access, scope, mutability, owner, and source evidence; directory names alone are not a write set |
 | REQ-003 | Resource identities are stable and collision-aware | Equivalent relative paths, symlinks, generated outputs, shared packet roots, and backend aliases normalize to one identity or produce an explicit unresolved-alias conflict |
 | REQ-004 | Conflict edges are derived from access sets | The derivation emits deterministic edges for write-write, write-read, shared mutable backend, and fence overlap, naming the resources and evidence that caused each edge |

@@ -11,24 +11,34 @@ parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics"
-    last_updated_at: "2026-07-15T15:30:00Z"
+    last_updated_at: "2026-07-21T08:25:48Z"
     last_updated_by: "codex"
-    recent_action: "Authored the typed next-focus planning contract"
-    next_safe_action: "Implement candidate derivation, scoring, selection, and ledger replay"
+    recent_action: "Implemented and verified the additive-dark next-focus selector"
+    next_safe_action: "Keep next-focus recommendations shadow-only while parity evidence accumulates"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Next-Focus Semantics
 
-> Phase adjacency under the 007 parent (grouping order, not a runtime dependency): predecessor `003-claim-continuity`; successor `005-transactional-projections-and-gauges`.
+> Phase adjacency under the 010 parent (grouping order, not a runtime dependency): predecessor `003-claim-continuity`; successor `005-transactional-projections-and-gauges`.
+
+## EXECUTIVE SUMMARY
+
+This leaf adds a typed shadow selector for the next research region without changing the authoritative divergent-pivot
+transaction. Three region adapters share one immutable projection snapshot, reuse the shipped pivot candidate safety gate,
+rank accepted directions with a versioned integer formula and total comparator, and record selected or unavailable outcomes
+through the transition-authorized append-only ledger. Replay verifies and restores the recorded recommendation without
+consulting later projections.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,12 +46,12 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics |
-| **Level** | 2 |
+| **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 007 of the 007 novelty, claims, continuity, and projections intelligence layer |
+| **Origin** | Fourth child of phase 010, the novelty, claims, continuity, and projections intelligence layer |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -105,16 +115,80 @@ Replay identifies a decision from immutable run lineage, source iteration, proje
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-Inherits the program-level risks in the 006 parent spec: the new path must remain additive/dark, every typed write must
+Inherits the program-level risks in the 036 parent spec: the new path must remain additive/dark, every typed write must
 pass transition authorization, replay fingerprints must remain versioned, and authority cannot move before shadow
 parity and rollback evidence. Phase-specific risks are enumerated in this phase's plan.md. This child has no hard sibling
 planning dependency; its runtime interfaces consume the parent program's ledger, stable identities, and durable fan-in.
 <!-- /ANCHOR:risks -->
 
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+- **Determinism**: Candidate scores, ordering, identities, and fingerprints use canonical JSON, integer basis points, and
+  code-unit string ordering.
+- **Integrity**: Every event passes the shipped event registry, transition authorization, and append-only ledger boundaries.
+- **Compatibility**: Existing pivot and divergent-pivot behavior remains unchanged and fully regression-tested.
+- **Authority**: The public dark comparison API cannot accept a focus writer or mutate runtime state.
+- **Replayability**: Stored decisions remain sufficient after source projections evolve or disappear.
+
+## 8. EDGE CASES
+
+- Empty accepted frontier produces `next_focus_unavailable` with no directive.
+- Required observations with zero evidence fail; an observed zero remains valid when it carries evidence.
+- Non-applicable signals require a typed declaration, zero basis points, empty evidence IDs, and a rationale.
+- Fractional, non-finite, negative, and greater-than-10000 signal values fail before scoring.
+- Same-ID, exact-fingerprint, and materially similar candidates retain the shipped rejection semantics.
+- Same decision identity with different source, frontier, score, or winner fails as conflicting replay.
+- An event whose source, score, ordering, policy, comparator trace, or frontier fingerprint drifts fails replay integrity.
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Assessment | Basis |
+|-----------|------------|-------|
+| Runtime surface | High | Candidate adapters, scoring, typed events, durable append, and replay |
+| Correctness risk | High | Focus direction, immutable identity, and historical replay are load-bearing |
+| Integration risk | High | Reuses three frozen substrate layers and the shipped pivot gate |
+| Reversibility | High | New sidecar files only; no authority or substrate mutation |
+| Documentation level | 3 | More than 500 runtime and test lines plus an architecture decision |
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Parallel validator weakens pivot rejection | Critical | Medium | Direct calls to shipped validation and set deduplication |
+| R-002 | Candidates mix projection evidence | High | Medium | One canonical source fingerprint and exact candidate equality checks |
+| R-003 | Input order changes winner | High | Medium | Pre-dedup stable ordering plus a total ranked comparator |
+| R-004 | Retry rewrites a decision | Critical | Low | Deterministic event ID and semantic conflict check |
+| R-005 | Shadow selector moves focus authority | Critical | Low | Observation-only API and no state-writer import |
+
+## 11. USER STORIES
+
+### US-001: Deterministic next-region recommendation
+
+**As a** deep-loop runtime consumer, **I want** one evidence-linked ranked frontier, **so that** the same projection snapshot
+always yields the same recommendation regardless of candidate enumeration order.
+
+### US-002: Auditable no-eligible outcome
+
+**As a** replay consumer, **I want** an explicit unavailable event for an empty frontier, **so that** missing evidence never
+turns into a fabricated prompt direction.
+
+### US-003: Safe shadow comparison
+
+**As an** authority owner, **I want** the recommendation alongside the existing focus, **so that** parity can be measured
+without bypassing Council endorsement.
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 12. OPEN QUESTIONS
 
 None blocking. The equal-component basis-point policy is the deterministic initial contract; shadow evidence may justify
 a later versioned policy, but changing weights or normalization must mint a new policy version and must never rewrite
 recorded decisions. Adjacent child names in the H1 blockquote express navigation order only, not runtime dependency.
 <!-- /ANCHOR:questions -->
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: `plan.md`
+- **Task Breakdown**: `tasks.md`
+- **Verification Checklist**: `checklist.md`
+- **Architecture Decision**: `decision-record.md`
+- **Delivered State**: `implementation-summary.md`

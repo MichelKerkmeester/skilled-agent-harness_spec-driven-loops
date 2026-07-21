@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Seven create-* workflow packets still carry output examples and path rules that can produce underscore names. Their generated files and directories must use kebab-case, with README/SKILL/tool contracts and Python exemptions preserved.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-07-18T06:56:06.055Z",
+    "last_save_at": "2026-07-20T11:09:53.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:729da0a9d1ed5f3bbe879c0e672036bc96e48ec495b5e4a00ff83a27bda5f328",
+    "source_fingerprint": "sha256:d496032f93e72f294163f7a960e91bb497badfd29f20b09824838e024dce0416",
     "source_doc_hashes": {
-      "spec.md": "dbd0aedd3a5fc516ebfc3aceff98a34de41a7aa222675dcb384f8c0130410134",
+      "spec.md": "dbfec71c1223c8d6392449f405b1798bb7981eb6d7f6e906365e70764f9199fd",
       "plan.md": "cb00dd81503b75ac8cd236f8bbcf3159b1030bc13b46ad7a4102d58bdc872f90",
       "tasks.md": "8a6284d38c3791202ceb7b667634fc9e4ed674d7a93d9ee1d85ee47912613a8e",
       "checklist.md": "f4041a7b0123dda0474cc1ee232a46beef0c9155d50edfb283a577b8ae88dd96",
-      "implementation-summary.md": "bde63568f91e579246c19da07df3ef1b05250a20da8c0e35a17389c254b05ddc"
+      "implementation-summary.md": "11683ec26da3882bdce17a998eba3d7ff778bae40b7e6f1e0f94a47601bf8eb0"
     },
     "last_active_child_id": null,
     "last_active_at": null

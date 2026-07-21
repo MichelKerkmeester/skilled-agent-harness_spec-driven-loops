@@ -1,11 +1,16 @@
 import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
+  EXECUTOR_KINDS,
+  EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
   ExecutorConfigError,
+  WEB_SEARCH_POLICIES,
+  assertExecutorWebSearchCapability,
   parseExecutorConfig,
   resolveExecutorConfig,
   parseFanoutConfig,
   expandLineages,
+  preflightFanoutCapabilities,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
@@ -23,6 +28,7 @@ describe('executor-config', () => {
       sandboxMode: null,
       timeoutSeconds: 900,
       governor: null,
+      liveTools: { webSearch: 'inherit' },
     });
   });
 
@@ -244,6 +250,72 @@ describe('executor-config', () => {
   it('rejects a retired executor config during resolution', () => {
     const retiredKind = ['cli', 'gemini'].join('-');
     expect(() => resolveExecutorConfig({ cli: { kind: retiredKind as never } })).toThrow(ExecutorConfigError);
+  });
+});
+
+describe('executor web-search policy', () => {
+  it('normalizes omission to inherit and accepts every typed policy value', () => {
+    expect(parseExecutorConfig({ kind: 'native' }).liveTools).toEqual({ webSearch: 'inherit' });
+    for (const webSearch of WEB_SEARCH_POLICIES) {
+      expect(parseExecutorConfig({
+        kind: 'cli-codex',
+        model: 'gpt-5.6-codex',
+        liveTools: { webSearch },
+      }).liveTools.webSearch).toBe(webSearch);
+    }
+  });
+
+  it('rejects an unknown policy without weakening existing field-support checks', () => {
+    expect(() => parseExecutorConfig({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-codex',
+      liveTools: { webSearch: 'training-data' },
+    })).toThrow(ExecutorConfigError);
+    expect(() => parseExecutorConfig({ kind: 'native', model: 'still-unsupported' })).toThrowError(
+      /model.*not supported by executor kind 'native'/,
+    );
+  });
+
+  it('declares every executor-kind by policy cell explicitly', () => {
+    expect(Object.keys(EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX)).toEqual([...EXECUTOR_KINDS]);
+    for (const kind of EXECUTOR_KINDS) {
+      expect(Object.keys(EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX[kind])).toEqual([...WEB_SEARCH_POLICIES]);
+    }
+    expect(EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX).toEqual({
+      native: { inherit: true, disabled: false, cached: false, live: false },
+      'cli-codex': { inherit: true, disabled: true, cached: false, live: true },
+      'cli-claude-code': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-opencode': { inherit: true, disabled: false, cached: false, live: true },
+    });
+  });
+
+  it('keeps cached typed but rejects it through capability preflight', () => {
+    const config = parseExecutorConfig({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-codex',
+      liveTools: { webSearch: 'cached' },
+    });
+    expect(config.liveTools.webSearch).toBe('cached');
+    expect(() => assertExecutorWebSearchCapability(config)).toThrowError(
+      /policy 'cached'.*not supported by executor kind 'cli-codex'/,
+    );
+  });
+
+  it('preflights the complete matrix after lineage expansion', () => {
+    for (const kind of EXECUTOR_KINDS) {
+      for (const webSearch of WEB_SEARCH_POLICIES) {
+        const model = kind === 'native' ? null : `${kind}-model`;
+        const config = parseFanoutConfig({
+          executors: [{ kind, model, label: `${kind.replaceAll('cli-', '')}-${webSearch}`, liveTools: { webSearch } }],
+        });
+        const lineages = expandLineages(config);
+        if (EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX[kind][webSearch]) {
+          expect(() => preflightFanoutCapabilities(lineages)).not.toThrow();
+        } else {
+          expect(() => preflightFanoutCapabilities(lineages)).toThrow(ExecutorConfigError);
+        }
+      }
+    }
   });
 });
 
@@ -497,5 +569,76 @@ describe('expandLineages', () => {
     const lineages = expandLineages(config);
     expect(lineages.map((l) => l.label)).toEqual(['minimax-1', 'minimax-2', 'minimax-3', 'opus-1', 'opus-2']);
     expect(lineages.every((l) => l.count === 1)).toBe(true);
+  });
+
+  it('expands models by branches by replicas in stable model-first order', () => {
+    const manifest = {
+      models: [
+        { id: 'sol', kind: 'cli-codex' as const, model: 'gpt-5.6-sol', liveTools: { webSearch: 'live' as const } },
+        { id: 'glm', kind: 'cli-opencode' as const, model: 'zai-coding-plan/glm-5.2', liveTools: { webSearch: 'live' as const } },
+      ],
+      branches: [{ id: 'discover' }, { id: 'challenge' }, { id: 'synthesize' }],
+      replicas: 2,
+    };
+    const first = expandLineages(parseFanoutConfig(manifest));
+    const second = expandLineages(parseFanoutConfig(manifest));
+
+    expect(first).toHaveLength(12);
+    expect(first.map((lineage) => lineage.label)).toEqual([
+      'discover-sol-r1', 'discover-sol-r2',
+      'challenge-sol-r1', 'challenge-sol-r2',
+      'synthesize-sol-r1', 'synthesize-sol-r2',
+      'discover-glm-r1', 'discover-glm-r2',
+      'challenge-glm-r1', 'challenge-glm-r2',
+      'synthesize-glm-r1', 'synthesize-glm-r2',
+    ]);
+    expect(second).toEqual(first);
+    expect(new Set(first.map((lineage) => lineage.label)).size).toBe(12);
+    expect(first.every((lineage) => lineage.count === 1)).toBe(true);
+  });
+
+  it('keeps the legacy executors and count expansion byte-stable apart from the normalized policy default', () => {
+    const config = parseFanoutConfig({
+      executors: [
+        { kind: 'cli-opencode', model: 'opencode-go/glm-5.1', label: 'glm', count: 2 },
+        { kind: 'native', label: 'native', count: 1 },
+      ],
+    });
+    const lineages = expandLineages(config);
+    expect(lineages.map(({ label, kind, model, count }) => ({ label, kind, model, count }))).toEqual([
+      { label: 'glm-1', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+      { label: 'glm-2', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+      { label: 'native', kind: 'native', model: null, count: 1 },
+    ]);
+    expect(lineages.every((lineage) => lineage.liveTools.webSearch === 'inherit')).toBe(true);
+  });
+
+  it('rejects mixed forms, duplicate or invalid ids, compiled collisions, and oversized products', () => {
+    expect(() => parseFanoutConfig({
+      executors: [{ kind: 'native', label: 'legacy' }],
+      models: [{ id: 'native', kind: 'native' }],
+      branches: [{ id: 'branch' }],
+      replicas: 1,
+    })).toThrow(ExecutorConfigError);
+    expect(() => parseFanoutConfig({
+      models: [{ id: 'same', kind: 'native' }, { id: 'same', kind: 'native' }],
+      branches: [{ id: 'branch' }],
+      replicas: 1,
+    })).toThrowError(/duplicate model id 'same'/);
+    expect(() => parseFanoutConfig({
+      models: [{ id: 'model', kind: 'native' }],
+      branches: [{ id: 'Bad Branch' }],
+      replicas: 1,
+    })).toThrow(ExecutorConfigError);
+    expect(() => parseFanoutConfig({
+      models: [{ id: 'c', kind: 'native' }, { id: 'b-c', kind: 'native' }],
+      branches: [{ id: 'a-b' }, { id: 'a' }],
+      replicas: 1,
+    })).toThrowError(/compiled lineage label 'a-b-c-r1' collides/);
+    expect(() => parseFanoutConfig({
+      models: Array.from({ length: 16 }, (_, index) => ({ id: `model-${index}`, kind: 'native' })),
+      branches: Array.from({ length: 16 }, (_, index) => ({ id: `branch-${index}` })),
+      replicas: 2,
+    })).toThrowError(/expands to 512 lineages; maximum is 256/);
   });
 });

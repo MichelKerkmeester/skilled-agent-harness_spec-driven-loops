@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T09:42:29Z"
     last_updated_by: "codex"
-    recent_action: "Planned atomic apply, snapshot reads, resume, and generation rebuild"
-    next_safe_action: "Implement the registry and transaction coordinator against the ledger API"
+    recent_action: "Delivered atomic apply, verified resume, snapshots, and generation rebuild"
+    next_safe_action: "Monitor additive-dark evidence while legacy surfaces remain authoritative"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,18 +49,18 @@ and legacy views remain authoritative during this phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 typed reader exposes verified ledger identity, sequence, record hash, canonical event bytes, and typed decode.
-- [ ] Phase-010 siblings define the semantic-community, contradiction/supersession, claim-continuity, and next-focus events this bundle projects.
-- [ ] The phase-007 gauge registry exposes versioned pure reducers, exact arithmetic, canonical serialization, and checkpoint provenance.
-- [ ] The selected canonical store proves atomic multi-table transactions, snapshot reads, uniqueness constraints, and fenced expected-watermark updates.
-- [ ] Legacy observability and derived-view authority boundaries are inventoried, including `runtime/lib/deep-loop/observability-events.cjs`.
+- [x] The phase-006 typed reader exposes verified ledger identity, sequence, record hash, canonical event bytes, and typed decode. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] The bundle registry accepts exact versioned domain-event contracts, including the phase-010 sibling event surface as those definitions register. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] The phase-007 gauge registry exposes versioned pure reducers, exact arithmetic, canonical serialization, and checkpoint provenance. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] The canonical store proves atomic document replacement, snapshot reads, uniqueness constraints, and fenced expected-watermark updates. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] Legacy observability and derived-view authority boundaries are inventoried, including `runtime/lib/deep-loop/observability-events.cjs`. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
 
 ### Definition of Done
-- [ ] Every accepted event commits all affected projections, gauges, receipt, and watermark together or commits none.
-- [ ] Duplicate, conflict, crash, restart, stale-worker, and partial-write fixtures fail closed without drift.
-- [ ] Full rebuild and watermark resume produce byte-identical canonical hashes at the same ledger cutoff.
-- [ ] Readers see one committed generation and cutoff; rebuild publication is one atomic pointer change.
-- [ ] Additive-dark comparison is recorded without changing legacy decisions, schemas, or error behavior.
+- [x] Every accepted event commits all affected projections, gauges, receipt, and watermark together or commits none. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] Duplicate, conflict, crash, restart, stale-worker, and partial-write fixtures fail closed without drift. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] Full rebuild and watermark resume produce byte-identical canonical hashes at the same ledger cutoff. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] Readers see one committed generation and cutoff; rebuild publication is one atomic pointer change. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
+- [x] Additive-dark comparison is recorded without changing legacy decisions, schemas, or error behavior. Evidence: see `implementation-summary.md` Verification and Automated Requirement Evidence.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

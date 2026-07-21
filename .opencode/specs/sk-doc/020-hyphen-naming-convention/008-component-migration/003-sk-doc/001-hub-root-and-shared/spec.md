@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: sk-doc hub root and shared backbone
+> Phase adjacency — successor `002-scripts`.
 
 > Phase 001 under the `003-sk-doc` parent. It supplies the shared naming boundary used by later sk-doc component phases.
 

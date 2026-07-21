@@ -6,8 +6,8 @@ trigger_phrases:
   - "document diff engine"
   - "before after document review"
   - "feature catalog"
-last_updated: "2026-07-15"
-version: 1.0.0.0
+last_updated: "2026-07-20"
+version: 1.1.1.0
 ---
 
 # create-diff: Feature Catalog
@@ -64,7 +64,7 @@ Renders the diff as a single self-contained HTML file — inlined CSS, zero Java
 
 #### Current Reality
 
-The report opens from `file://` with no network access; added/removed lines carry `+`/`−` text markers alongside colour; dark/light themes are supported; output is byte-reproducible under `SOURCE_DATE_EPOCH`.
+The report opens from `file://` with no network access; added/removed lines carry `+`/`−` text markers alongside colour; output is byte-reproducible under `SOURCE_DATE_EPOCH`. Valid pre-composed aggregate pairs also render persistent `START FILE` and `END FILE` row groups in unified and side-by-side views, while malformed marker envelopes remain ordinary content.
 
 #### Source Files
 

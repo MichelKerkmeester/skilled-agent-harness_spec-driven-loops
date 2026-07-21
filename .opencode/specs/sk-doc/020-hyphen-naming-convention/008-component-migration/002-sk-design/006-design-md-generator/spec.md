@@ -29,6 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # Feature Specification: Design-md-generator (020 phase 006)
+> Phase adjacency — predecessor `005-design-audit`; successor `007-design-mcp-open-design`.
 
 > Phase 006 of the sk-design component migration under `sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
@@ -85,6 +86,7 @@ The md-generator mode contains underscore-bearing authoring, extraction, and val
 | REQ-002 | Extraction references remain valid. | SKILL.md, README.md, procedure citations, and links resolve to the new paths. |
 | REQ-003 | The backend boundary is preserved. | Backend code, module semantics, generated artifact names, and tool-mandated names are not changed by this phase. |
 | REQ-004 | Catalog/playbook ownership is preserved. | The phase report records those trees as deferred, not partially renamed. |
+| REQ-005 | The phase records its rename evidence for the subtree gate. | The source-to-target path map, stale-reference sweep, and exemption report are captured as evidence for `012-skill-gate`. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Improvement Common Services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; sixth child of the shared Deep Improvement Common Services migration |
 | **Child depends_on** | `[]` |
-| **Inputs** | Phase-014 health and degeneration shadow framework; siblings `001-typed-ledger-schema` through `005-resume-adapter`; parent phase plan; 065/002 findings registries |
+| **Inputs** | Phase-014 health and degeneration shadow framework; siblings `001-typed-ledger-schema` through `005-resume-adapter`; parent phase plan; 036/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -205,7 +205,7 @@ records the same evidence boundary and leaves all action authority with the shar
 
 Dependencies are the parent program's typed ledger and compatibility model, the phase-014 health and degeneration shadow
 framework, siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, `004-certificates-and-receipts`,
-and `005-resume-adapter`, the phase-012 shared mode contracts and write-set conflict graph, and the two 065/002 findings
+and `005-resume-adapter`, the phase-012 shared mode contracts and write-set conflict graph, and the two 036/002 findings
 registries. The successor `007-rollback-and-mode-gate` consumes the passing parity report; the three downstream variants reuse
 the common harness after the shared contracts are frozen.
 <!-- /ANCHOR:risks -->

@@ -54,7 +54,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent 065 invariant, phase tree, phase-012 shared review-loop contract, write-set conflict graph, and phase-014 handoff contract are pinned by digest
+- [ ] The parent 036 invariant, phase tree, phase-012 shared review-loop contract, write-set conflict graph, and phase-014 handoff contract are pinned by digest
 - [ ] The six Deep Alignment sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries
 - [ ] The legacy Deep Alignment state machine is inventoried for lane resolution, discovery, applicability, verification, known deviations, convergence, report, resume, continuity, and remediation exclusion
 - [ ] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed
@@ -168,7 +168,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the 065 program's additive-dark migration rule, the phase-012 shared review-loop contract and write-set conflict
+The plan consumes the 036 program's additive-dark migration rule, the phase-012 shared review-loop contract and write-set conflict
 graph, the phase-006 ledger and authorization spine, the phase-014 shadow and handoff contracts, and the Deep Alignment sibling
 contracts for typed events, reducers, sealed artifacts, certificates, resume, and shadow parity. It also consumes the existing
 Deep Alignment state machine, authority adapters, known-deviation contracts, the two findings registries, the Deep Review mode 002

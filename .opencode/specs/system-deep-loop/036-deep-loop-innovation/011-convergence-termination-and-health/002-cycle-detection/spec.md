@@ -1,34 +1,41 @@
 ---
 title: "Feature Specification: cycle detection"
-description: "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface degeneration as a health signal and stopping-clock input."
+description: "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop authority."
 trigger_phrases:
   - "deep-loop cycle detection"
   - "repeated claim and focus signatures"
   - "convergence degeneration signal"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/002-cycle-detection"
-    last_updated_at: "2026-07-15T15:19:57Z"
+    last_updated_at: "2026-07-21T11:31:40Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned cycle-detection contract for repeated states, claims, and foci"
-    next_safe_action: "Implement fingerprint history, progress gating, health signals, and stopping-clock input"
+    recent_action: "Closed cycle-starvation and watermark gaps"
+    next_safe_action: "Keep cycle evidence dark until stopping-clock arbitration"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Cycle Detection
 
-> Phase adjacency under the 008 parent (grouping order, not a runtime dependency): predecessor `001-path-covering-termination`; successor `003-stopping-clocks`.
+> Phase adjacency under the 011 parent (grouping order, not a runtime dependency): predecessor `001-path-covering-termination`; successor `003-stopping-clocks`.
+
+## EXECUTIVE SUMMARY
+
+The runtime now records canonical cycle observations beside legacy convergence, retains a replay-stable 12-entry history,
+and detects fixed points or period-two-to-four suffix cycles on the third traversal. A separate three-in-eight focus or
+claim-frontier check catches degeneration hidden by composite churn. Explicit progress breaks both paths, while missing or
+inconsistent inputs remain unevaluable. Typed health events enter the authorized ledger as evidence only.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,9 +43,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/002-cycle-detection |
-| **Level** | 2 |
+| **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Second child of phase 011; the program manifest assigns repeated-state, claim, and focus detection to the convergence, termination, and health layer |
@@ -102,11 +109,11 @@ the evidence and emits a typed health signal; it does not silently stop the loop
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Define canonical focus, claim-frontier, and composite-state signatures from one committed ledger/projection boundary | Equivalent semantic state produces byte-stable fingerprints under input reordering; mixed watermarks, missing typed IDs, or unknown reducer versions fail closed |
+| REQ-001 | Define canonical focus, claim-frontier, and composite-state signatures from one committed ledger/projection boundary | Equivalent semantic state produces byte-stable fingerprints under input reordering; a null or mismatched required claim watermark, missing typed IDs, or unknown reducer versions fails closed |
 | REQ-002 | Preserve a bounded, replayable fingerprint history over completed iterations | Incremental application and full replay produce the same ordered observations, eviction boundary, and history hash for the latest 12 entries |
 | REQ-003 | Detect fixed points and short repeated sequences deterministically | Fixtures for periods 1, 2, 3, and 4 confirm only after three complete traversals and return the same start/end cursors and evidence trace on replay |
-| REQ-004 | Detect repeated focus or claim-frontier degeneration even when the composite fingerprint changes | Three matching focus or claim fingerprints inside eight completed observations produce a typed suspicion only when no qualifying progress occurred between the first and last match |
-| REQ-005 | Separate repetition from productive revisitation through a versioned progress gate | New independent evidence, a material claim transition, contradiction/blocker resolution, or sufficient coverage gain breaks the candidate cycle and records the exact progress basis |
+| REQ-004 | Detect repeated focus or claim-frontier degeneration even when the composite fingerprint changes | Every independently qualifying focus and claim fingerprint inside eight completed observations produces ordered evidence when no qualifying progress occurred, including when both kinds close together and one would leave the next window |
+| REQ-005 | Separate repetition from productive revisitation through a versioned progress gate | New independent evidence, a material claim transition, contradiction/blocker resolution, or sufficient net end-versus-start coverage gain breaks the candidate cycle and records the exact progress basis |
 | REQ-006 | Make sensitivity explicit, bounded, and versioned | Detector policy records window 12, max period 4, minimum traversals 3, repetition window 8, occurrence threshold 3, and the progress-floor policy; policy changes mint a new version |
 | REQ-007 | Emit auditable cycle health events through the transition-authorized ledger | Every suspected, confirmed, and cleared event cites source cursors/fingerprints, signature kind, period, occurrences, policy version, progress verdict, and idempotency identity |
 | REQ-008 | Feed cycle health into stopping clocks without claiming stop authority | Sibling-clock input is typed and replayable; a cycle event alone cannot produce `STOP_ALLOWED` outside the clock arbitration contract |
@@ -127,7 +134,7 @@ confirmed sequence cycle requires three identical consecutive traversals of the 
 parallel, three occurrences of the same focus or claim-frontier signature inside the latest eight observations create a
 suspected degeneration signal. Neither path confirms degeneration if the enclosed progress vector contains accepted
 independent evidence, a durable claim mint or material lifecycle/status transition, a resolved contradiction or blocker, or
-coverage gain meeting the versioned integer-basis-point floor. Execution must calibrate that floor in shadow fixtures, but it
+net end-versus-start coverage gain meeting the versioned integer-basis-point floor. Execution must calibrate that floor in shadow fixtures, but it
 cannot weaken the typed progress categories or make absence of data count as absence of progress.
 
 Detection appends an idempotent health event keyed by run lineage, ending cursor, signature kind, period, and policy version.
@@ -160,11 +167,60 @@ canonical versioned serialization, a fixed bounded window, explicit material-pro
 fail-closed version/watermark checks, shadow calibration, and a typed clock boundary that keeps authority in sibling 003.
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-None blocking for planning. Execution must freeze the integer coverage-progress floor, independent-evidence qualification,
-mode adapters for material claim progress, suspected/confirmed severity mapping, and clock contribution weight against pinned
-shadow fixtures. Those calibrations may mint a new detector-policy version; they cannot remove the three-traversal rule,
-bounded history, fail-closed replay checks, or separation between health evidence and stop authority.
+- Determinism: canonical bytes and hashes depend only on typed versioned state, never object insertion order or display text.
+- Boundedness: the live projection retains 12 observations and one hash-chained eviction boundary.
+- Integrity: every stored observation, history, policy, and health payload is verified before comparison or append.
+- Authority isolation: the detector produces evidence and cannot represent an authoritative stop decision.
+- Replay: incremental fold, resume restoration, and full replay must return identical histories and classifications.
+
+## 8. EDGE CASES
+
+- A null or mismatched required claim-projection watermark raises a typed error before signature comparison.
+- Missing progress data returns `not_evaluable`, including when a repeated suffix otherwise matches.
+- Unknown detector, reducer, source, or progress versions fail closed.
+- A non-monotonic cursor or iteration gap cannot enter the bounded history.
+- Presentation wording can repeat while typed states differ without creating a cycle.
+- Co-occurring focus and claim repetition reports ordered evidence for both signal kinds before either match leaves the window.
+
+## 9. COMPLEXITY ASSESSMENT
+
+This implementation is Level 3 because it adds more than 3,500 lines across a canonical projector, policy registry, bounded reducer,
+detector, authorization-backed events, shadow adapter, and adversarial tests. The blast radius remains bounded: all runtime
+files are new, the legacy convergence path is untouched, and no phase-010 or phase-006 contract is modified.
+
+## 10. RISK MATRIX
+
+| Risk | Impact | Probability | Control |
+|------|--------|-------------|---------|
+| Mutable wording changes a signature | High | Low | Signatures fold typed candidate, region, claim, lifecycle, and policy identities only |
+| Real period-one-to-four cycle is missed | High | Low | Exact suffix matching runs before the secondary heuristic and tests the third traversal boundary |
+| Missing data is misread as no progress | High | Low | Progress uses an explicit `missing` variant and yields `not_evaluable` |
+| Detector changes stop behavior | Critical | Low | Shadow adapter returns the authoritative object by identity; clock input fixes `stop_decision` to `null` |
+| Replay diverges after eviction | High | Low | One reducer drives incremental and replay paths; eviction carries a chained boundary hash |
+
+## 11. USER STORIES
+
+- **Given** three identical typed fixed-point observations, **When** the third commits, **Then** the detector confirms period one with all three cursors.
+- **Given** a genuine period-four sequence, **When** only eleven observations exist, **Then** no period-four confirmation is emitted.
+- **Given** the same focus three times with composite churn, **When** no progress occurs, **Then** the detector emits a typed focus suspicion.
+- **Given** a candidate cycle with new independent evidence, **When** progress is assessed, **Then** the candidate is broken with the exact basis recorded.
+- **Given** missing progress or a stale watermark, **When** evaluation runs, **Then** it returns a typed unknown or error instead of `no_cycle`.
+- **Given** confirmed cycle evidence, **When** the shadow handoff runs, **Then** the authoritative convergence result is unchanged and the clock input contains no stop decision.
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+None. The first policy generation fixes the coverage floor at 100 basis points, accepts only typed independent evidence and
+material claim transitions, maps suspected and confirmed severity to 5,000 and 10,000 basis points, and keeps the clock input
+non-authoritative. Any sensitivity change requires another detector-policy version.
 <!-- /ANCHOR:questions -->
+
+## RELATED DOCUMENTS
+
+- `plan.md` records delivery and verification strategy.
+- `tasks.md` records completed implementation work.
+- `checklist.md` binds blocking checks to evidence.
+- `decision-record.md` explains canonical typed signatures and additive-dark authority isolation.
+- `implementation-summary.md` records the delivered modules, commands, and known workspace limitation.

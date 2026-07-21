@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Skill Benchmark - Sealed Reference Artifacts"
-description: "Implementation Plan for the Skill Benchmark sealed-artifact phase: adapt the shared phase-006 sealing primitive and deep-improvement-common services to immutable treatment, bundle, scenario, gold, exposure, scoring, and certificate-input references."
+description: "Implementation Plan for the Skill Benchmark sealed-artifact phase: adapt the shared phase-007 sealing primitive and deep-improvement-common services to immutable treatment, bundle, scenario, gold, exposure, scoring, and certificate-input references."
 trigger_phrases:
   - "Skill Benchmark sealed artifacts implementation plan"
   - "skill benchmark tamper evident read plan"
@@ -37,7 +37,7 @@ _memory:
 ### Overview
 
 This phase makes Skill Benchmark scenario evidence reproducible without making the mode responsible for the shared sealing
-or evaluator stack. It adapts the phase-006 primitive and mode-004 common services into one content-addressed contract for
+or evaluator stack. It adapts the phase-007 primitive and mode-004 common services into one content-addressed contract for
 treatment designs, skill bundles, task/gold inputs, assignments, exposure observations, raw scoring observations, and
 certificate inputs. Seal-on-write publishes only verified references; tamper-evident reads reject changed, stale, incomplete,
 incompatible, or unauthorized material. Reducers and the successor certificate phase consume these references but do not
@@ -51,7 +51,7 @@ receive mutable snapshots or a second identity scheme.
 
 - [ ] `002-reducers-and-projections` publishes the Skill Benchmark artifact-reference, treatment-cell, evaluator-epoch,
   gold-policy, and projection-fingerprint inputs consumed by this phase
-- [ ] The shared phase-006 sealing primitive publishes canonicalization, digest, dependency-closure, seal-on-write,
+- [ ] The shared phase-007 sealing primitive publishes canonicalization, digest, dependency-closure, seal-on-write,
   publication, tamper-read, lifecycle, and failure semantics
 - [ ] Deep-improvement-common publishes the evaluator capsule, canary epoch, replay, budget, visibility, and common read
   contracts consumed by the mode
@@ -65,7 +65,7 @@ receive mutable snapshots or a second identity scheme.
 ### Definition of Done
 
 - [ ] Every Skill Benchmark reference is content-addressed, sealed on write, immutable after publication, and verified on read
-  through the phase-006 primitive
+  through the phase-007 primitive
 - [ ] Paired treatment designs reproduce the same task, bundle, executor, environment, evaluator, gold, and workload inputs
 - [ ] Exposure and scoring observations preserve raw causal-stage evidence and gold-integrity decisions for later reduction
 - [ ] Missing, stale, tampered, incompatible, leaked, or non-scored evidence cannot enter positive scoring or certificate input
@@ -76,7 +76,7 @@ receive mutable snapshots or a second identity scheme.
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Single sealing adapter**: expose the phase-006-backed canonicalize, digest, seal, publish, inspect, and verify boundary;
+- **Single sealing adapter**: expose the phase-007-backed canonicalize, digest, seal, publish, inspect, and verify boundary;
   the adapter owns no alternate hash, signature, chain, manifest, storage, or lifecycle semantics.
 - **Content identity**: derive each reference from canonical bytes, artifact kind, schema version, and ordered dependency
   closure. Bundle, task, gold, evaluator, executor, environment, tool, permission, dependency, registry, and workload
@@ -112,7 +112,7 @@ receive mutable snapshots or a second identity scheme.
 
 - Confirm `002-reducers-and-projections` is frozen for artifact references, treatment-cell identity, gold-policy status,
   projection fingerprints, and reducer ownership.
-- Read the phase-006 sealing primitive and record its canonicalization, digest, dependency, publication, lifecycle, and
+- Read the phase-007 sealing primitive and record its canonicalization, digest, dependency, publication, lifecycle, and
   verification behavior; reject any design that duplicates it.
 - Read the deep-improvement-common mode-004 sealed-artifact and service contracts; map each consumer boundary without copying
   evaluator, canary, replay, budget, receipt, or read-verification logic.
@@ -123,7 +123,7 @@ receive mutable snapshots or a second identity scheme.
 
 ### Phase 2: Implementation
 
-- Define the single phase-006-backed Skill Benchmark artifact adapter and typed reference, dependency manifest, lifecycle,
+- Define the single phase-007-backed Skill Benchmark artifact adapter and typed reference, dependency manifest, lifecycle,
   visibility, and verification result vocabulary.
 - Define canonical serialization and digest coverage for treatment designs, skill bundles, resource closures, scenario/gold
   manifests, run assignments, exposure observations, scoring observations, and certificate inputs.
@@ -168,7 +168,7 @@ receive mutable snapshots or a second identity scheme.
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract tests route every Skill Benchmark artifact through the phase-006 adapter and reject alternate seal metadata or verification paths |
+| REQ-001 | Contract tests route every Skill Benchmark artifact through the phase-007 adapter and reject alternate seal metadata or verification paths |
 | REQ-002 | Canonicalization and dependency property tests compare equivalent inputs and mutate each covered bundle, task, gold, evaluator, executor, environment, registry, tool, permission, dependency, and workload field |
 | REQ-003 | Crash, retry, duplicate, concurrent, atomic-publication, read-back, and overwrite fixtures prove partial and prior sealed artifacts are never accepted or changed |
 | REQ-004 | Tamper, missing, truncation, unsupported-schema, lifecycle, epoch, gold, compatibility, leak, and quarantine fixtures return typed refusal without usable fallback bytes |
@@ -186,7 +186,7 @@ receive mutable snapshots or a second identity scheme.
 ## 6. DEPENDENCIES
 
 The primary inputs are `002-reducers-and-projections` for treatment, artifact, gold-policy, and projection references; the
-shared phase-006 sealing primitives for every digest, publication, lifecycle, and verification behavior; and deep-improvement
+shared phase-007 sealing primitives for every digest, publication, lifecycle, and verification behavior; and deep-improvement
 common mode 004 for evaluator capsules, canary epochs, replay fingerprints, budgets, locks, receipts, visibility, and common
 read failures. The successor `004-certificates-and-receipts` consumes the effect-certificate inputs and binds them into final
 certificate and receipt facts. The phase also depends on phase 012 shared mode contracts and the write-set conflict graph, the

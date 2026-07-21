@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase-006 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs
+- [ ] T001 Confirm phase-007 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs
 - [ ] T002 Confirm predecessor `002-reducers-and-projections` owns reference indexing and successor `004-certificates-and-receipts` owns certification; this phase introduces no second seal scheme
 - [ ] T003 [P] Read the typed ledger schema, council findings registries, legacy `ai-council/**` artifacts, state fixtures, replay fixtures, and protected-vs-known-defect decisions
 - [ ] T004 [P] Record artifact ownership, logical identities, lifecycle scope, visibility classes, requiredness, source-event ranges, and supersession boundaries
@@ -50,7 +50,7 @@ _memory:
 
 - [ ] T005 Define the immutable input manifest for target, task class, strategy, prompt/tool/model capabilities, seat roster, reasoning methods, budgets, convergence policy, contract revisions, control arms, and test fixtures
 - [ ] T006 Define the immutable output inventory for proposals, critiques, blinded candidates, pairwise judgments, bias and counterfactual probes, convergence evidence, synthesis, minority records, council artifacts, and test-gate evidence
-- [ ] T007 Map each inventory row to the phase-006 seal primitive and phase-012 shared digest, identity, reference, replay, receipt, authorization, visibility, and write-set fields
+- [ ] T007 Map each inventory row to the phase-007 seal primitive and phase-012 shared digest, identity, reference, replay, receipt, authorization, visibility, and write-set fields
 - [ ] T008 Define canonicalization and digest rules using the shared primitive, including byte metadata, schema version, policy version, and replay-fingerprint binding
 - [ ] T009 Define seal-on-write ordering: canonicalize, digest, atomically create or reuse the immutable object, persist the shared manifest, and append the authorized seal/reference record
 - [ ] T010 Define idempotent duplicate handling, changed-content behavior, supersession lineage, concurrent duplicate writes, failed writes, late outputs, and quarantine states
@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Verify the contract map has no mode-local digest, manifest, seal, verification, or persistence authority outside the phase-006 primitive
+- [ ] T014 Verify the contract map has no mode-local digest, manifest, seal, verification, or persistence authority outside the phase-007 primitive
 - [ ] T015 Verify identical canonical bytes return one stable digest and object; changed bytes create a new digest and append-only supersession lineage
 - [ ] T016 Verify missing, changed, malformed, unsafe, wrong-scope, wrong-visibility, stale, and quarantined reads return explicit blocked or non-verified results with no mutable-path fallback
 - [ ] T017 Verify private seat evidence and blinded candidate identity remain inaccessible outside their declared information surfaces

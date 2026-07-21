@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed multi-seat deliberation, critique, blinded adjudication, convergence, ai-council artifact, and council test-gate events. This phase defines events, field contracts, and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:33.922Z",
-    "last_save_at": "2026-07-17T13:21:30.387Z",
+    "last_save_at": "2026-07-19T14:47:13.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,10 +179,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f3b4b65263a143ca55a3f2304e6ad8113dce12ae15beb2773d07ebcb497047a0",
+    "source_fingerprint": "sha256:5475888efdf2dc13f9c32b23673909ec43ce125958c0d688632fe86be0e654a6",
     "source_doc_hashes": {
       "spec.md": "46772851e0aa33aa5646887fc9b8c29f715fb9ef1d61327b4496873ae05574c3",
-      "plan.md": "c1d1cc49901c033d128611947e5203829b87e42a678a5a52edcac29c439901aa",
+      "plan.md": "db38c180a4bb01f8a8673b7692c9f70b4266f84a29cc247f3ca702127b9f0877",
       "tasks.md": "f2b22b26af8f98806b76c741c4076f96058cfc7a3d99fa04ebe4d5e08c738776",
       "checklist.md": "f28aa20307fe0a7f09bb393185decea57baf1750864bf0eab374b94c40210461"
     },

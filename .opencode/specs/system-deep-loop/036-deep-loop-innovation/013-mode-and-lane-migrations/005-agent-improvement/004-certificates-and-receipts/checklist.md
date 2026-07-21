@@ -29,14 +29,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the Agent Improvement certificates and receipts phase. Every report pins the candidate SHA, BASE SHA, phase-015 contract digest, certificate/receipt schema digest, fingerprint algorithm version, and fixture manifest hash. The verifier records commands, exit codes, accepted and rejected fixture counts, and fails on missing evidence, unexpected authority changes, or unscoped tracked mutation.
+This checklist is the blocking SOL verifier contract for the Agent Improvement certificates and receipts phase. Every report pins the candidate SHA, BASE SHA, phase-012 contract digest, certificate/receipt schema digest, fingerprint algorithm version, and fixture manifest hash. The verifier records commands, exit codes, accepted and rejected fixture counts, and fails on missing evidence, unexpected authority changes, or unscoped tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] Phase-015 shared contracts and write-set ownership are pinned before any Agent Improvement evidence writer changes
-- [ ] CHK-007 [P2] BASE SHA, phase-006 primitive digest, sealed-artifact schema digest, common-service epoch digests, and fixture manifest hash are recorded in the candidate report
+- [ ] CHK-006 [P0] Phase-012 shared contracts and write-set ownership are pinned before any Agent Improvement evidence writer changes
+- [ ] CHK-007 [P2] BASE SHA, phase-007 primitive digest, sealed-artifact schema digest, common-service epoch digests, and fixture manifest hash are recorded in the candidate report
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -56,7 +56,7 @@ This checklist is the blocking SOL verifier contract for the Agent Improvement c
 - [ ] CHK-004 [P0] The offline verifier accepts valid fixtures with no network, live evaluator, canary, promotion, or mutable-workspace access
 - [ ] CHK-011 [P0] Mutating each fingerprint input changes the digest; semantically equivalent canonical inputs remain stable
 - [ ] CHK-012 [P0] Missing, duplicate, orphaned, reordered, altered, stale, schema-incompatible, and unauthorized evidence fails with a typed refusal rather than a generic pass/fail collapse
-- [ ] CHK-013 [P0] Phase-006 receipt/certificate primitives and `003-sealed-artifacts` references validate across compatible versions and reject silent coercion on incompatible versions
+- [ ] CHK-013 [P0] Phase-007 receipt/certificate primitives and `003-sealed-artifacts` references validate across compatible versions and reject silent coercion on incompatible versions
 - [ ] CHK-014 [P1] Raw evaluator observations remain available for replay while normalization and score-policy changes produce distinct evidence from candidate execution
 - [ ] CHK-015 [P1] Candidate-visible views expose commitments and typed verdicts without protected fixture identity or exact hidden scores before the disclosure transition
 - [ ] CHK-016 [P0] Shadow parity compares certificate/verifier output with the legacy Agent Improvement result while legacy authority remains unchanged

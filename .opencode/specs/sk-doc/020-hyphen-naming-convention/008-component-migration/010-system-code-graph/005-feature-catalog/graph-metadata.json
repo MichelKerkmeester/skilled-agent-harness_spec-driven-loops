@@ -41,10 +41,8 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
       ".opencode/skills/system-code-graph/ARCHITECTURE.md",
       "spec.md",
       "plan.md",
@@ -52,12 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -68,12 +60,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
     "created_at": "2026-07-14T15:18:16Z",
-    "last_save_at": "2026-07-17T14:30:37.383Z",
+    "last_save_at": "2026-07-20T11:09:51.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +206,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:164df1f02df4a120e5036a1d1fd7209e3e817f2a5d10b000069213e7d8e60c4d",
+    "source_fingerprint": "sha256:c52a381f5e83079a5896243c5fb02efd018fc4a1b66b33c3b4f6d6671c13910a",
     "source_doc_hashes": {
-      "spec.md": "0a020740bb978fda4fa7017202d0b7da0af9461787aa5678c217cb443a8c6355",
+      "spec.md": "57b0d064d2ffc33c3b8d2daedd76fbb51502dfbc1828a1cbd107a7fd8c5c8230",
       "plan.md": "1808cfaf944869d1ed9dc910273b83c3576cf5a53e78a9178b8666ab1ae1c089",
       "tasks.md": "293a3ab53be9cb8bbc27072c97b4ed8c0c9bc48412065c3adfb847f96ed81a04",
       "checklist.md": "4f86a1b124601aa80623fa074629a3331f9249ceef59ddb5fc24d238f487c014"

@@ -27,6 +27,7 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
 # Feature Specification: create-command resource names
+> Phase adjacency — predecessor `003-create-agent`; successor `005-create-feature-catalog`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -84,6 +85,7 @@ The outcome is a kebab-case command-resource tree with all path consumers update
 | REQ-002 | Command template and reference links resolve | Every old path consumer points to its correct new target |
 | REQ-003 | Router/presentation and argument-hint semantics remain stable | Content diff changes paths only, not command behavior fields |
 | REQ-004 | Tool-mandated names and metadata keys remain exact | No mandated file, key, frontmatter field, or identifier is renamed |
+| REQ-005 | The phase records its rename manifest as gate evidence. | The kebab rename manifest and filesystem census are captured so the create-packets rollup can count the phase verified. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

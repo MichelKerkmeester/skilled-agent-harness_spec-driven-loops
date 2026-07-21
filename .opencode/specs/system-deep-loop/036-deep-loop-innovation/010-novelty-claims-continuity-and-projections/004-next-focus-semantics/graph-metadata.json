@@ -19,7 +19,10 @@
       "next-focus semantics tasks",
       "deep-loop focus selection tasks",
       "next-focus semantics checklist",
-      "deep-loop focus selection checklist"
+      "deep-loop focus selection checklist",
+      "next-focus architecture",
+      "next-focus selector decision",
+      "next-focus implementation"
     ],
     "key_topics": [
       "next-focus",
@@ -36,17 +39,39 @@
       "checklist"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+      "decision-record.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "next-focus.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "pivot-candidates.ts",
         "kind": "code",
@@ -66,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -87,6 +106,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -114,21 +145,15 @@
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -138,20 +163,20 @@
         "source": "derived"
       },
       {
-        "name": "pivot-compatible",
-        "kind": "key_phrase",
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "typed",
-        "kind": "key_phrase",
+        "name": "Task Checklist",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "deterministic",
-        "kind": "key_phrase",
+        "name": "Execution Rules",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -172,43 +197,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay.",
     "created_at": "2026-07-16T03:43:52.164Z",
-    "last_save_at": "2026-07-17T13:21:19.610Z",
+    "last_save_at": "2026-07-21T09:06:00.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8eb7b96f1f0e71f0bca00a41a81076c0f5ecfd1e18b8f7cfc926f9f44110da4f",
+    "source_fingerprint": "sha256:5e7e11cdf0d97231ee72e5396c322f71fcbd2fa8af256391850a67ad38b7fe1f",
     "source_doc_hashes": {
-      "spec.md": "29ad9d5fc95467c56390145fc17199cc64e9bc6422dc70bda5bbc51a03bcc6b0",
-      "plan.md": "99b850f8b7714ac718b0908d257c8f80dc21e1705a7a893f6005570a9dc21028",
-      "tasks.md": "d2c635a694e09ebb42c931ce4a32ede0e08782b4aea66e673c9faf5ee27df8aa",
-      "checklist.md": "250951e603b32ce373af82a114c407a5ff95975f6f41428f2c3b9828e4193891"
+      "spec.md": "24bac06cce5cc8ae78e6023a5f55e7e3a4d46466fda4a8f4dc8da7b699b59c74",
+      "plan.md": "7e1dfe499a9a88089ba8da0ac2ae06a09e176da99709f40be4ebd811b4ee50cb",
+      "tasks.md": "a7d5217dd5d1161dfd181845e5c365b318bdd76450e06adb04ddb866bf90aaec",
+      "checklist.md": "4f5ea8dccd113b95f53e8738161e29a45c73c589a7880d9781a039cd17c95985",
+      "decision-record.md": "3829312e31b8c267c100aa1464db1fa512069de47b06b8aab5ea12463d70aeb4",
+      "implementation-summary.md": "1dabf434a71a5e6ec18bcb5e340611896fe3a4d19f4935a18526344ab4e66db8"
     },
     "last_active_child_id": null,
     "last_active_at": null
