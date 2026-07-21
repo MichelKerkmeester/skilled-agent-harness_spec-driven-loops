@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "playbook-verify/V1",
+  "hub": "cli-external-orchestration",
+  "executor": "Claude Sonnet 5 (Claude Code agent), headless read-only sweep",
+  "capturedAt": "2026-07-21T13:25:51Z",
+  "cwd": ".worktrees/0089-sk-doc-default-routing-cutover",
+  "repoMutations": "none — git status before and after this sweep shows only the 2 pre-existing, explicitly out-of-scope strays (mcp-tooling/008-mcp-aside/001-research/research/research.md, system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md); this archive folder is the only addition",
+  "defaultOnHubs": {
+    "list": ["sk-code", "system-deep-loop", "mcp-tooling", "cli-external-orchestration", "sk-prompt", "sk-design", "sk-doc"],
+    "size": 7,
+    "verifiedVia": "direct require() of resolve.cjs, DEFAULT_ON_HUBS export, env -u SPECKIT_COMPILED_ROUTING"
+  },
+  "frozenScorerSha256": {
+    "note": "same 3 cross-hub shared scripts the sk-code playbook-verify-sonnet-20260721-131257 run cited; hashes identical, confirming they are genuinely shared/unmodified across both sweeps",
+    "files": [
+      { "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs", "shaStart": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029", "shaEnd": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029", "unchanged": true },
+      { "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs", "shaStart": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47", "shaEnd": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47", "unchanged": true },
+      { "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs", "shaStart": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c", "shaEnd": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c", "unchanged": true }
+    ]
+  },
+  "method": "Enumerated every file under .opencode/skills/cli-external-orchestration/manual-testing-playbook/ (8 scenario files across hub-routing/, compiled-routing/, and plugins-and-hooks/, plus the root manual-testing-playbook.md directory contract). For the 6 real workflowMode-routing scenarios, ran each scenario's exact documented prompt through: COMPILED — `env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub cli-external-orchestration --prompt \"<prompt>\"`; LEGACY — `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/cli-external-orchestration --task \"<same>\"`. Compared compiled targets[].workflowMode against legacy intents, cross-checked legacy resources/resourceContract against each scenario's own expected_resources/expected_leaf_resources frontmatter, and confirmed serving authority was genuinely compiled (absence of the resolve.cjs {servingAuthority:'legacy',...} fallback sentinel). For the 2 plugins-and-hooks scenarios (CE-P01, CE-P02) — which the hub's own root playbook explicitly marks 'Unscored... not part of the scored hub-routing corpus' with expected_intent/expected_workflow_mode: UNKNOWN and no parseable prompt (confirmed via load-playbook-scenarios.cjs: prompt:null, parseWarnings:['missing-exact-prompt']) — ran the same compiled/legacy commands with an empty prompt to reproduce the archived Lane C harness's own vacuous defer/defer row for these two IDs, then separately re-executed each scenario's own documented functional test recipe (its real pass criterion) live, fresh, today.",
+  "summary": {
+    "totalScenarios": 8,
+    "pass": 8,
+    "fail": 0,
+    "skip": 0,
+    "routingDriftObserved": "0/6 meaningful routing scenarios (CE-P01/CE-P02 excluded from this count — vacuous/non-signal-bearing by design, reported separately)"
+  },
+  "laneCCrossCheck": {
+    "archivedSource": ".opencode/skills/sk-doc/benchmark/compiled-routing/r3-benchmark-sweep-20260721-131432/hub-reports/cli-external-orchestration.json (committed 23ba6f5f32f, captured same day ~1h50m before this sweep)",
+    "archivedFigure": "compiledRouting.scored=8, match=8, drift=0, subVerdict=compiled-serving — i.e. Lane C parity 8/0",
+    "archivedScenarioIds": ["CE-P01", "CE-P02", "CE-003", "CE-002", "CE-H01", "CE-H02", "CE-001", "CE-CR-001"],
+    "corroboration": "EXACT MATCH. This sweep independently re-derived routing decisions (via manual per-scenario resolve.cjs/router-replay.cjs invocations, not by re-invoking the Lane C harness itself) for all 8 of the same scenario IDs and found 8/8 agreement with the archived report's per-row frontDoorOutcome/status: CE-001 route/cli-opencode, CE-002 route/cli-claude-code, CE-003 defer, CE-H01 route/cli-opencode, CE-H02 route/cli-claude-code, CE-CR-001 route/cli-opencode, CE-P01 defer (vacuous), CE-P02 defer (vacuous). 0 drift confirmed independently.",
+    "verdict": "CORROBORATED"
+  },
+  "scenarios": [
+    {
+      "id": "CE-001",
+      "file": "hub-routing/opencode-full-runtime-dispatch.md",
+      "category": "hub_routing",
+      "prompt": "Delegate this to OpenCode and run the ablation suite with full plugin and Spec Kit Memory runtime.",
+      "expected": { "workflowMode": "cli-opencode", "shape": "single dominant mode, not ordered bundle or defer", "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"] },
+      "compiled": { "action": "route", "selectionKind": "single", "targets": [{ "workflowMode": "cli-opencode", "packetId": "cli-opencode", "backendKind": "cli-dispatch" }], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": ["cli-opencode"], "surfaceIntents": ["OPENCODE"], "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"], "matchedAliases": ["opencode", "spec kit memory"], "deferReason": null, "defaultApplied": false },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Compiled and legacy agree on cli-opencode as a single dominant mode; matches expected_workflow_mode and both expected_resources entries exactly; matched aliases (opencode, spec kit memory) align with the doc's described 'OpenCode, full plugin runtime, ablation suite' signal."
+    },
+    {
+      "id": "CE-002",
+      "file": "hub-routing/claude-code-second-opinion.md",
+      "category": "hub_routing",
+      "prompt": "Get an Anthropic CLI second opinion on this refactor with extended thinking before I merge.",
+      "expected": { "workflowMode": "cli-claude-code", "shape": "single dominant mode, not ordered bundle or defer", "resources": ["cli-claude-code/references/cli-reference.md", "cli-claude-code/references/integration-patterns.md"] },
+      "compiled": { "action": "route", "selectionKind": "single", "targets": [{ "workflowMode": "cli-claude-code", "packetId": "cli-claude-code", "backendKind": "cli-dispatch" }], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": ["cli-claude-code"], "surfaceIntents": ["CLAUDE_CODE"], "resources": ["cli-claude-code/references/cli-reference.md", "cli-claude-code/references/integration-patterns.md"], "matchedAliases": ["anthropic cli second opinion", "extended thinking"], "deferReason": null, "defaultApplied": false },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Compiled and legacy agree on cli-claude-code as a single dominant mode; matches expected_workflow_mode and both expected_resources entries exactly; matched aliases directly echo the doc's described 'Anthropic CLI, extended thinking' signal."
+    },
+    {
+      "id": "CE-003",
+      "file": "hub-routing/ambiguous-defer.md",
+      "category": "hub_routing",
+      "prompt": "Dispatch this to a CLI executor.",
+      "expected": { "workflowMode": "defer", "shape": "must ask which executor, not silently default to cli-opencode", "resources": [] },
+      "compiled": { "action": "defer", "selectionKind": null, "targets": [], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": [], "surfaceIntents": [], "resources": [], "matchedAliases": [], "deferReason": "no-mode-scored", "defaultApplied": false },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Both engines defer with 0 matched aliases and defaultApplied:false, confirming genuine ambiguity handling — routerPolicy.defaultMode is null in hub-router.json and neither engine silently picked cli-opencode (tieBreak[0]) on this ambiguous 'CLI executor' phrase."
+    },
+    {
+      "id": "CE-H01",
+      "file": "hub-routing/holdout-external-runtime.md",
+      "category": "hub_routing_holdout",
+      "prompt": "Hand this whole task to a separate autonomous coding session that has the full plugin and memory stack and let it run unattended.",
+      "expected": { "workflowMode": "cli-opencode", "shape": "blind holdout — no literal OpenCode alias in prompt, must still resolve cli-opencode", "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"] },
+      "compiled": { "action": "route", "selectionKind": "single", "targets": [{ "workflowMode": "cli-opencode", "packetId": "cli-opencode", "backendKind": "cli-dispatch" }], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": ["cli-opencode"], "surfaceIntents": ["OPENCODE"], "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"], "matchedAliases": ["full plugin and memory stack"], "deferReason": null, "defaultApplied": false, "score": 4 },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Blind holdout resolves correctly via the opencode-dispatch vocabulary class alone ('full plugin and memory stack' phrase, score 4 vs the 8 alias+dispatch double-match in CE-001) — no literal 'OpenCode' token present, confirming natural-language generalization holds under compiled routing exactly as under legacy."
+    },
+    {
+      "id": "CE-H02",
+      "file": "hub-routing/holdout-second-opinion.md",
+      "category": "hub_routing_holdout",
+      "prompt": "Get a second, deeply-reasoned opinion on this architecture decision from a different assistant model.",
+      "expected": { "workflowMode": "cli-claude-code", "shape": "blind holdout — no literal Claude Code alias in prompt, must still resolve cli-claude-code", "resources": ["cli-claude-code/references/cli-reference.md", "cli-claude-code/references/integration-patterns.md"] },
+      "compiled": { "action": "route", "selectionKind": "single", "targets": [{ "workflowMode": "cli-claude-code", "packetId": "cli-claude-code", "backendKind": "cli-dispatch" }], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": ["cli-claude-code"], "surfaceIntents": ["CLAUDE_CODE"], "resources": ["cli-claude-code/references/cli-reference.md", "cli-claude-code/references/integration-patterns.md"], "matchedAliases": ["deeply-reasoned opinion"], "deferReason": null, "defaultApplied": false, "score": 4 },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Blind holdout resolves correctly via the claude-dispatch vocabulary class alone ('deeply-reasoned opinion' phrase) — no literal 'Claude Code' token present, confirming natural-language generalization holds under compiled routing exactly as under legacy."
+    },
+    {
+      "id": "CE-CR-001",
+      "file": "compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
+      "category": "compiled_routing",
+      "prompt": "Delegate this to OpenCode and run the ablation suite with full plugin and Spec Kit Memory runtime.",
+      "expected": { "workflowMode": "cli-opencode", "servingAuthority": "compiled", "frontmatterRouteShape": "orderedBundle", "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"] },
+      "compiled": { "action": "route", "selectionKind": "single", "targets": [{ "workflowMode": "cli-opencode", "packetId": "cli-opencode", "backendKind": "cli-dispatch" }], "servingAuthorityConfirmedCompiled": true },
+      "legacy": { "intents": ["cli-opencode"], "surfaceIntents": ["OPENCODE"], "resources": ["cli-opencode/references/cli-reference.md", "cli-opencode/references/integration-patterns.md"], "matchedAliases": ["opencode", "spec kit memory"], "deferReason": null, "defaultApplied": false },
+      "compiledEqualsLegacy": true,
+      "markersConsistent": true,
+      "verdict": "PASS",
+      "notes": "Prompt is textually identical to CE-001's. PASS per this scenario's own explicit Pass/Fail Criteria section, which tests only servingAuthority:compiled (confirmed — resolve.cjs returned a real route object, not the {servingAuthority:'legacy',...} fallback sentinel) and compiled-workflow-mode==legacy-workflow-mode (both cli-opencode). FINDING (non-blocking): the frontmatter field route_shape:orderedBundle does not match the live-observed selectionKind:single for this identical single-executor prompt — orderedBundle is a distinct, real selectionKind in this codebase (fires when 2+ workflow modes are explicitly requested in one prompt, e.g. sibling hubs' mcp-tooling/system-deep-loop compiled-routing scenarios that genuinely request two modes) but this scenario's prompt only ever requests one executor (OpenCode). Reads as a copy-paste/labeling artifact from the shared cross-hub compiled-routing scenario template rather than a routing defect — the scenario's own stated Pass/Fail Criteria never references route_shape or selectionKind, only servingAuthority + workflow-mode agreement, both of which hold. Flagged for documentation hygiene, not actioned (read-only scope)."
+    },
+    {
+      "id": "CE-P01",
+      "file": "plugins-and-hooks/cli-dispatch-audit-trail.md",
+      "category": "plugins_and_hooks",
+      "prompt": null,
+      "expected": { "workflowMode": "UNKNOWN", "note": "root playbook explicitly marks this 'Unscored... not part of the scored hub-routing corpus' — no workflowMode routing decision to test; real pass criterion is a live functional recipe" },
+      "routingCheck": {
+        "applicable": false,
+        "reason": "No parseable prompt exists (load-playbook-scenarios.cjs confirms prompt:null, parseWarnings:['missing-exact-prompt']); running compiled/legacy with an empty prompt reproduces the archived Lane C harness's own vacuous match for this ID.",
+        "compiled": { "action": "defer", "selectionKind": null, "targets": [] },
+        "legacy": { "workflowMode": null, "deferReason": "no-mode-scored", "intents": [] },
+        "compiledEqualsLegacy": true,
+        "corroboratesLaneCRow": true
+      },
+      "functionalReverification": {
+        "scope": "full — all 5 documented steps re-executed live today against fresh mktemp scratch directories (never the real repo log path)",
+        "steps": [
+          { "step": "core unit-test suite (npx vitest run, scoped to canonical file)", "result": "38/38 PASS", "matchesPriorEvidence": true },
+          { "step": "live Claude PostToolUse(Bash) hook adapter, stdin, api-key secret", "result": "exit 0; JSONL line written; --api-key value fully replaced with [REDACTED]", "matchesPriorEvidence": true },
+          { "step": "live OpenCode plugin tool.execute.after hook, in-process, bearer secret", "result": "invoked without throwing; JSONL line written; Authorization: Bearer value fully replaced with [REDACTED]", "matchesPriorEvidence": true },
+          { "step": "kill-switch (MK_CLI_DISPATCH_AUDIT_DISABLED=1) on a real dispatch-shaped payload", "result": "exit 0; no log file created", "matchesPriorEvidence": true },
+          { "step": "non-dispatch fast-exit (git status payload)", "result": "exit 0; no log file created", "matchesPriorEvidence": true }
+        ],
+        "bonus": "The sibling PreToolUse preflight-lint hook fired live, unprompted, in this very agent session against the literal 'opencode run'/'claude -p' substrings embedded in the test payloads — the same live corroboration of the shared DISPATCH_SHAPES registry the doc's own evidence section documents."
+      },
+      "verdict": "PASS",
+      "notes": "Routing-comparison axis: N/A by design (SKIP would overstate — the command runs cleanly, it simply has no real signal to assert against). Functional axis (the scenario's real contract): full fresh re-run today, 5/5 steps, all matching the doc's 2026-07-11 embedded evidence exactly."
+    },
+    {
+      "id": "CE-P02",
+      "file": "plugins-and-hooks/codex-hook-parity.md",
+      "category": "plugins_and_hooks",
+      "prompt": null,
+      "expected": { "workflowMode": "UNKNOWN", "note": "root playbook explicitly marks this 'Unscored... not part of the scored hub-routing corpus' — no workflowMode routing decision to test; real pass criterion is a live functional recipe" },
+      "routingCheck": {
+        "applicable": false,
+        "reason": "No parseable prompt exists (load-playbook-scenarios.cjs confirms prompt:null, parseWarnings:['missing-exact-prompt']); running compiled/legacy with an empty prompt reproduces the archived Lane C harness's own vacuous match for this ID.",
+        "compiled": { "action": "defer", "selectionKind": null, "targets": [] },
+        "legacy": { "workflowMode": null, "deferReason": "no-mode-scored", "intents": [] },
+        "compiledEqualsLegacy": true,
+        "corroboratesLaneCRow": true
+      },
+      "functionalReverification": {
+        "scope": "partial — 3 of 5 documented steps re-executed live today against $HOME/.codex-hook-fixtures/ (a dedicated non-repo fixtures path, matching the doc's own recipe); steps 4-5 deliberately not re-run",
+        "steps": [
+          { "step": "spec-gate-enforce deny path (open gate + MK_SPEC_GATE_ENFORCE=1 + apply_patch on a non-exempt file)", "result": "real permissionDecision:\"deny\" envelope, exit 0", "matchesPriorEvidence": true },
+          { "step": "spec-gate-enforce fail-open (empty + malformed stdin)", "result": "both exit 0, no output", "matchesPriorEvidence": true },
+          { "step": "spec-gate-classify advisory (mutation-intent prompt)", "result": "Gate-3 A-E additionalContext envelope emitted, exit 0", "matchesPriorEvidence": true },
+          { "step": "dispatch-audit records a codex exec -p dispatch shape", "result": "one JSONL line, runtime:\"codex\", skill:\"cli-codex\"", "matchesPriorEvidence": true },
+          { "step": "live codex exec (SessionStart/UserPromptSubmit/Stop chains + deny-block)", "result": "NOT RE-RUN", "reasonSkipped": "spawns a real external CLI process (codex exec, up to 90s timeout) with no benefit to this task's routing-cutover scope; out of blast-radius for a read-only, non-mutating verification pass" },
+          { "step": "installer merge into ~/.codex/hooks.json (idempotency + notify.sh preservation)", "result": "NOT RE-RUN", "reasonSkipped": "mutates a real, persistent, global user config file outside the repo; explicitly excluded by this task's HARD constraint ('Read-only + archive only. No commit.')" }
+        ]
+      },
+      "verdict": "PASS (partial)",
+      "notes": "Routing-comparison axis: N/A by design, same as CE-P01. Functional axis: 3/5 steps freshly re-verified today, all matching the doc's 2026-07-13 embedded evidence exactly (including the exact JSON envelope shapes). Steps 4-5 knowingly not re-run for stated blast-radius reasons — the doc's own dated, detailed live-run evidence for those two steps (SessionStart/UserPromptSubmit chains completing, the real apply_patch deny block, installer 14-added/idempotent-rerun/notify.sh-preserved) stands uncontested and was not independently re-verified in this sweep."
+    }
+  ]
+}
