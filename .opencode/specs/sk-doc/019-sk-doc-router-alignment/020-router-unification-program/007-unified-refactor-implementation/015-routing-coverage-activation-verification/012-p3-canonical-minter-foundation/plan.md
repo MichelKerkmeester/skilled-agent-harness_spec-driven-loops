@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
-    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
-    recent_action: "Planned the shared minter adapter and freshness verification path"
-    next_safe_action: "Implement Phase 1 without changing runtime eligibility or serving authority"
+    recent_action: "Delivered the shared minter, freshness, status, and sync foundation"
+    next_safe_action: "Use the stable JSON CLI from the create-skill consumer"
     blockers:
-      - "Implementation and test evidence are pending."
+      - "No implementation blockers remain; later serving changes stay explicitly deferred."
     key_files:
       - "plan.md"
       - ".opencode/bin/lib/compiled-route-manifest.cjs"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-21-canonical-minter-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Future ownership of refresh and runtime-discovery work remains unassigned."
     answered_questions:
@@ -53,7 +53,7 @@ _memory:
 
 Add a small stable module outside the sync-deleted runtime root. It reads the three final router inputs, delegates policy construction and hashing to the generic 006 compiler, emits the existing V1 activation shape with legacy authority, and validates freshness by compiling those inputs again. A thin CLI makes the contract callable from Python without duplicating policy logic.
 
-Status will surface the shared result under a nested `manifestFreshness` object, while sync will preserve valid manifests for hubs outside the fixed seven. Neither change registers a hub for serving.
+Status surfaces the shared result under a nested `manifestFreshness` object, while sync preserves valid manifests for hubs outside the fixed seven. Neither change registers a hub for serving.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -66,16 +66,16 @@ Status will surface the shared result under a nested `manifestFreshness` object,
 - [x] Existing compiler, build harness, status probe, runtime engine, sync behavior, and create-skill dependency were inspected.
 - [x] The generic compiler was confirmed reusable for the registry-driven create-skill parent shape.
 - [x] Runtime discovery and full ADR-002 allowlist removal were separated from this contract.
-- [ ] Baseline hashes and routing test results are captured before implementation.
+- [x] Baseline hashes and routing test results are captured before implementation.
 
 ### Definition of Done
 
-- [ ] All P0 requirements and checklist items have executable evidence.
-- [ ] Mint and freshness return the specified stable JSON contract and exit codes.
-- [ ] Duplicate, stale, malformed, unsafe-path, and sync-conflict cases fail closed.
-- [ ] Existing compiled and legacy routing outputs remain byte-identical.
-- [ ] Frozen scorer hashes match the captured baseline.
-- [ ] `validate.sh --strict` reports zero errors and warnings.
+- [x] All P0 requirements and checklist items have executable evidence.
+- [x] Mint and freshness return the specified stable JSON contract and exit codes.
+- [x] Duplicate, stale, malformed, unsafe-path, and sync-conflict cases fail closed.
+- [x] Existing compiled and legacy routing outputs remain byte-identical.
+- [x] Frozen scorer hashes match the captured baseline.
+- [x] `validate.sh --strict` reports zero errors and warnings.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -159,7 +159,7 @@ No timestamp, absolute source path, or environment-derived value enters the cano
 <!-- ANCHOR:affected-surfaces -->
 ## AFFECTED SURFACES
 
-| Surface | Current Role | Planned Action | Verification |
+| Surface | Current Role | Implemented Action | Verification |
 |---------|--------------|----------------|--------------|
 | `006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Generic registry-driven policy compiler | Reuse unchanged through `compileRegistry()` | Import/call-path test and policy hash fixture |
 | `006-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs` | Fixed sk-code artifact harness | Leave unchanged | Diff audit |
@@ -178,24 +178,24 @@ No timestamp, absolute source path, or environment-derived value enters the cano
 
 ### Phase 1: Setup
 
-- [ ] Capture baseline test results and frozen scorer hashes.
-- [ ] Add fixtures for a valid generated registry-driven parent hub.
-- [ ] Record the existing seven-hub status schema for additive compatibility.
+- [x] Capture baseline test results and frozen scorer hashes.
+- [x] Add fixtures for a valid generated registry-driven parent hub.
+- [x] Record the existing seven-hub status schema for additive compatibility.
 
 ### Phase 2: Core Implementation
 
-- [ ] Create `.opencode/bin/lib/compiled-route-manifest.cjs` with `canonicalManifestPath`, `loadCanonicalRouterInputs`, `compileCanonicalParent`, `evaluateManifestFreshness`, `checkCanonicalManifestFreshness`, and `mintCanonicalManifest`.
-- [ ] Create `.opencode/bin/compiled-route-manifest.cjs` with `main`, argument parsing, JSON output, and stable exit mapping.
-- [ ] Extend `.opencode/bin/compiled-route-status.cjs::baseRecord`, `computeHubStatus`, and `knownHubs` with nested `manifestFreshness` and union discovery; existing hubs supply their specialized engine snapshot to the shared equality predicate.
-- [ ] Extend `.opencode/bin/compiled-route-sync.cjs::build` using `captureExternalActivationManifests` and `restoreExternalActivationManifests` around the root replacement.
+- [x] Create `.opencode/bin/lib/compiled-route-manifest.cjs` with `canonicalManifestPath`, `loadCanonicalRouterInputs`, `compileCanonicalParent`, `evaluateManifestFreshness`, `checkCanonicalManifestFreshness`, and `mintCanonicalManifest`.
+- [x] Create `.opencode/bin/compiled-route-manifest.cjs` with `main`, argument parsing, JSON output, and stable exit mapping.
+- [x] Extend `.opencode/bin/compiled-route-status.cjs::baseRecord`, `computeHubStatus`, and `knownHubs` with nested `manifestFreshness` and union discovery; existing hubs supply their specialized engine snapshot to the shared equality predicate.
+- [x] Extend `.opencode/bin/compiled-route-sync.cjs::build` using `captureExternalActivationManifests` and `restoreExternalActivationManifests` around the root replacement.
 
 ### Phase 3: Verification
 
-- [ ] Run the full mint/freshness/status/sync negative matrix.
-- [ ] Run current compiled-routing parity, fallback, and status suites.
-- [ ] Prove a new hub remains legacy-serving before and after mint.
-- [ ] Recompute frozen scorer hashes and compare with baseline.
-- [ ] Run strict packet validation and update evidence without claiming P4 cutover.
+- [x] Run the full mint/freshness/status/sync negative matrix.
+- [x] Run current compiled-routing parity, fallback, and status suites.
+- [x] Prove a new hub remains legacy-serving before and after mint.
+- [x] Recompute frozen scorer hashes and compare with baseline.
+- [x] Run strict packet validation and update evidence without claiming P4 cutover.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -225,7 +225,7 @@ The implementation records baseline counts before claiming no regression, then r
 | Generic 006 `compileRegistry()` | Internal | Confirmed reusable | No truthful policy hash can be minted without it |
 | Existing V1 manifest field contract | Internal | Confirmed | Canonical bytes would diverge from activation tooling |
 | 002 status foundation | Internal | Shipped, lacks freshness | Status integration has no stable consumer surface without it |
-| `013-create-skill-alignment/` | Downstream consumer | Planned | It remains blocked until this contract ships |
+| `013-create-skill-alignment/` | Downstream consumer | Planned | Its canonical minter dependency is now available |
 | Runtime discovery and allowlist removal | Future work | Deferred | A fresh manifest does not make a new hub runtime-serving |
 <!-- /ANCHOR:dependencies -->
 

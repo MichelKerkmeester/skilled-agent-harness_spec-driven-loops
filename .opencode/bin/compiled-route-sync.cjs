@@ -28,6 +28,11 @@ const fs = require('fs');
 const path = require('path');
 const Module = require('module');
 
+const {
+  isCanonicalHubId,
+  validateCanonicalManifestBytes,
+} = require('./lib/compiled-route-manifest.cjs');
+
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 const IMPL_ROOT = path.join(
@@ -37,6 +42,7 @@ const IMPL_ROOT = path.join(
 );
 const AUTHORED_RESOLVER = path.join(IMPL_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
+const ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '010-live-activation', 'activation');
 const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
 const MANIFEST_PATH = path.join(RUNTIME_ROOT, 'serving-closure.manifest.json');
 
@@ -130,12 +136,155 @@ function underSpecs(abs) {
   return rel === '' || (rel && !rel.startsWith('..') && !path.isAbsolute(rel));
 }
 
+function syncConflict(hubId) {
+  throw new Error(`sync-conflict: external activation manifest for ${hubId}`);
+}
+
+function activationManifestPath(activationRoot, hubId) {
+  if (!isCanonicalHubId(hubId)) syncConflict(String(hubId));
+  const root = path.resolve(activationRoot);
+  const manifestPath = path.resolve(root, hubId, 'manifest.json');
+  const relative = path.relative(root, manifestPath);
+  if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) syncConflict(hubId);
+  return manifestPath;
+}
+
+function safeActivationRoot(activationRoot, create = false) {
+  const resolvedRoot = path.resolve(activationRoot);
+  if (create) fs.mkdirSync(resolvedRoot, { recursive: true, mode: 0o700 });
+  if (!fs.existsSync(resolvedRoot)) return null;
+  const rootStats = fs.lstatSync(resolvedRoot);
+  if (rootStats.isSymbolicLink() || !rootStats.isDirectory()) {
+    syncConflict('activation-root');
+  }
+  return { resolvedRoot, realRoot: fs.realpathSync(resolvedRoot) };
+}
+
+function ensureSafeManifestDirectory(root, manifestPath, hubId) {
+  const directoryPath = path.dirname(manifestPath);
+  if (fs.existsSync(directoryPath)) {
+    const directoryStats = fs.lstatSync(directoryPath);
+    if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+      syncConflict(hubId);
+    }
+  } else {
+    fs.mkdirSync(directoryPath, { recursive: true, mode: 0o700 });
+  }
+  const relative = path.relative(root.realRoot, fs.realpathSync(directoryPath));
+  if (relative.startsWith('..') || path.isAbsolute(relative)) syncConflict(hubId);
+}
+
+function readSafeManifestBytes(manifestPath, hubId) {
+  let manifestStats;
+  try {
+    manifestStats = fs.lstatSync(manifestPath);
+  } catch {
+    syncConflict(hubId);
+  }
+  if (manifestStats.isSymbolicLink() || !manifestStats.isFile()) syncConflict(hubId);
+  try {
+    return fs.readFileSync(manifestPath);
+  } catch {
+    syncConflict(hubId);
+  }
+}
+
+function validateExternalManifest(hubId, manifestBytes) {
+  const inspected = validateCanonicalManifestBytes({ hubId, manifestBytes });
+  const manifest = inspected.manifest;
+  if (!inspected.manifestValid
+    || manifest.servingAuthority !== 'legacy'
+    || manifest.shadowOnly !== true
+    || manifest.selectedPolicy.generation !== 1) {
+    syncConflict(hubId);
+  }
+  return inspected;
+}
+
+/**
+ * Snapshot inert manifests that are not part of the fixed promoted closure.
+ *
+ * @param {string} activationRoot - Activation store to inspect.
+ * @returns {Array<Object>} Byte-preserving manifest snapshots.
+ */
+function captureExternalActivationManifests(activationRoot = ACTIVATION_ROOT) {
+  const root = safeActivationRoot(activationRoot);
+  if (!root) return [];
+  const captured = [];
+  for (const entry of fs.readdirSync(root.resolvedRoot, { withFileTypes: true })) {
+    if (HUBS.includes(entry.name)) continue;
+    if (entry.isSymbolicLink()) syncConflict(entry.name);
+    if (!entry.isDirectory()) continue;
+    if (!isCanonicalHubId(entry.name)) syncConflict(entry.name);
+    const directoryPath = path.join(root.resolvedRoot, entry.name);
+    const directoryRelative = path.relative(root.realRoot, fs.realpathSync(directoryPath));
+    if (directoryRelative.startsWith('..') || path.isAbsolute(directoryRelative)) {
+      syncConflict(entry.name);
+    }
+    const manifestPath = activationManifestPath(root.resolvedRoot, entry.name);
+    const manifestBytes = readSafeManifestBytes(manifestPath, entry.name);
+    const inspected = validateExternalManifest(entry.name, manifestBytes);
+    captured.push({
+      hubId: entry.name,
+      manifestBytes: Buffer.from(manifestBytes),
+      manifestFingerprint: inspected.manifestFingerprint,
+    });
+  }
+  return captured.sort((left, right) => left.hubId.localeCompare(right.hubId));
+}
+
+/**
+ * Restore captured manifests without replacing an existing destination.
+ *
+ * @param {Array<Object>} captured - Snapshots returned by the capture helper.
+ * @param {string} activationRoot - Activation store to restore into.
+ * @returns {void}
+ */
+function restoreExternalActivationManifests(
+  captured,
+  activationRoot = ACTIVATION_ROOT,
+) {
+  if (!Array.isArray(captured)) syncConflict('capture');
+  const root = safeActivationRoot(activationRoot, true);
+  for (const entry of captured) {
+    if (!entry || !Buffer.isBuffer(entry.manifestBytes)) {
+      syncConflict(entry && entry.hubId ? entry.hubId : 'capture');
+    }
+    validateExternalManifest(entry.hubId, entry.manifestBytes);
+    const manifestPath = activationManifestPath(root.resolvedRoot, entry.hubId);
+    ensureSafeManifestDirectory(root, manifestPath, entry.hubId);
+    if (fs.existsSync(manifestPath)) {
+      const currentBytes = readSafeManifestBytes(manifestPath, entry.hubId);
+      if (!currentBytes.equals(entry.manifestBytes)) syncConflict(entry.hubId);
+      continue;
+    }
+    try {
+      fs.writeFileSync(manifestPath, entry.manifestBytes, { flag: 'wx', mode: 0o600 });
+    } catch (error) {
+      if (!error || error.code !== 'EEXIST') {
+        syncConflict(entry.hubId);
+      }
+      const currentBytes = readSafeManifestBytes(manifestPath, entry.hubId);
+      if (!currentBytes.equals(entry.manifestBytes)) syncConflict(entry.hubId);
+    }
+    if (!readSafeManifestBytes(manifestPath, entry.hubId).equals(entry.manifestBytes)) {
+      syncConflict(entry.hubId);
+    }
+  }
+}
+
 function build() {
   const { touched, resolved } = traceClosure(AUTHORED_RESOLVER);
   const closureFiles = [...touched]
     .filter(underImplRoot)
     .filter((abs) => { try { return fs.statSync(abs).isFile(); } catch { return false; } })
     .sort();
+
+  const unresolved = HUBS.filter((h) => !resolved[h]);
+  if (unresolved.length > 0) {
+    throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
+  }
+  const externalManifests = captureExternalActivationManifests();
 
   fs.rmSync(RUNTIME_ROOT, { recursive: true, force: true });
   const copied = [];
@@ -146,11 +295,6 @@ function build() {
     fs.copyFileSync(abs, dest);
     copied.push(rel);
   }
-  const unresolved = HUBS.filter((h) => !resolved[h]);
-  if (unresolved.length > 0) {
-    throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
-  }
-
   // Status inputs. The serving path never reads fence-state, so the trace does
   // not capture it, but the status probe reports fenceEpoch from it. Promote it
   // alongside the manifests so the probe reads it from the stable runtime path
@@ -167,6 +311,7 @@ function build() {
       statusInputs.push(rel);
     }
   }
+  restoreExternalActivationManifests(externalManifests);
 
   const manifest = {
     schemaVersion: 'V1',
@@ -223,4 +368,14 @@ if (require.main === module) {
   try { main(); } catch (e) { process.stderr.write(`SYNC FAILED: ${e && e.message}\n`); process.exit(1); }
 }
 
-module.exports = { build, verify, RUNTIME_ROOT, PROMOTED_RESOLVER, IMPL_ROOT, HUBS };
+module.exports = {
+  ACTIVATION_ROOT,
+  build,
+  captureExternalActivationManifests,
+  restoreExternalActivationManifests,
+  verify,
+  RUNTIME_ROOT,
+  PROMOTED_RESOLVER,
+  IMPL_ROOT,
+  HUBS,
+};

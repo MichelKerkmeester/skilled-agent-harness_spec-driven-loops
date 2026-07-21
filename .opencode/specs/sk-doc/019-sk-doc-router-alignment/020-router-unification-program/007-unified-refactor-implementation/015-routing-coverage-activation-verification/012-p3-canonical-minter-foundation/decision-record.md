@@ -9,12 +9,12 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
-    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
-    recent_action: "Accepted compiler reuse, canonical storage, and readiness-boundary decisions"
-    next_safe_action: "Implement the accepted decisions without expanding runtime eligibility"
+    recent_action: "Implemented the accepted compiler, storage, and readiness decisions"
+    next_safe_action: "Keep later serving and refresh decisions in their deferred packets"
     blockers:
-      - "Accepted decisions have no implementation evidence yet."
+      - "No implementation blockers remain; later serving changes stay explicitly deferred."
     key_files:
       - "decision-record.md"
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-21-canonical-minter-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "A future ADR must assign refresh and data-driven serving ownership."
     answered_questions:

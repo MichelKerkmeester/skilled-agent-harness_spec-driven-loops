@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
-    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
-    recent_action: "Specified the canonical initial-minter and freshness contract"
-    next_safe_action: "Implement the shared minter, status fields, sync preservation, and tests"
+    recent_action: "Implemented and verified the canonical minter foundation"
+    next_safe_action: "Integrate this CLI contract in the create-skill consumer"
     blockers:
-      - "Implementation and runtime evidence do not exist; this packet remains Planned."
+      - "No implementation blockers remain; later serving changes stay explicitly deferred."
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-21-canonical-minter-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which future packet will own refresh or overwrite semantics after initial mint?"
     answered_questions:
@@ -55,7 +55,7 @@ The implementation is deliberately smaller than ADR-002's eventual data-driven e
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-21 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Parent Spec** | `../spec.md` |
@@ -130,7 +130,7 @@ Provide one shared, fail-closed initial-minter and one exact freshness predicate
 - Generalizing the minter to the specialized existing hub archetypes. This contract targets the registry-driven parent shape emitted by create-skill.
 - Editing the frozen benchmark scorer files.
 
-### Planned Implementation Files
+### Implemented Files
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
@@ -140,7 +140,7 @@ Provide one shared, fail-closed initial-minter and one exact freshness predicate
 | `.opencode/bin/compiled-route-sync.cjs` | Modify | Preserve valid non-seven-hub canonical manifests across runtime rebuilds |
 | `.opencode/bin/tests/compiled-route-manifest.test.cjs` | Create | Contract, failure, sync, and routing-invariance tests |
 
-The next implementation phase must not modify `resolve.cjs`, `compiled-route.cjs`, the advisor allowlists, `DEFAULT_ON_HUBS`, or the three frozen scorer files.
+This implementation did not modify `resolve.cjs`, `compiled-route.cjs`, the advisor allowlists, `DEFAULT_ON_HUBS`, or the three frozen scorer files.
 <!-- /ANCHOR:scope -->
 
 ---

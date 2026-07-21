@@ -12,7 +12,8 @@
 //
 // Contract (one object per hub):
 //   { hubId, servingAuthority, shadowOnly, selectedPolicy: { generation },
-//     effectivePolicyHash, fenceEpoch, manifestFingerprint, causeCode }
+//     effectivePolicyHash, fenceEpoch, manifestFingerprint, causeCode,
+//     manifestFreshness: { manifestValid, fresh, causeCode, currentPolicyHash } }
 //
 // causeCode:
 //   'compiled-serving'  flag permits + manifest is compiled + engine routes (served compiled)
@@ -26,6 +27,13 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+
+const {
+  checkCanonicalManifestFreshness,
+  evaluateManifestFreshness,
+  isCanonicalHubId,
+  validateCanonicalManifestBytes,
+} = require('./lib/compiled-route-manifest.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
@@ -43,23 +51,50 @@ function loadEngine() {
   try { return require(PROMOTED_ENGINE); } catch { return null; }
 }
 
-function knownHubs() {
+function knownHubs(activationRoot = ACTIVATION_ROOT) {
   const engine = loadEngine();
-  if (engine && engine.HUB_CHILD) return Object.keys(engine.HUB_CHILD).sort();
-  // Fallback: manifest-derived eligibility from the promoted activation dir.
+  const hubs = new Set(engine && engine.HUB_CHILD ? Object.keys(engine.HUB_CHILD) : []);
+  // Activation discovery is observability-only and never expands serving eligibility.
   try {
-    return fs.readdirSync(ACTIVATION_ROOT, { withFileTypes: true })
-      .filter((d) => d.isDirectory())
-      .map((d) => d.name)
-      .sort();
-  } catch { return []; }
+    for (const entry of fs.readdirSync(activationRoot, { withFileTypes: true })) {
+      if (entry.isDirectory() && isCanonicalHubId(entry.name)) hubs.add(entry.name);
+    }
+  } catch { /* A missing activation root contributes no observable hubs. */ }
+  return [...hubs].sort();
 }
 
 function readJson(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 
 function fenceEpochFor(hubId, activationRoot) {
+  if (!isCanonicalHubId(hubId)) return null;
   const fencePath = path.join(activationRoot, hubId, 'fence-state.json');
   try { return readJson(fencePath).fencingEpoch ?? null; } catch { return null; }
+}
+
+function readStatusManifest(hubId, activationRoot) {
+  if (!isCanonicalHubId(hubId)) throw new Error('unsafe hub identity');
+  const resolvedRoot = path.resolve(activationRoot);
+  const manifestPath = path.resolve(resolvedRoot, hubId, 'manifest.json');
+  const relative = path.relative(resolvedRoot, manifestPath);
+  if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error('unsafe manifest path');
+  }
+  const realRoot = fs.realpathSync(resolvedRoot);
+  const directoryPath = path.dirname(manifestPath);
+  const directoryStats = fs.lstatSync(directoryPath);
+  if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
+    throw new Error('unsafe manifest directory');
+  }
+  const realDirectory = fs.realpathSync(directoryPath);
+  const directoryRelative = path.relative(realRoot, realDirectory);
+  if (directoryRelative.startsWith('..') || path.isAbsolute(directoryRelative)) {
+    throw new Error('unsafe manifest directory');
+  }
+  const manifestStats = fs.lstatSync(manifestPath);
+  if (manifestStats.isSymbolicLink() || !manifestStats.isFile()) {
+    throw new Error('unsafe manifest file');
+  }
+  return fs.readFileSync(manifestPath);
 }
 
 function flagPermits(hubId) {
@@ -81,21 +116,68 @@ function baseRecord(hubId, activationRoot) {
     fenceEpoch: fenceEpochFor(hubId, activationRoot),
     manifestFingerprint: null,
     causeCode: 'missing-manifest',
+    manifestFreshness: {
+      manifestValid: false,
+      fresh: false,
+      causeCode: 'missing-manifest',
+      currentPolicyHash: null,
+    },
   };
+}
+
+function freshnessSummary(result) {
+  return {
+    manifestValid: result.manifestValid,
+    fresh: result.fresh,
+    causeCode: result.causeCode,
+    currentPolicyHash: result.currentPolicyHash,
+  };
+}
+
+function manifestFreshnessFor(hubId, manifestBytes, skillRoot) {
+  const engine = loadEngine();
+  if (engine && engine.HUB_CHILD && engine.HUB_CHILD[hubId]
+    && typeof engine.loadHubEngine === 'function') {
+    try {
+      const currentPolicy = engine.loadHubEngine(hubId).snapshot.policy;
+      return evaluateManifestFreshness({ hubId, currentPolicy, manifestBytes });
+    } catch {
+      const inspected = validateCanonicalManifestBytes({ hubId, manifestBytes });
+      return {
+        manifestValid: inspected.manifestValid,
+        fresh: false,
+        causeCode: 'compile-error',
+        currentPolicyHash: null,
+      };
+    }
+  }
+  const resolvedSkillRoot = skillRoot
+    || path.join(REPO_ROOT, '.opencode', 'skills', hubId);
+  return checkCanonicalManifestFreshness({
+    hubId,
+    skillRoot: resolvedSkillRoot,
+    manifestBytes,
+  });
 }
 
 // Compute one hub's serving status. `probeEngine` opts into an actual engine
 // load+route so a genuine throw surfaces as 'engine-throw' rather than a false
 // 'compiled-serving'. Wired prompt-time surfaces pass probeEngine:false (no
 // engine load, no spawn); the CLI probes by default.
-function computeHubStatus(hubId, { probeEngine = true, activationRoot = ACTIVATION_ROOT } = {}) {
+function computeHubStatus(hubId, {
+  probeEngine = true,
+  activationRoot = ACTIVATION_ROOT,
+  skillRoot,
+} = {}) {
   const record = baseRecord(hubId, activationRoot);
-  const manifestPath = path.join(activationRoot, hubId, 'manifest.json');
   let manifestBytes;
-  try { manifestBytes = fs.readFileSync(manifestPath); } catch {
+  try { manifestBytes = readStatusManifest(hubId, activationRoot); } catch {
     return record; // missing-manifest
   }
   record.manifestFingerprint = crypto.createHash('sha256').update(manifestBytes).digest('hex');
+  record.manifestFreshness = freshnessSummary(
+    manifestFreshnessFor(hubId, manifestBytes, skillRoot),
+  );
   let manifest;
   try { manifest = JSON.parse(manifestBytes.toString('utf8')); } catch {
     record.causeCode = 'missing-manifest';
@@ -130,7 +212,8 @@ function computeHubStatus(hubId, { probeEngine = true, activationRoot = ACTIVATI
 }
 
 function computeAllStatus(opts = {}) {
-  return knownHubs().map((hubId) => computeHubStatus(hubId, opts));
+  return knownHubs(opts.activationRoot || ACTIVATION_ROOT)
+    .map((hubId) => computeHubStatus(hubId, opts));
 }
 
 function main() {

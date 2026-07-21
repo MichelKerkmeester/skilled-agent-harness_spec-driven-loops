@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,11 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
+      ".opencode/bin/compiled-route-manifest.cjs",
       ".opencode/bin/compiled-route-status.cjs",
       ".opencode/bin/compiled-route-sync.cjs",
+      ".opencode/bin/tests/compiled-route-manifest.test.cjs",
       ".opencode/bin/compiled-route.cjs"
     ],
     "entities": [
@@ -89,6 +92,12 @@
         "source": "derived"
       },
       {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route-status.cjs",
         "kind": "file",
         "path": ".opencode/bin/compiled-route-status.cjs",
@@ -98,6 +107,12 @@
         "name": "compiled-route-sync.cjs",
         "kind": "file",
         "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
         "source": "derived"
       },
       {
@@ -149,12 +164,6 @@
         "source": "derived"
       },
       {
-        "name": "Implement Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -173,6 +182,12 @@
         "source": "derived"
       },
       {
+        "name": "Public Module Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -183,23 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-07-21T05:02:00.327Z",
+    "last_save_at": "2026-07-21T05:35:01.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d31e819557f07649c256ac1140e496cdf03c9601f55208133d6a8dac113f9d34",
+    "source_fingerprint": "sha256:7061ed72381681b9b25b70a7175a4ceaddfa11b99e1d1ee6a5660a4b2494ce2c",
     "source_doc_hashes": {
-      "spec.md": "b1915c00341ed896aa753bf94f68d56119a4ce352a324c9fd2ad25509d824d78",
-      "plan.md": "4005fe9ab0c7b70c56dca728c6df70b8f93525afebe77ffd4aa1ed53e0d7c4b7",
-      "tasks.md": "4981c373597fbbcdb9362919763efd314aacddb9e29a3594a7e580617f7b038c",
-      "checklist.md": "7fc7953d98f277b8c80e936dbe40e01d16c0a0b244a2d900574ba30e7171e6ad",
-      "decision-record.md": "20618d48039213e922604df3c5f6ab49ce0c267d3b81ab0126c039dbd2c706f7",
-      "implementation-summary.md": "ba5a4387dcfcc786ffc0aeb8cb318088074c4ca2d5a0bbaf57c27470a5844aaf"
+      "spec.md": "f78065e9cf8ea7cf7a4df79f1ab7a7acb5e4b1bb03625d12864e5c289dcee50c",
+      "plan.md": "d02a3b561c2d5d303fd0230358bf70342c9277f89fbf7464855e85c188ce2d78",
+      "tasks.md": "cc553c6c74b480466969541c6a6036bf4d5bde0ddd74f715260e5a4ff4373ae1",
+      "checklist.md": "a70f7404965a51ac9a6dc854cb8fd92b59827da67486a0253aea5f607c07aa96",
+      "decision-record.md": "211d62b8fd25960216caa3590978439cf5e3e16eab6944c59e9197e7351e8bcc",
+      "implementation-summary.md": "3e4c008f84e6609bcb3e6b439b90bafa62becd6b1b075b8a09c917e94aa72e0e"
     },
     "last_active_child_id": null,
     "last_active_at": null
