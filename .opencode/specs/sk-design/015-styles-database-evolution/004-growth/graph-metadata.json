@@ -32,8 +32,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
-      ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+      ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+      ".opencode/skills/sk-design/styles/lib/database/vectors.mjs",
       ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
       "spec.md",
       "plan.md",
@@ -45,13 +45,13 @@
       {
         "name": "retrieval.mjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_db/retrieval.mjs",
+        "path": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
         "source": "derived"
       },
       {
         "name": "vectors.mjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_db/vectors.mjs",
+        "path": ".opencode/skills/sk-design/styles/lib/database/vectors.mjs",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "At 10x-100x corpus growth (roughly 129,000 bundles versus today's ~1,290), the eligible-ID SQL-parameter shape used for broad queries can approach or exceed SQLite's 32,766-variable limit at ~25.4% eligibility",
     "created_at": "2026-07-20T09:21:24.207Z",
-    "last_save_at": "2026-07-21T11:32:45.000Z",
+    "last_save_at": "2026-07-21T18:18:40.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5f60d3720babf24a0a2a02420fdaa4e4b33647dd133aefcebc5115d5a3a0093",
+    "source_fingerprint": "sha256:5a1ea86cb93ec4d1db9773e0e78bcd980c8b34649ceb65795de9f06a99bf5edb",
     "source_doc_hashes": {
-      "spec.md": "5dae525d50eb0db70cb3931a6d8111a2e43a29cb48b5b16c0037aa4e5eaa9369",
-      "plan.md": "b0a9edc469690c81e0d1955a0540411e8291937a1637c52d2cd439d8910b2262",
-      "tasks.md": "d4d6dcf37492bc6390c9a9a3ede3617287f244b3fba5a6556ebeaa71841253f1",
-      "checklist.md": "78cd03eb277218772360bdeecffd8d49fdee3d6cab9fb504d90f86654067db1d",
-      "implementation-summary.md": "b61120476a085860cf47daa014ba230dd578fb1e9f7f3497ef6c74c1dd2e7d15"
+      "spec.md": "2548c2739906a39d2ba8beedc4747a7cac999f6e0807fc65fea7c8d18e4fede3",
+      "plan.md": "6bc018d1fc68a9b3a9aa3b380d08f568a9d8fc7b2911b4cba71c33647474e74f",
+      "tasks.md": "6e6ecd7cac5a261e48a7af0f9c00aa41c0e44e93f8f0f3dd7fde78a2ac3bbfc2",
+      "checklist.md": "df072cb75eed4442554b28f6bb582a2a4e851790098ab909d5c5832c80c8be5f",
+      "implementation-summary.md": "7f105a3598b163c29b9eebccf35267334eeac11ad03b6ea301a5515b02217ae8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,20 +10,20 @@ version: 1.0.0.0
 
 # styles: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Run scenarios against the on-disk `styles/_db/`, `styles/_engine/`, and `commands/interface/` artifacts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete blocker. The persistent path is off by default; a scenario requiring a built generation is SKIP with "persistent path not enabled" unless a `<GENERATION>` is supplied.
+> **EXECUTION POLICY**: Run scenarios against the on-disk `styles/lib/database/`, `styles/lib/engine/`, and `commands/interface/` artifacts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete blocker. The persistent path is off by default; a scenario requiring a built generation is SKIP with "persistent path not enabled" unless a `<GENERATION>` is supplied.
 
 ## 1. OVERVIEW
 
 | ID | Scenario | Intent | File |
 |----|----------|--------|------|
-| DB-01 | Adapter defaults to `legacy` | Flat files stay authoritative unless opted in | `styles/_engine/persistent-adapter.mjs` |
-| DB-02 | `node --test styles/_db/__tests__/*.test.mjs` green | Schema/indexer/retrieval/adapter/operator behavior holds | `styles/_db/__tests__/` |
-| DB-03 | Legacy engine unregressed (`styles/_engine/__tests__/*`) | The DB work did not change the default path | `styles/_engine/__tests__/` |
-| DB-04 | Indexer lifecycle publishes an immutable generation | DISCOVER→…→PUBLISH; content-hash freshness; atomic pointer | `styles/_db/indexer.mjs` |
-| DB-05 | Retrieval is eligibility-first weighted-RRF, generation-bound | Hard filters before ranking; fusion over ranks; fail-closed | `styles/_db/retrieval.mjs` |
-| DB-06 | Vector drain reclaims a stale `running` job | Crash recovery via the running-lease | `styles/_db/vectors.mjs` |
-| DB-07 | Operator surface: status/build/cutover/rollback/repair | The persistent path is operable, not library-only | `styles/_db/operator.mjs` |
-| DB-08 | Generation retention keeps current + rollback, prunes older | No unbounded generation growth; live/rollback preserved | `styles/_db/operator.mjs` |
+| DB-01 | Adapter defaults to `legacy` | Flat files stay authoritative unless opted in | `styles/lib/engine/persistent-adapter.mjs` |
+| DB-02 | `node --test styles/tests/database/*.test.mjs` green | Schema/indexer/retrieval/adapter/operator behavior holds | `styles/tests/database/` |
+| DB-03 | Legacy engine unregressed (`styles/tests/engine/*`) | The DB work did not change the default path | `styles/tests/engine/` |
+| DB-04 | Indexer lifecycle publishes an immutable generation | DISCOVER→…→PUBLISH; content-hash freshness; atomic pointer | `styles/lib/database/indexer.mjs` |
+| DB-05 | Retrieval is eligibility-first weighted-RRF, generation-bound | Hard filters before ranking; fusion over ranks; fail-closed | `styles/lib/database/retrieval.mjs` |
+| DB-06 | Vector drain reclaims a stale `running` job | Crash recovery via the running-lease | `styles/lib/database/vectors.mjs` |
+| DB-07 | Operator surface: status/build/cutover/rollback/repair | The persistent path is operable, not library-only | `styles/lib/database/operator.mjs` |
+| DB-08 | Generation retention keeps current + rollback, prunes older | No unbounded generation growth; live/rollback preserved | `styles/lib/database/operator.mjs` |
 | CMD-01 | Each `/interface:*` routes to its stable mode | design→interface, foundations, motion, audit, design-reference→md-generator | `commands/interface/*.md` |
 | CMD-02 | Commands expose the shared creation-contract blocks | Route Proof → … → Handoff visible blocks present | `skills/sk-design/shared/creation-contract.md` |
 | CMD-03 | `/design:*` namespace is retired (no alias resolution) | `/interface:*` is the sole surface; `commands/design/` absent | `commands/design/` (absent) |

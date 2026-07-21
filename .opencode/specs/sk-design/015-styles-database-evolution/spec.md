@@ -10,19 +10,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/015-styles-database-evolution"
-    last_updated_at: "2026-07-20T09:19:14Z"
-    last_updated_by: "spec-author"
-    recent_action: "Added the 005/006 activation and restructure track to the phase map."
-    next_safe_action: "Build 005-library-restructure, then 006-persistent-db-activation."
+    last_updated_at: "2026-07-21T18:10:00Z"
+    last_updated_by: "remediation"
+    recent_action: "Shipped 001-foundation, 005-restructure, 006-db-activation; feature phases pending."
+    next_safe_action: "Build feature phases 002-004; 006 cutover human-gated."
     blockers: []
     key_files:
       - ".opencode/specs/sk-design/013-styles-database-rust-opportunities/research/lineages/sol-codex/research.md"
-      - ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -53,7 +53,7 @@ The 013 study concluded: **no Rust rewrite now** — SQLite/FTS5 are already nat
 
 | Phase | Child | Purpose | Gate | Status |
 |---|---|---|---|---|
-| 0 | `001-foundation` | Versioned generation manifest, stage telemetry, pinned TS differential oracle, 1x/10x/100x fixtures, labeled relevance judgments. | **Hard blocker** — gates all later phases. | Planned |
+| 0 | `001-foundation` | Versioned generation manifest, stage telemetry, pinned TS differential oracle, 1x/10x/100x fixtures, labeled relevance judgments. | **Hard blocker** — gates all later phases. | Complete |
 | 1 | `002-js-capabilities` | DOM layout fingerprints, screenshot palette/dedupe, shadow multimodal/CLIP lane, batched embedding queue, auto-reindex watcher. | Foundation in place; no Rust. | Planned |
 | 2 | `003-measured-native` | sqlite-vec exact search, Rust `ort` sidecar (isolation, not speed), bounded Rust parse core. | Only if a stage crosses a measured SLO; byte-parity + "no Rust" valid. | Planned |
 | 3 | `004-growth` | Fix the eligible-ID SQL-parameter ceiling first, then maintained HNSW/ANN under an approximation/parity contract; shared cross-skill core. | 10x-100x growth only. | Planned |
@@ -62,8 +62,8 @@ The 013 study concluded: **no Rust rewrite now** — SQLite/FTS5 are already nat
 
 | Order | Child | Purpose | Gate | Status |
 |---|---|---|---|---|
-| R1 | `005-library-restructure` | Shallow ownership tree (`library/`, `lib/`, `scripts/`, `database/`, `tests/`, `docs/`) + kebab rename; preserves 17 modules 1:1; adds `lib/paths.mjs`. | Test ladder green at each mixed state. | Planned |
-| R2 | `006-persistent-db-activation` | Build the first full-corpus generation, run shadow parity, flip the default behind a kill-switch (research §10 wiring plan). | All eight §9 gates pass; default stays `legacy` until then. | Planned |
+| R1 | `005-library-restructure` | Shallow ownership tree (`library/`, `lib/`, `scripts/`, `database/`, `tests/`, `docs/`) + kebab rename; preserves 17 modules 1:1; adds `lib/paths.mjs`. | Test ladder green at each mixed state. | Complete |
+| R2 | `006-persistent-db-activation` | Build the first full-corpus generation, run shadow parity, flip the default behind a kill-switch (research §10 wiring plan). | All eight §9 gates pass; default stays `legacy` until then. | Complete (cutover human-gated) |
 
 These two are sequenced after `001-foundation` (its measurement plane) and before the feature phases; the feature phases build on the activated database.
 

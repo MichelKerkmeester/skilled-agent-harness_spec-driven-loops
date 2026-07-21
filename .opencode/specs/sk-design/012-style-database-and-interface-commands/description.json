@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-design/012-style-database-and-interface-commands",
-  "description": "Two parts of `sk-design` are underpowered for their job \u2014 actually helping a person create good designs",
+  "description": "Two parts of `sk-design` are underpowered for their job — actually helping a person create good designs",
   "keywords": [
     "two",
     "parts",
@@ -14,7 +14,7 @@
     "good",
     "designs"
   ],
-  "lastUpdated": "2026-07-19T10:15:45.024Z",
+  "lastUpdated": "2026-07-21T18:11:53.763Z",
   "specId": "012",
   "folderSlug": "style-database-and-interface-commands",
   "parentChain": [

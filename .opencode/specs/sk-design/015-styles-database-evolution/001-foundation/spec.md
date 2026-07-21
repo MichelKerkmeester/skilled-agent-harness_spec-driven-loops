@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Run generate-context.js parent-save to refresh the fingerprint."
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
-      - ".opencode/skills/sk-design/styles/_db/vectors.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/vectors.mjs"
       - ".opencode/specs/sk-design/015-styles-database-evolution/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

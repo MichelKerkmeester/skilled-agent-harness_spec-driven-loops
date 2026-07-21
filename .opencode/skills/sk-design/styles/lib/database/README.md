@@ -72,11 +72,11 @@ to at most 256 KiB; validation occurs before request fingerprinting or database 
 on invalid input or a failed operation:
 
 ```bash
-node .opencode/skills/sk-design/styles/_db/operator.mjs status --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/_db/operator.mjs build --corpus /path/styles --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/_db/operator.mjs cutover --database /path/style.sqlite --generation /path/retained.sqlite
-node .opencode/skills/sk-design/styles/_db/operator.mjs rollback --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/_db/operator.mjs repair --database /path/style.sqlite --profile style-default-v1
+node .opencode/skills/sk-design/styles/lib/database/operator.mjs status --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/lib/database/operator.mjs build --corpus /path/styles --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/lib/database/operator.mjs cutover --database /path/style.sqlite --generation /path/retained.sqlite
+node .opencode/skills/sk-design/styles/lib/database/operator.mjs rollback --database /path/style.sqlite
+node .opencode/skills/sk-design/styles/lib/database/operator.mjs repair --database /path/style.sqlite --profile style-default-v1
 ```
 
 `status` reports the published generation, rollback candidate, retained files, and vector-job
@@ -88,7 +88,7 @@ generation; older generation files and SQLite sidecars are removed.
 
 ## Measurement & Contract Foundation
 
-The `_db/` tree carries a measurement and parity plane so later work can prove a claim, detect a
+The `lib/database/` tree carries a measurement and parity plane so later work can prove a claim, detect a
 regression, and roll back safely. Every piece serializes identity through one shared canonicalizer
 (`canonical.mjs`: stable-key JSON plus length-framed SHA-256), so a byte reference can never drift
 from what production emits.
@@ -133,7 +133,7 @@ from what production emits.
 
 ## Adapter Modes
 
-`styles/_engine/style-library.mjs` preserves `runQuery`, `runHydrate`, CLI output, card fields, and
+`styles/lib/engine/style-library.mjs` preserves `runQuery`, `runHydrate`, CLI output, card fields, and
 refusal codes behind these modes:
 
 | Mode | Behavior |
@@ -144,4 +144,4 @@ refusal codes behind these modes:
 
 Select a mode with `options.styleDatabaseMode`, CLI `--backend`, or
 `SK_DESIGN_STYLE_DB_MODE`. The default is always `legacy`. Supply `options.databasePath`, CLI
-`--database`, or use `_db/style-library.sqlite`.
+`--database`, or use `database/style-library.sqlite`.

@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Parent save: generate-context.js to refresh graph metadata and close CHK-014"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/styles/_db/generation-manifest.mjs"
-      - ".opencode/skills/sk-design/styles/_db/stage-telemetry.mjs"
-      - ".opencode/skills/sk-design/styles/_db/oracle/differential-oracle.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/stage-telemetry.mjs"
+      - ".opencode/skills/sk-design/styles/tests/oracle/differential-oracle.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"

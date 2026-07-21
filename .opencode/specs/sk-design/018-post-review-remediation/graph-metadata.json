@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-post-review-remediation",
+  "spec_folder": "sk-design/018-post-review-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post review remediation stale db engine paths",
+      "017 review findings fix playbook readme phase-map",
+      "graph-metadata key_files pointer restructure remediation",
+      "post review remediation plan",
+      "fix stale db engine paths plan",
+      "017 findings remediation approach",
+      "post review remediation tasks",
+      "stale db engine path fix tasks",
+      "017 findings remediation ledger",
+      "post review remediation summary",
+      "stale db engine path fix done",
+      "017 findings remediation p1-006 refuted"
+    ],
+    "key_topics": [
+      "post",
+      "review",
+      "remediation",
+      "stale",
+      "engine",
+      "paths",
+      "findings",
+      "playbook",
+      "readme",
+      "phase-map",
+      "graph-metadata",
+      "pointer"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/styles/lib/database/README.md",
+      ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
+      "database/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/lib/database/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ordered",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "wrong",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Done Remediated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Worked",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediate the findings the `017` GPT-5.6-SOL deep review confirmed against the code",
+    "created_at": "2026-07-21T18:23:49.821Z",
+    "last_save_at": "2026-07-21T18:23:49.821Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34b2342e0849bed5ec1fe78d7f3809c05a9159bfa188776c7a60ae7142db5046",
+    "source_doc_hashes": {
+      "spec.md": "f5c0078d30c69db768bac5347779ca19fd60aa1be5f76f895e715cc5a3d0cf46",
+      "plan.md": "16dd3514f4d15b64e43ecc0b8ff02bdecb9d54941e56baeba715f23b575bd990",
+      "tasks.md": "3f4b9049bd1bd82932148770bf2348bcd7f7b08f261afed61941917f045df7b8",
+      "implementation-summary.md": "8647012196c029962db0c2f9d5a91b2590dfc5bf9ecaa9c2d54167fc9e5e5fb8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
