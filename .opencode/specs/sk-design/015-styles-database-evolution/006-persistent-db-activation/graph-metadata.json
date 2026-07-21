@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/006-persistent-db-activation",
+  "spec_folder": "sk-design/015-styles-database-evolution/006-persistent-db-activation",
+  "parent_id": "sk-design/015-styles-database-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "activate persistent styles database wire build",
+      "styles db 006 shadow parity perf gate flip",
+      "install-time prewarm distribution legacy kill switch",
+      "persistent styles db activation plan",
+      "shadow parity perf gate flip plan",
+      "install-time prewarm generation build plan",
+      "persistent styles db activation tasks",
+      "generation build shadow parity flip tasks",
+      "install-time prewarm kill switch tasks",
+      "persistent styles db activation checklist",
+      "shadow parity perf gate verification",
+      "eight reactivation gates kill switch checklist"
+    ],
+    "key_topics": [
+      "activate",
+      "persistent",
+      "styles",
+      "database",
+      "wire",
+      "shadow",
+      "parity",
+      "perf",
+      "gate",
+      "flip",
+      "install-time",
+      "prewarm"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
+      ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
+      ".opencode/skills/sk-design/styles/_db/oracle/differential-oracle.mjs",
+      ".opencode/skills/sk-design/styles/_db/generation-manifest.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "style-library.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/style-library.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "persistent-adapter.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "differential-oracle.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/oracle/differential-oracle.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generation-manifest.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_db/generation-manifest.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring Plan If Kept",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Activate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Content Ownership",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `003-db-fate` gap research recommended shelving the SQLite styles database: the JS math is tiny and parity-sensitive over 1,290 style bundles, and no measured SLO breach justified a storage swap",
+    "created_at": "2026-07-21T11:26:38.944Z",
+    "last_save_at": "2026-07-21T11:32:45.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc74735dde680279b5f0a87df70c63bea36d5a1d3f34dc90eb443fa8e04e79e8",
+    "source_doc_hashes": {
+      "spec.md": "59f1419734bfc181364564e63000ba9cdaae4ebae36dc5f628f3a3f8932473a5",
+      "plan.md": "939d6639abd2ab2117f985c13ecec8721276539d2144f695f6a1844f5e57d04c",
+      "tasks.md": "027eec957326a809401709fcf078020edb4a07641a48cea211ab788884f47d7e",
+      "checklist.md": "eb639964f899d73805205b376d4d0e73bbad0a6aca6a4e7c92f545d0de0d3a75",
+      "implementation-summary.md": "bd3e361691ef3ee5fee3de46b4e3b8eb0a7079210cd6a50aff1b966e9329799b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

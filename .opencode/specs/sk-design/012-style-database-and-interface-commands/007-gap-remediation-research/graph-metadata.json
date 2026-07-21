@@ -37,9 +37,16 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "handover.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,23 +84,61 @@
         "source": "derived"
       },
       {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Library",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands Remediation",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring Plan If Kept",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "the DB",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "handover.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase parent for forced GPT-5.6-SOL deep-research on the four confirmed gaps in the sk-design styles library and /interface:* commands, feeding an evidence-backed remediation plan.",
     "created_at": "2026-07-21T09:46:40.846Z",
-    "last_save_at": "2026-07-21T09:46:40.846Z",
+    "last_save_at": "2026-07-21T11:37:59.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:6dcd59f271709ff8ae6f81237206a5031e68ead426dbaf48c134b8ebfdc80e8a",
+    "source_fingerprint": "sha256:db9163671ccae1122004a702134e4aa51600ba5d3ae615f5507b6f1c689c8fb4",
     "source_doc_hashes": {
-      "spec.md": "7e44709e6b03d23188bcbf7403ff22f2184f54beeee91430ef7ff1e2e08334a7"
+      "spec.md": "aab1c8867f194a4c55b62e08a33fae2b9bcc9b9fd2eb822e5edf0a9ca68c8d43",
+      "handover.md": "dcd21992ab45b3ae33f1a1432336200b48e367da0553aa4c22010faa516d9d39"
     },
     "last_active_child_id": null,
     "last_active_at": null

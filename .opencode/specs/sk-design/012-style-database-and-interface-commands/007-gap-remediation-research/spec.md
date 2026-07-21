@@ -41,8 +41,9 @@ _memory:
 | **Status** | In Progress |
 | **Type** | Deep-research (forced depth) → remediation input |
 | **Parent Packet** | `012-style-database-and-interface-commands` |
+| **Parent Spec** | `../spec.md` |
 | **Predecessor** | `006-retire-design-alias-namespace` |
-| **Successor** | None (remediation packets follow this research) |
+| **Successor** | `008-interface-command-rewrite` |
 | **Created** | 2026-07-21 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->

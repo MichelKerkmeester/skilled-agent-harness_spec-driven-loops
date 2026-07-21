@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+  "spec_folder": "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+  "parent_id": "sk-design/012-style-database-and-interface-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rewrite interface command bodies literal prompts",
+      "interface creation-contract include gap 004",
+      "command wrapper presentation authority reconcile",
+      "interface command rewrite plan",
+      "creation-contract include atomic reconcile plan",
+      "literal interface prompt bodies plan",
+      "interface command rewrite tasks",
+      "creation-contract include tasks",
+      "literal interface prompt tasks",
+      "interface command rewrite checklist",
+      "creation-contract include verification",
+      "literal interface prompt checklist"
+    ],
+    "key_topics": [
+      "rewrite",
+      "interface",
+      "command",
+      "bodies",
+      "literal",
+      "prompts",
+      "creation-contract",
+      "include",
+      "gap",
+      "wrapper",
+      "presentation",
+      "authority"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/interface/design.md",
+      ".opencode/skills/sk-design/shared/creation-contract.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/commands/interface/foundations.md",
+      ".opencode/commands/interface/motion.md",
+      ".opencode/commands/interface/audit.md",
+      ".opencode/commands/interface/design-reference.md",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/creation-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "interface-command-contract.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-reference.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/design-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Preserve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Turn",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five `/interface:` command bodies (`design`, `foundations`, `motion`, `audit`, `design-reference`) are substantive thin routers: each carries a 7-section router contract (route proof, owned assets, mode routing, visible output, execution targets, presentation boundary, workflow summary) and references the shared lifecycle by a Read-imperative at line 9 rather than a runtime include",
+    "created_at": "2026-07-21T11:08:43.954Z",
+    "last_save_at": "2026-07-21T11:14:42.151Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2afbdbcf918500eca3a344ef8e7f7295427789fd622976b04520ae8f93630808",
+    "source_doc_hashes": {
+      "spec.md": "b276f49f8b78f037b2853189e85056f30e7b74555a54d9edace7e77eee22105a",
+      "plan.md": "c094bf28ac54ad1f4e2c44001d9768f6c0cf0a37dcc6dba5cd4bb6d44bb26f1e",
+      "tasks.md": "f668a4b87c33490ed4edbe3edaf8062a1053ba3a516be689b7190c0a7ca9cf26",
+      "checklist.md": "15ca1010acb812c4ac1553bbfca37dd40309589883a176031d8a76c2852d8869",
+      "implementation-summary.md": "d3abfa585b9201c31dd2c2f27c4487c124f630471dfe6db22222f0b1fff16d23"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

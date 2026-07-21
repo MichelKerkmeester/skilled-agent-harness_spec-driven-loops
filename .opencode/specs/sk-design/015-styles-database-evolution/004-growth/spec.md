@@ -43,7 +43,7 @@ _memory:
 - **Parent Spec:** `../spec.md`
 - **Phase:** 4 of 4 (Roadmap Phase 3 — Growth Architecture, 10x-100x only)
 - **Predecessor:** 003-measured-native
-- **Successor:** none — final phase
+- **Successor:** 005-library-restructure
 - **Level:** 2
 - **Status:** PLANNED
 - **Source research:** `sk-design/013-styles-database-rust-opportunities`

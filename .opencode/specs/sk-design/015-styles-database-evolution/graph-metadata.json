@@ -7,7 +7,9 @@
     "sk-design/015-styles-database-evolution/001-foundation",
     "sk-design/015-styles-database-evolution/002-js-capabilities",
     "sk-design/015-styles-database-evolution/003-measured-native",
-    "sk-design/015-styles-database-evolution/004-growth"
+    "sk-design/015-styles-database-evolution/004-growth",
+    "sk-design/015-styles-database-evolution/005-library-restructure",
+    "sk-design/015-styles-database-evolution/006-persistent-db-activation"
   ],
   "manual": {
     "depends_on": [],
@@ -55,6 +57,12 @@
         "source": "derived"
       },
       {
+        "name": "Restructure Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Which Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -83,25 +91,19 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "4. PHASE DOCUMENTATION MAP",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase-parent packet: the measurement-gated roadmap that turns the 013 Rust-opportunities research into a phased, JS-first evolution of the styles database, with Rust as a conditional late phase.",
     "created_at": "2026-07-20T06:33:30.329Z",
-    "last_save_at": "2026-07-20T09:21:27.502Z",
+    "last_save_at": "2026-07-21T11:29:31.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d87d55edafbc01f5c509c2b95c2f44723f2fc2ea1c81bf4bdffda515311a459c",
+    "source_fingerprint": "sha256:79432160f965171b385ae78428f670cf498e5473f555465564cf98b760ce2ebd",
     "source_doc_hashes": {
-      "spec.md": "b2f87517f1caa79b014d3d4c54c0d055a4e442f8c0b2edd4faff83b42f852492"
+      "spec.md": "7158d717005f07ffadb24137eaefbff739a26d9db94c57d985167a0b7ce72fc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

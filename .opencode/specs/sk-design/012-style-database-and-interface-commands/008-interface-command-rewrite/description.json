@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+  "description": "Rewrite the five /interface:* command bodies into literal self-contained design prompts with one creation-contract include; taste stays in the mode.",
+  "level": "2",
+  "keywords": [
+    "five",
+    "interface",
+    "command",
+    "bodies",
+    "design",
+    "foundations",
+    "motion",
+    "audit",
+    "design-reference",
+    "substantive",
+    "thin",
+    "routers",
+    "carries"
+  ],
+  "lastUpdated": "2026-07-21T11:14:34.613Z",
+  "specId": "008",
+  "folderSlug": "interface-command-rewrite",
+  "parentChain": [
+    "sk-design",
+    "012-style-database-and-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
