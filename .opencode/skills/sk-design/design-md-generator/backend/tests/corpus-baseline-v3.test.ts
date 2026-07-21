@@ -16,7 +16,7 @@ import {
 
 import type { RetrievalManifest } from '../scripts/corpus-baseline-v3';
 
-const MANIFEST_PATH = path.resolve(__dirname, '../../../styles/_retrieval-manifest.json');
+const MANIFEST_PATH = path.resolve(__dirname, '../../../styles/library/manifests/retrieval-manifest.json');
 
 function retrievalManifest(): RetrievalManifest {
   return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) as RetrievalManifest;
