@@ -50,8 +50,8 @@ function validateProvenance(report) {
   const gatedRows = rows.filter((row) => row && row.errorClass != null);
   if (excluded.length === 0 && gatedRows.length === 0) return problems;
 
-  if (!report || !report.targetSkill || !report.targetSkill.root) {
-    problems.push('missing provenance: targetSkill.root (skill root)');
+  if (!report || !report.targetSkill || !(report.targetSkill.root || report.targetSkill.rootRel)) {
+    problems.push('missing provenance: targetSkill.root or targetSkill.rootRel (skill root)');
   }
   if (!report.topologyDigest) {
     problems.push('missing provenance: topologyDigest (manifest digest)');
@@ -191,6 +191,36 @@ function renderReport(report) {
       for (const row of c.rows) {
         lines.push(`| ${row.scenarioId || '—'} | ${row.hubId || '—'} | ${row.status || '—'} | ${String(row.reason == null ? '' : row.reason).replace(/\|/g, '\\|')} |`);
       }
+    }
+    lines.push('');
+  }
+
+  // Rendered only for archived artifacts, which carry a provenance/execution
+  // block; a live run report has neither key, so this section never appears in
+  // the ordinary report and cannot drift an existing shape. It exists so an
+  // archived pair proves — with no absolute checkout path — which skill root,
+  // serving manifest, model, and flag state produced it.
+  if (r.provenance || r.executionContext) {
+    const pv = r.provenance || {};
+    const ec = r.executionContext || {};
+    lines.push('## Provenance & execution context');
+    lines.push('');
+    lines.push('_Repo-relative provenance — this archived report carries no absolute checkout path and stays valid when copied elsewhere._');
+    lines.push('');
+    lines.push('| Field | Value |');
+    lines.push('| ----- | ----- |');
+    lines.push(`| Skill root (repo-relative) | \`${pv.rootRel || (r.targetSkill && r.targetSkill.rootRel) || '—'}\` |`);
+    lines.push(`| Captured at | ${pv.capturedAt || '—'} |`);
+    lines.push(`| Active manifest | \`${pv.activationManifestRel || '—'}\` · digest \`${pv.manifestDigest || ec.manifestDigest || '—'}\` |`);
+    lines.push(`| Engine resolver | \`${pv.engineResolverPath || '—'}\` |`);
+    lines.push(`| Source report digest | \`${pv.sourceReportDigest || '—'}\` |`);
+    lines.push(`| Executor / model | ${ec.executor || '—'} / ${ec.model || '—'}${ec.variant ? ` (${ec.variant})` : ''} |`);
+    lines.push(`| CLI version | ${ec.cliVersion || '—'} |`);
+    lines.push(`| Flag state | \`${ec.flagState || '—'}\` |`);
+    lines.push(`| Runtime digest | \`${ec.runtimeDigest || '—'}\` |`);
+    lines.push(`| Run revision | ${ec.runRevision || '—'} |`);
+    if (Array.isArray(ec.scenarioIds) && ec.scenarioIds.length) {
+      lines.push(`| Scenario IDs | ${ec.scenarioIds.join(', ')} |`);
     }
     lines.push('');
   }

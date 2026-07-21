@@ -63,3 +63,11 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 ```
 
 Compare against `baseline/skill-benchmark-report.json`. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add new baselines as sibling folders (e.g. `after/`, `live/`) rather than overwriting `baseline/` — the baseline is the frozen comparison anchor.
+
+---
+
+## 4. COMPILED-ROUTING ARCHIVE
+
+Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+
+Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

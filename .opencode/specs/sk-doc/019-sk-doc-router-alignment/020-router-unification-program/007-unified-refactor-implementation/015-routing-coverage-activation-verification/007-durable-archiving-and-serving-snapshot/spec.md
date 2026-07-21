@@ -35,7 +35,7 @@ This phase plans a durable report-path convention (`<hub>/benchmark/compiled-rou
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Phase** | 007-durable-archiving-and-serving-snapshot (015 child; contributes to the P3 coverage-closure join gate ahead of P4) |
@@ -99,9 +99,9 @@ Define a durable, fail-closed report-path convention and a joined `serving-snaps
 | `sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs` (planned name) | Create | Renderer under `create-benchmark`, producing the human-readable snapshot view |
 | `system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs` | Modify | Add the `report.compiledRouting` JSON→Markdown render block (non-frozen orchestrator) |
 | `sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md` | Modify | Document repo-relative `rootRel` provenance and the new `router-compiled-parity-baseline`/`-final` labels |
-| `<hub>/benchmark/compiled-routing/flip-history.jsonl` (per hub, all 7) | Create | Append-only serving-authority transition log |
+| `<hub>/benchmark/compiled-routing/flip-history.jsonl` (per hub, all 7) | Deferred | Append-only transition log — ownership moved to `../010-rollback-audit-and-non-hub-policy/`, which ships the ledger + drivers; see REQ-006 |
 
-> No file in this table is modified by this planning-only phase.
+> Implemented: the fail-closed report-path convention (`scripts/archive-compiled-routing.cjs`), the `serving-snapshot.json` schema + renderer (`scripts/render-serving-snapshot.cjs` + `serving-snapshot-schema.md`), the `report.compiledRouting` + Provenance render blocks in the non-frozen `build-report.cjs`, repo-relative provenance, and the 7 hub `benchmark/README.md` updates all shipped and were verified. The `flip-history.jsonl` row (REQ-006) is owned by `../010-rollback-audit-and-non-hub-policy/` and is not re-implemented here.
 <!-- /ANCHOR:scope -->
 
 ---

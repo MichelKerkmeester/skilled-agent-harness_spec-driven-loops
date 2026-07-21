@@ -12,7 +12,11 @@ version: 1.0.0.0
 
 > Lane C run storage for the six-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer — never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md`.
 
-## Verdict (latest)
+## 1. OVERVIEW
+
+The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling` — a six-mode hub (three workflow modes plus three transports) — across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
+
+## 2. VERDICT (LATEST)
 
 | Run | Date | Mode | Verdict | Aggregate | Scenarios | Route gold |
 |---|---|---|---|---|---|---|
@@ -23,12 +27,12 @@ Baseline captured with all six modes registered (three workflow + three transpor
 
 `after-routing-remediation/` is the first run under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills): every scenario's `expected_intent` and `expected_resources` scored as hard gold under the fallback-only `defaultResource` contract, 13/13 conformant.
 
-## Structure
+## 3. STRUCTURE
 
 - `baseline/` — FROZEN before-snapshot; never regenerated.
 - `<run-label>/` — one sibling folder per subsequent run (e.g. `after_router_tuning/`).
 
-## How to re-run
+## 4. HOW TO RE-RUN
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
@@ -38,3 +42,11 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 ```
 
 Mode B (live) additionally needs `SKILL_BENCH_OPENCODE_MODEL` configured; the D5 connectivity gate runs first.
+
+---
+
+## 5. COMPILED-ROUTING ARCHIVE
+
+Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+
+Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

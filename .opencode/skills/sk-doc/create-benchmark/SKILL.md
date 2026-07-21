@@ -451,7 +451,7 @@ and captured evidence in the executing packet.
 
 ## 10. SKILL-BENCHMARK STORAGE AND INDEX
 
-A skill-benchmark measures whether a skill is well-routed, discoverable, efficient, and useful; it is run by the deep-improvement Lane C harness (`/deep:skill-benchmark`), which emits a JSON+Markdown report pair per run. This packet owns exactly two things: the **storage convention** for a hub's `benchmark/` tree and the **template for its `benchmark/README.md` index**. It never authors the per-run report, the runner, or the scoring (see ALWAYS / NEVER). The full storage convention, run-label naming, and renderer boundary live in [`references/skill-benchmark/skill-benchmark-storage-guide.md`](references/skill-benchmark/skill-benchmark-storage-guide.md); the D1-D5 contract stays lane-local, cross-linked and never restated.
+A skill-benchmark measures whether a skill is well-routed, discoverable, efficient, and useful; it is run by the deep-improvement Lane C harness (`/deep:skill-benchmark`), which emits a JSON+Markdown report pair per run. This packet owns exactly two things: the **storage convention** for a hub's `benchmark/` tree and the **template for its `benchmark/README.md` index**. It never authors the per-run report, the runner, or the scoring (see ALWAYS / NEVER). The full storage convention, run-label naming, and renderer boundary live in [`references/skill-benchmark/skill-benchmark-storage-guide.md`](references/skill-benchmark/skill-benchmark-storage-guide.md); the compiled-routing archive convention, `serving-snapshot.json` schema, and repo-relative provenance live in [`references/skill-benchmark/serving-snapshot-schema.md`](references/skill-benchmark/serving-snapshot-schema.md); the D1-D5 contract stays lane-local, cross-linked and never restated.
 
 ### Storage Shape
 
@@ -622,6 +622,7 @@ The `/create:benchmark` command drives two of the six families end-to-end — `m
 - [`references/behavior-benchmark/behavior-benchmark-guide.md`](references/behavior-benchmark/behavior-benchmark-guide.md) — behavior package authoring path (§9).
 - [`references/conformance-benchmark/conformance-benchmark-authoring-guide.md`](references/conformance-benchmark/conformance-benchmark-authoring-guide.md) — conformance package authoring and handoff boundary (§12).
 - [`references/skill-benchmark/skill-benchmark-storage-guide.md`](references/skill-benchmark/skill-benchmark-storage-guide.md) — skill-benchmark storage convention and renderer boundary (§10).
+- [`references/skill-benchmark/serving-snapshot-schema.md`](references/skill-benchmark/serving-snapshot-schema.md) — `serving-snapshot.json` schema, the fail-closed `compiled-routing/<run-label>/` archive convention, and repo-relative provenance (§10); implemented by [`scripts/render-serving-snapshot.cjs`](scripts/render-serving-snapshot.cjs) + [`scripts/archive-compiled-routing.cjs`](scripts/archive-compiled-routing.cjs).
 - [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
 - [`agent-improvement-authoring-guide.md`](references/agent-improvement/agent-improvement-authoring-guide.md) — Lane A input authoring (§14).
 

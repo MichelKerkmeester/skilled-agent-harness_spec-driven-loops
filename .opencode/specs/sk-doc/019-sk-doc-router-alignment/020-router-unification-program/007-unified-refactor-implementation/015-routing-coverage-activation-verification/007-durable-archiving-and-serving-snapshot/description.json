@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
   "description": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact",
   "keywords": [
@@ -16,7 +17,7 @@
     "single",
     "artifact"
   ],
-  "lastUpdated": "2026-07-20T21:41:16.089Z",
+  "lastUpdated": "2026-07-21T00:29:19.403Z",
   "specId": "007",
   "folderSlug": "durable-archiving-and-serving-snapshot",
   "parentChain": [
@@ -27,6 +28,5 @@
     "015-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

@@ -38,7 +38,7 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -175,8 +175,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "REQ-006",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact answers \"what is this hub's compiled-routing state right now,\" reports carry a stale absolute path the moment they are copied anywhere else, and nothing stops a future archive run from being generated against a `006` shadow candidate instead of the actually-serving `010` manifest — which would archive a decision that was never live",
     "created_at": "2026-07-20T21:51:37.595Z",
-    "last_save_at": "2026-07-20T21:51:37.595Z",
+    "last_save_at": "2026-07-21T00:34:04.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9d74b018781dd5e980aaa94c72114bb3a283e6cd0d42de59f383ddacf378d09",
+    "source_fingerprint": "sha256:92611a267f7d6df5b424a060f59ab77407185ef15f696eebbd560918c67da7bb",
     "source_doc_hashes": {
-      "spec.md": "12664c90694e8d1ae70305f7b18808ace26c9917955914397e6dcd1aeef6b2c9",
-      "plan.md": "ab91beff5835224fe64fe0d28e16fcf53afa06103b9295a098993425d6bc4704",
-      "tasks.md": "0fb13a132ead606827b8448aa6df92173e0633c59c01f3fb44c460aa8018c767",
+      "spec.md": "ca28e3f8676bd542d937d608b03cc786bafcc3a9ca8e49bbd3d3fb25ab05f6af",
+      "plan.md": "d7c2c122a6dea5c59c060755e9d1126981919fca404154b3c267ece9bede0349",
+      "tasks.md": "4050d15a4be8bd8a01cdc977ea4db11441c7a2aef422b9445239bdc6a5ffd4a2",
       "checklist.md": "79a014001e1a6a42d904a8c30a431eaa20b13df7fcaa0b268cc51d3dbf32aa0c",
       "implementation-summary.md": "20abfeabd97eb01b79c4b3cbbd564db6ae8e6cbe10c20f012c197c52d0d448cd"
     },

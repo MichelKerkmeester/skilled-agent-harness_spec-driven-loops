@@ -19,7 +19,7 @@ are named, and which of those artifacts is machine-owned. This is a storage and
 naming standard only. It does NOT restate the measurement contract: the
 five-dimension (D1-D5) computation, point weights, verdict bands, funnel, and
 advisory signals live once in the deep-improvement scoring authority, linked in
-section 1 and section 6. Where this guide and that contract diverge, the contract
+section 1 and section 7. Where this guide and that contract diverge, the contract
 prevails.
 
 ---
@@ -161,7 +161,40 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 
 ---
 
-## 6. RELATED RESOURCES
+## 6. COMPILED-ROUTING ARCHIVE CONVENTION
+
+A compiled-routing parity run gets its own durable, fail-closed sub-tree beside
+the hub's other run-labels, plus a joined `serving-snapshot.json` describing the
+hub's live serving state. The full schema and archiver contract live in
+[`serving-snapshot-schema.md`](serving-snapshot-schema.md); the essentials that
+belong in this storage standard:
+
+```text
+<hub>/benchmark/compiled-routing/
+├── router-compiled-parity-baseline/     # immutable parity before-anchor
+│   ├── skill-benchmark-report.json
+│   └── skill-benchmark-report.md
+└── router-compiled-parity-final/        # immutable parity after-anchor
+    ├── skill-benchmark-report.json
+    └── skill-benchmark-report.md
+```
+
+| Rule | Behavior |
+| --- | --- |
+| Fail-closed on collision | An existing `<run-label>/` or either half of a prior pair is treated as occupied; the archiver writes nothing and leaves no partial directory. A run never overwrites another — the same frozen-baseline discipline as section 2, applied to every compiled-routing label. |
+| Active-manifest gated | Every archive reads the active `010-live-activation/activation/<hub>/manifest.json` and aborts if that manifest's digest changes mid-archive. A `006-parent-hub-rollout` shadow candidate is refused. |
+| `baseline` never repurposed | The frozen `baseline` label is never written by this convention. Compiled-routing parity is an additive sibling family — conventionally `router-compiled-parity-baseline` / `router-compiled-parity-final`. |
+| Repo-relative provenance | On archive, the absolute `targetSkill.root` is dropped for a repo-relative `rootRel`, and `provenance` + `executionContext` blocks are added so the pair stays valid when copied off the machine that produced it. Historical reports are not retrofitted. |
+
+The `.md` half stays renderer-owned (section 5): the archiver renders it from the
+provenance-rewritten JSON via `build-report.cjs`, which grew a **Provenance &
+execution context** section that appears only for archived pairs. The
+`serving-snapshot.md` view is likewise rendered from `serving-snapshot.json`, not
+hand-authored.
+
+---
+
+## 7. RELATED RESOURCES
 
 ### Normative contract (owned by deep-improvement — link, do not restate)
 
@@ -178,6 +211,7 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 
 ### Within this packet
 
+- [`serving-snapshot-schema.md`](serving-snapshot-schema.md) — the `serving-snapshot.json` schema, the fail-closed `compiled-routing/<run-label>/` convention, and repo-relative provenance (section 6).
 - [`../SKILL.md`](../../SKILL.md) — the create-benchmark workflow and report contracts.
 - [`README.md`](../shared/README.md) — the benchmark-creation reference map.
 - [`behavior-benchmark-guide.md`](../behavior-benchmark/behavior-benchmark-guide.md) — authoring guide for the distinct behavior-benchmark family (executor behavior at a deep-loop mode's invocation surface), not the Lane C skill-benchmark storage covered here.

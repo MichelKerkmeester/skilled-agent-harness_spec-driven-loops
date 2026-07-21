@@ -149,3 +149,11 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 | [`smart-routing.md`](../shared/references/smart-routing.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
 | [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill-benchmark-readme-template.md`](../../sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |
+
+---
+
+## 7. COMPILED-ROUTING ARCHIVE
+
+Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+
+Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

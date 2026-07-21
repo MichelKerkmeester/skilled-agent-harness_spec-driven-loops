@@ -52,14 +52,14 @@ The plan adds one durable path convention, one joined schema plus renderer, one 
 
 ### Definition of Done
 
-- [ ] The report-path convention is documented and fails closed on an existing run-label.
-- [ ] `serving-snapshot.json` + renderer ship and produce a joined, readable view per hub.
-- [ ] `report.compiledRouting` renders via the non-frozen `build-report.cjs`; new immutable label siblings exist; `baseline` is untouched.
-- [ ] Every archive step reads the active `010` manifest and aborts on a mid-run digest change.
-- [ ] Repo-relative provenance ships for every newly-archived artifact.
-- [ ] `flip-history.jsonl` is append-only per hub.
-- [ ] All 7 hub `benchmark/README.md` files document the convention.
-- [ ] No frozen scorer file is modified; strict Level-2 packet validation passes.
+- [x] The report-path convention is documented and fails closed on an existing run-label. — `archive-compiled-routing.cjs`; collision fixture returns `COLLISION`, no partial write.
+- [x] `serving-snapshot.json` + renderer ship and produce a joined, readable view per hub. — `render-serving-snapshot.cjs` capture/render/validate; real sk-code snapshot validates against `serving-snapshot-schema.md`.
+- [x] `report.compiledRouting` renders via the non-frozen `build-report.cjs`; new immutable label siblings exist; `baseline` is untouched. — `router-compiled-parity-baseline`/`-final` family; `baseline` run-label refused (`BAD_LABEL`).
+- [x] Every archive step reads the active `010` manifest and aborts on a mid-run digest change. — drift fixture returns `DRIFT`; a `006` source returns `MANIFEST_SOURCE`.
+- [x] Repo-relative provenance ships for every newly-archived artifact. — absolute `targetSkill.root` dropped for `rootRel`; grep of archived pair for the worktree root returns 0.
+- [~] `flip-history.jsonl` is append-only per hub. — deferred: owned by `../010-rollback-audit-and-non-hub-policy/` (ledger schema + drivers), not re-implemented here.
+- [x] All 7 hub `benchmark/README.md` files document the convention. — all 7 validate at 0 issues.
+- [x] No frozen scorer file is modified; strict Level-2 packet validation passes. — pre/post SHA-256 of the three frozen scorer files identical; skill-benchmark vitest 239/239.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -135,21 +135,21 @@ Required inventories before implementation:
 
 ### Phase 2: Core Implementation
 
-- [ ] Implement the fail-closed report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`).
-- [ ] Implement the `serving-snapshot.json` capture step (reads the active `010` manifest, flag, freshness, latest parity).
-- [ ] Implement the snapshot renderer under `create-benchmark`.
-- [ ] Add the `report.compiledRouting` block to `build-report.cjs` (non-frozen).
-- [ ] Implement repo-relative provenance (`rootRel` + digests) for newly-archived artifacts.
-- [ ] Implement the append-only `flip-history.jsonl` writer.
-- [ ] Update all 7 hub `benchmark/README.md` index files.
+- [x] Implement the fail-closed report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`). — `scripts/archive-compiled-routing.cjs`.
+- [x] Implement the `serving-snapshot.json` capture step (reads the active `010` manifest, flag, freshness, latest parity). — `scripts/render-serving-snapshot.cjs` `captureServingSnapshot`.
+- [x] Implement the snapshot renderer under `create-benchmark`. — `renderServingSnapshot` + `--out` CLI in the same script.
+- [x] Add the `report.compiledRouting` block to `build-report.cjs` (non-frozen). — present from `../004`; extended here with a guarded Provenance & execution-context block.
+- [x] Implement repo-relative provenance (`rootRel` + digests) for newly-archived artifacts. — `rewriteProvenance` in the archiver.
+- [~] Implement the append-only `flip-history.jsonl` writer. — deferred to `../010-rollback-audit-and-non-hub-policy/` (owns the ledger + drivers).
+- [x] Update all 7 hub `benchmark/README.md` index files. — 4 extended, 3 created; all validate at 0 issues.
 
 ### Phase 3: Verification
 
-- [ ] Collision test: re-run against an existing `<run-label>` and confirm a fail-closed, non-zero, no-partial-write result.
-- [ ] Drift test: mutate the active manifest mid-capture and confirm the archive aborts rather than completing.
-- [ ] Boundary test: point the capture step at a `006` shadow-candidate manifest and confirm it is rejected.
-- [ ] Confirm the frozen scorer digests are unchanged and no `baseline/` directory was written to.
-- [ ] Run strict spec-folder validation on this phase folder.
+- [x] Collision test: re-run against an existing `<run-label>` and confirm a fail-closed, non-zero, no-partial-write result. — `COLLISION`; original bytes unchanged; empty pre-existing label dir also refused.
+- [x] Drift test: mutate the active manifest mid-capture and confirm the archive aborts rather than completing. — `DRIFT`; no partial directory left behind.
+- [x] Boundary test: point the capture step at a `006` shadow-candidate manifest and confirm it is rejected. — `MANIFEST_SOURCE` for both the archiver and the snapshot capture.
+- [x] Confirm the frozen scorer digests are unchanged and no `baseline/` directory was written to. — pre/post SHA-256 identical; `baseline` run-label refused.
+- [x] Run strict spec-folder validation on this phase folder. — see checklist CHK-052.
 <!-- /ANCHOR:phases -->
 
 ---
