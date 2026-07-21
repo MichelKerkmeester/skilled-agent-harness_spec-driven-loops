@@ -1,6 +1,6 @@
 ---
 title: "Style Database & /interface Commands - Manual Testing Playbook"
-description: "Lean manual scenarios for verifying the packet-012 style database (adapter modes, indexer, operator surface) and the /interface:* creation commands + /design:* aliases."
+description: "Lean manual scenarios for verifying the packet-012 style database (adapter modes, indexer, operator surface) and the /interface:* creation commands."
 trigger_phrases:
   - "style database manual test"
   - "interface commands manual test"
@@ -26,7 +26,7 @@ version: 1.0.0.0
 | DB-08 | Generation retention keeps current + rollback, prunes older | No unbounded generation growth; live/rollback preserved | `styles/_db/operator.mjs` |
 | CMD-01 | Each `/interface:*` routes to its stable mode | design→interface, foundations, motion, audit, design-reference→md-generator | `commands/interface/*.md` |
 | CMD-02 | Commands expose the shared creation-contract blocks | Route Proof → … → Handoff visible blocks present | `skills/sk-design/shared/creation-contract.md` |
-| CMD-03 | `/design:*` aliases resolve to the canonical commands | Backward compatibility preserved | `commands/design/*.md` |
+| CMD-03 | `/design:*` namespace is retired (no alias resolution) | `/interface:*` is the sole surface; `commands/design/` absent | `commands/design/` (absent) |
 
 ## 2. GLOBAL PRECONDITIONS
 

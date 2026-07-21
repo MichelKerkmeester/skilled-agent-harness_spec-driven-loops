@@ -198,8 +198,8 @@ Five canonical `/interface:*` commands provide one creation surface for design, 
 
 #### Current Reality
 
-`/interface:{design,foundations,motion,audit,design-reference}` maps to the unchanged `interface`, `foundations`, `motion`, `audit` and `md-generator` mode IDs. All five commands reference one shared nine-stage creation contract. The corresponding `/design:*` commands remain thin compatibility aliases.
+`/interface:{design,foundations,motion,audit,design-reference}` maps to the unchanged `interface`, `foundations`, `motion`, `audit` and `md-generator` mode IDs. All five commands reference one shared nine-stage creation contract. The former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
 
 #### Source Files
 
-See [`creation-command-surface/interface-creation-commands.md`](creation-command-surface/interface-creation-commands.md) for command mappings, compatibility boundaries and validation anchors.
+See [`creation-command-surface/interface-creation-commands.md`](creation-command-surface/interface-creation-commands.md) for command mappings and validation anchors.
