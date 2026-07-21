@@ -15,6 +15,10 @@ const {
   compileRegistry,
   sha256,
 } = require('./compiled-routing/006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs');
+const {
+  HUB_CHILD,
+  loadHubEngine,
+} = require('./compiled-routing/011-runtime-engine/lib/compiled-route.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -326,6 +330,51 @@ function compileCanonicalParent({ hubId, skillRoot, generation }) {
   }
 }
 
+// Every graduated hub (006-parent-hub-rollout's HUB_CHILD) owns a bespoke
+// shadow-child registry-compiler.cjs with its own packetKind vocabulary,
+// vocabulary-ownership rules, and bundle-rule generation -- structurally
+// different from the generic 001-sk-code compiler compileCanonicalParent
+// falls back to below. Recompiling a graduated hub's inputs through that
+// generic compiler either throws (PACKET_KIND_UNSUPPORTED on packetKinds
+// the generic PACKET_AUTHORITY map never learned, e.g. mcp-tooling's/
+// cli-external-orchestration's 'transport') or silently yields a different
+// basePolicyHash (different vocabulary/composition-rule construction), so
+// the freshness check can never agree with compiled-route-status.cjs's
+// loadHubEngine-sourced verdict for those hubs. This reuses the identical
+// cached snapshot the runtime engine and Lane C parity already compute, so
+// the two views read the same policy and cannot diverge.
+
+/**
+ * Prefer a graduated hub's own compiled shadow-child snapshot over the
+ * generic canonical compiler for a freshness comparison. Returns undefined
+ * (never throws for a routing reason) when hubId has no registered shadow
+ * child, or when skillRoot resolves somewhere other than that hub's
+ * canonical skill folder, so scaffolding and fixture-driven callers keep
+ * today's generic-compiler behavior unchanged.
+ *
+ * @param {Object} input - Hub identity and authored source root.
+ * @param {string} input.hubId - Hyphen-case hub identifier.
+ * @param {string} input.skillRoot - Candidate authored source root.
+ * @returns {Object|undefined} The shadow-child's compiled policy, or undefined.
+ */
+function shadowChildPolicyFor({ hubId, skillRoot }) {
+  if (!Object.prototype.hasOwnProperty.call(HUB_CHILD, hubId)) return undefined;
+  let realSkillRoot;
+  let realCanonicalRoot;
+  try {
+    realSkillRoot = fs.realpathSync(path.resolve(skillRoot));
+    realCanonicalRoot = fs.realpathSync(path.join(REPO_ROOT, '.opencode', 'skills', hubId));
+  } catch {
+    return undefined;
+  }
+  if (realSkillRoot !== realCanonicalRoot) return undefined;
+  try {
+    return loadHubEngine(hubId).snapshot.policy;
+  } catch {
+    throw contractError('compile-error');
+  }
+}
+
 /**
  * Compare a structurally valid manifest with an already compiled policy.
  *
@@ -401,7 +450,7 @@ function checkCanonicalManifestFreshness({ hubId, skillRoot, manifestBytes: supp
   }
   let currentPolicy;
   try {
-    currentPolicy = compileCanonicalParent({
+    currentPolicy = shadowChildPolicyFor({ hubId, skillRoot }) ?? compileCanonicalParent({
       hubId,
       skillRoot,
       generation: inspected.manifest.selectedPolicy.generation,
