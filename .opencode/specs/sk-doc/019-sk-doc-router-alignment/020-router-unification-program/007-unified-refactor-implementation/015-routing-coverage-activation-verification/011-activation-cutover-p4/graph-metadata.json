@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
     "created_at": "2026-07-20T21:44:54.891Z",
-    "last_save_at": "2026-07-21T02:24:53.176Z",
+    "last_save_at": "2026-07-21T12:29:45.834Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6680a159e76ed4c1f2b33e86bdfcc50d46e7e12ddf5c4546966640b33b070226",
+    "source_fingerprint": "sha256:2a30075e5f03cb65fa3d9429b5ea2d0eeb71ca5e714171ba08376b496d1315f6",
     "source_doc_hashes": {
       "spec.md": "9f913723968f275a668f43dadb9c2acd610ccce6c68dd5b0eaae4ef7bc2b01d7",
       "plan.md": "1664f0ad6c109f0dc8e4b51f3d5f280f8dede62c9c303225078bb7d481f10e7b",
       "tasks.md": "dbf213b1227ba92d0c674f2f27ed8ab39df823622ff9f955d50c280f64481bdf",
-      "checklist.md": "396d7864815d35259fdd0eab573f8c103c1682abcd1409ca2bf435a64900d8c2",
+      "checklist.md": "cfb1ffffd82907e16e3c738331a2f1a38d8c5e2d07199db8ceb457afd8424ca2",
       "decision-record.md": "2de0cd6f0528e993d6a899d8ff2b9c001823fa20ef252d8368483a38a382e86b",
-      "implementation-summary.md": "c90f4b2eb12f2eba47f2b48ce1bb51a7899104a998244d59e19259c66b78ccb3"
+      "implementation-summary.md": "988e2a87b6341ddbf4427f114e70ffb2f6754bf8c560c53c8cb4f16355ed0dce"
     },
     "last_active_child_id": null,
     "last_active_at": null

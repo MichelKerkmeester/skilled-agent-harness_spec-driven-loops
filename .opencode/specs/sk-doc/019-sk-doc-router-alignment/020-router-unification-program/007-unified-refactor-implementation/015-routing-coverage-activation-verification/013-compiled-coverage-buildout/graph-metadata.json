@@ -39,19 +39,23 @@
       "pilot"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs",
       ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      "checklist.md",
+      "handover.md",
+      "spec.md",
       "plan.md",
+      "decision-record.md",
+      "tasks.md",
       ".opencode/bin/lib/compiled-route-manifest.cjs",
       ".opencode/bin/compiled-route-manifest.cjs",
       ".opencode/bin/tests/compiled-route-manifest.test.cjs",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts",
+      "implementation-summary.md",
+      ".opencode/bin/compiled-route-sync.cjs"
     ],
     "entities": [
       {
@@ -67,9 +71,39 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,33 +119,21 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
         "source": "derived"
       },
       {
@@ -179,29 +201,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pilot Build",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Stale Manifests",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-07-21T09:43:25.724Z",
+    "last_save_at": "2026-07-21T12:33:18.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,16 +214,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:88d90cfc57651247aa2d7c47b7c5679b8c2eea5a3633a24dfdd5c8efc614512d",
+    "source_fingerprint": "sha256:54669b82beb31457436fdae4603b44d6c1eac1b7703e0b1f90ba033b0958f73c",
     "source_doc_hashes": {
       "spec.md": "7acba4c82f49f6fee835411a4acfccdbe100725bfc47364362c8fec7dcd5528f",
       "plan.md": "02c5ab5ba49e8f8dd32afab86493e06f91eff21f0c63516f47feaf887d3fa745",
       "tasks.md": "b6ca3203bf0dad15d4bef6b41dc638ed76bde1ff9a9ba094b8e0626f0d3e2870",
-      "checklist.md": "67c25f95c848022c71a0618f52c4f7feea13e67b2b5bf98105040001fac82401",
+      "checklist.md": "ecf91986235742e580bda53b5e3d8d2ac00adcb8701712fe2ccb2cad575b57ab",
       "decision-record.md": "5316d8e0bbaf590039f797450113090872fd09d022a083d698070e3f7708060c",
-      "implementation-summary.md": "09b9d0ed7d7048300979ec2071d1451797f6f44b5b4e07e2ecd6aed826ef13b3"
+      "implementation-summary.md": "9f701cfa34e3741d3e521659ac32b019d715867a00d12a2c37f4075c1439908a",
+      "handover.md": "5b63d9b3e7bec433c1752fbec022cb55f0172f9d98c78ce562d4bc7f5be1a503"
     },
     "last_active_child_id": null,
     "last_active_at": null
