@@ -266,7 +266,7 @@ def test_parent_templates_carry_the_same_exact_directive():
         lines = path.read_text(encoding="utf-8").splitlines()
         start = next(
             index for index, line in enumerate(lines)
-            if line.startswith("> **Compiled routing (opt-in, flag-gated, additive).**")
+            if line.startswith("> **Compiled routing (default-on fleet-wide, flag-gated, additive).**")
         )
         block = []
         for line in lines[start:]:

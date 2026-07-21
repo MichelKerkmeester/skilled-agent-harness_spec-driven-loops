@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "description": "Authoritative inventory of parent templates, live hub directives, feature catalogs, and create-skill authoring docs that must stay synchronized when compiled-routing onboarding wording changes.",
-  "directiveMarker": "> **Compiled routing (opt-in, flag-gated, additive).**",
+  "directiveMarker": "> **Compiled routing (default-on",
   "hubNamePlaceholder": "{{HUB_NAME}}",
   "notes": [
     "Only hub-skill and parent-template entries are directive-bearing today; catalog and authoring-doc entries are factual rewrite surfaces for later wording changes.",

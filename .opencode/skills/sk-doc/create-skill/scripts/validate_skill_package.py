@@ -14,10 +14,10 @@ from typing import Dict, List, Optional
 
 
 COMPILED_ROUTING_MARKERS = (
-    'Compiled routing (opt-in, flag-gated, additive).',
+    'Compiled routing (default-on',
     'node .opencode/bin/compiled-route.cjs --hub',
     'servingAuthority":"legacy',
-    'off by default',
+    'SPECKIT_COMPILED_ROUTING=0',
 )
 
 
