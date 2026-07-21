@@ -14,6 +14,7 @@ import {
 } from 'node:fs/promises';
 import path from 'node:path';
 
+import { CRAWL_MANIFEST_FILENAME } from '../lib/paths.mjs';
 import {
   compareRawStrings,
   digest,
@@ -646,7 +647,7 @@ export async function indexStyleCorpus(options) {
     emit('DISCOVER');
     const discoverSpan = telemetry?.span('discover', RESIDENCY.JS_RESIDENT);
     const corpusRealPath = await realpath(options.corpusRoot);
-    const crawlPath = path.join(options.corpusRoot, '_manifest.json');
+    const crawlPath = path.join(options.corpusRoot, CRAWL_MANIFEST_FILENAME);
     const crawlRealPath = await realpath(crawlPath);
     if (!isContained(corpusRealPath, crawlRealPath)) {
       const error = new Error('Crawl manifest escapes the corpus root.');

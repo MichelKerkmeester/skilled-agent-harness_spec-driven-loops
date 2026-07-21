@@ -21,15 +21,16 @@ import {
 import path from 'node:path';
 
 import { compareRawStrings } from './ordering.mjs';
+import { CRAWL_MANIFEST_FILENAME, RETRIEVAL_MANIFEST_FILENAME } from '../lib/paths.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const MANIFEST_SCHEMA_VERSION = 1;
-export const MANIFEST_FILE_NAME = '_retrieval-manifest.json';
+export const MANIFEST_FILE_NAME = RETRIEVAL_MANIFEST_FILENAME;
 
-const CRAWL_MANIFEST_FILE_NAME = '_manifest.json';
+const CRAWL_MANIFEST_FILE_NAME = CRAWL_MANIFEST_FILENAME;
 const HASH_PREFIX = 'sha256:';
 const HASH_PATTERN = /^sha256:[0-9a-f]{64}$/;
 const MAX_CONCURRENCY = 256;

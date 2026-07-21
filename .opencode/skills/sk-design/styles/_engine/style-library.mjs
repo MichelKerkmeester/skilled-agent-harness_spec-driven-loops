@@ -9,7 +9,7 @@
 
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { pathToFileURL } from 'node:url';
 
 import {
   buildManifest,
@@ -26,14 +26,14 @@ import {
   dispatchStyleHydrate,
   dispatchStyleQuery,
 } from './persistent-adapter.mjs';
+import { RETRIEVAL_MANIFEST_PATH, STYLES_ROOT } from '../lib/paths.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ENGINE_ROOT = path.dirname(fileURLToPath(import.meta.url));
-export const CORPUS_ROOT = path.resolve(ENGINE_ROOT, '..');
-export const MANIFEST_PATH = path.join(CORPUS_ROOT, '_retrieval-manifest.json');
+export const CORPUS_ROOT = STYLES_ROOT;
+export const MANIFEST_PATH = RETRIEVAL_MANIFEST_PATH;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. INPUT AND OUTPUT
