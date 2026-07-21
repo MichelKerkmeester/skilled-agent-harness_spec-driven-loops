@@ -1,7 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
-version: 1.8.0.14
+version: 1.8.0.15
 ---
 
 # sk-doc: Manual Testing Playbook
@@ -24,12 +24,14 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 | # | Category | Folder | Scenario IDs | One-line summary |
 |---|----------|--------|--------------|------------------|
-| 1 | Intent Detection | `intent-detection/` | SD-001 .. SD-003, SD-016 .. SD-017 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION / INSTALL_GUIDE prompts. |
+| 1 | Intent Detection | `intent-detection/` | SD-001 .. SD-003, SD-016 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION prompts. SD-017 (INSTALL_GUIDE) was never authored on disk — see the §01 note. |
 | 2 | Resource Loading | `resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
 | 3 | Unknown Fallback | `unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
 | 4 | Cross-CLI Dispatch | `cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (opencode stdin mitigation), multi-step dispatch stability. |
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
-| 6 | Agent Dispatch | `agent-dispatch/` | SD-018 .. SD-020 | `@markdown` agent dispatch across cli-claude-code, cli-opencode, and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from sections 1-5 which are routing-trace probes. |
+| 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
+| 7 | Holdout | `holdout/` | SD-H01 .. SD-H13 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites (SD-H01..H05) + independent keyword-blind prompts (SD-H06..H13) across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / FLOWCHART / OPTIMIZATION / INSTALL_GUIDE / FEATURE_CATALOG. |
+| 8 | Compiled Routing | `compiled-routing/` | SD-CR-001 | Compiled-serving-authority parity: proves the compiled routing engine reproduces the legacy bundle-rules routing decision for a `create-skill` request. |
 
 ---
 
@@ -40,7 +42,8 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-002** — `intent-detection/skill-creation.md` — SKILL_CREATION: author a new sk-skill.
 - **SD-003** — `intent-detection/agent-command.md` — AGENT_COMMAND: author paired @agent and /create command.
 - **SD-016** — `intent-detection/optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)
-- **SD-017** — `intent-detection/INSTALL-GUIDE.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
+
+> **SD-017 gap**: reserved for an INSTALL_GUIDE intent-detection scenario (`intent-detection/INSTALL-GUIDE.md`, added in 076) that was never authored on disk. INSTALL_GUIDE intent-routing coverage currently exists only via the holdout probe **SD-H12** (`holdout/ind-install-guide.md`, §07).
 
 ### 02 — Resource Loading
 - **SD-004** — `resource-loading/references-global-only.md` — HVR loads only `references/hvr-rules.md`.
@@ -64,8 +67,33 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 06 — Agent Dispatch
 - **SD-018** — `agent-dispatch/markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
-- **SD-019** — `agent-dispatch/markdown-agent-cli-opencode.md` — `@markdown` agent inline-contract execution via cli-opencode (gpt-5.5/xhigh/fast). Verifies opencode follows `.opencode/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
 - **SD-020** — `agent-dispatch/markdown-agent-cli-opencode.md` — `@markdown` agent dispatch via cli-opencode with DeepSeek v4 Pro through the DIRECT DeepSeek API.
+
+> **SD-019 gap**: per `changelog/v1.5.0.0.md`, SD-019 covered `@markdown` via **cli-codex** (`gpt-5.5 / fast`) rewritten to `execution_mode: dispatch_inline_contract` — codex v0.130.0's `SpawnAgent` runtime allowlist doesn't propagate user-defined agents, so codex reads `.codex/agents/markdown.toml` developer_instructions directly instead of dispatching a sub-agent (`expected_skip_in_non_interactive: true`; rubric differs from SD-018/020's real dispatch). The root index previously (and incorrectly) mapped SD-019 to `agent-dispatch/markdown-agent-cli-opencode.md`, but that file's frontmatter/body is entirely SD-020 (DeepSeek v4 Pro) — no file with `id: SD-019` exists anywhere in the tree today.
+
+### 07 — Holdout (Generalization Probes)
+
+Natural-phrasing holdouts — same fitted scenario, decontaminated wording (no router keyword vocabulary):
+- **SD-H01** — `holdout/skill-creation-natural.md` — SKILL_CREATION via natural phrasing.
+- **SD-H02** — `holdout/doc-quality-natural.md` — DOC_QUALITY via natural phrasing.
+- **SD-H03** — `holdout/readme-natural.md` — README_CREATION via natural phrasing.
+- **SD-H04** — `holdout/changelog-natural.md` — CHANGELOG via natural phrasing.
+- **SD-H05** — `holdout/flowchart-natural.md` — FLOWCHART via natural phrasing.
+
+Independent holdouts — authored by an agent blind to the router keyword list:
+- **SD-H06** — `holdout/ind-skill-creation.md` — SKILL_CREATION, keyword-blind.
+- **SD-H07** — `holdout/ind-doc-quality.md` — DOC_QUALITY, keyword-blind.
+- **SD-H08** — `holdout/ind-readme.md` — README_CREATION, keyword-blind.
+- **SD-H09** — `holdout/ind-changelog.md` — CHANGELOG, keyword-blind.
+- **SD-H10** — `holdout/ind-flowchart.md` — FLOWCHART, keyword-blind.
+- **SD-H11** — `holdout/ind-optimization.md` — OPTIMIZATION, keyword-blind.
+- **SD-H12** — `holdout/ind-install-guide.md` — INSTALL_GUIDE, keyword-blind.
+- **SD-H13** — `holdout/ind-feature-catalog.md` — FEATURE_CATALOG, keyword-blind.
+
+All 13 carry `stage: holdout`: excluded from the fitted routing aggregate, scored only for the fitted-vs-held-out generalization gap.
+
+### 08 — Compiled Routing
+- **SD-CR-001** — `compiled-routing/bundle-rules-compiled-routing.md` — sk-doc `create-skill` bundle-rules route: compiled engine (`servingAuthority: compiled`) reproduces the legacy routing decision. Run via `run-skill-benchmark.cjs --compiled-routing-parity on`.
 
 ---
 
@@ -76,7 +104,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.
-6. **Section 6 (Agent Dispatch) scenarios EXECUTE real work** — unlike sections 1–5 which are routing-trace probes (`DO NOT execute the work below`). SD-018/019/020 actually dispatch `@markdown` to scaffold a changelog. They MUST run sequentially (not in parallel) per the CLI-dispatch reliability constraint, and they MUST forbid installation of the stub skill into the `.opencode/skills/` tree.
+6. **Section 6 (Agent Dispatch) scenarios EXECUTE real work** — unlike sections 1–5, 7, and 8, which are routing-trace probes (`DO NOT execute the work below`, or the equivalent `stage: holdout` / `stage: routing` framing for §§07–08). SD-018 and SD-020 actually dispatch `@markdown` to scaffold a changelog (SD-019 has no separate on-disk scenario — see the §06 note). They MUST run sequentially (not in parallel) per the CLI-dispatch reliability constraint, and they MUST forbid installation of the stub skill into the `.opencode/skills/` tree.
 
 ## Pass / Fail Grading
 
