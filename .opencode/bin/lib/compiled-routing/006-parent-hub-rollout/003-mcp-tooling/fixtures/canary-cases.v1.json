@@ -3,26 +3,25 @@
   "activationGeneration": 4,
   "cases": [
     {
-      "id": "figma-interface-worked-case",
+      "id": "figma-single-worked-case",
       "prompt": "render in figma a distinctive visual design for a landing page",
       "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["interface", "mcp-figma"],
-      "judgmentDecision": "approve",
-      "gold": { "expectedIntents": ["interface", "mcp-figma"], "expectedResources": [] }
+      "expectedSelectionKind": "single",
+      "expectedModes": ["mcp-figma"],
+      "gold": { "expectedIntents": ["mcp-figma"], "expectedResources": [] }
     },
     {
-      "id": "figma-foundations-worked-case",
+      "id": "figma-tokens-worked-case",
       "prompt": "figma tokens using design foundations and a color system",
       "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["foundations", "mcp-figma"],
-      "judgmentDecision": "approve",
-      "gold": { "expectedIntents": ["foundations", "mcp-figma"], "expectedResources": [] }
+      "expectedSelectionKind": "single",
+      "expectedModes": ["mcp-figma"],
+      "gold": { "expectedIntents": ["mcp-figma"], "expectedResources": [] }
     },
     {
       "id": "figma-mutation-without-judgment",
       "prompt": "render in figma component",
+      "constraints": ["dependency-failure"],
       "expectedAction": "defer",
       "expectedReason": "dependency-failure",
       "gold": { "expectedIntents": ["defer"], "expectedResources": [] }
@@ -44,11 +43,12 @@
       "gold": { "expectedIntents": ["mcp-click-up"], "expectedResources": [] }
     },
     {
-      "id": "ambiguous-transport-defer",
+      "id": "ambiguous-transport-bundle",
       "prompt": "refero mobbin",
-      "expectedAction": "defer",
-      "expectedReason": "no-match",
-      "gold": { "expectedIntents": ["defer"], "expectedResources": [] }
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": ["mcp-refero", "mcp-mobbin"],
+      "gold": { "expectedIntents": ["mcp-refero", "mcp-mobbin"], "expectedResources": [] }
     },
     {
       "id": "zero-signal-defer",
@@ -60,6 +60,7 @@
     {
       "id": "forbidden-reject",
       "prompt": "forbidden external tool operation",
+      "constraints": ["forbidden"],
       "expectedAction": "reject",
       "expectedReason": "forbidden",
       "gold": { "expectedIntents": ["none"], "expectedResources": [] }

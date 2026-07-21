@@ -62,6 +62,7 @@ function readJson(filePath) {
 function sourceBytes() {
   return {
     'SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'SKILL.md')),
+    'hub-router.json': fs.readFileSync(path.join(SKILL_ROOT, 'hub-router.json')),
     'leaf-manifest.json': fs.readFileSync(path.join(SKILL_ROOT, 'leaf-manifest.json')),
     'mode-registry.json': fs.readFileSync(path.join(SKILL_ROOT, 'mode-registry.json')),
     'smart-routing.md': fs.readFileSync(
@@ -77,6 +78,7 @@ function loadSnapshot() {
     fixture,
     snapshot: compileRegistry({
       activationGeneration: fixture.activationGeneration,
+      hubRouter: JSON.parse(bytes['hub-router.json'].toString('utf8')),
       leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
       registry: JSON.parse(bytes['mode-registry.json'].toString('utf8')),
       skillMarkdown: bytes['SKILL.md'].toString('utf8'),

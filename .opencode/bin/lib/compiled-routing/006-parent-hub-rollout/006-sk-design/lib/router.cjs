@@ -188,6 +188,19 @@ function clearlySeparateAxes(text, modes) {
   return modes.length === 2 && /\b(?:and|plus|then)\b/.test(text);
 }
 
+// Mirrors router-replay.cjs's selectIntents (the legacy replay's own ambiguity
+// gate): keep only the modes within ambiguityDelta of the top score. An
+// authored bundle rule (see exactBundle) has no textual signal of its own to
+// justify overriding a clear score winner, unlike clearlySeparateAxes's
+// explicit and/plus/then conjunction -- so it must only fire when its modes
+// are genuinely co-dominant, the same bar legacy applies before it ever
+// selects more than one intent.
+function contendingModes(scores, ambiguityDelta) {
+  if (scores.length === 0) return [];
+  const top = scores[0].score;
+  return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);
+}
+
 function evaluateCanary(snapshot, input) {
   const built = buildRequest(snapshot, input);
   const text = normalize(input.prompt || '');
@@ -218,7 +231,8 @@ function evaluateCanary(snapshot, input) {
         ? negative('defer', { reason: 'no-match', recovery: [] })
         : route(snapshot, 'single', [snapshot.routingModel.defaultMode]);
     } else {
-      const bundle = exactBundle(snapshot.routingModel, modes);
+      const contending = contendingModes(scores, snapshot.routingModel.ambiguityDelta);
+      const bundle = exactBundle(snapshot.routingModel, contending);
       if (bundle) {
         decision = route(snapshot, 'orderedBundle', bundle.targetWorkflowModes);
       } else if (clearlySeparateAxes(text, modes)) {
