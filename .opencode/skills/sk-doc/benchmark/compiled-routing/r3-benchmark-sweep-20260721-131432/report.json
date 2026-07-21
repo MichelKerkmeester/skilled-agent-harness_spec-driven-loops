@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "r3-benchmark-sweep/V1",
+  "label": "r3-benchmark-sweep-20260721-131432",
+  "capturedAtUTC": "2026-07-21T13:14:32Z",
+  "purpose": "Exhaustive post-flip verification of every benchmark related to the compiled-routing default-on cutover (7 hubs, packet sk-doc/019.../015-routing-coverage-activation-verification/013-compiled-coverage-buildout).",
+  "worktree": ".worktrees/0089-sk-doc-default-routing-cutover",
+  "branch": "sk-doc/0089-default-routing-cutover",
+  "headAtEnd": "2eaac22e95",
+  "hubs": [
+    "sk-code", "sk-design", "sk-doc", "sk-prompt",
+    "mcp-tooling", "system-deep-loop", "cli-external-orchestration"
+  ],
+  "topLineVerdict": {
+    "compiledServingAllSevenHubs": true,
+    "compiledLaneCParityAllSeven": true,
+    "driftAnySeven": 0,
+    "skillBenchmarkSuite258": "258/258 PASS, 0 failures",
+    "compiledRoutingParityVitest47": "47/47 PASS",
+    "frozenScorerShaUnchanged": true,
+    "defaultOnHubsBothResolverCopies": 7,
+    "commitMadeByThisSession": false,
+    "accidentalMutationIncident": "occurred, detected, fully reverted (see incidents[0])"
+  },
+  "runs": [
+    {
+      "id": "compiled-lane-c-parity-fresh",
+      "command": "SPECKIT_COMPILED_ROUTING=1 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill <hub> --outputs-dir /tmp/r3bench --compiled-routing-parity on --route-gold on --output <hub>.json",
+      "executedThisSession": true,
+      "traceMode": "router (Mode A, deterministic, default)",
+      "perHub": [
+        { "hub": "sk-code", "overallVerdict": "BLOCKED-BY-ROUTE-GOLD", "aggregateScore": 83, "scenarios": 30, "compiledSubVerdict": "compiled-serving", "compiledMatch": 23, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 15, "matches": 5, "violations": 10, "parseFailures": 0 }, "note": "BLOCKED verdict is a pre-existing legacy route-gold gap, NOT a compiled-routing regression -- see findings.skCodeRouteGold" },
+        { "hub": "sk-design", "overallVerdict": "PASS", "aggregateScore": 94, "scenarios": 38, "compiledSubVerdict": "compiled-serving", "compiledMatch": 38, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 1, "matches": 1, "violations": 0, "parseFailures": 0 } },
+        { "hub": "sk-doc", "overallVerdict": "PASS", "aggregateScore": 98, "scenarios": 32, "compiledSubVerdict": "compiled-serving", "compiledMatch": 32, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 32, "matches": 32, "violations": 0, "parseFailures": 0 } },
+        { "hub": "sk-prompt", "overallVerdict": "PASS", "aggregateScore": 100, "scenarios": 5, "compiledSubVerdict": "compiled-serving", "compiledMatch": 5, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 5, "matches": 5, "violations": 0, "parseFailures": 0 } },
+        { "hub": "mcp-tooling", "overallVerdict": "PASS", "aggregateScore": 98, "scenarios": 14, "compiledSubVerdict": "compiled-serving", "compiledMatch": 14, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 14, "matches": 14, "violations": 0, "parseFailures": 0 } },
+        { "hub": "system-deep-loop", "overallVerdict": "PASS", "aggregateScore": 99, "scenarios": 21, "compiledSubVerdict": "compiled-serving", "compiledMatch": 21, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 21, "matches": 21, "violations": 0, "parseFailures": 0 } },
+        { "hub": "cli-external-orchestration", "overallVerdict": "PASS", "aggregateScore": 92, "scenarios": 8, "compiledSubVerdict": "compiled-serving", "compiledMatch": 8, "compiledDrift": 0, "breakages": 0, "routeGold": { "rows": 8, "matches": 8, "violations": 0, "parseFailures": 0 } }
+      ],
+      "totals": { "compiledEligibleRows": 141, "compiledMatch": 141, "compiledDrift": 0, "hubsCompiledServing": "7/7", "hubsOverallPass": "6/7 (sk-code BLOCKED-BY-ROUTE-GOLD, pre-existing/orthogonal)" },
+      "frozenScorerHashesBeforeAfterEachRun": "unchanged=true for all 7 (verified inside each report.json's compiledRouting.frozenHashes)",
+      "evidencePath": "hub-reports/<hub>.json, hub-reports/<hub>.md"
+    },
+    {
+      "id": "skill-benchmark-vitest-suite",
+      "command": "cd .opencode/skills/system-deep-loop/deep-improvement/scripts && npx vitest run skill-benchmark/tests --config vitest.config.mjs",
+      "executedThisSession": true,
+      "result": "18 test files passed (18), 258 tests passed (258), 0 failures",
+      "matchesPacketClaim": "handover.md: '258/258 (grown from 247 as lock-in tests were added)' -- CONFIRMED live; README.md's '18 Lane C suites and 247 tests' is stale by 11 tests (documentation drift, cosmetic, not a functional issue)"
+    },
+    {
+      "id": "compiled-routing-parity-vitest-isolated",
+      "command": "npx vitest run skill-benchmark/tests/compiled-routing-parity.vitest.ts --config vitest.config.mjs",
+      "executedThisSession": true,
+      "result": "1 test file passed (1), 47 tests passed (47)"
+    },
+    {
+      "id": "full-4-lane-deep-improvement-vitest",
+      "command": "cd .opencode/skills/system-deep-loop/deep-improvement/scripts && npx vitest run --config vitest.config.mjs",
+      "executedThisSession": true,
+      "scope": "agent-improvement/tests + model-benchmark/tests + shared/tests + skill-benchmark/tests (47 files)",
+      "result": "41 test files passed, 6 failed; 555 tests passed, 17 failed (572 total)",
+      "failureIsolation": "ALL 17 failures are in model-benchmark/tests/* (5 files: sweep-foundation, sweep-isolation, optin-scorer, run-benchmark-hardening, remediation) + shared/tests/materialize-fixture-id.vitest.ts (1 file). ZERO failures in skill-benchmark/tests (confirmed separately as 258/258).",
+      "realVsPreExisting": "PRE-EXISTING and UNRELATED to compiled routing. See findings.modelBenchmarkFailures for full evidence."
+    },
+    {
+      "id": "compiled-route-status-probe",
+      "command": "node .opencode/bin/compiled-route-status.cjs --all --pretty",
+      "executedThisSession": true,
+      "readOnly": true,
+      "readOnlyConfirmedBy": "full source read: only fs.readFileSync/lstatSync/realpathSync/readdirSync, no writes",
+      "envOverride": "none (no SPECKIT_COMPILED_ROUTING set)",
+      "result": "All 7 hubs report causeCode='compiled-serving', servingAuthority='compiled', manifestFreshness.fresh=true -- empirically confirms compiled routing serves BY DEFAULT (no flag override) for all 7 hubs right now.",
+      "evidencePath": "hub-reports/compiled-route-status-all.json"
+    },
+    {
+      "id": "compiled-route-sync-verify",
+      "command": "node .opencode/bin/compiled-route-sync.cjs --verify",
+      "executedThisSession": true,
+      "readOnly": true,
+      "readOnlyConfirmedBy": "full source read of verify(): traces via monkey-patched fs read hooks (restored after), compares, writes only to stdout/stderr",
+      "result": "move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs",
+      "note": "This is the SAME command cited live in the packet's own handover.md/checklist.md as verification evidence; independently re-run this session with an identical result."
+    },
+    {
+      "id": "serving-snapshot-live-validate",
+      "command": "node .opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs --all --validate",
+      "executedThisSession": true,
+      "readOnly": true,
+      "readOnlyConfirmedBy": "source read: writeSnapshot() only called when --out is supplied; omitted here, so main() only prints VALID/INVALID",
+      "result": "VALID for all 7 hubs (cli-external-orchestration, mcp-tooling, sk-code, sk-design, sk-doc, sk-prompt, system-deep-loop)"
+    },
+    {
+      "id": "luna-high-verify-archive-validation",
+      "description": "Confirmed existence + validated the named archive .../benchmark/compiled-routing/luna-high-verify-20260721-120348/ for all 7 hubs",
+      "executedThisSession": true,
+      "method": "Programmatic validation via the exported validateServingSnapshot() against each archived serving-snapshot.json, plus direct read of each skill-benchmark-report.json",
+      "result": "All 7: serving-snapshot.json VALID (schema V1); skill-benchmark-report.json verdict=PASS, traceMode=live, executor=codex, model=openai/gpt-5.6-luna, variant=high, all captured within the same ~2026-07-21T12:04:06-07Z window"
+    },
+    {
+      "id": "luna-high-real-archive-validation-bonus",
+      "description": "Found + validated a SECOND same-day archive per hub not explicitly named in the task, .../compiled-routing/luna-high-real-20260721-073315/ (present for all 7 hubs)",
+      "executedThisSession": true,
+      "result": "serving-snapshot.json VALID for all 7. skill-benchmark-report.json verdict PASS for 6/7; mcp-tooling=FAIL.",
+      "interpretation": "This archive is timestamped 07:33:15, ~4.5h before the 12:03:48 'verify' archive. mcp-tooling's FAIL here is a stale/superseded pre-fix snapshot, consistent with the packet's documented commit f9f639674b ('sk-design, system-deep-loop, mcp-tooling coverage'), which landed between the two timestamps. The later, canonical 'verify' archive (already confirmed 7/7 PASS above) supersedes it. Not a current issue.",
+      "bonusFinding": "sk-code and sk-doc additionally carry a third, earlier archive luna-high-acceptance-1784596615522/ (both PASS) from an earlier acceptance pass."
+    }
+  ],
+  "findings": [
+    {
+      "id": "skCodeRouteGold",
+      "severity": "informational",
+      "title": "sk-code BLOCKED-BY-ROUTE-GOLD is pre-existing and orthogonal to compiled routing",
+      "evidence": "Directly verified: all 23 of sk-code's eligible compiled-routing-parity rows have compiledGoldPass === legacyGoldPass (byte-for-byte identical pass/fail pattern, including all 10 failing rows: SD-001, SD-002, LS-001..LS-004, CS-001, CS-003, CS-005, CS-007). Compiled routing reproduces legacy's behavior exactly, including legacy's own pre-existing route-gold gaps. Corroborates operator memory: packet 056 'OPEN operator item: sk-code empty-gold + CI mode-a-gate before 028->main'; packet 124 'sk-code Lane-C re-baseline' handoff.",
+      "action": "None required by this task (verification-only, no fixes in scope). Tracked separately by the operator."
+    },
+    {
+      "id": "modelBenchmarkFailures",
+      "severity": "informational (pre-existing, unrelated)",
+      "title": "17 vitest failures in model-benchmark/shared lanes -- confirmed pre-existing and unrelated to compiled routing",
+      "evidence": [
+        "grep of all 6 failing test files for compiled-routing/DEFAULT_ON_HUBS/resolve.cjs/compiled-route keywords: zero matches.",
+        "Root cause 1 (13 of 17 failures, sweep-isolation.vitest.ts + downstream status-code failures in optin-scorer.vitest.ts, run-benchmark-hardening.vitest.ts, materialize-fixture-id.vitest.ts): the fixture directory .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/ contains hyphen-named files (hard-merge-intervals.json, harder-semver-compare.json, validate-ipv4.json, ...) but the test files' string literals request underscore names (hard_merge_intervals.json, harder_semver_compare.json, validate_ipv4.json). git log on the failing test files shows the most recent commit as cc77a1e550a 'refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)' -- a repo-wide, unrelated filename-convention migration that renamed the assets without updating these literals.",
+        "Root cause 2 (sweep-foundation.vitest.ts, 0 tests / suite-level failure): ENOENT on .../sk-prompt/assets/framework-registry.json; the file now lives at .../sk-prompt/prompt-improve/assets/framework-registry.json following the separate, unrelated sk-prompt parent-hub merge (2026-07-09, 2667 files git-mv'd per operator memory).",
+        "Root cause 3 (remediation.vitest.ts, 1 test): expects dispatchModel.buildSpawnSpec('cli-opencode', ...) to throw /Unknown executor/ as a 'retired executor'; it does not throw, i.e. cli-opencode is still a live/supported executor kind in dispatch-model.cjs -- a stale test/implementation mismatch in the model-benchmark executor-allowlist, unrelated to skill routing."
+      ],
+      "action": "None required by this task (out of scope: model-benchmark lane, not compiled-routing). Flagged for the model-benchmark/sk-prompt owners separately."
+    },
+    {
+      "id": "compiledRoutingFoundationVitestStale",
+      "severity": "real, actionable (test-suite staleness, not a routing-correctness regression)",
+      "title": ".opencode/bin/compiled-routing-foundation.vitest.ts has 3 failing tests that assert the PRE-flip (empty-cohort) behavior",
+      "command": "cd .opencode/.opencode && ... ; actually: cd .opencode && npx vitest run --config vitest.config.bin.ts",
+      "executedThisSession": true,
+      "result": "1 test file (8 files total in that run) failed: 3 of 24 tests in compiled-routing-foundation.vitest.ts failed; 61/64 passed in that file; other 7 files in the same config all passed.",
+      "failingTests": [
+        "'default-on cohort ships empty at both read sites' -- expects resolver.DEFAULT_ON_HUBS.size===0 and ADVISOR_DEFAULT_ON_HUBS.size===0; resolver (the runtime engine copy) is actually 7 post-flip.",
+        "'unset resolves to legacy (null) for every hub -- byte-identical default' -- expects resolveRoute(hub,...) to return null with no flag set; it now returns a real compiled decision for every hub (by design, post-flip).",
+        "'--all default state reports every hub as flag-off drift, none broken' -- expects every hub's status causeCode==='flag-off'; it is now 'compiled-serving' for every hub (by design, post-flip)."
+      ],
+      "rootCause": "Commit 7dfffa0c93 (the default-on flip) updated .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs's DEFAULT_ON_HUBS from empty to all 7 hubs (correctly, and by design), but did not update this foundation-invariant test file's assertions to match the new intended default-on semantics. The routing behavior itself is correct and independently proven via the Lane C parity runs (0 drift across 141 rows) and the live compiled-route-status probe; this is stale TEST EXPECTATIONS, not a routing bug.",
+      "distinctFrom": "This is NOT the same as the already-documented advisor-side DEFAULT_ON_HUBS gap (see findings.advisorSideCohortStillEmpty) -- that one concerns a third, intentionally-separate copy used only for advisor recommend-enrichment and is explicitly disclosed as a known non-blocking follow-up in the packet's own handover.md/implementation-summary.md. This finding is about a *test file* for the *main runtime resolver* itself, not previously called out in the docs I could find.",
+      "relatedLikelyFailure": "grep-confirmed (not executed, to avoid re-triggering the compiled-route-sync.cjs mutation risk -- see incidents[0]): .opencode/bin/tests/compiled-route-manifest.test.cjs line 489 `assert.equal(resolver.DEFAULT_ON_HUBS.size, 0)` requires the SAME resolve.cjs module already directly confirmed to have .size===7, so this assertion is deterministically guaranteed to also fail if the file is run via `node --test`. Reported as high-confidence-inferred, not executed.",
+      "notPartOfMandatedSuites": "Neither file is part of the required 18-file/258-test skill-benchmark suite or the 47-test compiled-routing-parity vitest; both live under a separate .opencode/vitest.config.bin.ts config, found via the task's item-6 tree search.",
+      "action": "None taken (verification-only task, and these are test files, not routing/manifest/DEFAULT_ON_HUBS source -- editing them would be outside the explicit read-only/no-mutation scope of this task). Recommend a follow-up packet updates these 2 files' assertions to match the post-7dfffa0c93 default-on cohort."
+    },
+    {
+      "id": "defaultOnHubsThreeCopiesResolved",
+      "severity": "informational (fully resolved, matches task premise)",
+      "title": "DEFAULT_ON_HUBS exists in 3 places; the 2 that matter for actual serving are populated with all 7 hubs and byte-identical; the 3rd (advisor enrichment only) is a known, already-documented, non-blocking empty follow-up",
+      "copies": [
+        { "path": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs (PROMOTED, what actually serves)", "state": "populated, all 7 hubs", "confirmedBy": "direct Read + compiled-route-status.cjs --all with no env override showing compiled-serving fleet-wide" },
+        { "path": ".opencode/specs/sk-doc/019-.../015-routing-coverage-activation-verification/011-runtime-engine/lib/resolve.cjs (authored twin)", "state": "populated, all 7 hubs", "confirmedBy": "direct Read; `diff` against the promoted copy above returned exit 0 (byte-identical)" },
+        { "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts (+ dist mirror .js) -- advisor recommend-enrichment cohort only", "state": "empty (new Set())", "confirmedBy": "direct Read; matches the packet's own implementation-summary.md line 207/219 and handover.md line 54, which already disclose this exact gap as a known, non-blocking follow-up ('unaffected by this cutover')" }
+      ],
+      "note": "My initial instinct on finding the empty advisor-side copy (before locating the other two) was to treat this as a LOGIC-SYNC contradiction against the task's 'default-on for all 7 hubs' premise. Broadening the search (my first grep was scoped only to .opencode/skills and missed .opencode/bin) resolved this: the task's premise is accurate for the resolver that actually serves routing; the advisor-enrichment copy is a separate, smaller, already-tracked concern. No escalation needed; reported here for full transparency of the investigation path."
+    }
+  ],
+  "incidents": [
+    {
+      "id": "accidental-compiled-route-sync-mutation",
+      "severity": "resolved, fully reverted, zero residual impact",
+      "whatHappened": "Ran `node .opencode/bin/compiled-route-status.cjs --help` (confirmed read-only via source, printed a clean usage line, exit 0), then `node .opencode/bin/compiled-route-sync.cjs --help` to probe its interface the same way. compiled-route-sync.cjs's main() only recognizes --verify and --check; any other argv (including --help) falls through to the default build() action, which DELETES and re-promotes the entire .opencode/bin/lib/compiled-routing/ closure from the authored spec-tree source. This is a real mutator, not a no-op.",
+      "detection": "Immediate: the command's own stdout read 'promoted 65 closure files -> .opencode/bin/lib/compiled-routing' instead of a usage message. Followed up with `git status`/`git diff --stat`, which showed 19 tracked files modified: 18 under .opencode/bin/lib/compiled-routing/** (canary-router.cjs, registry-compiler.cjs, router.cjs, build-artifacts.cjs, compiled-route.cjs, and all 7 hubs' activation manifest.json policy-hash fields) plus .opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json.",
+      "resolution": "`git checkout -- .opencode/bin/lib/compiled-routing/` followed by `git checkout -- .opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json`. Verified `git status --short` returned to the exact 7-line pre-incident baseline, and the 3 frozen scorer file SHA-256 hashes (which this incident never touched) were re-confirmed identical before/after.",
+      "resolveCjsNotTouched": "Critically, .../011-runtime-engine/lib/resolve.cjs (the file holding DEFAULT_ON_HUBS) was NOT among the 19 changed files -- confirmed by the diff --stat output. DEFAULT_ON_HUBS was never at risk from this incident.",
+      "sideObservation": "The rebuild's diff (before revert) showed several OTHER promoted files -- registry-compiler.cjs, router.cjs, canary-router.cjs, build-artifacts.cjs, and per-hub manifest.json generation-hash fields -- differing between the currently-committed 'promoted' copy and the current 'authored' spec-tree copy. This suggests a small pre-existing (not caused by this session) authored-vs-promoted drift for non-resolver files that predates this task. Not investigated further (outside task scope); noted for awareness only. resolve.cjs itself (the DEFAULT_ON_HUBS holder) was confirmed byte-identical between authored and promoted both before and after this incident.",
+      "postIncidentSafeguard": "For the remainder of the session, no script was executed without first reading its source to confirm read-only behavior (compiled-route-status.cjs, compiled-route-sync.cjs --verify, render-serving-snapshot.cjs --validate were all vetted this way before execution)."
+    }
+  ],
+  "constraintCompliance": {
+    "frozenScorerFilesUnchanged": {
+      "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47 (start) == (end)",
+      "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c (start) == (end)",
+      "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029 (start) == (end)"
+    },
+    "routingManifestsDefaultOnHubsUnchangedByThisSession": true,
+    "twoStraysNeverTouched": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/**",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/**"
+    ],
+    "noCommitMadeByThisSession": true,
+    "gitStatusAtEnd": [
+      "M .opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md",
+      "M .opencode/specs/system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md"
+    ],
+    "gitStatusNote": "These are exactly the 2 pre-existing 'strays' this task was told to never touch -- both were already dirty at session start and were never opened or edited by this session. 5 OTHER files that were dirty at session start (013-compiled-coverage-buildout's graph-metadata.json/implementation-summary.md/plan.md/spec.md + goal-coverage-buildout.md) are no longer dirty because a CONCURRENT session/agent on the same worktree committed them as `2eaac22e95` during this session's runtime -- not an action taken by this session (zero `git commit` invocations occurred in this session)."
+  }
+}

@@ -1,0 +1,5325 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "system-deep-loop",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/system-deep-loop"
+  },
+  "verdict": "PASS",
+  "aggregateScore": 99,
+  "generalization": {
+    "fittedScore": 99,
+    "holdoutScore": null,
+    "generalizationGap": null,
+    "fittedCount": 21,
+    "holdoutCount": 0,
+    "negativeCount": 2,
+    "note": "no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)"
+  },
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    },
+    "routeGold": {
+      "mode": "on",
+      "enabled": true,
+      "rows": 21,
+      "matches": 21,
+      "violations": 0,
+      "parseFailures": 0,
+      "failed": false,
+      "details": [],
+      "summary": {
+        "compiledEligibility": {
+          "hubType": true,
+          "compiledEligible": true
+        },
+        "statusEnum": [
+          "match",
+          "drift",
+          "vacuous",
+          "n/a",
+          "resolver-missing"
+        ],
+        "passStatus": "match",
+        "informationalStatus": "n/a"
+      }
+    }
+  },
+  "routeGold": {
+    "mode": "on",
+    "enabled": true,
+    "rows": 21,
+    "matches": 21,
+    "violations": 0,
+    "parseFailures": 0,
+    "failed": false,
+    "details": [],
+    "summary": {
+      "compiledEligibility": {
+        "hubType": true,
+        "compiledEligible": true
+      },
+      "statusEnum": [
+        "match",
+        "drift",
+        "vacuous",
+        "n/a",
+        "resolver-missing"
+      ],
+      "passStatus": "match",
+      "informationalStatus": "n/a"
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 98
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 100
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "passed": 21
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "coverage": {
+    "routing": 21,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 21,
+    "holdout": 0,
+    "negative": 2
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "SC-002",
+      "leaks": [
+        "ai council",
+        "ai council deliberation"
+      ]
+    },
+    {
+      "scenarioId": "SC-003",
+      "leaks": [
+        "research",
+        "deep research"
+      ]
+    },
+    {
+      "scenarioId": "SC-001",
+      "leaks": [
+        "review",
+        "before running deep review"
+      ]
+    },
+    {
+      "scenarioId": "SC-004",
+      "leaks": [
+        "system-deep-loop",
+        "review",
+        "review request"
+      ]
+    },
+    {
+      "scenarioId": "RB-003",
+      "leaks": [
+        "agent-improvement"
+      ]
+    },
+    {
+      "scenarioId": "RB-002",
+      "leaks": [
+        "ai council",
+        "ai council deliberation"
+      ]
+    },
+    {
+      "scenarioId": "RB-001",
+      "leaks": [
+        "research",
+        "deep research"
+      ]
+    },
+    {
+      "scenarioId": "MO-003",
+      "leaks": [
+        "ai council"
+      ]
+    },
+    {
+      "scenarioId": "MO-005",
+      "leaks": [
+        "conformance audit",
+        "named standard authority",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "MO-004",
+      "leaks": [
+        "research",
+        "research summary",
+        "review"
+      ]
+    },
+    {
+      "scenarioId": "MO-001",
+      "leaks": [
+        "research",
+        "deep research",
+        "research summary"
+      ]
+    },
+    {
+      "scenarioId": "MO-002",
+      "leaks": [
+        "review",
+        "deep review of"
+      ]
+    },
+    {
+      "scenarioId": "IL-001",
+      "leaks": [
+        "agent candidate"
+      ]
+    },
+    {
+      "scenarioId": "IL-002",
+      "leaks": [
+        "model-benchmark",
+        "/deep:model-benchmark"
+      ]
+    },
+    {
+      "scenarioId": "IL-003",
+      "leaks": [
+        "skill-benchmark",
+        "/deep:skill-benchmark",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "DL-CR-001",
+      "leaks": [
+        "research",
+        "deep research",
+        "research summary"
+      ]
+    },
+    {
+      "scenarioId": "AI-002",
+      "leaks": [
+        "research",
+        "deep-research",
+        "iterative investigation workflow"
+      ]
+    },
+    {
+      "scenarioId": "AI-001",
+      "leaks": [
+        "research",
+        "deep research",
+        "research summary"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "SC-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "ai-council"
+        ],
+        "matchedAliases": [
+          "ai council",
+          "ai council deliberation"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-ai-council"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "SC-002",
+        "expectedIntents": [
+          "ai-council"
+        ],
+        "observedIntents": [
+          "ai-council"
+        ],
+        "observedResources": [
+          "deep-ai-council/references/integration/loop-protocol.md",
+          "deep-ai-council/references/scoring/scoring-rubric.md",
+          "deep-ai-council/references/structure/output-schema.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "SC-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "SC-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep research"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "SC-003",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "SC-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "SC-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "review"
+        ],
+        "matchedAliases": [
+          "before running deep review"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-review"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "SC-001",
+        "expectedIntents": [
+          "review"
+        ],
+        "observedIntents": [
+          "review"
+        ],
+        "observedResources": [
+          "deep-review/references/protocol/loop-protocol.md",
+          "deep-review/references/protocol/completion-criteria.md",
+          "deep-review/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "SC-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "SC-004",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "review"
+        ],
+        "matchedAliases": [
+          "review request"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-review"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "SC-004",
+        "expectedIntents": [
+          "review"
+        ],
+        "observedIntents": [
+          "review"
+        ],
+        "observedResources": [
+          "deep-review/references/protocol/loop-protocol.md",
+          "deep-review/references/protocol/completion-criteria.md",
+          "deep-review/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "SC-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "RB-004",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "RB-004",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "RB-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "RB-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "agent-improvement"
+        ],
+        "matchedAliases": [
+          "agent-improvement"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "improvement-host"
+        ],
+        "packet": [
+          "deep-improvement"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "RB-003",
+        "expectedIntents": [
+          "agent-improvement"
+        ],
+        "observedIntents": [
+          "agent-improvement"
+        ],
+        "observedResources": [
+          "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+          "deep-improvement/references/agent-improvement/score-dimensions.md",
+          "deep-improvement/references/shared/promotion-gate-contract.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "RB-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "RB-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "ai-council"
+        ],
+        "matchedAliases": [
+          "ai council",
+          "ai council deliberation"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-ai-council"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "RB-002",
+        "expectedIntents": [
+          "ai-council"
+        ],
+        "observedIntents": [
+          "ai-council"
+        ],
+        "observedResources": [
+          "deep-ai-council/references/integration/loop-protocol.md",
+          "deep-ai-council/references/scoring/scoring-rubric.md",
+          "deep-ai-council/references/structure/output-schema.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "RB-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "RB-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep research"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "RB-001",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "RB-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MO-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "ai-council",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "ai-council"
+        ],
+        "matchedAliases": [
+          "ai council"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-ai-council"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MO-003",
+        "expectedIntents": [
+          "ai-council"
+        ],
+        "observedIntents": [
+          "ai-council"
+        ],
+        "expectedResources": [
+          "deep-ai-council/references/integration/loop-protocol.md",
+          "deep-ai-council/references/scoring/scoring-rubric.md",
+          "deep-ai-council/references/structure/output-schema.md"
+        ],
+        "observedResources": [
+          "deep-ai-council/references/integration/loop-protocol.md",
+          "deep-ai-council/references/scoring/scoring-rubric.md",
+          "deep-ai-council/references/structure/output-schema.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MO-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MO-005",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "alignment",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "alignment"
+        ],
+        "matchedAliases": [
+          "conformance audit",
+          "named standard authority"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-alignment"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MO-005",
+        "expectedIntents": [
+          "alignment"
+        ],
+        "observedIntents": [
+          "alignment"
+        ],
+        "expectedResources": [
+          "deep-alignment/references/scoping-protocol.md",
+          "deep-alignment/references/discover-contract.md",
+          "deep-alignment/references/lane-config-schema.md"
+        ],
+        "observedResources": [
+          "deep-alignment/references/scoping-protocol.md",
+          "deep-alignment/references/discover-contract.md",
+          "deep-alignment/references/lane-config-schema.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MO-005",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "alignment"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MO-004",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "research",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "research summary"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MO-004",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "expectedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MO-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MO-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "research",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep research",
+          "research summary"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MO-001",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "expectedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MO-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MO-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "review",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "review"
+        ],
+        "matchedAliases": [
+          "deep review of"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-review"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MO-002",
+        "expectedIntents": [
+          "review"
+        ],
+        "observedIntents": [
+          "review"
+        ],
+        "expectedResources": [
+          "deep-review/references/protocol/loop-protocol.md",
+          "deep-review/references/protocol/completion-criteria.md",
+          "deep-review/references/convergence/convergence.md"
+        ],
+        "observedResources": [
+          "deep-review/references/protocol/loop-protocol.md",
+          "deep-review/references/protocol/completion-criteria.md",
+          "deep-review/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MO-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "IL-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "agent-improvement",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "agent-improvement"
+        ],
+        "matchedAliases": [
+          "agent candidate"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "improvement-host"
+        ],
+        "packet": [
+          "deep-improvement"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "IL-001",
+        "expectedIntents": [
+          "agent-improvement"
+        ],
+        "observedIntents": [
+          "agent-improvement"
+        ],
+        "expectedResources": [
+          "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+          "deep-improvement/references/agent-improvement/score-dimensions.md",
+          "deep-improvement/references/shared/promotion-gate-contract.md"
+        ],
+        "observedResources": [
+          "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+          "deep-improvement/references/agent-improvement/score-dimensions.md",
+          "deep-improvement/references/shared/promotion-gate-contract.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "IL-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "IL-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "model-benchmark"
+        ],
+        "matchedAliases": [
+          "/deep:model-benchmark"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "improvement-host"
+        ],
+        "packet": [
+          "deep-improvement"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "IL-002",
+        "expectedIntents": [
+          "model-benchmark"
+        ],
+        "observedIntents": [
+          "model-benchmark"
+        ],
+        "expectedResources": [
+          "deep-improvement/references/model-benchmark/evaluator-contract.md",
+          "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
+        ],
+        "observedResources": [
+          "deep-improvement/references/model-benchmark/evaluator-contract.md",
+          "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "IL-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "model-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "IL-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "skill-benchmark"
+        ],
+        "matchedAliases": [
+          "/deep:skill-benchmark"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "improvement-host"
+        ],
+        "packet": [
+          "deep-improvement"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "IL-003",
+        "expectedIntents": [
+          "skill-benchmark"
+        ],
+        "observedIntents": [
+          "skill-benchmark"
+        ],
+        "expectedResources": [
+          "deep-improvement/references/skill-benchmark/scoring-contract.md",
+          "deep-improvement/references/skill-benchmark/routing-optimization.md"
+        ],
+        "observedResources": [
+          "deep-improvement/references/skill-benchmark/scoring-contract.md",
+          "deep-improvement/references/skill-benchmark/routing-optimization.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "IL-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "skill-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "DL-CR-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 3,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "research",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep research",
+          "research summary"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "DL-CR-001",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "expectedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "DL-CR-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "AI-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "AI-003",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "AI-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "AI-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep-research",
+          "iterative investigation workflow"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "AI-002",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "AI-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "AI-004",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "AI-004",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "AI-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "AI-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "research"
+        ],
+        "matchedAliases": [
+          "deep research",
+          "research summary"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "runtime-loop-type"
+        ],
+        "packet": [
+          "deep-research"
+        ]
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "AI-001",
+        "expectedIntents": [
+          "research"
+        ],
+        "observedIntents": [
+          "research"
+        ],
+        "observedResources": [
+          "deep-research/references/protocol/loop-protocol.md",
+          "deep-research/references/state/state-jsonl.md",
+          "deep-research/references/convergence/convergence.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "AI-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    }
+  ],
+  "excludedRows": [],
+  "runQuality": {
+    "scenarioCount": 21,
+    "traceMode": "router",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "topologyDigest": "caf25c390b41edcba112b945ba091f76b97a659eb389b773c738d41d40d13473",
+  "compiledRouting": {
+    "mode": "on",
+    "flagState": {
+      "raw": "1",
+      "state": "force-on",
+      "flagMode": "force-on",
+      "permitsCompiledWhenEligible": true
+    },
+    "flagForcedOn": true,
+    "subVerdict": "compiled-serving",
+    "blocking": false,
+    "scored": 21,
+    "counts": {
+      "match": 21,
+      "drift": 0,
+      "vacuous": 0,
+      "n/a": 0,
+      "resolver-missing": 0
+    },
+    "gate": {
+      "owner": "lane-c-compiled-parity",
+      "isBlockingOwner": true,
+      "firing": false,
+      "reportOnlyConsumers": [
+        "routing-registry-drift-ci"
+      ]
+    },
+    "eligibleRows": [
+      {
+        "scenarioId": "SC-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-005",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "alignment"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "model-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "skill-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "DL-CR-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ],
+    "driftRows": [],
+    "breakages": [],
+    "frozenHashes": {
+      "before": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "after": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "unchanged": true
+    },
+    "rows": [
+      {
+        "scenarioId": "SC-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "SC-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "RB-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "ai-council"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "ai-council",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-005",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "alignment"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "alignment",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MO-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "review"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "review",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "agent-improvement"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "agent-improvement",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "model-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "model-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "IL-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "skill-benchmark"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "skill-benchmark",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "DL-CR-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-003",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-002",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-004",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "AI-001",
+        "hubId": "system-deep-loop",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "research"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "system-deep-loop",
+              "workflowMode": "research",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ]
+  }
+}

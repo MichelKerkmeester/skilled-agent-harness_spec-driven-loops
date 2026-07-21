@@ -1,0 +1,3840 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "mcp-tooling",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/mcp-tooling"
+  },
+  "verdict": "PASS",
+  "aggregateScore": 98,
+  "generalization": {
+    "fittedScore": 98,
+    "holdoutScore": 100,
+    "generalizationGap": -2,
+    "fittedCount": 8,
+    "holdoutCount": 6,
+    "negativeCount": 0,
+    "note": "holdout excluded from the fitted aggregate; gap = fitted minus holdout"
+  },
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    },
+    "routeGold": {
+      "mode": "on",
+      "enabled": true,
+      "rows": 14,
+      "matches": 14,
+      "violations": 0,
+      "parseFailures": 0,
+      "failed": false,
+      "details": [],
+      "summary": {
+        "compiledEligibility": {
+          "hubType": true,
+          "compiledEligible": true
+        },
+        "statusEnum": [
+          "match",
+          "drift",
+          "vacuous",
+          "n/a",
+          "resolver-missing"
+        ],
+        "passStatus": "match",
+        "informationalStatus": "n/a"
+      }
+    }
+  },
+  "routeGold": {
+    "mode": "on",
+    "enabled": true,
+    "rows": 14,
+    "matches": 14,
+    "violations": 0,
+    "parseFailures": 0,
+    "failed": false,
+    "details": [],
+    "summary": {
+      "compiledEligibility": {
+        "hubType": true,
+        "compiledEligible": true
+      },
+      "statusEnum": [
+        "match",
+        "drift",
+        "vacuous",
+        "n/a",
+        "resolver-missing"
+      ],
+      "passStatus": "match",
+      "informationalStatus": "n/a"
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 97
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 100
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "passed": 14
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "coverage": {
+    "routing": 14,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 14,
+    "holdout": 6,
+    "negative": 0
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "MT-007",
+      "leaks": [
+        "console errors",
+        "aside",
+        "aside browser"
+      ]
+    },
+    {
+      "scenarioId": "MT-001",
+      "leaks": [
+        "chrome devtools"
+      ]
+    },
+    {
+      "scenarioId": "MT-002",
+      "leaks": [
+        "clickup",
+        "clickup task"
+      ]
+    },
+    {
+      "scenarioId": "MT-003",
+      "leaks": [
+        "figma",
+        "design tokens"
+      ]
+    },
+    {
+      "scenarioId": "MT-H04",
+      "leaks": [
+        "click through",
+        "on its own"
+      ]
+    },
+    {
+      "scenarioId": "MT-H01",
+      "leaks": [
+        "network requests"
+      ]
+    },
+    {
+      "scenarioId": "MT-H02",
+      "leaks": [
+        "design file"
+      ]
+    },
+    {
+      "scenarioId": "MT-H06",
+      "leaks": [
+        "phone apps"
+      ]
+    },
+    {
+      "scenarioId": "MT-H03",
+      "leaks": [
+        "project tracker"
+      ]
+    },
+    {
+      "scenarioId": "MT-H05",
+      "leaks": [
+        "web products"
+      ]
+    },
+    {
+      "scenarioId": "MT-009",
+      "leaks": [
+        "mobbin"
+      ]
+    },
+    {
+      "scenarioId": "MT-008",
+      "leaks": [
+        "refero",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "MT-CR-001",
+      "leaks": [
+        "refero",
+        "ui reference",
+        "mobbin",
+        "references"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "MT-004",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-004",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "expectedResources": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "MT-004",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-007",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-aside-devtools",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-aside-devtools"
+        ],
+        "matchedAliases": [
+          "aside",
+          "aside browser"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-aside-devtools"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-007",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-007",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-chrome-devtools",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-chrome-devtools"
+        ],
+        "matchedAliases": [
+          "chrome devtools"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-chrome-devtools"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-001",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-click-up",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-click-up"
+        ],
+        "matchedAliases": [
+          "clickup",
+          "clickup task"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-click-up"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-002",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-002",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-figma",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-figma"
+        ],
+        "matchedAliases": [
+          "figma",
+          "design tokens"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "figma-desktop-transport"
+        ],
+        "packet": [
+          "mcp-figma"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-003",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-003",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H04",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-aside-devtools",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-aside-devtools"
+        ],
+        "matchedAliases": [
+          "click through",
+          "on its own"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-aside-devtools"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H04",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H04",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H01",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-chrome-devtools",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-chrome-devtools"
+        ],
+        "matchedAliases": [
+          "network requests"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-chrome-devtools"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H01",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H01",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H02",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-figma",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-figma"
+        ],
+        "matchedAliases": [
+          "design file"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "figma-desktop-transport"
+        ],
+        "packet": [
+          "mcp-figma"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H02",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H02",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H06",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-mobbin",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-mobbin"
+        ],
+        "matchedAliases": [
+          "phone apps"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "code-mode-remote-mcp"
+        ],
+        "packet": [
+          "mcp-mobbin"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H06",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H06",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H03",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-click-up",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-click-up"
+        ],
+        "matchedAliases": [
+          "project tracker"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-plus-mcp"
+        ],
+        "packet": [
+          "mcp-click-up"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H03",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H03",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-H05",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-refero"
+        ],
+        "matchedAliases": [
+          "web products"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "code-mode-remote-mcp"
+        ],
+        "packet": [
+          "mcp-refero"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-H05",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "mcp-refero"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-H05",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-009",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-mobbin",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-mobbin"
+        ],
+        "matchedAliases": [
+          "mobbin"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "code-mode-remote-mcp"
+        ],
+        "packet": [
+          "mcp-mobbin"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-009",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-009",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-008",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-refero"
+        ],
+        "matchedAliases": [
+          "refero"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "code-mode-remote-mcp"
+        ],
+        "packet": [
+          "mcp-refero"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-008",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "mcp-refero"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-008",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "MT-CR-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "mcp-refero"
+        ],
+        "matchedAliases": [
+          "refero",
+          "ui reference"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "code-mode-remote-mcp"
+        ],
+        "packet": [
+          "mcp-refero"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "MT-CR-001",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "mcp-refero"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "MT-CR-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    }
+  ],
+  "excludedRows": [],
+  "runQuality": {
+    "scenarioCount": 14,
+    "traceMode": "router",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "topologyDigest": "00b82122131d04043a32f29ce27ab029cfaf6d3fd891fa2d6ebf565ca0e16d71",
+  "compiledRouting": {
+    "mode": "on",
+    "flagState": {
+      "raw": "1",
+      "state": "force-on",
+      "flagMode": "force-on",
+      "permitsCompiledWhenEligible": true
+    },
+    "flagForcedOn": true,
+    "subVerdict": "compiled-serving",
+    "blocking": false,
+    "scored": 14,
+    "counts": {
+      "match": 14,
+      "drift": 0,
+      "vacuous": 0,
+      "n/a": 0,
+      "resolver-missing": 0
+    },
+    "gate": {
+      "owner": "lane-c-compiled-parity",
+      "isBlockingOwner": true,
+      "firing": false,
+      "reportOnlyConsumers": [
+        "routing-registry-drift-ci"
+      ]
+    },
+    "eligibleRows": [
+      {
+        "scenarioId": "MT-004",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-007",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-002",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-003",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H04",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H01",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H02",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H06",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H03",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H05",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-009",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-008",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-CR-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ],
+    "driftRows": [],
+    "breakages": [],
+    "frozenHashes": {
+      "before": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "after": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "unchanged": true
+    },
+    "rows": [
+      {
+        "scenarioId": "MT-004",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-007",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-002",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-003",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H04",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-aside-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-aside-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H01",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-chrome-devtools",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H02",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-figma"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-figma",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H06",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H03",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-click-up"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-click-up",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-H05",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-009",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-mobbin"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-mobbin",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-008",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "MT-CR-001",
+        "hubId": "mcp-tooling",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "mcp-refero"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "mcp-tooling",
+              "workflowMode": "mcp-refero",
+              "packetKind": "transport"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ]
+  }
+}

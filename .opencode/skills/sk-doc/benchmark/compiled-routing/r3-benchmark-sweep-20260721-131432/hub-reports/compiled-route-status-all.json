@@ -1,0 +1,128 @@
+[
+  {
+    "hubId": "cli-external-orchestration",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 5
+    },
+    "effectivePolicyHash": "18690ff2af786b4f1adcdfbaa337ede02cd3f256f562d11a17cafadcde399105",
+    "fenceEpoch": 2,
+    "manifestFingerprint": "8dc09158bfa15768f3d547d9adc19a4e2c16a16e4c6936905c1d4e9660d2d98e",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "18690ff2af786b4f1adcdfbaa337ede02cd3f256f562d11a17cafadcde399105"
+    }
+  },
+  {
+    "hubId": "mcp-tooling",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 4
+    },
+    "effectivePolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c",
+    "fenceEpoch": 4,
+    "manifestFingerprint": "de0c9bfc3337cb03ec60fa39832ec8aa53e36a773c2dad7a822d743614f64e05",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "47ce771af7c0e300307581785849c9caa82644ffc2508e9159e2e9b7c90f794c"
+    }
+  },
+  {
+    "hubId": "sk-code",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 2
+    },
+    "effectivePolicyHash": "fb8cd20494f31ba19692bc4945018dc277fc482a1f5eba8bb4dc5c56db567b1c",
+    "fenceEpoch": 4,
+    "manifestFingerprint": "11c883d5a8ea255c86278e024ce6d5642df0b56c0bab22a3444f5ae8457b8730",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "fb8cd20494f31ba19692bc4945018dc277fc482a1f5eba8bb4dc5c56db567b1c"
+    }
+  },
+  {
+    "hubId": "sk-design",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 6
+    },
+    "effectivePolicyHash": "173998dd6c47d1a54aca681f0e2667d58a9e91624db089eff9600ed9474ebfd7",
+    "fenceEpoch": 4,
+    "manifestFingerprint": "6d38bec7e162924d9fb55f483bb6446fcfe489b961ec98b769eb8ccb4b7890c0",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "173998dd6c47d1a54aca681f0e2667d58a9e91624db089eff9600ed9474ebfd7"
+    }
+  },
+  {
+    "hubId": "sk-doc",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 5
+    },
+    "effectivePolicyHash": "5a1582e066b9d3d3a50dd28faebd8e280cb53b0a445242ce816d303f6174aa5b",
+    "fenceEpoch": 4,
+    "manifestFingerprint": "ed6b6504269eaf0a041873eff339faa246390eac685f5282bcd1f2201bc5e2ce",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "5a1582e066b9d3d3a50dd28faebd8e280cb53b0a445242ce816d303f6174aa5b"
+    }
+  },
+  {
+    "hubId": "sk-prompt",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 5
+    },
+    "effectivePolicyHash": "814cfed8654bb46cc58c4519e2e1e71377f25850e3a11a26a35afe788d5e313b",
+    "fenceEpoch": 4,
+    "manifestFingerprint": "8238184470b70c3d66f628efd6c4d6644c0c9efa1a1f54cb017d76473574597a",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "814cfed8654bb46cc58c4519e2e1e71377f25850e3a11a26a35afe788d5e313b"
+    }
+  },
+  {
+    "hubId": "system-deep-loop",
+    "servingAuthority": "compiled",
+    "shadowOnly": false,
+    "selectedPolicy": {
+      "generation": 4
+    },
+    "effectivePolicyHash": "4da3043bda01f6d2604ff2f12793165f69ab86cda4c0d04322b8ef080441524e",
+    "fenceEpoch": 3,
+    "manifestFingerprint": "da2a5124b19f39a0d887620c7041f076faba0fdbc45707ddd258f80a4b867334",
+    "causeCode": "compiled-serving",
+    "manifestFreshness": {
+      "manifestValid": true,
+      "fresh": true,
+      "causeCode": "fresh",
+      "currentPolicyHash": "4da3043bda01f6d2604ff2f12793165f69ab86cda4c0d04322b8ef080441524e"
+    }
+  }
+]

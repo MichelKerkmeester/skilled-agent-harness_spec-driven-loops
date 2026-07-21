@@ -1,0 +1,799 @@
+{
+  "meta": {
+    "hub": "sk-code",
+    "run_label": "playbook-verify-sonnet-20260721-131257",
+    "executor": "Claude Sonnet (Claude Code agent), headless read-only sweep",
+    "captured_at_utc": "2026-07-21T13:12:57Z",
+    "method": "For every scenario in the root \u00a718 FEATURE CATALOG CROSS-REFERENCE INDEX (30 rows) plus the standalone compiled-routing/ meta-scenario CB-CR-001, ran the exact-prompt text (as parsed by the frozen load-playbook-scenarios.cjs loader, i.e. per-feature-file fenced prompt block preferred over the root-table cell) through two commands and diffed the routing decision: (1) COMPILED: `env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub sk-code --prompt \"<prompt>\"` (default-on cohort, no flag override); (2) LEGACY: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-code --task \"<prompt>\"`. Compiled targets[].workflowMode vs legacy intents were compared as sets; legacy surface + resources were cross-checked against each per-feature-file's own documented Expected surface / Expected references loaded / Expected NOT loaded.",
+    "frozen_scorer_sha256": {
+      "load-playbook-scenarios.cjs": {
+        "start": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+        "end": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+        "unchanged": true
+      },
+      "router-replay.cjs": {
+        "start": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "end": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "unchanged": true
+      },
+      "score-skill-benchmark.cjs": {
+        "start": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "end": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "unchanged": true
+      }
+    },
+    "default_on_hubs_count": 7,
+    "default_on_hubs": [
+      "sk-code",
+      "system-deep-loop",
+      "mcp-tooling",
+      "cli-external-orchestration",
+      "sk-prompt",
+      "sk-design",
+      "sk-doc"
+    ],
+    "repo_mutations": "none (git status in cwd shows only the 2 pre-existing, explicitly out-of-scope strays: mcp-tooling/008-mcp-aside/001-research/research/research.md, system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md)"
+  },
+  "scenarios": [
+    {
+      "id": "SD-001",
+      "category": "Surface Detection",
+      "critical_path": true,
+      "feature_file": "surface-detection/webflow-detection.md",
+      "prompt": "Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible.",
+      "expected_surface_or_mode": "WEBFLOW",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "WEBFLOW confirmed; 0 code-opencode/* leak (31 resources, 26 code-webflow/*, 0 code-opencode/*); compiled==legacy."
+    },
+    {
+      "id": "SD-002",
+      "category": "Surface Detection",
+      "critical_path": true,
+      "feature_file": "surface-detection/opencode-detection.md",
+      "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "TYPESCRIPT",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE+TYPESCRIPT confirmed; 0 code-webflow/* leak (11 resources, 7 code-opencode/*, 0 code-webflow/*); compiled==legacy. Note: per-feature-file prompt text differs from the root-table \u00a77 prompt cell (same target file/intent, reworded) -- loader uses the per-feature version; both route identically."
+    },
+    {
+      "id": "SD-003",
+      "category": "Surface Detection",
+      "critical_path": true,
+      "feature_file": "surface-detection/unknown-fallback.md",
+      "prompt": "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.",
+      "expected_surface_or_mode": "UNKNOWN",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "UNKNOWN confirmed; action=defer both engines; exactly the 4 universal-tier resources (stack-detection, phase-detection, smart-routing, code-quality-standards), 0 surface-specific refs; compiled==legacy."
+    },
+    {
+      "id": "LS-001",
+      "category": "Language Sub-Detection",
+      "critical_path": false,
+      "feature_file": "language-sub-detection/opencode-typescript.md",
+      "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "TYPESCRIPT",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE/TYPESCRIPT; exactly typescript/* refs loaded, 0 python/shell/config leakage; compiled==legacy."
+    },
+    {
+      "id": "LS-002",
+      "category": "Language Sub-Detection",
+      "critical_path": false,
+      "feature_file": "language-sub-detection/opencode-python.md",
+      "prompt": "Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "PYTHON",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE/PYTHON; exactly python/* refs loaded, 0 cross-language leakage; compiled==legacy."
+    },
+    {
+      "id": "LS-003",
+      "category": "Language Sub-Detection",
+      "critical_path": false,
+      "feature_file": "language-sub-detection/opencode-shell.md",
+      "prompt": "Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "SHELL",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode",
+          "quality"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode",
+          "quality"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE/SHELL; exactly shell/* refs loaded, 0 cross-language leakage; compiled==legacy."
+    },
+    {
+      "id": "LS-004",
+      "category": "Language Sub-Detection",
+      "critical_path": false,
+      "feature_file": "language-sub-detection/opencode-config.md",
+      "prompt": "Add a derived.last_active_child_id field to the graph-metadata.json file with value \"001-spec\".",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "CONFIG",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE/CONFIG; exactly config/* refs loaded, 0 cross-language leakage; compiled==legacy."
+    },
+    {
+      "id": "RD-001",
+      "category": "Routing Disambiguation",
+      "critical_path": false,
+      "feature_file": "routing-disambiguation/mixed-marker-ambiguity.md",
+      "prompt": "Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode",
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode",
+          "code-webflow"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "Outcome A (remediated 2026-05-04) confirmed: hub-router intent layer correctly flags BOTH code-webflow and code-opencode as tied targets (selectionKind=orderedBundle, deferReason=ambiguous-multi-axis) -- exactly the mixed-marker ambiguity this scenario tests -- while the downstream surface-resolution layer still applies the documented OPENCODE-wins precedence: surface=OPENCODE, 0 code-webflow/* in the final assembled resource set (14 resources, all code-opencode/javascript/*). compiled==legacy on both the 2-target intent layer and the resource layer. Root playbook table (section 9) still describes the pre-remediation Outcome-B-only contract; the per-feature file is authoritative and current."
+    },
+    {
+      "id": "RD-002",
+      "category": "Routing Disambiguation",
+      "critical_path": true,
+      "feature_file": "routing-disambiguation/skcode-vs-skdoc.md",
+      "prompt": "Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode",
+          "code-review",
+          "code-webflow",
+          "quality"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode",
+          "code-review",
+          "code-webflow",
+          "quality"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Tests cross-skill advisor arbitration (does sk-doc outrank sk-code overall), not sk-code's intra-hub compiled router -- resolve.cjs/router-replay.cjs only adjudicate routing WITHIN sk-code once sk-code is already selected, so they cannot verify this scenario's actual pass criterion. Informational check: compiled==legacy, both return a 4-way near-tie (quality, code-review, code-webflow, code-opencode) for this weakly-keyed doc-edit prompt -- consistent with sk-code having no dominant internal-routing signal here, corroborating (not proving) that a different, stronger-signal skill should win the cross-skill vote. This exact prompt is SA-001's N1 negative control, whose battery run history (see SA-001) already documents 'N01 false-positive RESOLVED' as of 2026-05-04."
+    },
+    {
+      "id": "SA-001",
+      "category": "Skill Advisor Integration",
+      "critical_path": true,
+      "feature_file": "skill-advisor-integration/advisor-probe-battery.md",
+      "prompt": null,
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": null,
+        "targets": null
+      },
+      "legacy": {
+        "intents": null,
+        "surface": null
+      },
+      "compiled_eq_legacy": null,
+      "verdict": "SKIP",
+      "notes": "A 20-prompt (15 positive + 5 negative) cross-skill advisor-accuracy battery, not a single routing decision, and not exercised by resolve.cjs/router-replay.cjs (those tools only replay sk-code-internal routing, not skill_advisor.py cross-skill arbitration). The per-feature file already documents a completed run history (V1-V4, dated 2026-05-04) with a final combined accuracy of 80% (11/15 positive, 5/5 negative), Verdict: PASS -- cited here, not re-run."
+    },
+    {
+      "id": "MR-001",
+      "category": "Motion.dev And Animation Regression",
+      "critical_path": true,
+      "feature_file": "motion-dev-and-animation-regression/motion-api-smoke.md",
+      "prompt": "Create a sandboxed Webflow-style Motion smoke page that imports animate, inView, and spring from a pinned motion CDN URL. Run it in Chrome, verify exports are functions, run one animate() call, trigger one inView() callback, and return PASS/FAIL with console evidence.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires a live Chrome session (console/video capture of a Motion smoke page); no browser automation tool is available in this headless sweep -- genuine sandbox blocker per playbook SS2.5/SS16. Informational routing check: action=route, targets=[code-webflow], compiled==legacy."
+    },
+    {
+      "id": "MR-002",
+      "category": "Motion.dev And Animation Regression",
+      "critical_path": true,
+      "feature_file": "motion-dev-and-animation-regression/cdn-bundle-version-pin.md",
+      "prompt": "Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires live grep + browser export-probe evidence capture; same sandbox blocker. Informational routing check: action=route, targets=[code-webflow] (motion_dev peer-resource intent bucket), compiled==legacy."
+    },
+    {
+      "id": "MR-003",
+      "category": "Motion.dev And Animation Regression",
+      "critical_path": true,
+      "feature_file": "motion-dev-and-animation-regression/prefers-reduced-motion.md",
+      "prompt": "Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires live Chrome DevTools reduced-motion emulation + before/after video capture; same sandbox blocker. Informational routing check: action=defer (no strong marker in this purely-behavioral prompt), compiled==legacy."
+    },
+    {
+      "id": "MR-004",
+      "category": "Motion.dev And Animation Regression",
+      "critical_path": true,
+      "feature_file": "motion-dev-and-animation-regression/animation-regression-baseline.md",
+      "prompt": "Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires live browser session recording baseline videos; same sandbox blocker. Informational routing check: action=defer, compiled==legacy."
+    },
+    {
+      "id": "CB-001",
+      "category": "Cross-Browser And Performance Gates",
+      "critical_path": true,
+      "feature_file": "cross-browser-and-performance-gates/cross-browser-animate.md",
+      "prompt": "Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, and Firefox latest stable. Capture browser/version, console output, screenshots or videos, and any rendering quirks. Return PASS/FAIL per browser plus an aggregate verdict.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires three live browsers (Chrome/Safari/Firefox); same sandbox blocker. Informational routing check: action=route, targets=[code-webflow], compiled==legacy."
+    },
+    {
+      "id": "CB-002",
+      "category": "Cross-Browser And Performance Gates",
+      "critical_path": true,
+      "feature_file": "cross-browser-and-performance-gates/cwv-gates.md",
+      "prompt": "Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires live Chrome DevTools Performance/PageSpeed capture; same sandbox blocker. Informational routing check: action=defer, compiled==legacy."
+    },
+    {
+      "id": "CB-003",
+      "category": "Cross-Browser And Performance Gates",
+      "critical_path": true,
+      "feature_file": "cross-browser-and-performance-gates/gpu-compositing.md",
+      "prompt": "Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Requires live Chrome DevTools Rendering/Performance trace capture; same sandbox blocker. Informational routing check: action=defer, compiled==legacy."
+    },
+    {
+      "id": "CS-001",
+      "category": "Cross-Stack Routing",
+      "critical_path": true,
+      "feature_file": "cross-stack-routing/webflow-plus-motion-dev.md",
+      "prompt": "For a Webflow hero in src/2_javascript/hero.js, show the pinned Motion CDN pattern and in-view animation snippet.",
+      "expected_surface_or_mode": "WEBFLOW",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "WEBFLOW confirmed; motion_dev peer refs (animation/quick-start, animation/integration-patterns, animation/scroll-and-gestures) load alongside core webflow implementation refs; compiled==legacy."
+    },
+    {
+      "id": "CS-002",
+      "category": "Cross-Stack Routing",
+      "critical_path": true,
+      "feature_file": "cross-stack-routing/non-webflow-plus-motion-dev.md",
+      "prompt": "For a non-Webflow vanilla JS page, which Motion.dev references and snippets should sk-code load for hover cards and in-view reveal?",
+      "expected_surface_or_mode": "UNKNOWN",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "FAIL",
+      "notes": "Expected surface UNKNOWN/N/A (generic-node guard: prompt is deliberately 'non-Webflow'); actual legacy surface=WEBFLOW, compiled targets=[code-webflow] -- both engines agree with EACH OTHER (0 compiled-vs-legacy drift) but both diverge from the scenario's documented expectation. Root cause (verified): router-replay.cjs's detectSurface() marker regex is `/src\\/2_javascript|\\bwebflow\\b|\\.webflow\\b|--vw-/` -- a bare word-boundary match on the literal substring 'webflow', which fires on the negated phrase 'non-Webflow' with no negation-awareness. This is a pre-existing LEGACY behavior (not introduced by compiled routing) that the compiled engine faithfully replicates. Practical impact is bounded: MOTION-tier resources pass the surface filter unconditionally (`rs === 'MOTION' -> true`), so the actually-assembled resource set still contains 0 Webflow-only implementation/checklist assets and does include the scenario's required quick-start/integration-patterns/scroll-and-gestures/decision-matrix refs -- the observable resource-loading contract holds even though the internal surface label does not. Flagging as a legacy-inherited finding for the smart-routing.md marker regex, not a blocker for the sk-code default-on cutover."
+    },
+    {
+      "id": "CS-003",
+      "category": "Cross-Stack Routing",
+      "critical_path": true,
+      "feature_file": "cross-stack-routing/opencode-plus-motion-dev.md",
+      "prompt": "Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "OPENCODE confirmed; motion_dev supplementary refs (animation/quick-start, animation/integration-patterns) load alongside TypeScript standards; compiled==legacy."
+    },
+    {
+      "id": "CS-004",
+      "category": "Cross-Stack Routing",
+      "critical_path": false,
+      "feature_file": "cross-stack-routing/decision-matrix-routing.md",
+      "prompt": "For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.",
+      "expected_surface_or_mode": "UNKNOWN",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "UNKNOWN/N/A confirmed (no literal \"webflow\" substring in this prompt, so the CS-002/CS-005 regex quirk does not trigger); code-webflow/references/animation/decision-matrix.md loads as required; compiled==legacy."
+    },
+    {
+      "id": "CS-005",
+      "category": "Cross-Stack Routing",
+      "critical_path": false,
+      "feature_file": "cross-stack-routing/snippet-reuse-cross-stack.md",
+      "prompt": "Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.",
+      "expected_surface_or_mode": "UNKNOWN",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "FAIL",
+      "notes": "Same root cause as CS-002: prompt contains the negated phrase 'non-Webflow vanilla JS page', tripping the same word-boundary regex. Expected surface UNKNOWN/N/A; actual legacy surface=WEBFLOW, compiled targets=[code-webflow]; compiled==legacy (0 drift between the two engines). Assembled resources still include the required in-view-reveal snippet path family and 0 Webflow-only implementation assets, so the resource-loading contract holds despite the mislabeled surface."
+    },
+    {
+      "id": "CS-006",
+      "category": "Cross-Stack Routing",
+      "critical_path": false,
+      "feature_file": "cross-stack-routing/cwv-gates-animation-heavy.md",
+      "prompt": "Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?",
+      "expected_surface_or_mode": "WEBFLOW",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "WEBFLOW confirmed; both required dual-performance refs present (code-webflow/references/performance/cwv-remediation.md AND code-webflow/references/animation/performance-and-pitfalls.md); compiled==legacy."
+    },
+    {
+      "id": "CS-007",
+      "category": "Cross-Stack Routing",
+      "critical_path": false,
+      "feature_file": "cross-stack-routing/prefers-reduced-motion.md",
+      "prompt": "For a Webflow page with motion.dev-powered cards in src/2_javascript/cards.js, how should sk-code route a prefers-reduced-motion fix before editing?",
+      "expected_surface_or_mode": "WEBFLOW",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "WEBFLOW confirmed; Motion reduced-motion guidance (animation/performance-and-pitfalls.md) and Webflow a11y/verification guidance both present; compiled==legacy."
+    },
+    {
+      "id": "DR-001",
+      "category": "Design Restraint",
+      "critical_path": false,
+      "feature_file": "design-restraint/design-restraint-ladder.md",
+      "prompt": "Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "TYPESCRIPT",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Scenario's actual pass criterion is a GENERATED behavior (which Design Restraint Ladder rung the AI selects for a real implementation task), which requires a live sk-code agent invocation this headless routing sweep does not perform. The named routing PRECONDITION the scenario itself calls out ('surface OPENCODE emitted BEFORE any ladder reasoning') is independently confirmed: surface=OPENCODE, compiled==legacy, correct code-opencode/typescript/* refs load."
+    },
+    {
+      "id": "DR-002",
+      "category": "Design Restraint",
+      "critical_path": false,
+      "feature_file": "design-restraint/implementer-anti-stall.md",
+      "prompt": "Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Same class as DR-001: the pass criterion is a generated response shape (implements the requirement AND raises a scope-amendment note in one response, no stall), not a routing decision. Routing precondition confirmed: surface=OPENCODE, compiled==legacy."
+    },
+    {
+      "id": "DR-003",
+      "category": "Design Restraint",
+      "critical_path": false,
+      "feature_file": "design-restraint/ceiling-comment-convention.md",
+      "prompt": "Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.",
+      "expected_surface_or_mode": "OPENCODE",
+      "expected_sub_language": "TYPESCRIPT",
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Same class as DR-001/002: the pass criterion is a generated `ceiling:` comment that must then pass check-comment-hygiene.sh -- both steps require live generation this sweep does not perform (and the hygiene checker itself is out of this routing-only method's scope). Routing precondition confirmed: surface=OPENCODE, sub-language TYPESCRIPT, compiled==legacy."
+    },
+    {
+      "id": "DR-004",
+      "category": "Design Restraint",
+      "critical_path": false,
+      "feature_file": "design-restraint/stack-folders-validator.md",
+      "prompt": "Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "defer",
+        "targets": []
+      },
+      "legacy": {
+        "intents": [],
+        "surface": "UNKNOWN"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Scenario's own header states 'Expected detection: not applicable -- this is a deterministic script run, not a routing decision' (verify_stack_folders.py exit-code contract). Out of this routing-comparison method by the scenario's own design; not re-run here to stay strictly read-only (the scenario's own recipe mutates the live references/ tree, even if reversibly). Informational routing check: action=defer both engines (no code-edit signal in a validator-invocation prompt), compiled==legacy."
+    },
+    {
+      "id": "TH-001",
+      "category": "Tooling And Hooks",
+      "critical_path": false,
+      "feature_file": "tooling-and-hooks/check-dist-staleness-hook.md",
+      "prompt": "Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-opencode"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-opencode"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Scenario's own header states 'Expected detection: not applicable... not a routing decision' (claude-posttooluse.sh dist-staleness banner/exit-code contract). Its own per-feature file already documents a completed, dated result: 'Last validated: 2026-07-02 -- PASS' with full hook-path evidence -- cited here, not re-run (re-running would mutate a real tracked source file's mtime/content, out of this sweep's read-only scope even though the recipe is designed to restore it byte-exact). Informational routing check: action=route, targets=[code-opencode], compiled==legacy."
+    },
+    {
+      "id": "TH-002",
+      "category": "Tooling And Hooks",
+      "critical_path": false,
+      "feature_file": "tooling-and-hooks/comment-hygiene-hook.md",
+      "prompt": "In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact pointer (an ADR id), and confirm claude-posttooluse.sh prints a COMMENT HYGIENE WARNING banner and still exits 0, that check-comment-hygiene.sh returns rc=1 on that file, then fix the comment in place and confirm rc=0.",
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "quality"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "quality"
+        ],
+        "surface": "OPENCODE"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "SKIP",
+      "notes": "Same class as TH-001: 'not applicable... not a routing decision' (comment-hygiene banner/rc contract). Its own per-feature file documents a completed, dated result: 'Last validated: 2026-07-07 -- PASS' with full hook-path evidence and a verbatim captured banner -- cited here, not re-run. Informational routing check: action=route, targets=[quality], compiled==legacy."
+    },
+    {
+      "id": "post-edit-quality-router",
+      "category": "Plugins And Hooks",
+      "critical_path": false,
+      "feature_file": "plugins-and-hooks/post-edit-quality-router.md",
+      "prompt": null,
+      "expected_surface_or_mode": null,
+      "expected_sub_language": null,
+      "compiled": {
+        "action": null,
+        "targets": null
+      },
+      "legacy": {
+        "intents": null,
+        "surface": null
+      },
+      "compiled_eq_legacy": null,
+      "verdict": "SKIP",
+      "notes": "Not in the root \u00a718 index table (descriptive kebab-slug id, not `AA-000` shape) and explicitly has no orchestrator prompt at all ('direct live invocation battery; see per-feature file') -- there is no prompt text to feed resolve.cjs/router-replay.cjs. Its own per-feature file already documents a completed PASS (SS7) with live evidence: unit suite 38/38 green, live Claude-adapter banner + exit 0, kill-switch full no-op, live OpenCode plugin import surfacing the buffered finding, outside-root path returning zero dispatch entries -- cited here, not re-run."
+    },
+    {
+      "id": "CB-CR-001",
+      "category": "Compiled Routing (not yet in root index)",
+      "critical_path": null,
+      "feature_file": "compiled-routing/surface-bundle-compiled-routing.md",
+      "prompt": "Add a scroll-triggered reveal animation to my Webflow site using GSAP and IntersectionObserver.",
+      "expected_surface_or_mode": "WEBFLOW",
+      "expected_sub_language": null,
+      "compiled": {
+        "action": "route",
+        "targets": [
+          "code-webflow"
+        ]
+      },
+      "legacy": {
+        "intents": [
+          "code-webflow"
+        ],
+        "surface": "WEBFLOW"
+      },
+      "compiled_eq_legacy": true,
+      "verdict": "PASS",
+      "notes": "Compiled-routing meta-scenario (not yet wired into the root SS18 index; lives standalone under compiled-routing/). servingAuthority=compiled confirmed (resolveRoute returned a real route object, not the {servingAuthority:'legacy',...} fallback sentinel); compiled targets=[code-webflow] == legacy intents=[code-webflow] == legacy surface=WEBFLOW; both frontmatter expected_resources entries (animation-workflows/overview-decision-tree-and-css.md, animation-workflows/motion-dev-and-performance.md) are present in the assembled resource set. Minor observation: the scenario's evidence_manifest_digest (1a42e542...) does not match the manifest.json FILE's current SHA-256 (11c883d5..., unchanged from the most recent luna-high-verify archived run) -- the file has been re-serialized at least twice today without any change to the semantically load-bearing selectedPolicy.effectivePolicyHash/generation/servingAuthority fields (fb8cd204.../2/compiled, stable across all 3 prior archived runs and this run). Not a routing-correctness issue; flagged for provenance hygiene only."
+    }
+  ],
+  "summary": {
+    "total_scenarios_examined": 32,
+    "playbook_declared_total": 31,
+    "plus_compiled_routing_meta_scenario": "CB-CR-001 (not yet in root SS18 index)",
+    "pass": 14,
+    "fail": 2,
+    "skip": 16,
+    "compiled_vs_legacy_drift_count": 0,
+    "compiled_vs_legacy_drift_scenarios": [],
+    "lane_c_corpus_size_reference": 23,
+    "lane_c_corpus_definition": "30 root-index scenarios minus the 7 browser-class scenarios (MR-001..004, CB-001..003) that load-playbook-scenarios.cjs classifies as classKind=browser (category vocabulary match on motion/animation/browser/performance/cross-browser) and therefore excludes from the deterministic router-replay corpus.",
+    "lane_c_corroboration": "0/31 compiled-vs-legacy drift observed across every scenario prompt run in this sweep (the 23-scenario Lane C corpus plus the 7 browser-class prompts plus CB-CR-001, run informationally) -- directly corroborates the archived Lane C parity result of sk-code 23/0 (compiled-serving, 0 drift) cited in the 013-compiled-coverage-buildout implementation-summary.md and reproduced in this session's own resolve.cjs/router-replay.cjs invocations.",
+    "two_fails_are_not_compiled_drift": "CS-002 and CS-005 FAIL against the playbook's own documented expected-surface contract, but compiled==legacy on both (0 drift) -- both engines share the same pre-existing legacy marker-regex quirk (bare word-boundary match on \"webflow\" inside the negated phrase \"non-Webflow\"). This does not count against the Lane C 23/0 drift figure, which measures compiled-vs-legacy agreement, not agreement-with-playbook-authoring-intent."
+  }
+}

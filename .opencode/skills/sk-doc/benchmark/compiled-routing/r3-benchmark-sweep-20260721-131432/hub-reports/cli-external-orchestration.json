@@ -1,0 +1,2156 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "cli-external-orchestration",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/skills/cli-external-orchestration"
+  },
+  "verdict": "PASS",
+  "aggregateScore": 92,
+  "generalization": {
+    "fittedScore": 92,
+    "holdoutScore": 100,
+    "generalizationGap": -8,
+    "fittedCount": 6,
+    "holdoutCount": 2,
+    "negativeCount": 0,
+    "note": "holdout excluded from the fitted aggregate; gap = fitted minus holdout"
+  },
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    },
+    "routeGold": {
+      "mode": "on",
+      "enabled": true,
+      "rows": 8,
+      "matches": 8,
+      "violations": 0,
+      "parseFailures": 0,
+      "failed": false,
+      "details": [],
+      "summary": {
+        "compiledEligibility": {
+          "hubType": true,
+          "compiledEligible": true
+        },
+        "statusEnum": [
+          "match",
+          "drift",
+          "vacuous",
+          "n/a",
+          "resolver-missing"
+        ],
+        "passStatus": "match",
+        "informationalStatus": "n/a"
+      }
+    }
+  },
+  "routeGold": {
+    "mode": "on",
+    "enabled": true,
+    "rows": 8,
+    "matches": 8,
+    "violations": 0,
+    "parseFailures": 0,
+    "failed": false,
+    "details": [],
+    "summary": {
+      "compiledEligibility": {
+        "hubType": true,
+        "compiledEligible": true
+      },
+      "statusEnum": [
+        "match",
+        "drift",
+        "vacuous",
+        "n/a",
+        "resolver-missing"
+      ],
+      "passStatus": "match",
+      "informationalStatus": "n/a"
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 85
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 100
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "passed": 8
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [],
+  "coverage": {
+    "routing": 8,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 8,
+    "holdout": 2,
+    "negative": 0
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "CE-002",
+      "leaks": [
+        "anthropic cli second opinion",
+        "extended thinking"
+      ]
+    },
+    {
+      "scenarioId": "CE-H01",
+      "leaks": [
+        "full plugin and memory stack"
+      ]
+    },
+    {
+      "scenarioId": "CE-H02",
+      "leaks": [
+        "deeply-reasoned opinion"
+      ]
+    },
+    {
+      "scenarioId": "CE-001",
+      "leaks": [
+        "opencode",
+        "spec kit memory"
+      ]
+    },
+    {
+      "scenarioId": "CE-CR-001",
+      "leaks": [
+        "opencode",
+        "spec kit memory"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "CE-P01",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "CE-P01",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "CE-P01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-P02",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": null,
+        "scenarioId": "CE-P02",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "CE-P02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 84,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      },
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-003",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "expectedResources": [],
+        "observedResources": []
+      },
+      "compiledParity": {
+        "scenarioId": "CE-003",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "cli-claude-code",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "cli-claude-code"
+        ],
+        "matchedAliases": [
+          "anthropic cli second opinion",
+          "extended thinking"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-dispatch"
+        ],
+        "packet": [
+          "cli-claude-code"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-002",
+        "expectedIntents": [
+          "cli-claude-code"
+        ],
+        "observedIntents": [
+          "cli-claude-code"
+        ],
+        "expectedResources": [
+          "cli-claude-code/references/cli-reference.md",
+          "cli-claude-code/references/integration-patterns.md"
+        ],
+        "observedResources": [
+          "cli-claude-code/references/cli-reference.md",
+          "cli-claude-code/references/integration-patterns.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "CE-002",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-H01",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "cli-opencode",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "cli-opencode"
+        ],
+        "matchedAliases": [
+          "full plugin and memory stack"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-dispatch"
+        ],
+        "packet": [
+          "cli-opencode"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-H01",
+        "expectedIntents": [
+          "cli-opencode"
+        ],
+        "observedIntents": [
+          "cli-opencode"
+        ],
+        "expectedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ],
+        "observedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "CE-H01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-H02",
+      "tier": "playbook",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "cli-claude-code",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "cli-claude-code"
+        ],
+        "matchedAliases": [
+          "deeply-reasoned opinion"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-dispatch"
+        ],
+        "packet": [
+          "cli-claude-code"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-H02",
+        "expectedIntents": [
+          "cli-claude-code"
+        ],
+        "observedIntents": [
+          "cli-claude-code"
+        ],
+        "expectedResources": [
+          "cli-claude-code/references/cli-reference.md",
+          "cli-claude-code/references/integration-patterns.md"
+        ],
+        "observedResources": [
+          "cli-claude-code/references/cli-reference.md",
+          "cli-claude-code/references/integration-patterns.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "CE-H02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "cli-opencode",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "cli-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "spec kit memory"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-dispatch"
+        ],
+        "packet": [
+          "cli-opencode"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-001",
+        "expectedIntents": [
+          "cli-opencode"
+        ],
+        "observedIntents": [
+          "cli-opencode"
+        ],
+        "expectedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ],
+        "observedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "CE-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    },
+    {
+      "scenarioId": "CE-CR-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 2,
+          "expectedCount": 2,
+          "observedCount": 2,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": null
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "cli-opencode",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "cli-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "spec kit memory"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "cli-dispatch"
+        ],
+        "packet": [
+          "cli-opencode"
+        ]
+      },
+      "errorClass": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": true,
+        "intentOk": true,
+        "resourceOk": true,
+        "scenarioId": "CE-CR-001",
+        "expectedIntents": [
+          "cli-opencode"
+        ],
+        "observedIntents": [
+          "cli-opencode"
+        ],
+        "expectedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ],
+        "observedResources": [
+          "cli-opencode/references/cli-reference.md",
+          "cli-opencode/references/integration-patterns.md"
+        ]
+      },
+      "compiledParity": {
+        "scenarioId": "CE-CR-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    }
+  ],
+  "excludedRows": [],
+  "runQuality": {
+    "scenarioCount": 8,
+    "traceMode": "router",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "topologyDigest": "2d465ec6035ee0ab4d30916943a1308b6a25c527803daaf5f0977b6b3a1ec06e",
+  "compiledRouting": {
+    "mode": "on",
+    "flagState": {
+      "raw": "1",
+      "state": "force-on",
+      "flagMode": "force-on",
+      "permitsCompiledWhenEligible": true
+    },
+    "flagForcedOn": true,
+    "subVerdict": "compiled-serving",
+    "blocking": false,
+    "scored": 8,
+    "counts": {
+      "match": 8,
+      "drift": 0,
+      "vacuous": 0,
+      "n/a": 0,
+      "resolver-missing": 0
+    },
+    "gate": {
+      "owner": "lane-c-compiled-parity",
+      "isBlockingOwner": true,
+      "firing": false,
+      "reportOnlyConsumers": [
+        "routing-registry-drift-ci"
+      ]
+    },
+    "eligibleRows": [
+      {
+        "scenarioId": "CE-P01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-P02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-003",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-002",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-H01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-H02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-CR-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ],
+    "driftRows": [],
+    "breakages": [],
+    "frozenHashes": {
+      "before": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "after": {
+        "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      },
+      "unchanged": true
+    },
+    "rows": [
+      {
+        "scenarioId": "CE-P01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-P02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-003",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "defer",
+        "compiledAction": "defer",
+        "compiledIntents": [],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "compiledProjection": {
+          "action": "defer",
+          "selectionKind": null,
+          "targets": []
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-002",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-H01",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-H02",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-claude-code"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-claude-code",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      },
+      {
+        "scenarioId": "CE-CR-001",
+        "hubId": "cli-external-orchestration",
+        "flagForcedOn": true,
+        "status": "match",
+        "reason": "routing-parity-match",
+        "frontDoorOutcome": "route",
+        "compiledAction": "route",
+        "compiledIntents": [
+          "cli-opencode"
+        ],
+        "compiledGoldPass": true,
+        "legacyGoldPass": true,
+        "legacyProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "compiledProjection": {
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "hubId": "cli-external-orchestration",
+              "workflowMode": "cli-opencode",
+              "packetKind": "workflow"
+            }
+          ]
+        },
+        "firstDifference": null
+      }
+    ]
+  }
+}
