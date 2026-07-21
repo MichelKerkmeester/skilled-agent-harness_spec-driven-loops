@@ -19,7 +19,9 @@
       "claim continuity tasks",
       "stable claim lifecycle tasks",
       "claim continuity checklist",
-      "stable claim lifecycle checklist"
+      "stable claim lifecycle checklist",
+      "claim continuity implementation",
+      "claim continuity verification"
     ],
     "key_topics": [
       "claim",
@@ -32,12 +34,15 @@
       "plan",
       "tasks",
       "checklist",
-      "one",
-      "durable"
+      "verification",
+      "implements"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts",
+      "implementation-summary.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events/spec.md",
@@ -48,6 +53,24 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claim-continuity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "phase-tree.json",
         "kind": "config",
@@ -103,13 +126,13 @@
         "source": "derived"
       },
       {
-        "name": "immutable",
+        "name": "one",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "fail-closed",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -139,7 +162,7 @@
         "source": "derived"
       },
       {
-        "name": "full",
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -153,12 +176,6 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -179,37 +196,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate on the same claim through replay and resume.",
+    "causal_summary": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through replay and resume.",
     "created_at": "2026-07-16T03:43:51.906Z",
-    "last_save_at": "2026-07-19T18:01:24.073Z",
+    "last_save_at": "2026-07-21T09:53:36.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d544b025a6bee58c6ea93fd14e71b241581009e1e6c11db77419c6f4993cda7a",
+    "source_fingerprint": "sha256:369f405aa4d046f9c83e42168ec155b919468379a409213ef7af8df2faa8042c",
     "source_doc_hashes": {
-      "spec.md": "1e04eddc3bf82b386d25c6c537da1658ea8af299b32145f7745635cb55679b7a",
-      "plan.md": "dbaa426c81d6d8a2b78827176c93b8d0ad30896fad3576068222dd012ca88011",
-      "tasks.md": "5a14105362e5efe24db6fde3b951572e7ec62b9deb306ddbb4dc79f0fe72a75b",
-      "checklist.md": "053b807730ae53a1d8f1b50d98d703af662b2ba0d22be25e8581a6b77bc0f5ad"
+      "spec.md": "6c16668bc54e8334164c06df9aaf5cd04a723a4728eb85256c31de16657f35d3",
+      "plan.md": "09d34baa9a4075a9e0f9a2b55a23d373810a92e978929caea7a3b53f16f040c4",
+      "tasks.md": "4823badec1dc47cb11acf3448fda173ceece4ac3815142e00a01f4fb7af4832a",
+      "checklist.md": "38799ca3b2c1fc5774d818a09dd4a8adf90e79a137d5c66e394d83120b504c8c",
+      "implementation-summary.md": "37989cc69f95ba32568fd95af538a80c87c497234d8814128064b35cbbc23e82"
     },
     "last_active_child_id": null,
     "last_active_at": null

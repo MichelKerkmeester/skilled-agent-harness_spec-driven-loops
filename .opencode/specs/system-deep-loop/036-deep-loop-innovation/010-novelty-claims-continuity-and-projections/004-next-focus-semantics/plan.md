@@ -10,20 +10,22 @@ parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics"
-    last_updated_at: "2026-07-15T15:30:00Z"
+    last_updated_at: "2026-07-21T08:25:48Z"
     last_updated_by: "codex"
-    recent_action: "Defined the candidate, scoring, selection, and replay architecture"
-    next_safe_action: "Implement the typed selector behind the additive-dark runtime boundary"
+    recent_action: "Delivered the candidate, scoring, event, and replay architecture"
+    next_safe_action: "Preserve the additive-dark authority boundary during shadow evaluation"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 # Implementation Plan: Next-Focus Semantics
 
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -42,18 +44,18 @@ Generalize the shipped divergent-pivot candidate and transaction semantics into 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The candidate schema covers coverage gaps, open contradictions, and under-covered communities
-- [ ] Signal adapters expose one immutable projection watermark and evidence set
-- [ ] Integer score normalization and the total tie-break comparator are frozen and versioned
-- [ ] The selected/no-eligible ledger event is accepted by the transition-authorization boundary
-- [ ] Existing pivot candidate and divergent-pivot fixtures are captured as protected compatibility behavior
-- [ ] Shadow comparison has no path that mutates authoritative current focus
+- [x] The candidate schema covers coverage gaps, open contradictions, and under-covered communities
+- [x] Signal adapters expose one immutable projection watermark and evidence set
+- [x] Integer score normalization and the total tie-break comparator are frozen and versioned
+- [x] The selected/no-eligible ledger event is accepted by the transition-authorization boundary
+- [x] Existing pivot candidate and divergent-pivot fixtures are captured as protected compatibility behavior
+- [x] Shadow comparison has no path that mutates authoritative current focus
 
 ### Definition of Done
-- [ ] Every candidate is typed, evidence-linked, scored, and deterministically ordered
-- [ ] Every decision is replayable from the ledger without prompt re-judgment
-- [ ] Invalid, stale, empty, and conflicting inputs fail with typed outcomes
-- [ ] Existing divergent-pivot behavior remains green and the new selector remains dark
+- [x] Every candidate is typed, evidence-linked, scored, and deterministically ordered
+- [x] Every decision is replayable from the ledger without prompt re-judgment
+- [x] Invalid, stale, empty, and conflicting inputs fail with typed outcomes
+- [x] Existing divergent-pivot behavior remains green and the new selector remains dark
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -125,3 +127,83 @@ the phase's path-scoped commits to restore the existing implicit-focus and diver
 remain readable under their schema version but never acquire authority. No historical pivot event or authoritative focus
 is rewritten during rollback.
 <!-- /ANCHOR:rollback -->
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```text
+Coverage gap / contradiction / community inputs
+                    |
+                    v
+        Immutable source snapshot
+                    |
+                    v
+Shipped pivot gate -> integer scorer -> total selector
+                                      |
+                                      v
+                           typed authorized event
+                                      |
+                                      v
+                           stored-event replay
+                                      |
+                                      v
+                     shadow comparison only
+```
+
+The new runtime imports the shipped candidate, event-envelope, authorized-ledger, and coverage-gap contracts. No frozen
+dependency imports or calls the new selector.
+<!-- /ANCHOR:dependency-graph -->
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. Validate and fingerprint one source snapshot.
+2. Derive all region candidates and validate the extension after the shipped generic gate.
+3. Sort candidates deterministically before shipped set deduplication.
+4. Score and rank accepted candidates with integer basis points and the total comparator.
+5. Prepare and authorize the selected or unavailable event.
+6. Append idempotently, rejecting semantic conflicts under the deterministic identity.
+7. Replay the stored event and expose an observation-only comparison.
+<!-- /ANCHOR:critical-path -->
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Definition of Done | Result |
+|-----------|--------------------|--------|
+| M1 Contracts | Three region adapters and immutable source identity compile | Complete |
+| M2 Selection | Pivot parity, integer scoring, and order-invariant comparator pass | Complete |
+| M3 Durability | Selected and unavailable authorized-ledger round trips pass | Complete |
+| M4 Replay | Idempotency, conflict, and fingerprint-drift fixtures pass | Complete |
+| M5 Dark gate | Frozen suites, typecheck, hygiene, scope, and strict packet validation pass | Complete |
+<!-- /ANCHOR:milestones -->
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Confirm the approved leaf scope and frozen runtime paths.
+- Read every target before editing and capture the pivot/typecheck baseline.
+- Confirm candidate inputs share one projection watermark, version, and evidence set.
+- Identify the exact tests and strict packet gate that prove completion.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| Scope | Add only next-focus runtime files, its leaf suite, and this leaf's documents |
+| Safety gate | Invoke shipped pivot validation and deduplication; never reproduce them |
+| Determinism | Use checked integer basis points and the declared total comparator |
+| Authority | Emit shadow observations only; never call or replace the pivot focus writer |
+| Verification | Stop on a failing scoped gate and preserve unrelated working-tree changes |
+
+### Status Reporting Format
+
+Report changed paths, leaf and frozen-suite test counts, compiler and strict-validator exits, confirmed invariants, and the
+baseline-aware scope delta. Separate verified command output from architectural inference.
+
+### Blocked Task Protocol
+
+On a contract conflict, mixed source snapshot, failing leaf gate, or frozen-file mutation: halt the implementation, record the
+exact file or command evidence, preserve unrelated changes, and request the decision needed. Do not substitute a weaker gate or
+expand the approved scope.

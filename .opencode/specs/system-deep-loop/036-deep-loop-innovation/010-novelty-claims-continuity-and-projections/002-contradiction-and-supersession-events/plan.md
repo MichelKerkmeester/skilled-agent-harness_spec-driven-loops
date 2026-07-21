@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:31:20Z"
     last_updated_by: "codex"
-    recent_action: "Planned event construction, status reduction, and replay verification"
-    next_safe_action: "Bind the event registry to semantic-community and evidence inputs"
+    recent_action: "Delivered event construction, status reduction, audit, and replay verification"
+    next_safe_action: "Use the additive-dark projection contract from sibling consumers"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,16 +46,16 @@ history and exposes typed inputs to sibling claim continuity and transactional p
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 envelope type registry, append API, authorization proof, verified reader, and replay-fingerprint interfaces are available or pinned as executable contracts.
-- [ ] The `001-semantic-communities` output contract identifies claims, community IDs, assignment provenance, and versioned snapshots without making relation decisions authoritative.
-- [ ] Claim and evidence references have stable IDs, exact locators, provenance/independence metadata, and resolvable evidence snapshots.
-- [ ] The two event payloads and assertion/withdrawal rules are registered with explicit versions and canonical serialization.
-- [ ] Invalid self-relations, missing references, non-canonical pairs, cycles, competing successors, and ambiguous withdrawals have typed rejection outcomes.
-- [ ] The effective-status precedence and downstream projection shape are accepted by `003-claim-continuity` and `005-transactional-projections-and-gauges`.
+- [x] The phase-006 envelope type registry, append API, authorization proof, verified reader, and replay-fingerprint interfaces are available or pinned as executable contracts. Evidence: the new module imports only their public indexes and `tsc --noEmit` exits 0.
+- [x] The `001-semantic-communities` output contract identifies claims, community IDs, assignment provenance, and versioned snapshots without making relation decisions authoritative. Evidence: `createContradictionCandidate()` records `semanticCommunityIds`, provenance, evidence, detector version, and snapshot while the candidate-only fixture leaves ledger sequence 0.
+- [x] Claim and evidence references have stable IDs, exact locators, provenance/independence metadata, and resolvable evidence snapshots. Evidence: `normalizeReferenceSnapshot()` and the missing claim/evidence fixtures reject unresolved identities before append.
+- [x] The two event payloads and assertion/withdrawal rules are registered with explicit versions and canonical serialization. Evidence: `createClaimRelationshipEventRegistry()` registers exactly both version-1 event types and the 16-test suite covers both actions.
+- [x] Invalid self-relations, missing references, non-canonical pairs, cycles, competing successors, and ambiguous withdrawals have typed rejection outcomes. Evidence: the leaf negative matrix passes and confirms unchanged ledger heads.
+- [x] The effective-status precedence and downstream projection shape are accepted by `003-claim-continuity` and `005-transactional-projections-and-gauges`. Evidence: the exported `ClaimRelationshipProjection` carries status, active relation IDs, counterparts, terminal successor, and evidence state without modifying sibling implementations.
 
 ### Definition of Done
-- [ ] Both event types append idempotently through authorization and preserve evidence/history.
-- [ ] Deterministic replay reproduces active relations, claim statuses, audit traces, and canonical contradiction counts.
+- [x] Both event types append idempotently through authorization and preserve evidence/history. Evidence: exact retry returns the original receipt; contradiction and supersession withdrawal fixtures retain assertion and withdrawal evidence.
+- [x] Deterministic replay reproduces active relations, claim statuses, audit traces, and canonical contradiction counts. Evidence: repeated fingerprints and cross-process canonical projection bytes match in the 16-test leaf suite.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

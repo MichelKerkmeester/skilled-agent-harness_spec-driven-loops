@@ -19,7 +19,10 @@
       "transactional projections tasks",
       "atomic gauges tasks",
       "transactional projections checklist",
-      "atomic gauges verification"
+      "atomic gauges verification",
+      "transactional projections implementation",
+      "atomic projection verifier evidence",
+      "projection generation rebuild summary"
     ],
     "key_topics": [
       "transactional",
@@ -36,14 +39,35 @@
       "bundle"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transactional-projections.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "Automated Requirement Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "one",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -124,12 +154,6 @@
       },
       {
         "name": "expected-watermark",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "existing",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -153,14 +177,8 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "evidence Evidence",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -175,37 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges, with idempotent resume and isolated replay rebuilds.",
     "created_at": "2026-07-16T03:43:52.461Z",
-    "last_save_at": "2026-07-19T18:01:16.352Z",
+    "last_save_at": "2026-07-21T09:46:26.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db1ff915200caeba078ad0c37cca806684512eb37a758c0f85b319fafbbf51b6",
+    "source_fingerprint": "sha256:7529bb3d6ec0dba302fb75c97cad4c79a8a0f6e211f33fccd40b41db9f369ba2",
     "source_doc_hashes": {
-      "spec.md": "78666770eb13a009590ef78e852c441e198a14b1740784321db82cfd76db2faa",
-      "plan.md": "83eadfe2f0dfc9f0485aa1fab6255628c22800bdb394bdda01c60692dbd00b2b",
-      "tasks.md": "334bc93cb040cceee8b7ad869510769bd48876cbf1a4972e0faa05a94c59ef16",
-      "checklist.md": "f9f092632d7c4ce40999f6c8ea66d5c184dcd57a8cc08022979cf5fb0ffb7053"
+      "spec.md": "31d32f87f2ceb98682fc4fc99bb269909fd017236e7c538891c349a0a7f10882",
+      "plan.md": "a2a38a8d7b62e476eff9470e44a78ad1ac7c5ee1e08e39a979138bbe3aa8007e",
+      "tasks.md": "791f38098f4d2d5bc048b4d1d794e39a3ff54c39e5ccda06e13a425890c10310",
+      "checklist.md": "98e5f37e7f1db1d5f342d767dd49da69f620336c47d6d5d17e06ff922a04e9f9",
+      "implementation-summary.md": "a474194e43d21f11e947f6b192a95c450914aacf8972d11fc02c19b299b32954"
     },
     "last_active_child_id": null,
     "last_active_at": null

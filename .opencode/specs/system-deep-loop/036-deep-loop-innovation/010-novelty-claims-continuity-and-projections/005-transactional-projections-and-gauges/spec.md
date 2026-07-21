@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T09:42:29Z"
     last_updated_by: "codex"
-    recent_action: "Authored the transactional projection and atomic gauge planning contract"
-    next_safe_action: "Implement atomic projection apply and replay-safe generation rebuilds"
+    recent_action: "Implemented and verified the additive-dark transactional projection runtime"
+    next_safe_action: "Monitor dark comparison evidence without changing legacy authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Fifth and final child of phase 010, composing claim intelligence with ledger-derived views |
