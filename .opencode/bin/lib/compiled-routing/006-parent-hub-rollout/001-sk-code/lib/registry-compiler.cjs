@@ -167,13 +167,103 @@ function buildSelectors(registry, hubRouter, destinations) {
   return { detectors, selectors, vocabulary };
 }
 
-function buildCompositionRules(destinations) {
-  const actors = destinations.filter((destination) => destination.role === 'actor');
-  const evidence = destinations.filter((destination) => destination.role === 'evidence');
-  return actors.flatMap((actor) => nonEmptySubsets(evidence).map((subset) => ({
-    kind: 'surfaceBundle',
-    targetIds: [actor.id, ...subset.map((destination) => destination.id)],
-  })));
+// A bundle is `surfaceBundle` only when it carries exactly one actor alongside
+// one or more evidence destinations (the decision-contract's own definition
+// in 002-decision-evaluator/lib/evaluator.cjs's isValidPolicy). Every other
+// multi-target tie (two-or-more actors, or evidence with no actor at all) is
+// `orderedBundle`, which carries no role restriction.
+function bundleKindForModes(modeWorkflowModes, byMode) {
+  const roles = modeWorkflowModes.map((mode) => byMode.get(mode).role);
+  const actors = roles.filter((role) => role === 'actor').length;
+  const evidence = roles.filter((role) => role === 'evidence').length;
+  return (actors === 1 && evidence === roles.length - 1) ? 'surfaceBundle' : 'orderedBundle';
+}
+
+// Every non-empty two-or-more subset of the tie-break order (not just the
+// authored actor-plus-evidence-subset shapes): a near-tied keyword score can
+// legally land on any subset — two actors, evidence alone, or a mixed set —
+// so the router needs a valid, order-matching composition rule for each one,
+// or parseRouteDecision's BUNDLE_NOT_IN_POLICY check rejects a real tie.
+function buildCompositionRules(destinations, tieBreak) {
+  const byMode = new Map(destinations.map((destination) => [destination.id.workflowMode, destination]));
+  const modes = [...tieBreak];
+  const rules = [];
+  for (let mask = 1; mask < (1 << modes.length); mask += 1) {
+    const bits = [];
+    for (let index = 0; index < modes.length; index += 1) {
+      if (mask & (1 << index)) bits.push(modes[index]);
+    }
+    if (bits.length < 2) continue;
+    rules.push({
+      kind: bundleKindForModes(bits, byMode),
+      targetIds: bits.map((mode) => byMode.get(mode).id),
+    });
+  }
+  return rules;
+}
+
+// Union every keyword the hub-router assigns to a mode's classes, unfiltered
+// by any cross-mode overlap. This mirrors the frozen legacy replay's own
+// hub-router projection exactly (router-replay.cjs's projectHubRouter): each
+// mode scores independently off its own keyword set, so a keyword shared by
+// two modes (e.g. a hub-identity term) still counts as a positive signal for
+// both, never dropped the way the detector-vocabulary ownership filter below
+// drops it.
+function modeVocabulary(hubRouter, workflowMode) {
+  const signal = hubRouter.routerSignals[workflowMode];
+  const words = new Set();
+  for (const className of signal.classes || []) {
+    const vocabulary = hubRouter.vocabularyClasses[className];
+    for (const keyword of (vocabulary && vocabulary.keywords) || []) {
+      words.add(String(keyword).toLowerCase());
+    }
+  }
+  return [...words].sort(compareText);
+}
+
+// Bundle targets for the bespoke routing model below, expressed as
+// workflowMode strings (not destinationId objects) so the router can look one
+// up directly off a scored, ordered mode list without a destination round-trip.
+function buildBundleRules(tieBreak, destinations) {
+  const byMode = new Map(destinations.map((destination) => [destination.id.workflowMode, destination]));
+  const modes = [...tieBreak];
+  const rules = [];
+  for (let mask = 1; mask < (1 << modes.length); mask += 1) {
+    const bits = [];
+    for (let index = 0; index < modes.length; index += 1) {
+      if (mask & (1 << index)) bits.push(modes[index]);
+    }
+    if (bits.length < 2) continue;
+    rules.push({ kind: bundleKindForModes(bits, byMode), targetWorkflowModes: bits });
+  }
+  return rules;
+}
+
+// The bespoke, hub-specific routing model the compiled router scores against
+// directly (mirrors sk-design's registry-compiler.cjs routingModel). This
+// sits alongside the generic detector/selector policy above rather than
+// replacing it: the policy still carries the authority graph, composition
+// rules, and hashing that policy-card.cjs and the projector read.
+function buildRoutingModel(registry, hubRouter, destinations) {
+  const byMode = new Map(destinations.map((destination) => [destination.id.workflowMode, destination]));
+  const modes = registry.modes.map((mode) => {
+    const signal = hubRouter.routerSignals[mode.workflowMode];
+    return {
+      command: mode.command,
+      destinationId: byMode.get(mode.workflowMode).id,
+      keywords: modeVocabulary(hubRouter, mode.workflowMode),
+      weight: signal.weight,
+      workflowMode: mode.workflowMode,
+    };
+  });
+  return {
+    ambiguityDelta: hubRouter.routerPolicy.ambiguityDelta,
+    bundleRules: buildBundleRules(hubRouter.routerPolicy.tieBreak, destinations),
+    defaultMode: hubRouter.routerPolicy.defaultMode,
+    modes,
+    outcomes: hubRouter.routerPolicy.outcomes,
+    tieBreak: [...hubRouter.routerPolicy.tieBreak],
+  };
 }
 
 function buildAuthorityGraph(destinations) {
@@ -245,7 +335,7 @@ function compileRegistry(input) {
   const policyBody = {
     activationGeneration: input.activationGeneration,
     authorityGraph: buildAuthorityGraph(destinations),
-    compositionRules: buildCompositionRules(destinations),
+    compositionRules: buildCompositionRules(destinations, input.hubRouter.routerPolicy.tieBreak),
     destinations,
     detectors: selection.detectors,
     provenancePolicy: {
@@ -287,11 +377,14 @@ function compileRegistry(input) {
     advisorProjection,
   );
 
+  const routingModel = buildRoutingModel(input.registry, input.hubRouter, destinations);
+
   return Object.freeze({
     advisorProjection: Object.freeze(advisorProjection),
     aliases: Object.freeze(aliases),
     fallbackChecklist: Object.freeze(extractFallbackChecklist(input.skillMarkdown)),
     policy: Object.freeze(policy),
+    routingModel: Object.freeze(routingModel),
     sourceHashes: Object.freeze(sourceHashes),
     vocabulary: selection.vocabulary,
   });

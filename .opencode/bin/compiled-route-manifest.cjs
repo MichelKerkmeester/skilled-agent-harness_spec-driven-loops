@@ -11,13 +11,14 @@
 const {
   checkCanonicalManifestFreshness,
   mintCanonicalManifest,
+  refreshCanonicalManifest,
 } = require('./lib/compiled-route-manifest.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const USAGE = 'usage: compiled-route-manifest.cjs <mint|freshness> '
+const USAGE = 'usage: compiled-route-manifest.cjs <mint|refresh|freshness> '
   + '--hub <hub-id> --skill-root <path> [--pretty]';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -26,7 +27,7 @@ const USAGE = 'usage: compiled-route-manifest.cjs <mint|freshness> '
 
 function parseArgs(argv) {
   const verb = argv[0];
-  if (verb !== 'mint' && verb !== 'freshness') return null;
+  if (verb !== 'mint' && verb !== 'refresh' && verb !== 'freshness') return null;
   const values = { verb, pretty: false };
   const seen = new Set();
   for (let index = 1; index < argv.length; index += 1) {
@@ -68,7 +69,9 @@ function main(argv = process.argv.slice(2)) {
   const input = { hubId: parsed.hubId, skillRoot: parsed.skillRoot };
   const result = parsed.verb === 'mint'
     ? mintCanonicalManifest(input)
-    : checkCanonicalManifestFreshness(input);
+    : parsed.verb === 'refresh'
+      ? refreshCanonicalManifest(input)
+      : checkCanonicalManifestFreshness(input);
   const output = parsed.pretty ? JSON.stringify(result, null, 2) : JSON.stringify(result);
   process.stdout.write(`${output}\n`);
   return result.manifestValid && result.fresh ? 0 : 1;

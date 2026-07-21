@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing coverage buildout",
+      "compiled router default-on flip",
+      "compiled-serving parity",
+      "sk-code compiled router coverage",
+      "compiled routing coverage plan",
+      "sk-code pilot build-out",
+      "staged default-on flip plan",
+      "compiled router rollout phases",
+      "compiled routing coverage tasks",
+      "sk-code pilot tasks",
+      "staged flip task list",
+      "compiled routing coverage checklist"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "coverage",
+      "buildout",
+      "router",
+      "default-on",
+      "flip",
+      "compiled-serving",
+      "parity",
+      "sk-code",
+      "plan",
+      "pilot"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs",
+      ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      "plan.md",
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
+      ".opencode/bin/compiled-route-manifest.cjs",
+      ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Coverage Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Genuine Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pilot Build",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Manifests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
+    "created_at": "2026-07-21T09:34:21.815Z",
+    "last_save_at": "2026-07-21T09:43:25.724Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:88d90cfc57651247aa2d7c47b7c5679b8c2eea5a3633a24dfdd5c8efc614512d",
+    "source_doc_hashes": {
+      "spec.md": "7acba4c82f49f6fee835411a4acfccdbe100725bfc47364362c8fec7dcd5528f",
+      "plan.md": "02c5ab5ba49e8f8dd32afab86493e06f91eff21f0c63516f47feaf887d3fa745",
+      "tasks.md": "b6ca3203bf0dad15d4bef6b41dc638ed76bde1ff9a9ba094b8e0626f0d3e2870",
+      "checklist.md": "67c25f95c848022c71a0618f52c4f7feea13e67b2b5bf98105040001fac82401",
+      "decision-record.md": "5316d8e0bbaf590039f797450113090872fd09d022a083d698070e3f7708060c",
+      "implementation-summary.md": "09b9d0ed7d7048300979ec2071d1451797f6f44b5b4e07e2ecd6aed826ef13b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

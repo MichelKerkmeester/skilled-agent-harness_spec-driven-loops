@@ -498,6 +498,112 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     }
   });
 
+  test('refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults', () => {
+    const refreshHub = `manifest-refresh-${process.pid}`;
+    const refreshRoot = createParentFixture(refreshHub);
+    removeManifestDirectory(refreshHub);
+    const minted = manifestContract.mintCanonicalManifest({ hubId: refreshHub, skillRoot: refreshRoot });
+    assert.equal(minted.created, true, minted.causeCode);
+    assert.equal(minted.selectedPolicy.generation, 1);
+
+    const skillPath = path.join(refreshRoot, 'SKILL.md');
+    const originalSkillMarkdown = fs.readFileSync(skillPath);
+    fs.writeFileSync(skillPath, Buffer.concat([originalSkillMarkdown, Buffer.from('\n')]));
+    const stale = manifestContract.checkCanonicalManifestFreshness({
+      hubId: refreshHub,
+      skillRoot: refreshRoot,
+    });
+    assert.equal(stale.causeCode, 'stale-manifest');
+    assert.equal(stale.selectedPolicy.generation, 1);
+
+    const refreshed = runManifestCli(['refresh', '--hub', refreshHub, '--skill-root', refreshRoot]);
+    assert.equal(refreshed.status, 0, refreshed.stderr);
+    assert.equal(refreshed.json.refreshed, true);
+    assert.equal(refreshed.json.fresh, true);
+    assert.equal(refreshed.json.causeCode, 'fresh');
+    assert.equal(refreshed.json.selectedPolicy.generation, 2);
+    assert.notEqual(
+      refreshed.json.selectedPolicy.effectivePolicyHash,
+      minted.selectedPolicy.effectivePolicyHash,
+    );
+
+    const manifestPath = manifestContract.canonicalManifestPath({ hubId: refreshHub }).absolutePath;
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    assert.equal(manifest.servingAuthority, 'legacy');
+    assert.equal(manifest.shadowOnly, true);
+    assert.equal(manifest.selectedPolicy.generation, 2);
+
+    // Restoring the pre-drift input now drifts the *refreshed* (post-drift)
+    // manifest in turn, proving the new hash truly captured the drifted
+    // content rather than reusing the generation-one hash under a new number.
+    fs.writeFileSync(skillPath, originalSkillMarkdown);
+    const afterRestore = manifestContract.checkCanonicalManifestFreshness({
+      hubId: refreshHub,
+      skillRoot: refreshRoot,
+    });
+    assert.equal(afterRestore.causeCode, 'stale-manifest');
+  });
+
+  test('refuses to refresh unsafe hub identities and a missing manifest without writing anything', () => {
+    for (const hubId of ['../escape', '/absolute', 'Upper-Case', 'two--hyphens', '.']) {
+      const result = manifestContract.refreshCanonicalManifest({ hubId, skillRoot: primaryRoot });
+      assert.equal(result.causeCode, 'unsafe-path', hubId);
+      assert.equal(result.refreshed, false, hubId);
+      assert.equal(result.manifestValid, false, hubId);
+      assert.equal(result.fresh, false, hubId);
+    }
+
+    const neverMintedHub = `manifest-refresh-missing-${process.pid}`;
+    const neverMintedRoot = createParentFixture(neverMintedHub);
+    removeManifestDirectory(neverMintedHub);
+    const missing = manifestContract.refreshCanonicalManifest({
+      hubId: neverMintedHub,
+      skillRoot: neverMintedRoot,
+    });
+    assert.equal(missing.causeCode, 'missing-manifest');
+    assert.equal(missing.refreshed, false);
+    assert.equal(missing.manifestValid, false);
+    assert.equal(
+      fs.existsSync(manifestContract.canonicalManifestPath({ hubId: neverMintedHub }).absolutePath),
+      false,
+    );
+
+    const cliMissing = runManifestCli([
+      'refresh', '--hub', neverMintedHub, '--skill-root', neverMintedRoot,
+    ]);
+    assert.equal(cliMissing.status, 1);
+    assert.equal(cliMissing.json.causeCode, 'missing-manifest');
+    assert.equal(cliMissing.json.refreshed, false);
+  });
+
+  test('preserves a non-default shadowOnly value through refresh rather than hardcoding it', () => {
+    const preserveHub = `manifest-refresh-preserve-${process.pid}`;
+    const preserveRoot = createParentFixture(preserveHub);
+    removeManifestDirectory(preserveHub);
+    const manifestPath = manifestContract.canonicalManifestPath({ hubId: preserveHub }).absolutePath;
+    fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+    fs.writeFileSync(manifestPath, `${JSON.stringify({
+      schemaVersion: 'V1',
+      selectedPolicy: { effectivePolicyHash: 'a'.repeat(64), generation: 3 },
+      servingAuthority: 'legacy',
+      shadowOnly: false,
+    })}\n`);
+
+    const result = manifestContract.refreshCanonicalManifest({
+      hubId: preserveHub,
+      skillRoot: preserveRoot,
+    });
+    assert.equal(result.refreshed, true, result.causeCode);
+    assert.equal(result.fresh, true, result.causeCode);
+    assert.equal(result.selectedPolicy.generation, 4);
+    assert.notEqual(result.selectedPolicy.effectivePolicyHash, 'a'.repeat(64));
+
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    assert.equal(manifest.servingAuthority, 'legacy');
+    assert.equal(manifest.shadowOnly, false);
+    assert.equal(manifest.selectedPolicy.generation, 4);
+  });
+
   test('keeps the CLI thin, machine-readable, and usage-safe', () => {
     const usage = runManifestCli(['mint', '--hub', PRIMARY_HUB]);
     assert.equal(usage.status, 2);

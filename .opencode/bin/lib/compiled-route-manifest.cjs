@@ -92,6 +92,7 @@ function resultRecord({
   currentPolicyHash = null,
   manifestPath = null,
   created,
+  refreshed,
 }) {
   const result = {
     hubId: typeof hubId === 'string' ? hubId : null,
@@ -104,6 +105,7 @@ function resultRecord({
     manifestFingerprint,
   };
   if (typeof created === 'boolean') result.created = created;
+  if (typeof refreshed === 'boolean') result.refreshed = refreshed;
   return result;
 }
 
@@ -481,6 +483,69 @@ function mintCanonicalManifest({ hubId, skillRoot }) {
   };
 }
 
+/**
+ * Recompile current hub inputs one generation ahead and overwrite an existing
+ * manifest in place, preserving servingAuthority and shadowOnly untouched.
+ * Refuses a missing manifest outright — use mintCanonicalManifest for that.
+ *
+ * @param {Object} input - Hub identity and current authored source root.
+ * @returns {Object} Stable freshness record with a refreshed flag.
+ */
+function refreshCanonicalManifest({ hubId, skillRoot }) {
+  let paths;
+  try {
+    paths = canonicalManifestPath({ hubId });
+  } catch (error) {
+    return failureRecord(hubId, causeFrom(error, 'unsafe-path'), { refreshed: false });
+  }
+  let existingBytes;
+  try {
+    existingBytes = readManifestBytes(paths.absolutePath);
+  } catch (error) {
+    return failureRecord(hubId, causeFrom(error, 'invalid-manifest'), { refreshed: false });
+  }
+  if (existingBytes === null) {
+    return failureRecord(hubId, 'missing-manifest', { refreshed: false });
+  }
+  const inspected = validateCanonicalManifestBytes({ hubId, manifestBytes: existingBytes });
+  if (!inspected.manifestValid) {
+    return failureRecord(hubId, 'invalid-manifest', { ...inspected, refreshed: false });
+  }
+  const existingManifest = inspected.manifest;
+  const newGeneration = existingManifest.selectedPolicy.generation + 1;
+  let currentPolicy;
+  try {
+    currentPolicy = compileCanonicalParent({ hubId, skillRoot, generation: newGeneration });
+  } catch (error) {
+    return failureRecord(hubId, causeFrom(error), {
+      ...inspected,
+      manifestValid: true,
+      manifest: inspected.manifest,
+      refreshed: false,
+    });
+  }
+  const manifest = {
+    schemaVersion: 'V1',
+    selectedPolicy: {
+      effectivePolicyHash: currentPolicy.effectivePolicyHash,
+      generation: newGeneration,
+    },
+    servingAuthority: existingManifest.servingAuthority,
+    shadowOnly: existingManifest.shadowOnly,
+  };
+  const manifestBytes = artifactBytes(manifest);
+  try {
+    ensureActivationDirectory(path.dirname(paths.absolutePath));
+    fs.writeFileSync(paths.absolutePath, manifestBytes, { mode: 0o600 });
+  } catch (error) {
+    return failureRecord(hubId, causeFrom(error), { refreshed: false });
+  }
+  return {
+    ...checkCanonicalManifestFreshness({ hubId, skillRoot }),
+    refreshed: true,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -492,5 +557,6 @@ module.exports = {
   evaluateManifestFreshness,
   isCanonicalHubId,
   mintCanonicalManifest,
+  refreshCanonicalManifest,
   validateCanonicalManifestBytes,
 };
