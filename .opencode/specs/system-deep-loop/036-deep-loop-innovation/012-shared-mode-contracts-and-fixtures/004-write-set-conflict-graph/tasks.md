@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Write-Set Conflict Graph"
-description: "Tasks for phase 007 of the phase-012 shared mode contracts and fixtures parent: author the executable dependency, write-set conflict, and phase-013 scheduling contract."
+description: "Tasks for the phase-012 write-set conflict graph leaf: implement the executable dependency, conflict, and phase-013 scheduling contract."
 trigger_phrases:
   - "write-set conflict graph tasks"
   - "phase-013 scheduling tasks"
@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined graph authoring and verification tasks for the eight mode nodes"
-    next_safe_action: "Freeze the node manifest and canonical resource inventory"
+    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and locally verified the graph derivation and fail-closed scheduler"
+    next_safe_action: "Run the independent verifier against the sealed graph inputs"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts"
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -40,44 +43,47 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the parent spec, sequencing strategy, and phase-tree manifest as the graph source set and record their content digests
-- [ ] T002 Confirm the exact phase-013 node list: `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment`
-- [ ] T003 Collect the reviewed resource declarations for every mode's files, persisted state, shared packets, backends, locks, fixtures, and generated outputs
-- [ ] T004 Confirm `depends_on: []` for this child and retain `003-mixed-version-fixtures` as navigation-only predecessor text
+- [x] T001 Pin the frozen graph sources and bind every schedule to their content digests [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:43]
+- [x] T002 Enforce the exact eight-entry phase-013 node list and reject missing, duplicate, renamed, or extra entries [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:145]
+- [x] T003 Census shipped mode imports and writes for files, state, shared packets, backends, locks, fixtures, and outputs [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts:119]
+- [x] T004 Retain this child's empty manifest dependency list and keep the sibling adjacency navigation-only [File: spec.md:59]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Define the versioned graph envelope, node/resource records, edge types, independence assertions, policy, and schedule receipt fields
-- [ ] T006 Normalize path, symlink, backend, state-store, lock, and generated-output aliases into canonical resource IDs with evidence
-- [ ] T007 Derive deterministic write-write, write-read, shared-backend, fence, and hard-order edges from the canonical access sets
-- [ ] T008 Encode `004-deep-improvement-common` as a hard predecessor of `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`
-- [ ] T009 Encode the shared review-loop fence for `002-deep-review` and `008-deep-alignment`, and the independently validated research/council assertion
-- [ ] T010 Define fail-closed handling for unknown resources, stale digests, missing declarations, contradictory ownership, aliases, and dependency cycles
-- [ ] T011 Define the orchestrator adapter contract for graph preflight, ready-node selection, fence handling, stable tie breaking, refusal evidence, and graph refresh
+- [x] T005 Define the versioned graph envelope, node/resource records, edge types, assertions, policy, and receipts [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:5]
+- [x] T006 Normalize path and service aliases into explicit canonical resource IDs with evidence [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts:107]
+- [x] T007 Derive stable write-write, write-read, shared-backend, fence, and hard-order edges [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:414]
+- [x] T008 Encode common-before-variant relationships as dedicated hard-order edges [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:59]
+- [x] T009 Fence the review-loop pair and independently validate the research/council assertion against resources [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:280]
+- [x] T010 Fail closed on unknown resources, stale digests, missing declarations, contradictory ownership, aliases, and cycles [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts:93]
+- [x] T011 Implement graph reuse preflight, ready-node selection, stable tie breaking, refusal evidence, and refresh refusal [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:809]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Verify: The graph covers every phase-013 workstream exactly — Node IDs equal `mode_workstreams_phase_013` with no missing, duplicate, renamed, or extra entries
-- [ ] T013 Verify: Every node has canonical reads and writes — Resource records include access, scope, mutability, owner, and source evidence
-- [ ] T014 Verify: Conflict edges are derived from access sets — Write-write, write-read, shared-backend, and fence fixtures name the overlapping resources
-- [ ] T015 Verify: Required ordering is executable — Common precedes all three variants and review/alignment never overlap on a shared review-loop resource
-- [ ] T016 Verify: Independent work remains explicit — Research and council pass the disjoint-resource assertion and fail it when a shared mutable resource is introduced
-- [ ] T017 Verify: Unknown or stale evidence fails closed — The scheduler returns serial-single-writer or block and never widens parallelism
-- [ ] T018 Verify: The schedule is deterministic — Repeated derivation returns the same graph digest, edge ordering, lane order, and decision evidence
-- [ ] T019 Verify: Drift is detected before orchestration — A changed child resource declaration rejects the old graph until its source digest is refreshed
-- [ ] T020 Verify: The orchestrator consumes evidence — Every lane and refusal receipt includes node, predecessor, resource, source digest, class, and reason fields
+- [x] T012 Verify exact node-set equality and all four invalid-set cases [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:93]
+- [x] T013 Verify every node has canonical reads, writes, ownership, mutability, scope, and source evidence [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:93]
+- [x] T014 Verify symmetric write-write/write-read overlap, including canonical collisions and directory descendants [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:153]
+- [x] T015 Verify hard predecessor edges remain separate and review/alignment cannot share a lane [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:260]
+- [x] T016 Verify research/council independence succeeds only while actual mutable resources are disjoint [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:340]
+- [x] T017 Verify unknown, ambiguous, and stale evidence returns serial-single-writer without widening [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:128]
+- [x] T018 Verify equivalent reordered input produces identical graph digest and schedule evidence [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:390]
+- [x] T019 Verify stale digests and changed declarations refuse old schedules until refresh [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:311]
+- [x] T020 Verify every node decision carries predecessor, conflict, fence, source, class, and reason evidence [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:430]
+- [x] T021 Close adversarial trailing-slash, shared-access, case-alias, and mutability gaps while preserving honest parallelism [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:263]
+- [x] T022 Canonicalize NFC/NFD and namespace-root path variants while preserving distinct Unicode filenames [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:435]
+- [x] T023 Consolidate comparison-time path identity into `normalizeComparablePath` and verify composed case, slash, Unicode, dot-segment, and root spellings [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts:56]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All implementation and local verification tasks complete [File: implementation-summary.md:44]
+- [x] All frozen requirements have executable local evidence [File: checklist.md:42]
+- [ ] Independent phase gate sign-off is green; the graph deliberately cannot grant this gate itself
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

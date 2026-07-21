@@ -12,13 +12,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T14:10:24Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the planned typed contract for all eight mode workstreams"
-    next_safe_action: "Freeze the interface matrix against the substrate and convergence specs"
+    recent_action: "Froze and verified the shared mode contract"
+    next_safe_action: "Begin phase-013 mode implementations against interface 1.0.0"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 012 child 001 of the shared-mode-contracts-and-fixtures parent |
@@ -123,5 +125,10 @@ The purpose is a versioned, conformance-testable mode interface that makes every
 - Which convergence hook outputs are observations only, and which may request a stop or allocation decision through the phase-011 gateway?
 - Which resume classifications can be safely automated for each of the eight modes, and which must remain explicit `block` outcomes until phase 008 state-classification evidence exists?
 
-These decisions are resolved while authoring the frozen interface and its fixtures. They do not authorize implementation or authority movement in this Planned phase.
+Resolved in interface `1.0.0`: the contract is a TypeScript library under
+`runtime/lib/mode-contracts/`; interface compatibility is independent from event
+schema versions; evidence products carry `authorityEffect: none`; convergence
+hooks return observations only; and resume classification blocks unknown evidence.
+The conformance matrix derives its rows from the manifest and does not authorize
+runtime cutover.
 <!-- /ANCHOR:questions -->

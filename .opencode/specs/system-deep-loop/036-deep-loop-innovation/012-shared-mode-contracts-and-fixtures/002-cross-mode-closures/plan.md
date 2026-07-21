@@ -6,18 +6,20 @@ trigger_phrases:
   - "deep-loop shared closure plan"
   - "phase 012 closure implementation"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped five shared closures to runtime ports and mode override seams"
-    next_safe_action: "Reconcile closure owners with interface versions and phase-007 service contracts"
+    last_updated_at: "2026-07-21T14:11:23Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered the five closure owners and adversarial fixtures"
+    next_safe_action: "Consume the verified closure catalog during phase-013 migrations"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/cross-mode-closures.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,24 +46,24 @@ The plan creates one reusable implementation for each recurring cross-mode respo
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent phase outcome, `depends_on: []`, and adjacency to `001-shared-mode-interfaces` and `003-mixed-version-fixtures` are recorded.
-- [ ] The frozen `ModeContract` surface from `001-shared-mode-interfaces/spec.md` is reconciled with the phase-007 service child contracts and `manifest/phase-tree.json`.
-- [ ] A recurrence matrix names every repeated evidence, receipt, adjudication, budget, and projection path across all eight phase-013 workstreams.
-- [ ] The closure boundary distinguishes shared mechanics from mode schemas, reducers, policies, artifacts, certificates, and stop decisions.
-- [ ] Shipped runtime seams and intentional divergences are classified before any helper is moved or copied.
-- [ ] Closure write sets and handoff outputs are named without taking ownership from `004-write-set-conflict-graph`.
+- [x] The parent phase outcome, `depends_on: []`, and adjacency to `001-shared-mode-interfaces` and `003-mixed-version-fixtures` are recorded.
+- [x] The frozen `ModeContract` surface from `001-shared-mode-interfaces/spec.md` is reconciled with the phase-007 service child contracts and `manifest/phase-tree.json`.
+- [x] The closure catalog names every repeated evidence, receipt, adjudication, budget, and projection path across all eight phase-013 workstreams.
+- [x] The closure boundary distinguishes shared mechanics from mode schemas, reducers, policies, artifacts, certificates, and stop decisions.
+- [x] Shipped runtime seams and intentional divergences are classified as adapter or parity inputs without moving or copying them.
+- [x] Closure write-set bindings and handoff outputs are named without taking ownership from `004-write-set-conflict-graph`.
 
 ### Definition of Done
-- [ ] One typed closure implementation exists for each of the five shared behavior families.
-- [ ] All eight phase-013 workstreams have adapters and explicit override rows; deep-improvement-common is reused by its three variants.
-- [ ] Closure fixtures prove evidence, receipts, adjudication, budgets, projections, bypass refusal, and additive-dark parity.
-- [ ] Phase 013 receives the closure catalog, override matrix, call-path inventory, and fixture handoff without lifecycle or authority changes.
+- [x] One typed closure implementation exists for each of the five shared behavior families.
+- [x] All eight phase-013 workstreams have catalog rows and explicit override roles; deep-improvement-common is reused by its three variants.
+- [x] Closure fixtures prove evidence, receipts, adjudication, budgets, projections, bypass refusal, and additive-dark parity.
+- [x] Phase 013 receives the closure catalog, override contract, parity-source inventory, and write-set bindings without lifecycle or authority changes.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared closure context**: Define one immutable context with `modeId`, interface version, lifecycle event, continuity identity, sealed input references, service ports, budget scope, write set, legacy/shadow posture, correlation IDs, and mode strategy. The context is created by the mode adapter and cannot be widened by a closure override.
+- **Shared closure context**: Define one immutable context with `modeId`, interface version, lifecycle event, continuity identity, sealed input references, budget scope, write set, legacy/shadow posture, correlation IDs, and mode strategy. Validated service ports are bound in closure-private storage rather than exposed on the returned context, so a context holder cannot invoke raw safety services.
 - **Evidence closure**: Normalize the `evidence-contract.ts` fields, attach verified sealed-artifact references, retain raw mode evidence and source locators, bind the replay/configuration identity, and return `confirmed`, `inferred`, `hypothesis`, or `unknown` evidence status. It must preserve a mode's evidence payload rather than reclassifying domain claims.
 - **Receipt/effect closure**: Use the phase-007 receipt and effect-recovery port for intent-before-effect, observed completion, recovery classification, and boundary certification. Compose the shipped `executor-audit.ts`, `receipt-crypto.ts`, `post-dispatch-validate.ts`, atomic state, and JSONL repair seams behind one adapter. Legacy receipts remain readable or parity inputs; no mode emits a second new receipt schema.
 - **Adjudication closure**: Build the shared request from sealed candidates and a mode strategy, invoke blinded/counterfactual adjudication, retain raw judgments, probes, ties, minority evidence, and independence signals, and return the phase-007 verdict. The closure never decides review closure, council stop, promotion, model selection, or skill lift.
@@ -77,7 +79,7 @@ The plan creates one reusable implementation for each recurring cross-mode respo
 | Typed reservation, settlement, exhaustion, and admission refusal | Cost estimate, budget scope, eligible work, escalation request |
 | Authorized event-to-projection sequencing, gauge fold, replay provenance | Event schema, reducer ownership, projection fields, mode-specific derived views |
 
-- **Override rules**: Overrides are registered strategies with typed inputs and outputs. They may select mode data, policy parameters, and domain reducers; they may not replace authorization, sealed reads, receipt ordering, fence validation, budget admission, raw-evidence retention, or fail-closed errors. A missing override uses an explicit `unsupported` result, never a guessed default.
+- **Override rules**: Overrides are registered strategies with typed inputs, declared exact output keys, and recursively rejected reserved safety fields. They may select mode data, policy parameters, and domain reducers; they may not replace authorization, sealed reads, receipt ordering, fence validation, budget admission, raw-evidence retention, or fail-closed errors. A missing override uses an explicit `unsupported` result, never a guessed default.
 - **Adapter topology**: The eight manifest rows call the same closure package. `004-deep-improvement-common` owns the shared evaluator/promotion/benchmark mechanics once; `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` supply only variant schemas and policies. `002-deep-review` and `008-deep-alignment` reuse the declared review-loop closures while retaining their own findings, authority, and standard-conformance decisions. `001-deep-research`, `003-deep-ai-council`, and the common improvement lane register their own domain strategies.
 - **Existing seam placement**: Reuse `shared/synthesis/resource-map.cjs` for synthesis output, `runtime/lib/deep-loop/continuity-thread.cjs` for continuity strategy input, `runtime/lib/deep-loop/permissions-gate.ts` for permission decisions, `runtime/lib/council/multi-seat-dispatch.cjs` for seat-level outcome capture, `adjudicator-verdict-scoring.cjs` for compatibility evidence, and `convergence.cjs`/`cost-guards.cjs` as legacy parity inputs. Do not treat any one existing helper as the complete new closure contract.
 <!-- /ANCHOR:architecture -->
@@ -121,7 +123,7 @@ The plan creates one reusable implementation for each recurring cross-mode respo
 | REQ-004 | Adjudication fixtures require blinding, A/B and B/A, configured probes, raw judgments, and stable/unstable/inconclusive outcomes without local re-reduction |
 | REQ-005 | Budget fixtures exercise atomic multi-dimensional denial, reservation races, receipt-backed settlement, exhaustion, stale pricing, and missing usage |
 | REQ-006 | Projection fixtures compare full replay, incremental fold, fenced update, mode reducer output, and provenance under identical event prefixes |
-| REQ-007 | Override fixtures attempt to bypass each safety port and require typed refusal; valid mode-specific strategies pass through the shared closure |
+| REQ-007 | Override fixtures cover all four override sites, reject nested and top-level safety smuggling, prove raw ports are absent from the public context, and retain positive controls for valid strategies |
 | REQ-008 | Adapter conformance runs all eight manifest rows, checks common-before-variant ordering, and asserts no duplicated closure implementation |
 | REQ-009 | Shadow parity compares closure outputs with shipped evidence, council, deep-loop, and legacy projection behavior without changing decisions |
 | REQ-010 | Determinism and handoff checks repeat closure calls, record fixture identifiers, and validate successor-consumable catalog and write-set inputs |

@@ -39,14 +39,29 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mode-contracts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +84,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -156,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "input",
+        "name": "transition",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "input",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -172,43 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
     "created_at": "2026-07-16T03:43:53.994Z",
-    "last_save_at": "2026-07-19T18:01:24.710Z",
+    "last_save_at": "2026-07-21T14:56:51.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3ef0459350fc8c3eedbe10615cc62d501287d72d0d222df784c0c1ec1fc9970",
+    "source_fingerprint": "sha256:fde7094d9e28e67d97d14f3067ae3a5d78b2edb78722249e3a9b48f990281e2e",
     "source_doc_hashes": {
-      "spec.md": "79cb171bb447e405d2bf0bea85a4e0befdcd6a46589fa335eb95a66a8961bfdb",
-      "plan.md": "9648bdcc73badbca0a8f21a121e2372ebb8b71ba84e2d86bce284cbe4a9a027d",
-      "tasks.md": "af1f8da014ed4dfdcf67d60c9e368a7d2e52dc02db8baf31285d0750106f4c4d",
-      "checklist.md": "1579e41bb6bfd1a68528ff28c40f80c9b7e8e512612cad3f2e9d7b32ed65fd08"
+      "spec.md": "870f622808bed91eba01a549ff6c5499b7184d4ae592968e687834a5610ee731",
+      "plan.md": "301d7564fca8b32938839b1e9332a69c7496d13b16411d728ddeaf2b69c34ae7",
+      "tasks.md": "ee9eb85cc14f10a30e4bb4b344a7b6611706d77ec3a923bd07deed79473f93a7",
+      "checklist.md": "d96044f6c2dbe7d1790333017628b94cbeec6c9d57e5855216170c7b994f57dc",
+      "implementation-summary.md": "99e98848139facdee0da542e991208d92f57826f0a531c53f3f5e00f27f537e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

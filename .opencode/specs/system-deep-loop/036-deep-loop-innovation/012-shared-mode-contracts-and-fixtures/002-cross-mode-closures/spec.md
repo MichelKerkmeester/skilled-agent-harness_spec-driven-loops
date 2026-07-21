@@ -7,18 +7,20 @@ trigger_phrases:
   - "phase 012 closure modules"
   - "deep-loop shared behavior hoisting"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped recurring evidence, receipt, adjudication, budget, and projection behavior"
-    next_safe_action: "Define closure ports, override seams, and parity fixtures before phase 013"
+    last_updated_at: "2026-07-21T14:11:23Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark closure layer"
+    next_safe_action: "Consume the closure catalog from the phase-013 mode workstreams"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/cross-mode-closures.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 012 child 002 of the shared-mode-contracts-and-fixtures parent |
@@ -62,7 +64,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 
 ### In Scope
 - A manifest-derived closure catalog for all eight entries in `manifest/phase-tree.json` `mode_workstreams_phase_013`, showing one shared owner for each recurring behavior and the allowed mode override.
-- A typed closure context carrying mode identity, interface version, lifecycle event, continuity identity, evidence references, service ports, budget scope, write set, legacy/shadow posture, and correlation identifiers.
+- A typed closure context carrying mode identity, interface version, lifecycle event, continuity identity, evidence references, budget scope, write set, legacy/shadow posture, and correlation identifiers, with service ports held in closure-private storage.
 - An evidence closure that normalizes claim class, scope, provenance, sealed-artifact references, raw mode evidence, and verification status without discarding mode-specific payloads.
 - A receipt/effect closure that orders intent, execution, observed result, recovery, and boundary receipt emission through the phase-007 receipt and effect-recovery service; it must reuse the shipped executor-audit and post-dispatch evidence seams rather than issue parallel receipts.
 - An adjudication closure that constructs blinded or counterfactual requests, invokes the phase-007 adjudication service, retains raw scores and probes, and returns the shared stable/unstable/inconclusive result without re-reducing it in each mode.
@@ -70,7 +72,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 - A projection closure that applies authorized events to deterministic stream-fold gauges and transactional mode projections, preserving raw events, replay provenance, and mode-owned reducer fields.
 - Explicit adapter and override seams for deep-improvement-common plus its three variants, and for the shared review/alignment loop, without collapsing their domain-specific policies.
 - Closure-level parity and bypass fixtures that phase `003-mixed-version-fixtures` and `004-write-set-conflict-graph` can consume when producing their own artifacts.
-- Generated metadata exclusion: `description.json` and `graph-metadata.json` are not authored in this phase folder.
+- Generated metadata discipline: `description.json` and `graph-metadata.json` are refreshed only by deterministic tooling after canonical docs change.
 
 ### Out of Scope
 - Freezing or changing the `ModeContract` lifecycle and service-port types owned by `001-shared-mode-interfaces`.
@@ -113,7 +115,7 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 ## 6. RISKS & DEPENDENCIES
 
 - **Over-generalized closure** — a shared helper may erase meaningful mode semantics. Mitigation: keep the closure responsible for evidence, side-effect, service, and projection mechanics; pass mode schemas, reducer ownership, adjudication policy, budget estimate, and stop policy as typed strategy inputs.
-- **Repeated behavior survives under new names** — a mode can appear to use a closure while retaining a private receipt or budget path. Mitigation: require call-path inventory, one-owner rules, negative bypass fixtures, and write-set evidence before phase 013.
+- **Repeated behavior survives under new names** — a mode can appear to use a closure while retaining a private receipt or budget path. Mitigation: keep raw service ports off the public context, require call-path inventory, one-owner rules, negative bypass fixtures, and write-set evidence before phase 013.
 - **Receipt or effect duplication** — existing `executor-audit.ts`, `post-dispatch-validate.ts`, council JSONL, and legacy projections may emit overlapping facts. Mitigation: define a single closure emission order and preserve legacy records as adapters or parity observations, never as a second new authority.
 - **Policy leakage across modes** — a common adjudicator or budget helper may decide a mode-owned transition. Mitigation: closures return typed service results; mode reducers and convergence policy remain the only owners of domain decisions.
 - **Shared write races** — deep-improvement variants and review/alignment may touch common state. Mitigation: expose closure write sets to `004-write-set-conflict-graph`, use phase-007 locks/fencing, and keep serialization decisions outside the closure implementation.
@@ -124,11 +126,14 @@ The purpose of this phase is to turn those recurring responsibilities into one c
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which concrete module boundary should hold the five closures: the shared `runtime/lib` layer, a mode-contract package, or a thin combination with deep-improvement common adapters?
-- Which closure context fields are mandatory for every mode, and which remain optional mode strategy inputs without weakening evidence or replay guarantees?
-- Which shipped legacy records become compatibility observations, and which are folded into the single new receipt/effect or projection emission path?
-- Which adjudication and budget policy fields are mode overrides, and which must be fixed shared invariants to prevent a variant from bypassing fail-closed behavior?
-- Which projection fields can be shared folds while preserving the mode-owned reducer and write-set declarations frozen by `001-shared-mode-interfaces`?
+None remain for this leaf. Implementation resolved the planning questions as follows:
 
-These decisions are resolved during closure implementation and fixture authoring. They do not authorize a mode migration, authority change, or generated metadata write in this Planned phase.
+- `runtime/lib/cross-mode-closures/` owns the five closures and consumes the frozen `ModeContract` from `runtime/lib/mode-contracts/`.
+- The immutable context derives mode identity, interface version, authority posture, and declared writes from `ModeContract`; concrete fence resources are explicit bindings, raw service ports remain closure-private, and mode data and policy enter through closed overrides.
+- Projection and deep-improvement overrides declare exact output keys, while reserved safety fields are rejected recursively at every override site.
+- Shipped council, deep-loop, synthesis, and deep-improvement helpers remain legacy parity or adapter inputs. The phase-007 services remain the only new safety authorities.
+- Adjudication overrides select the service request only, budget overrides select a typed estimate only, and projection overrides return mode-owned projected fields only.
+- Stream-fold state, authorization sequence, replay identity, and fenced persistence stay shared; domain projection fields stay mode-owned.
+
+No decision here authorizes a mode migration, authority cutover, or retirement of a shipped helper.
 <!-- /ANCHOR:questions -->

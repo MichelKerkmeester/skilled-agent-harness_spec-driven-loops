@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the blocking mixed-version fixture verification contract"
-    next_safe_action: "Execute sealed mixed-version cases through reducer and parity gates"
+    last_updated_at: "2026-07-21T15:50:00Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the blocking mixed-version fixture contract"
+    next_safe_action: "Consume the sealed corpus in phase-013 mode migrations"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,73 +40,73 @@ or authority mutation fails the gate. No mixed-version evidence means no parity 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The parent outcome, adjacency, and phase-012 sequencing rules are pinned to `../../manifest/phase-tree.json`
-- [ ] CHK-002 [P0] Phase-007 sealed-reference-artifact rules and phase-008 upcaster/dual-read and shadow-parity rules are reconciled into the fixture matrix
-- [ ] CHK-003 [P0] The four required scenarios are named: `pure-old`, `pure-new`, `mid-upgrade`, and `interrupted-migration`
-- [ ] CHK-004 [P0] Event and state version inventories, supported adjacent hops, causal-boundary fields, and comparable pairs are explicit
-- [ ] CHK-005 [P1] The fixture envelope, expected-outcome schema, failure vocabulary, and stable namespace reject unknown required versions
+- [x] CHK-001 [P0] The parent outcome, adjacency, and phase-012 sequencing rules are pinned to `../../manifest/phase-tree.json` Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-002 [P0] Phase-007 sealed-reference-artifact rules and phase-008 upcaster/dual-read and shadow-parity rules are reconciled into the fixture matrix Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-003 [P0] The four required scenarios are named: `pure-old`, `pure-new`, `mid-upgrade`, and `interrupted-migration` Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-004 [P0] Event and state version inventories, supported adjacent hops, causal-boundary fields, and comparable pairs are explicit Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-005 [P1] The fixture envelope, expected-outcome schema, failure vocabulary, and stable namespace reject unknown required versions Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every case records mode/workstream, scenario, fixture/interface version, event/state versions, boundary, source identities, and expected outcome
-- [ ] CHK-007 [P0] Expected reducer and resume outcomes are authored contract evidence and are not generated from the implementation under test
-- [ ] CHK-008 [P0] Event and state versions are validated independently; unsupported pairs, guessed defaults, and implicit version inference fail closed
-- [ ] CHK-009 [P1] Upcaster observations retain stored/effective versions, exact adjacent hop traces, immutable source references, and typed errors
-- [ ] CHK-010 [P1] Fixture changes create new identities and never mutate existing sealed bytes, expected outputs, parity evidence, or certificates
+- [x] CHK-006 [P0] Every case records mode/workstream, scenario, fixture/interface version, event/state versions, boundary, source identities, and expected outcome Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-007 [P0] Expected reducer and resume outcomes are authored contract evidence and are not generated from the implementation under test Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-008 [P0] Event and state versions are validated independently; unsupported pairs, guessed defaults, and implicit version inference fail closed Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-009 [P1] Upcaster observations retain stored/effective versions, exact adjacent hop traces, immutable source references, and typed errors Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-010 [P1] Fixture changes create new identities and never mutate existing sealed bytes, expected outputs, parity evidence, or certificates Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-011 [P0] Pure-old controls read old event/state forms, preserve source evidence, and reproduce the pinned legacy expectation
-- [ ] CHK-012 [P0] Pure-new controls read current event/state forms without unnecessary upcasts and reproduce current expected outputs
-- [ ] CHK-013 [P0] Mid-upgrade fixtures contain old records before a current boundary write, new records after it, and explicit mixed state expectations
-- [ ] CHK-014 [P0] Interrupted-migration fixtures seal the stop point, pending effects, receipts, lease/fencing state, continuity identity, and restart outcome
-- [ ] CHK-015 [P0] All eight manifest rows are covered: `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment`
-- [ ] CHK-016 [P0] Deep-improvement-common is ordered before `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` in fixture and handoff outputs
-- [ ] CHK-017 [P0] Every replay-affecting input is a phase-007 verified digest reference; altered bytes, missing descriptors, aliases, mutable paths, and wrong order block execution
-- [ ] CHK-018 [P0] Supported cases apply only exact phase-008 adjacent upcaster chains and reject gaps, cycles, future versions, ambiguous shapes, lossy output, and identity mutation
-- [ ] CHK-019 [P0] Reducer fixtures verify accepted/rejected events, state transitions, terminal result, pending effects, receipts, and artifacts against authored expectations
-- [ ] CHK-020 [P0] Resume fixtures produce deterministic `upcast`, `pin-legacy`, `fork`, `migrate`, or `block` outcomes from sealed restart inputs
-- [ ] CHK-021 [P0] Legacy and dark runs consume one identical sealed capsule in isolated roots and preserve legacy authority and shadow-only effects
-- [ ] CHK-022 [P0] Replay components, reducer state, legacy projections, parity classification, and evidence identity reproduce across deterministic reruns
-- [ ] CHK-023 [P0] Input inequality, causal mismatch, missing observation, reducer divergence, projection mismatch, and nondeterminism block parity and certificate eligibility
-- [ ] CHK-024 [P1] Interrupted restarts do not duplicate accepted effects and preserve the receipt, lease/fencing, and continuity evidence set
+- [x] CHK-011 [P0] Pure-old controls read old event/state forms, preserve source evidence, and reproduce the pinned legacy expectation Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-012 [P0] Pure-new controls read current event/state forms without unnecessary upcasts and reproduce current expected outputs Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-013 [P0] Mid-upgrade fixtures contain old records before a current boundary write, new records after it, and explicit mixed state expectations Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-014 [P0] Interrupted-migration fixtures seal the stop point, pending effects, receipts, lease/fencing state, continuity identity, and restart outcome Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-015 [P0] All eight manifest rows are covered: `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment` Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-016 [P0] Deep-improvement-common is ordered before `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` in fixture and handoff outputs Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-017 [P0] Every replay-affecting input is a phase-007 verified digest reference; altered bytes, missing descriptors, aliases, mutable paths, and wrong order block execution Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-018 [P0] Supported cases apply only exact phase-008 adjacent upcaster chains and reject gaps, cycles, future versions, ambiguous shapes, lossy output, and identity mutation Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-019 [P0] Reducer fixtures verify accepted/rejected events, state transitions, terminal result, pending effects, receipts, and artifacts against authored expectations Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-020 [P0] Resume fixtures produce deterministic `upcast`, `pin-legacy`, `fork`, `migrate`, or `block` outcomes from sealed restart inputs Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-021 [P0] Legacy and dark runs consume one identical sealed capsule in isolated roots and preserve legacy authority and shadow-only effects Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-022 [P0] Replay components, reducer state, legacy projections, parity classification, and evidence identity reproduce across deterministic reruns Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-023 [P0] Input inequality, causal mismatch, missing observation, reducer divergence, projection mismatch, and nondeterminism block parity and certificate eligibility Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-024 [P1] Interrupted restarts do not duplicate accepted effects and preserve the receipt, lease/fencing, and continuity evidence set Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-025 [P0] Every required scenario/workstream row is present or has an explicit contract-backed shared-row reason; no row is silently omitted
-- [ ] CHK-026 [P1] Every repaired fixture reruns the complete affected case closure under current seal, contract, upcaster, reducer, projection, and comparator identities
-- [ ] CHK-027 [P1] No fixture failure is waived, auto-rebaselined, normalized, or closed without current green rerun evidence
+- [x] CHK-025 [P0] Every required scenario/workstream row is present or has an explicit contract-backed shared-row reason; no row is silently omitted Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-026 [P1] Every repaired fixture reruns the complete affected case closure under current seal, contract, upcaster, reducer, projection, and comparator identities Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-027 [P1] No fixture failure is waived, auto-rebaselined, normalized, or closed without current green rerun evidence Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-028 [P0] Sealed bytes are verified before release and unledgered environment values, credentials, host state, caches, and mutable aliases cannot enter a trusted case
-- [ ] CHK-029 [P0] Shadow roots and effect sinks cannot resolve to authoritative files, live services, external network effects, or the other path's mutable output
-- [ ] CHK-030 [P1] Version and divergence diagnostics are bounded and redact protected payloads and secrets while retaining reproduction digests and contract identities
-- [ ] CHK-031 [P1] Fixture, parity, and certificate APIs cannot write authority controls, disable legacy writers, or redirect authoritative readers
+- [x] CHK-028 [P0] Sealed bytes are verified before release and unledgered environment values, credentials, host state, caches, and mutable aliases cannot enter a trusted case Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-029 [P0] Shadow roots and effect sinks cannot resolve to authoritative files, live services, external network effects, or the other path's mutable output Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-030 [P1] Version and divergence diagnostics are bounded and redact protected payloads and secrets while retaining reproduction digests and contract identities Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-031 [P1] Fixture, parity, and certificate APIs cannot write authority controls, disable legacy writers, or redirect authoritative readers Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, phase-007 sealed artifacts, phase-008 upcasters, and phase-008 shadow parity
-- [ ] CHK-033 [P1] The fixture matrix records scenario family, event/state versions, causal boundary, seal identities, expected outcomes, and downstream parity use
-- [ ] CHK-034 [P2] Operator diagnostics name the case, first failing version/hop or boundary, expected/actual classification, owner, and rerun command without suggesting a waiver
+- [x] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, phase-007 sealed artifacts, phase-008 upcasters, and phase-008 shadow parity Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-033 [P1] The fixture matrix records scenario family, event/state versions, causal boundary, seal identities, expected outcomes, and downstream parity use Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-034 [P2] Operator diagnostics name the case, first failing version/hop or boundary, expected/actual classification, owner, and rerun command without suggesting a waiver Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-035 [P0] Authored changes are limited to the four phase documents; `description.json` and `graph-metadata.json` remain deterministic-tool outputs
-- [ ] CHK-036 [P1] Fixture capsules, sealed inputs, replay evidence, parity outputs, and generated caches resolve to declared isolated roots and never mutate adjacent research or phase folders
-- [ ] CHK-037 [P1] Immutable seals, expected outcomes, upcaster traces, divergence records, certificates, and audit receipts remain retained under replay and rollback policy
+- [x] CHK-035 [P0] Authored changes are limited to the new fixture module, its unit test, and this leaf's canonical documents; `description.json` and `graph-metadata.json` remain deterministic-tool outputs Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-036 [P1] Fixture capsules, sealed inputs, replay evidence, parity outputs, and generated caches resolve to declared isolated roots and never mutate adjacent research or phase folders Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
+- [x] CHK-037 [P1] Immutable seals, expected outcomes, upcaster traces, divergence records, certificates, and audit receipts remain retained under replay and rollback policy Evidence: mixed-version-fixtures.vitest.ts, the scoped runtime API, and implementation-summary.md.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

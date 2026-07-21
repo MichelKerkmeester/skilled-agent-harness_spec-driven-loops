@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T14:10:24Z"
     last_updated_by: "opencode"
-    recent_action: "Mapped the shared mode interface work into setup, contract, and verification phases"
-    next_safe_action: "Resolve the version matrix and conformance fixtures against the parent handoff"
+    recent_action: "Delivered the interface and conformance matrix"
+    next_safe_action: "Consume interface 1.0.0 from phase-013 workstreams"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/mode-contracts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +34,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop runtime contract and phase-013 mode workstreams |
-| **Change class** | Planning contract, typed interface, and fixture design |
+| **Change class** | Typed interface, compatibility policy, and executable conformance fixtures |
 | **Execution** | Freeze before phase 013; no authority change or legacy-writer removal |
 
 ### Overview
@@ -43,17 +45,17 @@ The work freezes one `ModeContract` for the eight phase-013 workstreams. The con
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent `012-shared-mode-contracts-and-fixtures` outcome and phase adjacency are recorded.
-- [ ] The phase-006 ledger/envelope contract, phase-007 service map, phase-011 convergence map, parent spec, and manifest are reconciled into one source matrix.
-- [ ] The eight phase-013 workstream names and the deep-improvement common ordering are frozen from `manifest/phase-tree.json`.
-- [ ] The contract boundary distinguishes provided mode behavior from consumed substrate ports and does not duplicate successor cross-mode closures.
-- [ ] Interface versioning and mixed-version fixture requirements are agreed before any mode migration plan consumes the contract.
+- [x] The parent `012-shared-mode-contracts-and-fixtures` outcome and phase adjacency are recorded.
+- [x] The phase-006 ledger/envelope contract, phase-007 service map, phase-011 convergence map, parent spec, and manifest are reconciled into one source matrix.
+- [x] The eight phase-013 workstream names and the deep-improvement common ordering are frozen from `manifest/phase-tree.json`.
+- [x] The contract boundary distinguishes provided mode behavior from consumed substrate ports and does not duplicate successor cross-mode closures.
+- [x] Interface versioning and mixed-version fixture requirements are fixed before any mode migration consumes the contract.
 
 ### Definition of Done
-- [ ] A typed mode contract covers event schemas, reducers, sealed artifacts, certificates, convergence hooks, resume adapters, and write sets.
-- [ ] Every phase-013 workstream has a conformance row and a declared implementation dependency on the same contract version.
-- [ ] Mixed-version, invalid-transition, partial-resume, and write-conflict fixtures have deterministic expected outcomes.
-- [ ] The handoff to phase 013 is frozen and phase 014 remains the sole authority-cutover owner.
+- [x] A typed mode contract covers event schemas, reducers, sealed artifacts, certificates, convergence hooks, resume adapters, and write sets.
+- [x] Every phase-013 workstream has a conformance row and a declared implementation dependency on interface `1.0.0`.
+- [x] Mixed-version, invalid-transition, partial-resume, and write-conflict fixtures have deterministic expected outcomes.
+- [x] The handoff to phase 013 is frozen and phase 014 remains the sole authority-cutover owner.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
