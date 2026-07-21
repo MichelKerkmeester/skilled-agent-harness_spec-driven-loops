@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-design/017-remediation-program-review",
+  "description": "Independent, multi-iteration review of the three implementation packets shipped this session under the",
+  "keywords": [
+    "independent",
+    "multi-iteration",
+    "review",
+    "three",
+    "implementation",
+    "packets",
+    "shipped",
+    "session"
+  ],
+  "lastUpdated": "2026-07-21T17:54:37.434Z",
+  "specId": "017",
+  "level": 1,
+  "folderSlug": "remediation-program-review",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

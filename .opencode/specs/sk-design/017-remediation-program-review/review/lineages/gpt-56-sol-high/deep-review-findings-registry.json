@@ -1,0 +1,600 @@
+{
+  "sessionId": "fanout-gpt-56-sol-high-1784650021792-031fvi",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-07-21T16:55:00.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+      "line": 343,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "published database open",
+        "persistent query",
+        "persistent hydration",
+        "operator status/repair"
+      ],
+      "contentHash": "sha256:b9ba3149517c5b8648902997375a7f0fd36629b93eba9523849ee381136587b8",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Manual testing playbook uses removed pre-restructure paths",
+      "file": ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+      "line": 13,
+      "description": "Mandatory scenarios and commands target nonexistent styles/_db and styles/_engine trees.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "No files exist under either documented tree; relocated engine and database suites pass at styles/tests/engine and styles/tests/database.",
+      "affectedSurfaceHints": [
+        "manual release readiness",
+        "database scenarios DB-01..08",
+        "engine regression scenario DB-03",
+        "operator evidence capture"
+      ],
+      "contentHash": "sha256:b9e796f5aa21d6a1ae1168e563d9de97c91cb090b970e3b16d3b0b62a330e066",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Parent phase map reports shipped children as planned",
+      "file": ".opencode/specs/sk-design/015-styles-database-evolution/spec.md",
+      "line": 54,
+      "description": "The parent map and next action say 001, 005, and 006 are planned/to-build while child packets report COMPLETE or IMPLEMENTED.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "All three in-scope child status surfaces contradict the parent; graph metadata has no last-active-child override.",
+      "affectedSurfaceHints": [
+        "phase resume routing",
+        "parent phase map",
+        "remaining-work selection",
+        "release status"
+      ],
+      "contentHash": "sha256:0d308b96e596fe10fa93e99ab54b690c444889a3e6ea46aa50f5c10e6c735c09",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "The database module README sends every operator command to the removed _db tree",
+      "file": ".opencode/skills/sk-design/styles/lib/database/README.md",
+      "line": 75,
+      "description": "All five supported operator examples invoke absent styles/_db/operator.mjs while the executable lives at styles/lib/database/operator.mjs.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Manifest-scoped sweep plus direct path checks proved five stale command examples, no compatibility executable, and the relocated operator present.",
+      "affectedSurfaceHints": [
+        "database operator onboarding",
+        "status/build/cutover/rollback/repair commands",
+        "adapter-mode documentation",
+        "follow-on path edits"
+      ],
+      "contentHash": "sha256:4f8ce8f7707a3903ca99232419b9c1a42f590f842819bc55f38c6850694f0b66",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "Generated packet graphs still encode pre-rewrite status and pre-restructure paths",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite/graph-metadata.json",
+      "line": 42,
+      "description": "The 012 graph remains in_progress despite IMPLEMENTED authority, while 001/004 graphs expose removed _db files as key files and entities.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Manifest-listed metadata parsed successfully; direct status/path comparison found stale current-state graph fields across 012, 001, and 004.",
+      "affectedSurfaceHints": [
+        "Spec Kit resume status",
+        "code-graph entity navigation",
+        "memory indexing",
+        "generated-metadata refresh",
+        "packet dependency discovery"
+      ],
+      "contentHash": "sha256:a5590af0fc7b364239e037d7e2c9e81056163d4a4b4cc4cf9109b49fd560975b",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Post-query generation drift is mislabeled as no-fit in every corpus consumer",
+      "file": ".opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs",
+      "line": 503,
+      "description": "All four consumers detect a post-query generation mismatch but pass no-fit into builders that already model generation-mismatch as requery-required.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All four manifest-listed production classifiers repeat the branch; 76/76 focused tests show the current no-fit behavior is stable.",
+      "affectedSurfaceHints": [
+        "audit comparison fallback",
+        "foundations relationship fallback",
+        "interface exemplar fallback",
+        "motion evidence fallback",
+        "stale-generation requery orchestration"
+      ],
+      "contentHash": "sha256:54c9b28c7c7df7e2a62a55b1b90ec639a833e2b1a651a9419dae19ce12bfccf4",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-009",
+      "severity": "P1",
+      "title": "The 10/10 shadow result does not prove full facade DTO parity",
+      "file": ".opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs",
+      "line": 115,
+      "description": "Shadow parity compares a projection and tolerates score values, ranking mode, content hash, and generation hash, so 10/10 cannot prove full facade DTO parity.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The manifest has one shadow fixture assertion and a nine-scenario persistent golden oracle, but no committed ten-query legacy/persistent full-DTO artifact.",
+      "affectedSurfaceHints": [
+        "shadow comparator",
+        "facade DTO",
+        "ten-query evidence",
+        "cutover parity gate"
+      ],
+      "contentHash": "sha256:1266283898ea8cf75f46b9740c2f1b6233f605808034fd9b582e709205ebd378",
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010",
+      "severity": "P1",
+      "title": "The p95 1150→53 ms gate is asserted without reproducible measurement evidence",
+      "file": ".opencode/specs/sk-design/015-styles-database-evolution/006-persistent-db-activation/checklist.md",
+      "line": 66,
+      "description": "The p95 1150 to 53 ms claim has no manifest-listed trace, raw samples, percentile calculation, warm/cold policy, or timing harness.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The only executable latency assertion is warmed median-of-three timing for one request over 20 synthetic styles.",
+      "affectedSurfaceHints": [
+        "performance gate",
+        "benchmark trace",
+        "warm/cold policy",
+        "percentile evidence",
+        "cutover readiness"
+      ],
+      "contentHash": "sha256:1b794e560d8acb2b82ea9a54a3ca55f09a8e590e47ef06943e555d94ac02f47c",
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-011",
+      "severity": "P1",
+      "title": "Operator options with missing values silently target defaults",
+      "file": ".opencode/skills/sk-design/styles/lib/database/operator.mjs",
+      "line": 49,
+      "description": "optionValue returns null for a present valueless option and the dispatcher coalesces missing --database to the default; a read-only status probe returned ok:true.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "All commands share optionValue for database targeting; focused tests cover valued paths, while the malformed probe reproduced default selection.",
+      "affectedSurfaceHints": [
+        "operator parser",
+        "database targeting",
+        "invalid-input exits",
+        "operator commands"
+      ],
+      "contentHash": "sha256:3d5cdfbcc2174fa2aeda6604407bc345c1d644f17246d935c12c380b593f0ec0",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-012",
+      "severity": "P1",
+      "title": "Status throws when the database parent directory is absent",
+      "file": ".opencode/skills/sk-design/styles/lib/database/operator.mjs",
+      "line": 61,
+      "description": "listGenerationPaths calls readdir before pointer absence handling; a read-only absent-parent probe returned ENOENT instead of published:false.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Status has one generation-directory enumerator; direct read and absent-parent probe reproduce the throw before its modeled absence DTO.",
+      "affectedSurfaceHints": [
+        "operator status",
+        "clean-checkout diagnostics",
+        "unpublished DTO",
+        "CLI exits"
+      ],
+      "contentHash": "sha256:e3da9a7031f43bb95ed798a490217a461b8324d0e02e718cc19f5c24e5f2caec",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Operator options with missing values silently target defaults",
+      "file": ".opencode/skills/sk-design/styles/lib/database/operator.mjs",
+      "line": 49,
+      "description": "A present --database without a value is replaced by the default path; malformed status returned success despite the invalid-input contract.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "All options share optionValue; tests cover valued happy paths and a malformed status probe reproduced default selection.",
+      "affectedSurfaceHints": [
+        "operator parser",
+        "database targeting",
+        "unknown-option rejection",
+        "CLI exits"
+      ],
+      "contentHash": "sha256:33c4f2929b9d12ee42b20ad37477562ba79232be927747e521aa6323c6543df9",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 9,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "P1-008"
+      ]
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+      "line": 343,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "published database open",
+        "persistent query",
+        "persistent hydration",
+        "operator status/repair"
+      ],
+      "contentHash": "sha256:b9ba3149517c5b8648902997375a7f0fd36629b93eba9523849ee381136587b8",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Post-query generation drift is mislabeled as no-fit in every corpus consumer",
+      "file": ".opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs",
+      "line": 503,
+      "description": "All four consumers detect a post-query generation mismatch but pass no-fit into builders that already model generation-mismatch as requery-required.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All four manifest-listed production classifiers repeat the branch; 76/76 focused tests show the current no-fit behavior is stable.",
+      "affectedSurfaceHints": [
+        "audit comparison fallback",
+        "foundations relationship fallback",
+        "interface exemplar fallback",
+        "motion evidence fallback",
+        "stale-generation requery orchestration"
+      ],
+      "contentHash": "sha256:54c9b28c7c7df7e2a62a55b1b90ec639a833e2b1a651a9419dae19ce12bfccf4",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+      "line": 343,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "published database open",
+        "persistent query",
+        "persistent hydration",
+        "operator status/repair"
+      ],
+      "contentHash": "sha256:b9ba3149517c5b8648902997375a7f0fd36629b93eba9523849ee381136587b8",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Post-query generation drift is mislabeled as no-fit in every corpus consumer",
+      "file": ".opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs",
+      "line": 503,
+      "description": "All four consumers detect a post-query generation mismatch but pass no-fit into builders that already model generation-mismatch as requery-required.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "All four manifest-listed production classifiers repeat the branch; 76/76 focused tests show the current no-fit behavior is stable.",
+      "affectedSurfaceHints": [
+        "audit comparison fallback",
+        "foundations relationship fallback",
+        "interface exemplar fallback",
+        "motion evidence fallback",
+        "stale-generation requery orchestration"
+      ],
+      "contentHash": "sha256:54c9b28c7c7df7e2a62a55b1b90ec639a833e2b1a651a9419dae19ce12bfccf4",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 10,
+    "P2": 0
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
