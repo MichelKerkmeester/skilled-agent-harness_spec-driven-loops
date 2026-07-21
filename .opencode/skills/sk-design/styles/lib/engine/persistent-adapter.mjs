@@ -6,11 +6,11 @@ import { createHash } from 'node:crypto';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 
-import { queryPersistentStyles, retrievalInternals } from '../_db/retrieval.mjs';
+import { queryPersistentStyles, retrievalInternals } from '../database/retrieval.mjs';
 import {
   DEFAULT_STYLE_DATABASE_PATH,
   openPublishedStyleDatabase,
-} from '../_db/schema.mjs';
+} from '../database/schema.mjs';
 import { modeIncludes } from './hydrate.mjs';
 
 export const STYLE_DATABASE_MODES = Object.freeze(['legacy', 'shadow', 'persistent']);

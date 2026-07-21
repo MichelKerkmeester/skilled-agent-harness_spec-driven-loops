@@ -16,8 +16,8 @@ import path from 'node:path';
 import {
   writeFixtureCrawlManifest,
   writeFixtureStyle,
-} from '../../_engine/__tests__/fixtures.mjs';
-import { HASH_PREFIX, compareRawStrings, digest, stableJson } from '../canonical.mjs';
+} from '../engine/fixtures.mjs';
+import { HASH_PREFIX, compareRawStrings, digest, stableJson } from '../../lib/database/canonical.mjs';
 import { buildOracleDatabase, captureOracle } from './differential-oracle.mjs';
 import { ORACLE_QUERY_SET } from './query-set.mjs';
 

@@ -9,9 +9,9 @@ import test from 'node:test';
 import {
   appendDesignText,
   createFixtureCorpus,
-} from '../../_engine/__tests__/fixtures.mjs';
-import { runStyleDatabaseOperator } from '../operator.mjs';
-import { resolvePublishedDatabasePath } from '../schema.mjs';
+} from '../engine/fixtures.mjs';
+import { runStyleDatabaseOperator } from '../../lib/database/operator.mjs';
+import { resolvePublishedDatabasePath } from '../../lib/database/schema.mjs';
 
 test('operator commands retain only the current and rollback generations', async (context) => {
   const fixture = await createFixtureCorpus();

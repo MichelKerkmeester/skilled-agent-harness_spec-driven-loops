@@ -26,7 +26,7 @@ import {
   dispatchStyleHydrate,
   dispatchStyleQuery,
 } from './persistent-adapter.mjs';
-import { RETRIEVAL_MANIFEST_PATH, STYLES_ROOT } from '../lib/paths.mjs';
+import { RETRIEVAL_MANIFEST_PATH, STYLES_ROOT } from '../paths.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

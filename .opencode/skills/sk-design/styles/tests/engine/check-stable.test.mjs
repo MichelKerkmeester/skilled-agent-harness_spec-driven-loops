@@ -8,7 +8,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
-import { runBuild, runQuery } from '../style-library.mjs';
+import { runBuild, runQuery } from '../../lib/engine/style-library.mjs';
 import { STYLE_ALPHA, createFixtureCorpus } from './fixtures.mjs';
 
 test('build --check is byte-stable and never writes', async (context) => {
@@ -32,7 +32,7 @@ test('build --check is byte-stable under a Turkish process locale', async (conte
   const manifestPath = path.join(fixture.root, '_retrieval-manifest.json');
   await runBuild(['--write'], { corpusRoot: fixture.root, manifestPath });
   const committedBytes = await readFile(manifestPath, 'utf8');
-  const moduleUrl = new URL('../style-library.mjs', import.meta.url).href;
+  const moduleUrl = new URL('../../lib/engine/style-library.mjs', import.meta.url).href;
   const script = `
     import { runBuild } from ${JSON.stringify(moduleUrl)};
     const result = await runBuild(['--check'], {

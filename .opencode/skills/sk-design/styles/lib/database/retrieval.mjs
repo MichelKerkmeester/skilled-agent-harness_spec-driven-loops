@@ -2,7 +2,7 @@
 // ║ Generation-Bound Persistent Style Retrieval                             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-import { assembleCandidateCards } from '../_engine/cards.mjs';
+import { assembleCandidateCards } from '../engine/cards.mjs';
 import { compareRawStrings, digest, stableJson } from './canonical.mjs';
 import { RESIDENCY } from './stage-telemetry.mjs';
 import {

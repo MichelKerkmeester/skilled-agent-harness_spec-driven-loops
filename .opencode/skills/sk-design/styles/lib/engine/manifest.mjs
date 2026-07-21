@@ -21,7 +21,7 @@ import {
 import path from 'node:path';
 
 import { compareRawStrings } from './ordering.mjs';
-import { CRAWL_MANIFEST_FILENAME, RETRIEVAL_MANIFEST_FILENAME } from '../lib/paths.mjs';
+import { CRAWL_MANIFEST_FILENAME, RETRIEVAL_MANIFEST_FILENAME } from '../paths.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

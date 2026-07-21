@@ -7,12 +7,12 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
-import { createFixtureCorpus } from '../../_engine/__tests__/fixtures.mjs';
-import { stableJson } from '../canonical.mjs';
-import { indexStyleCorpus } from '../indexer.mjs';
-import { queryPersistentStyles } from '../retrieval.mjs';
-import { openStyleDatabase } from '../schema.mjs';
-import { RESIDENCY, createStageRecorder } from '../stage-telemetry.mjs';
+import { createFixtureCorpus } from '../engine/fixtures.mjs';
+import { stableJson } from '../../lib/database/canonical.mjs';
+import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
+import { queryPersistentStyles } from '../../lib/database/retrieval.mjs';
+import { openStyleDatabase } from '../../lib/database/schema.mjs';
+import { RESIDENCY, createStageRecorder } from '../../lib/database/stage-telemetry.mjs';
 import {
   DEFAULT_GOLDEN_DIR,
   buildOracleDatabase,
@@ -136,7 +136,7 @@ test('query telemetry brackets each native SQL and JS-resident step in its true 
 
 test('the vector lane splits its native fetch from JS-resident cosine work', async (context) => {
   const { database } = await createIndexedFixture(context);
-  const { drainVectorQueue } = await import('../vectors.mjs');
+  const { drainVectorQueue } = await import('../../lib/database/vectors.mjs');
   await drainVectorQueue(database, {
     profileId: 'style-default-v1',
     embedder: async (text) => (text.includes('Alpha Editorial') ? [1, 0] : [0, 1]),

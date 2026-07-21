@@ -6,8 +6,8 @@ import assert from 'node:assert/strict';
 import { performance } from 'node:perf_hooks';
 import test from 'node:test';
 
-import { runHydrate, runQuery } from '../../_engine/style-library.mjs';
-import { resolveStyleDatabaseMode } from '../../_engine/persistent-adapter.mjs';
+import { runHydrate, runQuery } from '../../lib/engine/style-library.mjs';
+import { resolveStyleDatabaseMode } from '../../lib/engine/persistent-adapter.mjs';
 import { createIndexedFixture } from './fixtures.mjs';
 
 function timingStyles(count) {

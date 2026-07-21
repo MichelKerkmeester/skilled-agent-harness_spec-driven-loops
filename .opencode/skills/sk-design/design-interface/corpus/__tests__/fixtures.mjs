@@ -22,7 +22,7 @@ import {
 import {
   STYLE_ALPHA,
   STYLE_BETA,
-} from '../../../styles/_engine/__tests__/fixtures.mjs';
+} from '../../../styles/tests/engine/fixtures.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURE BUILDERS

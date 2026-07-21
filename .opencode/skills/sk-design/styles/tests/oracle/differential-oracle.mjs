@@ -13,11 +13,11 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { digest, stableJson } from '../canonical.mjs';
-import { indexStyleCorpus } from '../indexer.mjs';
-import { queryPersistentStyles } from '../retrieval.mjs';
-import { openStyleDatabase } from '../schema.mjs';
-import { drainVectorQueue } from '../vectors.mjs';
+import { digest, stableJson } from '../../lib/database/canonical.mjs';
+import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
+import { queryPersistentStyles } from '../../lib/database/retrieval.mjs';
+import { openStyleDatabase } from '../../lib/database/schema.mjs';
+import { drainVectorQueue } from '../../lib/database/vectors.mjs';
 import { ORACLE_QUERY_SET, ORACLE_VECTOR_PROFILE, oracleEmbedder } from './query-set.mjs';
 
 export const DEFAULT_GOLDEN_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), 'golden');

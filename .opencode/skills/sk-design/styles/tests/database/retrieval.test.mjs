@@ -5,14 +5,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { indexStyleCorpus } from '../indexer.mjs';
-import { queryPersistentStyles, weightedRrf } from '../retrieval.mjs';
-import { openStyleDatabase } from '../schema.mjs';
+import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
+import { queryPersistentStyles, weightedRrf } from '../../lib/database/retrieval.mjs';
+import { openStyleDatabase } from '../../lib/database/schema.mjs';
 import {
   drainVectorQueue,
   rebuildVectorProjection,
   registerEmbeddingProfile,
-} from '../vectors.mjs';
+} from '../../lib/database/vectors.mjs';
 import { STYLE_ALPHA, STYLE_BETA, createIndexedFixture } from './fixtures.mjs';
 
 test('weighted RRF is rank-only, attributed, and UUID deterministic', () => {

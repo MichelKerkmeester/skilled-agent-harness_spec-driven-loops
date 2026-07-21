@@ -5,12 +5,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { assembleCandidateCards, candidateCardBytes } from '../cards.mjs';
+import { assembleCandidateCards, candidateCardBytes } from '../../lib/engine/cards.mjs';
 import {
   CORPUS_USE_PROOF_SCHEMA,
   gateCorpusInfluencedReadyClaim,
   validateCorpusUseProof,
-} from '../corpus-use-proof.mjs';
+} from '../../lib/engine/corpus-use-proof.mjs';
 
 const HASH_A = `sha256:${'a'.repeat(64)}`;
 const HASH_B = `sha256:${'b'.repeat(64)}`;

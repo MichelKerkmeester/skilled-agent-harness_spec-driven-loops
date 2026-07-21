@@ -14,10 +14,10 @@ import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-import { compareRawStrings } from '../canonical.mjs';
-import { indexStyleCorpus } from '../indexer.mjs';
-import { queryPersistentStyles } from '../retrieval.mjs';
-import { openStyleDatabase } from '../schema.mjs';
+import { compareRawStrings } from '../../lib/database/canonical.mjs';
+import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
+import { queryPersistentStyles } from '../../lib/database/retrieval.mjs';
+import { openStyleDatabase } from '../../lib/database/schema.mjs';
 
 export const JUDGMENT_LABEL_SOURCES = Object.freeze(['authored-similar', 'silver-heuristic']);
 export const JUDGMENT_SEED_VERSION = 1;

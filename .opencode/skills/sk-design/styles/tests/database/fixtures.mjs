@@ -8,10 +8,10 @@ import {
   STYLE_ALPHA,
   STYLE_BETA,
   createFixtureCorpus,
-} from '../../_engine/__tests__/fixtures.mjs';
-import { runBuild } from '../../_engine/style-library.mjs';
-import { indexStyleCorpus } from '../indexer.mjs';
-import { openStyleDatabase } from '../schema.mjs';
+} from '../engine/fixtures.mjs';
+import { runBuild } from '../../lib/engine/style-library.mjs';
+import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
+import { openStyleDatabase } from '../../lib/database/schema.mjs';
 
 export { STYLE_ALPHA, STYLE_BETA };
 

@@ -9,9 +9,9 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { createFixtureCorpus } from '../../_engine/__tests__/fixtures.mjs';
-import { buildStyleDatabase } from '../indexer.mjs';
-import { resolvePublishedDatabasePath, STYLE_DATABASE_POINTER_SUFFIX } from '../schema.mjs';
+import { createFixtureCorpus } from '../engine/fixtures.mjs';
+import { buildStyleDatabase } from '../../lib/database/indexer.mjs';
+import { resolvePublishedDatabasePath, STYLE_DATABASE_POINTER_SUFFIX } from '../../lib/database/schema.mjs';
 import {
   buildManifest,
   hashArtifactFile,
@@ -20,7 +20,7 @@ import {
   resolveManifestArtifacts,
   resolvePublishedTarget,
   writeManifestPointer,
-} from '../generation-manifest.mjs';
+} from '../../lib/database/generation-manifest.mjs';
 
 async function scratchDir() {
   const base = await mkdtemp(path.join(os.tmpdir(), 'style-manifest-'));
@@ -59,7 +59,7 @@ test('an interrupted publish leaves the prior manifest fully readable', async (c
   const databasePath = path.join(fixture.base, 'interrupted-style.sqlite');
   const first = await buildStyleDatabase({ corpusRoot: fixture.root, databasePath });
 
-  const { appendDesignText } = await import('../../_engine/__tests__/fixtures.mjs');
+  const { appendDesignText } = await import('../engine/fixtures.mjs');
   await appendDesignText(fixture.root, 'alpha', 'An interrupted second generation.');
   await assert.rejects(buildStyleDatabase({
     corpusRoot: fixture.root,

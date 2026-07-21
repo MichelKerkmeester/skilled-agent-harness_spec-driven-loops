@@ -14,7 +14,7 @@ import {
 } from 'node:fs/promises';
 import path from 'node:path';
 
-import { CRAWL_MANIFEST_FILENAME } from '../lib/paths.mjs';
+import { CRAWL_MANIFEST_FILENAME } from '../paths.mjs';
 import {
   compareRawStrings,
   digest,

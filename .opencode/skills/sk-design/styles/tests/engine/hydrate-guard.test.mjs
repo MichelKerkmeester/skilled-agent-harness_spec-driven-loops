@@ -8,9 +8,9 @@ import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
-import { bindHydrationManifest, hydrateStyle } from '../hydrate.mjs';
-import { buildManifest } from '../manifest.mjs';
-import { runBuild, runHydrate } from '../style-library.mjs';
+import { bindHydrationManifest, hydrateStyle } from '../../lib/engine/hydrate.mjs';
+import { buildManifest } from '../../lib/engine/manifest.mjs';
+import { runBuild, runHydrate } from '../../lib/engine/style-library.mjs';
 import { STYLE_ALPHA, STYLE_BETA, createFixtureCorpus } from './fixtures.mjs';
 
 function artifactDigest(content) {

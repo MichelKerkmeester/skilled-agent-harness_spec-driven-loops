@@ -8,15 +8,15 @@ import { DatabaseSync } from 'node:sqlite';
 import path from 'node:path';
 import test from 'node:test';
 
-import { createFixtureCorpus } from '../../_engine/__tests__/fixtures.mjs';
-import { buildStyleDatabase } from '../indexer.mjs';
-import { queryPersistentStyles } from '../retrieval.mjs';
+import { createFixtureCorpus } from '../engine/fixtures.mjs';
+import { buildStyleDatabase } from '../../lib/database/indexer.mjs';
+import { queryPersistentStyles } from '../../lib/database/retrieval.mjs';
 import {
   STYLE_DATABASE_POINTER_SUFFIX,
   STYLE_DB_SCHEMA_VERSION,
   createSchema,
   resolvePublishedDatabasePath,
-} from '../schema.mjs';
+} from '../../lib/database/schema.mjs';
 import { createIndexedFixture } from './fixtures.mjs';
 
 test('version one index state migrates to the current schema', () => {

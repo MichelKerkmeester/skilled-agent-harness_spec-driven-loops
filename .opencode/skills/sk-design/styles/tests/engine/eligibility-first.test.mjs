@@ -6,10 +6,10 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import test from 'node:test';
 
-import { applyEligibility } from '../eligibility.mjs';
-import { buildManifest } from '../manifest.mjs';
-import { rankEligibleStyles } from '../rank-fts.mjs';
-import { runBuild, runQuery } from '../style-library.mjs';
+import { applyEligibility } from '../../lib/engine/eligibility.mjs';
+import { buildManifest } from '../../lib/engine/manifest.mjs';
+import { rankEligibleStyles } from '../../lib/engine/rank-fts.mjs';
+import { runBuild, runQuery } from '../../lib/engine/style-library.mjs';
 import { STYLE_ALPHA, STYLE_BETA, createFixtureCorpus } from './fixtures.mjs';
 
 test('lexical score cannot reintroduce an ineligible style', async (context) => {

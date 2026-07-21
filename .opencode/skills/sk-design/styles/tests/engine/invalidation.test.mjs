@@ -16,7 +16,7 @@ import {
   loadManifest,
   manifestErrorResult,
   writeManifestAtomic,
-} from '../manifest.mjs';
+} from '../../lib/engine/manifest.mjs';
 import {
   STYLE_ALPHA,
   STYLE_BETA,

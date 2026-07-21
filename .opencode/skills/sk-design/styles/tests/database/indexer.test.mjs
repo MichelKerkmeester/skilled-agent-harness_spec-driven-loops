@@ -11,14 +11,14 @@ import test from 'node:test';
 import {
   appendDesignText,
   createFixtureCorpus,
-} from '../../_engine/__tests__/fixtures.mjs';
+} from '../engine/fixtures.mjs';
 import {
   buildStyleDatabase,
   indexStyleCorpus,
   indexerInternals,
   rollbackStyleDatabase,
-} from '../indexer.mjs';
-import { openStyleDatabase, resolvePublishedDatabasePath } from '../schema.mjs';
+} from '../../lib/database/indexer.mjs';
+import { openStyleDatabase, resolvePublishedDatabasePath } from '../../lib/database/schema.mjs';
 import { createIndexedFixture } from './fixtures.mjs';
 
 function legacyGenerationHash(crawlManifestHash, styles) {

@@ -8,8 +8,8 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { createFixtureCorpus } from '../../_engine/__tests__/fixtures.mjs';
-import { stableJson } from '../canonical.mjs';
+import { createFixtureCorpus } from '../engine/fixtures.mjs';
+import { stableJson } from '../../lib/database/canonical.mjs';
 import {
   DEFAULT_GOLDEN_DIR,
   buildOracleDatabase,
@@ -27,7 +27,7 @@ import {
   captureScaleOracle,
   materializeReplayCorpus,
 } from '../oracle/replay-fixtures.mjs';
-import { queryPersistentStyles } from '../retrieval.mjs';
+import { queryPersistentStyles } from '../../lib/database/retrieval.mjs';
 
 async function goldenScratch() {
   return mkdtemp(path.join(os.tmpdir(), 'style-oracle-golden-'));

@@ -5,9 +5,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { applyEligibility } from '../eligibility.mjs';
-import { buildManifest } from '../manifest.mjs';
-import { rankEligibleStyles } from '../rank-fts.mjs';
+import { applyEligibility } from '../../lib/engine/eligibility.mjs';
+import { buildManifest } from '../../lib/engine/manifest.mjs';
+import { rankEligibleStyles } from '../../lib/engine/rank-fts.mjs';
 import { STYLE_ALPHA, createFixtureCorpus } from './fixtures.mjs';
 
 test('absent and stale accelerators use the bounded degraded source scan', async (context) => {
