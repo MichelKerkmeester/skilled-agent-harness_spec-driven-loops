@@ -11,13 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T04:08:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the canonical dispatch-receipt planning contract"
-    next_safe_action: "Implement pre-spawn ledger append and resume duplicate detection"
+    recent_action: "Implemented and verified the additive-dark dispatch-receipt barrier and resume projection"
+    next_safe_action: "Integrate through a later authorized leaf"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented and verified (additive-dark) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-009 durable fan-out/fan-in parent; promotes the phase-005 adapter fingerprint into durable state |
@@ -114,6 +118,17 @@ This phase composes those contracts into one canonical pre-spawn event, `lineage
 | Append evidence | ledger ID, committed sequence, event hash, resulting head, authorization proof reference | Returned by the ledger append receipt and exposed with, not self-embedded inside, the pre-append payload |
 <!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:implementation-evidence -->
+### Implementation Evidence
+
+- The closed version-one event definition and builder live in `runtime/lib/dispatch-receipts/event-contract.ts`.
+- The ordered durable spawn barrier lives in `runtime/lib/dispatch-receipts/dispatch-barrier.ts` and requires the phase-007 authorized evidence writer.
+- Exact phase-005 fingerprint verification lives in `runtime/lib/dispatch-receipts/fingerprint.ts`; no second invocation fingerprint is stored.
+- Ledger-only, advisory HMAC, and durable-provider integrity profiles live in `runtime/lib/dispatch-receipts/integrity.ts`.
+- Verified replay and explicit absent, result-recorded, unresolved, conflict, and corrupt decisions live in `runtime/lib/dispatch-receipts/resume-projection.ts`.
+- `runtime/tests/unit/dispatch-receipts.vitest.ts` passes 26 tests covering all four executor kinds, durable ordering, exact and concurrent retry, changed-fact conflicts, canonicalization, secret canaries, honest crypto labeling, resume state, crash cuts, and corrupt evidence.
+<!-- /ANCHOR:implementation-evidence -->
+
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
@@ -146,5 +161,5 @@ This child declares `depends_on: []` because the phase-009 sibling planning cont
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may finalize module names, the registered event-version number, and the durable MAC provider after phase-006/004 interfaces materialize. It may not weaken pre-spawn durability, exact fingerprint promotion, idempotent conflict detection, secret exclusion, honest verifier labeling, unresolved receipt recovery, or the additive-dark authority boundary.
+None. The implementation finalized the module as `runtime/lib/dispatch-receipts/`, registered event version 1, and kept durable MAC verification provider-driven. Process-local HMAC remains advisory, and the ledger remains the durable integrity authority.
 <!-- /ANCHOR:questions -->

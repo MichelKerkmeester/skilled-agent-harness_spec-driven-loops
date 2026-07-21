@@ -19,7 +19,10 @@
       "canonical dispatch receipts tasks",
       "pre-spawn receipt tasks",
       "canonical dispatch receipts checklist",
-      "pre-spawn receipt verification"
+      "pre-spawn receipt verification",
+      "canonical dispatch receipts implementation",
+      "durable pre-spawn receipt complete",
+      "dispatch receipt resume projection"
     ],
     "key_topics": [
       "canonical",
@@ -36,19 +39,42 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts"
     ],
     "entities": [
       {
-        "name": "receipt-crypto.ts",
+        "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-barrier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-receipts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
         "source": "derived"
       },
       {
@@ -76,6 +102,18 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipt-crypto.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "an",
-        "kind": "key_phrase",
+        "name": "Implementation Evidence",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "changed",
+        "name": "an",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -158,55 +196,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "explicit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
     "created_at": "2026-07-16T03:43:49.798Z",
-    "last_save_at": "2026-07-19T18:01:22.256Z",
+    "last_save_at": "2026-07-21T04:09:10.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a34ae78e0cd476a1dadde5fee7b0a17cf72323df3c066fca8e04856cbc22d622",
+    "source_fingerprint": "sha256:05a2627739b2eac2b9ac0fffa23b0642005e50aabe15fd06a16da9784597226a",
     "source_doc_hashes": {
-      "spec.md": "8818662f82ce788946594195bae623a3aaab96cb9e6c491501c143c7824b8c65",
-      "plan.md": "820798f70fadb703f486399ee80fcfefad3f27d8229495d83e97c6def3d5588d",
-      "tasks.md": "a82c4e52c74fe2571d5f5d416606fcd206bc95a54d8739dee62d2031c4043990",
-      "checklist.md": "5d71b97c88cfaf24cb3c3c02be9175262c3a889e20d3e4f56c38a008534f1561"
+      "spec.md": "50f74e0d3b8e459ef870f21fd722e7236b79ed85f360e8b92dd016afd9ae1b9a",
+      "plan.md": "f3853498f5314aaeeed55610e89257ea60ab4832a0b2d9527e48612917b96c16",
+      "tasks.md": "09fbc9bb881fb26f365b0d7fd97ba264339fb455cd050dd34b761b8a7da6830a",
+      "checklist.md": "b68d551e297984fdb772140e53d656713b042e55e94a6c9348734fc7813c73ef",
+      "implementation-summary.md": "4386254d0b1b2897c6189d9cdde0dd714fe3e1ccdfade8633b09c0cf90103c0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

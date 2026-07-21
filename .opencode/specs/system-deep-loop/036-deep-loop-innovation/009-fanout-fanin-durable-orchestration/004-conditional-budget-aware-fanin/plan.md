@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin"
-    last_updated_at: "2026-07-15T14:48:00Z"
+    last_updated_at: "2026-07-21T05:20:03Z"
     last_updated_by: "codex"
-    recent_action: "Defined the fan-in decision architecture, stop precedence, and verifier strategy"
-    next_safe_action: "Implement the decision reducer and cancel-salvage state transitions"
+    recent_action: "Implemented and verified the additive-dark conditional fan-in leaf"
+    next_safe_action: "Preserve wait-for-all authority until a later cutover packet explicitly adopts fan-in decisions"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +37,7 @@ _memory:
 | **Execution** | Additive-dark implementation with replay and shadow-parity fixtures |
 
 ### Overview
-Replace the current implicit wait-for-all join with a versioned decision reducer that evaluates accepted durable
+Add a dark versioned decision reducer beside the current implicit wait-for-all join. It evaluates accepted durable
 results, outstanding branch state, partial-failure eligibility, sufficiency evidence, and the phase-007 typed-budget
 snapshot at one ledger event cut. The reducer either keeps awaiting or finalizes an immutable decision that dispositions
 outstanding leaves and hands an exact ordered result set to reduction. Current \`fanout-run.cjs\` behavior remains the
@@ -46,19 +48,19 @@ shadow baseline until later program gates authorize cutover.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Typed budget reservation and settlement interfaces expose all four dimensions, ancestor denials, and stable snapshot references
-- [ ] Durable result envelopes, logical branch IDs, dispatch/attempt IDs, leases, and wave identities are frozen
-- [ ] Partial-failure policy exposes typed branch/result eligibility without owning fan-in finalization
-- [ ] Reduction exposes an input contract bound to ordered result-envelope IDs and a digest
-- [ ] The current wait-for-all summary behavior in \`fanout-run.cjs\` has pinned shadow fixtures
+- [x] Typed budget reservation and settlement interfaces expose all four dimensions, ancestor denials, and stable snapshot references [EVIDENCE: implementation-summary.md; conditional-fanin.vitest.ts]
+- [x] Durable result envelopes, logical branch IDs, dispatch/attempt IDs, leases, and wave identities are frozen [EVIDENCE: imported sibling public contracts in runtime/lib/conditional-fanin/types.ts]
+- [x] Partial-failure policy exposes typed branch/result eligibility without owning fan-in finalization [EVIDENCE: policy.ts; decision-view.ts]
+- [x] Reduction exposes an input contract bound to ordered result-envelope IDs and a digest [EVIDENCE: reduction.ts; conditional-fanin.vitest.ts]
+- [x] The current wait-for-all summary behavior in \`fanout-run.cjs\` has pinned shadow fixtures [EVIDENCE: shadow-adapter.ts; conditional-fanin.vitest.ts]
 
 ### Definition of Done
-- [ ] Await/stop evaluation is deterministic at an event-sequence cut and records every satisfied trigger
-- [ ] Sufficiency requires count, support, and provenance-diversity evidence
-- [ ] Budget floor uses atomic typed admission for another useful result plus settlement margin
-- [ ] Queued, reserved, cancellable, non-cancellable, late, failed, and expired leaves have explicit dispositions
-- [ ] Finalized decisions replay to the same reducer-input digest and cannot be mutated by late results
-- [ ] Conditional fan-in stays dark until shadow parity and later cutover gates pass
+- [x] Await/stop evaluation is deterministic at an event-sequence cut and records every satisfied trigger [EVIDENCE: decision.ts; conditional-fanin.vitest.ts]
+- [x] Sufficiency requires count, support, and provenance-diversity evidence [EVIDENCE: sufficiency.ts; conditional-fanin.vitest.ts]
+- [x] Budget floor uses atomic typed admission for another useful result plus settlement margin [EVIDENCE: budget-continuation.ts; 16 scope/dimension fixtures]
+- [x] Queued, reserved, cancellable, non-cancellable, late, failed, and expired leaves have explicit dispositions [EVIDENCE: disposition.ts; decision-view.ts; conditional-fanin.vitest.ts]
+- [x] Finalized decisions replay to the same reducer-input digest and cannot be mutated by late results [EVIDENCE: decision.ts; reduction.ts; conditional-fanin.vitest.ts]
+- [x] Conditional fan-in stays dark until shadow parity and later cutover gates pass [EVIDENCE: shadow-adapter.ts; unchanged fanout-run.cjs]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

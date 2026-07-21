@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:45:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the deterministic reducer architecture and test strategy"
-    next_safe_action: "Implement the versioned reducer and permutation-invariance fixtures"
+    recent_action: "Delivered the deterministic reducer, replay evidence, and adversarial fixtures"
+    next_safe_action: "Keep the reducer shadow-only until compatibility activation"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,19 +48,19 @@ phase-007 blinded adjudication service returns a stable merge verdict.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The canonical result-envelope and logical-branch provenance fields are identified at their sibling contract boundaries
-- [ ] The normalization, source-bucket, rational-weight, quota, and output-cap policies have explicit versions and schemas
-- [ ] Exact duplicate, conflicting duplicate, uncertain equivalence, and invalid-provenance behaviors have typed outcomes
-- [ ] The blinded-adjudication request/response boundary is mapped without exposing producer identity to judges
-- [ ] Permutation, duplicate-flood, cloned-source, partial-survivor, resume, and salvage fixtures are specified
-- [ ] Legacy fan-in authority and the additive-dark shadow boundary are identified
+- [x] The canonical result-envelope and logical-branch provenance fields are identified at their sibling contract boundaries
+- [x] The normalization, source-bucket, rational-weight, quota, and output-cap policies have explicit versions and schemas
+- [x] Exact duplicate, conflicting duplicate, uncertain equivalence, and invalid-provenance behaviors have typed outcomes
+- [x] The blinded-adjudication request/response boundary is mapped without exposing producer identity to judges
+- [x] Permutation, duplicate-flood, cloned-source, partial-survivor, resume, and salvage fixtures are specified
+- [x] Legacy fan-in authority and the additive-dark shadow boundary are identified
 
 ### Definition of Done
-- [ ] Provenance-complete surviving inputs reduce into one canonical, source-balanced output with no silent loss
-- [ ] One prolific or cloned source cannot consume another eligible source bucket's share or inflate effective support
-- [ ] Replay over any non-semantic input ordering produces byte-identical output and receipt digests
-- [ ] Contested merges fail closed and every selected, merged, deferred, conflicted, invalid, or excluded item remains traceable
-- [ ] Shadow execution emits complete ledger evidence without changing legacy authority
+- [x] Provenance-complete surviving inputs reduce into one canonical, source-balanced output with no silent loss
+- [x] One prolific or cloned source cannot consume another eligible source bucket's share or inflate effective support
+- [x] Replay over any non-semantic input ordering produces byte-identical output and receipt digests
+- [x] Contested merges fail closed and every selected, merged, deferred, conflicted, invalid, or excluded item remains traceable
+- [x] Shadow execution emits complete ledger evidence without changing legacy authority
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

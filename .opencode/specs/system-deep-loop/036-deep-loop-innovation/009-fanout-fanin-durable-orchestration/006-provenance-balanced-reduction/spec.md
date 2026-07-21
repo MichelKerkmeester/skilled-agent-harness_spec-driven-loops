@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:45:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the planned provenance-balanced reduction contract and verifier gates"
-    next_safe_action: "Implement deterministic source-balanced merge and contested-dedup fixtures"
+    recent_action: "Completed the additive-dark provenance-balanced reduction leaf"
+    next_safe_action: "Keep legacy fan-in authoritative until a later activation gate"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Sixth child of the phase-009 fan-out / fan-in durable-orchestration parent |

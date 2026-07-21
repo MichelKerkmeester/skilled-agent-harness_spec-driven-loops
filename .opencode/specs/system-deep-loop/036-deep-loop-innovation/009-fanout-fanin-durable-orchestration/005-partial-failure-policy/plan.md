@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:06:00Z"
     last_updated_by: "codex"
-    recent_action: "Planned typed failure and degradation policy components"
-    next_safe_action: "Implement the evaluator behind the compatibility boundary"
+    recent_action: "Delivered the additive-dark implementation plan"
+    next_safe_action: "Keep the typed policy dark until compatibility activation"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,8 +35,8 @@ _memory:
 | **Execution** | Additive and dark behind the phase-008 compatibility boundary |
 
 ### Overview
-Replace the current implicit rule in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`—`partial`
-whenever at least one leaf fails, without a fan-in sufficiency verdict—with a pure, versioned evaluator. The evaluator
+Add a pure, versioned evaluator beside the current implicit rule in
+`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` without changing that rule's authority. The evaluator
 classifies terminal leaf failures, applies a default two-thirds quorum or an explicit strict/deadline/progressive mode,
 and writes an idempotent policy receipt. It leaves child 004 responsible for the await set and budget boundary, and
 child 006 responsible for provenance weighting and synthesis.
@@ -46,17 +46,17 @@ child 006 responsible for provenance weighting and synthesis.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 003's protected-contract-versus-known-defect classification for current partial summaries is available
-- [ ] Phase 004's event namespace and replay-version policy are frozen
-- [ ] Canonical dispatch receipts and result envelopes expose stable run, branch, dispatch, and attempt identities
-- [ ] Child 004's await-set and decision-boundary interface is explicit
-- [ ] The two-thirds default and fatal override list are accepted as versioned policy inputs
+- [x] Phase 003's protected-contract-versus-known-defect classification for current partial summaries is available
+- [x] Phase 004's event namespace and replay-version policy are frozen
+- [x] Canonical dispatch receipts and result envelopes expose stable run, branch, dispatch, and attempt identities
+- [x] Child 004's await-set and decision-boundary interface is explicit
+- [x] The two-thirds default and fatal override list are accepted as versioned policy inputs
 
 ### Definition of Done
-- [ ] Every terminal failed admitted leaf has one typed, bounded, idempotent failure record
-- [ ] Strict, quorum, deadline, and progressive modes produce deterministic verdict receipts
-- [ ] Degraded results are explicit; aborted runs cannot invoke reduction
-- [ ] Ledger replay, crash/restart, retry, late-result, and threshold-boundary suites pass
+- [x] Every terminal failed admitted leaf has one typed, bounded, idempotent failure record
+- [x] Strict, quorum, deadline, and progressive modes produce deterministic verdict receipts
+- [x] Degraded results are explicit; aborted runs cannot invoke reduction
+- [x] Ledger replay, crash/restart, retry, late-result, and threshold-boundary suites pass
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

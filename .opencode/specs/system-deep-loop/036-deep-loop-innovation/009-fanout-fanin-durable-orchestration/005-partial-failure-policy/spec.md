@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    last_updated_at: "2026-07-21T08:06:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the partial-failure policy planning contract"
-    next_safe_action: "Implement typed failure evaluation and ledger verdicts"
+    recent_action: "Completed the partial-failure policy contract"
+    next_safe_action: "Keep the typed policy dark until compatibility activation"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Child 005 of durable fan-out/fan-in orchestration in `manifest/phase-tree.json` |

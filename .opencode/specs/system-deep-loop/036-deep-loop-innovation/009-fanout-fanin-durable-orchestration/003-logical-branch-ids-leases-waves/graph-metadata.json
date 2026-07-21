@@ -19,7 +19,9 @@
       "logical branch ids leases waves tasks",
       "fenced wave scheduling tasks",
       "logical branch ids leases waves checklist",
-      "durable fanout lease verification"
+      "durable fanout lease verification",
+      "logical branch lease implementation",
+      "durable wave scheduler evidence"
     ],
     "key_topics": [
       "logical",
@@ -36,26 +38,29 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
     ],
     "entities": [
       {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts",
         "source": "derived"
       },
       {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "name": "branch-leases-waves.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts",
         "source": "derived"
       },
       {
@@ -80,6 +85,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
         "source": "derived"
       },
       {
@@ -171,43 +194,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable.",
+    "causal_summary": "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable.",
     "created_at": "2026-07-16T03:43:50.306Z",
-    "last_save_at": "2026-07-19T18:01:20.494Z",
+    "last_save_at": "2026-07-21T04:55:26.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c22a540f3d73b39df4a641dc0dfc1deae9cbb1c7d572a6cefbffa8f88e4aa39c",
+    "source_fingerprint": "sha256:58a2f015da377c3c301faa7cc60f7ff813dee1ecb5470336f48f10218b6e3686",
     "source_doc_hashes": {
-      "spec.md": "f079671c3ce017c1e907220e407ff0f82c0b8be154407d925b99520e36b87ab7",
-      "plan.md": "5e0e292ff506c08312070b1ca7a5f602ced59c6216d4b8c37b2873347d2c54bd",
-      "tasks.md": "180169acecefd98b225702e69e173688dba99f8da59a57685e47808fe2c3df3d",
-      "checklist.md": "b2ea4cb376c4330ae247afa00f5a8b3cfffb2fd96bc4f32f7a25cad2364ee4d4"
+      "spec.md": "f435296ea639345d6b2128cced7d4e637e03ffcaacc8cdf326e4ecb46e591ba1",
+      "plan.md": "7ebf4c428291fae278c3c89f652cf2e637f600138dadc5726d8ffcaefa2c1421",
+      "tasks.md": "991c06a6ddced37581081a07f6d8dfe8f45e6ead5479e1649da76a81953dd249",
+      "checklist.md": "771e1849b4404afad6e6c32bc2526ee90eb27c981e4a620910f656a982d2aea4",
+      "implementation-summary.md": "e112e6d9d8737040a04b543a6a1f5807642df203d06cd456fe089192e1a982f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

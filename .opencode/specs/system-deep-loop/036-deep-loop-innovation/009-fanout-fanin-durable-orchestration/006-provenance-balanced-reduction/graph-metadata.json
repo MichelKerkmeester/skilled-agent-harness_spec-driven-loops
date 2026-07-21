@@ -19,7 +19,10 @@
       "provenance-balanced reduction tasks",
       "source-balanced fan-in tasks",
       "provenance-balanced reduction checklist",
-      "source-balanced fan-in checklist"
+      "source-balanced fan-in checklist",
+      "provenance-balanced reduction implementation",
+      "source-balanced fan-in implementation",
+      "durable reduction receipt"
     ],
     "key_topics": [
       "provenance-balanced",
@@ -33,20 +36,35 @@
       "plan",
       "tasks",
       "checklist",
-      "reducer"
+      "durable"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-reduction.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "fanout-prototype.cjs",
         "kind": "file",
@@ -75,6 +93,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -172,43 +196,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
     "created_at": "2026-07-16T03:43:51.149Z",
-    "last_save_at": "2026-07-19T18:01:21.387Z",
+    "last_save_at": "2026-07-21T06:50:05.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:174335186d020a1be88233b6c7d2d2c0abb044305e9991f77d7250190625c9b0",
+    "source_fingerprint": "sha256:15c7ea0827e5646028fe08717d03c56b8c56113fd68ef1bf8ffaae44ff22edef",
     "source_doc_hashes": {
-      "spec.md": "24e552fabd74ec684bb3a7612928789e64918514e606fd463995d0e2baca521d",
-      "plan.md": "494114222638f7f7ca398127a95c042dee1e891e874c59f8a6e5dc7a39536de8",
-      "tasks.md": "1c65223affb4c51069d6c1b8d3376bc52cf39930b061a605680c740b93904391",
-      "checklist.md": "efc9e0378719c9c0ec7e4a133fbfa2cd4facd9df04098b2031ae457eda189f52"
+      "spec.md": "e7d217381ea0d3b1a7a7bc3077e7974ac494d885b25d4858fd60c2db9b1d3369",
+      "plan.md": "882c14c8119e95434b9f75cd55e07e98197e5b694619e386cb0b4fcca691955a",
+      "tasks.md": "e8c75c3b218ff01cbc9e047877f8108024c4cd5442a6093340ad81b6c27de1c7",
+      "checklist.md": "7bae0253328f8cda62783465a46ad09361af5bd11c2f92a77767ee4efd193bfa",
+      "implementation-summary.md": "60de4abe4ad4c697397c2770a389fe6285d6b05d9aebcb41b751931c93a7d8b8"
     },
     "last_active_child_id": null,
     "last_active_at": null
