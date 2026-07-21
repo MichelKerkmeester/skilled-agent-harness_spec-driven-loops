@@ -77,7 +77,7 @@ function hasSourceLiteralPayload(value) {
 
 async function runDuringCorpusMutation(corpusRoot, operation) {
   let active = true;
-  const crawlManifestPath = path.join(corpusRoot, '_manifest.json');
+  const crawlManifestPath = path.join(corpusRoot, 'crawl-manifest.json');
   const mutationLoop = (async () => {
     while (active) {
       await appendFile(crawlManifestPath, ' ');

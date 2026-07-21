@@ -95,7 +95,7 @@ test('mid-build disappearance surfaces a closed typed unavailable result', async
   await assert.rejects(
     buildManifest(fixture.root, {
       beforeVerification: () => rm(
-        path.join(fixture.root, '_manifest.json'),
+        path.join(fixture.root, 'crawl-manifest.json'),
       ),
     }),
     (error) => {
@@ -115,7 +115,7 @@ test('top-level manifest symlinks cannot escape the corpus root', async (context
   context.after(crawlFixture.cleanup);
   context.after(retrievalFixture.cleanup);
 
-  const crawlPath = path.join(crawlFixture.root, '_manifest.json');
+  const crawlPath = path.join(crawlFixture.root, 'crawl-manifest.json');
   const outsideCrawlPath = path.join(crawlFixture.base, 'outside-manifest.json');
   await writeFile(outsideCrawlPath, await readFile(crawlPath));
   await rm(crawlPath);

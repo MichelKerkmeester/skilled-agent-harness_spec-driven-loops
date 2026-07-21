@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/015-styles-database-evolution/005-library-restructure"
     last_updated_at: "2026-07-21T00:00:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Landed G2: moved 17 modules into lib/; 6 suites green."
-    next_safe_action: "Execute G3: git mv 1,290 bundles + kebab renames, byte-parity."
+    recent_action: "Landed G3: bundles + manifests to library/; 6 suites green."
+    next_safe_action: "Checkpoint B: manifest v2 + shared projector, then Packet A."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/styles/_engine/style-library.mjs"

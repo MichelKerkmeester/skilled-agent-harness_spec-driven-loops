@@ -106,7 +106,7 @@ export async function writeFixtureCrawlManifest(root, styles) {
     capturedAt: '2026-01-01T00:00:00.000Z',
     error: null,
   }));
-  await writeFile(path.join(root, '_manifest.json'), `${JSON.stringify(records, null, 2)}\n`);
+  await writeFile(path.join(root, 'crawl-manifest.json'), `${JSON.stringify(records, null, 2)}\n`);
 }
 
 /**

@@ -169,7 +169,7 @@ test('crawl-manifest-only provenance changes are indexed', async (context) => {
     database,
     corpusWalkMode: 'migration',
   });
-  const manifestPath = path.join(fixture.root, '_manifest.json');
+  const manifestPath = path.join(fixture.root, 'crawl-manifest.json');
   const crawl = JSON.parse(await readFile(manifestPath, 'utf8'));
   crawl[0].capturedAt = '2026-02-02T00:00:00.000Z';
   await writeFile(manifestPath, `${JSON.stringify(crawl, null, 2)}\n`);

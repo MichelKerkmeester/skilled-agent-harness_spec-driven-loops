@@ -26,13 +26,13 @@ import {
   dispatchStyleHydrate,
   dispatchStyleQuery,
 } from './persistent-adapter.mjs';
-import { RETRIEVAL_MANIFEST_PATH, STYLES_ROOT } from '../paths.mjs';
+import { BUNDLE_ROOT, RETRIEVAL_MANIFEST_PATH } from '../paths.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const CORPUS_ROOT = STYLES_ROOT;
+export const CORPUS_ROOT = BUNDLE_ROOT;
 export const MANIFEST_PATH = RETRIEVAL_MANIFEST_PATH;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -79,8 +79,7 @@ async function readRequest(argumentsList) {
  */
 export async function runBuild(argumentsList, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
-  const manifestPath = options.manifestPath
-    ?? path.join(corpusRoot, '_retrieval-manifest.json');
+  const manifestPath = options.manifestPath ?? RETRIEVAL_MANIFEST_PATH;
   const isWrite = argumentsList.includes('--write');
   const isCheck = argumentsList.includes('--check');
   if (isWrite === isCheck) {
@@ -89,7 +88,7 @@ export async function runBuild(argumentsList, options = {}) {
     throw error;
   }
 
-  const committed = await loadManifest(manifestPath, { corpusRoot });
+  const committed = await loadManifest(manifestPath);
   const generated = await buildManifest(corpusRoot, {
     previousManifest: isWrite ? committed : null,
   });
@@ -122,9 +121,8 @@ export async function runBuild(argumentsList, options = {}) {
  */
 async function runLegacyQuery(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
-  const manifestPath = options.manifestPath
-    ?? path.join(corpusRoot, '_retrieval-manifest.json');
-  const manifest = await loadManifest(manifestPath, { corpusRoot });
+  const manifestPath = options.manifestPath ?? RETRIEVAL_MANIFEST_PATH;
+  const manifest = await loadManifest(manifestPath);
   if (!manifest) {
     const error = new Error('Retrieval manifest is missing. Run build --write first.');
     error.code = 'manifest-missing';
@@ -168,9 +166,8 @@ async function runLegacyQuery(request, options = {}) {
  */
 async function runLegacyHydrate(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
-  const manifestPath = options.manifestPath
-    ?? path.join(corpusRoot, '_retrieval-manifest.json');
-  const manifest = await loadManifest(manifestPath, { corpusRoot });
+  const manifestPath = options.manifestPath ?? RETRIEVAL_MANIFEST_PATH;
+  const manifest = await loadManifest(manifestPath);
   if (!manifest) return { ok: false, error: 'manifest-missing' };
   const bound = await bindHydrationManifest(manifest, request, { corpusRoot });
   if (!bound.ok) return bound;
