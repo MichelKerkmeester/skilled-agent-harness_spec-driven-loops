@@ -48,6 +48,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { spawnSync } = require('child_process');
 
 // The shared identity contract owns the single conversion boundary from a
 // compiled qualified id to the manifest mode that declares its leaves. Consumed,
@@ -74,6 +75,8 @@ const ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '010-live-activation', 'activati
 const SERVING_CLOSURE_MANIFEST = path.join(RUNTIME_ROOT, 'serving-closure.manifest.json');
 const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs');
 const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
+const PUBLIC_FRONT_DOOR = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route.cjs');
+const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-status.cjs');
 
 // Pinned digests of the frozen scorer trio. Re-hashed before every parity run;
 // any drift aborts before a report is written, so the parity baseline can never
@@ -118,13 +121,6 @@ const DRIFT_GATE_REPORT_ONLY_CONSUMERS = Object.freeze(['routing-registry-drift-
 // never collapse into one another.
 const COMPILED_OVERRIDABLE_VERDICTS = Object.freeze(new Set(['PASS', 'CONDITIONAL', 'FAIL', 'NO-SCENARIOS']));
 
-// Fallback compiled serving closure, used only when the promoted closure
-// manifest is unreadable. Kept in sync with that manifest's hub list.
-const FALLBACK_ELIGIBLE_HUBS = Object.freeze([
-  'sk-code', 'system-deep-loop', 'mcp-tooling', 'cli-external-orchestration',
-  'sk-prompt', 'sk-design', 'sk-doc',
-]);
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -134,21 +130,25 @@ let eligibleHubsCache = null;
 /**
  * The set of hubs in the compiled serving closure — the only hubs where a
  * missing compiled parity is a real gap rather than structurally `n/a`. Read
- * from the promoted closure manifest, cached, with a static fallback so an
- * unreadable manifest degrades to the known hub list instead of throwing.
+ * from the promoted closure manifest, cached, with the promoted runtime's
+ * exported hub map as the only fallback. No benchmark-local allowlist exists.
  *
  * @param {string} [manifestPath] - Serving-closure manifest path (override for tests).
  * @returns {Set<string>} Hub ids eligible for compiled parity.
  */
 function loadEligibleHubs(manifestPath = SERVING_CLOSURE_MANIFEST) {
   if (manifestPath === SERVING_CLOSURE_MANIFEST && eligibleHubsCache) return eligibleHubsCache;
-  let hubs = FALLBACK_ELIGIBLE_HUBS;
+  let hubs = [];
   try {
     const parsed = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     if (Array.isArray(parsed.hubs) && parsed.hubs.length) hubs = parsed.hubs;
   } catch {
-    // Unreadable closure manifest: fall back to the known hub list rather than
-    // declaring every hub ineligible (which would mask real drift as n/a).
+    try {
+      const runtime = require(PROMOTED_ENGINE);
+      hubs = runtime && runtime.HUB_CHILD ? Object.keys(runtime.HUB_CHILD) : [];
+    } catch {
+      hubs = [];
+    }
   }
   const set = new Set(hubs);
   if (manifestPath === SERVING_CLOSURE_MANIFEST) eligibleHubsCache = set;
@@ -164,12 +164,28 @@ function loadEligibleHubs(manifestPath = SERVING_CLOSURE_MANIFEST) {
  * @param {string} [activationRoot] - Activation root (override for tests).
  * @returns {string|null} Serving authority, or null when unreadable.
  */
-function defaultReadServingAuthority(hubId, activationRoot = ACTIVATION_ROOT) {
+function runJsonChild(scriptPath, args, envOverrides = {}) {
+  const parentFlag = process.env.SPECKIT_COMPILED_ROUTING;
+  const result = spawnSync(
+    process.execPath,
+    [scriptPath, ...args],
+    {
+      env: { ...process.env, ...envOverrides },
+      encoding: 'utf8',
+      shell: false,
+    },
+  );
+  if (process.env.SPECKIT_COMPILED_ROUTING !== parentFlag) {
+    throw new Error('compiled child mutated the parent routing flag');
+  }
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    throw new Error(result.stderr.trim() || `child exited ${result.status}`);
+  }
   try {
-    const manifest = JSON.parse(fs.readFileSync(path.join(activationRoot, hubId, 'manifest.json'), 'utf8'));
-    return typeof manifest.servingAuthority === 'string' ? manifest.servingAuthority : null;
+    return JSON.parse(result.stdout);
   } catch {
-    return null;
+    throw new Error(`invalid JSON from ${path.basename(scriptPath)}`);
   }
 }
 
@@ -183,11 +199,19 @@ function defaultReadServingAuthority(hubId, activationRoot = ACTIVATION_ROOT) {
  * @returns {Object} Normalized compiled decision ({ action, targets, ... }).
  */
 function defaultCompiledDecision(hubId, taskText) {
-  // Lazily loaded: when parity is disabled (the default) this module is imported
-  // but never touches the promoted engine, so the harness adds no hard runtime
-  // dependency and stays importable where the closure is absent.
-  const { compiledRoute } = require(PROMOTED_ENGINE);
-  return compiledRoute(hubId, taskText);
+  return runJsonChild(
+    PUBLIC_FRONT_DOOR,
+    ['--hub', hubId, '--prompt', taskText],
+    { SPECKIT_COMPILED_ROUTING: '1' },
+  );
+}
+
+function defaultProbeStatus(hubId) {
+  return runJsonChild(
+    STATUS_PROBE,
+    ['--hub', hubId, '--no-probe'],
+    { SPECKIT_COMPILED_ROUTING: '1' },
+  );
 }
 
 const modeIndexCache = new Map();
@@ -213,6 +237,15 @@ function defaultLoadModeIndex(hubId) {
     }
   } catch {
     // No manifest for this hub: leave the index empty so its targets fail closed.
+  }
+  try {
+    const registry = JSON.parse(fs.readFileSync(path.join(SKILLS_ROOT, hubId, 'mode-registry.json'), 'utf8'));
+    for (const mode of registry.modes || []) {
+      if (!mode || !mode.workflowMode) continue;
+      index[mode.workflowMode] = { ...(index[mode.workflowMode] || {}), ...mode };
+    }
+  } catch {
+    // A missing registry leaves the leaf-only index intact.
   }
   modeIndexCache.set(hubId, index);
   return index;
@@ -253,6 +286,7 @@ function translateTargetsToObserved(targets, loadModeIndex) {
   const seenIntent = new Set();
   const resources = new Set();
   const unresolved = [];
+  const normalizedTargets = [];
   for (const target of targets || []) {
     const qualifiedId = qualifiedIdOf(target);
     // A target resolves against its own destination hub's manifest, which may
@@ -268,23 +302,91 @@ function translateTargetsToObserved(targets, loadModeIndex) {
       seenIntent.add(resolved.workflowMode);
       observedIntents.push(resolved.workflowMode);
     }
+    normalizedTargets.push({
+      hubId: resolved.hub,
+      workflowMode: resolved.workflowMode,
+      packetKind: resolved.mode.packetKind || resolved.kind,
+    });
     const leaves = resolved.mode && Array.isArray(resolved.mode.leaves) ? resolved.mode.leaves : [];
     for (const leaf of leaves) resources.add(leaf);
   }
-  return { observedIntents, observedResources: [...resources], unresolved };
+  return {
+    observedIntents,
+    observedResources: [...resources],
+    unresolved,
+    normalizedTargets,
+  };
 }
 
-/**
- * Parity holds when the frozen evaluator returns the same pass verdict for the
- * compiled-derived observed as for the legacy observed. The evaluator is the
- * sole arbiter; this only compares its two outputs.
- *
- * @param {Object} compiledResult - Frozen evaluator output for the compiled decision.
- * @param {Object} legacyResult - Frozen evaluator output for the legacy decision.
- * @returns {boolean} True when the two verdicts agree.
- */
-function pariesWithLegacy(compiledResult, legacyResult) {
-  return Boolean(compiledResult && compiledResult.pass) === Boolean(legacyResult && legacyResult.pass);
+function selectionKindForTargets(targets) {
+  if (!targets.length) return null;
+  if (targets.length === 1) return 'single';
+  return targets.some((target) => target.packetKind === 'surface')
+    ? 'surfaceBundle'
+    : 'orderedBundle';
+}
+
+function normalizeLegacyProjection(legacyObserved, hubId, loadModeIndex) {
+  if (legacyObserved && legacyObserved.routingProjection) {
+    return legacyObserved.routingProjection;
+  }
+  const telemetry = legacyObserved && legacyObserved.raw && legacyObserved.raw.routeTelemetry;
+  const rawModes = telemetry && Array.isArray(telemetry.workflowMode)
+    ? telemetry.workflowMode
+    : (Array.isArray(legacyObserved && legacyObserved.observedIntents)
+      ? legacyObserved.observedIntents
+      : []);
+  const index = loadModeIndex(hubId) || {};
+  const targets = rawModes.map((workflowMode) => ({
+    hubId,
+    workflowMode,
+    packetKind: index[workflowMode] && index[workflowMode].packetKind
+      ? index[workflowMode].packetKind
+      : 'workflow',
+  }));
+  const action = targets.length ? 'route' : 'defer';
+  return { action, selectionKind: selectionKindForTargets(targets), targets };
+}
+
+function normalizeCompiledProjection(decision, bridged) {
+  const action = decision && typeof decision.action === 'string'
+    ? decision.action
+    : 'defer';
+  const targets = bridged ? bridged.normalizedTargets : [];
+  return {
+    action,
+    selectionKind: action === 'route'
+      ? (decision.selectionKind || selectionKindForTargets(targets))
+      : null,
+    targets,
+  };
+}
+
+function firstProjectionDifference(legacyProjection, compiledProjection) {
+  for (const field of ['action', 'selectionKind']) {
+    if (legacyProjection[field] !== compiledProjection[field]) {
+      return { field, legacy: legacyProjection[field], compiled: compiledProjection[field] };
+    }
+  }
+  if (legacyProjection.targets.length !== compiledProjection.targets.length) {
+    return {
+      field: 'targets.length',
+      legacy: legacyProjection.targets.length,
+      compiled: compiledProjection.targets.length,
+    };
+  }
+  for (let index = 0; index < legacyProjection.targets.length; index += 1) {
+    for (const field of ['hubId', 'workflowMode', 'packetKind']) {
+      if (legacyProjection.targets[index][field] !== compiledProjection.targets[index][field]) {
+        return {
+          field: `targets[${index}].${field}`,
+          legacy: legacyProjection.targets[index][field],
+          compiled: compiledProjection.targets[index][field],
+        };
+      }
+    }
+  }
+  return null;
 }
 
 /**
@@ -325,15 +427,18 @@ function parseFlagModeSafe(raw) {
  */
 function assertFrozenScorerDigests({ scorerDir = __dirname, pins = PINNED_FROZEN_SCORER_DIGESTS } = {}) {
   const drift = [];
+  const digests = {};
   for (const [file, expected] of Object.entries(pins)) {
     try {
       const actual = crypto.createHash('sha256').update(fs.readFileSync(path.join(scorerDir, file))).digest('hex');
+      digests[file] = actual;
       if (actual !== expected) drift.push({ file, expected, actual });
     } catch (err) {
+      digests[file] = null;
       drift.push({ file, expected, actual: null, error: err && err.message });
     }
   }
-  return { ok: drift.length === 0, drift };
+  return { ok: drift.length === 0, drift, digests };
 }
 
 /**
@@ -352,19 +457,26 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
   const {
     resolveHubId = (id) => id,
     eligibleHubs = loadEligibleHubs(),
-    readServingAuthority = defaultReadServingAuthority,
-    activationRoot = ACTIVATION_ROOT,
     compiledDecision = defaultCompiledDecision,
     loadModeIndex = defaultLoadModeIndex,
     evaluate = evaluateRouteGold,
   } = deps;
 
   const hubId = resolveHubId(skillId, skillRoot);
-  const base = { scenarioId: scenario && scenario.scenarioId, hubId };
+  const base = {
+    scenarioId: scenario && scenario.scenarioId,
+    hubId,
+    flagForcedOn: true,
+  };
 
   // A non-routing scenario carries no compiled decision to compare.
   if (!scenario || scenario.classKind === 'browser') {
     return { ...base, status: PARITY_STATUS.NA, reason: 'non-routing-scenario' };
+  }
+  if (!scenario.hasIntentGold && !scenario.hasResourceGold
+      && !Array.isArray(scenario.expectedIntents)
+      && !Array.isArray(scenario.expectedResources)) {
+    return { ...base, status: PARITY_STATUS.NA, reason: 'route-gold-absent' };
   }
 
   // Eligibility: a hub outside the compiled serving closure is structurally n/a
@@ -373,15 +485,71 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
     return { ...base, status: PARITY_STATUS.NA, reason: 'hub-not-compiled-eligible' };
   }
 
-  // Vacuous-parity guard: the manifest's serving authority is the sole input.
-  // Anything but `compiled` (including a missing manifest) hard-fails vacuous.
-  const authority = readServingAuthority(hubId, activationRoot);
-  if (authority !== 'compiled') {
+  let statusRecord;
+  try {
+    if (typeof deps.statusProbe === 'function') {
+      statusRecord = deps.statusProbe(hubId, skillRoot);
+    } else if (typeof deps.readServingAuthority === 'function') {
+      const authority = deps.readServingAuthority(hubId, deps.activationRoot || ACTIVATION_ROOT);
+      statusRecord = authority == null
+        ? {
+          servingAuthority: 'legacy',
+          causeCode: 'missing-manifest',
+          manifestFreshness: { manifestValid: false, fresh: false, causeCode: 'missing-manifest' },
+        }
+        : {
+          servingAuthority: authority,
+          causeCode: authority === 'compiled' ? 'compiled-serving' : 'legacy-authority',
+          manifestFreshness: { manifestValid: true, fresh: true, causeCode: 'fresh' },
+        };
+    } else {
+      statusRecord = defaultProbeStatus(hubId);
+    }
+  } catch (err) {
+    return {
+      ...base,
+      status: PARITY_STATUS.RESOLVER_MISSING,
+      reason: 'status-probe-failed',
+      detail: err && err.message,
+    };
+  }
+
+  const freshness = statusRecord && statusRecord.manifestFreshness
+    ? statusRecord.manifestFreshness
+    : {};
+  if (freshness.causeCode === 'missing-manifest') {
+    return {
+      ...base,
+      status: PARITY_STATUS.NA,
+      reason: 'legacy-by-construction',
+      statusCauseCode: statusRecord.causeCode,
+    };
+  }
+  if (freshness.causeCode === 'stale-manifest' || (freshness.manifestValid && !freshness.fresh)) {
+    return {
+      ...base,
+      status: PARITY_STATUS.DRIFT,
+      reason: 're-mint-required',
+      statusCauseCode: freshness.causeCode,
+    };
+  }
+  if (!freshness.manifestValid || freshness.causeCode !== 'fresh') {
+    return {
+      ...base,
+      status: PARITY_STATUS.RESOLVER_MISSING,
+      reason: 'manifest-invalid-or-unreadable',
+      statusCauseCode: freshness.causeCode,
+    };
+  }
+  if (statusRecord.causeCode === 'engine-throw') {
+    return { ...base, status: PARITY_STATUS.RESOLVER_MISSING, reason: 'compiled-engine-throw' };
+  }
+  if (statusRecord.servingAuthority !== 'compiled') {
     return {
       ...base,
       status: PARITY_STATUS.VACUOUS,
-      servingAuthority: authority,
-      reason: authority == null ? 'manifest-missing-or-unreadable' : 'serving-authority-not-compiled',
+      servingAuthority: statusRecord.servingAuthority,
+      reason: statusRecord.causeCode || 'serving-authority-not-compiled',
     };
   }
 
@@ -398,11 +566,8 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
   }
 
   const targets = Array.isArray(decision.targets) ? decision.targets : [];
-
-  // A conservative compiled defer routes nothing and hands the prompt back to
-  // legacy, so the served decision IS the legacy decision — parity holds.
-  if (decision.action !== 'route' || targets.length === 0) {
-    return { ...base, status: PARITY_STATUS.MATCH, compiledAction: decision.action, reason: 'compiled-defers-to-legacy', compiledIntents: [] };
+  if (decision.action === 'route' && targets.length === 0) {
+    return { ...base, status: PARITY_STATUS.RESOLVER_MISSING, reason: 'compiled-route-without-targets' };
   }
 
   // Shape bridge: translate targets into the frozen evaluator's vocabulary. An
@@ -412,22 +577,34 @@ function compiledParity({ scenario, legacyObserved, skillRoot, skillId }, deps =
     return { ...base, status: PARITY_STATUS.RESOLVER_MISSING, reason: 'unresolved-qualified-id', unresolved: bridged.unresolved };
   }
 
-  // Delegate the verdict to the frozen evaluator for both decisions, then
-  // compare only its outputs.
+  // Both observations must independently pass the frozen route-gold evaluator,
+  // then their routing-only projections must compare equal in authored order.
   const compiledObserved = { observedIntents: bridged.observedIntents, observedResources: bridged.observedResources };
   const compiledResult = evaluate({ scenario, observed: compiledObserved });
   const legacyResult = legacyObserved && legacyObserved.routeGold
     ? legacyObserved.routeGold
     : evaluate({ scenario, observed: legacyObserved || {} });
 
-  const match = pariesWithLegacy(compiledResult, legacyResult);
+  const legacyProjection = normalizeLegacyProjection(legacyObserved || {}, hubId, loadModeIndex);
+  const compiledProjection = normalizeCompiledProjection(decision, bridged);
+  const firstDifference = firstProjectionDifference(legacyProjection, compiledProjection);
+  const compiledGoldPass = Boolean(compiledResult && compiledResult.pass);
+  const legacyGoldPass = Boolean(legacyResult && legacyResult.pass);
+  const match = compiledGoldPass && legacyGoldPass && firstDifference === null;
   return {
     ...base,
     status: match ? PARITY_STATUS.MATCH : PARITY_STATUS.DRIFT,
+    reason: match
+      ? 'routing-parity-match'
+      : (firstDifference ? 'routing-projection-mismatch' : 'route-gold-failure'),
+    frontDoorOutcome: decision.action,
     compiledAction: decision.action,
     compiledIntents: bridged.observedIntents,
-    compiledPass: Boolean(compiledResult && compiledResult.pass),
-    legacyPass: Boolean(legacyResult && legacyResult.pass),
+    compiledGoldPass,
+    legacyGoldPass,
+    legacyProjection,
+    compiledProjection,
+    firstDifference,
   };
 }
 
@@ -522,6 +699,12 @@ module.exports = {
   classifyFlagState,
   assertFrozenScorerDigests,
   translateTargetsToObserved,
+  normalizeLegacyProjection,
+  normalizeCompiledProjection,
+  firstProjectionDifference,
+  runJsonChild,
+  defaultCompiledDecision,
+  defaultProbeStatus,
   qualifiedIdOf,
   loadEligibleHubs,
   PARITY_STATUS,
@@ -532,4 +715,6 @@ module.exports = {
   DRIFT_GATE_REPORT_ONLY_CONSUMERS,
   RUNTIME_ROOT,
   ACTIVATION_ROOT,
+  PUBLIC_FRONT_DOOR,
+  STATUS_PROBE,
 };

@@ -1,11 +1,33 @@
 ---
 title: "Implementation Summary: create-skill Compiled-Routing Alignment"
-description: "Planned-state record for aligning create-skill's parent-hub generator with compiled-routing directives and manifest-based onboarding. No generator or runtime implementation is present yet."
+description: "Completion record for parent-hub legacy/ready generation, canonical manifest minting, freshness validation, synchronized directives, and contract coverage."
 trigger_phrases:
-  - "create-skill compiled routing planned summary"
+  - "create-skill compiled routing implementation summary"
   - "parent hub onboarding current status"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment"
+    last_updated_at: "2026-07-21T08:20:00Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Implemented and verified create-skill legacy and ready generation"
+    next_safe_action: "Run the operator-gated activation join"
+    blockers:
+      - "Repository default activation remains intentionally operator-gated"
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "When will the operator authorize the separate default-on cutover?"
+    answered_questions:
+      - "Canonical minting is delegated to compiled-route-manifest.cjs"
 ---
 # Implementation Summary: create-skill Compiled-Routing Alignment
 
@@ -19,12 +41,12 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
-| **Date** | 2026-07-20 |
+| **Status** | Implemented |
+| **Date** | 2026-07-21 |
 | **Level** | 2 |
-| **Implementation** | Not started |
-| **Current create-skill awareness** | Zero compiled-routing tokens beneath the packet |
-| **Strict validation** | Planned after the full Markdown set is authored |
+| **Implementation** | Parent-hub legacy/ready generation and validation delivered |
+| **Default activation** | Unchanged; compiled serving remains operator-gated |
+| **Strict validation** | Recorded after final metadata regeneration |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -32,18 +54,21 @@ contextType: "implementation"
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The parent-hub generator will gain the same additive compiled-routing directive used by the seven established hubs and an explicit onboarding state. Legacy generation will omit the canonical manifest and remain on the fallback path. Ready generation will invoke the shared minter and report compiled-ready only after the shared predicate confirms freshness.
+init_skill.py::init_parent_skill() now accepts parent-only --compiled-routing legacy|ready, with legacy as the backward-compatible CLI default. Both parent templates carry the exact generated directive. The scaffold also emits the compiler-required fallback checklist so the canonical minter can compile the final router inputs.
 
-### Planned Implementation Surfaces
+Ready generation writes all hub inputs first, calls .opencode/bin/compiled-route-manifest.cjs mint, then calls freshness. It prints compiled-ready (fresh manifest verified) only after both canonical results are valid and fresh. Legacy generation verifies that no canonical manifest exists and reports legacy (no manifest); inconsistent existing state fails closed.
 
-| Area | Planned Files | Purpose |
-|------|---------------|---------|
-| Generator | `create-skill/scripts/init_skill.py` | Parse parent state, render hub name, mint and verify ready manifests |
-| Templates | Active hub scaffold and canonical parent-hub template | Keep generated directives identical |
-| Workflow | create-skill `SKILL.md`, README, and parent reference | Ask the state explicitly and document the ordered manifest step |
-| Validation | `validate_skill_package.py` and create-skill contract tests | Prove both states and fail-closed outcomes |
+The package validator consumes the same freshness CLI and distinguishes legacy, compiled-ready, stale, malformed, and inconsistent states. Authoring docs describe the same option, ordering, and status language. The lockstep inventory now names 19 factual surfaces: two templates, seven hub directives, seven catalogs, and three create-skill documents.
 
-No create-skill, runtime, manifest, or scorer file was modified by this planning phase.
+### Delivered Files
+
+| Area | Files | Evidence |
+|------|-------|----------|
+| Generator | `.opencode/skills/sk-doc/create-skill/scripts/init_skill.py` | Parent-only option, canonical mint/freshness calls, fail-closed labels |
+| Templates | Active scaffold and canonical parent-hub template | Exact directive parity; compiler-valid fallback checklist |
+| Validation | validate_skill_package.py | Shared freshness classification for both generated states |
+| Tests | test_create_skill_contract.py, lockstep parity test | Temp hub ids/roots; no live manifest mutation |
+| Docs and inventory | create-skill SKILL/README/reference and lockstep JSON | Synchronized workflow and 19/19 surface inventory |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -51,7 +76,7 @@ No create-skill, runtime, manifest, or scorer file was modified by this planning
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implementation waits for the P3 minter, freshness predicate, canonical manifest location, and data-driven runtime discovery. After those interfaces stabilize, the two templates move together, the initializer gains the state adapter, and the existing create-skill contract suite expands to cover legacy, ready, and failure outcomes before any adoption claim.
+The implementation reused the committed manifest CLI as the only mint and freshness authority, extended the existing generator and validator in place, and verified every generated state with temporary hub identities. No production activation manifest, runtime decision, or frozen scorer was written.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -61,11 +86,11 @@ Implementation waits for the P3 minter, freshness predicate, canonical manifest 
 
 | Decision | Rationale |
 |----------|-----------|
-| Add the directive to every generated parent hub | Legacy and ready hubs should share one durable SKILL.md shape; eligibility is determined by the manifest state. |
-| Default existing CLI calls to legacy | Preserves automation compatibility and the safe no-manifest state. |
-| Require the authoring workflow to ask explicitly | Human/agent-created hubs should not hide the onboarding decision behind a compatibility default. |
-| Delegate minting and freshness to P3 interfaces | Prevents a second eligibility algorithm or hardcoded hub map inside create-skill. |
-| Reject ready claims on every mint/freshness error | A safe legacy fallback must not be mislabeled as compiled-ready. |
+| Keep legacy as the CLI default | Existing calls remain compatible and emit no manifest. |
+| Ask authors to choose explicitly | Higher-level authoring does not hide onboarding intent behind the compatibility default. |
+| Delegate policy identity to the canonical CLI | No local digest, allowlist, or manifest serializer can diverge from runtime authority. |
+| Leave failed output for diagnosis | Failure returns non-zero and never emits a ready label; no destructive cleanup hides evidence. |
+| Keep repository defaults untouched | Readiness is not serving activation. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -75,13 +100,14 @@ Implementation waits for the P3 minter, freshness predicate, canonical manifest 
 
 | Check | Result |
 |-------|--------|
-| Current-state source inspection | Confirmed: parent generator and templates have no compiled-routing awareness |
-| Directive rendering tests | Planned |
-| Legacy no-manifest test | Planned |
-| Ready fresh-manifest test | Planned |
-| Mint/freshness failure matrix | Planned |
-| Standalone and existing parent regression suite | Planned |
-| Strict skill-package and spec-folder validation | Planned spec command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment --strict` |
+| Python contract suite | `python3 -m pytest .opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py -q` — 23 passed |
+| Generated states | Legacy no-manifest and ready generation-1 legacy-authority shadow-only manifest proven with temporary hub ids |
+| Negative matrix | Missing minter, pre-existing manifest, mint failure, stale, malformed, invalid state, and standalone option rejection fail closed |
+| Directive parity | Both parent templates have byte-identical extracted directive blocks |
+| Lockstep inventory | 19/19 registered files exist |
+| Live activation safety | Seven production activation manifest hashes unchanged |
+| Frozen scorer safety | Three frozen scorer hashes unchanged |
+| Strict packet validation | Final result recorded after metadata regeneration |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -89,10 +115,9 @@ Implementation waits for the P3 minter, freshness predicate, canonical manifest 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Ready mode depends on P3 interfaces that do not exist yet.** This packet cannot truthfully select a manifest location or eligibility result before those interfaces stabilize.
-2. **Current runtime discovery is limited to established hubs.** A new hub cannot become operationally compiled-ready until P3 removes that fixed discovery boundary.
-3. **Existing hubs are not migrated by this phase.** The generator affects new explicit runs only.
-4. **A mint-failure retention policy remains open.** The operator must choose whether failed ready output stays as a diagnostic legacy scaffold or remains staged outside the final target.
+1. The generated ready manifest proves freshness but remains generation 1, legacy-authority, and shadow-only; it does not enable serving.
+2. The seven established hub directives remain untouched. Their earlier wording split is informational to the lockstep report and outside this generator-only change.
+3. Default-on activation remains a separate operator decision.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -100,9 +125,6 @@ Implementation waits for the P3 minter, freshness predicate, canonical manifest 
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [ ] Finalize the P3 minter, manifest-store, freshness, and runtime-discovery interfaces.
-- [ ] Resolve the ready-mode mint-failure retention policy.
-- [ ] Implement the generator, template, workflow, validator, and test changes listed in `spec.md`.
-- [ ] Run the full create-skill contract suite and strict package validation on generated fixtures.
-- [ ] Let the parent workflow generate `description.json` and `graph-metadata.json` for this spec folder; this leaf authoring pass does not create them.
+- The activation controller may consume this implemented sibling at the operator-gated join.
+- Any later directive wording change must update all 19 lockstep inventory surfaces.
 <!-- /ANCHOR:follow-up -->

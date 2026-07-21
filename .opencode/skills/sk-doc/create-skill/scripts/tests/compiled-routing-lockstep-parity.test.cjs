@@ -1,20 +1,18 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ compiled-routing-lockstep-parity — P4 directive-surface parity coverage  ║
+// ║ compiled-routing-lockstep-parity — directive-surface parity coverage     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * Normalized-parity fixture test for the P4 lockstep directive-surface manifest
+ * Normalized-parity fixture test for the lockstep directive-surface manifest
  * (`../../references/parent-skill/compiled-routing-lockstep-surfaces.json`). Every
  * registered surface's compiled-routing directive block (see `directiveMarker`) must
  * carry byte-normalized-identical wording once the surface's own hub name is
  * substituted out.
  *
- * A surface that does not carry the directive block at all (the two create-skill
- * parent templates, until their own rendering ships) is a safe "not rendered yet"
- * state, never a violation — only surfaces that DO have a directive block and disagree
- * with each other count as drifted.
+ * A surface that does not carry the directive block is an inventory-only rewrite
+ * surface, never a violation. Only directive-bearing surfaces participate in parity.
  *
  * The pass/fail assertions below run exclusively against synthetic, temp-directory
  * fixtures (never the live repo tree), so this test's outcome never depends on the
@@ -127,7 +125,7 @@ function directiveBlockText(hubToken) {
     '> ```',
     '> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). '
       + 'On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on '
-      + `serving-authority, and the flag is **off by default**, so this is inert until compiled routing is activated for \`${hubToken}\`.`,
+      + `serving authority, and the flag is **off by default**, so this is inert until compiled routing is activated for \`${hubToken}\`.`,
   ].join('\n');
 }
 

@@ -18,10 +18,11 @@ Examples:
 import argparse
 import json
 import re
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 
 # ───────────────────────────────────────────────────────────────
@@ -135,8 +136,66 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     return skill_dir
 
 
-def init_parent_skill(skill_name: str, path: str) -> Optional[Path]:
+def _compiled_manifest_cli() -> Path:
+    """Return the canonical compiled-routing manifest CLI path."""
+    return (
+        Path(__file__).resolve().parents[4]
+        / 'bin'
+        / 'compiled-route-manifest.cjs'
+    )
+
+
+def _run_manifest_command(
+    action: str,
+    skill_name: str,
+    skill_dir: Path,
+) -> tuple[bool, dict[str, Any], str]:
+    """Run one canonical manifest command and parse its JSON result."""
+    command = [
+        'node',
+        str(_compiled_manifest_cli()),
+        action,
+        '--hub',
+        skill_name,
+        '--skill-root',
+        str(skill_dir),
+    ]
+    try:
+        result = subprocess.run(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+    except OSError as exc:
+        return False, {}, str(exc)
+
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        detail = result.stderr.strip() or result.stdout.strip() or 'no output'
+        return False, {}, f"invalid manifest CLI output: {detail}"
+
+    valid = bool(payload.get('manifestValid'))
+    fresh = bool(payload.get('fresh'))
+    if result.returncode == 0 and valid and fresh:
+        return True, payload, ''
+
+    cause = payload.get('causeCode') or result.stderr.strip() or 'unknown failure'
+    return False, payload, str(cause)
+
+
+def init_parent_skill(
+    skill_name: str,
+    path: str,
+    compiled_routing: str = 'legacy',
+) -> Optional[Path]:
     """Initialize a minimal parent skill hub and its primary workflow packet."""
+    if compiled_routing not in {'legacy', 'ready'}:
+        print("❌ Error: compiled routing must be 'legacy' or 'ready'")
+        return None
+
     is_valid, error_msg = validate_skill_name(skill_name)
     if not is_valid:
         print(f"❌ Error: {error_msg}")
@@ -349,6 +408,55 @@ def init_parent_skill(skill_name: str, path: str) -> Optional[Path]:
         print(f"❌ Error creating parent skill scaffold: {exc}")
         return None
 
+    if compiled_routing == 'ready':
+        minted, mint_result, mint_error = _run_manifest_command(
+            'mint',
+            skill_name,
+            skill_dir,
+        )
+        if not minted:
+            manifest_path = mint_result.get('manifestPath', 'UNKNOWN')
+            print(
+                "❌ Compiled routing manifest mint failed; "
+                f"legacy fallback retained ({mint_error}, {manifest_path})"
+            )
+            return None
+
+        fresh, freshness_result, freshness_error = _run_manifest_command(
+            'freshness',
+            skill_name,
+            skill_dir,
+        )
+        if not fresh:
+            manifest_path = freshness_result.get(
+                'manifestPath',
+                mint_result.get('manifestPath', 'UNKNOWN'),
+            )
+            print(
+                "❌ Compiled routing freshness validation failed; "
+                f"legacy fallback retained ({freshness_error}, {manifest_path})"
+            )
+            return None
+
+        print(
+            "✅ Compiled routing: compiled-ready "
+            f"(fresh manifest verified at {freshness_result['manifestPath']})"
+        )
+    else:
+        _fresh, manifest_result, manifest_error = _run_manifest_command(
+            'freshness',
+            skill_name,
+            skill_dir,
+        )
+        if manifest_error != 'missing-manifest':
+            manifest_path = manifest_result.get('manifestPath', 'UNKNOWN')
+            print(
+                "❌ Legacy-by-construction requires no canonical manifest; "
+                f"reconcile the existing state ({manifest_error}, {manifest_path})"
+            )
+            return None
+        print("✅ Compiled routing: legacy (no manifest)")
+
     print(f"\n✅ Parent skill '{skill_name}' initialized successfully at {skill_dir}")
     print("\nNext steps:")
     print(f"1. Rename or replace the {packet_name} example mode")
@@ -382,6 +490,12 @@ def main() -> None:
         default='standalone',
         help="Skill scaffold kind (default: standalone)",
     )
+    parser.add_argument(
+        '--compiled-routing',
+        choices=['legacy', 'ready'],
+        default=None,
+        help="Parent-hub compiled routing state (default: legacy)",
+    )
     args = parser.parse_args()
 
     skill_name = args.skill_name
@@ -391,8 +505,15 @@ def main() -> None:
     print(f"   Location: {path}")
     print()
 
+    if args.compiled_routing is not None and args.kind != 'parent':
+        parser.error('--compiled-routing is only valid with --kind parent')
+
     if args.kind == 'parent':
-        result = init_parent_skill(skill_name, path)
+        result = init_parent_skill(
+            skill_name,
+            path,
+            compiled_routing=args.compiled_routing or 'legacy',
+        )
     else:
         result = init_skill(skill_name, path)
 

@@ -20,7 +20,7 @@
       "benchmark parity task list",
       "Lane C compiled routing checklist",
       "benchmark parity QA gate",
-      "Lane C compiled routing planned summary",
+      "Lane C compiled routing implementation summary",
       "benchmark parity current status"
     ],
     "key_topics": [
@@ -38,9 +38,9 @@
       "task"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
       ".opencode/bin/compiled-route.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
@@ -48,16 +48,18 @@
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "compiled-routing-parity.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
         "source": "derived"
       },
       {
@@ -103,6 +105,12 @@
         "source": "derived"
       },
       {
+        "name": "compiled-routing-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -127,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,13 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Lane",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Add",
+        "name": "Purpose The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Lane C validates authored routing but not the path that will serve when compiled routing is enabled",
+    "causal_summary": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
     "created_at": "2026-07-20T17:46:53.368Z",
-    "last_save_at": "2026-07-20T17:46:53.368Z",
+    "last_save_at": "2026-07-21T06:51:20.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36bd829e881c1f239f84685a9111279ea14c95bb81590e95ee46c491b8232e75",
+    "source_fingerprint": "sha256:7677cf2e36c63a45a6a3506c630ed6bb781e912e543b26e6efe858a55a8f9f17",
     "source_doc_hashes": {
-      "spec.md": "a2404012057f8b1eb24d7af1c5d2c6e70fa676bf9c8d1ee2bb11741f7ae2019b",
-      "plan.md": "1b711db4c054f9a6dfa1475bb715964326780174ba2f61351a74ecfe1f89d115",
-      "tasks.md": "ba830978980e2dfd754e66f0151ad255e4ed9a87c1f14a6ffb34f5b2cc382762",
-      "checklist.md": "95b5ac40c0da952f677d1aae9fc5d645ba824eab426a82bad8b34c5295ab8b5f",
-      "implementation-summary.md": "154e3bffc74ad6be57c11b488ac196ed2f409373fe4b23875d446486bab015ac"
+      "spec.md": "8f230bc8500729d4e1c3b8be08e6093a4c07c3cdccd9bea2234e15ddea6a3b18",
+      "plan.md": "4edd6c08837c5e27c6b98f2c7c95b636aad4e462dd3b4e2fb92d8e7210d792be",
+      "tasks.md": "96cfb7ba90e5c5193036543d8137d0f4e3c4dba74f81208528fd4d85e10ea929",
+      "checklist.md": "179ce51eda70d59bcd2d0924823dcbbf5719fc4a54b83b87109ea681646f382a",
+      "implementation-summary.md": "42adf054ed6e03fea57d3d09e1e7c171b00c3d39c6e69e1667420d96c1fee277"
     },
     "last_active_child_id": null,
     "last_active_at": null

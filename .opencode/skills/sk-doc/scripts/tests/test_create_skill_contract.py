@@ -3,8 +3,10 @@
 
 import importlib.util
 import json
+import shutil
 import subprocess
 import sys
+import uuid
 import zipfile
 from pathlib import Path
 
@@ -25,6 +27,28 @@ def _load_init_module():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def _load_validator_module():
+    scripts_dir = Path(__file__).resolve().parents[1]
+    module_path = scripts_dir / "validate_skill_package.py"
+    spec = importlib.util.spec_from_file_location("validate_skill_package", module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _temporary_hub_name() -> str:
+    return f"test-hub-{uuid.uuid4().hex[:8]}"
+
+
+def _activation_dir(hub_name: str) -> Path:
+    opencode_root = Path(__file__).resolve().parents[4]
+    return (
+        opencode_root
+        / "bin/lib/compiled-routing/010-live-activation/activation"
+        / hub_name
+    )
 
 
 def _write_valid_skill(
@@ -112,6 +136,262 @@ def test_parent_scaffold_emits_kebab_storage_and_exact_tool_names(tmp_path):
     }
     assert expected_paths <= emitted_paths
     assert "manual_testing_playbook" not in emitted_paths
+
+
+def test_parent_scaffold_defaults_to_legacy_without_manifest(tmp_path, capsys):
+    init_module = _load_init_module()
+    validator_module = _load_validator_module()
+    hub_name = _temporary_hub_name()
+
+    skill_path = init_module.init_parent_skill(hub_name, str(tmp_path))
+    output = capsys.readouterr().out
+
+    assert skill_path == tmp_path / hub_name
+    assert "Compiled routing: legacy (no manifest)" in output
+    assert "compiled-ready" not in output
+    assert not _activation_dir(hub_name).exists()
+    directive = (skill_path / "SKILL.md").read_text(encoding="utf-8")
+    assert f"compiled-route.cjs --hub {hub_name}" in directive
+    check = validator_module.check_compiled_routing_state(
+        skill_path,
+        Path(__file__).resolve().parents[4],
+    )
+    assert check["ok"] is True
+    assert "legacy" in check["name"]
+
+
+def test_parent_scaffold_ready_mints_and_verifies_canonical_manifest(
+    tmp_path,
+    capsys,
+):
+    init_module = _load_init_module()
+    validator_module = _load_validator_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+
+    try:
+        skill_path = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path),
+            compiled_routing="ready",
+        )
+        output = capsys.readouterr().out
+
+        assert skill_path == tmp_path / hub_name
+        assert "compiled-ready (fresh manifest verified" in output
+        manifest = json.loads(
+            (activation_dir / "manifest.json").read_text(encoding="utf-8")
+        )
+        assert manifest["selectedPolicy"]["generation"] == 1
+        assert manifest["servingAuthority"] == "legacy"
+        assert manifest["shadowOnly"] is True
+        check = validator_module.check_compiled_routing_state(
+            skill_path,
+            Path(__file__).resolve().parents[4],
+        )
+        assert check["ok"] is True
+        assert "compiled-ready" in check["name"]
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_parent_scaffold_never_reports_ready_when_mint_fails(tmp_path, capsys):
+    init_module = _load_init_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+    first_root = tmp_path / "first"
+    second_root = tmp_path / "second"
+
+    try:
+        legacy_path = init_module.init_parent_skill(hub_name, str(first_root))
+        minted, _payload, error = init_module._run_manifest_command(
+            "mint",
+            hub_name,
+            legacy_path,
+        )
+        assert minted is True, error
+        capsys.readouterr()
+
+        result = init_module.init_parent_skill(
+            hub_name,
+            str(second_root),
+            compiled_routing="ready",
+        )
+        output = capsys.readouterr().out
+
+        assert result is None
+        assert "manifest mint failed" in output
+        assert "Compiled routing: compiled-ready" not in output
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_parent_scaffold_legacy_rejects_preexisting_manifest(tmp_path, capsys):
+    init_module = _load_init_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+
+    try:
+        ready_path = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path / "ready"),
+            compiled_routing="ready",
+        )
+        assert ready_path is not None
+        capsys.readouterr()
+
+        result = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path / "legacy"),
+            compiled_routing="legacy",
+        )
+        output = capsys.readouterr().out
+
+        assert result is None
+        assert "requires no canonical manifest" in output
+        assert "Compiled routing: legacy (no manifest)" not in output
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_parent_templates_carry_the_same_exact_directive():
+    root = Path(__file__).resolve().parents[2] / "create-skill/assets/parent-skill"
+    scaffold = (root / "scaffold/hub-skill-scaffold.md").resolve()
+    canonical = (root / "parent-skill-hub-template.md").resolve()
+
+    def directive(path: Path) -> str:
+        lines = path.read_text(encoding="utf-8").splitlines()
+        start = next(
+            index for index, line in enumerate(lines)
+            if line.startswith("> **Compiled routing (opt-in, flag-gated, additive).**")
+        )
+        block = []
+        for line in lines[start:]:
+            if not line.startswith(">"):
+                break
+            block.append(line)
+        return "\n".join(block)
+
+    assert directive(scaffold) == directive(canonical)
+
+
+def test_compiled_routing_option_is_parent_only(tmp_path):
+    script = Path(__file__).resolve().parents[1] / "init_skill.py"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "standalone-fixture",
+            "--path",
+            str(tmp_path),
+            "--compiled-routing",
+            "ready",
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "only valid with --kind parent" in result.stderr
+    assert not (tmp_path / "standalone-fixture").exists()
+
+
+def test_compiled_routing_validator_rejects_stale_manifest(tmp_path):
+    init_module = _load_init_module()
+    validator_module = _load_validator_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+
+    try:
+        skill_path = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path),
+            compiled_routing="ready",
+        )
+        router_path = skill_path / "hub-router.json"
+        router = json.loads(router_path.read_text(encoding="utf-8"))
+        router["routerPolicy"]["ambiguityDelta"] = 2
+        router_path.write_text(json.dumps(router, indent=2) + "\n", encoding="utf-8")
+
+        check = validator_module.check_compiled_routing_state(
+            skill_path,
+            Path(__file__).resolve().parents[4],
+        )
+        assert check["ok"] is False
+        assert "stale-manifest" in check["output"]
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_parent_scaffold_never_reports_ready_when_minter_is_missing(
+    tmp_path,
+    capsys,
+    monkeypatch,
+):
+    init_module = _load_init_module()
+    hub_name = _temporary_hub_name()
+    monkeypatch.setattr(
+        init_module,
+        "_compiled_manifest_cli",
+        lambda: tmp_path / "missing-manifest-cli.cjs",
+    )
+
+    result = init_module.init_parent_skill(
+        hub_name,
+        str(tmp_path),
+        compiled_routing="ready",
+    )
+    output = capsys.readouterr().out
+
+    assert result is None
+    assert "manifest mint failed" in output
+    assert "Compiled routing: compiled-ready" not in output
+
+
+def test_compiled_routing_validator_rejects_malformed_manifest(tmp_path):
+    init_module = _load_init_module()
+    validator_module = _load_validator_module()
+    hub_name = _temporary_hub_name()
+    activation_dir = _activation_dir(hub_name)
+
+    try:
+        skill_path = init_module.init_parent_skill(
+            hub_name,
+            str(tmp_path),
+            compiled_routing="ready",
+        )
+        (activation_dir / "manifest.json").write_text("{malformed\n", encoding="utf-8")
+
+        check = validator_module.check_compiled_routing_state(
+            skill_path,
+            Path(__file__).resolve().parents[4],
+        )
+        assert check["ok"] is False
+        assert "invalid-manifest" in check["output"]
+    finally:
+        if activation_dir.exists():
+            shutil.rmtree(activation_dir)
+
+
+def test_parent_scaffold_rejects_unknown_compiled_state(tmp_path, capsys):
+    init_module = _load_init_module()
+
+    result = init_module.init_parent_skill(
+        _temporary_hub_name(),
+        str(tmp_path),
+        compiled_routing="unknown",
+    )
+    output = capsys.readouterr().out
+
+    assert result is None
+    assert "must be 'legacy' or 'ready'" in output
+    assert "compiled-ready" not in output
 
 
 def test_scalar_allowed_tools_is_invalid(tmp_path):

@@ -127,7 +127,20 @@ Tie-break order lists workflow modes first and surface packets after them. `surf
 
 ---
 
-## 3. Named Extensions
+## 3. Compiled-Routing Readiness
+
+Every new parent hub receives the additive compiled-routing directive, while its generated activation state is selected explicitly:
+
+- `legacy` is the backward-compatible default. It emits no activation manifest and reports `legacy (no manifest)`.
+- `ready` writes the final `SKILL.md`, `mode-registry.json`, and `hub-router.json`, invokes `.opencode/bin/compiled-route-manifest.cjs mint --hub <hub-id> --skill-root <final-hub-path>`, and then invokes the same CLI's `freshness` action.
+
+Only a valid, fresh canonical result may be reported as `compiled-ready (fresh manifest verified)`. Missing tooling, a failed mint, malformed manifest bytes, or stale policy identity fails the command and retains the legacy fallback. Do not synthesize an effective-policy digest or hand-author the activation manifest.
+
+The minted manifest proves readiness without enabling service: it starts at generation 1 with legacy serving authority and shadow-only enabled. Eligibility, fallback, and later activation remain owned by the shared compiled-routing contract; this authoring workflow does not duplicate those rules or change the default.
+
+---
+
+## 4. Named Extensions
 
 Extensions declare extra semantics in place. They do not create extra directory tiers or move fields away from their current registry locations.
 
@@ -144,7 +157,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 
 ---
 
-## 4. Four Hubs Extension Matrix
+## 5. Four Hubs Extension Matrix
 
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -157,7 +170,7 @@ Use the matrix to describe current hub behavior without copying one hub's specia
 
 ---
 
-## 5. Workflow Packet Vs Surface Packet
+## 6. Workflow Packet Vs Surface Packet
 
 Choose a **workflow packet** when the new capability changes the process the assistant follows.
 
@@ -188,7 +201,7 @@ If the request needs both, register the workflow first and attach surfaces throu
 
 ---
 
-## 6. Changelog And Naming Policies
+## 7. Changelog And Naming Policies
 
 Changelog policy:
 
@@ -220,7 +233,7 @@ Companion file policy:
 
 ---
 
-## 7. Related Resources
+## 8. Related Resources
 
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - published router and registry schema details for parent hubs.
 - [skill-creation.md](../README.md) - skill-creation index and route map.

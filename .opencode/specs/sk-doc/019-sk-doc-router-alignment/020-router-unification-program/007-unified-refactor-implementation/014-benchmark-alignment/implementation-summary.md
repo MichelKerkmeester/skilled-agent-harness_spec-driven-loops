@@ -1,11 +1,33 @@
 ---
 title: "Implementation Summary: Lane C Compiled-Routing Benchmark Alignment"
-description: "Planned-state record for a Lane C compiled-path parity harness around the frozen scorer. No benchmark implementation or scorer edit is present yet."
+description: "Completion record reconciling the shared compiled Lane C harness and delivering the remaining public-child, normalized equality, status, report, and verification requirements."
 trigger_phrases:
-  - "Lane C compiled routing planned summary"
+  - "Lane C compiled routing implementation summary"
   - "benchmark parity current status"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
+    last_updated_at: "2026-07-21T08:20:00Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Reconciled and completed the shared Lane C parity harness"
+    next_safe_action: "Run the operator-gated activation join"
+    blockers:
+      - "Repository default activation remains intentionally operator-gated"
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "When will the operator authorize the separate default-on cutover?"
+    answered_questions:
+      - "The shared benchmark harness is the sole Lane C parity implementation"
 ---
 # Implementation Summary: Lane C Compiled-Routing Benchmark Alignment
 
@@ -19,13 +41,12 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
-| **Date** | 2026-07-20 |
+| **Status** | Implemented — satisfied by the shared benchmark harness |
+| **Date** | 2026-07-21 |
 | **Level** | 2 |
-| **Implementation** | Not started |
-| **Current Lane C path** | Legacy deterministic router replay only |
-| **Frozen scorer state** | Pinned and untouched by this documentation phase |
-| **Strict validation** | Planned after the full Markdown set is authored |
+| **Implementation** | Shared harness reconciled and remaining acceptance gaps delivered |
+| **Frozen scorer state** | Byte-identical before and after |
+| **Strict validation** | Recorded after final metadata regeneration |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,19 +54,22 @@ contextType: "implementation"
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Lane C will gain a deterministic parity module around the existing scorer. For eligible route-gold scenarios it will preserve the legacy replay, invoke the real public compiled front door with a child-only flag-on environment, normalize both routing results, run the same gold evaluator twice, and require mutual routing equality.
+The existing shared implementation from `015-routing-coverage-activation-verification/004-benchmark-compiled-lane-c` already supplied the non-frozen `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs` module, orchestrator gate, report renderer, digest pinning, qualified-id bridge, status enum, distinct verdict, and focused Vitest suite. This packet does not duplicate that harness.
 
-### Planned Implementation Surfaces
+The shared implementation was extended only where this packet's acceptance criteria were not yet covered:
 
-| Area | Planned Files | Purpose |
-|------|---------------|---------|
-| Parity harness | `compiled-routing-parity.cjs` | Invocation, normalization, status, equality, and digest checks |
-| Orchestration | `run-skill-benchmark.cjs` | Eligible-row execution and distinct gate |
-| Reporting | `build-report.cjs`, report JSON schema | Render compiled reality without changing scores |
-| Verification | New Vitest suite and isolated fixtures | Prove fresh, divergent, drifted, missing, and broken states |
-| Documentation | Lane C README and CLI usage | Explain the new resolved mode and result block |
+| Requirement | Shared implementation evidence |
+|-------------|--------------------------------|
+| Non-frozen parity ownership and distinct gate | compiledParity(), rollupCompiledParity(), and applyCompiledDriftVerdict() |
+| Public flag-on serving path | defaultCompiledDecision() spawns .opencode/bin/compiled-route.cjs with a cloned child env and SPECKIT_COMPILED_ROUTING=1 |
+| Shared status classification | defaultProbeStatus() consumes compiled-route-status.cjs; missing, stale, invalid, legacy-authority, and breakage stay distinct |
+| Ordered routing equality | normalizeLegacyProjection(), normalizeCompiledProjection(), and firstProjectionDifference() compare action, selection kind, and ordered workflow/surface targets |
+| Dual route-gold requirement | compiledParity() requires both frozen evaluator results to pass before projection equality can pass |
+| Frozen before/after proof | assertFrozenScorerDigests() returns digests; run() checks start/end equality before writing a report |
+| Proof-grade report | run() writes flagForcedOn, eligible rows, counts, drift rows, breakages, frozen hashes, projections, and first difference |
+| JSON-to-Markdown and docs | renderReport() and the Lane C README render/document the authoritative JSON block |
 
-No Lane C runtime file, fixture, report renderer, manifest, routing input, or frozen scorer file was modified by this planning phase.
+The parity mode defaults to off, preserving optionless Mode-A reports, dimension applicability, verdicts, and exits. Explicit `on` exercises the selected target; explicit `auto` derives enablement from hub type. The parity path still adds its own report block and gate, and route-gold-only tests keep the two hard gates independently covered.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -53,7 +77,7 @@ No Lane C runtime file, fixture, report renderer, manifest, routing input, or fr
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implementation waits for the stable P0 front-door/status interface and P3 eligibility/discovery interface. After baseline reports and hashes are captured, the new module lands first, then orchestrator/report integration, then the isolated state matrix and non-regression suite. The frozen modules are imported and hashed only.
+Requirement-by-requirement reconciliation first mapped the packet to the shared harness. Only uncovered acceptance gaps were added to that implementation and its existing test/report surfaces. The frozen scorer trio remained read-only throughout.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -63,11 +87,13 @@ Implementation waits for the stable P0 front-door/status interface and P3 eligib
 
 | Decision | Rationale |
 |----------|-----------|
-| Keep compiled alignment outside the scorer | Preserves the pinned D1-D5 and route-gold baseline while adding a new observation path. |
-| Exercise the public front door in a child process | Tests the real flag and serving gates and prevents parent environment leakage. |
-| Evaluate both paths against gold before comparing them | Two equally wrong routes must not pass merely because they match each other. |
-| Compare routing fields, not hashes or generations | The requirement is decision parity; additive metadata is allowed to differ. |
-| Use shared status and eligibility interfaces | Prevents Lane C from inventing a local hub list or alternate drift meaning. |
+| Extend the shared harness | One implementation avoids divergent Lane C semantics. |
+| Spawn the public CLI | In-process engine calls do not prove flag gating or parent-environment isolation. |
+| Require both gold checks and projection equality | Two equally wrong routes cannot pass. |
+| Preserve authored order | Ordered and surface bundles are routing behavior, not set membership. |
+| Consume shared eligibility/status | Lane C owns no hub allowlist, freshness algorithm, or repair path. |
+| Keep D1-D5 frozen | The parity verdict is additive and never changes scorer weights or meanings. |
+| Keep parity default-off | Baseline Mode A cannot enter a new gate unless the caller explicitly selects `on` or `auto`. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -77,15 +103,16 @@ Implementation waits for the stable P0 front-door/status interface and P3 eligib
 
 | Check | Result |
 |-------|--------|
-| Current-state source inspection | Confirmed: Lane C does not invoke the compiled front door or set the flag |
-| Frozen file hashes | Planned baseline and after-change comparison |
-| Fresh legacy/compiled parity | Planned |
-| Divergence gate | Planned |
-| Drift/no-manifest/breakage matrix | Planned |
-| Environment and manifest isolation | Planned |
-| D1-D5 report non-regression | Planned |
-| Existing plus new Vitest suites | Planned |
-| Strict spec-folder validation | Planned |
+| Focused parity suite | Included in the green full-suite run |
+| Full Lane C suite | Exact skill-benchmark include — 18 files, 247 tests passed |
+| Baseline applicability regression | Optionless advisor-visible hub run returned exit 0, retained `excludedDimensions: []`, and emitted no compiled block |
+| Projection matrix | Single, ordered workflow, surface bundle, defer, reject, first-difference, and both-wrong cases covered |
+| Status matrix | Fresh parity, divergence, stale re-mint, missing legacy-only, malformed, and front-door breakage covered |
+| Environment isolation | Real public child forced on while parent flag remained unchanged |
+| Report schema | JSON block and Markdown rendering cover every required field |
+| Manifest safety | Benchmark code has no mint/write/delete path; seven live manifest hashes unchanged |
+| Frozen scorer safety | Start/end SHA-256 values identical and embedded in report evidence |
+| Strict packet validation | Final result recorded after metadata regeneration |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,10 +120,9 @@ Implementation waits for the stable P0 front-door/status interface and P3 eligib
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Stable status and eligibility interfaces are pending.** Sentinel output alone cannot distinguish drift from breakage safely.
-2. **The current public front door still reaches a resolver beneath the spec tree.** The P0 remediation must land before this harness becomes a durable CI dependency.
-3. **The drift exit-policy boundary remains open.** Lane C must report drift distinctly; the operator must decide whether the benchmark or separate drift-CI job owns the non-zero process signal.
-4. **This phase covers deterministic Mode A only.** It does not add paid real-model verification or network activity.
+1. A real sk-code sample currently demonstrates that the strengthened gate can expose a compiled defer where legacy routes. The harness correctly reports this as drift; changing the routing decision is outside this benchmark-only packet.
+2. The parity lane is deterministic Mode A coverage and performs no network or paid-model calls.
+3. Default compiled serving remains a separate operator-gated repository decision.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -104,11 +130,6 @@ Implementation waits for the stable P0 front-door/status interface and P3 eligib
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [ ] Finalize the P0 stable front-door and machine-readable status interface.
-- [ ] Finalize P3 eligibility and manifest discovery without a hardcoded hub map.
-- [ ] Decide whether Lane C or the separate drift-CI job owns the non-zero drift exit.
-- [ ] Implement the harness, orchestrator, report, fixture, test, and documentation changes listed in `spec.md`.
-- [ ] Capture and compare legacy D1-D5 baseline reports before enabling the new gate.
-- [ ] Re-hash and preserve the three frozen files throughout implementation.
-- [ ] Let the parent workflow generate `description.json` and `graph-metadata.json` for this spec folder; this leaf authoring pass does not create them.
+- Route owners may use the reported first-difference evidence in a separate routing-decision change.
+- The activation controller may consume this implemented sibling at the operator-gated join.
 <!-- /ANCHOR:follow-up -->

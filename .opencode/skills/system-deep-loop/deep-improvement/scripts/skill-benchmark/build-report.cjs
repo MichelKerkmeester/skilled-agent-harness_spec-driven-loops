@@ -178,18 +178,25 @@ function renderReport(report) {
     const ct = c.counts || {};
     lines.push('## Compiled routing parity');
     lines.push('');
-    lines.push(`- Sub-verdict: **${c.subVerdict}**${c.blocking ? ' — ⚠ blocks the run' : ''} · flag: \`${c.flagState ? c.flagState.state : 'unset'}\` · parity mode: \`${c.mode}\``);
+    lines.push(`- Sub-verdict: **${c.subVerdict}**${c.blocking ? ' — ⚠ blocks the run' : ''} · child flag forced on: **${c.flagForcedOn === true ? 'yes' : 'no'}** · parent flag: \`${c.flagState ? c.flagState.state : 'unset'}\` · parity mode: \`${c.mode}\``);
     lines.push(`- Scored: **${c.scored || 0}** · match: **${ct.match || 0}** · drift: **${ct.drift || 0}** · vacuous: **${ct.vacuous || 0}** · resolver-missing: **${ct['resolver-missing'] || 0}** · n/a: **${ct['n/a'] || 0}**`);
+    lines.push(`- Eligible rows: **${Array.isArray(c.eligibleRows) ? c.eligibleRows.length : 0}** · drift rows: **${Array.isArray(c.driftRows) ? c.driftRows.length : 0}** · breakages: **${Array.isArray(c.breakages) ? c.breakages.length : 0}**`);
+    if (c.frozenHashes) {
+      lines.push(`- Frozen scorer hashes unchanged: **${c.frozenHashes.unchanged === true ? 'yes' : 'no'}**`);
+    }
     if (c.gate) {
       const consumers = (c.gate.reportOnlyConsumers || []).join(', ');
       lines.push(`- Drift gate: single blocking owner \`${c.gate.owner}\`${consumers ? ` · report-only consumers: ${consumers}` : ''}`);
     }
     if (Array.isArray(c.rows) && c.rows.length) {
       lines.push('');
-      lines.push('| Scenario | Hub | Status | Reason |');
-      lines.push('| -------- | --- | ------ | ------ |');
+      lines.push('| Scenario | Hub | Status | Front door | Reason | First difference |');
+      lines.push('| -------- | --- | ------ | ---------- | ------ | ---------------- |');
       for (const row of c.rows) {
-        lines.push(`| ${row.scenarioId || '—'} | ${row.hubId || '—'} | ${row.status || '—'} | ${String(row.reason == null ? '' : row.reason).replace(/\|/g, '\\|')} |`);
+        const difference = row.firstDifference
+          ? `${row.firstDifference.field}: ${JSON.stringify(row.firstDifference.legacy)} -> ${JSON.stringify(row.firstDifference.compiled)}`
+          : '';
+        lines.push(`| ${row.scenarioId || '—'} | ${row.hubId || '—'} | ${row.status || '—'} | ${row.frontDoorOutcome || '—'} | ${String(row.reason == null ? '' : row.reason).replace(/\|/g, '\\|')} | ${difference.replace(/\|/g, '\\|')} |`);
       }
     }
     lines.push('');

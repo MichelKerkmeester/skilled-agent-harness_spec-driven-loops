@@ -348,7 +348,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
       .replace('expected_intent: mcp-chrome-devtools', 'expected_intent: mcp-figma'));
 
     const outOn = join(scratch, 'out-on');
-    const codeOn = run({ skill: MCP_TOOLING, 'outputs-dir': outOn, 'trace-mode': 'router', 'playbook-dir': corpus });
+    const codeOn = run({ skill: MCP_TOOLING, 'outputs-dir': outOn, 'trace-mode': 'router', 'playbook-dir': corpus, 'compiled-routing-parity': 'off' });
     const reportOn = JSON.parse(readFileSync(join(outOn, 'skill-benchmark-report.json'), 'utf8'));
     expect(reportOn.verdict).toBe('BLOCKED-BY-ROUTE-GOLD');
     expect(reportOn.routeGold).toMatchObject({ enabled: true, violations: 1 });
@@ -356,7 +356,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
     expect(codeOn).toBe(3);
 
     const outOff = join(scratch, 'out-off');
-    const codeOff = run({ skill: MCP_TOOLING, 'outputs-dir': outOff, 'trace-mode': 'router', 'playbook-dir': corpus, 'route-gold': 'off' });
+    const codeOff = run({ skill: MCP_TOOLING, 'outputs-dir': outOff, 'trace-mode': 'router', 'playbook-dir': corpus, 'route-gold': 'off', 'compiled-routing-parity': 'off' });
     const reportOff = JSON.parse(readFileSync(join(outOff, 'skill-benchmark-report.json'), 'utf8'));
     expect(reportOff.verdict).not.toBe('BLOCKED-BY-ROUTE-GOLD');
     expect(reportOff.routeGold).toMatchObject({ enabled: false, violations: 1 });
@@ -372,7 +372,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
       .replace('expected_intent: mcp-click-up', 'expected_intent: !!!'));
 
     const out = join(scratch, 'out');
-    const code = run({ skill: MCP_TOOLING, 'outputs-dir': out, 'trace-mode': 'router', 'playbook-dir': corpus });
+    const code = run({ skill: MCP_TOOLING, 'outputs-dir': out, 'trace-mode': 'router', 'playbook-dir': corpus, 'compiled-routing-parity': 'off' });
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     expect(report.verdict).toBe('BLOCKED-BY-ROUTE-GOLD');
     expect(report.routeGold.parseFailures).toBe(1);
@@ -382,7 +382,7 @@ describe('end-to-end enforcement (scratch corpus, live corpus untouched)', () =>
 
   it('the live mcp-tooling corpus passes with the gate enforced and route-gold rows above 0', () => {
     const scratch = tempDir('rg-live-');
-    const code = run({ skill: MCP_TOOLING, 'outputs-dir': scratch, 'trace-mode': 'router' });
+    const code = run({ skill: MCP_TOOLING, 'outputs-dir': scratch, 'trace-mode': 'router', 'compiled-routing-parity': 'off' });
     const report = JSON.parse(readFileSync(join(scratch, 'skill-benchmark-report.json'), 'utf8'));
     expect(report.routeGold).toMatchObject({ enabled: true, violations: 0 });
     expect(report.routeGold.rows).toBeGreaterThan(0);

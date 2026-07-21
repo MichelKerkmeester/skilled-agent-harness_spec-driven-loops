@@ -226,25 +226,29 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 
 1. Confirm the hub is one advisor-routable identity, not multiple standalone skills.
 2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
-3. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
-4. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
-5. Add `references/` and `assets/` to surface packets when they carry evidence material.
-6. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
-7. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
-8. Define every packet in one `mode-registry.json > modes[]` array.
-9. Use `packetKind: "workflow"` for lifecycle or process packets.
-10. Use `packetKind: "surface"` for read-only evidence packets.
-11. For every `modes[]` entry, define `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `grandfatheredFolderMismatch`, `aliases`, and `advisorRouting`.
-12. Keep `folder == packetSkillName` for all new packets.
-13. Set `grandfatheredFolderMismatch: false` unless preserving an existing mismatch.
-14. Keep aliases unique across all modes.
-15. Put all workflow and surface packets in `modes[]`; never create a second array such as `surfacePackets[]`.
-16. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
-17. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
-18. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
-19. Ensure router outcomes include the base three `single`, `orderedBundle`, and `defer`; add `surfaceBundle` only when the hub has surface packets (`surface-axis`).
-20. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
-21. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
+3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
+4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
+5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+6. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
+7. Add `references/` and `assets/` to surface packets when they carry evidence material.
+8. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
+9. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
+10. Define every packet in one `mode-registry.json > modes[]` array.
+11. Use `packetKind: "workflow"` for lifecycle or process packets.
+12. Use `packetKind: "surface"` for read-only evidence packets.
+13. For every `modes[]` entry, define `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `grandfatheredFolderMismatch`, `aliases`, and `advisorRouting`.
+14. Keep `folder == packetSkillName` for all new packets.
+15. Set `grandfatheredFolderMismatch: false` unless preserving an existing mismatch.
+16. Keep aliases unique across all modes.
+17. Put all workflow and surface packets in `modes[]`; never create a second array such as `surfacePackets[]`.
+18. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
+19. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
+20. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
+21. Ensure router outcomes include the base three `single`, `orderedBundle`, and `defer`; add `surfaceBundle` only when the hub has surface packets (`surface-axis`).
+22. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
+23. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
+24. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
+25. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
 
 ### Parent Hub Shape
 
@@ -279,7 +283,7 @@ Run the completion gate before any completion claim:
 scripts/validate_skill_package.py <path/to/skill-folder>
 ```
 
-It auto-detects skill kind — standalone skills run the package check; parent hubs additionally run the parent-hub structural check.
+It auto-detects skill kind — standalone skills run the package check; parent hubs additionally run the parent-hub structural check and the canonical manifest freshness check. A missing manifest reports the valid legacy state; a valid fresh manifest reports compiled-ready; malformed or stale manifests fail validation.
 
 `--check` hard-fails on missing SKILL frontmatter or required fields, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and descriptions that are missing, multiline, or contain angle brackets. Generated package paths that are not kebab-case remain advisory during a debt-tolerant `--check`; `--strict` and actual packaging promote them to blocking errors. Python filenames, Python import-package directories, frozen/generated subtrees, and tool-mandated names are exempt.
 

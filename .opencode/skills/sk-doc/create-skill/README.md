@@ -54,13 +54,21 @@ python3 scripts/init_skill.py my-skill --path .opencode/skills
 python3 scripts/package_skill.py .opencode/skills/my-skill --check
 ```
 
-For a parent hub, load the parent-hub references first, then use the parent templates for the hub root and nested packets:
+For a parent hub, load the parent-hub references first, choose the generated routing state explicitly, and run one of these commands:
 
-```text
-references/parent-skill/parent-skills-nested-packets.md
-references/parent-skill/parent-hub-router-schema.md
-assets/parent-skill/parent-skill-*
+```bash
+# Backward-compatible state: directive present, no activation manifest emitted
+python3 scripts/init_skill.py my-hub --path .opencode/skills \
+  --kind parent --compiled-routing legacy
+
+# Manifest-ready state: canonical mint followed by canonical freshness validation
+python3 scripts/init_skill.py my-hub --path .opencode/skills \
+  --kind parent --compiled-routing ready
 ```
+
+Existing parent invocations without `--compiled-routing` remain `legacy`. Ready mode writes all router inputs first, calls `.opencode/bin/compiled-route-manifest.cjs mint`, then calls its `freshness` action. It reports `compiled-ready (fresh manifest verified)` only when both results are valid and fresh. A failure returns non-zero, retains the legacy fallback, and never hand-authors a manifest or digest.
+
+The ready manifest is inert onboarding evidence: generation 1, legacy serving authority, and shadow-only. It does not activate compiled serving or change the repository default.
 
 ## 5. IMPORTANT BOUNDARIES
 

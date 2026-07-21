@@ -7,6 +7,13 @@ trigger_phrases:
   - "compiled routing drift benchmark"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
+    last_updated_at: "2026-07-21T06:48:08Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Restored default-off benchmark parity isolation"
+    next_safe_action: "Keep activation operator-gated"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -22,9 +29,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-Lane C currently benchmarks deterministic routing through `router-replay.cjs`, joins the observed result to authored route gold, and scores it through `score-skill-benchmark.cjs`. The orchestrator never turns on `SPECKIT_COMPILED_ROUTING`, never invokes the compiled front door, and never compares the compiled decision with the legacy replay. A hub can therefore pass the benchmark while the path intended to serve under the compiled flag is stale, falling back, or broken.
+Lane C now retains deterministic legacy replay while adding a compiled parity gate around the frozen scorer. Eligible hub rows exercise the public flag-on front door, consume shared status/freshness, and compare ordered routing projections after both observations pass the same route gold.
 
-This phase plans a harness around the frozen scorer. For each eligible hub and authored route-gold scenario, Lane C will preserve the existing legacy observation, invoke the public compiled front door in a child process with the flag set to `1`, normalize both outputs to the same routing projection, assert each against the same route gold, and require compiled-versus-legacy routing equality. Drift and no-manifest states use the classifications owned by `../012-default-on-decision/`; this packet references those contracts and does not restate them.
+This packet reconciles and completes the shared harness around the frozen scorer. For each eligible hub and authored route-gold scenario, Lane C preserves the existing legacy observation, invokes the public compiled front door in a child process with the flag set to `1`, normalizes both outputs, and requires dual route-gold success plus routing equality.
 
 ---
 
@@ -35,7 +42,7 @@ This phase plans a harness around the frozen scorer. For each eligible hub and a
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Lane** | Lane C (`skill-benchmark`) |
@@ -49,17 +56,17 @@ This phase plans a harness around the frozen scorer. For each eligible hub and a
 
 ### Confirmed Current State
 
-`run-skill-benchmark.cjs` resolves a skill root, runs structural gates, loads scenarios, dispatches router-mode cases, calls `scoreScenario()`/`evaluateRouteGold()`, aggregates, and writes the JSON/Markdown reports. In deterministic Mode A, `executor-dispatch.cjs` selects `router-replay.cjs`. Hub route-gold is enforced by default, but the observed route is still the legacy replay only.
+`run-skill-benchmark.cjs` resolves a skill root, runs structural gates, loads scenarios, and retains deterministic legacy replay. Compiled parity is opt-in through `on` or explicit hub-derived `auto`; the report and process gate remain outside the frozen scorer, while an optionless Mode-A run remains byte-compatible with the baseline contract.
 
-The existing seam is suitable for an additive parity lane: `router-replay.cjs` returns legacy intents/resources and hub telemetry; `.opencode/bin/compiled-route.cjs` returns the flag-gated compiled decision or a legacy sentinel; `score-skill-benchmark.cjs` already exports the route-gold evaluator. The missing piece is normalization and comparison around those unchanged modules.
+The delivered additive lane keeps the existing seam intact: `router-replay.cjs` returns legacy intents/resources, the public compiled front door returns the flag-gated decision, and the frozen scorer exports the shared route-gold evaluator. Normalization, comparison, status, and reporting live in the non-frozen shared harness.
 
 ### Problem Statement
 
-Lane C validates authored routing but not the path that will serve when compiled routing is enabled. It cannot prove that the flag-on front door actually returns a compiled decision, that the decision matches the legacy route, or that stale-manifest fallback is distinguishable from a broken compiled path. Adding compiled logic inside the scorer would corrupt the pinned baseline and mix routing observation with scoring policy.
+The original gap was that Lane C validated authored routing but not the compiled-serving path. The shared harness now proves the public child path and distinguishes drift, legacy-only state, and breakage without moving logic into the scorer.
 
 ### Purpose
 
-Add a deterministic compiled-routing parity harness, integrate its structured result into Lane C reporting and process gates, and cover fresh, drifted, missing, and broken fixture states. The three frozen scorer files remain byte-identical and are consumed read-only.
+The deterministic parity harness is integrated into Lane C reporting and process gates with fresh, drifted, missing, malformed, and broken fixture coverage. The three frozen scorer files remain byte-identical and are consumed read-only.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -74,7 +81,7 @@ Add a deterministic compiled-routing parity harness, integrate its structured re
 - Legacy observation through the existing frozen `router-replay.cjs`.
 - Route-gold checks for both normalized observations through the existing frozen `evaluateRouteGold()` export.
 - A routing-only equality projection: action, selection kind, ordered workflow/surface targets, and defer/reject outcome. Policy hashes, generations, timing, and additive metadata do not participate in routing equality.
-- A default-on parity gate for hubs whose shared eligibility predicate reports a valid fresh manifest; no-manifest hubs are recorded as legacy by construction rather than treated as a compiled failure.
+- An opt-in parity gate for hubs whose shared eligibility predicate reports a valid fresh manifest; explicit `auto` derives from hub type, while no-manifest hubs are recorded as legacy by construction rather than treated as a compiled failure.
 - Drift classification, re-mint-required reporting, and hard-failure classification through the status contract owned by the decision packet.
 - JSON and Markdown report additions, deterministic fixtures, Vitest coverage, and README/CLI documentation.
 
@@ -106,9 +113,9 @@ For each route-gold scenario on a valid fresh eligible hub:
 6. Require both route-gold results to pass and require the two routing projections to be equal.
 7. Record the result under a new `compiledRouting` report block without altering D1-D5 scoring.
 
-### Files to Change During Implementation
+### Delivered Shared Harness Files
 
-| File Path | Change Type | Planned Change |
+| File Path | Change Type | Delivered Change |
 |-----------|-------------|----------------|
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs` | Create | Own compiled invocation, normalization, status classification, parity, and frozen-file hashes |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs` | Modify | Run the parity lane for eligible hub scenarios, gate the verdict, and preserve current scoring |
@@ -133,7 +140,7 @@ For each route-gold scenario on a valid fresh eligible hub:
 | REQ-002 | Exercise the real compiled-serving path with the flag on. | Eligible hub scenarios invoke `.opencode/bin/compiled-route.cjs` in a child process with `SPECKIT_COMPILED_ROUTING=1`; the report records `flagForcedOn: true` and the front-door outcome. |
 | REQ-003 | Require route-gold success and routing equality for compiled and legacy observations. | Both projected observations pass the same authored route gold and their normalized routing projections compare equal; a mismatch names scenario, legacy projection, compiled projection, and first differing field. |
 | REQ-004 | Distinguish manifest drift, legacy-by-construction, and compiled breakage. | Status comes from the shared decision-contract probe: no manifest records legacy-only; stale manifest records drift and re-mint-required; fresh manifest plus resolver/front-door failure records breakage. |
-| REQ-005 | Integrate parity as a Lane C gate without changing D1-D5. | `report.compiledRouting` contains mode, eligible rows, parity counts, drift rows, breakages, and frozen hashes; routing divergence or breakage produces a distinct blocked verdict and non-zero exit, while drift remains visibly classified according to the authoritative contract. |
+| REQ-005 | Integrate parity as an additive Lane C gate without changing baseline Mode A or D1-D5. | Optionless runs preserve the legacy report and exit contract; explicit `on` or `auto` adds `report.compiledRouting` with mode, eligible rows, parity counts, drift rows, breakages, and frozen hashes. Routing divergence or breakage then produces a distinct blocked verdict and non-zero exit. |
 | REQ-006 | Prevent environment and filesystem mutation. | Each compiled call receives a child-only env; parent `process.env` is unchanged; benchmark runs never mint, modify, or delete a manifest or routing input. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -239,7 +246,7 @@ For each route-gold scenario on a valid fresh eligible hub:
 
 - Should a drifted live hub make Lane C exit non-zero directly, or should Lane C report the degraded state while the separate P1 drift-CI job owns the failing process signal? The report must distinguish drift from breakage either way.
 - What stable machine-readable P0 status-probe interface will return the cause behind a legacy sentinel?
-- Should the parity gate default to `auto` for valid-fresh hubs and `off/not-applicable` elsewhere, or use an explicit `--compiled-routing-parity on|off|auto` flag mirroring route-gold? The recommendation is `auto` with a recorded resolved mode.
+- Resolved: the parity gate defaults to `off` so baseline Mode A is unchanged. Explicit `on` runs the selected target; explicit `auto` derives enablement from hub type.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -251,6 +258,5 @@ For each route-gold scenario on a valid fresh eligible hub:
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
-- **Planned-state record**: `implementation-summary.md`
+- **Implementation record**: `implementation-summary.md`
 - **Current Lane C architecture**: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md`
-

@@ -13,6 +13,14 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 
+COMPILED_ROUTING_MARKERS = (
+    'Compiled routing (opt-in, flag-gated, additive).',
+    'node .opencode/bin/compiled-route.cjs --hub',
+    'servingAuthority":"legacy',
+    'off by default',
+)
+
+
 def find_opencode_root(script_path: Path) -> Optional[Path]:
     """Find the enclosing .opencode directory for this script."""
     for parent in script_path.parents:
@@ -44,6 +52,108 @@ def run_check(name: str, command: List[str]) -> Dict[str, object]:
         'exit': result.returncode,
         'ok': result.returncode == 0,
         'output': result.stdout,
+    }
+
+
+def check_compiled_routing_state(
+    skill_path: Path,
+    opencode_root: Optional[Path],
+) -> Dict[str, object]:
+    """Verify the generated directive and canonical manifest readiness state."""
+    skill_md = skill_path / 'SKILL.md'
+    try:
+        skill_content = skill_md.read_text(encoding='utf-8')
+    except (OSError, UnicodeError) as error:
+        return {
+            'name': 'compiled routing readiness',
+            'exit': 1,
+            'ok': False,
+            'output': str(error),
+        }
+
+    missing_markers = [
+        marker for marker in COMPILED_ROUTING_MARKERS if marker not in skill_content
+    ]
+    if missing_markers:
+        return {
+            'name': 'compiled routing readiness',
+            'exit': 1,
+            'ok': False,
+            'output': f"Missing directive markers: {', '.join(missing_markers)}",
+        }
+
+    manifest_cli = (
+        opencode_root / 'bin' / 'compiled-route-manifest.cjs'
+        if opencode_root
+        else None
+    )
+    if manifest_cli is None or not manifest_cli.is_file():
+        return {
+            'name': 'compiled routing readiness',
+            'exit': 1,
+            'ok': False,
+            'output': f'Manifest CLI not found: {manifest_cli or "UNKNOWN"}',
+        }
+
+    try:
+        result = subprocess.run(
+            [
+                'node',
+                str(manifest_cli),
+                'freshness',
+                '--hub',
+                skill_path.name,
+                '--skill-root',
+                str(skill_path.resolve()),
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+    except OSError as error:
+        return {
+            'name': 'compiled routing readiness',
+            'exit': 127,
+            'ok': False,
+            'output': str(error),
+        }
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        detail = result.stderr.strip() or result.stdout.strip() or 'no output'
+        return {
+            'name': 'compiled routing readiness',
+            'exit': 1,
+            'ok': False,
+            'output': f'Invalid manifest CLI output: {detail}',
+        }
+
+    cause = payload.get('causeCode')
+    if cause == 'missing-manifest':
+        return {
+            'name': 'compiled routing readiness: legacy (no manifest)',
+            'exit': 0,
+            'ok': True,
+            'output': result.stdout,
+        }
+    if (
+        result.returncode == 0
+        and payload.get('manifestValid') is True
+        and payload.get('fresh') is True
+    ):
+        return {
+            'name': 'compiled routing readiness: compiled-ready',
+            'exit': 0,
+            'ok': True,
+            'output': result.stdout,
+        }
+
+    return {
+        'name': 'compiled routing readiness',
+        'exit': result.returncode or 1,
+        'ok': False,
+        'output': result.stdout or result.stderr or str(cause),
     }
 
 
@@ -111,6 +221,7 @@ def main() -> int:
 
     if kind == 'parent':
         opencode_root = find_opencode_root(script_path)
+        checks.append(check_compiled_routing_state(skill_path, opencode_root))
         parent_checker = (
             opencode_root / 'commands' / 'doctor' / 'scripts' / 'parent-skill-check.cjs'
             if opencode_root

@@ -170,7 +170,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--trace-mode router\|live] [--scenarios <ids>] [--output <report.json>] [--route-gold on\|off\|auto]` | CLI | Runs the Lane C benchmark and writes `report.json` + `report.md`. |
+| `node run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--trace-mode router\|live] [--scenarios <ids>] [--output <report.json>] [--route-gold on\|off\|auto] [--compiled-routing-parity on\|off\|auto]` | CLI | Runs the Lane C benchmark and writes `report.json` + `report.md`. |
 | `... --d4 [--d4-scenarios <ids>] [--grader-mode real\|mock]` | CLI (opt-in) | Adds the D4-R task-outcome ablation; requires `--trace-mode live`. Augments the report with advisory `D4_task_outcome`. |
 
 ### Route-gold hard gate (`--route-gold on|off|auto`)
@@ -179,6 +179,14 @@ Mode A consumes every authored `expected_intent`/`expected_resources` assertion 
 
 - `auto` (default): enforced when the target skill is hub-type (ships a `hub-router.json`), off otherwise — existing non-hub baselines keep their meaning.
 - `on` / `off`: explicit per-run override (e.g. `off` while triaging a hub corpus's newly-surfaced violations).
+
+### Compiled-routing parity gate (`--compiled-routing-parity on|off|auto`)
+
+This gate defaults to `off`, preserving the baseline Mode A report and exit behavior. `on` enables it for the selected target, while explicit `auto` enables it for hub-type skills and leaves flat skills off. For an eligible hub, each route-gold scenario invokes the public `.opencode/bin/compiled-route.cjs` front door in a child process whose cloned environment sets `SPECKIT_COMPILED_ROUTING=1`; the parent environment is never changed. The legacy replay and compiled projection must both pass the same frozen route-gold evaluator and compare equal on action, selection kind, and ordered workflow/surface targets.
+
+The shared status probe distinguishes a missing manifest (`legacy-by-construction`), stale manifest (`re-mint-required` drift), and fresh-manifest front-door breakage. The benchmark reports these states but never mints, repairs, or edits activation data. Status authority remains the compiled-routing decision contract; Lane C only consumes it.
+
+`report.json` is authoritative. Its `compiledRouting` block records `flagForcedOn`, eligible rows, parity counts, drift rows, breakages, frozen scorer hashes before and after the run, full routing projections, and the first differing field. `report.md` is rendered from that JSON. Drift or breakage raises `BLOCKED-BY-COMPILED-DRIFT` and exit 3 unless a higher-precedence structural, registry, or route-gold block already owns the verdict.
 
 Default-resource semantics are declared by the router itself: `DEFAULT_RESOURCE_SEMANTICS = "fallback-only"` (SKILL.md/router doc) or `routerPolicy.defaultResourceSemantics` (hub-router.json) makes the default a defer-time suggestion the replay never assembles; a router with no declaration keeps the legacy always-union replay behavior.
 | `run({ ... })` | Function | Programmatic orchestrator entry; returns the report object. |
@@ -192,13 +200,10 @@ Run from the repository root.
 
 ```bash
 cd .opencode/skills/system-deep-loop/deep-improvement/scripts
-npx vitest run skill-benchmark/tests/skill-benchmark.vitest.ts
-npx vitest run skill-benchmark/tests/playbook-mode.vitest.ts
-npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts
-npx vitest run skill-benchmark/tests/route-gold-gate.vitest.ts
+npx vitest run skill-benchmark/tests --config vitest.config.mjs
 ```
 
-Expected result: all four Lane C suites pass (`route-gold-gate.vitest.ts` covers the route-gold hard gate, loud gold parsing, and the mcp-tooling fallback-parity guard).
+Expected result: all 18 Lane C suites and 247 tests pass. The compiled-routing suite covers default-off baseline isolation, child-only flag forcing, dual route-gold checks, ordered projection equality, status classification, report rendering, and frozen-scorer integrity.
 
 ---
 

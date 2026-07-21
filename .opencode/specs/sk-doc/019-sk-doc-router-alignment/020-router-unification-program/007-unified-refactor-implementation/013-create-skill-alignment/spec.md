@@ -22,9 +22,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-`sk-doc:create-skill` can generate a parent hub, its registry/router metadata, and its first workflow packet, but it currently emits no compiled-routing directive, no activation-manifest step, and no compiled-readiness verification. A repository search beneath `.opencode/skills/sk-doc/create-skill/` returns zero compiled-routing tokens. The generated hub therefore reflects the pre-v4 routing model even though the seven established hubs now carry the additive, flag-gated directive.
+`sk-doc:create-skill` now generates parent hubs in an explicit legacy or compiled-ready state. Both templates emit the additive directive; ready generation uses the canonical manifest minter and freshness predicate, while legacy remains the no-manifest compatibility default.
 
-This phase plans the onboarding-side implementation of the eligibility decision owned by `../012-default-on-decision/decision-record.md`. A generated parent hub must be born in one of two explicit states: **compiled-ready**, where create-skill mints and verifies the canonical fresh manifest, or **legacy**, where no manifest is emitted and the hub follows the existing routing path by construction. This packet references the authoritative fallback and eligibility contract; it does not redefine it.
+This packet implements the onboarding-side contract owned by `../012-default-on-decision/decision-record.md`. A generated parent hub is born in one of two explicit states: **compiled-ready**, where create-skill mints and verifies the canonical fresh manifest, or **legacy**, where no manifest is emitted and the hub follows the existing routing path by construction.
 
 ---
 
@@ -35,7 +35,7 @@ This phase plans the onboarding-side implementation of the eligibility decision 
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Consumed decision** | `../012-default-on-decision/decision-record.md` (eligibility and fallback authority) |
@@ -49,17 +49,17 @@ This phase plans the onboarding-side implementation of the eligibility decision 
 
 ### Confirmed Current State
 
-The active parent-hub generator is `scripts/init_skill.py::init_parent_skill()`. It reads `assets/parent-skill/scaffold/hub-skill-scaffold.md`, creates `SKILL.md`, `README.md`, `mode-registry.json`, `hub-router.json`, `graph-metadata.json`, `description.json`, hub support directories, and one primary packet. Its CLI exposes only `--kind standalone|parent`. The generated hub `SKILL.md` routes through the registry and prose router only.
+The active parent-hub generator is `scripts/init_skill.py::init_parent_skill()`. It creates the complete hub scaffold and accepts parent-only `--compiled-routing legacy|ready`. Existing calls default to legacy.
 
-The copy-from parent template, `assets/parent-skill/parent-skill-hub-template.md`, likewise contains no compiled directive. The broader create-skill workflow documents parent-hub metadata and validation, but never asks whether the new hub should mint compiled eligibility. Existing tests in `.opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py` verify the emitted paths and naming, not compiled state.
+The active scaffold and copy-from parent template contain the same exact directive. The create-skill workflow asks for the onboarding state, package validation consumes canonical freshness, and contract tests cover both states plus fail-closed outcomes.
 
 ### Problem Statement
 
-New parent hubs cannot express a deliberate compiled state. They neither receive the directive used by the current seven hubs nor have an onboarding action that can mint the manifest on which compiled eligibility depends. Adding only the directive would leave a hub permanently falling back; adding only a manifest would leave its `SKILL.md` unaware of the compiled front door. The two surfaces must be generated together, with legacy remaining the backward-compatible state when no manifest is requested.
+The original gap was that new parent hubs could not express a deliberate compiled state. The delivered generator closes both halves together: every parent receives the directive, while only ready mode mints and verifies the canonical manifest.
 
 ### Purpose
 
-Align create-skill with the v4 router model by adding the exact directive block, an explicit compiled-readiness selection, a canonical manifest-mint step, and contract tests that prove both generated states. The current implementation files remain unchanged in this documentation phase.
+Create-skill is aligned with the v4 router model through the exact directive block, explicit compiled-readiness selection, canonical manifest mint/freshness step, and contract tests for both generated states.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -99,9 +99,9 @@ Both parent-hub templates must render this block inside `## 2. SMART ROUTING`, i
 
 `init_skill.py` resolves both `{{HUB_NAME}}` occurrences to the generated hub name. A legacy scaffold still receives this additive directive; the missing manifest causes the authoritative fallback path, making legacy status explicit and safe rather than leaving a different template shape.
 
-### Files to Change During Implementation
+### Delivered Implementation Files
 
-| File Path | Change Type | Planned Change |
+| File Path | Change Type | Delivered Change |
 |-----------|-------------|----------------|
 | `.opencode/skills/sk-doc/create-skill/scripts/init_skill.py` | Modify | Add the parent-only compiled state option, render the directive, invoke the canonical minter for `ready`, and report verified state |
 | `.opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md` | Modify | Add the generated directive block used by the active initializer |
@@ -112,7 +112,7 @@ Both parent-hub templates must render this block inside `## 2. SMART ROUTING`, i
 | `.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py` | Modify if required by the chosen P3 API | Report directive/manifest consistency and freshness through the shared predicate |
 | `.opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py` | Modify | Add legacy, compiled-ready, directive-rendering, and mint-failure regression cases |
 
-> No file in this table is modified by this planning-only phase.
+> These generator-side changes do not alter any established hub manifest or repository default.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -243,7 +243,6 @@ Both parent-hub templates must render this block inside `## 2. SMART ROUTING`, i
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
-- **Planned-state record**: `implementation-summary.md`
+- **Implementation record**: `implementation-summary.md`
 - **Current create-skill workflow**: `.opencode/skills/sk-doc/create-skill/SKILL.md`
 - **Current parent initializer**: `.opencode/skills/sk-doc/create-skill/scripts/init_skill.py`
-

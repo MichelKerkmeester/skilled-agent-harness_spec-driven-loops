@@ -94,8 +94,8 @@ function resolveRouteGold(args, skillRoot) {
 
 /**
  * Resolve the compiled-routing-parity lane flag: `--compiled-routing-parity
- * on|off|auto` (default off, so the lane is inert and Lane C stays byte-identical
- * unless an operator opts in). A bare `--compiled-routing-parity` reads as `on`.
+ * on|off|auto` (default off, so baseline Mode A remains unchanged). A bare
+ * `--compiled-routing-parity` reads as `on`.
  * `auto` engages for a hub-type target; a flat skill stays off under `auto`.
  * When off, no compiled decision is exercised and no compiled block is emitted.
  *
@@ -243,9 +243,9 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
     // Route-gold lane: evaluated on every row that carries authored gold so
     // the report always shows the counts; the gate flag decides enforcement.
     row.routeGold = evaluateRouteGold({ scenario: sc, observed });
-    // Compiled-parity lane (opt-in): compare the compiled decision to the legacy
-    // one against the same frozen evaluator. Off by default, so a run that does
-    // not opt in is byte-identical to before.
+    // Compiled-parity lane: compare the compiled decision to the legacy one
+    // against the same frozen evaluator. The lane is opt-in so it cannot feed
+    // back into a baseline Mode A run.
     if (compiledParityCfg && compiledParityCfg.enabled) {
       row.compiledParity = compiledParity({
         scenario: sc,
@@ -299,6 +299,8 @@ function run(args) {
   // three shared scorer files first and abort before any comparison or report
   // write if one drifted from its pinned digest — a scorer changed mid-flight
   // would invalidate the parity baseline, and no partial evidence must persist.
+  let frozenHashesBefore = null;
+  let frozenHashesAfter = null;
   if (compiledParityCfg.enabled) {
     const frozenGate = assertFrozenScorerDigests({ scorerDir: __dirname });
     if (!frozenGate.ok) {
@@ -308,6 +310,7 @@ function run(args) {
       process.stderr.write(`run-skill-benchmark: frozen_scorer_drift — compiled-parity aborted, no report written: ${detail}\n`);
       return 2;
     }
+    frozenHashesBefore = frozenGate.digests;
   }
 
   // Topology digest snapshot: a manifest-bearing skill's leaf-manifest.json
@@ -343,6 +346,18 @@ function run(args) {
     return 4;
   }
 
+  if (compiledParityCfg.enabled) {
+    const frozenGateAfter = assertFrozenScorerDigests({ scorerDir: __dirname });
+    frozenHashesAfter = frozenGateAfter.digests;
+    if (!frozenGateAfter.ok
+        || JSON.stringify(frozenHashesBefore) !== JSON.stringify(frozenHashesAfter)) {
+      process.stderr.write(
+        'run-skill-benchmark: frozen_scorer_drift — scorer bytes changed during the run; no report written\n',
+      );
+      return 2;
+    }
+  }
+
   // aggregate + emit.
   const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings, routeGold });
   if (topologyDigestBefore !== null) report.topologyDigest = topologyDigestBefore;
@@ -357,22 +372,31 @@ function run(args) {
   // compiled cause stays legible in the sub-verdict either way.
   if (compiledParityCfg.enabled) {
     const rollup = rollupCompiledParity(scenarioRows);
+    const parityRows = scenarioRows
+      .filter((row) => row && row.compiledParity)
+      .map((row) => ({ ...row.compiledParity }));
     report.compiledRouting = {
       mode: compiledParityCfg.mode,
       flagState: classifyFlagState(process.env.SPECKIT_COMPILED_ROUTING),
+      flagForcedOn: true,
       subVerdict: rollup.subVerdict,
       blocking: rollup.blocking,
       scored: rollup.scored,
       counts: rollup.counts,
       gate: rollup.gate,
-      rows: scenarioRows
-        .filter((row) => row && row.compiledParity)
-        .map((row) => ({
-          scenarioId: row.compiledParity.scenarioId,
-          hubId: row.compiledParity.hubId,
-          status: row.compiledParity.status,
-          reason: row.compiledParity.reason,
-        })),
+      eligibleRows: parityRows.filter((row) => ![
+        'hub-not-compiled-eligible',
+        'non-routing-scenario',
+        'route-gold-absent',
+      ].includes(row.reason)),
+      driftRows: parityRows.filter((row) => row.status === 'drift' || row.status === 'vacuous'),
+      breakages: parityRows.filter((row) => row.status === 'resolver-missing'),
+      frozenHashes: {
+        before: frozenHashesBefore,
+        after: frozenHashesAfter,
+        unchanged: JSON.stringify(frozenHashesBefore) === JSON.stringify(frozenHashesAfter),
+      },
+      rows: parityRows,
     };
     if (report.routeGold) {
       report.routeGold.summary = {

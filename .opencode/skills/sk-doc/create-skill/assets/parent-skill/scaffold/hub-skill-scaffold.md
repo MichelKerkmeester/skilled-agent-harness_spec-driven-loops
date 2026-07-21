@@ -23,14 +23,26 @@ Do not put packet-specific workflow logic in this hub.
 
 `mode-registry.json` defines the available workflow packets. `hub-router.json` supplies the routing policy and intent signals used to select a `workflowMode`.
 
+> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:
+> ```bash
+> node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority, and the flag is **off by default**, so this is inert until compiled routing is activated for `{{HUB_NAME}}`.
+
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Name the requested workflow outcome.",
+    "Name the target component or document.",
+    "Confirm whether the request may mutate workspace files.",
+]
 UNKNOWN_FALLBACK = {
     "load_level": "UNKNOWN_FALLBACK",
     "needs_disambiguation": True,
     "resources": [],
+    "checklist": UNKNOWN_FALLBACK_CHECKLIST,
 }
 
 def discover_markdown_resources() -> set[str]:

@@ -1,11 +1,18 @@
 ---
 title: "Implementation Plan: Lane C Compiled-Routing Benchmark Alignment"
-description: "Planned implementation sequence for adding flag-on compiled invocation, legacy/compiled route-gold parity, drift classification, and report gating around the frozen Lane C scorer."
+description: "Implemented delivery sequence for flag-on compiled invocation, legacy/compiled route-gold parity, drift classification, and report gating around the frozen Lane C scorer."
 trigger_phrases:
   - "Lane C compiled routing plan"
   - "benchmark compiled legacy parity plan"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
+    last_updated_at: "2026-07-21T06:48:08Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Restored default-off benchmark parity isolation"
+    next_safe_action: "Keep activation operator-gated"
 ---
 # Implementation Plan: Lane C Compiled-Routing Benchmark Alignment
 
@@ -49,19 +56,19 @@ This design keeps responsibilities clean: existing files continue to define lega
 
 ### Definition of Ready
 
-- [ ] P0 provides a stable public compiled front door and machine-readable serving-status cause.
-- [ ] P3 provides shared eligibility and manifest discovery without a local hub list.
-- [ ] Baseline hashes and legacy benchmark reports are captured.
-- [ ] Normalized routing fields and order semantics are approved.
+- [x] P0 provides a stable public compiled front door and machine-readable serving-status cause.
+- [x] P3 provides shared eligibility and manifest discovery without a local hub list.
+- [x] Baseline hashes and legacy benchmark reports are captured.
+- [x] Normalized routing fields and order semantics are approved.
 
 ### Definition of Done
 
-- [ ] Every eligible route-gold row invokes the flag-on compiled front door.
-- [ ] Legacy and compiled projections both pass the same gold and compare equal.
-- [ ] Drift, no-manifest legacy, and breakage are reported distinctly.
-- [ ] D1-D5 legacy results remain unchanged.
-- [ ] JSON, Markdown, CLI, and README describe the same gate.
-- [ ] Frozen file hashes remain identical.
+- [x] Every eligible route-gold row invokes the flag-on compiled front door.
+- [x] Legacy and compiled projections both pass the same gold and compare equal.
+- [x] Drift, no-manifest legacy, and breakage are reported distinctly.
+- [x] D1-D5 legacy results remain unchanged.
+- [x] JSON, Markdown, CLI, and README describe the same gate.
+- [x] Frozen file hashes remain identical.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -127,24 +134,24 @@ Required inventories:
 
 ### Phase 1: Setup
 
-- [ ] Capture frozen hashes, current Lane C reports, verdicts, and exit codes.
-- [ ] Pin shared eligibility/status APIs and normalized routing schema.
-- [ ] Design temp fixtures for fresh, drifted, missing, broken, and divergent cases without live manifest mutation.
+- [x] Capture frozen hashes, current Lane C reports, verdicts, and exit codes.
+- [x] Pin shared eligibility/status APIs and normalized routing schema.
+- [x] Design temp fixtures for fresh, drifted, missing, broken, and divergent cases without live manifest mutation.
 
 ### Phase 2: Core Implementation
 
-- [ ] Add `compiled-routing-parity.cjs` with frozen hash verification, child env isolation, normalization, gold evaluation, and equality comparison.
-- [ ] Integrate the parity lane into `run-skill-benchmark.cjs` for eligible hub route-gold rows.
-- [ ] Add `report.compiledRouting` and distinct verdict/exit handling without changing the score aggregate.
-- [ ] Render the report block from JSON in `build-report.cjs`.
-- [ ] Document the resolved parity mode and state behavior in README and CLI usage.
+- [x] Add `compiled-routing-parity.cjs` with frozen hash verification, child env isolation, normalization, gold evaluation, and equality comparison.
+- [x] Integrate the opt-in parity lane into `run-skill-benchmark.cjs` for eligible hub route-gold rows without changing baseline Mode-A behavior.
+- [x] Add `report.compiledRouting` and distinct verdict/exit handling without changing the score aggregate.
+- [x] Render the report block from JSON in `build-report.cjs`.
+- [x] Document the resolved parity mode and state behavior in README and CLI usage.
 
 ### Phase 3: Verification
 
-- [ ] Add deterministic Vitest coverage for the full state and routing-shape matrix.
-- [ ] Compare post-change legacy D1-D5 reports with baselines.
-- [ ] Run the existing Lane C suites plus the new parity suite.
-- [ ] Re-hash the frozen files and run strict spec-folder validation.
+- [x] Add deterministic Vitest coverage for the full state and routing-shape matrix.
+- [x] Compare post-change legacy D1-D5 reports with baselines.
+- [x] Run the existing Lane C suites plus the new parity suite.
+- [x] Re-hash the frozen files and run strict spec-folder validation.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -159,7 +166,7 @@ Required inventories:
 | Contract | Fresh eligible hub parity | Temp hub/manifest fixture plus same route gold |
 | Contract | Missing and stale manifest | Shared status adapter fixtures |
 | Negative | Fresh manifest with invalid JSON/sentinel, forced route divergence | Vitest failure fixtures |
-| Regression | Unchanged D1-D5 and existing verdicts when parity not applicable | Baseline report deep comparison |
+| Regression | Optionless Mode-A reports/exits and D1-D5 match captured baselines; explicit parity remains additive | Baseline report deep comparison plus applicability suite |
 | Integrity | Frozen file hashes | SHA-256 before/after and test-time assertion |
 | End-to-end | JSON report, Markdown rendering, process exit | Programmatic `run()` in temp output directory |
 <!-- /ANCHOR:testing -->
@@ -172,8 +179,8 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Default-on decision contracts | Internal | Available | Status ownership must stay single-sourced |
-| P0 stable front door and status cause | Internal | Planned | Compiled invocation or cause classification remains fragile |
-| P3 eligibility and manifest discovery | Internal | Planned | Harness would need a forbidden local hub list |
+| P0 stable front door and status cause | Internal | Available and consumed | Public child invocation and cause classification are stable |
+| P3 eligibility and manifest discovery | Internal | Available and consumed | Harness owns no local hub list |
 | Current Lane C modules and tests | Internal | Available | Provide the immutable baseline and integration seam |
 | Seven hub registries | Internal | Available | Required for identifier normalization |
 <!-- /ANCHOR:dependencies -->
@@ -227,10 +234,10 @@ baseline -> parity module -> orchestrator/report -> fixtures/tests -> adoption
 
 ### Pre-Implementation Checklist
 
-- [ ] Frozen file hashes captured.
-- [ ] Representative legacy reports captured.
-- [ ] All fixtures are temp/injected and cannot reach production manifests.
-- [ ] Parent environment snapshot is asserted in tests.
+- [x] Frozen file hashes captured.
+- [x] Representative legacy reports captured.
+- [x] All fixtures are temp/injected and cannot reach production manifests.
+- [x] Parent environment snapshot is asserted in tests.
 
 ### Rollback Procedure
 
@@ -244,4 +251,3 @@ baseline -> parity module -> orchestrator/report -> fixtures/tests -> adoption
 - **Has persistent data changes?** No.
 - **Reversal procedure**: Delete only test-temp output through the test harness; production manifests and routing inputs are never mutated by design.
 <!-- /ANCHOR:enhanced-rollback -->
-

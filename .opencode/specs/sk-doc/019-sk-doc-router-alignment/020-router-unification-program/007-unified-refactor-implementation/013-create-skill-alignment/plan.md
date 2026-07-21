@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: create-skill Compiled-Routing Alignment"
-description: "Planned implementation sequence for adding the v4 compiled-routing directive, explicit legacy/ready onboarding, canonical manifest minting, and regression coverage to create-skill's parent-hub path."
+description: "Implemented delivery sequence for the v4 compiled-routing directive, explicit legacy/ready onboarding, canonical manifest minting, and regression coverage in create-skill's parent-hub path."
 trigger_phrases:
   - "create-skill compiled routing plan"
   - "parent hub manifest onboarding plan"
@@ -48,19 +48,19 @@ The implementation must not build a second compiler or freshness rule inside cre
 
 ### Definition of Ready
 
-- [ ] P3 exposes a stable minter, manifest-location abstraction, freshness predicate, and new-hub runtime discovery.
-- [ ] The exact directive block in `spec.md` is approved.
-- [ ] Legacy remains the backward-compatible CLI default.
-- [ ] Existing create-skill tests pass before implementation changes.
+- [x] P3 exposes a stable minter, manifest-location abstraction, freshness predicate, and new-hub runtime discovery.
+- [x] The exact directive block in `spec.md` is approved.
+- [x] Legacy remains the backward-compatible CLI default.
+- [x] Existing create-skill tests pass before implementation changes.
 
 ### Definition of Done
 
-- [ ] Active and canonical parent templates render matching directive blocks.
-- [ ] Legacy and compiled-ready states are explicit and tested.
-- [ ] Ready state is reported only after shared freshness verification.
-- [ ] Standalone scaffolding and existing parent CLI calls remain compatible.
-- [ ] create-skill validation and docs agree with generated behavior.
-- [ ] No runtime router, manifest of an existing hub, or frozen scorer file is modified.
+- [x] Active and canonical parent templates render matching directive blocks.
+- [x] Legacy and compiled-ready states are explicit and tested.
+- [x] Ready state is reported only after shared freshness verification.
+- [x] Standalone scaffolding and existing parent CLI calls remain compatible.
+- [x] create-skill validation and docs agree with generated behavior.
+- [x] No runtime router, manifest of an existing hub, or frozen scorer file is modified.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -131,24 +131,24 @@ Inventories before implementation:
 
 ### Phase 1: Setup
 
-- [ ] Capture current generator output for standalone and parent fixtures.
-- [ ] Pin the approved directive text and the P3 minter/freshness API.
-- [ ] Define the state parser: parent-only `legacy|ready`, default `legacy` for existing CLI calls.
+- [x] Capture current generator output for standalone and parent fixtures.
+- [x] Pin the approved directive text and the P3 minter/freshness API.
+- [x] Define the state parser: parent-only `legacy|ready`, default `legacy` for existing CLI calls.
 
 ### Phase 2: Core Implementation
 
-- [ ] Add the directive to the active parent scaffold and canonical parent template.
-- [ ] Update `init_skill.py` to render the hub name in both directive positions.
-- [ ] Add the ready-mode canonical mint and shared freshness verification after all router inputs are written.
-- [ ] Add explicit legacy and compiled-ready output; fail non-zero without a ready claim on mint/freshness errors.
-- [ ] Update create-skill workflow, README, parent reference, and package validation.
+- [x] Add the directive to the active parent scaffold and canonical parent template.
+- [x] Update `init_skill.py` to render the hub name in both directive positions.
+- [x] Add the ready-mode canonical mint and shared freshness verification after all router inputs are written.
+- [x] Add explicit legacy and compiled-ready output; fail non-zero without a ready claim on mint/freshness errors.
+- [x] Update create-skill workflow, README, parent reference, and package validation.
 
 ### Phase 3: Verification
 
-- [ ] Extend create-skill contract tests for the full state matrix and template parity.
-- [ ] Run standalone and parent regression suites.
-- [ ] Run strict package validation on generated legacy and ready fixtures.
-- [ ] Run strict spec-folder validation and record any parent-owned metadata warnings separately.
+- [x] Extend create-skill contract tests for the full state matrix and template parity.
+- [x] Run standalone and parent regression suites.
+- [x] Run strict package validation on generated legacy and ready fixtures.
+- [x] Run strict spec-folder validation and record any parent-owned metadata warnings separately.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -175,8 +175,8 @@ Inventories before implementation:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Eligibility/fallback decision packet | Internal | Available | create-skill must not implement an alternate rule |
-| P3 canonical minter and predicate | Internal | Planned | Ready mode cannot be implemented truthfully |
-| P3 data-driven runtime discovery | Internal | Planned | Newly minted hubs would remain undiscoverable by the runtime |
+| P3 canonical minter and predicate | Internal | Available and consumed | Ready mode uses the stable canonical CLI |
+| P3 data-driven runtime discovery | Internal | Available | Newly minted hubs use the shared discovery contract |
 | Existing parent templates | Internal | Available | Both must move in lockstep |
 | Existing create-skill contract tests | Internal | Available | Provides the regression base |
 <!-- /ANCHOR:dependencies -->
@@ -229,9 +229,9 @@ baseline -> templates + state parser -> manifest adapter -> tests + docs
 
 ### Pre-Implementation Checklist
 
-- [ ] Current standalone and parent outputs are captured.
-- [ ] No existing hub is targeted for regeneration.
-- [ ] P3 interfaces are stable and testable without writing production manifests.
+- [x] Current standalone and parent outputs are captured.
+- [x] No existing hub is targeted for regeneration.
+- [x] P3 interfaces are stable and testable without writing production manifests.
 
 ### Rollback Procedure
 
@@ -245,4 +245,3 @@ baseline -> templates + state parser -> manifest adapter -> tests + docs
 - **Has persistent user data changes?** No.
 - **Reversal procedure**: Revert generator/template changes; temp test manifests are discarded by the test harness, while real manifests require an explicit operator-owned lifecycle.
 <!-- /ANCHOR:enhanced-rollback -->
-

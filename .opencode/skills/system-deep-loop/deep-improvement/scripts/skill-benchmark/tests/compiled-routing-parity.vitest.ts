@@ -52,6 +52,7 @@ describe('compiled-routing-parity: frozen-scorer pin', () => {
     const gate = parity.assertFrozenScorerDigests({ scorerDir: SB });
     expect(gate.ok).toBe(true);
     expect(gate.drift).toEqual([]);
+    expect(gate.digests).toEqual(parity.PINNED_FROZEN_SCORER_DIGESTS);
   });
 
   it('aborts on a seeded one-byte drift, naming the changed file', () => {
@@ -102,12 +103,13 @@ describe('compiled-routing-parity: vacuous-parity guard', () => {
     expect(res.status).not.toBe(parity.PARITY_STATUS.MATCH);
   });
 
-  it('a missing/unreadable manifest hard-fails vacuous, never n/a', () => {
+  it('a missing manifest records legacy-by-construction without a compiled failure', () => {
     const res = parity.compiledParity(
       { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot: join(REPO_SKILLS, 'sk-code'), skillId: 'sk-code' },
       { readServingAuthority: () => null },
     );
-    expect(res.status).toBe(parity.PARITY_STATUS.VACUOUS);
+    expect(res.status).toBe(parity.PARITY_STATUS.NA);
+    expect(res.reason).toBe('legacy-by-construction');
   });
 });
 
@@ -297,8 +299,105 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
       { scenario: PASS_SCENARIO, legacyObserved: { observedIntents: ['quality'], observedResources: [] }, skillRoot, skillId: 'sk-code' },
       { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }), evaluate: spy },
     );
-    expect(calls).toBeGreaterThanOrEqual(1);
+    expect(calls).toBe(2);
     expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
+  });
+
+  it('stale manifest state is drift with re-mint-required', () => {
+    const res = parity.compiledParity(
+      { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot, skillId: 'sk-code' },
+      { statusProbe: () => ({
+        servingAuthority: 'compiled', causeCode: 'compiled-serving',
+        manifestFreshness: { manifestValid: true, fresh: false, causeCode: 'stale-manifest' },
+      }) },
+    );
+    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+    expect(res.reason).toBe('re-mint-required');
+  });
+
+  it('malformed manifest state is compiled breakage', () => {
+    const res = parity.compiledParity(
+      { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot, skillId: 'sk-code' },
+      { statusProbe: () => ({
+        servingAuthority: 'legacy', causeCode: 'missing-manifest',
+        manifestFreshness: { manifestValid: false, fresh: false, causeCode: 'invalid-manifest' },
+      }) },
+    );
+    expect(res.status).toBe(parity.PARITY_STATUS.RESOLVER_MISSING);
+    expect(res.reason).toBe('manifest-invalid-or-unreadable');
+  });
+
+  it('mutual equality cannot pass when both observations fail route gold', () => {
+    const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['code-review'] };
+    const wrongLegacy = { observedIntents: ['quality'], observedResources: [] };
+    const res = parity.compiledParity(
+      { scenario: wrongScenario, legacyObserved: wrongLegacy, skillRoot, skillId: 'sk-code' },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }) },
+    );
+    expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
+    expect(res.compiledGoldPass).toBe(false);
+    expect(res.legacyGoldPass).toBe(false);
+    expect(res.firstDifference).toBeNull();
+  });
+});
+
+describe('compiled-routing-parity: routing projection shapes', () => {
+  const loader = () => ({
+    quality: { workflowMode: 'quality', packetKind: 'workflow' },
+    review: { workflowMode: 'review', packetKind: 'workflow' },
+    docs: { workflowMode: 'docs', packetKind: 'surface' },
+  });
+
+  it('normalizes single, ordered workflow, and surface bundles without sorting', () => {
+    const single = parity.normalizeLegacyProjection({ observedIntents: ['quality'] }, 'hub', loader);
+    const ordered = parity.normalizeLegacyProjection({ observedIntents: ['review', 'quality'] }, 'hub', loader);
+    const surface = parity.normalizeLegacyProjection({ observedIntents: ['quality', 'docs'] }, 'hub', loader);
+    expect(single.selectionKind).toBe('single');
+    expect(ordered.selectionKind).toBe('orderedBundle');
+    expect(ordered.targets.map((item: any) => item.workflowMode)).toEqual(['review', 'quality']);
+    expect(surface.selectionKind).toBe('surfaceBundle');
+  });
+
+  it('normalizes defer and reject outcomes explicitly', () => {
+    const defer = parity.normalizeLegacyProjection({ observedIntents: [] }, 'hub', loader);
+    const reject = parity.normalizeCompiledProjection({ action: 'reject', targets: [] }, {
+      normalizedTargets: [],
+    });
+    expect(defer).toEqual({ action: 'defer', selectionKind: null, targets: [] });
+    expect(reject).toEqual({ action: 'reject', selectionKind: null, targets: [] });
+  });
+
+  it('names the first ordered routing field that differs', () => {
+    const legacy = {
+      action: 'route', selectionKind: 'orderedBundle',
+      targets: [
+        { hubId: 'hub', workflowMode: 'review', packetKind: 'workflow' },
+        { hubId: 'hub', workflowMode: 'quality', packetKind: 'workflow' },
+      ],
+    };
+    const compiled = {
+      ...legacy,
+      targets: [...legacy.targets].reverse(),
+    };
+    expect(parity.firstProjectionDifference(legacy, compiled)).toEqual({
+      field: 'targets[0].workflowMode', legacy: 'review', compiled: 'quality',
+    });
+  });
+});
+
+describe('compiled-routing-parity: public child path isolation', () => {
+  it('forces the public front-door child on without changing the parent flag', () => {
+    const before = process.env.SPECKIT_COMPILED_ROUTING;
+    process.env.SPECKIT_COMPILED_ROUTING = 'parent-value';
+    try {
+      const decision = parity.defaultCompiledDecision('sk-code', 'quality');
+      expect(['route', 'clarify', 'defer', 'reject']).toContain(decision.action);
+      expect(process.env.SPECKIT_COMPILED_ROUTING).toBe('parent-value');
+      expect(parity.PUBLIC_FRONT_DOOR.endsWith('.opencode/bin/compiled-route.cjs')).toBe(true);
+    } finally {
+      if (before === undefined) delete process.env.SPECKIT_COMPILED_ROUTING;
+      else process.env.SPECKIT_COMPILED_ROUTING = before;
+    }
   });
 });
 
@@ -312,10 +411,12 @@ describe('compiled-routing-parity: render-from-JSON block', () => {
     const report = {
       ...baseReport,
       compiledRouting: {
-        mode: 'on', flagState: { state: 'force-on' }, subVerdict: 'legacy-fallback-drifted', blocking: true, scored: 3,
+        mode: 'on', flagState: { state: 'unset' }, flagForcedOn: true, subVerdict: 'legacy-fallback-drifted', blocking: true, scored: 3,
         counts: { match: 2, drift: 1, vacuous: 0, 'n/a': 0, 'resolver-missing': 0 },
         gate: { owner: 'lane-c-compiled-parity', isBlockingOwner: true, reportOnlyConsumers: ['routing-registry-drift-ci'] },
-        rows: [{ scenarioId: 'SD-001', hubId: 'sk-code', status: 'drift', reason: 'route-mismatch' }],
+        eligibleRows: [{ scenarioId: 'SD-001' }], driftRows: [{ scenarioId: 'SD-001' }], breakages: [],
+        frozenHashes: { before: {}, after: {}, unchanged: true },
+        rows: [{ scenarioId: 'SD-001', hubId: 'sk-code', status: 'drift', frontDoorOutcome: 'route', reason: 'route-mismatch', firstDifference: { field: 'action', legacy: 'route', compiled: 'defer' } }],
       },
     };
     const md = renderReport(report);
@@ -324,6 +425,9 @@ describe('compiled-routing-parity: render-from-JSON block', () => {
     expect(md).toContain('blocks the run');
     expect(md).toContain('lane-c-compiled-parity');
     expect(md).toContain('SD-001');
+    expect(md).toContain('child flag forced on: **yes**');
+    expect(md).toContain('action');
+    expect(md).toContain('Frozen scorer hashes unchanged: **yes**');
     expect(md).not.toContain('undefined');
   });
 
@@ -333,11 +437,19 @@ describe('compiled-routing-parity: render-from-JSON block', () => {
   });
 });
 
-describe('compiled-routing-parity: default-off reversibility', () => {
+describe('compiled-routing-parity: default-off isolation', () => {
   const skillRoot = join(REPO_SKILLS, 'sk-code');
 
-  it('resolveCompiledParity defaults to off', () => {
-    expect(resolveCompiledParity({}, skillRoot).enabled).toBe(false);
+  it('defaults to off even for hubs', () => {
+    expect(resolveCompiledParity({}, skillRoot)).toEqual({ mode: 'off', enabled: false });
+  });
+
+  it('explicit auto still derives eligibility from hub type', () => {
+    const flatSkillRoot = join(REPO_SKILLS, 'sk-doc', 'create-agent');
+    expect(resolveCompiledParity({ 'compiled-routing-parity': 'auto' }, skillRoot))
+      .toEqual({ mode: 'auto', enabled: true });
+    expect(resolveCompiledParity({ 'compiled-routing-parity': 'auto' }, flatSkillRoot))
+      .toEqual({ mode: 'auto', enabled: false });
   });
 
   it('a bare --compiled-routing-parity reads on', () => {
