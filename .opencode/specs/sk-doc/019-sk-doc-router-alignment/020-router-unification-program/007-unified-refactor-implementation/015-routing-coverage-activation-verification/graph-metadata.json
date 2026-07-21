@@ -143,7 +143,7 @@
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-07-20T21:51:50.603Z",
+    "last_save_at": "2026-07-21T02:24:55.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -155,7 +155,7 @@
       "spec.md": "0f98fec8037f61fb0b251eb96234c104cf257b0565dfdd7e95ec8d2056e5151b",
       "handover.md": "c67106edef6ea2822490cbd2d1188ff44b4a85eb0b1a254261bf70875ec92217"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+    "last_active_at": "2026-07-21T02:24:55.215Z"
   }
 }

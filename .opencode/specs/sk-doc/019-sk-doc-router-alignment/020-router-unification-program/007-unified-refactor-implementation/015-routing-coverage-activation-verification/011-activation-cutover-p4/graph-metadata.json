@@ -43,6 +43,9 @@
     "key_files": [
       "spec.md",
       "decision-record.md",
+      "controller/cutover-controller.cjs",
+      "verification/verify-cutover.cjs",
+      "verification/dry-run-evidence.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -59,6 +62,24 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-controller.cjs",
+        "kind": "file",
+        "path": "controller/cutover-controller.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-cutover.cjs",
+        "kind": "file",
+        "path": "verification/verify-cutover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run-evidence.json",
+        "kind": "config",
+        "path": "verification/dry-run-evidence.json",
         "source": "derived"
       },
       {
@@ -174,30 +195,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Requirement Coverage",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
     "created_at": "2026-07-20T21:44:54.891Z",
-    "last_save_at": "2026-07-20T21:44:54.891Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-21T02:24:53.176Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c542c2d8867ec851ec305e4a884b8d193aadb0e4cf08572f8ce9933f10ab8ab",
+    "source_fingerprint": "sha256:6680a159e76ed4c1f2b33e86bdfcc50d46e7e12ddf5c4546966640b33b070226",
     "source_doc_hashes": {
-      "spec.md": "e2ae81de1393a07878415a5c70cfce1d508cb292823588953044cb76376d33d7",
-      "plan.md": "cbd34bedb526d4291f336142c9d5a19b6d160e53bdab9d7f440d8b0a7dc8e43a",
-      "tasks.md": "dfc0d6c0a4e9d9f5254cc1fb5184a563d2d7ffeb64e8f964a5b6f37d721fb699",
-      "checklist.md": "93ac63baf904afc42a98fcdac13aefe5c03ac1cf33ed81d7058ddef008a34c86",
-      "decision-record.md": "62361d434779f81784049cbba60626878affb621af1a61d81bbb6a55a765e310",
-      "implementation-summary.md": "20f8891014da325111f8cbb899e2c88ed19e26017508183b12f4815698fe4a9a"
+      "spec.md": "9f913723968f275a668f43dadb9c2acd610ccce6c68dd5b0eaae4ef7bc2b01d7",
+      "plan.md": "1664f0ad6c109f0dc8e4b51f3d5f280f8dede62c9c303225078bb7d481f10e7b",
+      "tasks.md": "dbf213b1227ba92d0c674f2f27ed8ab39df823622ff9f955d50c280f64481bdf",
+      "checklist.md": "396d7864815d35259fdd0eab573f8c103c1682abcd1409ca2bf435a64900d8c2",
+      "decision-record.md": "2de0cd6f0528e993d6a899d8ff2b9c001823fa20ef252d8368483a38a382e86b",
+      "implementation-summary.md": "c90f4b2eb12f2eba47f2b48ce1bb51a7899104a998244d59e19259c66b78ccb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

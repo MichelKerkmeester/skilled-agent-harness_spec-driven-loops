@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4"
-    last_updated_at: "2026-07-20T21:44:54Z"
+    last_updated_at: "2026-07-21T02:20:48Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Prepared the Planned join-gate-then-per-hub-loop delivery plan"
-    next_safe_action: "Prove the coverage-closure join gate green before hub 1"
+    recent_action: "Built + dry-run-proved the controller per this plan; join gate BLOCKED"
+    next_safe_action: "Land 013/014 to green the join gate, then run the per-hub loop"
     blockers:
-      - "Depends on 015 children 002-010 and siblings 013/014 implemented-and-verified"
+      - "Join gate BLOCKED: siblings 013/014 and the create-skill ready fixture are Planned"
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -49,6 +49,8 @@ FAILURE MODES:
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
+
+> **Status.** This plan is realized by `controller/cutover-controller.cjs` and `verification/verify-cutover.cjs`, built and dry-run-proven (9/9). The join gate is BLOCKED (siblings `013`/`014` Planned), so the per-hub loop is proven in dry-run only; no hub is cut over and the repository default remains OFF by design.
 
 ### Technical Context
 

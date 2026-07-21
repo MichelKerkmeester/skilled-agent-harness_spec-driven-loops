@@ -1,34 +1,31 @@
 ---
 title: "Implementation Summary: Compiled Routing Staged Activation Cutover (P4)"
-description: "Planned-state record for the terminal P4 cutover controller. The controller contract is authored (coverage-closure join gate, per-hub five-check stop-on-first-failure loop, atomic lockstep rewrites, cohort advance, shared-template reconcile, =0 and activate --rollback reverts); no hub has been cut over and no runtime default, directive, catalog, template, cohort state, manifest, or scorer has changed. Execution is gated on the join gate (015 children 002-010 + siblings 013/014 implemented-and-verified) and an operator go-ahead."
+description: "Implemented-state record for the terminal P4 cutover CONTROLLER. The staged hub-by-hub controller (coverage-closure join gate, per-hub five-check stop-on-first-failure sequence, in-memory cohort-resolution proof, atomic lockstep registry, =0 kill-switch, and byte-exact rollback via the committed audit drill) is built under controller/ and verification/ and dry-run-proven 9/9. No hub has been cut over: the join gate is BLOCKED (siblings 013/014 Planned) and the repository default remains OFF by design. Execution stays gated on the join gate going green and an operator go-ahead."
 trigger_phrases:
-  - "compiled routing P4 cutover planned summary"
-  - "staged activation controller current status"
+  - "compiled routing P4 cutover controller implemented"
+  - "staged activation controller dry-run proven"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4"
-    last_updated_at: "2026-07-20T21:44:54Z"
+    last_updated_at: "2026-07-21T02:20:48Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the Planned P4 controller doc set"
-    next_safe_action: "Prove the join gate, then begin the per-hub loop"
+    recent_action: "Built the cutover controller + harness; dry-run-proven 9/9; default off"
+    next_safe_action: "Land 013/014 to green the join gate, then run under operator go-ahead"
     blockers:
-      - "Depends on 015 children 002-010 and siblings 013/014 implemented-and-verified"
+      - "Join gate BLOCKED: siblings 013/014 and the create-skill ready fixture are Planned"
     key_files:
-      - "spec.md"
-      - "decision-record.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
+      - "controller/cutover-controller.cjs"
+      - "verification/verify-cutover.cjs"
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "Concrete hub order within the ascending-blast-radius principle."
+      - "Concrete hub order within the ascending-blast-radius principle, confirmed at execution."
     answered_questions:
       - "Fleet-wide unset=on or per-hub cohort staging? Per-hub cohort staging; all 7 manifests are already servingAuthority: compiled."
 ---
@@ -45,12 +42,13 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned. The P4 controller contract is authored; no hub has been cut over. Execution is gated on the coverage-closure join gate (015 children 002-010 + siblings 013/014 implemented-and-verified) and a separate operator go-ahead. |
-| **Date** | 2026-07-20 |
+| **Status** | Implemented (controller). The staged hub-by-hub cutover controller and its verification harness are built and dry-run-proven (9/9 PASS). No hub has been cut over: the coverage-closure join gate is BLOCKED (siblings `013`/`014` Planned) and the repository default remains OFF by design. Execution stays gated on the join gate going green and a separate operator go-ahead. |
+| **Date** | 2026-07-21 |
 | **Level** | 3 |
-| **Runtime change** | None authored by this documentation phase |
-| **Repository default** | Unchanged; compiled routing remains default-off; no hub cohort advanced |
-| **Verification** | Packet strict validation run; Errors zero on this folder |
+| **Runtime change** | None to the committed runtime. A dry-run controller (`controller/cutover-controller.cjs`) and verification harness (`verification/verify-cutover.cjs`) were added under this packet; they consume the committed runtime and audit drills read-only and flip nothing. |
+| **Repository default** | Unchanged; compiled routing remains default-off; `DEFAULT_ON_HUBS` is empty on disk and in memory; the flag is unset; all seven manifests keep `servingAuthority: compiled` with no byte changed. |
+| **Frozen scorer** | Byte-identical before and after (three SHA-256 digests match the pins); never opened for write. |
+| **Verification** | `verification/verify-cutover.cjs` reports VERDICT PASS (9/9); packet strict validation Errors zero. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,9 +56,11 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This packet authors the terminal P4 controller of the routing-coverage-activation-verification program: the staged, hub-by-hub mechanism that makes `SPECKIT_COMPILED_ROUTING` the effective default. No cutover has run. The controller advances the default one hub at a time via `002`'s per-hub cohort state — never a fleet-wide `unset=on`, because all seven activation manifests already read `servingAuthority: compiled` (`verification-v1.md` claim 6, 7/7 confirmed), so an `unset=on` would light the whole fleet at once.
+This packet builds and proves the terminal P4 controller of the routing-coverage-activation-verification program: the staged, hub-by-hub mechanism that would make `SPECKIT_COMPILED_ROUTING` the effective default one hub at a time. The controller is built and dry-run-proven; **no cutover has run**, by design.
 
-Entry is blocked by a P3 coverage-closure join gate that requires the earlier `015` children and siblings `013`/`014` implemented-and-verified — the phrase deliberately replaces the old cyclic plan's weaker "available", which let the P4 gate pass empty (CF-ACT-7). Per hub, in ascending blast-radius order with stop-on-first-failure, five checks must be green before anything is rewritten: route-gold parity (compiled == legacy), `compiled-serving` status, clean fallback, unchanged frozen-scorer hashes, and a `=0` kill-switch drill. Only then does the controller atomically advance that hub's cohort default and rewrite its directive and catalog. The two shared create-skill parent templates are lockstep members that reconcile to fleet-default-on wording only when the seventh hub lands. The three frozen scorer files are never edited; compiled stays byte-identical to legacy; every step names a proven rollback.
+The controller advances the default via `002`'s per-hub cohort state — never a fleet-wide `unset=on`, because all seven activation manifests already read `servingAuthority: compiled` (7/7 confirmed on disk), so an `unset=on` would light the whole fleet at once. Cohort advance is simulated **in memory** against the resolver's live exported cohort Set, proven exact (N advanced ⇒ exactly N compiled under an unset flag) and reversible (an explicit `=0` forces legacy for every hub), then restored — the on-disk cohort stays empty.
+
+Entry is blocked by a P3 coverage-closure join gate that requires the earlier `015` children and siblings `013`/`014` implemented-and-verified. The controller evaluates that gate honestly and reports **7/7 hubs BLOCKED** — the create-skill ready fixture and siblings `013`/`014` are Planned. That BLOCKED result is the correct, honest output while those children are not landed, not a defect of the controller. The per-hub gate sequence (route-gold parity → `compiled-serving` status → clean fallback → unchanged frozen-scorer hashes → `=0` kill-switch drill) runs stop-on-first-failure in a dry run and flips nothing. Byte-exact rollback and non-hub exclusion are proven through the committed audit drill and fixtures. The three frozen scorer files are byte-identical throughout; compiled stays byte-identical to legacy; the repository default remains off.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -68,19 +68,22 @@ Entry is blocked by a P3 coverage-closure join gate that requires the earlier `0
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-### The coverage-closure join gate (entry precondition)
+### The controller (`controller/cutover-controller.cjs`)
 
-An enumerated, all-must-be-green gate: validated 7 catalogs + advisor entry, the 7-hub playbook matrix, Lane C compiled-parity pairs, LUNA-HIGH gold-bearing-holdout evidence, the create-skill ready fixture, the `verify_alignment_drift` markdown gate live, the single manifest-freshness eligibility predicate, the non-hub ineligibility policy, and siblings `013`/`014` implemented-and-verified.
+A dry-run, inert-by-default library plus CLI that consumes the committed runtime read-only:
 
-### The per-hub cutover loop (five checks, then atomic rewrite)
+- **Coverage-closure join gate** — an enumerated, all-must-be-green entry precondition over nine inputs (7 catalogs + advisor entry; 7-hub playbook matrix; Lane C compiled-parity harness; LUNA-HIGH acceptance harness + archived verdicts; create-skill ready fixture; `verify_alignment_drift` gate; per-hub serving-status freshness predicate; non-hub ineligibility fixtures; siblings `013`/`014` implemented-and-verified). Reports per-hub READY/BLOCKED with the blocking reasons.
+- **Cohort-resolution proof** — advances the resolver's exported cohort Set in memory (1..7 hubs) and asserts exactly N compiled under an unset flag, with an explicit `=0` forcing legacy at every step; always restored.
+- **Per-hub gate sequence** — the five ordered checks (route-gold parity, `compiled-serving` status, clean fallback, frozen-scorer integrity, `=0` kill-switch), stop-on-first-failure, advancing and rewriting nothing.
+- **Kill-switch drill** — the full fleet advanced in the cohort still resolves legacy under `=0`, with a non-vacuous control.
+- **Lockstep registry** — the exact surfaces a real per-hub flip would rewrite together (cohort default + that hub's `SKILL.md` directive + its feature-catalog wording) plus the fleet-shared create-skill parent templates flipped last, emitted as data (rewriting nothing).
+- **Repository-default invariant** — confirms the on-disk cohort is empty, the flag is unset, and every manifest keeps its committed serving authority.
 
-Per hub, in ascending blast-radius order, stop-on-first-failure: route-gold parity → `compiled-serving` status → clean fallback → unchanged scorer SHA-256 → `=0` drill → THEN advance the cohort default and rewrite the directive and catalog atomically.
+### The verification harness (`verification/verify-cutover.cjs`)
 
-### The shared-template reconcile and rollback contract
+Runs the whole proof, invokes the committed rollback and non-hub drills as child processes, hashes the frozen scorer before and after, and emits `verification/dry-run-evidence.json` with repo-relative provenance. VERDICT PASS (9/9).
 
-Both create-skill parent templates tracked in the lockstep set, reconciled to fleet-default-on at fleet completion under a normalized-parity fixture; `SPECKIT_COMPILED_ROUTING=0` as the documented fleet-wide kill-switch and 010's `activate --rollback` as the per-hub byte-exact revert.
-
-No runtime default, cohort state, hub directive, feature catalog, create-skill template, manifest, or frozen scorer file was changed while authoring this record.
+No runtime default, cohort state, hub directive, feature catalog, create-skill template, manifest, or frozen scorer file was changed.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -88,7 +91,7 @@ No runtime default, cohort state, hub directive, feature catalog, create-skill t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivery follows the ordered gates in `plan.md`: prove the coverage-closure join gate, then run the per-hub loop in ascending blast-radius order (`sk-code` last), then reconcile the shared templates. Each hub records parity, serving-status, fallback, scorer-integrity, and `=0`-drill evidence before the next hub can begin, and the run stops at the first failed gate with the failing hub and evidence preserved.
+The controller and harness consume, and never modify, the committed foundation: the promoted resolver and serving-status probe (tri-state flag + per-hub cohort), the activation engine map, the Lane C parity harness, and the rollback/non-hub drills. Cohort advance and flag changes happen only in process, always restored in a `finally`, so the committed default is provably unchanged after every run. The join gate is re-evaluated live rather than trusting any cached claim; sibling verification reads each owner's implementation-summary status directly.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -98,11 +101,11 @@ Delivery follows the ordered gates in `plan.md`: prove the coverage-closure join
 
 The full context, alternatives, and consequences remain authoritative in `decision-record.md`.
 
-| Decision | Status | Planned Effect |
-|----------|--------|----------------|
-| Advance the default per hub via cohort state, never fleet-wide `unset=on` | Accepted | Genuine per-hub staging with a real gate; `=0` stays the kill-switch |
-| Atomic per-hub lockstep; shared create-skill templates reconciled last | Accepted | Directive + catalog + cohort agree per hub; templates never lead the cohort |
-| Gate entry on a proven join gate; per-hub stop-on-first-failure + byte-exact rollback | Accepted | P4 cannot pass empty; a failure halts small and reversible |
+| Decision | Status | Effect |
+|----------|--------|--------|
+| Advance the default per hub via cohort state, never fleet-wide `unset=on` | Accepted; controller built | In-memory cohort advance proven exact (N ⇒ N); `=0` stays the kill-switch |
+| Atomic per-hub lockstep; shared create-skill templates reconciled last | Accepted; controller built | Lockstep registry enumerates directive + catalog + cohort per hub; templates flip last |
+| Gate entry on a proven join gate; per-hub stop-on-first-failure + byte-exact rollback | Accepted; controller built | Join gate reports honest per-hub BLOCKED; rollback proven byte-exact through the committed drill |
 <!-- /ANCHOR:arch-decisions -->
 
 ---
@@ -112,11 +115,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 | Decision | Rationale |
 |----------|-----------|
-| Stage via cohort state rather than the manifest | All 7 manifests are already `servingAuthority: compiled`, so the manifest cannot stage; the cohort default is the only per-hub staging lever. |
-| Require `013`/`014` implemented-and-verified, not "available" | The old P4 gate could pass with nothing proven and Planned siblings (CF-ACT-7); a real green needs the siblings verified. |
-| Rewrite directive and catalog atomically per hub | A hub whose directive and catalog disagree on posture is a governance defect (CF-CAT-2). |
-| Keep the create-skill templates in the lockstep set | They were omitted from the old P4 lockstep and still encode off-by-default wording (CF-TPL-1). |
-| Pin the three scorer files at every hub and at completion | The parity baseline the whole program rests on must stay byte-identical. |
+| Simulate cohort advance in memory, never on disk | The controller must prove the mechanism while keeping the committed default off and byte-exact reversible. |
+| Report the join gate BLOCKED honestly | The create-skill ready fixture and siblings `013`/`014` are genuinely Planned; a false green would be the exact defect this phase exists to prevent. |
+| Consume the committed rollback/non-hub drills as child processes | Byte-exact rollback and non-hub exclusion are already proven by the audit child; the controller reuses that proof rather than re-deriving it. |
+| Never open the three scorer files for write | The parity baseline the whole program rests on must stay byte-identical; the controller only hashes them. |
+| Gate on artifacts and exit codes, not sibling doc-status prose | Several owner packets ship live, committed code while their `Status` line still reads "Planned"; the gate reads the real signal (except for `013`/`014`, where the Planned status agrees with git). |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -126,13 +129,16 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 | Check | Result |
 |-------|--------|
-| Cohort staging vs fleet flip (ADR-001) | Decided: per-hub cohort advance; a fleet `unset=on` would light all 7 (7/7 compiled-serving) |
-| Coverage-closure join gate | Specified; Planned — no input proven yet in this phase |
-| Per-hub five-check loop | Specified; Planned — no hub cut over |
-| Route-gold compiled-versus-legacy parity | Planned; consumes `004` Lane C per hub |
-| `=0` kill-switch and `activate --rollback` drills | Planned for the cutover loop and closeout |
-| Frozen scorer digest comparison | Planned per hub and at completion; the three files are never edited |
-| Spec-folder strict validation | Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4 --strict`; Errors zero |
+| Frozen scorer before/after (three SHA-256) | PASS — byte-identical; digests match the pins; not in the diff |
+| Coverage-closure join gate | RAN; honest — 7/7 hubs BLOCKED (create-skill ready fixture + siblings `013`/`014` Planned) |
+| Cohort resolution N ⇒ N under unset + `=0` precedence | PASS — 8 steps all ok (baseline + advance 1..7) |
+| Per-hub dry-run gate sequence (stop-on-first-failure, no flip) | PASS — 7 hubs, all five checks green, action none |
+| `=0` kill-switch forces legacy fleet-wide | PASS — full cohort advanced still legacy under `=0`; control serves under unset |
+| Per-hub rollback byte-exact (committed audit drill) | PASS — drill 23/0, restoredHash == priorManifestHash |
+| Five non-hub archetypes stay legacy (committed fixtures) | PASS — fixtures 32/0 |
+| Committed repository default unchanged | PASS — cohort empty on disk + in memory, flag unset, 7 manifests intact |
+| Verification harness verdict | PASS (9/9) — `verification/dry-run-evidence.json` |
+| Spec-folder strict validation | Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this folder> --strict`; Errors zero |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -142,11 +148,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 | Milestone | Status | Evidence Boundary |
 |-----------|--------|-------------------|
-| M0 join gate | Planned | No join-gate input proven in this phase |
-| M1 first hub | Planned | No hub cut over |
-| M2 fleet advancing | Planned | No cohort state advanced |
-| M3 `sk-code` landed | Planned | Highest-blast hub not attempted |
-| M4 effective default | Planned | Repository default remains off; templates not reconciled |
+| M0 join gate | BLOCKED (honest) | Controller evaluates it live; 7/7 BLOCKED on Planned `013`/`014` + create-skill fixture |
+| M1 first hub | Not executed; mechanism dry-run-proven | No hub cut over; per-hub gate sequence proven for the canary hub in dry-run |
+| M2 fleet advancing | Not executed; mechanism dry-run-proven | No cohort advanced on disk; in-memory advance proven exact |
+| M3 `sk-code` landed | Not executed; dry-run-proven | Terminal hub gate sequence proven in dry-run |
+| M4 effective default | Not reached (by design) | Repository default remains off; templates not reconciled; no flip authorized |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -154,11 +160,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The controller is specified, not built.** This phase authors the P4 contract; the join-gate evaluator, per-hub loop, atomic rewriter, and reconciler are future work.
-2. **The join gate depends entirely on earlier children.** It cannot go green until `015` children `002`-`010` and siblings `013`/`014` are implemented-and-verified; several are Planned today.
-3. **Cohort state does not exist yet.** `002` owns the tri-state flag and per-hub `defaultEnabled` cohort state; without them there is nothing to advance.
-4. **`activate --rollback` does not exist yet.** `010` owns it; without it there is no byte-exact per-hub revert.
-5. **The concrete hub order is provisional.** The ascending-blast-radius principle is fixed (`sk-code` last); the exact sequence is confirmed at execution against per-hub route-shape and routing-volume evidence.
+1. **The controller is built and dry-run-proven, but no cutover has run.** Execution is gated on the join gate going green and an operator go-ahead; the repository default stays off by design.
+2. **The join gate is BLOCKED.** Siblings `013`/`014` and the dedicated create-skill ready fixture are genuinely Planned (doc-authoring commits only), so the gate correctly reports 7/7 hubs BLOCKED.
+3. **Per-hub route-gold parity is proven at the harness level, not re-derived per scenario.** The controller confirms the committed Lane C parity harness is present and its frozen-scorer baseline is intact; per-scenario parity is owned by the committed parity test suite.
+4. **The LUNA-HIGH archived evidence is a bounded sample.** The acceptance harness is present and two archived verdicts exist; the full seven-hub real-model sweep remains the owner packet's follow-up.
+5. **The concrete hub order is provisional.** The ascending-blast-radius principle is fixed (`sk-code` last, recorded in the controller); the exact sequence is confirmed at execution against route-shape and volume evidence.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -166,12 +172,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [ ] Prove the coverage-closure join gate green: confirm every `015` child input and siblings `013`/`014` implemented-and-verified.
-- [ ] Confirm `002`'s tri-state flag + cohort state and `010`'s `activate --rollback` exist and are verified before hub 1.
-- [ ] Finalize the concrete ascending-blast-radius hub order against route-shape and routing-volume evidence; keep `sk-code` terminal.
-- [ ] Execute the per-hub loop under the five-check stop-on-first-failure gate, archiving evidence through `007`'s durable convention.
+- [ ] Land siblings `013`/`014` (create-skill + benchmark alignment) implemented-and-verified so the join gate can go green.
+- [ ] Add the dedicated create-skill ready fixture the join gate looks for.
+- [ ] On a green join gate and an operator go-ahead, run the controller for real, per hub in ascending blast-radius order, archiving evidence through the durable convention.
 - [ ] Reconcile the two create-skill parent templates at fleet completion and run the normalized-parity fixture.
-- [ ] Drill `=0` fleet-wide and per-hub `activate --rollback`; confirm the five non-hub archetypes stayed legacy.
+- [ ] Extend the LUNA-HIGH acceptance run from the bounded sample to the full seven-hub sweep.
 <!-- /ANCHOR:follow-up -->
 
 ---
@@ -179,5 +184,8 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-One recorded, and it is a documented refinement rather than a scope change: the task frames the create-skill parent templates as flipping "atomic, at the same stage" as each hub, but a shared template cannot be flipped for one hub without misdocumenting the others. ADR-002 resolves this by keeping both templates in the lockstep set throughout and reconciling them to fleet-default-on at fleet completion under a normalized-parity fixture. The intent (never forget the templates; never let any surface lead its hub's posture) is preserved. No cutover has begun, so there is no execution delta to report.
+Two, both documented rather than silent:
+
+1. **Scope extended from documentation-only to a built, dry-run-proven controller.** The authored spec framed this phase as authoring the controller *contract* only (its "Files to Change" listed the six docs). The implementing directive extended that to build and prove the controller in a dry run and reconcile the docs to Implemented. The controller and harness were therefore added under `controller/` and `verification/`; they are inert by construction, consume the committed runtime read-only, and change no runtime default, directive, catalog, template, manifest, or scorer. The critical invariant — enable-by-default is the gated P4 outcome, not something this pass executes — is honored: the repository default stays off and no hub's effective serving was lit.
+2. **Shared create-skill templates reconciled last, not per hub.** As ADR-002 records, a shared template cannot be flipped for one hub without misdocumenting the others; the lockstep registry keeps both templates in the managed set throughout and marks them for fleet-completion reconciliation. No cutover has begun, so there is no execution delta.
 <!-- /ANCHOR:deviations -->

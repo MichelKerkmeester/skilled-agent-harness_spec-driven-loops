@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4"
-    last_updated_at: "2026-07-20T21:44:54Z"
+    last_updated_at: "2026-07-21T02:20:48Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the Level-3 P4 activation-cutover spec set"
-    next_safe_action: "Prove the coverage-closure join gate before hub 1"
+    recent_action: "Built + dry-run-proved the staged cutover controller (9/9); repo default unchanged"
+    next_safe_action: "Land siblings 013/014 to turn the join gate green, then run under an operator go-ahead"
     blockers:
-      - "Depends on 015 children 002-010 landing green and sibling phases 013/014 implemented-and-verified"
+      - "Join gate BLOCKED: siblings 013/014 and the create-skill ready fixture are Planned"
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Final hub cutover order and the concrete stop-on-first-failure thresholds, confirmed at execution against per-hub route-shape and routing-volume evidence."
     answered_questions:
@@ -53,7 +53,7 @@ Per hub, in **ascending blast-radius order** with **stop-on-first-failure**, fiv
 
 **Hard invariants at every hub and every step:** the three frozen scorer files (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) are SHA-256-pinned and NEVER edited; compiled routing stays byte-identical to legacy on all routing fields (this phase changes *which default serves*, never *what routes*); every step names a proven rollback (`SPECKIT_COMPILED_ROUTING=0` as the documented fleet-wide kill-switch, or 010's `activate --rollback` restoring the byte-exact prior manifest per hub); no runtime path reads under `.opencode/specs`.
 
-> **Status note.** This packet is **Planned**. It authors the P4 controller contract only; it changes no runtime default, `SKILL.md`, template, catalog, manifest, or scorer. Execution is future work, gated on the join gate and an operator go-ahead.
+> **Status note.** The P4 controller is **built and dry-run-proven** (`controller/cutover-controller.cjs`, `verification/verify-cutover.cjs`; verdict 9/9 PASS). It consumes the committed runtime read-only and changes no runtime default, `SKILL.md`, template, catalog, manifest, or scorer. **No hub has been cut over**: the coverage-closure join gate is BLOCKED (siblings `013`/`014` Planned) and the repository default remains OFF by design. Execution is gated on the join gate going green and an operator go-ahead.
 
 ---
 
@@ -64,7 +64,7 @@ Per hub, in **ascending blast-radius order** with **stop-on-first-failure**, fiv
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned. The P4 controller contract is authored; no hub has been cut over. Execution is gated on the P3 coverage-closure join gate (015 children 002-010 + siblings 013/014 implemented-and-verified) and a separate operator go-ahead. |
+| **Status** | Implemented (controller). The staged cutover controller and verification harness are built and dry-run-proven (9/9 PASS); no hub has been cut over. The coverage-closure join gate is BLOCKED (siblings `013`/`014` Planned) and the repository default remains OFF by design. Execution is gated on the join gate going green and a separate operator go-ahead. |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Migration stage** | P4 — the staged hub-by-hub cutover; the terminal node of the P0→P4 program |

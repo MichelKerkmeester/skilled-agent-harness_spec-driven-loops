@@ -1,0 +1,593 @@
+{
+  "generatedAt": "2026-07-21T02:25:15.880Z",
+  "provenance": {
+    "repoRelativeRoot": ".",
+    "harness": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4/verification/verify-cutover.cjs"
+  },
+  "frozenScorer": {
+    "before": {
+      "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+      "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+      "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+    },
+    "after": {
+      "router-replay.cjs": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+      "score-skill-benchmark.cjs": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+      "load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+    },
+    "identical": true
+  },
+  "joinGate": {
+    "gateGreen": false,
+    "perHub": [
+      {
+        "order": 1,
+        "hub": "sk-prompt",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 2,
+        "hub": "cli-external-orchestration",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 3,
+        "hub": "mcp-tooling",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 4,
+        "hub": "system-deep-loop",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 5,
+        "hub": "sk-design",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 6,
+        "hub": "sk-doc",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      },
+      {
+        "order": 7,
+        "hub": "sk-code",
+        "state": "BLOCKED",
+        "blockingReasons": [
+          "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+          "sibling-013-implemented-and-verified: 013 status: Planned",
+          "sibling-014-implemented-and-verified: 014 status: Planned"
+        ]
+      }
+    ],
+    "inputs": [
+      {
+        "id": "catalogs-and-advisor-entry",
+        "proven": true,
+        "reason": "all 7 hub feature-catalogs + advisor enrichment entry present",
+        "evidence": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-recommend.md"
+      },
+      {
+        "id": "playbook-matrix",
+        "proven": true,
+        "reason": "compiled-routing playbook scenario present for all 7 hubs",
+        "evidence": ".opencode/skills/<hub>/manual-testing-playbook/compiled-routing/"
+      },
+      {
+        "id": "lane-c-parity-pairs",
+        "proven": true,
+        "reason": "Lane C compiled-parity harness present",
+        "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs"
+      },
+      {
+        "id": "luna-high-holdout-evidence",
+        "proven": true,
+        "reason": "LUNA-HIGH acceptance harness present; 2 archived verdict(s)",
+        "evidence": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/luna-acceptance.cjs"
+      },
+      {
+        "id": "create-skill-ready-fixture",
+        "proven": false,
+        "reason": "create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+        "evidence": ".opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json"
+      },
+      {
+        "id": "verify-alignment-drift-gate-live",
+        "proven": true,
+        "reason": "verify_alignment_drift gate present and wired into the drift-guard runner",
+        "evidence": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py"
+      },
+      {
+        "id": "manifest-freshness-eligibility-predicate",
+        "proven": true,
+        "reason": "per-hub serving-status freshness predicate present (causeCode contract)",
+        "evidence": ".opencode/bin/compiled-route-status.cjs"
+      },
+      {
+        "id": "non-hub-ineligibility-policy",
+        "proven": true,
+        "reason": "non-hub fixtures pass (5 ineligible, 7 eligible)",
+        "evidence": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/verification/non-hub-eligibility-fixtures.cjs"
+      },
+      {
+        "id": "sibling-013-implemented-and-verified",
+        "proven": false,
+        "reason": "013 status: Planned",
+        "evidence": "013-create-skill-alignment/implementation-summary.md"
+      },
+      {
+        "id": "sibling-014-implemented-and-verified",
+        "proven": false,
+        "reason": "014 status: Planned",
+        "evidence": "014-benchmark-alignment/implementation-summary.md"
+      }
+    ],
+    "blockingReasons": [
+      "create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent",
+      "sibling-013-implemented-and-verified: 013 status: Planned",
+      "sibling-014-implemented-and-verified: 014 status: Planned"
+    ]
+  },
+  "cohortResolution": {
+    "ok": true,
+    "hubs": 7,
+    "order": [
+      "sk-prompt",
+      "cli-external-orchestration",
+      "mcp-tooling",
+      "system-deep-loop",
+      "sk-design",
+      "sk-doc",
+      "sk-code"
+    ],
+    "steps": [
+      {
+        "step": "baseline-empty-unset",
+        "advanced": 0,
+        "compiledUnderUnset": 0,
+        "expected": 0,
+        "ok": true
+      },
+      {
+        "step": "advance-1",
+        "advanced": 1,
+        "compiledUnderUnset": 1,
+        "expected": 1,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-2",
+        "advanced": 2,
+        "compiledUnderUnset": 2,
+        "expected": 2,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-3",
+        "advanced": 3,
+        "compiledUnderUnset": 3,
+        "expected": 3,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-4",
+        "advanced": 4,
+        "compiledUnderUnset": 4,
+        "expected": 4,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-5",
+        "advanced": 5,
+        "compiledUnderUnset": 5,
+        "expected": 5,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-6",
+        "advanced": 6,
+        "compiledUnderUnset": 6,
+        "expected": 6,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      },
+      {
+        "step": "advance-7",
+        "advanced": 7,
+        "compiledUnderUnset": 7,
+        "expected": 7,
+        "exact": true,
+        "compiledUnderKillSwitch": 0,
+        "killSwitchForcesLegacy": true,
+        "ok": true
+      }
+    ]
+  },
+  "perHubDryRun": [
+    {
+      "hub": "sk-prompt",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "cli-external-orchestration",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "mcp-tooling",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "system-deep-loop",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "sk-design",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "sk-doc",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    },
+    {
+      "hub": "sk-code",
+      "dryRun": true,
+      "allGreen": true,
+      "stoppedAt": null,
+      "checks": [
+        {
+          "check": "route-gold-parity",
+          "pass": true,
+          "detail": "Lane C parity harness present; frozen-scorer baseline intact (.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs)"
+        },
+        {
+          "check": "compiled-serving-status",
+          "pass": true,
+          "detail": "causeCode=compiled-serving servingAuthority=compiled"
+        },
+        {
+          "check": "clean-fallback",
+          "pass": true,
+          "detail": "killSwitch=legacy invalidFlag=legacy"
+        },
+        {
+          "check": "frozen-scorer-unchanged",
+          "pass": true,
+          "detail": "three digests match pins"
+        },
+        {
+          "check": "kill-switch-drill",
+          "pass": true,
+          "detail": "permitsUnderKillSwitch=false"
+        }
+      ],
+      "action": "none (dry-run: no cohort advance, no directive/catalog/template/manifest rewrite)"
+    }
+  ],
+  "killSwitchDrill": {
+    "ok": true,
+    "fleetSize": 7,
+    "allLegacyUnderKill": true,
+    "controlCohortServesUnderUnset": true
+  },
+  "rollbackDrillExit": 0,
+  "nonHubFixturesExit": 0,
+  "repoDefault": {
+    "ok": true,
+    "cohortEmptyOnDisk": true,
+    "cohortEmptyInMemory": true,
+    "flagInProcess": "unset",
+    "manifests": [
+      {
+        "hub": "cli-external-orchestration",
+        "servingAuthority": "compiled",
+        "fingerprint": "3b74958fb892f092622efbfb7693cfb1f4386e3576063cc9abc813a418933f79"
+      },
+      {
+        "hub": "mcp-tooling",
+        "servingAuthority": "compiled",
+        "fingerprint": "9fe2ef64d5c9c89bac195af5016f80fb1b027fdb5a2065019eea3e211579f0b5"
+      },
+      {
+        "hub": "sk-code",
+        "servingAuthority": "compiled",
+        "fingerprint": "9e9a56dc2f92cb507074f4d61dc50067c9757416c6f0dc37d8a38489255a5ae8"
+      },
+      {
+        "hub": "sk-design",
+        "servingAuthority": "compiled",
+        "fingerprint": "175b37bca692e2e987479a2c7950fa21b6082d305d7680c92934956358a8c1bd"
+      },
+      {
+        "hub": "sk-doc",
+        "servingAuthority": "compiled",
+        "fingerprint": "a97ebcb6365f403ce2ac1d622c9dc564110be61504c7f68b83fd053ff7358841"
+      },
+      {
+        "hub": "sk-prompt",
+        "servingAuthority": "compiled",
+        "fingerprint": "33584dd320a7ab488cd813f07892b3930d33f8a51693043bfe9a73fd676fe6c1"
+      },
+      {
+        "hub": "system-deep-loop",
+        "servingAuthority": "compiled",
+        "fingerprint": "73072d8eeb2cbcea92439a04af26480ca2bc81b29a4ec4f7178bbb59994d6f50"
+      }
+    ]
+  },
+  "results": [
+    {
+      "label": "frozen-scorer baseline matches pins",
+      "pass": true,
+      "detail": "router-replay=d5e13daf3e99"
+    },
+    {
+      "label": "join-gate runs and reports per-hub state",
+      "pass": true,
+      "detail": "gateGreen=false; 7/7 BLOCKED; blockers=[create-skill-ready-fixture: create-skill owner not implemented-and-verified (Planned); dedicated ready fixture absent | sibling-013-implemented-and-verified: 013 status: Planned | sibling-014-implemented-and-verified: 014 status: Planned]"
+    },
+    {
+      "label": "cohort resolution exact (N advanced => N compiled) + =0 precedence",
+      "pass": true,
+      "detail": "steps=8 all-ok=true"
+    },
+    {
+      "label": "per-hub dry-run gate sequence executes without flipping anything",
+      "pass": true,
+      "detail": "hubs=7 allGreen=true action=none"
+    },
+    {
+      "label": "=0 kill-switch forces legacy fleet-wide",
+      "pass": true,
+      "detail": "allLegacyUnderKill=true controlServesUnderUnset=true"
+    },
+    {
+      "label": "per-hub rollback restores byte-exact prior manifest (committed drill)",
+      "pass": true,
+      "detail": "exit=0 :: DRILL RESULT: 23 passed, 0 failed"
+    },
+    {
+      "label": "five non-hub archetypes stay legacy by construction (committed fixtures)",
+      "pass": true,
+      "detail": "exit=0 :: NON-HUB FIXTURES RESULT: 32 passed, 0 failed"
+    },
+    {
+      "label": "frozen scorer byte-identical before and after",
+      "pass": true,
+      "detail": "three digests unchanged"
+    },
+    {
+      "label": "committed repo default unchanged (flag unset, cohort empty, manifests intact)",
+      "pass": true,
+      "detail": "cohortEmptyOnDisk=true cohortEmptyInMemory=true flag=unset"
+    }
+  ],
+  "verdict": "PASS"
+}
