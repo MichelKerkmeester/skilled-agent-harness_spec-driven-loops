@@ -10,19 +10,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite"
-    last_updated_at: "2026-07-21T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Author Level 2 tasks for the gap-004 command rewrite."
-    next_safe_action: "Execute T001 (baseline + sentinel) before any wrapper edit."
+    last_updated_at: "2026-07-21T12:23:35Z"
+    last_updated_by: "implementer"
+    recent_action: "Rewrote the five wrappers + include; tests 19/19 green."
+    next_safe_action: "Run the live OpenCode include sentinel to close CHK-002."
     blockers: []
     key_files:
       - ".opencode/commands/interface/design.md"
       - ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-design-012-gap-plan-session"
+      session_id: "sk-design-012-008-impl-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -43,9 +43,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 (REQ-001/REQ-007) Capture the green 15-test baseline, then run the isolated include **sentinel**: a throwaway command carrying only `@.opencode/skills/sk-design/shared/creation-contract.md`; assert the contract's sentinel bytes appear in the model-visible prompt. Halt on contradiction.
-- [ ] T002 (REQ-007) Extend `interface-command-contract.test.mjs`: assert exactly one canonical include per wrapper, all four typed statuses, anti-duplication (no copied lifecycle/schema/blocks), no nested public command, audit read-only, and md-generator measured-only fidelity.
-- [ ] T003 (REQ-007) Extend `design-command-surface-check.test.mjs`: frontmatter, suffix, route, sibling, and proof projection parity across the five wrappers.
+- [ ] T001 (REQ-001/REQ-007) Capture the green baseline, then run the isolated include **sentinel**. [TESTED: baseline captured — `node --test` = 15 tests / 15 pass / 0 fail before edits.] **Sentinel DEFERRED** — proving the include's bytes reach the model-visible prompt needs a live OpenCode runtime session (see `implementation-summary.md` Limitations); the mechanism is source-confirmed + statically verified (1 canonical include per wrapper, target present).
+- [x] T002 (REQ-007) Extend `interface-command-contract.test.mjs`: exactly-one canonical include per wrapper, all four typed statuses, literal-body (not thin router), audit read-only, md-generator measured-only. [TESTED: 4 new tests added; full suite 19/19 green.]
+- [x] T003 (REQ-007) Surface parity validated. [SOURCE: `design-command-surface-check.test.mjs` metadata↔YAML parity stays green (7/7).] **Deviation recorded:** the new wrapper-body assertions were consolidated into `interface-command-contract.test.mjs` (T002) because that is the file that loads wrapper bodies; the surface-check test validates metadata/YAML only and was left unchanged.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 (REQ-002/REQ-003/REQ-004/REQ-005) Rewrite all five wrappers from research §7 in one change: literal mode-specific mission + consequence of weak work; local intake field names on `$ARGUMENTS`; `:auto|:confirm` parsed first; fit/siblings/cannot-run/`workflowMode` without invoking a sibling; grounding + only decision-changing evidence; authority split + exactly one `@`-include; ordered outcome sequence + decisive criterion; artifact refinement; all four statuses. No command-owned taste.
-- [ ] T005 (REQ-006) In the same patch: demote the five `interface-<mode>-presentation.txt` assets to consolidated-question + display fixtures (invert every PRESENTATION BOUNDARY), and update `command-metadata.json` to mirror the wrapper-normative / presentation-fixture split. Leave the `interface-<mode>-{auto,confirm}.yaml` execution assets unchanged.
+- [x] T004 (REQ-002/REQ-003/REQ-004/REQ-005) Rewrote all five wrappers from research §7: literal mission + local intake + suffix control + fit/siblings/cannot-run/`workflowMode` + grounding + authority split + one `@`-include + ordered outcomes + artifact refinement + four statuses; no command-owned taste. [SOURCE: `commands/interface/{design,foundations,motion,audit,design-reference}.md`] [TESTED: literal-body + no-taste + include-count assertions green.]
+- [x] T005 (REQ-006) Demoted the five `interface-<mode>-presentation.txt` headers to consolidated-question + display fixtures (inverted the source-of-truth declaration); `command-metadata.json` carries no presentation-authority field so it already mirrors the split and was left unchanged; YAML unchanged. [SOURCE: five presentation assets; `grep` for "source of truth" in `commands/interface/` = 0.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -62,8 +62,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 (REQ-007) Run `node --test interface-command-contract.test.mjs design-command-surface-check.test.mjs` (baseline 15 + new assertions) plus the fixture matrix: five auto, five confirm-wait, ASK/FAIL/DEFER, proof downgrade/blocked, audit no-write, md-generator output/fidelity.
-- [ ] T007 (REQ-001/REQ-004/REQ-006) Confirm exactly one canonical include per wrapper and zero command-owned taste tables (`rg`), the presentation boundary inverted in all five, and `command-metadata.json` mirroring the split; then `validate.sh --strict` on this phase = 0 errors. On any gate failure, whole-change rollback to the 15/15 baseline.
+- [x] T006 (REQ-007) Ran `node --test interface-command-contract.test.mjs design-command-surface-check.test.mjs`. [TESTED: 19 tests / 19 pass / 0 fail (15 baseline + 4 new).] The live auto/confirm fixture matrix is part of the deferred OpenCode runtime gate (T001).
+- [x] T007 (REQ-001/REQ-004/REQ-006) Confirmed exactly one canonical include per wrapper and zero command-owned taste tables (`grep`/boundary tests), presentation boundary inverted in all five, and metadata mirroring the split; `validate.sh --strict` on this packet = 0 errors. [TESTED: include-count = 1×5; residual thin-router/source-of-truth/Read-imperative = 0.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,7 +71,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- All tasks `[x]` with evidence; the include sentinel passed; the two test files green (baseline 15 + new assertions); exactly one canonical include per wrapper; no command-owned taste; presentation demoted and metadata mirrored in one atomic patch; `validate.sh --strict` = 0 errors.
+- Wrappers rewritten to the literal grammar; exactly one canonical include each; presentation demoted and metadata confirmed mirrored; contract suite 19/19 green; `validate.sh --strict` = 0 errors. **Remaining for full completion:** the live OpenCode include sentinel + fixture matrix (T001), a runtime gate deferred to an OpenCode session.
 <!-- /ANCHOR:completion -->
 
 ---

@@ -1,5 +1,7 @@
 # Interface Motion Presentation Contract
 
+Consolidated-question and display fixtures for `/interface:motion`; the command body is the normative prompt.
+
 ## 1. Progressive Intake
 
 Resolve trigger, intent, before/after state, affected elements, interruption/reversal, runtime, performance budget, material, accessibility policy, and proof surface. Reject motion with no state or attention purpose.

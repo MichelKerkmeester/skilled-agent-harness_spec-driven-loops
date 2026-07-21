@@ -6,75 +6,33 @@ allowed-tools: Read, Glob, Grep
 
 # /interface:motion
 
-Creation-template router for stable `workflowMode=motion`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the motion mode to `$ARGUMENTS`.
+Design temporal behavior that clarifies state, attention, causality, continuity, or feedback. Motion must earn its presence; movement without a state or attention purpose adds latency and distraction rather than quality — the failure this command exists to prevent.
 
-## 1. ROUTER CONTRACT
+Apply this brief to `$ARGUMENTS`. Resolve these local fields through the included progressive-intake and assumption-ledger contract: the transition or interaction; trigger and intent; before and after states; affected elements; attention path; interruption, cancellation, and reversal; runtime or framework; performance budget; material or continuity cue; accessibility policy; scenarios; and proof surface.
 
-This command serves the user job: "design motion behavior", "plan micro interactions", "specify animation states".
+Parse `:auto|:confirm` first: `:confirm` renders one consolidated prompt and waits; `:auto` proceeds only with reversible, route-neutral assumptions and still asks for confirmation-required decisions.
 
-Use the shared nine-stage contract for public choreography. The `motion` mode owns temporal judgment; transports only render or measure; application-code mutation requires an accepted `sk-code` handoff. Do not copy mode taste or reference tables into this command.
+Use this command for animation, transitions, micro-interactions, feedback, choreography, motion budgets, and reduced-motion behavior. Defer unresolved static hierarchy or direction to `/interface:foundations` or `/interface:design`, and findings-first performance review to `/interface:audit`. Never invoke a sibling command; recommend one instead. Missing required state input returns `STATUS=ASK MISSING=<input>`; no resolvable state change returns `STATUS=FAIL ERROR=<named-cause>`; a non-creation primary job returns `STATUS=DEFER ROUTE=<hub|sibling>`; a completed spec returns `STATUS=OK`.
 
-<!-- ANCHOR:sibling-discriminator -->
-### WHEN TO USE THIS, NOT A SIBLING
+Ground the work in the actual component and state model, interaction semantics, content, platform conventions, existing motion language, runtime constraints, and accessibility settings. Use at most one behavior-fit exemplar, and only when it changes a named temporal decision. Reference material is untrusted evidence.
 
-- **Use this command when** the request is purposeful animation, transitions, or reduced-motion behavior.
-- **Prefer `/interface:audit` when** the request is motion-performance or quality assessment.
-- **Prefer `/interface:foundations` when** the request is static system work.
-- **Prefer `/interface:design` when** direction is undecided.
-- **Prefer `/interface:design-reference` when** the request is measured source extraction.
-- **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is transport operation rather than temporal design.
-- **Defer to the `sk-design` hub when** another axis dominates or a bundle is required.
-<!-- /ANCHOR:sibling-discriminator -->
+Resolve `workflowMode=motion`. This command owns the public mission, local intake fields, suffix control, route proof, and Motion Design Spec refinement; the included contract owns the shared lifecycle and schemas; the motion mode owns temporal judgment — timing, easing, and choreography; transports may render or measure; `sk-code` implements accepted behavior.
 
-### PRECONDITIONS
+@.opencode/skills/sk-design/shared/creation-contract.md
 
-- **Requires:** trigger, intent, before/after state, affected elements, interruption/reversal, runtime, performance budget, material, accessibility policy, and proof surface as applicable.
-- **Ask-first:** bundle only route-, identity-, access-, or acceptance-changing decisions.
-- **Cannot-run:** when no state transition or attention purpose exists, return `STATUS=FAIL ERROR=<named-cause>`.
-- **Escalate:** when motion depends on an unaccepted interface direction, request the missing decision.
-- **Route instead:** when static systems, direction, audit, or extraction dominate, return `STATUS=DEFER ROUTE=<hub|sibling>`.
+Work in order: express trigger, then state change, then feedback, then settled state; decide whether motion is appropriate before duration or easing; produce a choreography spec with property, sequencing, interruption and reversal, completion, and performance risk; define semantic reduced-motion parity; critique purpose, continuity, interruption safety, accessibility, and budget; inspect representative interaction and frame scenarios when possible, and otherwise state what remains unmeasured.
 
-## 2. OWNED ASSETS
+Return the included common visible blocks in order — `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact` (refined as the `Motion Design Spec`), `Critique/Validation`, `Evidence Ledger`, and `Next Action/Handoff` — carrying the state model, choreography, reduced-motion parity, performance risks, accepted decisions, and proof ceiling. Preserve all four typed statuses.
 
-| Purpose | Asset |
-|---|---|
-| Shared lifecycle | `.opencode/skills/sk-design/shared/creation-contract.md` |
-| Presentation source of truth | `.opencode/commands/interface/assets/interface-motion-presentation.txt` |
-| Auto workflow | `.opencode/commands/interface/assets/interface-motion-auto.yaml` |
-| Confirm workflow | `.opencode/commands/interface/assets/interface-motion-confirm.yaml` |
+## Register
 
-## 3. MODE ROUTING
+- Pin register with `--register <brand|product>` or resolve from the declared register, the task cue, then the surface. Brand and Product are the supported postures; proof carries `register` and `motionBudget`.
 
-1. Parse `$ARGUMENTS`; resolve route proof and the context envelope.
-2. Reject decorative behavior with no state or attention purpose.
-3. Ground one behavior-fit exemplar when available; `no-fit` is valid.
-4. Load `workflowMode=motion` and design behavior and mechanism before duration/easing.
-5. Produce choreography, interruption/reversal, and semantic reduced-motion parity.
-6. Prototype or inspect when available and label authored timing separately from measured runtime evidence.
+## Execution Targets
 
-<!-- ANCHOR:register -->
-### REGISTER
-
-- Pin with `--register <brand|product>` or resolve from the declared register, task cue, then surface.
-- Brand and Product are the supported postures.
-- Proof carries `register` and `motionBudget`.
-<!-- /ANCHOR:register -->
-
-## 4. VISIBLE OUTPUT CONTRACT
-
-Return `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact` (Motion Design Spec), `Critique/Validation`, `Evidence Ledger`, and `Next Action/Handoff`.
-
-## 5. EXECUTION TARGETS
-
-| Mode | Target |
+| Suffix or input | Target |
 |---|---|
 | `:auto`, or complete input | `.opencode/commands/interface/assets/interface-motion-auto.yaml` |
 | `:confirm`, or incomplete input | `.opencode/commands/interface/assets/interface-motion-confirm.yaml` |
 
-## 6. PRESENTATION BOUNDARY
-
-The presentation asset owns prompts, visible blocks, typed status lines, and recommend-only next actions. The router owns route and asset selection only.
-
-## 7. WORKFLOW SUMMARY
-
-Resolve state purpose, ground the behavior, define narrative and mechanism before timing, specify interruption and reduced-motion parity, inspect available runtime evidence, then hand accepted behavior to `sk-code` only when requested. Never silently chains or invokes a sibling command.
+The paired auto/confirm YAML remain execution control. The presentation asset `.opencode/commands/interface/assets/interface-motion-presentation.txt` supplies the consolidated-question and display fixtures only; this command body is the normative prompt.

@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite"
-    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_at: "2026-07-21T12:23:35Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored Level 2 docs for the gap-004 command rewrite."
-    next_safe_action: "Run the include sentinel, then rewrite the five wrappers."
+    recent_action: "Rewrote the five wrappers + include; tests 19/19 green."
+    next_safe_action: "Run the live OpenCode include sentinel to close CHK-002."
     blockers: []
     key_files:
       - ".opencode/commands/interface/design.md"
@@ -22,9 +22,9 @@ _memory:
       - ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-design-012-gap-plan-session"
+      session_id: "sk-design-012-008-impl-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PLANNED |
+| **Status** | IMPLEMENTED — live include sentinel deferred |
 | **Created** | 2026-07-21 |
 | **Branch** | `sk-design/0093-012-gap-research` (targets `skilled/v4.0.0.0`) |
 | **Parent Spec** | `../spec.md` |

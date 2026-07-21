@@ -1,29 +1,29 @@
 ---
 title: "Implementation Summary: rewrite the /interface:* command bodies into literal design prompts"
-description: "Level 2 implementation summary for the gap-004 command rewrite: planning-only status, the four package facets to reconcile, key decisions, and deferred verification pending implementation."
+description: "Implemented: the five /interface:* command bodies are literal self-contained design prompts with one runtime creation-contract include each; presentation authority inverted; command test suite extended to 19/19 green. Live include sentinel deferred to an OpenCode runtime session."
 trigger_phrases:
   - "interface command rewrite summary"
-  - "creation-contract include planned summary"
+  - "creation-contract include implemented"
   - "literal interface prompt summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite"
-    last_updated_at: "2026-07-21T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored the planning-only Level 2 docs for the gap-004 rewrite."
-    next_safe_action: "Implement after plan review: sentinel → tests → atomic wrapper/presentation/metadata rewrite."
+    last_updated_at: "2026-07-21T12:23:35Z"
+    last_updated_by: "implementer"
+    recent_action: "Rewrote the five wrappers + include; tests 19/19 green."
+    next_safe_action: "Run the live OpenCode include sentinel to close CHK-002."
     blockers: []
     key_files:
       - ".opencode/commands/interface/design.md"
       - ".opencode/skills/sk-design/shared/creation-contract.md"
-      - ".opencode/skills/sk-design/command-metadata.json"
+      - ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-design-012-gap-plan-session"
+      session_id: "sk-design-012-008-impl-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-interface-command-rewrite |
-| **Completed** | N/A — PLANNED |
+| **Status** | IMPLEMENTED — live include sentinel deferred |
 | **Level** | 2 |
-| **Status** | PLANNED |
+| **Verification** | command test suite 19/19 green (15 baseline + 4 new) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,24 +49,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing runtime shipped in this packet. This is a planning-only phase-child: the five Level 2 spec-folder documents define the gap-004 command rewrite — turning the five `/interface:*` thin-router bodies into literal, self-contained design prompts with a single runtime include — ready to be built after plan review. The corrected body cores already exist in the 007 research (§7).
+The five `/interface:*` command bodies were rewritten from thin routers into **literal, self-contained design prompts** following the 004 research's 9-step grammar (research §6, §7). Each body now states a mode-specific mission and the consequence of weak work, lists its local intake fields on `$ARGUMENTS`, parses `:auto|:confirm` first, names its fit / siblings / cannot-run / stable `workflowMode`, grounds in owned evidence, states the authority split, expands the shared lifecycle **exactly once** through the runtime include `@.opencode/skills/sk-design/shared/creation-contract.md`, gives an ordered outcome sequence and artifact refinement, and preserves all four typed statuses. Taste stays in the mode: bodies name intake fields and attribute palettes/type/timing/verdicts to the selected mode, never a command-owned recipe or taste table.
+
+The authority split was reconciled: each wrapper now declares itself the normative prompt and demotes its presentation asset to consolidated-question + display fixtures (the old "Presentation source of truth" declarations are removed from both the wrappers and the presentation headers). The paired auto/confirm YAML keep their execution-control role unchanged. `command-metadata.json` carries no presentation-authority field, so it already mirrors the split — confirmed by reading it — and was left unchanged to avoid disturbing `validateMetadata`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created | REQ-001–REQ-007: include, literal value, anti-duplication, taste-in-mode, statuses, atomic reconcile, tests |
-| `plan.md` | Created | Architecture (literal-prompt-with-single-include), ownership split, phased rollout, rollback |
-| `tasks.md` | Created | T001–T007 sentinel/test-first → atomic rewrite → verify |
-| `checklist.md` | Created | CHK-001–061 verification checklist |
-| `implementation-summary.md` | Created | This planning summary |
-
-### Files the implementation WILL change (not this session)
-
-- `commands/interface/{design,foundations,motion,audit,design-reference}.md` (five wrappers)
-- `commands/interface/assets/interface-*-presentation.txt` (five presentations → fixtures)
-- `.opencode/skills/sk-design/command-metadata.json` (mirror the split)
-- `.opencode/skills/sk-design/shared/scripts/{interface-command-contract,design-command-surface-check}.test.mjs`
+| `.opencode/commands/interface/{design,foundations,motion,audit,design-reference}.md` | Modified | Rewrote each body to the literal grammar + one canonical `@`-include; inverted the presentation-authority declaration |
+| `.opencode/commands/interface/assets/interface-*-presentation.txt` (5) | Modified | Demoted header to "consolidated-question and display fixtures … command body is the normative prompt" |
+| `.opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs` | Modified | Added 4 assertions: exactly-one canonical include, four statuses, literal-body (not thin router), audit read-only + md-generator measured-only |
+| `.opencode/skills/sk-design/command-metadata.json` | Unchanged | No presentation-authority field to flip; already consistent with the split |
+| `.opencode/commands/interface/assets/interface-*-{auto,confirm}.yaml` (10) | Unchanged | Execution-control role unchanged by design |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -74,7 +69,7 @@ Nothing runtime shipped in this packet. This is a planning-only phase-child: the
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Planning only. Authored in the isolated worktree `0093-sk-design-012-gap-research` on branch `sk-design/0093-012-gap-research`, alongside its sibling `007-gap-remediation-research` (the source research). Implementation is sequenced as: capture the 15-test baseline → run the include sentinel → extend the two test files → rewrite the five wrappers and reconcile presentation/metadata in one atomic patch → verify → `validate.sh --strict`.
+Implemented in the `0093-sk-design-012-gap-research` worktree. Sequence: captured the green 15-test baseline → rewrote the five wrappers from the §7 body cores (preserving frontmatter, register, lanes, execution targets, `workflowMode`, the eight visible blocks, and the four statuses) → verified the 15 baseline still green → inverted the five presentation headers → extended the contract test with four new assertions → re-ran the full suite (19/19). The presentation-demotion + wrapper rewrite landed together so no mixed-authority intermediate was committed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,12 +79,11 @@ Planning only. Authored in the isolated worktree `0093-sk-design-012-gap-researc
 
 | Decision | Why |
 |----------|-----|
-| Rewrite bodies, keep architecture | The route/intake/proof/handoff architecture is useful; only the literal prompt experience was missing (research §3, §11) |
-| One native `@`-include, not a shell compiler or five copies | Native include avoids registry/drift/security machinery and five-source schema drift (research §4, eliminated alternatives) |
-| Canonical single include token (`@.opencode/…`, no `./`) | Keeps static tests single-token; `@./…` is path-equivalent but rejected as a second form (research §4) |
-| Wrapper normative, presentation → fixtures, atomically | Leaving the presentation normative beside a literal wrapper creates two competing prompt authorities (research §8) |
-| Taste stays in the mode | Command-owned recipes/verdicts would become a second taste authority and drift from the mode (research §5, §13) |
-| Correctness = two test files + include sentinel | Source inspection does not exercise model-visible prompt delivery; the sentinel is a required implementation gate (research §12, §16) |
+| Rewrite bodies, keep architecture | Route/intake/proof/handoff were fine; only the literal prompt experience was missing (research §3, §11) |
+| One native `@`-include, no copies | Avoids five-source schema drift; native include is source-confirmed for OpenCode 1.18.4 (research §4) |
+| Left `command-metadata.json` unchanged | It has no presentation-authority field — reading it confirmed it already reflects the wrapper-normative split; editing it only risks `validateMetadata` |
+| Wrapper assertions live in the contract test | `interface-command-contract.test.mjs` is the file that already loads wrapper bodies; the surface-check test validates metadata↔YAML only |
+| Status is IMPLEMENTED, not Complete | The live include sentinel is a runtime gate not runnable from this environment; the mechanism is source-confirmed + statically verified, but the end-to-end runtime check is honestly deferred |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -97,7 +91,14 @@ Planning only. Authored in the isolated worktree `0093-sk-design-012-gap-researc
 <!-- ANCHOR:verification -->
 ## Verification
 
-Deferred — planning-only. The implementation's Definition of Done (plan §2): include sentinel passes; each wrapper has exactly one canonical include, the literal grammar, four statuses, and no command-owned taste; presentation/metadata reconciled atomically; `node --test interface-command-contract.test.mjs design-command-surface-check.test.mjs` green (baseline 15 + new assertions); `validate.sh --strict` = 0 errors.
+| Check | Result |
+|-------|--------|
+| `node --test interface-command-contract.test.mjs design-command-surface-check.test.mjs` | PASS — 19 tests, 19 pass, 0 fail (15 baseline preserved + 4 new) |
+| Exactly one canonical `@`-include per wrapper | PASS — `grep -c` = 1 for all five |
+| No residual thin-router phrase / "source of truth" / legacy Read-imperative | PASS — 0 hits across `commands/interface/` |
+| Include target exists | PASS — `shared/creation-contract.md` present |
+| No command-owned taste tables / nested dispatch / evidence-free verified / silent amendment | PASS — boundary-error tests green for all surfaces |
+| Live OpenCode include sentinel (contract bytes reach the model-visible prompt) | DEFERRED — needs an OpenCode runtime session (see Limitations) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -105,7 +106,6 @@ Deferred — planning-only. The implementation's Definition of Done (plan §2): 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The corrected body cores in research §7 are research deliverables, not applied command files; exact line counts and the presentation/YAML edits await implementation.
-- The include sentinel cannot be run from spec authoring — it requires a live OpenCode command discovery + prompt-delivery path, which is an implementation-time gate.
-- This packet is independent of the DB-build/restructure packets under `015`; it does not depend on and is not blocked by them.
+- **Live include sentinel deferred (CHK-002).** Proving the contract's bytes reach the model-visible prompt requires a live OpenCode command-discovery + prompt-delivery path, which this environment cannot exercise. The include mechanism is source-confirmed against the tagged OpenCode 1.18.4 parser/resolver (research §4, §16) and statically verified (exactly one canonical include per wrapper; target file present). To close: in an OpenCode 1.18.4 session, invoke a `/interface:*` command and confirm the creation-contract text appears in the rendered prompt. This is the only reason the packet is IMPLEMENTED rather than Complete.
+- The auto/confirm fixture matrix (five auto, five confirm-wait, ASK/FAIL/DEFER, proof downgrade/blocked, audit no-write, md-generator output) is covered structurally by the contract + surface tests; a dedicated live-fixture run is part of the same deferred runtime gate.
 <!-- /ANCHOR:limitations -->
