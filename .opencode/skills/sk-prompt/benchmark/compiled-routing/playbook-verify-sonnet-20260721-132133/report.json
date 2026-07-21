@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "hub": "sk-prompt",
+    "run_label": "playbook-verify-sonnet-20260721-132133",
+    "executor": "Claude Sonnet (Claude Code agent), headless read-only sweep",
+    "captured_at_utc": "2026-07-21T13:21:33Z",
+    "method": "Enumerated every scenario under .opencode/skills/sk-prompt/manual-testing-playbook/ (root manual-testing-playbook.md = directory/contract listing 4 hub_routing scenarios SP-001..004, plus the standalone compiled-routing/default-mode-compiled-routing.md meta-scenario SP-CR-001 -- 5 scenarios total, matching the packet's own documented Lane C corpus size). For each scenario, ran its exact frontmatter/body prompt text through two commands and diffed the routing decision: (1) COMPILED: `env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub sk-prompt --prompt \"<prompt>\"` (default-on cohort, no flag override); (2) LEGACY: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-prompt --task \"<prompt>\"`. Compiled targets[].workflowMode was compared against legacy intents as sets, and both were cross-checked against each scenario file's own documented expected_workflow_mode / expected_resources / expected_leaf_resources frontmatter.",
+    "frozen_scorer_sha256": {
+      "load-playbook-scenarios.cjs": {
+        "start": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+        "end": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+        "unchanged": true
+      },
+      "router-replay.cjs": {
+        "start": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "end": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "unchanged": true
+      },
+      "score-skill-benchmark.cjs": {
+        "start": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "end": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "unchanged": true
+      }
+    },
+    "default_on_hubs_count": 7,
+    "default_on_hubs": [
+      "sk-code",
+      "system-deep-loop",
+      "mcp-tooling",
+      "cli-external-orchestration",
+      "sk-prompt",
+      "sk-design",
+      "sk-doc"
+    ],
+    "repo_mutations": "none (git status in cwd shows only the 2 pre-existing, explicitly out-of-scope strays: .opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md, .opencode/specs/system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md -- plus two untracked concurrent-session archive folders under sk-code/ and sk-doc/ benchmark trees not authored by this sweep -- and this sweep's own new archive folder)"
+  },
+  "scenarios": [
+    {
+      "id": "SP-001",
+      "category": "hub_routing",
+      "feature_file": "hub-routing/generic-prompt-improve.md",
+      "prompt": "Help me write a better prompt for a customer support chatbot.",
+      "expected_workflow_mode": "prompt-improve",
+      "expected_resources": [
+        "prompt-improve/references/depth-framework.md"
+      ],
+      "compiled": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          { "skillId": "sk-prompt", "packetId": "prompt-improve", "workflowMode": "prompt-improve", "backendKind": "prompt-engine" }
+        ]
+      },
+      "legacy": {
+        "intents": ["prompt-improve"],
+        "resources": ["prompt-improve/references/depth-framework.md"],
+        "routeTelemetry_workflowMode": ["prompt-improve"]
+      },
+      "compiled_eq_legacy": true,
+      "resources_match_expected": true,
+      "verdict": "PASS",
+      "notes": "Generic prompt-improvement request with no named model resolves to routerPolicy.defaultMode=prompt-improve on both engines; legacy resources exactly [prompt-improve/references/depth-framework.md], no over/under-load; compiled==legacy."
+    },
+    {
+      "id": "SP-002",
+      "category": "hub_routing",
+      "feature_file": "hub-routing/named-model-prompt-models.md",
+      "prompt": "What framework and scaffold does DeepSeek-v4-pro want for a coding task?",
+      "expected_workflow_mode": "prompt-models",
+      "expected_resources": [
+        "prompt-models/references/models/deepseek-v4-pro.md"
+      ],
+      "compiled": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          { "skillId": "sk-prompt", "packetId": "prompt-models", "workflowMode": "prompt-models", "backendKind": "profile-lookup" }
+        ]
+      },
+      "legacy": {
+        "intents": ["prompt-models"],
+        "resources": ["prompt-models/references/models/deepseek-v4-pro.md"],
+        "routeTelemetry_workflowMode": ["prompt-models"],
+        "matchedAliases": ["deepseek"]
+      },
+      "compiled_eq_legacy": true,
+      "resources_match_expected": true,
+      "verdict": "PASS",
+      "notes": "Named small model (DeepSeek-v4-pro) resolves to prompt-models on both engines; legacy cites the model-specific reference (not the generic 7-framework set); compiled==legacy."
+    },
+    {
+      "id": "SP-003",
+      "category": "hub_routing",
+      "feature_file": "hub-routing/ambiguous-default.md",
+      "prompt": "Improve this prompt for a small model.",
+      "expected_workflow_mode": "prompt-improve",
+      "expected_resources": [
+        "prompt-improve/references/depth-framework.md"
+      ],
+      "compiled": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          { "skillId": "sk-prompt", "packetId": "prompt-improve", "workflowMode": "prompt-improve", "backendKind": "prompt-engine" }
+        ]
+      },
+      "legacy": {
+        "intents": ["prompt-improve"],
+        "resources": ["prompt-improve/references/depth-framework.md"],
+        "routeTelemetry_workflowMode": ["prompt-improve"]
+      },
+      "compiled_eq_legacy": true,
+      "resources_match_expected": true,
+      "verdict": "PASS",
+      "notes": "Model-adjacent vocabulary ('small model') without a named model id does NOT trip prompt-models on either engine -- routerPolicy.defaultMode wins cleanly, confirming the scenario's success criterion (no silent wrong-mode resolution on vocabulary alone); compiled==legacy."
+    },
+    {
+      "id": "SP-004",
+      "category": "hub_routing",
+      "feature_file": "hub-routing/second-model-glm.md",
+      "prompt": "What prompt-craft profile does GLM-5.2 use for the Z.AI Coding Plan?",
+      "expected_workflow_mode": "prompt-models",
+      "expected_resources": [
+        "prompt-models/references/models/glm-5.2.md"
+      ],
+      "compiled": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          { "skillId": "sk-prompt", "packetId": "prompt-models", "workflowMode": "prompt-models", "backendKind": "profile-lookup" }
+        ]
+      },
+      "legacy": {
+        "intents": ["prompt-models"],
+        "resources": ["prompt-models/references/models/glm-5.2.md"],
+        "routeTelemetry_workflowMode": ["prompt-models"],
+        "matchedAliases": ["glm-5.2"],
+        "scores": [
+          { "intent": "prompt-models", "score": 6 },
+          { "intent": "prompt-improve", "score": 4 }
+        ]
+      },
+      "compiled_eq_legacy": true,
+      "resources_match_expected": true,
+      "verdict": "PASS",
+      "notes": "Second named model (GLM-5.2, distinct from SP-002's DeepSeek) also resolves to prompt-models on both engines, confirming the signal generalizes beyond one example model. Legacy score gap (6 vs 4, delta 2) exceeds AMBIGUITY_DELTA=1 so prompt-improve is correctly NOT kept as a near-tied intent; compiled==legacy."
+    },
+    {
+      "id": "SP-CR-001",
+      "category": "compiled_routing",
+      "feature_file": "compiled-routing/default-mode-compiled-routing.md",
+      "prompt": "Help me write a better prompt for a customer support chatbot.",
+      "expected_workflow_mode": "prompt-improve",
+      "expected_route_shape": "default",
+      "expected_resources": [
+        "prompt-improve/references/depth-framework.md"
+      ],
+      "compiled": {
+        "action": "route",
+        "selectionKind": "single",
+        "targets": [
+          { "skillId": "sk-prompt", "packetId": "prompt-improve", "workflowMode": "prompt-improve", "backendKind": "prompt-engine" }
+        ],
+        "servingAuthority_inferred": "compiled"
+      },
+      "legacy": {
+        "intents": ["prompt-improve"],
+        "resources": ["prompt-improve/references/depth-framework.md"],
+        "routeTelemetry_workflowMode": ["prompt-improve"]
+      },
+      "compiled_eq_legacy": true,
+      "resources_match_expected": true,
+      "verdict": "PASS",
+      "notes": "Same exact prompt as SP-001 (this scenario's own design: same default-mode fallthrough, scored separately to isolate the serving-authority claim). resolve.cjs returned a full route decision object (hubId/action/selectionKind/targets/effectivePolicyHash/generation) rather than the {servingAuthority:'legacy',hubId} fallback sentinel, which only happens when flagPermitsCompiled(sk-prompt)=true (sk-prompt in DEFAULT_ON_HUBS, flag unset -> 'default' mode) AND the live manifest.json servingAuthority='compiled' (confirmed directly: .opencode/bin/lib/compiled-routing/010-live-activation/activation/sk-prompt/manifest.json reads servingAuthority:'compiled', shadowOnly:false, generation:5) AND compiledRoute() did not throw -- together this proves servingAuthority=compiled was actually exercised, matching the scenario's evidence_serving_authority:compiled and evidence_flag_state:unset frontmatter. evidence_compiled_route:'sk-prompt/prompt-improve' matches targets[0].skillId+'/'+workflowMode exactly. compiled==legacy on workflow-mode and on the resource-contract pair. PROVENANCE NOTE (non-blocking): the scenario frontmatter's evidence_manifest_digest (6f581ac8...) does not match the live manifest.json's whole-file SHA-256 (82381844...), its selectedPolicy.effectivePolicyHash (814cfed8...), nor several other canonicalizations tried (compact/pretty/sorted-keys/selectedPolicy-only JSON hashes) -- same class of harmless digest-provenance drift noted for sk-code's CB-CR-001 (manifest re-serialized without any change to the semantically load-bearing servingAuthority/generation/effectivePolicyHash fields). Not a routing-correctness issue."
+    }
+  ],
+  "summary": {
+    "total_scenarios": 5,
+    "pass": 5,
+    "fail": 0,
+    "skip": 0,
+    "compiled_vs_legacy_drift_count": 0,
+    "compiled_vs_legacy_drift_scenarios": [],
+    "resource_expectation_mismatches": 0,
+    "lane_c_corpus_size_reference": 5,
+    "lane_c_reference_source": "015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md lines 71 and 164: 'sk-prompt 5/0' (5 scenarios, 0 drift), independently re-run live during that packet's own 2026-07-21 reconciliation pass and matched exactly.",
+    "lane_c_corroboration": "5/5 scenarios PASS, 0/5 compiled-vs-legacy drift in this independent sweep -- directly corroborates the archived Lane C parity result of sk-prompt 5/0 (compiled-serving, 0 drift). Both this sweep's scenario count (5) and drift count (0) match the cited figure exactly.",
+    "default_on_hubs_check": "DEFAULT_ON_HUBS in .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs still lists exactly 7 hubs (sk-code, system-deep-loop, mcp-tooling, cli-external-orchestration, sk-prompt, sk-design, sk-doc), unchanged by this read-only sweep.",
+    "frozen_scorer_sha256_check": "All 3 frozen scorer files (load-playbook-scenarios.cjs, router-replay.cjs, score-skill-benchmark.cjs) byte-identical start vs end of this sweep."
+  }
+}
