@@ -1,0 +1,733 @@
+{
+  "runLabel": "playbook-verify-sonnet-20260721-132746",
+  "hub": "system-deep-loop",
+  "generatedAt": "2026-07-21T13:28:50.561Z",
+  "executor": "Claude Sonnet (Claude Code agent), headless read-only sweep",
+  "cwd": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover",
+  "method": {
+    "compiledCommand": "env -u SPECKIT_COMPILED_ROUTING node .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs --hub system-deep-loop --prompt \"<user request>\"",
+    "legacyCommand": "node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/system-deep-loop --task \"<same>\"",
+    "comparison": "compiled targets[0].workflowMode (when action===route, else null) vs legacy intents[0] (else null); backendKind cross-checked where the scenario doc states an expected backend (RB-001/002/003); guard scenarios (AI-003 bare wording, AI-004 plain code-edit) graded on both sides deferring (action===defer / intents=[]); resources cross-checked against each scenario file's frontmatter expected_resources."
+  },
+  "corpus": {
+    "scenariosEnumerated": 21,
+    "catalogued_in_root_playbook": 20,
+    "uncatalogued": [
+      "DL-CR-001 (compiled-routing/ordered-bundle-deep-mode-compiled-routing.md — lives in the manual-testing-playbook tree with its own typed frontmatter gold, but is not listed in the root playbook Section 6/8 20-scenario index)"
+    ],
+    "reconciliation_note": "Root playbook Section 8 states \"Total scenarios: 20\". The manual-testing-playbook/ directory actually contains 21 scenario files (20 catalogued + DL-CR-001). 21 matches the system-deep-loop Lane C parity figure recorded in 013-compiled-coverage-buildout/handover.md: \"system-deep-loop | compiled-serving (21/0) | f9f639674b\". This sweep therefore includes DL-CR-001 as scenario 21/21 to make the parity cross-check exact."
+  },
+  "individualPromptChecks": 26,
+  "driftCount_compiled_vs_legacy": 0,
+  "laneCParityCrossCheck": {
+    "recordedFigure": "system-deep-loop: compiled-serving (21/0)",
+    "recordedSource": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md (line 23, and STATUS line 13)",
+    "corroborated": true,
+    "corroborationBasis": "21 scenario files enumerated (matches 21); 26 individual prompt checks run across those 21 scenarios (multi-prompt scenarios AI-001 x4, AI-002 x3, AI-003 x2); 0 of the 26 show compiled != legacy (matches the recorded 0 drift). One scenario (AI-001) still grades FAIL overall, but that FAIL is a both-sides-agree defer against the scenario doc's own stated expectation, not a compiled-vs-legacy divergence -- see findings."
+  },
+  "frozenScorerFiles": {
+    "files": [
+      {
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "sha256_start": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47",
+        "sha256_end": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47"
+      },
+      {
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "sha256_start": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c",
+        "sha256_end": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c"
+      },
+      {
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "sha256_start": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
+        "sha256_end": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029"
+      }
+    ],
+    "unchanged": true,
+    "matchesHandoverRecord": true
+  },
+  "defaultOnHubs": {
+    "count": 7,
+    "hubs": [
+      "sk-code",
+      "system-deep-loop",
+      "mcp-tooling",
+      "cli-external-orchestration",
+      "sk-prompt",
+      "sk-design",
+      "sk-doc"
+    ],
+    "resolverCopiesVerifiedIdentical": [
+      ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs"
+    ]
+  },
+  "repoMutations": {
+    "commit": false,
+    "filesWrittenByThisSweep": [
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/playbook-verify-sonnet-20260721-132746/report.json",
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/playbook-verify-sonnet-20260721-132746/report.md"
+    ],
+    "preexistingDirtyFilesObservedNotCausedByThisSweep": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md (one of the 2 explicitly out-of-scope strays named in the task -- confirmed pre-existing, untouched)",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md (the other named stray -- confirmed pre-existing, untouched)",
+      ".opencode/bin/compiled-routing-foundation.vitest.ts (outside this sweep's scope; this session made zero Edit/Write calls into the repo, so this predates or is concurrent-sibling activity)",
+      ".opencode/bin/tests/compiled-route-manifest.test.cjs (same as above)"
+    ],
+    "concurrentSiblingActivityObserved": "A live cli-external-orchestration/benchmark/compiled-routing/playbook-verify-sonnet-20260721-152551/ directory appeared mid-sweep, and report.json/report.md/scenarios.json/playbook-verify-results.json pre-existing in the shared scratchpad were confirmed (by content) to belong to sibling sk-code and sk-doc agents, not this sweep -- this worktree is being used concurrently by multiple per-hub playbook-verify agents."
+  },
+  "scenarios": [
+    {
+      "id": "MO-001",
+      "category": "mode-routing",
+      "file": "mode-routing/research-routing.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "MO-002",
+      "category": "mode-routing",
+      "file": "mode-routing/review-routing.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.",
+          "expectedMode": "review",
+          "compiledAction": "route",
+          "compiledMode": "review",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "review",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-review/references/protocol/loop-protocol.md",
+            "deep-review/references/protocol/completion-criteria.md",
+            "deep-review/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "MO-003",
+      "category": "mode-routing",
+      "file": "mode-routing/ai-council-routing.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts.",
+          "expectedMode": "ai-council",
+          "compiledAction": "route",
+          "compiledMode": "ai-council",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "ai-council",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-ai-council/references/integration/loop-protocol.md",
+            "deep-ai-council/references/scoring/scoring-rubric.md",
+            "deep-ai-council/references/structure/output-schema.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "MO-004",
+      "category": "mode-routing",
+      "file": "mode-routing/mode-hint-override.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "research: Investigate whether our deep review findings are repeating because the source context is stale, and write a research summary before any audit verdict.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "MO-005",
+      "category": "mode-routing",
+      "file": "mode-routing/alignment-routing.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Run a conformance audit against the named standard authority for the sk-git skill: read-only, report deviations by lane, and do not edit anything.",
+          "expectedMode": "alignment",
+          "compiledAction": "route",
+          "compiledMode": "alignment",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "alignment",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-alignment/references/scoping-protocol.md",
+            "deep-alignment/references/discover-contract.md",
+            "deep-alignment/references/lane-config-schema.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "IL-001",
+      "category": "improvement-lane-routing",
+      "file": "improvement-lane-routing/agent-improvement.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change.",
+          "expectedMode": "agent-improvement",
+          "compiledAction": "route",
+          "compiledMode": "agent-improvement",
+          "compiledBackend": "improvement-host",
+          "legacyMode": "agent-improvement",
+          "legacyBackend": "improvement-host",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+            "deep-improvement/references/agent-improvement/score-dimensions.md",
+            "deep-improvement/references/shared/promotion-gate-contract.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "IL-002",
+      "category": "improvement-lane-routing",
+      "file": "improvement-lane-routing/model-benchmark.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "/deep:model-benchmark Run a model benchmark for the prompt framework candidates and compare model behavior against the current harness.",
+          "expectedMode": "model-benchmark",
+          "compiledAction": "route",
+          "compiledMode": "model-benchmark",
+          "compiledBackend": "improvement-host",
+          "legacyMode": "model-benchmark",
+          "legacyBackend": "improvement-host",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-improvement/references/model-benchmark/evaluator-contract.md",
+            "deep-improvement/references/model-benchmark/lane-b-mechanics.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "IL-003",
+      "category": "improvement-lane-routing",
+      "file": "improvement-lane-routing/skill-benchmark.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "/deep:skill-benchmark Run a skill benchmark for the routing prompts and compare skill selection accuracy against the current baseline.",
+          "expectedMode": "skill-benchmark",
+          "compiledAction": "route",
+          "compiledMode": "skill-benchmark",
+          "compiledBackend": "improvement-host",
+          "legacyMode": "skill-benchmark",
+          "legacyBackend": "improvement-host",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-improvement/references/skill-benchmark/scoring-contract.md",
+            "deep-improvement/references/skill-benchmark/routing-optimization.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": null
+    },
+    {
+      "id": "AI-001",
+      "category": "advisor-integration",
+      "file": "advisor-integration/single-advisor-identity.md",
+      "critical": true,
+      "verdict": "FAIL",
+      "checks": [
+        {
+          "label": "research",
+          "prompt": "Use deep research to investigate registry drift and write a research summary.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "label": "review",
+          "prompt": "Run a deep review and report P0/P1/P2 findings with a verdict.",
+          "expectedMode": "review",
+          "compiledAction": "defer",
+          "compiledMode": null,
+          "compiledBackend": null,
+          "legacyMode": null,
+          "legacyBackend": null,
+          "legacyDeferReason": "no-mode-scored",
+          "legacyResources": [],
+          "verdict": "FAIL"
+        },
+        {
+          "label": "ai-council",
+          "prompt": "Run an AI council deliberation with multiple planning seats and converge on a recommendation.",
+          "expectedMode": "ai-council",
+          "compiledAction": "route",
+          "compiledMode": "ai-council",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "ai-council",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-ai-council/references/integration/loop-protocol.md",
+            "deep-ai-council/references/scoring/scoring-rubric.md",
+            "deep-ai-council/references/structure/output-schema.md"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "label": "agent-improvement",
+          "prompt": "Evaluate and score an agent candidate for promotion or rollback.",
+          "expectedMode": "agent-improvement",
+          "compiledAction": "route",
+          "compiledMode": "agent-improvement",
+          "compiledBackend": "improvement-host",
+          "legacyMode": "agent-improvement",
+          "legacyBackend": "improvement-host",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+            "deep-improvement/references/agent-improvement/score-dimensions.md",
+            "deep-improvement/references/shared/promotion-gate-contract.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "AI-002",
+      "category": "advisor-integration",
+      "file": "advisor-integration/lexical-mode-scoring.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "deep-research",
+          "prompt": "deep-research: run an iterative investigation workflow and summarize findings.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "label": "deep-review",
+          "prompt": "deep-review: run an iterative review loop and produce severity weighted findings.",
+          "expectedMode": "review",
+          "compiledAction": "route",
+          "compiledMode": "review",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "review",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-review/references/protocol/loop-protocol.md",
+            "deep-review/references/protocol/completion-criteria.md",
+            "deep-review/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "label": "deep-ai-council",
+          "prompt": "deep-ai-council: run a planning council and converge on a recommendation.",
+          "expectedMode": "ai-council",
+          "compiledAction": "route",
+          "compiledMode": "ai-council",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "ai-council",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-ai-council/references/integration/loop-protocol.md",
+            "deep-ai-council/references/scoring/scoring-rubric.md",
+            "deep-ai-council/references/structure/output-schema.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "AI-003",
+      "category": "advisor-integration",
+      "file": "advisor-integration/command-bridge-guard.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "bare-model-benchmark",
+          "prompt": "Benchmark a model against prompt framework candidates.",
+          "expectedMode": null,
+          "compiledAction": "defer",
+          "compiledMode": null,
+          "compiledBackend": null,
+          "legacyMode": null,
+          "legacyBackend": null,
+          "legacyDeferReason": "no-mode-scored",
+          "legacyResources": [],
+          "verdict": "PASS"
+        },
+        {
+          "label": "bare-skill-benchmark",
+          "prompt": "Benchmark a skill against routing prompts.",
+          "expectedMode": null,
+          "compiledAction": "defer",
+          "compiledMode": null,
+          "compiledBackend": null,
+          "legacyMode": null,
+          "legacyBackend": null,
+          "legacyDeferReason": "no-mode-scored",
+          "legacyResources": [],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": "Positive half (command present -> DOES fire) is covered by IL-002/IL-003."
+    },
+    {
+      "id": "AI-004",
+      "category": "advisor-integration",
+      "file": "advisor-integration/no-false-fire-code-edit.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests.",
+          "expectedMode": null,
+          "compiledAction": "defer",
+          "compiledMode": null,
+          "compiledBackend": null,
+          "legacyMode": null,
+          "legacyBackend": null,
+          "legacyDeferReason": "no-mode-scored",
+          "legacyResources": [],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": "Hub-scoped resolver defer is the correct hub-side signal; real orchestrator would route to sk-code (outside this hub resolver's scope)."
+    },
+    {
+      "id": "RB-001",
+      "category": "runtime-and-backend",
+      "file": "runtime-and-backend/runtime-loop-research.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "For a deep research run, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "RB-002",
+      "category": "runtime-and-backend",
+      "file": "runtime-and-backend/runtime-loop-council.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "For an AI council deliberation, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.",
+          "expectedMode": "ai-council",
+          "compiledAction": "route",
+          "compiledMode": "ai-council",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "ai-council",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-ai-council/references/integration/loop-protocol.md",
+            "deep-ai-council/references/scoring/scoring-rubric.md",
+            "deep-ai-council/references/structure/output-schema.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "RB-003",
+      "category": "runtime-and-backend",
+      "file": "runtime-and-backend/improvement-host.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "For an agent-improvement run, resolve the mode through the registry and state the backend, runtime loop type, loop host mode, command, agent, and artifact root before starting.",
+          "expectedMode": "agent-improvement",
+          "compiledAction": "route",
+          "compiledMode": "agent-improvement",
+          "compiledBackend": "improvement-host",
+          "legacyMode": "agent-improvement",
+          "legacyBackend": "improvement-host",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-improvement/references/agent-improvement/candidate-proposal-format.md",
+            "deep-improvement/references/agent-improvement/score-dimensions.md",
+            "deep-improvement/references/shared/promotion-gate-contract.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "RB-004",
+      "category": "runtime-and-backend",
+      "file": "runtime-and-backend/external-adapter.md",
+      "verdict": "SKIP",
+      "reason": "Retired placeholder scenario: no exact prompt, no execution/acceptance contract in the file body (file states this explicitly). Genuinely un-runnable headlessly.",
+      "checks": []
+    },
+    {
+      "id": "SC-001",
+      "category": "state-and-convergence-discipline",
+      "file": "state-and-convergence-discipline/externalized-state.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Before running deep review, explain where iteration state is owned and confirm whether I can manually write prompts to /tmp and dispatch them in a loop.",
+          "expectedMode": "review",
+          "compiledAction": "route",
+          "compiledMode": "review",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "review",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-review/references/protocol/loop-protocol.md",
+            "deep-review/references/protocol/completion-criteria.md",
+            "deep-review/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "SC-002",
+      "category": "state-and-convergence-discipline",
+      "file": "state-and-convergence-discipline/artifact-root-writes.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Before starting an AI council deliberation, resolve the mode through the registry and state exactly where council artifacts should be written.",
+          "expectedMode": "ai-council",
+          "compiledAction": "route",
+          "compiledMode": "ai-council",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "ai-council",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-ai-council/references/integration/loop-protocol.md",
+            "deep-ai-council/references/scoring/scoring-rubric.md",
+            "deep-ai-council/references/structure/output-schema.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "SC-003",
+      "category": "state-and-convergence-discipline",
+      "file": "state-and-convergence-discipline/convergence-stop.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "For deep research, explain how convergence detection ends the loop and which packet owns the convergence math before starting any iterations.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "SC-004",
+      "category": "state-and-convergence-discipline",
+      "file": "state-and-convergence-discipline/hub-logic-boundary.md",
+      "critical": true,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Explain whether the system-deep-loop hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.",
+          "expectedMode": "review",
+          "compiledAction": "route",
+          "compiledMode": "review",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "review",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-review/references/protocol/loop-protocol.md",
+            "deep-review/references/protocol/completion-criteria.md",
+            "deep-review/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": null,
+      "note": null
+    },
+    {
+      "id": "DL-CR-001",
+      "category": "compiled-routing",
+      "file": "compiled-routing/ordered-bundle-deep-mode-compiled-routing.md",
+      "critical": false,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "label": "primary",
+          "prompt": "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary.",
+          "expectedMode": "research",
+          "compiledAction": "route",
+          "compiledMode": "research",
+          "compiledBackend": "runtime-loop-type",
+          "legacyMode": "research",
+          "legacyBackend": "runtime-loop-type",
+          "legacyDeferReason": null,
+          "legacyResources": [
+            "deep-research/references/protocol/loop-protocol.md",
+            "deep-research/references/state/state-jsonl.md",
+            "deep-research/references/convergence/convergence.md"
+          ],
+          "verdict": "PASS"
+        }
+      ],
+      "resourceNote": "resources match expected_resources",
+      "note": "Not in the root playbook's 20-scenario category index, but lives inside the manual-testing-playbook tree with its own typed frontmatter gold; reconciles with Lane C's recorded system-deep-loop parity figure of 21/0 (013-compiled-coverage-buildout handover.md)."
+    }
+  ]
+}
