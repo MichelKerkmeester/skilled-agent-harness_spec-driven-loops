@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
     "created_at": "2026-07-20T21:51:34.999Z",
-    "last_save_at": "2026-07-20T23:59:52.932Z",
+    "last_save_at": "2026-07-21T04:01:01.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e60ee8f28d28df0cd0e7e562d51245c6628a7cbc82da632eda0bac9cbdfc30f",
+    "source_fingerprint": "sha256:243739725431d63d0fded853ee5806204cd7ba1060156cea2a1637251c237c0b",
     "source_doc_hashes": {
-      "spec.md": "a141213f41491e2a699dcb76cfeb0116297a5d070e92dfce40947a461b99dfc0",
+      "spec.md": "edbabcb9108b776c487379d7da39b1313ada441307b53fdfdb8579732bfba888",
       "plan.md": "9290a50302cf01365ea1af27392388a1161803c66570b734eed67cc0205651f1",
       "tasks.md": "d2a8f7e5e77a18b6e071cf3894b88d18cde20d858ea6d16cf3ed508f62bdb59f",
       "checklist.md": "7511a831eb2bce81888408ce1ff7a76acd9c751ffef8ccf027b3a00cb88a5ec3",
-      "implementation-summary.md": "6d250530ea062dd296ebd1f01cb49eb4d7820bd9c003334570593ff8315fcf0b"
+      "implementation-summary.md": "49b9f029bf84094a668148eeb9edd8c6385a1bfea495de070aa8f4676cc2f8c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

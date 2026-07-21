@@ -58,6 +58,7 @@ Work ONLY in the worktree `.worktrees/0089-sk-doc-default-routing-cutover` (bran
 
 ## 7. Current state → next action
 
-- DONE: 25-iter research + synthesis + verification + review; 015 parent + 001-research specs; children 002-011 spec authoring in flight; committed at `a179c8d5e9`.
-- NEXT: finish + validate the 002-011 child specs → then IMPLEMENT in DAG order (002 first; 004/006/007/008/009 parallel once 002 lands; 003/010 P1; 005 P2; 011 P4 last), each behind the off flag with its named rollback and the invariants above.
-- See `handover.md` for the exact resume ladder and per-child status.
+- **DONE (build complete).** 25-iter research + synthesis + verification + review; the 015 parent + 001-research; and ALL ten implementation children 002-011 authored, implemented, and committed on this worktree — each behind the still-OFF flag, routing byte-identical to legacy, the three frozen scorer files SHA-256 unchanged, `validate.sh --strict` Errors:0. Commit range `a179c8d5e9..3d08302771` (002 `4153cbebd8`; 003+008+010 `a1cdb65d90`; 004+006+009 `8532c4b64b`; 007 `2a39ecb9a0`; 005 `d590af12be`; 011 `3d08302771`).
+- **HONESTLY NOT DONE (by design).** The real staged default-flip. 011's P4 controller is built and dry-run-proven, but its P3 coverage-closure join gate reports **all 7 hubs BLOCKED** — gated on the create-skill readiness fixture + siblings 013/014, which remain genuinely Planned. The repo default stays OFF; flipping it is an operator decision after 013/014 land and the join gate goes green per hub.
+- **NEXT (operator-gated).** (1) Merge this worktree branch to v4. (2) Implement 013/014 (create-skill onboarding + benchmark alignment) to clear the join gate. (3) Run the full 7-hub × {routing, holdout} LUNA-HIGH sweep (the 3-scenario sample already proves the mechanism). (4) Then the per-hub cohort-staged flip via 011's controller, with `=0` as the fleet-wide kill-switch.
+- See `handover.md` for the exact per-child status and resume ladder.

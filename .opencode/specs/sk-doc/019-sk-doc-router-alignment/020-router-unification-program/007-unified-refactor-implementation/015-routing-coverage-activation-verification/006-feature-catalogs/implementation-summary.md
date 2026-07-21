@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Compiled-Routing Feature Catalogs"
-description: "Delivered-state record for the seven-hub compiled-routing catalog coverage: Option A shipped — 6 new hub-root catalogs, 12 hub-architecture/compiled-routing leaves, sk-design's extension leaf, and the two canonical-surface extensions. Uncommitted in the worktree pending operator review."
+description: "Delivered-state record for the seven-hub compiled-routing catalog coverage: Option A shipped — 6 new hub-root catalogs, 12 hub-architecture/compiled-routing leaves, sk-design's extension leaf, and the two canonical-surface extensions. Committed in 8532c4b64b."
 trigger_phrases:
   - "compiled routing catalogs implementation summary"
   - "feature catalog topology current status"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented — uncommitted (dispatcher instruction: do not commit) |
+| **Status** | Implemented — committed in `8532c4b64b`. 19 new + 3 extended catalog files; no runtime/router/manifest/scorer touched (frozen scorer SHA-256 unchanged) |
 | **Date** | 2026-07-21 |
 | **Level** | 2 |
 | **Implementation** | Complete: 19 new files, 3 files extended |
@@ -104,7 +104,7 @@ Verified `002`/`003` were actually live at durable `.opencode/bin/**` paths by r
 3. **Two pre-existing dirty files in `.opencode/specs/`** (`mcp-tooling/008-mcp-aside/001-research/research/research.md`, `system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md`) were already modified in this worktree before this session started (confirmed by the first `git status` call of this session) — unrelated to this packet, not touched further.
 4. **The per-hub leaf filename convention is this packet's choice, not independently re-evidenced beyond `sk-design`.** `compiled-routing-and-legacy-fallback.md` was directly evidenced only for `sk-design` in research; applying it fleet-wide (and choosing the category-folder-equals-filename shape) is this packet's consistency decision, stated explicitly.
 5. **The P4 wording rewrite is owned elsewhere.** This packet's leaves state the opt-in/pre-cutover wording matching each hub's current `SKILL.md`; `../011-activation-cutover-p4/` owns the future atomic rewrite to default-on + kill-switch wording, gated on that hub's own parity/serving-status/fallback/rollback checks.
-6. **Not committed.** Per explicit dispatcher instruction; all 22 files exist only in this worktree pending operator review.
+6. **Committed** in `8532c4b64b` (the earlier no-commit instruction was superseded by the program's commit pass).
 <!-- /ANCHOR:limitations -->
 
 ---

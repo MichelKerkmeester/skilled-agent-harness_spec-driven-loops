@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
   "description": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
   "keywords": [
@@ -11,7 +12,7 @@
     "equality",
     "inert"
   ],
-  "lastUpdated": "2026-07-20T21:41:24.660Z",
+  "lastUpdated": "2026-07-21T03:59:20.309Z",
   "specId": "008",
   "folderSlug": "sk-code-alignment-and-drift-guards",
   "parentChain": [
@@ -22,6 +23,5 @@
     "015-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

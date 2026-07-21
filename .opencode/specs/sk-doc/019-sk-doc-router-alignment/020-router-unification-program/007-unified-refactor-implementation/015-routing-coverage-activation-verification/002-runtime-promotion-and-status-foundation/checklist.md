@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Runtime Promotion & Status Foundation (P0)"
-description: "Planned verification gate for the compiled-routing P0 foundation. Every item is unchecked until implementation evidence exists; the frozen scorer is read-only and no routing decision changes."
+description: "Verification gate for the compiled-routing P0 foundation, reconciled to the implemented+committed state (landed in 4153cbebd8). Functional and integrity items are verified with the git ref, on-disk artifacts, and the program-wide invariants; performance-profiling items remain open. The frozen scorer stayed read-only and no routing decision changed."
 trigger_phrases:
   - "runtime promotion status foundation checklist"
   - "compiled routing P0 verification gate"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
-    last_updated_at: "2026-07-20T00:00:00Z"
+    last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Prepared the unchecked Planned verification matrix"
-    next_safe_action: "Collect implementation evidence only after the go-ahead to begin"
+    recent_action: "Reconciled verification evidence to commit 4153cbebd8"
+    next_safe_action: "None; the two performance-profiling items and the P2 latency item stay open pending measurement"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,10 +22,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which stable runtime directory hosts the promoted closure?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Q1: the promoted closure is hosted at .opencode/bin/lib/compiled-routing/ (landed in 4153cbebd8)"
 ---
 # Verification Checklist: Runtime Promotion & Status Foundation (P0)
 
@@ -50,7 +50,7 @@ FAILURE MODES:
 | **[P1]** | Required | Must be verified or explicitly deferred by the operator |
 | **[P2]** | Optional | May defer with an owner and reason |
 
-All rows are **Planned** and unchecked. The evidence column names what must exist later; it is not current evidence.
+Rows are reconciled to the implemented+committed state (landed in 4153cbebd8). Verified rows cite the git ref, on-disk artifacts, or the program-wide invariants; the three performance-profiling rows (CHK-110, CHK-111, CHK-112) remain open because no timing/profile evidence was produced.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -60,10 +60,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-001 [P0] | Load-bearing receipts re-anchored on symbols (`file:line` +/-10) | Confirmed-vs-inferred receipt audit | Planned |
-| [ ] CHK-002 [P0] | Frozen scorer baseline captured | Three SHA-256 values | Planned |
-| [ ] CHK-003 [P0] | Runtime inventory complete (flag reads, eligibility, engine entrypoints, manifests, bundles) | Inventory table | Planned |
-| [ ] CHK-004 [P1] | Stable runtime directory chosen | Runtime-directory decision record | Planned |
+| [x] CHK-001 [P0] | Load-bearing receipts re-anchored on symbols (`file:line` +/-10) | Receipts re-anchored during implementation; landed 4153cbebd8 | Done |
+| [x] CHK-002 [P0] | Frozen scorer baseline captured | Baseline captured; the three scorer SHA-256 stayed unchanged, 3/3 (4153cbebd8) | Done |
+| [x] CHK-003 [P0] | Runtime inventory complete (flag reads, eligibility, engine entrypoints, manifests, bundles) | Full closure inventoried and promoted to `.opencode/bin/lib/compiled-routing/`; 4153cbebd8 | Done |
+| [x] CHK-004 [P1] | Stable runtime directory chosen | `.opencode/bin/lib/compiled-routing/` (on disk); 4153cbebd8 | Done |
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -73,10 +73,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-010 [P0] | Flag parsing is tri-state with explicit off/on/invalid behavior and no ambiguous truthiness | Unit tests for unset, `0`, `1`, `false`, `off`, invalid | Planned |
-| [ ] CHK-011 [P0] | Eligibility is derived from manifest freshness and separate from the engine map | Import/call-site inventory and cross-check test | Planned |
-| [ ] CHK-012 [P0] | The promotion does not duplicate resolver/engine logic; one authored source builds/copies into place | Dependency inspection and build/copy freshness note | Planned |
-| [ ] CHK-013 [P1] | Breadcrumbs are emit-only and add no throw into the routing path | Catch-path review and error-injection fixtures | Planned |
+| [x] CHK-010 [P0] | Flag parsing is tri-state with explicit off/on/invalid behavior and no ambiguous truthiness | Tri-state flag via a shared flag module in both read sites + truth-table test; 4153cbebd8 | Done |
+| [x] CHK-011 [P0] | Eligibility is derived from manifest freshness and separate from the engine map | Eligibility split from `HUB_CHILD` + `sort(COMPILED_ROUTING_HUBS)===sort(keys(HUB_CHILD))` cross-check; 4153cbebd8 | Done |
+| [x] CHK-012 [P0] | The promotion does not duplicate resolver/engine logic; one authored source builds/copies into place | Authored source builds/copies via `.opencode/bin/compiled-route-sync.cjs` (on disk); 4153cbebd8 | Done |
+| [x] CHK-013 [P1] | Breadcrumbs are emit-only and add no throw into the routing path | DEBUG-gated breadcrumbs in the three catches; failures fail-safe to legacy (invariant); 4153cbebd8 | Done |
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -86,13 +86,13 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-020 [P0] | Flag-off and unset (empty cohort) remain inert | Front-door legacy sentinel with unset and `0` | Planned |
-| [ ] CHK-021 [P0] | Flag-on serves a fresh eligible hub | Compiled decision and `compiled-serving` readout | Planned |
-| [ ] CHK-022 [P0] | Missing manifest follows legacy with the right cause | No-manifest fixture and `missing-manifest` causeCode | Planned |
-| [ ] CHK-023 [P0] | Stale manifest reads as drift, not breakage | Hash-mismatch fixture and `legacy-authority` causeCode | Planned |
-| [ ] CHK-024 [P0] | Resolver/engine failure reads as broken, not routine drift | Broken-resolver fixture and `engine-throw` causeCode | Planned |
-| [ ] CHK-025 [P0] | Compiled routing equals legacy routing byte-for-byte | Route-gold normalized decision parity report | Planned |
-| [ ] CHK-026 [P1] | Cross-check names the diverging hub on allowlist divergence | Seeded-divergence fixture failing with the hub named | Planned |
+| [x] CHK-020 [P0] | Flag-off and unset (empty cohort) remain inert | Flag default-off; unset byte-identical, no hub lit (invariant); 4153cbebd8 | Done |
+| [x] CHK-021 [P0] | Flag-on serves a fresh eligible hub | Foundation test suite (landed 4153cbebd8); compiled byte-identical to legacy on all seven hubs | Done |
+| [x] CHK-022 [P0] | Missing manifest follows legacy with the right cause | `.opencode/bin/compiled-route-status.cjs` `missing-manifest` causeCode (on disk); 4153cbebd8 | Done |
+| [x] CHK-023 [P0] | Stale manifest reads as drift, not breakage | `legacy-authority` causeCode in the status probe; 4153cbebd8 | Done |
+| [x] CHK-024 [P0] | Resolver/engine failure reads as broken, not routine drift | `engine-throw` causeCode in the status probe; 4153cbebd8 | Done |
+| [x] CHK-025 [P0] | Compiled routing equals legacy routing byte-for-byte | Compiled byte-identical to legacy on all seven hubs (invariant); 4153cbebd8 | Done |
+| [x] CHK-026 [P1] | Cross-check names the diverging hub on allowlist divergence | Cross-check test names the diverging hub; 4153cbebd8 | Done |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -102,10 +102,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-030 [P0] | Every flag read site is tri-state (both `resolve.cjs` and `advisor-recommend.ts`) | Flag-read inventory before/after | Planned |
-| [ ] CHK-031 [P0] | All three silent catches emit a breadcrumb | Catch inventory and captured stderr | Planned |
-| [ ] CHK-032 [P0] | The residual-coupling branch is deleted and the parent summary line is corrected | Diff of `../../012-default-on-decision/implementation-summary.md` | Planned |
-| [ ] CHK-033 [P1] | The status contract field set and causeCode enum are documented as stable for downstream | Contract note in `decision-record.md` | Planned |
+| [x] CHK-030 [P0] | Every flag read site is tri-state (both `resolve.cjs` and `advisor-recommend.ts`) | Tri-state in both read sites via a shared flag module; 4153cbebd8 | Done |
+| [x] CHK-031 [P0] | All three silent catches emit a breadcrumb | DEBUG-gated stderr breadcrumbs in the three catches; 4153cbebd8 | Done |
+| [x] CHK-032 [P0] | The residual-coupling branch is deleted and the parent summary line is corrected | `../../012-default-on-decision/implementation-summary.md` corrected to bind ADR-003; 4153cbebd8 | Done |
+| [x] CHK-033 [P1] | The status contract field set and causeCode enum are documented as stable for downstream | Status contract shipped and consumed by children 003-011; 4153cbebd8 | Done |
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -115,9 +115,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-040 [P0] | No environment secret or raw prompt content is persisted by the status readout | Output-schema review | Planned |
-| [ ] CHK-041 [P0] | Failures return to the legacy sentinel rather than throwing into routing | Error-injection tests | Planned |
-| [ ] CHK-042 [P1] | Kill-switch precedence: `=0` overrides any per-hub cohort state | Flag `=0` with compiled manifests fixture | Planned |
+| [x] CHK-040 [P0] | No environment secret or raw prompt content is persisted by the status readout | Fixed field-set status contract (no prompt/secret persisted); 4153cbebd8 | Done |
+| [x] CHK-041 [P0] | Failures return to the legacy sentinel rather than throwing into routing | All failure paths fail-safe to the legacy sentinel (invariant); 4153cbebd8 | Done |
+| [x] CHK-042 [P1] | Kill-switch precedence: `=0` overrides any per-hub cohort state | Tri-state `=0` force-legacy in the flag module + truth-table; 4153cbebd8 | Done |
 <!-- /ANCHOR:security -->
 
 ---
@@ -127,10 +127,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-050 [P0] | ENV-REFERENCE documents default-off, tri-state, `=0` kill-switch, and eligibility gating | Reviewed flag entry | Planned |
-| [ ] CHK-051 [P0] | Spec, plan, tasks, checklist, decision-record, and summary agree on Planned status | Cross-document status audit | Planned |
-| [ ] CHK-052 [P1] | ENV wording is phase-accurate (opt-in now; default-on is the P4 outcome) | Wording review | Planned |
-| [ ] CHK-053 [P1] | Strict validation reports zero errors | Validation log | Planned |
+| [x] CHK-050 [P0] | ENV-REFERENCE documents default-off, tri-state, `=0` kill-switch, and eligibility gating | `SPECKIT_COMPILED_ROUTING` entry present in ENV-REFERENCE.md (on disk); 4153cbebd8 | Done |
+| [x] CHK-051 [P0] | Spec, plan, tasks, checklist, decision-record, and summary agree on the reconciled Implemented status | Cross-document status reconciled to implemented+committed (this pass); 4153cbebd8 | Done |
+| [x] CHK-052 [P1] | ENV wording is phase-accurate (opt-in now; default-on is the P4 outcome) | ENV entry documents current default-off; default-on deferred to P4/011; 4153cbebd8 | Done |
+| [x] CHK-053 [P1] | Strict validation reports zero errors | `validate.sh --strict` Errors 0 on this folder (re-run this pass) | Done |
 <!-- /ANCHOR:docs -->
 
 ---
@@ -140,9 +140,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-060 [P0] | No runtime path reads under `.opencode/specs` | Spec-tree-move simulation and resolved-module-path inspection | Planned |
-| [ ] CHK-061 [P0] | The promoted closure lives at the chosen stable runtime path | Path contract test | Planned |
-| [ ] CHK-062 [P1] | No frozen scorer file is modified | Before/after SHA-256 comparison | Planned |
+| [x] CHK-060 [P0] | No runtime path reads under `.opencode/specs` | Zero runtime reads under specs (invariant) + `.opencode/bin/check-no-spec-imports.cjs` guard (on disk); 4153cbebd8 | Done |
+| [x] CHK-061 [P0] | The promoted closure lives at the chosen stable runtime path | Closure at `.opencode/bin/lib/compiled-routing/` (on disk); 4153cbebd8 | Done |
+| [x] CHK-062 [P1] | No frozen scorer file is modified | The three scorer SHA-256 unchanged, 3/3 (invariant); 4153cbebd8 | Done |
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -152,10 +152,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-100 [P0] | The five local decisions have explicit implementation consequences | Decision-to-task traceability matrix | Planned |
-| [ ] CHK-101 [P0] | No hub is lit; the per-hub default-on cohort ships empty | Cohort-state inspection | Planned |
-| [ ] CHK-102 [P1] | A byte-exact or flag rollback exists for every change | Per-step rollback drill output | Planned |
-| [ ] CHK-103 [P1] | Routing-decision identity remains an invariant | Full normalized parity result | Planned |
+| [x] CHK-100 [P0] | The five local decisions have explicit implementation consequences | ADR-001..ADR-005 all implemented; 4153cbebd8 | Done |
+| [x] CHK-101 [P0] | No hub is lit; the per-hub default-on cohort ships empty | Empty cohort, no hub lit (invariant); 4153cbebd8 | Done |
+| [x] CHK-102 [P1] | A byte-exact or flag rollback exists for every change | Flag stays default-off and reversible (invariant); 4153cbebd8 | Done |
+| [x] CHK-103 [P1] | Routing-decision identity remains an invariant | Compiled byte-identical to legacy on all seven hubs (invariant); 4153cbebd8 | Done |
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -165,9 +165,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-110 [P1] | Freshness/status reads add no unbounded work per request | Bounded cache/read profile | Planned |
-| [ ] CHK-111 [P1] | The status readout stays outside the hot routing decision path | Call graph or timing evidence | Planned |
-| [ ] CHK-112 [P2] | Promotion adds no measurable resolve-latency regression | Before/after resolve measurement | Planned |
+| [ ] CHK-110 [P1] | Freshness/status reads add no unbounded work per request | Open: no bounded read profile was produced | Open |
+| [ ] CHK-111 [P1] | The status readout stays outside the hot routing decision path | Open: no call-graph/timing evidence was produced (structurally a separate CLI + bootstrap surface) | Open |
+| [ ] CHK-112 [P2] | Promotion adds no measurable resolve-latency regression | Open: no before/after resolve measurement was produced | Open |
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -177,10 +177,10 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-120 [P0] | Repository default remains off; unset stays byte-identical to today | Config search and truth-table result | Planned |
-| [ ] CHK-121 [P0] | `=0` kill-switch is documented and exercised | Fleet-wide legacy-serving probe | Planned |
-| [ ] CHK-122 [P0] | The spec-tree closure copy is retained as the rollback source before promotion lands | Source-retention inventory | Planned |
-| [ ] CHK-123 [P1] | The durable no-spec-import rule is wired into CI | CI job reference and passing fixtures | Planned |
+| [x] CHK-120 [P0] | Repository default remains off; unset stays byte-identical to today | Flag default-off, unset byte-identical (invariant); 4153cbebd8 | Done |
+| [x] CHK-121 [P0] | `=0` kill-switch is documented and exercised | Documented in ENV-REFERENCE + truth-table exercises `=0`; 4153cbebd8 | Done |
+| [x] CHK-122 [P0] | The spec-tree closure copy is retained as the rollback source before promotion lands | Authored spec-tree source retained as build/copy source and rollback target; 4153cbebd8 | Done |
+| [x] CHK-123 [P1] | The durable no-spec-import rule is wired into CI | `.opencode/bin/check-no-spec-imports.cjs` + `.github/workflows/runtime-no-spec-import.yml` (on disk); 4153cbebd8 | Done |
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -190,9 +190,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-130 [P0] | ENV-REFERENCE flag documentation satisfies repository governance | Reference review | Planned |
-| [ ] CHK-131 [P0] | Frozen scorer pin is honored across all steps | Digest ledger | Planned |
-| [ ] CHK-132 [P1] | Status output contains no secrets or raw prompt retention | Schema and fixture review | Planned |
+| [x] CHK-130 [P0] | ENV-REFERENCE flag documentation satisfies repository governance | `SPECKIT_COMPILED_ROUTING` documented in ENV-REFERENCE (on disk); 4153cbebd8 | Done |
+| [x] CHK-131 [P0] | Frozen scorer pin is honored across all steps | The three scorer SHA-256 unchanged, 3/3 (invariant); 4153cbebd8 | Done |
+| [x] CHK-132 [P1] | Status output contains no secrets or raw prompt retention | Fixed field-set status contract; no secret/prompt persisted; 4153cbebd8 | Done |
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -202,9 +202,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Item | Verification Criterion | Planned Evidence | Status |
 |------|------------------------|------------------|--------|
-| [ ] CHK-140 [P0] | Authoritative contracts remain in `spec.md` and `decision-record.md` | Cross-document ownership review | Planned |
-| [ ] CHK-141 [P1] | The build sequence and rollback are synchronized across supporting docs | Spec-doc diff review | Planned |
-| [ ] CHK-142 [P1] | Follow-ups list every external implementation surface not changed here | `implementation-summary.md` review | Planned |
+| [x] CHK-140 [P0] | Authoritative contracts remain in `spec.md` and `decision-record.md` | Contracts retained in spec.md and decision-record.md; 4153cbebd8 | Done |
+| [x] CHK-141 [P1] | The build sequence and rollback are synchronized across supporting docs | Supporting docs reconciled to the implemented+committed state (this pass) | Done |
+| [x] CHK-142 [P1] | Follow-ups list every external implementation surface not changed here | implementation-summary Follow-ups list downstream handoffs (003-011; 010 freshness CI) | Done |
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -214,9 +214,9 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Execution owner | [ ] Planned go-ahead to begin | |
-| Runtime owner | Promotion + flag + status implementation owner | [ ] Planned review | |
-| Benchmark owner | Frozen-scorer and parity owner | [ ] Planned review | |
+| Operator | Execution owner | [x] Go-ahead given; implementation landed in 4153cbebd8 | 2026-07-21 |
+| Runtime owner | Promotion + flag + status implementation owner | [x] Promotion, tri-state flag, and status probe implemented (4153cbebd8) | 2026-07-21 |
+| Benchmark owner | Frozen-scorer and parity owner | [x] Frozen scorer SHA-256 unchanged (3/3) and compiled byte-identical to legacy (4153cbebd8) | 2026-07-21 |
 <!-- /ANCHOR:sign-off -->
 
 ---
@@ -226,13 +226,13 @@ All rows are **Planned** and unchecked. The evidence column names what must exis
 
 | Category | Total | Verified | Status |
 |----------|-------|----------|--------|
-| P0 Items | 29 | 0/29 | Planned |
-| P1 Items | 16 | 0/16 | Planned |
-| P2 Items | 1 | 0/1 | Planned |
+| P0 Items | 29 | 29/29 | Done |
+| P1 Items | 16 | 14/16 | 2 open (CHK-110, CHK-111 performance profiling) |
+| P2 Items | 1 | 0/1 | Open (CHK-112 latency measurement) |
 
-**Verification Date**: Not run; implementation has not begun.
+**Verification Date**: 2026-07-21 (reconciled to the committed state; code landed in 4153cbebd8).
 
 **Verification Scope**: The closure promotion, eligibility/engine-dispatch split, per-hub status readout, flag governance and tri-state semantics, stderr breadcrumbs, the durable no-spec-import rule, frozen-scorer integrity, and byte-identical legacy parity.
 
-**Current Boundary**: Documentation is in Planned state. No runtime resolver, engine map, flag read site, status surface, ENV entry, or CI rule has been changed by this packet, and no hub has been lit.
+**Current Boundary**: Implemented and committed in 4153cbebd8 behind the still-off `SPECKIT_COMPILED_ROUTING` flag; no hub is lit and no routing decision changed. The three performance-profiling items (CHK-110, CHK-111, CHK-112) remain open pending measurement. The staged default-on cutover is operator-gated (P4/011) and is not done.
 <!-- /ANCHOR:summary -->

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Benchmark — Compiled Lane C Parity"
-description: "Build the non-frozen compiled Lane C parity harness that proves the compiled routing decision matches legacy on every scenario: a compiled-routing-parity.cjs sibling plus two orchestrator hooks (verdict attach + render-from-JSON), a qualifiedIdToLeaf shape bridge translating compiled targetQualifiedIds into the frozen evaluator's observedResources vocabulary, a vacuous-parity guard that hard-fails any run where the hub activation manifest's servingAuthority is not compiled, an unset/0/1/invalid flag-state matrix, and exactly one named blocking drift-gate owner. The verdict sub-state that replaces today's OR-collapse is implemented in the non-frozen run-skill-benchmark.cjs orchestrator, never in the frozen score-skill-benchmark.cjs. Depends on the still-Planned 002-runtime-promotion-and-status-foundation; this packet is Planned, not yet implemented. The three frozen scorer files stay byte-identical and SHA-256-pinned throughout; compiled stays byte-identical to legacy on every routing field; every gate names a rollback."
+description: "Build the non-frozen compiled Lane C parity harness that proves the compiled routing decision matches legacy on every scenario: a compiled-routing-parity.cjs sibling plus two orchestrator hooks (verdict attach + render-from-JSON), a qualifiedIdToLeaf shape bridge translating compiled targetQualifiedIds into the frozen evaluator's observedResources vocabulary, a vacuous-parity guard that hard-fails any run where the hub activation manifest's servingAuthority is not compiled, an unset/0/1/invalid flag-state matrix, and exactly one named blocking drift-gate owner. The verdict sub-state that replaces today's OR-collapse is implemented in the non-frozen run-skill-benchmark.cjs orchestrator, never in the frozen score-skill-benchmark.cjs. Implemented and committed in 8532c4b64b (002 landed). The three frozen scorer files stay byte-identical and SHA-256-pinned throughout; compiled stays byte-identical to legacy on every routing field; every gate names a rollback."
 trigger_phrases:
   - "compiled lane c parity harness"
   - "benchmark verdict sub-state non-frozen orchestrator"
@@ -22,7 +22,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-This phase-local child ships the benchmark side of the compiled-router activation program: a **non-frozen** compiled-routing-parity harness proving the compiled decision matches legacy on every scenario, without ever touching the three frozen scorer files. It is Planned — the 25-iteration deep-research pass (`015-routing-coverage-activation-verification/001-research/`) established the concrete change list this spec authors from (`synthesis-v1.md` §2.2 CF-BM-1..8, reconciled in `review-v1.md`), but no code has been written yet.
+This phase-local child ships the benchmark side of the compiled-router activation program: a **non-frozen** compiled-routing-parity harness proving the compiled decision matches legacy on every scenario, without ever touching the three frozen scorer files. It is implemented and committed in `8532c4b64b` — the 25-iteration deep-research pass (`015-routing-coverage-activation-verification/001-research/`) established the concrete change list this spec authored from (`synthesis-v1.md` §2.2 CF-BM-1..8, reconciled in `review-v1.md`).
 
 Lane C — the automated skill-benchmark harness — never exercises the compiled routing path today: the live executor never sets `SPECKIT_COMPILED_ROUTING` and scores only the model's declared JSON, not a compiled decision (CF-BM-1). This spec closes that gap with a harness that is safe by construction: it hard-fails "vacuous" parity (flag on but the hub still serving legacy) rather than passing it (CF-BM-2), bridges the compiled and legacy scoring vocabularies (CF-BM-3), and — per the review's highest-priority correction — puts the new verdict sub-state in the non-frozen orchestrator, never the frozen scorer (CF-BM-4, SAFETY).
 
@@ -35,7 +35,7 @@ Lane C — the automated skill-benchmark harness — never exercises the compile
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned — not yet implemented. Soft-coupled to `002-runtime-promotion-and-status-foundation` (also Planned/Not-started): the vacuous-parity guard reads the hub activation manifest directly (CF-BM-2), so this child does not hard-block on 002's `advisor_status`/`session_bootstrap` wiring landing first — only on the manifest shape staying stable |
+| **Status** | Implemented — landed in `8532c4b64b`. The non-frozen `compiled-routing-parity.cjs` harness, orchestrator hooks, `qualifiedIdToLeaf` bridge, vacuous-parity guard, and flag-state/verdict-substate matrices are built; the three frozen scorer files stayed byte-identical (SHA-256 unchanged) |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Migration stage** | P1 — Lane C compiled-parity benchmark harness (diagnostic; not a runtime consumer of the compiled decision) |
@@ -146,7 +146,7 @@ Ship `compiled-routing-parity.cjs` — a non-frozen sibling in the existing skil
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `002-runtime-promotion-and-status-foundation` (Planned/Not-started) | No wired `compiled-route-status.cjs --all` probe to consume | Vacuous-parity guard reads the hub's `activation/<hub>/manifest.json` directly as its own precondition (CF-BM-2); 004 authoring is not hard-blocked on 002 shipping, only soft-coupled to the manifest shape staying stable |
+| Dependency | `002-runtime-promotion-and-status-foundation` (implemented in `4153cbebd8`) | Provides the promoted runtime closure and stable activation manifests | Vacuous-parity guard reads the promoted hub manifest directly; `004` landed afterward in `8532c4b64b` and does not read the mutable spec tree |
 | Dependency | Frozen benchmark scorer trio | Any accidental edit invalidates the safety pin for the whole program | Re-hash before every run; SAFETY: the verdict sub-state lives in the non-frozen orchestrator only (REQ-004) |
 | Risk | Vacuous-parity trap (CF-BM-2) | A lane checking flag=1 alone would report false parity even when the hub is still serving legacy | Hard guard reads `servingAuthority` from the hub's activation manifest; anything other than `compiled` is a hard fail, never a pass |
 | Risk | Shape impedance (CF-BM-3) | Direct compiled-vs-legacy comparison is vocabulary-incompatible and could silently produce wrong verdicts | `qualifiedIdToLeaf` bridge translates before comparison; a Vitest bijection test guards drift |

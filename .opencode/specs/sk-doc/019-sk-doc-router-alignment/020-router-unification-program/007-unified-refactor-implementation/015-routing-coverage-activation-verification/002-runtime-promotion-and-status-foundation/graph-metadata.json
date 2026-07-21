@@ -44,6 +44,10 @@
       "spec.md",
       "decision-record.md",
       "plan.md",
+      ".opencode/bin/compiled-route-sync.cjs",
+      ".opencode/bin/check-no-spec-imports.cjs",
+      ".github/workflows/runtime-no-spec-import.yml",
+      ".opencode/bin/compiled-route-status.cjs",
       ".opencode/bin/compiled-route.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
       ".opencode/plugins/mk-skill-advisor.js",
@@ -68,6 +72,30 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-no-spec-import.yml",
+        "kind": "config",
+        "path": ".github/workflows/runtime-no-spec-import.yml",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
         "source": "derived"
       },
       {
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-07-20T21:51:24.395Z",
+    "last_save_at": "2026-07-21T04:01:00.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a850f4f5f5bfc6a61c8729ca7777e5960e165f2383e169bacd626636cf7142e5",
+    "source_fingerprint": "sha256:61eb5c365915e2793a770006a281559c85f718b1489e6b4b1bf4767a9d304cca",
     "source_doc_hashes": {
-      "spec.md": "d3b1f57e5e286bf4bdde23cd1a0344927acb31de65a6fde3a42e03b9aadfc315",
+      "spec.md": "d693cef9bb5002da8b95c385e13b5e6940a985d2544ea60379a3abef7d368a64",
       "plan.md": "09dd4f0a491a450a87ed7deaafaf5447e8a033dbcbd7270b5fa46ed06d0b793e",
-      "tasks.md": "8036bf63559c5517317d6e76c5b2dac9ed6fcead70c1f909a76a75b6eea38b86",
-      "checklist.md": "9f44e424c66d2b252f844df3d39bcf7254bbae763dc21e34c895d2824da763c1",
+      "tasks.md": "abd270ccab99b9572e00ef7c26f4496f745d23dbad52a33319bac230a46c4f3b",
+      "checklist.md": "03173ee167c32518427154c4bec0ea241164e083f1e04ea7b5449b545f8554db",
       "decision-record.md": "20c773dcf5ab13452f58596455817dd0e52098ea412ccc83f0631a6ebdcf58f5",
-      "implementation-summary.md": "bf98d8432fcde758861b017506376f05d8479c140ecbd80f2272c40df4f73697"
+      "implementation-summary.md": "f70ba2735513bfdc4cb8d4e6dd312f3523a3f4b4242c4e76600f51b3a885cc2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

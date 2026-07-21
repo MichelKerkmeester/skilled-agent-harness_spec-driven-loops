@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-code Alignment & Drift Guards"
-description: "Makes the code-opencode RESOURCE_MAP equality gate real — code-opencode/SKILL.md currently attributes the guard to verify_alignment_drift.py, which is markdown-blind by construction; the real guard is sk-code-router-sync.vitest.ts, uncross-referenced. Adds a qualifiedIdToLeaf bidirectional bijection test between compiled targetQualifiedIds and the RESOURCE_MAP, unifies sk-code's three disjoint drift guards behind one run-all-drift-guards.sh entry point, and extends the runtime request contract with surfaceBundle composite-routing context. Publishes the single code-opencode alignment-authority interface (CF-SC-5) that later 015 children consume. Planning-only; depends on 002; never edits the frozen scorer trio."
+description: "Makes the code-opencode RESOURCE_MAP equality gate real — code-opencode/SKILL.md currently attributes the guard to verify_alignment_drift.py, which is markdown-blind by construction; the real guard is sk-code-router-sync.vitest.ts, uncross-referenced. Adds a qualifiedIdToLeaf bidirectional bijection test between compiled targetQualifiedIds and the RESOURCE_MAP, unifies sk-code's three disjoint drift guards behind one run-all-drift-guards.sh entry point, and extends the runtime request contract with surfaceBundle composite-routing context. Publishes the single code-opencode alignment-authority interface (CF-SC-5) that later 015 children consume. Implemented and committed in a1cdb65d90; never edits the frozen scorer trio."
 trigger_phrases:
   - "sk-code alignment drift guards"
   - "code-opencode resource map equality gate"
@@ -37,7 +37,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P3 — coverage-closure input in the P0→P4 safety graph; parallelizable with 006/007/009/010 once 002 lands |
-| **Status** | Planned |
+| **Status** | Implemented — landed in `a1cdb65d90`, behind the still-off flag; frozen scorer trio SHA-256 unchanged |
 | **Created** | 2026-07-20 |
 | **Branch** | `008-sk-code-alignment-and-drift-guards` |
 | **DAG Stage** | P3 (`001-research/synthesis-v1.md` §5 P0→P4 graph: "verify_alignment_drift markdown gate live (CF-SC-1)" + "create-skill ready fixture (CF-SC-5)" join-gate items) |

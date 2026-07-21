@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
-    last_updated_at: "2026-07-20T00:00:00Z"
+    last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the Level-3 planning set for the P0 foundation"
-    next_safe_action: "Begin implementation on operator go-ahead"
+    recent_action: "Reconciled the spec status to implemented+committed (code landed in 4153cbebd8)"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which stable runtime directory hosts the promoted closure?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Q1: the promoted closure is hosted at .opencode/bin/lib/compiled-routing/ (landed in 4153cbebd8)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -50,7 +50,7 @@ This packet resolves all six as a single closure move plus four additive plumbin
 
 **Hard invariants at every step:** compiled routing stays **byte-identical to legacy** on all routing fields (this packet changes no routing decision); the three frozen scorer files (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) are **SHA-256-pinned and NEVER edited** — they are read and re-hashed only; every step names a byte-exact or flag-based rollback; **no runtime path reads under `.opencode/specs`** once promotion lands. The tri-state change keeps unset behavior-identical to today because the per-hub default-on cohort is empty until P4 (`011-activation-cutover-p4`); this packet lights no hub.
 
-> **Status: Planned.** Nothing here is implemented. This spec set is the authored plan for the foundation; execution is gated on an operator go-ahead. No completion is claimed.
+> **Status: Implemented (landed in 4153cbebd8).** The foundation is built behind the still-off `SPECKIT_COMPILED_ROUTING` flag; compiled routing stayed byte-identical to legacy and no hub was lit. The staged default-on cutover is the separate P4 packet (`../011-activation-cutover-p4/`) and stays operator-gated.
 
 ---
 
@@ -61,7 +61,7 @@ This packet resolves all six as a single closure move plus four additive plumbin
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned — Level-3 planning set authored; no runtime implementation started. This is the P0 foundation; children 003-011 depend on it. Execution gated on an operator go-ahead. |
+| **Status** | Implemented — landed in 4153cbebd8, behind the still-off `SPECKIT_COMPILED_ROUTING` flag. This is the P0 foundation; children 003-011 consume it. The staged default-on cutover stays operator-gated (P4/011) and is not done. |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Migration stage** | P0 activation foundation (promotion + observability + flag governance); the default-on flip is the separate P4 packet |

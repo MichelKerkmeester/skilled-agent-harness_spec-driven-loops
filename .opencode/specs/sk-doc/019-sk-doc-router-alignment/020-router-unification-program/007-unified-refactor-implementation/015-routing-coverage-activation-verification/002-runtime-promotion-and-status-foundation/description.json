@@ -1,4 +1,5 @@
 {
+  "level": 3,
   "specFolder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
   "description": "The compiled router is shipped but held inert",
   "keywords": [
@@ -8,7 +9,7 @@
     "held",
     "inert"
   ],
-  "lastUpdated": "2026-07-20T21:42:37.856Z",
+  "lastUpdated": "2026-07-21T03:59:19.430Z",
   "specId": "002",
   "folderSlug": "runtime-promotion-and-status-foundation",
   "parentChain": [
@@ -19,6 +20,5 @@
     "015-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 3
+  "memoryNameHistory": []
 }

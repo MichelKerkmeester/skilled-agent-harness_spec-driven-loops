@@ -1,20 +1,20 @@
 ---
 title: "Implementation Summary: Compiled Routing Flag Propagation & Effective Consumption"
-description: "Planned-state record for the flag-propagation and effective-consumption phase. The Level-3 planning set is authored; all runtime implementation is future work gated on 002 landing green and an operator go-ahead."
+description: "Completion record for the flag-propagation and effective-consumption phase. Implemented and committed in a1cdb65d90 behind the still-off SPECKIT_COMPILED_ROUTING flag: the flag added to both CHILD_ENV_ALLOWLIST sets and the compiled decision threaded through the native brief, the CLI subprocess interface, and the hook render. Routing stays byte-identical to legacy; the staged default-on cutover stays operator-gated (P4/011)."
 trigger_phrases:
-  - "compiled routing flag propagation planned summary"
+  - "compiled routing flag propagation implementation summary"
   - "compiledRoute consumption current status"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
-    last_updated_at: "2026-07-20T00:00:00Z"
+    last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the Level-3 planning set; validated the folder to Errors:0"
-    next_safe_action: "Begin Phase 1 once 002 lands green and the operator gives the go-ahead"
+    recent_action: "Reconciled the completion record to the implemented+committed state (code landed in a1cdb65d90)"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers:
-      - "002 promotion + tri-state flag must land before Phase 2 threading is meaningful"
+      - "None for this child (implemented in a1cdb65d90); the program-level default-on cutover stays operator-gated (P4/011)."
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -26,10 +26,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions:
-      - "Full compiledRoute object or a top-level metadata.compiledRouteSummary?"
-    answered_questions: []
+      - "None blocking — the child scope is complete; cutover timing is an operator decision (P4/011)."
+    answered_questions:
+      - "Full compiledRoute object or a top-level metadata.compiledRouteSummary? Settled: a top-level metadata.compiledRouteSummary (ADR-001), implemented in a1cdb65d90."
 ---
 # Implementation Summary: Compiled Routing Flag Propagation & Effective Consumption
 
@@ -44,12 +45,12 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned. The Level-3 planning set is authored; no runtime implementation started. Gated on `002-runtime-promotion-and-status-foundation` landing green and a separate operator go-ahead. |
+| **Status** | Implemented — landed in `a1cdb65d90`, behind the still-off `SPECKIT_COMPILED_ROUTING` flag. The flag was added to both `CHILD_ENV_ALLOWLIST` sets and the compiled decision threaded through the native brief, the CLI `subprocess.ts` interface, and the hook render; routing stays byte-identical to legacy. The staged default-on cutover stays operator-gated (P4/011) and is not done. |
 | **Date** | 2026-07-20 |
 | **Level** | 3 |
-| **Runtime change** | None authored by this documentation phase |
+| **Runtime change** | Additive propagation and consumption plumbing landed in `a1cdb65d90`: two exact-key env allowlist additions, a typed `compiledRouteSummary`, brief rendering, and serving-state-aware cache invalidation |
 | **Repository default** | Unchanged; `SPECKIT_COMPILED_ROUTING` remains default-off. This phase only makes it reachable and consumable when enabled. |
-| **Verification** | Spec-folder strict validation run; Errors zero on this folder (missing `description.json`/`graph-metadata.json` are expected warnings for a freshly-authored child) |
+| **Verification** | Commit `a1cdb65d90` contains the native/bridge flag tests, four-outcome brief tests, legacy-shape fallback test, and `=0` cache-invalidation test; packet strict validation is rerun after this reconciliation |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,7 +60,7 @@ _memory:
 
 This phase closes the two structural reasons default-on is a no-op end-to-end (CF-ACT-1, CF-ACT-2) plus the CF-ACT-10 cache slice: the flag is stripped by both child-env allowlists so it never reaches the advisor daemon, and the compiled decision the advisor attaches additively is dropped at two independent rebuild sites (the bridge `buildNativeBrief` and the CLI `AdvisorRecommendation` interface). All four drop/strip sites were CONFIRMED against source this session (zero flag hits in both allowlists; zero `compiledRoute` hits in the bridge and in `subprocess.ts`).
 
-No runtime work has begun. The planning set specifies adding the flag to both allowlists; threading the compiled decision (as a top-level `metadata.compiledRouteSummary`, ADR-001) through the native brief, the CLI interface, and the hook render; folding 002's serving-state fingerprint into both cache keys (ADR-002) so a flip or `=0` invalidates a stale brief; and rendering the 4-action outcome as an additive brief line (ADR-003). Every change is additive and byte-identical to legacy on routing fields, the three frozen scorer files stay pinned, every step names a byte-scoped or flag-based rollback, and no touched runtime path reads under `.opencode/specs`.
+This work is implemented and committed in `a1cdb65d90`: the flag was added to both allowlists; the compiled decision threaded (as a top-level `metadata.compiledRouteSummary`, ADR-001) through the native brief, the CLI interface, and the hook render; 002's serving-state fingerprint folded into both cache keys (ADR-002) so a flip or `=0` invalidates a stale brief; and the 4-action outcome rendered as an additive brief line (ADR-003). Every change is additive and byte-identical to legacy on routing fields, the three frozen scorer files stay pinned, every step names a byte-scoped or flag-based rollback, and no touched runtime path reads under `.opencode/specs`.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -69,17 +70,17 @@ No runtime work has begun. The planning set specifies adding the flag to both al
 
 ### Phase 1: Readiness and Inventory
 
-Confirm 002 is green (promoted closure, tri-state flag, serving-state fingerprint), re-anchor the six runtime symbols against the live checkout (drift is expected), capture the frozen-scorer baselines, and settle the three ADRs.
+Confirmed the `002` foundation in `4153cbebd8`, re-anchored the runtime surfaces, preserved the frozen-scorer baseline, and implemented the three selected architecture choices.
 
 ### Phase 2: Propagate, Consume, Invalidate
 
-Add `SPECKIT_COMPILED_ROUTING` to both `CHILD_ENV_ALLOWLIST` sets; thread the compiled decision summary through `buildNativeBrief`, the CLI `AdvisorRecommendation` interface, and the hook render; fold 002's serving-state fingerprint into `cacheKeyForPrompt` and the `engineCache` invalidation input.
+Added `SPECKIT_COMPILED_ROUTING` as one exact key in both `CHILD_ENV_ALLOWLIST` sets. `buildNativeBrief` now derives a top-level `metadata.compiledRouteSummary`; the CLI `AdvisorRecommendation` interface preserves it; and the plugin renders its outcome into injected system context. The plugin cache consumes the serving-state signature, while the promoted engine cache keys by manifest fingerprint.
 
 ### Phase 3: Prove
 
-Child-env probes on both spawn paths, bridge+plugin e2e with a real compiled decision, the `=0` propagation kill test, cache-invalidation fixtures, route-gold parity, frozen-digest equality, and the no-spec-read assertion.
+Added native-launcher and bridge child-env probes for unset/`0`/`1`, four-action `buildNativeBrief` coverage, plugin render coverage, legacy-shape fallback coverage, and a `=0` cache-invalidation test. The changed-file set contains no frozen scorer and introduces no runtime import from `.opencode/specs`.
 
-No runtime file, allowlist, brief surface, CLI interface, hook render, cache key, or frozen scorer file was changed while authoring this record.
+All delivered runtime changes are contained in `a1cdb65d90`; this reconciliation changes documentation only.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -87,7 +88,7 @@ No runtime file, allowlist, brief surface, CLI interface, hook render, cache key
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivery follows the ordered gates in `plan.md`: 002 green, then Phase 1 readiness, Phase 2 propagate/consume/invalidate, and Phase 3 e2e/parity/kill. Each phase records env-probe, e2e, parity, cache, and scorer-integrity evidence before the next begins. Every propagation and consumption claim is proven on BOTH the native launcher and the no-dist launcher fallback. Implementation stops at the first failed gate.
+Delivery followed the ordered gates in `plan.md`: the `002` foundation landed first, then `a1cdb65d90` added the two allowlist entries, decision-summary threading, CLI preservation, hook rendering, and cache invalidation. The same commit added native-launcher and bridge-path env probes plus bridge/plugin consumption tests. The change stayed additive and left the default off.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -97,11 +98,11 @@ Delivery follows the ordered gates in `plan.md`: 002 green, then Phase 1 readine
 
 The full context, alternatives, and consequences remain authoritative in `decision-record.md`.
 
-| Decision | Status | Planned Effect |
+| Decision | Status | Delivered Effect |
 |----------|--------|----------------|
-| Thread a top-level `metadata.compiledRouteSummary` (ADR-001) | Proposed, recommended | One small typed shape crosses the CLI interface and both briefs; auditable, byte-stable |
-| Consume 002's serving-state fingerprint for cache invalidation (ADR-002) | Proposed, recommended | One source of serving truth; flip/`=0` is a guaranteed cache miss; no spec-tree read |
-| Render the 4-action outcome as an additive brief line (ADR-003) | Proposed, recommended | Legacy brief byte-identical when no compiled decision is served |
+| Thread a top-level `metadata.compiledRouteSummary` (ADR-001) | Implemented in `a1cdb65d90` | One small typed shape crosses the CLI interface and both briefs; auditable, byte-stable |
+| Consume serving-state fingerprints for cache invalidation (ADR-002) | Implemented in `a1cdb65d90` | A flag or serving-state change forces a fresh brief; the promoted engine cache keys by manifest fingerprint |
+| Render the 4-action outcome as an additive brief line (ADR-003) | Implemented in `a1cdb65d90` | Legacy brief shape remains unchanged when no compiled decision is served |
 <!-- /ANCHOR:arch-decisions -->
 
 ---
@@ -124,14 +125,14 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 | Check | Result |
 |-------|--------|
-| Source anchors (both allowlists, both drop sites, attach, hook, caches) | CONFIRMED against source this session (0 flag hits in both allowlists; 0 `compiledRoute` hits in bridge + `subprocess.ts`) |
-| Runtime implementation tests | Planned; no runtime implementation exists in this phase |
-| Child-env propagation (native + no-dist fallback) | Planned for Phase 3 |
-| Bridge+plugin e2e with a real compiled decision | Planned for Phase 3 |
-| `=0` propagation kill + cache invalidation | Planned for Phase 3 |
-| Route-gold compiled-versus-legacy parity | Planned; consumed read-only from the frozen scorer |
-| Frozen scorer digest comparison | Planned per step |
-| Spec-folder strict validation | Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption --strict`; Errors zero (missing `description.json`/`graph-metadata.json` are expected warnings) |
+| Source anchors and delivered diff | Pass — `a1cdb65d90` contains both exact-key allowlist additions, `compiledRouteSummary` threading, CLI preservation, hook rendering, and cache inputs |
+| Native child-env propagation | Pass — `.opencode/bin/compiled-routing-flag-propagation.vitest.ts` covers unset/`0`/`1` and rejects prefix widening |
+| Bridge child-env propagation | Pass — `compiled-routing-consumption.vitest.ts` covers unset/`0`/`1` on the bridge spawn path |
+| Compiled decision survival | Pass — the bridge tests cover the top-level summary and all four actions; `subprocess.ts` preserves the typed field |
+| Legacy-shape fallback | Pass — no summary or compiled line is emitted when no compiled decision is served |
+| `=0` kill + cache invalidation | Pass — the plugin test proves a cached compiled brief is not re-served after `=0` |
+| Frozen scorer digest comparison | Pass — none of the three frozen scorer paths appears in `a1cdb65d90`; end-of-reconciliation SHA-256 is checked separately |
+| Spec-folder strict validation | Pending only until final metadata regeneration; final command and result are recorded at handoff |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -141,11 +142,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 
 | Milestone | Status | Evidence Boundary |
 |-----------|--------|-------------------|
-| M0 ready | Planned | 002 not yet confirmed green in this packet |
-| M1 flag reachable | Planned | No allowlist changed |
-| M2 decision consumable | Planned | No brief surface changed |
-| M3 kill-safe caches | Planned | No cache key changed |
-| M4 proven | Planned | No e2e/parity/kill evidence |
+| M0 ready | Done | `002` foundation landed first in `4153cbebd8`; frozen scorer baseline preserved |
+| M1 flag reachable | Done | Both exact-key allowlist additions landed in `a1cdb65d90` with unset/`0`/`1` tests |
+| M2 decision consumable | Done | Native brief summary, CLI field, and injected-context render landed in `a1cdb65d90` |
+| M3 kill-safe caches | Done | Serving-state and manifest fingerprint inputs landed; `=0` invalidation is tested |
+| M4 proven | Done for implementation scope | Commit-local propagation, four-action, legacy-shape, and kill tests exist; live default-on canary remains operator-gated in P4/011 |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -153,11 +154,10 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This phase is gated on 002.** Un-stripping the flag and un-dropping the decision is meaningless while the resolver reads under `.opencode/specs` and the flag is bi-state; 002 owns that foundation.
-2. **The flag is still stripped by both allowlists.** That fix is Phase 2 work, not performed by this authoring pass.
-3. **The compiled decision is still dropped at both rebuild sites.** The native brief, CLI interface, and hook render have not been threaded yet.
-4. **The caches still key on prompt only.** A serving-state fingerprint has not been folded into `cacheKeyForPrompt` or the `engineCache` yet, so a flip/`=0` could re-serve a stale compiled brief once consumption exists.
-5. **The three ADRs are Proposed.** The what-to-thread, fingerprint-source, and render-form decisions should be settled with the operator before Phase 2.
+1. **Default remains off.** This child makes the flag reachable and the decision consumable; it does not enable compiled routing by default or cut over any hub.
+2. **No live canary was authorized here.** The operator-gated staged canary and default flip remain P4/011 work after the coverage-closure join gate is green.
+3. **Performance sampling was not added.** The cache work is bounded by the seven-hub serving-status set, but no before/after hit-rate sample was committed.
+4. **Decision-record status text remains a documentation follow-up.** The implemented choices are unambiguous in `a1cdb65d90`; this summary records the delivered state without claiming a live cutover.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -165,12 +165,11 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [ ] Confirm `002-runtime-promotion-and-status-foundation` is green and expose its serving-state fingerprint before Phase 2.
-- [ ] Settle ADR-001 (full object vs `metadata.compiledRouteSummary`), ADR-002 (fingerprint source), and ADR-003 (render form).
-- [ ] Add `SPECKIT_COMPILED_ROUTING` to both `CHILD_ENV_ALLOWLIST` sets (launcher + bridge).
-- [ ] Thread the compiled decision through the native brief, the CLI `subprocess.ts` interface, and the hook render.
-- [ ] Fold the serving-state fingerprint into both cache keys without re-introducing a read under `.opencode/specs`.
-- [ ] Add the bridge+plugin e2e (native + no-dist fallback) and the `=0` propagation kill test outside this documentation-only authoring pass.
+- [x] `002` foundation confirmed in `4153cbebd8` before this child landed.
+- [x] Both exact-key allowlist additions, decision-summary threading, CLI preservation, hook render, and cache inputs landed in `a1cdb65d90`.
+- [x] Native and bridge propagation tests plus four-action/legacy-shape/`=0` consumption tests landed in `a1cdb65d90`.
+- [ ] Run the live canary and default-on sequence only through P4/011 after siblings 013/014 satisfy the join gate and an operator authorizes execution.
+- [ ] Collect an optional before/after cache hit-rate sample if performance evidence is required for cutover.
 <!-- /ANCHOR:follow-up -->
 
 ---
@@ -178,5 +177,5 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None recorded. Implementation has not begun, so there is no execution delta to report.
+Implemented in `a1cdb65d90` behind the still-off flag. The concrete cache seams are the plugin's seven-hub serving-state signature and the promoted engine's manifest fingerprint, which preserves the plan's invalidation intent without reading the spec tree. No routing decision or frozen scorer changed. The staged default-on cutover remains P4/011 work and is operator-gated by design.
 <!-- /ANCHOR:deviations -->

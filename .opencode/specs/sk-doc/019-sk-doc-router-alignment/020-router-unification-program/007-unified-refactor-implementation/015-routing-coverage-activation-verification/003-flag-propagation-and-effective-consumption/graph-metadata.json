@@ -44,6 +44,7 @@
       "spec.md",
       "decision-record.md",
       "plan.md",
+      ".opencode/bin/compiled-routing-flag-propagation.vitest.ts",
       ".opencode/plugins/mk-skill-advisor.js",
       ".opencode/bin/mk-skill-advisor-launcher.cjs",
       ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs",
@@ -70,6 +71,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag-propagation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/compiled-routing-flag-propagation.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
     "created_at": "2026-07-20T21:51:27.075Z",
-    "last_save_at": "2026-07-20T21:51:27.075Z",
+    "last_save_at": "2026-07-21T04:01:00.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4393e8397b7e8c0c41c04bc37781d16010f001d159995053cfaaa97ae48fb2bb",
+    "source_fingerprint": "sha256:e68db66980e97b1b8b6617fec8bc5c8acef7c5e3aace241766a1a26d8cb3d0ad",
     "source_doc_hashes": {
-      "spec.md": "a6cbcdbff7386058449e189e4385b7e9326f29ee12d940f842c78bf5acf934cc",
+      "spec.md": "450ab7882772a11bbf80e13cc0172669ea5076559f0c7152c13a843055dba344",
       "plan.md": "b2d7b79f0a27c5daa71a228287111ece5615b70a3bd1f1495a79f914ea27e6d4",
       "tasks.md": "677104185f510e585b7611899631b5515ddd623fb459fc91f61bc1008ce8496a",
-      "checklist.md": "d7b6d01ee6657809236da337faea2019fd053232637b2d65622981bc9d726794",
+      "checklist.md": "069100fa2ac9d00ff7be39e3cc72eb0d39728f11388c5feb0983e02cc5e12d71",
       "decision-record.md": "6484ce2515b127414194205b416b83be57f36ed7b033360436494c7aecba445d",
-      "implementation-summary.md": "0567d4f44b05839096c1dbf193baf89e20c74f32de2a85d037fb628071f1f7bd"
+      "implementation-summary.md": "fd357cefac343afc478f6e446ac9db0d72a5aa541c2511c5552e5f4d76e43d99"
     },
     "last_active_child_id": null,
     "last_active_at": null

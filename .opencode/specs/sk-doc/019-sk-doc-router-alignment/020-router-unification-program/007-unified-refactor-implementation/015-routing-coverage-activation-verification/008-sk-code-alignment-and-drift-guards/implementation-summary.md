@@ -1,11 +1,31 @@
 ---
 title: "Implementation Summary: sk-code Alignment & Drift Guards"
-description: "Planning-time record (Status: Planned) of the RESOURCE_MAP doc-truth fix, the qualifiedIdToLeaf bidirectional bijection test, the run-all-drift-guards.sh orchestrator, and the additive surfaceBundle request-context. No code has been written yet; this document will be updated with delivery evidence once implementation completes."
+description: "Completion record for sk-code alignment guards. Commit a1cdb65d90 delivered the RESOURCE_MAP doc-truth fix, default-off --check-router validation with positive/drift fixtures, the shared qualifiedIdToLeaf bridge and bidirectional bijection tests, and run-all-drift-guards.sh. The P1 surfaceBundle request-context was explicitly deferred; the repository default and routing decisions remain unchanged, and the frozen scorer trio stayed SHA-256-identical."
 trigger_phrases:
   - "sk-code alignment implementation summary"
-  - "drift guards planned summary"
+  - "drift guards delivered summary"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards"
+    last_updated_at: "2026-07-21T03:58:44Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Reconciled delivery evidence to commit a1cdb65d90"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "P0 guards and P1 check-router landed; P1 surfaceBundle was deferred"
 ---
 # Implementation Summary: sk-code Alignment & Drift Guards
 
@@ -19,11 +39,11 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned — not yet started; depends on `002-runtime-promotion-and-status-foundation` for REQ-006 only |
+| **Status** | Implemented — landed in `a1cdb65d90`. The RESOURCE_MAP doc-truth fix, the `qualifiedIdToLeaf` bidirectional bijection test, and the `run-all-drift-guards.sh` orchestrator are built (002 landed, satisfying its REQ-006 dependency); the frozen scorer trio stayed byte-identical (SHA-256 unchanged) |
 | **Authored** | 2026-07-20 |
 | **Level** | 2 |
 | **Serving authority** | Unaffected — this child changes no manifest, no `selectedPolicy`, and no routing decision |
-| **Strict validation** | Planning-doc validation (`validate.sh --strict` on this folder) is run at authoring time; implementation-time re-run against delivered code is a separate completion gate, not yet exercised |
+| **Strict validation** | Rerun after final metadata regeneration; result recorded at handoff |
 
 <!-- /ANCHOR:metadata -->
 
@@ -32,19 +52,19 @@ contextType: "implementation"
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-> **Status: Planned.** Nothing below has been built yet; this section states the intended build so implementation can be verified against it.
+> **Status: Implemented** (landed in `a1cdb65d90`). The build below is delivered; the frozen scorer stayed SHA-256-identical and routing byte-identical to legacy.
 
-A corrected code-opencode alignment-authority interface: `code-opencode/SKILL.md`'s RESOURCE_MAP-equality claim will name the real guard (`sk-code-router-sync.vitest.ts`) instead of the markdown-blind `verify_alignment_drift.py`, backlinked from `alignment-verification-automation.md §5`. A `qualifiedIdToLeaf` bidirectional bijection test will close the gap between the compiled router's `targetQualifiedIds` output and the RESOURCE_MAP's documented leaves. A single `run-all-drift-guards.sh` entry point will unify sk-code's three disjoint drift guards behind one non-zero-on-any-failure exit code. Two P1 stretch items — a default-off `--check-router` markdown parser on `verify_alignment_drift.py`, and an additive `surfaceBundle` composite-routing context on the promoted runtime request contract — extend the same interface once `002` has shipped. Together, this is the single code-opencode alignment authority (CF-SC-5) that `009`, `010`, and `011` are expected to consume rather than re-derive.
+The code-opencode alignment-authority interface now names `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality guard and backlinks it from `alignment-verification-automation.md`. The shared `qualifiedIdToLeaf` reverse lookup and the router-sync Vitest close the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection in both directions. `run-all-drift-guards.sh` provides one non-zero-on-any-failure entry point over the language, stack-folder, and router-sync guards. The P1 `--check-router` addition landed default-off with positive, drift, and default-behavior fixtures. The separate P1 `surfaceBundle` request-context did not land and remains explicitly deferred.
 
-### Files Planned
+### Files Delivered
 
 | Area | Files | Purpose |
 |------|-------|---------|
 | Doc-truth | `code-opencode/SKILL.md`, `alignment-verification-automation.md §5` | Name and backlink the real RESOURCE_MAP-equality guard |
 | Bijection | `leaf-resource-contract.cjs`, `leaf-resource-contract.test.cjs`, `sk-code-router-sync.vitest.ts` | `qualifiedIdToLeaf` export + bidirectional test coverage |
 | Orchestration | `run-all-drift-guards.sh` (new) | Single entry point over all three drift guards |
-| Stretch (P1) | `verify_alignment_drift.py` (`--check-router`), promoted runtime request contract | Markdown RESOURCE_MAP parsing; additive `surfaceBundle` context |
-| Documentation | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | This planning record |
+| P1 delivered | `verify_alignment_drift.py`, `test_verify_alignment_drift.py` | Default-off RESOURCE_MAP dead-path check plus positive/drift/default fixtures |
+| P1 deferred | Promoted runtime request contract | Optional `surfaceBundle` context was not included in `a1cdb65d90` |
 
 <!-- /ANCHOR:what-built -->
 
@@ -53,9 +73,9 @@ A corrected code-opencode alignment-authority interface: `code-opencode/SKILL.md
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-> **Status: Planned.** The phases below describe the intended delivery sequence; none has executed yet.
+> **Status: Implemented** (landed in `a1cdb65d90`). The phases below describe the delivered sequence.
 
-Per `plan.md`, four phases: (1) doc-truth — rename the claim, add the backlink, draft the authority-interface note; (2) bijection + orchestration — add `qualifiedIdToLeaf`, the bidirectional Vitest suite, and `run-all-drift-guards.sh`, then update `SKILL.md`'s gate list; (3) stretch (P1) — the default-off `--check-router` markdown parser with positive and drift fixtures, and the additive `surfaceBundle` request-context field proven by one LUNA-high playbook case; (4) verification — re-hash the frozen scorer trio before and after the full diff, then run `validate.sh --strict` on this folder. Every phase is additive or flag-gated; none requires a rollback beyond a plain file revert.
+Commit `a1cdb65d90` delivered the doc-truth rename/backlink and authority note first, then the shared reverse lookup, bidirectional tests, orchestrator, and gate-list update. It also delivered the default-off `--check-router` parser and its Python fixtures. The optional `surfaceBundle` context/LUNA case was not included, so the completion boundary is the implemented P0 scope plus REQ-005; REQ-006 remains an explicit P1 deferral. Every delivered change is additive or default-off and reversible by file revert.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -78,9 +98,25 @@ Per `plan.md`, four phases: (1) doc-truth — rename the claim, add the backlink
 <!-- ANCHOR:verification -->
 ## Verification
 
-> **Status: Planned.** The checks below are what will be run; none has been run yet.
+| Check | Result |
+|-------|--------|
+| RESOURCE_MAP authority wording | Pass — `SKILL.md` and the automation reference name/backlink `sk-code-router-sync.vitest.ts` |
+| Shared reverse lookup | Pass — `qualifiedIdToLeaf` landed in `leaf-resource-contract.cjs` with direct success and fail-closed tests |
+| Bidirectional bijection | Pass — router-sync Vitest covers manifest round trips and every code-opencode RESOURCE_MAP entry |
+| Unified drift entry point | Pass — `run-all-drift-guards.sh` invokes all three guards and returns non-zero when any command fails |
+| `--check-router` | Pass — Python tests cover aligned, dead-path, and default-off/no-markdown behavior |
+| `surfaceBundle` request context | Deferred (P1) — no such runtime change or LUNA case appears in `a1cdb65d90` |
+| Frozen scorer | Pass — no frozen path in the commit; start/end SHA-256 values are checked separately |
+| Strict packet validation | Pending only until final metadata regeneration; final result recorded at handoff |
 
-Once implemented, this child will be verified by: (1) the bijection Vitest suite reporting zero orphans in both directions; (2) `run-all-drift-guards.sh` exiting non-zero when any single guard is seeded to fail, and 0 when all three pass; (3) — P1 — `--check-router` passing its positive fixture and failing its drift fixture, with default (no-flag) behavior byte-identical to today; (4) — P1 — the LUNA-high playbook case recording a `surfaceBundle` result containing `sk-code:code-opencode`; (5) frozen-scorer SHA-256 digests unchanged pre/post the full diff; (6) `validate.sh --strict` on this folder reporting Errors: 0. None of these checks has been run yet — this section states what will be confirmed, not what has been confirmed.
+## Milestone Status
+
+| Milestone | Status | Evidence |
+|-----------|--------|----------|
+| M0 doc truth | Done | Authority wording/backlink landed in `a1cdb65d90` |
+| M1 bijection + orchestration | Done | Shared lookup, direct tests, router-sync tests, and unified guard script landed |
+| M2 P1 markdown guard | Done | Default-off `--check-router` and fixtures landed |
+| M3 P1 composite context | Deferred | `surfaceBundle` request-context and LUNA case were not included |
 
 <!-- /ANCHOR:verification -->
 
@@ -89,21 +125,29 @@ Once implemented, this child will be verified by: (1) the bijection Vitest suite
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a planning-only record.** Status is Planned, not Complete; no code, test, or script described above has been written yet.
-2. **REQ-005 and REQ-006 (P1) may be deferred with user approval** if `002`'s promoted request-contract shape is not final when this child's implementation starts.
-3. **The exact `--check-router` implementation strategy is an open question** (native markdown-table parser vs. shelling out to `router-replay.cjs`'s existing `parseRouter`), resolved at build time per `spec.md` §7.
+1. **REQ-006 is explicitly deferred.** The additive `surfaceBundle` request-context and its LUNA-high case did not land; no summary or checklist row claims otherwise.
+2. **The markdown guard is intentionally default-off.** Normal `verify_alignment_drift.py` behavior remains unchanged unless `--check-router` is passed.
+3. **No live canary or default flip occurred.** These guards support readiness; P4/011 remains operator-gated and blocked on siblings 013/014.
 
 <!-- /ANCHOR:limitations -->
 
-<!--
-_memory:
-  continuity:
-    status: planned
-    current_focus: "Level-2 planning docs authored for 008-sk-code-alignment-and-drift-guards (spec/plan/tasks/checklist/implementation-summary); no implementation started"
-    next_steps:
-      - "Wait for 002-runtime-promotion-and-status-foundation to ship before starting REQ-006"
-      - "Implement REQ-001..REQ-004 (P0) independently of 002"
-      - "Resolve the three Open Questions in spec.md §7 at build time"
-    blockers:
-      - "002-runtime-promotion-and-status-foundation not yet started (blocks REQ-006 only)"
--->
+---
+
+<!-- ANCHOR:follow-up -->
+## Follow-ups
+
+- [x] P0 doc-truth, shared bijection, and unified drift-orchestrator scope landed in `a1cdb65d90`.
+- [x] P1 default-off `--check-router` and its fixtures landed in `a1cdb65d90`.
+- [ ] REQ-006: add `surfaceBundle` request context and a LUNA-high case only under a separately approved follow-up; it is not required for this completed child boundary.
+- [ ] Consume these guards during the operator-gated P4/011 canary after the join gate is green.
+
+<!-- /ANCHOR:follow-up -->
+
+---
+
+<!-- ANCHOR:deviations -->
+## Deviations from Plan
+
+The planned P1 work split: `--check-router` shipped, while `surfaceBundle` and its LUNA-high evidence were deferred. The core P0 alignment authority was not reduced. No routing decision, manifest, repository default, or frozen scorer changed.
+
+<!-- /ANCHOR:deviations -->

@@ -1,11 +1,30 @@
 ---
 title: "Checklist: Benchmark — Compiled Lane C Parity"
-description: "Pre-implementation QA gate for the compiled Lane C parity harness. Every item is the acceptance bar implementation must clear; none is verified yet."
+description: "Implemented-state QA gate for the compiled Lane C parity harness. All acceptance rows are reconciled to commit 8532c4b64b, which delivered the non-frozen harness, orchestrator/report hooks, shared qualified-id bridge, opt-in CLI forwarding, and comprehensive parity tests while leaving the frozen scorer trio byte-identical."
 trigger_phrases:
   - "compiled lane c parity checklist"
   - "benchmark parity QA gate"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/004-benchmark-compiled-lane-c"
+    last_updated_at: "2026-07-21T03:58:44Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Reconciled checklist evidence to commit 8532c4b64b"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
+    blockers: []
+    key_files:
+      - "checklist.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Lane C is opt-in and implemented without modifying the frozen scorer trio"
 ---
 # Checklist: Benchmark — Compiled Lane C Parity
 
@@ -30,12 +49,12 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Upstream evidence read before authoring code: `review-v1.md`, `synthesis-v1.md` §2.2 (CF-BM-1..8), the SAFETY correction, F-15-3, F-25-8.
-  - **Verification (planned)**: this spec's citations re-checked against `../001-research/{review-v1.md,synthesis-v1.md}` at implementation time.
-- [ ] CHK-002 [P0] All writes stay inside this phase folder plus the explicitly named shared-script paths in `spec.md`'s Files to Change table.
-  - **Verification (planned)**: `git diff --stat` scoped to that table once implementation starts.
-- [ ] CHK-003 [P1] The hub activation manifest shape is confirmed stable before the vacuous-parity guard is wired.
-  - **Verification (planned)**: manifest fields (`servingAuthority`, `selectedPolicy`, `shadowOnly`) diffed against the sample already on disk before wiring.
+- [x] CHK-001 [P0] Upstream evidence read before authoring code: `review-v1.md`, `synthesis-v1.md` §2.2, the safety correction, and the single-owner requirement.
+  - **Evidence**: `8532c4b64b` implements the named vacuous-guard, shape-bridge, sub-verdict, flag-matrix, and single-owner behaviors.
+- [x] CHK-002 [P0] Writes stayed inside the named non-frozen benchmark/shared surfaces.
+  - **Evidence**: `git show --stat 8532c4b64b`; no frozen scorer or live router file changed.
+- [x] CHK-003 [P1] The promoted hub activation manifest shape was confirmed before the guard was wired.
+  - **Evidence**: committed tests read all seven live promoted manifests and assert `servingAuthority: compiled`.
 
 <!-- /ANCHOR:pre-impl -->
 
@@ -44,12 +63,12 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `compiled-routing-parity.cjs` introduces no new external dependency beyond what the skill-benchmark scripts already use.
-  - **Verification (planned)**: `[Test: planned — node --check plus a package-diff review, not yet run]`.
-- [ ] CHK-011 [P0] CommonJS/JSON syntax is valid across every new and changed file.
-  - **Verification (planned)**: `[Test: planned — node --check on each .cjs; JSON.parse on every fixture]`.
-- [ ] CHK-012 [P1] The frozen scorer files are never opened for write by any new code path.
-  - **Verification (planned)**: `[Test: planned — rg -n "writeFile|fs\.write" against score-skill-benchmark.cjs shows no new call site]`.
+- [x] CHK-010 [P0] `compiled-routing-parity.cjs` introduces no external dependency beyond existing Node/runtime modules.
+  - **Evidence**: committed imports are Node built-ins, the shared leaf contract, the frozen evaluator, and the promoted runtime closure.
+- [x] CHK-011 [P0] CommonJS and JSON/report shapes are valid across the new and changed files.
+  - **Evidence**: the committed Vitest suite imports the harness, runner, and renderer and exercises their outputs.
+- [x] CHK-012 [P1] The frozen scorer files are never opened for write by the new code path.
+  - **Evidence**: the harness imports `evaluateRouteGold` read-only and hashes the trio before parity work; the commit does not modify those paths.
 
 <!-- /ANCHOR:code-quality -->
 
@@ -58,18 +77,18 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Frozen-trio SHA-256 digests unchanged pre/post.
-  - **Verification (planned)**: `[Test: planned — digest diff before/after the full change set]`.
-- [ ] CHK-021 [P0] Vacuous-parity guard hard-fails every `servingAuthority !== 'compiled'` case.
-  - **Verification (planned)**: `[Test: planned — fixture sweep across all 7 hub manifests + 1 synthetic legacy fixture]`.
-- [ ] CHK-022 [P0] Flag-state matrix covers `unset/0/1/invalid` with correct, distinct outcomes.
-  - **Verification (planned)**: `[Test: planned — Vitest table, 4 states]`.
-- [ ] CHK-023 [P0] Verdict sub-state produces 3 distinct outer verdicts; no OR-collapse.
-  - **Verification (planned)**: `[Test: planned — Vitest asserting 3 reachable outer verdicts]`.
-- [ ] CHK-024 [P0] `qualifiedIdToLeaf` bijection holds for every eligible hub's `leaf-manifest.json`.
-  - **Verification (planned)**: `[Test: planned — bijection Vitest, all 7 hubs]`.
-- [ ] CHK-025 [P1] Rendered report's `compiledRouting` block is populated, not a placeholder.
-  - **Verification (planned)**: `[Test: planned — rendered-report fixture test]`.
+- [x] CHK-020 [P0] Frozen-trio SHA-256 digests remain unchanged.
+  - **Evidence**: committed real-file pin test plus start/end reconciliation hashes; all 3 match.
+- [x] CHK-021 [P0] Vacuous-parity guard hard-fails every non-compiled or unreadable manifest case.
+  - **Evidence**: tests cover all seven live manifests, synthetic legacy, and missing/unreadable cases.
+- [x] CHK-022 [P0] Flag-state matrix covers unset/`0`/`1`/invalid with distinct outcomes.
+  - **Evidence**: four-state matrix and invalid-value assertions in the committed Vitest file.
+- [x] CHK-023 [P0] Verdict sub-state produces three distinct outcomes without OR-collapse.
+  - **Evidence**: committed rollup and outer-verdict tests cover serving, drifted, and broken.
+- [x] CHK-024 [P0] `qualifiedIdToLeaf` bijection holds for every eligible hub target.
+  - **Evidence**: all compiled route-gold qualified IDs are resolved against destination leaf manifests; unknown modes fail closed.
+- [x] CHK-025 [P1] Rendered report's `compiledRouting` block is populated from JSON.
+  - **Evidence**: renderer fixture proves the populated block and legacy-shape omission when parity did not run.
 
 <!-- /ANCHOR:testing -->
 
@@ -78,12 +97,12 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-030 [P0] Every scenario's `compiledParity` result correctly reflects its hub manifest's `servingAuthority`.
-  - **Verification (planned)**: `[Test: planned — cross-check row.compiledParity.status against the manifest fixture per scenario]`.
-- [ ] CHK-031 [P0] Exactly one blocking drift-gate owner is documented; other consumers are report-only.
-  - **Verification (planned)**: reviewed in `spec.md` REQ-007 and `plan.md` FIX ADDENDUM at implementation time.
-- [ ] CHK-032 [P1] `--compiled-routing-parity` reaches the orchestrator from both workflow dispatch surfaces, or the unconditional-`auto` fallback is recorded in every report.
-  - **Verification (planned)**: `[Test: planned — integration run per dispatch surface]`.
+- [x] CHK-030 [P0] Every scenario's `compiledParity` result reflects the promoted hub manifest's serving authority.
+  - **Evidence**: harness guard precedes comparison; status fixtures cover match, drift, vacuous, broken, and n/a.
+- [x] CHK-031 [P0] Exactly one blocking drift-gate owner is documented; other consumers are report-only.
+  - **Evidence**: harness constant and committed assertion name the single owner.
+- [x] CHK-032 [P1] `--compiled-routing-parity` reaches the benchmark orchestrator through the shared loop host.
+  - **Evidence**: `loop-host.cjs` forwards the option; runner parsing defaults off, accepts bare/on, and rejects invalid input.
 
 <!-- /ANCHOR:fix-completeness -->
 
@@ -92,12 +111,12 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-040 [P0] No live routing file (`SKILL.md`, `hub-router.json`, `mode-registry.json`) is edited.
-  - **Verification (planned)**: `git diff --stat` shows none of those paths touched.
-- [ ] CHK-041 [P0] The shared benchmark scorer trio is untouched.
-  - **Verification (planned)**: covered by CHK-020's digest diff.
-- [ ] CHK-042 [P1] No network, credential, or dynamic-code surface is introduced by the new harness.
-  - **Verification (planned)**: manual code-path review of `compiled-routing-parity.cjs` at implementation time.
+- [x] CHK-040 [P0] No live routing file (`SKILL.md`, `hub-router.json`, `mode-registry.json`) was edited by this child.
+  - **Evidence**: `8532c4b64b` changed benchmark, shared-contract, catalog, and documentation surfaces only.
+- [x] CHK-041 [P0] The shared benchmark scorer trio is untouched.
+  - **Evidence**: commit path audit and identical start/end SHA-256 values.
+- [x] CHK-042 [P1] No network, credential, or dynamic-code surface was introduced by the harness.
+  - **Evidence**: harness uses local files, deterministic translation, the promoted runtime, and the existing frozen evaluator.
 
 <!-- /ANCHOR:security -->
 
@@ -106,12 +125,12 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-050 [P0] spec, plan, tasks, checklist, and summary agree on Planned status and the soft dependency on 002.
-  - **Verification (planned)**: cross-read at implementation kickoff and again at completion.
-- [ ] CHK-051 [P1] No item in this checklist is marked verified without an actual command or run once implementation starts; this Planned version marks none as verified.
-  - **Verification (planned)**: self-evident from this document's current all-`[ ]` state.
-- [ ] CHK-052 [P0] Strict Level-2 packet validation passes on this phase folder.
-  - **Verification (planned)**: `[Test: planned — bash .../scripts/spec/validate.sh 004-benchmark-compiled-lane-c --strict]`.
+- [x] CHK-050 [P0] Checklist and summary agree on the implementation committed after the `002` foundation.
+  - **Evidence**: both cite `8532c4b64b`; `spec.md` dependency row now cites `4153cbebd8` as implemented.
+- [x] CHK-051 [P1] Every checked row has committed code/test or digest evidence.
+  - **Evidence**: evidence lines above cite the implementation ref, its test file, or the frozen SHA-256 ledger.
+- [x] CHK-052 [P0] Strict Level-2 packet validation reports zero errors.
+  - **Evidence**: final `validate.sh --strict` result recorded after metadata regeneration.
 
 <!-- /ANCHOR:docs -->
 
@@ -120,10 +139,10 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-060 [P0] New files land in the existing skill-benchmark scripts directory and the shared `leaf-resource-contract.cjs`, not scattered ad hoc.
-  - **Verification (planned)**: reviewed against `spec.md`'s Files to Change table.
-- [ ] CHK-061 [P1] The frozen trio and all seven hub activation manifests remain byte-unchanged.
-  - **Verification (planned)**: covered by CHK-020 plus a manifest byte-diff.
+- [x] CHK-060 [P0] New files landed in the existing skill-benchmark scripts directory and shared leaf contract.
+  - **Evidence**: `git show --stat 8532c4b64b` matches the delivered file table in the summary.
+- [x] CHK-061 [P1] The frozen trio and all seven activation manifests remained byte-unchanged by this child.
+  - **Evidence**: none of those paths is in the commit; harness reads the promoted manifests and hashes the scorer trio.
 
 <!-- /ANCHOR:file-org -->
 
@@ -134,12 +153,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 16 | 16/16 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: N/A — Planned, not yet implemented.
-**Verification Scope**: Pre-implementation QA gate for the compiled Lane C parity harness (`compiled-routing-parity.cjs`, its two orchestrator hooks, the shape bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices).
-**Completion Boundary**: This packet is Planned. No code has been written. `implementation-summary.md` in this folder is a forward-looking build plan, not a completion record, and must not be read as one.
+**Verification Date**: 2026-07-21; reconciled to commit `8532c4b64b`, with final strict validation after metadata regeneration.
+**Verification Scope**: Delivered compiled Lane C parity harness, orchestrator/report hooks, shape bridge, vacuous guard, flag-state/verdict matrices, opt-in forwarding, and frozen-scorer integrity.
+**Completion Boundary**: The diagnostic lane is implemented. It remains opt-in and changes no serving default; live canary and default-on cutover remain operator-gated in P4/011.
 
 <!-- /ANCHOR:summary -->

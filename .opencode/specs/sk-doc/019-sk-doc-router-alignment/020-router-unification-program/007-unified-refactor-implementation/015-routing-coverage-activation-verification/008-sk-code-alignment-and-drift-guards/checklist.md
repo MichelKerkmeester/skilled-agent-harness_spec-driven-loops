@@ -1,11 +1,31 @@
 ---
 title: "Checklist: sk-code Alignment & Drift Guards"
-description: "QA gate for the RESOURCE_MAP doc-truth fix, the qualifiedIdToLeaf bijection test, and the run-all-drift-guards.sh orchestrator (Planned; not yet verified)."
+description: "Implemented-state QA gate for sk-code alignment and drift guards. Commit a1cdb65d90 delivered the RESOURCE_MAP truth fix, shared qualifiedIdToLeaf bridge, bidirectional tests, unified guard script, and default-off --check-router fixtures. The optional P1 surfaceBundle request-context remains explicitly deferred."
 trigger_phrases:
   - "sk-code alignment checklist"
   - "drift guards QA gate"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards"
+    last_updated_at: "2026-07-21T03:58:44Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Reconciled checklist evidence to commit a1cdb65d90"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
+    blockers: []
+    key_files:
+      - "checklist.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "REQ-006 surfaceBundle remains an explicit P1 deferral"
+    answered_questions:
+      - "P0 guards and P1 check-router landed in a1cdb65d90"
 ---
 # Checklist: sk-code Alignment & Drift Guards
 
@@ -30,12 +50,12 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Authoritative evidence (`review-v1.md` §4, `synthesis-v1.md` §2.6/§6, `verification-v1.md` CF-SC-1 row) was read before authoring this plan.
-  - **Evidence**: citations in `spec.md`; ±2–10-line drift acknowledged, to be re-anchored on the symbol at build time.
-- [ ] CHK-002 [P0] All planned writes stay inside this child's real target files; no edit to the frozen scorer trio is planned.
-  - **Evidence**: `spec.md` Files to Change table lists only doc/test/script/additive-field targets.
-- [ ] CHK-003 [P1] The `002` dependency (promoted runtime request contract) is confirmed before REQ-006 work starts.
-  - **Evidence**: Definition of Ready in `plan.md`.
+- [x] CHK-001 [P0] Authoritative evidence was reflected in the implemented alignment surfaces.
+  - **Evidence**: `a1cdb65d90` implements the named truth, bijection, orchestration, and markdown-guard gaps.
+- [x] CHK-002 [P0] Writes stayed within named documentation, test, script, and shared-contract targets.
+  - **Evidence**: commit path audit; no frozen scorer path changed.
+- [x] CHK-003 [P1] The `002` promoted runtime dependency was available before optional REQ-006 work was assessed.
+  - **Evidence**: `4153cbebd8` precedes `a1cdb65d90`; REQ-006 was then explicitly deferred rather than built against a stale copy.
 
 <!-- /ANCHOR:pre-impl -->
 
@@ -44,9 +64,12 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `run-all-drift-guards.sh` has zero new external dependencies (POSIX shell, calls existing scripts only).
-- [ ] CHK-011 [P0] `--check-router`'s markdown parser is scoped to RESOURCE_MAP tables, not general markdown, and stays behind a default-off flag.
-- [ ] CHK-012 [P1] `qualifiedIdToLeaf` follows `leaf-resource-contract.cjs`'s existing export conventions — no parallel or competing lookup table introduced.
+- [x] CHK-010 [P0] `run-all-drift-guards.sh` adds no external dependency and calls the three existing guard runtimes.
+  - **Evidence**: delivered shell script invokes the two Python guards and existing Vitest suite.
+- [x] CHK-011 [P0] `--check-router` is scoped to fenced RESOURCE_MAP/DEFAULT_RESOURCE tables and remains default-off.
+  - **Evidence**: implementation and tests in `a1cdb65d90` cover aligned, dead-path, and omitted-flag behavior.
+- [x] CHK-012 [P1] `qualifiedIdToLeaf` follows the shared leaf-contract export conventions.
+  - **Evidence**: exported from `leaf-resource-contract.cjs`; direct tests cover success, malformed IDs, unknown modes, and packet mismatch.
 
 <!-- /ANCHOR:code-quality -->
 
@@ -55,10 +78,14 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] The bijection Vitest suite is bidirectional (compiled → RESOURCE_MAP AND RESOURCE_MAP → compiled), not one-directional.
-- [ ] CHK-021 [P0] `run-all-drift-guards.sh` returns non-zero when any single guard is seeded to fail.
-- [ ] CHK-022 [P1] `--check-router` has both a positive fixture and a drift fixture.
-- [ ] CHK-023 [P1] The LUNA-high `surfaceBundle` playbook case is recorded with its `sk-code:code-opencode` result.
+- [x] CHK-020 [P0] The bijection Vitest suite is bidirectional.
+  - **Evidence**: it checks manifest round trips and every code-opencode RESOURCE_MAP entry against manifest leaves.
+- [x] CHK-021 [P0] `run-all-drift-guards.sh` returns non-zero when any invoked guard fails.
+  - **Evidence**: script accumulates guard failures and exits non-zero unless all three pass.
+- [x] CHK-022 [P1] `--check-router` has positive, drift, and default-off fixtures.
+  - **Evidence**: `test_verify_alignment_drift.py` contains all three cases in `a1cdb65d90`.
+- [ ] CHK-023 [P1] The LUNA-high `surfaceBundle` playbook case records `sk-code:code-opencode`.
+  - **Evidence**: Explicitly deferred with REQ-006; no `surfaceBundle` runtime or playbook change appears in `a1cdb65d90`.
 
 <!-- /ANCHOR:testing -->
 
@@ -67,9 +94,12 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-030 [P0] `code-opencode/SKILL.md` no longer attributes RESOURCE_MAP-equality enforcement to a markdown-blind script.
-- [ ] CHK-031 [P0] `alignment-verification-automation.md §5` backlinks to `sk-code-router-sync.vitest.ts`.
-- [ ] CHK-032 [P0] This child's alignment-authority interface is documented as the one later 015 children (009, 010, 011) must consume.
+- [x] CHK-030 [P0] `code-opencode/SKILL.md` names `sk-code-router-sync.vitest.ts` as RESOURCE_MAP-equality authority.
+  - **Evidence**: doc-truth change landed in `a1cdb65d90`.
+- [x] CHK-031 [P0] `alignment-verification-automation.md` backlinks the router-sync authority.
+  - **Evidence**: reference update landed in the same commit.
+- [x] CHK-032 [P0] The single alignment-authority interface is documented for downstream consumers.
+  - **Evidence**: reference defines truth owner, bijection module, and unified orchestrator without a second parser/eligibility map.
 
 <!-- /ANCHOR:fix-completeness -->
 
@@ -78,9 +108,12 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-040 [P0] No live routing file is functionally changed — the `SKILL.md` edit touches prose/citations only, never the SMART ROUTING decision logic.
-- [ ] CHK-041 [P0] The shared benchmark scorer is untouched; digests unchanged pre/post.
-- [ ] CHK-042 [P1] No network, package install, credential, or dynamic-code surface is introduced by `run-all-drift-guards.sh` or the new Vitest suite.
+- [x] CHK-040 [P0] No live routing decision logic changed.
+  - **Evidence**: `SKILL.md` changes are guard wording/gate-list updates; runtime route decisions are untouched.
+- [x] CHK-041 [P0] The shared benchmark scorer trio is untouched.
+  - **Evidence**: commit path audit and start/end SHA-256 equality.
+- [x] CHK-042 [P1] No network, install, credential, or dynamic-code surface was introduced.
+  - **Evidence**: delivered shell/Python/Vitest paths operate on local files and existing test runners.
 
 <!-- /ANCHOR:security -->
 
@@ -89,9 +122,12 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-050 [P0] Spec, plan, tasks, checklist, and summary agree on Planned status and the P0/P1 requirement split.
-- [ ] CHK-051 [P1] No file in this packet claims work is done that has not been done; every Planned item stays unchecked.
-- [ ] CHK-052 [P0] Strict Level-2 packet validation passes on this phase folder.
+- [x] CHK-050 [P0] Checklist and summary agree on delivered P0/REQ-005 scope and deferred REQ-006.
+  - **Evidence**: both cite `a1cdb65d90` and leave the `surfaceBundle` row open.
+- [x] CHK-051 [P1] No completion claim includes the deferred `surfaceBundle` runtime/playbook work.
+  - **Evidence**: summary limitations/follow-ups and CHK-023 state the deferral explicitly.
+- [x] CHK-052 [P0] Strict Level-2 packet validation reports zero errors.
+  - **Evidence**: final `validate.sh --strict` result recorded after metadata regeneration.
 
 <!-- /ANCHOR:docs -->
 
@@ -100,8 +136,10 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-060 [P0] All five spec docs for this child live under `008-sk-code-alignment-and-drift-guards/`; nothing was written outside it (or outside the sibling `009`/`010` folders in this same authoring pass).
-- [ ] CHK-061 [P1] Real implementation targets (`SKILL.md`, `verify_alignment_drift.py`, etc.) are named by their actual repo path, not an invented path.
+- [x] CHK-060 [P0] Documentation stayed in this child and implementation landed only in the named shared sk-code/sk-doc/test targets.
+  - **Evidence**: `git show --stat a1cdb65d90` matches the delivered surfaces.
+- [x] CHK-061 [P1] Implementation targets are named by their actual repository paths.
+  - **Evidence**: summary and committed diff identify `SKILL.md`, verifier/tests, leaf contract/tests, router-sync suite, and guard script.
 
 <!-- /ANCHOR:file-org -->
 
@@ -112,12 +150,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 (Planned) |
-| P1 Items | 7 | 0/7 (Planned) |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 7 | 6/7 (REQ-006 deferred) |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Not yet started — Status: Planned.
+**Verification Date**: 2026-07-21; reconciled to commit `a1cdb65d90`, with final strict validation after metadata regeneration.
 **Verification Scope**: This checklist covers the RESOURCE_MAP doc-truth fix, the `qualifiedIdToLeaf` bidirectional bijection test, the `run-all-drift-guards.sh` orchestrator, and (P1) the markdown `--check-router` gate and the `surfaceBundle` request-context extension.
-**Completion Boundary**: This checklist becomes actionable once `002-runtime-promotion-and-status-foundation` ships (REQ-006 dependency) or, for REQ-001..REQ-004, immediately. No item is claimed verified in this planning pass.
+**Completion Boundary**: P0 alignment guards and P1 `--check-router` are delivered. P1 REQ-006 (`surfaceBundle` request context + LUNA case) remains explicitly deferred. No hub was cut over and the repository default remains off.
 
 <!-- /ANCHOR:summary -->

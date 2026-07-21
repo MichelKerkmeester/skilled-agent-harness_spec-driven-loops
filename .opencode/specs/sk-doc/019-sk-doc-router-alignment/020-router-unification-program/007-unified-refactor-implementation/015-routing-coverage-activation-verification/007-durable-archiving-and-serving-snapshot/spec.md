@@ -1,12 +1,32 @@
 ---
 title: "Feature Specification: Durable Archiving & Serving-Snapshot"
-description: "Plan the durable <hub>/benchmark/compiled-routing/<run-label>/ report-path convention (fail-closed on an existing label), a serving-snapshot.json schema plus renderer under create-benchmark, repo-relative portable provenance, and an append-only flip-history.jsonl — archived only against the active 010 serving manifests, never a 006 shadow candidate, and never repurposing the frozen baseline label."
+description: "Delivered specification for the durable <hub>/benchmark/compiled-routing/<run-label>/ convention, serving-snapshot.json schema and renderer, repo-relative provenance, and active-manifest archive boundary. Implemented in 2a39ecb9a0 without changing the default, a live hub, the frozen baseline label, or the frozen scorer trio. The append-only flip-history ledger is explicitly owned by sibling 010 and later landed in a1cdb65d90."
 trigger_phrases:
   - "durable archiving serving snapshot"
   - "compiled routing report path convention"
   - "serving snapshot schema renderer"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot"
+    last_updated_at: "2026-07-21T03:58:44Z"
+    last_updated_by: "codex-gpt-5.6"
+    recent_action: "Reconciled delivered scope to commit 2a39ecb9a0"
+    next_safe_action: "P4/011 operator-gated cutover remains pending"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Archive and snapshot tooling landed in 2a39ecb9a0; ledger ownership moved to 010"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -24,7 +44,9 @@ FAILURE MODES:
 
 Compiled-routing evidence today has no durable home and no joined view. Lane C's live executor writes only to whatever `--outputs-dir` the caller passes (`run-skill-benchmark.cjs:295-298`); a LUNA real-model run either pollutes the parity directory or vanishes once its temp output is discarded (`CF-ARC-1`). Per-hub activation state is split across seven separate JSON files under `010-live-activation/activation/<hub>/` (confirmed this session: `manifest.json`, `manifest.prior.json`, `manifest.candidate.json`, `manifest.serving-prior.json`, `fence-state.json`, `activation-record.json`, `serving-flip-record.json`) with no single joined artifact (`CF-ARC-2`). And shipped reports already serialize a stale absolute worktree path — `sk-code/benchmark/router-final/skill-benchmark-report.json:7-10` points at a checkout path that no longer matches where the file actually lives, a live demonstration of the exact staleness `CF-ARC-3` describes (CONFIRMED, `verification-v1.md` §2).
 
-This phase plans a durable report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`, fail-closed on an existing label), a `serving-snapshot.json` schema joining manifest + fence + flag + freshness + parity into one artifact plus a renderer under `sk-doc:create-benchmark`, repo-relative portable provenance replacing the absolute-path fields, and an append-only `flip-history.jsonl`. Every archive is generated against the **active** `010-live-activation/activation/<hub>/manifest.json`, never a `006-parent-hub-rollout` shadow candidate, and the existing frozen `baseline` label is never repurposed — new immutable siblings follow the same naming family already in use (`sk-code/benchmark/` already contains `baseline`, `router-baseline`, `router-final`, `live-final`, confirming `router-compiled-parity-baseline`/`router-compiled-parity-final` fits the existing convention without colliding with it).
+Commit `2a39ecb9a0` delivered the durable report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`, fail-closed on an existing label), the `serving-snapshot.json` schema and renderer, repo-relative provenance, JSON-to-Markdown report blocks, and all seven hub benchmark indexes. Archive capture is gated against the promoted active serving manifest, never a `006-parent-hub-rollout` shadow candidate, and the frozen `baseline` label is rejected. The append-only `flip-history.jsonl` requirement was deliberately transferred to sibling `010`, whose activation drivers own transitions; it later landed in `a1cdb65d90`.
+
+This child changes no routing default and performs no hub cutover. It supplies durable evidence tooling for the later operator-gated P4/011 canary and cutover; the repository default remains off.
 
 ---
 
@@ -35,7 +57,7 @@ This phase plans a durable report-path convention (`<hub>/benchmark/compiled-rou
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Implemented |
+| **Status** | Implemented — archive/snapshot/provenance/index scope landed in `2a39ecb9a0`; transition-ledger ownership moved to sibling 010 and landed in `a1cdb65d90`. No hub was cut over and the repository default remains off. |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Phase** | 007-durable-archiving-and-serving-snapshot (015 child; contributes to the P3 coverage-closure join gate ahead of P4) |
@@ -210,9 +232,9 @@ Define a durable, fail-closed report-path convention and a joined `serving-snaps
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should `serving-snapshot.json` be captured on every Lane C run, or only at explicit archive points (e.g., a P4 per-hub cutover step)? `synthesis-v1.md` §2.5 mentions "optionally a session-start `mk-compiled-routing-snapshot.js` plugin" without settling the trigger.
-- Exact renderer output location under `create-benchmark` (script name and whether it emits Markdown, JSON-to-JSON normalization, or both) — this packet names the schema and the render obligation; the concrete script path is a build-time detail.
-- Retention policy for `flip-history.jsonl` (append-only forever vs. a future rotation/archival step) is explicitly out of scope here and flagged as a follow-on operational question.
+- **Resolved:** snapshot capture is explicit through `render-serving-snapshot.cjs`; it is not automatically run on every Lane C invocation.
+- **Resolved:** the renderer lives at `sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs` and emits the validated JSON plus a Markdown view when `--out` is supplied.
+- **Deferred by scope:** ledger retention/rotation remains an operational policy question; sibling 010 owns the append-only ledger and drivers.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -222,7 +244,7 @@ Define a durable, fail-closed report-path convention and a joined `serving-snaps
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
-- **Planned-state record**: `implementation-summary.md`
+- **Completion record**: `implementation-summary.md`
 - **Upstream research**: `../001-research/synthesis-v1.md` §2.5 (`CF-ARC-1..5`), `../001-research/review-v1.md` §4 (row `007-durable-archiving-and-serving-snapshot`)
 - **Dependencies**: `../002-runtime-promotion-and-status-foundation/`, `../004-benchmark-compiled-lane-c/`
 - **Master plan (phase map + shared gate model)**: `../spec.md`

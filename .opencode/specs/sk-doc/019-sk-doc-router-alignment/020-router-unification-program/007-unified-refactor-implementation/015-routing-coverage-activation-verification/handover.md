@@ -8,8 +8,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored 015 parent + research child; dispatched 002-011 child-spec authoring"
-    next_safe_action: "Validate 002-011 specs, then implement in DAG order from 002"
+    recent_action: "Implemented + committed all ten children 002-011 behind the off flag; ran the closeout (status reconciliation + goal/handover completion update)"
+    next_safe_action: "Operator: merge the worktree branch to v4; implement 013/014 to clear the P3 join gate; then the per-hub staged flip via 011's controller"
     blockers: []
     key_files:
       - "goal.md"
@@ -20,10 +20,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Is default-on a switch-flip? No — it is a structural no-op today (bridge drops the decision, flag stripped); the real work is the P0 activation foundation."
+      - "Is the build done? Yes — all ten children 002-011 are implemented and committed behind the still-OFF flag (validate --strict Errors:0, routing byte-identical to legacy, frozen scorer SHA-256 unchanged)."
+      - "Is the repo default flipped? No, by design — honestly gated on siblings 013/014 and the P3 coverage-closure join gate (011 reports all 7 hubs BLOCKED). The flip is an operator decision after those land."
 ---
 
 # Handover — Routing Coverage, Activation & Verification (015)
@@ -51,25 +53,30 @@ Corrections/omissions folded into the plan are in `review-v1.md` §2-3 (notably:
 
 ## Per-child status
 
+All implemented and committed on `sk-doc/0089-default-routing-cutover`, behind the still-OFF flag, `validate.sh --strict` Errors:0, routing byte-identical to legacy, frozen scorer SHA-256 unchanged.
+
 | Child | Status |
 |-------|--------|
-| 001-research | Spec authored; supporting docs in flight (research is Complete) |
-| 002-runtime-promotion-and-status-foundation (L3, P0) | Spec authoring in flight (opus) — the foundation everything depends on |
-| 003-flag-propagation-and-effective-consumption (L3, P1) | Spec authoring in flight (opus) |
-| 004-benchmark-compiled-lane-c (L2, P1) | Spec authoring in flight |
-| 005-playbooks-and-luna-acceptance (L2, P2) | Spec authoring in flight |
-| 006-feature-catalogs (L2, P3) | Spec authoring in flight |
-| 007-durable-archiving-and-serving-snapshot (L2, P2) | Spec authoring in flight |
-| 008-sk-code-alignment-and-drift-guards (L2, P3) | Spec authoring in flight |
-| 009-sk-doc-template-alignment (L2, P3) | Spec authoring in flight |
-| 010-rollback-audit-and-non-hub-policy (L2, P1) | Spec authoring in flight |
-| 011-activation-cutover-p4 (L3, P4) | Spec authoring in flight (opus) — depends on all |
+| 001-research | Complete — 25 iterations, fresh-Opus synthesis + Sonnet adversarial verification + orchestrator review |
+| 002-runtime-promotion-and-status-foundation (L3, P0) | Implemented + committed `4153cbebd8` — the P0 foundation everything consumes |
+| 003-flag-propagation-and-effective-consumption (L3, P1) | Implemented + committed `a1cdb65d90` |
+| 004-benchmark-compiled-lane-c (L2, P1) | Implemented + committed `8532c4b64b` |
+| 005-playbooks-and-luna-acceptance (L2, P2) | Implemented + committed `d590af12be` — real GPT-5.6-LUNA-HIGH routing evidence archived |
+| 006-feature-catalogs (L2, P3) | Implemented + committed `8532c4b64b` |
+| 007-durable-archiving-and-serving-snapshot (L2, P2) | Implemented + committed `2a39ecb9a0` |
+| 008-sk-code-alignment-and-drift-guards (L2, P3) | Implemented + committed `a1cdb65d90` |
+| 009-sk-doc-template-alignment (L2, P3) | Implemented + committed `8532c4b64b` |
+| 010-rollback-audit-and-non-hub-policy (L2, P1) | Implemented + committed `a1cdb65d90` |
+| 011-activation-cutover-p4 (L3, P4) | Implemented (controller) + committed `3d08302771` — dry-run-proven; P3 join gate reports all 7 hubs BLOCKED (honest, gated on 013/014); repo default NOT flipped |
 
-## Exact next action
+## Exact next action (autonomous build DONE — remainder is operator-gated)
 
-1. When the six authoring agents return: `validate.sh --strict` each of 002-011 + 001-research → fix to Errors:0; run `generate-description.js`/`backfill-graph-metadata` per child + refresh the 015 parent `children_ids`; commit.
-2. Then IMPLEMENT in DAG order: **002 first** (the P0 foundation), then 003 + 004 + 006 + 007 + 008 + 009 (consume 002, parallelizable), 010 (P1), 005 (P2), and 011 (P4) last. Each behind the still-off flag, with its named rollback, clearing every standing invariant.
-3. Verify per `goal.md` §5 (tests + drift guard + compiled Lane C parity + LUNA playbook + durable archive).
+The full build is complete: all ten children 002-011 implemented + committed (table above), each independently verified before its commit (frozen scorer SHA-256 unchanged, routing byte-identical, behind the off flag, validate --strict Errors:0). What remains is not autonomous work under this program — it is operator-gated:
+
+1. **Merge** the worktree branch `sk-doc/0089-default-routing-cutover` into `skilled/v4.0.0.0`.
+2. **Implement siblings 013/014** (create-skill onboarding + benchmark alignment) — the only inputs 011's P3 join gate is still BLOCKED on. Until they land, the join gate correctly reports all 7 hubs BLOCKED and the default must stay OFF.
+3. **Run the full 7-hub × {routing, holdout} LUNA-HIGH sweep** — 005 archived a 3-scenario sample that already proves the mechanism; this is the bounded full-coverage follow-up.
+4. **Then the per-hub cohort-staged flip** via 011's controller (`011-activation-cutover-p4/controller/cutover-controller.cjs`), with `SPECKIT_COMPILED_ROUTING=0` as the documented fleet-wide kill-switch. This is the P4 "enabled by default" outcome — an operator decision, never an autonomous flip.
 
 ## Guardrails (repeat at every step)
 

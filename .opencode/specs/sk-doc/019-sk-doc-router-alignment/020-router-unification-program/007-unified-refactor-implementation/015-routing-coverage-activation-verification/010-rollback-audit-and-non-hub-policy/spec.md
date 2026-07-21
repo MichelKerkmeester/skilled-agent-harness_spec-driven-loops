@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Rollback, Audit Integrity & Non-Hub Policy"
-description: "Closes the rollback/audit integrity holes in the activation and serving-flip drivers (activate-hub.cjs has no --rollback; flip-serving.cjs's serving-prior guard is first-flip-only and its fence epoch advances identically on rollback and forward-flip with no persisted direction; both audit files are plain overwrites, losing re-mint history), states an explicit non-hub single-skill-router ineligibility policy with negative fixtures, and names the P2 canary profile/owner/window/thresholds/rollback-trigger plus the routingRecommendation field-collision fix. Planning-only; depends on 002; never edits the frozen scorer trio; touches an already-shipped, Complete-status sibling driver with care."
+description: "Closes the rollback/audit integrity holes in the activation and serving-flip drivers (activate-hub.cjs has no --rollback; flip-serving.cjs's serving-prior guard is first-flip-only and its fence epoch advances identically on rollback and forward-flip with no persisted direction; both audit files are plain overwrites, losing re-mint history), states an explicit non-hub single-skill-router ineligibility policy with negative fixtures, and names the P2 canary profile/owner/window/thresholds/rollback-trigger plus the routingRecommendation field-collision fix. Implemented and committed in a1cdb65d90; never edits the frozen scorer trio; touches an already-shipped sibling driver additively."
 trigger_phrases:
   - "rollback audit integrity non-hub policy"
   - "activate-hub rollback flag"
@@ -37,7 +37,7 @@ The activation and serving-flip drivers have real rollback and audit integrity h
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 — required for a complete, auditable cutover (`001-research/synthesis-v1.md` §5 P0→P4 graph places rollback/audit integrity and non-hub policy at P1) |
-| **Status** | Planned |
+| **Status** | Implemented — landed in `a1cdb65d90`, behind the still-off flag; additive to two already-shipped drivers, no live hub flipped, frozen scorer trio SHA-256 unchanged |
 | **Created** | 2026-07-20 |
 | **Branch** | `010-rollback-audit-and-non-hub-policy` |
 | **DAG Stage** | P1 (`001-research/synthesis-v1.md` §5: "Rollback & audit integrity holes" + "Non-hub archetype policy undefined" gate P4's per-hub `=0` kill-switch drill) |
