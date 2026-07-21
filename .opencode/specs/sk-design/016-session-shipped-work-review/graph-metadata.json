@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/016-session-shipped-work-review",
+  "spec_folder": "sk-design/016-session-shipped-work-review",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "spec",
+      "deep",
+      "review",
+      "session-shipped",
+      "work",
+      "commits",
+      "skilled"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped Work",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)",
+    "created_at": "2026-07-21T05:00:17.645Z",
+    "last_save_at": "2026-07-21T05:00:17.645Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ecde0594df26be6ce594f7a6ad762c4dcf3a871e974aea9c8c305decb0b9c239",
+    "source_doc_hashes": {
+      "spec.md": "981a880e35eb6de8b61911845b922f4e94e88bc64f93b311ad9ba3059f59fe46"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

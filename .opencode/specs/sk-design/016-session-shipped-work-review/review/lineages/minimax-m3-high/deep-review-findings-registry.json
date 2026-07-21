@@ -1,0 +1,95 @@
+{
+  "sessionId": "fanout-minimax-m3-high-1784606267078-bpkeoi",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F1",
+      "severity": "P2",
+      "category": "correctness/honest-accounting",
+      "file": ".opencode/skills/sk-design/styles/_db/stage-telemetry.mjs",
+      "line": 119,
+      "summary": "Math.max(0, elapsedMs - total) clamps the negative-gap signal when spans overlap."
+    },
+    {
+      "id": "F2",
+      "severity": "P2",
+      "category": "correctness/robustness",
+      "file": ".opencode/skills/sk-design/styles/_db/generation-manifest.mjs",
+      "line": 251,
+      "summary": "Temp path uses ${pid}-${Date.now()}; two writes in the same ms from the same process collide."
+    },
+    {
+      "id": "F3",
+      "severity": "P1",
+      "category": "traceability/spec-metadata-honesty",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace/spec.md",
+      "line": 25,
+      "summary": "spec.md frontmatter records AUTHOR-SPEC stage / completion_pct:0 / placeholder fingerprint for shipped work."
+    },
+    {
+      "id": "F4",
+      "severity": "P1",
+      "category": "traceability/spec-doc-honesty",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace/implementation-summary.md",
+      "line": 52,
+      "summary": "implementation-summary.md claims 'Planned change — not yet implemented' for shipped work."
+    },
+    {
+      "id": "F5",
+      "severity": "P1",
+      "category": "traceability/graph-metadata-honesty",
+      "file": ".opencode/specs/sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace/graph-metadata.json",
+      "line": 42,
+      "summary": "graph-metadata.json status='planned' and key_files lists the deleted commands/design/ tree."
+    },
+    {
+      "id": "F6",
+      "severity": "P1",
+      "category": "traceability/doc-consistency",
+      "file": ".opencode/skills/sk-design/feature-catalog/creation-command-surface/interface-creation-commands.md",
+      "line": 3,
+      "summary": "Four files still claim /design:* aliases 'remain' and reference the deleted commands/design/ tree."
+    },
+    {
+      "id": "F7",
+      "severity": "P2",
+      "category": "security/toctou",
+      "file": ".opencode/skills/sk-design/styles/_db/indexer.mjs",
+      "line": 225,
+      "summary": "TOCTOU between realpath() and readFile() in readVerifiedArtifacts; defense-in-depth for an out-of-scope threat model."
+    },
+    {
+      "id": "F8",
+      "severity": "P2",
+      "category": "security/input-validation",
+      "file": ".opencode/skills/sk-design/styles/_db/oracle/relevance-judgments.mjs",
+      "line": 279,
+      "summary": "loadJudgmentSeed accepts arbitrary JSON object without bounding size/depth."
+    },
+    {
+      "id": "F9",
+      "severity": "P2",
+      "category": "maintainability/doc-clarity",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/spec.md",
+      "line": 18,
+      "summary": "020/012 packet frontmatter says AUTHOR-SPEC / Status: Planned while the commit message frames it as validated; minor metadata lag."
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 5
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.72
+}
