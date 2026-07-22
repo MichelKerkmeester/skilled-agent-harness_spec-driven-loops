@@ -1,0 +1,245 @@
+Route Proof
+
+- Canonical command: `/interface:design`
+- Stable mode: `interface`
+- Register: Product
+- Dials: `density=comfortable`, `motionBudget=restrained`, `colorStrategy=Restrained`
+- Target: Engineering analytics dashboard empty state
+- Supporting mode: none
+- Mutation boundary: advisory; no files modified
+- Proof ceiling: `validated`
+- Runtime render: unavailable
+
+Resolved Brief
+
+- Audience: engineering delivery teams
+- One job: connect a repository and understand how delivery metrics become useful signal.
+- Domain metrics: Pull Requests, Review Time, Cycle Time, Deploy Frequency
+- Theme: dark mode default
+- Must use: concrete domain copy, explicit metric names, structural dashboard framing
+- Must preserve: restrained color, comfortable density, restrained motion
+- Must avoid: generic centered illustrations, lorem text, placeholder metrics, unassigned colors, gradients, false runtime proof
+- Acceptance: distinctive, non-generic direction with concrete palette, type scale, layout, motion, and empty/loading/error states
+- Assumptions: output is an advisory direction artifact only; implementation surface is not yet bound.
+
+Context Manifest
+
+- Workspace inspected: repository root.
+- Existing context found: framework documentation and package metadata.
+- Owned visual system: no application token, component, theme, or stylesheet system was discoverable in the inspected repository.
+- Real content basis: engineering delivery metrics supplied in the brief.
+- Build/runtime context: no dashboard runtime or render target available.
+- Existing artifacts: none applicable to this dashboard direction.
+
+Grounding Record
+
+Grounding source: `no-fit`
+
+- Provenance: read-only repository scan using `rg --files` and inspection of `README.md` and `package.json`.
+- Reuse Report: no owned tokens, components, or reference styles available for reuse.
+- Violation Scan: all palette, typography, spacing, and timing values below are explicitly authored because no owned system exists. No token is presented as inherited or verified.
+- Decision-changing control: the fixed metric sequence  
+  `Pull Requests → Review Time → Cycle Time → Deploy Frequency`
+- Decision changed: the direction uses a visible “signal path” through those four metrics instead of a generic empty illustration.
+- Limitation: ownership alignment must be rechecked when the actual dashboard application and design system become available.
+
+Creation/Remediation Artifact - Interface Direction Spec
+
+Direction: “Signal Path”
+
+The empty screen should feel like an unwired operations console: the dashboard already understands the team’s delivery model, but needs its first repository connection to activate the signal.
+
+Contrastive directions considered:
+
+1. “Signal Path” — a structured metric pipeline with four inactive nodes. Selected because it teaches the product model while preserving dashboard credibility.
+2. “Control Room” — dense empty metric matrix with subdued outlines. Strong operational feel, but risks looking broken before setup.
+3. “Warm Start” — large onboarding panel with supporting metric explanations. More approachable, but less distinctive for engineering teams.
+
+Selected direction: “Signal Path”.
+
+Authored color tokens:
+
+| Token | Hex | Use |
+|---|---:|---|
+| `ink-950` | `#0D1117` | page background |
+| `ink-900` | `#151B24` | primary surfaces |
+| `ink-850` | `#1C2531` | raised cards and active zones |
+| `grid-700` | `#2A3645` | borders, dividers, inactive paths |
+| `text-100` | `#F2F5F8` | primary text |
+| `text-300` | `#A7B4C2` | secondary text |
+| `signal-teal` | `#62D0C7` | primary action and connected path |
+| `signal-amber` | `#F2B86B` | attention and first-run cue |
+| `signal-red` | `#F27878` | error state |
+| `on-signal` | `#0D1117` | text on teal or amber controls |
+
+No gradients. Teal is the primary product signal; amber and red are reserved for status semantics.
+
+Typography:
+
+- UI family: `Inter Variable`, fallback `system-ui, sans-serif`
+- Metric family: `IBM Plex Mono`, fallback `ui-monospace, monospace`
+- Display: `28px / 34px`, weight `650`
+- Section heading: `20px / 26px`, weight `650`
+- Body: `14px / 22px`, weight `450`
+- Metric value: `28px / 32px`, weight `600`, monospace
+- Label: `12px / 16px`, weight `650`, letter-spacing `0.08em`
+- Microcopy: `11px / 14px`, weight `550`
+
+Spacing and layout:
+
+- Base spacing unit: `4px`
+- Scale: `4, 8, 12, 16, 24, 32, 48, 64px`
+- Desktop shell: `240px` navigation rail + flexible content
+- Header: `72px`
+- Main inset: `32px`
+- Content max width: `1280px`
+- Main grid: 12 columns, `24px` gap
+- Primary setup card: spans 8 columns
+- Metric rail: spans 4 columns
+- Card radius: `12px`
+- Control radius: `8px`
+- Borders: `1px solid #2A3645`
+
+Screen composition:
+
+1. Header  
+   Workspace name on the left; “First workspace” status and account controls on the right.
+
+2. Page heading  
+   Eyebrow: `DELIVERY SIGNAL`  
+   Heading: `Your delivery signal starts here.`  
+   Body: `Connect a repository to turn pull requests, review time, cycle time, and deploy frequency into one operating view.`
+
+3. Four-metric rail  
+   Each card shows one real metric name and a state-specific message:
+
+   - `Pull Requests` — `Awaiting repository history`
+   - `Review Time` — `Needs review events`
+   - `Cycle Time` — `Needs merged-workflow timestamps`
+   - `Deploy Frequency` — `Needs deployment events`
+
+4. Signal Path setup card  
+   A horizontal route connects four nodes:
+
+   `Pull Requests → Review Time → Cycle Time → Deploy Frequency`
+
+   Each node contains the metric label, a muted inactive indicator, and one short explanation. The path becomes teal only after data arrives.
+
+5. Primary action  
+   `Connect a repository`
+
+   Secondary action: `See how these metrics work`
+
+Representative states:
+
+- Empty:
+
+  `No repositories connected`  
+  `Connect GitHub or GitLab to build your first delivery view.`  
+  CTA: `Connect a repository`
+
+- First-run:
+
+  `Start with one repository`  
+  `We’ll inspect pull requests, review events, merged-workflow timestamps, and deploys. You can change the connection later.`  
+  CTA: `Choose repository`
+
+- Loading:
+
+  `Reading repository history`  
+  `Scanning merged pull requests, review events, cycle timestamps, and deploys…`
+
+  Progress sequence:
+
+  `Repository connected` → `Pull requests found` → `Review events found` → `Deploy events found`
+
+- Error:
+
+  `We couldn’t read delivery history`  
+  `The repository connection is valid, but the provider returned no event access. Check the integration scope and try again.`  
+  Actions: `Reconnect repository` and `View integration settings`
+
+Motion intent:
+
+- Primary reveal: `220ms`, `cubic-bezier(0.2, 0.8, 0.2, 1)`
+- State transition: `160ms`, `ease-out`
+- Progress movement: `1600ms`, linear
+- Hover/focus response: `120ms`, ease-out
+- Animate only the signal path and status changes; no bouncing, parallax, or decorative motion.
+- Reduced motion: remove path drawing and use immediate state replacement. Preserve `aria-live` status updates.
+
+Critique/Validation
+
+The generic centered-illustration treatment failed the distinctiveness criterion because it did not explain the product’s metric model. The targeted revision replaced it with a dashboard scaffold and an explicit four-step delivery signal path.
+
+Validation result:
+
+- Domain legibility: pass; all four required metrics appear in structure and copy.
+- Non-generic direction: pass by authored review; the signal-path metaphor is specific to delivery analytics.
+- Restrained color: pass by authored review; one primary accent plus two semantic accents.
+- Static accessibility checks: pass for listed text/background pairs.
+- Runtime render inspection: unavailable.
+
+Evidence Ledger
+
+| Claim | Level | Method | Result | Limitation |
+|---|---|---|---|---|
+| Route and fixed brief resolved | observed | User-supplied manifest and brief | Product/interface route confirmed | No native command runtime |
+| No owned visual system found | observed | Repository file scan and document inspection | No app tokens/components/styles discovered | Search scope was this repository |
+| Palette and type scale | authored | Direction-spec authoring | Concrete values assigned | Not tested in a runtime |
+| `text-100` on `ink-950` | validated | WCAG contrast calculation from hex | `17.30:1` | Static pair only |
+| `text-300` on `ink-950` | validated | WCAG contrast calculation from hex | `8.97:1` | Static pair only |
+| `signal-teal` on `ink-950` | validated | WCAG contrast calculation from hex | `10.24:1` | Static pair only |
+| `signal-amber` on `ink-950` | validated | WCAG contrast calculation from hex | `10.67:1` | Static pair only |
+| `signal-red` on `ink-950` | validated | WCAG contrast calculation from hex | `6.97:1` | Static pair only |
+| Layout and motion behavior | authored | Design specification | Concrete geometry and timings supplied | No interaction/frame test |
+| Runtime visual quality | blocked | No browser/render target available | Not measured or verified | Requires implementation render |
+
+`PROOF_TIER=validated`
+
+Next Action/Handoff
+
+```text
+STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult
+```
+
+- `/interface:foundations` — turn the authored palette, type, spacing, and surface rules into a static system.
+- `/interface:motion` — formalize the restrained loading, connection, error, and reduced-motion choreography.
+- `/interface:audit` — run findings-first review against a rendered implementation.
+- `sk-code` — implement only after this direction is accepted, preserving the authored decisions above.
+
+`HANDOFF_REQUIRED=false`
+
+Continuity envelope:
+
+```json
+{
+  "briefId": "interface-engineering-analytics-empty-state-v1",
+  "artifactVersion": "1.0",
+  "acceptedDecisions": [
+    "Signal Path direction",
+    "Product register",
+    "Dark mode default",
+    "Comfortable density",
+    "Restrained color and motion",
+    "Concrete authored tokens"
+  ],
+  "preservedConstraints": [
+    "Pull Requests",
+    "Review Time",
+    "Cycle Time",
+    "Deploy Frequency"
+  ],
+  "proofStatus": "validated",
+  "unresolvedDecisions": [
+    "Final application font availability",
+    "Implementation viewport breakpoints"
+  ],
+  "nextRecommendedMode": "/interface:foundations",
+  "evidenceRefs": [
+    "static WCAG contrast calculations",
+    "repository context scan",
+    "authored direction critique"
+  ]
+}
+```

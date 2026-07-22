@@ -100,8 +100,17 @@ presentation-asset design. But **design quality does not travel like structure**
 legs load the full `sk-design` interface mode while the codex leg got only an inlined prompt. **Best live
 executor: cli-opencode + `deepseek-v4-pro`**; `mimo` a solid lighter second; `gpt-5.6-luna` proved contract
 portability + the most conservative proof discipline (`PROOF_TIER=observed`) but is design-sparse as a raw
-port. No executor overclaimed a proof tier. Full per-dimension table + cross-runtime finding:
-`review/review-report.md`.
+port. Full per-dimension table: `review/review-report.md`.
+
+**V2 CORRECTION (prompt-parity rerun).** An independent Opus review found the v1 executor verdict
+confounded — I had handicapped only the codex/LUNA leg (`owned-tokens`, cap proof at `observed`,
+don't-fabricate) and the three legs solved different problems. V2 re-ran all three on one fully-specified
+brief with an equalized instruction set. Result: the v1 "~18× taste gap" **compressed to ~3×** (deepseek 70
+> mimo 46 > LUNA 23) once LUNA was un-handicapped (it authored 11 concrete hex tokens vs zero in v1). So
+**most of the v1 gap was my prompt design, not transport**; the native path is a *modest* design win, not an
+order-of-magnitude one. Also corrected: mimo's v1 `measured` contrast label was a real overclaim (the "no
+overclaims" claim was false — an explicit v2 proof convention fixed it), and "mimo cheaper" is refuted (cost
+~equal, $0.0192 vs $0.0200). Corrected verdict + retractions in `review/review-report.md` §V2.
 <!-- /ANCHOR:review-summary -->
 
 ---

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark"
     last_updated_at: "2026-07-22T12:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Scored three legs; wrote scorecard"
+    recent_action: "Ran v2 parity rerun; corrected verdict"
     next_safe_action: "Operator reviews the verdict"
     blockers: []
     key_files:
@@ -90,6 +90,13 @@ an inlined raw prompt (codex has no OpenCode command runtime). Each leg ran unde
   `foundations`/`motion`/`audit` live runs are a noted extension, not executed.
 - Taste "specificity density" is a keyword-count proxy (palette/type/motion/token mentions) — a directional
   signal, not an absolute design-quality metric.
-- The codex/LUNA leg is a raw-prompt port without the `sk-design` interface mode; its thin taste reflects
-  that transport gap, which a native cli-codex design path (cf. `035/015`) would close.
+- **V2 correction (prompt-parity rerun).** An independent Opus review found the v1 executor verdict
+  confounded: the codex/LUNA leg alone was handicapped (`owned-tokens`, cap-at-`observed`, don't-fabricate)
+  and the legs solved different problems. A v2 rerun on one fully-specified, equalized brief showed the v1
+  "~18× taste gap" compressing to ~3× (deepseek 70 > mimo 46 > LUNA 23) once LUNA was un-handicapped — so
+  the gap was mostly prompt design, not transport; the native path is a modest, not large, design win. It
+  also exposed a real v1 overclaim (mimo labeled contrast `measured`) and refuted "mimo cheaper" (cost
+  ~equal). Corrected verdict in `review/review-report.md` §V2; v2 evidence in `review/legs-v2/`.
+- Still open (P1): repeats/variance (n=1 per leg) and a blind rubric-scored taste judgment to replace the
+  verbosity-biased keyword proxy.
 <!-- /ANCHOR:limitations -->

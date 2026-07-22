@@ -72,3 +72,58 @@ codex port.
   models (established before this run); this bespoke harness was built instead.
 - Scores are from the real leg artifacts under `legs/`; taste "specificity density" is a keyword-count
   proxy (palette/type/motion/token mentions), a directional signal, not an absolute quality metric.
+
+---
+
+# V2 — Prompt-Parity Rerun (correction of the v1 verdict)
+
+> Triggered by an independent Opus review that found the v1 verdict confounded: the codex/LUNA leg alone
+> was handed a handicapping manifest (`colorStrategy=owned-tokens`, "cap PROOF_TIER at observed", "do not
+> fabricate tokens") while the native legs self-resolved to author concrete hex, and the three legs solved
+> different problems (different domains/themes/densities). V2 re-runs all three on ONE fully-specified brief
+> (engineering-metrics domain, dark theme, comfortable density, `colorStrategy=Restrained` for all) with an
+> **equalized instruction set** — the codex leg leveled UP to native parity (author concrete hex, proof
+> ceiling `validated`). Evidence: `review/legs-v2/`.
+
+## V2 results (equalized)
+
+| Metric | deepseek (cli-opencode) | mimo (cli-opencode) | LUNA (cli-codex, un-handicapped) |
+|---|---|---|---|
+| Visible blocks | 8/8 | 8/8 | 8/8 |
+| Taste specificity (proxy) | 70 | 46 | **23** |
+| Concrete hex tokens | 28 | 26 | **11** |
+| Proof ceiling | `validated` | `validated` | `validated` |
+| Contrast label | `validated` | `validated` (**v1 was `measured` — fixed**) | `validated` / `blocked` |
+| Cost (this run) | ~$0.0192 | ~$0.0200 | (codex, ChatGPT-OAuth — not $-metered) |
+| Fixed domain honored | ✓ | ✓ | ✓ |
+
+## What v2 corrects in the v1 verdict
+
+1. **The v1 "~18× taste gap" (110 vs 6) was mostly an artifact — it compressed to ~3× (70 vs 23).** LUNA,
+   told to author concrete hex like the native legs, produced **11 hex tokens (v1: zero, "values
+   unassigned")** and quadrupled its specificity (~6 → 23). Most of the v1 gap was **my prompt handicap**
+   (`owned-tokens` + don't-fabricate suppressed exactly the tokens the proxy counts), plus deepseek's
+   verbosity (three repeated ASCII state diagrams), plus the legs solving different problems. **Not
+   transport.**
+2. **The corrected finding: taste needs the *dials in the prompt* more than it needs the *mode*.** The
+   native command's value is that it resolves those dials (colorStrategy, density, proof ceiling)
+   automatically — but a raw codex port handed the same dials closes ~75% of the gap. A **modest, real**
+   residual remains (native ~70/46 vs raw-port ~23; ~2.5× more concrete hex), so the native path is still
+   better for live design work — but the effect is small, not the order-of-magnitude v1 implied.
+3. **"No executor overclaimed" (v1) was false and is now moot.** mimo's v1 leg labeled WCAG contrast
+   `measured` (v1 `leg2-mimo.md:342`) — an overclaim on a read-only run. The **explicit v2 proof
+   convention fixed it**: all three v2 legs label contrast `validated` and reserve `measured`/`verified`
+   for a real render. This confirms the reviewer's P2 (state the rule in the contract).
+4. **"mimo a cheaper second" (v1) is refuted.** With cost now surfaced: deepseek ~$0.0192 vs mimo ~$0.0200
+   on this run — mimo is marginally *more* expensive, not cheaper.
+5. **Portability still holds** — all three still emitted 8/8 blocks under the equalized, fully-specified
+   brief, with honest proof tiers.
+
+## Corrected bottom line
+
+**Trust:** the presentation contract is portable (8/8 across all three, both runs); the proof-tier discipline
+works when the convention is explicit; the native cli-opencode path is a **modest** design-quality win over a
+raw codex port, not a large one. **Retract from v1:** the ~18× taste gap, "taste needs the mode," "no
+overclaims," and "mimo cheaper" — all artifacts of an asymmetric harness. **Still open (P1, not run here):**
+repeats/variance (n=1 per leg) and a blind rubric-scored taste judgment to replace the verbosity-biased
+keyword proxy.
