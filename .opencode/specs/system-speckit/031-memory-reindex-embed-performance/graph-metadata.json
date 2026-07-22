@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-memory-reindex-embed-performance",
+  "spec_folder": "system-speckit/031-memory-reindex-embed-performance",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory reindex embed performance spec",
+      "mk-spec-memory ingest pipeline optimization",
+      "ollama embed batch ingest parallelize speckit",
+      "memory reindex embed performance handover",
+      "ollama embed batch parallelize ingest pipeline",
+      "mk-spec-memory reindex slow optimization"
+    ],
+    "key_topics": [
+      "memory",
+      "reindex",
+      "embed",
+      "performance",
+      "spec",
+      "mk-spec-memory",
+      "ingest",
+      "pipeline",
+      "optimization",
+      "ollama",
+      "batch",
+      "parallelize"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/embedders/reindex.ts",
+      "mcp-server/lib/embedders/adapters/ollama.ts",
+      "mcp-server/lib/embedders/reindex.ts",
+      "mcp-server/lib/embedders/execution-router.ts",
+      "scripts/dist/memory/reindex-embeddings.js",
+      "mcp-server/database/backups/context-index.sqlite.pre-reindex-20260722T141849",
+      "spec.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/embedders/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex-embeddings.js",
+        "kind": "code",
+        "path": "scripts/dist/memory/reindex-embeddings.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite.pre-reindex-20260722T141849",
+        "kind": "file",
+        "path": "mcp-server/database/backups/context-index.sqlite.pre-reindex-20260722T141849",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Reindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embed Ingest Performance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "batch-write",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Rust",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Next Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
+    "created_at": "2026-07-22T14:55:36.697Z",
+    "last_save_at": "2026-07-22T14:55:36.697Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:aa88e14ef5bc7707ff9b843007356517f805e986ba18d4beed473f3e006bb269",
+    "source_doc_hashes": {
+      "spec.md": "fb1c3a8ea5b483b9500bb1ea6621398e1104c125463d0a2457f389ccdd2492a9",
+      "handover.md": "4493100af2da1a6a7a4db10e92cc01a43f666151ad7ae35ba7a19367d70dfc67"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
