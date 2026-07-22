@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "titlecase enforcement config flip",
-      "h2uppercaserequired flip closeout",
-      "documentation quality program closeout",
-      "titlecase config flip summary",
-      "documentation quality program closeout summary",
-      "uppercase check refinement"
+      "deferred code checker fixes",
+      "10a manifest checker path fix",
+      "skill command uppercase flip",
+      "deferred fixes summary",
+      "10a checker fix summary",
+      "skill command flip summary"
     ],
     "key_topics": [
-      "titlecase",
-      "enforcement",
-      "config",
-      "flip",
-      "h2uppercaserequired",
-      "closeout",
-      "documentation",
-      "quality",
-      "program",
-      "summary",
+      "deferred",
+      "code",
+      "checker",
+      "10a",
+      "manifest",
+      "path",
+      "skill",
+      "command",
       "uppercase",
-      "check"
+      "flip",
+      "summary",
+      "closeout"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -45,15 +46,21 @@
     ],
     "entities": [
       {
-        "name": "validate_document.py",
+        "name": "parent-skill-check.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
-        "name": "template-rules.json",
+        "name": "mode-registry.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -93,19 +100,13 @@
         "source": "derived"
       },
       {
-        "name": "Case Enforcement",
+        "name": "Deferred Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Config Flip",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Program Closeout",
+        "name": "Checker Fixes",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,7 +118,13 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Refine",
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -135,13 +142,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Refine",
+        "name": "Overview Investigate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern The",
+        "name": "Pattern Investigate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
-    "created_at": "2026-07-22T16:00:57.919Z",
-    "last_save_at": "2026-07-22T16:53:38.984Z",
+    "causal_summary": "The closeout deferred five follow-ups",
+    "created_at": "2026-07-22T16:53:39.311Z",
+    "last_save_at": "2026-07-22T16:53:39.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64c11b3c86ec42254e3a9ab2b41ccdb2986b9ff946d9f6fee39c041b74ab5547",
+    "source_fingerprint": "sha256:5e84399d6c08ef6d71eb556e61a6c98054e04e68e56ab128146ee4a06b97ea83",
     "source_doc_hashes": {
-      "spec.md": "8a696baef3195ac1c42d32bda35e91ee8aa2fbbdbe6b7c616298c789776cb25f",
-      "plan.md": "9f5cad64de24d9a19b6482eb7336d26858f137c9a64fccf5cd01b3ec2e9308df",
-      "tasks.md": "1d5c04220bc9ba0d095179585288b7dd7ddd48817e4e1b68511374500827f71e",
-      "checklist.md": "b0020fe429b1c295c0a6af2dd258f2d817a4499463060d6a9fa8625a3923d5b7",
-      "implementation-summary.md": "efb77a628d9464f2d9636adb2be7a386ebfb275e25f1e0e4677dc761da9fa3f5"
+      "spec.md": "e11cebfca645072cde882191b9f1b8eac3d92f891109b1ee71d501af7cac1ac1",
+      "plan.md": "a58213645f2059d230646eeeace304e7b47dfa611f03a5bc6852846025dff2df",
+      "tasks.md": "0dc9784064a3356bea55809c426846193150a468d94f9c00a42a200263922e2c",
+      "checklist.md": "efd5479b3a2b8f7142290335aec172a2d31f04d93f51ff2b8fa0a8a89a452f77",
+      "implementation-summary.md": "b8a99d9bbc6112fc3fa17aeebe19a9fdcb1350273b6169fc828c951c61e8f14e"
     },
     "last_active_child_id": null,
     "last_active_at": null
