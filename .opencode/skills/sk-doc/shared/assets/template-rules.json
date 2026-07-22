@@ -104,7 +104,8 @@
         "quality checklist & quick reference": "quality_checklist"
       },
       "tocRequired": false,
-      "h2EmojiRequired": false
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true
     },
     "command": {
       "description": "Command files in .opencode/commands/ folders",
@@ -226,7 +227,8 @@
           "version",
           "disable-model-invocation"
         ]
-      }
+      },
+      "h2UppercaseRequired": true
     },
     "install_guide": {
       "description": "Installation guide files for MCP servers, plugins, and tools",
