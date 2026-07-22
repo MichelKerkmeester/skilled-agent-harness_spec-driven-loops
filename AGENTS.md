@@ -447,6 +447,8 @@ Any agent writing authored spec-folder docs MUST:
 
 Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading `.opencode/skills/<skill-name>/SKILL.md` plus its bundled `references/`, `scripts/`, and `assets/` resources, then following its instructions to completion. A skill already in context is not re-invoked.
 
+**Advisor metadata placement (two schemas, same filenames).** `description.json` and `graph-metadata.json` exist in two unrelated schemas that are never the same file: spec-folder continuity metadata (§3; keys like `specFolder`/`parentChain`, or `packet`/`status`/`children_ids`) and skill-advisor hub-identity metadata under `.opencode/skills/<hub>/` (keys `{name, description, version, keywords, trigger_examples}` plus `{schema_version, skill_id, family, edges, intent_signals}`). The advisor pair lives ONLY at a parent-hub root or a standalone-skill root, never inside a mode/packet or `shared/` folder. Mode-level routing is hub-level, through `mode-registry.json` + `hub-router.json`. Doctrine: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`; audit with `node .opencode/commands/doctor/scripts/parent-skill-check.cjs <hub-dir>` (rules 2a/2b/8a/8b).
+
 ---
 
 ## 9. 📋 QUICK REFERENCE

@@ -162,6 +162,30 @@ function findGraphMetadata(dir) {
   return out;
 }
 
+// Recursively collect every description.json beneath a directory.
+function findDescriptionJson(dir) {
+  const out = [];
+  const stack = [dir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(full);
+      } else if (entry.isFile() && entry.name === 'description.json') {
+        out.push(full);
+      }
+    }
+  }
+  return out;
+}
+
 // A file/dir that is a symlink (changelog policy forbids symlinked changelogs).
 function isSymlink(p) {
   try {
@@ -272,6 +296,20 @@ function main() {
   } else {
     const rel = nested.map((f) => path.relative(target, f));
     fail(`2a: nested graph-metadata.json found (re-introduces a second identity): ${rel.join(', ')}`);
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // 2b. NO description.json inside any mode packet or shared/
+  //     (the advisor identity is hub-only; a nested one is dead residue)
+  // ───────────────────────────────────────────────────────────────
+  const nestedDesc = findDescriptionJson(target).filter(
+    (f) => f !== path.join(target, 'description.json'),
+  );
+  if (nestedDesc.length === 0) {
+    pass('2b: no nested description.json inside any packet or shared/');
+  } else {
+    const rel = nestedDesc.map((f) => path.relative(target, f));
+    fail(`2b: nested description.json found (re-introduces a second advisor identity): ${rel.join(', ')}`);
   }
 
   // ───────────────────────────────────────────────────────────────
