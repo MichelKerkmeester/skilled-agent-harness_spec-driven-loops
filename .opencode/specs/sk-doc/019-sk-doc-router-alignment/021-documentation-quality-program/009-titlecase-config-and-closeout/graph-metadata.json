@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
     "created_at": "2026-07-22T16:00:57.919Z",
-    "last_save_at": "2026-07-22T16:38:58.743Z",
+    "last_save_at": "2026-07-22T16:41:04.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b72dbc3ee6d9973c4641c575f9b53528869e2c7d58d1affa6a68f9cebce0575",
+    "source_fingerprint": "sha256:583877ea58257fb33402664dda746b7c145b7f8d61ce32fe5ad81f51953f2c8b",
     "source_doc_hashes": {
-      "spec.md": "fcd0192814dd1dfd9e30624b6b23568d83aff966216907b5f9a201fd0198c68d",
-      "plan.md": "19f57de41b2f48aa2aef129252fe9613d293d8303b0c6c9e5b5d45b8e90c1d0e",
-      "tasks.md": "e4733351bcaf6b700e40037d028126b67b7ebb49029ed482f5a2fa80b14608be",
-      "checklist.md": "12ef39cd0178636d6754c7ade3d82cafe7879cbde91f924650c50b325bee1341",
-      "implementation-summary.md": "6b2c5e49665aec23aacb2f53f206639b504e0e3de82b6cf1c4e70f91f4c2d1aa"
+      "spec.md": "e1930870dc406038c21073956af7127dd99d6f710ec03a860cba406d54dbf5c5",
+      "plan.md": "1152e695b0d39f6325049a35eb1224a9dd7ed9a1755617c1380691bf39760420",
+      "tasks.md": "d47f1251c160072dd076af010c890454e158bd988c2dc166f590affcbc8a3faa",
+      "checklist.md": "7f538f0594ab480435f425172ea1acfaddc0b9770765e02c289d741635c4dc0e",
+      "implementation-summary.md": "ade0f6b9125ddbe36308a22b7620912510da11f7f515c556465a2213d4da266b"
     },
     "last_active_child_id": null,
     "last_active_at": null

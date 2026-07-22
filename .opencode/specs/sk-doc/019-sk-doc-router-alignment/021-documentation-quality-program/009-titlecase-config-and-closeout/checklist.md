@@ -8,7 +8,7 @@ completion_pct: 100
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout"
-    last_updated_at: "2026-07-22T16:38:58Z"
+    last_updated_at: "2026-07-22T16:41:03Z"
     last_updated_by: "claude"
     recent_action: "Verified the flip and closeout."
     next_safe_action: "Operator ff-merge to v4."
@@ -41,7 +41,7 @@ _memory:
 - [x] CHK-001 [P1] The refined uppercase check passes a sanity set
   - **Evidence**: `is_uppercase_section` returns true for `ASSETS (`assets/patterns/`)` and `API NAMING MAP (cupt vs ClickUp UI)`, false for `Overview` and `How to read this`
 - [x] CHK-002 [P1] Genuine offenders separated from false positives
-  - **Evidence**: the refined scan cut 318 raw flagged headers to 270 genuine across 58 files, dropping the code-span and product-name false positives
+  - **Evidence**: the refined `is_uppercase_section` scan cut 318 raw flagged headers to 270 genuine across 58 files, dropping the code-span and product-name false positives
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -63,7 +63,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P1] All 667 reference/asset files pass with the flip
-  - **Evidence**: the full re-validate reported 0 h2-uppercase failures across 667 files
+  - **Evidence**: the full re-validate with `validate_document.py` reported 0 h2-uppercase failures across 667 files
 - [x] CHK-021 [P1] No README regression from the refinement
   - **Evidence**: `audit_readmes.py` template-invalid moved 43 to 41, not up
 
@@ -103,7 +103,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-060 [P1] No stray files added
-  - **Evidence**: only the validator, the config, the header-edited reference/asset files and this phase's spec docs changed
+  - **Evidence**: only `validate_document.py`, `template-rules.json`, the header-edited reference/asset files and this phase's spec docs changed
 
 <!-- /ANCHOR:file-org -->
 ---
