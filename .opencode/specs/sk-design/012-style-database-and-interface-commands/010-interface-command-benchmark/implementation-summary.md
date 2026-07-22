@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: /interface:* Structure + Live Multi-Model Benchmark"
-description: "Executed the hybrid /interface:* benchmark: structure axis PASS (contract 8/8, 5/5 conformance) plus three live /interface:design legs on one shared brief. Presentation contract proved portable across all three executors; design taste ranked deepseek > mimo > luna. No proof-tier overclaims."
+description: "Executed the hybrid /interface:* benchmark across four rounds (v1-v4): structure axis PASS (contract 8/8, 5/5 conformance) plus live /interface:design legs on two briefs. Presentation contract portable across all executors. The v1 keyword-proxy taste ranking (deepseek>mimo>luna) and 'no overclaims' were CORRECTED by a v2 prompt-parity rerun + v3/v4 blind judging: deepseek and gpt-5.6-luna co-lead (trading #1 by task), mimo consistently weakest; transport does not gate quality. See review-report.md §V2-V4."
 trigger_phrases:
   - "interface benchmark results summary"
   - "deepseek mimo luna interface verdict"
@@ -76,9 +76,9 @@ an inlined raw prompt (codex has no OpenCode command runtime). Each leg ran unde
 |-------|--------|
 | Structure axis | PASS — contract 8/8; 5/5 conformance |
 | Three legs captured | PASS — deepseek 27 KB, mimo 20 KB, luna 9.7 KB under `review/legs/` |
-| Presentation fidelity | All three emitted all 8 visible blocks (LUNA too, from a raw prompt) |
-| Proof-tier honesty | No overclaims — deepseek `validated (advisory)`, mimo `validated`, LUNA `observed` |
-| Design-taste ranking | deepseek (~110) > mimo (~38) > LUNA (~6) specificity |
+| Presentation fidelity | All three emitted all 8 visible blocks (LUNA too, from a raw prompt) — holds across both briefs |
+| Proof-tier honesty (v1 claim — CORRECTED) | v1 said "no overclaims"; **§V2 found mimo overclaimed** (`measured` contrast). Explicit convention fixed it; one mild LUNA overclaim surfaced on brief 2 (§V4) |
+| Design-taste ranking (v1 proxy — SUPERSEDED) | v1 keyword proxy said deepseek 110 > mimo 38 > LUNA 6; **blind judging (§V3-V4) inverted it**: deepseek ≈ gpt-5.6-luna co-lead ≫ mimo (weakest). Retire the proxy |
 <!-- /ANCHOR:verification -->
 
 ---

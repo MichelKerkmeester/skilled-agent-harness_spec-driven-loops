@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a live output-quality axis running /interface:design on one shared brief across three executors — cli-opencode deepseek-v4-pro, cli-opencode mimo-v2.5-pro, and cli-codex gpt-5.6-luna high. Scores presentation-contract fidelity + design quality.",
     "created_at": "2026-07-22T07:00:17.185Z",
-    "last_save_at": "2026-07-22T09:03:02.365Z",
+    "last_save_at": "2026-07-22T09:04:14.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b6d21a7b87da129959f894157a2dc8630f3d912947ffcaebcf381bf4de9c896",
+    "source_fingerprint": "sha256:3eff5252e8131c4923e493fd279cd4aae8698d42126f1d7fa8fde1a08b31a091",
     "source_doc_hashes": {
       "spec.md": "a2da9025f6f4452faa63bfab2f27a32d81240f300283c75e1d5b6aaacb94c46b",
       "plan.md": "b572b9b801faa5d394d6b85b2dbe6c53c72d815c6a69aefac8994b6b56a9f9b8",
       "tasks.md": "8d7adff91a2326fdb3244febacf5bf2e2939082feebeff774fd2c2b50d01b29a",
-      "implementation-summary.md": "b8f7cfafc2bfadc0c01605a2e1e814abf64eeb444b4b464e675668482899d949"
+      "implementation-summary.md": "2d605aafa3754000b0f6845519e081eff6f28890417c9160022d2fed60a5c6ce"
     },
     "last_active_child_id": null,
     "last_active_at": null
