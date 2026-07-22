@@ -1,6 +1,6 @@
 ---
 description: Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.
-argument-hint: "<component-state> [--library] [--register brand|product] [:auto|:confirm]"
+argument-hint: "<component-state> [--library <name>] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 

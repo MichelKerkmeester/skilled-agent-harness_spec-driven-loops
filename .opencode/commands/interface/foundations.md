@@ -1,6 +1,6 @@
 ---
 description: Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.
-argument-hint: "<axis> <target> [--register brand|product] [:auto|:confirm]"
+argument-hint: "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 

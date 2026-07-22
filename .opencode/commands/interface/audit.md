@@ -1,6 +1,6 @@
 ---
 description: Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
-argument-hint: "<target> [--scope] [--score] [--register brand|product] [:auto|:confirm]"
+argument-hint: "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 

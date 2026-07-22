@@ -105,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "The Opus",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,6 +119,12 @@
       {
         "name": "ranked",
         "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Evidence-based deep research (web-enabled, mixed GPT-5.6-SOL-fast + Opus-4.8-max executors) into how leading tools structure design/UI commands, then refactor or re-author the five /interface:* commands to be genuinely useful, tested, and benchmarked — hard-aligned with the sk-doc create-command standard.",
     "created_at": "2026-07-22T04:45:48.388Z",
-    "last_save_at": "2026-07-22T04:51:46.629Z",
+    "last_save_at": "2026-07-22T05:13:59.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9cfa10dd9d853c116bd369d0271afb18ed79338c6ce35dd3961ca7e02ed2c3b1",
+    "source_fingerprint": "sha256:87fae0bb36c46a5b467926b5e361bd1329baf8fb88dfac993cba271dc1682103",
     "source_doc_hashes": {
-      "spec.md": "1273aea0d2beb32cdf73e866b075092bcfce37893a15da23002c95b2a7703c6a",
+      "spec.md": "ae935578940dd4dbcce0669952df7890fe5b4a8ced04926b33aeb25563f76198",
       "plan.md": "947a2f962cd22942197fa9125050c0728df39450980d617e0720623dcab3b4d6",
       "tasks.md": "800eda9f8b53fe66e2d41ea21369048fbcb8843436daac5bff7f7827e55a89cc",
-      "implementation-summary.md": "a65f84a4b016182bcd3193ab7b8e5c09c23aa580650a0edd055cde4531ef9fe1",
+      "implementation-summary.md": "6637fa2f990409137ff50da644c69a8198c15dd4b737b2b7edb2e93855ffbd42",
       "research/research.md": "14a96e3fb12206a2c21dfb78e9e7e91fa01a49038484b1849889a80b119141ca"
     },
     "last_active_child_id": null,

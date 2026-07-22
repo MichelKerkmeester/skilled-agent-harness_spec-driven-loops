@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 009-interface-command-research-refactor |
 | **Level** | 1 |
-| **Status** | In Progress — deep research |
+| **Status** | Complete — research + thin-router refactor + usefulness improvements applied + verified |
 | **Verification** | research.md evidence-cited; refactored commands tested + benchmarked + verified |
 <!-- /ANCHOR:metadata -->
 

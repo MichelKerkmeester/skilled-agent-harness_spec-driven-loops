@@ -133,9 +133,15 @@ invocation.
 
 - **Usefulness improvements are applied** to the presentation assets (executable grounding, brand
   constraints, proof-tier honesty, artifact-first, per-mode rules — all ranked with sources in
-  `research/research.md`). Remaining optional polish: enumerating flag values in the router
-  `argument-hint` lines (the router bodies already enumerate lanes in MODE ROUTING) and a deeper
-  output-ordering restructure inside the workflow YAML.
+  `research/research.md`). The two ranked follow-ups are now resolved: (1) the router `argument-hint`
+  lines enumerate real flag values (`--mode` lanes for design; `<axis>` values for foundations;
+  `--library <name>` for motion; `--scope` dimensions + `--score` toggle for audit; design-reference was
+  already fully specified) — values verified against each command's own example invocations, no invented
+  enums; (2) the "deeper output-ordering restructure in the workflow YAML" was assessed and intentionally
+  not made — the YAML `output:` chain is a data-dependency DAG (grounding → mode_plan → artifact →
+  critique), so it is execution order, not display order; artifact-first is a display concern and is
+  already implemented at the correct layer (the presentation's "Artifact-first output" block, full
+  envelope behind `--evidence full`). Contract test stays 8/8 after the hint enumeration.
 - **`/deep:research` framework bug** (opencode group-kill at iteration dispatch) remains open; research was
   delivered via direct dispatches instead.
 <!-- /ANCHOR:limitations -->
