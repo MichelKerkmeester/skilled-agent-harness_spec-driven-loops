@@ -1,0 +1,460 @@
+{
+  "sessionId": "fanout-luna-xhigh-1784691838667-iv78vk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-07-22T04:55:00.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Concurrent refreshes can lose a generation/policy update",
+      "file": ".opencode/bin/lib/compiled-route-manifest.cjs",
+      "line": 588,
+      "description": "Concurrent refresh calls can overwrite one another after reading the same generation because refresh uses an unlocked plain overwrite.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Refresh implementation and adjacent tests reviewed; no refresh serialization or concurrency assertion exists.",
+      "affectedSurfaceHints": [],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Completion status conflicts with required packet gates",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md",
+      "line": 58,
+      "description": "The packet's complete status conflicts with its own P1 completion protocol because required items and sign-off remain open while canonical planning documents still say planned.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "All canonical packet documents were compared; the contradiction spans status metadata, checklist protocol, task completion, and sign-off.",
+      "affectedSurfaceHints": [],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "SD-015 limitation and follow-up are stale",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md",
+      "line": 208,
+      "description": "The SD-015 test-gap limitation is stale documentation, not missing test coverage.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Directly read the named test block and stale follow-up entry.",
+      "affectedSurfaceHints": [],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Default-on cohort is maintained in multiple independently edited sources",
+      "file": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      "line": 34,
+      "description": "A future cohort change can update one source while leaving another stale; current tests observe but do not prevent this drift.",
+      "findingClass": "synchronization-risk",
+      "deltaStatus": "active",
+      "scopeProof": "The same cohort literal exists in three maintained source surfaces; tests detect divergence only after an edit.",
+      "affectedSurfaceHints": [],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness: per-hub routing and parity invariants",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Concurrent refreshes can lose a generation/policy update",
+      "file": ".opencode/bin/lib/compiled-route-manifest.cjs",
+      "line": 588,
+      "description": "Concurrent refresh calls can overwrite one another after reading the same generation because refresh uses an unlocked plain overwrite.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Refresh implementation and adjacent tests reviewed; no refresh serialization or concurrency assertion exists.",
+      "affectedSurfaceHints": [],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Completion status conflicts with required packet gates",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md",
+      "line": 58,
+      "description": "The packet's complete status conflicts with its own P1 completion protocol because required items and sign-off remain open while canonical planning documents still say planned.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "All canonical packet documents were compared; the contradiction spans status metadata, checklist protocol, task completion, and sign-off.",
+      "affectedSurfaceHints": [],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "SD-015 limitation and follow-up are stale",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md",
+      "line": 208,
+      "description": "The SD-015 test-gap limitation is stale documentation, not missing test coverage.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Directly read the named test block and stale follow-up entry.",
+      "affectedSurfaceHints": [],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Default-on cohort is maintained in multiple independently edited sources",
+      "file": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      "line": 34,
+      "description": "A future cohort change can update one source while leaving another stale; current tests observe but do not prevent this drift.",
+      "findingClass": "synchronization-risk",
+      "deltaStatus": "active",
+      "scopeProof": "The same cohort literal exists in three maintained source surfaces; tests detect divergence only after an edit.",
+      "affectedSurfaceHints": [],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Concurrent refreshes can lose a generation/policy update",
+      "file": ".opencode/bin/lib/compiled-route-manifest.cjs",
+      "line": 588,
+      "description": "Concurrent refresh calls can overwrite one another after reading the same generation because refresh uses an unlocked plain overwrite.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Refresh implementation and adjacent tests reviewed; no refresh serialization or concurrency assertion exists.",
+      "affectedSurfaceHints": [],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Completion status conflicts with required packet gates",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md",
+      "line": 58,
+      "description": "The packet's complete status conflicts with its own P1 completion protocol because required items and sign-off remain open while canonical planning documents still say planned.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "All canonical packet documents were compared; the contradiction spans status metadata, checklist protocol, task completion, and sign-off.",
+      "affectedSurfaceHints": [],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "SD-015 limitation and follow-up are stale",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md",
+      "line": 208,
+      "description": "The SD-015 test-gap limitation is stale documentation, not missing test coverage.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Directly read the named test block and stale follow-up entry.",
+      "affectedSurfaceHints": [],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Default-on cohort is maintained in multiple independently edited sources",
+      "file": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+      "line": 34,
+      "description": "A future cohort change can update one source while leaving another stale; current tests observe but do not prevent this drift.",
+      "findingClass": "synchronization-risk",
+      "deltaStatus": "active",
+      "scopeProof": "The same cohort literal exists in three maintained source surfaces; tests detect divergence only after an edit.",
+      "affectedSurfaceHints": [],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

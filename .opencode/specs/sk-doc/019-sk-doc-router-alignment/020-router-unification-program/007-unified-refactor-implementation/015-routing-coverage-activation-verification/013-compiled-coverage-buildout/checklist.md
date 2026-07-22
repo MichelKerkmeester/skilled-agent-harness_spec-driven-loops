@@ -55,7 +55,7 @@ FAILURE MODES:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-**COMPLETE.** This checklist was authored before build-out started (all items unchecked, "not yet run"). This reconciliation pass (2026-07-21) fills in real evidence for all 6 shipped commits (`f19ee17179`, `e56361ee53`, `f9f639674b`, `b03b1dd882`, `6ba5f2957f`, `7dfffa0c93`) and directly re-confirms the packet's central claims live rather than only citing commit messages: all 7 hubs `compiled-serving` and `fresh` via `compiled-route-status.cjs`, both `resolve.cjs` copies byte-identical, the 3 frozen scorer SHA-256 digests unchanged, the 258/258 skill-benchmark suite green, and 2 of 7 hubs' route-gold parity independently re-run and matched exactly. Items left unchecked below are genuine open follow-ups (advisor-side cohort, SD-015 lock-in test, LUNA-HIGH full sweep, cross-doc sync with the frozen planning docs), not failures.
+**COMPLETE.** This checklist was authored before build-out started (all items unchecked, "not yet run"). This reconciliation pass (2026-07-21) fills in real evidence for all 6 shipped commits (`f19ee17179`, `e56361ee53`, `f9f639674b`, `b03b1dd882`, `6ba5f2957f`, `7dfffa0c93`) and directly re-confirms the packet's central claims live rather than only citing commit messages: all 7 hubs `compiled-serving` and `fresh` via `compiled-route-status.cjs`, both `resolve.cjs` copies byte-identical, the 3 frozen scorer SHA-256 digests unchanged, the 258/258 skill-benchmark suite green, and 2 of 7 hubs' route-gold parity independently re-run and matched exactly. Items left unchecked below are genuine open follow-ups (the full 7-hub LUNA-HIGH acceptance sweep — CHK-025; the parent `findings-traceability.md` sync — CHK-041; and the optional P2 plan.md diagram check — CHK-103), not failures. The advisor-side cohort, the SD-015 lock-in test, and cross-doc sync with the planning docs were all resolved subsequently (the latter two in the review-remediation pass).
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -120,7 +120,7 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec.md, plan.md, tasks.md, checklist.md, and decision-record.md stay synchronized as phases complete — Partial: checklist.md and implementation-summary.md now reflect COMPLETE; `spec.md`'s status header still reads "planned" (out of this reconciliation pass's explicit scope — only checklist.md/implementation-summary.md/handover.md were authorized for edits)
+- [x] CHK-040 [P1] spec.md, plan.md, tasks.md, checklist.md, and decision-record.md stay synchronized as phases complete — Verified; all five carry `status: "complete"` and `completion_pct: 100`. spec.md and implementation-summary.md were reconciled earlier; plan.md, tasks.md, and decision-record.md were reconciled in the review-remediation pass to match the shipped reality (7/7 hubs compiled-serving, parity 49/49)
 - [ ] CHK-041 [P1] `findings-traceability.md` (parent 015 folder) kept current per the goal doc's Part E — Not verified in this pass; parent-level doc, out of this reconciliation's scope (this pass touches only the 013 and 011 child folders)
 - [x] CHK-042 [P2] Per-hub `SKILL.md` default-on directive wording reviewed for consistency across all 7 hubs — Verified; identical wording pattern directly confirmed live across all 7 `SKILL.md` files during this reconciliation pass
 <!-- /ANCHOR:docs -->
@@ -145,7 +145,7 @@ FAILURE MODES:
 | P1 Items | 17 | 13/17 |
 | P2 Items | 5 | 4/5 |
 
-**Verification Date**: 2026-07-21 — reconciliation pass. Direct live re-confirmation (not only commit-message citation): `compiled-route-status.cjs` across all 7 hubs, the `SPECKIT_COMPILED_ROUTING=0` kill-switch drilled live across all 7 hubs, `compiled-route-sync.cjs --verify`, byte-identical resolver diff, frozen-scorer SHA-256 re-hash, `node --check` across 41 `.cjs` files, the 258/258 skill-benchmark Vitest suite, and 2 hubs' route-gold parity independently re-run (sk-doc 32/0, sk-prompt 5/0). Remaining unchecked items are genuine open follow-ups (advisor-side cohort, SD-015 lock-in test, full 7-hub LUNA-HIGH sweep, cross-doc sync with the frozen planning docs) or optional P2 items not exercised in this pass.
+**Verification Date**: 2026-07-21 — reconciliation pass. Direct live re-confirmation (not only commit-message citation): `compiled-route-status.cjs` across all 7 hubs, the `SPECKIT_COMPILED_ROUTING=0` kill-switch drilled live across all 7 hubs, `compiled-route-sync.cjs --verify`, byte-identical resolver diff, frozen-scorer SHA-256 re-hash, `node --check` across 41 `.cjs` files, the 258/258 skill-benchmark Vitest suite, and 2 hubs' route-gold parity independently re-run (sk-doc 32/0, sk-prompt 5/0). Remaining unchecked items are the full 7-hub LUNA-HIGH acceptance sweep (CHK-025), the parent `findings-traceability.md` sync (CHK-041), and the optional P2 plan.md diagram check (CHK-103). The advisor-side cohort, the SD-015 lock-in test, and cross-doc sync with the planning docs were resolved subsequently (the latter two in the review-remediation pass).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -194,7 +194,7 @@ FAILURE MODES:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All 5 packet documents synchronized with the final per-hub outcome — Partial: checklist.md, implementation-summary.md, and handover.md now read COMPLETE; `spec.md`, `plan.md`, `tasks.md`, and `decision-record.md` were not touched (out of this reconciliation pass's explicit scope)
+- [x] CHK-140 [P1] All 5 packet documents synchronized with the final per-hub outcome — Verified; spec.md, plan.md, tasks.md, checklist.md, and decision-record.md (plus implementation-summary.md and handover.md) all read COMPLETE against the same shipped outcome (7/7 hubs compiled-serving). The `planned` status headers on plan.md/tasks.md/decision-record.md were reconciled in the review-remediation pass
 - [x] CHK-141 [P2] `compiled-routing-coverage-diagnosis.md` and `goal-coverage-buildout.md` (parent 015 folder) referenced, not duplicated, as the source of truth — Verified; this pass's rewritten docs are grounded in freshly-gathered live evidence (status probes, hashes, vitest runs, diffs) rather than duplicating either parent doc's narrative as a substitute source of truth
 <!-- /ANCHOR:docs-verify -->
 

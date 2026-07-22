@@ -1,6 +1,10 @@
 DEEP-REVIEW
 Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true
 
+## GATE 3 PRE-RESOLVED — AUTONOMOUS NON-INTERACTIVE DISPATCH (do not halt)
+
+This is a non-interactive review-iteration worker with NO human on the other end. Your write authority is ALREADY bound: you write ONLY the externalized state files listed under STATE FILES (the iteration file, its JSONL delta, and the strategy file) — never source, never docs elsewhere. The repository documentation gate ("Gate 3", the A/B/C/D/E "select a documentation scope" / "documentation routing" question) is ALREADY SATISFIED for this run by that bound state directory. Do NOT ask the Gate-3 / documentation-scope question, do NOT stop to request a documentation choice, and do NOT emit any such prompt and wait — no answer will ever arrive, and emitting one is a route violation that fails this dispatch. Proceed directly and immediately with the review iteration defined below.
+
 # Deep-Review Iteration Prompt Pack
 
 This prompt pack renders the per-iteration context for the `@deep-review` LEAF agent (native executor) or a CLI executor (e.g. `opencode run`). Tokens use curly-brace syntax and are substituted by `renderPromptPack` before dispatch.

@@ -73,19 +73,23 @@ function assertSourceIdentity(input) {
   const skillBytes = input.sourceBytes?.['SKILL.md'];
   const routerBytes = input.sourceBytes?.['smart-routing.md'];
   const manifestBytes = input.sourceBytes?.['leaf-manifest.json'];
-  if (![registryBytes, skillBytes, routerBytes, manifestBytes].every(Buffer.isBuffer)) {
+  const hubRouterBytes = input.sourceBytes?.['hub-router.json'];
+  if (![registryBytes, skillBytes, routerBytes, manifestBytes, hubRouterBytes].every(Buffer.isBuffer)) {
     fail('AUTHORED_SOURCE_BYTES_MISSING', 'all authored source bytes must be supplied');
   }
   let parsedRegistry;
   let parsedManifest;
+  let parsedHubRouter;
   try {
     parsedRegistry = JSON.parse(registryBytes.toString('utf8'));
     parsedManifest = JSON.parse(manifestBytes.toString('utf8'));
+    parsedHubRouter = JSON.parse(hubRouterBytes.toString('utf8'));
   } catch (error) {
     fail('AUTHORED_SOURCE_BYTES_INVALID', `authored JSON bytes are invalid: ${error.message}`);
   }
   if (canonicalize(parsedRegistry) !== canonicalize(input.registry)
     || canonicalize(parsedManifest) !== canonicalize(input.leafManifest)
+    || canonicalize(parsedHubRouter) !== canonicalize(input.hubRouter)
     || skillBytes.toString('utf8') !== input.skillMarkdown
     || routerBytes.toString('utf8') !== input.smartRoutingMarkdown) {
     fail('AUTHORED_SOURCE_IDENTITY_MISMATCH', 'parsed inputs do not match hashed authored bytes');
@@ -264,6 +268,60 @@ function detectorGraph(registry, destinations) {
   detectors.sort((left, right) => compareText(left.id, right.id));
   selectors.sort((left, right) => compareText(left.id, right.id));
   return { detectors, selectors };
+}
+
+// Union every keyword hub-router.json assigns to a mode's classes (plus any
+// keywords authored directly on the signal), unfiltered by cross-mode overlap.
+// This mirrors the frozen legacy replay's own hub-router projection exactly
+// (router-replay.cjs's projectHubRouter): each mode scores independently off
+// its own keyword set, so a keyword shared by two modes still counts as a
+// positive signal for both -- never dropped the way the detector-vocabulary
+// ownership filter in detectorGraph() above drops a value once two modes claim
+// it. detectorGraph()'s alias-owned detectors stay untouched: they still back
+// policy.detectors/selectors for policy-card.cjs's human projection, they are
+// just no longer what the live router (canary-router.cjs) scores against.
+function modeVocabulary(hubRouter, workflowMode) {
+  const signal = hubRouter.routerSignals[workflowMode];
+  const words = new Set();
+  for (const className of signal.classes || []) {
+    const vocabulary = hubRouter.vocabularyClasses[className];
+    for (const keyword of (vocabulary && vocabulary.keywords) || []) {
+      words.add(String(keyword).toLowerCase());
+    }
+  }
+  for (const keyword of Array.isArray(signal.keywords) ? signal.keywords : []) {
+    words.add(String(keyword).toLowerCase());
+  }
+  return [...words].sort(compareText);
+}
+
+// The bespoke, hub-specific routing model the compiled router scores against
+// directly (mirrors sk-code's and sk-design's registry-compiler.cjs
+// routingModel). This sits alongside the generic detector/selector policy
+// above rather than replacing it: the policy still carries the authority
+// graph, composition rules, and hashing that policy-card.cjs and the
+// projector read. No bundleRules are built here: unlike sk-code/sk-design,
+// this hub's policy admits only `single` routes (assertSingleRoute in
+// canary-router.cjs; policy-card.cjs's bundleGrammar is `['single']` and
+// compositionRules stays empty), so a near-tied 2+-mode score set asks once
+// rather than routing a bundle the policy does not admit.
+function buildRoutingModel(registry, hubRouter, destinations) {
+  const byMode = new Map(destinations.map((destination) => [destination.id.workflowMode, destination]));
+  const modes = registry.modes.map((mode) => {
+    const signal = hubRouter.routerSignals[mode.workflowMode];
+    return {
+      destinationId: byMode.get(mode.workflowMode).id,
+      keywords: modeVocabulary(hubRouter, mode.workflowMode),
+      weight: signal.weight,
+      workflowMode: mode.workflowMode,
+    };
+  });
+  return {
+    ambiguityDelta: hubRouter.routerPolicy.ambiguityDelta,
+    defaultMode: hubRouter.routerPolicy.defaultMode,
+    modes,
+    tieBreak: [...hubRouter.routerPolicy.tieBreak],
+  };
 }
 
 function compileManifestResources(leafManifest, registry) {
@@ -462,6 +520,7 @@ function fallbackChecklist(registry, skillMarkdown) {
 function compileRegistry(input) {
   assertObject(input, 'compiler input');
   assertObject(input.registry, 'mode registry');
+  assertObject(input.hubRouter, 'hub router');
   assertString(input.registry.skill, 'mode registry skill');
   if (!Array.isArray(input.registry.modes) || input.registry.modes.length === 0) {
     fail('AUTHORED_INPUT_INVALID', 'mode registry must declare modes');
@@ -488,6 +547,7 @@ function compileRegistry(input) {
     fail('DESTINATION_IDENTITY_COLLAPSE', 'compiled destination ids are not unique');
   }
   const selection = detectorGraph(input.registry, destinations);
+  const routingModel = buildRoutingModel(input.registry, input.hubRouter, destinations);
   const sourceHashes = sourceDigests(input.sourceBytes);
   const policyBody = {
     activationGeneration: input.activationGeneration,
@@ -545,6 +605,15 @@ function compileRegistry(input) {
       leafPairs: Object.freeze(selection.leafPairs.map((pair) => Object.freeze(pair))),
       workflowMode: selection.workflowMode,
     }))),
+    routingModel: Object.freeze({
+      ...routingModel,
+      modes: Object.freeze(routingModel.modes.map((mode) => Object.freeze({
+        ...mode,
+        destinationId: Object.freeze(mode.destinationId),
+        keywords: Object.freeze(mode.keywords),
+      }))),
+      tieBreak: Object.freeze(routingModel.tieBreak),
+    }),
     sourceHashes: Object.freeze(sourceHashes),
   });
 }

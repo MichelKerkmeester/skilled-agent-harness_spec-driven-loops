@@ -198,9 +198,11 @@ describe('compiled-routing-parity: flag-state matrix', () => {
     expect(states.invalid.state).toBe('invalid');
     const labels = Object.values(states).map((s: any) => s.state);
     expect(new Set(labels).size).toBe(4);
-    // only an explicit force-on permits compiled serving pre-cutover
+    // Post-cutover both force-on and unset (default) permit compiled serving for an
+    // eligible hub; only force-legacy and invalid fall back to legacy.
     expect(states.one.permitsCompiledWhenEligible).toBe(true);
-    expect(states.unset.permitsCompiledWhenEligible).toBe(false);
+    expect(states.unset.permitsCompiledWhenEligible).toBe(true);
+    expect(states.zero.permitsCompiledWhenEligible).toBe(false);
     expect(states.invalid.permitsCompiledWhenEligible).toBe(false);
   });
 

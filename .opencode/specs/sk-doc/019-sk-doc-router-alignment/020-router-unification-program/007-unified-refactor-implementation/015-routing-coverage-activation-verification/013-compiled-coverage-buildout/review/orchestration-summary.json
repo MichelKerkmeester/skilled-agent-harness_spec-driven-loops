@@ -1,0 +1,118 @@
+{
+  "run_id": "1784691838667-iv78vk",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "luna-xhigh",
+      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/luna-xhigh/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-22T03:43:58.671Z",
+        "end_at_iso": "2026-07-22T04:17:34.920Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:24:00.000Z",
+          "deltaMs": 265080
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:30:00.000Z",
+          "deltaMs": 625080
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:36:00.000Z",
+          "deltaMs": 985080
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:42:00.000Z",
+          "deltaMs": 1345080
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:48:00.000Z",
+          "deltaMs": 1705080
+        }
+      ]
+    },
+    {
+      "label": "sol-high",
+      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/sol-high/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-22T03:43:58.730Z",
+        "end_at_iso": "2026-07-22T04:35:41.344Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 37
+      },
+      "sample": [
+        {
+          "index": 23,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:42:00.000Z",
+          "deltaMs": 258656
+        },
+        {
+          "index": 24,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:42:01.000Z",
+          "deltaMs": 259656
+        },
+        {
+          "index": 25,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:43:00.000Z",
+          "deltaMs": 318656
+        },
+        {
+          "index": 26,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:49:00.000Z",
+          "deltaMs": 678656
+        },
+        {
+          "index": 27,
+          "reason": "after_window",
+          "timestamp": "2026-07-22T04:49:01.000Z",
+          "deltaMs": 679656
+        }
+      ]
+    }
+  ]
+}

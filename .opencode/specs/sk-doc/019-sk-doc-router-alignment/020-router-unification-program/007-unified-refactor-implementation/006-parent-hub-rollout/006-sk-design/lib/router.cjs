@@ -184,8 +184,30 @@ function scoreModes(routingModel, text) {
   })).filter((entry) => entry.score > 0);
 }
 
+// Caller contract: `modes` must already be the ambiguityDelta-filtered
+// contending set (see contendingModes), never the raw positive-score list.
+// An and/plus/then conjunction names two AXES the prompt asked for -- it is
+// not itself evidence that a below-delta co-hit deserves promotion, so this
+// heuristic has to sit on the same co-dominance bar exactBundle uses instead
+// of bypassing it. Given the wrong (unfiltered) list it would force-bundle a
+// mode legacy would have dropped, exactly the compiled-over-legacy drift this
+// contract exists to prevent.
 function clearlySeparateAxes(text, modes) {
   return modes.length === 2 && /\b(?:and|plus|then)\b/.test(text);
+}
+
+// Mirrors router-replay.cjs's selectIntents (the legacy replay's own ambiguity
+// gate): keep only the modes within ambiguityDelta of the top score. Both an
+// authored bundle rule (see exactBundle) and the and/plus/then conjunction
+// heuristic (see clearlySeparateAxes) read this same contending set, never
+// the raw score list -- neither has a textual signal strong enough to justify
+// overriding a clear score winner, so both must only fire when their modes
+// are genuinely co-dominant, the same bar legacy applies before it ever
+// selects more than one intent.
+function contendingModes(scores, ambiguityDelta) {
+  if (scores.length === 0) return [];
+  const top = scores[0].score;
+  return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);
 }
 
 function evaluateCanary(snapshot, input) {
@@ -218,11 +240,12 @@ function evaluateCanary(snapshot, input) {
         ? negative('defer', { reason: 'no-match', recovery: [] })
         : route(snapshot, 'single', [snapshot.routingModel.defaultMode]);
     } else {
-      const bundle = exactBundle(snapshot.routingModel, modes);
+      const contending = contendingModes(scores, snapshot.routingModel.ambiguityDelta);
+      const bundle = exactBundle(snapshot.routingModel, contending);
       if (bundle) {
         decision = route(snapshot, 'orderedBundle', bundle.targetWorkflowModes);
-      } else if (clearlySeparateAxes(text, modes)) {
-        decision = route(snapshot, 'orderedBundle', modes.sort((left, right) => (
+      } else if (clearlySeparateAxes(text, contending)) {
+        decision = route(snapshot, 'orderedBundle', contending.sort((left, right) => (
           order.get(left) - order.get(right)
         )));
       } else if (scores.length === 1
