@@ -1,5 +1,7 @@
 # styles/docs
 
+## 1. OVERVIEW
+
 Human-facing documentation for the styles library.
 
 ## Contents

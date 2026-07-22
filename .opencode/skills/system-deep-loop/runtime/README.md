@@ -51,7 +51,7 @@ The consolidation moved the shared runtime into this peer skill. The MCP tools a
 
 ```bash
 node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs \
-  --spec-folder "specs/my-feature" \
+  --spec-folder "<spec-folder>" \
   --loop-type research \
   --session-id "abc123"
 ```

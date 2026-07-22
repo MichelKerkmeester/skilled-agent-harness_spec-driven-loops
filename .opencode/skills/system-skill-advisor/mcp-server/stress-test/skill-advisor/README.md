@@ -141,7 +141,7 @@ stress scenario
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/stress-test/skill-advisor/README.md
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/mcp-server/stress-test/skill-advisor/README.md
 ```
 
 Expected result: exit code `0`.

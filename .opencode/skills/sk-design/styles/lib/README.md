@@ -1,5 +1,7 @@
 # styles/lib
 
+## 1. OVERVIEW
+
 The importable source code for the styles library. Consumers import through this tree; nothing here is
 generated or mutable.
 

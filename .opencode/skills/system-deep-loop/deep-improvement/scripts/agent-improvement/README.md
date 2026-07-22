@@ -40,7 +40,7 @@ Current state:
                           ▼                           ▼
                 ┌────────────────────┐      ┌────────────────────┐
                 │ generate-profile   │      │ scan-integration   │
-                │ (derivedChecks)    │      │ (mirror/command/   │
+                │ (derivedChecks)    │      │ (mirror, command,  │
                 └─────────┬──────────┘      │  skill surfaces)   │
                           │                 └────────────────────┘
                           ▼

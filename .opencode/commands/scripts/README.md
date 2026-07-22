@@ -121,4 +121,4 @@ The command exits with status `0` only when the fixture produces violations and 
 - [Commands directory](../)
 - [Create command assets](../create/assets/)
 - [Deep command assets](../deep/assets/)
-- [Design command assets](../design/assets/)
+- [Interface command assets](../interface/assets/)

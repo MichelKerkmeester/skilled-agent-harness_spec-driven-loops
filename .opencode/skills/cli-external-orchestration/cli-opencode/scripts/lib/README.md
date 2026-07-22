@@ -50,7 +50,7 @@ Current state:
 ## 3. DIRECTORY TREE
 
 ```text
-scripts/lib/
+lib/
 ├── dispatch-rule-checks.mjs        # hard-rule engine (parse + evaluate)
 ├── dispatch-rule-checks.test.mjs   # node --test coverage for the engine
 ├── dispatch-audit.mjs              # audit trail core (shape + meta + JSONL log)

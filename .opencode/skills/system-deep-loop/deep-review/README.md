@@ -48,7 +48,7 @@ It does not investigate outward knowledge (`deep-research`), perform one-shot co
 
 ```bash
 /deep:review:auto "skill deep-review"
-/deep:review:confirm "specs/005-memory"
+/deep:review:confirm "<spec-folder>"
 ```
 
 The target can be a spec folder path, a skill name, an agent name, a track name or a file set.
@@ -206,7 +206,7 @@ Expected output: zero issues reported.
 | [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
 | [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation and reconstruction |
 | [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
-| [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
+| [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
 | [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
 | [`assets/deep-review-strategy.md`](./assets/deep-review-strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |

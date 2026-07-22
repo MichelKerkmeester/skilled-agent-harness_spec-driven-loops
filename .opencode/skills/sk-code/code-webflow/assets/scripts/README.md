@@ -1,6 +1,6 @@
 ---
 title: "sk code assets webflow scripts: Code README"
-description: "Code-facing README for .opencode/skills/sk-code/assets/webflow/scripts."
+description: "Code-facing README for .opencode/skills/sk-code/code-webflow/assets/scripts."
 trigger_phrases:
   - "sk-code assets/webflow/scripts"
   - "code readme"
@@ -18,7 +18,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-code/assets/webflow/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/sk-code/code-webflow/assets/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -43,7 +43,7 @@ Start with `.opencode/skills/sk-code/SKILL.md` for runtime routing and workflow 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-code/assets/webflow/scripts
+rg --files .opencode/skills/sk-code/code-webflow/assets/scripts
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -58,7 +58,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Feature | What It Does |
 |---|---|
-| Folder boundary | Documents direct code files under `assets/webflow/scripts`. |
+| Folder boundary | Documents direct code files under `code-webflow/assets/scripts`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
@@ -88,7 +88,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-code/assets/webflow/scripts for sk-code and README coverage.
+User request: Check .opencode/skills/sk-code/code-webflow/assets/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current refinement and release-alignment review, with 026 retained as the completed predecessor.
 ```

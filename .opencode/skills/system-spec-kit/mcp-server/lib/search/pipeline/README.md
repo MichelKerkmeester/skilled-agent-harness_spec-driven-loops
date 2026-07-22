@@ -70,7 +70,7 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 ╰─────────┬──────────╯
           ▼
 ┌────────────────────╮
-│ search/pipeline/   │
+│ pipeline           │
 └─────────┬──────────┘
           ▼
 ┌────────────────────╮

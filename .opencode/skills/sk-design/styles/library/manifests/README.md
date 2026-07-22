@@ -1,5 +1,7 @@
 # styles/library/manifests
 
+## 1. OVERVIEW
+
 The flat engine's manifest(s) over the bundle corpus.
 
 ## Contents

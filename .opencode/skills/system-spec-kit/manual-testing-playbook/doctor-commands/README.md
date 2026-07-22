@@ -6,6 +6,8 @@ expected_leaf_resources: []
 
 # 23 — Doctor Commands
 
+## 1. OVERVIEW
+
 Manual testing scenarios for the spec-kit `/doctor` command surface.
 
 ## Scope
@@ -26,13 +28,7 @@ After commit `1b8d4d691` (013 Phase 5 hard cutover), `/doctor:<name>` invocation
 
 ## Harness
 
-Each scenario has a Markdown file (`NNN-doctor-<short-name>.md`) describing the expected behavior, plus a sandbox shell wrapper at `../_sandbox/doctor-commands/scenarios/DOC-NNN-doctor-<short-name>.sh`. Run all scenarios via:
-
-```bash
-bash .opencode/skills/system-spec-kit/manual-testing-playbook/_sandbox/doctor-commands/harness/run_all.sh
-```
-
-Per-scenario fixtures are fetched on demand by `_sandbox/.../harness/fetch-fixtures.sh`. Evidence (logs, captured grep terms) accumulates under `_sandbox/.../evidence/DOC-NNN/`.
+Each scenario has a Markdown file (`NNN-doctor-<short-name>.md`) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, `SKIP` or `UNAUTOMATABLE` verdict. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
 
 ## See Also
 

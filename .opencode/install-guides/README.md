@@ -1343,7 +1343,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | SpecKit  | `/speckit:complete`, `/deep:research`, `/deep:review`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 
-For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skills/system-spec-kit/references/intake-contract.md`](../skills/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:research` now anchors each run to `spec.md` through `spec-check-protocol.md`.
+For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skills/system-spec-kit/references/workflows/intake-contract.md`](../skills/system-spec-kit/references/workflows/intake-contract.md) when packet state still needs repair, and `/deep:research` now anchors each run to `spec.md` through `spec-check-protocol.md`.
 
 ### 16.4 Learning Resources
 

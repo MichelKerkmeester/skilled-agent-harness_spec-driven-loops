@@ -10,7 +10,7 @@ expected_leaf_resources: []
 
 # 24 — Local-LLM memory substrate
 
-## Why this category
+## 1. OVERVIEW
 
 The vitest-style tests in `mcp-server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually behaves correctly** for the AI assistants that depend on it.
 

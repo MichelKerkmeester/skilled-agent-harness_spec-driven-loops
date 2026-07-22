@@ -1,5 +1,7 @@
 # styles/tests/database
 
+## 1. OVERVIEW
+
 Tests for the SQLite database plane (`../../lib/database/`). Uses the built-in `node:sqlite` — no
 `better-sqlite3` dependency.
 

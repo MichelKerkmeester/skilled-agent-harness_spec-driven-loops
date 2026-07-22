@@ -1,5 +1,7 @@
 # D4-R Live — Task-Outcome Usefulness Ablation
 
+## 1. OVERVIEW
+
 The **real** routine-task usefulness measurement for `sk-code`, replacing the old D4 number (which was a *hallucination*-grader proxy: it explicitly does not score correctness, was n=2, and is hard-coded `null` in every post-remediation aggregate).
 
 ## What this measures

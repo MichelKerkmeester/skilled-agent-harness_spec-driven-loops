@@ -8,7 +8,7 @@ trigger_phrases:
 
 # Hook Test Support
 
-## 1. PURPOSE
+## 1. OVERVIEW
 
 `tests/_support/hooks/` contains small harness utilities for hook-focused tests. The helpers make replay tests deterministic by sandboxing filesystem writes and consuming checked-in hook fixtures.
 

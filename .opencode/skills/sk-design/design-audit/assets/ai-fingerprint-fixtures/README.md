@@ -1,5 +1,7 @@
 # AI Fingerprint Fixture Corpus
 
+## 1. OVERVIEW
+
 This corpus gives each AI fingerprint registry row one clean sample and one
 tell-present sample. The registry remains authoritative: each `fixture_id` names
 one directory, and each row's `deterministic_check` maps to one matcher in the

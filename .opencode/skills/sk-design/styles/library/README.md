@@ -1,5 +1,7 @@
 # styles/library
 
+## 1. OVERVIEW
+
 The committed style-corpus **data** and its manifests. This is the content authority — both the flat
 engine and the database indexer read from here.
 

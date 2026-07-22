@@ -1,5 +1,7 @@
 # styles/tests/engine
 
+## 1. OVERVIEW
+
 Tests for the flat-file retrieval engine (`../../lib/engine/`) — the default `legacy` read path.
 
 ## Key files

@@ -1,6 +1,6 @@
 # Local LLM Feature Tests
 
-## Purpose
+## 1. OVERVIEW
 
 This suite validates the documented local embedding runtime behavior against executable Vitest checks. It covers default model/profile selection, profile-keyed sqlite filenames, prefix resolution, offline degradation, and benchmark harnesses for local embedding performance.
 

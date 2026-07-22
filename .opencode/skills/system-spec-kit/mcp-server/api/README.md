@@ -63,7 +63,7 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 Run from the repository root:
 
 ```bash
-npm test -- --run .opencode/skills/system-spec-kit/mcp-server/tests/import-policy.vitest.ts
+npm test -- --run .opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/api/README.md
 ```
 

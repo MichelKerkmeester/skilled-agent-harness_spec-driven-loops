@@ -33,7 +33,7 @@ Current state:
 
 ┌──────────────────┐      ┌─────────────────────┐      ┌──────────────────┐
 │ loop-host.cjs    │ ───▶ │ dispatch-model.cjs  │ ───▶ │ executor CLI     │
-│ (../shared)      │      │ executor router     │      │ opencode/claude/ │
+│ (../shared)      │      │ executor router     │      │ opencode, claude │
 │ router           │      │ read-only default   │      │ opencode             │
 └────────┬─────────┘      └─────────────────────┘      └──────────────────┘
          │
