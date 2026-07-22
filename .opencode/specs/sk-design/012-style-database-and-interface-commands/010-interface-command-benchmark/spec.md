@@ -111,6 +111,15 @@ brief with an equalized instruction set. Result: the v1 "~18× taste gap" **comp
 order-of-magnitude one. Also corrected: mimo's v1 `measured` contrast label was a real overclaim (the "no
 overclaims" claim was false — an explicit v2 proof convention fixed it), and "mimo cheaper" is refuted (cost
 ~equal, $0.0192 vs $0.0200). Corrected verdict + retractions in `review/review-report.md` §V2.
+
+**V3 CORRECTION (blind rubric judgment).** The keyword-count taste proxy was itself replaced (the
+reviewer's other P0): the three v2 artifacts were anonymized + shuffled and scored blind by three
+independent Claude-Opus judges on a 5-dimension rubric. Result — **unanimous** across all three judges, and
+it **inverts the proxy**: **gpt-5.6-luna 24.0/25 (1st) ≳ deepseek-v4-pro 23.3 (2nd) ≫ mimo-v2.5-pro 15.3
+(3rd)**, where the proxy had ranked LUNA *last* and mimo *second*. Two consequences: the keyword proxy is
+unreliable (retire it), and — since the raw cli-codex port won — **design quality tracked the MODEL, not
+the transport**; the native-path advantage is convenience, not a quality ceiling. Still n=1 brief (repeats
++ multi-brief remain P1). Full aggregate + reasoning in `review/review-report.md` §V3.
 <!-- /ANCHOR:review-summary -->
 
 ---

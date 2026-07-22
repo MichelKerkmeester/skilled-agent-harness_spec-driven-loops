@@ -127,3 +127,60 @@ raw codex port, not a large one. **Retract from v1:** the ~18× taste gap, "tast
 overclaims," and "mimo cheaper" — all artifacts of an asymmetric harness. **Still open (P1, not run here):**
 repeats/variance (n=1 per leg) and a blind rubric-scored taste judgment to replace the verbosity-biased
 keyword proxy.
+
+---
+
+# V3 — Blind Rubric Judgment (replaces the keyword-count taste proxy)
+
+> The reviewer's other P0: the keyword-count taste proxy is verbosity-biased and untrustworthy. V3 tests
+> it directly. The three v2 artifacts were **anonymized** (model tells scrubbed) and **shuffled**
+> (A=mimo, B=LUNA, C=deepseek — mapping withheld from the judges), then scored **blind** by **three
+> independent Claude-Opus judges** (a different model family from all three contestants) on a 5-dimension,
+> 1–5 rubric: distinctiveness, coherence, state-completeness, concreteness/buildability, rigor/honesty.
+
+## Aggregate (n=3 judges, unanimous ranking)
+
+| Direction → model | J1 | J2 | J3 | Avg /25 | Blind rank | Keyword-proxy rank (v2) |
+|---|---|---|---|---|---|---|
+| **B → gpt-5.6-luna** (cli-codex, raw port) | 24 | 24 | 24 | **24.0** | **1st** | 3rd (last) |
+| **C → deepseek-v4-pro** (cli-opencode, native) | 23 | 24 | 23 | **23.3** | 2nd | 1st |
+| **A → mimo-v2.5-pro** (cli-opencode, native) | 15 | 15 | 16 | **15.3** | 3rd | 2nd |
+
+All three judges, independently and blind, produced the **identical** ordering: **LUNA ≈ deepseek ≫ mimo**.
+
+## What V3 overturns
+
+1. **The keyword-count taste proxy is not just imprecise — it INVERTED the ranking.** It ranked LUNA
+   *last* (23) where blind design judgment ranks it *first* (24.0); it ranked mimo *second* (46) where
+   judgment ranks it *last* (15.3). Only deepseek's position (proxy 1st → blind 2nd) was roughly right.
+   The proxy rewarded concrete-token *verbosity* and missed *design coherence*. **Retire it as a quality
+   metric** (the reviewer's P0, now empirically confirmed).
+2. **Design quality tracked the MODEL, not the transport.** The raw cli-codex port (gpt-5.6-luna) was
+   judged the best direction on this brief — beating both native cli-opencode legs. So even the v2
+   "native path is a modest design win" is not supported by blind judgment: once prompts are equalized,
+   **model reasoning drove quality more than native-vs-raw transport.** The native path's real value is
+   *convenience* (it auto-resolves the dials), not a quality ceiling.
+3. **Why LUNA won (judges' consensus):** its "Signal Path" concept binds the fixed PR→Review→Cycle→Deploy
+   metric sequence into a four-node pipeline that activates on data — unifying palette, motion, layout,
+   and copy around one idea — and it was the only entry to author empty / first-run / loading / error as
+   four distinct states with per-metric copy, plus the most disciplined proof ledger. deepseek's
+   terminal/CLI direction was a close, highly-rigorous second; mimo's concentric-pulse + sidebar/card-grid
+   was judged the templated AI-default dashboard it claimed to avoid (no error state, thin rigor, one judge
+   flagged process-text leakage).
+
+## Honest scope
+
+- **Still n=1 brief, one run per leg.** This is a robust *method* result (3 blind judges unanimous → the
+  proxy is unreliable, blind rubric is trustworthy) and a robust *single-brief* result (LUNA best here).
+  It is NOT yet a general model ranking — a different brief or repeated runs could reorder the top two
+  (LUNA and deepseek are within ~0.7/25). The **remaining P1** is repeats + multi-brief to test stability.
+- The judges are Claude-Opus (independent of all three contestants), which removes same-family bias but is
+  itself one family; a cross-family judge panel would harden it further.
+
+## Final corrected bottom line (v1 → v2 → v3)
+
+Portable presentation contract (verified, all runs). Proof-tier discipline works when the convention is
+explicit. **Taste ranking, by trustworthy blind judgment on this brief: gpt-5.6-luna ≳ deepseek-v4-pro ≫
+mimo-v2.5-pro** — the opposite of what the keyword proxy said, and driven by model quality, not transport.
+Everything the v1 report concluded about executor ranking was an artifact of an asymmetric harness + a bad
+metric; the corrected record is here.

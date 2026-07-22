@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark"
     last_updated_at: "2026-07-22T12:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ran v2 parity rerun; corrected verdict"
+    recent_action: "Ran blind judge panel; verdict inverted"
     next_safe_action: "Operator reviews the verdict"
     blockers: []
     key_files:
@@ -97,6 +97,11 @@ an inlined raw prompt (codex has no OpenCode command runtime). Each leg ran unde
   the gap was mostly prompt design, not transport; the native path is a modest, not large, design win. It
   also exposed a real v1 overclaim (mimo labeled contrast `measured`) and refuted "mimo cheaper" (cost
   ~equal). Corrected verdict in `review/review-report.md` §V2; v2 evidence in `review/legs-v2/`.
-- Still open (P1): repeats/variance (n=1 per leg) and a blind rubric-scored taste judgment to replace the
-  verbosity-biased keyword proxy.
+- **V3 (blind rubric judgment).** The keyword proxy was replaced: three independent blind Claude-Opus
+  judges scored the anonymized v2 artifacts on a 5-dimension rubric. Unanimous ranking, inverting the
+  proxy: gpt-5.6-luna 24.0/25 > deepseek-v4-pro 23.3 > mimo-v2.5-pro 15.3 (proxy had LUNA last, mimo
+  second). So the proxy is unreliable (retire it), and design quality tracked the MODEL not the transport —
+  the raw codex port won. See `review/review-report.md` §V3.
+- Still open (P1): repeats/variance + multi-brief (V3 is still n=1 brief; LUNA and deepseek are within
+  ~0.7/25, so the top two could reorder on another brief).
 <!-- /ANCHOR:limitations -->
