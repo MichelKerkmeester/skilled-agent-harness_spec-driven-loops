@@ -238,3 +238,63 @@ work, prefer **deepseek** when proof rigor + full state coverage matter most and
 distinctive concept matters most; **avoid mimo** for this command. Transport (native vs raw port) is not
 the deciding factor — the model is. Remaining P1: repeated runs for within-model variance (still 1 run per
 leg per brief) and a cross-*family* judge panel (judges here are all Claude-Opus).
+
+---
+
+# V5 — Cross-Family Judge Panel (is the ranking a Claude-Opus artifact?)
+
+> The remaining validity worry: V3/V4's blind judges were all Claude-Opus (independent of the contestants,
+> but one family). V5 re-scores the SAME anonymized artifacts for BOTH briefs with two **non-Claude** judge
+> families: **GLM-5.2 (z.ai)** — a clean family, shares none with the contestants — and **gpt-5.6-sol
+> (OpenAI, xhigh)** — the strongest available reasoner, but it *shares the OpenAI GPT-5.6 family with the
+> LUNA contestant*, so treat any LUNA-favoring from sol as suspect and read sol's **mimo** placement (which
+> is family-neutral) as the load-bearing signal.
+
+## Full judge matrix (3 families × 2 briefs; scores /25)
+
+| Brief | Judge family | deepseek | gpt-5.6-luna | mimo | Ranking |
+|---|---|---|---|---|---|
+| 1 (empty-state) | Claude-Opus (n=3 avg) | 23.3 | **24.0** | 15.3 | luna > ds > **mimo** |
+| 1 | GLM-5.2 (z.ai) | **24** | 21 | 16 | ds > luna > **mimo** |
+| 1 | gpt-5.6-sol (OpenAI*) | 20 | **24** | 17 | luna > ds > **mimo** |
+| 2 (pricing) | Claude-Opus (n=3 avg) | **24.0** | 21.7 | 19.3 | ds > luna > **mimo** |
+| 2 | GLM-5.2 (z.ai) | **24** | 21 | 16 | ds > luna > **mimo** |
+| 2 | gpt-5.6-sol (OpenAI*) | 21 | **24** | 17 | luna > ds > **mimo** |
+
+\* sol shares a family with the LUNA contestant — discount its LUNA-favoring; its mimo-last is family-neutral.
+
+Overall average across all six judge-configs: **deepseek 22.7 ≈ gpt-5.6-luna 22.6 ≫ mimo 16.8.**
+
+## What V5 establishes
+
+1. **mimo-last is NOT a Claude-Opus artifact — it is unanimous across all three judge families and both
+   briefs (6/6 judge-configs).** No judge from any family ever placed mimo above deepseek or LUNA. This is
+   the single most robust result of the whole benchmark.
+2. **deepseek and gpt-5.6-luna are statistically tied co-leaders (22.7 vs 22.6).** The #1 spot is
+   **judge-family- and brief-dependent**: GLM (z.ai) ranks deepseek first on both briefs; sol (OpenAI)
+   ranks LUNA first on both (plausibly family affinity — the caveat); Opus splits by brief. The *tier
+   structure* is invariant; the *order within the top pair* is not.
+3. **The keyword-count proxy is wrong across every judge family** (it had mimo 2nd, LUNA last). Fully
+   retired, now on the strongest possible evidence.
+4. **Judge-family bias is real but bounded** — it moves the #1/#2 order, never the tier. This is itself a
+   useful methodological finding: for close pairs, report the tier + note the judge/task dependence rather
+   than forcing a single winner.
+
+## Decision-grade verdict (final)
+
+Across **2 briefs × 3 judge families = 6 blind judge-configs** (plus the 4 build-parity rounds v1–v4):
+
+- **Use deepseek-v4-pro or gpt-5.6-luna** for live `/interface:design` — they are co-leaders (dead-even,
+  22.7 vs 22.6); pick deepseek when proof rigor + full state coverage lead, gpt-5.6-luna when a distinctive
+  concept leads. **Avoid mimo-v2.5-pro** for this command — unanimously weakest across every family and
+  brief.
+- **Transport does not gate quality** — the raw cli-codex port (LUNA) is co-top-tier throughout; the native
+  cli-opencode path's value is convenience, not a ceiling.
+- **Retire the keyword-count taste proxy.**
+
+## Remaining open (single P1)
+
+**Within-model variance is still unmeasured** — one run per leg per brief. Everything above is stable across
+*briefs* and *judge families*; the last untested axis is run-to-run noise for the same (model, brief). That
+is the only remaining item to make the deepseek-vs-luna near-tie fully settled — and given they are within
+0.1/25 overall, repeats would most likely confirm "co-leaders, task-dependent" rather than crown one.

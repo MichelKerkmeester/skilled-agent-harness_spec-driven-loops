@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark"
     last_updated_at: "2026-07-22T12:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ran cross-brief generalization test"
+    recent_action: "Ran cross-family judge panel"
     next_safe_action: "Operator reviews the verdict"
     blockers: []
     key_files:
@@ -107,6 +107,12 @@ an inlined raw prompt (codex has no OpenCode command runtime). Each leg ran unde
   deepseek 24.0 > gpt-5.6-luna 21.7 > mimo 19.3. Generalizable finding across both briefs (6 blind
   judge-runs): deepseek ≈ gpt-5.6-luna co-leaders (trading #1 by task) ≫ mimo (consistently last);
   transport does not gate quality; the keyword proxy is wrong on both. See `review/review-report.md` §V4.
-- Still open (P1): repeated runs for within-model variance (1 run per leg per brief) + a cross-*family*
-  judge panel (the judges are all Claude-Opus).
+- **V5 (cross-family judge panel).** Re-scored the same artifacts on both briefs with two non-Claude judge
+  families (GLM-5.2 z.ai; gpt-5.6-sol OpenAI). Across 6 blind judge-configs (2 briefs × 3 families): mimo is
+  last in ALL six (unanimous — not an Opus artifact); deepseek 22.7 ≈ gpt-5.6-luna 22.6 are dead-even
+  co-leaders (#1 judge-family/brief-dependent); the keyword proxy is wrong across every family. See
+  `review/review-report.md` §V5.
+- Only-remaining P1: within-model run-to-run variance (still 1 run per leg per brief). Everything else is
+  now stable across briefs AND judge families; given the ~0.1/25 co-leader tie, repeats would most likely
+  confirm "co-leaders, task-dependent" rather than crown one.
 <!-- /ANCHOR:limitations -->

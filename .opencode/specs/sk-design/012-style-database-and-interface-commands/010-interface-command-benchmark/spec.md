@@ -128,8 +128,17 @@ So the generalizable findings across both briefs (6 blind judge-runs): **deepsee
 co-leaders trading #1 by task** (deepseek skews proof-rigor + state completeness; LUNA skews distinctive
 concept), **mimo-v2.5-pro is consistently the weakest** (unanimously last both briefs), the keyword proxy
 is wrong on both, and **transport does not gate quality** (the raw codex port is co-top-tier on both). Full
-cross-brief table in `review/review-report.md` §V4. Remaining P1: repeated runs (variance) + a cross-family
-judge panel.
+cross-brief table in `review/review-report.md` §V4.
+
+**V5 CROSS-FAMILY (final).** The last validity worry — all V3/V4 judges were Claude-Opus — was closed by
+re-scoring the same artifacts on both briefs with two non-Claude judge families: GLM-5.2 (z.ai) and
+gpt-5.6-sol (OpenAI). Across **6 blind judge-configs (2 briefs × 3 families)**: **mimo is last in ALL six**
+(unanimous — not an Opus artifact), and **deepseek 22.7 ≈ gpt-5.6-luna 22.6 are dead-even co-leaders**, with
+the #1 spot judge-family/brief-dependent (GLM leans deepseek, sol leans LUNA [OpenAI-family caveat], Opus
+splits). The keyword proxy is wrong across every family. **Final verdict: use deepseek-v4-pro or
+gpt-5.6-luna (co-leaders) for `/interface:design`; avoid mimo; transport does not gate quality.** Full
+matrix in `review/review-report.md` §V5. Only-remaining P1: within-model run-to-run variance (1 run per
+leg/brief); given the ~0.1/25 tie, repeats would most likely confirm "co-leaders, task-dependent".
 <!-- /ANCHOR:review-summary -->
 
 ---
