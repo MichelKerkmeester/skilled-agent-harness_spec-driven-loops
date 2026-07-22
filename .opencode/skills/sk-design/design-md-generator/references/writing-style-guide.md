@@ -146,7 +146,7 @@ The front half tells you WHY. The back half tells you WHAT. Neither half works a
 
 ---
 
-## 6. COLOUR NAMING ( 0 )
+## 6. COLOUR NAMING (`## Tokens — Colors`)
 
 In v3 the colour table is **pre-rendered** by `formatters-v3.ts` in the `Name | Value | Token | Role` shape, most-prominent first. You do not hand-author it — but you must understand the naming style, because the Quick Start re-uses these exact slugs and the rest of your prose references colours by their names.
 

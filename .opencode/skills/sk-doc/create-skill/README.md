@@ -38,11 +38,13 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
 
 ## 3. QUICK START
 
+> Run these commands from the repository root.
+
 **Step 1: Scaffold a standalone skill.**
 
 ```bash
 # --path is the PARENT directory. init_skill.py creates <path>/my-skill
-python3 scripts/init_skill.py my-skill --path .opencode/skills
+python3 .opencode/skills/sk-doc/create-skill/scripts/init_skill.py my-skill --path .opencode/skills
 ```
 
 Creates `my-skill/` with `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`.
@@ -50,7 +52,7 @@ Creates `my-skill/` with `SKILL.md`, `README.md`, `references/`, `assets/` and `
 **Step 2: Fill in the real content, then validate.**
 
 ```bash
-python3 scripts/validate_skill_package.py .opencode/skills/my-skill
+python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/my-skill
 ```
 
 Expected output ends with `package_skill.py --check: PASS (exit 0)`.
@@ -58,7 +60,7 @@ Expected output ends with `package_skill.py --check: PASS (exit 0)`.
 **Step 3: Package only after validation passes.**
 
 ```bash
-python3 scripts/package_skill.py .opencode/skills/my-skill <output-directory>
+python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/my-skill <output-directory>
 ```
 
 ---
