@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
   "description": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
   "keywords": [
@@ -13,7 +14,7 @@
     "real",
     "shared"
   ],
-  "lastUpdated": "2026-07-22T12:21:14.363Z",
+  "lastUpdated": "2026-07-22T12:29:01.924Z",
   "specId": "003",
   "folderSlug": "doc-tooling-and-template-fixes",
   "parentChain": [
@@ -22,6 +23,5 @@
     "021-documentation-quality-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

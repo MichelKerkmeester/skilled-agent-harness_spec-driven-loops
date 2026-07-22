@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
     "created_at": "2026-07-22T12:21:14.835Z",
-    "last_save_at": "2026-07-22T12:21:14.835Z",
+    "last_save_at": "2026-07-22T12:29:02.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e426c5afef990265ef9c58741a391ca3202b0f204ba1fc8badb2aa5b3e841f6",
+    "source_fingerprint": "sha256:0bd9bf4e34acfc1c635f9374fc32d41b204b19d2cef23348b1611957260a9e69",
     "source_doc_hashes": {
-      "spec.md": "80e4cba1ac498a9336566bfef4c049428fc87c73d601a41401f0927d4d1c353d",
-      "plan.md": "c91b1910226da29d700578ab131e145537b5af0e425306fd9f495bba855dc67f",
-      "tasks.md": "68f08f53d3e11ffa38d9652707eae401288a42993b9645407e6c82964bcd02b3",
-      "checklist.md": "ec8bb83fa87a37dd94f3da6665ffb27ccabde69a62999a8c0d55c046e3ed52ac",
-      "implementation-summary.md": "b277416683101db05ac583c5d935b8b606751e780cadc1f78bb32f34ff838b50"
+      "spec.md": "2cbfab0acd367dc801867469e127a81329110cef758d56cf17cc60a9aeaa4dcf",
+      "plan.md": "bdc22a5cbee9d4ff8f8e0acb236227217675198a2740baf620d7e3d7518717fb",
+      "tasks.md": "01bb5e420eaae131f4a7963736378414f6b1b7b7305546a3edece6490295a113",
+      "checklist.md": "8d5c783f13b0ea07296d164ed38dfb7f74acc4a1e0f989814137ddd86a79790d",
+      "implementation-summary.md": "65b11a03975fd2c516a3d3f9c03ee566fe3e59484fdd089ac37d041e5397e430"
     },
     "last_active_child_id": null,
     "last_active_at": null

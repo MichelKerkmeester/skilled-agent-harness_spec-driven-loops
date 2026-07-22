@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/003-doc-tooling-and-template-fixes"
-    last_updated_at: "2026-07-22T12:21:14Z"
+    last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "Fixed the validate_document.py symlink path; added two template clarifications."
     next_safe_action: "Proceed to phase 004 (skill/mode README overhaul)."
@@ -138,5 +138,6 @@ Make the documented validator command run from either the symlink or the real pa
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
 - `../spec.md` and `../context-index.md` (the 021 program parent).
+- Previous phase: [`002-reference-asset-template-alignment`](../002-reference-asset-template-alignment/spec.md).
 
 <!-- /ANCHOR:related-docs -->
