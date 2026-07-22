@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scheduler opencode dispatch wiring",
+      "behavior-bench-run LEG_TABLE opencode leg",
+      "cli-opencode dispatch contract benchmark",
+      "plan scheduler opencode dispatch",
+      "runner LEG_TABLE opencode plan",
+      "cli-opencode dispatch wiring plan",
+      "tasks scheduler opencode dispatch",
+      "runner buildSpawnArgs tasks",
+      "cli-opencode leg wiring tasks",
+      "checklist scheduler opencode dispatch",
+      "buildSpawnArgs verification checklist",
+      "cli-opencode leg checklist"
+    ],
+    "key_topics": [
+      "scheduler",
+      "opencode",
+      "dispatch",
+      "wiring",
+      "behavior-bench-run",
+      "leg",
+      "cli-opencode",
+      "contract",
+      "benchmark",
+      "plan",
+      "runner",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behavior-matrix.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Invocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runner `behavior-bench-run.cjs` builds a leg's spawn command from a fixed `LEGTABLE`",
+    "created_at": "2026-07-22T06:16:27.208Z",
+    "last_save_at": "2026-07-22T06:35:11.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3b55eb800409169ab9d327298bc325546cfc4cb01c16469df47ec677bf1ab9d",
+    "source_doc_hashes": {
+      "spec.md": "e4f3e38a29457cebd58e7f4f7d67ad884d9d298657e7ef1744e37a958fb40abb",
+      "plan.md": "258b368aa56cfc17078a0f6e2256785954ae85b462f0ca7040a0b01835cf73af",
+      "tasks.md": "67646d8fb5cfb2a14e603d1ad0921836463f2a1cdbfd3320566feaa50f2e1d5e",
+      "checklist.md": "90cdf26cd772600185151583a8e39924e7782ed0e98cd04f6f1fca9ae279f9e2",
+      "implementation-summary.md": "7e59e7d3b57c959b098cfabe801e4e36e53bdeda56fcb15acafb65a60a336288"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

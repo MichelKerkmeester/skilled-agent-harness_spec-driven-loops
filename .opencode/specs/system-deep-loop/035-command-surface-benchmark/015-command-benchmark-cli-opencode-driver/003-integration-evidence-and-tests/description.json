@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/003-integration-evidence-and-tests",
+  "description": "Children 001 (matrix schema) and 002 (runner dispatch) make the cli-opencode driver leg",
+  "keywords": [
+    "children",
+    "matrix",
+    "schema",
+    "runner",
+    "dispatch",
+    "cli-opencode",
+    "driver",
+    "leg"
+  ],
+  "lastUpdated": "2026-07-22T06:31:54.496Z",
+  "specId": "003",
+  "folderSlug": "integration-evidence-and-tests",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark",
+    "015-command-benchmark-cli-opencode-driver"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

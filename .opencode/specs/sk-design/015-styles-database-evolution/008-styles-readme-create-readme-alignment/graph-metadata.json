@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "styles readme create-readme alignment",
       "expand sk-design readmes to sk-doc standard",
-      "sk-design readme usefulness template"
+      "sk-design readme usefulness template",
+      "styles readme alignment plan",
+      "create-readme sweep plan sk-design",
+      "styles readme alignment tasks",
+      "create-readme sweep task list",
+      "styles readme alignment checklist",
+      "create-readme sweep verification",
+      "styles readme alignment decisions",
+      "create-readme sweep adr",
+      "styles readme alignment summary"
     ],
     "key_topics": [
       "styles",
@@ -27,7 +36,7 @@
       "standard",
       "usefulness",
       "template",
-      "align"
+      "plan"
     ],
     "importance_tier": "standard",
     "status": "planned",
@@ -35,6 +44,7 @@
       ".opencode/skills/sk-design/README.md",
       ".opencode/skills/sk-design/styles/library/README.md",
       ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+      "plan.md",
       ".opencode/skills/sk-design/styles/lib/README.md",
       ".opencode/skills/sk-design/styles/lib/engine/README.md",
       ".opencode/skills/sk-design/styles/lib/database/README.md",
@@ -45,6 +55,10 @@
       ".opencode/skills/sk-design/styles/tests/engine/README.md",
       ".opencode/skills/sk-design/styles/tests/oracle/README.md",
       ".opencode/skills/sk-design/styles/tests/oracle/golden/README.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -61,8 +75,56 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -73,47 +135,99 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "create-readme",
-        "kind": "key_phrase",
+        "name": "Purpose Expand",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. SCOPE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Classify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Expand and align twelve sk-design READMEs (the styles-library folder READMEs plus the sk-design skill-root README) to the sk-doc create-readme template and quality standard. They are currently thin stubs; make each genuinely useful — purpose, contents, usage, key files, architecture fit — without touching code or bundle data.",
+    "causal_summary": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
     "created_at": "2026-07-22T05:45:30.641Z",
-    "last_save_at": "2026-07-22T05:45:30.641Z",
+    "last_save_at": "2026-07-22T06:38:21.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0bbd37456f349b53bdc3ab40dbe9630e690739761c00d1487fb5a3a8b96a4320",
+    "source_fingerprint": "sha256:48a49a90ef38e2bdf2df459cb8eec1e821972e4168f16ede6e7c4d7532696f18",
     "source_doc_hashes": {
-      "spec.md": "d32cb6abc27d45227f6b80446a1922445a6c106e5fde3cb60860f0ee91fb1d90"
+      "spec.md": "b8e0623687b21144084caaa2d30540138e56f9d3c96a1c938f266cbc16473765",
+      "plan.md": "95e708c886550a3dfe6725e1701a012473a1be4df6c326aeb723b1deddace149",
+      "tasks.md": "7d4a93a48a51fae2b3467c60c25d4d383f461e2b3c8bece88e17785c6031c974",
+      "checklist.md": "a5a137c322f7106a4f2982af836882168c8ec9968ea3727ae80cfc864606349c",
+      "decision-record.md": "0252e9e191cf39cbcfc747aeb38bd43607a2a7c571b0bfa3d51fdccf77601207",
+      "implementation-summary.md": "900317583462fb7496fb4abc78eac50afbac2bcf99137c4f664cb3f56eb43329"
     },
     "last_active_child_id": null,
     "last_active_at": null

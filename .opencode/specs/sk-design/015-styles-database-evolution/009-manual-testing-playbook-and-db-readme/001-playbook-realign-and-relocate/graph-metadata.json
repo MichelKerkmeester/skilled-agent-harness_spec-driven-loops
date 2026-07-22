@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
+  "spec_folder": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
+  "parent_id": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles manual testing playbook realign",
+      "create-manual-testing-playbook conformance styles",
+      "relocate styles playbook out of docs",
+      "styles playbook relocate plan",
+      "create-manual-testing-playbook package plan",
+      "styles playbook category grouping",
+      "styles playbook relocate tasks",
+      "create-manual-testing-playbook task breakdown",
+      "styles playbook per-feature files",
+      "styles playbook relocate checklist",
+      "create-manual-testing-playbook verification checklist",
+      "styles playbook release readiness"
+    ],
+    "key_topics": [
+      "styles",
+      "manual",
+      "testing",
+      "playbook",
+      "realign",
+      "create-manual-testing-playbook",
+      "conformance",
+      "relocate",
+      "docs",
+      "plan",
+      "package",
+      "category"
+    ],
+    "importance_tier": "standard",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/styles/tests/README.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      "spec.md",
+      "checklist.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/styles/docs/README.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Manual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rewrite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Convert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Playbook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The styles manual-testing playbook lives at `.opencode/skills/sk-design/styles/docs/manual-testing-playbook.md` (~49 lines, version `1.0.0.0`)",
+    "created_at": "2026-07-22T06:16:26.461Z",
+    "last_save_at": "2026-07-22T06:31:55.611Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9a51c4a82220c037904e117ee18324f729b74b05ffed0e4b65a04548ab11cf1",
+    "source_doc_hashes": {
+      "spec.md": "9fcecd5a427f45a14376d8360ace85ab971dccd8aac048b30dc37e28a3910f57",
+      "plan.md": "01c6c2b591b4203bf23c2f4b9506d1453e4a810a05c61f15a2a9841e198bd4d1",
+      "tasks.md": "d765644291d30d32e5973c1765777ccb2fe0015cdc1e76eb14a1a460f58b9019",
+      "checklist.md": "64bd3313672f61716b6c4751b68dbf802d77e4c0fe136b6a15abd179ccfce4d9",
+      "implementation-summary.md": "a11d22346f8c6a679491f1a20632e6ca084d361fe15d02a1c542b2d86b54b844"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

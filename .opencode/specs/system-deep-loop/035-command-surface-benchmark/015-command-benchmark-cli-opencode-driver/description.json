@@ -1,7 +1,10 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
-  "description": "Add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios can run under cli-opencode executors (e.g.",
+  "description": "Phase-parent packet: add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios run under cli-opencode executors",
   "keywords": [
+    "phase-parent",
+    "packet",
     "cli-opencode",
     "driver",
     "leg",
@@ -13,7 +16,7 @@
     "run",
     "executors"
   ],
-  "lastUpdated": "2026-07-22T05:45:12.173Z",
+  "lastUpdated": "2026-07-22T06:15:51.696Z",
   "specId": "015",
   "folderSlug": "command-benchmark-cli-opencode-driver",
   "parentChain": [
@@ -21,6 +24,5 @@
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

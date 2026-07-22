@@ -3,7 +3,11 @@
   "packet_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
   "spec_folder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
   "parent_id": "system-deep-loop/035-command-surface-benchmark",
-  "children_ids": [],
+  "children_ids": [
+    "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/001-driver-leg-and-matrix-schema",
+    "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+    "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/003-integration-evidence-and-tests"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,23 +15,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark cli-opencode driver",
+      "command benchmark cli-opencode driver parent",
       "add cli-opencode leg to command benchmark",
-      "deep command-benchmark opencode executor"
+      "deep command-benchmark opencode executor phases"
     ],
     "key_topics": [
       "command",
       "benchmark",
       "cli-opencode",
       "driver",
+      "parent",
       "leg",
       "deep",
       "command-benchmark",
       "opencode",
       "executor",
-      "command-surface",
-      "behavior",
-      "scenarios"
+      "phases",
+      "phase-parent"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -63,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -93,23 +91,29 @@
         "source": "derived"
       },
       {
-        "name": "4. REQUIREMENTS",
+        "name": "4. PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. PHASE TRANSITION & HANDOFF",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios can run under cli-opencode executors (e.g. deepseek-v4-pro, mimo-v2.5-pro), alongside the existing frozen claude-cli and gpt-fast legs. Touches the behavior-matrix driver config and its scheduler; honors cli-opencode dispatch rules. Runtime-affecting.",
+    "causal_summary": "Phase-parent packet: add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios run under cli-opencode executors alongside the frozen claude-cli and gpt-fast legs. Decomposed into three Level-2 phases — matrix/driver-leg schema, scheduler dispatch wiring, and integration/evidence/tests. Runtime-affecting.",
     "created_at": "2026-07-22T05:45:31.136Z",
-    "last_save_at": "2026-07-22T05:45:31.136Z",
+    "last_save_at": "2026-07-22T06:33:12.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e19ce21c78797e38febe0f9afe4d51e91c89f3d9654c9e695bb553bb4316558e",
+    "source_fingerprint": "sha256:dce110443ee09098db5c918bfd168a4ce170c2353acd5e45f433f4cafa090c43",
     "source_doc_hashes": {
-      "spec.md": "ae3f218e7197f28902097a71bf3d6f016d37332d162a32da76792f7b52f13193"
+      "spec.md": "89311826336523d8e7038323e77bf4a676a7409b22c7bcaa21170b48ef18cd65"
     },
     "last_active_child_id": null,
     "last_active_at": null

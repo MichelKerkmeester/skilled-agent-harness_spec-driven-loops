@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme/002-database-readme-speckit-alignment",
+  "description": "`.opencode/skills/sk-design/styles/database/README.md` is a 3-line stub:",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "styles",
+    "database",
+    "readme",
+    "3-line",
+    "stub"
+  ],
+  "lastUpdated": "2026-07-22T06:31:41.491Z",
+  "specId": "002",
+  "folderSlug": "database-readme-speckit-alignment",
+  "parentChain": [
+    "sk-design",
+    "015-styles-database-evolution",
+    "009-manual-testing-playbook-and-db-readme"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

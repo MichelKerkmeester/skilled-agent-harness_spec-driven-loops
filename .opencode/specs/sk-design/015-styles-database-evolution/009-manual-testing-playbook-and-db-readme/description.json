@@ -1,19 +1,17 @@
 {
+  "level": "1",
   "specFolder": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme",
-  "description": "Bring the styles manual-testing playbook into conformance with the sk-doc create-manual-testing-playbook standard and move it out of docs/ into its",
+  "description": "Phase-parent packet: realign two off-canon styles-library documents.",
   "keywords": [
-    "bring",
-    "styles",
-    "manual-testing",
-    "playbook",
-    "conformance",
-    "sk-doc",
-    "create-manual-testing-playbook",
-    "standard",
-    "move",
-    "docs"
+    "phase-parent",
+    "packet",
+    "realign",
+    "two",
+    "off-canon",
+    "styles-library",
+    "documents"
   ],
-  "lastUpdated": "2026-07-22T05:44:35.578Z",
+  "lastUpdated": "2026-07-22T06:11:55.292Z",
   "specId": "009",
   "folderSlug": "manual-testing-playbook-and-db-readme",
   "parentChain": [
@@ -21,6 +19,5 @@
     "015-styles-database-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

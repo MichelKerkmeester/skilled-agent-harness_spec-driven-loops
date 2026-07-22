@@ -1,21 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-design/015-styles-database-evolution/008-styles-readme-create-readme-alignment",
-  "description": "Expand and align twelve sk-design READMEs (the styles-library folder READMEs plus the sk-design skill-root README) to the sk-doc create-readme",
+  "description": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
   "keywords": [
-    "expand",
-    "align",
-    "twelve",
-    "sk-design",
-    "readmes",
-    "styles-library",
+    "007-styles-folder-readmes",
+    "packet",
+    "gave",
+    "every",
+    "styles",
     "folder",
-    "plus",
-    "skill-root",
     "readme",
-    "sk-doc",
-    "create-readme"
+    "minimal",
+    "stubs"
   ],
-  "lastUpdated": "2026-07-22T05:44:07.618Z",
+  "lastUpdated": "2026-07-22T06:38:08.885Z",
   "specId": "008",
   "folderSlug": "styles-readme-create-readme-alignment",
   "parentChain": [
@@ -23,6 +21,5 @@
     "015-styles-database-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
