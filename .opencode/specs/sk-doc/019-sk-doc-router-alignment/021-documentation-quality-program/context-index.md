@@ -6,7 +6,7 @@ Per-phase cross-reference for the `021-documentation-quality-program` phase pare
 |---|---|---|
 | `001-json-cleanup-and-conventions` | complete | Removed `sk-prompt/prompt-models/description.json`; added recursive rule 2b to `parent-skill-check.cjs`; codified the advisor-metadata placement rule in the doctrine and AGENTS.md |
 | `002-reference-asset-template-alignment` | complete | 3 flagged create-skill reference/asset files conformed to ALL-CAPS headers + frontmatter; all three VALID. `h2UppercaseRequired` flip + deep HVR pass deferred (would fail 41 repo-wide offenders) |
-| `003-doc-tooling-and-template-fixes` | planned | `validate_document.py` path bug; `skill-readme-template.md` clarifications; document `audit_readmes.py` |
+| `003-doc-tooling-and-template-fixes` | complete | Fixed `validate_document.py` symlink path (4 sites, `.resolve()`); added 2 `skill-readme-template.md` clarifications + version bump. `audit_readmes.py` doc deferred to its phase-005 code README |
 | `004-skill-mode-readme-overhaul` | planned | 13 bare READMEs rewritten; 2 structural-drift READMEs restructured |
 | `005-code-readmes-infra-and-sk` | planned | Code READMEs: small-infra hubs + sk-doc/sk-code |
 | `006-code-readmes-design-prompt-speckit` | planned | Code READMEs: sk-design, sk-prompt, system-spec-kit |

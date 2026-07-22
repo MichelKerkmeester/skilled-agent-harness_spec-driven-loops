@@ -185,7 +185,7 @@ def load_template_rules(script_dir: Path) -> Dict[str, Any]:
 
 def load_rules() -> Dict[str, Any]:
     """Load template rules for callers importing the validator module."""
-    return load_template_rules(Path(__file__).parent)
+    return load_template_rules(Path(__file__).resolve().parent)
 
 
 def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
@@ -662,7 +662,7 @@ def apply_fixes(content: str, errors: List[Dict[str, Any]]) -> Tuple[str, List[D
         # Re-validate to get updated error list with new line content
         # This allows subsequent fixes to find the modified lines
         # Re-run validation on the fixed content to get fresh errors
-        script_dir = Path(__file__).parent
+        script_dir = Path(__file__).resolve().parent
         rules = load_template_rules(script_dir)
 
         # Detect doc type from original errors or default to readme
@@ -998,7 +998,7 @@ def validate_document(
             }
 
     if rules is None:
-        script_dir = Path(__file__).parent
+        script_dir = Path(__file__).resolve().parent
         rules = load_template_rules(script_dir)
 
     try:
@@ -1083,7 +1083,7 @@ def main() -> None:
     args = parser.parse_args()
 
     # Load rules
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).resolve().parent
     rules = load_template_rules(script_dir)
 
     # Validate document

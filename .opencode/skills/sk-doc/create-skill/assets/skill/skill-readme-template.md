@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.8.0.5
+version: 1.8.0.6
 ---
 
 # Skill README Template
@@ -67,6 +67,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 
 - Lead with the reader. The pitch and the OVERVIEW state the problem the skill solves before any feature list.
 - Carry the explanation in prose. Reach for a table only when 4 or more parallel items need a lookup grid (skill relationships, CLI flags, a comparison).
+- A short, concrete analogy can carry an abstract mechanism better than adjectives (the repo root README uses "like a lab notebook for software", "like a triage nurse"). Use one only where it clarifies, never as decoration.
 - Put the AT A GLANCE table first. Four rows, one line each, no prose cells.
 - Name the canonical command or entry point in OVERVIEW or QUICK START so a reader knows where to start.
 - Link to real files under `references/`, `assets/`, `scripts/`, `feature-catalog/` or `manual-testing-playbook/`. Verify each path resolves.
@@ -217,6 +218,8 @@ A: [A short, direct answer. Link a stable file when it helps.]
 - [ ] Optional sections without real content were removed and the rest renumbered.
 - [ ] HVR passes: no em dashes, semicolons, Oxford commas, banned words or setup phrases, and no forced three-item groups.
 - [ ] `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
+
+> The script above is a floor, not a proxy for this checklist. It only enforces a numbered ALL-CAPS H2 named "overview". It does not check the pitch, the `AT A GLANCE` table, `HOW IT WORKS`, or HVR. A green run means the file cleared the floor, not that it passed the ten checks above.
 
 ---
 
