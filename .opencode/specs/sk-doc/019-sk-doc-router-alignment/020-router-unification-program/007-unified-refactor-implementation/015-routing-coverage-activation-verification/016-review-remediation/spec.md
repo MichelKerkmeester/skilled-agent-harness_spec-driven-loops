@@ -13,7 +13,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation"
-    last_updated_at: "2026-07-22T06:39:39Z"
+    last_updated_at: "2026-07-22T06:53:44Z"
     last_updated_by: "claude"
     recent_action: "Remediated all 8 findings and re-verified invariants; conformed spec to the Level-2 template."
     next_safe_action: "Operator sign-off; merge to v4 remains operator-gated."
@@ -72,7 +72,7 @@ The eight confirmed findings in section 4 (WS-1 through WS-4 in `plan.md`): F001
 - The three frozen scorer files.
 - The two pre-existing strays (`mcp-tooling/008-mcp-aside`, `system-deep-loop/032`).
 - The pre-existing v4 `verify-runtime-engine` and Lane-C failures (documented pre-existing on origin/v4, unrelated).
-- Expanding F005's word-boundary fix beyond sk-doc (latent in other hubs; surfaced as a follow-up, not taken).
+- Expanding F005's word-boundary fix beyond sk-doc (verified unnecessary: no parity divergence in other hubs against the frozen oracle).
 
 <!-- /ANCHOR:scope -->
 ---
@@ -157,7 +157,7 @@ These release-branch invariants must hold throughout:
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Whether to expand the F005 word-boundary fix fleet-wide (latent in other hubs) is an operator scope decision, surfaced not taken.
+- F005 fleet-wide expansion: verified unnecessary. The substring pattern exists in other hubs' routers but produces no parity divergence against the frozen oracle (`lcp`/`inp`/`cls` are keywords nowhere; sk-code, the only other hub with `review`, defers on substring-only `review`, matching legacy). Only sk-doc diverged, and it is fixed.
 - Formal operator sign-off on the 013 reconciliation and the remaining P1 follow-up (CHK-025 LUNA sweep) is the operator's to grant.
 
 <!-- /ANCHOR:questions -->

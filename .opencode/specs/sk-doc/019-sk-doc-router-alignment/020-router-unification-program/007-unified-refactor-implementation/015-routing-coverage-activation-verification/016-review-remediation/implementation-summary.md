@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation"
-    last_updated_at: "2026-07-22T06:39:39Z"
+    last_updated_at: "2026-07-22T06:53:44Z"
     last_updated_by: "claude"
     recent_action: "Remediated all 8 confirmed deep-review findings; re-verified every release invariant."
     next_safe_action: "Operator sign-off; merge to v4 remains operator-gated."
@@ -139,6 +139,6 @@ Each code fix ran test-first: a failing regression proved the defect (compiled r
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **F005 is scoped to sk-doc.** The `.includes()` versus word-boundary pattern exists in every hub's generated router, so other hubs (for example sk-code and mcp-tooling) carry the same latent divergence for the `{review, lcp, inp, cls}` tokens. The curated 49-scenario parity set does not currently exercise a `preview`-style probe for them, so it stays latent. Expanding the fix fleet-wide is a scope decision for the operator, surfaced here rather than taken silently.
+1. **F005 is scoped to sk-doc, and that scope is verified sufficient.** The `.includes()` versus word-boundary pattern exists in every hub's generated router, but a direct check against the frozen legacy oracle (`routeSkillResources`) shows it produces no parity divergence anywhere else. `lcp`, `inp`, and `cls` are keywords in no hub, and `review` is a keyword only in sk-code and sk-doc. sk-doc is fixed; sk-code already defers on substring-only `review` probes (its single-keyword match never crosses the route threshold), matching legacy. Only sk-doc's config gave a lone `review` match enough weight to tip the action, which is why it was the one real divergence. No fleet-wide expansion is warranted.
 2. **Merge to v4 is operator-gated.** All work sits on branch `sk-doc/0089-default-routing-cutover`; no merge has occurred.
 <!-- /ANCHOR:limitations -->
