@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/000-program-merge-design",
+  "description": "The sk-design program's history is scattered across 8 top-level packets with a duplicate `016` (`016-hallmark-adoption` +",
+  "keywords": [
+    "sk-design",
+    "program",
+    "history",
+    "scattered",
+    "across",
+    "top-level",
+    "packets",
+    "duplicate",
+    "016-hallmark-adoption"
+  ],
+  "lastUpdated": "2026-07-22T15:59:56.582Z",
+  "specId": "000",
+  "folderSlug": "program-merge-design",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
