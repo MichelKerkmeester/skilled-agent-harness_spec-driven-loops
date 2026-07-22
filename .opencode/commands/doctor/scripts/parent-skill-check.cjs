@@ -973,8 +973,13 @@ function main() {
   if (!fs.existsSync(leafManifestPath)) {
     info('10: hub has no leaf-manifest.json — leaf-resource contract guards do not apply');
   } else {
-    const generatorPath = path.join(target, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-    const contractLibPath = path.join(target, 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+    // The leaf-resource generator and contract library are shared tooling that
+    // lives canonically under sk-doc, not inside every hub. A hub can carry a
+    // leaf-manifest.json without owning the create-skill authoring mode, so
+    // resolve the generator from the canonical location rather than from target.
+    const canonicalManifestScripts = path.join(path.dirname(target), 'sk-doc', 'create-skill', 'scripts');
+    const generatorPath = path.join(canonicalManifestScripts, 'generate-leaf-manifest.cjs');
+    const contractLibPath = path.join(canonicalManifestScripts, 'lib', 'leaf-resource-contract.cjs');
 
     // 10a: manifest-source — the registry declares a contract version and the
     // committed manifest is present, readable JSON in the expected shape.
@@ -1001,7 +1006,7 @@ function main() {
     let contractLib = null;
     let generatorLib = null;
     if (!fs.existsSync(generatorPath) || !fs.existsSync(contractLibPath)) {
-      sourceIssues.push('the leaf-resource contract library/generator is missing under create-skill/scripts/');
+      sourceIssues.push('the shared leaf-resource contract library/generator is missing under sk-doc/create-skill/scripts/');
     } else {
       try {
         // eslint-disable-next-line global-require, import/no-dynamic-require

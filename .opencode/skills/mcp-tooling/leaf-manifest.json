@@ -26,7 +26,7 @@
     {
       "leaves": [
         "references/cupt-commands.md",
-        "references/INSTALL-GUIDE.md",
+        "references/install-guide.md",
         "references/mcp-tools.md",
         "references/troubleshooting.md"
       ],

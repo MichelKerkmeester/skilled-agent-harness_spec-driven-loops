@@ -1,6 +1,7 @@
 {
   "skill": "sk-code",
   "version": "4.1.0.0",
+  "resourceContractVersion": 1,
   "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (quality/code-review) is process; the SURFACE axis (code-webflow/code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
