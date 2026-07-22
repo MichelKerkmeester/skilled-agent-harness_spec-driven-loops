@@ -12,7 +12,9 @@
     "sk-design/012-style-database-and-interface-commands/005-review-remediation",
     "sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace",
     "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research",
-    "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite"
+    "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+    "sk-design/012-style-database-and-interface-commands/009-interface-command-research-refactor",
+    "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark"
   ],
   "manual": {
     "depends_on": [],
@@ -44,10 +46,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "mcp_server/database/speckit-eval.db",
       "spec.md",
       ".opencode/skills/sk-design/command-metadata.json"
     ],
     "entities": [
+      {
+        "name": "speckit-eval.db",
+        "kind": "file",
+        "path": "mcp_server/database/speckit-eval.db",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,7 +108,7 @@
     ],
     "causal_summary": "Two parts of `sk-design` are underpowered for their job — actually helping a person create good designs",
     "created_at": "2026-07-19T06:10:01.540Z",
-    "last_save_at": "2026-07-21T11:08:44.402Z",
+    "last_save_at": "2026-07-22T07:09:23.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
