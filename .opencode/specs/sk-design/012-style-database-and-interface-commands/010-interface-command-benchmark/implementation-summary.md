@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark"
     last_updated_at: "2026-07-22T12:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ran blind judge panel; verdict inverted"
+    recent_action: "Ran cross-brief generalization test"
     next_safe_action: "Operator reviews the verdict"
     blockers: []
     key_files:
@@ -102,6 +102,11 @@ an inlined raw prompt (codex has no OpenCode command runtime). Each leg ran unde
   proxy: gpt-5.6-luna 24.0/25 > deepseek-v4-pro 23.3 > mimo-v2.5-pro 15.3 (proxy had LUNA last, mimo
   second). So the proxy is unreliable (retire it), and design quality tracked the MODEL not the transport —
   the raw codex port won. See `review/review-report.md` §V3.
-- Still open (P1): repeats/variance + multi-brief (V3 is still n=1 brief; LUNA and deepseek are within
-  ~0.7/25, so the top two could reorder on another brief).
+- **V4 (cross-brief generalization).** Reran the whole equalized + blind-judged pipeline on a maximally
+  different brief (Brand / light / three-tier pricing). Unanimous brief-2 ranking flipped the top two:
+  deepseek 24.0 > gpt-5.6-luna 21.7 > mimo 19.3. Generalizable finding across both briefs (6 blind
+  judge-runs): deepseek ≈ gpt-5.6-luna co-leaders (trading #1 by task) ≫ mimo (consistently last);
+  transport does not gate quality; the keyword proxy is wrong on both. See `review/review-report.md` §V4.
+- Still open (P1): repeated runs for within-model variance (1 run per leg per brief) + a cross-*family*
+  judge panel (the judges are all Claude-Opus).
 <!-- /ANCHOR:limitations -->

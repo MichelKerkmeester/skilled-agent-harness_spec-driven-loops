@@ -120,6 +120,16 @@ it **inverts the proxy**: **gpt-5.6-luna 24.0/25 (1st) ≳ deepseek-v4-pro 23.3 
 unreliable (retire it), and — since the raw cli-codex port won — **design quality tracked the MODEL, not
 the transport**; the native-path advantage is convenience, not a quality ceiling. Still n=1 brief (repeats
 + multi-brief remain P1). Full aggregate + reasoning in `review/review-report.md` §V3.
+
+**V4 CROSS-BRIEF (generalization).** V3's "LUNA best" was tested on a maximally different brief (Brand /
+light / three-tier pricing), all legs equalized, three fresh blind Opus judges. Unanimous brief-2 ranking:
+**deepseek 24.0 (1st) > gpt-5.6-luna 21.7 (2nd) > mimo 19.3 (3rd)** — the top two *flipped* from brief 1.
+So the generalizable findings across both briefs (6 blind judge-runs): **deepseek-v4-pro ≈ gpt-5.6-luna are
+co-leaders trading #1 by task** (deepseek skews proof-rigor + state completeness; LUNA skews distinctive
+concept), **mimo-v2.5-pro is consistently the weakest** (unanimously last both briefs), the keyword proxy
+is wrong on both, and **transport does not gate quality** (the raw codex port is co-top-tier on both). Full
+cross-brief table in `review/review-report.md` §V4. Remaining P1: repeated runs (variance) + a cross-family
+judge panel.
 <!-- /ANCHOR:review-summary -->
 
 ---

@@ -1,0 +1,222 @@
+## Route Proof
+
+- Canonical command: `/interface:design`
+- Workflow mode: `interface`
+- Register: `Brand`
+- Dials: `density=comfortable`, `motionBudget=restrained`, `colorStrategy=Restrained`
+- Proof ceiling: `validated` — no runtime render available
+- Supporting mode: none
+- Mutation boundary: `advisory`
+
+## Resolved Brief
+
+- Target: Pricing section for a developer-tools product
+- Audience: Individual developers, growing product teams, engineering leads
+- One job: Help visitors choose the right collaboration and delivery tier
+- Theme: Light mode default
+- Must use: Three tiers — Free, Pro, Team; Pro visually featured
+- Must preserve: Concrete copy, restrained motion, authored hex tokens
+- Must avoid: Generic SaaS gradients, placeholder content, noisy decoration, false runtime claims
+- Acceptance: Default view, Pro emphasis treatment, and CTA hover state are specified
+
+Assumptions are reversible: pricing values are directional product copy, not validated commercial pricing.
+
+## Context Manifest
+
+- Owned style system: unavailable in the supplied context
+- Existing components: unavailable
+- Real content/data: authored specifically for this direction
+- Output surface: responsive web pricing section
+- Runtime/render context: unavailable
+- Reuse report: no owned tokens or components could be verified
+- Violation scan: all proposed tokens are explicitly authored; none are presented as owned-system values
+
+## Grounding Record
+
+```yaml
+source: no-fit
+sourceType: no-fit
+provenance: "No inspectable owned-system or packet-local reference was supplied."
+role: "Prevent unverified reuse claims."
+fitAxes: []
+preserve: ["restrained color", "comfortable density", "brand-led hierarchy"]
+transform: []
+reject: ["generic three-card SaaS treatment", "unverified existing tokens"]
+decisionChanged: "Use an authored editorial developer-tool direction with a dark featured plan."
+limitations:
+  - "No repository or live product inspection."
+  - "No runtime render or browser measurement."
+```
+
+## Creation/Remediation Artifact - Interface Direction Spec
+
+### Direction: “Ship at Your Pace”
+
+A confident developer-tool pricing section built around a calm editorial hierarchy, compact monospace metadata, and one deliberately dark Pro plan. The visual signature is a “release rail”: a thin cobalt rule and small numbered markers that connect the three plans like stages in a delivery pipeline.
+
+### Authored design tokens
+
+```yaml
+colors:
+  canvas: "#F7F8FA"
+  surface: "#FFFFFF"
+  ink: "#0E1B2A"
+  muted: "#526171"
+  border: "#D9E1EA"
+  accent: "#2E5BFF"
+  accentHover: "#1736B8"
+  proSurface: "#0E1B2A"
+  proInk: "#FFFFFF"
+  proMuted: "#C6D2E3"
+  success: "#176B4D"
+
+type:
+  display: "clamp(2.25rem, 4vw, 4rem)"
+  sectionTitle: "clamp(2rem, 3.5vw, 3.25rem)"
+  planName: "1.25rem"
+  body: "1rem"
+  metadata: "0.75rem"
+  lineHeightBody: 1.55
+  lineHeightDisplay: 0.98
+  fontPairing: "Inter or equivalent sans + IBM Plex Mono or equivalent mono"
+
+spacing:
+  sectionTop: "96px"
+  sectionBottom: "112px"
+  cardPadding: "28px"
+  cardGap: "16px"
+  radiusCard: "18px"
+  radiusControl: "10px"
+  railThickness: "2px"
+
+motion:
+  hoverDuration: "160ms"
+  emphasisDuration: "240ms"
+  easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
+  transform: "translateY(-3px)"
+  reducedMotion: "remove transforms; retain color and border changes"
+```
+
+### Layout
+
+- Full-width section on `#F7F8FA`.
+- Eyebrow in mono: `PLANS / 01`.
+- Heading: “Ship at your pace.”
+- Supporting line: “Start with a focused workflow. Add collaboration when the release cadence demands it.”
+- Three equal-width cards in a 12-column grid:
+  - Free: columns 1–4
+  - Pro: columns 5–8
+  - Team: columns 9–12
+- On mobile, stack cards with Pro first in visual order.
+- A cobalt release rail runs behind the card headers and terminates at a small `→` marker.
+- Pro card is raised `8px`, uses `#0E1B2A`, and carries a cobalt top rule plus `RECOMMENDED` label.
+
+### Plan content
+
+#### Free — “For proving the loop”
+
+`$0 / forever`
+
+- 2 private projects
+- 10,000 build minutes per month
+- Preview deployments for every pull request
+- Community support
+
+CTA: `Create free workspace`
+
+#### Pro — “For shipping every week”
+
+`$24 / seat / month`
+
+- Unlimited private projects
+- 100,000 build minutes per month
+- Preview environments with instant rollback
+- Shared secrets and deployment history
+
+CTA: `Start Pro trial`
+
+#### Team — “For scaling the release”
+
+`$49 / seat / month`
+
+- 500,000 build minutes per month
+- SSO, role-based access, and audit logs
+- Organization-wide environment controls
+- Priority support with migration guidance
+
+CTA: `Talk to sales`
+
+### Featured-tier treatment
+
+- Pro receives the strongest contrast and visual weight.
+- `RECOMMENDED` appears as a compact cobalt-on-white pill above the plan name.
+- Price and CTA use the highest luminance contrast.
+- The Pro card’s border changes from `#2E5BFF` to `#83A2FF` on hover.
+- No glow, animated gradient, or excessive shadow.
+
+### CTA hover state
+
+Default primary CTA:
+
+```yaml
+background: "#2E5BFF"
+text: "#FFFFFF"
+border: "#2E5BFF"
+```
+
+Hover:
+
+```yaml
+background: "#1736B8"
+text: "#FFFFFF"
+border: "#1736B8"
+transform: "translateY(-3px)"
+duration: "160ms"
+```
+
+Focus-visible state:
+
+```yaml
+outline: "3px solid #9DB2FF"
+outlineOffset: "3px"
+```
+
+## Critique/Validation
+
+`PROOF_TIER=validated`
+
+- Anti-default criterion: the direction must feel specific to developer tooling.
+  - Result: passes statically through release-rail metadata, build-minute copy, preview environments, rollback language, and mono system labels.
+- Hierarchy criterion: Pro must be immediately identifiable as recommended.
+  - Result: passes through dark surface, raised position, cobalt rule, recommendation pill, and distinct CTA.
+- Density criterion: comfortable, not sparse or dashboard-dense.
+  - Result: passes through 28px card padding, four concise feature rows, and restrained section spacing.
+- Targeted revision applied: the initial generic card concept was revised into a connected “release rail” with numbered plan metadata and developer-specific feature language.
+- Runtime rendering: not performed.
+
+## Evidence Ledger
+
+| Claim | Level | Method | Source / artifact | Limitation |
+|---|---|---|---|---|
+| Brand register and fixed dials are applied | authored | Brief translation | Resolved Brief | No owned-system comparison |
+| Hex palette is concrete and fully assigned | authored | Token inspection | Interface Direction Spec | Tokens are proposed, not repository-owned |
+| Pro is visually featured | authored | Layout and contrast specification | Featured-tier treatment | No rendered viewport inspection |
+| CTA hover behavior is specified | authored | State contract inspection | CTA hover state | No interaction test |
+| White on `#2E5BFF` is suitable for primary CTA text | validated | Deterministic WCAG contrast computation | Authored color tokens | Static calculation only |
+| White on `#1736B8` is suitable for hover CTA text | validated | Deterministic WCAG contrast computation | Authored color tokens | Static calculation only |
+| White on `#0E1B2A` is suitable for Pro card text | validated | Deterministic WCAG contrast computation | Authored color tokens | Static calculation only |
+| Reduced-motion behavior is defined | authored | Motion contract inspection | Motion tokens | No runtime preference test |
+| Runtime visual quality | not-applicable | No render environment | — | Requires browser/render inspection |
+
+## Next Action/Handoff
+
+Recommended next modes:
+
+- `/interface:foundations` — formalize tokens, type, spacing, and contrast checks.
+- `/interface:motion` — specify hover, focus, elevation, and reduced-motion behavior.
+- `/interface:audit` — review the direction with findings-first scoring.
+- `sk-code` handoff: not issued; implementation was not requested or approved.
+
+`HANDOFF_REQUIRED=false`
+
+`STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult PROOF_TIER=validated`

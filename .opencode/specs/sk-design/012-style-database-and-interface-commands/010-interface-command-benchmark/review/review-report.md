@@ -184,3 +184,57 @@ explicit. **Taste ranking, by trustworthy blind judgment on this brief: gpt-5.6-
 mimo-v2.5-pro** — the opposite of what the keyword proxy said, and driven by model quality, not transport.
 Everything the v1 report concluded about executor ranking was an artifact of an asymmetric harness + a bad
 metric; the corrected record is here.
+
+---
+
+# V4 — Cross-Brief Generalization (does the blind ranking hold on a different task?)
+
+> V3 was n=1 brief (a Product/dark/empty-state). V4 tests generalization on a deliberately **maximally
+> different** brief — a **Brand-register, light-theme, three-tier pricing section** (content-rich, not an
+> empty state) — all three legs equalized (same parity discipline as v2/v3), then scored blind by three
+> fresh independent Opus judges (anonymized + re-shuffled: A=deepseek, B=mimo, C=luna, mapping withheld).
+> Evidence: `review/legs-brief2/`.
+
+## Brief-2 aggregate (n=3 judges, unanimous)
+
+| Direction → model | J1 | J2 | J3 | Avg /25 | Brief-2 rank |
+|---|---|---|---|---|---|
+| **A → deepseek-v4-pro** (native) | 24 | 24 | 24 | **24.0** | **1st** |
+| **C → gpt-5.6-luna** (raw codex port) | 21 | 22 | 22 | **21.7** | 2nd |
+| **B → mimo-v2.5-pro** (native) | 20 | 18 | 20 | **19.3** | 3rd |
+
+## The two briefs side by side
+
+| Model | Brief 1 (empty-state) avg | Brief 2 (pricing) avg | Combined avg /25 |
+|---|---|---|---|
+| **deepseek-v4-pro** | 23.3 (2nd) | **24.0 (1st)** | **23.7** |
+| **gpt-5.6-luna** | **24.0 (1st)** | 21.7 (2nd) | **22.8** |
+| **mimo-v2.5-pro** | 15.3 (3rd) | 19.3 (3rd) | **17.3** |
+
+## What generalizes (and what doesn't)
+
+1. **The #1 spot is brief-dependent; the tier structure is not.** LUNA won the concept-heavy empty-state;
+   deepseek won the rigor/completeness-heavy pricing brief — each *unanimously* within its brief, and the
+   two are within ~1/25 combined. **deepseek and gpt-5.6-luna are co-leaders**, skewing differently:
+   deepseek toward proof rigor + state completeness (it printed every contrast ratio on both briefs), LUNA
+   toward the most distinctive concept (the "signal path", the "release rail"). Neither dominates.
+2. **mimo-v2.5-pro is decisively and consistently the weakest** — unanimously last on BOTH briefs, ~5.5/25
+   below the top tier, twice flagged as the templated AI-default look the brief asked directions to avoid.
+   This is the most generalizable ranking result.
+3. **The keyword-count proxy is wrong on BOTH briefs** (it ranked mimo 2nd + LUNA last). Fully retired.
+4. **Transport does not gate design quality — confirmed across both briefs.** The raw cli-codex port
+   (gpt-5.6-luna) is co-top-tier on both. The native cli-opencode path's value is *convenience*
+   (auto-resolving dials), not a quality ceiling.
+5. **Proof discipline is good but not perfect.** The explicit convention held broadly, but on brief 2 two
+   of three judges flagged LUNA labeling contrast `validated` without printing ratios — a real (mild)
+   overclaim. deepseek was the most rigorous on proof across both briefs (printed ratios, correct tiers,
+   explicit `blocked`).
+
+## Decision-grade bottom line
+
+Across two very different briefs, scored by six blind judge-runs total: **deepseek-v4-pro ≈ gpt-5.6-luna
+(co-leaders, task-dependent #1) ≫ mimo-v2.5-pro (consistently weakest).** For live `/interface:design`
+work, prefer **deepseek** when proof rigor + full state coverage matter most and **gpt-5.6-luna** when a
+distinctive concept matters most; **avoid mimo** for this command. Transport (native vs raw port) is not
+the deciding factor — the model is. Remaining P1: repeated runs for within-model variance (still 1 run per
+leg per brief) and a cross-*family* judge panel (judges here are all Claude-Opus).
