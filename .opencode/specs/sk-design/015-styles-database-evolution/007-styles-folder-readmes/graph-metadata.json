@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/007-styles-folder-readmes",
+  "spec_folder": "sk-design/015-styles-database-evolution/007-styles-folder-readmes",
+  "parent_id": "sk-design/015-styles-database-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles folder readmes",
+      "sk-design styles library documentation",
+      "readme every styles folder lib engine tests",
+      "styles folder readmes plan",
+      "sk-design styles documentation plan",
+      "readme sweep styles library plan",
+      "styles folder readmes tasks",
+      "sk-design styles documentation tasks",
+      "readme sweep styles tasks",
+      "styles folder readmes done",
+      "sk-design styles documentation summary",
+      "readme sweep styles complete"
+    ],
+    "key_topics": [
+      "styles",
+      "folder",
+      "readmes",
+      "sk-design",
+      "library",
+      "documentation",
+      "readme",
+      "every",
+      "lib",
+      "engine",
+      "tests",
+      "plan"
+    ],
+    "importance_tier": "standard",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/lib/README.md",
+      ".opencode/skills/sk-design/styles/tests/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Library",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Discovered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Give every non-data folder under .opencode/skills/sk-design/styles a README.md stating its purpose, key files, and architecture fit — completing the restructured tree's documentation. Preserves existing READMEs; treats library/bundles as data (one top-level README, not per-bundle).",
+    "created_at": "2026-07-22T03:18:47.187Z",
+    "last_save_at": "2026-07-22T03:18:47.187Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:796739909132255fd67862b1209447feba58e16213ab962dd7ceaa6058d69146",
+    "source_doc_hashes": {
+      "spec.md": "ccba69e868de55041dd466b2c2ee831c8a0208fc552ad443e5979e416ec8f973",
+      "plan.md": "b748e0d02ebf85e190e8933ea1e49f79f58a350ee58d17cfe4295cebc59b455c",
+      "tasks.md": "a6a8ff04f9c7cea57e7d98fd855c382dc3fab7eaf0c6e10a7d9838ce5817bfb6",
+      "implementation-summary.md": "e5f37798a3d6d9b86d9fa4a809079b4fb098c052348542e5a279d4fa46905606"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
