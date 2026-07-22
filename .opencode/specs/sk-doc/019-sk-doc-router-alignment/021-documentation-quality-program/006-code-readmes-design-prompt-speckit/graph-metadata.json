@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,37 +11,45 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code readmes infra batch",
-      "per-folder code readme",
-      "script folder readme authoring",
-      "code readmes infra summary",
-      "thirty-three code readmes",
-      "per-folder readme swarm"
+      "code readmes design prompt speckit",
+      "benchmark seed fixture exclusion",
+      "open-design tests duplicate",
+      "code readmes design prompt speckit summary",
+      "thirty-eight code readmes",
+      "benchmark seed exclusion summary"
     ],
     "key_topics": [
       "code",
       "readmes",
-      "infra",
-      "batch",
-      "per-folder",
-      "readme",
-      "script",
-      "folder",
-      "authoring",
-      "summary",
-      "thirty-three",
-      "swarm"
+      "design",
+      "prompt",
+      "speckit",
+      "benchmark",
+      "seed",
+      "fixture",
+      "exclusion",
+      "open-design",
+      "tests",
+      "duplicate"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "shared/ipc/socket-server.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      "spec.md",
+      "shared/ipc/README.md"
     ],
     "entities": [
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -73,13 +81,25 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/ipc/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Kit Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -97,13 +117,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -139,12 +153,6 @@
         "source": "derived"
       },
       {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -175,21 +183,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a developer opening one gets no orientation before reading the code",
-    "created_at": "2026-07-22T13:08:27.050Z",
-    "last_save_at": "2026-07-22T13:27:47.553Z",
+    "causal_summary": "The repo-wide scan flagged forty-five code and script folders without a README across sk-design (13), sk-prompt (14) and system-spec-kit (18)",
+    "created_at": "2026-07-22T13:27:47.875Z",
+    "last_save_at": "2026-07-22T13:27:47.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69600fbdb8040e40471afa6481050f8bfbdc8777f97643dbb500a3506cf21301",
+    "source_fingerprint": "sha256:40281db467e8f2db85fa9911e34437900fde795224b4be5ab7f173040c025a30",
     "source_doc_hashes": {
-      "spec.md": "23783dfc54bb9034663d9e2e5b9c3905c0a98064433f13f04a038e323717e88c",
-      "plan.md": "ef19324c69cb09bcf638a64dc2dc0fe2da1e13c0b336977f24ed79e2be73360d",
-      "tasks.md": "c5b18c6af7eaaa0824cd57f14545ed0752ec3ff07e74df5eba4cb0e2a98ef591",
-      "checklist.md": "a00c376e761b8c16a3738cfb218c8e5e0ac4314047bc9bb19fdb68b3f1792f1a",
-      "implementation-summary.md": "4f92930120f3ad9232bcbcc95e0f4f54d52e1115ecfb85dd4d19e7824df9b850"
+      "spec.md": "cb501f3b519a58008d243e67d3ef8bb2620f74cb5cfa14208abe32b513e3c45d",
+      "plan.md": "62fe19ed52b35a0a07d42ad701f929bd10076c7d3ec610aad26d17aeca349ca1",
+      "tasks.md": "5b5740bf42cb133209bae309d3c5228bfe5f613c04f97f7b28cf4b9427d4562c",
+      "checklist.md": "d9ffa66df6d05d5512df8ac16397e170552e391876c874edd672384367bc5c8e",
+      "implementation-summary.md": "8dd55b32d9645e05a95c520138232e68a898e9b9b2256a6799aea885c66e8df1"
     },
     "last_active_child_id": null,
     "last_active_at": null

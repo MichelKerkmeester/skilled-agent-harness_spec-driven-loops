@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk"
-    last_updated_at: "2026-07-22T13:09:59Z"
+    last_updated_at: "2026-07-22T13:27:47Z"
     last_updated_by: "claude"
     recent_action: "Shipped and validated the thirty-three code READMEs."
     next_safe_action: "Proceed to phase 006 (sk-design, sk-prompt, system-spec-kit; 45 folders)."
@@ -142,6 +142,6 @@ Author a lean per-folder code README for each of the thirty-three folders, sourc
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
 - `../spec.md` and `../context-index.md` (the 021 program parent).
-- Previous phase: [`004-skill-mode-readme-overhaul`](../004-skill-mode-readme-overhaul/spec.md). Next phase: `006-code-readmes-design-prompt-speckit` (to be authored).
+- Previous phase: [`004-skill-mode-readme-overhaul`](../004-skill-mode-readme-overhaul/spec.md). Next phase: [`006-code-readmes-design-prompt-speckit`](../006-code-readmes-design-prompt-speckit/spec.md).
 
 <!-- /ANCHOR:related-docs -->
