@@ -18,7 +18,7 @@ A parent hub is one advisor-routable skill identity that dispatches to self-cont
 
 ---
 
-## 1. Overview And Canonical Method
+## 1. OVERVIEW AND CANONICAL METHOD
 
 Use this pattern when a skill family needs multiple independently documented packets under one public advisor identity. The hub stays routing-only; packets own the detailed workflow, evidence, examples, tool boundaries, and validation.
 
@@ -91,7 +91,7 @@ Surface packet constraints:
 
 ---
 
-## 2. Registry And Router Contract
+## 2. REGISTRY AND ROUTER CONTRACT
 
 `mode-registry.json` is the packet source of truth. Routers and validators read it instead of rediscovering packets from directories.
 
@@ -127,7 +127,7 @@ Tie-break order lists workflow modes first and surface packets after them. `surf
 
 ---
 
-## 3. Compiled-Routing Readiness
+## 3. COMPILED-ROUTING READINESS
 
 Every new parent hub receives the additive compiled-routing directive, while its generated activation state is selected explicitly:
 
@@ -140,7 +140,7 @@ The minted manifest proves readiness without enabling service: it starts at gene
 
 ---
 
-## 4. Named Extensions
+## 4. NAMED EXTENSIONS
 
 Extensions declare extra semantics in place. They do not create extra directory tiers or move fields away from their current registry locations.
 
@@ -157,7 +157,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 
 ---
 
-## 5. Four Hubs Extension Matrix
+## 5. FOUR HUBS EXTENSION MATRIX
 
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -170,7 +170,7 @@ Use the matrix to describe current hub behavior without copying one hub's specia
 
 ---
 
-## 6. Workflow Packet Vs Surface Packet
+## 6. WORKFLOW PACKET VS SURFACE PACKET
 
 Choose a **workflow packet** when the new capability changes the process the assistant follows.
 
@@ -201,7 +201,7 @@ If the request needs both, register the workflow first and attach surfaces throu
 
 ---
 
-## 7. Changelog And Naming Policies
+## 7. CHANGELOG AND NAMING POLICIES
 
 Changelog policy:
 
@@ -233,7 +233,7 @@ Companion file policy:
 
 ---
 
-## 8. Related Resources
+## 8. RELATED RESOURCES
 
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - published router and registry schema details for parent hubs.
 - [skill-creation.md](../README.md) - skill-creation index and route map.
