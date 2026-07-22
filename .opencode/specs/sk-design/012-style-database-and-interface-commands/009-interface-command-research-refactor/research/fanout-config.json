@@ -1,0 +1,17 @@
+{
+  "executors": [
+    {
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.6-sol-fast",
+      "reasoningEffort": "high",
+      "label": "sol-fast-high",
+      "iterations": 2
+    }
+  ],
+  "assignment_model": "flat_pool",
+  "concurrency": 1,
+  "maxRetries": 1,
+  "lagCeilingMs": 300000,
+  "stallWatchdogMs": 300000,
+  "progressHeartbeatSeconds": 60
+}
