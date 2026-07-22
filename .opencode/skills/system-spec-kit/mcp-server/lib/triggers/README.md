@@ -9,7 +9,7 @@ description: "Embedding-backed shadow matcher for learned trigger phrases, run a
 
 ## 1. OVERVIEW
 
-`lib/triggers/` holds the semantic (embedding-based) trigger matcher that runs as a shadow lane next to the lexical matcher in `../parsing/trigger-matcher.js`. It embeds a query, compares it against cached trigger-phrase embeddings and returns scored `SemanticMatch` rows plus threshold-band statistics, without replacing the lexical result the production path still uses.
+`lib/triggers/` holds the semantic (embedding-based) trigger matcher that runs as a shadow lane next to the lexical matcher in `../parsing/trigger-matcher.ts`. It embeds a query, compares it against cached trigger-phrase embeddings and returns scored `SemanticMatch` rows plus threshold-band statistics, without replacing the lexical result the production path still uses.
 
 Current state:
 

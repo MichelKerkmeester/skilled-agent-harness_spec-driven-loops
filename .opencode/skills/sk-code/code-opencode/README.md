@@ -42,6 +42,7 @@ This surface holds the `.opencode/` evidence: language standards for TypeScript,
 - `SKILL.md`: the surface contract, reference map and standards.
 - `references/`: `typescript/`, `python/`, `shell/`, `rust/`, `config/`, `javascript/` (language standards), plus `shared/` (language-agnostic patterns, hooks, alignment verification).
 - `assets/checklists/`: component authoring (skill/agent/command/mcp-server) plus per-language quality gates.
+- `scripts/`: the drift-guard runner for this surface.
 - `changelog/`: release history.
 
 Spec-folder authoring lives in system-spec-kit, not here. See `SKILL.md` for the full reference map and standards.

@@ -9,7 +9,7 @@ description: "Test-only folder for the skill-advisor mcp-server test suite, not 
 
 ## 1. OVERVIEW
 
-`tests/utils/` is a test-only folder in the skill-advisor `mcp-server/tests/` suite. Despite the `utils` name it holds a regression test, not shared helper code: it exercises `findAdvisorWorkspaceRoot` from `../../lib/utils/workspace-root.js`.
+`tests/utils/` is a test-only folder in the skill-advisor `mcp-server/tests/` suite. Despite the `utils` name it holds a regression test, not shared helper code: it exercises `findAdvisorWorkspaceRoot` from `../../lib/utils/workspace-root.ts`.
 
 ## 2. CONTENTS
 

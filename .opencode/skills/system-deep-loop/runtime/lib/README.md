@@ -57,6 +57,6 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 
 ## 3. RELATED RESOURCES
 
-- Parent SKILL.md: `.opencode/skills/system-deep-loop/runtime/SKILL.md`
+- Parent SKILL.md: `.opencode/skills/system-deep-loop/SKILL.md`
 - Per-domain READMEs: each domain folder listed above carries its own `README.md`.
 - Tests: `.opencode/skills/system-deep-loop/runtime/tests/`

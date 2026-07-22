@@ -16,7 +16,7 @@ Current state:
 - `common.ts` defines the shared `Awaitable<T>` and `StorageId` types every port reuses.
 - Each port module owns one concern: contention retry, maintenance (integrity/vacuum/checkpoint), graph traversal, lexical search or vector storage.
 - `index.ts` re-exports every port type and implementation as the package barrel.
-- Adapters delegate to existing modules (`../../search/bm25-index.js`, `../../search/vector-index-store.js`, `../../graph/bfs-traversal.js`) rather than reimplementing storage logic.
+- Adapters delegate to existing modules (`../../search/bm25-index.ts`, `../../search/vector-index-store.ts`, `../../graph/bfs-traversal.ts`) rather than reimplementing storage logic.
 
 ## 2. PACKAGE TOPOLOGY
 
@@ -52,9 +52,9 @@ lib/storage/ports → tests/fakes
 | `common.ts` | Shared `Awaitable<T>` and `StorageId` types used across every port. |
 | `contention-policy.ts` | `ContentionPolicy` port (`withRetry`, `withWriteLock`, `setBusyTimeout`) and the `BetterSqliteContentionPolicy` adapter. Also exports `isSqliteContentionError`. |
 | `maintenance.ts` | `Maintenance` port (`integrityCheck`, `vacuum`, `checkpoint`) and the `BetterSqliteMaintenance` adapter. |
-| `graph-traversal.ts` | `GraphTraversal` port (weighted walks, directed reachability, causal and dependency traversal) and the `BetterSqliteGraphTraversal` adapter wrapping `../../graph/bfs-traversal.js`. |
-| `lexical-search.ts` | `LexicalSearch` port (index, search, remove) and the `PackedBm25LexicalSearch` adapter wrapping `../../search/bm25-index.js`. |
-| `vector-store.ts` | `VectorStore` port and the `BetterSqliteVectorStore` adapter wrapping `../../search/vector-index-store.js`, `vector-index-queries.js` and `vector-index-mutations.js`. |
+| `graph-traversal.ts` | `GraphTraversal` port (weighted walks, directed reachability, causal and dependency traversal) and the `BetterSqliteGraphTraversal` adapter wrapping `../../graph/bfs-traversal.ts`. |
+| `lexical-search.ts` | `LexicalSearch` port (index, search, remove) and the `PackedBm25LexicalSearch` adapter wrapping `../../search/bm25-index.ts`. |
+| `vector-store.ts` | `VectorStore` port and the `BetterSqliteVectorStore` adapter wrapping `../../search/vector-index-store.ts`, `vector-index-queries.ts` and `vector-index-mutations.ts`. |
 | `index.ts` | Re-exports every port type and adapter as the package's public surface. |
 
 ## 4. VALIDATION
