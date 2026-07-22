@@ -1,6 +1,6 @@
 ---
 title: "runtime/ Tests"
-description: "Test harnesses for runtime/ primitives. Grouped by library domain: council, coverage-graph, deep-loop."
+description: "Test harnesses for the runtime/ library primitives, organized into seven suites from council and unit coverage through lifecycle, integration and hierarchical-budget checks."
 ---
 
 # runtime/ Tests
@@ -15,10 +15,12 @@ vitest harnesses validating runtime primitives. Run via the system-spec-kit vite
 
 | Directory | Purpose | README |
 |-----------|---------|--------|
-| `council/` | Council primitives: multi-seat dispatch, verdict scoring, cost guards, round state, and session hierarchy | [`council/README.md`](council/README.md) |
+| `council/` | Council primitives: multi-seat dispatch, verdict scoring, cost guards, round state and session hierarchy | [`council/README.md`](council/README.md) |
+| `fixtures/` | Shared fixture data (including `council-value/`) consumed by the integration and unit suites | [`fixtures/README.md`](fixtures/README.md) |
 | `helpers/` | Shared fixtures and child-process helpers used by multiple suites | [`helpers/README.md`](helpers/README.md) |
-| `integration/` | Direct script invocation, review-depth coverage-graph fixtures, council graph script coverage, and council graph value scenarios | [`integration/README.md`](integration/README.md) |
-| `lifecycle/` | SQLite open, close, and writer-lock lifecycle checks | [`lifecycle/README.md`](lifecycle/README.md) |
+| `hierarchical-budgets/` | Tests for the hierarchical-budgets domain: reserve, settle and replay across the scope hierarchy | [`hierarchical-budgets/README.md`](hierarchical-budgets/README.md) |
+| `integration/` | Direct script invocation, review-depth coverage-graph fixtures, council graph script coverage and council graph value scenarios | [`integration/README.md`](integration/README.md) |
+| `lifecycle/` | SQLite open, close and writer-lock lifecycle checks | [`lifecycle/README.md`](lifecycle/README.md) |
 | `unit/` | Per-module unit tests for deep-loop runtime primitives | [`unit/README.md`](unit/README.md) |
 
 ## 3. TEST HELPERS

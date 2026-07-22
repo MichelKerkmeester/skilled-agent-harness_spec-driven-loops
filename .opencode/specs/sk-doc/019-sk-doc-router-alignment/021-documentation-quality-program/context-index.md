@@ -10,7 +10,7 @@ Per-phase cross-reference for the `021-documentation-quality-program` phase pare
 | `004-skill-mode-readme-overhaul` | complete | 14 READMEs to the 9-section template: 11 sk-doc mode full rewrites, 2 terse sk-code surface additions, `sk-git` AT A GLANCE insert. All VALID, 0 em dashes. Fixed stale asset paths in `create-readme` and `create-command` |
 | `005-code-readmes-infra-and-sk` | complete | 33 code READMEs authored (8 sk-doc, 6 sk-code, 6 system-code-graph, 5 skill-advisor, 4 mcp-code-mode, 3 mcp-tooling, 1 cli). All VALID, CONTENTS cross-checked, 0 em dashes |
 | `006-code-readmes-design-prompt-speckit` | complete | 38 of 45 code READMEs authored (12 sk-design, 8 sk-prompt harness, 18 system-spec-kit). All VALID, CONTENTS cross-checked, 0 em dashes. 7 excluded: 6 benchmark seed fixtures (README could pollute the eval) + 1 stale `__tests__` duplicate |
-| `007-code-readmes-deep-loop` | planned | Code READMEs: system-deep-loop; stale runtime catalog fixes |
+| `007-code-readmes-deep-loop` | complete | 53 code READMEs authored (35 runtime/lib domains + 18 runtime/mode/shared). All VALID, CONTENTS cross-checked, 0 em dashes. Refreshed 2 stale catalogs: `runtime/lib/README.md` 3 to 37 domains, `runtime/tests/README.md` 5 to 7 suites |
 | `008-verification-and-closeout` | planned | Full validation gate; conformance sweeps; optional-extension decisions |
 
 ## Discovered pre-existing issues (surfaced, tracked for the relevant phase)

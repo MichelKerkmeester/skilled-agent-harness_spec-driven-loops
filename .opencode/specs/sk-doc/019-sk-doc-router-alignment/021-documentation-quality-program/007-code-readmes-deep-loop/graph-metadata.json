@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code readmes design prompt speckit",
-      "benchmark seed fixture exclusion",
-      "open-design tests duplicate",
-      "code readmes design prompt speckit summary",
-      "thirty-eight code readmes",
-      "benchmark seed exclusion summary"
+      "code readmes deep loop",
+      "runtime lib domain readmes",
+      "stale runtime catalog fix",
+      "code readmes deep loop summary",
+      "fifty-three deep-loop readmes",
+      "runtime lib catalog refresh"
     ],
     "key_topics": [
       "code",
       "readmes",
-      "design",
-      "prompt",
-      "speckit",
-      "benchmark",
-      "seed",
-      "fixture",
-      "exclusion",
-      "open-design",
-      "tests",
-      "duplicate"
+      "deep",
+      "loop",
+      "runtime",
+      "lib",
+      "domain",
+      "stale",
+      "catalog",
+      "summary",
+      "fifty-three",
+      "deep-loop"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "shared/ipc/socket-server.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/README.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      "shared/ipc/README.md"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": "shared/ipc/socket-server.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/README.md",
         "source": "derived"
       },
       {
@@ -81,19 +81,13 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "shared/ipc/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Kit Batch",
+        "name": "Loop Batch",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,7 +111,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -171,14 +165,14 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -187,11 +181,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The repo-wide scan flagged forty-five code and script folders without a README across sk-design (13), sk-prompt (14) and system-spec-kit (18)",
-    "created_at": "2026-07-22T13:27:47.875Z",
-    "last_save_at": "2026-07-22T13:46:50.569Z",
+    "causal_summary": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
+    "created_at": "2026-07-22T13:46:50.887Z",
+    "last_save_at": "2026-07-22T13:46:50.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b9a32765c95632c01edc856fc655af26fd936bb42be09b2db92b7ad294cf1d1",
+    "source_fingerprint": "sha256:e6a54db22c1866ffa33a87e83ee40c55763901b5a0764f145174b15ceea4065e",
     "source_doc_hashes": {
-      "spec.md": "daa909cffec98af24d3b34f9abbdf3ea645a58ada93bf68bca47076c0454681d",
-      "plan.md": "b8b01138e9997eab15602b56191ee613a78333550449f6660a675ce4fd1fe93b",
-      "tasks.md": "857d6e99494dcf3b51bbe96d32847579baa0d05cf856660567a2c826bb73b3e2",
-      "checklist.md": "ac0dbbf29a343d4926d080547513768774fcfa7bdfcb7759e99fba7982a6226c",
-      "implementation-summary.md": "ed3d855579cc47bee844884064820e5f3e6d7af7b30ae2c1861f6332a05dfdd3"
+      "spec.md": "eec4762c12f23c9d8abcf5ad2e170967283cd870d7548e1a72ecc8f838434161",
+      "plan.md": "0afdc4dd58ac3aaf9116e11e15762009ce30d7fa8c0942397ae163187d905245",
+      "tasks.md": "102a0ddbd24bae188ddc1820f82448d9d87c36e381c3399b1a3c3231b6492d8e",
+      "checklist.md": "1c9490c552b4046f961b7cfe53f2c05cc9e83732385c061269ca488d8b14759e",
+      "implementation-summary.md": "317fa3bc44aa5c016169edb189ad9c001617173c3e31b90a347e7f3ff6e0b8db"
     },
     "last_active_child_id": null,
     "last_active_at": null
