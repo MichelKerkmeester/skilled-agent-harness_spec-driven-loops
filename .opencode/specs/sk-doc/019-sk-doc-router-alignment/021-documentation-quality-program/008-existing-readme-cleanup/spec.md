@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup"
-    last_updated_at: "2026-07-22T15:16:58Z"
+    last_updated_at: "2026-07-22T16:00:57Z"
     last_updated_by: "claude"
     recent_action: "Repaired 64 older READMEs (broken refs + OVERVIEW) and deleted the stale __tests__ duplicate."
     next_safe_action: "Proceed to phase 009 (Title-Case + config flip + code findings)."
@@ -141,6 +141,6 @@ Surgically repair the genuine skill and code READMEs: trace each real stale refe
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
 - `../spec.md` and `../context-index.md` (the 021 program parent).
-- Previous phase: [`007-code-readmes-deep-loop`](../007-code-readmes-deep-loop/spec.md).
+- Previous phase: [`007-code-readmes-deep-loop`](../007-code-readmes-deep-loop/spec.md). Next phase: [`009-titlecase-config-and-closeout`](../009-titlecase-config-and-closeout/spec.md).
 
 <!-- /ANCHOR:related-docs -->

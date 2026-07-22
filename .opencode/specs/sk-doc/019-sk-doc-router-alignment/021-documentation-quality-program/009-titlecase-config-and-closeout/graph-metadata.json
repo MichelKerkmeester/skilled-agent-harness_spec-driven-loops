@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,34 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "existing readme cleanup",
-      "stale broken reference repair",
-      "missing overview backfill",
-      "existing readme cleanup summary",
-      "audit triage surgical repair",
-      "broken reference cleanup swarm"
+      "titlecase enforcement config flip",
+      "h2uppercaserequired flip closeout",
+      "documentation quality program closeout",
+      "titlecase config flip summary",
+      "documentation quality program closeout summary",
+      "uppercase check refinement"
     ],
     "key_topics": [
-      "existing",
-      "readme",
-      "cleanup",
-      "stale",
-      "broken",
-      "reference",
-      "repair",
-      "missing",
-      "overview",
-      "backfill",
+      "titlecase",
+      "enforcement",
+      "config",
+      "flip",
+      "h2uppercaserequired",
+      "closeout",
+      "documentation",
+      "quality",
+      "program",
       "summary",
-      "audit"
+      "uppercase",
+      "check"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-command/references/README.md",
-      ".opencode/skills/sk-design/styles/scripts/README.md",
-      "core/README.md",
-      "templates/changelog/README.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -47,9 +45,15 @@
     ],
     "entities": [
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/references/README.md",
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
         "source": "derived"
       },
       {
@@ -89,32 +93,32 @@
         "source": "derived"
       },
       {
+        "name": "Case Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config Flip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Surgically",
+        "name": "Purpose Refine",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Title",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -131,25 +135,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Run",
+        "name": "Overview Refine",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Triage",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Six Sonnet",
+        "name": "Pattern The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,27 +165,33 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The `auditreadmes.py` fleet sweep flagged 70 template-invalid READMEs, 177 broken references and 68 missing-OVERVIEW findings across the repo's 593 READMEs",
-    "created_at": "2026-07-22T15:15:44.494Z",
-    "last_save_at": "2026-07-22T16:00:57.610Z",
+    "causal_summary": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
+    "created_at": "2026-07-22T16:00:57.919Z",
+    "last_save_at": "2026-07-22T16:06:06.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bee1283599fd05fc0ed6e3912dafad772278cc4cc04e7d3237cd3aaf6b370153",
+    "source_fingerprint": "sha256:867fe0222d5ae41f6d3829e69d640425dfbec8fb6e528a2b6e9ca438f671c44c",
     "source_doc_hashes": {
-      "spec.md": "7d300994dd7bdfb7df78405b24d5818a25573c61b392806e6b9139692f308c9a",
-      "plan.md": "716003adb5c45ecf63251f144fcd22b31a57675494292fdd3ab3d726d1cb91cc",
-      "tasks.md": "a3d69cdf0334f287a93299b07d0673b12a39cea328748916f5926ef9bca6e2bb",
-      "checklist.md": "a4257139fc0ee8c6e227f7ef8057dd07733f40ae2a1be417f879dc998e4481f7",
-      "implementation-summary.md": "e3cf28b66714b19a118e1ffa7e0d81e37a6b63d37af96a6df504369dd2675bc7"
+      "spec.md": "0c9a07d825c2c355300c4c6dbfdc6cb019becb525df39380918e9a8abf8d513c",
+      "plan.md": "9540084e5d0f46ff7ebfb1fccebc321f0ac639770d57b1fbbd97621a977ea7fe",
+      "tasks.md": "967d99f9f3557b586361ca18a21ea55365e8c1ca762bd25a435aebbe2ff6c9e6",
+      "checklist.md": "af0436331ae1d3a8c2d4ae6e1a8558c0bb37b3b33f1b821a347ff16b06cf0c2c",
+      "implementation-summary.md": "9a4d88ee0bb343d40c9866d849167c3221b380989ca59bf0919fdacf3a7642ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

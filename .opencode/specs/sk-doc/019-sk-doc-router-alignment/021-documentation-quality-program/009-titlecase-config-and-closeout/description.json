@@ -1,0 +1,29 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
+  "description": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
+  "keywords": [
+    "h2uppercaserequired",
+    "config",
+    "reference",
+    "asset",
+    "types",
+    "title-case",
+    "header",
+    "drift",
+    "only",
+    "showed",
+    "advisory",
+    "score"
+  ],
+  "lastUpdated": "2026-07-22T16:06:06.112Z",
+  "specId": "009",
+  "folderSlug": "titlecase-config-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
