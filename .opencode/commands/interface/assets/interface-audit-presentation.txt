@@ -1,7 +1,5 @@
 # Interface Audit Presentation Contract
 
-Consolidated-question and display fixtures for `/interface:audit`; the command body is the normative prompt.
-
 ## 1. Progressive Intake
 
 Resolve target state, journeys, viewports, constraints, baseline, axes, severity policy, mutation boundary, and proof environment. Audit mutation is confirmation-required; review-only evidence collection is not.

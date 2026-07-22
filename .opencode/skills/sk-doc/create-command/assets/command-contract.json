@@ -44,26 +44,26 @@
       "invocation_aliases": ["/create:skill", "/create:agent", "/create:<operation>", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
-    "design": {
+    "interface": {
       "topology": "mode-pair",
-      "router_path": ".opencode/commands/design/*.md",
+      "router_path": ".opencode/commands/interface/*.md",
       "input": {
         "required": true,
         "gate_owner": "router",
         "argument_hint": "<target> [--mode] [--register brand|product] [:auto|:confirm]"
       },
       "execution_targets": [
-        { "selector": ":auto | no-suffix with complete args", "target": ".opencode/commands/design/assets/design_<mode>_auto.yaml" },
-        { "selector": ":confirm | no-suffix with incomplete args", "target": ".opencode/commands/design/assets/design_<mode>_confirm.yaml" }
+        { "selector": ":auto | no-suffix with complete args", "target": ".opencode/commands/interface/assets/interface-<action>-auto.yaml" },
+        { "selector": ":confirm | no-suffix with incomplete args", "target": ".opencode/commands/interface/assets/interface-<action>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "conditional-auto",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/design/assets/design_<mode>_presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/design/assets/design_<mode>_auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/design/assets/design_<mode>_confirm.yaml" }
+        { "purpose": "presentation", "path": ".opencode/commands/interface/assets/interface-<action>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".opencode/commands/interface/assets/interface-<action>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".opencode/commands/interface/assets/interface-<action>-confirm.yaml" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -78,7 +78,7 @@
         "operations": ["md-generator writes and overwrites DESIGN.md", "other modes emit specs and handoff manifests (additive)"]
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/design:interface", "/design:foundations", "/design:motion", "/design:audit", "/design:md-generator", ":auto suffix", ":confirm suffix"],
+      "invocation_aliases": ["/interface:design", "/interface:foundations", "/interface:motion", "/interface:audit", "/interface:design-reference", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
     "speckit": {

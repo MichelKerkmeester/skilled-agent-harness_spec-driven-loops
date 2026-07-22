@@ -1,6 +1,6 @@
 # Interface Design Presentation Contract
 
-Consolidated-question and display fixtures for `/interface:design`; the command body is the normative prompt.
+Presentation source of truth for `/interface:design`.
 
 ## 1. Progressive Intake
 

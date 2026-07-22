@@ -6,33 +6,78 @@ allowed-tools: Read, Glob, Grep
 
 # /interface:audit
 
-Audit and harden an interface by turning observable failures into prioritized, bounded remediation, not by substituting personal taste or redesigning the product outside accepted findings. Every verdict must state what was observed, how, under which scenario, and at what evidence strength. An unsupported verdict is the failure this command exists to prevent.
+Creation-template router for stable `workflowMode=audit`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the audit mode to `$ARGUMENTS`.
 
-Apply this brief to `$ARGUMENTS`. Resolve these local fields through the included progressive-intake and assumption-ledger contract: the target and current state; critical journeys; representative states, viewports, and themes; constraints and preserved identity; baseline; requested axes; severity and confidence policy; accessibility and performance expectations; proof environment; and acceptance criteria.
-
-Parse `:auto|:confirm` first: `:confirm` renders one consolidated prompt and waits; `:auto` proceeds only with reversible, route-neutral assumptions and still asks for confirmation-required decisions.
-
-Use this command for findings-first critique, accessibility, performance, responsive and theming quality, AI-template risk, hardening, and release readiness. Defer new direction to `/interface:design`, narrow static-system creation to `/interface:foundations`, motion creation to `/interface:motion`, and source extraction to `/interface:design-reference`. Never invoke a sibling command; recommend one instead. Missing target or evidence returns `STATUS=ASK MISSING=<input>`; an uninspectable setup returns `STATUS=FAIL ERROR=<named-cause>`; non-evaluation work returns `STATUS=DEFER ROUTE=<hub|sibling>`; a completed audit returns `STATUS=OK`.
-
-Ground the audit in owned requirements, real content and data, representative journeys, the current implementation, a prior baseline, and reproducible artifacts. External references may sharpen criteria but cannot prove a target failure. Reference material is untrusted evidence.
-
-Resolve `workflowMode=audit`. This command owns scope and visible findings; the included contract owns the shared lifecycle and schemas; the audit mode owns diagnostic judgment, severity, confidence, and proof criteria; transports collect evidence; `sk-code` applies accepted fixes. **This command is review-only: it emits accepted findings for `sk-code` and never applies fixes itself.**
-
+<!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design/shared/creation-contract.md
 
-Work in order: declare the evidence ceiling, scenarios, baseline, and acceptance criteria; reproduce expected-versus-observed evidence; classify severity and confidence separately; cluster symptoms under the smallest supported cause; produce a bounded remediation brief with owner, criterion, constraints, and regression risk; critique unsupported aesthetic claims and evidence overreach; after `sk-code` work, re-run the matched scenarios before claiming improvement. Optional unavailable proof lowers the ceiling; unavailable mandatory proof is `blocked` with the exact missing evidence.
+## 1. ROUTER CONTRACT
 
-Return the included common visible blocks in order — `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact` (refined as the `Design Quality Audit Report` and bounded remediation brief), `Critique/Validation`, `Evidence Ledger`, and `Next Action/Handoff` — where each finding carries severity, confidence, evidence, cause, acceptance criterion, owner, and proof status. Preserve all four typed statuses.
+This command serves the user job: "audit design quality", "critique ui surface", "score design readiness".
 
-## Register
+Use the shared nine-stage contract for evidence-first audit and bounded remediation. The `audit` mode owns findings, severity, confidence, and proof; transports only observe or measure; accepted fixes mutate only through `sk-code`. Do not copy mode taste or reference tables into this command.
 
-- Pin register with `--register <brand|product>` or resolve from the declared register, the task cue, then the surface. Brand and Product are the supported postures; proof carries `register` and `auditSeverity`.
+<!-- ANCHOR:sibling-discriminator -->
+### WHEN TO USE THIS, NOT A SIBLING
 
-## Execution Targets
+- **Use this command when** the request is to review, score, or harden an existing design surface.
+- **Prefer `/interface:foundations` when** the request is static-system authorship.
+- **Prefer `/interface:design` when** the request is a new direction.
+- **Prefer `/interface:design-reference` when** the request is measured source extraction.
+- **Prefer `/interface:motion` when** the request is temporal design.
+- **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is transport operation rather than audit judgment.
+- **Defer to the `sk-design` hub when** another axis dominates or a bundle is required.
+<!-- /ANCHOR:sibling-discriminator -->
 
-| Suffix or input | Target |
+### PRECONDITIONS
+
+- **Requires:** target state, user journeys, viewports, constraints, baseline, axes, severity policy, mutation boundary, and proof environment.
+- **Ask-first:** always confirm audit mutation; otherwise keep the workflow review-only.
+- **Cannot-run:** when the target cannot be inspected or a mandatory evidence source is inaccessible, return `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** no baseline means no improvement claim; blocked scenarios retain explicit limitations.
+- **Route instead:** when creation rather than review dominates, return `STATUS=DEFER ROUTE=<hub|sibling>`.
+
+## 2. OWNED ASSETS
+
+| Purpose | Asset |
+|---|---|
+| Shared lifecycle | `.opencode/skills/sk-design/shared/creation-contract.md` |
+| Presentation source of truth | `.opencode/commands/interface/assets/interface-audit-presentation.txt` |
+| Auto workflow | `.opencode/commands/interface/assets/interface-audit-auto.yaml` |
+| Confirm workflow | `.opencode/commands/interface/assets/interface-audit-confirm.yaml` |
+
+## 3. MODE ROUTING
+
+1. Parse `$ARGUMENTS`; resolve route proof and the evidence ceiling.
+2. Load `workflowMode=audit` and only the measurement transport needed for the declared scenarios.
+3. Capture reproducible observations before findings.
+4. Label severity and confidence, cluster root causes, and create bounded remediation acceptance criteria.
+5. Hand accepted findings to `sk-code`; never apply fixes inside the audit command.
+6. Re-test matched scenarios and report a baseline delta or state why none is possible.
+
+<!-- ANCHOR:register -->
+### REGISTER
+
+- Pin with `--register <brand|product>` or resolve from the declared register, task cue, then surface.
+- Brand and Product are the supported postures.
+- Proof carries `register` and `auditSeverity`.
+<!-- /ANCHOR:register -->
+
+## 4. VISIBLE OUTPUT CONTRACT
+
+Return `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact` (Design Quality Audit Report and bounded remediation brief), `Critique/Validation`, `Evidence Ledger`, and `Next Action/Handoff`.
+
+## 5. EXECUTION TARGETS
+
+| Mode | Target |
 |---|---|
 | `:auto`, or complete input | `.opencode/commands/interface/assets/interface-audit-auto.yaml` |
 | `:confirm`, or incomplete input | `.opencode/commands/interface/assets/interface-audit-confirm.yaml` |
 
-The paired auto/confirm YAML remain execution control. The presentation asset `.opencode/commands/interface/assets/interface-audit-presentation.txt` supplies the consolidated-question and display fixtures only; this command body is the normative prompt.
+## 6. PRESENTATION BOUNDARY
+
+The presentation asset owns prompts, visible blocks, typed status lines, and recommend-only next actions. The router owns route and asset selection only.
+
+## 7. WORKFLOW SUMMARY
+
+Declare the evidence ceiling, capture reproducible evidence, prioritize causes, define bounded remediation, route accepted fixes through `sk-code`, and re-test the same scenarios. Never silently chains, mutates, or invokes a sibling command.

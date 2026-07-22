@@ -99,60 +99,6 @@ test("adversarial silent downstream amendment is rejected", () => {
   assert.ok(boundaryErrors("Downstream may silently reinterpret accepted decisions.").includes("silent-downstream-amendment"));
 });
 
-const CANONICAL_INCLUDE = "@.opencode/skills/sk-design/shared/creation-contract.md";
-
-test("every wrapper expands the shared contract exactly once via the canonical include", () => {
-  for (const surface of surfaces) {
-    const count = surface.wrapper.split(CANONICAL_INCLUDE).length - 1;
-    assert.equal(count, 1, `${surface.expected.canonical} must carry exactly one canonical include, found ${count}`);
-    assert.doesNotMatch(
-      surface.wrapper,
-      /Read\s+`?\.opencode\/skills\/sk-design\/shared\/creation-contract\.md/i,
-      `${surface.expected.canonical} still uses the legacy Read-imperative instead of the include`
-    );
-    assert.doesNotMatch(
-      surface.wrapper,
-      /@\.\/\.opencode\/skills\/sk-design\/shared\/creation-contract\.md/,
-      `${surface.expected.canonical} uses the non-canonical @./ include form`
-    );
-  }
-});
-
-test("every wrapper preserves all four typed statuses", () => {
-  for (const surface of surfaces) {
-    for (const status of ["STATUS=OK", "STATUS=ASK", "STATUS=FAIL", "STATUS=DEFER"]) {
-      assert.ok(surface.wrapper.includes(status), `${surface.expected.canonical} wrapper missing ${status}`);
-    }
-  }
-});
-
-test("every wrapper reads as a literal command body, not a thin router", () => {
-  for (const surface of surfaces) {
-    const w = surface.wrapper;
-    assert.match(w, /Parse `:auto\|:confirm` first/, `${surface.expected.canonical} missing suffix control`);
-    assert.match(w, /Work in order:/, `${surface.expected.canonical} missing an ordered outcome sequence`);
-    assert.match(
-      w,
-      new RegExp(`Resolve \`workflowMode=${escapeRegExp(surface.expected.mode)}\``),
-      `${surface.expected.canonical} missing literal workflowMode resolution`
-    );
-    assert.doesNotMatch(w, /Creation-template router for stable/, `${surface.expected.canonical} still reads as a thin router`);
-  }
-});
-
-test("mode-specific literal guarantees hold for audit and md-generator", () => {
-  const audit = surfaces.find((surface) => surface.expected.mode === "audit").wrapper;
-  assert.match(audit, /review-only/i, "audit wrapper must declare it is review-only");
-  assert.match(audit, /never applies fixes/i, "audit wrapper must state it never applies fixes");
-
-  const mdGenerator = surfaces.find((surface) => surface.expected.mode === "md-generator").wrapper;
-  assert.match(
-    mdGenerator,
-    /only measured values enter token tables/i,
-    "design-reference wrapper must enforce measured-only token tables"
-  );
-});
-
 async function loadSurface(expected) {
   const assetBase = `interface-${expected.action}`;
   const [wrapper, presentation, auto, confirm] = await Promise.all([

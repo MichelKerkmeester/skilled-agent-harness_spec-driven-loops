@@ -1,7 +1,5 @@
 # Interface Foundations Presentation Contract
 
-Consolidated-question and display fixtures for `/interface:foundations`; the command body is the normative prompt.
-
 ## 1. Progressive Intake
 
 Resolve axis, target, register, visual problem, density, existing tokens, accessibility target, viewport/theme matrix, preserve constraints, and output. Bundle only route-, identity-, overwrite-, access-, or acceptance-changing questions.
