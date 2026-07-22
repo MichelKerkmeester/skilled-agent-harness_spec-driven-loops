@@ -308,10 +308,8 @@ def is_uppercase_section(text: str) -> bool:
         if any(c.isupper() for c in w[1:]):
             continue                       # internal capital: proper noun / product
         return False                       # Title-Case or lowercase prose word
-    if not saw_word:
-        # Nothing but code/annotations/short tokens: fall back to the strict check
-        alpha_chars = [c for c in section_name if c.isalpha()]
-        return (not alpha_chars) or all(c.isupper() for c in alpha_chars)
+    # No prose word failed the check (a header of only code spans, annotations,
+    # signatures or short tokens has nothing prose to enforce ALL CAPS on).
     return True
 
 

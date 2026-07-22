@@ -19,7 +19,7 @@ Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentatio
 
 ---
 
-## 2. How To Use
+## 2. HOW TO USE
 
 1. The router lists this file under its Owned Assets table and loads it before showing any prompt, dashboard, checkpoint, or result.
 2. Move every display-only block out of the command `.md` into the matching section below, verbatim in meaning.
@@ -27,14 +27,14 @@ Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentatio
 
 ---
 
-## 3. Template Body (copy below this line)
+## 3. TEMPLATE BODY (copy below this line)
 
 ```markdown
 # <Command> Presentation Contract
 
 Presentation source of truth for `/<namespace>:<command>`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and result displays.
 
-## 1. Startup Presentation
+## 1. STARTUP PRESENTATION
 
 For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait.
 
@@ -54,10 +54,10 @@ For `:auto`, do not show the consolidated prompt by default. Resolve setup throu
 ### Auto Fail-Fast Display
 [What to show when required auto inputs are missing, ending with STATUS=FAIL ERROR="...".]
 
-## 2. Dashboard / Checkpoint Layout
+## 2. DASHBOARD / CHECKPOINT LAYOUT
 [Progress panel and any mid-workflow checkpoint display templates.]
 
-## 3. Results Display
+## 3. RESULTS DISPLAY
 
 ### Success
 [Success template, ending with STATUS=OK ...]
@@ -65,7 +65,7 @@ For `:auto`, do not show the consolidated prompt by default. Resolve setup throu
 ### Failure
 [Failure template, ending with STATUS=FAIL ERROR="..."]
 
-## 4. Next-Step Suggestions
+## 4. NEXT-STEP SUGGESTIONS
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
 | [condition] | [/command] | [why] |

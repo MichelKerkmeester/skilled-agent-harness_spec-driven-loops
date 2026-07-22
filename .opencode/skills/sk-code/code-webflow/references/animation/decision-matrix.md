@@ -63,7 +63,7 @@ Need animation?
 
 This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
-## 3. MOTION.DEV vs GSAP
+## 3. MOTION.DEV VS GSAP
 
 | Axis | Motion.dev | GSAP |
 |------|------------|------|
@@ -74,7 +74,7 @@ This matches the existing local rule: CSS first for simple states; Motion when p
 
 Recommendation: choose Motion for the sk-code examples in this packet because the repo already contains Motion patterns and the requested assets are Motion-specific. Choose GSAP only when a real timeline/plugin requirement beats the extra dependency and licensing review.
 
-## 4. MOTION.DEV vs RAW CSS
+## 4. MOTION.DEV VS RAW CSS
 
 Use raw CSS when:
 - a hover/focus/open/closed state can be expressed with `transition`,
@@ -88,7 +88,7 @@ Use Motion when:
 
 Local examples: `link_grid.js` could be CSS in many stacks, but uses Motion because the current Webflow implementation centralizes interactive color animation through JS. `testimonial.js` earns Motion because it uses drag state, inertia, and snap behavior (Repo: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
-## 5. MOTION.DEV vs Web Animations API
+## 5. MOTION.DEV VS WEB ANIMATIONS API
 
 Direct WAAPI is enough when a single DOM element needs a simple browser-native animation and you do not need Motion's import, controls, inferred keyframes, independent transform axes, spring/custom easing, sequences, or interruption behavior.
 

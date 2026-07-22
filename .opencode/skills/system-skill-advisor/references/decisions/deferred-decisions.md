@@ -39,7 +39,7 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 
 ---
 
-## 2. F4: `.devin/hooks.v1.json` migration
+## 2. F4: `.devin/hooks.v1.json` MIGRATION
 
 > **CLOSED — SUPERSEDED by the cli-devin deprecation (packet `142-cli-devin-deprecation`, 2026-06-08).** Devin was fully removed from the framework: `.devin/hooks.v1.json`, the skill-advisor and spec-kit `hooks/devin/` sources + dist, and the `'devin'` runtime enum were all deleted. The migration described below is moot — no Devin hook is wired anymore. The text is retained as a historical record of the decision; do not act on its migration steps.
 
@@ -84,7 +84,7 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 ---
 
-## 3. F6: dual hook location resolution
+## 3. F6: DUAL HOOK LOCATION RESOLUTION
 
 ### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
 
@@ -169,7 +169,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 
 ---
 
-## 4. F34: playbook TEST EXECUTION structure deviation
+## 4. F34: PLAYBOOK TEST EXECUTION STRUCTURE DEVIATION
 
 ### Current state
 
@@ -194,7 +194,7 @@ None. Status quo. If a future sk-doc template revision broadens the canonical st
 
 ---
 
-## 5. F35: catalog TOC numbering mismatch
+## 5. F35: CATALOG TOC NUMBERING MISMATCH
 
 ### Current state
 
@@ -215,7 +215,7 @@ Both options are worse than the current explanatory-note approach. Leave as-is.
 
 ---
 
-## 6. F36: hooks-and-plugin file numbering gap
+## 6. F36: HOOKS-AND-PLUGIN FILE NUMBERING GAP
 
 ### Current state
 
@@ -233,7 +233,7 @@ Pick A unless a maintainer reports operator confusion from the gap.
 
 ---
 
-## 7. F37: catalog/playbook coverage asymmetry
+## 7. F37: CATALOG/PLAYBOOK COVERAGE ASYMMETRY
 
 ### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
 

@@ -17,15 +17,15 @@ Loading triggers themselves stay in `SKILL.md` Section 2 (the Resource Loading L
 
 ---
 
-## 1. Load-And-Prove Loop (Register + Brief-To-Dials + Preflight Card)
+## 1. LOAD-AND-PROVE LOOP (Register + Brief-To-Dials + Preflight Card)
 
 **Required load-and-prove loop:** `../shared/register.md`, `references/design-process/brief-to-dials.md`, and `assets/interface-preflight-card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery.
 
-## 2. Citation Required For context-loading-contract.md
+## 2. CITATION REQUIRED FOR CONTEXT-LOADING-CONTRACT.MD
 
 **Citation required, not just a background load**: name `../shared/context-loading-contract.md` by its relative path in the context-basis line alongside `register.md` — the same explicit by-path citation this mode already requires for procedure cards (`SKILL.md` Section 3) — a recommendation with no visible citation of this path is the same as not loading it.
 
-## 3. Reference Loading Discipline
+## 3. REFERENCE LOADING DISCIPLINE
 
 - Load `design-principles.md` on every design task. It is the authority for palette, type, structure, motion, and copy.
 - Keep Section 2 (SMART ROUTING) of `SKILL.md` as the single routing authority.

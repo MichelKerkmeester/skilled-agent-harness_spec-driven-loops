@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 This exemplar is illustrative and non-SaaS. It describes how to study a real editorial or ecommerce extraction without turning it into a reusable preset.
 
-## 1. Candidate Surface
+## 1. CANDIDATE SURFACE
 
 Use a public editorial, cultural or ecommerce site with a clearly different design language from developer-tool brands.
 
@@ -27,7 +27,7 @@ Good candidates:
 
 Avoid another developer-tool, SaaS dashboard or infrastructure brand for this exemplar.
 
-## 2. Extraction Focus
+## 2. EXTRACTION FOCUS
 
 Study these signals after a real extraction:
 
@@ -40,7 +40,7 @@ Study these signals after a real extraction:
 | Components | Cards, article teasers, product tiles, newsletter blocks and navigation |
 | Fidelity | Every value still comes from `tokens.json` |
 
-## 3. Writing Notes Template
+## 3. WRITING NOTES TEMPLATE
 
 ```text
 Source category: editorial | ecommerce | culture | hospitality
@@ -52,6 +52,6 @@ What not to copy: the category look, palette or type choice
 What to learn: how the v3 Style Reference names roles outside SaaS aesthetics
 ```
 
-## 4. Guardrail
+## 4. GUARDRAIL
 
 This exemplar broadens study coverage. It is not a palette preset, landing page recipe or permission to fabricate a DESIGN.md without a live site.

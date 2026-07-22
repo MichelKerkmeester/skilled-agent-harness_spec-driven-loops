@@ -37,7 +37,7 @@ Write like a design-systems lead handing the system off to the team that will sh
 
 ---
 
-## 2. Banned Words
+## 2. BANNED WORDS
 
 NEVER use these words in descriptive prose. They communicate nothing specific and signal that the writer ran out of things to observe:
 
@@ -56,7 +56,7 @@ NEVER use these words in descriptive prose. They communicate nothing specific an
 
 ---
 
-## 3. Header — Tagline Rules
+## 3. HEADER — TAGLINE RULES
 
 The header is a title line, an evocative `> tagline`, and a `**Theme:**` line:
 
@@ -98,7 +98,7 @@ Ask: "Could this phrase describe three other sites?" If yes, it fails. A tagline
 
 ---
 
-## 4. Intro Paragraph
+## 4. INTRO PARAGRAPH
 
 Directly under the header, one unlabeled paragraph of **4-6 sentences**. It characterizes the system's voice across these dimensions: the canvas, the dominant type move, how colour is rationed, layout density, and what carries the page. Every characterizing claim must map to a real token (a hex, a size, a weight). Restrained, not purple. No assumed audience unless the page states it.
 
@@ -112,7 +112,7 @@ Each sentence should be deletable without making the others incomprehensible, bu
 
 ---
 
-## 5. Key Characteristics Format
+## 5. KEY CHARACTERISTICS FORMAT
 
 Each key characteristic follows a strict two-part structure joined by an em-dash:
 
@@ -146,7 +146,7 @@ The front half tells you WHY. The back half tells you WHAT. Neither half works a
 
 ---
 
-## 6. Colour Naming (`## Tokens — Colors`)
+## 6. COLOUR NAMING ( 0 )
 
 In v3 the colour table is **pre-rendered** by `formatters-v3.ts` in the `Name | Value | Token | Role` shape, most-prominent first. You do not hand-author it — but you must understand the naming style, because the Quick Start re-uses these exact slugs and the rest of your prose references colours by their names.
 
@@ -184,7 +184,7 @@ It describes visual quality, not emotional reaction, and never restates the hex 
 
 ---
 
-## 7. Value Embedding
+## 7. VALUE EMBEDDING
 
 Design values (font sizes, letter-spacing, weights, hex codes, opacity values) must be woven into prose. They never stand alone as facts.
 
@@ -220,7 +220,7 @@ Tables, component specs, and agent prompt guides. These are reference contexts w
 
 ---
 
-## 8. Do's and Don'ts Quality
+## 8. DO'S AND DON'TS QUALITY
 
 The Do's and Don'ts section is where most DESIGN.md files fail. Generic advice wastes the reader's time. Every entry must pass the specificity test.
 
@@ -277,7 +277,7 @@ Names both the correct value AND the common mistake, with a one-phrase rationale
 
 ---
 
-## 9. Agent Prompt Guide
+## 9. AGENT PROMPT GUIDE
 
 Agent prompts must be SELF-CONTAINED. A developer copies one prompt into an AI tool and gets a correct component without needing the rest of the DESIGN.md.
 
@@ -313,7 +313,7 @@ Include prompts for at least:
 
 ---
 
-## 10. Information Density
+## 10. INFORMATION DENSITY
 
 ### The deletion test
 
@@ -342,7 +342,7 @@ Each prose paragraph (intro, Typography role prose, Layout, Elevation) should co
 
 ---
 
-## 11. Ten Good/Bad Writing Comparisons
+## 11. TEN GOOD/BAD WRITING COMPARISONS
 
 ### 1. Atmosphere Description
 
@@ -464,7 +464,7 @@ Each prose paragraph (intro, Typography role prose, Layout, Elevation) should co
 
 ---
 
-## 12. Shadow Philosophy Pattern
+## 12. SHADOW PHILOSOPHY PATTERN
 
 Every DESIGN.md should include a shadow philosophy paragraph. This paragraph answers: "What is the THEORY behind this system's shadow usage?"
 
@@ -481,7 +481,7 @@ Every DESIGN.md should include a shadow philosophy paragraph. This paragraph ans
 
 ---
 
-## 13. Section Structure Checklist (v3 Style Reference)
+## 13. SECTION STRUCTURE CHECKLIST (v3 Style Reference)
 
 The v3 section set and where the prose effort goes. Pre-rendered sections are pasted unchanged; your writing is the prose in the remaining rows. Full contract: `design-md-format.md`.
 
@@ -503,7 +503,7 @@ The v3 section set and where the prose effort goes. Pre-rendered sections are pa
 
 ---
 
-## 14. Final Quality Gate
+## 14. FINAL QUALITY GATE
 
 Before publishing a Style Reference, run these checks:
 
@@ -525,7 +525,7 @@ Before publishing a Style Reference, run these checks:
 
 ---
 
-## 15. Comparative Framing Pattern
+## 15. COMPARATIVE FRAMING PATTERN
 
 Comparative framing is useful ONLY when it compares elements WITHIN this system using extracted values. Do NOT compare to "most systems", "convention", or "the typical approach" -- `tokens.json` carries no data about other systems, so those claims are fabrication. (This pattern previously produced ungrounded "unlike most systems" sentences; keep comparisons intra-system.)
 
@@ -585,7 +585,7 @@ GOOD: "Where most design systems give buttons solid backgrounds and obvious affo
 
 ---
 
-## 16. Named Principle Pattern
+## 16. NAMED PRINCIPLE PATTERN
 
 Name a design decision ONLY when extracted tokens back it (cite the value). A named principle without backing data is fabrication -- this pattern previously produced "gradient-as-depth" from a site with zero shadow tokens. When the data supports no distinctive principle, omit the name; do not invent one to fill the section.
 
@@ -630,7 +630,7 @@ Later: "The card shadow follows the **chromatic depth** principle established in
 
 ---
 
-## 17. Frequency Is a Decision Input, Never Displayed
+## 17. FREQUENCY IS A DECISION INPUT, NEVER DISPLAYED
 
 Frequency DECIDES prominence and role — which colour is the primary, which is a rare accent, which radius is the default. It is never PRINTED. The v3 Style Reference shows no counts, no percentages, no "appears 9685 times" narration. Frequency informs the ordering and the role clauses; it never becomes a sentence.
 
@@ -663,7 +663,7 @@ An absence can still be stated — as a fact about the system, never as a freque
 
 ---
 
-## 18. Intent Narration Pattern
+## 18. INTENT NARRATION PATTERN
 
 Intent narration bridges the gap between WHAT a system does and WHY it does it. Every design decision is a choice among alternatives; intent narration names the road not taken.
 
@@ -693,7 +693,7 @@ Ask: "Does this sentence tell me something I could not infer from looking at the
 
 ---
 
-## 19. Brand Voice Detection Pattern
+## 19. BRAND VOICE DETECTION PATTERN
 
 When the extracted data includes `sampleTexts` from tokens.json, UI text from buttons, headings, and labels, or microcopy from forms and errors, these are signals of the brand's content voice.
 
@@ -748,7 +748,7 @@ In the DESIGN.md Content & Voice section:
 
 ---
 
-## 20. Self-Containment Checklist (Agent Prompt Guide)
+## 20. SELF-CONTAINMENT CHECKLIST (Agent Prompt Guide)
 
 Every agent prompt must be fully self-contained. The test: "Can an AI agent copy-paste this prompt and build the component with zero lookups into the rest of the DESIGN.md?"
 

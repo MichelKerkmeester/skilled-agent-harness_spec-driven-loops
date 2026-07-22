@@ -23,7 +23,7 @@ This reference documents the mixed-executor dispatch pattern and the adjudicatio
 
 The mixed-executor pattern combines breadth exploration (a breadth CLI executor, e.g. cli-opencode small-model) with synthesis quality (cli-opencode gpt-5.5) using an 8+2 split for 10-iter sweeps. The adjudication-iter pattern adds a false-positive filter pass (typically at iter-7-equivalent) to reduce noise before synthesis. Together, these patterns provide better breadth/synthesis balance and 90%+ false-positive reduction compared to single-executor approaches.
 
-## 2. When to Use the Mixed-Executor Pattern
+## 2. WHEN TO USE THE MIXED-EXECUTOR PATTERN
 
 Use the mixed-executor pattern when:
 - Running multi-iter evaluation sweeps (not single-shot scoring)
@@ -38,7 +38,7 @@ Do NOT use the mixed-executor pattern when:
 
 ---
 
-## 3. The 8+2 Split
+## 3. THE 8+2 SPLIT
 
 The mixed-executor pattern uses an 8+2 split for a 10-iter sweep:
 

@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 An end-to-end run using the shipped fixtures (`../assets/fixtures/`). Two versions of an onboarding guide: the "after" rewrites a sentence, expands two bullets, adds a section, and extends a line.
 
-## 1. Explicit-pair comparison
+## 1. EXPLICIT-PAIR COMPARISON
 
 From the packet directory:
 
@@ -36,7 +36,7 @@ Compared onboarding-before.md → onboarding-after.md (markdown, tier full)
 
 `+4` added lines, `~5` changed in place, no removals — the additions are the new "First Login" section and expanded bullets; the changes are the reworded sentences, shown with word-level highlights.
 
-## 2. Verify the report
+## 2. VERIFY THE REPORT
 
 ```bash
 python3 scripts/validate_report.py /tmp/onboarding-review.html
@@ -45,7 +45,7 @@ python3 scripts/validate_report.py /tmp/onboarding-review.html
 
 Open the file in any browser, offline. The unified view shows old/new line numbers, a `+`/`−` marker column, collapsed unchanged runs, and inline `<mark>` highlights on changed words. Add `--view side-by-side` for two columns.
 
-## 3. The automatic (snapshot) flow
+## 3. THE AUTOMATIC (snapshot) FLOW
 
 The same result via the baseline workflow — capture before editing, compare after:
 
@@ -58,7 +58,7 @@ python3 scripts/create_diff.py compare /tmp/doc.md --report /tmp/review.html
 
 `compare` reads the latest baseline as "before" and the current file as "after". The source (`/tmp/doc.md`) is never written by the tool — only your `cp` changed it.
 
-## 4. JSON for automation
+## 4. JSON FOR AUTOMATION
 
 ```bash
 python3 scripts/create_diff.py compare-pair \

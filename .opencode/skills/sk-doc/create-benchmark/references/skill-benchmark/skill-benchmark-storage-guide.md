@@ -59,7 +59,7 @@ skills:
 
 ---
 
-## 2. THE HUB benchmark/ TREE
+## 2. THE HUB BENCHMARK/ TREE
 
 A hub `benchmark/` tree holds an optional index plus one folder per run:
 
@@ -139,7 +139,7 @@ any diff against `baseline/skill-benchmark-report.json`.
 
 ---
 
-## 5. BOUNDARY: THE REPORT .md IS RENDERER-OWNED
+## 5. BOUNDARY: THE REPORT .MD IS RENDERER-OWNED
 
 **`skill-benchmark-report.md` is a machine render. Never hand-author or hand-edit
 it.** It is produced solely by the deep-improvement renderer

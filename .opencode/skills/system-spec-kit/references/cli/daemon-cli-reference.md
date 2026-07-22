@@ -20,7 +20,7 @@ Use these CLIs when a runtime MCP transport is missing, failed, or not reconnect
 
 Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.opencode/bin/*.cjs` shim instead.
 
-## 1. CLI Surfaces
+## 1. CLI SURFACES
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
@@ -38,7 +38,7 @@ The CLI shims expose count-locked daemon surfaces: `spec-memory.cjs` exposes the
 
 Because the CLIs already use the same daemon IPC path and expose stable count-locked surfaces, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 
-## 2. Invocation Forms
+## 2. INVOCATION FORMS
 
 Common form:
 
@@ -66,7 +66,7 @@ node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3
 node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
 ```
 
-## 3. Output Formats
+## 3. OUTPUT FORMATS
 
 All three CLIs accept `--format json|text|jsonl`.
 
@@ -78,7 +78,7 @@ All three CLIs accept `--format json|text|jsonl`.
 
 `jsonl` is not streaming JSON Lines. Do not assume one record per tool, one record per result, or incremental output. When passing input with `--json`, pass one complete JSON object as one shell argument; the CLIs do not parse a stream of JSONL records from stdin.
 
-## 4. Exit-Code Taxonomy
+## 4. EXIT-CODE TAXONOMY
 
 | Exit | Meaning | Notes |
 | ---: | --- | --- |
@@ -90,7 +90,7 @@ All three CLIs accept `--format json|text|jsonl`.
 
 Exit `75` is retryable. Treat it as daemon or IPC unavailability, not as user input failure.
 
-## 5. Warm-Only Policy
+## 5. WARM-ONLY POLICY
 
 Prompt-time hooks and prompt-time runtime fallbacks must use warm-only behavior. Warm-only probes the daemon socket and exits `75` when the daemon is cold instead of cold-spawning it.
 
@@ -106,7 +106,7 @@ Warm-only defaults can also come from env flags documented in `../config/environ
 
 Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through the matching `mk-*-launcher.cjs`.
 
-## 6. Exit 69 Recovery
+## 6. EXIT 69 RECOVERY
 
 The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild before retrying.
 
@@ -118,7 +118,7 @@ The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild befor
 
 Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
-## 7. Help And Discovery
+## 7. HELP AND DISCOVERY
 
 Use `list-tools` for offline surface discovery:
 
@@ -149,7 +149,7 @@ node .opencode/bin/cli-offline-smoke.cjs --format json
 
 The smoke check expects `spec-memory=37`, `code-index=8`, `skill-advisor=9`, and `daemonFree:true` for each result.
 
-## 8. Safety Rules
+## 8. SAFETY RULES
 
 - Keep MCP as the primary in-session transport today; use the CLIs as additive fallbacks and operator surfaces.
 - We may consider making the CLIs the primary or sole transport later, but account for the spec-memory CLI/MCP surface-count difference and do not treat that as a decided plan.
@@ -161,7 +161,7 @@ The smoke check expects `spec-memory=37`, `code-index=8`, `skill-advisor=9`, and
 - Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - Do not use `jsonl` as a streaming automation contract; it is one complete JSON payload on one line.
 
-## 9. Source Anchors
+## 9. SOURCE ANCHORS
 
 - CLI sources: `system-spec-kit/mcp-server/spec-memory-cli.ts`, `system-code-graph/mcp-server/code-index-cli.ts`, `system-skill-advisor/mcp-server/skill-advisor-cli.ts`.
 - Shim sources: `.opencode/bin/spec-memory.cjs`, `.opencode/bin/code-index.cjs`, `.opencode/bin/skill-advisor.cjs`.

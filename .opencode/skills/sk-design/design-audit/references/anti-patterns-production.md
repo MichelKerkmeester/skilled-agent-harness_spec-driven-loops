@@ -35,7 +35,7 @@ Production-ready UI details support the surface's intent instead of exposing gen
 
 ---
 
-## 2. Anti-Slop Signals
+## 2. ANTI-SLOP SIGNALS
 
 Use parent `sk-design/references/anti-slop-principles.md` as the shared vocabulary. Common findings:
 - Generic cream + serif + terracotta with no subject reason.
@@ -46,7 +46,7 @@ Use parent `sk-design/references/anti-slop-principles.md` as the shared vocabula
 - Decorative `01 / 02 / 03` labels without sequence.
 - Scattered motion instead of one choreographed moment.
 
-## 3. Theming And Tokens
+## 3. THEMING AND TOKENS
 
 Report:
 - Hard-coded colors where semantic tokens exist.
@@ -65,7 +65,7 @@ Report:
 Map token fixes to `foundations` and implementation to `sk-code`.
 Map semantic layering fixes to `foundations` for the scale and `sk-code` for replacing arbitrary values in components.
 
-## 4. UX Copy Clarity
+## 4. UX COPY CLARITY
 
 Check interface text:
 - Buttons use verb + object (`Save changes`, not `OK`).
@@ -76,7 +76,7 @@ Check interface text:
 - Placeholders are not the only labels.
 - Humor is avoided in errors.
 
-## 5. Pseudo-Elements
+## 5. PSEUDO-ELEMENTS
 
 Pseudo-elements should reduce DOM clutter and improve native behavior when used correctly.
 
@@ -88,7 +88,7 @@ Rules (map each finding to P0-P3 by user impact; a broken `content` declaration 
 - Pseudo-elements can expand hit targets with negative inset.
 - Expanded hit areas must not overlap adjacent interactive targets; keep the 44x44 target floor and shrink the pseudo-element inset until targets do not collide.
 
-## 6. View Transitions
+## 6. VIEW TRANSITIONS
 
 Use native View Transitions for navigation-level shared element changes when supported and when interruption/cancellation constraints fit.
 
@@ -98,7 +98,7 @@ Rules (map each finding to P0-P3 by user impact; an uncancellable transition tha
 - Style `::view-transition-*` pseudo-elements when default crossfade is not enough.
 - Avoid View Transitions for interaction-heavy UI requiring cancellation.
 
-## 7. Production Readiness
+## 7. PRODUCTION READINESS
 
 Production-readiness findings include:
 - Missing empty/loading/error/success states.
@@ -116,7 +116,7 @@ Release-hardening detectors:
 - Component states: verify default, hover, focus-visible, active, disabled, loading, empty, error, success, selected, and destructive states where relevant.
 - Component accessibility: check name, role, value, keyboard path, focus visibility, announcements, contrast, and reduced-motion behavior.
 
-## 8. Finding Owner Map
+## 8. FINDING OWNER MAP
 
 | Finding type | Owner |
 | --- | --- |

@@ -30,7 +30,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 2. Numerical Accuracy
+## 2. NUMERICAL ACCURACY
 
 - [ ] **[NA-01]** All hex values originate from tokens.json or extracted data
   - Check: Cross-reference every hex in the document against the source token file or extraction output
@@ -84,7 +84,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 3. Semantic Correctness
+## 3. SEMANTIC CORRECTNESS
 
 - [ ] **[SC-01]** Color roles match actual usage, not just hue similarity
   - Check: Verify that "primary" is assigned to the most prominent brand/action color, not just the first color listed
@@ -133,7 +133,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 4. Completeness
+## 4. COMPLETENESS
 
 - [ ] **[CP-01]** Sections present per the data-driven gate
   - Check: The required v3 Style Reference sections (Tokens — Colors, Tokens — Typography, Tokens — Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are present. Conditional sections (Imagery, Dark Mode, the accessibility data in the Agent Prompt Guide, and the interaction states inside Components) are present-and-filled when their backing tokens exist, or honestly noted as absent when the backing field is empty. Dark Mode is omitted entirely when no dark palette was detected.
@@ -197,7 +197,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 5. Description Quality
+## 5. DESCRIPTION QUALITY
 
 - [ ] **[DQ-01]** No banned words used
   - Check: Search for: "sleek", "modern", "clean", "minimalist", "beautiful", "stunning", "elegant", "seamless", "intuitive", "cutting-edge", "state-of-the-art", "leverage", "utilize", "robust"
@@ -261,7 +261,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 6. Publication Quality
+## 6. PUBLICATION QUALITY
 
 - [ ] **[PQ-01]** Specificity comes from token values, not invented differentiation
   - Check: The document reads as specific because it is full of this system's real extracted values (hexes, sizes, frequencies), not because comparative or personality framing was added
@@ -305,7 +305,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 7. Brand Context
+## 7. BRAND CONTEXT
 
 - [ ] **[BC-01]** Company or product identity is stated in the opening
   - Check: The first paragraph names the company/product and positions the design system within its brand context
@@ -329,7 +329,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 8. Content & Voice
+## 8. CONTENT & VOICE
 
 - [ ] **[CV-01]** Tone is defined with specific adjectives
   - Check: A Content & Voice or Brand Voice section exists with 2-4 tone adjectives backed by evidence from UI text
@@ -363,7 +363,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 9. Accessibility Contract
+## 9. ACCESSIBILITY CONTRACT
 
 - [ ] **[AC-01]** WCAG conformance level is stated
   - Check: The document specifies a target WCAG level (AA or AAA) or notes the observed conformance level
@@ -392,7 +392,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 10. State Matrix
+## 10. STATE MATRIX
 
 - [ ] **[SM-01]** Loading states are documented for data-dependent components
   - Check: Components that display dynamic data (cards, tables, lists) have loading/skeleton state documentation
@@ -411,7 +411,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 11. Iconography
+## 11. ICONOGRAPHY
 
 - [ ] **[IC-01]** Icon system is identified
   - Check: The document states which icon library is used (Lucide, Heroicons, Material Symbols, custom SVG, etc.)
@@ -430,7 +430,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 12. Frequency Data
+## 12. FREQUENCY DATA
 
 - [ ] **[FQ-01]** Color usage frequencies are present
   - Check: The color palette includes frequency or prevalence data (percentage, rank, or tier like "dominant/common/rare")
@@ -449,7 +449,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 13. Validator Semantic Checks (validate.ts)
+## 13. VALIDATOR SEMANTIC CHECKS (validate.ts)
 
 `validate.ts` recognizes the v3 **Style Reference** schema (detected by the `# … — Style Reference` header plus `## Tokens — Colors`) as well as the legacy v2 layout. These items mirror its WARNING-tier semantic checks, its v3 Quick-Start fidelity check, and the dual score and pass gate it reports. Each warning is a fabrication or coverage signal to resolve before delivery.
 

@@ -35,7 +35,7 @@ Accessibility and performance are release gates; a beautiful UI that blocks keyb
 
 ---
 
-## 2. Accessibility Priority Order
+## 2. ACCESSIBILITY PRIORITY ORDER
 
 | Priority | Category | Checks |
 | --- | --- | --- |
@@ -75,7 +75,7 @@ These are the pass/fail numbers behind the contrast and touch checks. Cite a mea
 | UI components and graphical affordances (icons, focus ring, control borders) | 3:1 | n/a |
 | Touch target size | 44x44px (24x24px CSS is the WCAG 2.2 minimum) | n/a |
 
-## 3. Accessibility Findings
+## 3. ACCESSIBILITY FINDINGS
 
 For each issue, report:
 - Exact element or snippet.
@@ -91,7 +91,7 @@ Common fixes:
 <span id="email-error">Email addresses need an @ symbol.</span>
 ```
 
-## 4. Performance Checks
+## 4. PERFORMANCE CHECKS
 
 Measure before and after when possible.
 
@@ -103,7 +103,7 @@ Measure before and after when possible.
 | Motion | transform/opacity default, bounded paint, no continuous layout animation |
 | Network | request count, payload size, caching, compression, slow-connection behavior |
 
-## 5. Motion Performance
+## 5. MOTION PERFORMANCE
 
 Critical failures:
 - Interleaved layout reads and writes.
@@ -122,6 +122,6 @@ Recommended fixes:
 - Pause off-screen loops.
 - Downgrade technique before deleting useful state feedback.
 
-## 6. Performance Evidence
+## 6. PERFORMANCE EVIDENCE
 
 Use real metrics when available. If metrics are unavailable, label findings as static-risk findings and state the measurement needed to confirm.

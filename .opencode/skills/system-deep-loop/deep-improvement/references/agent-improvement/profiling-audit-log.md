@@ -19,13 +19,13 @@ This reference documents the profile-selection audit log format and retention po
 
 The profile-selection audit log provides debuggability and auditability for dynamic profile selection in DAI. When a profile is chosen for a candidate, the rationale is logged so operators can understand why a particular profile was selected. The log is append-only and stored in the improvement state directory with per-packet retention.
 
-## 2. Purpose
+## 2. PURPOSE
 
 The profile-selection audit log provides debuggability and auditability for dynamic profile selection in DAI. When a profile is chosen for a candidate, the rationale is logged so operators can understand why a particular profile was selected.
 
 ---
 
-## 3. Log Format
+## 3. LOG FORMAT
 
 ### File Location
 
@@ -67,7 +67,7 @@ Each log entry is a single-line JSON object with the following fields:
 
 ---
 
-## 4. Retention Policy
+## 4. RETENTION POLICY
 
 ### Retention Duration
 
@@ -88,7 +88,7 @@ Each log entry is a single-line JSON object with the following fields:
 
 ---
 
-## 5. Implementation Details
+## 5. IMPLEMENTATION DETAILS
 
 ### Script: generate-profile.cjs
 
@@ -131,7 +131,7 @@ try {
 
 ---
 
-## 6. Usage for Operators
+## 6. USAGE FOR OPERATORS
 
 ### Debugging Profile Selection
 
@@ -160,7 +160,7 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 
 ---
 
-## 7. Related References
+## 7. RELATED REFERENCES
 
 - `generate-profile.cjs`: `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs`
 - `typed-errors.cjs`: `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/typed-errors.cjs`

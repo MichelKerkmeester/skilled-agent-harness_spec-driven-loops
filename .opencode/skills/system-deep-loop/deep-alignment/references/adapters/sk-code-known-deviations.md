@@ -102,7 +102,7 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 ---
 
-## 6. sk-code's OWN TOOLING UNDER `code-webflow/` CLASSIFIES OPENCODE, NOT WEBFLOW
+## 6. SK-CODE'S OWN TOOLING UNDER `code-webflow/` CLASSIFIES OPENCODE, NOT WEBFLOW
 
 **Deviation name**: OPENCODE-precedence classification of Webflow-named tooling paths
 

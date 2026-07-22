@@ -28,7 +28,7 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 
 ---
 
-## 2. Framework Selection Table
+## 2. FRAMEWORK SELECTION TABLE
 
 | Framework | Best for | Complexity band | Core components |
 |-----------|----------|-----------------|-----------------|
@@ -42,7 +42,7 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 
 ---
 
-## 3. CLI Task to Framework Map
+## 3. CLI TASK TO FRAMEWORK MAP
 
 | CLI task type | Default framework | Notes |
 |---------------|-------------------|-------|
@@ -63,7 +63,7 @@ Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive ant
 
 ---
 
-## 4. CLEAR 5-Question Pre-Dispatch Checklist
+## 4. CLEAR 5-QUESTION PRE-DISPATCH CHECKLIST
 
 Use one question per dimension before every CLI dispatch. If any answer is "no", tighten the prompt before running the CLI.
 
@@ -77,7 +77,7 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 
 ---
 
-## 5. Prompt-Composition Precedence
+## 5. PROMPT-COMPOSITION PRECEDENCE
 
 Three tiers govern how a prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
 
@@ -109,7 +109,7 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ---
 
-## 6. Common CLI Prompt Failure Patterns
+## 6. COMMON CLI PROMPT FAILURE PATTERNS
 
 - Missing output format or success criteria
 - Unbounded scope that lets the delegated CLI wander
@@ -121,7 +121,7 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ---
 
-## 7. Mirror Sync
+## 7. MIRROR SYNC
 
 All three cli-* cards (`cli-claude-code`, `cli-opencode`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
@@ -137,7 +137,7 @@ When editing this file, no mirroring step is required — the delegating cards r
 
 ---
 
-## 8. Related Resources
+## 8. RELATED RESOURCES
 
 - `../SKILL.md`
 - `../../prompt-improve/references/patterns-evaluation.md`

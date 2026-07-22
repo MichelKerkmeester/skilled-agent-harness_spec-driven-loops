@@ -43,7 +43,7 @@ This reference separates Motion's scroll, viewport, and gesture APIs from local 
 
 ---
 
-## 2. scroll() - scroll-linked animations
+## 2. scroll() - SCROLL-LINKED ANIMATIONS
 
 `scroll()` creates scroll-linked animations, where animation progress follows scroll progress. It accepts a callback receiving progress or an animation returned from `animate()` (Source: https://motion.dev/docs/scroll).
 
@@ -58,7 +58,7 @@ The docs distinguish scroll-linked animation from scroll-triggered animation: us
 
 Useful options include `axis: "x"`, `container`, `target`, and `offset` for controlling which scroll axis/container/target drives progress (Source: https://motion.dev/docs/scroll).
 
-## 3. inView() - viewport entry/exit triggers
+## 3. inView() - VIEWPORT ENTRY/EXIT TRIGGERS
 
 `inView()` detects when elements enter and leave the viewport. It accepts a selector, `Element`, or array of elements, and its callback receives the matched element plus `IntersectionObserverEntry` information (Source: https://motion.dev/docs/inview).
 
@@ -74,7 +74,7 @@ const stop = inView("[data-reveal]", (element) => {
 
 `inView()` is built on Intersection Observer, and the docs describe `root`, `margin`, and `amount` options for viewport control (Source: https://motion.dev/docs/inview).
 
-## 4. Gestures (drag, hover, tap, focus)
+## 4. GESTURES (drag, hover, tap, focus)
 
 For vanilla JavaScript, current Motion docs expose gesture/event helpers including `hover()` and `press()` (Sources: https://motion.dev/docs/hover, https://motion.dev/docs/press).
 
@@ -100,7 +100,7 @@ press("button", (element) => {
 
 Drag behavior in the current repo is implemented manually with Pointer Events plus `motionValue()` and `animate(..., { type: "inertia" })`, not via a vanilla `drag` helper. Cite the local implementation before copying that pattern (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion animation options: https://motion.dev/docs/animate).
 
-## 5. In-repo examples
+## 5. IN-REPO EXAMPLES
 
 ### Testimonial drag inertia
 

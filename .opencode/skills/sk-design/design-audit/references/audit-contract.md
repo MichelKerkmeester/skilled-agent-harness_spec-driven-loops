@@ -33,7 +33,7 @@ Design audit reports are findings-first and evidence-bound: every severity, scor
 
 ---
 
-## 2. Severity
+## 2. SEVERITY
 
 | Severity | Name | Definition | Examples |
 | --- | --- | --- | --- |
@@ -44,7 +44,7 @@ Design audit reports are findings-first and evidence-bound: every severity, scor
 
 If unsure between severities, ask: would a real user fail, contact support, or abandon? If yes, it is at least P1.
 
-## 3. Five-Dimension Score
+## 3. FIVE-DIMENSION SCORE
 
 Score each dimension 0-4.
 
@@ -103,7 +103,7 @@ Rating bands:
 - `6-9` Poor.
 - `0-5` Critical.
 
-## 4. Findings Schema
+## 4. FINDINGS SCHEMA
 
 Use this shape for actionable findings:
 
@@ -120,7 +120,7 @@ Observation is neutral and factual; it records what was seen before the report s
 - Owner: `foundations` for token choice; `sk-code` for implementation.
 ```
 
-## 5. Evidence Rules
+## 5. EVIDENCE RULES
 
 - Use file/line when code is provided.
 - Use rendered observation when a screenshot or live page is available.
@@ -128,7 +128,7 @@ Observation is neutral and factual; it records what was seen before the report s
 - Label any inferred issue as inferred and state what would confirm it.
 - Do not claim visual overlays, browser inspection, or automated scans ran unless they actually ran.
 
-## 6. Report Order
+## 6. REPORT ORDER
 
 1. Findings by severity.
 2. Audit Health Score table.

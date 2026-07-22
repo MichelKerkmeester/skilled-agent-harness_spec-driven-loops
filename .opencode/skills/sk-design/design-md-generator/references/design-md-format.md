@@ -24,7 +24,7 @@ contextType: implementation
 
 ---
 
-## 0. Cardinal rules (unchanged from the fidelity contract)
+## 0. CARDINAL RULES (unchanged from the fidelity contract)
 
 1. Every hex, px, weight, radius, duration, and shadow is copied **verbatim** from
    `tokens.json`. Never estimate, round, or invent a value.
@@ -45,7 +45,7 @@ contextType: implementation
 
 ---
 
-## 1. File header
+## 1. FILE HEADER
 
 ```
 # <Brand or Domain> — Style Reference
@@ -60,7 +60,7 @@ contextType: implementation
 - Theme: `light` if the page background is light, `dark` if dark, `mixed` if it
   alternates full-bleed light and dark sections.
 
-## 2. Intro paragraph (unlabeled, directly under the header)
+## 2. INTRO PARAGRAPH (unlabeled, directly under the header)
 
 One paragraph, 4–6 sentences. Characterize the system's voice: canvas, the dominant
 type move, how color is rationed, layout density, what carries the page. Every
