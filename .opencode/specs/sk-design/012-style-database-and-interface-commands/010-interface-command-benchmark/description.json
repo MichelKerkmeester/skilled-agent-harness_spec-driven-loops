@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark",
+  "description": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a",
+  "keywords": [
+    "hybrid",
+    "benchmark",
+    "five",
+    "interface",
+    "design",
+    "commands",
+    "deterministic",
+    "structure",
+    "conformance",
+    "axis",
+    "contract",
+    "test",
+    "per-command",
+    "scorecard",
+    "plus"
+  ],
+  "lastUpdated": "2026-07-22T07:07:04.751Z",
+  "specId": "010",
+  "folderSlug": "interface-command-benchmark",
+  "parentChain": [
+    "sk-design",
+    "012-style-database-and-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,266 @@
+E — no spec folder needed; this is an advisory design artifact with no file mutation.
+
+## Route Proof
+
+- Canonical command: `/interface:design`
+- Workflow mode: `interface`
+- Register: Product
+- Dials: comfortable density, restrained motion, owned-token strategy
+- Supporting mode: none
+- Mutation boundary: advisory
+- Proof ceiling: `PROOF_TIER=observed`
+- Reason: read-only context, no design-system loader, no runtime/render inspection
+
+## Resolved Brief
+
+- Target: empty state of a team analytics dashboard
+- Audience: members of a brand-new workspace
+- One job: help the team understand what the dashboard will become and take the first useful setup action
+- Output surface: interface direction specification
+- Content policy: real representative copy; no lorem or placeholder labels
+- Required states: empty, first-run, loading
+- Must use:
+  - Clear workspace-oriented language
+  - A concrete first action
+  - Trustworthy product analytics tone
+  - A visible explanation of what data will appear
+- Must preserve:
+  - Dashboard orientation
+  - Team collaboration context
+  - Fast path to data connection
+- Must avoid:
+  - Generic “Nothing here yet”
+  - Decorative charts pretending to contain data
+  - Excessive onboarding steps
+  - Gamified or celebratory enterprise UI
+- Assumption ledger:
+  - `dataSource`: inferred as a connector or event source; reversible
+  - `primaryAction`: inferred as “Connect a data source”; reversible
+  - `brandTokens`: unavailable; no unverified tokens claimed
+
+## Context Manifest
+
+```yaml
+target: team analytics dashboard empty state
+owned_system: unavailable; no design-system loader exposed
+content:
+  workspace_name: Northstar Operations
+  member_count: 8
+  suggested_source: Stripe
+  metric_examples:
+    - Monthly recurring revenue
+    - New customers
+    - Trial conversion
+    - Churn rate
+constraints:
+  - no fabricated design tokens
+  - no placeholder content
+  - no runtime/render verification
+existing_artifacts: not inspected
+build_context: advisory only
+output_target: Interface Direction Spec
+```
+
+## Grounding Record
+
+### Reuse Report
+
+- Existing tokens: unavailable
+- Existing components: unavailable
+- Existing reference styles: unavailable
+- Verified reusable assets: none
+
+### Violation Scan
+
+No proposed value is claimed as an existing owned-system token. Palette, typography, spacing, and motion values below are authored direction values pending foundation-system mapping.
+
+### Exemplar grounding
+
+```yaml
+source: no-fit
+sourceType: no-fit
+provenance: no owned-system or subject-fit exemplar was available
+role: prevent unsupported reuse claims
+fitAxes: []
+preserve: []
+transform: []
+reject:
+  - generic empty-state illustration
+  - fake chart preview with invented data
+decisionChanged: use a text-and-structure-led empty state with a restrained setup cue
+limitations:
+  - no external or live exemplar was inspected
+```
+
+## Creation/Remediation Artifact - Interface Direction Spec
+
+### Chosen direction: “The first signal”
+
+The empty state treats the dashboard as a calm control room awaiting its first signal. The screen explains the future value of the workspace, shows the actual metrics the team will receive, and gives one decisive setup action.
+
+#### Composition
+
+- Full dashboard shell remains visible:
+  - left navigation
+  - workspace switcher
+  - date-range control disabled until data exists
+  - main content area
+- Main panel uses a wide editorial empty state rather than a centered illustration.
+- Left column:
+  - eyebrow: `NORTHSTAR OPERATIONS`
+  - heading: `Your team’s first signal starts here`
+  - body: `Connect Stripe to bring revenue, customer growth, and conversion into one shared view.`
+  - primary button: `Connect Stripe`
+  - secondary text action: `See what will be available`
+- Right column:
+  - three compact metric cards with muted “awaiting data” treatment:
+    - `Monthly recurring revenue`
+    - `New customers`
+    - `Trial conversion`
+  - Each card includes a thin horizontal baseline and a small signal marker, but no fake values or chart lines.
+- Bottom reassurance strip:
+  - `You can change the source later`
+  - `Northstar Operations · 8 members`
+
+#### Palette intent
+
+Use a dark ink interface foundation with one owned accent reserved for action and signal.
+
+- Background: deep blue-black, not pure black
+- Primary text: warm near-white
+- Secondary text: cool desaturated blue-gray
+- Action accent: electric mint or blue-green
+- Metric-card surfaces: slightly lifted blue-black
+- Borders: low-contrast cool gray
+- Loading shimmer: same accent family at low opacity
+
+Exact color values remain unassigned until the owned token system is available.
+
+#### Type intent
+
+- Heading: compact, high-x-height grotesk with a confident but practical tone
+- Body: neutral sans-serif optimized for short explanatory copy
+- Metric labels: medium-weight small text with strong contrast
+- Workspace name: uppercase or small-caps treatment with increased tracking
+
+Avoid oversized marketing typography. The product should feel operational, not promotional.
+
+#### Layout intent
+
+- Comfortable density with generous separation between explanation, action, and preview cards
+- Main empty-state content aligned to the dashboard’s existing content grid
+- Primary action stays above the fold
+- Preview metrics remain visibly secondary to the setup action
+- Mobile collapse order:
+  1. heading and explanation
+  2. connect action
+  3. metric cards
+  4. reassurance strip
+
+#### State definitions
+
+Empty:
+
+```text
+Your team’s first signal starts here
+
+Connect Stripe to bring revenue, customer growth, and conversion into one shared view.
+
+[Connect Stripe]  See what will be available
+```
+
+First-run after action:
+
+```text
+Connecting Stripe to Northstar Operations
+
+We’re checking permissions and preparing your first metrics. This usually takes a moment.
+
+[Cancel connection]
+```
+
+Loading:
+
+```text
+Preparing your dashboard
+
+Your first metrics are being calculated from Stripe. You can leave this page open while we finish.
+
+Monthly recurring revenue     Loading
+New customers                 Loading
+Trial conversion              Loading
+```
+
+Error recovery:
+
+```text
+Stripe could not be connected
+
+Your workspace is still empty. Check the connection permissions and try again.
+
+[Try again]  Choose another source
+```
+
+#### Motion intent
+
+- Restrained entrance: content fades and rises a few pixels once on first render
+- CTA hover: slight luminance increase, no scale bounce
+- Connection transition: button changes label and shows a small inline progress indicator
+- Loading cards: low-contrast shimmer moving left to right, slow and continuous
+- Reduced motion: remove entrance and shimmer; retain state changes through text and color only
+
+### Contrastive directions considered
+
+1. “The first signal” — editorial, calm, explanatory. Chosen for trust and clarity.
+2. “Team cockpit” — denser card grid with setup embedded in a command-center panel. Rejected because it makes an empty workspace feel prematurely complex.
+3. “Guided setup” — sequential onboarding with three setup steps. Rejected because it adds ceremony before the user has seen the product’s core value.
+
+## Critique/Validation
+
+Criterion: the direction must make the next useful action obvious without making the empty workspace feel unfinished or generic.
+
+- Pass by authored review:
+  - One dominant action: `Connect Stripe`
+  - Real workspace and metric content are present
+  - Empty, first-run, loading, and error states are defined
+  - No fake metric values or decorative data visualizations
+  - The shell remains recognizable as an analytics dashboard
+- Targeted revision:
+  - Replaced a generic empty chart with named metric cards and baseline markers.
+  - This preserves dashboard context without implying data exists.
+- Runtime/render validation: not performed.
+- Token compliance validation: blocked because the owned design system was unavailable.
+
+## Evidence Ledger
+
+| Claim | Tier | Method | Limitation |
+|---|---|---|---|
+| Route is `/interface:design` in `interface` mode | observed | User-supplied dispatch manifest | No runtime command execution |
+| Product register and dials are resolved | observed | User-supplied brief | No external source |
+| Direction uses representative workspace content | authored | Content authored for Northstar Operations scenario | Not sourced from a live workspace |
+| Three contrastive directions were evaluated | authored | Direction comparison | No user preference test |
+| Empty, first-run, loading, and error states are specified | authored | Artifact inspection | No rendered interaction test |
+| Proposed values are not owned-system tokens | observed | No design-system loader available | Token mapping remains unresolved |
+| Visual quality and accessibility pass | blocked | No browser/render inspection | Requires runtime validation |
+| Motion timing and frame quality | blocked | No interaction runtime | Requires implementation scenario |
+| `PROOF_TIER` ceiling | observed | Read-only environment limitation | No measured, validated, or verified claims |
+
+`PROOF_TIER=observed`
+
+## Next Action/Handoff
+
+Recommended next mode: `/interface:foundations`
+
+Reason: map the authored palette, typography, spacing, and component intent to the owned static token system before implementation.
+
+Then:
+
+- `/interface:motion` for loading and connection choreography
+- `/interface:audit` for findings-first review and scoring
+- `sk-code` only after the direction is accepted and the owned tokens are resolved
+
+`HANDOFF_REQUIRED=false`
+
+```text
+STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult
+```
