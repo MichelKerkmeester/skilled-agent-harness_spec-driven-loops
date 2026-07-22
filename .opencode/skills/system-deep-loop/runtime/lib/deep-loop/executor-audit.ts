@@ -84,6 +84,13 @@ const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
   'USER',
   'LOGNAME',
   '__CF_USER_TEXT_ENCODING',
+  // Spec-gate + child-session control for dispatched CLI workers. Without these,
+  // a worker inherits the parent's enforced spec-gate and halts on the Gate-3
+  // documentation question instead of running its task; passing them lets the
+  // orchestrator neutralize the gate (MK_SPEC_GATE_ENFORCE=0) and mark the worker
+  // as an orchestrated child session rather than a new top-level session.
+  'MK_SPEC_GATE_ENFORCE',
+  'AI_SESSION_CHILD',
 ]);
 
 const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
