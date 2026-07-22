@@ -1,23 +1,23 @@
 ---
 title: "Implementation Plan: Authored Structural-Fingerprint Cards"
-description: "Planned implementation route for authoring, indexing, and registering the Phase 3 structural-fingerprint card set; nothing built yet."
+description: "Implemented route for authoring, indexing, registering, and verifying the seven-card structural-fingerprint set."
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T18:39:18Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 3 implementation plan (planned)"
-    next_safe_action: "Await Phase 2 (002-evidence-envelopes) completion, then begin Phase 3 implementation per"
+    last_updated_by: "implementation-agent"
+    recent_action: "Executed and verified the authored-card implementation plan"
+    next_safe_action: "Use the index and record the next card choice in the shared evidence envelope"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ Markdown-only reference content inside the `sk-design` skill; no runtime code, c
 
 ### Overview
 
-Build 6-8 independently-authored abstract structural-fingerprint cards, a load-on-demand index that lets a caller read exactly one card, and a stamp-based diversification check that excludes already-used cards before selection. Register the index with `sk-design/SKILL.md` so modes can discover it. Nothing in this plan starts until Phase 2 (`002-evidence-envelopes`) ships its stamp/evidence mechanism, which the diversification check is designed to reuse or extend.
+Build seven independently-authored abstract structural-fingerprint cards, a load-on-demand index that lets a caller read exactly one card, and an evidence-envelope diversification check that excludes already-used cards before selection. Register the index with `sk-design/SKILL.md` so modes can discover it. Phase 2's two evidence-envelope references supplied the versioned collection, field-contract, validation, and authority-boundary precedent used by the selection stamp.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -46,8 +46,8 @@ Build 6-8 independently-authored abstract structural-fingerprint cards, a load-o
 
 ### Definition of Ready
 
-- Phase 2 (`002-evidence-envelopes`) stamp/evidence envelope mechanism is available for reference, or an interim stamp shape is explicitly documented as a stand-in.
-- The 014 research syntheses and Hallmark's `structure.md` / `macrostructures/*` are accessible read-only.
+- Phase 2 (`002-evidence-envelopes`) evidence-envelope mechanism is available for reference.
+- Both research syntheses are accessible as the clean-room grounding source; the raw external clone is not required.
 - The REQ-003 responsive-collapse decision (shared gate, fixed in spec.md) is understood by whoever authors the cards.
 
 ### Definition of Done

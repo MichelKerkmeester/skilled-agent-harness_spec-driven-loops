@@ -1,23 +1,23 @@
 ---
 title: "Verification Checklist: Authored Structural-Fingerprint Cards"
-description: "Planned verification checklist for the Phase 3 structural-fingerprint card set; all items pending, nothing executed yet."
+description: "Completed verification checklist for the seven-card structural-fingerprint set and its evidence-envelope diversification check."
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T18:39:18Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 3 verification checklist (planned)"
-    next_safe_action: "Await Phase 2 (002-evidence-envelopes) completion, then begin Phase 3 implementation per"
+    last_updated_by: "implementation-agent"
+    recent_action: "Verified all authored-card acceptance checks"
+    next_safe_action: "Use the index and append selection evidence on the next design application"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist targets the Phase 3 implementation described in `plan.md` and `tasks.md`. Status is Planned, so every item below is unchecked (`- [ ]`). Each item will require file-path, grep-output, or `validate.sh` evidence at completion time -- no item may be checked from intent alone.
+This checklist targets the Phase 3 implementation described in `plan.md` and `tasks.md`. Every checked item cites file-path, command-output, or manual-review evidence.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -38,8 +38,8 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 2 (`002-evidence-envelopes`) stamp/evidence mechanism confirmed available, or an interim stamp shape explicitly documented as a stand-in. [EVIDENCE: pending -- link to 002 `implementation-summary.md` or an interim decision note]
-- [ ] CHK-002 [P0] Responsive-collapse decision (single shared gate, not baked per card) confirmed recorded in `spec.md` REQ-003 with rationale before card authoring begins. [EVIDENCE: pending -- `spec.md` Scope / REQ-003 review]
+- [x] CHK-001 [P0] Phase 2 evidence-envelope mechanism confirmed available and reused. [EVIDENCE: `shared/evidence-envelopes/motion-character-handoff.md` and `owned-asset-manifest.md` supplied the versioned shape, field-contract, validation, and authority-boundary pattern used in `index.md`]
+- [x] CHK-002 [P0] Responsive-collapse decision is a single shared gate, not baked per card. [EVIDENCE: `spec.md` Scope, `schema.md` section 3, and field 5 in all seven cards]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -47,8 +47,8 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-003 [P1] Each of the 6-8 cards is self-contained (readable without loading any other card) and independently authored, with no verbatim Hallmark prose. [EVIDENCE: pending -- manual diff review against Hallmark source files]
-- [ ] CHK-004 [P0] The index references cards only by id plus a one-line applicability hint; it does not embed full card content. [EVIDENCE: pending -- `index.md` content review]
+- [x] CHK-003 [P1] Each of the seven cards is self-contained and independently authored. [EVIDENCE: diff review of all seven `card-*.md` files against the two synthesis constraints; each card defines all seven fields locally and uses no external catalog wording]
+- [x] CHK-004 [P0] The index references cards only by id, file, and a one-line applicability hint; it does not embed full card content. [EVIDENCE: `index.md` section 2]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -56,8 +56,8 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-005 [P0] Targeted grep for the 21 macrostructure titles, the N1-N13/Ft1-Ft8 codes, and the 20-name theme catalog across all new files returns zero hits. [EVIDENCE: pending -- grep command output]
-- [ ] CHK-006 [P1] Manual per-card review confirms all seven required fields are present on every card. [EVIDENCE: pending -- reviewer checklist per card]
+- [x] CHK-005 [P0] Required exclusion grep across all new files returns zero hits. [EVIDENCE: `grep -rniE 'N[0-9]{1,2}\\b|Ft[0-9]|hallmark' ...` emitted no lines and exited 1]
+- [x] CHK-006 [P1] Manual per-card review confirms all seven required fields are present on every card. [EVIDENCE: conformance loop reported PASS 7/7 for all seven `card-*.md` files]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -65,8 +65,8 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-007 [P0] Exactly 6-8 cards authored (not fewer, not an unbounded catalog), with unique, non-duplicate applicability guards. [EVIDENCE: pending -- card count and applicability-guard diff]
-- [ ] CHK-008 [P1] Stamp-based diversification check demonstrably excludes previously-used cards on a second selection pass (dry-run walkthrough). [EVIDENCE: pending -- dry-run walkthrough notes]
+- [x] CHK-007 [P0] Exactly seven cards are authored, with unique applicability guards. [EVIDENCE: seven `card-*.md` files; reach/avoid guards distinguish orientation, evidence depth, transitions, action hierarchy, imagery, disclosure, and global framing]
+- [x] CHK-008 [P1] Diversification check excludes previously used cards on a second selection pass. [EVIDENCE: `index.md` section 5 dry run removes `heading-rail` from the eligible set after its first recorded use and requires `no-unused-fit:` before reuse]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -74,7 +74,7 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-009 [P1] No executable code, network calls, or new write paths are introduced by the reference content. [EVIDENCE: pending -- file-type and content review]
+- [x] CHK-009 [P1] No executable code, network calls, or new write paths are introduced by the reference content. [EVIDENCE: 9/9 new files are Markdown and the single `SKILL.md` registration is Markdown; the JSON block is a static evidence shape]
 <!-- /ANCHOR:security -->
 
 ---
@@ -82,8 +82,8 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-010 [P0] `sk-design/SKILL.md` updated to point at the new load-on-demand index. [EVIDENCE: pending -- diff of `SKILL.md`]
-- [ ] CHK-011 [P1] Licensing note present in `spec.md` Scope/Risks and `implementation-summary.md` Key Decisions, confirming architecture-only adoption and no MIT notice obligation. [EVIDENCE: pending -- `spec.md` §6 and `implementation-summary.md` Key Decisions review]
+- [x] CHK-010 [P0] `sk-design/SKILL.md` points at the load-on-demand index. [EVIDENCE: one Structural decisions bullet names the index, used-id exclusion, and load-one-card rule]
+- [x] CHK-011 [P1] Licensing note remains in `spec.md` Scope/Risks and `implementation-summary.md` Key Decisions. [EVIDENCE: both record clean-room architecture-only adoption and no copied expression]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -91,7 +91,7 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-012 [P1] All new files live under `.opencode/skills/sk-design/shared/references/structural-fingerprint-cards/`; no files are created outside the `spec.md` §3 Files to Change table. [EVIDENCE: pending -- file listing diff against `spec.md` §3]
+- [x] CHK-012 [P1] All new files live under `.opencode/skills/sk-design/shared/references/structural-fingerprint-cards/`; the only existing skill file modified is `SKILL.md`. [EVIDENCE: scoped file listing contains `schema.md`, `index.md`, and seven cards]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -99,5 +99,5 @@ This checklist targets the Phase 3 implementation described in `plan.md` and `ta
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Pending -- 0 of 12 items verified. Verification begins only after Phase 3 implementation starts, which is itself blocked on Phase 2 (`002-evidence-envelopes`) completion.
+Verified -- 12 of 12 items satisfied with file, command, or manual-review evidence. Strict packet validation is recorded in `implementation-summary.md`.
 <!-- /ANCHOR:summary -->

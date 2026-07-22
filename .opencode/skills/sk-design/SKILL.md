@@ -257,6 +257,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 ## 5. REFERENCES
 
 - Shared reference base: `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, `shared/design-token-vocabulary.md` (cited by every doc-guidance mode).
+- Structural decisions: read `shared/references/structural-fingerprint-cards/index.md`, exclude used ids through its evidence-envelope stamp, then load only the one selected card.
 - Creation commands: `shared/creation-contract.md` (nine-stage contract shared by the canonical `/interface:*` commands).
 - Style retrieval: `styles/_engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/_db/README.md` (persistent index lifecycle).
 - Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).

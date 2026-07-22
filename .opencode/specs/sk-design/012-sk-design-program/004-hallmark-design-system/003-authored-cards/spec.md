@@ -10,20 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T18:39:18Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 3 specification (planned; not implemented)"
-    next_safe_action: "Await Phase 2 (002-evidence-envelopes) completion, then begin Phase 3 implementation per"
+    last_updated_by: "implementation-agent"
+    recent_action: "Completed the seven-card structural fingerprint reference set"
+    next_safe_action: "Use the load-on-demand index during the next structural design decision"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -155,6 +155,5 @@ Author 6-8 abstract structural-fingerprint cards as sk-design's own decision-sup
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Exact count within 6-8 and the identities/names of the cards -- finalized during implementation, grounded in `structure.md`'s six axes (non-blocking; resolved at build).
-- Whether the Phase 2 (`002-evidence-envelopes`) stamp mechanism is reused as-is or extended with card-specific fields for the diversification check (resolve once Phase 2 ships).
+None. Implementation fixed the set at seven cards and reused the Phase 2 evidence-envelope pattern as a versioned `structuralFingerprintSelections` collection with a field contract, validation rules, and authority boundary.
 <!-- /ANCHOR:questions -->
