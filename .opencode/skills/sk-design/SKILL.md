@@ -258,6 +258,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 
 - Shared reference base: `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, `shared/design-token-vocabulary.md` (cited by every doc-guidance mode).
 - Structural decisions: read `shared/references/structural-fingerprint-cards/index.md`, exclude used ids through its evidence-envelope stamp, then load only the one selected card.
+- Authored brand systems: use `shared/references/brand-first-lane.md` with the templates and boundary guard under `shared/authored-brand/`; authored exports never write measured `DESIGN.md`, `tokens.json`, or `styles/` paths, and only a signed `reviewed-conversion` checklist can authorize the existing measured owner to recreate an approved value from independent evidence.
 - Creation commands: `shared/creation-contract.md` (nine-stage contract shared by the canonical `/interface:*` commands).
 - Style retrieval: `styles/_engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/_db/README.md` (persistent index lifecycle).
 - Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).

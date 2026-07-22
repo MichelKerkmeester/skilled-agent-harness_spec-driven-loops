@@ -30,13 +30,18 @@
       "five"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/SKILL.md",
-      "plan.md",
-      "tasks.md",
+      ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
+      ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      ".opencode/skills/sk-design/shared/authored-brand/authored-design-template.md",
+      ".opencode/skills/sk-design/shared/authored-brand/authored-provenance-schema.md",
+      ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
       "spec.md",
       "checklist.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -47,15 +52,33 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "brand-first-lane.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "authored-brand-boundary.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "authored-design-template.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-design-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "authored-provenance-schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-provenance-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "brand-first-boundary.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
         "source": "derived"
       },
       {
@@ -68,6 +91,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -89,12 +124,6 @@
         "source": "derived"
       },
       {
-        "name": "Await Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +137,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Specify",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -137,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation Each",
+        "name": "Data Flow",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Testing Strategy",
+        "name": "Task Notation Each",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -153,41 +188,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Phases",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-design's five modes are measured/evidence-first by design, and Phases 1-3 of this packet only fold Hallmark heuristics into that existing, measured surface",
     "created_at": "2026-07-20T09:21:26.534Z",
-    "last_save_at": "2026-07-22T18:01:09.377Z",
+    "last_save_at": "2026-07-22T19:01:14.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4185d827b428d284b3bbb4322680ecda70e900cbe94a60ba027014ec290bc405",
+    "source_fingerprint": "sha256:fe7bffc1eca2119f0ad0e3e2f90791ada0e49fa6ee7743473cb262bda3dd643b",
     "source_doc_hashes": {
-      "spec.md": "e5e9aebfe8bf86a916fd07d7a47f769269f8ccd0a5390ab2cdbf5bcf721f4551",
-      "plan.md": "666b9fe95faa3cf891f50a254d343e0eb2d6f658ebe454a7548ca185c6333635",
-      "tasks.md": "b30bcd08b687973b1386e3ee6a56de6eb27078f17e79669abcc7aa7d7ee62685",
-      "checklist.md": "b20d473d4bafc0785abff02dab6b999afc2ac702b1aaab90848d2585c7fc5aeb",
-      "implementation-summary.md": "d4ce6102c85a3929ba749a6fade93605bd036eacfbc526d6288e605dddb043e5"
+      "spec.md": "49e68d0facc2baa6a0c196dd03a7b4f9dcc84f4fb72c1acdf9fae920474ecb6a",
+      "plan.md": "df19fa4bd062ef6fa4cb457c872a619953de14d06f1fc549123dd3c03d1cbcbd",
+      "tasks.md": "1916bcc9ce3266023d272eb88c1e4a2a70532887a32d836c33754feddd1b663d",
+      "checklist.md": "47ef524c9617f71245af3920283f03773aae19b068c7c303313c4635357ca821",
+      "implementation-summary.md": "0ab3a9bf016a0e8795f8768b7bd37a036fc6aba9bd6cfabe1c000cfc0d48dad2"
     },
     "last_active_child_id": null,
     "last_active_at": null

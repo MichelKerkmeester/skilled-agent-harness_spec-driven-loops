@@ -1,23 +1,23 @@
 ---
 title: "Verification Checklist: Brand-First Authoring Lane"
-description: "Verification checklist for the brand-first authoring lane, covering the hard boundary, overwrite policy, and reviewed-conversion gate before any completion claim (planned; not implemented)."
+description: "Verification evidence for the authored-versus-measured hard boundary, overwrite policy, provenance, and manual reviewed-conversion gate."
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T19:01:14Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 4 verification checklist (planned)"
-    next_safe_action: "Await Phase 3 (003-authored-cards) completion, then begin Phase 4 implementation per tasks.md"
+    last_updated_by: "implementation-agent"
+    recent_action: "Completed behavior tests and strict packet validation"
+    next_safe_action: "Use the lane through its shared reference procedure"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
+      - ".opencode/skills/sk-design/shared/references/brand-first-lane.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "spec-author-session"
+      session_id: "implementation-agent-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This packet is Planned; no implementation exists yet. Every item below is unchecked and carries a `[EVIDENCE: pending — ...]` note describing the proof that will be required once Phase 4 is built. Do not check any item, and do not claim completion, until the described evidence exists and `validate.sh --strict` passes.
+Each checked item cites a built file, named subtest, or command result. Completion requires both behavioral tests and strict packet validation.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -38,8 +38,8 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 3 (`003-authored-cards`) is complete and its authored-vs-measured precedent is confirmed reusable. [EVIDENCE: pending — `../003-authored-cards/implementation-summary.md` Status = Complete]
-- [ ] CHK-002 [P0] spec.md REQ-001..REQ-006 and the HARD BOUNDARY invariant are approved before implementation begins. [EVIDENCE: pending — spec.md sign-off]
+- [x] CHK-001 [P0] The authored-card predecessor is complete and its authored-versus-measured precedent is reusable. [EVIDENCE: `../003-authored-cards/implementation-summary.md` reports Status `Complete` and strict validation pass]
+- [x] CHK-002 [P0] The requirements and hard boundary were approved before implementation. [EVIDENCE: `spec.md` requirements table records the approved boundary; the operator directive explicitly confirmed demand and fixed the manual-checklist architecture]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -47,8 +47,8 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-003 [P1] The distinct authored artifact template and provenance schema follow existing `sk-design` asset conventions. [EVIDENCE: pending — code review of the new template/schema files]
-- [ ] CHK-004 [P1] Overwrite-policy and reviewed-conversion-gate logic contain no path that writes an authored value directly into a measured file. [EVIDENCE: pending — code review plus a static check for measured-file write paths]
+- [x] CHK-003 [P1] The distinct authored templates and provenance schema follow the shared-resource conventions. [EVIDENCE: `.opencode/skills/sk-design/shared/authored-brand/authored-design-template.md`; `.opencode/skills/sk-design/shared/authored-brand/authored-provenance-schema.md`]
+- [x] CHK-004 [P1] No authored writer exposes a path into a measured file. [EVIDENCE: `assertAuthoredDestination` accepts exactly two authored basenames; boundary subtest `writer accepts authored paths and rejects measured paths` passes]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -56,8 +56,8 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-005 [P0] Adversarial tests proving no code path writes an authored/invented value into DESIGN.md, tokens.json, or the styles corpus outside the reviewed-conversion gate all pass. [EVIDENCE: pending — test run output]
-- [ ] CHK-006 [P0] Overwrite-policy tests confirming re-runs never mutate measured artifacts and only refresh the authored artifact's exports section all pass. [EVIDENCE: pending — test run output]
+- [x] CHK-005 [P0] Adversarial measured-path, rendered and structured provenance, signature-match, and conversion-gate tests pass with positive and negative controls. [EVIDENCE: `node .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs` reports tests 7, pass 7, fail 0]
+- [x] CHK-006 [P0] Authored reruns refresh authored files while measured files remain byte-unchanged. [EVIDENCE: boundary subtest `authored rerun changes authored exports while measured files remain byte-unchanged` passes, including a rejected direct `tokens.json` write]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -65,7 +65,7 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-007 [P0] Tasks T001-T008 in `tasks.md` are all complete and checked, with the distinct artifact, provenance schema, overwrite policy, and reviewed-conversion gate all implemented. [EVIDENCE: pending — tasks.md final state]
+- [x] CHK-007 [P0] Tasks T001-T008 are complete and strict packet validation has passed. [EVIDENCE: `tasks.md` has 8/8 checked; `validate.sh --strict` final run reports Errors 0, Warnings 0, RESULT PASSED]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -73,7 +73,7 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-008 [P0] The reviewed-conversion gate requires an explicit human review action; no automated `verified=true` or silent promotion path exists. [EVIDENCE: pending — gate implementation review plus an adversarial test]
+- [x] CHK-008 [P0] Conversion requires a named human, signature, four manual attestations, approved selections, and independent measurement evidence; `verified=true` is rejected. [EVIDENCE: `assertReviewedConversionArtifact`; boundary subtest `conversion requires a signed reviewed-conversion checklist with evidence` passes]
 <!-- /ANCHOR:security -->
 
 ---
@@ -81,7 +81,7 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-009 [P1] A licensing note is present: Hallmark MIT clean-room adoption; the MIT notice is added only if the artifact schema substantially copies Hallmark's design.md/provenance format; external assets remain out of scope. [EVIDENCE: pending — spec.md / implementation-summary.md licensing note]
+- [x] CHK-009 [P1] Clean-room licensing and external-asset boundaries are documented. [EVIDENCE: `shared/references/brand-first-lane.md` section 6 and `shared/authored-brand/authored-provenance-schema.md` section 4 state independent authorship and asset exclusions]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -89,7 +89,7 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-010 [P1] New files live under the planned `.opencode/skills/sk-design/` locations named in `spec.md` Files to Change, with no stray or duplicate artifacts. [EVIDENCE: pending — file listing checked against spec.md Files to Change table]
+- [x] CHK-010 [P1] All new resources live under `shared/authored-brand/`, `shared/references/`, or `shared/scripts/`; the hub change is one registration bullet. [EVIDENCE: `spec.md` Files to Change table and the scoped file inventory; no new top-level `assets/` or `references/` directory was created]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -98,13 +98,13 @@ This packet is Planned; no implementation exists yet. Every item below is unchec
 ## Verification Summary
 
 | Category | Items | Status |
-|---|---|---|
-| Pre-Implementation | 2 | Pending |
-| Code Quality | 2 | Pending |
-| Testing | 2 | Pending |
-| Fix Completeness | 1 | Pending |
-| Security | 1 | Pending |
-| Documentation | 1 | Pending |
-| File Organization | 1 | Pending |
-| **Total** | **10** | **0/10 complete (Planned)** |
+|---|---:|---|
+| Pre-Implementation | 2 | 2/2 complete |
+| Code Quality | 2 | 2/2 complete |
+| Testing | 2 | 2/2 complete |
+| Fix Completeness | 1 | 1/1 complete |
+| Security | 1 | 1/1 complete |
+| Documentation | 1 | 1/1 complete |
+| File Organization | 1 | 1/1 complete |
+| **Total** | **10** | **10/10 complete** |
 <!-- /ANCHOR:summary -->

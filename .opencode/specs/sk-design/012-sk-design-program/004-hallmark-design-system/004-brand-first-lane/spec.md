@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Brand-First Authoring Lane"
-description: "Specify a brand-first authoring lane that generates a complete authored brand (palette, type, voice) into a distinct artifact, gated by origin labels, an overwrite policy, and a reviewed-conversion gate that is the only path into the measured design corpus (planned; not implemented)."
+description: "Implemented brand-first authoring lane that generates palette, type, and voice into distinct authored exports behind measured-path refusal and a manual reviewed-conversion gate."
 trigger_phrases:
   - "brand first authoring lane"
   - "authored design artifact"
@@ -10,20 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T19:01:14Z"
 
     last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 4 specification (planned; not implemented)"
-    next_safe_action: "Await Phase 3 (003-authored-cards) completion, then begin Phase 4 implementation per tasks.md"
+    recent_action: "Implemented and strictly verified the authored-versus-measured boundary"
+    next_safe_action: "Use the shared brand-first procedure for an explicitly requested authored brand"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/brand-first-lane.md"
+      - ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -72,7 +73,7 @@ Specify a brand-first authoring lane — the one genuinely new, user-facing capa
 ### In Scope
 
 - A distinct authored artifact (e.g. `AUTHORED-DESIGN.md` + authored tokens) with a name/schema that cannot be confused with the measured `DESIGN.md`/`tokens.json`/styles corpus.
-- Origin labels and provenance (authored/invented tag, source description, date, confidence note) on every authored palette/type/voice value.
+- Exact `origin: authored` labels and provenance (source description, date, confidence note) on every authored palette/type/voice value.
 - An overwrite policy: the lane never clobbers a measured artifact; re-running it refreshes only the authored artifact's own exports.
 - A reviewed-conversion gate: the sole, explicit, human-reviewed path by which an authored value may later enter the measured corpus.
 - The HARD BOUNDARY invariant itself (authored never enters measured without reviewed conversion), stated as P0 and repeated in Risks and the requirements table.
@@ -83,15 +84,16 @@ Specify a brand-first authoring lane — the one genuinely new, user-facing capa
 - Changing the measured extraction pipeline itself.
 - Auto-converting authored values into measured values — the conversion gate is manual/reviewed only, never automatic.
 - Phase 1 (`001-surgical-fixes`), Phase 2 (`002-evidence-envelopes`), and Phase 3 (`003-authored-cards`) concerns; this phase depends on Phase 3's authored-vs-measured precedent but does not redo that work.
-- Building or implementing the lane — this spec documents the Planned design only; nothing here is built.
+- A sixth design mode, a new public command, or an automated authored-to-measured conversion command.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-design/assets/authored-design-template.md` | Create | Distinct-schema authored brand artifact template (palette/type/voice + origin labels) |
-| `.opencode/skills/sk-design/shared/authored-provenance-schema.md` | Create | Shared origin-label/provenance schema for authored values |
-| `.opencode/skills/sk-design/references/brand-first-lane.md` | Create | Lane workflow: authoring, overwrite policy, reviewed-conversion gate |
+| `.opencode/skills/sk-design/shared/authored-brand/authored-design-template.md` | Create | Distinct-schema `AUTHORED-DESIGN.md` and `authored-tokens.json` templates |
+| `.opencode/skills/sk-design/shared/authored-brand/authored-provenance-schema.md` | Create | Shared origin-label/provenance schema for authored values |
+| `.opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs` | Create | Enforce authored-only paths, provenance completeness, and conversion-record structure |
+| `.opencode/skills/sk-design/shared/references/brand-first-lane.md` | Create | Lane workflow, overwrite policy, and manual reviewed-conversion procedure |
 | `.opencode/skills/sk-design/SKILL.md` | Modify | Register the brand-first lane capability and document the hard boundary |
 | `.opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs` | Create | Adversarial tests proving no silent authored-to-measured write path exists |
 <!-- /ANCHOR:scope -->
@@ -114,7 +116,7 @@ Specify a brand-first authoring lane — the one genuinely new, user-facing capa
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Origin labels and provenance on every authored value | Each authored palette/type/voice value carries an origin label (authored/invented) plus provenance (source description, date, confidence note). |
+| REQ-003 | Origin labels and provenance on every authored value | Each authored palette/type/voice value carries exact `origin: authored` plus provenance (source description, date, confidence note). |
 | REQ-004 | Overwrite policy protects measured artifacts | The lane never overwrites or clobbers a measured artifact; re-running the lane refreshes only the authored artifact's own exports section. |
 <!-- /ANCHOR:requirements -->
 
@@ -153,8 +155,7 @@ Specify a brand-first authoring lane — the one genuinely new, user-facing capa
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
-- What concrete mechanism implements the reviewed-conversion gate (manual PR review, a dedicated command, or a checklist)? (Resolve at build.)
-- Does demonstrated user demand exist to earn this net-new product surface? (Inherited from the parent packet's open question; re-confirm before implementation begins.)
+None. The reviewed-conversion gate is a documented manual-review checklist plus a structurally validated companion record, not a command; user demand was confirmed by the operator directive authorizing implementation.
 <!-- /ANCHOR:questions -->

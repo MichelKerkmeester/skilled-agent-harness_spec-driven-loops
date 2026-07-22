@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Brand-First Authoring Lane"
-description: "Forward-looking summary of the brand-first authoring lane's planned design and the verification still required before implementation begins."
+description: "Implemented authored-only brand exports with per-value provenance, measured-path refusal, and a manual reviewed-conversion checklist."
 trigger_phrases:
   - "brand first authoring lane"
   - "authored design artifact"
@@ -10,20 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T19:01:14Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the forward-looking Phase 4 implementation record"
-    next_safe_action: "Await Phase 3 (003-authored-cards) completion, then begin Phase 4 implementation per tasks.md"
+    last_updated_by: "implementation-agent"
+    recent_action: "Implemented and strictly verified the authored-versus-measured boundary"
+    next_safe_action: "Use the lane for an explicitly requested authored brand"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/brand-first-lane.md"
+      - ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs"
+      - ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "impl-summary-session"
+      session_id: "implementation-agent-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +38,9 @@ _memory:
 ## Metadata
 
 | Field | Value |
-|-------|-------|
+|---|---|
 | **Spec Folder** | 004-brand-first-lane |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Level** | 2 |
 | **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Phase** | 4 of 4 |
@@ -50,19 +51,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been built yet — this phase is Planned. Once implemented, the brand-first authoring lane will add a distinct authored artifact (e.g. `AUTHORED-DESIGN.md` + authored tokens) carrying per-value origin labels and provenance, an overwrite policy that never clobbers measured artifacts, and a reviewed-conversion gate as the sole authored-to-measured promotion path.
+Implemented a shared brand-first procedure that turns an explicitly supplied product description into authored palette, type, and voice proposals. The result has two distinct exports, `AUTHORED-DESIGN.md` and `authored-tokens.json`, with exact `origin: authored` and per-value provenance.
+
+A small filesystem boundary module accepts only those two basenames, rejects `DESIGN.md`, `tokens.json`, and `styles/` before I/O, validates structured and rendered authored provenance, and validates the structure of a signed manual-review record without providing any measured writer or conversion command.
 
 ### Files Created / Changed
 
-| File or Group | Action (Planned) | Purpose |
+| File or Group | Action | Purpose |
 |---|---|---|
-| Distinct authored artifact template (e.g. `AUTHORED-DESIGN.md` + authored tokens) | Create | Distinct-schema artifact for authored palette/type/voice, never confusable with measured DESIGN.md/tokens.json |
-| Shared origin-label/provenance schema | Create | Tags every authored value as authored/invented with source description, date, and confidence note |
-| Brand-first lane authoring logic | Create | Generates palette/type/voice from a short product description into the distinct artifact only |
-| Overwrite-policy logic | Create | Refreshes only the authored artifact's exports; never touches measured artifacts |
-| Reviewed-conversion gate | Create | Sole explicit, human-reviewed authored-to-measured promotion mechanism |
-| Adversarial boundary test suite | Create | Proves no silent authored-to-measured write path exists |
-| `sk-design` registration (`SKILL.md` / mode surface) | Modify | Registers the lane as a capability and documents the hard boundary |
+| `shared/authored-brand/authored-design-template.md` | Created | Distinct Markdown and JSON authored-export templates |
+| `shared/authored-brand/authored-provenance-schema.md` | Created | Exact value-level origin and provenance contract |
+| `shared/authored-brand/authored-brand-boundary.mjs` | Created | Authored-path refusal, refresh-only writer, JSON and Markdown provenance validation, and review-record validation |
+| `shared/references/brand-first-lane.md` | Created | Workflow, overwrite policy, manual review checklist, and hard-boundary statement |
+| `shared/scripts/brand-first-boundary.test.mjs` | Created | Adversarial filesystem, rendered provenance, signature-match, conversion, and structural controls |
+| `.opencode/skills/sk-design/SKILL.md` | Modified | One reference bullet registers the shared lane without changing modes or commands |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +72,7 @@ Nothing has been built yet — this phase is Planned. Once implemented, the bran
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. `plan.md` sequences three build phases — distinct artifact + provenance schema, lane authoring + overwrite policy, then the reviewed-conversion gate plus adversarial verification — gated on Phase 3 (`003-authored-cards`) completion. `validate.sh --strict` and the full adversarial test suite are required before any completion claim.
+The implementation used only the two approved research syntheses and existing in-repository test conventions. The authored writer validates the destination before filesystem I/O and has no measured write API. The reviewed-conversion mechanism is a documented checklist signed by a human; the companion validator rejects incomplete, unsigned, evidence-free, or self-certified records but never performs promotion.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,11 +82,12 @@ Not yet delivered. `plan.md` sequences three build phases — distinct artifact 
 
 | Decision | Rationale |
 |---|---|
-| Authored output lives in a distinct artifact with a distinct name/schema, never the measured DESIGN.md/tokens.json/styles corpus | HARD BOUNDARY: an authored/invented value leaking into the measured corpus would corrupt sk-design's evidence-first retrieval for every future extraction; both 014 research syntheses rank this phase last specifically for this boundary risk. |
-| A single reviewed-conversion gate is the only authored-to-measured path; no automated promotion | Prevents silent corruption while still letting genuinely good authored ideas earn their way into the measured corpus through explicit human review. |
-| Every authored value carries an origin label and provenance | Makes authored-vs-measured legible at the value level, not just the file level, mirroring Hallmark's own provenance-block precedent. |
-| Overwrite policy refreshes only the authored artifact's own exports | Guarantees re-running the lane can never clobber a measured artifact, even accidentally. |
-| Hallmark concept adoption is clean-room; the MIT notice applies only if the artifact schema substantially copies Hallmark's design.md/provenance format; external assets are out of scope | Hallmark is MIT-licensed (`external/hallmark/LICENSE`); this lane adopts the concept, not Hallmark code or assets. |
+| Keep two exact authored filenames and a dedicated schema id | Structural distinction prevents measured ingestion from confusing authored proposals with evidence. |
+| Validate every palette, type, and voice record independently | File-level provenance cannot reveal which individual values are invented. |
+| Reject measured paths before I/O | A caller cannot clobber an existing measured file, even by supplying an adversarial destination. |
+| Make review a manual checklist, not a command | Human evidence review is the authorization boundary; automation may validate record shape but cannot certify the review. |
+| Preserve authored lineage after review | A measured owner recreates approved values from independent evidence; the source invention does not become retroactively measured. |
+| Add no mode, command, root resource directory, or corpus integration | The lane remains a shared procedure and cannot silently expand the public or measured surface. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -94,11 +97,16 @@ Not yet delivered. `plan.md` sequences three build phases — distinct artifact 
 
 | Gate | Status | Evidence |
 |---|---|---|
-| Distinct artifact / schema collision check | Pending | Not yet run — planned per `tasks.md` T001 |
-| Adversarial authored-to-measured boundary tests | Pending | Not yet written — planned per `tasks.md` T006 |
-| Overwrite-policy tests | Pending | Not yet written — planned per `tasks.md` T007 |
-| Reviewed-conversion gate manual-review check | Pending | Not yet implemented — planned per `tasks.md` T005 |
-| Strict packet validation | Pending | Not yet run — planned per `tasks.md` T008 |
+| Authored/measured path refusal | Pass | Boundary subtest 1 accepts authored paths and rejects `DESIGN.md`, `tokens.json`, and `styles/brand.json` |
+| Rerun byte preservation | Pass | Boundary subtest 2 refreshes both authored exports and confirms both measured files remain byte-identical |
+| Rendered provenance | Pass | Boundary subtest 3 accepts `origin: authored` Markdown and rejects rendered Markdown without the marker |
+| Per-value provenance | Pass | Boundary subtest 4 accepts complete records and rejects missing origin or confidence provenance |
+| Manual review requirement | Pass | Boundary subtests 5-6 reject unsigned, unattested, `verified=true`, and non-empty mismatched-signature records while accepting matching signatures |
+| Resource and runtime distinction | Pass | Boundary subtest 7 invokes the real destination guard against `DESIGN.md`, then confirms exact filenames, origin labels, and reviewed-conversion language |
+| Boundary suite | Pass | `brand-first-boundary.test.mjs`: tests 7, pass 7, fail 0 |
+| Mutation sensitivity | Pass | In-memory guard-removal checks accept the mismatched signature and markerless Markdown mutants, while the measured-target mutant no longer emits the refusal matched by subtest 7 |
+| Existing command surface | Pass | `design-command-surface-check.test.mjs`: tests 7, pass 7, fail 0 |
+| Strict packet validation | Pass | `validate.sh --strict`: Errors 0, Warnings 0, RESULT PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,11 +114,12 @@ Not yet delivered. `plan.md` sequences three build phases — distinct artifact 
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-| Requirement | Planned Check | Status |
+| Requirement | Actual | Status |
 |---|---|---|
-| Performance: no new persistent services | Review lane implementation for background processes | Pending |
-| Security: reviewed-conversion gate requires explicit human action | Adversarial test for automated `verified=true` / silent promotion | Pending |
-| Security: distinct schema resists ingestion confusion | Static schema-collision check against measured artifact schemas | Pending |
+| No persistent service | One imported filesystem helper and static references | Pass |
+| No automatic promotion | No measured writer or conversion command exists | Pass |
+| Manual human action | Named reviewer, role, timestamp, matching signature, attestations, selections, and evidence are required | Pass |
+| Clean-room adaptation | Independently worded schema, examples, tests, and procedure; no external clone read | Pass |
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -118,9 +127,9 @@ Not yet delivered. `plan.md` sequences three build phases — distinct artifact 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- This phase has not started implementation; every statement above describes planned design, not built or tested behavior.
-- Depends on Phase 3 (`003-authored-cards`) completing first; work should not begin before that predecessor lands.
-- The parent packet's open question — whether demonstrated user demand exists to earn this net-new product surface — is unresolved and should be re-confirmed before implementation begins.
+- The lane authors proposals; it does not validate taste, accessibility, contrast, font rights, or production fitness.
+- Structural validation can prove a review record is complete, not that the named human performed a sound review.
+- A measured owner remains responsible for independently capturing evidence and recreating approved values through the existing measured workflow.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -128,5 +137,5 @@ Not yet delivered. `plan.md` sequences three build phases — distinct artifact 
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None yet (not started).
+The orchestrator corrected the planned root paths to `shared/` and fixed the conversion mechanism as a manual-review checklist. A small `authored-brand-boundary.mjs` helper was added under the approved `shared/authored-brand/` scope so adversarial tests exercise production path refusal rather than a test-only mock. No raw Hallmark clone was read.
 <!-- /ANCHOR:deviations -->

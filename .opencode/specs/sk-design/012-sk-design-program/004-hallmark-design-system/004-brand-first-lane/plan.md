@@ -1,23 +1,24 @@
 ---
 title: "Implementation Plan: Brand-First Authoring Lane"
-description: "Plan for building the brand-first authoring lane: distinct artifact + provenance schema, lane authoring + overwrite policy, then the reviewed-conversion gate and adversarial verification, gated on Phase 3 completion (planned; not implemented)."
+description: "Delivered plan for the brand-first lane: distinct authored exports, provenance validation, measured-path refusal, and a manual reviewed-conversion checklist."
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T19:01:14Z"
 
     last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 4 implementation plan (planned)"
-    next_safe_action: "Await Phase 3 (003-authored-cards) completion, then begin Phase 4 implementation per tasks.md"
+    recent_action: "Completed the Phase 4 implementation and boundary verification"
+    next_safe_action: "Use brand-first-lane.md for an explicitly requested authored brand"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/"
+      - ".opencode/skills/sk-design/shared/references/brand-first-lane.md"
+      - ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -71,15 +72,15 @@ Distinct-artifact isolation: the authored brand lives in its own namespace/schem
 1. A short product description enters the brand-first lane, which authors palette/type/voice values, each tagged with an origin label (authored/invented) and provenance (source description, date, confidence note).
 2. Values are written only into the distinct authored artifact — never into DESIGN.md, tokens.json, or the styles corpus.
 3. Re-running the lane refreshes only the authored artifact's own exports section; measured artifacts are never touched.
-4. If and only if a human explicitly runs the reviewed-conversion gate, a reviewed subset of authored values may be promoted into the measured corpus, at which point they lose their "authored" origin label and become measured, evidence-backed values.
-5. No automated code path connects step 2 directly to step 4.
+4. A human may create and sign a separate reviewed-conversion checklist for selected values only after inspecting independent measurement evidence and target conflicts.
+5. The existing measured owner may then recreate an approved value from that evidence. The authored source retains its origin and provenance; no automated code path connects authored exports to measured writes.
 
 ### Key Components
 
 - Distinct authored artifact template (name/schema that cannot collide with measured artifacts).
 - Shared origin-label/provenance schema (reusable by other authored surfaces, e.g. Phase 3's cards).
 - Overwrite-policy logic (refresh authored exports only; never touch measured files).
-- Reviewed-conversion gate (the sole authored-to-measured promotion mechanism).
+- Manual reviewed-conversion checklist and structurally validated companion record (the sole authorization mechanism; no conversion command).
 - Adversarial boundary test suite (proves the invariant holds).
 <!-- /ANCHOR:architecture -->
 
