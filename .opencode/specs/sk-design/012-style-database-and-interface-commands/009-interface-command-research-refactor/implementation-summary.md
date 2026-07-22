@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 009-interface-command-research-refactor |
 | **Level** | 1 |
-| **Status** | COMPLETE — research + thin-router refactor + verify; deeper useful-content improvements documented as follow-ups |
+| **Status** | COMPLETE — research + thin-router refactor + usefulness improvements applied + verified |
 | **Verification** | contract test 8/8; real `/interface:design` invocation routes + expands the `@`-include |
 <!-- /ANCHOR:metadata -->
 
@@ -61,8 +61,18 @@ router base (`d0e838c73c~1`), added **exactly one `@`-include** of `creation-con
 refreshed the stale create-command machine contract from the retired `/design:*` surface to the live
 `/interface:*` surface.
 
-**Phase 3 — test + benchmark + verify.** Contract test 8/8; a per-command conformance scorecard; and a
-real `/interface:design` invocation that routes.
+**Phase 2b — usefulness improvements applied to the presentation assets** (the normative prompts). Each of
+the five presentations now carries: **executable owned-system grounding** (a Reuse Report + Violation Scan
+inside the Grounding Record — the 95%-compliance lever), **brand constraints** (`must-use`/`must-preserve`/
+`must-avoid`), **proof-tier honesty** (label proofs `authored`→`verified`; read-only commands cap at
+`validated`, cannot claim `measured`/`verified`; `PROOF_TIER=<level>` surfaced), **artifact-first output**
+(lead with the artifact; full envelope behind `--evidence full`), and a **per-mode rule** (design =
+contrastive directions + real content/states; foundations = relational token alias chains + theme
+matrices; motion = per-interaction timing + reduced-motion; audit = `SCORE=WITHHELD` until per-dimension
+evidence; design-reference = complete extraction manifest). All 8 required visible-output blocks preserved.
+
+**Phase 3 — test + benchmark + verify.** Contract test 8/8 (before and after the usefulness edits); a
+per-command conformance scorecard; and a real `/interface:design` invocation that routes.
 
 ### Benchmark scorecard (per command)
 
@@ -121,11 +131,11 @@ invocation.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Deeper "genuinely useful" improvements are follow-ups**, not applied here: executable registry
-  grounding (deterministic discovery + reuse/violation scan), artifact-first output restructure, the
-  three-tier verification status (`AUTHORED`/`STATICALLY_VALIDATED`/`RUNTIME_VERIFIED`), enumerated flag
-  grammar, and brand-as-constraints. All are ranked with sources in `research/research.md` and belong in
-  the presentation assets.
+- **Usefulness improvements are applied** to the presentation assets (executable grounding, brand
+  constraints, proof-tier honesty, artifact-first, per-mode rules — all ranked with sources in
+  `research/research.md`). Remaining optional polish: enumerating flag values in the router
+  `argument-hint` lines (the router bodies already enumerate lanes in MODE ROUTING) and a deeper
+  output-ordering restructure inside the workflow YAML.
 - **`/deep:research` framework bug** (opencode group-kill at iteration dispatch) remains open; research was
   delivered via direct dispatches instead.
 <!-- /ANCHOR:limitations -->

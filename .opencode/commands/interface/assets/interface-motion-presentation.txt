@@ -49,3 +49,11 @@ STATUS=DEFER ROUTE=<hub|sibling>
 ```
 
 Returns: a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior.
+
+## Grounding & Proof Requirements (research-backed)
+
+- **Executable grounding, owned-system first.** Before creating, discover the owned styles system and emit a **Reuse Report** (which existing tokens/components/reference styles apply) and a **Violation Scan** (any proposed value not backed by the owned system) inside the **Grounding Record**. Do not use unverified tokens or components. This is the primary lever for on-brand, non-generic output.
+- **Brand constraints.** Capture and honor a `must-use` / `must-preserve` / `must-avoid` policy for the target in the **Resolved Brief**; non-generic output comes from concrete constraints plus verified source, not adjectives.
+- **Proof-tier honesty.** In the **Evidence Ledger**, label every proof at its true level — `authored` / `observed` / `measured` / `validated` / `verified`. A read-only command (Read/Glob/Grep only) caps at `validated` and must NOT claim `measured` or `verified`, which require runtime or render inspection. Surface `PROOF_TIER=<level>` in the results.
+- **Artifact-first output.** Lead the visible result with the **Creation/Remediation Artifact**, decisions, proof, and **Next Action/Handoff**; the full context envelope (Route Proof, Context Manifest, Grounding Record, Evidence Ledger) is retained for audit and shown in full only on `--evidence full`.
+- **Mode-specific.** Specify duration, easing, and trigger per interaction plus explicit **reduced-motion** behavior; label runtime-observed timing at its true proof tier.

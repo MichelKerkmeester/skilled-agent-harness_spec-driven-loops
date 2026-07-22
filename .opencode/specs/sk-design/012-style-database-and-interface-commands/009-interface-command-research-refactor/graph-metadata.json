@@ -183,21 +183,21 @@
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered Fresh",
+        "name": "Reuse Report",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Research Synthesis",
+        "name": "Violation Scan",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Evidence-based deep research (web-enabled, mixed GPT-5.6-SOL-fast + Opus-4.8-max executors) into how leading tools structure design/UI commands, then refactor or re-author the five /interface:* commands to be genuinely useful, tested, and benchmarked — hard-aligned with the sk-doc create-command standard.",
     "created_at": "2026-07-22T04:45:48.388Z",
-    "last_save_at": "2026-07-22T04:45:48.388Z",
+    "last_save_at": "2026-07-22T04:51:46.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4008b80a7bd29aec3f925529a371424931d7313b1af3ff59d05f1ead8f6af8ed",
+    "source_fingerprint": "sha256:9cfa10dd9d853c116bd369d0271afb18ed79338c6ce35dd3961ca7e02ed2c3b1",
     "source_doc_hashes": {
       "spec.md": "1273aea0d2beb32cdf73e866b075092bcfce37893a15da23002c95b2a7703c6a",
       "plan.md": "947a2f962cd22942197fa9125050c0728df39450980d617e0720623dcab3b4d6",
       "tasks.md": "800eda9f8b53fe66e2d41ea21369048fbcb8843436daac5bff7f7827e55a89cc",
-      "implementation-summary.md": "d3da1a8d451cdb52491f0eaf75ea32fefabab03096f7a80f6314328f416a2192",
+      "implementation-summary.md": "a65f84a4b016182bcd3193ab7b8e5c09c23aa580650a0edd055cde4531ef9fe1",
       "research/research.md": "14a96e3fb12206a2c21dfb78e9e7e91fa01a49038484b1849889a80b119141ca"
     },
     "last_active_child_id": null,
